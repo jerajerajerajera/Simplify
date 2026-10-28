@@ -136,7 +136,8 @@ jobs:
       - name: Seed and start
         working-directory: panel
         run: |
-          php ../plugin/tests/lab/seed.php 8090 > servers.json
+          php ../plugin/tests/lab/seed.php 8090 > servers.json || { cat servers.json; exit 1; }
+          head -c 300 servers.json; echo
           nohup node ../plugin/tests/lab/fake-wings.cjs --port 8090 --servers servers.json --log wings.log > wings.out 2>&1 &
           PHP_CLI_SERVER_WORKERS=8 nohup php artisan serve --host 127.0.0.1 --port 8001 > serve.log 2>&1 &
           for i in $(seq 1 30); do curl -sf -o /dev/null http://127.0.0.1:8001/login && break; sleep 1; done
