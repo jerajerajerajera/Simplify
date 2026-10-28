@@ -31,8 +31,8 @@
                     @foreach (['cards' => 'tabler-layout-grid', 'compact' => 'tabler-layout-list', 'list' => 'tabler-list'] as $option => $icon)
                         <button
                             type="button"
-                            wire:click="$set('layout', '{{ $option }}')"
-                            @class(['s-segment', 's-segment-icon', 'is-active' => $layout === $option])
+                            wire:click="$set('display', '{{ $option }}')"
+                            @class(['s-segment', 's-segment-icon', 'is-active' => $display === $option])
                             title="{{ __('pelican-simplify::overview.layout.'.$option) }}"
                             aria-label="{{ __('pelican-simplify::overview.layout.'.$option) }}"
                         >
@@ -54,7 +54,7 @@
         @if ($servers->isEmpty())
             <div class="s-card s-muted">{{ __('pelican-simplify::overview.empty') }}</div>
         @else
-            <div class="s-tiles s-tiles-{{ $layout }}">
+            <div class="s-tiles s-tiles-{{ $display }}">
                 @foreach ($servers as $server)
                     <x-pelican-simplify::server-tile
                         :server="$server"

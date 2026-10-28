@@ -42,7 +42,8 @@ final class Overview extends Page
     /** @var array<int, array{state: string, cpu: ?float, memory: ?int, disk: ?int}> live numbers per server id */
     public array $usage = [];
 
-    public string $layout = 'cards';
+    /** cards, compact or list; not $layout, which Filament's Page already has */
+    public string $display = 'cards';
 
     public string $scope = 'all';
 
@@ -60,7 +61,7 @@ final class Overview extends Page
         if ($user === null) {
             return;
         }
-        $this->layout = Preferences::choice($user, 'overview.layout', self::LAYOUTS, 'cards');
+        $this->display = Preferences::choice($user, 'overview.display', self::LAYOUTS, 'cards');
         $this->scope = Preferences::choice($user, 'overview.scope', self::SCOPES, 'all');
         $this->sort = Preferences::choice($user, 'overview.sort', self::SORTS, 'name');
     }
@@ -68,7 +69,7 @@ final class Overview extends Page
     /** Saves a layout choice for the account, so every device shows the same. */
     public function updated(string $property): void
     {
-        $allowed = ['layout' => self::LAYOUTS, 'scope' => self::SCOPES, 'sort' => self::SORTS][$property] ?? null;
+        $allowed = ['display' => self::LAYOUTS, 'scope' => self::SCOPES, 'sort' => self::SORTS][$property] ?? null;
         $user = user();
         if ($allowed === null || $user === null) {
             return;
