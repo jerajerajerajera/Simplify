@@ -138,4 +138,16 @@ step('a layout choice is saved for the account and an unknown one is refused', f
         throw new RuntimeException('the saved layout is not used: '.$layout);
     }
 });
+step('server groups are saved and shown as sections', function () use ($admin, $server) {
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
+    $page = Livewire\Livewire::actingAs($admin)->test(Overview::class)
+        ->call('editGroups')->call('addGroup');
+    $id = $page->get('draft')[0]['id'];
+    $page->set('draft.0.name', 'Smoke group')->set('draft.0.color', '#336699')->set('assign.'.$server->id, $id)->call('saveGroups')
+        ->assertSee('Smoke group');
+    $saved = Preferences::get($admin, 'overview.groups');
+    if (($saved[0]['servers'] ?? null) !== [$server->id] || $saved[0]['color'] !== '#336699') {
+        throw new RuntimeException('groups were not saved: '.json_encode($saved));
+    }
+});
 exit($failed ? 1 : 0);

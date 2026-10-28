@@ -10,10 +10,12 @@ use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Addons\Button;
 use Simplify\Core\Overview\Power;
+use Simplify\Core\Overview\ServerGroups;
 use Simplify\Core\Overview\ServerQuery;
 use Simplify\Core\Overview\Usage;
 use Simplify\Core\Support\Preferences;
@@ -48,6 +50,17 @@ final class Overview extends Page
 
     public string $sort = 'name';
 
+    /** @var list<array{id: string, name: string, color: ?string, servers: list<int>}> */
+    public array $groups = [];
+
+    public bool $editingGroups = false;
+
+    /** @var list<array{id: string, name: string, color: ?string}> the groups while editing */
+    public array $draft = [];
+
+    /** @var array<int|string, string> group id per server id while editing; '' is no group */
+    public array $assign = [];
+
     /** @var Collection<int, Server>|null the servers of this request, read once */
     private ?Collection $servers = null;
 
@@ -63,6 +76,7 @@ final class Overview extends Page
         $this->layout = Preferences::choice($user, 'overview.layout', self::LAYOUTS, 'cards');
         $this->scope = Preferences::choice($user, 'overview.scope', self::SCOPES, 'all');
         $this->sort = Preferences::choice($user, 'overview.sort', self::SORTS, 'name');
+        $this->groups = ServerGroups::clean(Preferences::get($user, 'overview.groups'));
     }
 
     /** Saves a layout choice for the account, so every device shows the same. */
@@ -109,6 +123,71 @@ final class Overview extends Page
         return $this->sort === 'created'
             ? $servers->sortByDesc('created_at')->values()
             : $servers->sortBy(fn (Server $server) => mb_strtolower($server->name))->values();
+    }
+
+    /** @return array{groups: list<array{group: array{id: string, name: string, color: ?string, servers: list<int>}, servers: list<Server>}>, rest: list<Server>} */
+    public function sections(): array
+    {
+        return ServerGroups::split($this->groups, $this->servers()->all());
+    }
+
+    public function editGroups(): void
+    {
+        $this->draft = array_map(fn (array $group) => ['id' => $group['id'], 'name' => $group['name'], 'color' => $group['color']], $this->groups);
+        $this->assign = [];
+        foreach ($this->groups as $group) {
+            foreach ($group['servers'] as $id) {
+                $this->assign[$id] = $group['id'];
+            }
+        }
+        $this->editingGroups = true;
+    }
+
+    public function addGroup(): void
+    {
+        if (count($this->draft) < ServerGroups::LIMIT) {
+            $this->draft[] = ['id' => Str::random(12), 'name' => '', 'color' => null];
+        }
+    }
+
+    public function removeGroup(int $index): void
+    {
+        unset($this->draft[$index]);
+        $this->draft = array_values($this->draft);
+    }
+
+    public function moveGroup(int $index, int $step): void
+    {
+        $target = $index + $step;
+        if (isset($this->draft[$index], $this->draft[$target])) {
+            [$this->draft[$index], $this->draft[$target]] = [$this->draft[$target], $this->draft[$index]];
+        }
+    }
+
+    public function saveGroups(): void
+    {
+        $user = user();
+        if ($user === null) {
+            return;
+        }
+        $visible = $this->allServers()->pluck('id')->all();
+        $groups = array_map(function (array $group) use ($visible) {
+            $servers = array_keys(array_filter($this->assign, fn ($id) => $id === $group['id']));
+
+            return [...$group, 'servers' => array_values(array_intersect(array_map('intval', $servers), $visible))];
+        }, $this->draft);
+        // Servers this user cannot see now keep their group, so a group is not emptied by a filter or lost access.
+        foreach ($this->groups as $old) {
+            foreach ($groups as &$group) {
+                if ($group['id'] === $old['id']) {
+                    $group['servers'] = [...$group['servers'], ...array_diff($old['servers'], $visible)];
+                }
+            }
+            unset($group);
+        }
+        $this->groups = ServerGroups::clean($groups);
+        Preferences::set($user, 'overview.groups', $this->groups);
+        $this->editingGroups = false;
     }
 
     /** The owner filter only shows when the list holds both own servers and servers of others (admins). */

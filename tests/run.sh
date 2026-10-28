@@ -5,5 +5,6 @@ cd "$(dirname "$0")/.."
 find src tests resources lang -name '*.php' -print0 | xargs -0 -n1 php -l >/dev/null
 php tests/addons.php
 php tests/overview.php
+php tests/server-groups.php
 php tests/lang.php
 python3 tests/hub-check.py
