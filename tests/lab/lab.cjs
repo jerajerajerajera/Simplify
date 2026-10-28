@@ -19,7 +19,7 @@ const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g
   page.setDefaultTimeout(10000);
   let current = 'login';
   page.on('pageerror', (e) => issues.push(current + ' page error: ' + e.message));
-  page.on('console', (m) => { if (m.type() === 'error' && !/favicon|net::ERR|status of 4|WebSocket|websocket/.test(m.text())) issues.push(current + ' console: ' + m.text().slice(0, 200)); });
+  page.on('console', (m) => { if (m.type() === 'error' && !/favicon|net::ERR|status of 4|WebSocket|websocket|token_id/.test(m.text())) issues.push(current + ' console: ' + m.text().slice(0, 200)); }); // token_id: the fake Wings is not a real node (Pelican's node list checks it from the browser).
   page.on('response', (r) => { if (r.status() >= 500) issues.push(current + ' HTTP ' + r.status() + ' ' + r.url().replace(base, '')); });
   const settle = async () => { await page.waitForLoadState('networkidle', { timeout: 15000 }).catch(() => {}); await sleep(600); };
   const shot = async (name) => {
