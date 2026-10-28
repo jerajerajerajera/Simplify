@@ -536,6 +536,10 @@ html.ps-frame[data-ps-tree] .s-settings-tabs.fi-vertical {
   width: 100%;
 }
 
+.s-settings > .s-bar {
+  margin-top: var(--s-space-3);
+}
+
 .s-settings:has(.fi-active .s-pelican-frame) .s-bar {
   display: none;
 }
