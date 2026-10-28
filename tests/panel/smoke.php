@@ -145,14 +145,14 @@ step('a power action on a server the user cannot reach is refused', function () 
 step('a layout choice is saved for the account and an unknown one is refused', function () use ($admin) {
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
     Livewire\Livewire::actingAs($admin)->test(Overview::class)
-        ->set('layout', 'list')->set('sort', 'sideways');
-    if (Preferences::get($admin, 'overview.layout') !== 'list') {
+        ->set('display', 'list')->set('sort', 'sideways');
+    if (Preferences::get($admin, 'overview.display') !== 'list') {
         throw new RuntimeException('the layout was not saved');
     }
     if (Preferences::get($admin, 'overview.sort') !== 'name') {
         throw new RuntimeException('an unknown sort was saved: '.json_encode(Preferences::get($admin, 'overview.sort')));
     }
-    $layout = Livewire\Livewire::actingAs($admin)->test(Overview::class)->get('layout');
+    $layout = Livewire\Livewire::actingAs($admin)->test(Overview::class)->get('display');
     if ($layout !== 'list') {
         throw new RuntimeException('the saved layout is not used: '.$layout);
     }
