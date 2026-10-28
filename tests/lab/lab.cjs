@@ -76,6 +76,14 @@ const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g
     for (const tab of ['General', 'Appearance', 'Add-ons']) {
       if (await click(page.locator('main [role=tab]', { hasText: tab }), `settings tab ${tab}`)) await shot(`action-settings-${slug(tab)}`);
     }
+    ok('the menu has Simplify, add-on and Pelican tabs', (await page.locator('main [role=tab]').count()) >= 9, String(await page.locator('main [role=tab]').count()));
+    if (await click(page.locator('main [role=tab]', { hasText: 'Mail' }), 'settings tab Pelican Mail')) {
+      await sleep(2500);
+      const frame = page.frameLocator('main iframe[data-ps-frame="settings"]:visible');
+      ok('Pelican tab shows Pelican page in the frame', (await frame.locator('.fi-main').count().catch(() => 0)) > 0);
+      ok('Pelican tab frame has no menus or tab bar', (await frame.locator('.fi-topbar:visible, .fi-sidebar:visible, .fi-tabs:visible').count().catch(() => 1)) === 0);
+      await shot('action-settings-pelican-mail');
+    }
     await click(page.locator('main [role=tab]', { hasText: 'General' }), 'settings back to General');
     await click(page.locator('main button[type=submit]', { hasText: 'Save' }), 'settings save');
     ok('settings saved', /saved/i.test(await page.locator('body').innerText()));
@@ -148,11 +156,13 @@ const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g
     if (!(await click(page.locator('#ps-account-actions button[aria-label="Switch to host mode"]'), 'switch to host mode'))) return;
     await sleep(1500);
     ok('host mode shows the admin tree', (await page.locator('.ps-host-tree .ps-host-group:visible').count()) >= 3, String(await page.locator('.ps-host-tree .ps-host-group').count()));
+    ok('the tree carries the settings leaves', (await page.locator('.ps-host-tree .ps-host-group', { hasText: 'Pelican settings' }).count()) === 1);
     const framed = async () => page.frameLocator('.ps-host-frame:not(.is-server) iframe').locator('body');
     ok('the page in the frame has no Pelican menus', (await (await framed()).locator('.fi-topbar:visible, .fi-sidebar:visible').count()) === 0);
     ok('the page in the frame loaded', (await (await framed()).locator('.fi-main').count().catch(() => 0)) > 0);
     await shot('action-host-mode');
     if (await click(page.locator('.ps-host-leaf', { hasText: 'Nodes' }), 'Nodes in the tree')) { await sleep(1500); await shot('action-host-nodes'); }
+    if (await click(page.locator('.ps-host-group-head', { hasText: 'Pelican settings' }), 'Pelican settings in the tree')) { await sleep(2500); await shot('action-host-settings'); }
     if (await click(page.locator('.ps-host-tabs button', { hasText: 'Servers' }), 'servers tab')) {
       if (await click(page.locator('.ps-host-server', { hasText: 'Survival' }), 'Survival in host mode')) { await sleep(2500); await shot('action-host-server'); ok('the server in the frame loaded', (await page.frameLocator('.ps-host-frame.is-server iframe').locator('.fi-main').count().catch(() => 0)) > 0); }
     }
