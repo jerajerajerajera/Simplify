@@ -2,6 +2,7 @@
 
 // Loads Simplify inside a real Pelican panel and opens its pages. Run from the panel folder after
 // `php artisan p:plugin:install pelican-simplify`: php plugins/pelican-simplify/tests/panel/smoke.php
+use App\Models\Role;
 use App\Models\Server;
 use App\Models\User;
 use Illuminate\Contracts\Console\Kernel;
@@ -19,13 +20,21 @@ define('LARAVEL_START', microtime(true));
 require getcwd().'/vendor/autoload.php';
 $app = require getcwd().'/bootstrap/app.php';
 $app->make(Kernel::class)->bootstrap();
+// Laravel's own handler prints an error outside a step and still exits with 0, which would leave CI green without
+// testing anything.
+set_exception_handler(function (Throwable $e): void {
+    echo 'FAIL setup: '.get_class($e).': '.substr($e->getMessage(), 0, 400).' ('.basename($e->getFile()).':'.$e->getLine().")\n";
+    exit(1);
+});
 
 $failed = false;
+$passed = 0;
 function step(string $what, callable $run): void
 {
-    global $failed;
+    global $failed, $passed;
     try {
         $run();
+        $passed++;
         echo "PASS $what\n";
     } catch (Throwable $e) {
         $failed = true;
@@ -63,8 +72,10 @@ final class SmokeAddon extends Addon
     }
 }
 
+// Pelican 1.0 has no users.root_admin column: root admins have the root admin role.
 $admin = User::where('email', 'smoke-simplify@example.com')->first()
-    ?? User::factory()->create(['email' => 'smoke-simplify@example.com', 'root_admin' => true]);
+    ?? User::withoutEvents(fn () => User::factory()->create(['email' => 'smoke-simplify@example.com']));
+$admin->syncRoles(Role::getRootAdmin());
 
 step('settings page renders', function () use ($admin) {
     $url = Settings::getUrl(panel: 'admin');
@@ -100,7 +111,7 @@ step('every panel page loads the stylesheet', function () use ($admin) {
         throw new RuntimeException('the stylesheet link is missing');
     }
 });
-$server = Server::query()->first() ?? Server::factory()->create(['owner_id' => $admin->id]);
+$server = Server::query()->first() ?? Server::factory()->create(['owner_id' => $admin->id, 'name' => 'Smoke server']);
 step('the overview renders with the server tile', function () use ($admin, $server) {
     $url = Overview::getUrl(panel: 'app');
     $response = visit($admin, $url);
@@ -122,4 +133,5 @@ step('a power action on a server the user cannot reach is refused', function () 
     Livewire\Livewire::actingAs($admin)->test(Overview::class)
         ->call('power', 999999, 'start')->assertNotified(__('pelican-simplify::overview.power.denied'));
 });
-exit($failed ? 1 : 0);
+echo "$passed steps passed\n";
+exit($failed || $passed === 0 ? 1 : 0);
