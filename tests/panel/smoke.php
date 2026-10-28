@@ -6,6 +6,7 @@ use App\Models\Role;
 use App\Models\Server;
 use App\Models\User;
 use Illuminate\Contracts\Console\Kernel;
+use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithAuthentication;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithSession;
 use Illuminate\Foundation\Testing\Concerns\MakesHttpRequests;
@@ -20,7 +21,7 @@ define('LARAVEL_START', microtime(true));
 require getcwd().'/vendor/autoload.php';
 // Each step gets a fresh application, like a real request: Filament keeps panel state (render hooks, plugins) for
 // the whole process, so opening an admin page and then an app page in one application fails where a browser would not.
-function boot(): Illuminate\Foundation\Application
+function boot(): Application
 {
     $app = require getcwd().'/bootstrap/app.php';
     $app->make(Kernel::class)->bootstrap();
