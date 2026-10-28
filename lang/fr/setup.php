@@ -47,7 +47,7 @@ return [
             'description' => 'Gardez vos eggs à jour et testez d\'abord les mises à jour.',
         ],
         'embed' => [
-            'name' => 'Embed',
+            'name' => 'Website embed',
             'description' => 'Montrez vos serveurs sur votre propre site web.',
         ],
         'plugins' => [

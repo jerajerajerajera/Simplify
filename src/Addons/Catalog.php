@@ -14,14 +14,14 @@ final class Catalog
 
     /** id => icon */
     public const ADDONS = [
-        'simplify-server-maker' => 'tabler-square-plus',
+        'simplify-server-maker' => 'tabler-wand',
         'simplify-subdomains' => 'tabler-world',
-        'simplify-mods' => 'tabler-puzzle',
+        'simplify-mods' => 'tabler-cube',
         'simplify-announcements' => 'tabler-speakerphone',
-        'simplify-explain' => 'tabler-bulb',
+        'simplify-explain' => 'tabler-message-question',
         'simplify-egg-updates' => 'tabler-egg',
         'simplify-embed' => 'tabler-code',
-        'simplify-plugins' => 'tabler-plug',
+        'simplify-plugins' => 'tabler-world-search',
     ];
 
     /** @return list<array{id: string, icon: string, name: string, description: string, url: string, installed: bool}> */

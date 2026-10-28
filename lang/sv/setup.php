@@ -47,7 +47,7 @@ return [
             'description' => 'Håll dina eggs uppdaterade och prova uppdateringar först.',
         ],
         'embed' => [
-            'name' => 'Embed',
+            'name' => 'Website embed',
             'description' => 'Visa dina servrar på din egen webbplats.',
         ],
         'plugins' => [

@@ -47,7 +47,7 @@ return [
             'description' => 'Tartsd naprakészen az egg-eket, és előbb próbáld ki a frissítéseket.',
         ],
         'embed' => [
-            'name' => 'Embed',
+            'name' => 'Website embed',
             'description' => 'Mutasd meg a szervereidet a saját weboldaladon.',
         ],
         'plugins' => [

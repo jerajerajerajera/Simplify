@@ -16,7 +16,7 @@ final class ServerQuery
     /** @return Builder<Server> */
     public static function for(User $user): Builder
     {
-        $query = $user->accessibleServers()->with(['allocation', 'egg:id,name', 'node', 'user:id,username']);
+        $query = $user->accessibleServers()->with(['allocation', 'egg:id,name,features', 'node', 'user:id,username']);
         $prefixes = app(AddonRegistry::class)->collect(fn (Addon $addon) => $addon->hiddenServerPrefixes());
         foreach (array_unique($prefixes) as $prefix) {
             $query->where(fn (Builder $q) => $q

@@ -47,7 +47,7 @@ return [
             'description' => 'egg を最新に保ち、アップデートを先に試せます。',
         ],
         'embed' => [
-            'name' => 'Embed',
+            'name' => 'Website embed',
             'description' => '自分のウェブサイトにサーバーを表示します。',
         ],
         'plugins' => [

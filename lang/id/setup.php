@@ -47,7 +47,7 @@ return [
             'description' => 'Jaga egg Anda tetap terbaru dan coba pembaruan dulu.',
         ],
         'embed' => [
-            'name' => 'Embed',
+            'name' => 'Website embed',
             'description' => 'Tampilkan server Anda di situs web Anda sendiri.',
         ],
         'plugins' => [

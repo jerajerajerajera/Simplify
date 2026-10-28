@@ -47,7 +47,7 @@ return [
             'description' => '讓你的 egg 保持最新，並先試用更新。',
         ],
         'embed' => [
-            'name' => 'Embed',
+            'name' => 'Website embed',
             'description' => '在你自己的網站上展示伺服器。',
         ],
         'plugins' => [

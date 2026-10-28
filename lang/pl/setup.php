@@ -47,7 +47,7 @@ return [
             'description' => 'Utrzymuj eggi na bieżąco i najpierw testuj aktualizacje.',
         ],
         'embed' => [
-            'name' => 'Embed',
+            'name' => 'Website embed',
             'description' => 'Pokaż swoje serwery na własnej stronie.',
         ],
         'plugins' => [

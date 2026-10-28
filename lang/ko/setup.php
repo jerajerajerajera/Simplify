@@ -47,7 +47,7 @@ return [
             'description' => 'egg를 최신으로 유지하고 업데이트를 먼저 시험해 봅니다.',
         ],
         'embed' => [
-            'name' => 'Embed',
+            'name' => 'Website embed',
             'description' => '내 웹사이트에 서버를 보여 줍니다.',
         ],
         'plugins' => [

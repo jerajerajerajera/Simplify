@@ -47,7 +47,7 @@ return [
             'description' => 'Giữ egg luôn mới và thử cập nhật trước.',
         ],
         'embed' => [
-            'name' => 'Embed',
+            'name' => 'Website embed',
             'description' => 'Hiển thị máy chủ của bạn trên trang web riêng.',
         ],
         'plugins' => [

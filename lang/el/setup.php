@@ -47,7 +47,7 @@ return [
             'description' => 'Κρατήστε τα eggs ενημερωμένα και δοκιμάστε πρώτα τις ενημερώσεις.',
         ],
         'embed' => [
-            'name' => 'Embed',
+            'name' => 'Website embed',
             'description' => 'Δείξτε τους διακομιστές σας στον δικό σας ιστότοπο.',
         ],
         'plugins' => [
