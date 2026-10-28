@@ -128,10 +128,11 @@
     </nav>
     {{-- The title row of Pelican's console, put above its output by server.js. --}}
     <template x-ref="consoleBar">
-        <div class="ps-console-title ps-ui">
+        <div class="ps-console-title ps-ui" data-quick="{{ $u('quick_commands') }}">
             <span class="ps-terminal-icon" aria-hidden="true">›_</span>
             <strong>{{ $u('live_console') }}</strong>
             <span class="ps-console-dot"></span>
+            <span class="ps-live-bars" aria-hidden="true" hidden><i></i><i></i><i></i><i></i></span>
             <span class="ps-console-state" data-connecting="{{ $u('connecting_to_wings') }}" data-connected="{{ $u('connected_to_wings') }}">{{ $u('connecting_to_wings') }}</span>
             <button type="button" class="ps-console-clear ps-console-tool ps-console-grow" data-normal="{{ $u('normal_size') }}" data-bigger="{{ $u('bigger_console') }}" aria-label="{{ $u('bigger_console') }}" aria-pressed="false"><svg aria-hidden="true"><use href="#ps-expand"/></svg></button>
             <button type="button" class="ps-console-clear ps-console-tool ps-console-window" aria-label="{{ $u('open_the_console_in_a_new') }}" data-tip="{{ $u('open_in_a_new_window') }}"><svg aria-hidden="true"><use href="#ps-external"/></svg></button>

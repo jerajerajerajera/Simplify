@@ -83,6 +83,7 @@
       async refresh() {
         if (this.destroyed || document.hidden) return;
         try {
+          this.pollNotifications();
           const server = await wire.refresh();
           if (this.destroyed) return;
           // On the console page the live numbers win; the rest of the card follows the refresh.
@@ -114,7 +115,30 @@
         }
         const state = bar.querySelector('.ps-console-state');
         bar.querySelector('.ps-console-dot').classList.toggle('connected', connected);
+        bar.querySelector('.ps-live-bars').hidden = !connected;
+        this.quickCommands(terminal, bar.dataset.quick);
         state.textContent = connected ? state.dataset.connected : state.dataset.connecting;
+      },
+
+      /** Minecraft: a row of common commands above Pelican's command line; a click puts one in the line to finish or send. */
+      quickCommands(terminal, label) {
+        const input = document.getElementById('send-command');
+        if (!this.server.minecraft || !input || input.readOnly || terminal.parentElement.querySelector('.ps-quick-commands')) return;
+        const row = document.createElement('div');
+        row.className = 'ps-quick-commands ps-ui';
+        row.setAttribute('role', 'group');
+        row.setAttribute('aria-label', label);
+        for (const text of ['list', 'say ', 'time set day', 'weather clear', 'save-all']) {
+          const button = Object.assign(document.createElement('button'), { type: 'button', className: 'ps-quick-command', textContent: text.endsWith(' ') ? text + '…' : text });
+          button.addEventListener('click', () => {
+            input.value = text;
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+            input.focus();
+            input.setSelectionRange(text.length, text.length);
+          });
+          row.append(button);
+        }
+        terminal.after(row);
       },
 
       /* Card ------------------------------------------------------------------------------------- */

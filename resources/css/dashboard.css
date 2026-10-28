@@ -1614,4 +1614,6 @@ html.ps-console-window body:has(.ps-server-top) .fi-main-ctn > .fi-main { grid-c
   .ps-console-grow { display: none !important; }
   #terminal { padding: 60px 10px 10px; }
   #terminal > .ps-console-title { height: 48px; }
+  .ps-ui.ps-quick-commands { display: flex; flex: none; gap: 6px; padding: 8px 12px; overflow-x: auto; scrollbar-width: none; background: #131a20; }
 }
+.ps-live-bars[hidden] { display: none; }
