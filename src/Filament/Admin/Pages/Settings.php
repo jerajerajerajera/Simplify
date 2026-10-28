@@ -103,7 +103,7 @@ final class Settings extends Page implements HasForms
         return $schema->statePath('data')->components([
             Tabs::make()->vertical()->persistTabInQueryString()->columnSpanFull()->extraAttributes(['class' => 's-settings-tabs'])->tabs([
                 Tab::make(__('pelican-simplify::settings.general.tab'))->key('general')->icon('tabler-adjustments')->schema([
-                    SettingsFields::profile(),
+                    SettingsFields::support(),
                     SettingsFields::startPage(),
                     SettingsFields::refresh(),
                 ]),

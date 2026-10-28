@@ -2,15 +2,16 @@
 <section class="ps-overview" x-show="!hostMode" :class="{'is-list': overviewView==='list'}" :style="{'--grid-columns': overviewColumns(), ...overviewGridStyle()}">
     <div class="ps-server-scroll" tabindex="0" role="region" aria-label="{{ $u('servers') }}">
         <div class="ps-server-stage" :class="{'is-list': overviewView==='list'}">
-            {{-- Customers of a hosting company: a greeting with their account links next to it. --}}
-            <div class="ps-customer-head" x-show="boot.hosting && !boot.settings_url" x-cloak>
+            {{-- Customers: a greeting with the links add-ons give them (such as a hoster's client area) and support. --}}
+            <div class="ps-customer-head" x-show="boot.customer?.length" x-cloak>
                 <div>
                     <h2 x-text="Simplify.fill(@js($u('customer_greeting')), { name: boot.user })"></h2>
                     <p x-text="Simplify.choice(@js($u('customer_servers')), boot.servers.length)"></p>
                 </div>
                 <div class="ps-customer-links">
-                    <a class="ps-btn" x-show="boot.hosting?.client_area" :href="safeLink(boot.hosting?.client_area)" target="_blank" rel="noopener noreferrer"><span>{{ $u('client_area') }}</span><svg aria-hidden="true"><use href="#ps-external"/></svg></a>
-                    <a class="ps-btn" x-show="boot.hosting?.support" :href="safeLink(boot.hosting?.support)" target="_blank" rel="noopener noreferrer"><span x-text="boot.hosting?.support_label"></span><svg aria-hidden="true"><use href="#ps-external"/></svg></a>
+                    <template x-for="link in boot.customer || []" :key="link.url">
+                        <a class="ps-btn" :href="safeLink(link.url)" target="_blank" rel="noopener noreferrer"><span x-text="link.label"></span><svg aria-hidden="true"><use href="#ps-external"/></svg></a>
+                    </template>
                 </div>
             </div>
             <div class="ps-overview-toolbar" x-init="scrollHint($el)">

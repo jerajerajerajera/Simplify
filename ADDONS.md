@@ -54,6 +54,9 @@ Only `id()` and `name()` are required. Everything else has a default.
 | `tileBadges(Server $server): list<string>` | `[]` | short texts on a server tile, such as its address |
 | `serverInfo(Server $server): array` | `[]` | players, max_players, motd, version and icon of a running game, on the server's card and page (since 1.1, API 2) |
 | `serverSections(Server $server): list<class-string>` | `[]` | Livewire components on the server page; each gets `server` |
+| `serverLinks(Server $server): list<Button>` | `[]` | links in the ⋯ menu of the server page, opened in a new tab (since 1.1, API 2) |
+| `customerLinks(User $user): list<Button>` | `[]` | links for customers (not admins) beside a greeting at the top of the overview; the panel's support link follows (since 1.1, API 2) |
+| `hostModeDefault(): bool` | `false` | `true` opens host mode for admins of panels with more than one node, until they pick a mode (since 1.1, API 2) |
 
 `Button` is `new Button(string $label, string $url, ?string $icon = null, bool $primary = false)`.
 
@@ -62,7 +65,7 @@ Return an empty list when the current user may not use something. Simplify does 
 ## Rules
 
 - New methods are only ever added with a default, so an add-on keeps working when Simplify updates. A test in Simplify's CI fails when a method without a default is added.
-- `Addon::API` is the contract version: 1 in Simplify 1.0, 2 since 1.1 (`serverInfo()`). It goes up by one whenever a method is added.
+- `Addon::API` is the contract version: 1 in Simplify 1.0, 2 since 1.1 (`serverInfo()`, `serverLinks()`, `customerLinks()`, `hostModeDefault()`). It goes up by one whenever a method is added.
 - A newer add-on on an older Simplify just works: Simplify never calls the methods it does not know yet. Check `defined(Addon::class.'::API') ? Addon::API : 1` only when your add-on wants to show something different on an older core.
 - If your add-on throws, Simplify reports the error and leaves your add-on out. It never breaks a Simplify page.
 - Install other plugins only from the Pelican Hub, and list every outside service you call in your README.
