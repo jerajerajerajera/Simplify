@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Testing\TestResponse;
 use Illuminate\Validation\ValidationException;
+use Livewire\Features\SupportTesting\Testable;
 use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Filament\Admin\Pages\Settings;
@@ -81,6 +82,13 @@ function visit(User $user, string $url): TestResponse
 
     return $client->actingAs($user)->get($url);
 }
+// Livewire's own assertions need PHPUnit's configuration, which a plain script does not have.
+function noErrors(Testable $component): void
+{
+    if ($component->errors()->isNotEmpty()) {
+        throw new RuntimeException('validation failed: '.json_encode($component->errors()->toArray()));
+    }
+}
 function expectOk(TestResponse $response, string $url): void
 {
     if ($response->getStatusCode() !== 200) {
@@ -118,9 +126,10 @@ step('the first visit to the settings opens the setup, and finishing it saves th
         throw new RuntimeException('the setup does not list the add-ons');
     }
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('admin'));
-    Livewire\Livewire::actingAs($admin)->test(Setup::class)
+    $setup = Livewire\Livewire::actingAs($admin)->test(Setup::class)
         ->set('data.profile', 'hosting')->set('data.billing_url', 'https://billing.example.com/s/{uuid}')
-        ->set('data.support_url', 'mailto:help@example.com')->call('finish')->assertHasNoErrors();
+        ->set('data.support_url', 'mailto:help@example.com')->call('finish');
+    noErrors($setup);
     if (! PanelSettings::get('setup_done') || PanelSettings::get('profile') !== 'hosting' || PanelSettings::get('support_url') !== 'mailto:help@example.com') {
         throw new RuntimeException('the setup was not saved: '.json_encode(PanelSettings::all()));
     }
@@ -278,10 +287,12 @@ step('a server gets a colour and banner from its page, shown on its card', funct
 });
 step('panel settings are saved and a bad value is refused', function () use ($admin) {
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('admin'));
-    Livewire\Livewire::actingAs($admin)->test(Settings::class)
-        ->set('data.overview_seconds', 2)->call('save')->assertHasErrors();
-    Livewire\Livewire::actingAs($admin)->test(Settings::class)
-        ->set('data.overview_seconds', 20)->set('data.accent', '#336699')->call('save')->assertHasNoErrors();
+    $bad = Livewire\Livewire::actingAs($admin)->test(Settings::class)->set('data.overview_seconds', 2)->call('save');
+    if ($bad->errors()->isEmpty()) {
+        throw new RuntimeException('a refresh of 2 seconds was accepted');
+    }
+    noErrors(Livewire\Livewire::actingAs($admin)->test(Settings::class)
+        ->set('data.overview_seconds', 20)->set('data.accent', '#336699')->call('save'));
     if (PanelSettings::get('overview_seconds') !== 20 || PanelSettings::get('accent') !== '#336699') {
         throw new RuntimeException('settings were not saved: '.json_encode(PanelSettings::all()));
     }
