@@ -4,6 +4,9 @@
     $actions = $this->actions();
 @endphp
 <x-filament-panels::page>
+    @if (user()?->isRootAdmin())
+        @livewire(\Simplify\Core\Livewire\HostHealthCard::class, key('simplify-host-health'))
+    @endif
     <div x-data="{ search: '' }" wire:init="refreshUsage" wire:poll.{{ $this->refreshSeconds() }}s.visible="refreshUsage" class="s-overview">
         <div class="s-toolbar">
             @if ($this->scopeShown())

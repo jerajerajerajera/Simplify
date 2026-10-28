@@ -528,3 +528,54 @@
   display: grid;
   gap: var(--s-space-4);
 }
+
+/* Host health on the overview, for root admins */
+.s-health {
+  margin-bottom: var(--s-space-4);
+}
+
+.s-health-head {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-space-2);
+}
+
+.s-health-title {
+  font-weight: 600;
+}
+
+.s-health-refresh {
+  margin-left: auto;
+}
+
+.s-health-meters {
+  margin-top: var(--s-space-3);
+}
+
+.s-health-problem {
+  font-size: var(--s-text-sm);
+  margin-top: var(--s-space-2);
+}
+
+.s-meter {
+  background: var(--s-line);
+  border-radius: var(--s-radius-pill);
+  height: 4px;
+  margin-top: var(--s-space-1);
+  overflow: hidden;
+}
+
+.s-meter span {
+  background: var(--s-ok);
+  display: block;
+  height: 100%;
+}
+
+.s-meter-warn span {
+  background: var(--s-warn);
+}
+
+.s-meter-danger span {
+  background: var(--s-danger);
+}
