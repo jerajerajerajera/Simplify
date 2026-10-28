@@ -101,7 +101,7 @@ $plain = new class extends Addon
         return 'Plain';
     }
 };
-check($plain->description() === '' && $plain->icon() === 'tabler-puzzle' && $plain->settingsUrl() === null && $plain->dashboardActions() === [], 'an add-on only has to give an id and a name');
+check($plain->description() === '' && $plain->icon() === 'tabler-puzzle' && $plain->settingsUrl() === null && $plain->dashboardActions() === [] && $plain->hiddenServerPrefixes() === [], 'an add-on only has to give an id and a name');
 
 if ($failures) {
     echo "FAIL add-ons:\n  ".implode("\n  ", $failures)."\n";

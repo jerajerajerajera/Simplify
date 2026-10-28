@@ -50,6 +50,7 @@ Only `id()` and `name()` are required. Everything else has a default.
 | `icon(): string` | `'tabler-puzzle'` | add-on list (a Tabler icon name) |
 | `dashboardActions(): list<Button>` | `[]` | buttons in the dashboard toolbar |
 | `settingsUrl(): ?string` | `null` | "Settings" button in the add-on list |
+| `hiddenServerPrefixes(): list<string>` | `[]` | servers whose external id starts with one of these are left out of every Simplify list and count |
 | `tileBadges(Server $server): list<string>` | `[]` | short texts on a server tile, such as its address |
 | `serverSections(Server $server): list<class-string>` | `[]` | Livewire components on the server page; each gets `server` |
 

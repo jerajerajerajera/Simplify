@@ -53,6 +53,17 @@ abstract class Addon
     }
 
     /**
+     * Servers that Simplify leaves out of every list and count, by the start of their external id. For example
+     * Egg Updates hides its temporary test servers with "simplify-egg-check-".
+     *
+     * @return list<string>
+     */
+    public function hiddenServerPrefixes(): array
+    {
+        return [];
+    }
+
+    /**
      * Short texts on the server's tile, for example its address.
      *
      * @return list<string>
