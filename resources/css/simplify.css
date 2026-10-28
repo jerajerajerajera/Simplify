@@ -107,7 +107,7 @@
   background: color-mix(in oklab, var(--s-accent) 88%, #000);
 }
 
-/* Toolbar: buttons on one line, aligned right on wide screens, wrapping on a phone. */
+/* Toolbar: buttons on one line, aligned to the end on wide screens, wrapping on a phone. */
 .s-bar {
   align-items: center;
   display: flex;
@@ -198,7 +198,7 @@
 }
 
 .s-toolbar .s-bar {
-  margin-left: auto;
+  margin-inline-start: auto;
 }
 
 .s-search {
@@ -247,9 +247,9 @@
   border-color: var(--s-tile-accent, var(--s-accent));
 }
 
-/* A group colour shows as a stripe on the tile's left edge. */
+/* A group colour shows as a stripe on the tile's start edge (left, or right in right-to-left languages). */
 .s-tile[style*="--s-tile-accent"] {
-  border-left: 3px solid var(--s-tile-accent);
+  border-inline-start: 3px solid var(--s-tile-accent);
 }
 
 .s-tile[hidden] {
@@ -306,7 +306,7 @@
 .s-tile-power {
   display: flex;
   gap: var(--s-space-1);
-  margin-left: auto;
+  margin-inline-start: auto;
   position: relative;
   z-index: 1;
 }
@@ -493,7 +493,7 @@
   }
 
   .s-toolbar .s-bar {
-    margin-left: 0;
+    margin-inline-start: 0;
     width: 100%;
   }
 }
@@ -546,7 +546,7 @@
 }
 
 .s-health-refresh {
-  margin-left: auto;
+  margin-inline-start: auto;
 }
 
 .s-health-meters {
@@ -656,7 +656,7 @@
   box-shadow: var(--s-shadow);
   content: "";
   height: 18px;
-  left: 2px;
+  inset-inline-start: 2px;
   position: absolute;
   top: 2px;
   transition: transform var(--s-fast);
@@ -706,12 +706,12 @@
 }
 
 .s-details-colored {
-  border-left: 3px solid var(--s-tile-accent);
-  padding-left: var(--s-space-3);
+  border-inline-start: 3px solid var(--s-tile-accent);
+  padding-inline-start: var(--s-space-3);
 }
 
 .s-details-end {
-  margin-left: auto;
+  margin-inline-start: auto;
 }
 
 .s-look-editor {
@@ -746,4 +746,8 @@
 
 .s-tiles:is(.s-tiles-compact, .s-tiles-list) .s-tile-banner {
   display: none;
+}
+
+[dir="rtl"] .s-switch:checked::after {
+  transform: translateX(-16px);
 }
