@@ -20,6 +20,8 @@ $port = (int) ($argv[1] ?? 8090);
 
 $admin = User::withoutEvents(fn () => User::factory()->create(['username' => 'lab-admin', 'email' => 'lab@example.com', 'password' => bcrypt('LabPassword123!')]));
 $admin->syncRoles(Role::getRootAdmin());
+// PelicanSimplify 0.7.0 (the reference panel) lets only a signed-in admin add subusers.
+auth()->setUser($admin);
 $friend = User::withoutEvents(fn () => User::factory()->create(['username' => 'sam', 'email' => 'sam@example.com']));
 $node = Node::factory()->create(['name' => 'Lab node', 'fqdn' => '127.0.0.1', 'scheme' => 'http', 'daemon_listen' => $port, 'daemon_connect' => $port, 'memory' => 16384, 'disk' => 500000, 'cpu' => 400]);
 
