@@ -25,6 +25,7 @@
   --s-space-2: 8px;
   --s-space-3: 12px;
   --s-space-4: 16px;
+  --s-space-6: 24px;
 
   --s-h: 36px;
   --s-shadow: 0 1px 2px rgb(0 0 0 / .05);
@@ -316,7 +317,104 @@
   opacity: .5;
 }
 
+/* Segmented choice: a few options side by side, the chosen one filled. */
+.s-segments {
+  background: var(--s-raised);
+  border-radius: var(--s-radius-sm);
+  display: inline-flex;
+  gap: 2px;
+  padding: 2px;
+}
+
+.s-segment {
+  align-items: center;
+  border-radius: calc(var(--s-radius-sm) - 2px);
+  color: var(--s-muted);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: var(--s-text);
+  height: calc(var(--s-h) - 4px);
+  justify-content: center;
+  padding: 0 var(--s-space-3);
+}
+
+.s-segment.is-active {
+  background: var(--s-surface);
+  box-shadow: var(--s-shadow);
+  color: var(--s-ink);
+}
+
+.s-segment-icon {
+  padding: 0;
+  width: calc(var(--s-h) - 4px);
+}
+
+.s-segment svg {
+  height: 18px;
+  width: 18px;
+}
+
+.s-select {
+  background: var(--s-surface);
+  border: 1px solid var(--s-line);
+  border-radius: var(--s-radius-sm);
+  color: var(--s-ink);
+  font-size: var(--s-text);
+  height: var(--s-h);
+  padding: 0 var(--s-space-6) 0 var(--s-space-3);
+}
+
+/* Compact: name, state and power only. */
+.s-tiles-compact {
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.s-tiles-compact .s-tile {
+  padding: var(--s-space-3);
+}
+
+.s-tiles-compact :is(.s-tile-sub, .s-stats) {
+  display: none;
+}
+
+/* List: one server per row, the numbers on the same line on wide screens. */
+.s-tiles-list {
+  gap: 0;
+  grid-template-columns: 1fr;
+}
+
+.s-tiles-list .s-tile {
+  align-items: center;
+  border-radius: 0;
+  box-shadow: none;
+  display: grid;
+  gap: var(--s-space-3);
+  grid-template-columns: minmax(160px, 1.4fr) minmax(120px, 1fr) minmax(240px, 2fr) auto;
+  margin-top: -1px;
+  padding: var(--s-space-2) var(--s-space-3);
+}
+
+.s-tiles-list .s-tile:first-child {
+  border-radius: var(--s-radius) var(--s-radius) 0 0;
+}
+
+.s-tiles-list .s-tile:last-child {
+  border-radius: 0 0 var(--s-radius) var(--s-radius);
+}
+
+.s-tiles-list .s-tile-foot {
+  justify-content: flex-end;
+}
+
 @media (max-width: 600px) {
+  .s-tiles-list .s-tile {
+    grid-template-columns: 1fr auto;
+  }
+
+  .s-tiles-list :is(.s-tile-sub, .s-stats) {
+    display: none;
+  }
+
   .s-search {
     max-width: none;
   }

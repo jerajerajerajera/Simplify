@@ -16,6 +16,7 @@ use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Support\Assets;
+use Simplify\Core\Support\Preferences;
 
 define('LARAVEL_START', microtime(true));
 require getcwd().'/vendor/autoload.php';
@@ -140,6 +141,21 @@ step('a power action on a server the user cannot reach is refused', function () 
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
     Livewire\Livewire::actingAs($admin)->test(Overview::class)
         ->call('power', 999999, 'start')->assertNotified(__('pelican-simplify::overview.power.denied'));
+});
+step('a layout choice is saved for the account and an unknown one is refused', function () use ($admin) {
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
+    Livewire\Livewire::actingAs($admin)->test(Overview::class)
+        ->set('display', 'list')->set('sort', 'sideways');
+    if (Preferences::get($admin, 'overview.display') !== 'list') {
+        throw new RuntimeException('the layout was not saved');
+    }
+    if (Preferences::get($admin, 'overview.sort') !== 'name') {
+        throw new RuntimeException('an unknown sort was saved: '.json_encode(Preferences::get($admin, 'overview.sort')));
+    }
+    $layout = Livewire\Livewire::actingAs($admin)->test(Overview::class)->get('display');
+    if ($layout !== 'list') {
+        throw new RuntimeException('the saved layout is not used: '.$layout);
+    }
 });
 if ($failed || $passed === 0) {
     exit(1);
