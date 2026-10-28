@@ -7,6 +7,10 @@ return [
     'support' => 'Support',
     'billing' => 'Fakturering',
     'saved' => 'Indstillinger gemt',
+    'page_title' => 'Simplify-indstillinger',
+    'pelican_frame_title' => 'Pelican-indstillinger: :label',
+    'pelican_frame' => 'Pelicans egne :label-indstillinger. Gem dem med Pelicans gem-knap øverst til højre i dette panel.',
+    'version_line' => 'Version :version · Ændringer gælder for alle på dette panel, når de er gemt.',
     'profile' => [
         'heading' => 'Hvem er dette panel til?',
         'friends' => 'Mig og mine venner',

@@ -7,6 +7,10 @@ return [
     'support' => 'Aide',
     'billing' => 'Facturation',
     'saved' => 'Paramètres enregistrés',
+    'page_title' => 'Paramètres de Simplify',
+    'pelican_frame_title' => 'Paramètres de Pelican : :label',
+    'pelican_frame' => 'Paramètres :label propres à Pelican. Enregistrez-les avec le bouton d’enregistrement de Pelican en haut à droite de ce panneau.',
+    'version_line' => 'Version :version · Les modifications s’appliquent à tout le monde sur ce panel après l’enregistrement.',
     'profile' => [
         'heading' => 'Pour qui est ce panneau ?',
         'friends' => 'Moi et mes amis',

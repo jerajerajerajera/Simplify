@@ -406,7 +406,7 @@
 }
 
 /* A page in host mode's frame (head.blade.php): only the page itself, without Pelican's menus or Simplify's header. */
-html.ps-frame :is(.fi-topbar, .fi-sidebar, .fi-sidebar-close-overlay, .fi-footer, [data-ps-footer], footer:not([class*="fi-"]), .ps-top, .ps-statusbar, .ps-tabbar) {
+html.ps-frame :is(.fi-topbar, .fi-sidebar, .fi-sidebar-close-overlay, .fi-layout-sidebar-toggle-btn-ctn, .fi-footer, [data-ps-footer], footer:not([class*="fi-"]), .ps-top, .ps-statusbar, .ps-tabbar) {
   display: none !important;
 }
 
@@ -416,4 +416,179 @@ html.ps-frame .fi-main-ctn {
 
 html.ps-frame[data-ps-frame="native"] .fi-header-heading {
   display: none !important;
+}
+
+/* A settings page opened from host mode's tree: the tree lists the tabs, so the page shows only the settings. */
+html.ps-frame[data-ps-tree] .fi-sc-tabs > .fi-tabs {
+  display: none !important;
+}
+
+html.ps-frame[data-ps-tree] .s-settings-tabs.fi-vertical {
+  border: 0;
+}
+
+/* Settings: one card with the menu on the left, in the style of host mode's tree, and the settings beside it.
+   The menu has three groups (Panel, Add-ons, Pelican); their titles come from the page (settings.blade.php). */
+.s-settings-tabs.fi-vertical {
+  align-items: stretch !important;
+  border: 1px solid var(--s-line);
+  border-radius: 20px;
+  gap: 0 !important;
+  overflow: clip;
+}
+
+.s-settings-tabs.fi-vertical > .fi-tabs {
+  background: none !important;
+  border: 0 !important;
+  border-inline-end: 1px solid var(--s-line) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  flex: none;
+  gap: 1px !important;
+  padding: 12px 10px;
+  width: 236px;
+}
+
+.s-settings-tabs .fi-tabs-item {
+  border-radius: var(--s-radius-sm) !important;
+  color: var(--s-ink) !important;
+  font: 550 13px/1.25 inherit !important;
+  gap: 9px !important;
+  justify-content: flex-start;
+  min-height: 30px;
+  padding: 5px 9px !important;
+  text-align: start;
+  white-space: normal;
+}
+
+.s-settings-tabs .fi-tabs-item > .fi-icon {
+  color: var(--s-tone, var(--s-accent));
+  flex: none;
+  height: 16px;
+  width: 16px;
+}
+
+.s-settings-tabs .fi-tabs-item:hover {
+  background: var(--s-raised) !important;
+}
+
+.s-settings-tabs .fi-tabs-item.fi-active {
+  background: color-mix(in srgb, var(--s-tone, var(--s-accent)) 14%, transparent) !important;
+}
+
+.s-settings-tabs .fi-tabs-item .fi-tabs-item-label {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal !important;
+}
+
+.s-settings-tabs .fi-tabs-item:nth-child(1) { --s-tone: #9a9aa6; }
+.s-settings-tabs .fi-tabs-item:nth-child(2) { --s-tone: #e0a050; }
+.s-settings-tabs .fi-tabs-item:nth-child(3) { --s-tone: #b48cf2; }
+.s-settings-tabs .fi-tabs-item:nth-child(n + 4) { --s-tone: #6ea8fe; }
+
+/* Group titles above General, Add-ons and the first Pelican tab. */
+.s-settings-tabs .fi-tabs-item:is(:nth-child(1), :nth-child(3), :nth-child(4)) {
+  margin-top: 26px;
+  position: relative;
+}
+
+.s-settings-tabs .fi-tabs-item:nth-child(1) { margin-top: 20px; }
+
+.s-settings-tabs .fi-tabs-item:is(:nth-child(1), :nth-child(3), :nth-child(4))::before {
+  color: var(--s-muted);
+  font-size: 11px;
+  font-weight: 700;
+  inset-inline-start: 9px;
+  letter-spacing: .06em;
+  position: absolute;
+  text-transform: uppercase;
+  top: -20px;
+}
+
+.s-settings-tabs .fi-tabs-item:nth-child(1)::before { content: var(--s-group-panel); }
+.s-settings-tabs .fi-tabs-item:nth-child(3)::before { content: var(--s-group-addons); }
+.s-settings-tabs .fi-tabs-item:nth-child(4)::before { content: "Pelican"; }
+
+.s-settings-tabs.fi-vertical > .fi-sc-tabs-tab.fi-active {
+  flex: 1;
+  min-width: 0;
+  padding: 22px 26px 8px;
+}
+
+.s-settings-tabs .fi-section {
+  border-radius: 16px !important;
+  box-shadow: none !important;
+}
+
+/* A Pelican tab: Pelican's form in a frame on the page itself, saved with Pelican's own button. */
+.s-pelican-frame > p {
+  color: var(--s-muted);
+  font-size: 13px;
+  margin: 0 0 var(--s-space-2);
+}
+
+.s-pelican-frame > iframe {
+  background: transparent;
+  border: 0;
+  display: block;
+  height: 320px;
+  width: 100%;
+}
+
+.s-settings > .s-bar {
+  margin-top: var(--s-space-3);
+}
+
+.s-settings:has(.fi-active .s-pelican-frame) .s-bar {
+  display: none;
+}
+
+/* The page inside that frame: only the form, with Pelican's save button above it. */
+html.ps-frame[data-ps-frame="settings"] :is(.fi-sc-tabs > .fi-tabs, .fi-header-heading, .fi-breadcrumbs) {
+  display: none !important;
+}
+
+html.ps-frame[data-ps-frame="settings"] :is(body, .fi-layout, .fi-main-ctn, .fi-main, .fi-page) {
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+.s-logo-tile {
+  background: color-mix(in srgb, var(--s-accent) 14%, var(--s-surface));
+  border-radius: 15px;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--s-accent) 25%, transparent);
+  display: grid;
+  height: 52px;
+  place-items: center;
+  width: 52px;
+}
+
+@media (max-width: 900px) {
+  .s-settings-tabs.fi-vertical {
+    flex-direction: column !important;
+  }
+
+  /* Phones: the menu as two tidy columns above the settings, without group titles. */
+  .s-settings-tabs.fi-vertical > .fi-tabs {
+    border-bottom: 1px solid var(--s-line) !important;
+    border-inline-end: 0 !important;
+    display: grid !important;
+    gap: 2px 6px !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 8px;
+    width: auto;
+  }
+
+  .s-settings-tabs .fi-tabs-item {
+    margin: 0 !important;
+  }
+
+  .s-settings-tabs .fi-tabs-item::before {
+    display: none;
+  }
+
+  .s-settings-tabs.fi-vertical > .fi-sc-tabs-tab.fi-active {
+    padding: 16px 14px 4px;
+  }
 }

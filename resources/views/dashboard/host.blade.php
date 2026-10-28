@@ -85,7 +85,7 @@
         </div>
         <div class="ps-host-frame" x-show="!hostServer">
             <template x-if="hostMode && hostPage">
-                <iframe data-ps-frame="native" :src="frameUrl(hostPage.url)" :title="hostPage.label"></iframe>
+                <iframe data-ps-frame="native" :data-ps-tree="hostPage.settings ? '1' : null" :src="frameUrl(hostPage.url)" :title="hostPage.label"></iframe>
             </template>
         </div>
     </div>

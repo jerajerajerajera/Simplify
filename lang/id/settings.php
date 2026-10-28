@@ -7,6 +7,10 @@ return [
     'support' => 'Bantuan',
     'billing' => 'Tagihan',
     'saved' => 'Pengaturan disimpan',
+    'page_title' => 'Pengaturan Simplify',
+    'pelican_frame_title' => 'Pengaturan Pelican: :label',
+    'pelican_frame' => 'Pengaturan :label milik Pelican sendiri. Simpan dengan tombol simpan Pelican di kanan atas panel ini.',
+    'version_line' => 'Versi :version · Perubahan berlaku untuk semua orang di panel ini setelah disimpan.',
     'profile' => [
         'heading' => 'Untuk siapa panel ini?',
         'friends' => 'Saya dan teman-teman',

@@ -7,6 +7,10 @@ return [
     'support' => 'Tuki',
     'billing' => 'Laskutus',
     'saved' => 'Asetukset tallennettu',
+    'page_title' => 'Simplifyn asetukset',
+    'pelican_frame_title' => 'Pelicanin asetukset: :label',
+    'pelican_frame' => 'Pelicanin omat asetukset (:label). Tallenna ne Pelicanin tallennuspainikkeella tämän paneelin oikeassa yläkulmassa.',
+    'version_line' => 'Versio :version · Muutokset koskevat kaikkia tämän paneelin käyttäjiä tallennuksen jälkeen.',
     'profile' => [
         'heading' => 'Kenelle tämä paneeli on?',
         'friends' => 'Minulle ja kavereilleni',

@@ -7,6 +7,10 @@ return [
     'support' => 'الدعم',
     'billing' => 'الفوترة',
     'saved' => 'حُفظت الإعدادات',
+    'page_title' => 'إعدادات Simplify',
+    'pelican_frame_title' => 'إعدادات Pelican: :label',
+    'pelican_frame' => 'إعدادات :label الخاصة بـ Pelican. احفظها بزر الحفظ الخاص بـ Pelican أعلى هذه اللوحة.',
+    'version_line' => 'الإصدار :version · تُطبَّق التغييرات على كل من في هذه اللوحة بعد الحفظ.',
     'profile' => [
         'heading' => 'لمن هذه اللوحة؟',
         'friends' => 'لي ولأصدقائي',

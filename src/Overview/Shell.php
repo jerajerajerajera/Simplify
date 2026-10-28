@@ -16,7 +16,6 @@ use Simplify\Core\Support\Assets;
 use Simplify\Core\Support\Brand;
 use Simplify\Core\Support\PanelSettings;
 use Simplify\Core\Support\Preferences;
-use Throwable;
 
 /**
  * What the overview and the server page share: the header with its menus, the notifications and the account. The
@@ -38,7 +37,7 @@ trait Shell
                 'accent_color' => $settings['accent'],
                 'brand' => ['mode' => $logo ? 'logo' : 'text', 'logo_url' => $logo ? url('/simplify/brand/'.$logo) : null, 'logo_height' => $settings['logo_height']],
             ],
-            'build_version' => self::version(),
+            'build_version' => Assets::version(),
             'favicon_url' => Assets::url('favicon.svg'),
             'list_url' => Overview::getUrl(panel: 'app'),
             'profile_url' => EditProfile::getUrl(panel: 'app'),
@@ -46,6 +45,7 @@ trait Shell
             'logout_url' => Filament::getPanel('app')->getLogoutUrl(),
             'admin_url' => $user->canAccessPanel(Filament::getPanel('admin')) ? Filament::getPanel('admin')->getUrl() : null,
             'settings_url' => Settings::canAccess() ? Settings::getUrl(panel: 'admin') : null,
+            'settings_menu' => Settings::canAccess() ? Settings::menu() : [],
             'support_url' => $settings['support_url'],
             'admin_pages' => AdminMenu::items(),
             'health_checks' => $user->isAdmin() ? HostHealth::checks() : [],
@@ -87,15 +87,5 @@ trait Shell
         abort_if($user === null, 403);
 
         return $user;
-    }
-
-    /** The plugin's version, shown in the footer. */
-    private static function version(): string
-    {
-        try {
-            return (string) (json_decode((string) file_get_contents(dirname(__DIR__, 2).'/plugin.json'), true)['version'] ?? '');
-        } catch (Throwable) {
-            return '';
-        }
     }
 }
