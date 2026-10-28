@@ -1,4 +1,4 @@
-@props(['server', 'usage', 'url', 'badges', 'power'])
+@props(['server', 'usage', 'url', 'badges', 'power', 'color' => null])
 @php
     use Simplify\Core\Overview\Format;
 
@@ -13,6 +13,7 @@
 @endphp
 <div
     class="s-card s-tile"
+    @if ($color) style="--s-tile-accent: {{ $color }}" @endif
     wire:key="server-{{ $server->id }}"
     x-bind:hidden="search !== '' && ! @js(mb_strtolower($server->name)).includes(search.toLowerCase())"
 >

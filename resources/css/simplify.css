@@ -244,7 +244,12 @@
 }
 
 .s-tile:hover {
-  border-color: var(--s-accent);
+  border-color: var(--s-tile-accent, var(--s-accent));
+}
+
+/* A group colour shows as a stripe on the tile's left edge. */
+.s-tile[style*="--s-tile-accent"] {
+  border-left: 3px solid var(--s-tile-accent);
 }
 
 .s-tile[hidden] {
@@ -315,6 +320,74 @@
 .s-btn:disabled {
   cursor: default;
   opacity: .5;
+}
+
+/* Sections: one per server group, then "Other servers". */
+.s-section + .s-section {
+  margin-top: var(--s-space-6);
+}
+
+.s-section-title {
+  align-items: center;
+  display: flex;
+  font-size: var(--s-text);
+  font-weight: 600;
+  gap: var(--s-space-2);
+  margin-bottom: var(--s-space-3);
+}
+
+.s-section-icon {
+  color: var(--s-muted);
+  height: 18px;
+  width: 18px;
+}
+
+/* Editor: groups, then which group each server is in. */
+.s-editor {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-space-2);
+  margin-bottom: var(--s-space-4);
+}
+
+.s-editor-head {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.s-editor-head .s-section-title {
+  margin: 0;
+}
+
+.s-editor-sub {
+  color: var(--s-muted);
+  font-size: var(--s-text-sm);
+  margin-top: var(--s-space-3);
+}
+
+.s-editor .s-row {
+  border-top: 0;
+  padding: 0;
+}
+
+.s-input {
+  background: var(--s-surface);
+  border: 1px solid var(--s-line);
+  border-radius: var(--s-radius-sm);
+  color: var(--s-ink);
+  font-size: var(--s-text);
+  height: var(--s-h);
+  padding: 0 var(--s-space-3);
+}
+
+.s-color {
+  background: none;
+  border: 1px solid var(--s-line);
+  border-radius: var(--s-radius-sm);
+  height: var(--s-h);
+  padding: 2px;
+  width: var(--s-h);
 }
 
 /* Segmented choice: a few options side by side, the chosen one filled. */
