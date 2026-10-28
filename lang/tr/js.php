@@ -77,6 +77,7 @@ return [
             'people' => 'Kullanıcılar',
             'integrations' => 'Entegrasyonlar',
             'panel' => 'Panel',
+            'health' => 'Durum',
         ],
         'other_plugins' => 'Diğer eklentiler',
         'create_server' => 'Sunucu oluştur',

@@ -11,7 +11,7 @@
     <nav class="ps-top-actions" aria-label="{{ $u('panel_navigation') }}" :class="{'nav-open': navMenu}"
          x-on:click.outside="navMenu=false; accountMenu=false" x-on:keydown.escape.stop="navMenu=false; accountMenu=false">
         {{-- Health in the top bar: the button opens the details below it; the create buttons sit next to it. --}}
-        <div class="ps-top-overview" x-show="!server && healthPlace()==='top-bar'" x-cloak>
+        <div class="ps-top-overview" x-show="!server && !hostMode && healthPlace()==='top-bar'" x-cloak>
             <button type="button" class="ps-btn ps-health-pill" :class="boot.host_health?.state || 'unavailable'" x-on:click="healthPopover=!healthPopover; healthExpanded=false; healthOpenNodes=[]; placeHealthPopover()" :aria-expanded="healthPopover" aria-controls="ps-health-panel" :aria-label="Simplify.fill(@js($u('host_health_label')), { state: boot.host_health?.label || @js($u('unavailable')) })">
                 <svg aria-hidden="true"><use href="#ps-heart"/></svg><span x-text="boot.host_health?.label || @js($u('unavailable'))"></span>
             </button>
@@ -72,7 +72,7 @@
             {{-- Phones list these buttons as a menu: first what everyone uses, then the admin buttons under their own heading. --}}
             <span class="ps-label ps-nav-heading" x-show="adminPages().length">{{ $u('panel') }}</span>
             {{-- Admin tools: Pelican's admin pages in coloured sections; each opens Pelican's own page. --}}
-            <div class="ps-notify ps-nav-admin" x-show="adminPages().length" x-on:click.outside="adminMenu=false" x-on:keydown.escape.stop="adminMenu=false; $refs.adminButton.focus()">
+            <div class="ps-notify ps-nav-admin" x-show="adminPages().length && !(hostMode && !server)" x-on:click.outside="adminMenu=false" x-on:keydown.escape.stop="adminMenu=false; $refs.adminButton.focus()">
                 <button type="button" x-ref="adminButton" class="ps-btn is-icon is-subtle" data-tip="{{ $u('admin_tools') }}" aria-label="{{ $u('admin_tools') }}" aria-controls="ps-admin-menu" :aria-expanded="adminMenu"
                         x-on:click="adminMenu=!adminMenu; notifyMenu=false; appearanceMenu=false; groupsMenu=false; accountMenu=false">
                     <svg aria-hidden="true"><use href="#ps-shield"/></svg><span class="ps-mobile-label">{{ $u('admin_tools') }}</span>
@@ -80,7 +80,7 @@
                 <div id="ps-admin-menu" class="ps-dropdown is-end ps-admin-menu" x-show="adminMenu" x-cloak x-transition.opacity>
                     <strong class="ps-dropdown-title">{{ $u('admin_tools') }}</strong>
                     <div class="ps-admin-groups">
-                        <template x-for="section in hostSections()" :key="section.key">
+                        <template x-for="section in hostSections().filter((x) => x.key !== 'health')" :key="section.key">
                             <div class="ps-admin-group" :style="{'--ps-tone': section.color}">
                                 <span class="ps-admin-group-head"><span class="ps-host-rail-icon"><svg aria-hidden="true"><use :href="'#ps-'+section.icon"/></svg></span><span x-text="section.label"></span></span>
                                 <template x-for="item in section.pages" :key="item.key">
@@ -89,6 +89,14 @@
                             </div>
                         </template>
                     </div>
+                    <template x-if="adminHealthPage()">
+                        <div class="ps-admin-health">
+                            <a class="ps-admin-health-title" :href="adminHealthPage().url"><svg aria-hidden="true"><use href="#ps-heart"/></svg><span>{{ $u('host_health_checks') }}</span></a>
+                            <div class="ps-health-grid">
+                                @include('pelican-simplify::dashboard.health-checks', ['open' => 'location.href = adminHealthPage().url'])
+                            </div>
+                        </div>
+                    </template>
                 </div>
             </div>
             <a x-show="boot.admin_url" :href="boot.admin_url" class="ps-btn is-icon is-subtle ps-nav-admin" data-tip="{{ $u('legacy_panel') }}" aria-label="{{ $u('legacy_panel') }}">

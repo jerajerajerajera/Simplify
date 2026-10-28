@@ -77,6 +77,7 @@ return [
             'people' => 'Người dùng',
             'integrations' => 'Tích hợp',
             'panel' => 'Panel',
+            'health' => 'Tình trạng',
         ],
         'other_plugins' => 'Plugin khác',
         'create_server' => 'Tạo máy chủ',

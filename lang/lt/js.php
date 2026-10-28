@@ -77,6 +77,7 @@ return [
             'people' => 'Žmonės',
             'integrations' => 'Integracijos',
             'panel' => 'Skydelis',
+            'health' => 'Būsena',
         ],
         'other_plugins' => 'Kiti įskiepiai',
         'create_server' => 'Sukurti serverį',

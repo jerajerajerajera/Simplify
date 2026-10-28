@@ -77,6 +77,7 @@ return [
             'people' => 'Χρήστες',
             'integrations' => 'Ενσωματώσεις',
             'panel' => 'Πάνελ',
+            'health' => 'Υγεία',
         ],
         'other_plugins' => 'Άλλα πρόσθετα',
         'create_server' => 'Δημιουργία διακομιστή',

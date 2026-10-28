@@ -11,6 +11,7 @@ use Livewire\Attributes\Renderless;
 use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\App\Pages\Notifications;
 use Simplify\Core\Filament\App\Pages\Overview;
+use Simplify\Core\Health\HostHealth;
 use Simplify\Core\Support\Assets;
 use Simplify\Core\Support\Brand;
 use Simplify\Core\Support\PanelSettings;
@@ -47,6 +48,7 @@ trait Shell
             'settings_url' => Settings::canAccess() ? Settings::getUrl(panel: 'admin') : null,
             'support_url' => $settings['support_url'],
             'admin_pages' => AdminMenu::items(),
+            'health_checks' => $user->isAdmin() ? HostHealth::checks() : [],
             'features' => ['host_health' => $user->isRootAdmin()],
             'performance' => ['overview_seconds' => $settings['overview_seconds']],
             'overview_groups' => ServerGroups::clean(Preferences::get($user, 'overview.groups')),

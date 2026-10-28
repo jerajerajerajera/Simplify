@@ -77,6 +77,7 @@ return [
             'people' => 'Pengguna',
             'integrations' => 'Integrasi',
             'panel' => 'Panel',
+            'health' => 'Kesehatan',
         ],
         'other_plugins' => 'Plugin lain',
         'create_server' => 'Buat server',

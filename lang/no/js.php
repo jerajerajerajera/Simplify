@@ -77,6 +77,7 @@ return [
             'people' => 'Personer',
             'integrations' => 'Integrasjoner',
             'panel' => 'Panel',
+            'health' => 'Helse',
         ],
         'other_plugins' => 'Andre plugins',
         'create_server' => 'Opprett server',

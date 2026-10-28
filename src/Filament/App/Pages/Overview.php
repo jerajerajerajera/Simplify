@@ -16,6 +16,7 @@ use Simplify\Core\Overview\Listing;
 use Simplify\Core\Overview\Power;
 use Simplify\Core\Overview\ServerQuery;
 use Simplify\Core\Overview\Shell;
+use Simplify\Core\Support\PanelSettings;
 
 /**
  * All servers of the user as cards. The page is drawn in the browser (resources/js/dashboard.js) from what initial()
@@ -57,6 +58,8 @@ final class Overview extends Page
             ],
             'servers' => Listing::for($user),
             'host_health' => $user->isRootAdmin() ? HostHealth::cached() : [],
+            // Hosting panels with more than one node open in host mode until the admin picks a mode on the device.
+            'host_mode_auto' => PanelSettings::get('profile') === 'hosting',
         ];
     }
 

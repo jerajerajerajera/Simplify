@@ -77,6 +77,7 @@ return [
             'people' => 'Persoane',
             'integrations' => 'Integrări',
             'panel' => 'Panou',
+            'health' => 'Stare',
         ],
         'other_plugins' => 'Alte pluginuri',
         'create_server' => 'Creați un server',

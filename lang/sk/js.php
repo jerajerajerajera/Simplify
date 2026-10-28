@@ -77,6 +77,7 @@ return [
             'people' => 'Ľudia',
             'integrations' => 'Integrácie',
             'panel' => 'Panel',
+            'health' => 'Stav',
         ],
         'other_plugins' => 'Ďalšie pluginy',
         'create_server' => 'Vytvoriť server',

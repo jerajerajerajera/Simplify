@@ -77,6 +77,7 @@ return [
             'people' => 'المستخدمون',
             'integrations' => 'التكاملات',
             'panel' => 'اللوحة',
+            'health' => 'الصحة',
         ],
         'other_plugins' => 'إضافات أخرى',
         'create_server' => 'إنشاء خادم',

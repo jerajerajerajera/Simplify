@@ -77,6 +77,7 @@ return [
             'people' => 'Felhasználók',
             'integrations' => 'Integrációk',
             'panel' => 'Panel',
+            'health' => 'Állapot',
         ],
         'other_plugins' => 'Más bővítmények',
         'create_server' => 'Szerver létrehozása',

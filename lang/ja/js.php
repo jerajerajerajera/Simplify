@@ -77,6 +77,7 @@ return [
             'people' => 'ユーザー',
             'integrations' => '連携',
             'panel' => 'パネル',
+            'health' => '状態',
         ],
         'other_plugins' => '他のプラグイン',
         'create_server' => 'サーバーを作成',

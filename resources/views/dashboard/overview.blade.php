@@ -1,5 +1,5 @@
 {{-- Overview -------------------------------------------------------------------------------- --}}
-<section class="ps-overview" :class="{'is-list': overviewView==='list'}" :style="{'--grid-columns': overviewColumns(), ...overviewGridStyle()}">
+<section class="ps-overview" x-show="!hostMode" :class="{'is-list': overviewView==='list'}" :style="{'--grid-columns': overviewColumns(), ...overviewGridStyle()}">
     <div class="ps-server-scroll" tabindex="0" role="region" aria-label="{{ $u('servers') }}">
         <div class="ps-server-stage" :class="{'is-list': overviewView==='list'}">
             {{-- Customers of a hosting company: a greeting with their account links next to it. --}}

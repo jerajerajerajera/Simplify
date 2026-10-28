@@ -9,6 +9,7 @@ use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Simplify\Core\Overview\NodeUsage;
+use Spatie\Health\ResultStores\ResultStore;
 use Throwable;
 
 /**
@@ -28,6 +29,26 @@ final class HostHealth
     public static function snapshot(): array
     {
         return self::present(Cache::remember(self::CACHE_KEY, self::CACHE_SECONDS, fn () => self::collect()));
+    }
+
+    /**
+     * The latest stored results of Pelican's health checks, for the marks in the menus. Reads only, never runs a check.
+     *
+     * @return list<array{label: string, status: string, message: string}>
+     */
+    public static function checks(): array
+    {
+        try {
+            $results = app(ResultStore::class)->latestResults();
+        } catch (Throwable) {
+            return [];
+        }
+
+        return $results?->storedCheckResults->map(fn ($result) => [
+            'label' => (string) $result->label,
+            'status' => strtolower((string) $result->status),
+            'message' => trim((string) ($result->notificationMessage ?: $result->shortSummary)),
+        ])->values()->all() ?? [];
     }
 
     /** @return array<string, mixed> the shared snapshot when one is kept, else nothing: the page asks for it after first paint */

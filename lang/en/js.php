@@ -77,6 +77,7 @@ return [
             'people' => 'People',
             'integrations' => 'Integrations',
             'panel' => 'Panel',
+            'health' => 'Health',
         ],
         'other_plugins' => 'Other plugins',
         'create_server' => 'Create server',

@@ -77,6 +77,7 @@ return [
             'people' => 'Mensen',
             'integrations' => 'Koppelingen',
             'panel' => 'Paneel',
+            'health' => 'Gezondheid',
         ],
         'other_plugins' => 'Andere plugins',
         'create_server' => 'Server maken',

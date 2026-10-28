@@ -404,3 +404,16 @@
 [dir="rtl"] .s-switch:checked::after {
   transform: translateX(-16px);
 }
+
+/* A page in host mode's frame (head.blade.php): only the page itself, without Pelican's menus or Simplify's header. */
+html.ps-frame :is(.fi-topbar, .fi-sidebar, .fi-sidebar-close-overlay, .fi-footer, [data-ps-footer], .ps-top, .ps-statusbar, .ps-tabbar) {
+  display: none !important;
+}
+
+html.ps-frame .fi-main-ctn {
+  padding-top: 0 !important;
+}
+
+html.ps-frame[data-ps-frame="native"] .fi-header-heading {
+  display: none !important;
+}
