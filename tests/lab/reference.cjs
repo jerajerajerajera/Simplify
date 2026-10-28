@@ -31,6 +31,17 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   await page.goto('/simplify'); await settle();
   const health = page.locator('button', { hasText: /Healthy|Unavailable|Attention/ }).first();
   if (await health.count()) { await health.click().catch(() => {}); await sleep(800); await page.screenshot({ path: path.join(out, 'ref-overview-health-open.png'), fullPage: true }); }
+  if (await health.count()) { await page.keyboard.press('Escape'); await sleep(400); }
+  // The compact and list views, desktop and phone.
+  for (const [vp, size] of Object.entries({ desktop: { width: 1440, height: 900 }, phone: { width: 390, height: 844 } })) {
+    await page.setViewportSize(size);
+    for (const view of ['compact', 'list']) {
+      await page.goto('/simplify'); await settle();
+      await page.evaluate((v) => window.Alpine.$data(document.querySelector('.ps')).setOverviewView(v), view).catch(() => {});
+      await sleep(1200);
+      await page.screenshot({ path: path.join(out, `ref-overview-${view}-${vp}.png`), fullPage: true });
+    }
+  }
   fs.writeFileSync(path.join(out, 'ref-html.html'), await page.content());
   await browser.close();
 })();

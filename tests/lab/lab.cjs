@@ -93,6 +93,9 @@ const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g
     for (const view of ['grid', 'compact', 'list']) {
       await ps('d.setOverviewView(a)', view); await sleep(800);
       await shot(`action-overview-${view}`);
+      await page.setViewportSize({ width: 390, height: 844 }); await sleep(800);
+      await shot(`action-overview-${view}-phone`);
+      await page.setViewportSize({ width: 1440, height: 900 }); await sleep(500);
       ok(`view ${view} shows the servers`, (await cards()) === 6, (await cards()) + ' cards');
     }
     await ps('d.setOverviewView(a)', 'grid'); await sleep(500);
