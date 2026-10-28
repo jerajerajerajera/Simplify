@@ -20,6 +20,7 @@ use Simplify\Core\Filament\App\Pages\Notifications;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Filament\Server\ServerPage;
 use Simplify\Core\Filament\Server\Widgets\AddonSections;
+use Simplify\Core\Http\Middleware\FramePolicy;
 use Simplify\Core\Support\Brand;
 use Simplify\Core\Support\PanelSettings;
 
@@ -36,6 +37,7 @@ final class SimplifyPlugin implements Plugin
     {
         $panel->renderHook('panels::head.end', fn () => view('pelican-simplify::head'));
         Brand::apply($panel);
+        $panel->middleware([FramePolicy::class]);
 
         if ($panel->getId() === 'app') {
             $panel->pages([Overview::class, Notifications::class]);
