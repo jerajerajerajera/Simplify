@@ -79,6 +79,8 @@ return [
             'panel' => 'Panel',
         ],
         'other_plugins' => 'Otros plugins',
+        'create_server' => 'Crear servidor',
+        'new_server' => 'Servidor nuevo',
         'enhanced_by' => 'Mejorado por',
         'build' => 'Build :version',
         'power_sent' => ':action enviado a :server',

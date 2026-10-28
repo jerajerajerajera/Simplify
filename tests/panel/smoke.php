@@ -221,6 +221,13 @@ step('add-on badges show on the cards and are not asked again on every refresh',
         throw new RuntimeException("asked $first times on the first view, ".BadgeAddon::$asked.' after two refreshes');
     }
 });
+step('admins get the create form of Pelican as a create button', function () use ($admin) {
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
+    $create = Livewire\Livewire::actingAs($admin)->test(Overview::class)->instance()->initial()['create'];
+    if (! collect($create)->contains(fn (array $button) => ($button['native'] ?? false) && str_contains($button['url'], '/create'))) {
+        throw new RuntimeException('no create button: '.json_encode($create));
+    }
+});
 step('a power action on a server the user cannot reach is refused', function () use ($admin) {
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
     Livewire\Livewire::actingAs($admin)->test(Overview::class)->call('overviewPower', 'no-such-server', 'start')->assertForbidden();

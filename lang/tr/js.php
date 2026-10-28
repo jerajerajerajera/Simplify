@@ -79,6 +79,8 @@ return [
             'panel' => 'Panel',
         ],
         'other_plugins' => 'Diğer eklentiler',
+        'create_server' => 'Sunucu oluştur',
+        'new_server' => 'Yeni sunucu',
         'enhanced_by' => 'Geliştiren:',
         'build' => 'Derleme :version',
         'power_sent' => ':action gönderildi → :server',

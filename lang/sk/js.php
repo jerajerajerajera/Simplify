@@ -79,6 +79,8 @@ return [
             'panel' => 'Panel',
         ],
         'other_plugins' => 'Ďalšie pluginy',
+        'create_server' => 'Vytvoriť server',
+        'new_server' => 'Nový server',
         'enhanced_by' => 'Vylepšené pomocou',
         'build' => 'Zostavenie :version',
         'power_sent' => ':action odoslané na :server',

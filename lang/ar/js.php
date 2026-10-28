@@ -79,6 +79,8 @@ return [
             'panel' => 'اللوحة',
         ],
         'other_plugins' => 'إضافات أخرى',
+        'create_server' => 'إنشاء خادم',
+        'new_server' => 'خادم جديد',
         'enhanced_by' => 'معزّز بواسطة',
         'build' => 'البنية :version',
         'power_sent' => 'أُرسل :action إلى :server',

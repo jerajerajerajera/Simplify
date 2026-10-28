@@ -194,9 +194,10 @@
         })).filter((section) => section.pages.length);
       },
       /** Create buttons for the top bar or the toolbar: the add-ons' buttons, the main one first. */
+      /** Add-on buttons first (the primary one leads), then Pelican's own form; the first one reads "Create server". */
       createButtons() {
         const buttons = [...(this.boot.create || [])].sort((a, b) => b.primary - a.primary);
-        return buttons.map((button, index) => ({ ...button, primary: index === 0 }));
+        return buttons.map((button, index) => ({ ...button, primary: index === 0, label: index === 0 ? t('dashboard.create_server') : button.native ? t('dashboard.new_server') : button.label }));
       },
 
       /** 25 October to 2 November, every year. */

@@ -77,8 +77,11 @@ final class Overview extends Page
             'settings_url' => Settings::canAccess() ? Settings::getUrl(panel: 'admin') : null,
             'support_url' => $settings['support_url'],
             'admin_pages' => AdminMenu::items(),
-            'create' => array_map(fn (Button $button) => ['label' => $button->label, 'url' => $button->url, 'primary' => $button->primary],
-                app(AddonRegistry::class)->collect(fn (Addon $addon) => $addon->dashboardActions())),
+            'create' => [
+                ...array_map(fn (Button $button) => ['label' => $button->label, 'url' => $button->url, 'primary' => $button->primary],
+                    app(AddonRegistry::class)->collect(fn (Addon $addon) => $addon->dashboardActions())),
+                ...AdminMenu::createServer(),
+            ],
             'features' => ['host_health' => $user->isRootAdmin()],
             'performance' => ['overview_seconds' => $settings['overview_seconds']],
             'overview_groups' => ServerGroups::clean(Preferences::get($user, 'overview.groups')),

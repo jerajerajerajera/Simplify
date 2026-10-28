@@ -79,6 +79,8 @@ return [
             'panel' => 'Panel',
         ],
         'other_plugins' => 'Andre plugins',
+        'create_server' => 'Opret server',
+        'new_server' => 'Ny server',
         'enhanced_by' => 'Forbedret af',
         'build' => 'Build :version',
         'power_sent' => ':action sendt til :server',
