@@ -63,6 +63,10 @@ jobs:
           nohup node plugins/pelican-simplify/tests/lab/fake-wings.js --port 8090 --servers servers.json --log wings.log > wings.out 2>&1 &
           PHP_CLI_SERVER_WORKERS=8 nohup php artisan serve --host 127.0.0.1 --port 8001 > serve.log 2>&1 &
           for i in $(seq 1 30); do curl -sf -o /dev/null http://127.0.0.1:8001/login && break; sleep 1; done
+          sleep 1
+          cat wings.out
+          curl -sS http://127.0.0.1:8090/api/system || { echo 'the fake Wings does not answer'; exit 1; }
+          php artisan tinker --execute 'echo App\Models\Node::first()->getConnectionAddress(), PHP_EOL;'
       - name: Browser round
         working-directory: panel
         run: |
@@ -81,12 +85,13 @@ jobs:
           path: |
             panel/shots
             panel/wings.log
+            panel/wings.out
       # Also on a branch of its own, so the screenshots can be fetched with plain git.
       - name: Results to the lab-results branch
         if: always()
         run: |
           mkdir results && cp -r panel/shots/. results/ 2>/dev/null || true
-          cp panel/wings.log results/ 2>/dev/null || true
+          cp panel/wings.log panel/wings.out results/ 2>/dev/null || true
           cd results
           git init -q -b results
           git add -A
