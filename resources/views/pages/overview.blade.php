@@ -1,142 +1,31 @@
-@php
-    $servers = $this->servers();
-    $sections = $this->sections();
-    $actions = $this->actions();
-@endphp
+@php($u = fn (string $key, array $values = []) => __('pelican-simplify::dashboard.ui.'.$key, $values))
 <x-filament-panels::page>
-    @if (user()?->isRootAdmin())
-        @livewire(\Simplify\Core\Livewire\HostHealthCard::class, key('simplify-host-health'))
-    @endif
-    <div x-data="{ search: '' }" wire:init="refreshUsage" wire:poll.{{ $this->refreshSeconds() }}s.visible="refreshUsage" class="s-overview">
-        <div class="s-toolbar">
-            @if ($this->scopeShown())
-                <div class="s-segments" role="group" aria-label="{{ __('pelican-simplify::overview.scope.label') }}">
-                    @foreach (\Simplify\Core\Filament\App\Pages\Overview::SCOPES as $option)
-                        <button type="button" wire:click="$set('scope', '{{ $option }}')" @class(['s-segment', 'is-active' => $scope === $option])>
-                            {{ __('pelican-simplify::overview.scope.'.$option) }}
-                        </button>
-                    @endforeach
-                </div>
-            @endif
-            <input
-                type="search"
-                class="s-search"
-                x-model="search"
-                placeholder="{{ __('pelican-simplify::overview.search') }}"
-                aria-label="{{ __('pelican-simplify::overview.search') }}"
-            >
-            <div class="s-bar">
-                <button type="button" class="s-btn" wire:click="editGroups">
-                    <x-filament::icon icon="tabler-folders" />
-                    {{ __('pelican-simplify::overview.groups.edit') }}
-                </button>
-                <select class="s-select" wire:model.live="sort" aria-label="{{ __('pelican-simplify::overview.sort.label') }}">
-                    @foreach (\Simplify\Core\Filament\App\Pages\Overview::SORTS as $option)
-                        <option value="{{ $option }}">{{ __('pelican-simplify::overview.sort.'.$option) }}</option>
-                    @endforeach
-                </select>
-                <div class="s-segments" role="group" aria-label="{{ __('pelican-simplify::overview.layout.label') }}">
-                    @foreach (array_intersect_key(['cards' => 'tabler-layout-grid', 'compact' => 'tabler-layout-list', 'list' => 'tabler-list', 'nodes' => 'tabler-server-2'], array_flip($this->layouts())) as $option => $icon)
-                        <button
-                            type="button"
-                            wire:click="$set('display', '{{ $option }}')"
-                            @class(['s-segment', 's-segment-icon', 'is-active' => $display === $option])
-                            title="{{ __('pelican-simplify::overview.layout.'.$option) }}"
-                            aria-label="{{ __('pelican-simplify::overview.layout.'.$option) }}"
-                        >
-                            <x-filament::icon :icon="$icon" />
-                        </button>
-                    @endforeach
-                </div>
-                @foreach ($actions as $action)
-                    <a href="{{ $action->url }}" @class(['s-btn', 's-btn-primary' => $action->primary])>
-                        @if ($action->icon)
-                            <x-filament::icon :icon="$action->icon" />
-                        @endif
-                        {{ $action->label }}
-                    </a>
-                @endforeach
-            </div>
+@assets
+    @foreach (['tokens.css', 'components.css', 'dashboard.css'] as $file)
+        <link rel="stylesheet" href="{{ \Simplify\Core\Support\Assets::url($file) }}">
+    @endforeach
+    <script>window.simplifyLang = @js(__('pelican-simplify::js'));</script>
+    @foreach (['core.js', 'motd.js', 'dashboard.js'] as $file)
+        <script src="{{ \Simplify\Core\Support\Assets::url($file) }}"></script>
+    @endforeach
+@endassets
+<div class="ps" data-simplify-root x-cloak wire:ignore.self
+     x-data="pelicanSimplify($wire, @js($this->initial()))"
+     x-on:resize.window.debounce.150ms="applyScale(); restoreOverviewView()"
+     :class="{'dark': themeDark, 'is-full-width': overviewPreferences.fullWidth, 'ps-halloween': halloween()}"
+     :style="accentStyle('overview')">
+    @include('pelican-simplify::dashboard.icons')
+    {{-- Halloween (25 October to 2 November): a faint web with a spider in the corner. Clicks pass through. --}}
+    <template x-if="halloween()">
+        <div class="ps-hw-corner" aria-hidden="true">
+            <svg class="ps-hw-web" viewBox="0 0 100 100"><path d="M100 0H0M100 0 10 45M100 0 40 80M100 0V100M100 0 72 95M78 0Q81.1 7 80.2 9.9Q85.5 15.8 86.8 17.6Q92.3 21.3 93.8 20.9Q98.9 23.4 100 22M60 0Q64 11 64 18Q72 27 76 32Q84.4 37 88.8 38Q96.4 41 100 40M40 0Q45 15.5 46 27Q57 39.5 64 48Q75.6 54.5 83.2 57Q93.6 60.5 100 60M20 0Q26 20 28 36Q42 52 52 64Q66.8 72 77.6 76Q90.8 80 100 80"/></svg>
+            <span class="ps-hw-spider"><svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="3.2"/><path d="M4 5 1 2M4 7H0M4 9l-3 3M10 5l3-3M10 7h4M10 9l3 3"/></svg></span>
         </div>
-
-        @if ($editingGroups)
-            @include('pelican-simplify::partials.group-editor')
-        @endif
-
-        @if ($servers->isEmpty())
-            <div class="s-card s-muted">{{ __('pelican-simplify::overview.empty') }}</div>
-        @elseif ($display === \Simplify\Core\Filament\App\Pages\Overview::HOST)
-            @foreach ($this->nodeSections() as $section)
-                <section class="s-section" wire:key="node-{{ $section['node']->id }}">
-                    <h2 class="s-section-title">
-                        <x-filament::icon icon="tabler-server-2" class="s-section-icon" />
-                        @if ($section['url'])
-                            <a class="s-section-link" href="{{ $section['url'] }}">{{ $section['node']->name }}</a>
-                        @else
-                            {{ $section['node']->name }}
-                        @endif
-                        <span class="s-muted">{{ trans_choice('pelican-simplify::overview.node_servers', count($section['servers'])) }}</span>
-                        @if ($section['node']->isUnderMaintenance())
-                            <span class="s-badge s-badge-warn">{{ __('pelican-simplify::overview.maintenance') }}</span>
-                        @endif
-                    </h2>
-                    <div class="s-tiles s-tiles-list">
-                        @foreach ($section['servers'] as $server)
-                            <x-pelican-simplify::server-tile
-                                :server="$server"
-                                :usage="$usage[$server->id] ?? null"
-                                :url="$this->serverUrl($server)"
-                                :badges="$this->badges($server)"
-                                :power="$this->powerActions($server)"
-                                :owner="$server->user?->username"
-                                :color="$this->look($server)['color']"
-                            />
-                        @endforeach
-                    </div>
-                </section>
-            @endforeach
-        @else
-            @foreach ($sections['groups'] as $section)
-                <section class="s-section" wire:key="group-{{ $section['group']['id'] }}">
-                    <h2 class="s-section-title">
-                        <x-filament::icon icon="tabler-folder" class="s-section-icon" :style="$section['group']['color'] ? 'color: '.$section['group']['color'] : null" />
-                        {{ $section['group']['name'] }}
-                    </h2>
-                    <div class="s-tiles s-tiles-{{ $display }}">
-                        @foreach ($section['servers'] as $server)
-                            <x-pelican-simplify::server-tile
-                                :server="$server"
-                                :usage="$usage[$server->id] ?? null"
-                                :url="$this->serverUrl($server)"
-                                :badges="$this->badges($server)"
-                                :power="$this->powerActions($server)"
-                                :color="$section['group']['color'] ?? $this->look($server)['color']"
-                                :banner="$this->look($server)['banner']"
-                            />
-                        @endforeach
-                    </div>
-                </section>
-            @endforeach
-            @if ($sections['rest'])
-                <section class="s-section">
-                    @if ($sections['groups'])
-                        <h2 class="s-section-title">{{ __('pelican-simplify::overview.groups.other') }}</h2>
-                    @endif
-                    <div class="s-tiles s-tiles-{{ $display }}">
-                        @foreach ($sections['rest'] as $server)
-                            <x-pelican-simplify::server-tile
-                                :server="$server"
-                                :usage="$usage[$server->id] ?? null"
-                                :url="$this->serverUrl($server)"
-                                :badges="$this->badges($server)"
-                                :power="$this->powerActions($server)"
-                                :color="$this->look($server)['color']"
-                                :banner="$this->look($server)['banner']"
-                            />
-                        @endforeach
-                    </div>
-                </section>
-            @endif
-        @endif
-    </div>
+    </template>
+    <main class="ps-main">
+        @include('pelican-simplify::dashboard.header')
+        @include('pelican-simplify::dashboard.overview')
+    </main>
+    @include('pelican-simplify::dashboard.tabbar')
+</div>
 </x-filament-panels::page>

@@ -1,0 +1,161 @@
+/* Simplify design tokens: the only place where palette, radius, spacing, shadow and type are defined.
+   Light values live on :root; dark values apply to <html class="dark">, the dashboard root (.ps.dark)
+   and the shared overlay layer (.ps-ui.dark). */
+:root {
+  --ps-bg: #f4f4f5;
+  --ps-surface: #fff;
+  --ps-raised: #eeeef1;
+  --ps-field: #fafafa;
+  --ps-ink: #26262e;
+  --ps-muted: #666672;
+  --ps-line: #dedee5;
+  --ps-line-strong: #c8c8d0;
+  --ps-contrast-bg: #26262e;
+  --ps-contrast-ink: #fafafa;
+  --ps-contrast-line: transparent;
+  --ps-accent: #878787;
+  --ps-on-accent: #111118;
+  --ps-backdrop: rgb(24 24 28 / .32);
+
+  --ps-ok: #15803d;
+  --ps-warn: #a16207;
+  --ps-danger: #be3348;
+  --ps-info: #2563eb;
+
+  --ps-console-bg: #09090b;
+  --ps-console-raised: #18181c;
+  --ps-console-line: #2c2c33;
+  --ps-console-ink: #e4e4e7;
+  --ps-console-muted: #a1a1aa;
+
+  --ps-font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --ps-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --ps-text-xs: 11px;
+  --ps-text-sm: 12px;
+  --ps-text: 14px;
+  --ps-text-md: 15px;
+  --ps-text-lg: 18px;
+  --ps-text-xl: 22px;
+
+  --ps-radius-sm: 7px;
+  --ps-radius: 10px;
+  --ps-radius-lg: 14px;
+  --ps-radius-xl: 18px;
+  --ps-radius-pill: 999px;
+
+  --ps-space-1: 4px;
+  --ps-space-2: 8px;
+  --ps-space-3: 12px;
+  --ps-space-4: 16px;
+  --ps-space-5: 20px;
+  --ps-space-6: 24px;
+
+  --ps-h: 38px;
+  --ps-h-sm: 30px;
+  --ps-h-lg: 46px;
+
+  --ps-shadow-sm: 0 1px 2px rgb(0 0 0 / .05);
+  --ps-shadow: 0 6px 20px rgb(0 0 0 / .08);
+  --ps-shadow-lg: 0 14px 36px rgb(0 0 0 / .16);
+  --ps-shadow-modal: 0 24px 70px rgb(0 0 0 / .22);
+
+  --ps-z-sticky: 30;
+  --ps-z-dropdown: 50;
+  --ps-z-modal: 60;
+  --ps-z-toast: 80;
+  --ps-z-tooltip: 90;
+
+  --ps-ease: cubic-bezier(.2, .8, .2, 1);
+  --ps-fast: .15s;
+  --ps-slow: .25s;
+}
+
+:root.dark,
+.ps.dark,
+.ps-ui.dark {
+  --ps-bg: #101012;
+  --ps-surface: #1a1a1f;
+  --ps-raised: #25252c;
+  --ps-field: #141418;
+  --ps-ink: #ededf2;
+  --ps-muted: #b0b0bb;
+  --ps-line: #33333c;
+  --ps-line-strong: #4a4a55;
+  --ps-contrast-bg: #2c2c34;
+  --ps-contrast-ink: #ededf2;
+  --ps-contrast-line: #45454f;
+  --ps-backdrop: rgb(0 0 0 / .5);
+  --ps-ok: #86cf9d;
+  --ps-warn: #f3be78;
+  --ps-danger: #f3a6ae;
+  --ps-info: #8ab4ff;
+  --ps-shadow-sm: 0 1px 2px rgb(0 0 0 / .3);
+  --ps-shadow: 0 6px 20px rgb(0 0 0 / .3);
+  --ps-shadow-lg: 0 14px 36px rgb(0 0 0 / .45);
+  --ps-shadow-modal: 0 24px 70px rgb(0 0 0 / .55);
+}
+
+/* A Pelican theme plugin (Nord, Catppuccin, Theme Customizer, ...) is active: the palette and font come from
+   Filament's own colour variables, so Simplify matches the rest of the panel. Set by core.js as .ps-panel-theme. */
+:root.ps-panel-theme,
+.ps-panel-theme :is(.ps, .ps-ui) {
+  --ps-bg: var(--gray-50);
+  --ps-surface: #fff;
+  --ps-raised: var(--gray-100);
+  --ps-field: #fff;
+  --ps-ink: var(--gray-950);
+  --ps-muted: var(--gray-600);
+  --ps-line: var(--gray-200);
+  --ps-line-strong: var(--gray-300);
+  --ps-contrast-bg: var(--gray-900);
+  --ps-contrast-ink: var(--gray-50);
+  --ps-ok: var(--success-700);
+  --ps-warn: var(--warning-700);
+  --ps-danger: var(--danger-600);
+  --ps-info: var(--info-600);
+  --ps-font: var(--font-family), ui-sans-serif, system-ui, sans-serif;
+}
+
+:root.ps-panel-theme.dark,
+.ps-panel-theme :is(.ps, .ps-ui).dark {
+  --ps-bg: var(--gray-950);
+  --ps-surface: var(--gray-900);
+  --ps-raised: var(--gray-800);
+  --ps-field: color-mix(in oklab, var(--gray-950) 50%, var(--gray-900));
+  --ps-ink: var(--gray-50);
+  --ps-muted: var(--gray-400);
+  --ps-line: color-mix(in oklab, var(--gray-700) 60%, var(--gray-800));
+  --ps-line-strong: var(--gray-600);
+  --ps-contrast-bg: var(--gray-800);
+  --ps-contrast-ink: var(--gray-50);
+  --ps-contrast-line: var(--gray-700);
+  --ps-ok: var(--success-400);
+  --ps-warn: var(--warning-400);
+  --ps-danger: var(--danger-400);
+  --ps-info: var(--info-400);
+}
+
+/* An adaptive console follows the page surface instead of staying black.
+   Declared on the console itself so it resolves against the dashboard's own theme. */
+.ps-console-adaptive .ps-console {
+  --ps-console-bg: var(--ps-surface);
+  --ps-console-raised: var(--ps-raised);
+  --ps-console-line: var(--ps-line);
+  --ps-console-ink: var(--ps-ink);
+  --ps-console-muted: var(--ps-muted);
+}
+
+/* Touch screens get 44px targets everywhere, without per-component overrides. */
+@media (pointer: coarse) {
+  :root {
+    --ps-h: 44px;
+    --ps-h-sm: 40px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --ps-fast: 0s;
+    --ps-slow: 0s;
+  }
+}

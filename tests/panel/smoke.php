@@ -27,7 +27,7 @@ use Simplify\Core\Filament\Admin\Pages\Setup;
 use Simplify\Core\Filament\App\Pages\Notifications;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Filament\Server\Widgets\ServerDetails;
-use Simplify\Core\Livewire\HostHealthCard;
+use Simplify\Core\Overview\Listing;
 use Simplify\Core\People\People;
 use Simplify\Core\Push\Push;
 use Simplify\Core\Push\UpdateNotices;
@@ -190,81 +190,50 @@ step('every panel page loads the stylesheet', function () use ($admin) {
     }
 });
 $server = Server::query()->first() ?? Server::factory()->create(['owner_id' => $admin->id, 'name' => 'Smoke server']);
-step('the overview renders with the server tile', function () use ($admin, $server) {
+step('the overview renders with the server card', function () use ($admin, $server) {
     $url = Overview::getUrl(panel: 'app');
     $response = visit($admin, $url);
     expectOk($response, $url);
-    if (! str_contains($response->getContent(), e($server->name))) {
-        throw new RuntimeException('the server is not on the overview');
+    if (! str_contains($response->getContent(), 'pelicanSimplify(') || ! str_contains($response->getContent(), '/simplify/assets/dashboard.js?v=')) {
+        throw new RuntimeException('the overview script is missing');
+    }
+    $card = collect(Listing::for($admin))->firstWhere('uuid', $server->uuid);
+    if ($card === null || $card['name'] !== $server->name || ! isset($card['status'], $card['usage'])) {
+        throw new RuntimeException('the server has no card: '.json_encode($card));
     }
 });
 step('live numbers load without Wings and leave unknown values empty', function () use ($admin, $server) {
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
-    $usage = Livewire\Livewire::actingAs($admin)->test(Overview::class)
-        ->call('refreshUsage')->get('usage');
-    if (! isset($usage[$server->id]['state'])) {
-        throw new RuntimeException('no state for the server: '.json_encode($usage));
+    $page = Livewire\Livewire::actingAs($admin)->test(Overview::class)->call('listing')->assertOk();
+    $card = collect($page->instance()->listing())->firstWhere('uuid', $server->uuid);
+    if (! is_string($card['status'] ?? null) || $card['usage']['cpu_percent'] !== null) {
+        throw new RuntimeException('unexpected numbers without Wings: '.json_encode($card));
     }
 });
-step('add-on badges show on the tiles and are not asked again on every refresh', function ($app) use ($admin) {
+step('add-on badges show on the cards and are not asked again on every refresh', function ($app) use ($admin) {
     $app->tag([BadgeAddon::class], AddonRegistry::TAG);
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
     BadgeAddon::$asked = 0;
     $page = Livewire\Livewire::actingAs($admin)->test(Overview::class)->assertSee('smoke-badge');
     $first = BadgeAddon::$asked;
-    $page->call('refreshUsage')->call('refreshUsage')->assertSee('smoke-badge');
+    $page->call('listing')->call('listing');
     if ($first < 1 || BadgeAddon::$asked !== $first) {
         throw new RuntimeException("asked $first times on the first view, ".BadgeAddon::$asked.' after two refreshes');
     }
 });
 step('a power action on a server the user cannot reach is refused', function () use ($admin) {
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
-    Livewire\Livewire::actingAs($admin)->test(Overview::class)
-        ->call('power', 999999, 'start')->assertNotified(__('pelican-simplify::overview.power.denied'));
+    Livewire\Livewire::actingAs($admin)->test(Overview::class)->call('overviewPower', 'no-such-server', 'start')->assertForbidden();
 });
-step('a layout choice is saved for the account and an unknown one is refused', function () use ($admin) {
+step('server groups and the server order are saved for the account', function () use ($admin, $server) {
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
     Livewire\Livewire::actingAs($admin)->test(Overview::class)
-        ->set('display', 'list')->set('sort', 'sideways');
-    if (Preferences::get($admin, 'overview.display') !== 'list') {
-        throw new RuntimeException('the layout was not saved');
-    }
-    if (Preferences::get($admin, 'overview.sort') !== 'name') {
-        throw new RuntimeException('an unknown sort was saved: '.json_encode(Preferences::get($admin, 'overview.sort')));
-    }
-    $layout = Livewire\Livewire::actingAs($admin)->test(Overview::class)->get('display');
-    if ($layout !== 'list') {
-        throw new RuntimeException('the saved layout is not used: '.$layout);
-    }
-});
-step('host mode lists the servers per node for root admins only', function () use ($admin, $server) {
-    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
-    $page = Livewire\Livewire::actingAs($admin)->test(Overview::class)->set('display', Overview::HOST);
-    if ($page->get('display') !== Overview::HOST || ! str_contains($page->html(), e($server->node->name))) {
-        throw new RuntimeException('host mode does not show the node');
-    }
-    $page->call('refreshUsage');
-    if (! isset($page->get('usage')[$server->id]['state'])) {
-        throw new RuntimeException('no numbers in host mode');
-    }
-    $user = User::where('email', 'smoke-simplify-user@example.com')->first()
-        ?? User::withoutEvents(fn () => User::factory()->create(['email' => 'smoke-simplify-user@example.com']));
-    if (Livewire\Livewire::actingAs($user)->test(Overview::class)->set('display', Overview::HOST)->get('display') === Overview::HOST) {
-        throw new RuntimeException('a user without admin rights got host mode');
-    }
-    Preferences::set($admin, 'overview.display', 'cards');
-});
-step('server groups are saved and shown as sections', function () use ($admin, $server) {
-    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
-    $page = Livewire\Livewire::actingAs($admin)->test(Overview::class)
-        ->call('editGroups')->call('addGroup');
-    $id = $page->get('draft')[0]['id'];
-    $page->set('draft.0.name', 'Smoke group')->set('draft.0.color', '#336699')->set('assign.'.$server->id, $id)->call('saveGroups')
-        ->assertSee('Smoke group');
+        ->call('saveOverviewGroups', [['id' => 'smoke', 'name' => 'Smoke group', 'color' => '#336699', 'servers' => [$server->uuid]]], 'sideways');
     $saved = Preferences::get($admin, 'overview.groups');
-    if (($saved[0]['servers'] ?? null) !== [$server->id] || $saved[0]['color'] !== '#336699') {
+    if (($saved['groups'][0]['servers'] ?? null) !== [$server->uuid] || $saved['groups'][0]['color'] !== '#336699' || $saved['order'] !== 'name') {
         throw new RuntimeException('groups were not saved: '.json_encode($saved));
     }
+    Preferences::set($admin, 'overview.groups', []);
 });
 step('the console page shows the Simplify details above the console', function () use ($admin, $server) {
     $url = Filament\Facades\Filament::getPanel('server')->getUrl($server);
@@ -310,14 +279,9 @@ step('a server gets a colour and banner from its page, shown on its card', funct
     }
     $banner = (string) parse_url($look['banner'], PHP_URL_PATH);
     expectOk(visit($admin, $banner), $banner);
-    // Earlier steps put the server in a group (whose colour wins) and made this a hosting panel (host mode by default).
-    Preferences::set($admin, 'overview.groups', []);
-    Preferences::set($admin, 'overview.display', 'cards');
-    $url = Overview::getUrl(panel: 'app');
-    $page = visit($admin, $url);
-    expectOk($page, $url);
-    if (! str_contains($page->getContent(), $banner) || ! str_contains($page->getContent(), '--s-tile-accent: #aa3355')) {
-        throw new RuntimeException('the card does not show the banner and colour');
+    $card = collect(Listing::for($admin))->firstWhere('uuid', $server->uuid);
+    if ($card['background'] !== $look['banner'] || $card['color'] !== '#aa3355') {
+        throw new RuntimeException('the card does not show the banner and colour: '.json_encode($card));
     }
     Looks::save($server, null, null);
 });
@@ -341,7 +305,8 @@ step('the accent colour and refresh rate reach the panel', function () use ($adm
     if (! str_contains($html, Color::hex('#336699')[500])) {
         throw new RuntimeException('the accent colour is not used');
     }
-    if (! str_contains($html, 'wire:poll.20s.visible')) {
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
+    if (Livewire\Livewire::actingAs($admin)->test(Overview::class)->instance()->initial()['performance']['overview_seconds'] !== 20) {
         throw new RuntimeException('the refresh rate is not used');
     }
 });
@@ -367,7 +332,8 @@ step('the panel uses the uploaded logo and name', function () use ($admin) {
     }
 });
 step('host health loads for a root admin and names a node that does not answer', function () use ($admin) {
-    $health = Livewire\Livewire::actingAs($admin)->test(HostHealthCard::class)->call('load')->get('health');
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
+    $health = Livewire\Livewire::actingAs($admin)->test(Overview::class)->instance()->refreshHostHealth();
     if (($health['hosts'] ?? 0) < 1 || $health['state'] !== 'unavailable' || ($health['nodes'][0]['problem'] ?? null) === null) {
         throw new RuntimeException('unexpected host health: '.json_encode($health));
     }

@@ -213,104 +213,6 @@
   padding: 0 var(--s-space-3);
 }
 
-.s-tiles {
-  display: grid;
-  gap: var(--s-space-3);
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-}
-
-.s-tile {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-space-2);
-  text-decoration: none;
-  transition: border-color var(--s-fast);
-}
-
-.s-tile {
-  position: relative;
-}
-
-/* The name's link covers the whole tile; the power buttons sit above it. */
-.s-tile-link {
-  color: inherit;
-  text-decoration: none;
-}
-
-.s-tile-link::after {
-  content: "";
-  inset: 0;
-  position: absolute;
-}
-
-.s-tile:hover {
-  border-color: var(--s-tile-accent, var(--s-accent));
-}
-
-/* A group colour shows as a stripe on the tile's start edge (left, or right in right-to-left languages). */
-.s-tile[style*="--s-tile-accent"] {
-  border-inline-start: 3px solid var(--s-tile-accent);
-}
-
-.s-tile[hidden] {
-  display: none;
-}
-
-.s-tile-head {
-  align-items: center;
-  display: flex;
-  gap: var(--s-space-2);
-  justify-content: space-between;
-}
-
-.s-tile-name {
-  font-size: var(--s-text);
-  font-weight: 600;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.s-tile-sub {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.s-stats {
-  display: grid;
-  gap: var(--s-space-2);
-  grid-template-columns: repeat(3, 1fr);
-  margin: 0;
-}
-
-.s-stats dt {
-  color: var(--s-muted);
-  font-size: var(--s-text-sm);
-}
-
-.s-stats dd {
-  font-size: var(--s-text);
-  font-variant-numeric: tabular-nums;
-  margin: 0;
-  white-space: nowrap;
-}
-
-.s-tile-foot {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s-space-1);
-}
-
-.s-tile-power {
-  display: flex;
-  gap: var(--s-space-1);
-  margin-inline-start: auto;
-  position: relative;
-  z-index: 1;
-}
-
 .s-btn-icon {
   justify-content: center;
   padding: 0;
@@ -322,11 +224,6 @@
   opacity: .5;
 }
 
-/* Sections: one per server group, then "Other servers". */
-.s-section + .s-section {
-  margin-top: var(--s-space-6);
-}
-
 .s-section-title {
   align-items: center;
   display: flex;
@@ -334,61 +231,6 @@
   font-weight: 600;
   gap: var(--s-space-2);
   margin-bottom: var(--s-space-3);
-}
-
-/* The node name in host mode links to the node; unlike a tile's name it covers only itself. */
-.s-section-link {
-  color: inherit;
-  text-decoration: none;
-}
-
-.s-section-link:hover {
-  text-decoration: underline;
-}
-
-.s-section-icon {
-  color: var(--s-muted);
-  height: 18px;
-  width: 18px;
-}
-
-/* Editor: groups, then which group each server is in. */
-.s-editor {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-space-2);
-  margin-bottom: var(--s-space-4);
-}
-
-.s-editor-head {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-}
-
-.s-editor-head .s-section-title {
-  margin: 0;
-}
-
-.s-editor-sub {
-  color: var(--s-muted);
-  font-size: var(--s-text-sm);
-  margin-top: var(--s-space-3);
-}
-
-.s-editor .s-row {
-  border-top: 0;
-  padding: 0;
-}
-
-.s-input {
-  background: var(--s-surface);
-  border: 1px solid var(--s-line);
-  border-radius: var(--s-radius-sm);
-  color: var(--s-ink);
-  font-size: var(--s-text);
-  height: var(--s-h);
-  padding: 0 var(--s-space-3);
 }
 
 .s-color {
@@ -427,76 +269,12 @@
   color: var(--s-ink);
 }
 
-.s-segment-icon {
-  padding: 0;
-  width: calc(var(--s-h) - 4px);
-}
-
 .s-segment svg {
   height: 18px;
   width: 18px;
 }
 
-.s-select {
-  background: var(--s-surface);
-  border: 1px solid var(--s-line);
-  border-radius: var(--s-radius-sm);
-  color: var(--s-ink);
-  font-size: var(--s-text);
-  height: var(--s-h);
-  padding: 0 var(--s-space-6) 0 var(--s-space-3);
-}
-
-/* Compact: name, state and power only. */
-.s-tiles-compact {
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-}
-
-.s-tiles-compact .s-tile {
-  padding: var(--s-space-3);
-}
-
-.s-tiles-compact :is(.s-tile-sub, .s-stats) {
-  display: none;
-}
-
-/* List: one server per row, the numbers on the same line on wide screens. */
-.s-tiles-list {
-  gap: 0;
-  grid-template-columns: 1fr;
-}
-
-.s-tiles-list .s-tile {
-  align-items: center;
-  border-radius: 0;
-  box-shadow: none;
-  display: grid;
-  gap: var(--s-space-3);
-  grid-template-columns: minmax(160px, 1.4fr) minmax(120px, 1fr) minmax(240px, 2fr) auto;
-  margin-top: -1px;
-  padding: var(--s-space-2) var(--s-space-3);
-}
-
-.s-tiles-list .s-tile:first-child {
-  border-radius: var(--s-radius) var(--s-radius) 0 0;
-}
-
-.s-tiles-list .s-tile:last-child {
-  border-radius: 0 0 var(--s-radius) var(--s-radius);
-}
-
-.s-tiles-list .s-tile-foot {
-  justify-content: flex-end;
-}
-
 @media (max-width: 600px) {
-  .s-tiles-list .s-tile {
-    grid-template-columns: 1fr auto;
-  }
-
-  .s-tiles-list :is(.s-tile-sub, .s-stats) {
-    display: none;
-  }
 
   .s-search {
     max-width: none;
@@ -537,57 +315,6 @@
 .s-addon-sections {
   display: grid;
   gap: var(--s-space-4);
-}
-
-/* Host health on the overview, for root admins */
-.s-health {
-  margin-bottom: var(--s-space-4);
-}
-
-.s-health-head {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s-space-2);
-}
-
-.s-health-title {
-  font-weight: 600;
-}
-
-.s-health-refresh {
-  margin-inline-start: auto;
-}
-
-.s-health-meters {
-  margin-top: var(--s-space-3);
-}
-
-.s-health-problem {
-  font-size: var(--s-text-sm);
-  margin-top: var(--s-space-2);
-}
-
-.s-meter {
-  background: var(--s-line);
-  border-radius: var(--s-radius-pill);
-  height: 4px;
-  margin-top: var(--s-space-1);
-  overflow: hidden;
-}
-
-.s-meter span {
-  background: var(--s-ok);
-  display: block;
-  height: 100%;
-}
-
-.s-meter-warn span {
-  background: var(--s-warn);
-}
-
-.s-meter-danger span {
-  background: var(--s-danger);
 }
 
 /* People & roles */
@@ -744,18 +471,6 @@
 .s-error {
   color: var(--s-danger);
   font-size: var(--s-text-sm);
-}
-
-.s-tile-banner {
-  aspect-ratio: 4 / 1;
-  border-radius: var(--s-radius-sm);
-  display: block;
-  object-fit: cover;
-  width: 100%;
-}
-
-.s-tiles:is(.s-tiles-compact, .s-tiles-list) .s-tile-banner {
-  display: none;
 }
 
 [dir="rtl"] .s-switch:checked::after {

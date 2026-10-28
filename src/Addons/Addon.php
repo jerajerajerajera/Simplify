@@ -74,6 +74,18 @@ abstract class Addon
     }
 
     /**
+     * What the add-on knows about a running game, for the server's card and page. Any of: players and max_players
+     * (numbers), motd (Minecraft text with § codes), version (as the game reports it), icon (an image URL). The first
+     * add-on that knows a value wins.
+     *
+     * @return array{players?: int, max_players?: int, motd?: string, version?: string, icon?: string}
+     */
+    public function serverInfo(Server $server): array
+    {
+        return [];
+    }
+
+    /**
      * Livewire components shown on the server's Simplify page. Each one receives the server as `server`.
      *
      * @return list<class-string>
