@@ -4,7 +4,8 @@
     @foreach (['tokens.css', 'components.css', 'dashboard.css'] as $file)
         <link rel="stylesheet" href="{{ \Simplify\Core\Support\Assets::url($file) }}">
     @endforeach
-    <script>window.simplifyLang = @js(__('pelican-simplify::js'));</script>
+    {{-- Base64, because Livewire copies this block into the page in a way that drops one level of backslashes. --}}
+    <script>window.simplifyLang = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob('{{ base64_encode(json_encode(__('pelican-simplify::js'))) }}'), (c) => c.charCodeAt(0))));</script>
     @foreach (['core.js', 'motd.js', 'dashboard.js'] as $file)
         <script src="{{ \Simplify\Core\Support\Assets::url($file) }}"></script>
     @endforeach
