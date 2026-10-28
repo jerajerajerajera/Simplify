@@ -36,8 +36,8 @@
                     @foreach (['cards' => 'tabler-layout-grid', 'compact' => 'tabler-layout-list', 'list' => 'tabler-list'] as $option => $icon)
                         <button
                             type="button"
-                            wire:click="$set('layout', '{{ $option }}')"
-                            @class(['s-segment', 's-segment-icon', 'is-active' => $layout === $option])
+                            wire:click="$set('display', '{{ $option }}')"
+                            @class(['s-segment', 's-segment-icon', 'is-active' => $display === $option])
                             title="{{ __('pelican-simplify::overview.layout.'.$option) }}"
                             aria-label="{{ __('pelican-simplify::overview.layout.'.$option) }}"
                         >
@@ -69,7 +69,7 @@
                         <x-filament::icon icon="tabler-folder" class="s-section-icon" :style="$section['group']['color'] ? 'color: '.$section['group']['color'] : null" />
                         {{ $section['group']['name'] }}
                     </h2>
-                    <div class="s-tiles s-tiles-{{ $layout }}">
+                    <div class="s-tiles s-tiles-{{ $display }}">
                         @foreach ($section['servers'] as $server)
                             <x-pelican-simplify::server-tile
                                 :server="$server"
@@ -88,7 +88,7 @@
                     @if ($sections['groups'])
                         <h2 class="s-section-title">{{ __('pelican-simplify::overview.groups.other') }}</h2>
                     @endif
-                    <div class="s-tiles s-tiles-{{ $layout }}">
+                    <div class="s-tiles s-tiles-{{ $display }}">
                         @foreach ($sections['rest'] as $server)
                             <x-pelican-simplify::server-tile
                                 :server="$server"
