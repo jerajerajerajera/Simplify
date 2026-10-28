@@ -84,7 +84,8 @@ if (Event::hasListeners('simplify.push')) {
 }
 ```
 
-Simplify listens only while push is turned on. The listener returns how many devices it sent to.
+Simplify listens only while push is turned on. The listener returns how many devices it sent to. People choose per
+account whether they get these messages; a `url` outside the panel is dropped.
 
 ## Testing your add-on in a real panel
 

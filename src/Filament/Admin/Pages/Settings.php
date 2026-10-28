@@ -7,6 +7,7 @@ namespace Simplify\Core\Filament\Admin\Pages;
 use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Notification;
@@ -79,6 +80,10 @@ final class Settings extends Page implements HasForms
                         TextInput::make('overview_seconds')->label(__('pelican-simplify::settings.general.overview_seconds'))
                             ->helperText(__('pelican-simplify::settings.general.overview_seconds_help'))
                             ->integer()->minValue(5)->maxValue(300)->suffix('s')->required(),
+                    ]),
+                    Section::make(__('pelican-simplify::settings.general.push'))->schema([
+                        Toggle::make('push')->label(__('pelican-simplify::settings.general.push_on'))
+                            ->helperText(__('pelican-simplify::settings.general.push_help')),
                     ]),
                 ]),
                 Tab::make(__('pelican-simplify::settings.appearance.tab'))->icon('tabler-palette')->schema([

@@ -9,6 +9,9 @@ return [
         'refresh' => 'Refresh',
         'overview_seconds' => 'Overview refresh',
         'overview_seconds_help' => 'How often an open overview loads new numbers. Hidden tabs never refresh.',
+        'push' => 'App notifications',
+        'push_on' => 'Allow app notifications',
+        'push_help' => 'People turn them on per device under Notifications in their account menu. Messages go through the push service of their browser (Google, Mozilla, Apple or Microsoft), encrypted so only that device can read them.',
     ],
     'appearance' => [
         'tab' => 'Appearance',

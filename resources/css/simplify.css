@@ -621,3 +621,63 @@
     flex-wrap: wrap;
   }
 }
+
+/* App notifications */
+.s-push {
+  display: grid;
+  gap: var(--s-space-4);
+  max-width: 720px;
+}
+
+.s-block {
+  display: block;
+}
+
+.s-push label.s-row {
+  cursor: pointer;
+}
+
+/* Switch: a checkbox drawn as a pill, so it stays a native, keyboard-friendly input. */
+.s-switch {
+  appearance: none;
+  background: var(--s-line);
+  border-radius: var(--s-radius-pill);
+  cursor: pointer;
+  flex: none;
+  height: 22px;
+  position: relative;
+  transition: background var(--s-fast);
+  width: 38px;
+}
+
+.s-switch::after {
+  background: #fff;
+  border-radius: var(--s-radius-pill);
+  box-shadow: var(--s-shadow);
+  content: "";
+  height: 18px;
+  left: 2px;
+  position: absolute;
+  top: 2px;
+  transition: transform var(--s-fast);
+  width: 18px;
+}
+
+.s-switch:checked {
+  background: var(--s-accent);
+}
+
+.s-switch:checked::after {
+  transform: translateX(16px);
+}
+
+.s-switch:focus-visible {
+  outline: 2px solid var(--s-accent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+  .s-push .s-row {
+    flex-wrap: wrap;
+  }
+}

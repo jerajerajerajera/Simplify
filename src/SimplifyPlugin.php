@@ -6,10 +6,12 @@ namespace Simplify\Core;
 
 use App\Enums\ConsoleWidgetPosition;
 use App\Filament\Server\Pages\Console;
+use Filament\Actions\Action;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 use Simplify\Core\Filament\Admin\Pages\People;
 use Simplify\Core\Filament\Admin\Pages\Settings;
+use Simplify\Core\Filament\App\Pages\Notifications;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Filament\Server\Widgets\AddonSections;
 use Simplify\Core\Filament\Server\Widgets\ServerDetails;
@@ -30,7 +32,11 @@ final class SimplifyPlugin implements Plugin
         Brand::apply($panel);
 
         if ($panel->getId() === 'app') {
-            $panel->pages([Overview::class]);
+            $panel->pages([Overview::class, Notifications::class]);
+            $panel->userMenuItems([
+                Action::make('simplify-notifications')->label(fn () => __('pelican-simplify::push.menu'))->icon('tabler-bell')
+                    ->url(fn () => Notifications::getUrl(panel: 'app'))->visible(fn () => Notifications::canAccess()),
+            ]);
         }
         if ($panel->getId() === 'server') {
             Console::registerCustomWidgets(ConsoleWidgetPosition::Top, [ServerDetails::class]);
