@@ -5,7 +5,6 @@
 <x-filament-panels::page>
     <div x-data="{ search: '' }" wire:init="refreshUsage" wire:poll.15s.visible="refreshUsage" class="s-overview">
         <div class="s-toolbar">
-<<<<<<< HEAD
             @if ($this->scopeShown())
                 <div class="s-segments" role="group" aria-label="{{ __('pelican-simplify::overview.scope.label') }}">
                     @foreach (\Simplify\Core\Filament\App\Pages\Overview::SCOPES as $option)
@@ -15,8 +14,6 @@
                     @endforeach
                 </div>
             @endif
-=======
->>>>>>> origin/main
             <input
                 type="search"
                 class="s-search"
@@ -24,7 +21,6 @@
                 placeholder="{{ __('pelican-simplify::overview.search') }}"
                 aria-label="{{ __('pelican-simplify::overview.search') }}"
             >
-<<<<<<< HEAD
             <div class="s-bar">
                 <select class="s-select" wire:model.live="sort" aria-label="{{ __('pelican-simplify::overview.sort.label') }}">
                     @foreach (\Simplify\Core\Filament\App\Pages\Overview::SORTS as $option)
@@ -53,30 +49,12 @@
                     </a>
                 @endforeach
             </div>
-=======
-            @if ($actions)
-                <div class="s-bar">
-                    @foreach ($actions as $action)
-                        <a href="{{ $action->url }}" @class(['s-btn', 's-btn-primary' => $action->primary])>
-                            @if ($action->icon)
-                                <x-filament::icon :icon="$action->icon" />
-                            @endif
-                            {{ $action->label }}
-                        </a>
-                    @endforeach
-                </div>
-            @endif
->>>>>>> origin/main
         </div>
 
         @if ($servers->isEmpty())
             <div class="s-card s-muted">{{ __('pelican-simplify::overview.empty') }}</div>
         @else
-<<<<<<< HEAD
             <div class="s-tiles s-tiles-{{ $layout }}">
-=======
-            <div class="s-tiles">
->>>>>>> origin/main
                 @foreach ($servers as $server)
                     <x-pelican-simplify::server-tile
                         :server="$server"

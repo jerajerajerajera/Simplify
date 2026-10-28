@@ -34,7 +34,6 @@ return [
         'denied' => 'You may not do that on this server.',
         'failed' => ':server did not respond. Try again in a moment.',
     ],
-<<<<<<< HEAD
     'scope' => [
         'label' => 'Whose servers',
         'all' => 'All',
@@ -52,6 +51,4 @@ return [
         'compact' => 'Compact',
         'list' => 'List',
     ],
-=======
->>>>>>> origin/main
 ];

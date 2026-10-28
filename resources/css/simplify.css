@@ -25,10 +25,7 @@
   --s-space-2: 8px;
   --s-space-3: 12px;
   --s-space-4: 16px;
-<<<<<<< HEAD
   --s-space-6: 24px;
-=======
->>>>>>> origin/main
 
   --s-h: 36px;
   --s-shadow: 0 1px 2px rgb(0 0 0 / .05);
@@ -320,7 +317,6 @@
   opacity: .5;
 }
 
-<<<<<<< HEAD
 /* Segmented choice: a few options side by side, the chosen one filled. */
 .s-segments {
   background: var(--s-raised);
@@ -419,9 +415,6 @@
     display: none;
   }
 
-=======
-@media (max-width: 600px) {
->>>>>>> origin/main
   .s-search {
     max-width: none;
   }
