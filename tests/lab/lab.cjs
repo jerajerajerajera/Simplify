@@ -85,12 +85,20 @@ const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g
       await shot('action-settings-pelican-mail');
     }
     await click(page.locator('main [role=tab]', { hasText: 'General' }), 'settings back to General');
-    const answer = page.waitForResponse((r) => r.url().includes('/livewire') && r.request().method() === 'POST', { timeout: 8000 }).catch(() => null);
+    const posts = [];
+    const listen = async (r) => {
+      if (!r.url().includes('/livewire') || r.request().method() !== 'POST') return;
+      const sent = (r.request().postDataJSON()?.components ?? []).map((c) => c.calls?.map((x) => x.method).join(',')).join(';');
+      const body = await r.json().catch(() => null);
+      const got = (body?.components ?? []).map((c) => JSON.stringify({ errors: JSON.parse(c.snapshot).memo?.errors, effects: Object.keys(c.effects ?? {}), dispatches: c.effects?.dispatches?.map((d) => d.name), xjs: c.effects?.xjs })).join(';');
+      posts.push(`${r.status()} calls=${sent} ${got}`.slice(0, 700));
+    };
+    page.on('response', listen);
     await click(page.locator('main button[type=submit]', { hasText: 'Save' }), 'settings save');
-    const response = await answer;
+    const saved = await page.getByText(/settings saved/i).first().waitFor({ timeout: 8000 }).then(() => true, () => false);
+    page.off('response', listen);
     const errors = await page.locator('.fi-fo-field-wrp-error-message, [data-validation-error]').allInnerTexts().catch(() => []);
-    ok('settings saved', await page.getByText(/settings saved/i).first().waitFor({ timeout: 8000 }).then(() => true, () => false),
-      response ? `HTTP ${response.status()} ${(await response.text().catch(() => '')).slice(0, 600)} ${errors.join(' | ')}` : 'no Livewire request ' + errors.join(' | '));
+    ok('settings saved', saved, posts.join(' || ') + ' errors: ' + errors.join(' | '));
     await shot('action-settings-saved');
   });
 
