@@ -18,6 +18,7 @@ use Simplify\Core\Overview\Power;
 use Simplify\Core\Overview\ServerGroups;
 use Simplify\Core\Overview\ServerQuery;
 use Simplify\Core\Overview\Usage;
+use Simplify\Core\Support\PanelSettings;
 use Simplify\Core\Support\Preferences;
 use Throwable;
 
@@ -253,6 +254,12 @@ final class Overview extends Page
             return;
         }
         $this->usage[$server->id] = $this->read($server)->toArray();
+    }
+
+    /** How often the open overview loads new numbers, set by the admin. */
+    public function refreshSeconds(): int
+    {
+        return (int) PanelSettings::get('overview_seconds');
     }
 
     public function refreshUsage(): void

@@ -8,10 +8,12 @@ use App\Enums\ConsoleWidgetPosition;
 use App\Filament\Server\Pages\Console;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
+use Filament\Support\Colors\Color;
 use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Filament\Server\Widgets\AddonSections;
 use Simplify\Core\Filament\Server\Widgets\ServerDetails;
+use Simplify\Core\Support\PanelSettings;
 
 final class SimplifyPlugin implements Plugin
 {
@@ -25,6 +27,10 @@ final class SimplifyPlugin implements Plugin
     public function register(Panel $panel): void
     {
         $panel->renderHook('panels::head.end', fn () => view('pelican-simplify::head'));
+        $accent = PanelSettings::get('accent');
+        if ($accent !== null) {
+            $panel->colors(['primary' => Color::hex($accent)]);
+        }
 
         if ($panel->getId() === 'app') {
             $panel->pages([Overview::class]);

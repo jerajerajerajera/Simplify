@@ -5,6 +5,7 @@
 use App\Models\Role;
 use App\Models\Server;
 use App\Models\User;
+use Filament\Support\Colors\Color;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithAuthentication;
@@ -16,6 +17,7 @@ use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Support\Assets;
+use Simplify\Core\Support\PanelSettings;
 use Simplify\Core\Support\Preferences;
 
 define('LARAVEL_START', microtime(true));
@@ -180,6 +182,28 @@ step('the console page shows the Simplify details above the console', function (
     expectOk($response, $url);
     if (! str_contains($response->getContent(), 's-details')) {
         throw new RuntimeException('the details are missing on '.$url);
+    }
+});
+step('panel settings are saved and a bad value is refused', function () use ($admin) {
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('admin'));
+    Livewire\Livewire::actingAs($admin)->test(Settings::class)
+        ->set('data.overview_seconds', 2)->call('save')->assertHasErrors();
+    Livewire\Livewire::actingAs($admin)->test(Settings::class)
+        ->set('data.overview_seconds', 20)->set('data.accent', '#336699')->call('save')->assertHasNoErrors();
+    if (PanelSettings::get('overview_seconds') !== 20 || PanelSettings::get('accent') !== '#336699') {
+        throw new RuntimeException('settings were not saved: '.json_encode(PanelSettings::all()));
+    }
+});
+step('the accent colour and refresh rate reach the panel', function () use ($admin) {
+    $url = Overview::getUrl(panel: 'app');
+    $response = visit($admin, $url);
+    expectOk($response, $url);
+    $html = $response->getContent();
+    if (! str_contains($html, Color::hex('#336699')[500])) {
+        throw new RuntimeException('the accent colour is not used');
+    }
+    if (! str_contains($html, 'wire:poll.20s.visible')) {
+        throw new RuntimeException('the refresh rate is not used');
     }
 });
 if ($failed || $passed === 0) {

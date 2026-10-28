@@ -4,7 +4,7 @@
     $actions = $this->actions();
 @endphp
 <x-filament-panels::page>
-    <div x-data="{ search: '' }" wire:init="refreshUsage" wire:poll.15s.visible="refreshUsage" class="s-overview">
+    <div x-data="{ search: '' }" wire:init="refreshUsage" wire:poll.{{ $this->refreshSeconds() }}s.visible="refreshUsage" class="s-overview">
         <div class="s-toolbar">
             @if ($this->scopeShown())
                 <div class="s-segments" role="group" aria-label="{{ __('pelican-simplify::overview.scope.label') }}">
