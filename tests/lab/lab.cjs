@@ -33,7 +33,7 @@ const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g
     ok(`${name} opens`, !!response && response.status() === 200 && !page.url().includes('/login'), response ? 'HTTP ' + response.status() + ' ' + page.url() : 'no response');
     return response;
   };
-  const main = async () => page.locator('main').innerText().catch(() => '');
+  const main = async () => page.locator('main').first().innerText().catch(() => '');
   const click = async (locator, name) => {
     const target = locator.first();
     const there = (await target.count()) > 0;
