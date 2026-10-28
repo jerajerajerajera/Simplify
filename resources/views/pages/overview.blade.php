@@ -71,7 +71,7 @@
                     <h2 class="s-section-title">
                         <x-filament::icon icon="tabler-server-2" class="s-section-icon" />
                         @if ($section['url'])
-                            <a class="s-tile-link" href="{{ $section['url'] }}">{{ $section['node']->name }}</a>
+                            <a class="s-section-link" href="{{ $section['url'] }}">{{ $section['node']->name }}</a>
                         @else
                             {{ $section['node']->name }}
                         @endif
