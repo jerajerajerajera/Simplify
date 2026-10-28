@@ -3,8 +3,10 @@
 
 /* Page shell: the dashboard replaces Filament's chrome and pins the overview to the viewport. ------- */
 html:has(.ps), body:has(.ps) { margin: 0; padding: 0; min-height: 100%; background: var(--ps-bg); overflow-x: clip; }
-body:has(.ps) :is(.fi-sidebar, .fi-topbar, .fi-header, .fi-breadcrumbs, .fi-layout-sidebar-toggle-btn-ctn, .fi-sidebar-close-overlay) { display: none !important; }
-body:has(.ps) :is(.fi-layout, .fi-main-ctn, .fi-main, .fi-page, .fi-page-header-main-ctn, .fi-page-main, .fi-page-content) {
+body:has(.ps) :is(.fi-sidebar, .fi-topbar, .fi-breadcrumbs, .fi-layout-sidebar-toggle-btn-ctn, .fi-sidebar-close-overlay) { display: none !important; }
+/* The overview fills the page itself; on a server page Pelican's page keeps its own layout. */
+body:has(.ps:not(.ps-server-top)) .fi-header { display: none !important; }
+body:has(.ps:not(.ps-server-top)) :is(.fi-layout, .fi-main-ctn, .fi-main, .fi-page, .fi-page-header-main-ctn, .fi-page-main, .fi-page-content) {
   display: flex !important;
   flex-direction: column;
   flex: 1 0 auto;
@@ -18,6 +20,7 @@ body:has(.ps) :is(.fi-layout, .fi-main-ctn, .fi-main, .fi-page, .fi-page-header-
   background: transparent !important;
 }
 body:has(.ps) :is(.fi-layout, .fi-main-ctn) { min-height: 100dvh !important; }
+body:has(.ps-server-top) .fi-layout { display: flex !important; flex-direction: column; }
 /* Only the page itself paints a background: every wrapper around the dashboard (known or not)
    stays transparent, so nothing shows behind the health dock or the footer. */
 body:has(.ps) :has(.ps), .ps, .ps-main, .ps-overview, .ps-server-scroll { background: transparent !important; background-image: none !important; box-shadow: none !important; }
@@ -1551,3 +1554,60 @@ span.ps-card-background.ps-banner-color { width: 100%; opacity: .5; filter: none
 [dir="rtl"] .ps-console-output { direction: ltr; text-align: left; }
 [dir="rtl"] .ps-command input { unicode-bidi: plaintext; }
 [dir="rtl"] :is(.ps-card-usage-label > strong, .ps-card-bottom > span) { direction: ltr; unicode-bidi: isolate; }
+
+/* Server pages: Simplify's header, server card and numbers (.ps-server-top) over Pelican's own page, with Pelican's
+   server menu in a card on the left. The top is display: contents, so its parts share one grid with Pelican's page. */
+.ps.ps-server-top { display: contents; }
+body:has(.ps-server-top) .fi-main-ctn {
+  display: grid !important;
+  grid-template-columns: 220px minmax(0, 1fr);
+  grid-template-areas: "top top" "nav main";
+  align-content: start;
+  gap: 0 14px;
+  width: 100%;
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+  padding: 0 36px !important;
+}
+body:has(.ps-server-top) .fi-main-ctn > * { grid-column: 1 / -1; }
+body:has(.ps-server-top) .fi-main-ctn > .fi-main { grid-area: main; width: auto; min-width: 0; max-width: none !important; margin: 0 !important; padding: 0 0 32px !important; }
+body:has(.ps-server-top) .fi-page-header-main-ctn { padding-top: 0 !important; }
+.ps.ps-server-top > .ps-main { grid-area: top; padding: 32px 0 0; }
+.ps.ps-server-top.is-server-full-width ~ * { max-width: none; }
+.ps-server-menu { grid-area: nav; position: sticky; top: 14px; align-self: start; display: flex; flex-direction: column; gap: 1px; max-height: calc(100dvh - 28px); padding: 10px; overflow-y: auto; scrollbar-width: thin; border: 1px solid var(--ps-line); border-radius: var(--ps-radius-lg); background: var(--ps-surface); }
+.ps-server-menu .ps-widget { display: flex; flex: none; flex-direction: row; align-items: center; justify-content: flex-start; gap: 10px; min-height: 40px; padding: 4px 8px; border: 1px solid transparent; border-radius: 10px; background: none; color: var(--ps-ink); text-decoration: none; }
+.ps-server-menu .ps-widget:is(:hover, :focus-visible) { background: var(--ps-raised); }
+.ps-server-menu .ps-widget[aria-current="page"] { border-color: var(--ps-line-strong); background: var(--ps-raised); }
+.ps-server-menu .ps-widget-icon { width: 30px; height: 30px; border-radius: 9px; background: none; color: var(--ps-muted); }
+.ps-server-menu .ps-widget[aria-current="page"] .ps-widget-icon { color: var(--ps-ink); }
+.ps-server-menu .ps-widget-icon svg { width: 17px; height: 17px; }
+.ps-server-menu .ps-widget strong { font-size: 14px; font-weight: 600; -webkit-line-clamp: 1; }
+.ps-phone-sections .ps-menu-item svg { width: 18px; height: 18px; }
+html.ps-console-big .ps-server-menu { display: none; }
+html.ps-console-big body:has(.ps-server-top) .fi-main-ctn > .fi-main { grid-column: 1 / -1; }
+
+/* Pelican's console, dressed as Simplify's live console: a title row (server.js puts it in), the output and the
+   command bar in one dark card. Pelican's numbers and charts are replaced by the cards above. */
+body:has(.ps-server-top.is-console) :is(.fi-header, .fi-wi-stats-overview, .fi-wi-chart) { display: none !important; }
+:has(> #terminal) { overflow: hidden; border: 1px solid var(--ps-console-line); border-radius: var(--ps-radius-lg); background: var(--ps-console-bg) !important; color: var(--ps-console-ink); box-shadow: none !important; }
+#terminal { position: relative; padding: 68px 17px 14px; background: var(--ps-console-bg); }
+#terminal > .ps-console-title { position: absolute; inset: 0 0 auto; height: 56px; color: var(--ps-console-ink); }
+:has(> #terminal) > div:has(#send-command) { gap: 10px; min-height: 62px; padding: 10px 14px; border-top: 1px solid var(--ps-console-line); background: var(--ps-console-raised) !important; color: var(--ps-console-muted); border-radius: 0 !important; }
+#send-command { height: 42px; padding: 8px 10px !important; border: 1px solid var(--ps-console-line) !important; border-radius: var(--ps-radius-sm); background: var(--ps-console-bg) !important; color: var(--ps-console-ink); font: 13px var(--ps-mono); }
+#send-command:focus { border-color: var(--ps-accent) !important; }
+#send-command::placeholder { color: var(--ps-console-muted); }
+html.ps-console-window :is(.ps-server-top > .ps-main, .ps-server-menu, .ps-phone-sections, .ps-statusbar, .fi-footer, [data-ps-footer]) { display: none !important; }
+html.ps-console-window body:has(.ps-server-top) .fi-main-ctn { padding: 10px !important; }
+html.ps-console-window body:has(.ps-server-top) .fi-main-ctn > .fi-main { grid-column: 1 / -1; padding: 0 !important; }
+@media (max-width: 960px) {
+  .ps-console-window { display: none !important; }
+}
+@media (max-width: 600px) {
+  body:has(.ps-server-top) .fi-main-ctn { grid-template-columns: minmax(0, 1fr); grid-template-areas: "top" "main"; padding: 0 14px !important; }
+  body:has(.ps-server-top) .fi-main-ctn > .fi-main { padding-bottom: 80px !important; }
+  .ps.ps-server-top > .ps-main { padding: 16px 0 0; }
+  .ps-server-menu { display: none; }
+  .ps-console-grow { display: none !important; }
+  #terminal { padding: 60px 10px 10px; }
+  #terminal > .ps-console-title { height: 48px; }
+}

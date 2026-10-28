@@ -6,16 +6,20 @@ namespace Simplify\Core;
 
 use App\Enums\ConsoleWidgetPosition;
 use App\Filament\Server\Pages\Console;
+use App\Models\Server;
 use Filament\Actions\Action;
 use Filament\Contracts\Plugin;
+use Filament\Facades\Filament;
 use Filament\Panel;
+use Filament\View\PanelsRenderHook;
+use Illuminate\Support\Facades\Blade;
 use Simplify\Core\Filament\Admin\Pages\People;
 use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\Admin\Pages\Setup;
 use Simplify\Core\Filament\App\Pages\Notifications;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Filament\Server\Widgets\AddonSections;
-use Simplify\Core\Filament\Server\Widgets\ServerDetails;
+use Simplify\Core\Filament\Server\ServerPage;
 use Simplify\Core\Support\Brand;
 use Simplify\Core\Support\PanelSettings;
 
@@ -51,7 +55,10 @@ final class SimplifyPlugin implements Plugin
             }
         }
         if ($panel->getId() === 'server') {
-            Console::registerCustomWidgets(ConsoleWidgetPosition::Top, [ServerDetails::class]);
+            // Simplify's header, server card and menu around every page of a server.
+            $panel->renderHook(PanelsRenderHook::CONTENT_BEFORE, fn () => ($server = Filament::getTenant()) instanceof Server && user() !== null
+                ? Blade::render('@livewire($component, $data)', ['component' => ServerPage::class, 'data' => ['server' => $server, 'console' => request()->routeIs('filament.server.pages.console')]])
+                : '');
             Console::registerCustomWidgets(ConsoleWidgetPosition::BelowConsole, [AddonSections::class]);
         }
         if ($panel->getId() === 'admin') {

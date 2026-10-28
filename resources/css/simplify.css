@@ -233,15 +233,6 @@
   margin-bottom: var(--s-space-3);
 }
 
-.s-color {
-  background: none;
-  border: 1px solid var(--s-line);
-  border-radius: var(--s-radius-sm);
-  height: var(--s-h);
-  padding: 2px;
-  width: var(--s-h);
-}
-
 /* Segmented choice: a few options side by side, the chosen one filled. */
 .s-segments {
   background: var(--s-raised);
@@ -284,28 +275,6 @@
     margin-inline-start: 0;
     width: 100%;
   }
-}
-
-/* Server page: details above Pelican's console. */
-.s-details {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s-space-2) var(--s-space-4);
-}
-
-.s-copy {
-  align-items: center;
-  display: inline-flex;
-  gap: var(--s-space-2);
-  min-width: 0;
-}
-
-.s-copy-value {
-  font-size: var(--s-text);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .s-btn-small {
@@ -430,47 +399,6 @@
 
 .s-setup-note {
   margin-bottom: var(--s-space-3);
-}
-
-/* Server look: banner above the details, colour as a line at their start. */
-.s-banner {
-  aspect-ratio: 6 / 1;
-  border-radius: var(--s-radius);
-  display: block;
-  margin-bottom: var(--s-space-3);
-  object-fit: cover;
-  width: 100%;
-}
-
-.s-details-colored {
-  border-inline-start: 3px solid var(--s-tile-accent);
-  padding-inline-start: var(--s-space-3);
-}
-
-.s-details-end {
-  margin-inline-start: auto;
-}
-
-.s-look-editor {
-  display: grid;
-  gap: var(--s-space-3);
-  margin-top: var(--s-space-3);
-}
-
-.s-look-field {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s-space-2);
-}
-
-.s-look-field > span:first-child {
-  min-width: 80px;
-}
-
-.s-error {
-  color: var(--s-danger);
-  font-size: var(--s-text-sm);
 }
 
 [dir="rtl"] .s-switch:checked::after {

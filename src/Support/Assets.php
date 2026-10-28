@@ -25,6 +25,7 @@ final class Assets
         'core.js' => ['js/core.js', 'text/javascript; charset=utf-8'],
         'motd.js' => ['js/motd.js', 'text/javascript; charset=utf-8'],
         'dashboard.js' => ['js/dashboard.js', 'text/javascript; charset=utf-8'],
+        'server.js' => ['js/server.js', 'text/javascript; charset=utf-8'],
         'bg-valley.jpg' => ['img/bg-valley.jpg', 'image/jpeg'],
         'bg-harbor.jpg' => ['img/bg-harbor.jpg', 'image/jpeg'],
         'bg-village.jpg' => ['img/bg-village.jpg', 'image/jpeg'],
