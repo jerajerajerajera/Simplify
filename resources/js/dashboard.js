@@ -76,10 +76,20 @@
       destroyed: false,
 
       init() {
+        this.initShell();
+        this.restoreOverviewView();
+        this.$nextTick(() => this.initOverviewDock());
+        setTimeout(() => this.releaseBats(), 600);
+        this.recordOverview(this.boot.servers);
+        this.refreshTimer = setInterval(() => this.refreshOverview(), this.refreshSeconds);
+        // Host health is asked right after first paint when no snapshot was ready, so Wings never holds up the page.
+        if (this.boot.features?.host_health && !this.boot.host_health?.state) this.refreshOverview();
+      },
+      /** What the overview and the server page (server.js) share: scale, preferences, theme, notifications. */
+      initShell() {
         this.applyScale();
         // Measure again once the page has its content.
         this.$nextTick(() => this.applyScale());
-        this.restoreOverviewView();
         this.restoreOverviewPreferences();
         this.overviewGroups = this.cleanOverviewGroups(this.boot.overview_groups?.groups);
         this.overviewServerOrder = SERVER_ORDERS.some((o) => o.key === this.boot.overview_groups?.order) ? this.boot.overview_groups.order : 'name';
@@ -90,12 +100,6 @@
         window.addEventListener('simplify:notice', this.noticeListener);
         this.applyFavicon();
         this.enhanceCopyright();
-        this.$nextTick(() => this.initOverviewDock());
-        setTimeout(() => this.releaseBats(), 600);
-        this.recordOverview(this.boot.servers);
-        this.refreshTimer = setInterval(() => this.refreshOverview(), this.refreshSeconds);
-        // Host health is asked right after first paint when no snapshot was ready, so Wings never holds up the page.
-        if (this.boot.features?.host_health && !this.boot.host_health?.state) this.refreshOverview();
       },
       destroy() {
         this.destroyed = true;

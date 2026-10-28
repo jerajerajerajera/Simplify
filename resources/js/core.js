@@ -244,6 +244,7 @@
         field = document.createElement('input');
         field.placeholder = opts.placeholder || opts.requireText || '';
         field.autocomplete = 'off';
+        field.value = opts.value || '';
         if (opts.inputType === 'password') field.type = 'password';
         label.append(field);
         wrap.querySelector('.ps-modal-body').append(label);

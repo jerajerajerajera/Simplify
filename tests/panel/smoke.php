@@ -26,7 +26,7 @@ use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\Admin\Pages\Setup;
 use Simplify\Core\Filament\App\Pages\Notifications;
 use Simplify\Core\Filament\App\Pages\Overview;
-use Simplify\Core\Filament\Server\Widgets\ServerDetails;
+use Simplify\Core\Filament\Server\ServerPage;
 use Simplify\Core\Overview\Listing;
 use Simplify\Core\People\People;
 use Simplify\Core\Push\Push;
@@ -242,7 +242,7 @@ step('server groups and the server order are saved for the account', function ()
     }
     Preferences::set($admin, 'overview.groups', []);
 });
-step('the console page shows the Simplify details above the console', function () use ($admin, $server) {
+step('the console page shows the Simplify header, server card and menu', function () use ($admin, $server) {
     $url = Filament\Facades\Filament::getPanel('server')->getUrl($server);
     $response = visit($admin, $url);
     // The panel's home redirects to the console page.
@@ -251,8 +251,10 @@ step('the console page shows the Simplify details above the console', function (
         $response = visit($admin, $url);
     }
     expectOk($response, $url);
-    if (! str_contains($response->getContent(), 's-details')) {
-        throw new RuntimeException('the details are missing on '.$url);
+    foreach (['simplifyServer(', 'ps-server-menu', '/simplify/assets/server.js?v=', 'is-console'] as $part) {
+        if (! str_contains($response->getContent(), $part)) {
+            throw new RuntimeException("$part is missing on $url");
+        }
     }
 });
 step('a hosting panel: signing in lands on the overview, and customers get billing and support links', function () use ($admin, $server) {
@@ -267,8 +269,12 @@ step('a hosting panel: signing in lands on the overview, and customers get billi
         $response = visit($admin, $url);
     }
     expectOk($response, $url);
-    if (! str_contains($response->getContent(), 'billing.example.com/s/'.$server->uuid)) {
-        throw new RuntimeException('the billing link is missing');
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('server'));
+    auth()->setUser($admin);
+    Filament\Facades\Filament::setTenant($server);
+    $billing = Livewire\Livewire::actingAs($admin)->test(ServerPage::class, ['server' => $server])->instance()->initial()['server']['billing_url'];
+    if ($billing !== 'https://billing.example.com/s/'.$server->uuid) {
+        throw new RuntimeException('the billing link is missing: '.json_encode($billing));
     }
     if (! str_contains($response->getContent(), 'mailto:help@example.com')) {
         throw new RuntimeException('the support link is missing');
@@ -276,10 +282,11 @@ step('a hosting panel: signing in lands on the overview, and customers get billi
 });
 step('a server gets a colour and banner from its page, shown on its card', function () use ($admin, $server) {
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('server'));
-    Livewire\Livewire::actingAs($admin)->test(ServerDetails::class, ['server' => $server])
-        ->call('customize')->set('color', '#AA3355')
+    auth()->setUser($admin);
+    Filament\Facades\Filament::setTenant($server);
+    Livewire\Livewire::actingAs($admin)->test(ServerPage::class, ['server' => $server])
         ->set('banner', UploadedFile::fake()->image('banner.png', 600, 100))
-        ->call('saveLook')->assertHasNoErrors();
+        ->call('saveLook', '#AA3355')->assertHasNoErrors();
     $look = Looks::for($server);
     if ($look['color'] !== '#aa3355' || $look['banner'] === null) {
         throw new RuntimeException('the look was not saved: '.json_encode($look));
@@ -291,6 +298,25 @@ step('a server gets a colour and banner from its page, shown on its card', funct
         throw new RuntimeException('the card does not show the banner and colour: '.json_encode($card));
     }
     Looks::save($server, null, null);
+});
+step('the server page renames the server, and someone without access cannot use it', function () use ($admin, $server) {
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('server'));
+    auth()->setUser($admin);
+    Filament\Facades\Filament::setTenant($server);
+    $name = $server->name;
+    $page = Livewire\Livewire::actingAs($admin)->test(ServerPage::class, ['server' => $server]);
+    if ($page->instance()->saveName('Smoke renamed')['name'] !== 'Smoke renamed' || $server->fresh()->name !== 'Smoke renamed') {
+        throw new RuntimeException('the server was not renamed');
+    }
+    $page->instance()->saveName($name);
+    if (($page->instance()->refresh()['uuid'] ?? null) !== $server->uuid) {
+        throw new RuntimeException('the server page does not refresh its card');
+    }
+    $stranger = User::withoutEvents(fn () => User::factory()->create());
+    Livewire\Livewire::actingAs($stranger)->test(ServerPage::class, ['server' => $server])->call('power', 'start')->assertForbidden();
+    Livewire\Livewire::actingAs($stranger)->test(ServerPage::class, ['server' => $server])->call('saveName', 'Taken')->assertForbidden();
+    auth()->setUser($admin);
+    $stranger->delete();
 });
 step('panel settings are saved and a bad value is refused', function () use ($admin) {
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('admin'));

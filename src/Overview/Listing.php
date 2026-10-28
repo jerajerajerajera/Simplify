@@ -11,6 +11,7 @@ use Filament\Facades\Filament;
 use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Server\Looks;
+use Simplify\Core\Support\Billing;
 use Throwable;
 
 /**
@@ -34,6 +35,26 @@ final class Listing
             ...self::card($user, $server, $live[$server->uuid] ?? null, $looks[$server->id] ?? [], in_array($server->id, $mine, true)),
             ...$badges ? ['badges' => app(AddonRegistry::class)->collect(fn (Addon $addon) => $addon->tileBadges($server))] : [],
         ])->all();
+    }
+
+    /**
+     * One server for its own page: the card, plus what the header there shows.
+     *
+     * @return array<string, mixed>
+     */
+    public static function one(User $user, Server $server): array
+    {
+        $live = $server->status === null ? NodeUsage::read(collect([$server]))[$server->uuid] ?? null : null;
+        $allocation = $server->allocation;
+
+        return [
+            ...self::card($user, $server, $live, Looks::for($server), true),
+            'badges' => app(AddonRegistry::class)->collect(fn (Addon $addon) => $addon->tileBadges($server)),
+            'address' => $allocation === null ? null : ($allocation->alias ?: $allocation->ip).':'.$allocation->port,
+            'minecraft' => Artwork::minecraft($server),
+            'can_edit' => Looks::canEdit($user, $server),
+            'billing_url' => Billing::url($server),
+        ];
     }
 
     /**
