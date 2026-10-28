@@ -63,3 +63,25 @@ Return an empty list when the current user may not use something. Simplify does 
 - New methods are only ever added with a default, so an add-on keeps working when Simplify updates.
 - If your add-on throws, Simplify reports the error and leaves your add-on out. It never breaks a Simplify page.
 - Install other plugins only from the Pelican Hub, and list every outside service you call in your README.
+
+## Events
+
+Some things go through Laravel events with a plain string name, so an add-on needs no Simplify class for them.
+
+### `simplify.push`: send an app notification
+
+```php
+use Illuminate\Support\Facades\Event;
+
+if (Event::hasListeners('simplify.push')) {
+    $devices = array_sum(event('simplify.push', [[
+        'users' => [1, 2],           // user ids
+        'title' => 'Maintenance tonight',
+        'body' => 'The servers restart at 23:00.',
+        'url' => null,               // opened on tap, or null
+        'tag' => 'announcement-12',  // the same tag reaches each device once
+    ]]));
+}
+```
+
+Simplify listens only while push is turned on. The listener returns how many devices it sent to.
