@@ -98,6 +98,13 @@ final class Settings extends Page implements HasForms
                             ->image()->acceptedFileTypes(['image/png', 'image/jpeg', 'image/webp'])->maxSize(1024)
                             ->disk('local')->directory(Brand::DIRECTORY)->visibility('private')->columnSpanFull(),
                     ]),
+                    Section::make(__('pelican-simplify::settings.appearance.app'))
+                        ->description(__('pelican-simplify::settings.appearance.app_help'))->schema([
+                            FileUpload::make('app_icon')->label(__('pelican-simplify::settings.appearance.app_icon'))
+                                ->helperText(__('pelican-simplify::settings.appearance.app_icon_help'))
+                                ->image()->imageCropAspectRatio('1:1')->acceptedFileTypes(['image/png', 'image/jpeg', 'image/webp'])
+                                ->maxSize(1024)->disk('local')->directory(Brand::DIRECTORY)->visibility('private'),
+                        ]),
                 ]),
                 Tab::make(__('pelican-simplify::settings.addons.heading'))->icon('tabler-puzzle')->schema([
                     View::make('pelican-simplify::partials.addon-list'),
@@ -112,12 +119,17 @@ final class Settings extends Page implements HasForms
         $state = $this->form->getState();
         $state['accent'] = ($state['accent'] ?? '') === '' ? null : strtolower($state['accent']);
         $state['brand_name'] = trim((string) ($state['brand_name'] ?? '')) ?: null;
-        $state['brand_logo'] = ($state['brand_logo'] ?? null) ?: null;
-        $previous = PanelSettings::get('brand_logo');
+        $previous = [];
+        foreach (['brand_logo', 'app_icon'] as $file) {
+            $state[$file] = ($state[$file] ?? null) ?: null;
+            $previous[$file] = PanelSettings::get($file);
+        }
         PanelSettings::save($state);
-        // A replaced or removed logo is not used anywhere else.
-        if ($previous !== null && $previous !== $state['brand_logo']) {
-            Storage::disk('local')->delete($previous);
+        // A replaced or removed image is not used anywhere else.
+        foreach ($previous as $file => $old) {
+            if ($old !== null && $old !== $state[$file]) {
+                Storage::disk('local')->delete($old);
+            }
         }
         Notification::make()->title(__('pelican-simplify::settings.saved'))->success()->send();
     }

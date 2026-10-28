@@ -10,6 +10,7 @@ use Illuminate\Support\ServiceProvider;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Http\Controllers\AssetController;
 use Simplify\Core\Http\Controllers\BrandController;
+use Simplify\Core\Http\Controllers\WebAppController;
 use Simplify\Core\Support\Brand;
 use Throwable;
 
@@ -29,10 +30,13 @@ final class SimplifyServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Route::get('/simplify/assets/{name}', AssetController::class)
-            ->where('name', '[a-z.]+')
+            ->where('name', '[a-z0-9.-]+')
             ->name('simplify.asset');
         Route::get('/simplify/brand/{file}', BrandController::class)
             ->where('file', Brand::FILE_PATTERN)
             ->name('simplify.brand');
+        Route::get('/simplify/manifest.webmanifest', [WebAppController::class, 'manifest'])->name('simplify.manifest');
+        // At the root, so the worker's scope can be the whole panel.
+        Route::get('/simplify-worker.js', [WebAppController::class, 'worker'])->name('simplify.worker');
     }
 }
