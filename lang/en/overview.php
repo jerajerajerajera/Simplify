@@ -34,4 +34,21 @@ return [
         'denied' => 'You may not do that on this server.',
         'failed' => ':server did not respond. Try again in a moment.',
     ],
+    'scope' => [
+        'label' => 'Whose servers',
+        'all' => 'All',
+        'mine' => 'Mine',
+        'others' => 'Others',
+    ],
+    'sort' => [
+        'label' => 'Sort servers',
+        'name' => 'By name',
+        'created' => 'Newest first',
+    ],
+    'layout' => [
+        'label' => 'Layout',
+        'cards' => 'Cards',
+        'compact' => 'Compact',
+        'list' => 'List',
+    ],
 ];

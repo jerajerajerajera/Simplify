@@ -16,6 +16,7 @@ use Simplify\Core\Addons\Button;
 use Simplify\Core\Overview\Power;
 use Simplify\Core\Overview\ServerQuery;
 use Simplify\Core\Overview\Usage;
+use Simplify\Core\Support\Preferences;
 use Throwable;
 
 /**
@@ -32,8 +33,51 @@ final class Overview extends Page
 
     protected string $view = 'pelican-simplify::pages.overview';
 
+    public const LAYOUTS = ['cards', 'compact', 'list'];
+
+    public const SCOPES = ['all', 'mine', 'others'];
+
+    public const SORTS = ['name', 'created'];
+
     /** @var array<int, array{state: string, cpu: ?float, memory: ?int, disk: ?int}> live numbers per server id */
     public array $usage = [];
+
+    public string $layout = 'cards';
+
+    public string $scope = 'all';
+
+    public string $sort = 'name';
+
+    /** @var Collection<int, Server>|null the servers of this request, read once */
+    private ?Collection $servers = null;
+
+    /** @var list<int>|null ids of the servers the user owns or is a subuser of */
+    private ?array $mine = null;
+
+    public function mount(): void
+    {
+        $user = user();
+        if ($user === null) {
+            return;
+        }
+        $this->layout = Preferences::choice($user, 'overview.layout', self::LAYOUTS, 'cards');
+        $this->scope = Preferences::choice($user, 'overview.scope', self::SCOPES, 'all');
+        $this->sort = Preferences::choice($user, 'overview.sort', self::SORTS, 'name');
+    }
+
+    /** Saves a layout choice for the account, so every device shows the same. */
+    public function updated(string $property): void
+    {
+        $allowed = ['layout' => self::LAYOUTS, 'scope' => self::SCOPES, 'sort' => self::SORTS][$property] ?? null;
+        $user = user();
+        if ($allowed === null || $user === null) {
+            return;
+        }
+        if (! in_array($this->{$property}, $allowed, true)) {
+            $this->{$property} = $allowed[0];
+        }
+        Preferences::set($user, 'overview.'.$property, $this->{$property});
+    }
 
     public static function getNavigationLabel(): string
     {
@@ -45,12 +89,41 @@ final class Overview extends Page
         return __('pelican-simplify::overview.title');
     }
 
-    /** @return Collection<int, Server> */
-    public function servers(): Collection
+    /** @return Collection<int, Server> every server the user sees, before the owner filter */
+    public function allServers(): Collection
     {
         $user = user();
 
-        return $user === null ? collect() : ServerQuery::for($user)->get();
+        return $this->servers ??= $user === null ? collect() : ServerQuery::for($user)->get();
+    }
+
+    /** @return Collection<int, Server> the servers on screen: owner filter and sort applied */
+    public function servers(): Collection
+    {
+        $servers = match ($this->scopeShown() ? $this->scope : 'all') {
+            'mine' => $this->allServers()->filter(fn (Server $server) => $this->isMine($server)),
+            'others' => $this->allServers()->reject(fn (Server $server) => $this->isMine($server)),
+            default => $this->allServers(),
+        };
+
+        return $this->sort === 'created'
+            ? $servers->sortByDesc('created_at')->values()
+            : $servers->sortBy(fn (Server $server) => mb_strtolower($server->name))->values();
+    }
+
+    /** The owner filter only shows when the list holds both own servers and servers of others (admins). */
+    public function scopeShown(): bool
+    {
+        $mine = $this->allServers()->filter(fn (Server $server) => $this->isMine($server))->count();
+
+        return $mine > 0 && $mine < $this->allServers()->count();
+    }
+
+    private function isMine(Server $server): bool
+    {
+        $this->mine ??= user()?->directAccessibleServers()->pluck('servers.id')->all() ?? [];
+
+        return in_array($server->id, $this->mine, true);
     }
 
     /** @return list<Button> */
@@ -105,7 +178,7 @@ final class Overview extends Page
     public function refreshUsage(): void
     {
         $usage = [];
-        foreach ($this->servers() as $server) {
+        foreach ($this->allServers() as $server) {
             $usage[$server->id] = $this->read($server)->toArray();
         }
         $this->usage = $usage;
