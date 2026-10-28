@@ -5,8 +5,10 @@ declare(strict_types=1);
 
 require __DIR__.'/../src/Overview/Usage.php';
 require __DIR__.'/../src/Overview/Format.php';
+require __DIR__.'/../src/Overview/Power.php';
 
 use Simplify\Core\Overview\Format;
+use Simplify\Core\Overview\Power;
 use Simplify\Core\Overview\Usage;
 
 $failures = [];
@@ -36,6 +38,9 @@ check(Format::bytes(1073741824 * 12) === '12 GB', 'gigabytes: '.Format::bytes(10
 check(Format::limit(0) === '∞', 'a limit of 0 is unlimited');
 check(Format::limit(4096) === '4.0 GB', 'a limit in MiB: '.Format::limit(4096));
 check(Format::percent(12.6) === '13%' && Format::percent(null) === '-', 'percent');
+
+check(Power::actionsFor('offline') === ['start'] && Power::actionsFor('running') === ['restart', 'stop'], 'power buttons follow the state');
+check(Power::actionsFor('stopping') === ['kill'] && Power::actionsFor(null) === [] && Power::actionsFor('installing') === [], 'no buttons while loading or installing; kill only while stopping');
 
 if ($failures) {
     echo "FAIL overview:\n  ".implode("\n  ", $failures)."\n";

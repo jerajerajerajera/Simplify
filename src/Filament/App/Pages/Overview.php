@@ -6,12 +6,14 @@ namespace Simplify\Core\Filament\App\Pages;
 
 use App\Models\Server;
 use Filament\Facades\Filament;
+use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Collection;
 use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Addons\Button;
+use Simplify\Core\Overview\Power;
 use Simplify\Core\Overview\ServerQuery;
 use Simplify\Core\Overview\Usage;
 use Throwable;
@@ -66,6 +68,38 @@ final class Overview extends Page
     public function serverUrl(Server $server): string
     {
         return Filament::getPanel('server')->getUrl($server);
+    }
+
+    /** @return list<string> the power buttons this user may use on this tile right now */
+    public function powerActions(Server $server): array
+    {
+        $user = user();
+        $state = $this->usage[$server->id]['state'] ?? null;
+
+        return $user === null ? [] : array_values(array_filter(
+            Power::actionsFor($state),
+            fn (string $action) => Power::allowed($user, $server, $action),
+        ));
+    }
+
+    public function power(int $serverId, string $action): void
+    {
+        $user = user();
+        $server = $user === null ? null : ServerQuery::for($user)->find($serverId);
+        if ($server === null || ! in_array($action, Power::ACTIONS, true) || ! Power::allowed($user, $server, $action)) {
+            Notification::make()->danger()->title(__('pelican-simplify::overview.power.denied'))->send();
+
+            return;
+        }
+        try {
+            Power::send($server, $action);
+        } catch (Throwable $error) {
+            report($error);
+            Notification::make()->danger()->title(__('pelican-simplify::overview.power.failed', ['server' => $server->name]))->send();
+
+            return;
+        }
+        $this->usage[$server->id] = $this->read($server)->toArray();
     }
 
     public function refreshUsage(): void

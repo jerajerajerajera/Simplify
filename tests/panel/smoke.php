@@ -117,4 +117,9 @@ step('live numbers load without Wings and leave unknown values empty', function 
         throw new RuntimeException('no state for the server: '.json_encode($usage));
     }
 });
+step('a power action on a server the user cannot reach is refused', function () use ($admin) {
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
+    Livewire\Livewire::actingAs($admin)->test(Overview::class)
+        ->call('power', 999999, 'start')->assertNotified(__('pelican-simplify::overview.power.denied'));
+});
 exit($failed ? 1 : 0);

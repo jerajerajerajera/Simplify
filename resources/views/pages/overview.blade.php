@@ -36,6 +36,7 @@
                         :usage="$usage[$server->id] ?? null"
                         :url="$this->serverUrl($server)"
                         :badges="$this->badges($server)"
+                        :power="$this->powerActions($server)"
                     />
                 @endforeach
             </div>
