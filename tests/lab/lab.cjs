@@ -2,7 +2,7 @@
 // every overview layout, scope, sort, search, groups, power, host health, colour and banner, people and roles,
 // notifications), then every page on desktop and phone, light and dark. Records HTTP 5xx, page and console errors
 // and sideways scrolling; writes a screenshot per step and result.json.
-// node lab.js --base http://127.0.0.1:8001 --urls urls.json --out shots
+// node lab.cjs --base http://127.0.0.1:8001 --urls urls.json --out shots
 const fs = require('fs'), path = require('path');
 const { chromium } = require('playwright');
 const arg = (n, d) => { const i = process.argv.indexOf('--' + n); return i > 0 ? process.argv[i + 1] : d; };

@@ -1,6 +1,6 @@
 // Wings stand-in for the Simplify lab: answers the daemon calls the panel makes (system info, server list and
 // state, power, files) from memory, so the panel behaves as if a node is online.
-// node fake-wings.js --port 8090 --servers servers.json --log wings.log
+// node fake-wings.cjs --port 8090 --servers servers.json --log wings.log
 const http = require('http'), fs = require('fs'), url = require('url');
 const arg = (name, fallback) => { const i = process.argv.indexOf('--' + name); return i > 0 ? process.argv[i + 1] : fallback; };
 const port = Number(arg('port', 8090)), logFile = arg('log', 'wings.log'), serversFile = arg('servers', 'servers.json');
