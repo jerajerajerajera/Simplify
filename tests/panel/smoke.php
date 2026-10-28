@@ -344,7 +344,8 @@ step('app notifications: the page opens, a device gets a message once and a drop
     $browser = openssl_pkey_new(['curve_name' => 'prime256v1', 'private_key_type' => OPENSSL_KEYTYPE_EC]);
     $subscription = ['endpoint' => 'https://fcm.googleapis.com/fcm/send/smoke', 'keys' => ['p256dh' => WebPush::b64(WebPush::point($browser)), 'auth' => WebPush::b64(random_bytes(16))]];
     Push::subscribe($admin, $subscription, 'Smoke browser');
-    Http::fake(['fcm.googleapis.com/*' => Http::response('', 201)]);
+    // The push service takes the first message, then says the browser dropped the subscription.
+    Http::fake(['fcm.googleapis.com/*' => Http::sequence()->push('', 201)->push('', 410)]);
     if (! Event::hasListeners('simplify.push')) {
         throw new RuntimeException('nobody listens to simplify.push');
     }
@@ -355,7 +356,6 @@ step('app notifications: the page opens, a device gets a message once and a drop
         throw new RuntimeException("sent to $first and then $again devices, expected 1 and 0");
     }
     Http::assertSent(fn ($request) => $request->hasHeader('Content-Encoding', 'aes128gcm') && str_starts_with($request->header('Authorization')[0], 'vapid t='));
-    Http::fake(['fcm.googleapis.com/*' => Http::response('', 410)]);
     if (array_sum(event('simplify.push', [[...$message, 'tag' => 'smoke-2']])) !== 0 || Push::devices($admin)->isNotEmpty()) {
         throw new RuntimeException('a device the browser dropped was kept');
     }
