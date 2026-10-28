@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Simplify\Core\Filament\Admin\Pages;
 
+use App\Filament\Admin\Pages\Settings as PelicanSettings;
 use Filament\Actions\Action;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
@@ -63,10 +64,15 @@ final class Settings extends Page implements HasForms
     public function getHeading(): string|Htmlable
     {
         return new HtmlString(sprintf(
-            '<span class="s-heading"><img class="s-logo" src="%s" alt="">%s</span>',
+            '<span class="s-heading"><span class="s-logo-tile"><img class="s-logo" src="%s" alt=""></span>%s</span>',
             e(Assets::url('logo.svg')),
-            e(__('pelican-simplify::settings.title')),
+            e(__('pelican-simplify::settings.page_title')),
         ));
+    }
+
+    public function getSubheading(): string
+    {
+        return __('pelican-simplify::settings.version_line', ['version' => Assets::version()]);
     }
 
     public function mount(): void
@@ -90,23 +96,73 @@ final class Settings extends Page implements HasForms
 
     public function form(Schema $schema): Schema
     {
+        $pelican = array_map(fn (array $tab) => Tab::make($tab['label'])->key($tab['key'])->icon($tab['icon'])->schema([
+            View::make('pelican-simplify::partials.pelican-settings')->viewData($tab),
+        ]), self::pelicanTabs());
+
         return $schema->statePath('data')->components([
-            Tabs::make()->persistTabInQueryString()->columnSpanFull()->tabs([
-                Tab::make(__('pelican-simplify::settings.general.tab'))->icon('tabler-adjustments')->schema([
+            Tabs::make()->vertical()->persistTabInQueryString()->columnSpanFull()->extraAttributes(['class' => 's-settings-tabs'])->tabs([
+                Tab::make(__('pelican-simplify::settings.general.tab'))->key('general')->icon('tabler-adjustments')->schema([
                     SettingsFields::profile(),
                     SettingsFields::startPage(),
                     SettingsFields::refresh(),
                 ]),
-                Tab::make(__('pelican-simplify::settings.appearance.tab'))->icon('tabler-palette')->schema([
+                Tab::make(__('pelican-simplify::settings.appearance.tab'))->key('appearance')->icon('tabler-palette')->schema([
                     SettingsFields::colours(),
                     SettingsFields::brand(),
                     SettingsFields::app(),
                 ]),
-                Tab::make(__('pelican-simplify::settings.addons.heading'))->icon('tabler-puzzle')->schema([
+                Tab::make(__('pelican-simplify::settings.addons.heading'))->key('addons')->icon('tabler-puzzle')->schema([
                     View::make('pelican-simplify::partials.addon-list'),
                 ]),
+                ...$pelican,
             ]),
         ]);
+    }
+
+    /**
+     * The settings as leaves of host mode's menu tree: Simplify's tabs, each add-on's own page and Pelican's tabs.
+     *
+     * @return list<array{key: string, group: string, label: string, icon: string, url: string}>
+     */
+    public static function menu(): array
+    {
+        $tab = fn (string $key, string $group, string $label, string $icon) => ['key' => 'settings:'.$key, 'group' => $group, 'label' => $label, 'icon' => $icon, 'url' => self::getUrl(['tab' => $key], panel: 'admin')];
+        $items = [
+            $tab('general', 'panel', __('pelican-simplify::settings.general.tab'), 'settings'),
+            $tab('appearance', 'panel', __('pelican-simplify::settings.appearance.tab'), 'palette'),
+            $tab('addons', 'addons', __('pelican-simplify::settings.addons.heading'), 'puzzle'),
+        ];
+        foreach (app(AddonRegistry::class)->all() as $addon) {
+            if ($url = $addon->settingsUrl()) {
+                $items[] = ['key' => 'addon:'.$addon->id(), 'group' => 'addons', 'label' => $addon->name(), 'icon' => 'plugins', 'url' => $url];
+            }
+        }
+        foreach (self::pelicanTabs() as $pelican) {
+            $items[] = [...$tab($pelican['key'], 'pelican', $pelican['label'], 'gear'), 'url' => $pelican['url']];
+        }
+
+        return $items;
+    }
+
+    /**
+     * Pelican's own settings close the menu: each tab shows Pelican's page on that tab, saved with Pelican's button.
+     *
+     * @return list<array{key: string, label: string, icon: string, url: string}>
+     */
+    public static function pelicanTabs(): array
+    {
+        if (! PelicanSettings::canAccess()) {
+            return [];
+        }
+        $icons = ['general' => 'home', 'captcha' => 'shield', 'mail' => 'mail', 'backup' => 'box', 'oauth' => 'brand-oauth', 'misc' => 'tool'];
+
+        return array_map(fn (string $key, string $icon) => [
+            'key' => 'pelican-'.$key,
+            'label' => (string) __('admin/setting.navigation.'.$key),
+            'icon' => 'tabler-'.$icon,
+            'url' => PelicanSettings::getUrl(['tab' => $key.'::data::tab', 'simplify_embed' => 1], panel: 'admin'),
+        ], array_keys($icons), $icons);
     }
 
     public function save(): void

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Simplify\Core\Support;
 
+use Throwable;
+
 /**
  * The files Simplify serves to the browser. Each URL carries a hash of the file, so browsers can keep it for a year
  * and still get a new version right after an update.
@@ -49,6 +51,16 @@ final class Assets
     public static function type(string $name): string
     {
         return self::FILES[$name][1] ?? 'application/octet-stream';
+    }
+
+    /** The plugin's version, for the footer and the settings page. */
+    public static function version(): string
+    {
+        try {
+            return (string) (json_decode((string) file_get_contents(dirname(__DIR__, 2).'/plugin.json'), true)['version'] ?? '');
+        } catch (Throwable) {
+            return '';
+        }
     }
 
     public static function url(string $name): string

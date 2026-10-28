@@ -7,6 +7,10 @@ return [
     'support' => 'Ayuda',
     'billing' => 'Facturación',
     'saved' => 'Ajustes guardados',
+    'page_title' => 'Ajustes de Simplify',
+    'pelican_frame_title' => 'Ajustes de Pelican: :label',
+    'pelican_frame' => 'Ajustes de :label propios de Pelican. Guárdalos con el botón de guardar de Pelican arriba a la derecha de este panel.',
+    'version_line' => 'Versión :version · Los cambios se aplican a todos en este panel al guardar.',
     'profile' => [
         'heading' => '¿Para quién es este panel?',
         'friends' => 'Yo y mis amigos',

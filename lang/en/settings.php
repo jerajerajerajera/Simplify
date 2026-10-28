@@ -7,6 +7,10 @@ return [
     'support' => 'Support',
     'billing' => 'Billing',
     'saved' => 'Settings saved',
+    'page_title' => 'Simplify settings',
+    'pelican_frame_title' => 'Pelican settings: :label',
+    'pelican_frame' => 'Pelican\'s own :label settings. Save them with Pelican\'s save button at the top right of this panel.',
+    'version_line' => 'Version :version · Changes apply to everyone on this panel after saving.',
     'profile' => [
         'heading' => 'Who is this panel for?',
         'friends' => 'Me and my friends',

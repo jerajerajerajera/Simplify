@@ -7,6 +7,10 @@ return [
     'support' => 'Hulp',
     'billing' => 'Facturen',
     'saved' => 'Instellingen opgeslagen',
+    'page_title' => 'Simplify-instellingen',
+    'pelican_frame_title' => 'Pelican-instellingen: :label',
+    'pelican_frame' => 'Pelicans eigen instellingen voor :label. Sla ze op met de opslaanknop van Pelican rechtsboven in dit paneel.',
+    'version_line' => 'Versie :version · Wijzigingen gelden na opslaan voor iedereen op dit paneel.',
     'profile' => [
         'heading' => 'Voor wie is dit paneel?',
         'friends' => 'Ik en mijn vrienden',

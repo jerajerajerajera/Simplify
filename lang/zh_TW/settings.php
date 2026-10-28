@@ -7,6 +7,10 @@ return [
     'support' => '支援',
     'billing' => '帳單',
     'saved' => '設定已儲存',
+    'page_title' => 'Simplify 設定',
+    'pelican_frame_title' => 'Pelican 設定：:label',
+    'pelican_frame' => 'Pelican 自己的 :label 設定。請使用此面板右上角 Pelican 的儲存按鈕儲存。',
+    'version_line' => '版本 :version · 儲存後，變更將對此面板上的所有人生效。',
     'profile' => [
         'heading' => '這個面板是給誰用的？',
         'friends' => '我和我的朋友',
