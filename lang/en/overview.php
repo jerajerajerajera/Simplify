@@ -60,7 +60,7 @@ return [
         'add' => 'New group',
         'name' => 'Group name',
         'unnamed' => 'New group',
-        'color' => 'Group color',
+        'color' => 'Group colour',
         'up' => 'Move up',
         'down' => 'Move down',
         'remove' => 'Remove group',
