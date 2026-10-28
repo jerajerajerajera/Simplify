@@ -152,6 +152,8 @@ const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g
     ok('the menu lists the server sections', (await page.locator('.ps-server-menu .ps-widget').count()) >= 5, String(await page.locator('.ps-server-menu .ps-widget').count()));
     ok('the console has the live console title', (await page.locator('#terminal .ps-console-title').count()) === 1);
     ok("Pelican's own numbers are hidden", (await page.locator('.fi-wi-stats-overview:visible, .fi-wi-chart:visible').count()) === 0);
+    ok('no empty chart cards under the console', (await page.locator('[wire\\:snapshot*="-chart"]:visible').count()) === 0);
+    ok('the footer is there', (await page.locator('[data-ps-footer]:visible, .fi-footer:visible').count()) > 0);
     await shot('action-server-page');
     if (await click(page.locator('.ps-info-more-button'), 'server ⋯ menu')) {
       await shot('action-server-menu');
