@@ -77,6 +77,7 @@ return [
             'people' => 'Люди',
             'integrations' => 'Интеграции',
             'panel' => 'Панель',
+            'health' => 'Состояние',
         ],
         'other_plugins' => 'Другие плагины',
         'create_server' => 'Создать сервер',

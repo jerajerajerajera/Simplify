@@ -77,6 +77,7 @@ return [
             'people' => 'Personer',
             'integrations' => 'Integrationer',
             'panel' => 'Panel',
+            'health' => 'Tilstand',
         ],
         'other_plugins' => 'Andre plugins',
         'create_server' => 'Opret server',

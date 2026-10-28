@@ -77,6 +77,7 @@ return [
             'people' => '사용자',
             'integrations' => '연동',
             'panel' => '패널',
+            'health' => '상태',
         ],
         'other_plugins' => '다른 플러그인',
         'create_server' => '서버 만들기',

@@ -27,6 +27,11 @@
       // The server page (later) and host mode share this component; the overview has neither.
       server: null,
       hostMode: false,
+      hostTab: 'admin',
+      hostMenuOpen: false,
+      hostSection: null,
+      hostPage: null,
+      hostServer: null,
       busy: false,
       modal: null,
       refreshSeconds: Math.max(5, Number(boot.performance?.overview_seconds) || 15) * 1000,
@@ -78,6 +83,7 @@
       init() {
         this.initShell();
         this.restoreOverviewView();
+        this.restoreHostMode();
         this.$nextTick(() => this.initOverviewDock());
         setTimeout(() => this.releaseBats(), 600);
         this.recordOverview(this.boot.servers);
@@ -187,8 +193,9 @@
           { key: 'nodes', label: t('dashboard.admin_groups.nodes'), icon: 'monitor', color: '#5b9cf0', pages: ['noderesource', 'databasehostresource', 'backuphostresource'] },
           { key: 'people', label: t('dashboard.admin_groups.people'), icon: 'players', color: '#a78bfa', pages: ['userresource', 'roleresource', 'people'] },
           { key: 'integrations', label: t('dashboard.admin_groups.integrations'), icon: 'link', color: '#f0a35b', pages: ['apikeyresource', 'webhookresource'] },
-          { key: 'panel', label: t('dashboard.admin_groups.panel'), icon: 'gear', color: '#94a3b8', pages: ['settings', 'pluginresource', 'health', 'listlogs'] },
+          { key: 'panel', label: t('dashboard.admin_groups.panel'), icon: 'gear', color: '#94a3b8', pages: ['settings', 'pluginresource', 'listlogs'] },
           { key: 'extensions', label: t('dashboard.other_plugins'), icon: 'plugins', color: '#2dd4bf', pages: [] },
+          { key: 'health', label: t('dashboard.admin_groups.health'), icon: 'heart', color: '#f87171', pages: ['health'] },
         ];
         const items = this.adminPages().flatMap((group) => group.items);
         const known = new Set(plan.flatMap((section) => section.pages));
@@ -196,6 +203,84 @@
           ...section,
           pages: section.key === 'extensions' ? items.filter((item) => !known.has(item.key)) : section.pages.map((key) => items.find((item) => item.key === key)).filter(Boolean),
         })).filter((section) => section.pages.length);
+      },
+      adminHealthPage() {
+        return this.adminPages().flatMap((group) => group.items).find((item) => item.key === 'health') || null;
+      },
+      /** Latest results of Pelican's health checks (admins only); empty until the checks have run once. */
+      healthChecks() {
+        return this.boot.health_checks || [];
+      },
+
+      /* Host mode -------------------------------------------------------------------------------- */
+      /** Host mode: an admin's choice on this device; otherwise on for hosting panels with more than one node. */
+      hostModeKey() {
+        return 'pelicanSimplify.hostMode.' + encodeURIComponent(this.boot.user || 'default');
+      },
+      restoreHostMode() {
+        if (!this.adminPages().length) return;
+        let saved = null, last = {};
+        try {
+          saved = localStorage.getItem(this.hostModeKey());
+          // Back from a server: reopen the section and page that were open (this browser tab only).
+          last = JSON.parse(sessionStorage.getItem(this.hostModeKey() + '.place') || '{}') || {};
+        } catch {}
+        this.hostMode = saved === null ? !!this.boot.host_mode_auto && this.nodeOptions().length > 1 : saved === '1';
+        if (!this.hostMode) return;
+        const sections = this.hostSections();
+        const section = sections.find((x) => x.key === last.section) || sections.find((x) => x.key === 'health') || sections[0];
+        this.openHostSection(section);
+        const page = section?.pages.find((item) => item.key === last.page);
+        if (page) this.openHostLeaf(section, page);
+      },
+      setHostMode(on) {
+        this.hostMode = !!on && this.adminPages().length > 0;
+        if (this.hostMode && !this.hostPage) this.openHostSection(this.hostSections().find((x) => x.key === 'health') || this.hostSections()[0]);
+        try {
+          localStorage.setItem(this.hostModeKey(), this.hostMode ? '1' : '0');
+        } catch {}
+      },
+      /** A section opens on its first page; a page picked in the tree opens with its section. */
+      openHostSection(section) {
+        if (section) this.openHostLeaf(section, section.pages[0]);
+      },
+      openHostLeaf(section, item) {
+        this.hostSection = section;
+        this.hostPage = item || null;
+        this.hostServer = null;
+        this.hostMenuOpen = false;
+        try {
+          sessionStorage.setItem(this.hostModeKey() + '.place', JSON.stringify({ section: section?.key || null, page: item?.key || null }));
+        } catch {}
+      },
+      hostBranchOpen(section) {
+        return section.pages.length > 1;
+      },
+      openHostServer(s) {
+        this.hostServer = s;
+        this.hostMenuOpen = false;
+      },
+      closeHostServer() {
+        this.hostServer = null;
+      },
+      hostServerVersion(s) {
+        const version = String(s.reported_version || '').trim();
+        const software = String(s.software || s.game_label || '').trim();
+        return version && !version.toLowerCase().includes(software.toLowerCase()) ? (software ? software + ' · ' + version : version) : version || software || '—';
+      },
+      hostNodes() {
+        return this.nodeOptions().map((node) => ({ ...node, servers: (this.boot.servers || []).filter((s) => Number(s.node_id) === node.id) })).filter((node) => node.servers.length);
+      },
+      /** Same-origin URL with the embed marker, or '' for anything else. A framed page drops its own menus (head.blade.php). */
+      frameUrl(href) {
+        try {
+          const url = new URL(href, location.origin);
+          if (url.origin !== location.origin) return '';
+          url.searchParams.set('simplify_embed', '1');
+          return url.href;
+        } catch {
+          return '';
+        }
       },
       /** Create buttons for the top bar or the toolbar: the add-ons' buttons, the main one first. */
       /** Add-on buttons first (the primary one leads), then Pelican's own form; the first one reads "Create server". */

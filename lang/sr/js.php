@@ -77,6 +77,7 @@ return [
             'people' => 'Људи',
             'integrations' => 'Интеграције',
             'panel' => 'Панел',
+            'health' => 'Стање',
         ],
         'other_plugins' => 'Други додаци',
         'create_server' => 'Направи сервер',

@@ -77,6 +77,7 @@ return [
             'people' => 'Käyttäjät',
             'integrations' => 'Integraatiot',
             'panel' => 'Paneeli',
+            'health' => 'Kunto',
         ],
         'other_plugins' => 'Muut lisäosat',
         'create_server' => 'Luo palvelin',

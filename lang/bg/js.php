@@ -77,6 +77,7 @@ return [
             'people' => 'Хора',
             'integrations' => 'Интеграции',
             'panel' => 'Панел',
+            'health' => 'Състояние',
         ],
         'other_plugins' => 'Други плъгини',
         'create_server' => 'Създай сървър',

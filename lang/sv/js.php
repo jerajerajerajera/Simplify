@@ -77,6 +77,7 @@ return [
             'people' => 'Personer',
             'integrations' => 'Integrationer',
             'panel' => 'Panel',
+            'health' => 'Hälsa',
         ],
         'other_plugins' => 'Andra plugins',
         'create_server' => 'Skapa server',

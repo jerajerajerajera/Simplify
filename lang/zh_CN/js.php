@@ -77,6 +77,7 @@ return [
             'people' => '用户',
             'integrations' => '集成',
             'panel' => '面板',
+            'health' => '健康',
         ],
         'other_plugins' => '其他插件',
         'create_server' => '创建服务器',

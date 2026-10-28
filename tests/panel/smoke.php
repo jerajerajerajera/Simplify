@@ -228,6 +228,15 @@ step('admins get the create form of Pelican as a create button', function () use
         throw new RuntimeException('no create button: '.json_encode($create));
     }
 });
+step('host mode: the overview carries the admin tree, the health page and the health checks', function () use ($admin) {
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
+    $page = Livewire\Livewire::actingAs($admin)->test(Overview::class)->assertSee('ps-host-tree');
+    $initial = $page->instance()->initial();
+    $pages = collect($initial['admin_pages'][0]['items'] ?? [])->pluck('key');
+    if (! $pages->contains('health') || ! is_array($initial['health_checks']) || ! is_bool($initial['host_mode_auto'])) {
+        throw new RuntimeException('host mode is missing parts: '.json_encode([$pages, $initial['health_checks'], $initial['host_mode_auto']]));
+    }
+});
 step('a power action on a server the user cannot reach is refused', function () use ($admin) {
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
     Livewire\Livewire::actingAs($admin)->test(Overview::class)->call('overviewPower', 'no-such-server', 'start')->assertForbidden();

@@ -77,6 +77,7 @@ return [
             'people' => 'Lidé',
             'integrations' => 'Integrace',
             'panel' => 'Panel',
+            'health' => 'Stav',
         ],
         'other_plugins' => 'Další pluginy',
         'create_server' => 'Vytvořit server',
