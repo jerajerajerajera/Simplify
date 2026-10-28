@@ -47,7 +47,7 @@ return [
             'description' => 'Țineți egg-urile la zi și încercați mai întâi actualizările.',
         ],
         'embed' => [
-            'name' => 'Embed',
+            'name' => 'Website embed',
             'description' => 'Afișați serverele pe propriul site.',
         ],
         'plugins' => [

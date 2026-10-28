@@ -47,7 +47,7 @@ return [
             'description' => 'Udržujte své eggy aktuální a aktualizace nejdřív vyzkoušejte.',
         ],
         'embed' => [
-            'name' => 'Embed',
+            'name' => 'Website embed',
             'description' => 'Ukažte své servery na vlastním webu.',
         ],
         'plugins' => [

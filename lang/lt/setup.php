@@ -47,7 +47,7 @@ return [
             'description' => 'Laikykite egg atnaujintus ir pirmiausia išbandykite atnaujinimus.',
         ],
         'embed' => [
-            'name' => 'Embed',
+            'name' => 'Website embed',
             'description' => 'Rodykite savo serverius savo svetainėje.',
         ],
         'plugins' => [

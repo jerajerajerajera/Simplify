@@ -47,7 +47,7 @@ return [
             'description' => 'Egg\'lerini güncel tut ve güncellemeleri önce dene.',
         ],
         'embed' => [
-            'name' => 'Embed',
+            'name' => 'Website embed',
             'description' => 'Sunucularını kendi web sitende göster.',
         ],
         'plugins' => [

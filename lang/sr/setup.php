@@ -47,7 +47,7 @@ return [
             'description' => 'Држите egg-ове ажурним и прво испробајте ажурирања.',
         ],
         'embed' => [
-            'name' => 'Embed',
+            'name' => 'Website embed',
             'description' => 'Прикажите своје сервере на сопственом сајту.',
         ],
         'plugins' => [

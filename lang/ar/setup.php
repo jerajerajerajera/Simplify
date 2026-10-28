@@ -47,7 +47,7 @@ return [
             'description' => 'حافظ على تحديث الـ eggs وجرّب التحديثات أولًا.',
         ],
         'embed' => [
-            'name' => 'Embed',
+            'name' => 'Website embed',
             'description' => 'اعرض خوادمك على موقعك الخاص.',
         ],
         'plugins' => [

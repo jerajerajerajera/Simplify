@@ -47,7 +47,7 @@ return [
             'description' => 'Hold dine eggs opdaterede, og prøv opdateringer først.',
         ],
         'embed' => [
-            'name' => 'Embed',
+            'name' => 'Website embed',
             'description' => 'Vis dine servere på dit eget website.',
         ],
         'plugins' => [

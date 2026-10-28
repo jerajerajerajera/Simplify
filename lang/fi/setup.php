@@ -47,7 +47,7 @@ return [
             'description' => 'Pidä eggit ajan tasalla ja kokeile päivityksiä ensin.',
         ],
         'embed' => [
-            'name' => 'Embed',
+            'name' => 'Website embed',
             'description' => 'Näytä palvelimesi omalla verkkosivustollasi.',
         ],
         'plugins' => [

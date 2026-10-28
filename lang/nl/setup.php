@@ -47,7 +47,7 @@ return [
             'description' => 'Houd je eggs bij en probeer updates eerst uit.',
         ],
         'embed' => [
-            'name' => 'Embed',
+            'name' => 'Website embed',
             'description' => 'Laat je servers zien op je eigen website.',
         ],
         'plugins' => [
