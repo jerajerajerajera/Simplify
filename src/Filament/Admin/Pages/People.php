@@ -26,6 +26,8 @@ final class People extends Page
 
     protected static string|\BackedEnum|null $navigationIcon = 'tabler-users';
 
+    protected static ?int $navigationSort = 2;
+
     protected string $view = 'pelican-simplify::pages.people';
 
     private const PER_PAGE = 25;
@@ -39,6 +41,12 @@ final class People extends Page
     public static function canAccess(): bool
     {
         return (bool) user()?->isRootAdmin();
+    }
+
+    /** Simplify's own group in Pelican's menu, shared with the add-ons (ADDONS.md, "Admin menu"). */
+    public static function getNavigationGroup(): ?string
+    {
+        return 'Simplify';
     }
 
     public static function getNavigationLabel(): string
