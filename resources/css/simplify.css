@@ -186,3 +186,107 @@
   height: 28px;
   width: auto;
 }
+
+/* Overview: a search field and the add-on buttons on one line, then the tiles. */
+.s-toolbar {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-space-2);
+  margin-bottom: var(--s-space-4);
+}
+
+.s-toolbar .s-bar {
+  margin-left: auto;
+}
+
+.s-search {
+  background: var(--s-surface);
+  border: 1px solid var(--s-line);
+  border-radius: var(--s-radius-sm);
+  color: var(--s-ink);
+  flex: 1 1 240px;
+  font-size: var(--s-text);
+  height: var(--s-h);
+  max-width: 360px;
+  padding: 0 var(--s-space-3);
+}
+
+.s-tiles {
+  display: grid;
+  gap: var(--s-space-3);
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+.s-tile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-space-2);
+  text-decoration: none;
+  transition: border-color var(--s-fast);
+}
+
+.s-tile:hover {
+  border-color: var(--s-accent);
+}
+
+.s-tile[hidden] {
+  display: none;
+}
+
+.s-tile-head {
+  align-items: center;
+  display: flex;
+  gap: var(--s-space-2);
+  justify-content: space-between;
+}
+
+.s-tile-name {
+  font-size: var(--s-text);
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.s-tile-sub {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.s-stats {
+  display: grid;
+  gap: var(--s-space-2);
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0;
+}
+
+.s-stats dt {
+  color: var(--s-muted);
+  font-size: var(--s-text-sm);
+}
+
+.s-stats dd {
+  font-size: var(--s-text);
+  font-variant-numeric: tabular-nums;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.s-tile-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-space-1);
+}
+
+@media (max-width: 600px) {
+  .s-search {
+    max-width: none;
+  }
+
+  .s-toolbar .s-bar {
+    margin-left: 0;
+    width: 100%;
+  }
+}
