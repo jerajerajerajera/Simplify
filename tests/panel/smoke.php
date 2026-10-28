@@ -268,6 +268,25 @@ step('people and roles: the page lists people and roles keep their safety rules'
     }
     People::deleteRole($role);
 });
+step('the panel can be installed as an app', function () use ($admin) {
+    $manifest = visit($admin, '/simplify/manifest.webmanifest');
+    expectOk($manifest, '/simplify/manifest.webmanifest');
+    $data = json_decode($manifest->getContent(), true);
+    if (($data['name'] ?? null) !== 'Smoke Panel' || count($data['icons'] ?? []) !== 3) {
+        throw new RuntimeException('unexpected manifest: '.$manifest->getContent());
+    }
+    $worker = visit($admin, '/simplify-worker.js');
+    expectOk($worker, '/simplify-worker.js');
+    if (! str_contains((string) $worker->headers->get('Content-Type'), 'javascript') || str_contains($worker->getContent(), '__VERSION__')) {
+        throw new RuntimeException('the worker is not served as filled-in JavaScript');
+    }
+    $url = Overview::getUrl(panel: 'app');
+    $page = visit($admin, $url);
+    expectOk($page, $url);
+    if (! str_contains($page->getContent(), 'simplify/manifest.webmanifest') || ! str_contains($page->getContent(), 'simplify-worker.js')) {
+        throw new RuntimeException('the page does not link the manifest and worker');
+    }
+});
 if ($failed || $passed === 0) {
     exit(1);
 }

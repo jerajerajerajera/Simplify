@@ -21,6 +21,10 @@ return [
         'logo_height' => 'Logo height',
         'logo' => 'Logo',
         'logo_help' => 'PNG, JPEG or WebP up to 1 MB. Shown instead of the name. Empty keeps Pelican\'s own logo.',
+        'app' => 'App',
+        'app_help' => 'People can add the panel to their phone or desktop as an app, from the browser menu.',
+        'app_icon' => 'App icon',
+        'app_icon_help' => 'A square PNG, JPEG or WebP of at least 512 pixels, up to 1 MB. Empty uses the Simplify icon.',
     ],
     'addons' => [
         'heading' => 'Add-ons',
