@@ -70,7 +70,10 @@ jobs:
           grep -E 'Simplify .*\| enabled' plugins.txt || { echo 'Simplify did not install'; exit 1; }
       - name: Open the pages
         working-directory: panel
-        run: php plugins/pelican-simplify/tests/panel/smoke.php
+        # The last line must say so: an exit code alone missed a crash before the first step once.
+        run: |
+          php plugins/pelican-simplify/tests/panel/smoke.php | tee smoke.txt
+          tail -n 1 smoke.txt | grep -qx 'All steps passed'
       - name: Laravel log
         if: failure()
         run: grep -h -E '^\[[0-9-]+ [0-9:]+\]' panel/storage/logs/*.log | cut -c1-600 | tail -n 12 || true

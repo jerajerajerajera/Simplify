@@ -85,3 +85,12 @@ if (Event::hasListeners('simplify.push')) {
 ```
 
 Simplify listens only while push is turned on. The listener returns how many devices it sent to.
+
+## Testing your add-on in a real panel
+
+Copy `tests/panel/smoke.php` and the `panel-smoke` job from `.github/workflows/checks.yml`. Three traps they avoid:
+
+- Pelican 1.0 has no `users.root_admin` column. Create the user, then `$admin->syncRoles(Role::getRootAdmin())`.
+- Laravel's handler prints an error outside a step and exits with 0. Set your own `set_exception_handler` that exits
+  with 1, end with the line `All steps passed`, and let CI check that line.
+- Do not name a helper `expect()`: Pest in Pelican's vendor folder already has one.
