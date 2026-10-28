@@ -1,16 +1,5 @@
 /* Shared Simplify components. Every page (dashboard, creator, settings, embedded and native pages)
    uses these classes, so a button, field, popup or tooltip looks the same everywhere. */
-
-:where(.ps, .ps-ui, .ps-settings-page, .ps-admin-page, .ssc-wizard) {
-  font-family: var(--ps-font);
-  color: var(--ps-ink);
-  -webkit-font-smoothing: antialiased;
-}
-:where(.ps, .ps-ui, .ps-settings-page, .ps-admin-page, .ssc-wizard) *,
-:where(.ps, .ps-ui, .ps-settings-page, .ps-admin-page, .ssc-wizard) *::before,
-:where(.ps, .ps-ui, .ps-settings-page, .ps-admin-page, .ssc-wizard) *::after {
-  box-sizing: border-box;
-}
 .ps[x-cloak], :where(.ps, .ps-ui) [x-cloak] { display: none !important; }
 :where(.ps, .ps-ui) svg,
 .ps-ico {
@@ -148,10 +137,6 @@ input[type="file"].ps-input::file-selector-button {
   font: 600 12px var(--ps-font);
   cursor: pointer;
 }
-.ps-input-row { display: flex; gap: 8px; align-items: center; }
-.ps-input-row > :is(input, select, .ps-input) { flex: 1 1 140px; }
-.ps-input-row > .ps-btn { flex: none; }
-.ps-input-row > .ps-input-suffix { flex: none; color: var(--ps-muted); font: 400 14px/1 var(--ps-font); }
 
 /* Switches share one look for checkboxes and toggle buttons. */
 .ps-switch,
@@ -190,7 +175,6 @@ input[type="file"].ps-input::file-selector-button {
 :is(.ps-switch, .ps-check input):focus-visible { outline: 2px solid var(--ps-accent); outline-offset: 2px; }
 :is(.ps-switch, .ps-check input):disabled { opacity: .45; cursor: not-allowed; }
 .ps-check { display: inline-flex; align-items: center; gap: 10px; min-height: var(--ps-h-sm); color: var(--ps-ink); font: 500 13px/1.35 var(--ps-font); cursor: pointer; }
-.ps-checks { display: flex; flex-wrap: wrap; gap: 8px 24px; }
 
 /* Colour swatches, used by every colour picker. */
 .ps-swatches { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
@@ -204,18 +188,6 @@ input[type="file"].ps-input::file-selector-button {
 .ps-panel { padding: 16px; border-radius: var(--ps-radius); background: var(--ps-raised); color: var(--ps-ink); }
 .ps-help { margin: 0 0 16px; color: var(--ps-muted); font: 400 13px/1.6 var(--ps-font); }
 .ps-empty { margin: 0; padding: 32px 16px; color: var(--ps-muted); font: 400 13px/1.5 var(--ps-font); text-align: center; }
-.ps-eyebrow { margin: 0 0 6px; color: var(--ps-muted); font: 700 11px/1.3 var(--ps-font); letter-spacing: .08em; text-transform: uppercase; }
-.ps-section-title { margin: 24px 0 12px; color: var(--ps-ink); font: 700 14px/1.35 var(--ps-font); }
-.ps-section-title:first-child { margin-top: 0; }
-.ps-kv { display: grid; grid-template-columns: minmax(110px, 160px) minmax(0, 1fr); gap: 10px 16px; margin: 0 0 16px; padding: 16px; border-radius: var(--ps-radius); background: var(--ps-raised); font-size: 13px; }
-.ps-kv dt { color: var(--ps-muted); }
-.ps-kv dd { margin: 0; font-family: var(--ps-mono); overflow-wrap: anywhere; }
-.ps-rows { display: grid; }
-.ps-rows > * { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; min-width: 0; padding: 10px 0; border-bottom: 1px solid var(--ps-line); }
-.ps-rows > * > :first-child { flex: 1 1 160px; min-width: 0; overflow-wrap: anywhere; }
-.ps-rows small { display: block; color: var(--ps-muted); font-size: 12px; }
-.ps-grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 16px; }
-@media (max-width: 640px) { .ps-grid-2 { grid-template-columns: minmax(0, 1fr); } }
 
 /* Badges and status ---------------------------------------------------------------------- */
 .ps-badge {
@@ -418,18 +390,8 @@ html:has(.ps-modal-layer[data-open="true"]), html.ps-ui-locked { overflow: hidde
 /* ✕ top right: clears one notification to Archived. */
 .ps-notify-item { position: relative; }
 .ps-notify-item > strong { padding-inline-end: 22px; }
-.ps-notify-close { position: absolute; top: 8px; inset-inline-end: 6px; display: grid; place-items: center; width: 22px; height: 22px; padding: 0; border: 0; border-radius: var(--ps-radius-sm); background: none; color: var(--ps-muted); cursor: pointer; opacity: .7; }
-.ps-notify-close svg { width: 12px; height: 12px; }
-@media (pointer: coarse) { .ps-notify-close { top: 4px; inset-inline-end: 2px; width: 32px; height: 32px; } }
-.ps-notify-close:is(:hover, :focus-visible) { background: var(--ps-raised); color: var(--ps-ink); opacity: 1; }
 .ps-notify-item strong { font-size: 13px; font-weight: 650; }
 .ps-notify-item small { color: var(--ps-muted); font-size: 12px; line-height: 1.45; }
-.ps-plugin-widgets { flex: none; margin-bottom: 12px; overflow: hidden; border-radius: var(--ps-radius-lg); }
-.ps-plugin-widgets iframe { display: block; width: 100%; height: var(--ps-widgets-height, 0); border: 0; background: transparent; }
-.ps-plugin-widgets.is-empty { height: 0; margin: 0; }
-.ps-plugin-pages { width: min(320px, calc(100vw - 24px)); }
-.ps-plugin-pages .ps-notify-item { width: 100%; border: 0; background: transparent; font-family: inherit; cursor: pointer; }
-.ps-plugin-pages .ps-notify-item:is(:hover, :focus-visible) { background: var(--ps-raised); }
 .ps-admin-menu { width: min(520px, calc(100vw - 24px)); max-height: min(78vh, 640px); overflow-y: auto; }
 .ps-admin-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
 .ps-admin-group { display: grid; align-content: start; gap: 1px; padding: 8px; border: 1px solid color-mix(in srgb, var(--ps-tone) 22%, var(--ps-line)); border-radius: var(--ps-radius-lg); background: color-mix(in srgb, var(--ps-tone) 5%, var(--ps-surface)); }
@@ -438,8 +400,6 @@ html:has(.ps-modal-layer[data-open="true"]), html.ps-ui-locked { overflow: hidde
 .ps-admin-group-head .ps-host-rail-icon svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .ps-admin-group .ps-admin-item { min-height: 32px; padding: 4px 8px; font-size: 12.5px; }
 .ps-admin-group .ps-admin-item svg { width: 15px; height: 15px; stroke: var(--ps-tone); }
-.ps-admin-legacy { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--ps-line); }
-.ps-admin-legacy .ps-label { margin-inline-end: 4px; }
 .ps-admin-health { display: grid; gap: 8px; margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--ps-line); }
 .ps-admin-health-title { display: inline-flex; align-items: center; gap: 8px; padding: 4px 6px; border: 0; border-radius: var(--ps-radius); background: none; color: var(--ps-ink); font: 600 13px/1.2 var(--ps-font); cursor: pointer; }
 .ps-admin-health-title:hover, .ps-admin-health-title:focus-visible { background: var(--ps-raised); }
@@ -464,18 +424,9 @@ html:has(.ps-modal-layer[data-open="true"]), html.ps-ui-locked { overflow: hidde
 .ps-notify-item.is-info { --ps-tone: var(--ps-info); }
 
 /* Loading spinner. */
-.ps-spinner { width: 20px; height: 20px; border: 2px solid var(--ps-line); border-top-color: var(--ps-accent); border-radius: 50%; animation: ps-spin .8s linear infinite; }
 @keyframes ps-spin { to { transform: rotate(360deg); } }
-@media (prefers-reduced-motion: reduce) { .ps-spinner { animation-duration: 2.4s; } }
 
 /* Link back to Simplify from native Pelican pages (topbar hook). */
-.ps-legacy-return .ps-simplify-sparkles { width: 16px; height: 16px; color: var(--ps-muted); }
-.ps-creator-choice { display: inline-flex; align-items: center; gap: 8px; }
-.ps-creator-choice svg { width: 16px; height: 16px; }
-@media (max-width: 640px) {
-  .ps-legacy-return { width: var(--ps-h); padding: 0; }
-  .ps-legacy-return > :not(svg:first-child) { display: none; }
-}
 
 /* Incoming notification: drops down from the bell with a pointer to it, then slides back up. */
 .ps-incoming { position: absolute; top: calc(100% + 12px); inset-inline-end: -6px; z-index: 60; width: min(380px, calc(100vw - 24px)); padding: 10px 12px; border: 1px solid var(--ps-line); border-radius: var(--ps-radius-lg); background: var(--ps-surface); box-shadow: 0 18px 40px -18px rgb(0 0 0 / .35); transform-origin: calc(100% - 24px) 0; }
@@ -486,33 +437,10 @@ html:has(.ps-modal-layer[data-open="true"]), html.ps-ui-locked { overflow: hidde
 @media (prefers-reduced-motion: reduce) { .ps-incoming-move { transition: opacity .2s ease; } .ps-incoming.is-up { transform: none; } }
 
 /* Simplify settings button: the Simplify pelican with a small gear, so it reads as Simplify's own settings. */
-.ps-settings-mark { position: relative; display: inline-grid; place-items: center; }
-.ps-settings-mark .ps-settings-gear { position: absolute; inset-inline-end: -6px; bottom: -5px; width: 13px !important; height: 13px !important; padding: 1px; border-radius: 50%; background: var(--ps-bg); stroke-width: 2.2; }
 
 /* Save bar: one floating bar for every form (settings, Pelican edit pages, popups). Hidden until something
    changed; after a successful save the button turns into a check and the bar slides away. */
-.ps-savebar { position: sticky; bottom: 14px; z-index: 30; display: flex; align-items: center; gap: 12px; width: min(760px, calc(100% - 24px)); margin: 18px auto 14px; padding: 9px 9px 9px 18px; border: 1px solid var(--ps-line); border-radius: 999px; background: color-mix(in srgb, var(--ps-surface) 92%, transparent); color: var(--ps-ink); font: 500 13px/1.3 var(--ps-font, inherit); box-shadow: 0 14px 34px -16px rgb(0 0 0 / .4); backdrop-filter: blur(10px); opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(18px) scale(.98); transition: opacity .22s ease, transform .3s cubic-bezier(.2, .9, .3, 1.2), visibility 0s linear .3s; }
-.ps-savebar.is-fixed { position: fixed; left: 50%; bottom: 18px; margin: 0; transform: translate(-50%, 18px) scale(.98); }
-.ps-savebar.is-fixed:is(.is-dirty, .is-saving, .is-saved) { transform: translate(-50%, 0); }
-.ps-savebar:is(.is-dirty, .is-saving, .is-saved) { opacity: 1; visibility: visible; pointer-events: auto; transition-delay: 0s; }
-.ps-savebar:not(.is-fixed):is(.is-dirty, .is-saving, .is-saved) { transform: none; }
-.ps-savebar-status { display: inline-flex; flex: 1; align-items: center; gap: 9px; min-width: 0; font-weight: 600; }
-.ps-savebar-status i { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--ps-warn); box-shadow: 0 0 0 4px color-mix(in srgb, var(--ps-warn) 22%, transparent); transition: background-color .2s, box-shadow .2s; }
-.ps-savebar.is-saved .ps-savebar-status i { background: var(--ps-ok); box-shadow: 0 0 0 4px color-mix(in srgb, var(--ps-ok) 22%, transparent); }
-.ps-savebar-discard, .ps-savebar-save { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 38px; padding: 0 16px; border: 1px solid var(--ps-line); border-radius: 999px; background: var(--ps-surface); color: var(--ps-ink); font: 650 13px/1 var(--ps-font, inherit); cursor: pointer; transition: background-color .2s, border-color .2s, color .2s, width .2s; }
-.ps-savebar-discard:hover { border-color: var(--ps-danger); color: var(--ps-danger); }
-.ps-savebar-save { min-width: 132px; border-color: transparent; background: var(--ps-accent); color: var(--ps-accent-ink, #fff); }
-.ps-savebar.is-saving .ps-savebar-save:disabled { cursor: progress; opacity: .8; }
-.ps-savebar.is-saved .ps-savebar-save { cursor: default; pointer-events: none; opacity: 1; }
-.ps-savebar-check { display: none; width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 22; stroke-dashoffset: 22; }
-.ps-savebar.is-saving .ps-savebar-save .ps-savebar-label::after { content: "…"; }
-.ps-savebar.is-saved .ps-savebar-save { min-width: 46px; padding: 0 12px; background: var(--ps-ok); color: #fff; }
-.ps-savebar.is-saved .ps-savebar-label { display: none; }
-.ps-savebar.is-saved .ps-savebar-check { display: block; animation: ps-savebar-draw .45s ease-out forwards; }
-.ps-savebar.is-saved .ps-savebar-discard { display: none; }
 @keyframes ps-savebar-draw { to { stroke-dashoffset: 0; } }
-@media (prefers-reduced-motion: reduce) { .ps-savebar { transition: opacity .2s ease, visibility 0s linear .2s; transform: none; } .ps-savebar-check { animation: none !important; stroke-dashoffset: 0; } }
-.ps-error { color: var(--ps-danger); font-weight: 600; }
 
 /* Installed web app (home screen): no browser bar, so the page keeps clear of the notch on the sides itself;
    the bottom bars already keep clear of the home indicator (env(safe-area-inset-bottom)). */
@@ -523,30 +451,5 @@ html.ps-standalone { -webkit-tap-highlight-color: transparent; }
 .ps-notify-head .ps-dropdown-title { margin-inline-end: auto; }
 .ps-notify-item.is-read strong { font-weight: 500; }
 .ps-notify-item.is-read > svg { color: var(--ps-muted); }
-.ps-notify-pinned { margin-top: 8px; padding-bottom: 8px; border-bottom: 1px solid var(--ps-line); }
-.ps-notify-pinned > .ps-label { display: flex; align-items: center; gap: 6px; }
-.ps-notify-pinned > .ps-label svg { width: 13px; height: 13px; }
-.ps-notify-pinned .ps-notify-list { margin-top: 4px; }
 .ps-notify-more { justify-content: center; width: 100%; margin-top: 6px; }
-.ps-inbox-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-.ps-inbox-bar > .ps-help { margin: 0 auto 0 0; }
-/* What's new of an update: one line in the bell, all of them on request, and the full notes on GitHub. */
-.ps-notify-notes { grid-column: 2; min-width: 0; overflow-wrap: anywhere; display: grid; gap: 2px; margin-top: 4px; padding: 6px 10px; border-inline-start: 2px solid var(--ps-line); }
-.ps-notify-notes > .ps-label { font-size: 10.5px; letter-spacing: .04em; text-transform: uppercase; }
-.ps-notify-notes ul { display: grid; gap: 2px; margin: 0; padding-inline-start: 16px; list-style: disc; color: var(--ps-muted); font-size: 12px; line-height: 1.45; }
-.ps-notify-notes-more { display: flex; flex-wrap: wrap; gap: 12px; }
-.ps-notify-notes-more:empty { display: none; }
-.ps-notify-notes .ps-text-button { padding: 0; border: 0; background: none; color: var(--ps-accent); font: 600 12px/1.6 var(--ps-font); text-decoration: none; cursor: pointer; }
-.ps-notify-notes .ps-text-button:is(:hover, :focus-visible) { text-decoration: underline; }
-/* Archived (full list only): closed until opened. */
-.ps-notify-archive { margin-top: 12px; padding-top: 8px; border-top: 1px solid var(--ps-line); }
-.ps-notify-archive-toggle { display: flex; align-items: center; gap: 6px; width: 100%; min-height: 36px; padding: 0 6px; border: 0; border-radius: var(--ps-radius-sm); background: none; color: var(--ps-muted); font: 600 12.5px/1.3 var(--ps-font); cursor: pointer; text-align: start; }
-.ps-notify-archive-toggle:is(:hover, :focus-visible) { background: var(--ps-raised); color: var(--ps-ink); }
-.ps-notify-archive-toggle > svg { width: 14px; height: 14px; transition: transform .15s ease; }
-.ps-notify-archive-toggle[aria-expanded="true"] > svg { transform: rotate(90deg); }
-@media (prefers-reduced-motion: reduce) { .ps-notify-archive-toggle > svg { transition: none; } }
 
-/* Right-to-left languages (Arabic): arrows that mean "forward" or "back" point the other way. Chevrons that
-   open downward are turned, not mirrored, so they keep pointing down. */
-[dir="rtl"] svg:not(.ps-health-expand, .ps-node-arrow, .ps-host-menu-chevron, :is(.ps-group-up, .ps-group-down, .ps-console-peek) > svg) > use:is([href="#ps-chevron"], [href="#ps-back"], [href="#ps-arrow-right"]) { transform: scaleX(-1); transform-origin: center; transform-box: fill-box; }
-[dir="rtl"] .ps-notify-archive-toggle[aria-expanded="true"] > svg { transform: rotate(-90deg); }
