@@ -270,6 +270,7 @@ step('a hosting panel: signing in lands on the overview, and customers get billi
     }
     expectOk($response, $url);
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('server'));
+    auth()->setUser($admin);
     Filament\Facades\Filament::setTenant($server);
     $billing = Livewire\Livewire::actingAs($admin)->test(ServerPage::class, ['server' => $server])->instance()->initial()['server']['billing_url'];
     if ($billing !== 'https://billing.example.com/s/'.$server->uuid) {
@@ -281,6 +282,7 @@ step('a hosting panel: signing in lands on the overview, and customers get billi
 });
 step('a server gets a colour and banner from its page, shown on its card', function () use ($admin, $server) {
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('server'));
+    auth()->setUser($admin);
     Filament\Facades\Filament::setTenant($server);
     Livewire\Livewire::actingAs($admin)->test(ServerPage::class, ['server' => $server])
         ->set('banner', UploadedFile::fake()->image('banner.png', 600, 100))
@@ -299,6 +301,7 @@ step('a server gets a colour and banner from its page, shown on its card', funct
 });
 step('the server page renames the server, and someone without access cannot use it', function () use ($admin, $server) {
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('server'));
+    auth()->setUser($admin);
     Filament\Facades\Filament::setTenant($server);
     $name = $server->name;
     $page = Livewire\Livewire::actingAs($admin)->test(ServerPage::class, ['server' => $server]);
