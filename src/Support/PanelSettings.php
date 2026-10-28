@@ -20,6 +20,7 @@ final class PanelSettings
     /** key => [default, validation rules] */
     public const FIELDS = [
         'accent' => [null, ['nullable', 'regex:/^#[0-9a-fA-F]{6}$/']],
+        'push' => [true, ['required', 'boolean']],
         'overview_seconds' => [15, ['required', 'integer', 'min:5', 'max:300']],
         'brand_name' => [null, ['nullable', 'string', 'max:40']],
         'brand_logo' => [null, ['nullable', 'string', 'regex:#^'.Brand::DIRECTORY.'/'.Brand::FILE_PATTERN.'$#']],

@@ -16,7 +16,10 @@ See [ADDONS.md](ADDONS.md) for how an add-on plugs into Simplify.
 
 ## What it sends where
 
-Nothing. Simplify only talks to your own panel and your Wings nodes.
+Simplify talks to your own panel and your Wings nodes, and to nothing else, with one exception people choose for themselves:
+
+- **App notifications.** When someone turns them on for a device, the panel sends their notifications to the push service of that browser: Google (`fcm.googleapis.com`), Mozilla (`push.services.mozilla.com`), Apple (`push.apple.com`) or Microsoft (`notify.windows.com`). The content is encrypted for that device only. Root admins can turn app notifications off for the whole panel in Simplify's settings.
+- Update notices for root admins use Pelican's own version check and Pelican's cached node information; Simplify makes no extra calls for them. They run hourly through Pelican's scheduler (`simplify:update-notices`).
 
 Open routes (no login): `/simplify/assets/{name}` serves Simplify's stylesheet and logo, and `/simplify/brand/{file}` serves the panel logo and app icon an admin uploaded in Simplify's settings. `/simplify/manifest.webmanifest` and `/simplify-worker.js` let a browser install the panel as an app; the worker caches only a small offline page.
 

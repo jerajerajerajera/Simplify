@@ -7,5 +7,6 @@ php tests/addons.php
 php tests/overview.php
 php tests/server-groups.php
 php tests/host-health.php
+php tests/push.php
 php tests/lang.php
 python3 tests/hub-check.py

@@ -11,15 +11,22 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithAuthentication;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithSession;
 use Illuminate\Foundation\Testing\Concerns\MakesHttpRequests;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Testing\TestResponse;
 use Illuminate\Validation\ValidationException;
 use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Filament\Admin\Pages\Settings;
+use Simplify\Core\Filament\App\Pages\Notifications;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Livewire\HostHealthCard;
 use Simplify\Core\People\People;
+use Simplify\Core\Push\Push;
+use Simplify\Core\Push\UpdateNotices;
+use Simplify\Core\Push\WebPush;
 use Simplify\Core\Support\Assets;
 use Simplify\Core\Support\Brand;
 use Simplify\Core\Support\PanelSettings;
@@ -286,6 +293,51 @@ step('the panel can be installed as an app', function () use ($admin) {
     if (! str_contains($page->getContent(), 'simplify/manifest.webmanifest') || ! str_contains($page->getContent(), 'simplify-worker.js')) {
         throw new RuntimeException('the page does not link the manifest and worker');
     }
+});
+step('app notifications: the page opens, a device gets a message once and a dropped device is removed', function () use ($admin) {
+    $url = Notifications::getUrl(panel: 'app');
+    $response = visit($admin, $url);
+    expectOk($response, $url);
+    if (! str_contains($response->getContent(), 'simplifyPush')) {
+        throw new RuntimeException('the notifications page has no device switch');
+    }
+    $browser = openssl_pkey_new(['curve_name' => 'prime256v1', 'private_key_type' => OPENSSL_KEYTYPE_EC]);
+    $subscription = ['endpoint' => 'https://fcm.googleapis.com/fcm/send/smoke', 'keys' => ['p256dh' => WebPush::b64(WebPush::point($browser)), 'auth' => WebPush::b64(random_bytes(16))]];
+    Push::subscribe($admin, $subscription, 'Smoke browser');
+    // The push service takes the first message, then says the browser dropped the subscription.
+    Http::fake(['fcm.googleapis.com/*' => Http::sequence()->push('', 201)->push('', 410)]);
+    if (! Event::hasListeners('simplify.push')) {
+        throw new RuntimeException('nobody listens to simplify.push');
+    }
+    $message = ['users' => [$admin->id], 'title' => 'Smoke', 'body' => 'Hello', 'url' => '/', 'tag' => 'smoke-1'];
+    $first = array_sum(event('simplify.push', [$message]));
+    $again = array_sum(event('simplify.push', [$message]));
+    if ($first !== 1 || $again !== 0) {
+        throw new RuntimeException("sent to $first and then $again devices, expected 1 and 0");
+    }
+    Http::assertSent(fn ($request) => $request->hasHeader('Content-Encoding', 'aes128gcm') && str_starts_with($request->header('Authorization')[0], 'vapid t='));
+    if (array_sum(event('simplify.push', [[...$message, 'tag' => 'smoke-2']])) !== 0 || Push::devices($admin)->isNotEmpty()) {
+        throw new RuntimeException('a device the browser dropped was kept');
+    }
+});
+step('update notices tell root admins about a new Pelican once', function () use ($admin) {
+    $browser = openssl_pkey_new(['curve_name' => 'prime256v1', 'private_key_type' => OPENSSL_KEYTYPE_EC]);
+    $subscription = ['endpoint' => 'https://fcm.googleapis.com/fcm/send/smoke-updates', 'keys' => ['p256dh' => WebPush::b64(WebPush::point($browser)), 'auth' => WebPush::b64(random_bytes(16))]];
+    $device = Push::subscribe($admin, $subscription, 'Smoke browser');
+    cache()->forget('panel:latest_version');
+    cache()->forget('wings:latest_version');
+    Http::fake([
+        'api.github.com/*' => Http::response(['tag_name' => 'v99.0.0', 'body' => '']),
+        'fcm.googleapis.com/*' => Http::response('', 201),
+        '*' => Http::response('', 500),
+    ]);
+    if (Artisan::call('simplify:update-notices') !== 0 || ! in_array('pelican-99.0.0', $device->refresh()->received ?? [], true)) {
+        throw new RuntimeException('no update notice: '.Artisan::output().json_encode($device->received));
+    }
+    if (UpdateNotices::send() !== 0) {
+        throw new RuntimeException('the same update was announced twice');
+    }
+    $device->delete();
 });
 if ($failed || $passed === 0) {
     exit(1);
