@@ -315,6 +315,7 @@ step('the server page renames the server, and someone without access cannot use 
     $stranger = User::withoutEvents(fn () => User::factory()->create());
     Livewire\Livewire::actingAs($stranger)->test(ServerPage::class, ['server' => $server])->call('power', 'start')->assertForbidden();
     Livewire\Livewire::actingAs($stranger)->test(ServerPage::class, ['server' => $server])->call('saveName', 'Taken')->assertForbidden();
+    auth()->setUser($admin);
     $stranger->delete();
 });
 step('panel settings are saved and a bad value is refused', function () use ($admin) {
