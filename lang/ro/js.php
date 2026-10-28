@@ -79,6 +79,8 @@ return [
             'panel' => 'Panou',
         ],
         'other_plugins' => 'Alte pluginuri',
+        'create_server' => 'Creați un server',
+        'new_server' => 'Server nou',
         'enhanced_by' => 'Îmbunătățit de',
         'build' => 'Build :version',
         'power_sent' => ':action trimis către :server',

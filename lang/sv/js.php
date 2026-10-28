@@ -79,6 +79,8 @@ return [
             'panel' => 'Panel',
         ],
         'other_plugins' => 'Andra plugins',
+        'create_server' => 'Skapa server',
+        'new_server' => 'Ny server',
         'enhanced_by' => 'Förbättrad av',
         'build' => 'Version :version',
         'power_sent' => ':action skickat till :server',

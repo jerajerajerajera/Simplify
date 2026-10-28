@@ -25,6 +25,22 @@ final class AdminMenu
     /** Pages that need parameters or that the menu does not list. */
     private const SKIP = ['Dashboard', 'ViewLogs', 'Setup'];
 
+    /** @return list<array{label: string, url: string, primary: bool, native: bool}> Pelican's own "create server" form, for admins who may use it */
+    public static function createServer(): array
+    {
+        foreach (Filament::getPanel('admin')->getResources() as $class) {
+            try {
+                if (class_basename($class) === 'ServerResource' && $class::canCreate()) {
+                    return [['label' => '', 'url' => $class::getUrl('create', panel: 'admin'), 'primary' => false, 'native' => true]];
+                }
+            } catch (Throwable) {
+                return [];
+            }
+        }
+
+        return [];
+    }
+
     /** @return list<array{label: string, items: list<array{key: string, label: string, url: string, icon: string}>}> */
     public static function items(): array
     {

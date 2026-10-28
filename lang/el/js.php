@@ -79,6 +79,8 @@ return [
             'panel' => 'Πάνελ',
         ],
         'other_plugins' => 'Άλλα πρόσθετα',
+        'create_server' => 'Δημιουργία διακομιστή',
+        'new_server' => 'Νέος διακομιστής',
         'enhanced_by' => 'Βελτιωμένο από',
         'build' => 'Έκδοση :version',
         'power_sent' => ':action στάλθηκε στο :server',

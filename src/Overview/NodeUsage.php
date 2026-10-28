@@ -41,7 +41,7 @@ final class NodeUsage
      * All traffic of a node's servers since they started, and per second since the last look; null when the node
      * does not answer.
      *
-     * @return array{rx_bytes: float, tx_bytes: float, rx_per_second: ?float, tx_per_second: ?float}|null
+     * @return array{rx_bytes: float, tx_bytes: float, rx_per_second: float, tx_per_second: float}|null
      */
     public static function traffic(Node $node): ?array
     {
@@ -57,8 +57,8 @@ final class NodeUsage
         $before = Cache::get('simplify.node-traffic.'.$node->id);
         Cache::put('simplify.node-traffic.'.$node->id, $now, 300);
         $seconds = is_array($before) ? $now['at'] - $before['at'] : 0;
-        // A counter that went down means a server restarted: no traffic to report for that moment.
-        $rate = fn (string $key) => $seconds > 0 && $seconds <= 120 ? max(0.0, ($now[$key] - $before[$key]) / $seconds) : null;
+        // A counter that went down means a server restarted, and the first look has nothing to compare: both read 0 B/s.
+        $rate = fn (string $key) => $seconds > 0 && $seconds <= 120 ? max(0.0, ($now[$key] - $before[$key]) / $seconds) : 0.0;
 
         return ['rx_bytes' => $now['rx_bytes'], 'tx_bytes' => $now['tx_bytes'], 'rx_per_second' => $rate('rx_bytes'), 'tx_per_second' => $rate('tx_bytes')];
     }

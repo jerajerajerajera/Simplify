@@ -79,6 +79,8 @@ return [
             'panel' => 'Панель',
         ],
         'other_plugins' => 'Другие плагины',
+        'create_server' => 'Создать сервер',
+        'new_server' => 'Новый сервер',
         'enhanced_by' => 'Улучшено с помощью',
         'build' => 'Сборка :version',
         'power_sent' => ':action отправлено на :server',

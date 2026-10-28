@@ -79,6 +79,8 @@ return [
             'panel' => '面板',
         ],
         'other_plugins' => '其他插件',
+        'create_server' => '创建服务器',
+        'new_server' => '新服务器',
         'enhanced_by' => '增强自',
         'build' => '构建 :version',
         'power_sent' => '已向 :server 发送 :action',
