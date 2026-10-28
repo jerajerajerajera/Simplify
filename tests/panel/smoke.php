@@ -13,11 +13,13 @@ use Illuminate\Foundation\Testing\Concerns\InteractsWithSession;
 use Illuminate\Foundation\Testing\Concerns\MakesHttpRequests;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Testing\TestResponse;
+use Illuminate\Validation\ValidationException;
 use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Livewire\HostHealthCard;
+use Simplify\Core\People\People;
 use Simplify\Core\Support\Assets;
 use Simplify\Core\Support\Brand;
 use Simplify\Core\Support\PanelSettings;
@@ -235,6 +237,36 @@ step('host health loads for a root admin and names a node that does not answer',
     if (($health['hosts'] ?? 0) < 1 || $health['state'] !== 'unavailable' || ($health['nodes'][0]['problem'] ?? null) === null) {
         throw new RuntimeException('unexpected host health: '.json_encode($health));
     }
+});
+step('people and roles: the page lists people and roles keep their safety rules', function () use ($admin) {
+    $url = Simplify\Core\Filament\Admin\Pages\People::getUrl(panel: 'admin');
+    $response = visit($admin, $url);
+    expectOk($response, $url);
+    if (! str_contains($response->getContent(), e($admin->username))) {
+        throw new RuntimeException('the admin is not listed');
+    }
+    auth()->login($admin);
+    $known = array_key_first(array_values(People::permissionGroups())[0]);
+    $role = People::saveRole(null, 'Smoke role', [$known, 'not a permission']);
+    if ($role->permissions()->pluck('name')->all() !== [$known]) {
+        throw new RuntimeException('unknown permissions were stored: '.json_encode($role->permissions()->pluck('name')));
+    }
+    $refused = 0;
+    foreach ([
+        fn () => People::deleteUser($admin),
+        fn () => People::saveRole(Role::getRootAdmin(), 'Renamed', []),
+        fn () => People::updateUser($admin, ['username' => $admin->username, 'email' => $admin->email, 'roles' => []]),
+    ] as $unsafe) {
+        try {
+            $unsafe();
+        } catch (ValidationException) {
+            $refused++;
+        }
+    }
+    if ($refused !== 3 || ! $admin->refresh()->isRootAdmin()) {
+        throw new RuntimeException("only $refused of 3 unsafe changes were refused");
+    }
+    People::deleteRole($role);
 });
 if ($failed || $passed === 0) {
     exit(1);

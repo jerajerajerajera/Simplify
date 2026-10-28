@@ -8,6 +8,7 @@ use App\Enums\ConsoleWidgetPosition;
 use App\Filament\Server\Pages\Console;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
+use Simplify\Core\Filament\Admin\Pages\People;
 use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Filament\Server\Widgets\AddonSections;
@@ -36,7 +37,7 @@ final class SimplifyPlugin implements Plugin
             Console::registerCustomWidgets(ConsoleWidgetPosition::BelowConsole, [AddonSections::class]);
         }
         if ($panel->getId() === 'admin') {
-            $panel->pages([Settings::class]);
+            $panel->pages([Settings::class, People::class]);
         }
     }
 
