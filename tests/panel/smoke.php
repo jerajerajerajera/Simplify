@@ -17,6 +17,7 @@ use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\App\Pages\Overview;
+use Simplify\Core\Livewire\HostHealthCard;
 use Simplify\Core\Support\Assets;
 use Simplify\Core\Support\Brand;
 use Simplify\Core\Support\PanelSettings;
@@ -227,6 +228,12 @@ step('the panel uses the uploaded logo and name', function () use ($admin) {
     expectOk($logo, '/simplify/brand/smoke-logo.png');
     if (visit($admin, '/simplify/brand/missing.png')->getStatusCode() !== 404) {
         throw new RuntimeException('a missing logo is not a 404');
+    }
+});
+step('host health loads for a root admin and names a node that does not answer', function () use ($admin) {
+    $health = Livewire\Livewire::actingAs($admin)->test(HostHealthCard::class)->call('load')->get('health');
+    if (($health['hosts'] ?? 0) < 1 || $health['state'] !== 'unavailable' || ($health['nodes'][0]['problem'] ?? null) === null) {
+        throw new RuntimeException('unexpected host health: '.json_encode($health));
     }
 });
 if ($failed || $passed === 0) {
