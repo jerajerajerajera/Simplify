@@ -14,9 +14,11 @@ use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Console\UpdateNoticesCommand;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Http\Controllers\AssetController;
+use Simplify\Core\Http\Controllers\BannerController;
 use Simplify\Core\Http\Controllers\BrandController;
 use Simplify\Core\Http\Controllers\WebAppController;
 use Simplify\Core\Push\Push;
+use Simplify\Core\Server\Looks;
 use Simplify\Core\Support\Brand;
 use Simplify\Core\Support\PanelSettings;
 use Throwable;
@@ -42,6 +44,9 @@ final class SimplifyServiceProvider extends ServiceProvider
         Route::get('/simplify/brand/{file}', BrandController::class)
             ->where('file', Brand::FILE_PATTERN)
             ->name('simplify.brand');
+        Route::middleware(['web', 'auth'])->get('/simplify/banners/{file}', BannerController::class)
+            ->where('file', Looks::FILE_PATTERN)
+            ->name('simplify.banner');
         Route::get('/simplify/manifest.webmanifest', [WebAppController::class, 'manifest'])->name('simplify.manifest');
         // At the root, so the worker's scope can be the whole panel.
         Route::get('/simplify-worker.js', [WebAppController::class, 'worker'])->name('simplify.worker');

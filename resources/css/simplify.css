@@ -694,3 +694,56 @@
 .s-setup-note {
   margin-bottom: var(--s-space-3);
 }
+
+/* Server look: banner above the details, colour as a line at their start. */
+.s-banner {
+  aspect-ratio: 6 / 1;
+  border-radius: var(--s-radius);
+  display: block;
+  margin-bottom: var(--s-space-3);
+  object-fit: cover;
+  width: 100%;
+}
+
+.s-details-colored {
+  border-left: 3px solid var(--s-tile-accent);
+  padding-left: var(--s-space-3);
+}
+
+.s-details-end {
+  margin-left: auto;
+}
+
+.s-look-editor {
+  display: grid;
+  gap: var(--s-space-3);
+  margin-top: var(--s-space-3);
+}
+
+.s-look-field {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-space-2);
+}
+
+.s-look-field > span:first-child {
+  min-width: 80px;
+}
+
+.s-error {
+  color: var(--s-danger);
+  font-size: var(--s-text-sm);
+}
+
+.s-tile-banner {
+  aspect-ratio: 4 / 1;
+  border-radius: var(--s-radius-sm);
+  display: block;
+  object-fit: cover;
+  width: 100%;
+}
+
+.s-tiles:is(.s-tiles-compact, .s-tiles-list) .s-tile-banner {
+  display: none;
+}

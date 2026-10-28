@@ -1,4 +1,4 @@
-@props(['server', 'usage', 'url', 'badges', 'power', 'color' => null, 'owner' => null])
+@props(['server', 'usage', 'url', 'badges', 'power', 'color' => null, 'owner' => null, 'banner' => null])
 @php
     use Simplify\Core\Overview\Format;
 
@@ -17,6 +17,9 @@
     wire:key="server-{{ $server->id }}"
     x-bind:hidden="search !== '' && ! @js(mb_strtolower($server->name)).includes(search.toLowerCase())"
 >
+    @if ($banner)
+        <img class="s-tile-banner" src="{{ $banner }}" alt="" loading="lazy">
+    @endif
     <div class="s-tile-head">
         <a class="s-tile-name s-tile-link" href="{{ $url }}">{{ $server->name }}</a>
         <span @class(['s-badge', 's-badge-'.$tone => $tone])>
