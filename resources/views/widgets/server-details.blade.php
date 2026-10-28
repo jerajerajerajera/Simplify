@@ -16,6 +16,12 @@
             <x-pelican-simplify::copy-field :label="__('pelican-simplify::server.sftp')" :value="$sftp['url']" />
             <x-pelican-simplify::copy-field :label="__('pelican-simplify::server.username')" :value="$sftp['username']" />
         @endif
+        @if ($billing = $this->billingUrl())
+            <a class="s-btn" href="{{ $billing }}" target="_blank" rel="noopener">
+                <x-filament::icon icon="tabler-receipt" />
+                {{ __('pelican-simplify::settings.billing') }}
+            </a>
+        @endif
         @foreach ($badges as $badge)
             <span class="s-badge">{{ $badge }}</span>
         @endforeach
