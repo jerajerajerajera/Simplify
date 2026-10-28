@@ -52,6 +52,8 @@ return [
         'app_help' => 'Mensen kunnen het paneel via het browsermenu als app op hun telefoon of computer zetten.',
         'app_icon' => 'App-icoon',
         'app_icon_help' => 'Een vierkante PNG, JPEG of WebP van minstens 512 pixels, tot 1 MB. Leeg gebruikt het Simplify-icoon.',
+        'app_badge' => 'Statusbalkicoon',
+        'app_badge_help' => 'Een PNG met transparante achtergrond, wit getoond in de statusbalk van Android. Leeg gebruikt het app-icoon als dat een transparante achtergrond heeft, anders de pelikaan.',
     ],
     'addons' => [
         'heading' => 'Add-ons',

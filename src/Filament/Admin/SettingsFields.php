@@ -80,6 +80,7 @@ final class SettingsFields
     {
         return Section::make(__(self::T.'appearance.app'))->description(__(self::T.'appearance.app_help'))->schema([
             self::image('app_icon', 'appearance.app_icon', 'appearance.app_icon_help')->imageCropAspectRatio('1:1'),
+            self::image('app_badge', 'appearance.app_badge', 'appearance.app_badge_help')->acceptedFileTypes(['image/png']),
             Toggle::make('push')->label(__(self::T.'general.push_on'))->helperText(__(self::T.'general.push_help')),
         ]);
     }

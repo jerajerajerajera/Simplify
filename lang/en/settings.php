@@ -52,6 +52,8 @@ return [
         'app_help' => 'People can add the panel to their phone or desktop as an app, from the browser menu.',
         'app_icon' => 'App icon',
         'app_icon_help' => 'A square PNG, JPEG or WebP of at least 512 pixels, up to 1 MB. Empty uses the Simplify icon.',
+        'app_badge' => 'Status bar icon',
+        'app_badge_help' => 'A PNG with a transparent background, shown in white in Android\'s status bar. Empty uses the app icon if it has a transparent background, otherwise the pelican.',
     ],
     'addons' => [
         'heading' => 'Add-ons',

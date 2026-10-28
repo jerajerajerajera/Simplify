@@ -137,13 +137,6 @@
 
 /* An adaptive console follows the page surface instead of staying black.
    Declared on the console itself so it resolves against the dashboard's own theme. */
-.ps-console-adaptive .ps-console {
-  --ps-console-bg: var(--ps-surface);
-  --ps-console-raised: var(--ps-raised);
-  --ps-console-line: var(--ps-line);
-  --ps-console-ink: var(--ps-ink);
-  --ps-console-muted: var(--ps-muted);
-}
 
 /* Touch screens get 44px targets everywhere, without per-component overrides. */
 @media (pointer: coarse) {

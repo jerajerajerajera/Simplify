@@ -20,6 +20,9 @@ use App\Models\Server;
  */
 abstract class Addon
 {
+    /** The contract version: 1 in Simplify 1.0, 2 since 1.1 (serverInfo). Raised whenever a method is added. */
+    public const API = 2;
+
     /** The add-on's plugin id, for example "simplify-server-maker". */
     abstract public function id(): string;
 

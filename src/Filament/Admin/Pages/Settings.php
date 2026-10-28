@@ -133,9 +133,9 @@ final class Settings extends Page implements HasForms
             $tab('appearance', 'panel', __('pelican-simplify::settings.appearance.tab'), 'palette'),
             $tab('addons', 'addons', __('pelican-simplify::settings.addons.heading'), 'puzzle'),
         ];
-        foreach (app(AddonRegistry::class)->all() as $addon) {
-            if ($url = $addon->settingsUrl()) {
-                $items[] = ['key' => 'addon:'.$addon->id(), 'group' => 'addons', 'label' => $addon->name(), 'icon' => 'plugins', 'url' => $url];
+        foreach (self::addonRows() as $addon) {
+            if ($addon['url']) {
+                $items[] = ['key' => 'addon:'.$addon['id'], 'group' => 'addons', 'label' => $addon['name'], 'icon' => 'plugins', 'url' => $addon['url']];
             }
         }
         foreach (self::pelicanTabs() as $pelican) {
@@ -172,9 +172,15 @@ final class Settings extends Page implements HasForms
         Notification::make()->title(__('pelican-simplify::settings.saved'))->success()->send();
     }
 
-    /** @return list<Addon> */
-    public function addons(): array
+    /**
+     * Every add-on as a row of the list; one that throws is reported and left out, so the page still opens.
+     *
+     * @return list<array{id: string, name: string, description: string, icon: string, url: ?string}>
+     */
+    public static function addonRows(): array
     {
-        return app(AddonRegistry::class)->all();
+        return app(AddonRegistry::class)->collect(fn (Addon $addon) => [[
+            'id' => $addon->id(), 'name' => $addon->name(), 'description' => $addon->description(), 'icon' => $addon->icon(), 'url' => $addon->settingsUrl(),
+        ]]);
     }
 }

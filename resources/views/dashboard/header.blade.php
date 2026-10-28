@@ -24,6 +24,24 @@
         <div class="ps-nav-items" id="ps-navigation-items">
             {{-- Notifications: Pelican's own (backups, installs, subusers) and host health alerts in one dropdown. --}}
             <div class="ps-notify" x-on:click.outside="notifyMenu=false" x-on:keydown.escape.stop="notifyMenu=false; $refs.notifyButton.focus()">
+                {{-- A new notification drops down from the bell and slides back up after a few seconds. --}}
+                <div class="ps-incoming" x-show="incomingShown" x-cloak role="status" aria-live="polite"
+                     x-transition:enter="ps-incoming-move" x-transition:enter-start="is-up" x-transition:leave="ps-incoming-move" x-transition:leave-end="is-up"
+                     x-on:mouseenter="clearTimeout(incomingTimer)" x-on:mouseleave="holdIncomingNotice(2500)">
+                    <template x-if="incomingNotice">
+                        <div class="ps-notify-item" :class="'is-'+(incomingNotice.tone || 'info')">
+                            <svg aria-hidden="true"><use :href="'#ps-'+(incomingNotice.tone==='ok'?'check':(incomingNotice.tone||'info')==='info'?'info':'alert')"/></svg>
+                            <strong x-text="incomingNotice.title"></strong>
+                            <small x-text="incomingNotice.text" x-show="incomingNotice.text"></small>
+                            <span class="ps-notify-actions">
+                                <template x-if="incomingNotice.action">
+                                    <a class="ps-btn is-sm" :href="incomingNotice.action.url" x-on:click="markNotifications([incomingNotice.key], true)" x-text="incomingNotice.action.label"></a>
+                                </template>
+                                <button type="button" class="ps-btn is-sm is-subtle" x-on:click="hideIncomingNotice()">{{ $u('dismiss') }}</button>
+                            </span>
+                        </div>
+                    </template>
+                </div>
                 <button type="button" x-ref="notifyButton" class="ps-btn is-icon is-subtle" data-tip="{{ $u('notifications') }}" aria-label="{{ $u('notifications') }}" aria-controls="ps-notify-menu" :aria-expanded="notifyMenu" x-on:click="toggleNotifications()">
                     <svg aria-hidden="true"><use href="#ps-bell"/></svg><span class="ps-mobile-label">{{ $u('notifications') }}</span>
                     <span class="ps-notify-count" x-show="unreadNotifications()" x-text="unreadNotifications()"></span>
@@ -50,6 +68,14 @@
                             </div>
                         </template>
                         <p class="ps-empty" x-show="!notifications().length">{{ $u('you_are_all_caught_up') }}</p>
+                    </div>
+                    <div class="ps-notify-list" x-show="pushOffer">
+                        <div class="ps-push-offer">
+                            <svg aria-hidden="true"><use href="#ps-bell"/></svg>
+                            <span>{{ $u('get_announcements_as_notifications_on_this') }}</span>
+                            <a class="ps-btn is-sm" :href="boot.notifications_url">{{ $u('turn_on') }}</a>
+                            <button type="button" class="ps-btn is-sm is-icon is-subtle" data-tip="{{ $u('not_now') }}" aria-label="{{ $u('not_now') }}" x-on:click="hidePushOffer()"><svg aria-hidden="true"><use href="#ps-close"/></svg></button>
+                        </div>
                     </div>
                     <button type="button" class="ps-btn is-sm is-subtle ps-notify-more" x-show="feed.more" x-on:click="loadNotificationPage()" :disabled="feed.loading" x-text="feed.loading ? @js($u('loading')) : @js($u('show_more'))"></button>
                     <div class="ps-dropdown-section" x-show="noticeHistory.length">

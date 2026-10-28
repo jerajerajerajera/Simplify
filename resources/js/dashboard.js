@@ -40,6 +40,10 @@
       notifyMenu: false,
       noticeHistory: [],
       feed: { items: [], page: 1, more: false, loading: false, unread: 0 },
+      incomingNotice: null,
+      incomingShown: false,
+      incomingQueue: [],
+      pushOffer: false,
       adminMenu: false,
       overviewCompact: false,
       phone: false,
@@ -100,6 +104,7 @@
         this.overviewGroups = this.cleanOverviewGroups(this.boot.overview_groups?.groups);
         this.overviewServerOrder = SERVER_ORDERS.some((o) => o.key === this.boot.overview_groups?.order) ? this.boot.overview_groups.order : 'name';
         this.feed = { ...this.feed, ...this.boot.notifications };
+        this.checkPushOffer();
         this.initTheme();
         this.noticeHistory = window.Simplify?.history?.() || [];
         this.noticeListener = (event) => (this.noticeHistory = [event.detail, ...this.noticeHistory].slice(0, 20));
@@ -146,6 +151,51 @@
         this.notifyMenu = !this.notifyMenu;
         this.appearanceMenu = this.groupsMenu = this.accountMenu = false;
         if (this.notifyMenu) await this.loadNotificationPage(true);
+      },
+      /** New unread notifications since the last look drop down from the bell, one after another (as in 0.7.0). */
+      async pollNotifications() {
+        if (document.hidden || this.destroyed || this.notifyMenu || this.feed.loading) return;
+        try {
+          const result = await wire.notificationPage(1);
+          const known = new Set(this.feed.items.map((n) => n.key));
+          const fresh = result.items.filter((n) => n.unread && !known.has(n.key));
+          this.feed = { ...this.feed, items: [...fresh, ...this.feed.items], unread: result.unread };
+          this.incomingQueue.push(...fresh.reverse());
+          this.showIncomingNotice();
+        } catch {}
+      },
+      showIncomingNotice() {
+        if (this.incomingNotice || !this.incomingQueue.length) return;
+        this.incomingNotice = this.incomingQueue.shift();
+        this.incomingShown = true;
+        this.holdIncomingNotice();
+      },
+      holdIncomingNotice(delay = 6000) {
+        clearTimeout(this.incomingTimer);
+        this.incomingTimer = setTimeout(() => this.hideIncomingNotice(), delay);
+      },
+      hideIncomingNotice() {
+        clearTimeout(this.incomingTimer);
+        this.incomingShown = false;
+        setTimeout(() => {
+          this.incomingNotice = null;
+          this.showIncomingNotice();
+        }, 450);
+      },
+      /** The bell offers app notifications once per device, until they are on or the offer is dismissed. */
+      async checkPushOffer() {
+        try {
+          if (!this.boot.notifications_url || localStorage.getItem('pelicanSimplify.pushOffer') === 'hidden') return;
+          if (!('PushManager' in window) || Notification.permission === 'denied') return;
+          const registration = await navigator.serviceWorker.getRegistration();
+          this.pushOffer = !(await registration?.pushManager.getSubscription());
+        } catch {}
+      },
+      hidePushOffer() {
+        this.pushOffer = false;
+        try {
+          localStorage.setItem('pelicanSimplify.pushOffer', 'hidden');
+        } catch {}
       },
       /** The first (reset) or next page of Pelican's notifications, read ones included. */
       async loadNotificationPage(reset = false) {
@@ -923,6 +973,7 @@
         if (globalThis.document?.hidden || this.server || this.destroyed || this.overviewRefreshing) return;
         this.overviewRefreshing = true;
         try {
+          this.pollNotifications();
           const [servers, health] = await Promise.all([wire.listing(), this.boot.features?.host_health ? wire.hostHealth() : Promise.resolve({})]);
           if (this.destroyed) return;
           const badges = Object.fromEntries(this.boot.servers.map((s) => [s.uuid, s.badges]));

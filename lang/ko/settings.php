@@ -52,6 +52,8 @@ return [
         'app_help' => '브라우저 메뉴에서 패널을 휴대폰이나 컴퓨터에 앱으로 추가할 수 있습니다.',
         'app_icon' => '앱 아이콘',
         'app_icon_help' => '512픽셀 이상, 1 MB 이하의 정사각형 PNG, JPEG 또는 WebP. 비워 두면 Simplify 아이콘을 사용합니다.',
+        'app_badge' => '상태 표시줄 아이콘',
+        'app_badge_help' => '배경이 투명한 PNG로, Android 상태 표시줄에 흰색으로 표시됩니다. 비워 두면 배경이 투명한 경우 앱 아이콘을, 아니면 펠리컨을 사용합니다.',
     ],
     'addons' => [
         'heading' => '애드온',
