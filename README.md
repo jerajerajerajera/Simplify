@@ -3,8 +3,8 @@
 A [Pelican](https://pelican.dev) plugin that gives you one clear overview of your servers. Add-ons such as Server Maker
 are separate plugins that show up inside Simplify when both are installed.
 
-Simplify is being rebuilt for version 1.0. This repository holds the new code; the earlier PelicanSimplify (0.6.0 and
-before) lives in [PelicanSimplify](https://github.com/jerajerajerajera/PelicanSimplify).
+Simplify 1.0 is a rebuild from the ground up. The earlier PelicanSimplify (0.6.0 and before) lives in
+[PelicanSimplify](https://github.com/jerajerajerajera/PelicanSimplify).
 
 ## Install
 
