@@ -7,6 +7,7 @@ namespace Simplify\Core;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 use Simplify\Core\Filament\Admin\Pages\Settings;
+use Simplify\Core\Filament\App\Pages\Overview;
 
 final class SimplifyPlugin implements Plugin
 {
@@ -21,6 +22,9 @@ final class SimplifyPlugin implements Plugin
     {
         $panel->renderHook('panels::head.end', fn () => view('pelican-simplify::head'));
 
+        if ($panel->getId() === 'app') {
+            $panel->pages([Overview::class]);
+        }
         if ($panel->getId() === 'admin') {
             $panel->pages([Settings::class]);
         }

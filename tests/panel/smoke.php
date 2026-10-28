@@ -2,6 +2,7 @@
 
 // Loads Simplify inside a real Pelican panel and opens its pages. Run from the panel folder after
 // `php artisan p:plugin:install pelican-simplify`: php plugins/pelican-simplify/tests/panel/smoke.php
+use App\Models\Server;
 use App\Models\User;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithAuthentication;
@@ -11,6 +12,7 @@ use Illuminate\Testing\TestResponse;
 use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Filament\Admin\Pages\Settings;
+use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Support\Assets;
 
 define('LARAVEL_START', microtime(true));
@@ -96,6 +98,23 @@ step('every panel page loads the stylesheet', function () use ($admin) {
     $url = Settings::getUrl(panel: 'admin');
     if (! str_contains(visit($admin, $url)->getContent(), '/simplify/assets/simplify.css?v=')) {
         throw new RuntimeException('the stylesheet link is missing');
+    }
+});
+$server = Server::query()->first() ?? Server::factory()->create(['owner_id' => $admin->id]);
+step('the overview renders with the server tile', function () use ($admin, $server) {
+    $url = Overview::getUrl(panel: 'app');
+    $response = visit($admin, $url);
+    expectOk($response, $url);
+    if (! str_contains($response->getContent(), e($server->name))) {
+        throw new RuntimeException('the server is not on the overview');
+    }
+});
+step('live numbers load without Wings and leave unknown values empty', function () use ($admin, $server) {
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
+    $usage = Livewire\Livewire::actingAs($admin)->test(Overview::class)
+        ->call('refreshUsage')->get('usage');
+    if (! isset($usage[$server->id]['state'])) {
+        throw new RuntimeException('no state for the server: '.json_encode($usage));
     }
 });
 exit($failed ? 1 : 0);

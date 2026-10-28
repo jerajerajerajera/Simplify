@@ -1,0 +1,29 @@
+<?php
+
+return [
+    'title' => 'Overview',
+    'search' => 'Search servers',
+    'empty' => 'You have no servers yet.',
+    'loading' => 'Loading',
+    'cpu' => 'CPU',
+    'memory' => 'Memory',
+    'disk' => 'Disk',
+    'state' => [
+        'created' => 'Created',
+        'starting' => 'Starting',
+        'running' => 'Running',
+        'restarting' => 'Restarting',
+        'exited' => 'Stopped',
+        'paused' => 'Paused',
+        'dead' => 'Crashed',
+        'removing' => 'Removing',
+        'stopping' => 'Stopping',
+        'offline' => 'Offline',
+        'missing' => 'Unreachable',
+        'installing' => 'Installing',
+        'install_failed' => 'Install failed',
+        'reinstall_failed' => 'Reinstall failed',
+        'suspended' => 'Suspended',
+        'restoring_backup' => 'Restoring backup',
+    ],
+];
