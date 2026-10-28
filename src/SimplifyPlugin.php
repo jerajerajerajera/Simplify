@@ -19,6 +19,8 @@ final class SimplifyPlugin implements Plugin
 
     public function register(Panel $panel): void
     {
+        $panel->renderHook('panels::head.end', fn () => view('pelican-simplify::head'));
+
         if ($panel->getId() === 'admin') {
             $panel->pages([Settings::class]);
         }

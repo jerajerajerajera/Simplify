@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Simplify\Core\Providers;
 
 use Illuminate\Container\Container;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Simplify\Core\Addons\AddonRegistry;
+use Simplify\Core\Http\Controllers\AssetController;
 use Throwable;
 
 final class SimplifyServiceProvider extends ServiceProvider
@@ -20,5 +22,12 @@ final class SimplifyServiceProvider extends ServiceProvider
             fn (string $class) => $app->make($class),
             fn (Throwable $error) => report($error),
         ));
+    }
+
+    public function boot(): void
+    {
+        Route::get('/simplify/assets/{name}', AssetController::class)
+            ->where('name', '[a-z.]+')
+            ->name('simplify.asset');
     }
 }

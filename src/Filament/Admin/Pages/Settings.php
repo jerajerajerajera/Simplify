@@ -6,8 +6,10 @@ namespace Simplify\Core\Filament\Admin\Pages;
 
 use Filament\Pages\Page;
 use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Support\HtmlString;
 use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
+use Simplify\Core\Support\Assets;
 
 /**
  * Simplify's settings. For now it lists the installed add-ons; the settings themselves follow in later versions.
@@ -33,6 +35,15 @@ final class Settings extends Page
     public function getTitle(): string|Htmlable
     {
         return __('pelican-simplify::settings.title');
+    }
+
+    public function getHeading(): string|Htmlable
+    {
+        return new HtmlString(sprintf(
+            '<span class="s-heading"><img class="s-logo" src="%s" alt="">%s</span>',
+            e(Assets::url('logo.svg')),
+            e(__('pelican-simplify::settings.title')),
+        ));
     }
 
     /** @return list<Addon> */

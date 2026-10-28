@@ -1,0 +1,188 @@
+/* Simplify's look: tokens first, then the shared components. Colours come from Filament's own variables, so a
+   Pelican theme plugin restyles Simplify too. Light values on :root, dark values on html.dark (Filament's switch). */
+:root {
+  --s-bg: var(--gray-50);
+  --s-surface: #fff;
+  --s-raised: var(--gray-100);
+  --s-ink: var(--gray-950);
+  --s-muted: var(--gray-600);
+  --s-line: var(--gray-200);
+  --s-accent: var(--primary-600);
+  --s-on-accent: #fff;
+  --s-ok: var(--success-700);
+  --s-warn: var(--warning-700);
+  --s-danger: var(--danger-600);
+
+  --s-text-sm: 12px;
+  --s-text: 14px;
+  --s-text-lg: 18px;
+
+  --s-radius-sm: 6px;
+  --s-radius: 10px;
+  --s-radius-pill: 999px;
+
+  --s-space-1: 4px;
+  --s-space-2: 8px;
+  --s-space-3: 12px;
+  --s-space-4: 16px;
+
+  --s-h: 36px;
+  --s-shadow: 0 1px 2px rgb(0 0 0 / .05);
+  --s-fast: .15s;
+}
+
+:root.dark {
+  --s-bg: var(--gray-950);
+  --s-surface: var(--gray-900);
+  --s-raised: var(--gray-800);
+  --s-ink: var(--gray-50);
+  --s-muted: var(--gray-400);
+  --s-line: color-mix(in oklab, var(--gray-700) 60%, var(--gray-800));
+  --s-accent: var(--primary-500);
+  --s-ok: var(--success-400);
+  --s-warn: var(--warning-400);
+  --s-danger: var(--danger-400);
+  --s-shadow: 0 1px 2px rgb(0 0 0 / .3);
+}
+
+/* Touch screens get 44px targets without per-component overrides. */
+@media (pointer: coarse) {
+  :root {
+    --s-h: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --s-fast: 0s;
+  }
+}
+
+/* Card: the one container. Square-ish corners, a thin line, no nested frames. */
+.s-card {
+  background: var(--s-surface);
+  border: 1px solid var(--s-line);
+  border-radius: var(--s-radius);
+  box-shadow: var(--s-shadow);
+  color: var(--s-ink);
+  padding: var(--s-space-4);
+}
+
+/* Button: one height, one shape. .s-btn-primary for the main action of a bar, at most one per bar. */
+.s-btn {
+  align-items: center;
+  background: var(--s-surface);
+  border: 1px solid var(--s-line);
+  border-radius: var(--s-radius-sm);
+  color: var(--s-ink);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: var(--s-text);
+  font-weight: 500;
+  gap: var(--s-space-2);
+  height: var(--s-h);
+  padding: 0 var(--s-space-3);
+  text-decoration: none;
+  transition: background var(--s-fast);
+  white-space: nowrap;
+}
+
+.s-btn:hover {
+  background: var(--s-raised);
+}
+
+.s-btn svg {
+  height: 18px;
+  width: 18px;
+}
+
+.s-btn-primary {
+  background: var(--s-accent);
+  border-color: transparent;
+  color: var(--s-on-accent);
+}
+
+.s-btn-primary:hover {
+  background: color-mix(in oklab, var(--s-accent) 88%, #000);
+}
+
+/* Toolbar: buttons on one line, aligned right on wide screens, wrapping on a phone. */
+.s-bar {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-space-2);
+  justify-content: flex-end;
+}
+
+/* Badge: a short status or fact. */
+.s-badge {
+  align-items: center;
+  background: var(--s-raised);
+  border-radius: var(--s-radius-pill);
+  color: var(--s-muted);
+  display: inline-flex;
+  font-size: var(--s-text-sm);
+  font-weight: 500;
+  gap: var(--s-space-1);
+  line-height: 1;
+  padding: var(--s-space-1) var(--s-space-2);
+}
+
+.s-badge-ok {
+  color: var(--s-ok);
+}
+
+.s-badge-warn {
+  color: var(--s-warn);
+}
+
+.s-badge-danger {
+  color: var(--s-danger);
+}
+
+/* List row: icon, text, action. Used for add-ons and settings. */
+.s-row {
+  align-items: center;
+  border-top: 1px solid var(--s-line);
+  display: flex;
+  gap: var(--s-space-3);
+  padding: var(--s-space-3) 0;
+}
+
+.s-row:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.s-row:last-child {
+  padding-bottom: 0;
+}
+
+.s-row-icon {
+  color: var(--s-muted);
+  flex: none;
+  height: 20px;
+  width: 20px;
+}
+
+.s-row-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.s-muted {
+  color: var(--s-muted);
+  font-size: var(--s-text-sm);
+}
+
+.s-heading {
+  align-items: center;
+  display: inline-flex;
+  gap: var(--s-space-3);
+}
+
+.s-logo {
+  height: 28px;
+  width: auto;
+}
