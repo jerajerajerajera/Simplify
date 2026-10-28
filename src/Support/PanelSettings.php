@@ -21,7 +21,6 @@ final class PanelSettings
     /** The checked settings for this request, kept in the container so a new request (or test app) starts fresh. */
     private const MEMO = 'simplify.settings.checked';
 
-
     /** An https address or a mailto: address; Laravel's url rule does not accept mailto:. */
     public const SUPPORT_URL = '#^(https://[^\s<>"]+|mailto:[^\s@<>"]+@[^\s@<>"]+)$#';
 
