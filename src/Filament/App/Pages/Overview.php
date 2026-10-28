@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Simplify\Core\Filament\App\Pages;
 
+use App\Filament\Admin\Resources\Nodes\NodeResource;
+use App\Models\Node;
 use App\Models\Server;
 use Filament\Facades\Filament;
 use Filament\Notifications\Notification;
@@ -14,6 +16,7 @@ use Illuminate\Support\Str;
 use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Addons\Button;
+use Simplify\Core\Overview\NodeUsage;
 use Simplify\Core\Overview\Power;
 use Simplify\Core\Overview\ServerGroups;
 use Simplify\Core\Overview\ServerQuery;
@@ -37,6 +40,9 @@ final class Overview extends Page
     protected string $view = 'pelican-simplify::pages.overview';
 
     public const LAYOUTS = ['cards', 'compact', 'list'];
+
+    /** Host mode: a compact list per node, for root admins of panels with many servers. */
+    public const HOST = 'nodes';
 
     public const SCOPES = ['all', 'mine', 'others'];
 
@@ -75,7 +81,8 @@ final class Overview extends Page
         if ($user === null) {
             return;
         }
-        $this->display = Preferences::choice($user, 'overview.display', self::LAYOUTS, 'cards');
+        $hosting = $user->isRootAdmin() && PanelSettings::get('profile') === 'hosting';
+        $this->display = Preferences::choice($user, 'overview.display', $this->layouts(), $hosting ? self::HOST : 'cards');
         $this->scope = Preferences::choice($user, 'overview.scope', self::SCOPES, 'all');
         $this->sort = Preferences::choice($user, 'overview.sort', self::SORTS, 'name');
         $this->groups = ServerGroups::clean(Preferences::get($user, 'overview.groups'));
@@ -84,7 +91,7 @@ final class Overview extends Page
     /** Saves a layout choice for the account, so every device shows the same. */
     public function updated(string $property): void
     {
-        $allowed = ['display' => self::LAYOUTS, 'scope' => self::SCOPES, 'sort' => self::SORTS][$property] ?? null;
+        $allowed = ['display' => $this->layouts(), 'scope' => self::SCOPES, 'sort' => self::SORTS][$property] ?? null;
         $user = user();
         if ($allowed === null || $user === null) {
             return;
@@ -131,6 +138,34 @@ final class Overview extends Page
     public function sections(): array
     {
         return ServerGroups::split($this->groups, $this->servers()->all());
+    }
+
+    /** @return list<string> the layouts this user may choose */
+    public function layouts(): array
+    {
+        return user()?->isRootAdmin() ? [...self::LAYOUTS, self::HOST] : self::LAYOUTS;
+    }
+
+    /** @return list<array{node: Node, url: ?string, servers: list<Server>}> the servers per node, nodes by name */
+    public function nodeSections(): array
+    {
+        $byNode = $this->servers()->groupBy('node_id');
+        $nodes = Node::query()->whereIn('id', $byNode->keys())->orderBy('name')->get();
+
+        return $nodes->map(fn (Node $node) => [
+            'node' => $node,
+            'url' => $this->nodeUrl($node),
+            'servers' => $byNode->get($node->id, collect())->all(),
+        ])->all();
+    }
+
+    private function nodeUrl(Node $node): ?string
+    {
+        try {
+            return NodeResource::getUrl('edit', ['record' => $node], panel: 'admin');
+        } catch (Throwable) {
+            return null;
+        }
     }
 
     public function editGroups(): void
@@ -264,9 +299,14 @@ final class Overview extends Page
 
     public function refreshUsage(): void
     {
+        $servers = $this->allServers();
+        $live = NodeUsage::read($servers->filter(fn (Server $server) => $server->status === null));
         $usage = [];
-        foreach ($this->allServers() as $server) {
-            $usage[$server->id] = $this->read($server)->toArray();
+        foreach ($servers as $server) {
+            // Installing, suspended or restoring: Wings has nothing useful to add.
+            $usage[$server->id] = $server->status !== null
+                ? (new Usage($server->status->value, null, null, null))->toArray()
+                : $live[$server->uuid] ?? Usage::unknown()->toArray();
         }
         $this->usage = $usage;
     }

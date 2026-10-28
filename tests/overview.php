@@ -6,8 +6,10 @@ declare(strict_types=1);
 require __DIR__.'/../src/Overview/Usage.php';
 require __DIR__.'/../src/Overview/Format.php';
 require __DIR__.'/../src/Overview/Power.php';
+require __DIR__.'/../src/Overview/NodeUsage.php';
 
 use Simplify\Core\Overview\Format;
+use Simplify\Core\Overview\NodeUsage;
 use Simplify\Core\Overview\Power;
 use Simplify\Core\Overview\Usage;
 
@@ -41,6 +43,17 @@ check(Format::percent(12.6) === '13%' && Format::percent(null) === '-', 'percent
 
 check(Power::actionsFor('offline') === ['start'] && Power::actionsFor('running') === ['restart', 'stop'], 'power buttons follow the state');
 check(Power::actionsFor('stopping') === ['kill'] && Power::actionsFor(null) === [] && Power::actionsFor('installing') === [], 'no buttons while loading or installing; kill only while stopping');
+
+$node = NodeUsage::fromList([
+    ['state' => 'running', 'utilization' => ['cpu_absolute' => 5, 'memory_bytes' => 10, 'disk_bytes' => 20], 'configuration' => ['uuid' => 'a']],
+    ['state' => 'offline', 'configuration' => ['uuid' => 'b']],
+    ['state' => 'running', 'configuration' => []],
+    'not a server',
+]);
+check($node === [
+    'a' => ['state' => 'running', 'cpu' => 5.0, 'memory' => 10, 'disk' => 20],
+    'b' => ['state' => 'offline', 'cpu' => 0.0, 'memory' => 0, 'disk' => null],
+], 'one node list gives numbers per server uuid: '.json_encode($node));
 
 if ($failures) {
     echo "FAIL overview:\n  ".implode("\n  ", $failures)."\n";

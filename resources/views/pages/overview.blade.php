@@ -36,7 +36,7 @@
                     @endforeach
                 </select>
                 <div class="s-segments" role="group" aria-label="{{ __('pelican-simplify::overview.layout.label') }}">
-                    @foreach (['cards' => 'tabler-layout-grid', 'compact' => 'tabler-layout-list', 'list' => 'tabler-list'] as $option => $icon)
+                    @foreach (array_intersect_key(['cards' => 'tabler-layout-grid', 'compact' => 'tabler-layout-list', 'list' => 'tabler-list', 'nodes' => 'tabler-server-2'], array_flip($this->layouts())) as $option => $icon)
                         <button
                             type="button"
                             wire:click="$set('display', '{{ $option }}')"
@@ -65,6 +65,35 @@
 
         @if ($servers->isEmpty())
             <div class="s-card s-muted">{{ __('pelican-simplify::overview.empty') }}</div>
+        @elseif ($display === \Simplify\Core\Filament\App\Pages\Overview::HOST)
+            @foreach ($this->nodeSections() as $section)
+                <section class="s-section" wire:key="node-{{ $section['node']->id }}">
+                    <h2 class="s-section-title">
+                        <x-filament::icon icon="tabler-server-2" class="s-section-icon" />
+                        @if ($section['url'])
+                            <a class="s-tile-link" href="{{ $section['url'] }}">{{ $section['node']->name }}</a>
+                        @else
+                            {{ $section['node']->name }}
+                        @endif
+                        <span class="s-muted">{{ trans_choice('pelican-simplify::overview.node_servers', count($section['servers'])) }}</span>
+                        @if ($section['node']->isUnderMaintenance())
+                            <span class="s-badge s-badge-warn">{{ __('pelican-simplify::overview.maintenance') }}</span>
+                        @endif
+                    </h2>
+                    <div class="s-tiles s-tiles-list">
+                        @foreach ($section['servers'] as $server)
+                            <x-pelican-simplify::server-tile
+                                :server="$server"
+                                :usage="$usage[$server->id] ?? null"
+                                :url="$this->serverUrl($server)"
+                                :badges="$this->badges($server)"
+                                :power="$this->powerActions($server)"
+                                :owner="$server->user?->username"
+                            />
+                        @endforeach
+                    </div>
+                </section>
+            @endforeach
         @else
             @foreach ($sections['groups'] as $section)
                 <section class="s-section" wire:key="group-{{ $section['group']['id'] }}">
