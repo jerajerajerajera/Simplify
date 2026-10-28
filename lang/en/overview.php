@@ -50,7 +50,10 @@ return [
         'cards' => 'Cards',
         'compact' => 'Compact',
         'list' => 'List',
+        'nodes' => 'Per node (host mode)',
     ],
+    'node_servers' => ':count server|:count servers',
+    'maintenance' => 'Maintenance',
     'groups' => [
         'edit' => 'Groups',
         'title' => 'Your server groups',

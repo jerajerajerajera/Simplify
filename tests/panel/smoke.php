@@ -201,6 +201,23 @@ step('a layout choice is saved for the account and an unknown one is refused', f
         throw new RuntimeException('the saved layout is not used: '.$layout);
     }
 });
+step('host mode lists the servers per node for root admins only', function () use ($admin, $server) {
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
+    $page = Livewire\Livewire::actingAs($admin)->test(Overview::class)->set('display', Overview::HOST);
+    if ($page->get('display') !== Overview::HOST || ! str_contains($page->html(), e($server->node->name))) {
+        throw new RuntimeException('host mode does not show the node');
+    }
+    $page->call('refreshUsage');
+    if (! isset($page->get('usage')[$server->id]['state'])) {
+        throw new RuntimeException('no numbers in host mode');
+    }
+    $user = User::where('email', 'smoke-simplify-user@example.com')->first()
+        ?? User::withoutEvents(fn () => User::factory()->create(['email' => 'smoke-simplify-user@example.com']));
+    if (Livewire\Livewire::actingAs($user)->test(Overview::class)->set('display', Overview::HOST)->get('display') === Overview::HOST) {
+        throw new RuntimeException('a user without admin rights got host mode');
+    }
+    Preferences::set($admin, 'overview.display', 'cards');
+});
 step('server groups are saved and shown as sections', function () use ($admin, $server) {
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
     $page = Livewire\Livewire::actingAs($admin)->test(Overview::class)

@@ -1,4 +1,4 @@
-@props(['server', 'usage', 'url', 'badges', 'power', 'color' => null])
+@props(['server', 'usage', 'url', 'badges', 'power', 'color' => null, 'owner' => null])
 @php
     use Simplify\Core\Overview\Format;
 
@@ -24,7 +24,7 @@
         </span>
     </div>
     <div class="s-muted s-tile-sub">
-        {{ $server->egg?->name }}@if ($address) · {{ $address }}@endif
+        @if ($owner){{ $owner }} · @endif{{ $server->egg?->name }}@if ($address) · {{ $address }}@endif
     </div>
     <dl class="s-stats">
         <div>
