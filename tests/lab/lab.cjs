@@ -97,6 +97,11 @@ const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g
     await click(page.locator('main button[type=submit]', { hasText: 'Save' }), 'settings save');
     const saved = await page.getByText(/settings saved/i).first().waitFor({ timeout: 8000 }).then(() => true, () => false);
     page.off('response', listen);
+    if (!saved) {
+      posts.push(await page.evaluate(() => [...document.querySelectorAll('body *')].filter((e) => /settings saved/i.test(e.textContent) && ![...e.children].some((c) => /settings saved/i.test(c.textContent)))
+        .map((e) => `${e.tagName}.${e.className} visible=${e.checkVisibility?.()} ${JSON.stringify(e.getBoundingClientRect())}`).join(' ; ') || 'no element with the text'));
+      posts.push(await page.evaluate(() => [...document.querySelectorAll('.fi-no, .fi-no-notification, [class*=notification]')].map((e) => `${e.className}:${e.children.length}`).join(' ; ')));
+    }
     const errors = await page.locator('.fi-fo-field-wrp-error-message, [data-validation-error]').allInnerTexts().catch(() => []);
     ok('settings saved', saved, posts.join(' || ') + ' errors: ' + errors.join(' | '));
     await shot('action-settings-saved');
