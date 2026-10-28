@@ -133,5 +133,7 @@ step('a power action on a server the user cannot reach is refused', function () 
     Livewire\Livewire::actingAs($admin)->test(Overview::class)
         ->call('power', 999999, 'start')->assertNotified(__('pelican-simplify::overview.power.denied'));
 });
-echo "$passed steps passed\n";
-exit($failed || $passed === 0 ? 1 : 0);
+if ($failed || $passed === 0) {
+    exit(1);
+}
+echo "All steps passed\n";
