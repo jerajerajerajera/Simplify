@@ -406,7 +406,7 @@
 }
 
 /* A page in host mode's frame (head.blade.php): only the page itself, without Pelican's menus or Simplify's header. */
-html.ps-frame :is(.fi-topbar, .fi-sidebar, .fi-sidebar-close-overlay, .fi-footer, [data-ps-footer], footer:not([class*="fi-"]), .ps-top, .ps-statusbar, .ps-tabbar) {
+html.ps-frame :is(.fi-topbar, .fi-sidebar, .fi-sidebar-close-overlay, .fi-layout-sidebar-toggle-btn-ctn, .fi-footer, [data-ps-footer], footer:not([class*="fi-"]), .ps-top, .ps-statusbar, .ps-tabbar) {
   display: none !important;
 }
 
@@ -536,7 +536,7 @@ html.ps-frame[data-ps-tree] .s-settings-tabs.fi-vertical {
   width: 100%;
 }
 
-.s-settings:has(.s-pelican-frame) .s-bar {
+.s-settings:has(.fi-active .s-pelican-frame) .s-bar {
   display: none;
 }
 
