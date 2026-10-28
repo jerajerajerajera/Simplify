@@ -9,7 +9,7 @@ use Simplify\Core\Support\Assets;
 
 /**
  * The picture behind a server's card: the banner its owner uploaded, else one of Simplify's own. A Minecraft server
- * always gets the same of the four Minecraft scenes, any other game the controller.
+ * always gets the same one of the five Minecraft scenes, any other game the controller.
  */
 final class Artwork
 {
