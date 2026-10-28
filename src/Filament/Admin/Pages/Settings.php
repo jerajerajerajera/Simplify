@@ -75,7 +75,7 @@ final class Settings extends Page implements HasForms
     protected function getHeaderActions(): array
     {
         return [
-            Action::make('setup')->label(__('pelican-simplify::setup.again'))->icon('tabler-wand')->color('gray')
+            Action::make('setup')->label(__('pelican-simplify::setup.again'))->icon('tabler-wand')->color('gray')->button()
                 ->url(fn () => Setup::getUrl(panel: 'admin')),
         ];
     }
