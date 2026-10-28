@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Simplify\Core\Filament\Admin\Pages;
 
 use Filament\Forms\Components\ColorPicker;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
@@ -16,10 +17,12 @@ use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Components\View;
 use Filament\Schemas\Schema;
 use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\HtmlString;
 use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Support\Assets;
+use Simplify\Core\Support\Brand;
 use Simplify\Core\Support\PanelSettings;
 
 /**
@@ -84,6 +87,17 @@ final class Settings extends Page implements HasForms
                             ->helperText(__('pelican-simplify::settings.appearance.accent_help'))
                             ->hex()->regex('/^#[0-9a-fA-F]{6}$/'),
                     ]),
+                    Section::make(__('pelican-simplify::settings.appearance.brand'))->columns(2)->schema([
+                        TextInput::make('brand_name')->label(__('pelican-simplify::settings.appearance.brand_name'))
+                            ->placeholder(fn () => (string) config('app.name'))->maxLength(40)
+                            ->helperText(__('pelican-simplify::settings.appearance.brand_name_help')),
+                        TextInput::make('logo_height')->label(__('pelican-simplify::settings.appearance.logo_height'))
+                            ->integer()->minValue(16)->maxValue(64)->suffix('px')->required(),
+                        FileUpload::make('brand_logo')->label(__('pelican-simplify::settings.appearance.logo'))
+                            ->helperText(__('pelican-simplify::settings.appearance.logo_help'))
+                            ->image()->acceptedFileTypes(['image/png', 'image/jpeg', 'image/webp'])->maxSize(1024)
+                            ->disk('local')->directory(Brand::DIRECTORY)->visibility('private')->columnSpanFull(),
+                    ]),
                 ]),
                 Tab::make(__('pelican-simplify::settings.addons.heading'))->icon('tabler-puzzle')->schema([
                     View::make('pelican-simplify::partials.addon-list'),
@@ -97,7 +111,14 @@ final class Settings extends Page implements HasForms
         abort_unless(self::canAccess(), 403);
         $state = $this->form->getState();
         $state['accent'] = ($state['accent'] ?? '') === '' ? null : strtolower($state['accent']);
+        $state['brand_name'] = trim((string) ($state['brand_name'] ?? '')) ?: null;
+        $state['brand_logo'] = ($state['brand_logo'] ?? null) ?: null;
+        $previous = PanelSettings::get('brand_logo');
         PanelSettings::save($state);
+        // A replaced or removed logo is not used anywhere else.
+        if ($previous !== null && $previous !== $state['brand_logo']) {
+            Storage::disk('local')->delete($previous);
+        }
         Notification::make()->title(__('pelican-simplify::settings.saved'))->success()->send();
     }
 
