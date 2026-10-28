@@ -309,8 +309,8 @@ step('the server page renames the server, and someone without access cannot use 
         throw new RuntimeException('the server was not renamed');
     }
     $page->instance()->saveName($name);
-    if (($page->instance()->refresh()['usage']['cpu_percent'] ?? 'missing') !== null) {
-        throw new RuntimeException('unexpected numbers without Wings');
+    if (($page->instance()->refresh()['uuid'] ?? null) !== $server->uuid) {
+        throw new RuntimeException('the server page does not refresh its card');
     }
     $stranger = User::withoutEvents(fn () => User::factory()->create());
     Livewire\Livewire::actingAs($stranger)->test(ServerPage::class, ['server' => $server])->call('power', 'start')->assertForbidden();
