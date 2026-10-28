@@ -60,7 +60,7 @@ final class Setup extends Page implements HasForms
 
         return $schema->statePath('data')->components([
             Wizard::make([
-                $step('panel', 'tabler-users-group', [SettingsFields::profile(), SettingsFields::startPage()]),
+                $step('panel', 'tabler-users-group', [SettingsFields::startPage(), SettingsFields::support()]),
                 $step('look', 'tabler-palette', [SettingsFields::colours(), SettingsFields::brand()]),
                 $step('app', 'tabler-device-mobile', [View::make('pelican-simplify::partials.setup-checks'), SettingsFields::app()]),
                 $step('addons', 'tabler-puzzle', [View::make('pelican-simplify::partials.setup-addons')]),

@@ -48,18 +48,39 @@ final class Overview extends Page
     public function initial(): array
     {
         $user = $this->user();
+        $addons = app(AddonRegistry::class);
 
         return [
             ...$this->shell($user),
             'create' => [
                 ...array_map(fn (Button $button) => ['label' => $button->label, 'url' => $button->url, 'primary' => $button->primary],
-                    app(AddonRegistry::class)->collect(fn (Addon $addon) => $addon->dashboardActions())),
+                    $addons->collect(fn (Addon $addon) => $addon->dashboardActions())),
                 ...AdminMenu::createServer(),
             ],
             'servers' => Listing::for($user),
             'host_health' => $user->isRootAdmin() ? HostHealth::cached() : [],
-            // Hosting panels with more than one node open in host mode until the admin picks a mode on the device.
-            'host_mode_auto' => PanelSettings::get('profile') === 'hosting',
+            // An add-on (Simplify Hosting) can open host mode for admins of panels with more than one node, until they pick a mode.
+            'host_mode_auto' => $addons->collect(fn (Addon $addon) => $addon->hostModeDefault() ? [true] : []) !== [],
+            'customer' => $user->isAdmin() ? [] : $this->customerLinks($addons->collect(fn (Addon $addon) => $addon->customerLinks($user))),
+        ];
+    }
+
+    /**
+     * The add-ons' customer links, then the panel's support link.
+     *
+     * @param  list<Button>  $links
+     * @return list<array{label: string, url: string}>
+     */
+    private function customerLinks(array $links): array
+    {
+        if ($links === []) {
+            return [];
+        }
+        $support = PanelSettings::get('support_url');
+
+        return [
+            ...array_map(fn (Button $link) => ['label' => $link->label, 'url' => $link->url], $links),
+            ...$support === null ? [] : [['label' => __('pelican-simplify::settings.support'), 'url' => $support]],
         ];
     }
 

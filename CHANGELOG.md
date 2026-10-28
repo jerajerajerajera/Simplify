@@ -12,7 +12,8 @@ The Simplify you know from 0.7.0 is back, rebuilt in far less code.
 - New notifications drop down from the bell, and the bell offers app notifications on a new device.
 - Theme plugins such as Nord or Catppuccin now colour Simplify too.
 - A status bar icon for Android, and update notices in each admin's own language.
-- For add-on makers: `Addon::API` gives the contract version, and an add-on that throws no longer breaks the settings page.
+- Hosting details moved to the new **Simplify Hosting** add-on: the billing link, a client area for customers and host mode as the default. The question "Who is this panel for?" is gone; the support link stays in Simplify.
+- For add-on makers: `Addon::API` gives the contract version (2), with new `serverLinks()`, `customerLinks()` and `hostModeDefault()`. An add-on that throws no longer breaks the settings page.
 
 ## 1.0.0
 
