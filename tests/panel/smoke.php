@@ -18,14 +18,22 @@ use Simplify\Core\Support\Assets;
 
 define('LARAVEL_START', microtime(true));
 require getcwd().'/vendor/autoload.php';
-$app = require getcwd().'/bootstrap/app.php';
-$app->make(Kernel::class)->bootstrap();
-// Laravel's own handler prints an error outside a step and still exits with 0, which would leave CI green without
-// testing anything.
-set_exception_handler(function (Throwable $e): void {
-    echo 'FAIL setup: '.get_class($e).': '.substr($e->getMessage(), 0, 400).' ('.basename($e->getFile()).':'.$e->getLine().")\n";
-    exit(1);
-});
+// Each step gets a fresh application, like a real request: Filament keeps panel state (render hooks, plugins) for
+// the whole process, so opening an admin page and then an app page in one application fails where a browser would not.
+function boot(): Illuminate\Foundation\Application
+{
+    $app = require getcwd().'/bootstrap/app.php';
+    $app->make(Kernel::class)->bootstrap();
+    // Laravel's own handler prints an error outside a step and still exits with 0, which would leave CI green
+    // without testing anything.
+    set_exception_handler(function (Throwable $e): void {
+        echo 'FAIL setup: '.get_class($e).': '.substr($e->getMessage(), 0, 400).' ('.basename($e->getFile()).':'.$e->getLine().")\n";
+        exit(1);
+    });
+
+    return $app;
+}
+boot();
 
 $failed = false;
 $passed = 0;
@@ -33,7 +41,7 @@ function step(string $what, callable $run): void
 {
     global $failed, $passed;
     try {
-        $run();
+        $run(boot());
         $passed++;
         echo "PASS $what\n";
     } catch (Throwable $e) {
@@ -81,9 +89,8 @@ step('settings page renders', function () use ($admin) {
     $url = Settings::getUrl(panel: 'admin');
     expectOk(visit($admin, $url), $url);
 });
-step('a tagged add-on shows on the settings page', function () use ($admin, $app) {
+step('a tagged add-on shows on the settings page', function ($app) use ($admin) {
     $app->tag([SmokeAddon::class], AddonRegistry::TAG);
-    $app->forgetInstance(AddonRegistry::class);
     $url = Settings::getUrl(panel: 'admin');
     $response = visit($admin, $url);
     expectOk($response, $url);
