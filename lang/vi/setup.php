@@ -54,5 +54,9 @@ return [
             'name' => 'Plugins',
             'description' => 'Tìm và cài plugin từ Pelican Hub.',
         ],
+        'hosting' => [
+            'name' => 'Lưu trữ',
+            'description' => 'Liên kết thanh toán, khu vực khách hàng và chế độ máy chủ cho bảng điều khiển lớn.',
+        ],
     ],
 ];

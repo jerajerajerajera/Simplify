@@ -54,5 +54,9 @@ return [
             'name' => 'Plugins',
             'description' => 'Raskite ir įdiekite įskiepius iš Pelican Hub.',
         ],
+        'hosting' => [
+            'name' => 'Talpinimas',
+            'description' => 'Atsiskaitymo nuorodos, klientų zona ir pagrindinio kompiuterio režimas dideliems skydeliams.',
+        ],
     ],
 ];

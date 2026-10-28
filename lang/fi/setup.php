@@ -54,5 +54,9 @@ return [
             'name' => 'Plugins',
             'description' => 'Etsi ja asenna lisäosia Pelican Hubista.',
         ],
+        'hosting' => [
+            'name' => 'Hosting',
+            'description' => 'Laskutuslinkit, asiakasalue asiakkaille ja isäntätila suurille paneeleille.',
+        ],
     ],
 ];

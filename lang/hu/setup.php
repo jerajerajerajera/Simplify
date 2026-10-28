@@ -54,5 +54,9 @@ return [
             'name' => 'Plugins',
             'description' => 'Bővítmények keresése és telepítése a Pelican Hubról.',
         ],
+        'hosting' => [
+            'name' => 'Hosting',
+            'description' => 'Számlázási linkek, ügyfélterület az ügyfeleknek és hoszt mód nagy panelekhez.',
+        ],
     ],
 ];

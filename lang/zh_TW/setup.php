@@ -54,5 +54,9 @@ return [
             'name' => 'Plugins',
             'description' => '從 Pelican Hub 尋找並安裝外掛。',
         ],
+        'hosting' => [
+            'name' => '託管',
+            'description' => '帳單連結、客戶專區，以及適合大型面板的主機模式。',
+        ],
     ],
 ];

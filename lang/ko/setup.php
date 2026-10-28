@@ -54,5 +54,9 @@ return [
             'name' => 'Plugins',
             'description' => 'Pelican Hub에서 플러그인을 찾아 설치합니다.',
         ],
+        'hosting' => [
+            'name' => '호스팅',
+            'description' => '청구 링크, 고객용 클라이언트 영역, 대규모 패널을 위한 호스트 모드.',
+        ],
     ],
 ];
