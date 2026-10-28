@@ -681,3 +681,16 @@
     flex-wrap: wrap;
   }
 }
+
+/* Setup */
+.s-ok {
+  color: var(--s-ok);
+}
+
+.s-warn {
+  color: var(--s-warn);
+}
+
+.s-setup-note {
+  margin-bottom: var(--s-space-3);
+}

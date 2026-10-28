@@ -6,6 +6,7 @@ use App\Models\Role;
 use App\Models\Server;
 use App\Models\User;
 use Filament\Support\Colors\Color;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithAuthentication;
@@ -17,9 +18,11 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Testing\TestResponse;
 use Illuminate\Validation\ValidationException;
+use Livewire\Features\SupportTesting\Testable;
 use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Filament\Admin\Pages\Settings;
+use Simplify\Core\Filament\Admin\Pages\Setup;
 use Simplify\Core\Filament\App\Pages\Notifications;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Livewire\HostHealthCard;
@@ -76,6 +79,13 @@ function visit(User $user, string $url): TestResponse
 
     return $client->actingAs($user)->get($url);
 }
+// Livewire's own assertions need PHPUnit's configuration, which a plain script does not have.
+function noErrors(Testable $component): void
+{
+    if ($component->errors()->isNotEmpty()) {
+        throw new RuntimeException('validation failed: '.json_encode($component->errors()->toArray()));
+    }
+}
 function expectOk(TestResponse $response, string $url): void
 {
     if ($response->getStatusCode() !== 200) {
@@ -101,6 +111,26 @@ $admin = User::where('email', 'smoke-simplify@example.com')->first()
     ?? User::withoutEvents(fn () => User::factory()->create(['email' => 'smoke-simplify@example.com']));
 $admin->syncRoles(Role::getRootAdmin());
 
+step('the first visit to the settings opens the setup, and finishing it saves the answers', function () use ($admin) {
+    $response = visit($admin, Settings::getUrl(panel: 'admin'));
+    if (! $response->isRedirect() || ! str_contains((string) $response->headers->get('Location'), 'simplify-setup')) {
+        throw new RuntimeException('the settings did not open the setup first (HTTP '.$response->getStatusCode().')');
+    }
+    $url = Setup::getUrl(panel: 'admin');
+    $page = visit($admin, $url);
+    expectOk($page, $url);
+    if (! str_contains($page->getContent(), 'hub.pelican.dev/plugins/simplify-server-maker')) {
+        throw new RuntimeException('the setup does not list the add-ons');
+    }
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('admin'));
+    $setup = Livewire\Livewire::actingAs($admin)->test(Setup::class)
+        ->set('data.profile', 'hosting')->set('data.billing_url', 'https://billing.example.com/s/{uuid}')
+        ->set('data.support_url', 'mailto:help@example.com')->call('finish');
+    noErrors($setup);
+    if (! PanelSettings::get('setup_done') || PanelSettings::get('profile') !== 'hosting' || PanelSettings::get('support_url') !== 'mailto:help@example.com') {
+        throw new RuntimeException('the setup was not saved: '.json_encode(PanelSettings::all()));
+    }
+});
 step('settings page renders', function () use ($admin) {
     $url = Settings::getUrl(panel: 'admin');
     expectOk(visit($admin, $url), $url);
@@ -196,12 +226,33 @@ step('the console page shows the Simplify details above the console', function (
         throw new RuntimeException('the details are missing on '.$url);
     }
 });
+step('a hosting panel: signing in lands on the overview, and customers get billing and support links', function () use ($admin, $server) {
+    event(new Login('web', $admin, false));
+    if (session('url.intended') !== Overview::getUrl(panel: 'app')) {
+        throw new RuntimeException('signing in does not lead to the overview: '.json_encode(session('url.intended')));
+    }
+    $url = Filament\Facades\Filament::getPanel('server')->getUrl($server);
+    $response = visit($admin, $url);
+    if ($response->isRedirect()) {
+        $url = (string) $response->headers->get('Location');
+        $response = visit($admin, $url);
+    }
+    expectOk($response, $url);
+    if (! str_contains($response->getContent(), 'billing.example.com/s/'.$server->uuid)) {
+        throw new RuntimeException('the billing link is missing');
+    }
+    if (! str_contains($response->getContent(), 'mailto:help@example.com')) {
+        throw new RuntimeException('the support link is missing');
+    }
+});
 step('panel settings are saved and a bad value is refused', function () use ($admin) {
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('admin'));
-    Livewire\Livewire::actingAs($admin)->test(Settings::class)
-        ->set('data.overview_seconds', 2)->call('save')->assertHasErrors();
-    Livewire\Livewire::actingAs($admin)->test(Settings::class)
-        ->set('data.overview_seconds', 20)->set('data.accent', '#336699')->call('save')->assertHasNoErrors();
+    $bad = Livewire\Livewire::actingAs($admin)->test(Settings::class)->set('data.overview_seconds', 2)->call('save');
+    if ($bad->errors()->isEmpty()) {
+        throw new RuntimeException('a refresh of 2 seconds was accepted');
+    }
+    noErrors(Livewire\Livewire::actingAs($admin)->test(Settings::class)
+        ->set('data.overview_seconds', 20)->set('data.accent', '#336699')->call('save'));
     if (PanelSettings::get('overview_seconds') !== 20 || PanelSettings::get('accent') !== '#336699') {
         throw new RuntimeException('settings were not saved: '.json_encode(PanelSettings::all()));
     }

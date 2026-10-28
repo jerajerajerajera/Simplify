@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Simplify\Core\Support;
 
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Simplify\Core\Models\Setting;
 use Throwable;
@@ -17,9 +18,23 @@ final class PanelSettings
 {
     private const CACHE_KEY = 'simplify.settings';
 
+    /** The checked settings for this request, kept in the container so a new request (or test app) starts fresh. */
+    private const MEMO = 'simplify.settings.checked';
+
+    /** An https address, which may hold {uuid} and {external_id}; Laravel's url rule does not accept the braces. */
+    public const BILLING_URL = '#^https://[^\s<>"]+$#';
+
+    /** An https address or a mailto: address; Laravel's url rule does not accept mailto:. */
+    public const SUPPORT_URL = '#^(https://[^\s<>"]+|mailto:[^\s@<>"]+@[^\s@<>"]+)$#';
+
     /** key => [default, validation rules] */
     public const FIELDS = [
         'accent' => [null, ['nullable', 'regex:/^#[0-9a-fA-F]{6}$/']],
+        'setup_done' => [false, ['required', 'boolean']],
+        'profile' => ['friends', ['required', 'in:friends,hosting']],
+        'start_page' => ['overview', ['required', 'in:overview,pelican']],
+        'billing_url' => [null, ['nullable', 'max:255', 'regex:'.self::BILLING_URL]],
+        'support_url' => [null, ['nullable', 'max:255', 'regex:'.self::SUPPORT_URL]],
         'push' => [true, ['required', 'boolean']],
         'overview_seconds' => [15, ['required', 'integer', 'min:5', 'max:300']],
         'brand_name' => [null, ['nullable', 'string', 'max:40']],
@@ -31,6 +46,9 @@ final class PanelSettings
     /** @return array<string, mixed> */
     public static function all(): array
     {
+        if (app()->bound(self::MEMO)) {
+            return app(self::MEMO);
+        }
         try {
             $saved = Cache::rememberForever(self::CACHE_KEY, fn () => Setting::query()->pluck('value', 'key')->all());
         } catch (Throwable) {
@@ -42,6 +60,7 @@ final class PanelSettings
             $value = $saved[$key] ?? $default;
             $settings[$key] = Validator::make(['value' => $value], ['value' => $rules])->passes() ? $value : $default;
         }
+        app()->instance(self::MEMO, $settings);
 
         return $settings;
     }
@@ -61,5 +80,37 @@ final class PanelSettings
             Setting::query()->updateOrCreate(['key' => $key], ['value' => $value]);
         }
         Cache::forget(self::CACHE_KEY);
+        app()->forgetInstance(self::MEMO);
+    }
+
+    /**
+     * Saves what a settings form or the setup wizard sent: empty text becomes null, and an uploaded image that was
+     * replaced or removed is deleted, since nothing else uses it.
+     *
+     * @param  array<string, mixed>  $state
+     */
+    public static function saveForm(array $state): void
+    {
+        foreach (['accent', 'brand_name', 'billing_url', 'support_url'] as $text) {
+            if (array_key_exists($text, $state)) {
+                $state[$text] = trim((string) $state[$text]) ?: null;
+            }
+        }
+        if (isset($state['accent'])) {
+            $state['accent'] = strtolower($state['accent']);
+        }
+        $previous = [];
+        foreach (['brand_logo', 'app_icon'] as $file) {
+            if (array_key_exists($file, $state)) {
+                $state[$file] = $state[$file] ?: null;
+                $previous[$file] = self::get($file);
+            }
+        }
+        self::save($state);
+        foreach ($previous as $file => $old) {
+            if ($old !== null && $old !== $state[$file]) {
+                Storage::disk('local')->delete($old);
+            }
+        }
     }
 }

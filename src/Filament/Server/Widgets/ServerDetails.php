@@ -10,6 +10,7 @@ use Filament\Widgets\Widget;
 use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Filament\App\Pages\Overview;
+use Simplify\Core\Support\Billing;
 
 /**
  * A line above Pelican's console with what people look up most: the address to join, the SFTP login and what
@@ -48,6 +49,11 @@ final class ServerDetails extends Widget
     public function badges(): array
     {
         return $this->server === null ? [] : app(AddonRegistry::class)->collect(fn (Addon $addon) => $addon->tileBadges($this->server));
+    }
+
+    public function billingUrl(): ?string
+    {
+        return $this->server === null ? null : Billing::url($this->server);
     }
 
     public function overviewUrl(): string
