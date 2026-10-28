@@ -277,6 +277,9 @@ step('a server gets a colour and banner from its page, shown on its card', funct
     }
     $banner = (string) parse_url($look['banner'], PHP_URL_PATH);
     expectOk(visit($admin, $banner), $banner);
+    // Earlier steps put the server in a group (whose colour wins) and made this a hosting panel (host mode by default).
+    Preferences::set($admin, 'overview.groups', []);
+    Preferences::set($admin, 'overview.display', 'cards');
     $url = Overview::getUrl(panel: 'app');
     $page = visit($admin, $url);
     expectOk($page, $url);
