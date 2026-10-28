@@ -7,6 +7,10 @@ return [
     'support' => 'Asistență',
     'billing' => 'Facturare',
     'saved' => 'Setări salvate',
+    'page_title' => 'Setări Simplify',
+    'pelican_frame_title' => 'Setări Pelican: :label',
+    'pelican_frame' => 'Setările :label proprii ale Pelican. Salvați-le cu butonul de salvare al Pelican din dreapta sus a acestui panou.',
+    'version_line' => 'Versiunea :version · Modificările se aplică tuturor celor de pe acest panou după salvare.',
     'profile' => [
         'heading' => 'Pentru cine este acest panou?',
         'friends' => 'Eu și prietenii mei',

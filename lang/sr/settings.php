@@ -7,6 +7,10 @@ return [
     'support' => 'Подршка',
     'billing' => 'Наплата',
     'saved' => 'Подешавања сачувана',
+    'page_title' => 'Simplify подешавања',
+    'pelican_frame_title' => 'Pelican подешавања: :label',
+    'pelican_frame' => 'Сопствена :label подешавања Pelican-а. Сачувајте их Pelican-овим дугметом за чување горе десно на овом панелу.',
+    'version_line' => 'Верзија :version · Промене важе за све на овом панелу после чувања.',
     'profile' => [
         'heading' => 'За кога је овај панел?',
         'friends' => 'За мене и пријатеље',

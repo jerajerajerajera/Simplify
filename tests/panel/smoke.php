@@ -156,9 +156,15 @@ step('the first visit to the settings opens the setup, and finishing it saves th
         throw new RuntimeException('the setup was not saved: '.json_encode(PanelSettings::all()));
     }
 });
-step('settings page renders', function () use ($admin) {
+step('settings page renders with its menu, Pelican tabs included', function () use ($admin) {
     $url = Settings::getUrl(panel: 'admin');
-    expectOk(visit($admin, $url), $url);
+    $response = visit($admin, $url);
+    expectOk($response, $url);
+    auth()->setUser($admin);
+    $menu = collect(Settings::menu())->pluck('group', 'key');
+    if (! str_contains($response->getContent(), 's-settings-tabs') || ($menu['settings:appearance'] ?? null) !== 'panel' || ($menu['settings:pelican-mail'] ?? null) !== 'pelican') {
+        throw new RuntimeException('the settings menu is incomplete: '.json_encode($menu));
+    }
 });
 step('a tagged add-on shows on the settings page', function ($app) use ($admin) {
     $app->tag([SmokeAddon::class], AddonRegistry::TAG);

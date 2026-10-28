@@ -7,6 +7,10 @@ return [
     'support' => 'Pomoc',
     'billing' => 'Płatności',
     'saved' => 'Ustawienia zapisane',
+    'page_title' => 'Ustawienia Simplify',
+    'pelican_frame_title' => 'Ustawienia Pelican: :label',
+    'pelican_frame' => 'Własne ustawienia :label w Pelican. Zapisz je przyciskiem zapisu Pelican w prawym górnym rogu tego panelu.',
+    'version_line' => 'Wersja :version · Zmiany obowiązują wszystkich w tym panelu po zapisaniu.',
     'profile' => [
         'heading' => 'Dla kogo jest ten panel?',
         'friends' => 'Ja i moi znajomi',

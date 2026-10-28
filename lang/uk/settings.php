@@ -7,6 +7,10 @@ return [
     'support' => 'Підтримка',
     'billing' => 'Оплата',
     'saved' => 'Налаштування збережено',
+    'page_title' => 'Налаштування Simplify',
+    'pelican_frame_title' => 'Налаштування Pelican: :label',
+    'pelican_frame' => 'Власні налаштування :label у Pelican. Збережіть їх кнопкою збереження Pelican у правому верхньому куті цієї панелі.',
+    'version_line' => 'Версія :version · Зміни після збереження діють для всіх на цій панелі.',
     'profile' => [
         'heading' => 'Для кого ця панель?',
         'friends' => 'Я і мої друзі',

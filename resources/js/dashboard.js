@@ -197,11 +197,20 @@
           { key: 'extensions', label: t('dashboard.other_plugins'), icon: 'plugins', color: '#2dd4bf', pages: [] },
           { key: 'health', label: t('dashboard.admin_groups.health'), icon: 'heart', color: '#f87171', pages: ['health'] },
         ];
+        // The settings are leaves of the tree: Simplify's tabs, the add-ons' pages and Pelican's tabs, each in its group.
+        const menu = this.boot.settings_menu || [];
+        if (menu.length) {
+          const tabs = (group) => menu.filter((tab) => tab.group === group).map((tab) => ({ ...tab, settings: true }));
+          plan.splice(plan.findIndex((section) => section.key === 'panel'), 1,
+            { key: 'panel', label: t('dashboard.admin_groups.settings'), icon: 'gear', color: '#94a3b8', pages: [], tabs: tabs('panel') },
+            { key: 'addons', label: t('dashboard.admin_groups.addons'), icon: 'plugins', color: '#b48cf2', pages: ['pluginresource'], tabs: tabs('addons') },
+            { key: 'pelican', label: t('dashboard.admin_groups.pelican_settings'), icon: 'settings', color: '#5b9cf0', pages: ['listlogs'], tabs: tabs('pelican') });
+        }
         const items = this.adminPages().flatMap((group) => group.items);
-        const known = new Set(plan.flatMap((section) => section.pages));
+        const known = new Set([...plan.flatMap((section) => section.pages), 'settings']);
         return plan.map((section) => ({
           ...section,
-          pages: section.key === 'extensions' ? items.filter((item) => !known.has(item.key)) : section.pages.map((key) => items.find((item) => item.key === key)).filter(Boolean),
+          pages: section.key === 'extensions' ? items.filter((item) => !known.has(item.key)) : [...(section.tabs || []), ...section.pages.map((key) => items.find((item) => item.key === key)).filter(Boolean)],
         })).filter((section) => section.pages.length);
       },
       adminHealthPage() {
@@ -253,8 +262,9 @@
           sessionStorage.setItem(this.hostModeKey() + '.place', JSON.stringify({ section: section?.key || null, page: item?.key || null }));
         } catch {}
       },
+      /** While a settings page is open the tree shows the settings groups open and folds the others to their heads. */
       hostBranchOpen(section) {
-        return section.pages.length > 1;
+        return section.pages.length > 1 && !!section.tabs === !!(this.hostSection?.tabs && !this.hostServer);
       },
       openHostServer(s) {
         this.hostServer = s;

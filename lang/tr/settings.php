@@ -7,6 +7,10 @@ return [
     'support' => 'Destek',
     'billing' => 'Faturalandırma',
     'saved' => 'Ayarlar kaydedildi',
+    'page_title' => 'Simplify ayarları',
+    'pelican_frame_title' => 'Pelican ayarları: :label',
+    'pelican_frame' => 'Pelican\'ın kendi ayarları: :label. Onları bu panelin sağ üstündeki Pelican kaydet düğmesiyle kaydet.',
+    'version_line' => 'Sürüm :version · Değişiklikler kaydettikten sonra bu paneldeki herkes için geçerli olur.',
     'profile' => [
         'heading' => 'Bu panel kimin için?',
         'friends' => 'Ben ve arkadaşlarım',

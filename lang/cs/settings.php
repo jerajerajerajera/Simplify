@@ -7,6 +7,10 @@ return [
     'support' => 'Podpora',
     'billing' => 'Fakturace',
     'saved' => 'Nastavení uloženo',
+    'page_title' => 'Nastavení Simplify',
+    'pelican_frame_title' => 'Nastavení Pelican: :label',
+    'pelican_frame' => 'Vlastní nastavení :label v Pelican. Uložte je tlačítkem pro uložení Pelican vpravo nahoře v tomto panelu.',
+    'version_line' => 'Verze :version · Změny po uložení platí pro všechny na tomto panelu.',
     'profile' => [
         'heading' => 'Pro koho je tento panel?',
         'friends' => 'Já a moji přátelé',
