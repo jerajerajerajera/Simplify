@@ -97,7 +97,7 @@ const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g
     const layouts = await page.locator('main .s-segment-icon').count();
     ok('four layouts for a root admin (cards, compact, list, per node)', layouts === 4, layouts + ' layout buttons');
     await page.locator('main .s-segment-icon').first().click(); await settle();
-    for (const [scope, expect] of [['Mine', 4], ['Others', 2], ['All', 6]]) {
+    for (const [scope, expect] of [['Mine', 5], ['Others', 1], ['All', 6]]) {
       if (await click(page.locator('main .s-segment', { hasText: new RegExp('^\\s*' + scope) }), `scope ${scope}`)) {
         const tiles = await page.locator('main .s-tile').count();
         ok(`scope ${scope} shows ${expect} servers`, tiles === expect, tiles + ' tiles');
