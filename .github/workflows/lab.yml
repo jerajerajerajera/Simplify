@@ -5,6 +5,8 @@ on:
   workflow_dispatch: {}
   pull_request:
     paths: ['tests/lab/**', '.github/workflows/lab.yml']
+permissions:
+  contents: write
 jobs:
   lab:
     runs-on: ubuntu-latest
@@ -79,3 +81,14 @@ jobs:
           path: |
             panel/shots
             panel/wings.log
+      # Also on a branch of its own, so the screenshots can be fetched with plain git.
+      - name: Results to the lab-results branch
+        if: always()
+        run: |
+          mkdir results && cp -r panel/shots/. results/ 2>/dev/null || true
+          cp panel/wings.log results/ 2>/dev/null || true
+          cd results
+          git init -q -b results
+          git add -A
+          git -c user.name=lab -c user.email=lab@users.noreply.github.com commit -qm "Lab ${{ matrix.pelican }} ${{ github.sha }}"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "results:refs/heads/lab-results/${{ matrix.pelican }}"
