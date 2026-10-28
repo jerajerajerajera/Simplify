@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace Simplify\Core;
 
+use App\Enums\ConsoleWidgetPosition;
+use App\Filament\Server\Pages\Console;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\App\Pages\Overview;
+use Simplify\Core\Filament\Server\Widgets\AddonSections;
+use Simplify\Core\Filament\Server\Widgets\ServerDetails;
 
 final class SimplifyPlugin implements Plugin
 {
@@ -24,6 +28,10 @@ final class SimplifyPlugin implements Plugin
 
         if ($panel->getId() === 'app') {
             $panel->pages([Overview::class]);
+        }
+        if ($panel->getId() === 'server') {
+            Console::registerCustomWidgets(ConsoleWidgetPosition::Top, [ServerDetails::class]);
+            Console::registerCustomWidgets(ConsoleWidgetPosition::BelowConsole, [AddonSections::class]);
         }
         if ($panel->getId() === 'admin') {
             $panel->pages([Settings::class]);

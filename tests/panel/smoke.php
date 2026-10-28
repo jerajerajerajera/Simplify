@@ -169,6 +169,19 @@ step('server groups are saved and shown as sections', function () use ($admin, $
         throw new RuntimeException('groups were not saved: '.json_encode($saved));
     }
 });
+step('the console page shows the Simplify details above the console', function () use ($admin, $server) {
+    $url = Filament\Facades\Filament::getPanel('server')->getUrl($server);
+    $response = visit($admin, $url);
+    // The panel's home redirects to the console page.
+    if ($response->isRedirect()) {
+        $url = (string) $response->headers->get('Location');
+        $response = visit($admin, $url);
+    }
+    expectOk($response, $url);
+    if (! str_contains($response->getContent(), 's-details')) {
+        throw new RuntimeException('the details are missing on '.$url);
+    }
+});
 if ($failed || $passed === 0) {
     exit(1);
 }
