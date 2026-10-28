@@ -226,6 +226,22 @@
   transition: border-color var(--s-fast);
 }
 
+.s-tile {
+  position: relative;
+}
+
+/* The name's link covers the whole tile; the power buttons sit above it. */
+.s-tile-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.s-tile-link::after {
+  content: "";
+  inset: 0;
+  position: absolute;
+}
+
 .s-tile:hover {
   border-color: var(--s-accent);
 }
@@ -274,10 +290,30 @@
   white-space: nowrap;
 }
 
-.s-tile-badges {
+.s-tile-foot {
+  align-items: center;
   display: flex;
   flex-wrap: wrap;
   gap: var(--s-space-1);
+}
+
+.s-tile-power {
+  display: flex;
+  gap: var(--s-space-1);
+  margin-left: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.s-btn-icon {
+  justify-content: center;
+  padding: 0;
+  width: var(--s-h);
+}
+
+.s-btn:disabled {
+  cursor: default;
+  opacity: .5;
 }
 
 @media (max-width: 600px) {

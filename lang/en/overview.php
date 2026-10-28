@@ -26,4 +26,12 @@ return [
         'suspended' => 'Suspended',
         'restoring_backup' => 'Restoring backup',
     ],
+    'power' => [
+        'start' => 'Start',
+        'stop' => 'Stop',
+        'restart' => 'Restart',
+        'kill' => 'Kill',
+        'denied' => 'You may not do that on this server.',
+        'failed' => ':server did not respond. Try again in a moment.',
+    ],
 ];
