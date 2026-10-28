@@ -21,6 +21,9 @@ final class PanelSettings
     public const FIELDS = [
         'accent' => [null, ['nullable', 'regex:/^#[0-9a-fA-F]{6}$/']],
         'overview_seconds' => [15, ['required', 'integer', 'min:5', 'max:300']],
+        'brand_name' => [null, ['nullable', 'string', 'max:40']],
+        'brand_logo' => [null, ['nullable', 'string', 'regex:#^'.Brand::DIRECTORY.'/'.Brand::FILE_PATTERN.'$#']],
+        'logo_height' => [32, ['required', 'integer', 'min:16', 'max:64']],
     ];
 
     /** @return array<string, mixed> */

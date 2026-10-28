@@ -11,12 +11,14 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithAuthentication;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithSession;
 use Illuminate\Foundation\Testing\Concerns\MakesHttpRequests;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Testing\TestResponse;
 use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Support\Assets;
+use Simplify\Core\Support\Brand;
 use Simplify\Core\Support\PanelSettings;
 use Simplify\Core\Support\Preferences;
 
@@ -204,6 +206,27 @@ step('the accent colour and refresh rate reach the panel', function () use ($adm
     }
     if (! str_contains($html, 'wire:poll.20s.visible')) {
         throw new RuntimeException('the refresh rate is not used');
+    }
+});
+step('an uploaded logo and panel name are shown and served', function () {
+    $png = base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==');
+    Storage::disk('local')->put(Brand::DIRECTORY.'/smoke-logo.png', $png);
+    PanelSettings::save(['brand_name' => 'Smoke Panel', 'brand_logo' => Brand::DIRECTORY.'/smoke-logo.png']);
+});
+step('the panel uses the uploaded logo and name', function () use ($admin) {
+    $url = Overview::getUrl(panel: 'app');
+    $response = visit($admin, $url);
+    expectOk($response, $url);
+    if (! str_contains($response->getContent(), '/simplify/brand/smoke-logo.png')) {
+        throw new RuntimeException('the logo is not used');
+    }
+    if (! str_contains($response->getContent(), 'Smoke Panel')) {
+        throw new RuntimeException('the panel name is not used');
+    }
+    $logo = visit($admin, '/simplify/brand/smoke-logo.png');
+    expectOk($logo, '/simplify/brand/smoke-logo.png');
+    if (visit($admin, '/simplify/brand/missing.png')->getStatusCode() !== 404) {
+        throw new RuntimeException('a missing logo is not a 404');
     }
 });
 if ($failed || $passed === 0) {

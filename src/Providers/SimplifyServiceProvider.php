@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Http\Controllers\AssetController;
+use Simplify\Core\Http\Controllers\BrandController;
+use Simplify\Core\Support\Brand;
 use Throwable;
 
 final class SimplifyServiceProvider extends ServiceProvider
@@ -29,5 +31,8 @@ final class SimplifyServiceProvider extends ServiceProvider
         Route::get('/simplify/assets/{name}', AssetController::class)
             ->where('name', '[a-z.]+')
             ->name('simplify.asset');
+        Route::get('/simplify/brand/{file}', BrandController::class)
+            ->where('file', Brand::FILE_PATTERN)
+            ->name('simplify.brand');
     }
 }

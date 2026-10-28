@@ -18,7 +18,7 @@ See [ADDONS.md](ADDONS.md) for how an add-on plugs into Simplify.
 
 Nothing. Simplify only talks to your own panel and your Wings nodes.
 
-Open routes (no login): `/simplify/assets/{name}` serves Simplify's stylesheet and logo.
+Open routes (no login): `/simplify/assets/{name}` serves Simplify's stylesheet and logo, and `/simplify/brand/{file}` serves the panel logo an admin uploaded in Simplify's settings.
 
 ## Development
 
