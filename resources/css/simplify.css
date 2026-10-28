@@ -336,6 +336,16 @@
   margin-bottom: var(--s-space-3);
 }
 
+/* The node name in host mode links to the node; unlike a tile's name it covers only itself. */
+.s-section-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.s-section-link:hover {
+  text-decoration: underline;
+}
+
 .s-section-icon {
   color: var(--s-muted);
   height: 18px;
