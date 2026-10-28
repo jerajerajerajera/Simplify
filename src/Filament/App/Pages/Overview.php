@@ -21,6 +21,7 @@ use Simplify\Core\Overview\Power;
 use Simplify\Core\Overview\ServerGroups;
 use Simplify\Core\Overview\ServerQuery;
 use Simplify\Core\Overview\Usage;
+use Simplify\Core\Server\Looks;
 use Simplify\Core\Support\PanelSettings;
 use Simplify\Core\Support\Preferences;
 use Throwable;
@@ -246,6 +247,17 @@ final class Overview extends Page
     public function actions(): array
     {
         return app(AddonRegistry::class)->collect(fn (Addon $addon) => $addon->dashboardActions());
+    }
+
+    /** @var array<int, array{color: ?string, banner: ?string}>|null */
+    private ?array $looks = null;
+
+    /** @return array{color: ?string, banner: ?string} the colour and banner the server's owner chose */
+    public function look(Server $server): array
+    {
+        $this->looks ??= Looks::forMany($this->allServers()->pluck('id')->all());
+
+        return $this->looks[$server->id] ?? ['color' => null, 'banner' => null];
     }
 
     /** @return list<string> */

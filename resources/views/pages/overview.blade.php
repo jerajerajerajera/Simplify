@@ -89,6 +89,7 @@
                                 :badges="$this->badges($server)"
                                 :power="$this->powerActions($server)"
                                 :owner="$server->user?->username"
+                                :color="$this->look($server)['color']"
                             />
                         @endforeach
                     </div>
@@ -109,7 +110,8 @@
                                 :url="$this->serverUrl($server)"
                                 :badges="$this->badges($server)"
                                 :power="$this->powerActions($server)"
-                                :color="$section['group']['color']"
+                                :color="$section['group']['color'] ?? $this->look($server)['color']"
+                                :banner="$this->look($server)['banner']"
                             />
                         @endforeach
                     </div>
@@ -128,6 +130,8 @@
                                 :url="$this->serverUrl($server)"
                                 :badges="$this->badges($server)"
                                 :power="$this->powerActions($server)"
+                                :color="$this->look($server)['color']"
+                                :banner="$this->look($server)['banner']"
                             />
                         @endforeach
                     </div>

@@ -12,6 +12,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithAuthentication;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithSession;
 use Illuminate\Foundation\Testing\Concerns\MakesHttpRequests;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Http;
@@ -25,11 +26,13 @@ use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\Admin\Pages\Setup;
 use Simplify\Core\Filament\App\Pages\Notifications;
 use Simplify\Core\Filament\App\Pages\Overview;
+use Simplify\Core\Filament\Server\Widgets\ServerDetails;
 use Simplify\Core\Livewire\HostHealthCard;
 use Simplify\Core\People\People;
 use Simplify\Core\Push\Push;
 use Simplify\Core\Push\UpdateNotices;
 use Simplify\Core\Push\WebPush;
+use Simplify\Core\Server\Looks;
 use Simplify\Core\Support\Assets;
 use Simplify\Core\Support\Brand;
 use Simplify\Core\Support\PanelSettings;
@@ -261,6 +264,29 @@ step('a hosting panel: signing in lands on the overview, and customers get billi
     if (! str_contains($response->getContent(), 'mailto:help@example.com')) {
         throw new RuntimeException('the support link is missing');
     }
+});
+step('a server gets a colour and banner from its page, shown on its card', function () use ($admin, $server) {
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('server'));
+    Livewire\Livewire::actingAs($admin)->test(ServerDetails::class, ['server' => $server])
+        ->call('customize')->set('color', '#AA3355')
+        ->set('banner', UploadedFile::fake()->image('banner.png', 600, 100))
+        ->call('saveLook')->assertHasNoErrors();
+    $look = Looks::for($server);
+    if ($look['color'] !== '#aa3355' || $look['banner'] === null) {
+        throw new RuntimeException('the look was not saved: '.json_encode($look));
+    }
+    $banner = (string) parse_url($look['banner'], PHP_URL_PATH);
+    expectOk(visit($admin, $banner), $banner);
+    // Earlier steps put the server in a group (whose colour wins) and made this a hosting panel (host mode by default).
+    Preferences::set($admin, 'overview.groups', []);
+    Preferences::set($admin, 'overview.display', 'cards');
+    $url = Overview::getUrl(panel: 'app');
+    $page = visit($admin, $url);
+    expectOk($page, $url);
+    if (! str_contains($page->getContent(), $banner) || ! str_contains($page->getContent(), '--s-tile-accent: #aa3355')) {
+        throw new RuntimeException('the card does not show the banner and colour');
+    }
+    Looks::save($server, null, null);
 });
 step('panel settings are saved and a bad value is refused', function () use ($admin) {
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('admin'));
