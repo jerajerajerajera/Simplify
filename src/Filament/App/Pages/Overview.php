@@ -13,6 +13,7 @@ use Filament\Pages\Page;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Livewire\Attributes\Locked;
 use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Addons\Button;
@@ -260,10 +261,17 @@ final class Overview extends Page
         return $this->looks[$server->id] ?? ['color' => null, 'banner' => null];
     }
 
+    /**
+     * @var array<int, list<string>> add-on badges per server id, asked once per visit: the live numbers refresh
+     *                               every few seconds, and asking every add-on for every tile each time adds up.
+     */
+    #[Locked]
+    public array $tileBadges = [];
+
     /** @return list<string> */
     public function badges(Server $server): array
     {
-        return app(AddonRegistry::class)->collect(fn (Addon $addon) => $addon->tileBadges($server));
+        return $this->tileBadges[$server->id] ??= app(AddonRegistry::class)->collect(fn (Addon $addon) => $addon->tileBadges($server));
     }
 
     public function serverUrl(Server $server): string
