@@ -5,6 +5,7 @@ return [
     'save' => 'Uložiť',
     'overview' => 'Prehľad',
     'support' => 'Podpora',
+    'client_area' => 'Klientska zóna',
     'billing' => 'Fakturácia',
     'saved' => 'Nastavenia uložené',
     'profile' => [
@@ -15,6 +16,10 @@ return [
         'hosting_help' => 'Zákazníci s vlastnými servermi. Pridá odkaz na fakturáciu pre zákazníkov a kompaktný zoznam serverov podľa nodov pre adminov.',
         'billing' => 'Odkaz na fakturáciu',
         'billing_help' => 'Kde zákazníci spravujú alebo rozširujú server, napríklad vaša klientska zóna vo WHMCS, Paymenter alebo HostBill. {uuid} a {external_id} sa nahradia hodnotami servera.',
+        'client_area' => 'Odkaz na klientsku zónu',
+        'client_area_help' => 'Kde sa zákazníci prihlasujú do vášho fakturačného systému. Zobrazí sa v ich ponuke účtu a nad ich servermi.',
+        'order' => 'Odkaz na objednávku',
+        'order_help' => 'Kde sa objednáva nový server. Zákazníci uvidia v prehľade Objednať server, keď tu nemôžu server vytvoriť sami.',
         'support' => 'Odkaz na podporu',
         'support_help' => 'Stránka pomoci alebo adresa mailto:, v ponuke účtu každého. Prázdne nič nezobrazí.',
     ],
@@ -48,6 +53,8 @@ return [
         'app_help' => 'Ktokoľvek si môže panel pridať ako aplikáciu do telefónu alebo počítača z ponuky prehliadača.',
         'app_icon' => 'Ikona aplikácie',
         'app_icon_help' => 'Štvorcový PNG, JPEG alebo WebP aspoň 512 pixelov, do 1 MB. Prázdne použije ikonu Simplify.',
+        'app_badge' => 'Ikona stavového riadka',
+        'app_badge_help' => 'PNG s priehľadným pozadím, v stavovom riadku Androidu zobrazené nabielo. Prázdne použije ikonu aplikácie, ak má priehľadné pozadie, inak pelikána.',
     ],
     'addons' => [
         'heading' => 'Doplnky',

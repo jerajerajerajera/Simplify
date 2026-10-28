@@ -5,6 +5,7 @@ return [
     'save' => 'Kaydet',
     'overview' => 'Genel bakış',
     'support' => 'Destek',
+    'client_area' => 'Müşteri alanı',
     'billing' => 'Faturalandırma',
     'saved' => 'Ayarlar kaydedildi',
     'profile' => [
@@ -15,6 +16,10 @@ return [
         'hosting_help' => 'Her birinin kendi sunucuları olan müşteriler. Müşteriler için faturalandırma bağlantısı ve yöneticiler için node bazında sıkışık sunucu listesi ekler.',
         'billing' => 'Faturalandırma bağlantısı',
         'billing_help' => 'Müşterilerin sunucuyu yönettiği veya yükselttiği yer; örneğin WHMCS, Paymenter veya HostBill müşteri alanın. {uuid} ve {external_id} sunucunun kendi değerleri olur.',
+        'client_area' => 'Müşteri alanı bağlantısı',
+        'client_area_help' => 'Müşterilerin faturalama sisteminize giriş yaptığı yer. Hesap menülerinde ve sunucularının üstünde gösterilir.',
+        'order' => 'Sipariş bağlantısı',
+        'order_help' => 'Yeni sunucu sipariş edilen yer. Burada kendileri sunucu oluşturamayan müşteriler genel bakışta Sunucu sipariş et düğmesini görür.',
         'support' => 'Destek bağlantısı',
         'support_help' => 'Bir yardım sayfası veya mailto: adresi; herkesin hesap menüsünde gösterilir. Boş bırakılırsa hiçbir şey görünmez.',
     ],
@@ -48,6 +53,8 @@ return [
         'app_help' => 'Herkes paneli tarayıcı menüsünden telefonuna veya bilgisayarına uygulama olarak ekleyebilir.',
         'app_icon' => 'Uygulama simgesi',
         'app_icon_help' => 'En az 512 piksel, en fazla 1 MB kare PNG, JPEG veya WebP. Boş bırakılırsa Simplify simgesi kullanılır.',
+        'app_badge' => 'Durum çubuğu simgesi',
+        'app_badge_help' => 'Şeffaf arka planlı bir PNG; Android durum çubuğunda beyaz gösterilir. Boşsa, arka planı şeffafsa uygulama simgesi, değilse pelikan kullanılır.',
     ],
     'addons' => [
         'heading' => 'Ek özellikler',

@@ -336,6 +336,20 @@
   margin-bottom: var(--s-space-3);
 }
 
+/* Customers of a hosting company: a greeting with their links on one line. */
+.s-greeting {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-space-3);
+  justify-content: space-between;
+  margin-bottom: var(--s-space-4);
+}
+
+.s-greeting-text {
+  font-weight: 600;
+}
+
 /* The node name in host mode links to the node; unlike a tile's name it covers only itself. */
 .s-section-link {
   color: inherit;

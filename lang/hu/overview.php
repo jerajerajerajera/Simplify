@@ -4,6 +4,8 @@ return [
     'title' => 'Áttekintés',
     'search' => 'Szerverek keresése',
     'empty' => 'Még nincs szervered.',
+    'greeting' => 'Üdv újra, :name',
+    'order' => 'Szerver rendelése',
     'loading' => 'Betöltés',
     'cpu' => 'CPU',
     'memory' => 'Memória',

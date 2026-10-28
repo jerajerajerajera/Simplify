@@ -4,6 +4,8 @@ return [
     'title' => 'Overview',
     'search' => 'Search servers',
     'empty' => 'You have no servers yet.',
+    'greeting' => 'Welcome back, :name',
+    'order' => 'Order a server',
     'loading' => 'Loading',
     'cpu' => 'CPU',
     'memory' => 'Memory',

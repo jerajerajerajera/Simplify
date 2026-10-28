@@ -5,6 +5,7 @@ return [
     'save' => 'Zapisz',
     'overview' => 'Przegląd',
     'support' => 'Pomoc',
+    'client_area' => 'Panel klienta',
     'billing' => 'Płatności',
     'saved' => 'Ustawienia zapisane',
     'profile' => [
@@ -15,6 +16,10 @@ return [
         'hosting_help' => 'Klienci z własnymi serwerami. Dodaje link do płatności dla klientów i kompaktową listę serwerów według node\'a dla adminów.',
         'billing' => 'Link do płatności',
         'billing_help' => 'Gdzie klienci zarządzają serwerem lub go rozbudowują, np. strefa klienta w WHMCS, Paymenter lub HostBill. {uuid} i {external_id} zamieniają się w wartości serwera.',
+        'client_area' => 'Link do panelu klienta',
+        'client_area_help' => 'Miejsce, w którym klienci logują się do systemu rozliczeń. Widoczny w menu konta i nad ich serwerami.',
+        'order' => 'Link do zamówień',
+        'order_help' => 'Miejsce zamawiania nowego serwera. Klienci widzą „Zamów serwer” w przeglądzie, gdy nie mogą utworzyć serwera tutaj.',
         'support' => 'Link do pomocy',
         'support_help' => 'Strona pomocy lub adres mailto:, w menu konta każdego. Puste nic nie pokazuje.',
     ],
@@ -48,6 +53,8 @@ return [
         'app_help' => 'Każdy może dodać panel jako aplikację na telefonie lub komputerze z menu przeglądarki.',
         'app_icon' => 'Ikona aplikacji',
         'app_icon_help' => 'Kwadratowy PNG, JPEG lub WebP o boku co najmniej 512 pikseli, do 1 MB. Puste używa ikony Simplify.',
+        'app_badge' => 'Ikona paska stanu',
+        'app_badge_help' => 'PNG z przezroczystym tłem, wyświetlany na biało na pasku stanu Androida. Puste: ikona aplikacji, jeśli ma przezroczyste tło, w przeciwnym razie pelikan.',
     ],
     'addons' => [
         'heading' => 'Dodatki',

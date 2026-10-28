@@ -17,6 +17,7 @@ use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Filament\Server\Widgets\AddonSections;
 use Simplify\Core\Filament\Server\Widgets\ServerDetails;
 use Simplify\Core\Support\Brand;
+use Simplify\Core\Support\Hosting;
 use Simplify\Core\Support\PanelSettings;
 
 final class SimplifyPlugin implements Plugin
@@ -42,6 +43,9 @@ final class SimplifyPlugin implements Plugin
                     ->url(fn () => Overview::getUrl(panel: 'app')),
                 Action::make('simplify-notifications')->label(fn () => __('pelican-simplify::push.menu'))->icon('tabler-bell')
                     ->url(fn () => Notifications::getUrl(panel: 'app'))->visible(fn () => Notifications::canAccess()),
+                Action::make('simplify-client-area')->label(fn () => __('pelican-simplify::settings.client_area'))->icon('tabler-receipt')
+                    ->url(fn () => Hosting::clientArea(), shouldOpenInNewTab: true)
+                    ->visible(fn () => Hosting::clientArea() !== null),
                 Action::make('simplify-support')->label(fn () => __('pelican-simplify::settings.support'))->icon('tabler-lifebuoy')
                     ->url(fn () => PanelSettings::get('support_url'), shouldOpenInNewTab: true)
                     ->visible(fn () => PanelSettings::get('support_url') !== null),

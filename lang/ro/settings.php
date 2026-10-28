@@ -5,6 +5,7 @@ return [
     'save' => 'Salvați',
     'overview' => 'Prezentare generală',
     'support' => 'Asistență',
+    'client_area' => 'Zona clientului',
     'billing' => 'Facturare',
     'saved' => 'Setări salvate',
     'profile' => [
@@ -15,6 +16,10 @@ return [
         'hosting_help' => 'Clienți care au fiecare serverele lor. Adaugă un link de facturare pentru clienți și o listă compactă de servere pe node pentru administratori.',
         'billing' => 'Link de facturare',
         'billing_help' => 'Unde clienții gestionează sau îmbunătățesc un server, de exemplu zona de clienți WHMCS, Paymenter sau HostBill. {uuid} și {external_id} devin valorile serverului.',
+        'client_area' => 'Link către zona clientului',
+        'client_area_help' => 'Unde clienții se conectează la sistemul tău de facturare. Apare în meniul contului și deasupra serverelor lor.',
+        'order' => 'Link de comandă',
+        'order_help' => 'Unde se comandă un server nou. Clienții văd „Comandă un server” în prezentare când nu pot crea unul aici.',
         'support' => 'Link de asistență',
         'support_help' => 'O pagină de ajutor sau o adresă mailto:, afișată în meniul de cont al tuturor. Gol nu afișează nimic.',
     ],
@@ -48,6 +53,8 @@ return [
         'app_help' => 'Oamenii pot adăuga panoul pe telefon sau calculator ca aplicație, din meniul browserului.',
         'app_icon' => 'Pictograma aplicației',
         'app_icon_help' => 'Un PNG, JPEG sau WebP pătrat de cel puțin 512 pixeli, de până la 1 MB. Gol folosește pictograma Simplify.',
+        'app_badge' => 'Pictograma barei de stare',
+        'app_badge_help' => 'Un PNG cu fundal transparent, afișat alb în bara de stare Android. Gol folosește pictograma aplicației dacă are fundal transparent, altfel pelicanul.',
     ],
     'addons' => [
         'heading' => 'Extensii',

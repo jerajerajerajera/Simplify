@@ -5,6 +5,7 @@ return [
     'save' => 'Tallenna',
     'overview' => 'Yleiskatsaus',
     'support' => 'Tuki',
+    'client_area' => 'Asiakasalue',
     'billing' => 'Laskutus',
     'saved' => 'Asetukset tallennettu',
     'profile' => [
@@ -15,6 +16,10 @@ return [
         'hosting_help' => 'Asiakkaat, joilla kullakin on omat palvelimensa. Lisää asiakkaille laskutuslinkin ja ylläpitäjille tiiviin palvelinluettelon solmuittain.',
         'billing' => 'Laskutuslinkki',
         'billing_help' => 'Missä asiakkaat hallitsevat tai päivittävät palvelinta, esimerkiksi WHMCS-, Paymenter- tai HostBill-asiakasalueesi. {uuid} ja {external_id} korvataan palvelimen omilla arvoilla.',
+        'client_area' => 'Asiakasalueen linkki',
+        'client_area_help' => 'Missä asiakkaat kirjautuvat laskutusjärjestelmääsi. Näkyy heidän tilivalikossaan ja palvelimiensa yläpuolella.',
+        'order' => 'Tilauslinkki',
+        'order_help' => 'Missä uusi palvelin tilataan. Asiakkaat näkevät yleiskatsauksessa Tilaa palvelin, jos he eivät voi luoda palvelinta täällä.',
         'support' => 'Tukilinkki',
         'support_help' => 'Ohjesivu tai mailto:-osoite, näytetään jokaisen tilivalikossa. Tyhjä ei näytä mitään.',
     ],
@@ -48,6 +53,8 @@ return [
         'app_help' => 'Ihmiset voivat lisätä paneelin puhelimeensa tai tietokoneeseensa sovelluksena selaimen valikosta.',
         'app_icon' => 'Sovelluksen kuvake',
         'app_icon_help' => 'Neliön muotoinen PNG, JPEG tai WebP, vähintään 512 pikseliä ja enintään 1 MB. Tyhjä käyttää Simplifyn kuvaketta.',
+        'app_badge' => 'Tilarivin kuvake',
+        'app_badge_help' => 'PNG-kuva läpinäkyvällä taustalla, näytetään valkoisena Androidin tilarivillä. Tyhjänä käytetään sovelluksen kuvaketta, jos sen tausta on läpinäkyvä, muuten pelikaania.',
     ],
     'addons' => [
         'heading' => 'Lisätoiminnot',

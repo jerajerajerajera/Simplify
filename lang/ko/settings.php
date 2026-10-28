@@ -5,6 +5,7 @@ return [
     'save' => '저장',
     'overview' => '개요',
     'support' => '지원',
+    'client_area' => '고객 영역',
     'billing' => '결제',
     'saved' => '설정을 저장했습니다',
     'profile' => [
@@ -15,6 +16,10 @@ return [
         'hosting_help' => '각자 서버를 가진 고객. 고객용 결제 링크와 관리자용 노드별 간단한 서버 목록이 추가됩니다.',
         'billing' => '결제 링크',
         'billing_help' => '고객이 서버를 관리하거나 업그레이드하는 곳. 예: WHMCS, Paymenter 또는 HostBill 고객 영역. {uuid}와 {external_id}는 해당 서버의 값으로 바뀝니다.',
+        'client_area' => '고객 영역 링크',
+        'client_area_help' => '고객이 결제 시스템에 로그인하는 곳입니다. 계정 메뉴와 서버 위에 표시됩니다.',
+        'order' => '주문 링크',
+        'order_help' => '새 서버를 주문하는 곳입니다. 여기서 직접 서버를 만들 수 없는 고객에게는 개요에 서버 주문 버튼이 표시됩니다.',
         'support' => '지원 링크',
         'support_help' => '도움말 페이지 또는 mailto: 주소. 모든 사용자의 계정 메뉴에 표시됩니다. 비워 두면 아무것도 표시하지 않습니다.',
     ],
@@ -48,6 +53,8 @@ return [
         'app_help' => '브라우저 메뉴에서 패널을 휴대폰이나 컴퓨터에 앱으로 추가할 수 있습니다.',
         'app_icon' => '앱 아이콘',
         'app_icon_help' => '512픽셀 이상, 1 MB 이하의 정사각형 PNG, JPEG 또는 WebP. 비워 두면 Simplify 아이콘을 사용합니다.',
+        'app_badge' => '상태 표시줄 아이콘',
+        'app_badge_help' => '배경이 투명한 PNG로, Android 상태 표시줄에 흰색으로 표시됩니다. 비워 두면 배경이 투명한 경우 앱 아이콘을, 아니면 펠리컨을 사용합니다.',
     ],
     'addons' => [
         'heading' => '애드온',

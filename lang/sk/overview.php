@@ -4,6 +4,8 @@ return [
     'title' => 'Prehľad',
     'search' => 'Hľadať servery',
     'empty' => 'Zatiaľ nemáte žiadne servery.',
+    'greeting' => 'Vitajte späť, :name',
+    'order' => 'Objednať server',
     'loading' => 'Načítava sa',
     'cpu' => 'CPU',
     'memory' => 'Pamäť',

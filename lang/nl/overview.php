@@ -4,6 +4,8 @@ return [
     'title' => 'Overzicht',
     'search' => 'Servers zoeken',
     'empty' => 'Je hebt nog geen servers.',
+    'greeting' => 'Welkom terug, :name',
+    'order' => 'Server bestellen',
     'loading' => 'Laden',
     'cpu' => 'CPU',
     'memory' => 'Geheugen',

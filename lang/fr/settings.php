@@ -5,6 +5,7 @@ return [
     'save' => 'Enregistrer',
     'overview' => 'Vue d\'ensemble',
     'support' => 'Aide',
+    'client_area' => 'Espace client',
     'billing' => 'Facturation',
     'saved' => 'Paramètres enregistrés',
     'profile' => [
@@ -15,6 +16,10 @@ return [
         'hosting_help' => 'Des clients ayant chacun leurs serveurs. Ajoute un lien de facturation pour les clients et une liste compacte des serveurs par nœud pour les admins.',
         'billing' => 'Lien de facturation',
         'billing_help' => 'Où les clients gèrent ou améliorent un serveur, par exemple votre espace client WHMCS, Paymenter ou HostBill. {uuid} et {external_id} deviennent les valeurs du serveur.',
+        'client_area' => 'Lien de l’espace client',
+        'client_area_help' => 'Où les clients se connectent à votre système de facturation. Affiché dans leur menu de compte et au-dessus de leurs serveurs.',
+        'order' => 'Lien de commande',
+        'order_help' => 'Où l’on commande un nouveau serveur. Les clients voient « Commander un serveur » sur leur aperçu s’ils ne peuvent pas en créer un ici.',
         'support' => 'Lien d\'aide',
         'support_help' => 'Une page d\'aide ou une adresse mailto:, dans le menu du compte de chacun. Vide n\'affiche rien.',
     ],
@@ -48,6 +53,8 @@ return [
         'app_help' => 'Chacun peut ajouter le panneau comme app sur son téléphone ou ordinateur, depuis le menu du navigateur.',
         'app_icon' => 'Icône de l\'app',
         'app_icon_help' => 'Un PNG, JPEG ou WebP carré d\'au moins 512 pixels, jusqu\'à 1 Mo. Vide utilise l\'icône Simplify.',
+        'app_badge' => 'Icône de la barre d’état',
+        'app_badge_help' => 'Un PNG à fond transparent, affiché en blanc dans la barre d’état d’Android. Vide : l’icône de l’app si son fond est transparent, sinon le pélican.',
     ],
     'addons' => [
         'heading' => 'Add-ons',

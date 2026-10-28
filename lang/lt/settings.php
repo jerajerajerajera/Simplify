@@ -5,6 +5,7 @@ return [
     'save' => 'Išsaugoti',
     'overview' => 'Apžvalga',
     'support' => 'Pagalba',
+    'client_area' => 'Kliento zona',
     'billing' => 'Atsiskaitymai',
     'saved' => 'Nustatymai išsaugoti',
     'profile' => [
@@ -15,6 +16,10 @@ return [
         'hosting_help' => 'Klientai, turintys savo serverius. Prideda atsiskaitymų nuorodą klientams ir kompaktišką serverių sąrašą pagal node administratoriams.',
         'billing' => 'Atsiskaitymų nuoroda',
         'billing_help' => 'Kur klientai tvarko arba padidina serverį, pavyzdžiui, jūsų WHMCS, Paymenter ar HostBill klientų zona. {uuid} ir {external_id} pakeičiami serverio reikšmėmis.',
+        'client_area' => 'Kliento zonos nuoroda',
+        'client_area_help' => 'Kur klientai prisijungia prie jūsų atsiskaitymų sistemos. Rodoma jų paskyros meniu ir virš jų serverių.',
+        'order' => 'Užsakymo nuoroda',
+        'order_help' => 'Kur užsakomas naujas serveris. Klientai apžvalgoje mato „Užsakyti serverį“, kai patys čia sukurti serverio negali.',
         'support' => 'Pagalbos nuoroda',
         'support_help' => 'Pagalbos puslapis arba mailto: adresas, rodomas visų paskyros meniu. Tuščias nieko nerodo.',
     ],
@@ -48,6 +53,8 @@ return [
         'app_help' => 'Žmonės gali pridėti skydelį į telefoną ar kompiuterį kaip programėlę per naršyklės meniu.',
         'app_icon' => 'Programėlės piktograma',
         'app_icon_help' => 'Kvadratinis PNG, JPEG arba WebP, ne mažesnis nei 512 pikselių, iki 1 MB. Tuščias naudoja Simplify piktogramą.',
+        'app_badge' => 'Būsenos juostos piktograma',
+        'app_badge_help' => 'PNG su permatomu fonu, rodoma balta Android būsenos juostoje. Tuščia – programos piktograma, jei jos fonas permatomas, kitaip pelikanas.',
     ],
     'addons' => [
         'heading' => 'Priedai',

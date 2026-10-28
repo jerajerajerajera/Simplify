@@ -4,6 +4,8 @@ return [
     'title' => 'Översikt',
     'search' => 'Sök servrar',
     'empty' => 'Du har inga servrar än.',
+    'greeting' => 'Välkommen tillbaka, :name',
+    'order' => 'Beställ en server',
     'loading' => 'Laddar',
     'cpu' => 'CPU',
     'memory' => 'Minne',

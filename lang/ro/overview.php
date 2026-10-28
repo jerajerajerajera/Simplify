@@ -4,6 +4,8 @@ return [
     'title' => 'Prezentare generală',
     'search' => 'Căutați servere',
     'empty' => 'Nu aveți încă servere.',
+    'greeting' => 'Bine ai revenit, :name',
+    'order' => 'Comandă un server',
     'loading' => 'Se încarcă',
     'cpu' => 'CPU',
     'memory' => 'Memorie',

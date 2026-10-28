@@ -4,6 +4,8 @@ return [
     'title' => '概要',
     'search' => 'サーバーを検索',
     'empty' => 'まだサーバーがありません。',
+    'greeting' => 'おかえりなさい、:nameさん',
+    'order' => 'サーバーを注文',
     'loading' => '読み込み中',
     'cpu' => 'CPU',
     'memory' => 'メモリ',

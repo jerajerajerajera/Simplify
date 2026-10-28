@@ -4,6 +4,8 @@ return [
     'title' => 'Panoramica',
     'search' => 'Cerca server',
     'empty' => 'Non hai ancora server.',
+    'greeting' => 'Bentornato, :name',
+    'order' => 'Ordina un server',
     'loading' => 'Caricamento',
     'cpu' => 'CPU',
     'memory' => 'Memoria',

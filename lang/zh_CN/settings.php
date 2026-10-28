@@ -5,6 +5,7 @@ return [
     'save' => '保存',
     'overview' => '概览',
     'support' => '支持',
+    'client_area' => '客户中心',
     'billing' => '账单',
     'saved' => '设置已保存',
     'profile' => [
@@ -15,6 +16,10 @@ return [
         'hosting_help' => '每位客户拥有自己的服务器。为客户添加账单链接，并为管理员提供按节点的紧凑服务器列表。',
         'billing' => '账单链接',
         'billing_help' => '客户管理或升级服务器的地方，例如你的 WHMCS、Paymenter 或 HostBill 客户区。{uuid} 和 {external_id} 会替换为该服务器的值。',
+        'client_area' => '客户中心链接',
+        'client_area_help' => '客户登录你的计费系统的地方。显示在他们的账户菜单和服务器上方。',
+        'order' => '订购链接',
+        'order_help' => '订购新服务器的地方。无法在此自行创建服务器的客户会在概览中看到“订购服务器”。',
         'support' => '支持链接',
         'support_help' => '帮助页面或 mailto: 地址，显示在每个人的账户菜单中。留空则不显示。',
     ],
@@ -48,6 +53,8 @@ return [
         'app_help' => '用户可以通过浏览器菜单将面板作为应用添加到手机或电脑。',
         'app_icon' => '应用图标',
         'app_icon_help' => '正方形 PNG、JPEG 或 WebP，至少 512 像素，最大 1 MB。留空则使用 Simplify 图标。',
+        'app_badge' => '状态栏图标',
+        'app_badge_help' => '背景透明的 PNG，在 Android 状态栏中显示为白色。留空时，如果应用图标背景透明则使用应用图标，否则使用鹈鹕。',
     ],
     'addons' => [
         'heading' => '附加组件',

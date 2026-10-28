@@ -8,6 +8,25 @@
         @livewire(\Simplify\Core\Livewire\HostHealthCard::class, key('simplify-host-health'))
     @endif
     <div x-data="{ search: '' }" wire:init="refreshUsage" wire:poll.{{ $this->refreshSeconds() }}s.visible="refreshUsage" class="s-overview">
+        @if (\Simplify\Core\Support\Hosting::greets(user()))
+            <div class="s-card s-greeting">
+                <span class="s-greeting-text">{{ __('pelican-simplify::overview.greeting', ['name' => user()->username]) }}</span>
+                <div class="s-bar">
+                    @if ($clientArea = \Simplify\Core\Support\Hosting::clientArea())
+                        <a class="s-btn" href="{{ $clientArea }}" target="_blank" rel="noopener">
+                            <x-filament::icon icon="tabler-receipt" />
+                            {{ __('pelican-simplify::settings.client_area') }}
+                        </a>
+                    @endif
+                    @if ($support = \Simplify\Core\Support\PanelSettings::get('support_url'))
+                        <a class="s-btn" href="{{ $support }}" target="_blank" rel="noopener">
+                            <x-filament::icon icon="tabler-lifebuoy" />
+                            {{ __('pelican-simplify::settings.support') }}
+                        </a>
+                    @endif
+                </div>
+            </div>
+        @endif
         <div class="s-toolbar">
             @if ($this->scopeShown())
                 <div class="s-segments" role="group" aria-label="{{ __('pelican-simplify::overview.scope.label') }}">

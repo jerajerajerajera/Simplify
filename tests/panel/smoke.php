@@ -298,6 +298,24 @@ step('a hosting panel: signing in lands on the overview, and customers get billi
         throw new RuntimeException('the support link is missing');
     }
 });
+step('a hosting panel greets customers with the client area, order and support links, and not the admin', function () use ($admin) {
+    PanelSettings::save(['client_area_url' => 'https://billing.example.com/clientarea', 'order_url' => 'https://billing.example.com/store']);
+    $customer = User::query()->where('email', 'smoke-customer@example.com')->first()
+        ?? User::withoutEvents(fn () => User::factory()->create(['username' => 'smoke-customer', 'email' => 'smoke-customer@example.com']));
+    $url = Overview::getUrl(panel: 'app');
+    $page = visit($customer, $url);
+    expectOk($page, $url);
+    foreach (['s-greeting', 'smoke-customer', 'billing.example.com/clientarea', 'billing.example.com/store', 'mailto:help@example.com'] as $needle) {
+        if (! str_contains($page->getContent(), $needle)) {
+            throw new RuntimeException('the customer overview misses '.$needle);
+        }
+    }
+    $own = visit($admin, $url);
+    expectOk($own, $url);
+    if (str_contains($own->getContent(), 's-greeting') || str_contains($own->getContent(), 'billing.example.com/store')) {
+        throw new RuntimeException('the root admin gets the customer greeting');
+    }
+});
 step('a server gets a colour and banner from its page, shown on its card', function () use ($admin, $server) {
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('server'));
     Livewire\Livewire::actingAs($admin)->test(ServerDetails::class, ['server' => $server])

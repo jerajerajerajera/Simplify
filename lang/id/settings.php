@@ -5,6 +5,7 @@ return [
     'save' => 'Simpan',
     'overview' => 'Ringkasan',
     'support' => 'Bantuan',
+    'client_area' => 'Area klien',
     'billing' => 'Tagihan',
     'saved' => 'Pengaturan disimpan',
     'profile' => [
@@ -15,6 +16,10 @@ return [
         'hosting_help' => 'Pelanggan yang masing-masing punya server sendiri. Menambahkan tautan tagihan untuk pelanggan dan daftar server ringkas per node untuk admin.',
         'billing' => 'Tautan tagihan',
         'billing_help' => 'Tempat pelanggan mengelola atau meningkatkan server, misalnya area klien WHMCS, Paymenter, atau HostBill Anda. {uuid} dan {external_id} menjadi nilai server itu sendiri.',
+        'client_area' => 'Tautan area klien',
+        'client_area_help' => 'Tempat pelanggan masuk ke sistem penagihan Anda. Ditampilkan di menu akun mereka dan di atas server mereka.',
+        'order' => 'Tautan pemesanan',
+        'order_help' => 'Tempat memesan server baru. Pelanggan melihat Pesan server di ikhtisar jika mereka tidak bisa membuat server di sini.',
         'support' => 'Tautan bantuan',
         'support_help' => 'Halaman bantuan atau alamat mailto:, ditampilkan di menu akun semua orang. Kosong tidak menampilkan apa pun.',
     ],
@@ -48,6 +53,8 @@ return [
         'app_help' => 'Orang dapat menambahkan panel ke ponsel atau komputer sebagai aplikasi dari menu browser.',
         'app_icon' => 'Ikon aplikasi',
         'app_icon_help' => 'PNG, JPEG, atau WebP persegi minimal 512 piksel, hingga 1 MB. Kosong memakai ikon Simplify.',
+        'app_badge' => 'Ikon bilah status',
+        'app_badge_help' => 'PNG berlatar transparan, ditampilkan putih di bilah status Android. Kosong memakai ikon aplikasi jika latarnya transparan, jika tidak memakai pelikan.',
     ],
     'addons' => [
         'heading' => 'Add-on',

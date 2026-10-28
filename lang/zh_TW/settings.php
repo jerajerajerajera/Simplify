@@ -5,6 +5,7 @@ return [
     'save' => '儲存',
     'overview' => '總覽',
     'support' => '支援',
+    'client_area' => '客戶專區',
     'billing' => '帳單',
     'saved' => '設定已儲存',
     'profile' => [
@@ -15,6 +16,10 @@ return [
         'hosting_help' => '每位客戶擁有自己的伺服器。為客戶加入帳單連結，並為管理員提供依節點的精簡伺服器清單。',
         'billing' => '帳單連結',
         'billing_help' => '客戶管理或升級伺服器的地方，例如你的 WHMCS、Paymenter 或 HostBill 客戶專區。{uuid} 和 {external_id} 會換成該伺服器的值。',
+        'client_area' => '客戶專區連結',
+        'client_area_help' => '客戶登入你的計費系統的地方。顯示在他們的帳號選單和伺服器上方。',
+        'order' => '訂購連結',
+        'order_help' => '訂購新伺服器的地方。無法在此自行建立伺服器的客戶會在總覽中看到「訂購伺服器」。',
         'support' => '支援連結',
         'support_help' => '說明頁面或 mailto: 位址，顯示在每個人的帳號選單中。留空則不顯示。',
     ],
@@ -48,6 +53,8 @@ return [
         'app_help' => '使用者可以從瀏覽器選單將面板以應用程式形式加入手機或電腦。',
         'app_icon' => '應用程式圖示',
         'app_icon_help' => '正方形 PNG、JPEG 或 WebP，至少 512 像素，最大 1 MB。留空則使用 Simplify 圖示。',
+        'app_badge' => '狀態列圖示',
+        'app_badge_help' => '背景透明的 PNG，在 Android 狀態列中顯示為白色。留空時，若應用程式圖示背景透明則使用該圖示，否則使用鵜鶘。',
     ],
     'addons' => [
         'heading' => '附加元件',

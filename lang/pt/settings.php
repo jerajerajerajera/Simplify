@@ -5,6 +5,7 @@ return [
     'save' => 'Guardar',
     'overview' => 'Visão geral',
     'support' => 'Suporte',
+    'client_area' => 'Área de cliente',
     'billing' => 'Faturação',
     'saved' => 'Definições guardadas',
     'profile' => [
@@ -15,6 +16,10 @@ return [
         'hosting_help' => 'Clientes com os próprios servidores. Adiciona um link de faturação para clientes e uma lista compacta de servidores por node para admins.',
         'billing' => 'Link de faturação',
         'billing_help' => 'Onde os clientes gerem ou melhoram um servidor, por exemplo a sua área do cliente no WHMCS, Paymenter ou HostBill. {uuid} e {external_id} viram os valores do servidor.',
+        'client_area' => 'Link da área de cliente',
+        'client_area_help' => 'Onde os clientes entram no seu sistema de faturação. Aparece no menu da conta e por cima dos servidores deles.',
+        'order' => 'Link de encomenda',
+        'order_help' => 'Onde se encomenda um servidor novo. Os clientes veem «Encomendar um servidor» na vista geral quando não podem criar um aqui.',
         'support' => 'Link de suporte',
         'support_help' => 'Uma página de ajuda ou endereço mailto:, no menu da conta de todos. Vazio não mostra nada.',
     ],
@@ -48,6 +53,8 @@ return [
         'app_help' => 'Qualquer pessoa pode adicionar o painel como app ao telemóvel ou computador pelo menu do browser.',
         'app_icon' => 'Ícone do app',
         'app_icon_help' => 'Um PNG, JPEG ou WebP quadrado de pelo menos 512 pixels, até 1 MB. Vazio usa o ícone do Simplify.',
+        'app_badge' => 'Ícone da barra de estado',
+        'app_badge_help' => 'Um PNG com fundo transparente, mostrado a branco na barra de estado do Android. Vazio usa o ícone da app se tiver fundo transparente; caso contrário, o pelicano.',
     ],
     'addons' => [
         'heading' => 'Add-ons',

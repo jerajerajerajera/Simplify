@@ -5,6 +5,7 @@ return [
     'save' => 'Guardar',
     'overview' => 'Resumen',
     'support' => 'Ayuda',
+    'client_area' => 'Área de clientes',
     'billing' => 'Facturación',
     'saved' => 'Ajustes guardados',
     'profile' => [
@@ -15,6 +16,10 @@ return [
         'hosting_help' => 'Clientes con sus propios servidores. Añade un enlace de facturación para clientes y una lista compacta de servidores por nodo para admins.',
         'billing' => 'Enlace de facturación',
         'billing_help' => 'Donde los clientes gestionan o mejoran un servidor, por ejemplo tu área de clientes de WHMCS, Paymenter o HostBill. {uuid} y {external_id} se convierten en los valores del servidor.',
+        'client_area' => 'Enlace al área de clientes',
+        'client_area_help' => 'Donde los clientes inician sesión en tu sistema de facturación. Aparece en su menú de cuenta y encima de sus servidores.',
+        'order' => 'Enlace de pedido',
+        'order_help' => 'Donde se pide un servidor nuevo. Los clientes ven «Pedir un servidor» en su resumen si aquí no pueden crear uno.',
         'support' => 'Enlace de ayuda',
         'support_help' => 'Una página de ayuda o una dirección mailto:, en el menú de cuenta de todos. Vacío no muestra nada.',
     ],
@@ -48,6 +53,8 @@ return [
         'app_help' => 'Cualquiera puede añadir el panel como app a su móvil u ordenador desde el menú del navegador.',
         'app_icon' => 'Icono de la app',
         'app_icon_help' => 'Un PNG, JPEG o WebP cuadrado de al menos 512 píxeles, hasta 1 MB. Vacío usa el icono de Simplify.',
+        'app_badge' => 'Icono de la barra de estado',
+        'app_badge_help' => 'Un PNG con fondo transparente, mostrado en blanco en la barra de estado de Android. Vacío usa el icono de la app si tiene fondo transparente; si no, el pelícano.',
     ],
     'addons' => [
         'heading' => 'Add-ons',

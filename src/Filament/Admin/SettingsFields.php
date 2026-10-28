@@ -30,6 +30,14 @@ final class SettingsFields
                 ->placeholder('https://billing.example.com/clientarea.php?action=productdetails&id={external_id}')
                 ->helperText(__(self::T.'profile.billing_help'))
                 ->visible(fn (Get $get) => $get('profile') === 'hosting'),
+            TextInput::make('client_area_url')->label(__(self::T.'profile.client_area'))->maxLength(255)->regex(PanelSettings::LINK_URL)
+                ->placeholder('https://billing.example.com/clientarea.php')
+                ->helperText(__(self::T.'profile.client_area_help'))
+                ->visible(fn (Get $get) => $get('profile') === 'hosting'),
+            TextInput::make('order_url')->label(__(self::T.'profile.order'))->maxLength(255)->regex(PanelSettings::LINK_URL)
+                ->placeholder('https://billing.example.com/store')
+                ->helperText(__(self::T.'profile.order_help'))
+                ->visible(fn (Get $get) => $get('profile') === 'hosting'),
             TextInput::make('support_url')->label(__(self::T.'profile.support'))->maxLength(255)
                 ->regex(PanelSettings::SUPPORT_URL)->placeholder('https://example.com/support')
                 ->helperText(__(self::T.'profile.support_help')),
@@ -80,6 +88,7 @@ final class SettingsFields
     {
         return Section::make(__(self::T.'appearance.app'))->description(__(self::T.'appearance.app_help'))->schema([
             self::image('app_icon', 'appearance.app_icon', 'appearance.app_icon_help')->imageCropAspectRatio('1:1'),
+            self::image('app_badge', 'appearance.app_badge', 'appearance.app_badge_help')->acceptedFileTypes(['image/png']),
             Toggle::make('push')->label(__(self::T.'general.push_on'))->helperText(__(self::T.'general.push_help')),
         ]);
     }

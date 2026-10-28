@@ -4,6 +4,8 @@ return [
     'title' => 'Yleiskatsaus',
     'search' => 'Hae palvelimia',
     'empty' => 'Sinulla ei ole vielä palvelimia.',
+    'greeting' => 'Tervetuloa takaisin, :name',
+    'order' => 'Tilaa palvelin',
     'loading' => 'Ladataan',
     'cpu' => 'CPU',
     'memory' => 'Muisti',

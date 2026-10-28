@@ -4,6 +4,8 @@ return [
     'title' => 'Visão geral',
     'search' => 'Buscar servidores',
     'empty' => 'Você ainda não tem servidores.',
+    'greeting' => 'Bem-vindo de volta, :name',
+    'order' => 'Contratar um servidor',
     'loading' => 'Carregando',
     'cpu' => 'CPU',
     'memory' => 'Memória',

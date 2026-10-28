@@ -4,6 +4,8 @@ return [
     'title' => 'Apžvalga',
     'search' => 'Ieškoti serverių',
     'empty' => 'Jūs dar neturite serverių.',
+    'greeting' => 'Sveiki sugrįžę, :name',
+    'order' => 'Užsakyti serverį',
     'loading' => 'Įkeliama',
     'cpu' => 'CPU',
     'memory' => 'Atmintis',

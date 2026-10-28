@@ -4,6 +4,8 @@ return [
     'title' => 'Oversigt',
     'search' => 'Søg efter servere',
     'empty' => 'Du har ingen servere endnu.',
+    'greeting' => 'Velkommen tilbage, :name',
+    'order' => 'Bestil en server',
     'loading' => 'Indlæser',
     'cpu' => 'CPU',
     'memory' => 'Hukommelse',

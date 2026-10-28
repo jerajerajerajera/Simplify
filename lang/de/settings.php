@@ -5,6 +5,7 @@ return [
     'save' => 'Speichern',
     'overview' => 'Übersicht',
     'support' => 'Hilfe',
+    'client_area' => 'Kundenbereich',
     'billing' => 'Abrechnung',
     'saved' => 'Einstellungen gespeichert',
     'profile' => [
@@ -15,6 +16,10 @@ return [
         'hosting_help' => 'Kunden mit jeweils eigenen Servern. Fügt einen Abrechnungslink für Kunden und eine kompakte Serverliste pro Node für Admins hinzu.',
         'billing' => 'Abrechnungslink',
         'billing_help' => 'Wo Kunden einen Server verwalten oder upgraden, zum Beispiel dein Kundenbereich in WHMCS, Paymenter oder HostBill. {uuid} und {external_id} werden zu den Werten des Servers.',
+        'client_area' => 'Link zum Kundenbereich',
+        'client_area_help' => 'Wo sich Kunden in deinem Abrechnungssystem anmelden. Erscheint in ihrem Kontomenü und über ihren Servern.',
+        'order' => 'Bestelllink',
+        'order_help' => 'Wo neue Server bestellt werden. Kunden sehen „Server bestellen“ in ihrer Übersicht, wenn sie hier selbst keinen Server erstellen können.',
         'support' => 'Hilfelink',
         'support_help' => 'Eine Hilfeseite oder mailto:-Adresse, im Kontomenü aller. Leer zeigt nichts.',
     ],
@@ -48,6 +53,8 @@ return [
         'app_help' => 'Alle können das Panel über das Browsermenü als App auf Handy oder Computer hinzufügen.',
         'app_icon' => 'App-Symbol',
         'app_icon_help' => 'Ein quadratisches PNG, JPEG oder WebP mit mindestens 512 Pixeln, bis 1 MB. Leer nutzt das Simplify-Symbol.',
+        'app_badge' => 'Statusleisten-Symbol',
+        'app_badge_help' => 'Ein PNG mit transparentem Hintergrund, in Androids Statusleiste weiß dargestellt. Leer nutzt das App-Symbol, wenn es einen transparenten Hintergrund hat, sonst den Pelikan.',
     ],
     'addons' => [
         'heading' => 'Add-ons',

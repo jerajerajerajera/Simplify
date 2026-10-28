@@ -4,6 +4,8 @@ return [
     'title' => 'Ringkasan',
     'search' => 'Cari server',
     'empty' => 'Anda belum punya server.',
+    'greeting' => 'Selamat datang kembali, :name',
+    'order' => 'Pesan server',
     'loading' => 'Memuat',
     'cpu' => 'CPU',
     'memory' => 'Memori',

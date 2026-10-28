@@ -4,6 +4,8 @@ return [
     'title' => 'Tổng quan',
     'search' => 'Tìm máy chủ',
     'empty' => 'Bạn chưa có máy chủ nào.',
+    'greeting' => 'Chào mừng trở lại, :name',
+    'order' => 'Đặt mua máy chủ',
     'loading' => 'Đang tải',
     'cpu' => 'CPU',
     'memory' => 'Bộ nhớ',

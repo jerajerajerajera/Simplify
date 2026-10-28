@@ -4,6 +4,8 @@ return [
     'title' => '概览',
     'search' => '搜索服务器',
     'empty' => '你还没有服务器。',
+    'greeting' => '欢迎回来，:name',
+    'order' => '订购服务器',
     'loading' => '加载中',
     'cpu' => 'CPU',
     'memory' => '内存',

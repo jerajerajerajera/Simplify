@@ -4,6 +4,8 @@ return [
     'title' => '개요',
     'search' => '서버 검색',
     'empty' => '아직 서버가 없습니다.',
+    'greeting' => ':name님, 다시 오신 것을 환영합니다',
+    'order' => '서버 주문',
     'loading' => '불러오는 중',
     'cpu' => 'CPU',
     'memory' => '메모리',

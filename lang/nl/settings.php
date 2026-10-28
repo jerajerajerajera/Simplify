@@ -5,6 +5,7 @@ return [
     'save' => 'Opslaan',
     'overview' => 'Overzicht',
     'support' => 'Hulp',
+    'client_area' => 'Klantportaal',
     'billing' => 'Facturen',
     'saved' => 'Instellingen opgeslagen',
     'profile' => [
@@ -15,6 +16,10 @@ return [
         'hosting_help' => 'Klanten met elk hun eigen servers. Voegt een factuurlink voor klanten toe en een compacte serverlijst per node voor beheerders.',
         'billing' => 'Factuurlink',
         'billing_help' => 'Waar klanten een server beheren of uitbreiden, bijvoorbeeld je klantomgeving in WHMCS, Paymenter of HostBill. {uuid} en {external_id} worden de waarden van de server zelf.',
+        'client_area' => 'Link naar klantportaal',
+        'client_area_help' => 'Waar klanten inloggen bij je facturatiesysteem. Staat in hun accountmenu en boven hun servers.',
+        'order' => 'Bestellink',
+        'order_help' => 'Waar mensen een nieuwe server bestellen. Klanten zien Server bestellen op hun overzicht als ze hier zelf geen server kunnen maken.',
         'support' => 'Hulplink',
         'support_help' => 'Een hulppagina of mailto:-adres, in ieders accountmenu. Leeg toont niets.',
     ],
@@ -48,6 +53,8 @@ return [
         'app_help' => 'Mensen kunnen het paneel via het browsermenu als app op hun telefoon of computer zetten.',
         'app_icon' => 'App-icoon',
         'app_icon_help' => 'Een vierkante PNG, JPEG of WebP van minstens 512 pixels, tot 1 MB. Leeg gebruikt het Simplify-icoon.',
+        'app_badge' => 'Statusbalkicoon',
+        'app_badge_help' => 'Een PNG met transparante achtergrond, wit getoond in de statusbalk van Android. Leeg gebruikt het app-icoon als dat een transparante achtergrond heeft, anders de pelikaan.',
     ],
     'addons' => [
         'heading' => 'Add-ons',

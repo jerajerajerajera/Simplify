@@ -4,6 +4,8 @@ return [
     'title' => 'Genel bakış',
     'search' => 'Sunucu ara',
     'empty' => 'Henüz sunucun yok.',
+    'greeting' => 'Tekrar hoş geldin :name',
+    'order' => 'Sunucu sipariş et',
     'loading' => 'Yükleniyor',
     'cpu' => 'CPU',
     'memory' => 'Bellek',

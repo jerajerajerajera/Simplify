@@ -4,6 +4,8 @@ return [
     'title' => 'Přehled',
     'search' => 'Hledat servery',
     'empty' => 'Zatím nemáte žádné servery.',
+    'greeting' => 'Vítejte zpět, :name',
+    'order' => 'Objednat server',
     'loading' => 'Načítání',
     'cpu' => 'CPU',
     'memory' => 'Paměť',

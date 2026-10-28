@@ -5,6 +5,7 @@ return [
     'save' => 'Gem',
     'overview' => 'Oversigt',
     'support' => 'Support',
+    'client_area' => 'Kundeområde',
     'billing' => 'Fakturering',
     'saved' => 'Indstillinger gemt',
     'profile' => [
@@ -15,6 +16,10 @@ return [
         'hosting_help' => 'Kunder, der hver har deres egne servere. Tilføjer et faktureringslink for kunder og en kompakt serverliste pr. node for administratorer.',
         'billing' => 'Faktureringslink',
         'billing_help' => 'Hvor kunder administrerer eller opgraderer en server, for eksempel dit kundeområde i WHMCS, Paymenter eller HostBill. {uuid} og {external_id} bliver serverens egne værdier.',
+        'client_area' => 'Link til kundeområde',
+        'client_area_help' => 'Hvor kunder logger ind i dit faktureringssystem. Vises i deres kontomenu og over deres servere.',
+        'order' => 'Bestillingslink',
+        'order_help' => 'Hvor man bestiller en ny server. Kunder ser Bestil en server på deres oversigt, når de ikke selv kan oprette en her.',
         'support' => 'Supportlink',
         'support_help' => 'En hjælpeside eller mailto:-adresse, vist i alles kontomenu. Tom viser intet.',
     ],
@@ -48,6 +53,8 @@ return [
         'app_help' => 'Folk kan føje panelet til deres telefon eller computer som en app fra browsermenuen.',
         'app_icon' => 'App-ikon',
         'app_icon_help' => 'En kvadratisk PNG, JPEG eller WebP på mindst 512 pixels, op til 1 MB. Tom bruger Simplify-ikonet.',
+        'app_badge' => 'Statuslinjeikon',
+        'app_badge_help' => 'En PNG med gennemsigtig baggrund, vist hvid i Androids statuslinje. Tom bruger app-ikonet, hvis det har gennemsigtig baggrund, ellers pelikanen.',
     ],
     'addons' => [
         'heading' => 'Tilføjelser',

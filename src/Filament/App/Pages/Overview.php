@@ -23,6 +23,7 @@ use Simplify\Core\Overview\ServerGroups;
 use Simplify\Core\Overview\ServerQuery;
 use Simplify\Core\Overview\Usage;
 use Simplify\Core\Server\Looks;
+use Simplify\Core\Support\Hosting;
 use Simplify\Core\Support\PanelSettings;
 use Simplify\Core\Support\Preferences;
 use Throwable;
@@ -247,7 +248,14 @@ final class Overview extends Page
     /** @return list<Button> */
     public function actions(): array
     {
-        return app(AddonRegistry::class)->collect(fn (Addon $addon) => $addon->dashboardActions());
+        $actions = app(AddonRegistry::class)->collect(fn (Addon $addon) => $addon->dashboardActions());
+        // A customer who cannot make a server here gets the hoster's order page in its place.
+        $order = Hosting::order();
+        if ($order !== null && ! user()?->isRootAdmin() && ! array_filter($actions, fn (Button $button) => $button->primary)) {
+            $actions[] = new Button(__('pelican-simplify::overview.order'), $order, 'tabler-shopping-cart', primary: true);
+        }
+
+        return $actions;
     }
 
     /** @var array<int, array{color: ?string, banner: ?string}>|null */

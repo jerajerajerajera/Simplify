@@ -5,6 +5,7 @@ return [
     'save' => 'Spara',
     'overview' => 'Översikt',
     'support' => 'Support',
+    'client_area' => 'Kundportal',
     'billing' => 'Fakturering',
     'saved' => 'Inställningar sparade',
     'profile' => [
@@ -15,6 +16,10 @@ return [
         'hosting_help' => 'Kunder som har egna servrar. Lägger till en faktureringslänk för kunder och en kompakt serverlista per nod för administratörer.',
         'billing' => 'Faktureringslänk',
         'billing_help' => 'Där kunder hanterar eller uppgraderar en server, till exempel ditt kundområde i WHMCS, Paymenter eller HostBill. {uuid} och {external_id} blir serverns egna värden.',
+        'client_area' => 'Länk till kundportalen',
+        'client_area_help' => 'Där kunder loggar in i ditt faktureringssystem. Visas i deras kontomeny och ovanför deras servrar.',
+        'order' => 'Beställningslänk',
+        'order_help' => 'Där man beställer en ny server. Kunder ser Beställ en server i översikten när de inte kan skapa en här själva.',
         'support' => 'Supportlänk',
         'support_help' => 'En hjälpsida eller mailto:-adress som visas i allas kontomeny. Tomt visar ingenting.',
     ],
@@ -48,6 +53,8 @@ return [
         'app_help' => 'Folk kan lägga till panelen som en app på telefonen eller datorn via webbläsarmenyn.',
         'app_icon' => 'Appikon',
         'app_icon_help' => 'En kvadratisk PNG, JPEG eller WebP på minst 512 pixlar, upp till 1 MB. Tomt använder Simplify-ikonen.',
+        'app_badge' => 'Statusfältsikon',
+        'app_badge_help' => 'En PNG med genomskinlig bakgrund, visas vit i Androids statusfält. Tomt använder appikonen om den har genomskinlig bakgrund, annars pelikanen.',
     ],
     'addons' => [
         'heading' => 'Tillägg',

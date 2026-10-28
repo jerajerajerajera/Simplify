@@ -5,6 +5,7 @@ return [
     'save' => 'Lagre',
     'overview' => 'Oversikt',
     'support' => 'Støtte',
+    'client_area' => 'Kundeområde',
     'billing' => 'Fakturering',
     'saved' => 'Innstillinger lagret',
     'profile' => [
@@ -15,6 +16,10 @@ return [
         'hosting_help' => 'Kunder som har hver sine servere. Legger til en faktureringslenke for kunder og en kompakt serverliste per node for administratorer.',
         'billing' => 'Faktureringslenke',
         'billing_help' => 'Der kunder administrerer eller oppgraderer en server, for eksempel kundeområdet ditt i WHMCS, Paymenter eller HostBill. {uuid} og {external_id} blir serverens egne verdier.',
+        'client_area' => 'Lenke til kundeområde',
+        'client_area_help' => 'Der kunder logger inn i faktureringssystemet ditt. Vises i kontomenyen deres og over serverne deres.',
+        'order' => 'Bestillingslenke',
+        'order_help' => 'Der man bestiller en ny server. Kunder ser Bestill en server på oversikten når de ikke kan opprette en her selv.',
         'support' => 'Støttelenke',
         'support_help' => 'En hjelpeside eller mailto:-adresse, vist i alles kontomeny. Tomt viser ingenting.',
     ],
@@ -48,6 +53,8 @@ return [
         'app_help' => 'Folk kan legge til panelet som en app på telefonen eller datamaskinen fra nettlesermenyen.',
         'app_icon' => 'Appikon',
         'app_icon_help' => 'En kvadratisk PNG, JPEG eller WebP på minst 512 piksler, opptil 1 MB. Tomt bruker Simplify-ikonet.',
+        'app_badge' => 'Statuslinjeikon',
+        'app_badge_help' => 'En PNG med gjennomsiktig bakgrunn, vist hvit i statuslinjen på Android. Tom bruker app-ikonet hvis det har gjennomsiktig bakgrunn, ellers pelikanen.',
     ],
     'addons' => [
         'heading' => 'Tillegg',

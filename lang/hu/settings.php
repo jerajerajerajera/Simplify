@@ -5,6 +5,7 @@ return [
     'save' => 'Mentés',
     'overview' => 'Áttekintés',
     'support' => 'Támogatás',
+    'client_area' => 'Ügyfélkapu',
     'billing' => 'Számlázás',
     'saved' => 'Beállítások mentve',
     'profile' => [
@@ -15,6 +16,10 @@ return [
         'hosting_help' => 'Ügyfelek saját szerverekkel. Számlázási hivatkozást ad az ügyfeleknek és tömör, csomópontonkénti szerverlistát az adminoknak.',
         'billing' => 'Számlázási hivatkozás',
         'billing_help' => 'Ahol az ügyfelek kezelik vagy bővítik a szervert, például a WHMCS, Paymenter vagy HostBill ügyfélterületed. A {uuid} és {external_id} a szerver saját értékeire cserélődik.',
+        'client_area' => 'Ügyfélkapu linkje',
+        'client_area_help' => 'Ahol az ügyfelek belépnek a számlázási rendszeredbe. Megjelenik a fiókmenüjükben és a szervereik felett.',
+        'order' => 'Rendelési link',
+        'order_help' => 'Ahol új szervert lehet rendelni. Az ügyfelek a Szerver rendelése gombot látják az áttekintésben, ha itt nem hozhatnak létre szervert.',
         'support' => 'Támogatási hivatkozás',
         'support_help' => 'Súgóoldal vagy mailto: cím, mindenki fiókmenüjében. Üresen semmi sem jelenik meg.',
     ],
@@ -48,6 +53,8 @@ return [
         'app_help' => 'Bárki hozzáadhatja a panelt alkalmazásként a telefonjához vagy számítógépéhez a böngésző menüjéből.',
         'app_icon' => 'Alkalmazásikon',
         'app_icon_help' => 'Négyzetes PNG, JPEG vagy WebP, legalább 512 pixel, legfeljebb 1 MB. Üresen a Simplify ikonja.',
+        'app_badge' => 'Állapotsor ikonja',
+        'app_badge_help' => 'Átlátszó hátterű PNG, fehéren jelenik meg az Android állapotsorában. Üresen az alkalmazásikont használja, ha átlátszó a háttere, különben a pelikánt.',
     ],
     'addons' => [
         'heading' => 'Kiegészítők',

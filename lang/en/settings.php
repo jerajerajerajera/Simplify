@@ -5,6 +5,7 @@ return [
     'save' => 'Save',
     'overview' => 'Overview',
     'support' => 'Support',
+    'client_area' => 'Client area',
     'billing' => 'Billing',
     'saved' => 'Settings saved',
     'profile' => [
@@ -15,6 +16,10 @@ return [
         'hosting_help' => 'Customers who each have their own servers. Adds a billing link for customers and a compact server list per node for admins.',
         'billing' => 'Billing link',
         'billing_help' => 'Where customers manage or upgrade a server, for example your WHMCS, Paymenter or HostBill client area. {uuid} and {external_id} become the server\'s own values.',
+        'client_area' => 'Client area link',
+        'client_area_help' => 'Where customers sign in to your billing system. Shown in their account menu and above their servers.',
+        'order' => 'Order link',
+        'order_help' => 'Where people order a new server. Customers see Order a server on their overview when they cannot create one here.',
         'support' => 'Support link',
         'support_help' => 'A help page or mailto: address, shown in everyone\'s account menu. Empty shows nothing.',
     ],
@@ -48,6 +53,8 @@ return [
         'app_help' => 'People can add the panel to their phone or desktop as an app, from the browser menu.',
         'app_icon' => 'App icon',
         'app_icon_help' => 'A square PNG, JPEG or WebP of at least 512 pixels, up to 1 MB. Empty uses the Simplify icon.',
+        'app_badge' => 'Status bar icon',
+        'app_badge_help' => 'A PNG with a transparent background, shown in white in Android\'s status bar. Empty uses the app icon if it has a transparent background, otherwise the pelican.',
     ],
     'addons' => [
         'heading' => 'Add-ons',

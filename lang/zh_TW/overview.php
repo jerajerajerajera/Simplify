@@ -4,6 +4,8 @@ return [
     'title' => '總覽',
     'search' => '搜尋伺服器',
     'empty' => '你還沒有伺服器。',
+    'greeting' => '歡迎回來，:name',
+    'order' => '訂購伺服器',
     'loading' => '載入中',
     'cpu' => 'CPU',
     'memory' => '記憶體',

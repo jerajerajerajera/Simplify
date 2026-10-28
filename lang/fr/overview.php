@@ -4,6 +4,8 @@ return [
     'title' => 'Vue d\'ensemble',
     'search' => 'Rechercher des serveurs',
     'empty' => 'Vous n\'avez encore aucun serveur.',
+    'greeting' => 'Bon retour, :name',
+    'order' => 'Commander un serveur',
     'loading' => 'Chargement',
     'cpu' => 'CPU',
     'memory' => 'Mémoire',
