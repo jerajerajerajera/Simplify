@@ -86,7 +86,7 @@ const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g
     }
     await click(page.locator('main [role=tab]', { hasText: 'General' }), 'settings back to General');
     await click(page.locator('main button[type=submit]', { hasText: 'Save' }), 'settings save');
-    ok('settings saved', /saved/i.test(await page.locator('body').innerText()));
+    ok('settings saved', await page.getByText(/settings saved/i).first().waitFor({ timeout: 8000 }).then(() => true, () => false));
     await shot('action-settings-saved');
   });
 
