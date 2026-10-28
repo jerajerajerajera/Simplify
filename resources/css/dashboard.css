@@ -1589,6 +1589,9 @@ html.ps-console-big body:has(.ps-server-top) .fi-main-ctn > .fi-main { grid-colu
 /* Pelican's console, dressed as Simplify's live console: a title row (server.js puts it in), the output and the
    command bar in one dark card. Pelican's numbers and charts are replaced by the cards above. */
 body:has(.ps-server-top.is-console) :is(.fi-header, .fi-wi-stats-overview, .fi-wi-chart) { display: none !important; }
+/* Pelican's charts are lazy: until they load, an empty card stands in for them. */
+body:has(.ps-server-top.is-console) :is(.fi-grid-col:has(> [wire\:snapshot*="widgets.server-"][wire\:snapshot*="-chart"]), [wire\:snapshot*="widgets.server-"][wire\:snapshot*="-chart"]) { display: none !important; }
+#terminal :is(.xterm-viewport, .xterm-screen) { background: transparent !important; }
 :has(> #terminal) { overflow: hidden; border: 1px solid var(--ps-console-line); border-radius: var(--ps-radius-lg); background: var(--ps-console-bg) !important; color: var(--ps-console-ink); box-shadow: none !important; }
 #terminal { position: relative; padding: 68px 17px 14px; background: var(--ps-console-bg); }
 #terminal > .ps-console-title { position: absolute; inset: 0 0 auto; height: 56px; color: var(--ps-console-ink); }

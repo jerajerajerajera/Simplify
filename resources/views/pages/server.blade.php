@@ -128,7 +128,7 @@
     </nav>
     {{-- The title row of Pelican's console, put above its output by server.js. --}}
     <template x-ref="consoleBar">
-        <div class="ps-console-title">
+        <div class="ps-console-title ps-ui">
             <span class="ps-terminal-icon" aria-hidden="true">›_</span>
             <strong>{{ $u('live_console') }}</strong>
             <span class="ps-console-dot"></span>
