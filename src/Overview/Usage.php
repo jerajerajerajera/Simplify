@@ -15,13 +15,16 @@ final readonly class Usage
         public ?float $cpuPercent,
         public ?int $memoryBytes,
         public ?int $diskBytes,
+        public ?int $rxBytes = null,
+        public ?int $txBytes = null,
     ) {}
 
     /** @param  array<string, mixed>  $resources */
     public static function fromWings(string $state, array $resources): self
     {
+        $disk = self::number($resources['disk_bytes'] ?? null);
         if ($state === 'offline') {
-            return new self($state, 0.0, 0, self::number($resources['disk_bytes'] ?? null));
+            return new self($state, 0.0, 0, $disk, 0, 0);
         }
 
         $cpu = $resources['cpu_absolute'] ?? null;
@@ -30,7 +33,9 @@ final readonly class Usage
             $state,
             self::valid($cpu) ? round((float) $cpu, 1) : null,
             self::number($resources['memory_bytes'] ?? null),
-            self::number($resources['disk_bytes'] ?? null),
+            $disk,
+            self::number($resources['network']['rx_bytes'] ?? null),
+            self::number($resources['network']['tx_bytes'] ?? null),
         );
     }
 
@@ -39,10 +44,10 @@ final readonly class Usage
         return new self('missing', null, null, null);
     }
 
-    /** @return array{state: string, cpu: ?float, memory: ?int, disk: ?int} */
+    /** @return array{state: string, cpu: ?float, memory: ?int, disk: ?int, rx: ?int, tx: ?int} */
     public function toArray(): array
     {
-        return ['state' => $this->state, 'cpu' => $this->cpuPercent, 'memory' => $this->memoryBytes, 'disk' => $this->diskBytes];
+        return ['state' => $this->state, 'cpu' => $this->cpuPercent, 'memory' => $this->memoryBytes, 'disk' => $this->diskBytes, 'rx' => $this->rxBytes, 'tx' => $this->txBytes];
     }
 
     private static function number(mixed $value): ?int

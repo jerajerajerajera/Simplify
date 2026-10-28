@@ -8,11 +8,12 @@ use App\Models\Node;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
+use Simplify\Core\Overview\NodeUsage;
 use Throwable;
 
 /**
- * How the machines behind the panel are doing: CPU, memory and disk of every node, from Wings. One snapshot is shared
- * by every viewer for half a minute, so an open overview never adds load to Wings.
+ * How the machines behind the panel are doing: CPU, memory, disk and network of every node, from Wings. One snapshot
+ * is shared by every viewer for half a minute, so an open overview never adds load to Wings.
  */
 final class HostHealth
 {
@@ -23,10 +24,18 @@ final class HostHealth
     /** A refresh click drops the snapshot only when it is older than this, so clicks cannot flood Wings. */
     private const REFRESH_GAP = 5;
 
-    /** @return array<string, mixed> */
+    /** @return array<string, mixed> labels and problems in the viewer's language */
     public static function snapshot(): array
     {
-        return Cache::remember(self::CACHE_KEY, self::CACHE_SECONDS, fn () => self::collect());
+        return self::present(Cache::remember(self::CACHE_KEY, self::CACHE_SECONDS, fn () => self::collect()));
+    }
+
+    /** @return array<string, mixed> the shared snapshot when one is kept, else nothing: the page asks for it after first paint */
+    public static function cached(): array
+    {
+        $stored = Cache::get(self::CACHE_KEY);
+
+        return is_array($stored) ? self::present($stored) : [];
     }
 
     /** @return array<string, mixed> */
@@ -44,18 +53,50 @@ final class HostHealth
     private static function collect(): array
     {
         $samples = [];
+        $nodes = [];
+        $traffic = ['rx_bytes' => 0.0, 'tx_bytes' => 0.0, 'rx_per_second' => 0.0, 'tx_per_second' => 0.0];
         foreach (Node::query()->orderBy('name')->get() as $node) {
-            [$stats, $problem] = self::statistics($node);
             try {
                 $maintenance = (bool) $node->isUnderMaintenance();
             } catch (Throwable) {
                 $maintenance = false;
             }
+            [$stats, $problem] = self::statistics($node);
+            $sample = ['maintenance' => $maintenance, 'stats' => $stats];
+            $samples[] = $sample;
+            $network = NodeUsage::traffic($node);
+            foreach ($traffic as $key => $sum) {
+                $traffic[$key] = $sum === null || ($network[$key] ?? null) === null ? null : $sum + $network[$key];
+            }
+            $health = self::summarize([$sample]);
+            $health['metric_states']['network'] = $network === null ? 'unavailable' : 'healthy';
             // Names and numbers only, never addresses or daemon credentials.
-            $samples[] = ['name' => (string) $node->name, 'maintenance' => $maintenance, 'stats' => $stats, 'problem' => $problem];
+            $nodes[] = ['id' => $node->id, 'name' => (string) $node->name, ...$health, ...self::network($network), 'problem' => $problem];
+        }
+        $result = self::summarize($samples);
+        $failing = array_values(array_filter($nodes, fn (array $node) => $node['problem'] !== null));
+        $result['problem'] = match (count($failing)) {
+            0 => null,
+            1 => count($nodes) > 1 ? ['node_problem', ['node' => $failing[0]['name'], 'problem' => $failing[0]['problem']]] : $failing[0]['problem'],
+            default => ['nodes_silent', ['count' => count($failing)]],
+        };
+        $result['metric_states']['network'] = $nodes !== [] && $traffic['rx_bytes'] !== null ? 'healthy' : 'unavailable';
+
+        return [...$result, ...self::network($nodes === [] ? null : $traffic), 'nodes' => $nodes, 'checked_at' => time()];
+    }
+
+    /**
+     * @param  array<string, ?float>|null  $traffic
+     * @return array<string, ?float>
+     */
+    private static function network(?array $traffic): array
+    {
+        $out = [];
+        foreach (['rx_bytes', 'tx_bytes', 'rx_per_second', 'tx_per_second'] as $key) {
+            $out['network_'.$key] = $traffic[$key] ?? null;
         }
 
-        return [...self::summarize($samples), 'checked_at' => time()];
+        return $out;
     }
 
     /**
@@ -81,7 +122,7 @@ final class HostHealth
         return is_array($data) && ! empty($data['memory_total']) ? [$data, null] : [[], ['no_stats', []]];
     }
 
-    /** @return array{0: string, 1: array<string, int>} a translation key under health.problem and its values */
+    /** @return array{0: string, 1: array<string, int>} a translation key under dashboard.health.problems and its values */
     public static function httpProblem(int $status): array
     {
         return match (true) {
@@ -92,63 +133,87 @@ final class HostHealth
     }
 
     /**
-     * Adds up the nodes. A node over 85% on anything is a warning, over 95% critical.
+     * The shared snapshot with its labels and problems in the viewer's language.
      *
-     * @param  list<array{name: string, maintenance: bool, stats: array<string, mixed>, problem: ?array}>  $samples
+     * @param  array<string, mixed>  $result
+     * @return array<string, mixed>
+     */
+    public static function present(array $result): array
+    {
+        $say = static function (mixed $problem) use (&$say): ?string {
+            if (! is_array($problem)) {
+                return null;
+            }
+            $values = $problem[1] ?? [];
+            if (isset($values['problem'])) {
+                $values['problem'] = $say($values['problem']);
+            }
+
+            return $problem[0] === 'nodes_silent'
+                ? trans_choice('pelican-simplify::dashboard.health.problems.nodes_silent', (int) $values['count'])
+                : __('pelican-simplify::dashboard.health.problems.'.$problem[0], $values);
+        };
+        $result['label'] = __('pelican-simplify::dashboard.health.labels.'.$result['label_key']);
+        $result['problem'] = $say($result['problem'] ?? null);
+        foreach ($result['nodes'] ?? [] as $index => $node) {
+            $result['nodes'][$index]['label'] = __('pelican-simplify::dashboard.health.labels.'.$node['label_key']);
+            $result['nodes'][$index]['problem'] = $say($node['problem'] ?? null);
+        }
+
+        return $result;
+    }
+
+    /**
+     * Adds up the nodes. Anything over 85% is a warning, over 95% critical.
+     *
+     * @param  list<array{maintenance: bool, stats: array<string, mixed>}>  $samples
      * @return array<string, mixed>
      */
     public static function summarize(array $samples): array
     {
         $number = static fn (mixed $value): bool => is_numeric($value) && is_finite((float) $value) && (float) $value >= 0;
         $result = [
-            'hosts' => count($samples), 'available' => 0, 'state' => 'unavailable',
-            'cpu' => null, 'memory_used' => null, 'memory_total' => null, 'disk_used' => null, 'disk_total' => null,
-            'nodes' => [],
+            'hosts' => count($samples), 'available' => 0, 'state' => 'unavailable', 'label_key' => 'unavailable',
+            'cpu_percent' => null, 'memory_used' => null, 'memory_total' => null, 'disk_used' => null, 'disk_total' => null,
+            'metric_states' => ['cpu' => 'unavailable', 'memory' => 'unavailable', 'disk' => 'unavailable'], 'problem' => null,
         ];
-        $cpu = $memoryUsed = $memoryTotal = $diskUsed = $diskTotal = 0.0;
-        $worst = 0;
+        $levels = ['cpu' => 0, 'memory' => 0, 'disk' => 0];
+        $sum = ['cpu' => 0.0, 'memory_used' => 0.0, 'memory_total' => 0.0, 'disk_used' => 0.0, 'disk_total' => 0.0];
         $maintenance = false;
         foreach ($samples as $sample) {
-            $stats = $sample['stats'];
+            $s = $sample['stats'];
             $maintenance = $maintenance || $sample['maintenance'];
-            $node = ['name' => $sample['name'], 'state' => 'unavailable', 'problem' => $sample['problem']];
-            $usable = $number($stats['cpu_percent'] ?? null)
-                && $number($stats['memory_used'] ?? null) && $number($stats['memory_total'] ?? null) && (float) $stats['memory_total'] > 0
-                && $number($stats['disk_used'] ?? null) && $number($stats['disk_total'] ?? null) && (float) $stats['disk_total'] > 0;
-            if ($usable) {
-                $result['available']++;
-                $cpu += (float) $stats['cpu_percent'];
-                $memoryUsed += (float) $stats['memory_used'];
-                $memoryTotal += (float) $stats['memory_total'];
-                $diskUsed += (float) $stats['disk_used'];
-                $diskTotal += (float) $stats['disk_total'];
-                $highest = max(
-                    (float) $stats['cpu_percent'],
-                    (float) $stats['memory_used'] / (float) $stats['memory_total'] * 100,
-                    (float) $stats['disk_used'] / (float) $stats['disk_total'] * 100,
-                );
-                $level = $highest >= 95 ? 2 : ($highest >= 85 ? 1 : 0);
-                $worst = max($worst, $level);
-                $node['state'] = ['healthy', 'warning', 'critical'][$level];
-            } elseif ($node['problem'] === null) {
-                $node['problem'] = ['no_stats', []];
+            if (! $number($s['cpu_percent'] ?? null) || ! $number($s['memory_used'] ?? null) || ! $number($s['disk_used'] ?? null)
+                || ! $number($s['memory_total'] ?? null) || (float) $s['memory_total'] <= 0 || ! $number($s['disk_total'] ?? null) || (float) $s['disk_total'] <= 0) {
+                continue;
             }
-            $result['nodes'][] = $node;
+            $result['available']++;
+            $values = ['cpu' => (float) $s['cpu_percent'], 'memory' => $s['memory_used'] / $s['memory_total'] * 100, 'disk' => $s['disk_used'] / $s['disk_total'] * 100];
+            foreach ($values as $key => $value) {
+                $levels[$key] = max($levels[$key], $value >= 95 ? 2 : ($value >= 85 ? 1 : 0));
+            }
+            $sum['cpu'] += $values['cpu'];
+            foreach (['memory_used', 'memory_total', 'disk_used', 'disk_total'] as $key) {
+                $sum[$key] += (float) $s[$key];
+            }
         }
         if ($result['available'] === 0) {
             return $result;
         }
-        $result = array_replace($result, [
-            'cpu' => $cpu / $result['available'],
-            'memory_used' => (int) $memoryUsed, 'memory_total' => (int) $memoryTotal,
-            'disk_used' => (int) $diskUsed, 'disk_total' => (int) $diskTotal,
-        ]);
-        $result['state'] = match (true) {
-            $result['available'] < $result['hosts'] => 'partly',
-            $worst === 2 => 'critical',
-            $maintenance => 'maintenance',
-            $worst === 1 => 'warning',
-            default => 'healthy',
+        $result = array_replace($result, ['cpu_percent' => $sum['cpu'] / $result['available'], 'memory_used' => $sum['memory_used'],
+            'memory_total' => $sum['memory_total'], 'disk_used' => $sum['disk_used'], 'disk_total' => $sum['disk_total']]);
+        $partly = $result['available'] < $result['hosts'];
+        foreach ($levels as $key => $level) {
+            // While a node is silent a calm total says nothing: the meter shows it is incomplete.
+            $result['metric_states'][$key] = $partly && $level === 0 ? 'unavailable' : ['healthy', 'warning', 'critical'][$level];
+        }
+        $worst = max($levels);
+        [$result['state'], $result['label_key']] = match (true) {
+            $partly => ['unavailable', 'partly_unavailable'],
+            $worst === 2 => ['critical', 'critical'],
+            $maintenance => ['warning', 'maintenance'],
+            $worst === 1 => ['warning', 'high'],
+            default => ['healthy', 'healthy'],
         };
 
         return $result;

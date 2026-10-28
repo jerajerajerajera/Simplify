@@ -19,6 +19,18 @@ final class Assets
         'app-icon-512.png' => ['img/app-icon-512.png', 'image/png'],
         'maskable-512.png' => ['img/maskable-512.png', 'image/png'],
         'app-badge-96.png' => ['img/app-badge-96.png', 'image/png'],
+        'tokens.css' => ['css/tokens.css', 'text/css; charset=utf-8'],
+        'components.css' => ['css/components.css', 'text/css; charset=utf-8'],
+        'dashboard.css' => ['css/dashboard.css', 'text/css; charset=utf-8'],
+        'core.js' => ['js/core.js', 'text/javascript; charset=utf-8'],
+        'motd.js' => ['js/motd.js', 'text/javascript; charset=utf-8'],
+        'dashboard.js' => ['js/dashboard.js', 'text/javascript; charset=utf-8'],
+        'bg-valley.jpg' => ['img/bg-valley.jpg', 'image/jpeg'],
+        'bg-harbor.jpg' => ['img/bg-harbor.jpg', 'image/jpeg'],
+        'bg-village.jpg' => ['img/bg-village.jpg', 'image/jpeg'],
+        'bg-survival.jpg' => ['img/bg-survival.jpg', 'image/jpeg'],
+        'bg-town.jpg' => ['img/bg-town.jpg', 'image/jpeg'],
+        'bg-gaming.svg' => ['img/bg-gaming.svg', 'image/svg+xml'],
     ];
 
     /** @var array<string, string> */
