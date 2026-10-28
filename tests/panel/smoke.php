@@ -206,7 +206,7 @@ step('live numbers load without Wings and leave unknown values empty', function 
         throw new RuntimeException('no state for the server: '.json_encode($usage));
     }
 });
-step('add-on badges show on the tiles and are not asked again on every refresh', function ($app) use ($admin, $server) {
+step('add-on badges show on the tiles and are not asked again on every refresh', function ($app) use ($admin) {
     $app->tag([BadgeAddon::class], AddonRegistry::TAG);
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
     BadgeAddon::$asked = 0;
