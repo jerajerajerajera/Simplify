@@ -2,9 +2,11 @@
 
 // Loads Simplify inside a real Pelican panel and opens its pages. Run from the panel folder after
 // `php artisan p:plugin:install pelican-simplify`: php plugins/pelican-simplify/tests/panel/smoke.php
+use App\Models\Role;
 use App\Models\Server;
 use App\Models\User;
 use Illuminate\Contracts\Console\Kernel;
+use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithAuthentication;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithSession;
 use Illuminate\Foundation\Testing\Concerns\MakesHttpRequests;
@@ -18,15 +20,31 @@ use Simplify\Core\Support\Preferences;
 
 define('LARAVEL_START', microtime(true));
 require getcwd().'/vendor/autoload.php';
-$app = require getcwd().'/bootstrap/app.php';
-$app->make(Kernel::class)->bootstrap();
+// Each step gets a fresh application, like a real request: Filament keeps panel state (render hooks, plugins) for
+// the whole process, so opening an admin page and then an app page in one application fails where a browser would not.
+function boot(): Application
+{
+    $app = require getcwd().'/bootstrap/app.php';
+    $app->make(Kernel::class)->bootstrap();
+    // Laravel's own handler prints an error outside a step and still exits with 0, which would leave CI green
+    // without testing anything.
+    set_exception_handler(function (Throwable $e): void {
+        echo 'FAIL setup: '.get_class($e).': '.substr($e->getMessage(), 0, 400).' ('.basename($e->getFile()).':'.$e->getLine().")\n";
+        exit(1);
+    });
+
+    return $app;
+}
+boot();
 
 $failed = false;
+$passed = 0;
 function step(string $what, callable $run): void
 {
-    global $failed;
+    global $failed, $passed;
     try {
-        $run();
+        $run(boot());
+        $passed++;
         echo "PASS $what\n";
     } catch (Throwable $e) {
         $failed = true;
@@ -64,16 +82,17 @@ final class SmokeAddon extends Addon
     }
 }
 
+// Pelican 1.0 has no users.root_admin column: root admins have the root admin role.
 $admin = User::where('email', 'smoke-simplify@example.com')->first()
-    ?? User::factory()->create(['email' => 'smoke-simplify@example.com', 'root_admin' => true]);
+    ?? User::withoutEvents(fn () => User::factory()->create(['email' => 'smoke-simplify@example.com']));
+$admin->syncRoles(Role::getRootAdmin());
 
 step('settings page renders', function () use ($admin) {
     $url = Settings::getUrl(panel: 'admin');
     expectOk(visit($admin, $url), $url);
 });
-step('a tagged add-on shows on the settings page', function () use ($admin, $app) {
+step('a tagged add-on shows on the settings page', function ($app) use ($admin) {
     $app->tag([SmokeAddon::class], AddonRegistry::TAG);
-    $app->forgetInstance(AddonRegistry::class);
     $url = Settings::getUrl(panel: 'admin');
     $response = visit($admin, $url);
     expectOk($response, $url);
@@ -101,7 +120,7 @@ step('every panel page loads the stylesheet', function () use ($admin) {
         throw new RuntimeException('the stylesheet link is missing');
     }
 });
-$server = Server::query()->first() ?? Server::factory()->create(['owner_id' => $admin->id]);
+$server = Server::query()->first() ?? Server::factory()->create(['owner_id' => $admin->id, 'name' => 'Smoke server']);
 step('the overview renders with the server tile', function () use ($admin, $server) {
     $url = Overview::getUrl(panel: 'app');
     $response = visit($admin, $url);
@@ -138,4 +157,7 @@ step('a layout choice is saved for the account and an unknown one is refused', f
         throw new RuntimeException('the saved layout is not used: '.$layout);
     }
 });
-exit($failed ? 1 : 0);
+if ($failed || $passed === 0) {
+    exit(1);
+}
+echo "All steps passed\n";
