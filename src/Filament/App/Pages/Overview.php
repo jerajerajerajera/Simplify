@@ -83,7 +83,7 @@ final class Overview extends Page
             'performance' => ['overview_seconds' => $settings['overview_seconds']],
             'overview_groups' => ServerGroups::clean(Preferences::get($user, 'overview.groups')),
             'servers' => Listing::for($user),
-            'host_health' => $this->hostHealth(),
+            'host_health' => $user->isRootAdmin() ? HostHealth::cached() : [],
             'notifications' => Bell::page($user),
         ];
     }

@@ -30,6 +30,14 @@ final class HostHealth
         return self::present(Cache::remember(self::CACHE_KEY, self::CACHE_SECONDS, fn () => self::collect()));
     }
 
+    /** @return array<string, mixed> the shared snapshot when one is kept, else nothing: the page asks for it after first paint */
+    public static function cached(): array
+    {
+        $stored = Cache::get(self::CACHE_KEY);
+
+        return is_array($stored) ? self::present($stored) : [];
+    }
+
     /** @return array<string, mixed> */
     public static function refresh(): array
     {
