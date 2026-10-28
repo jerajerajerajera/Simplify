@@ -150,10 +150,11 @@ const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g
     ok('host mode shows the admin tree', (await page.locator('.ps-host-tree .ps-host-group:visible').count()) >= 3, String(await page.locator('.ps-host-tree .ps-host-group').count()));
     const framed = async () => page.frameLocator('.ps-host-frame:not(.is-server) iframe').locator('body');
     ok('the page in the frame has no Pelican menus', (await (await framed()).locator('.fi-topbar:visible, .fi-sidebar:visible').count()) === 0);
+    ok('the page in the frame loaded', (await (await framed()).locator('.fi-main').count().catch(() => 0)) > 0);
     await shot('action-host-mode');
     if (await click(page.locator('.ps-host-leaf', { hasText: 'Nodes' }), 'Nodes in the tree')) { await sleep(1500); await shot('action-host-nodes'); }
     if (await click(page.locator('.ps-host-tabs button', { hasText: 'Servers' }), 'servers tab')) {
-      if (await click(page.locator('.ps-host-server', { hasText: 'Survival' }), 'Survival in host mode')) { await sleep(2500); await shot('action-host-server'); }
+      if (await click(page.locator('.ps-host-server', { hasText: 'Survival' }), 'Survival in host mode')) { await sleep(2500); await shot('action-host-server'); ok('the server in the frame loaded', (await page.frameLocator('.ps-host-frame.is-server iframe').locator('.fi-main').count().catch(() => 0)) > 0); }
     }
     await page.setViewportSize({ width: 390, height: 844 }); await sleep(800); await shot('action-host-mode-phone');
     await page.setViewportSize({ width: 1440, height: 900 }); await sleep(500);
