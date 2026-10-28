@@ -10,11 +10,12 @@ use App\Models\Role;
 use App\Models\Server;
 use App\Models\Subuser;
 use App\Models\User;
+use Illuminate\Contracts\Console\Kernel;
 
 define('LARAVEL_START', microtime(true));
 require getcwd().'/vendor/autoload.php';
 $app = require getcwd().'/bootstrap/app.php';
-$app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
+$app->make(Kernel::class)->bootstrap();
 $port = (int) ($argv[1] ?? 8090);
 
 $admin = User::withoutEvents(fn () => User::factory()->create(['username' => 'lab-admin', 'email' => 'lab@example.com', 'password' => bcrypt('LabPassword123!')]));

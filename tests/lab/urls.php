@@ -3,6 +3,7 @@
 // The URL of every Simplify page in a lab panel, as JSON. Run from the panel folder.
 use App\Models\Server;
 use Filament\Facades\Filament;
+use Illuminate\Contracts\Console\Kernel;
 use Simplify\Core\Filament\Admin\Pages\People;
 use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\Admin\Pages\Setup;
@@ -12,7 +13,7 @@ use Simplify\Core\Filament\App\Pages\Overview;
 define('LARAVEL_START', microtime(true));
 require getcwd().'/vendor/autoload.php';
 $app = require getcwd().'/bootstrap/app.php';
-$app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
+$app->make(Kernel::class)->bootstrap();
 $pages = [
     'overview' => Overview::getUrl(panel: 'app'),
     'notifications' => Notifications::getUrl(panel: 'app'),
