@@ -32,6 +32,8 @@ final class Settings extends Page implements HasForms
 
     protected static string|\BackedEnum|null $navigationIcon = 'tabler-layout-dashboard';
 
+    protected static ?int $navigationSort = 1;
+
     protected string $view = 'pelican-simplify::pages.settings';
 
     /** @var array<string, mixed> */
@@ -40,6 +42,12 @@ final class Settings extends Page implements HasForms
     public static function canAccess(): bool
     {
         return (bool) user()?->isRootAdmin();
+    }
+
+    /** Simplify's own group in Pelican's menu, shared with the add-ons (ADDONS.md, "Admin menu"). */
+    public static function getNavigationGroup(): ?string
+    {
+        return 'Simplify';
     }
 
     public static function getNavigationLabel(): string

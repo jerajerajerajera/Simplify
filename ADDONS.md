@@ -64,6 +64,34 @@ Return an empty list when the current user may not use something. Simplify does 
 - If your add-on throws, Simplify reports the error and leaves your add-on out. It never breaks a Simplify page.
 - Install other plugins only from the Pelican Hub, and list every outside service you call in your README.
 
+## Admin menu
+
+Every admin page of Simplify and its add-ons sits in one group, **Simplify**, in Pelican's own menu. That works without the core too: the group is just a name.
+
+```php
+public static function getNavigationGroup(): ?string
+{
+    return 'Simplify';
+}
+```
+
+Use the number below as `$navigationSort` for your add-on's main admin page (its other admin pages get the next numbers), so the core comes first and the add-ons follow from A to Z. A new add-on takes the free number in its place.
+
+| Page | Sort |
+| --- | --- |
+| Simplify settings, People (core) | 1, 2 |
+| Announcements | 10 |
+| Egg Updates | 20 |
+| Embed | 30 |
+| Explain | 40 |
+| Hosting | 50 |
+| Mods | 60 |
+| Plugins | 70 |
+| Server Maker | 80 |
+| Subdomains | 90 |
+
+Pages on a server (such as Subdomain or Website) stay in the server's own menu.
+
 ## Events
 
 Some things go through Laravel events with a plain string name, so an add-on needs no Simplify class for them.
