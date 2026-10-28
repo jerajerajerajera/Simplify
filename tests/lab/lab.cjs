@@ -85,8 +85,12 @@ const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g
       await shot('action-settings-pelican-mail');
     }
     await click(page.locator('main [role=tab]', { hasText: 'General' }), 'settings back to General');
+    const answer = page.waitForResponse((r) => r.url().includes('/livewire') && r.request().method() === 'POST', { timeout: 8000 }).catch(() => null);
     await click(page.locator('main button[type=submit]', { hasText: 'Save' }), 'settings save');
-    ok('settings saved', await page.getByText(/settings saved/i).first().waitFor({ timeout: 8000 }).then(() => true, () => false));
+    const response = await answer;
+    const errors = await page.locator('.fi-fo-field-wrp-error-message, [data-validation-error]').allInnerTexts().catch(() => []);
+    ok('settings saved', await page.getByText(/settings saved/i).first().waitFor({ timeout: 8000 }).then(() => true, () => false),
+      response ? `HTTP ${response.status()} ${(await response.text().catch(() => '')).slice(0, 600)} ${errors.join(' | ')}` : 'no Livewire request ' + errors.join(' | '));
     await shot('action-settings-saved');
   });
 
