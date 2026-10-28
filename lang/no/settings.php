@@ -52,6 +52,8 @@ return [
         'app_help' => 'Folk kan legge til panelet som en app på telefonen eller datamaskinen fra nettlesermenyen.',
         'app_icon' => 'Appikon',
         'app_icon_help' => 'En kvadratisk PNG, JPEG eller WebP på minst 512 piksler, opptil 1 MB. Tomt bruker Simplify-ikonet.',
+        'app_badge' => 'Statuslinjeikon',
+        'app_badge_help' => 'En PNG med gjennomsiktig bakgrunn, vist hvit i statuslinjen på Android. Tom bruker app-ikonet hvis det har gjennomsiktig bakgrunn, ellers pelikanen.',
     ],
     'addons' => [
         'heading' => 'Tillegg',

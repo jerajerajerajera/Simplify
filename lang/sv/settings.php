@@ -52,6 +52,8 @@ return [
         'app_help' => 'Folk kan lägga till panelen som en app på telefonen eller datorn via webbläsarmenyn.',
         'app_icon' => 'Appikon',
         'app_icon_help' => 'En kvadratisk PNG, JPEG eller WebP på minst 512 pixlar, upp till 1 MB. Tomt använder Simplify-ikonen.',
+        'app_badge' => 'Statusfältsikon',
+        'app_badge_help' => 'En PNG med genomskinlig bakgrund, visas vit i Androids statusfält. Tomt använder appikonen om den har genomskinlig bakgrund, annars pelikanen.',
     ],
     'addons' => [
         'heading' => 'Tillägg',

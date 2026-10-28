@@ -52,6 +52,8 @@ return [
         'app_help' => 'Herkes paneli tarayıcı menüsünden telefonuna veya bilgisayarına uygulama olarak ekleyebilir.',
         'app_icon' => 'Uygulama simgesi',
         'app_icon_help' => 'En az 512 piksel, en fazla 1 MB kare PNG, JPEG veya WebP. Boş bırakılırsa Simplify simgesi kullanılır.',
+        'app_badge' => 'Durum çubuğu simgesi',
+        'app_badge_help' => 'Şeffaf arka planlı bir PNG; Android durum çubuğunda beyaz gösterilir. Boşsa, arka planı şeffafsa uygulama simgesi, değilse pelikan kullanılır.',
     ],
     'addons' => [
         'heading' => 'Ek özellikler',

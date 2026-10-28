@@ -52,6 +52,8 @@ return [
         'app_help' => '用户可以通过浏览器菜单将面板作为应用添加到手机或电脑。',
         'app_icon' => '应用图标',
         'app_icon_help' => '正方形 PNG、JPEG 或 WebP，至少 512 像素，最大 1 MB。留空则使用 Simplify 图标。',
+        'app_badge' => '状态栏图标',
+        'app_badge_help' => '背景透明的 PNG，在 Android 状态栏中显示为白色。留空时，如果应用图标背景透明则使用应用图标，否则使用鹈鹕。',
     ],
     'addons' => [
         'heading' => '附加组件',

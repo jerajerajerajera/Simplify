@@ -52,6 +52,8 @@ return [
         'app_help' => 'Kdokoli si může panel přidat jako aplikaci do telefonu nebo počítače z nabídky prohlížeče.',
         'app_icon' => 'Ikona aplikace',
         'app_icon_help' => 'Čtvercový PNG, JPEG nebo WebP alespoň 512 pixelů, do 1 MB. Prázdné použije ikonu Simplify.',
+        'app_badge' => 'Ikona stavového řádku',
+        'app_badge_help' => 'PNG s průhledným pozadím, ve stavovém řádku Androidu zobrazené bíle. Prázdné použije ikonu aplikace, pokud má průhledné pozadí, jinak pelikána.',
     ],
     'addons' => [
         'heading' => 'Doplňky',

@@ -52,6 +52,8 @@ return [
         'app_help' => 'Alle können das Panel über das Browsermenü als App auf Handy oder Computer hinzufügen.',
         'app_icon' => 'App-Symbol',
         'app_icon_help' => 'Ein quadratisches PNG, JPEG oder WebP mit mindestens 512 Pixeln, bis 1 MB. Leer nutzt das Simplify-Symbol.',
+        'app_badge' => 'Statusleisten-Symbol',
+        'app_badge_help' => 'Ein PNG mit transparentem Hintergrund, in Androids Statusleiste weiß dargestellt. Leer nutzt das App-Symbol, wenn es einen transparenten Hintergrund hat, sonst den Pelikan.',
     ],
     'addons' => [
         'heading' => 'Add-ons',

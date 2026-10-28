@@ -52,6 +52,8 @@ return [
         'app_help' => 'Oamenii pot adăuga panoul pe telefon sau calculator ca aplicație, din meniul browserului.',
         'app_icon' => 'Pictograma aplicației',
         'app_icon_help' => 'Un PNG, JPEG sau WebP pătrat de cel puțin 512 pixeli, de până la 1 MB. Gol folosește pictograma Simplify.',
+        'app_badge' => 'Pictograma barei de stare',
+        'app_badge_help' => 'Un PNG cu fundal transparent, afișat alb în bara de stare Android. Gol folosește pictograma aplicației dacă are fundal transparent, altfel pelicanul.',
     ],
     'addons' => [
         'heading' => 'Extensii',

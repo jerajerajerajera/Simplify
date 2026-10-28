@@ -52,6 +52,8 @@ return [
         'app_help' => 'Qualquer pessoa pode adicionar o painel como app ao celular ou computador pelo menu do navegador.',
         'app_icon' => 'Ícone do app',
         'app_icon_help' => 'Um PNG, JPEG ou WebP quadrado de pelo menos 512 pixels, até 1 MB. Vazio usa o ícone do Simplify.',
+        'app_badge' => 'Ícone da barra de status',
+        'app_badge_help' => 'Um PNG com fundo transparente, mostrado em branco na barra de status do Android. Vazio usa o ícone do app se tiver fundo transparente; senão, o pelicano.',
     ],
     'addons' => [
         'heading' => 'Add-ons',

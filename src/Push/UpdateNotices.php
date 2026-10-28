@@ -8,6 +8,7 @@ use App\Models\Node;
 use App\Models\Role;
 use App\Models\User;
 use App\Services\Helpers\SoftwareVersionService;
+use Illuminate\Support\Collection;
 use Throwable;
 
 /**
@@ -32,9 +33,9 @@ final class UpdateNotices
 
         $panel = $versions->latestPanelVersion();
         if ($panel !== null && ! $versions->isLatestPanel()) {
-            $sent += Push::send($admins, 'updates', [
-                'title' => __('pelican-simplify::push.panel_update', ['version' => $panel]),
-                'body' => __('pelican-simplify::push.panel_update_body', ['current' => $versions->currentPanelVersion()]),
+            $sent += self::inTheirLanguage($admins, fn (string $locale) => [
+                'title' => __('pelican-simplify::push.panel_update', ['version' => $panel], $locale),
+                'body' => __('pelican-simplify::push.panel_update_body', ['current' => $versions->currentPanelVersion()], $locale),
                 'url' => $home,
                 'tag' => 'pelican-'.$panel,
             ]);
@@ -53,12 +54,28 @@ final class UpdateNotices
             }
         }
         if ($older !== []) {
-            $sent += Push::send($admins, 'updates', [
-                'title' => __('pelican-simplify::push.wings_update', ['version' => $wings]),
-                'body' => __('pelican-simplify::push.wings_update_body', ['nodes' => implode(', ', $older)]),
+            $sent += self::inTheirLanguage($admins, fn (string $locale) => [
+                'title' => __('pelican-simplify::push.wings_update', ['version' => $wings], $locale),
+                'body' => __('pelican-simplify::push.wings_update_body', ['nodes' => implode(', ', $older)], $locale),
                 'url' => $home,
                 'tag' => 'wings-'.$wings,
             ]);
+        }
+
+        return $sent;
+    }
+
+    /**
+     * Each admin gets the notice in the language of their Pelican profile.
+     *
+     * @param  Collection<int, User>  $admins
+     * @param  callable(string): array{title: string, body?: string, url?: ?string, tag?: ?string}  $message
+     */
+    private static function inTheirLanguage(Collection $admins, callable $message): int
+    {
+        $sent = 0;
+        foreach ($admins->groupBy(fn (User $admin) => $admin->language ?: config('app.locale')) as $locale => $group) {
+            $sent += Push::send($group, 'updates', $message((string) $locale));
         }
 
         return $sent;

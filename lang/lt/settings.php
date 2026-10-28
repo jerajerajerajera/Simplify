@@ -52,6 +52,8 @@ return [
         'app_help' => 'Žmonės gali pridėti skydelį į telefoną ar kompiuterį kaip programėlę per naršyklės meniu.',
         'app_icon' => 'Programėlės piktograma',
         'app_icon_help' => 'Kvadratinis PNG, JPEG arba WebP, ne mažesnis nei 512 pikselių, iki 1 MB. Tuščias naudoja Simplify piktogramą.',
+        'app_badge' => 'Būsenos juostos piktograma',
+        'app_badge_help' => 'PNG su permatomu fonu, rodoma balta Android būsenos juostoje. Tuščia – programos piktograma, jei jos fonas permatomas, kitaip pelikanas.',
     ],
     'addons' => [
         'heading' => 'Priedai',

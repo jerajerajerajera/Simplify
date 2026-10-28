@@ -52,6 +52,8 @@ return [
         'app_help' => 'Cualquiera puede añadir el panel como app a su móvil u ordenador desde el menú del navegador.',
         'app_icon' => 'Icono de la app',
         'app_icon_help' => 'Un PNG, JPEG o WebP cuadrado de al menos 512 píxeles, hasta 1 MB. Vacío usa el icono de Simplify.',
+        'app_badge' => 'Icono de la barra de estado',
+        'app_badge_help' => 'Un PNG con fondo transparente, mostrado en blanco en la barra de estado de Android. Vacío usa el icono de la app si tiene fondo transparente; si no, el pelícano.',
     ],
     'addons' => [
         'heading' => 'Add-ons',

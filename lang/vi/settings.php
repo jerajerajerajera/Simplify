@@ -52,6 +52,8 @@ return [
         'app_help' => 'Mọi người có thể thêm panel vào điện thoại hoặc máy tính như một ứng dụng từ menu trình duyệt.',
         'app_icon' => 'Biểu tượng ứng dụng',
         'app_icon_help' => 'Ảnh PNG, JPEG hoặc WebP vuông tối thiểu 512 pixel, tối đa 1 MB. Để trống dùng biểu tượng Simplify.',
+        'app_badge' => 'Biểu tượng thanh trạng thái',
+        'app_badge_help' => 'Ảnh PNG nền trong suốt, hiển thị màu trắng trên thanh trạng thái Android. Để trống sẽ dùng biểu tượng ứng dụng nếu nền trong suốt, nếu không thì dùng chú bồ nông.',
     ],
     'addons' => [
         'heading' => 'Tiện ích bổ sung',

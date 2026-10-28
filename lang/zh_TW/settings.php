@@ -52,6 +52,8 @@ return [
         'app_help' => '使用者可以從瀏覽器選單將面板以應用程式形式加入手機或電腦。',
         'app_icon' => '應用程式圖示',
         'app_icon_help' => '正方形 PNG、JPEG 或 WebP，至少 512 像素，最大 1 MB。留空則使用 Simplify 圖示。',
+        'app_badge' => '狀態列圖示',
+        'app_badge_help' => '背景透明的 PNG，在 Android 狀態列中顯示為白色。留空時，若應用程式圖示背景透明則使用該圖示，否則使用鵜鶘。',
     ],
     'addons' => [
         'heading' => '附加元件',

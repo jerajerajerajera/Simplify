@@ -52,6 +52,8 @@ return [
         'app_help' => 'Każdy może dodać panel jako aplikację na telefonie lub komputerze z menu przeglądarki.',
         'app_icon' => 'Ikona aplikacji',
         'app_icon_help' => 'Kwadratowy PNG, JPEG lub WebP o boku co najmniej 512 pikseli, do 1 MB. Puste używa ikony Simplify.',
+        'app_badge' => 'Ikona paska stanu',
+        'app_badge_help' => 'PNG z przezroczystym tłem, wyświetlany na biało na pasku stanu Androida. Puste: ikona aplikacji, jeśli ma przezroczyste tło, w przeciwnym razie pelikan.',
     ],
     'addons' => [
         'heading' => 'Dodatki',

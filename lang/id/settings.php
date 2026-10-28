@@ -52,6 +52,8 @@ return [
         'app_help' => 'Orang dapat menambahkan panel ke ponsel atau komputer sebagai aplikasi dari menu browser.',
         'app_icon' => 'Ikon aplikasi',
         'app_icon_help' => 'PNG, JPEG, atau WebP persegi minimal 512 piksel, hingga 1 MB. Kosong memakai ikon Simplify.',
+        'app_badge' => 'Ikon bilah status',
+        'app_badge_help' => 'PNG berlatar transparan, ditampilkan putih di bilah status Android. Kosong memakai ikon aplikasi jika latarnya transparan, jika tidak memakai pelikan.',
     ],
     'addons' => [
         'heading' => 'Add-on',

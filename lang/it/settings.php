@@ -52,6 +52,8 @@ return [
         'app_help' => 'Chiunque può aggiungere il pannello come app al telefono o al computer dal menu del browser.',
         'app_icon' => 'Icona dell\'app',
         'app_icon_help' => 'Un PNG, JPEG o WebP quadrato di almeno 512 pixel, fino a 1 MB. Vuoto usa l\'icona di Simplify.',
+        'app_badge' => 'Icona della barra di stato',
+        'app_badge_help' => 'Un PNG con sfondo trasparente, mostrato in bianco nella barra di stato di Android. Vuoto usa l’icona dell’app se ha lo sfondo trasparente, altrimenti il pellicano.',
     ],
     'addons' => [
         'heading' => 'Add-on',
