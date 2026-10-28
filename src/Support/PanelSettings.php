@@ -21,14 +21,20 @@ final class PanelSettings
     /** The checked settings for this request, kept in the container so a new request (or test app) starts fresh. */
     private const MEMO = 'simplify.settings.checked';
 
+    /** An https address, which may hold {uuid} and {external_id}; Laravel's url rule does not accept the braces. */
+    public const BILLING_URL = '#^https://[^\s<>"]+$#';
+
+    /** An https address or a mailto: address; Laravel's url rule does not accept mailto:. */
+    public const SUPPORT_URL = '#^(https://[^\s<>"]+|mailto:[^\s@<>"]+@[^\s@<>"]+)$#';
+
     /** key => [default, validation rules] */
     public const FIELDS = [
         'accent' => [null, ['nullable', 'regex:/^#[0-9a-fA-F]{6}$/']],
         'setup_done' => [false, ['required', 'boolean']],
         'profile' => ['friends', ['required', 'in:friends,hosting']],
         'start_page' => ['overview', ['required', 'in:overview,pelican']],
-        'billing_url' => [null, ['nullable', 'url:https', 'max:255']],
-        'support_url' => [null, ['nullable', 'url:https,mailto', 'max:255']],
+        'billing_url' => [null, ['nullable', 'max:255', 'regex:'.self::BILLING_URL]],
+        'support_url' => [null, ['nullable', 'max:255', 'regex:'.self::SUPPORT_URL]],
         'push' => [true, ['required', 'boolean']],
         'overview_seconds' => [15, ['required', 'integer', 'min:5', 'max:300']],
         'brand_name' => [null, ['nullable', 'string', 'max:40']],
