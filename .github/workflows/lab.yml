@@ -123,12 +123,13 @@ jobs:
           composer install --no-interaction --no-progress --prefer-dist
           cp .env.example .env
           sed -i 's/^APP_INSTALLED=.*/APP_INSTALLED=true/; s/^APP_DEBUG=.*/APP_DEBUG=false/; s#^APP_URL=.*#APP_URL=http://127.0.0.1:8001#' .env
-          printf 'DB_CONNECTION=sqlite\nQUEUE_CONNECTION=sync\nCACHE_STORE=file\nSESSION_DRIVER=file\nMAIL_MAILER=log\n' >> .env
+          printf 'DB_CONNECTION=sqlite\nQUEUE_CONNECTION=database\nCACHE_STORE=file\nSESSION_DRIVER=file\nMAIL_MAILER=log\n' >> .env
           touch database/database.sqlite
           php artisan key:generate --force
           php artisan migrate --force --seed
           yarn install --silent && yarn build
           php artisan p:plugin:install pelican-simplify
+          php artisan p:plugin:list | grep -E 'Simplify .*\| enabled'
           mkdir -p storage/app/private/simplify storage/app/simplify
           echo '{"setup_completed":true}' > storage/app/private/simplify/features.json
           cp storage/app/private/simplify/features.json storage/app/simplify/features.json
