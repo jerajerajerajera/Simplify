@@ -109,6 +109,28 @@ final class SmokeAddon extends Addon
     }
 }
 
+final class BadgeAddon extends Addon
+{
+    public static int $asked = 0;
+
+    public function id(): string
+    {
+        return 'badge-addon';
+    }
+
+    public function name(): string
+    {
+        return 'Badge add-on';
+    }
+
+    public function tileBadges(Server $server): array
+    {
+        self::$asked++;
+
+        return ['smoke-badge'];
+    }
+}
+
 // Pelican 1.0 has no users.root_admin column: root admins have the root admin role.
 $admin = User::where('email', 'smoke-simplify@example.com')->first()
     ?? User::withoutEvents(fn () => User::factory()->create(['email' => 'smoke-simplify@example.com']));
@@ -182,6 +204,17 @@ step('live numbers load without Wings and leave unknown values empty', function 
         ->call('refreshUsage')->get('usage');
     if (! isset($usage[$server->id]['state'])) {
         throw new RuntimeException('no state for the server: '.json_encode($usage));
+    }
+});
+step('add-on badges show on the tiles and are not asked again on every refresh', function ($app) use ($admin, $server) {
+    $app->tag([BadgeAddon::class], AddonRegistry::TAG);
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
+    BadgeAddon::$asked = 0;
+    $page = Livewire\Livewire::actingAs($admin)->test(Overview::class)->assertSee('smoke-badge');
+    $first = BadgeAddon::$asked;
+    $page->call('refreshUsage')->call('refreshUsage')->assertSee('smoke-badge');
+    if ($first < 1 || BadgeAddon::$asked !== $first) {
+        throw new RuntimeException("asked $first times on the first view, ".BadgeAddon::$asked.' after two refreshes');
     }
 });
 step('a power action on a server the user cannot reach is refused', function () use ($admin) {
