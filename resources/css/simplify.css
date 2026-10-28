@@ -497,3 +497,34 @@
     width: 100%;
   }
 }
+
+/* Server page: details above Pelican's console. */
+.s-details {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-space-2) var(--s-space-4);
+}
+
+.s-copy {
+  align-items: center;
+  display: inline-flex;
+  gap: var(--s-space-2);
+  min-width: 0;
+}
+
+.s-copy-value {
+  font-size: var(--s-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.s-btn-small {
+  --s-h: 28px;
+}
+
+.s-addon-sections {
+  display: grid;
+  gap: var(--s-space-4);
+}
