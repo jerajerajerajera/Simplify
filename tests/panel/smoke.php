@@ -11,6 +11,7 @@ use Illuminate\Testing\TestResponse;
 use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Filament\Admin\Pages\Settings;
+use Simplify\Core\Support\Assets;
 
 define('LARAVEL_START', microtime(true));
 require getcwd().'/vendor/autoload.php';
@@ -75,6 +76,26 @@ step('a tagged add-on shows on the settings page', function () use ($admin, $app
     expectOk($response, $url);
     if (! str_contains($response->getContent(), 'Smoke add-on')) {
         throw new RuntimeException('the add-on is not listed');
+    }
+});
+step('the stylesheet and logo are served with a long cache', function () use ($admin) {
+    foreach (['simplify.css' => 'text/css', 'logo.svg' => 'image/svg+xml'] as $name => $type) {
+        $url = Assets::url($name);
+        $response = visit($admin, $url);
+        expectOk($response, $url);
+        if (! str_starts_with((string) $response->headers->get('Content-Type'), $type)) {
+            throw new RuntimeException("$name has type ".$response->headers->get('Content-Type'));
+        }
+    }
+    $response = visit($admin, '/simplify/assets/plugin.json');
+    if ($response->getStatusCode() !== 404) {
+        throw new RuntimeException('a file outside the list is served');
+    }
+});
+step('every panel page loads the stylesheet', function () use ($admin) {
+    $url = Settings::getUrl(panel: 'admin');
+    if (! str_contains(visit($admin, $url)->getContent(), '/simplify/assets/simplify.css?v=')) {
+        throw new RuntimeException('the stylesheet link is missing');
     }
 });
 exit($failed ? 1 : 0);

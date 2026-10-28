@@ -1,22 +1,20 @@
 <x-filament-panels::page>
     <x-filament::section :heading="__('pelican-simplify::settings.addons.heading')">
         @forelse ($this->addons() as $addon)
-            <div class="flex items-center gap-3 py-2">
-                <x-filament::icon :icon="$addon->icon()" class="h-5 w-5 text-gray-500" />
-                <div class="min-w-0 flex-1">
-                    <div class="font-medium">{{ $addon->name() }}</div>
+            <div class="s-row">
+                <x-filament::icon :icon="$addon->icon()" class="s-row-icon" />
+                <div class="s-row-text">
+                    <div>{{ $addon->name() }}</div>
                     @if ($addon->description() !== '')
-                        <div class="text-sm text-gray-500">{{ $addon->description() }}</div>
+                        <div class="s-muted">{{ $addon->description() }}</div>
                     @endif
                 </div>
                 @if ($url = $addon->settingsUrl())
-                    <x-filament::button tag="a" :href="$url" color="gray" size="sm">
-                        {{ __('pelican-simplify::settings.addons.open') }}
-                    </x-filament::button>
+                    <a class="s-btn" href="{{ $url }}">{{ __('pelican-simplify::settings.addons.open') }}</a>
                 @endif
             </div>
         @empty
-            <p class="text-sm text-gray-500">{{ __('pelican-simplify::settings.addons.none') }}</p>
+            <p class="s-muted">{{ __('pelican-simplify::settings.addons.none') }}</p>
         @endforelse
     </x-filament::section>
 </x-filament-panels::page>

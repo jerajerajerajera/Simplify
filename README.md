@@ -18,6 +18,8 @@ See [ADDONS.md](ADDONS.md) for how an add-on plugs into Simplify.
 
 Nothing. Simplify only talks to your own panel and your Wings nodes.
 
+Open routes (no login): `/simplify/assets/{name}` serves Simplify's stylesheet and logo.
+
 ## Development
 
 - `bash tests/run.sh` runs the checks that need no panel, including `tests/hub-check.py`.
