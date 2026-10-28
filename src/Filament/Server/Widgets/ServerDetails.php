@@ -21,6 +21,9 @@ final class ServerDetails extends Widget
 
     protected int|string|array $columnSpan = 'full';
 
+    /** Cheap to render, so it comes with the page instead of popping in after it. */
+    protected static bool $isLazy = false;
+
     public ?Server $server = null;
 
     public function address(): ?string
