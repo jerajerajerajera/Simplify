@@ -54,5 +54,9 @@ return [
             'name' => 'Plugins',
             'description' => 'Găsiți și instalați pluginuri de pe Pelican Hub.',
         ],
+        'hosting' => [
+            'name' => 'Găzduire',
+            'description' => 'Linkuri de facturare, o zonă pentru clienți și modul gazdă pentru panouri mari.',
+        ],
     ],
 ];

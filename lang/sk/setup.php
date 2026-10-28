@@ -54,5 +54,9 @@ return [
             'name' => 'Plugins',
             'description' => 'Hľadajte a inštalujte pluginy z Pelican Hub.',
         ],
+        'hosting' => [
+            'name' => 'Hosting',
+            'description' => 'Odkazy na fakturáciu, klientska zóna pre zákazníkov a režim hostiteľa pre veľké panely.',
+        ],
     ],
 ];

@@ -54,5 +54,9 @@ return [
             'name' => 'Plugins',
             'description' => '从 Pelican Hub 查找并安装插件。',
         ],
+        'hosting' => [
+            'name' => '托管',
+            'description' => '账单链接、客户专区，以及适合大型面板的主机模式。',
+        ],
     ],
 ];
