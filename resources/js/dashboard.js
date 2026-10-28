@@ -94,6 +94,8 @@
         setTimeout(() => this.releaseBats(), 600);
         this.recordOverview(this.boot.servers);
         this.refreshTimer = setInterval(() => this.refreshOverview(), this.refreshSeconds);
+        // Host health is asked right after first paint when no snapshot was ready, so Wings never holds up the page.
+        if (this.boot.features?.host_health && !this.boot.host_health?.state) this.refreshOverview();
       },
       destroy() {
         this.destroyed = true;
