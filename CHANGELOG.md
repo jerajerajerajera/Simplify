@@ -22,6 +22,7 @@
 - Host mode: a server in a low frame folds its numbers into one slim row, so its box keeps a usable console instead of the frame scrolling.
 - The admin tools list each add-on once, and "People & roles" has its own icon.
 - Fixed a script error on server pages ("brandTextStyle is not a function").
+- Known: in host mode, Pelican's own list pages (Eggs, Servers, Users and so on) still scroll as a whole page inside the frame, title included. This follows in 1.4.4.
 
 ## 1.4.2
 
