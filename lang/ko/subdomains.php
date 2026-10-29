@@ -3,7 +3,6 @@
 return [
     'title' => '자동 하위 도메인',
     'subdomain' => '하위 도메인',
-    'save' => '저장',
     'saved' => '설정 저장됨',
     'settings' => [
         'addresses' => '주소',

@@ -3,7 +3,6 @@
 return [
     'title' => 'Subdominios automáticos',
     'subdomain' => 'Subdominio',
-    'save' => 'Guardar',
     'saved' => 'Ajustes guardados',
     'settings' => [
         'addresses' => 'Direcciones',

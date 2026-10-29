@@ -3,7 +3,6 @@
 return [
     'title' => '自動サブドメイン',
     'subdomain' => 'サブドメイン',
-    'save' => '保存',
     'saved' => '設定を保存しました',
     'settings' => [
         'addresses' => 'アドレス',

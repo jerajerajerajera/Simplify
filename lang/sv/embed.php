@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Webbinbäddning',
-    'save' => 'Spara',
     'saved' => 'Sparat',
     'settings' => [
         'servers' => 'Servrar på din webbplats',

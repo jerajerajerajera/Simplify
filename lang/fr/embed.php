@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Intégration au site web',
-    'save' => 'Enregistrer',
     'saved' => 'Enregistré',
     'settings' => [
         'servers' => 'Serveurs sur votre site',

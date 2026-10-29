@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Nhúng vào trang web',
-    'save' => 'Lưu',
     'saved' => 'Đã lưu',
     'settings' => [
         'servers' => 'Máy chủ trên trang web của bạn',

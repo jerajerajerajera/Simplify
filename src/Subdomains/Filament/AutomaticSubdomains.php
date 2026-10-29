@@ -7,42 +7,26 @@ namespace Simplify\Core\Subdomains\Filament;
 use Filament\Actions\Action;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
-use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Notifications\Notification;
-use Filament\Pages\Page;
 use Filament\Schemas\Components\Actions;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Text;
-use Filament\Schemas\Contracts\HasSchemas;
 use Filament\Schemas\Schema;
+use Simplify\Core\Filament\FormPage;
 use Simplify\Core\Subdomains\Services\CloudflareDns;
 use Simplify\Core\Subdomains\Services\Settings;
 use Simplify\Core\Subdomains\Subdomains;
 
 /**
  * Where a root admin sets the domain, the game address, the forwarded ports and the Cloudflare token.
- *
- * @property Schema $form
  */
-final class AutomaticSubdomains extends Page implements HasSchemas
+final class AutomaticSubdomains extends FormPage
 {
-    use InteractsWithForms;
-
     protected static string|\BackedEnum|null $navigationIcon = 'tabler-world';
 
     protected static ?int $navigationSort = 90;
 
     protected static ?string $slug = 'simplify-subdomains';
-
-    protected string $view = 'pelican-simplify::subdomains.form-page';
-
-    /** @var array<string, mixed>|null */
-    public ?array $data = [];
-
-    public static function canAccess(): bool
-    {
-        return (bool) user()?->isRootAdmin();
-    }
 
     public static function getNavigationLabel(): string
     {
@@ -55,19 +39,9 @@ final class AutomaticSubdomains extends Page implements HasSchemas
         return 'Simplify';
     }
 
-    public function getTitle(): string
-    {
-        return __('pelican-simplify::subdomains.title');
-    }
-
     public function mount(): void
     {
         $this->fillForm();
-    }
-
-    public function waiting(): bool
-    {
-        return false;
     }
 
     public function form(Schema $schema): Schema
@@ -156,18 +130,6 @@ final class AutomaticSubdomains extends Page implements HasSchemas
             ->body($result['message'])
             ->status($result['ok'] ? 'success' : 'danger')
             ->send();
-    }
-
-    protected function getHeaderActions(): array
-    {
-        return [
-            Action::make('save')
-                ->hiddenLabel()
-                ->icon('tabler-device-floppy')
-                ->tooltip(__('pelican-simplify::subdomains.save'))
-                ->action('save')
-                ->keyBindings(['mod+s']),
-        ];
     }
 
     private static function hostInput(string $name, string $placeholder, int $length): TextInput

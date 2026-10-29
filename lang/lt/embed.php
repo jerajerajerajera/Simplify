@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Įterpimas į svetainę',
-    'save' => 'Išsaugoti',
     'saved' => 'Išsaugota',
     'settings' => [
         'servers' => 'Serveriai tavo svetainėje',

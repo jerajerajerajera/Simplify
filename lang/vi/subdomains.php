@@ -3,7 +3,6 @@
 return [
     'title' => 'Tên miền phụ tự động',
     'subdomain' => 'Tên miền phụ',
-    'save' => 'Lưu',
     'saved' => 'Đã lưu cài đặt',
     'settings' => [
         'addresses' => 'Địa chỉ',

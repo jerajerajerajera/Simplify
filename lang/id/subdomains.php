@@ -3,7 +3,6 @@
 return [
     'title' => 'Subdomain otomatis',
     'subdomain' => 'Subdomain',
-    'save' => 'Simpan',
     'saved' => 'Pengaturan disimpan',
     'settings' => [
         'addresses' => 'Alamat',

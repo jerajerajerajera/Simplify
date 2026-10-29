@@ -5,39 +5,27 @@ declare(strict_types=1);
 namespace Simplify\Core\Subdomains\Filament;
 
 use App\Models\Server;
-use Filament\Actions\Action;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Notifications\Notification;
-use Filament\Pages\Page;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Text;
-use Filament\Schemas\Contracts\HasSchemas;
 use Filament\Schemas\Schema;
 use Illuminate\Validation\ValidationException;
+use Simplify\Core\Filament\FormPage;
 use Simplify\Core\Subdomains\Models\Subdomain;
 use Simplify\Core\Subdomains\Subdomains;
 
 /**
  * The server's own subdomain. Its owner (or a root admin) picks the name; the records follow after the response.
- *
- * @property Schema $form
  */
-final class ServerSubdomain extends Page implements HasSchemas
+final class ServerSubdomain extends FormPage
 {
-    use InteractsWithForms;
-
     protected static string|\BackedEnum|null $navigationIcon = 'tabler-world';
 
     protected static ?int $navigationSort = 8;
 
     protected static ?string $slug = 'subdomain';
-
-    protected string $view = 'pelican-simplify::subdomains.form-page';
-
-    /** @var array<string, mixed>|null */
-    public ?array $data = [];
 
     public static function canAccess(): bool
     {
@@ -51,11 +39,6 @@ final class ServerSubdomain extends Page implements HasSchemas
     }
 
     public static function getNavigationLabel(): string
-    {
-        return __('pelican-simplify::subdomains.subdomain');
-    }
-
-    public function getTitle(): string
     {
         return __('pelican-simplify::subdomains.subdomain');
     }
@@ -117,25 +100,5 @@ final class ServerSubdomain extends Page implements HasSchemas
             ->title(__('pelican-simplify::subdomains.server.'.($name !== '' ? 'saved' : 'removed')))
             ->success()
             ->send();
-    }
-
-    protected function getHeaderActions(): array
-    {
-        return [
-            Action::make('save')
-                ->hiddenLabel()
-                ->icon('tabler-device-floppy')
-                ->tooltip(__('pelican-simplify::subdomains.save'))
-                ->action('save')
-                ->keyBindings(['mod+s']),
-        ];
-    }
-
-    private function server(): Server
-    {
-        /** @var Server $server */
-        $server = Filament::getTenant();
-
-        return $server;
     }
 }

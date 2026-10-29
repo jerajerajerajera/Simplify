@@ -3,7 +3,6 @@
 return [
     'title' => 'Automatiniai subdomenai',
     'subdomain' => 'Subdomenas',
-    'save' => 'Išsaugoti',
     'saved' => 'Nustatymai išsaugoti',
     'settings' => [
         'addresses' => 'Adresai',

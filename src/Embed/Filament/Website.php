@@ -7,36 +7,24 @@ namespace Simplify\Core\Embed\Filament;
 use App\Models\Server;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\Toggle;
-use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Notifications\Notification;
-use Filament\Pages\Page;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Components\View;
-use Filament\Schemas\Contracts\HasSchemas;
 use Filament\Schemas\Schema;
-use Illuminate\Contracts\Support\Htmlable;
 use Simplify\Core\Embed\Services\EmbedServers;
+use Simplify\Core\Filament\FormPage;
 
 /**
  * The server's owner (or a root admin) puts the server on the website and copies the code for this one server.
- *
- * @property Schema $form
  */
-final class Website extends Page implements HasSchemas
+final class Website extends FormPage
 {
-    use InteractsWithForms;
-
     protected static string|\BackedEnum|null $navigationIcon = 'tabler-code';
 
     protected static ?int $navigationSort = 12;
 
     protected static ?string $slug = 'website';
-
-    protected string $view = 'pelican-simplify::embed.form-page';
-
-    /** @var array<string, mixed>|null */
-    public ?array $data = [];
 
     public static function canAccess(): bool
     {
@@ -48,19 +36,6 @@ final class Website extends Page implements HasSchemas
     public static function getNavigationLabel(): string
     {
         return __('pelican-simplify::embed.server.title');
-    }
-
-    public function getTitle(): string|Htmlable
-    {
-        return __('pelican-simplify::embed.server.title');
-    }
-
-    public function server(): Server
-    {
-        /** @var Server $server */
-        $server = Filament::getTenant();
-
-        return $server;
     }
 
     public function mount(): void

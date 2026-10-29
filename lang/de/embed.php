@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Website-Einbettung',
-    'save' => 'Speichern',
     'saved' => 'Gespeichert',
     'settings' => [
         'servers' => 'Server auf deiner Website',

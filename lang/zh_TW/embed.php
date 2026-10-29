@@ -2,7 +2,6 @@
 
 return [
     'name' => '網站嵌入',
-    'save' => '儲存',
     'saved' => '已儲存',
     'settings' => [
         'servers' => '網站上的伺服器',

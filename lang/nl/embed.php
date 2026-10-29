@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Website-embed',
-    'save' => 'Opslaan',
     'saved' => 'Opgeslagen',
     'settings' => [
         'servers' => 'Servers op je website',

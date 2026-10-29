@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Incorporação no site',
-    'save' => 'Guardar',
     'saved' => 'Guardado',
     'settings' => [
         'servers' => 'Servidores no teu site',

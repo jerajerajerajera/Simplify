@@ -3,7 +3,6 @@
 return [
     'title' => 'Automatiska underdomäner',
     'subdomain' => 'Underdomän',
-    'save' => 'Spara',
     'saved' => 'Inställningar sparade',
     'settings' => [
         'addresses' => 'Adresser',

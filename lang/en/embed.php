@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Website embed',
-    'save' => 'Save',
     'saved' => 'Saved',
     'settings' => [
         'servers' => 'Servers on your website',

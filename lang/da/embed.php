@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Webindlejring',
-    'save' => 'Gem',
     'saved' => 'Gemt',
     'settings' => [
         'servers' => 'Servere på din hjemmeside',

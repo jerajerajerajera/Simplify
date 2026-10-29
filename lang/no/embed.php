@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Nettsideinnbygging',
-    'save' => 'Lagre',
     'saved' => 'Lagret',
     'settings' => [
         'servers' => 'Servere på nettsiden din',
