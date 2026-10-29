@@ -1,0 +1,794 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="fi"><head>
+        
+
+        <meta charset="utf-8">
+        <meta name="csrf-token" content="LXI4QRj3lUT8ClDcc3EOFKqKTu3Rzu5b3646oqXZ">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+                    <link rel="icon" href="../assets/ef884f31da10.ico">
+        
+        
+        <title>
+            App notifications
+             - 
+            Northwind Games
+        </title>
+
+        <link rel="stylesheet" href="../css/6a8cedfe8adb.css" data-navigate-track="reload">
+
+        <style>
+            [x-cloak=''],
+            [x-cloak='x-cloak'],
+            [x-cloak='1'] {
+                display: none !important;
+            }
+
+            [x-cloak='inline-flex'] {
+                display: inline-flex !important;
+            }
+
+            @media (max-width: 1023px) {
+                [x-cloak='-lg'] {
+                    display: none !important;
+                }
+            }
+
+            @media (min-width: 1024px) {
+                [x-cloak='lg'] {
+                    display: none !important;
+                }
+            }
+        </style>
+
+        <link href="../css/a73e0ebba1f3.css" rel="stylesheet" data-navigate-track="">
+                <link href="../css/d108218c391e.css" rel="stylesheet" data-navigate-track="">
+    
+<style>
+    :root {
+         --danger-50:oklch(0.971 0.013 17.38);  --danger-100:oklch(0.936 0.032 17.717);  --danger-200:oklch(0.885 0.062 18.334);  --danger-300:oklch(0.808 0.114 19.571);  --danger-400:oklch(0.704 0.191 22.216);  --danger-500:oklch(0.637 0.237 25.331);  --danger-600:oklch(0.577 0.245 27.325);  --danger-700:oklch(0.505 0.213 27.518);  --danger-800:oklch(0.444 0.177 26.899);  --danger-900:oklch(0.396 0.141 25.723);  --danger-950:oklch(0.258 0.092 26.042);  --gray-50:oklch(0.985 0 0);  --gray-100:oklch(0.967 0.001 286.375);  --gray-200:oklch(0.92 0.004 286.32);  --gray-300:oklch(0.871 0.006 286.286);  --gray-400:oklch(0.705 0.015 286.067);  --gray-500:oklch(0.552 0.016 285.938);  --gray-600:oklch(0.442 0.017 285.786);  --gray-700:oklch(0.37 0.013 285.805);  --gray-800:oklch(0.274 0.006 286.033);  --gray-900:oklch(0.21 0.006 285.885);  --gray-950:oklch(0.141 0.005 285.823);  --info-50:oklch(0.977 0.013 236.62);  --info-100:oklch(0.951 0.026 236.824);  --info-200:oklch(0.901 0.058 230.902);  --info-300:oklch(0.828 0.111 230.318);  --info-400:oklch(0.746 0.16 232.661);  --info-500:oklch(0.685 0.169 237.323);  --info-600:oklch(0.588 0.158 241.966);  --info-700:oklch(0.5 0.134 242.749);  --info-800:oklch(0.443 0.11 240.79);  --info-900:oklch(0.391 0.09 240.876);  --info-950:oklch(0.293 0.066 243.157);  --primary-50:oklch(0.97 0.014 254.604);  --primary-100:oklch(0.932 0.032 255.585);  --primary-200:oklch(0.882 0.059 254.128);  --primary-300:oklch(0.809 0.105 251.813);  --primary-400:oklch(0.707 0.165 254.624);  --primary-500:oklch(0.623 0.214 259.815);  --primary-600:oklch(0.546 0.245 262.881);  --primary-700:oklch(0.488 0.243 264.376);  --primary-800:oklch(0.424 0.199 265.638);  --primary-900:oklch(0.379 0.146 265.522);  --primary-950:oklch(0.282 0.091 267.935);  --success-50:oklch(0.982 0.018 155.826);  --success-100:oklch(0.962 0.044 156.743);  --success-200:oklch(0.925 0.084 155.995);  --success-300:oklch(0.871 0.15 154.449);  --success-400:oklch(0.792 0.209 151.711);  --success-500:oklch(0.723 0.219 149.579);  --success-600:oklch(0.627 0.194 149.214);  --success-700:oklch(0.527 0.154 150.069);  --success-800:oklch(0.448 0.119 151.328);  --success-900:oklch(0.393 0.095 152.535);  --success-950:oklch(0.266 0.065 152.934);  --warning-50:oklch(0.987 0.022 95.277);  --warning-100:oklch(0.962 0.059 95.617);  --warning-200:oklch(0.924 0.12 95.746);  --warning-300:oklch(0.879 0.169 91.605);  --warning-400:oklch(0.828 0.189 84.429);  --warning-500:oklch(0.769 0.188 70.08);  --warning-600:oklch(0.666 0.179 58.318);  --warning-700:oklch(0.555 0.163 48.998);  --warning-800:oklch(0.473 0.137 46.201);  --warning-900:oklch(0.414 0.112 45.904);  --warning-950:oklch(0.279 0.077 45.635);     }
+
+    </style>
+
+        <link href="../css/4e6dffe19fb6.css" rel="stylesheet" data-navigate-track="">
+        
+
+        
+        
+        
+        
+        
+
+        <style>
+            :root {
+                --font-family: 'Inter Variable';
+                --mono-font-family: 'ui-monospace';
+                --serif-font-family: 'ui-serif';
+                --sidebar-width: 20rem;
+                --collapsed-sidebar-width: 4.5rem;
+                --default-theme-mode: system;
+            }
+
+            html.fi {
+                --livewire-progress-bar-color: var(--primary-500);
+            }
+        </style>
+
+        
+        
+
+                    
+        
+        <link rel="stylesheet" href="../css/5ac7b5065179.css">
+
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafafa">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#09090b">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Northwind Games">
+<link rel="apple-touch-icon" href="../assets/1db5fc36d944.png">
+
+
+    <!-- Livewire Styles --><style>[wire\:loading][wire\:loading], [wire\:loading\.delay][wire\:loading\.delay], [wire\:loading\.list-item][wire\:loading\.list-item], [wire\:loading\.inline-block][wire\:loading\.inline-block], [wire\:loading\.inline][wire\:loading\.inline], [wire\:loading\.block][wire\:loading\.block], [wire\:loading\.flex][wire\:loading\.flex], [wire\:loading\.table][wire\:loading\.table], [wire\:loading\.grid][wire\:loading\.grid], [wire\:loading\.inline-flex][wire\:loading\.inline-flex] {display: none;}[wire\:loading\.delay\.none][wire\:loading\.delay\.none], [wire\:loading\.delay\.shortest][wire\:loading\.delay\.shortest], [wire\:loading\.delay\.shorter][wire\:loading\.delay\.shorter], [wire\:loading\.delay\.short][wire\:loading\.delay\.short], [wire\:loading\.delay\.default][wire\:loading\.delay\.default], [wire\:loading\.delay\.long][wire\:loading\.delay\.long], [wire\:loading\.delay\.longer][wire\:loading\.delay\.longer], [wire\:loading\.delay\.longest][wire\:loading\.delay\.longest] {display: none;}[wire\:offline][wire\:offline] {display: none;}[wire\:dirty]:not(textarea):not(input):not(select) {display: none;}:root {--livewire-progress-bar-color: #2299dd;}[x-cloak="x-cloak"],[x-cloak=""] {display: none !important;}[wire\:cloak="wire:cloak"],[wire\:cloak=""] {display: none !important;}dialog#livewire-error::backdrop {background-color: rgba(0, 0, 0, .6);}</style>
+<style>/* Make clicks pass-through */
+
+    #nprogress {
+      pointer-events: none;
+    }
+
+    #nprogress .bar {
+      background: var(--livewire-progress-bar-color, #29d);
+
+      position: fixed;
+      z-index: 1031;
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 2px;
+    }
+
+    /* Fancy blur effect */
+    #nprogress .peg {
+      display: block;
+      position: absolute;
+      right: 0px;
+      width: 100px;
+      height: 100%;
+      box-shadow: 0 0 10px var(--livewire-progress-bar-color, #29d), 0 0 5px var(--livewire-progress-bar-color, #29d);
+      opacity: 1.0;
+
+      -webkit-transform: rotate(3deg) translate(0px, -4px);
+          -ms-transform: rotate(3deg) translate(0px, -4px);
+              transform: rotate(3deg) translate(0px, -4px);
+    }
+
+    /* Remove these to get rid of the spinner */
+    #nprogress .spinner {
+      display: block;
+      position: fixed;
+      z-index: 1031;
+      top: 15px;
+      right: 15px;
+    }
+
+    #nprogress .spinner-icon {
+      width: 18px;
+      height: 18px;
+      box-sizing: border-box;
+
+      border: solid 2px transparent;
+      border-top-color: var(--livewire-progress-bar-color, #29d);
+      border-left-color: var(--livewire-progress-bar-color, #29d);
+      border-radius: 50%;
+
+      -webkit-animation: nprogress-spinner 400ms linear infinite;
+              animation: nprogress-spinner 400ms linear infinite;
+    }
+
+    .nprogress-custom-parent {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .nprogress-custom-parent #nprogress .spinner,
+    .nprogress-custom-parent #nprogress .bar {
+      position: absolute;
+    }
+
+    @-webkit-keyframes nprogress-spinner {
+      0%   { -webkit-transform: rotate(0deg); }
+      100% { -webkit-transform: rotate(360deg); }
+    }
+    @keyframes nprogress-spinner {
+      0%   { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    </style></head>
+
+    <body class="fi-body fi-panel-app fi-body-has-topbar">
+        
+
+        <a href="#fi-main-content" class="fi-skip-link fi-sr-only">
+        Skip to content
+    </a>
+
+            
+
+        <div wire:key="lw-3601853131-0-2" wire:id="W9Gbhe0EB22zBm2xrIfm" wire:name="Filament\Livewire\Topbar" class="fi-topbar-ctn">
+    
+    <nav aria-label="Topbar" class="fi-topbar">
+        
+
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+        <div class="fi-topbar-start">
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+            
+
+            <!--[if BLOCK]><![endif]-->                <a href="http://127.0.0.1:8001/simplify" wire:navigate="" data-demo-url="http://127.0.0.1:8001/simplify" data-demo-go="overview">
+                    <!--[if BLOCK]><![endif]-->        <div class="fi-logo">
+            Northwind Games
+        </div>
+    <!--[if ENDBLOCK]><![endif]-->
+            
+
+<!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->                </a>
+            <!--[if ENDBLOCK]><![endif]-->
+            
+        </div>
+
+        <!--[if BLOCK]><![endif]-->            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->        <!--[if ENDBLOCK]><![endif]-->
+        <div x-persist="topbar.end.panel-app" class="fi-topbar-end">
+            
+
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+            
+
+            <!--[if BLOCK]><![endif]-->                <!--[if BLOCK]><![endif]-->                    <div wire:id="0uFcAoQhKZl5igHFXRNs" wire:name="Filament\Livewire\DatabaseNotifications" class="fi-no-database">
+    
+    <!--[if BLOCK]><![endif]-->    <div>
+    
+
+    <div x-on:click="$dispatch('open-modal', { id: 'database-notifications' })" class="fi-modal-trigger">
+        <button class="fi-icon-btn fi-size-md fi-topbar-database-notifications-btn" title="Notifications" aria-label="Notifications" type="button" wire:loading.attr="aria-disabled" wire:loading.class="fi-disabled">
+    <svg class="fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6"></path>
+  <path d="M9 17v1a3 3 0 0 0 6 0v-1"></path>
+</svg>
+
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></button>
+    </div>
+<!--[if ENDBLOCK]><![endif]-->
+<!--[if BLOCK]><![endif]-->    <template x-teleport="body" data-teleport-template="true">
+    
+<!--[if ENDBLOCK]><![endif]-->
+<div aria-describedby="database-notifications.description" aria-labelledby="database-notifications.heading" aria-modal="true" id="database-notifications" role="dialog" tabindex="-1" x-data="filamentModal({
+                id: 'database-notifications',
+                isScrollLocked: true,
+                shouldRestoreFocus: true,
+            })" data-fi-modal-id="database-notifications" x-on:close-modal.window="if (($event.detail.id === 'database-notifications') &amp;&amp; isOpen) close()" x-on:close-modal-quietly.window="if (($event.detail.id === 'database-notifications') &amp;&amp; isOpen) closeQuietly()" x-on:open-modal.window="if (($event.detail.id === 'database-notifications') &amp;&amp; (! isOpen)) open()" x-bind:class="{
+        'fi-modal-open': isOpen,
+    }" x-cloak="" x-show="isOpen" class="fi-modal fi-absolute-positioning-context fi-modal-slide-over fi-modal-slide-over-from-end fi-no-database" wire:poll.30s="">
+    <!--[if BLOCK]><![endif]-->        <div aria-hidden="true" x-show="isOpen" x-transition.duration.300ms.opacity="" class="fi-modal-close-overlay"></div>
+    <!--[if ENDBLOCK]><![endif]-->
+    <div tabindex="-1" x-on:click.self="$dispatch('close-modal', { id: 'database-notifications' })" x-trap.noreturn="isTrapActive" class="fi-modal-window-ctn fi-clickable">
+        <div x-on:keydown.window.escape="if (isTopmost()) $dispatch('close-modal', { id: 'database-notifications' })" x-show="isWindowVisible" x-transition:enter="fi-transition-enter" x-transition:leave="fi-transition-leave" x-transition:enter-start="fi-transition-enter-start" x-transition:enter-end="fi-transition-enter-end" x-transition:leave-start="fi-transition-leave-start" x-transition:leave-end="fi-transition-leave-end" wire:key="0uFcAoQhKZl5igHFXRNs.modal.database-notifications.window" tabindex="-1" autofocus="autofocus" class="fi-modal-window fi-modal-window-has-close-btn fi-modal-window-has-icon fi-align-center fi-width-md">
+            <!--[if BLOCK]><![endif]-->                <div wire:key="0uFcAoQhKZl5igHFXRNs.modal.database-notifications.header" class="fi-modal-header">
+                    <!--[if BLOCK]><![endif]-->                        
+                        <button class="fi-icon-btn fi-size-md fi-modal-close-btn" title="Close" aria-label="Close" tabindex="-1" type="button" wire:loading.attr="aria-disabled" wire:loading.class="fi-disabled" x-on:click="$dispatch('close-modal', { id: 'database-notifications' })">
+    <svg class="fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M18 6l-12 12"></path>
+  <path d="M6 6l12 12"></path>
+</svg>
+
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></button>
+                    <!--[if ENDBLOCK]><![endif]-->
+                    <!--[if BLOCK]><![endif]-->                        <!--[if BLOCK]><![endif]-->                            <div class="fi-modal-icon-ctn">
+                                <div class="fi-modal-icon-bg">
+                                    <svg class="fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M9.346 5.353c.21 -.129 .428 -.246 .654 -.353a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3m-1 3h-13a4 4 0 0 0 2 -3v-3a6.996 6.996 0 0 1 1.273 -3.707"></path>
+  <path d="M9 17v1a3 3 0 0 0 6 0v-1"></path>
+  <path d="M3 3l18 18"></path>
+</svg>
+                                </div>
+                            </div>
+                        <!--[if ENDBLOCK]><![endif]-->
+                        <div>
+                            <h2 id="database-notifications.heading" class="fi-modal-heading">
+                                No notifications
+                            </h2>
+
+                            <!--[if BLOCK]><![endif]-->                                <p id="database-notifications.description" class="fi-modal-description">
+                                    Please check again later.
+                                </p>
+                            <!--[if ENDBLOCK]><![endif]-->                        </div>
+                    <!--[if ENDBLOCK]><![endif]-->                </div>
+            <!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->        </div>
+    </div>
+</div>
+
+<!--[if BLOCK]><![endif]-->    </template>
+    
+<!--[if ENDBLOCK]><![endif]-->
+<!--[if BLOCK]><![endif]-->    </div>
+    
+<!--[if ENDBLOCK]><![endif]--></div>                <!--[if ENDBLOCK]><![endif]-->
+                <!--[if BLOCK]><![endif]-->                    <div x-data="filamentDropdown({ isMenu: true })" class="fi-dropdown fi-user-menu">
+    <div x-on:mousedown="if ($event.button === 0) toggle($event)" class="fi-dropdown-trigger">
+        <!--[if BLOCK]><![endif]-->            <button aria-label="User menu" type="button" class="fi-user-menu-trigger" id="fi-dropdown-trigger-2aow9amf" aria-haspopup="menu" aria-controls="fi-dropdown-panel-9zgm8ted" aria-expanded="false">
+                <img alt="Avatar of jeroen" class="fi-avatar fi-circular fi-size-md fi-user-avatar" src="../assets/4a90714c7656.jpg" loading="lazy">
+            </button>
+        <!--[if ENDBLOCK]><![endif]-->
+    </div>
+
+    <!--[if BLOCK]><![endif]-->        <div x-float.placement.bottom-end.flip.teleport.offset="{ offset: 8,  }" x-ref="panel" x-transition:enter-start="fi-opacity-0" x-transition:leave-end="fi-opacity-0" class="fi-dropdown-panel " style="position: fixed; display: none;" id="fi-dropdown-panel-9zgm8ted" role="menu" aria-labelledby="fi-dropdown-trigger-2aow9amf">
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]-->        <div class="fi-dropdown-list" role="group">
+    <!--[if BLOCK]><![endif]-->                <!--[if BLOCK]><![endif]-->                    
+
+                    
+        
+        <a href="http://127.0.0.1:8001/profile" wire:navigate="" role="menuitem" tabindex="-1" class="fi-ac-grouped-action fi-dropdown-list-item" data-demo-url="http://127.0.0.1:8001/profile">
+            <svg class="fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+</svg>            
+            <span class="fi-dropdown-list-item-label">
+                Profile            </span>
+
+                    </a>
+
+        
+        
+
+                    
+                <!--[if ENDBLOCK]><![endif]-->            <!--[if ENDBLOCK]><![endif]-->
+</div>
+    <!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]-->        <div class="fi-dropdown-list" role="group">
+    <div x-data="{ theme: null }" x-init="
+        $watch('theme', () => {
+            $dispatch('theme-changed', theme)
+        })
+
+        theme = localStorage.getItem('filament:theme:mode') || 'system'    " role="group" aria-label="Theme" class="fi-theme-switcher">
+    <button aria-label="Enable light theme" role="menuitemradio" tabindex="-1" type="button" x-on:click="(theme = 'light') &amp;&amp; close()" x-tooltip="{
+        content: 'Enable light theme',
+        theme: $store.theme,
+    }" x-bind:aria-checked="theme === 'light' ? 'true' : 'false'" x-bind:class="{ 'fi-active': theme === 'light' }" class="fi-theme-switcher-btn" aria-checked="false">
+    <svg class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+  <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"></path>
+</svg>
+</button>
+
+    <button aria-label="Enable dark theme" role="menuitemradio" tabindex="-1" type="button" x-on:click="(theme = 'dark') &amp;&amp; close()" x-tooltip="{
+        content: 'Enable dark theme',
+        theme: $store.theme,
+    }" x-bind:aria-checked="theme === 'dark' ? 'true' : 'false'" x-bind:class="{ 'fi-active': theme === 'dark' }" class="fi-theme-switcher-btn" aria-checked="false">
+    <svg class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454l0 .008"></path>
+</svg>
+</button>
+
+    <button aria-label="Enable system theme" role="menuitemradio" tabindex="-1" type="button" x-on:click="(theme = 'system') &amp;&amp; close()" x-tooltip="{
+        content: 'Enable system theme',
+        theme: $store.theme,
+    }" x-bind:aria-checked="theme === 'system' ? 'true' : 'false'" x-bind:class="{ 'fi-active': theme === 'system' }" class="fi-theme-switcher-btn fi-active" aria-checked="true">
+    <svg class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M3 5a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1v-10"></path>
+  <path d="M7 20h10"></path>
+  <path d="M9 16v4"></path>
+  <path d="M15 16v4"></path>
+</svg>
+</button>
+</div>
+</div>
+    <!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]-->        <div class="fi-dropdown-list" role="group">
+    <!--[if BLOCK]><![endif]-->                <!--[if BLOCK]><![endif]-->                    <a href="http://127.0.0.1:8001/admin" wire:navigate="" class="fi-dropdown-list-item fi-ac-grouped-action " role="menuitem" tabindex="-1" data-demo-url="http://127.0.0.1:8001/admin"><svg class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M15 11l4 4l-4 4m4 -4h-11a4 4 0 0 1 0 -8h1"></path>
+</svg><span class="fi-dropdown-list-item-label">Admin</span></a>
+                <!--[if ENDBLOCK]><![endif]-->                            <!--[if BLOCK]><![endif]-->                    <a href="http://127.0.0.1:8001/simplify" wire:navigate="" class="fi-dropdown-list-item fi-ac-grouped-action " role="menuitem" tabindex="-1" data-demo-url="http://127.0.0.1:8001/simplify" data-demo-go="overview"><svg class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M4 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4"></path>
+  <path d="M14 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4"></path>
+  <path d="M4 15a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4"></path>
+  <path d="M14 15a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4"></path>
+</svg><span class="fi-dropdown-list-item-label">Overview</span></a>
+                <!--[if ENDBLOCK]><![endif]-->                            <!--[if BLOCK]><![endif]-->                    <a href="http://127.0.0.1:8001/simplify-notifications" wire:navigate="" class="fi-dropdown-list-item fi-ac-grouped-action " data-current="" role="menuitem" tabindex="-1" data-demo-url="http://127.0.0.1:8001/simplify-notifications" data-demo-go="app-notifications"><svg class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6"></path>
+  <path d="M9 17v1a3 3 0 0 0 6 0v-1"></path>
+</svg><span class="fi-dropdown-list-item-label">Notifications</span></a>
+                <!--[if ENDBLOCK]><![endif]-->                            <!--[if BLOCK]><![endif]-->                    
+        
+        <a href="https://discord.gg/example" target="_blank" role="menuitem" tabindex="-1" class="fi-ac-grouped-action fi-dropdown-list-item" data-demo-url="https://discord.gg/example">
+            <svg class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+  <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+  <path d="M15 15l3.35 3.35"></path>
+  <path d="M9 15l-3.35 3.35"></path>
+  <path d="M5.65 5.65l3.35 3.35"></path>
+  <path d="M18.35 5.65l-3.35 3.35"></path>
+</svg>            
+            <span class="fi-dropdown-list-item-label">
+                Support            </span>
+
+                    </a>
+
+        
+        
+                <!--[if ENDBLOCK]><![endif]-->                            <!--[if BLOCK]><![endif]-->                    
+        
+        <a href="https://billing.example.com/clientarea.php" target="_blank" role="menuitem" tabindex="-1" class="fi-ac-grouped-action fi-dropdown-list-item" data-demo-url="https://billing.example.com/clientarea.php">
+            <svg class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16l-3 -2l-2 2l-2 -2l-2 2l-2 -2l-3 2m4 -14h6m-6 4h6m-2 4h2"></path>
+</svg>            
+            <span class="fi-dropdown-list-item-label">
+                Client area            </span>
+
+                    </a>
+
+        
+        
+                <!--[if ENDBLOCK]><![endif]-->                            <!--[if BLOCK]><![endif]-->                    
+        <form action="http://127.0.0.1:8001/logout" method="post"><input type="hidden" name="_token" value="LXI4QRj3lUT8ClDcc3EOFKqKTu3Rzu5b3646oqXZ" autocomplete="off">
+        <button role="menuitem" tabindex="-1" type="submit" class="fi-dropdown-list-item">
+            <svg class="fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M10 8v-2a2 2 0 0 1 2 -2h7a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-2"></path>
+  <path d="M15 12h-12l3 -3"></path>
+  <path d="M6 15l-3 -3"></path>
+</svg>            
+            <span class="fi-dropdown-list-item-label">
+                Sign out            </span>
+
+                    </button>
+
+        </form>
+        
+                <!--[if ENDBLOCK]><![endif]-->            <!--[if ENDBLOCK]><![endif]-->
+</div>
+    <!--[if ENDBLOCK]><![endif]-->
+        </div>
+    <!--[if ENDBLOCK]><![endif]--></div>
+
+
+                <!--[if ENDBLOCK]><![endif]-->            <!--[if ENDBLOCK]><![endif]-->        </div>
+
+        
+    </nav>
+
+    <!--[if BLOCK]><![endif]-->    <div wire:partial="action-modals" x-data="filamentActionModals({
+                    livewireId: 'W9Gbhe0EB22zBm2xrIfm',
+                })" style="height: 0">
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    <!--[if ENDBLOCK]><![endif]--></div>
+
+        
+    
+    <div class="fi-layout">
+        
+
+        
+        <div class="fi-main-ctn">
+            
+
+            <main id="fi-main-content" tabindex="-1" class="fi-main fi-width-screen-2xl">
+                
+
+                <div wire:id="0ivNJAvRuRt48BKZ55br" wire:name="Simplify\Core\Filament\App\Pages\Notifications" class="fi-page">
+    <div wire:key="lw-1418220757-0-{{ isset($this) ? " wire:id="Q9V02m6bRVbsSVE7OYaZ" wire:name="alert-banner-container" id="alert-banner-container" class="flex flex-col gap-4">
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></div>
+<div wire:key="lw-1759848224-0-{{ isset($this) ? -0" wire:id="qvnCiv9CJ1cjbLjo5Y9s" wire:name="simplify-core-announcement-bars" class="flex flex-col gap-3 mt-3">
+    <!--[if BLOCK]><![endif]-->        <div class="fi-callout fi-color fi-color-warning" wire:key="simplify-announcement-1">
+    <!--[if BLOCK]><![endif]-->        <svg aria-hidden="true" class="fi-color fi-color-warning fi-callout-icon fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M12 9v4"></path>
+  <path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0"></path>
+  <path d="M12 16h.01"></path>
+</svg>
+    <!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]-->        <div class="fi-callout-main">
+            <!--[if BLOCK]><![endif]-->                <div class="fi-callout-text">
+                    <!--[if BLOCK]><![endif]-->                        <h4 class="fi-callout-heading">
+                            Maintenance on Saturday
+                        </h4>
+                    <!--[if ENDBLOCK]><![endif]-->
+                    <!--[if BLOCK]><![endif]-->                        <p class="fi-callout-description">
+                            <!--[if BLOCK]><![endif]-->                        <span class="whitespace-pre-line">The servers restart between 07:00 and 07:30.</span>
+                    <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                        </p>
+                    <!--[if ENDBLOCK]><![endif]-->                </div>
+            <!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->        </div>
+    <!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]-->        <div class="fi-callout-controls">
+            <button x-tooltip="{
+            content: 'Unpin',
+            theme: $store.theme,
+            allowHTML: false,
+        }" class="fi-icon-btn fi-size-md" aria-label="Unpin" type="button" wire:loading.attr="aria-disabled" wire:loading.class="fi-disabled" wire:target="unpin(1)" aria-pressed="true" wire:click="unpin(1)">
+    <svg wire:loading.remove.delay.default="1" wire:target="unpin(1)" class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M16 3a1 1 0 0 1 .117 1.993l-.117 .007v4.764l1.894 3.789a1 1 0 0 1 .1 .331l.006 .116v2a1 1 0 0 1 -.883 .993l-.117 .007h-4v4a1 1 0 0 1 -1.993 .117l-.007 -.117v-4h-4a1 1 0 0 1 -.993 -.883l-.007 -.117v-2a1 1 0 0 1 .06 -.34l.046 -.107l1.894 -3.791v-4.762a1 1 0 0 1 -.117 -1.993l.117 -.007h8z"></path>
+</svg>
+
+    <!--[if BLOCK]><![endif]-->            <svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" wire:loading.delay.default="" wire:target="unpin(1)" class="fi-icon fi-loading-indicator fi-size-md">
+        <path clip-rule="evenodd" d="M12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19ZM12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill-rule="evenodd" fill="currentColor" opacity="0.2"></path>
+        <path d="M2 12C2 6.47715 6.47715 2 12 2V5C8.13401 5 5 8.13401 5 12H2Z" fill="currentColor"></path>
+    </svg>
+    <!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></button>
+        </div>
+    <!--[if ENDBLOCK]><![endif]--></div>
+            <div class="fi-callout fi-color fi-color-info" wire:key="simplify-announcement-2">
+    <!--[if BLOCK]><![endif]-->        <svg aria-hidden="true" class="fi-color fi-color-info fi-callout-icon fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+  <path d="M12 9h.01"></path>
+  <path d="M11 12h1v4h1"></path>
+</svg>
+    <!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]-->        <div class="fi-callout-main">
+            <!--[if BLOCK]><![endif]-->                <div class="fi-callout-text">
+                    <!--[if BLOCK]><![endif]-->                        <h4 class="fi-callout-heading">
+                            New node in Amsterdam
+                        </h4>
+                    <!--[if ENDBLOCK]><![endif]-->
+                    <!--[if BLOCK]><![endif]-->                        <p class="fi-callout-description">
+                            <!--[if BLOCK]><![endif]-->                        <span class="whitespace-pre-line">New servers start faster from today.</span>
+                    <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                        </p>
+                    <!--[if ENDBLOCK]><![endif]-->                </div>
+            <!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->        </div>
+    <!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]-->        <div class="fi-callout-controls">
+            <button x-tooltip="{
+            content: 'Unpin',
+            theme: $store.theme,
+            allowHTML: false,
+        }" class="fi-icon-btn fi-size-md" aria-label="Unpin" type="button" wire:loading.attr="aria-disabled" wire:loading.class="fi-disabled" wire:target="unpin(2)" aria-pressed="true" wire:click="unpin(2)">
+    <svg wire:loading.remove.delay.default="1" wire:target="unpin(2)" class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M16 3a1 1 0 0 1 .117 1.993l-.117 .007v4.764l1.894 3.789a1 1 0 0 1 .1 .331l.006 .116v2a1 1 0 0 1 -.883 .993l-.117 .007h-4v4a1 1 0 0 1 -1.993 .117l-.007 -.117v-4h-4a1 1 0 0 1 -.993 -.883l-.007 -.117v-2a1 1 0 0 1 .06 -.34l.046 -.107l1.894 -3.791v-4.762a1 1 0 0 1 -.117 -1.993l.117 -.007h8z"></path>
+</svg>
+
+    <!--[if BLOCK]><![endif]-->            <svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" wire:loading.delay.default="" wire:target="unpin(2)" class="fi-icon fi-loading-indicator fi-size-md">
+        <path clip-rule="evenodd" d="M12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19ZM12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill-rule="evenodd" fill="currentColor" opacity="0.2"></path>
+        <path d="M2 12C2 6.47715 6.47715 2 12 2V5C8.13401 5 5 8.13401 5 12H2Z" fill="currentColor"></path>
+    </svg>
+    <!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></button>
+        </div>
+    <!--[if ENDBLOCK]><![endif]--></div>
+    <!--[if ENDBLOCK]><![endif]--></div>
+
+
+    <div class="fi-page-header-main-ctn">
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+        <!--[if BLOCK]><![endif]-->            
+            <!--[if BLOCK]><![endif]-->                <header class="fi-header">
+    
+                    
+
+    
+    <!--[if BLOCK]><![endif]-->        <div>        
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+        
+
+        <!--[if BLOCK]><![endif]-->            <h1 class="fi-header-heading">
+                App notifications
+            </h1>
+        <!--[if ENDBLOCK]><![endif]-->
+        
+
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    
+            </div>
+    <!--[if ENDBLOCK]><![endif]-->
+    
+    
+                    
+
+    
+    <!--[if BLOCK]><![endif]-->                
+        
+
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+        
+    
+            
+    <!--[if ENDBLOCK]><![endif]--></header>
+            <!--[if ENDBLOCK]><![endif]-->        <!--[if ENDBLOCK]><![endif]-->
+        <div class="fi-page-main">
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+            <div class="fi-page-content">
+                
+
+                
+
+                
+
+                <div class="s-push" x-data="simplifyPush('Browser')" x-init="start()" data-has-alpine-state="true">
+        <div class="s-card">
+            <div class="s-row">
+                <svg class="fi-icon fi-size-md s-row-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M6 5a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-14"></path>
+  <path d="M11 4h2"></path>
+  <path d="M12 17v.01"></path>
+</svg>
+                <div class="s-row-text">
+                    <div>This device</div>
+                    <div class="s-muted" x-show="state === 'on'" style="display: none;">Notifications are on.</div>
+                    <div class="s-muted" x-show="state === 'off'" style="display: none;">Notifications are off.</div>
+                    <div class="s-muted" x-show="state === 'blocked'">Notifications are blocked for this site. Allow them in the browser's site settings, then try again.</div>
+                    <div class="s-muted" x-show="state === 'install'" style="display: none;">On iPhone and iPad, first add the panel to your home screen (Share, then Add to Home Screen) and open it from there.</div>
+                    <div class="s-muted" x-show="state === 'unsupported'" style="display: none;">This browser cannot get notifications from the panel.</div>
+                </div>
+                <div class="s-bar">
+                    <button type="button" class="s-btn s-btn-small" x-show="state === 'on'" wire:click="test" :disabled="busy" style="display: none;">
+                        Send test
+                    </button>
+                    <button type="button" class="s-btn s-btn-small" x-show="state === 'on'" x-on:click="off()" :disabled="busy" style="display: none;">
+                        Turn off
+                    </button>
+                    <button type="button" class="s-btn s-btn-small s-btn-primary" x-show="state === 'off' || state === 'blocked'" x-on:click="on()" :disabled="busy">
+                        Turn on
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="s-card">
+            <label class="s-row">
+                <svg class="fi-icon fi-size-md s-row-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M18 8a3 3 0 0 1 0 6"></path>
+  <path d="M10 8v11a1 1 0 0 1 -1 1h-1a1 1 0 0 1 -1 -1v-5"></path>
+  <path d="M12 8l4.524 -3.77a.9 .9 0 0 1 1.476 .692v12.156a.9 .9 0 0 1 -1.476 .692l-4.524 -3.77h-8a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h8"></path>
+</svg>
+                <span class="s-row-text">
+                    <span>Messages</span>
+                    <span class="s-muted s-block">Announcements and other messages from add-ons.</span>
+                </span>
+                <input type="checkbox" class="s-switch" wire:model.live="messages" checked="">
+            </label>
+            <!--[if BLOCK]><![endif]-->                <label class="s-row">
+                    <svg class="fi-icon fi-size-md s-row-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"></path>
+  <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"></path>
+  <path d="M12 9l0 3"></path>
+  <path d="M12 15l.01 0"></path>
+</svg>
+                    <span class="s-row-text">
+                        <span>Updates</span>
+                        <span class="s-muted s-block">New versions of Pelican and Wings. Only for root admins.</span>
+                    </span>
+                    <input type="checkbox" class="s-switch" wire:model.live="updates" checked="">
+                </label>
+            <!--[if ENDBLOCK]><![endif]-->        </div>
+
+                <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    </div>
+
+                
+
+                
+
+                
+            </div>
+
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->        </div>
+
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if BLOCK]><![endif]-->        <!--[if BLOCK]><![endif]-->    <div wire:partial="action-modals" x-data="filamentActionModals({
+                    livewireId: '0ivNJAvRuRt48BKZ55br',
+                })" style="height: 0" data-has-alpine-state="true">
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    <!--[if ENDBLOCK]><![endif]-->    <!--[if ENDBLOCK]><![endif]-->
+    
+
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]-->                <!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></div>
+
+                
+            </main>
+
+            
+
+            <footer class="flex flex-col items-center justify-center text-center space-y-2 p-4 text-gray-600 dark:text-gray-400">
+    
+
+    <a class="font-semibold" href="https://pelican.dev/docs/#core-team" target="_blank" data-demo-url="https://pelican.dev/docs/#core-team">
+        © 2026 Pelican
+    </a>
+
+    
+    
+</footer>
+
+        </div>
+
+        
+    </div>
+
+        <div wire:id="hicZBfX66c9bHB3s8rSM" wire:name="Filament\Livewire\Notifications" x-init="$wire.pullNotificationsFromSession()">
+    <div class="fi-no fi-align-right fi-vertical-align-start" role="status" aria-atomic="false">
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if BLOCK]><![endif]-->                <!--[if ENDBLOCK]><![endif]--></div>
+
+        
+
+        
+
+            
+            
+        
+                
+            
+        
+                
+            
+        
+                
+            
+        
+                
+            
+        
+                
+            
+        
+                
+            
+        
+    
+<style>
+    :root {
+            }
+
+    </style>
+
+        
+                    
+        
+        
+        
+
+        
+    
+
+
+<div aria-describedby="database-notifications.description" aria-labelledby="database-notifications.heading" aria-modal="true" id="database-notifications" role="dialog" tabindex="-1" x-data="filamentModal({
+                id: 'database-notifications',
+                isScrollLocked: true,
+                shouldRestoreFocus: true,
+            })" data-fi-modal-id="database-notifications" x-on:close-modal.window="if (($event.detail.id === 'database-notifications') &amp;&amp; isOpen) close()" x-on:close-modal-quietly.window="if (($event.detail.id === 'database-notifications') &amp;&amp; isOpen) closeQuietly()" x-on:open-modal.window="if (($event.detail.id === 'database-notifications') &amp;&amp; (! isOpen)) open()" x-bind:class="{
+        'fi-modal-open': isOpen,
+    }" x-show="isOpen" class="fi-modal fi-absolute-positioning-context fi-modal-slide-over fi-modal-slide-over-from-end fi-no-database" wire:poll.30s="" data-teleport-target="true" style="display: none;">
+    <!--[if BLOCK]><![endif]-->        <div aria-hidden="true" x-show="isOpen" x-transition.duration.300ms.opacity="" class="fi-modal-close-overlay" style="display: none;"></div>
+    <!--[if ENDBLOCK]><![endif]-->
+    <div tabindex="-1" x-on:click.self="$dispatch('close-modal', { id: 'database-notifications' })" x-trap.noreturn="isTrapActive" class="fi-modal-window-ctn fi-clickable">
+        <div x-on:keydown.window.escape="if (isTopmost()) $dispatch('close-modal', { id: 'database-notifications' })" x-show="isWindowVisible" x-transition:enter="fi-transition-enter" x-transition:leave="fi-transition-leave" x-transition:enter-start="fi-transition-enter-start" x-transition:enter-end="fi-transition-enter-end" x-transition:leave-start="fi-transition-leave-start" x-transition:leave-end="fi-transition-leave-end" wire:key="0uFcAoQhKZl5igHFXRNs.modal.database-notifications.window" tabindex="-1" autofocus="autofocus" class="fi-modal-window fi-modal-window-has-close-btn fi-modal-window-has-icon fi-align-center fi-width-md" style="display: none;">
+            <!--[if BLOCK]><![endif]-->                <div wire:key="0uFcAoQhKZl5igHFXRNs.modal.database-notifications.header" class="fi-modal-header">
+                    <!--[if BLOCK]><![endif]-->                        
+                        <button class="fi-icon-btn fi-size-md fi-modal-close-btn" title="Close" aria-label="Close" tabindex="-1" type="button" wire:loading.attr="aria-disabled" wire:loading.class="fi-disabled" x-on:click="$dispatch('close-modal', { id: 'database-notifications' })">
+    <svg class="fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M18 6l-12 12"></path>
+  <path d="M6 6l12 12"></path>
+</svg>
+
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></button>
+                    <!--[if ENDBLOCK]><![endif]-->
+                    <!--[if BLOCK]><![endif]-->                        <!--[if BLOCK]><![endif]-->                            <div class="fi-modal-icon-ctn">
+                                <div class="fi-modal-icon-bg">
+                                    <svg class="fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M9.346 5.353c.21 -.129 .428 -.246 .654 -.353a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3m-1 3h-13a4 4 0 0 0 2 -3v-3a6.996 6.996 0 0 1 1.273 -3.707"></path>
+  <path d="M9 17v1a3 3 0 0 0 6 0v-1"></path>
+  <path d="M3 3l18 18"></path>
+</svg>
+                                </div>
+                            </div>
+                        <!--[if ENDBLOCK]><![endif]-->
+                        <div>
+                            <h2 id="database-notifications.heading" class="fi-modal-heading">
+                                No notifications
+                            </h2>
+
+                            <!--[if BLOCK]><![endif]-->                                <p id="database-notifications.description" class="fi-modal-description">
+                                    Please check again later.
+                                </p>
+                            <!--[if ENDBLOCK]><![endif]-->                        </div>
+                    <!--[if ENDBLOCK]><![endif]-->                </div>
+            <!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->        </div>
+    </div>
+</div><script>(()=>{const top_=window.top;const theme=(d)=>{document.documentElement.classList.toggle('dark',d);document.querySelectorAll('.ps,.ps-ui').forEach(e=>e.classList.toggle('dark',d));document.querySelectorAll('iframe').forEach(f=>{try{f.contentWindow.postMessage({demo:'theme',dark:d},'*')}catch(e){}})};addEventListener('message',e=>{if(e.data&&e.data.demo==='theme')theme(e.data.dark)});document.addEventListener('click',e=>{const go=e.target.closest('[data-demo-go]');if(go){e.preventDefault();e.stopPropagation();top_.postMessage({demo:'go',id:go.getAttribute('data-demo-go')},'*');return}const a=e.target.closest('a,button,[role=tab],[role=button],input[type=submit]');if(!a)return;if(a.matches('a[target=_blank]')&&/^https?:/.test(a.getAttribute('data-demo-url')||'')&&!a.hasAttribute('data-demo-inside')){e.preventDefault();open(a.getAttribute('data-demo-url'),'_blank','noopener');return}e.preventDefault();e.stopPropagation();top_.postMessage({demo:'dead',label:(a.innerText||a.getAttribute('aria-label')||a.getAttribute('data-tip')||'').trim().replace(/\s+/g,' ').slice(0,60)},'*')},true);document.addEventListener('submit',e=>e.preventDefault(),true);top_.postMessage({demo:'ready'},'*')})();</script></body></html>

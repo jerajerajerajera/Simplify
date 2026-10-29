@@ -1,0 +1,2287 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="fi"><head>
+        
+
+        <meta charset="utf-8">
+        <meta name="csrf-token" content="LXI4QRj3lUT8ClDcc3EOFKqKTu3Rzu5b3646oqXZ">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+                    <link rel="icon" href="../assets/ef884f31da10.ico">
+        
+        
+        <title>
+            Server Maker
+             - 
+            Northwind Games
+        </title>
+
+        <link rel="stylesheet" href="../css/6a8cedfe8adb.css" data-navigate-track="reload">
+
+        <style>
+            [x-cloak=''],
+            [x-cloak='x-cloak'],
+            [x-cloak='1'] {
+                display: none !important;
+            }
+
+            [x-cloak='inline-flex'] {
+                display: inline-flex !important;
+            }
+
+            @media (max-width: 1023px) {
+                [x-cloak='-lg'] {
+                    display: none !important;
+                }
+            }
+
+            @media (min-width: 1024px) {
+                [x-cloak='lg'] {
+                    display: none !important;
+                }
+            }
+        </style>
+
+        <link href="../css/a73e0ebba1f3.css" rel="stylesheet" data-navigate-track="">
+                <link href="../css/d108218c391e.css" rel="stylesheet" data-navigate-track="">
+    
+<style>
+    :root {
+         --danger-50:oklch(0.971 0.013 17.38);  --danger-100:oklch(0.936 0.032 17.717);  --danger-200:oklch(0.885 0.062 18.334);  --danger-300:oklch(0.808 0.114 19.571);  --danger-400:oklch(0.704 0.191 22.216);  --danger-500:oklch(0.637 0.237 25.331);  --danger-600:oklch(0.577 0.245 27.325);  --danger-700:oklch(0.505 0.213 27.518);  --danger-800:oklch(0.444 0.177 26.899);  --danger-900:oklch(0.396 0.141 25.723);  --danger-950:oklch(0.258 0.092 26.042);  --gray-50:oklch(0.985 0 0);  --gray-100:oklch(0.967 0.001 286.375);  --gray-200:oklch(0.92 0.004 286.32);  --gray-300:oklch(0.871 0.006 286.286);  --gray-400:oklch(0.705 0.015 286.067);  --gray-500:oklch(0.552 0.016 285.938);  --gray-600:oklch(0.442 0.017 285.786);  --gray-700:oklch(0.37 0.013 285.805);  --gray-800:oklch(0.274 0.006 286.033);  --gray-900:oklch(0.21 0.006 285.885);  --gray-950:oklch(0.141 0.005 285.823);  --info-50:oklch(0.977 0.013 236.62);  --info-100:oklch(0.951 0.026 236.824);  --info-200:oklch(0.901 0.058 230.902);  --info-300:oklch(0.828 0.111 230.318);  --info-400:oklch(0.746 0.16 232.661);  --info-500:oklch(0.685 0.169 237.323);  --info-600:oklch(0.588 0.158 241.966);  --info-700:oklch(0.5 0.134 242.749);  --info-800:oklch(0.443 0.11 240.79);  --info-900:oklch(0.391 0.09 240.876);  --info-950:oklch(0.293 0.066 243.157);  --primary-50:oklch(0.97 0.014 254.604);  --primary-100:oklch(0.932 0.032 255.585);  --primary-200:oklch(0.882 0.059 254.128);  --primary-300:oklch(0.809 0.105 251.813);  --primary-400:oklch(0.707 0.165 254.624);  --primary-500:oklch(0.623 0.214 259.815);  --primary-600:oklch(0.546 0.245 262.881);  --primary-700:oklch(0.488 0.243 264.376);  --primary-800:oklch(0.424 0.199 265.638);  --primary-900:oklch(0.379 0.146 265.522);  --primary-950:oklch(0.282 0.091 267.935);  --success-50:oklch(0.982 0.018 155.826);  --success-100:oklch(0.962 0.044 156.743);  --success-200:oklch(0.925 0.084 155.995);  --success-300:oklch(0.871 0.15 154.449);  --success-400:oklch(0.792 0.209 151.711);  --success-500:oklch(0.723 0.219 149.579);  --success-600:oklch(0.627 0.194 149.214);  --success-700:oklch(0.527 0.154 150.069);  --success-800:oklch(0.448 0.119 151.328);  --success-900:oklch(0.393 0.095 152.535);  --success-950:oklch(0.266 0.065 152.934);  --warning-50:oklch(0.987 0.022 95.277);  --warning-100:oklch(0.962 0.059 95.617);  --warning-200:oklch(0.924 0.12 95.746);  --warning-300:oklch(0.879 0.169 91.605);  --warning-400:oklch(0.828 0.189 84.429);  --warning-500:oklch(0.769 0.188 70.08);  --warning-600:oklch(0.666 0.179 58.318);  --warning-700:oklch(0.555 0.163 48.998);  --warning-800:oklch(0.473 0.137 46.201);  --warning-900:oklch(0.414 0.112 45.904);  --warning-950:oklch(0.279 0.077 45.635);     }
+
+    </style>
+
+        <link href="../css/4e6dffe19fb6.css" rel="stylesheet" data-navigate-track="">
+        
+
+        
+        
+        
+        
+        
+
+        <style>
+            :root {
+                --font-family: 'Inter Variable';
+                --mono-font-family: 'ui-monospace';
+                --serif-font-family: 'ui-serif';
+                --sidebar-width: 20rem;
+                --collapsed-sidebar-width: 4.5rem;
+                --default-theme-mode: system;
+            }
+
+            html.fi {
+                --livewire-progress-bar-color: var(--primary-500);
+            }
+        </style>
+
+        
+        
+
+                    
+        
+        <link rel="stylesheet" href="../css/5ac7b5065179.css">
+
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafafa">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#09090b">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Northwind Games">
+<link rel="apple-touch-icon" href="../assets/1db5fc36d944.png">
+
+
+    <!-- Livewire Styles --><style>[wire\:loading][wire\:loading], [wire\:loading\.delay][wire\:loading\.delay], [wire\:loading\.list-item][wire\:loading\.list-item], [wire\:loading\.inline-block][wire\:loading\.inline-block], [wire\:loading\.inline][wire\:loading\.inline], [wire\:loading\.block][wire\:loading\.block], [wire\:loading\.flex][wire\:loading\.flex], [wire\:loading\.table][wire\:loading\.table], [wire\:loading\.grid][wire\:loading\.grid], [wire\:loading\.inline-flex][wire\:loading\.inline-flex] {display: none;}[wire\:loading\.delay\.none][wire\:loading\.delay\.none], [wire\:loading\.delay\.shortest][wire\:loading\.delay\.shortest], [wire\:loading\.delay\.shorter][wire\:loading\.delay\.shorter], [wire\:loading\.delay\.short][wire\:loading\.delay\.short], [wire\:loading\.delay\.default][wire\:loading\.delay\.default], [wire\:loading\.delay\.long][wire\:loading\.delay\.long], [wire\:loading\.delay\.longer][wire\:loading\.delay\.longer], [wire\:loading\.delay\.longest][wire\:loading\.delay\.longest] {display: none;}[wire\:offline][wire\:offline] {display: none;}[wire\:dirty]:not(textarea):not(input):not(select) {display: none;}:root {--livewire-progress-bar-color: #2299dd;}[x-cloak="x-cloak"],[x-cloak=""] {display: none !important;}[wire\:cloak="wire:cloak"],[wire\:cloak=""] {display: none !important;}dialog#livewire-error::backdrop {background-color: rgba(0, 0, 0, .6);}</style>
+<style>/* Make clicks pass-through */
+
+    #nprogress {
+      pointer-events: none;
+    }
+
+    #nprogress .bar {
+      background: var(--livewire-progress-bar-color, #29d);
+
+      position: fixed;
+      z-index: 1031;
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 2px;
+    }
+
+    /* Fancy blur effect */
+    #nprogress .peg {
+      display: block;
+      position: absolute;
+      right: 0px;
+      width: 100px;
+      height: 100%;
+      box-shadow: 0 0 10px var(--livewire-progress-bar-color, #29d), 0 0 5px var(--livewire-progress-bar-color, #29d);
+      opacity: 1.0;
+
+      -webkit-transform: rotate(3deg) translate(0px, -4px);
+          -ms-transform: rotate(3deg) translate(0px, -4px);
+              transform: rotate(3deg) translate(0px, -4px);
+    }
+
+    /* Remove these to get rid of the spinner */
+    #nprogress .spinner {
+      display: block;
+      position: fixed;
+      z-index: 1031;
+      top: 15px;
+      right: 15px;
+    }
+
+    #nprogress .spinner-icon {
+      width: 18px;
+      height: 18px;
+      box-sizing: border-box;
+
+      border: solid 2px transparent;
+      border-top-color: var(--livewire-progress-bar-color, #29d);
+      border-left-color: var(--livewire-progress-bar-color, #29d);
+      border-radius: 50%;
+
+      -webkit-animation: nprogress-spinner 400ms linear infinite;
+              animation: nprogress-spinner 400ms linear infinite;
+    }
+
+    .nprogress-custom-parent {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .nprogress-custom-parent #nprogress .spinner,
+    .nprogress-custom-parent #nprogress .bar {
+      position: absolute;
+    }
+
+    @-webkit-keyframes nprogress-spinner {
+      0%   { -webkit-transform: rotate(0deg); }
+      100% { -webkit-transform: rotate(360deg); }
+    }
+    @keyframes nprogress-spinner {
+      0%   { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    </style></head>
+
+    <body class="fi-body fi-panel-app fi-body-has-topbar">
+        
+
+        <a href="#fi-main-content" class="fi-skip-link fi-sr-only">
+        Skip to content
+    </a>
+
+            
+
+        <div wire:key="lw-3601853131-0-5" wire:id="8I3nWVIDKIxKURrBd7N1" wire:name="Filament\Livewire\Topbar" class="fi-topbar-ctn">
+    
+    <nav aria-label="Topbar" class="fi-topbar">
+        
+
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+        <div class="fi-topbar-start">
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+            
+
+            <!--[if BLOCK]><![endif]-->                <a href="http://127.0.0.1:8001/simplify" wire:navigate="" data-demo-url="http://127.0.0.1:8001/simplify" data-demo-go="overview">
+                    <!--[if BLOCK]><![endif]-->        <div class="fi-logo">
+            Northwind Games
+        </div>
+    <!--[if ENDBLOCK]><![endif]-->
+            
+
+<!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->                </a>
+            <!--[if ENDBLOCK]><![endif]-->
+            
+        </div>
+
+        <!--[if BLOCK]><![endif]-->            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->        <!--[if ENDBLOCK]><![endif]-->
+        <div x-persist="topbar.end.panel-app" class="fi-topbar-end">
+            
+
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+            
+
+            <!--[if BLOCK]><![endif]-->                <!--[if BLOCK]><![endif]-->                    <div wire:id="CevXdvrpPHiHxHH6uDiB" wire:name="Filament\Livewire\DatabaseNotifications" class="fi-no-database">
+    
+    <!--[if BLOCK]><![endif]-->    <div>
+    
+
+    <div x-on:click="$dispatch('open-modal', { id: 'database-notifications' })" class="fi-modal-trigger">
+        <button class="fi-icon-btn fi-size-md fi-topbar-database-notifications-btn" title="Notifications" aria-label="Notifications" type="button" wire:loading.attr="aria-disabled" wire:loading.class="fi-disabled">
+    <svg class="fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6"></path>
+  <path d="M9 17v1a3 3 0 0 0 6 0v-1"></path>
+</svg>
+
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></button>
+    </div>
+<!--[if ENDBLOCK]><![endif]-->
+<!--[if BLOCK]><![endif]-->    <template x-teleport="body" data-teleport-template="true">
+    
+<!--[if ENDBLOCK]><![endif]-->
+<div aria-describedby="database-notifications.description" aria-labelledby="database-notifications.heading" aria-modal="true" id="database-notifications" role="dialog" tabindex="-1" x-data="filamentModal({
+                id: 'database-notifications',
+                isScrollLocked: true,
+                shouldRestoreFocus: true,
+            })" data-fi-modal-id="database-notifications" x-on:close-modal.window="if (($event.detail.id === 'database-notifications') &amp;&amp; isOpen) close()" x-on:close-modal-quietly.window="if (($event.detail.id === 'database-notifications') &amp;&amp; isOpen) closeQuietly()" x-on:open-modal.window="if (($event.detail.id === 'database-notifications') &amp;&amp; (! isOpen)) open()" x-bind:class="{
+        'fi-modal-open': isOpen,
+    }" x-cloak="" x-show="isOpen" class="fi-modal fi-absolute-positioning-context fi-modal-slide-over fi-modal-slide-over-from-end fi-no-database" wire:poll.30s="">
+    <!--[if BLOCK]><![endif]-->        <div aria-hidden="true" x-show="isOpen" x-transition.duration.300ms.opacity="" class="fi-modal-close-overlay"></div>
+    <!--[if ENDBLOCK]><![endif]-->
+    <div tabindex="-1" x-on:click.self="$dispatch('close-modal', { id: 'database-notifications' })" x-trap.noreturn="isTrapActive" class="fi-modal-window-ctn fi-clickable">
+        <div x-on:keydown.window.escape="if (isTopmost()) $dispatch('close-modal', { id: 'database-notifications' })" x-show="isWindowVisible" x-transition:enter="fi-transition-enter" x-transition:leave="fi-transition-leave" x-transition:enter-start="fi-transition-enter-start" x-transition:enter-end="fi-transition-enter-end" x-transition:leave-start="fi-transition-leave-start" x-transition:leave-end="fi-transition-leave-end" wire:key="CevXdvrpPHiHxHH6uDiB.modal.database-notifications.window" tabindex="-1" autofocus="autofocus" class="fi-modal-window fi-modal-window-has-close-btn fi-modal-window-has-icon fi-align-center fi-width-md">
+            <!--[if BLOCK]><![endif]-->                <div wire:key="CevXdvrpPHiHxHH6uDiB.modal.database-notifications.header" class="fi-modal-header">
+                    <!--[if BLOCK]><![endif]-->                        
+                        <button class="fi-icon-btn fi-size-md fi-modal-close-btn" title="Close" aria-label="Close" tabindex="-1" type="button" wire:loading.attr="aria-disabled" wire:loading.class="fi-disabled" x-on:click="$dispatch('close-modal', { id: 'database-notifications' })">
+    <svg class="fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M18 6l-12 12"></path>
+  <path d="M6 6l12 12"></path>
+</svg>
+
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></button>
+                    <!--[if ENDBLOCK]><![endif]-->
+                    <!--[if BLOCK]><![endif]-->                        <!--[if BLOCK]><![endif]-->                            <div class="fi-modal-icon-ctn">
+                                <div class="fi-modal-icon-bg">
+                                    <svg class="fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M9.346 5.353c.21 -.129 .428 -.246 .654 -.353a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3m-1 3h-13a4 4 0 0 0 2 -3v-3a6.996 6.996 0 0 1 1.273 -3.707"></path>
+  <path d="M9 17v1a3 3 0 0 0 6 0v-1"></path>
+  <path d="M3 3l18 18"></path>
+</svg>
+                                </div>
+                            </div>
+                        <!--[if ENDBLOCK]><![endif]-->
+                        <div>
+                            <h2 id="database-notifications.heading" class="fi-modal-heading">
+                                No notifications
+                            </h2>
+
+                            <!--[if BLOCK]><![endif]-->                                <p id="database-notifications.description" class="fi-modal-description">
+                                    Please check again later.
+                                </p>
+                            <!--[if ENDBLOCK]><![endif]-->                        </div>
+                    <!--[if ENDBLOCK]><![endif]-->                </div>
+            <!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->        </div>
+    </div>
+</div>
+
+<!--[if BLOCK]><![endif]-->    </template>
+    
+<!--[if ENDBLOCK]><![endif]-->
+<!--[if BLOCK]><![endif]-->    </div>
+    
+<!--[if ENDBLOCK]><![endif]--></div>                <!--[if ENDBLOCK]><![endif]-->
+                <!--[if BLOCK]><![endif]-->                    <div x-data="filamentDropdown({ isMenu: true })" class="fi-dropdown fi-user-menu">
+    <div x-on:mousedown="if ($event.button === 0) toggle($event)" class="fi-dropdown-trigger">
+        <!--[if BLOCK]><![endif]-->            <button aria-label="User menu" type="button" class="fi-user-menu-trigger" id="fi-dropdown-trigger-0q70v4y9" aria-haspopup="menu" aria-controls="fi-dropdown-panel-b5go753e" aria-expanded="false">
+                <img alt="Avatar of jeroen" class="fi-avatar fi-circular fi-size-md fi-user-avatar" src="../assets/4a90714c7656.jpg" loading="lazy">
+            </button>
+        <!--[if ENDBLOCK]><![endif]-->
+    </div>
+
+    <!--[if BLOCK]><![endif]-->        <div x-float.placement.bottom-end.flip.teleport.offset="{ offset: 8,  }" x-ref="panel" x-transition:enter-start="fi-opacity-0" x-transition:leave-end="fi-opacity-0" class="fi-dropdown-panel " style="position: fixed; display: none;" id="fi-dropdown-panel-b5go753e" role="menu" aria-labelledby="fi-dropdown-trigger-0q70v4y9">
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]-->        <div class="fi-dropdown-list" role="group">
+    <!--[if BLOCK]><![endif]-->                <!--[if BLOCK]><![endif]-->                    
+
+                    
+        
+        <a href="http://127.0.0.1:8001/profile" wire:navigate="" role="menuitem" tabindex="-1" class="fi-ac-grouped-action fi-dropdown-list-item" data-demo-url="http://127.0.0.1:8001/profile">
+            <svg class="fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+</svg>            
+            <span class="fi-dropdown-list-item-label">
+                Profile            </span>
+
+                    </a>
+
+        
+        
+
+                    
+                <!--[if ENDBLOCK]><![endif]-->            <!--[if ENDBLOCK]><![endif]-->
+</div>
+    <!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]-->        <div class="fi-dropdown-list" role="group">
+    <div x-data="{ theme: null }" x-init="
+        $watch('theme', () => {
+            $dispatch('theme-changed', theme)
+        })
+
+        theme = localStorage.getItem('filament:theme:mode') || 'system'    " role="group" aria-label="Theme" class="fi-theme-switcher">
+    <button aria-label="Enable light theme" role="menuitemradio" tabindex="-1" type="button" x-on:click="(theme = 'light') &amp;&amp; close()" x-tooltip="{
+        content: 'Enable light theme',
+        theme: $store.theme,
+    }" x-bind:aria-checked="theme === 'light' ? 'true' : 'false'" x-bind:class="{ 'fi-active': theme === 'light' }" class="fi-theme-switcher-btn" aria-checked="false">
+    <svg class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+  <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"></path>
+</svg>
+</button>
+
+    <button aria-label="Enable dark theme" role="menuitemradio" tabindex="-1" type="button" x-on:click="(theme = 'dark') &amp;&amp; close()" x-tooltip="{
+        content: 'Enable dark theme',
+        theme: $store.theme,
+    }" x-bind:aria-checked="theme === 'dark' ? 'true' : 'false'" x-bind:class="{ 'fi-active': theme === 'dark' }" class="fi-theme-switcher-btn" aria-checked="false">
+    <svg class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454l0 .008"></path>
+</svg>
+</button>
+
+    <button aria-label="Enable system theme" role="menuitemradio" tabindex="-1" type="button" x-on:click="(theme = 'system') &amp;&amp; close()" x-tooltip="{
+        content: 'Enable system theme',
+        theme: $store.theme,
+    }" x-bind:aria-checked="theme === 'system' ? 'true' : 'false'" x-bind:class="{ 'fi-active': theme === 'system' }" class="fi-theme-switcher-btn fi-active" aria-checked="true">
+    <svg class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M3 5a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1v-10"></path>
+  <path d="M7 20h10"></path>
+  <path d="M9 16v4"></path>
+  <path d="M15 16v4"></path>
+</svg>
+</button>
+</div>
+</div>
+    <!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]-->        <div class="fi-dropdown-list" role="group">
+    <!--[if BLOCK]><![endif]-->                <!--[if BLOCK]><![endif]-->                    <a href="http://127.0.0.1:8001/admin" wire:navigate="" class="fi-dropdown-list-item fi-ac-grouped-action " role="menuitem" tabindex="-1" data-demo-url="http://127.0.0.1:8001/admin"><svg class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M15 11l4 4l-4 4m4 -4h-11a4 4 0 0 1 0 -8h1"></path>
+</svg><span class="fi-dropdown-list-item-label">Admin</span></a>
+                <!--[if ENDBLOCK]><![endif]-->                            <!--[if BLOCK]><![endif]-->                    <a href="http://127.0.0.1:8001/simplify" wire:navigate="" class="fi-dropdown-list-item fi-ac-grouped-action " role="menuitem" tabindex="-1" data-demo-url="http://127.0.0.1:8001/simplify" data-demo-go="overview"><svg class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M4 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4"></path>
+  <path d="M14 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4"></path>
+  <path d="M4 15a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4"></path>
+  <path d="M14 15a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4"></path>
+</svg><span class="fi-dropdown-list-item-label">Overview</span></a>
+                <!--[if ENDBLOCK]><![endif]-->                            <!--[if BLOCK]><![endif]-->                    <a href="http://127.0.0.1:8001/simplify-notifications" wire:navigate="" class="fi-dropdown-list-item fi-ac-grouped-action " role="menuitem" tabindex="-1" data-demo-url="http://127.0.0.1:8001/simplify-notifications" data-demo-go="app-notifications"><svg class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6"></path>
+  <path d="M9 17v1a3 3 0 0 0 6 0v-1"></path>
+</svg><span class="fi-dropdown-list-item-label">Notifications</span></a>
+                <!--[if ENDBLOCK]><![endif]-->                            <!--[if BLOCK]><![endif]-->                    
+        
+        <a href="https://discord.gg/example" target="_blank" role="menuitem" tabindex="-1" class="fi-ac-grouped-action fi-dropdown-list-item" data-demo-url="https://discord.gg/example">
+            <svg class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+  <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+  <path d="M15 15l3.35 3.35"></path>
+  <path d="M9 15l-3.35 3.35"></path>
+  <path d="M5.65 5.65l3.35 3.35"></path>
+  <path d="M18.35 5.65l-3.35 3.35"></path>
+</svg>            
+            <span class="fi-dropdown-list-item-label">
+                Support            </span>
+
+                    </a>
+
+        
+        
+                <!--[if ENDBLOCK]><![endif]-->                            <!--[if BLOCK]><![endif]-->                    
+        
+        <a href="https://billing.example.com/clientarea.php" target="_blank" role="menuitem" tabindex="-1" class="fi-ac-grouped-action fi-dropdown-list-item" data-demo-url="https://billing.example.com/clientarea.php">
+            <svg class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16l-3 -2l-2 2l-2 -2l-2 2l-2 -2l-3 2m4 -14h6m-6 4h6m-2 4h2"></path>
+</svg>            
+            <span class="fi-dropdown-list-item-label">
+                Client area            </span>
+
+                    </a>
+
+        
+        
+                <!--[if ENDBLOCK]><![endif]-->                            <!--[if BLOCK]><![endif]-->                    
+        <form action="http://127.0.0.1:8001/logout" method="post"><input type="hidden" name="_token" value="LXI4QRj3lUT8ClDcc3EOFKqKTu3Rzu5b3646oqXZ" autocomplete="off">
+        <button role="menuitem" tabindex="-1" type="submit" class="fi-dropdown-list-item">
+            <svg class="fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M10 8v-2a2 2 0 0 1 2 -2h7a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-2"></path>
+  <path d="M15 12h-12l3 -3"></path>
+  <path d="M6 15l-3 -3"></path>
+</svg>            
+            <span class="fi-dropdown-list-item-label">
+                Sign out            </span>
+
+                    </button>
+
+        </form>
+        
+                <!--[if ENDBLOCK]><![endif]-->            <!--[if ENDBLOCK]><![endif]-->
+</div>
+    <!--[if ENDBLOCK]><![endif]-->
+        </div>
+    <!--[if ENDBLOCK]><![endif]--></div>
+
+
+                <!--[if ENDBLOCK]><![endif]-->            <!--[if ENDBLOCK]><![endif]-->        </div>
+
+        
+    </nav>
+
+    <!--[if BLOCK]><![endif]-->    <div wire:partial="action-modals" x-data="filamentActionModals({
+                    livewireId: '8I3nWVIDKIxKURrBd7N1',
+                })" style="height: 0">
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    <!--[if ENDBLOCK]><![endif]--></div>
+
+        
+    
+    <div class="fi-layout">
+        
+
+        
+        <div class="fi-main-ctn">
+            
+
+            <main id="fi-main-content" tabindex="-1" class="fi-main fi-width-screen-2xl">
+                
+
+                <div wire:id="4FoDnUylLxPKlYovUOXH" wire:name="Simplify\ServerMaker\Filament\App\Pages\ServerMaker" class="fi-page">
+    <div wire:key="lw-1418220757-0-1" wire:id="NR7lBue6cHNPw2bTuMZ0" wire:name="alert-banner-container" id="alert-banner-container" class="flex flex-col gap-4">
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></div>
+<div wire:key="lw-1759848224-0-2" wire:id="mvKelGARQDJ4mtYWQfb1" wire:name="simplify-core-announcement-bars" class="flex flex-col gap-3 mt-3">
+    <!--[if BLOCK]><![endif]-->        <div class="fi-callout fi-color fi-color-warning" wire:key="simplify-announcement-1">
+    <!--[if BLOCK]><![endif]-->        <svg aria-hidden="true" class="fi-color fi-color-warning fi-callout-icon fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M12 9v4"></path>
+  <path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0"></path>
+  <path d="M12 16h.01"></path>
+</svg>
+    <!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]-->        <div class="fi-callout-main">
+            <!--[if BLOCK]><![endif]-->                <div class="fi-callout-text">
+                    <!--[if BLOCK]><![endif]-->                        <h4 class="fi-callout-heading">
+                            Maintenance on Saturday
+                        </h4>
+                    <!--[if ENDBLOCK]><![endif]-->
+                    <!--[if BLOCK]><![endif]-->                        <p class="fi-callout-description">
+                            <!--[if BLOCK]><![endif]-->                        <span class="whitespace-pre-line">The servers restart between 07:00 and 07:30.</span>
+                    <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                        </p>
+                    <!--[if ENDBLOCK]><![endif]-->                </div>
+            <!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->        </div>
+    <!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]-->        <div class="fi-callout-controls">
+            <button x-tooltip="{
+            content: 'Unpin',
+            theme: $store.theme,
+            allowHTML: false,
+        }" class="fi-icon-btn fi-size-md" aria-label="Unpin" type="button" wire:loading.attr="aria-disabled" wire:loading.class="fi-disabled" wire:target="unpin(1)" aria-pressed="true" wire:click="unpin(1)">
+    <svg wire:loading.remove.delay.default="1" wire:target="unpin(1)" class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M16 3a1 1 0 0 1 .117 1.993l-.117 .007v4.764l1.894 3.789a1 1 0 0 1 .1 .331l.006 .116v2a1 1 0 0 1 -.883 .993l-.117 .007h-4v4a1 1 0 0 1 -1.993 .117l-.007 -.117v-4h-4a1 1 0 0 1 -.993 -.883l-.007 -.117v-2a1 1 0 0 1 .06 -.34l.046 -.107l1.894 -3.791v-4.762a1 1 0 0 1 -.117 -1.993l.117 -.007h8z"></path>
+</svg>
+
+    <!--[if BLOCK]><![endif]-->            <svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" wire:loading.delay.default="" wire:target="unpin(1)" class="fi-icon fi-loading-indicator fi-size-md">
+        <path clip-rule="evenodd" d="M12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19ZM12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill-rule="evenodd" fill="currentColor" opacity="0.2"></path>
+        <path d="M2 12C2 6.47715 6.47715 2 12 2V5C8.13401 5 5 8.13401 5 12H2Z" fill="currentColor"></path>
+    </svg>
+    <!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></button>
+        </div>
+    <!--[if ENDBLOCK]><![endif]--></div>
+            <div class="fi-callout fi-color fi-color-info" wire:key="simplify-announcement-2">
+    <!--[if BLOCK]><![endif]-->        <svg aria-hidden="true" class="fi-color fi-color-info fi-callout-icon fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+  <path d="M12 9h.01"></path>
+  <path d="M11 12h1v4h1"></path>
+</svg>
+    <!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]-->        <div class="fi-callout-main">
+            <!--[if BLOCK]><![endif]-->                <div class="fi-callout-text">
+                    <!--[if BLOCK]><![endif]-->                        <h4 class="fi-callout-heading">
+                            New node in Amsterdam
+                        </h4>
+                    <!--[if ENDBLOCK]><![endif]-->
+                    <!--[if BLOCK]><![endif]-->                        <p class="fi-callout-description">
+                            <!--[if BLOCK]><![endif]-->                        <span class="whitespace-pre-line">New servers start faster from today.</span>
+                    <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                        </p>
+                    <!--[if ENDBLOCK]><![endif]-->                </div>
+            <!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->        </div>
+    <!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]-->        <div class="fi-callout-controls">
+            <button x-tooltip="{
+            content: 'Unpin',
+            theme: $store.theme,
+            allowHTML: false,
+        }" class="fi-icon-btn fi-size-md" aria-label="Unpin" type="button" wire:loading.attr="aria-disabled" wire:loading.class="fi-disabled" wire:target="unpin(2)" aria-pressed="true" wire:click="unpin(2)">
+    <svg wire:loading.remove.delay.default="1" wire:target="unpin(2)" class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M16 3a1 1 0 0 1 .117 1.993l-.117 .007v4.764l1.894 3.789a1 1 0 0 1 .1 .331l.006 .116v2a1 1 0 0 1 -.883 .993l-.117 .007h-4v4a1 1 0 0 1 -1.993 .117l-.007 -.117v-4h-4a1 1 0 0 1 -.993 -.883l-.007 -.117v-2a1 1 0 0 1 .06 -.34l.046 -.107l1.894 -3.791v-4.762a1 1 0 0 1 -.117 -1.993l.117 -.007h8z"></path>
+</svg>
+
+    <!--[if BLOCK]><![endif]-->            <svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" wire:loading.delay.default="" wire:target="unpin(2)" class="fi-icon fi-loading-indicator fi-size-md">
+        <path clip-rule="evenodd" d="M12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19ZM12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill-rule="evenodd" fill="currentColor" opacity="0.2"></path>
+        <path d="M2 12C2 6.47715 6.47715 2 12 2V5C8.13401 5 5 8.13401 5 12H2Z" fill="currentColor"></path>
+    </svg>
+    <!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></button>
+        </div>
+    <!--[if ENDBLOCK]><![endif]--></div>
+    <!--[if ENDBLOCK]><![endif]--></div>
+
+
+    <div class="fi-page-header-main-ctn">
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+        <!--[if BLOCK]><![endif]-->            
+            <!--[if BLOCK]><![endif]-->                <header class="fi-header">
+    
+                    
+
+    
+    <!--[if BLOCK]><![endif]-->        <div>        
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+        
+
+        <!--[if BLOCK]><![endif]-->            <h1 class="fi-header-heading">
+                Server Maker
+            </h1>
+        <!--[if ENDBLOCK]><![endif]-->
+        
+
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    
+            </div>
+    <!--[if ENDBLOCK]><![endif]-->
+    
+    
+                    
+
+    
+    <!--[if BLOCK]><![endif]-->        <div class="fi-header-actions-ctn">
+                    
+        
+
+        <!--[if BLOCK]><![endif]-->            <!--[if BLOCK]><![endif]-->    <div class="fi-ac fi-align-start">
+        <!--[if BLOCK]><![endif]-->            <!--[if BLOCK]><![endif]-->                
+        
+        <a href="http://127.0.0.1:8001/admin/server-maker/settings" wire:navigate="" title="Server Maker settings" aria-label="Server Maker settings" class="fi-ac-icon-btn-action fi-icon-btn fi-size-md" data-demo-url="http://127.0.0.1:8001/admin/server-maker/settings" data-demo-go="admin-maker-settings">
+            <svg class="fi-icon fi-size-xl" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065"></path>
+  <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
+</svg>            
+                    </a>
+
+        
+        
+            <!--[if ENDBLOCK]><![endif]-->        <!--[if ENDBLOCK]><![endif]-->    </div>
+<!--[if ENDBLOCK]><![endif]-->        <!--[if ENDBLOCK]><![endif]-->
+        
+    
+            
+        </div>
+    <!--[if ENDBLOCK]><![endif]--></header>
+            <!--[if ENDBLOCK]><![endif]-->        <!--[if ENDBLOCK]><![endif]-->
+        <div class="fi-page-main">
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+            <div class="fi-page-content">
+                
+
+                
+
+                
+
+                <style>
+    .smk {
+        --smk-line: var(--gray-200);
+        --smk-muted: var(--gray-500);
+        --smk-surface: var(--color-white, #fff);
+        --smk-accent: var(--primary-600);
+        --smk-tint: color-mix(in oklab, var(--primary-500) 8%, transparent);
+    }
+    .dark .smk {
+        --smk-line: color-mix(in oklab, var(--color-white, #fff) 10%, transparent);
+        --smk-muted: var(--gray-400);
+        --smk-surface: color-mix(in oklab, var(--color-white, #fff) 3%, transparent);
+        --smk-accent: var(--primary-400);
+    }
+    .smk-picker { display: grid; gap: 1.5rem; }
+    .smk-group { display: grid; gap: .75rem; }
+    .smk-group h3 { font-size: .875rem; font-weight: 600; }
+    .smk-group-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem; }
+    .smk-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; }
+    @media (max-width: 900px) { .smk-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    .smk-card {
+        display: flex; align-items: flex-start; gap: .75rem; min-width: 0; padding: .875rem 1rem;
+        border: 1px solid var(--smk-line); border-radius: .5rem; background: var(--smk-surface);
+        text-align: start; cursor: pointer; transition: border-color .15s, background-color .15s;
+    }
+    .smk-card:hover { border-color: var(--smk-accent); }
+    .smk-card:focus-visible { outline: 2px solid var(--smk-accent); outline-offset: 2px; }
+    .smk-card.is-picked { border-color: var(--smk-accent); background: var(--smk-tint); box-shadow: inset 0 0 0 1px var(--smk-accent); }
+    .smk-card:disabled { opacity: .6; cursor: wait; }
+    .smk-card-icon { flex: none; width: 1.5rem; height: 1.5rem; color: var(--smk-accent); }
+    .smk-card-text { display: grid; gap: .125rem; min-width: 0; }
+    .smk-card-text strong { overflow: hidden; font-size: .875rem; font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }
+    .smk-card-text small {
+        display: -webkit-box; overflow: hidden; color: var(--smk-muted); font-size: .75rem; line-height: 1.4;
+        -webkit-box-orient: vertical; -webkit-line-clamp: 2;
+    }
+    .smk-card-image { flex: none; width: 2.5rem; height: 2.5rem; border-radius: .375rem; object-fit: cover; }
+    .smk-card-meta { color: var(--smk-muted); font-size: .75rem; }
+    .smk-card-meta a { color: var(--smk-accent); }
+    .smk-card:has(input:focus-visible) { outline: 2px solid var(--smk-accent); outline-offset: 2px; }
+    .smk-sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    .smk-search {
+        display: flex; align-items: center; gap: .5rem; width: min(100%, 20rem); padding: .375rem .75rem;
+        border: 1px solid var(--smk-line); border-radius: .5rem; background: var(--smk-surface);
+    }
+    .smk-search svg { flex: none; width: 1rem; height: 1rem; color: var(--smk-muted); }
+    .smk-search input { width: 100%; min-width: 0; padding: 0; border: 0; background: transparent; font-size: .875rem; outline: none; box-shadow: none; }
+    .smk-empty { color: var(--smk-muted); font-size: .875rem; }
+    .smk-empty a, .smk-notice a { color: var(--smk-accent); text-decoration: underline; }
+    .smk-more { justify-self: start; color: var(--smk-accent); font-size: .875rem; font-weight: 600; }
+    .smk-chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .smk-chip { position: relative; cursor: pointer; }
+    .smk-chip input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+    .smk-chip span {
+        display: block; padding: .375rem .875rem; border: 1px solid var(--smk-line); border-radius: .5rem;
+        background: var(--smk-surface); font-size: .875rem; font-weight: 500;
+    }
+    .smk-chip:hover span { border-color: var(--smk-accent); }
+    .smk-chip input:checked + span { border-color: var(--smk-accent); background: var(--smk-tint); color: var(--smk-accent); }
+    .smk-chip input:focus-visible + span { outline: 2px solid var(--smk-accent); outline-offset: 2px; }
+    .smk-notice {
+        display: flex; gap: .75rem; padding: .875rem 1rem; border: 1px solid var(--warning-400, #f59e0b);
+        border-radius: .5rem; background: color-mix(in oklab, var(--warning-400, #f59e0b) 10%, transparent); font-size: .875rem;
+    }
+    .smk-notice-icon { flex: none; width: 1.25rem; height: 1.25rem; color: var(--warning-600, #d97706); }
+    .smk-notice p { margin-top: .25rem; color: var(--smk-muted); }
+    .smk-review { display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: 1rem 2rem; margin: 0; }
+    .smk-review dt { color: var(--smk-muted); font-size: .75rem; }
+    .smk-review dd { margin: .125rem 0 0; font-size: .875rem; font-weight: 500; overflow-wrap: anywhere; }
+    /* Back and Next stay in reach at the bottom of the screen, whatever the length of a step. */
+    .smk .fi-sc-wizard-footer {
+        position: sticky; bottom: 0; z-index: 10; padding-block: .75rem;
+        border-top: 1px solid var(--smk-line); background: var(--smk-bar, var(--color-white, #fff));
+    }
+    .dark .smk .fi-sc-wizard-footer { --smk-bar: var(--gray-900); }
+    @media (max-width: 600px) {
+        .smk .fi-sc-wizard-footer { flex-wrap: nowrap; padding-bottom: calc(.75rem + env(safe-area-inset-bottom)); }
+        .smk .fi-sc-wizard-footer > * { flex: 1 1 0; }
+        .smk .fi-sc-wizard-footer .fi-btn { justify-content: center; width: 100%; min-height: 2.75rem; }
+        .smk-cards { grid-template-columns: minmax(0, 1fr); }
+        .smk-search { width: 100%; }
+    }
+    .smk-card-image { flex: none; width: 2.5rem; height: 2.5rem; border-radius: .375rem; object-fit: cover; }
+    .smk-card-meta { color: var(--smk-muted); font-size: .75rem; }
+    .smk-card-meta a { color: var(--smk-accent); }
+    .smk-card:has(input:focus-visible) { outline: 2px solid var(--smk-accent); outline-offset: 2px; }
+    .smk-sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    /* The header buttons (Settings, Start over) as Simplify icon buttons: a quiet bordered square, the icon turns the
+       accent colour on hover. Simplify's colours when it is installed, Pelican's otherwise. */
+    .fi-page:has(.smk) .fi-header-actions-ctn .fi-icon-btn { display: inline-grid; place-items: center; width: var(--s-h, 36px); height: var(--s-h, 36px); margin: 0; border: 1px solid var(--s-line, var(--gray-200)); border-radius: var(--s-radius-sm, 6px); background: var(--s-surface, #fff); color: var(--s-ink, var(--gray-950)); transition: background .15s, border-color .15s, color .15s; }
+    .dark .fi-page:has(.smk) .fi-header-actions-ctn .fi-icon-btn { border-color: var(--s-line, var(--gray-700)); background: var(--s-surface, var(--gray-900)); color: var(--s-ink, var(--gray-50)); }
+    .fi-page:has(.smk) .fi-header-actions-ctn .fi-icon-btn .fi-icon { width: 18px; height: 18px; color: inherit; }
+    .fi-page:has(.smk) .fi-header-actions-ctn .fi-icon-btn:hover { border-color: var(--s-accent, var(--primary-600)); background: var(--s-raised, var(--gray-100)); color: var(--s-accent, var(--primary-600)); }
+    .dark .fi-page:has(.smk) .fi-header-actions-ctn .fi-icon-btn:hover { border-color: var(--s-accent, var(--primary-500)); background: var(--s-raised, var(--gray-800)); color: var(--s-accent, var(--primary-500)); }
+</style>
+    <form wire:submit="create" class="smk">
+        
+        <div x-data="filamentSchema({ livewireId: '4FoDnUylLxPKlYovUOXH', schemaKey: 'form' })" x-on:form-validation-error.window="handleFormValidationError" x-on:reset-schema-component-state.window="handleClientSideStateReset" class="fi-grid  fi-sc  fi-sc-has-gap" style="--cols-default: repeat(1, minmax(0, 1fr));">
+                                                
+        <div wire:partial="schema-component::form.data::wizard" x-data="filamentSchemaComponent({
+                    path: 'data',
+                    containerPath: 'data',
+                    $wire,
+                })" wire:key="4FoDnUylLxPKlYovUOXH.form.data::wizard" class="fi-grid-col" style="--col-span-default: 1 / -1;">
+                            <div class="fi-sc-component">
+                    
+        <div x-load="" x-load-src="http://127.0.0.1:8001/js/filament/schemas/components/wizard.js?v=5.10.2.0" x-data="wizardSchemaComponent({
+                        isSkippable: false,
+                        isStepPersistedInQueryString: false,
+                        key: 'form.data::wizard',
+                        livewireId: '4FoDnUylLxPKlYovUOXH',
+                        schemaKey: 'form',
+                        startStep: 1,
+                        stepQueryStringKey: null,
+                    })" x-on:next-wizard-step.window="if ($event.detail.key === 'form.data::wizard') goToNextStep($event.detail.step, $event.detail.currentStep)" x-on:go-to-wizard-step.window="$event.detail.key === 'form.data::wizard' &amp;&amp; goToStep($event.detail.step)" wire:ignore.self="" id="form.data::wizard" class="fi-sc-wizard fi-contained">
+            <input type="hidden" value="[&quot;form.game::data::wizard-step&quot;,&quot;form.minecraft::data::wizard-step&quot;,&quot;form.server::data::wizard-step&quot;,&quot;form.resources::data::wizard-step&quot;,&quot;form.review::data::wizard-step&quot;]" x-ref="stepsData">
+
+                            <ol role="list" x-ref="header" class="fi-sc-wizard-header">
+                                                                                    <li class="fi-sc-wizard-header-step fi-active" x-bind:class="{
+                                'fi-active': getStepIndex(step) === 0,
+                                'fi-completed': getStepIndex(step) > 0,
+                            }">
+                            <button type="button" id="form.game::data::wizard-step-tab" aria-controls="form.game::data::wizard-step" x-bind:aria-current="getStepIndex(step) === 0 ? 'step' : null" x-on:click="step = 'form.game::data::wizard-step'" x-bind:disabled="! isStepAccessible('form.game::data::wizard-step') || false" class="fi-sc-wizard-header-step-btn" aria-current="step" disabled="disabled">
+                                <div class="fi-sc-wizard-header-step-icon-ctn">
+                                    
+                                    <svg x-show="getStepIndex(step) > 0" class="fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M5 12l5 5l10 -10"></path>
+</svg>
+                                                                            <span x-show="getStepIndex(step) <= 0" aria-hidden="true" class="fi-sc-wizard-header-step-number">
+                                            01                                        </span>
+                                                                    </div>
+
+                                <div class="fi-sc-wizard-header-step-text">
+                                                                        <span class="fi-sc-wizard-header-step-label">Game</span>
+
+                                    
+                                                                        <span class="fi-sr-only" x-text="getStepIndex(step) > 0 ? 'Completed' : (getStepIndex(step) === 0 ? '' : 'Not completed')"></span>
+                                </div>
+                            </button>
+
+                                                            <svg fill="none" preserveAspectRatio="none" viewBox="0 0 22 80" aria-hidden="true" class="fi-sc-wizard-header-step-separator">
+                                    <path d="M0 -2L20 40L0 82" stroke-linejoin="round" stroke="currentcolor" vector-effect="non-scaling-stroke"></path>
+                                </svg>
+                                                    </li>
+                                                                    <li class="fi-sc-wizard-header-step" x-bind:class="{
+                                'fi-active': getStepIndex(step) === 1,
+                                'fi-completed': getStepIndex(step) > 1,
+                            }">
+                            <button type="button" id="form.minecraft::data::wizard-step-tab" aria-controls="form.minecraft::data::wizard-step" x-bind:aria-current="getStepIndex(step) === 1 ? 'step' : null" x-on:click="step = 'form.minecraft::data::wizard-step'" x-bind:disabled="! isStepAccessible('form.minecraft::data::wizard-step') || false" class="fi-sc-wizard-header-step-btn" disabled="disabled">
+                                <div class="fi-sc-wizard-header-step-icon-ctn">
+                                    
+                                    <svg x-show="getStepIndex(step) > 1" class="fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M5 12l5 5l10 -10"></path>
+</svg>
+                                                                            <span x-show="getStepIndex(step) <= 1" aria-hidden="true" class="fi-sc-wizard-header-step-number">
+                                            02                                        </span>
+                                                                    </div>
+
+                                <div class="fi-sc-wizard-header-step-text">
+                                                                        <span class="fi-sc-wizard-header-step-label">Minecraft</span>
+
+                                    
+                                                                        <span class="fi-sr-only" x-text="getStepIndex(step) > 1 ? 'Completed' : (getStepIndex(step) === 1 ? '' : 'Not completed')">Not completed</span>
+                                </div>
+                            </button>
+
+                                                            <svg fill="none" preserveAspectRatio="none" viewBox="0 0 22 80" aria-hidden="true" class="fi-sc-wizard-header-step-separator">
+                                    <path d="M0 -2L20 40L0 82" stroke-linejoin="round" stroke="currentcolor" vector-effect="non-scaling-stroke"></path>
+                                </svg>
+                                                    </li>
+                                                                    <li class="fi-sc-wizard-header-step" x-bind:class="{
+                                'fi-active': getStepIndex(step) === 2,
+                                'fi-completed': getStepIndex(step) > 2,
+                            }">
+                            <button type="button" id="form.server::data::wizard-step-tab" aria-controls="form.server::data::wizard-step" x-bind:aria-current="getStepIndex(step) === 2 ? 'step' : null" x-on:click="step = 'form.server::data::wizard-step'" x-bind:disabled="! isStepAccessible('form.server::data::wizard-step') || false" class="fi-sc-wizard-header-step-btn" disabled="disabled">
+                                <div class="fi-sc-wizard-header-step-icon-ctn">
+                                    
+                                    <svg x-show="getStepIndex(step) > 2" class="fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M5 12l5 5l10 -10"></path>
+</svg>
+                                                                            <span x-show="getStepIndex(step) <= 2" aria-hidden="true" class="fi-sc-wizard-header-step-number">
+                                            03                                        </span>
+                                                                    </div>
+
+                                <div class="fi-sc-wizard-header-step-text">
+                                                                        <span class="fi-sc-wizard-header-step-label">Server</span>
+
+                                    
+                                                                        <span class="fi-sr-only" x-text="getStepIndex(step) > 2 ? 'Completed' : (getStepIndex(step) === 2 ? '' : 'Not completed')">Not completed</span>
+                                </div>
+                            </button>
+
+                                                            <svg fill="none" preserveAspectRatio="none" viewBox="0 0 22 80" aria-hidden="true" class="fi-sc-wizard-header-step-separator">
+                                    <path d="M0 -2L20 40L0 82" stroke-linejoin="round" stroke="currentcolor" vector-effect="non-scaling-stroke"></path>
+                                </svg>
+                                                    </li>
+                                                                    <li class="fi-sc-wizard-header-step" x-bind:class="{
+                                'fi-active': getStepIndex(step) === 3,
+                                'fi-completed': getStepIndex(step) > 3,
+                            }">
+                            <button type="button" id="form.resources::data::wizard-step-tab" aria-controls="form.resources::data::wizard-step" x-bind:aria-current="getStepIndex(step) === 3 ? 'step' : null" x-on:click="step = 'form.resources::data::wizard-step'" x-bind:disabled="! isStepAccessible('form.resources::data::wizard-step') || false" class="fi-sc-wizard-header-step-btn" disabled="disabled">
+                                <div class="fi-sc-wizard-header-step-icon-ctn">
+                                    
+                                    <svg x-show="getStepIndex(step) > 3" class="fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M5 12l5 5l10 -10"></path>
+</svg>
+                                                                            <span x-show="getStepIndex(step) <= 3" aria-hidden="true" class="fi-sc-wizard-header-step-number">
+                                            04                                        </span>
+                                                                    </div>
+
+                                <div class="fi-sc-wizard-header-step-text">
+                                                                        <span class="fi-sc-wizard-header-step-label">Resources</span>
+
+                                    
+                                                                        <span class="fi-sr-only" x-text="getStepIndex(step) > 3 ? 'Completed' : (getStepIndex(step) === 3 ? '' : 'Not completed')">Not completed</span>
+                                </div>
+                            </button>
+
+                                                            <svg fill="none" preserveAspectRatio="none" viewBox="0 0 22 80" aria-hidden="true" class="fi-sc-wizard-header-step-separator">
+                                    <path d="M0 -2L20 40L0 82" stroke-linejoin="round" stroke="currentcolor" vector-effect="non-scaling-stroke"></path>
+                                </svg>
+                                                    </li>
+                                                                    <li class="fi-sc-wizard-header-step" x-bind:class="{
+                                'fi-active': getStepIndex(step) === 4,
+                                'fi-completed': getStepIndex(step) > 4,
+                            }">
+                            <button type="button" id="form.review::data::wizard-step-tab" aria-controls="form.review::data::wizard-step" x-bind:aria-current="getStepIndex(step) === 4 ? 'step' : null" x-on:click="step = 'form.review::data::wizard-step'" x-bind:disabled="! isStepAccessible('form.review::data::wizard-step') || false" class="fi-sc-wizard-header-step-btn" disabled="disabled">
+                                <div class="fi-sc-wizard-header-step-icon-ctn">
+                                    
+                                    <svg x-show="getStepIndex(step) > 4" class="fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M5 12l5 5l10 -10"></path>
+</svg>
+                                                                            <span x-show="getStepIndex(step) <= 4" aria-hidden="true" class="fi-sc-wizard-header-step-number">
+                                            05                                        </span>
+                                                                    </div>
+
+                                <div class="fi-sc-wizard-header-step-text">
+                                                                        <span class="fi-sc-wizard-header-step-label">Review</span>
+
+                                    
+                                                                        <span class="fi-sr-only" x-text="getStepIndex(step) > 4 ? 'Completed' : (getStepIndex(step) === 4 ? '' : 'Not completed')">Not completed</span>
+                                </div>
+                            </button>
+
+                                                    </li>
+                                                            </ol>
+            
+                            
+        <div x-bind:tabindex="$el.querySelector('[autofocus]') ? '-1' : '0'" x-bind:class="{
+                'fi-active': step === 'form.game::data::wizard-step',
+            }" x-on:expand="
+                if (! isStepAccessible('form.game::data::wizard-step')) {
+                    return
+                }
+
+                step = 'form.game::data::wizard-step'            " x-ref="step-form.game::data::wizard-step" aria-labelledby="form.game::data::wizard-step-tab" id="form.game::data::wizard-step" role="group" class="fi-sc-wizard-step fi-active" tabindex="0">
+            
+        <div class="fi-grid  fi-sc  fi-sc-has-gap" style="--cols-default: repeat(1, minmax(0, 1fr));">
+                                                
+        <div wire:partial="schema-component::form.game" x-data="filamentSchemaComponent({
+                    path: 'data.game',
+                    containerPath: 'data',
+                    $wire,
+                })" wire:key="4FoDnUylLxPKlYovUOXH.form.game" class="fi-grid-col" style="--col-span-default: span 1 / span 1;">
+                            <div class="fi-sc-component">
+                    <div data-field-wrapper="" class="fi-fo-field">
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]-->        <label for="form.game" class="fi-fo-field-label fi-sr-only">
+            Game
+        </label>
+    <!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]-->        <div class="fi-fo-field-content-col">
+            
+
+            <!--[if BLOCK]><![endif]-->                <div class="smk-picker">
+        <!--[if BLOCK]><![endif]-->            <section class="smk-group" aria-labelledby="smk-minecraft">
+                <h3 id="smk-minecraft">Minecraft</h3>
+                <div class="smk-cards" role="radiogroup" aria-labelledby="smk-minecraft">
+                    <!--[if BLOCK]><![endif]-->                                                <button type="button" role="radio" aria-checked="false" class="smk-card" wire:click="pickGame('minecraft', 'vanilla')" wire:loading.attr="disabled" wire:target="pickGame">
+                            <svg aria-hidden="true" class="smk-card-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M21 16.008v-8.018a1.98 1.98 0 0 0 -1 -1.717l-7 -4.008a2.016 2.016 0 0 0 -2 0l-7 4.008c-.619 .355 -1 1.01 -1 1.718v8.018c0 .709 .381 1.363 1 1.717l7 4.008a2.016 2.016 0 0 0 2 0l7 -4.008c.619 -.355 1 -1.01 1 -1.718"></path>
+  <path d="M12 22v-10"></path>
+  <path d="M12 12l8.73 -5.04"></path>
+  <path d="M3.27 6.96l8.73 5.04"></path>
+</svg>                            <span class="smk-card-text">
+                                <strong>Vanilla</strong>
+                                <small>Plain Minecraft, no extras.</small>
+                            </span>
+                        </button>
+                                                                    <button type="button" role="radio" aria-checked="false" class="smk-card" wire:click="pickGame('minecraft', 'plugins')" wire:loading.attr="disabled" wire:target="pickGame">
+                            <svg aria-hidden="true" class="smk-card-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M9.785 6l8.215 8.215l-2.054 2.054a5.81 5.81 0 1 1 -8.215 -8.215l2.054 -2.054"></path>
+  <path d="M4 20l3.5 -3.5"></path>
+  <path d="M15 4l-3.5 3.5"></path>
+  <path d="M20 9l-3.5 3.5"></path>
+</svg>                            <span class="smk-card-text">
+                                <strong>Plugins</strong>
+                                <small>Paper or Purpur. Players need nothing extra.</small>
+                            </span>
+                        </button>
+                                                                    <button type="button" role="radio" aria-checked="false" class="smk-card" wire:click="pickGame('minecraft', 'mods')" wire:loading.attr="disabled" wire:target="pickGame">
+                            <svg aria-hidden="true" class="smk-card-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M3 21h4l13 -13a1.5 1.5 0 0 0 -4 -4l-13 13v4"></path>
+  <path d="M14.5 5.5l4 4"></path>
+  <path d="M12 8l-5 -5l-4 4l5 5"></path>
+  <path d="M7 8l-1.5 1.5"></path>
+  <path d="M16 12l5 5l-4 4l-5 -5"></path>
+  <path d="M16 17l-1.5 1.5"></path>
+</svg>                            <span class="smk-card-text">
+                                <strong>Mods</strong>
+                                <small>Fabric, Forge, NeoForge or Quilt. You add the mods.</small>
+                            </span>
+                        </button>
+                                                                    <button type="button" role="radio" aria-checked="false" class="smk-card" wire:click="pickGame('minecraft', 'modpack')" wire:loading.attr="disabled" wire:target="pickGame">
+                            <svg aria-hidden="true" class="smk-card-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5"></path>
+  <path d="M12 12l8 -4.5"></path>
+  <path d="M12 12l0 9"></path>
+  <path d="M12 12l-8 -4.5"></path>
+  <path d="M16 5.25l-8 4.5"></path>
+</svg>                            <span class="smk-card-text">
+                                <strong>Modpack</strong>
+                                <small>A ready-made pack from Modrinth or CurseForge.</small>
+                            </span>
+                        </button>
+                                                                    <button type="button" role="radio" aria-checked="false" class="smk-card" wire:click="pickGame('minecraft', 'bedrock')" wire:loading.attr="disabled" wire:target="pickGame">
+                            <svg aria-hidden="true" class="smk-card-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M6 5a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-14"></path>
+  <path d="M11 4h2"></path>
+  <path d="M12 17v.01"></path>
+</svg>                            <span class="smk-card-text">
+                                <strong>Bedrock</strong>
+                                <small>For phones, consoles and Windows.</small>
+                            </span>
+                        </button>
+                                                                    <button type="button" role="radio" aria-checked="false" class="smk-card" wire:click="pickGame('minecraft', 'proxy')" wire:loading.attr="disabled" wire:target="pickGame">
+                            <svg aria-hidden="true" class="smk-card-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M3 19a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
+  <path d="M19 7a2 2 0 1 0 0 -4a2 2 0 0 0 0 4"></path>
+  <path d="M11 19h5.5a3.5 3.5 0 0 0 0 -7h-8a3.5 3.5 0 0 1 0 -7h4.5"></path>
+</svg>                            <span class="smk-card-text">
+                                <strong>Proxy</strong>
+                                <small>Velocity or BungeeCord in front of several servers.</small>
+                            </span>
+                        </button>
+                    <!--[if ENDBLOCK]><![endif]-->                </div>
+            </section>
+        <!--[if ENDBLOCK]><![endif]-->
+        
+        <!--[if BLOCK]><![endif]-->            <section class="smk-group" aria-labelledby="smk-games" x-data="{
+                    query: '',
+                    limit: 24,
+                    games: JSON.parse('[{\u0022id\u0022:6,\u0022name\u0022:\u0022Counter-Strike 2\u0022,\u0022description\u0022:\u0022Provident atque libero et nobis voluptate rerum. Quasi id et odio perferendis est dolorem dicta. Quo aliquam sunt reiciendis iusto occaecat…\u0022},{\u0022id\u0022:8,\u0022name\u0022:\u0022Node.js\u0022,\u0022description\u0022:\u0022Molestiae omnis impedit accusamus quis saepe dolor dolores. Dolor ratione rerum magni praesentium aut. Non accusamus unde iusto quam.\u0022},{\u0022id\u0022:4,\u0022name\u0022:\u0022Palworld\u0022,\u0022description\u0022:\u0022Magnam repellat repudiandae aut eum et atque. Nobis nesciunt nisi non rerum itaque sit. Aperiam sapiente facilis impedit id at expedita dol…\u0022},{\u0022id\u0022:5,\u0022name\u0022:\u0022Rust\u0022,\u0022description\u0022:\u0022Ex saepe praesentium consequatur aut dicta dignissimos ratione iusto. Occaecati ipsam magnam error dolore fugit suscipit. Exercitationem ea…\u0022},{\u0022id\u0022:7,\u0022name\u0022:\u0022Terraria\u0022,\u0022description\u0022:\u0022Et laborum et pariatur sit. Minus facere rerum accusantium consequatur distinctio magni. Eos aut in rerum laborum.\u0022},{\u0022id\u0022:3,\u0022name\u0022:\u0022Valheim\u0022,\u0022description\u0022:\u0022Voluptatibus molestiae praesentium error architecto aut alias enim. Excepturi doloremque aut aut asperiores nulla eum. Praesentium odio asp…\u0022}]'),
+                    norm(text) { return String(text || '').toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, ' ').trim(); },
+                    shown() {
+                        const words = this.norm(this.query).split(' ').filter(Boolean);
+                        return this.games.filter((game) => words.every((word) => this.norm(game.name + ' ' + game.description).includes(word)));
+                    },
+                }">
+                <div class="smk-group-head">
+                    <h3 id="smk-games">Other games</h3>
+                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->                </div>
+                <!--[if BLOCK]><![endif]-->                    <div class="smk-cards" role="radiogroup" aria-labelledby="smk-games">
+                        <template x-for="game in shown().slice(0, limit)" :key="game.id">
+                            <button type="button" role="radio" class="smk-card" :class="{ 'is-picked': $wire.data.game === 'other' &amp;&amp; Number($wire.data.egg_id) === game.id }" :aria-checked="$wire.data.game === 'other' &amp;&amp; Number($wire.data.egg_id) === game.id" x-on:click="$wire.pickGame('other', String(game.id))">
+                                <svg aria-hidden="true" class="smk-card-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M12 5h3.5a5 5 0 0 1 0 10h-5.5l-4.015 4.227a2.3 2.3 0 0 1 -3.923 -2.035l1.634 -8.173a5 5 0 0 1 4.904 -4.019h3.4"></path>
+  <path d="M14 15l4.07 4.284a2.3 2.3 0 0 0 3.925 -2.023l-1.6 -8.232"></path>
+  <path d="M8 9v2"></path>
+  <path d="M7 10h2"></path>
+  <path d="M14 10h2"></path>
+</svg>                                <span class="smk-card-text">
+                                    <strong x-text="game.name"></strong>
+                                    <small x-text="game.description"></small>
+                                </span>
+                            </button>
+                        </template><button type="button" role="radio" class="smk-card" :class="{ 'is-picked': $wire.data.game === 'other' &amp;&amp; Number($wire.data.egg_id) === game.id }" :aria-checked="$wire.data.game === 'other' &amp;&amp; Number($wire.data.egg_id) === game.id" x-on:click="$wire.pickGame('other', String(game.id))" aria-checked="false">
+                                <svg aria-hidden="true" class="smk-card-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M12 5h3.5a5 5 0 0 1 0 10h-5.5l-4.015 4.227a2.3 2.3 0 0 1 -3.923 -2.035l1.634 -8.173a5 5 0 0 1 4.904 -4.019h3.4"></path>
+  <path d="M14 15l4.07 4.284a2.3 2.3 0 0 0 3.925 -2.023l-1.6 -8.232"></path>
+  <path d="M8 9v2"></path>
+  <path d="M7 10h2"></path>
+  <path d="M14 10h2"></path>
+</svg>                                <span class="smk-card-text">
+                                    <strong x-text="game.name">Counter-Strike 2</strong>
+                                    <small x-text="game.description">Provident atque libero et nobis voluptate rerum. Quasi id et odio perferendis est dolorem dicta. Quo aliquam sunt reiciendis iusto occaecat…</small>
+                                </span>
+                            </button><button type="button" role="radio" class="smk-card" :class="{ 'is-picked': $wire.data.game === 'other' &amp;&amp; Number($wire.data.egg_id) === game.id }" :aria-checked="$wire.data.game === 'other' &amp;&amp; Number($wire.data.egg_id) === game.id" x-on:click="$wire.pickGame('other', String(game.id))" aria-checked="false">
+                                <svg aria-hidden="true" class="smk-card-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M12 5h3.5a5 5 0 0 1 0 10h-5.5l-4.015 4.227a2.3 2.3 0 0 1 -3.923 -2.035l1.634 -8.173a5 5 0 0 1 4.904 -4.019h3.4"></path>
+  <path d="M14 15l4.07 4.284a2.3 2.3 0 0 0 3.925 -2.023l-1.6 -8.232"></path>
+  <path d="M8 9v2"></path>
+  <path d="M7 10h2"></path>
+  <path d="M14 10h2"></path>
+</svg>                                <span class="smk-card-text">
+                                    <strong x-text="game.name">Node.js</strong>
+                                    <small x-text="game.description">Molestiae omnis impedit accusamus quis saepe dolor dolores. Dolor ratione rerum magni praesentium aut. Non accusamus unde iusto quam.</small>
+                                </span>
+                            </button><button type="button" role="radio" class="smk-card" :class="{ 'is-picked': $wire.data.game === 'other' &amp;&amp; Number($wire.data.egg_id) === game.id }" :aria-checked="$wire.data.game === 'other' &amp;&amp; Number($wire.data.egg_id) === game.id" x-on:click="$wire.pickGame('other', String(game.id))" aria-checked="false">
+                                <svg aria-hidden="true" class="smk-card-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M12 5h3.5a5 5 0 0 1 0 10h-5.5l-4.015 4.227a2.3 2.3 0 0 1 -3.923 -2.035l1.634 -8.173a5 5 0 0 1 4.904 -4.019h3.4"></path>
+  <path d="M14 15l4.07 4.284a2.3 2.3 0 0 0 3.925 -2.023l-1.6 -8.232"></path>
+  <path d="M8 9v2"></path>
+  <path d="M7 10h2"></path>
+  <path d="M14 10h2"></path>
+</svg>                                <span class="smk-card-text">
+                                    <strong x-text="game.name">Palworld</strong>
+                                    <small x-text="game.description">Magnam repellat repudiandae aut eum et atque. Nobis nesciunt nisi non rerum itaque sit. Aperiam sapiente facilis impedit id at expedita dol…</small>
+                                </span>
+                            </button><button type="button" role="radio" class="smk-card" :class="{ 'is-picked': $wire.data.game === 'other' &amp;&amp; Number($wire.data.egg_id) === game.id }" :aria-checked="$wire.data.game === 'other' &amp;&amp; Number($wire.data.egg_id) === game.id" x-on:click="$wire.pickGame('other', String(game.id))" aria-checked="false">
+                                <svg aria-hidden="true" class="smk-card-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M12 5h3.5a5 5 0 0 1 0 10h-5.5l-4.015 4.227a2.3 2.3 0 0 1 -3.923 -2.035l1.634 -8.173a5 5 0 0 1 4.904 -4.019h3.4"></path>
+  <path d="M14 15l4.07 4.284a2.3 2.3 0 0 0 3.925 -2.023l-1.6 -8.232"></path>
+  <path d="M8 9v2"></path>
+  <path d="M7 10h2"></path>
+  <path d="M14 10h2"></path>
+</svg>                                <span class="smk-card-text">
+                                    <strong x-text="game.name">Rust</strong>
+                                    <small x-text="game.description">Ex saepe praesentium consequatur aut dicta dignissimos ratione iusto. Occaecati ipsam magnam error dolore fugit suscipit. Exercitationem ea…</small>
+                                </span>
+                            </button><button type="button" role="radio" class="smk-card" :class="{ 'is-picked': $wire.data.game === 'other' &amp;&amp; Number($wire.data.egg_id) === game.id }" :aria-checked="$wire.data.game === 'other' &amp;&amp; Number($wire.data.egg_id) === game.id" x-on:click="$wire.pickGame('other', String(game.id))" aria-checked="false">
+                                <svg aria-hidden="true" class="smk-card-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M12 5h3.5a5 5 0 0 1 0 10h-5.5l-4.015 4.227a2.3 2.3 0 0 1 -3.923 -2.035l1.634 -8.173a5 5 0 0 1 4.904 -4.019h3.4"></path>
+  <path d="M14 15l4.07 4.284a2.3 2.3 0 0 0 3.925 -2.023l-1.6 -8.232"></path>
+  <path d="M8 9v2"></path>
+  <path d="M7 10h2"></path>
+  <path d="M14 10h2"></path>
+</svg>                                <span class="smk-card-text">
+                                    <strong x-text="game.name">Terraria</strong>
+                                    <small x-text="game.description">Et laborum et pariatur sit. Minus facere rerum accusantium consequatur distinctio magni. Eos aut in rerum laborum.</small>
+                                </span>
+                            </button><button type="button" role="radio" class="smk-card" :class="{ 'is-picked': $wire.data.game === 'other' &amp;&amp; Number($wire.data.egg_id) === game.id }" :aria-checked="$wire.data.game === 'other' &amp;&amp; Number($wire.data.egg_id) === game.id" x-on:click="$wire.pickGame('other', String(game.id))" aria-checked="false">
+                                <svg aria-hidden="true" class="smk-card-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M12 5h3.5a5 5 0 0 1 0 10h-5.5l-4.015 4.227a2.3 2.3 0 0 1 -3.923 -2.035l1.634 -8.173a5 5 0 0 1 4.904 -4.019h3.4"></path>
+  <path d="M14 15l4.07 4.284a2.3 2.3 0 0 0 3.925 -2.023l-1.6 -8.232"></path>
+  <path d="M8 9v2"></path>
+  <path d="M7 10h2"></path>
+  <path d="M14 10h2"></path>
+</svg>                                <span class="smk-card-text">
+                                    <strong x-text="game.name">Valheim</strong>
+                                    <small x-text="game.description">Voluptatibus molestiae praesentium error architecto aut alias enim. Excepturi doloremque aut aut asperiores nulla eum. Praesentium odio asp…</small>
+                                </span>
+                            </button>
+                    </div>
+                    <p class="smk-empty" x-show="shown().length === 0" style="display: none;">No game matches your search.</p>
+                    <button type="button" class="smk-more" x-show="shown().length > limit" x-on:click="limit += 48" x-text="'Show more (:count)'.replace(':count', shown().length - limit)" style="display: none;">Show more (-18)</button>
+                <!--[if ENDBLOCK]><![endif]-->            </section>
+        <!--[if ENDBLOCK]><![endif]-->    </div>
+            <!--[if ENDBLOCK]><![endif]-->
+            
+
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->        </div>
+    <!--[if ENDBLOCK]><![endif]--></div>
+                </div>
+                    </div>
+
+                                                                        
+        <div wire:partial="schema-component::form.type" x-data="filamentSchemaComponent({
+                    path: 'data.type',
+                    containerPath: 'data',
+                    $wire,
+                })" wire:key="4FoDnUylLxPKlYovUOXH.form.type" class="fi-grid-col fi-hidden" style="--col-span-default: span hidden / span hidden;">
+                            <div class="fi-sc-component">
+                    <input id="form.type" type="hidden" wire:model="data.type" class="fi-fo-hidden" value="">                </div>
+                    </div>
+
+                                                                        
+        <div wire:partial="schema-component::form.software" x-data="filamentSchemaComponent({
+                    path: 'data.software',
+                    containerPath: 'data',
+                    $wire,
+                })" wire:key="4FoDnUylLxPKlYovUOXH.form.software" class="fi-grid-col fi-hidden" style="--col-span-default: span hidden / span hidden;">
+                            <div class="fi-sc-component">
+                    <input id="form.software" type="hidden" wire:model="data.software" class="fi-fo-hidden" value="">                </div>
+                    </div>
+
+                                                                        
+        <div wire:partial="schema-component::form.egg_id" x-data="filamentSchemaComponent({
+                    path: 'data.egg_id',
+                    containerPath: 'data',
+                    $wire,
+                })" wire:key="4FoDnUylLxPKlYovUOXH.form.egg_id" class="fi-grid-col fi-hidden" style="--col-span-default: span hidden / span hidden;">
+                            <div class="fi-sc-component">
+                    <input id="form.egg_id" type="hidden" wire:model="data.egg_id" class="fi-fo-hidden" value="">                </div>
+                    </div>
+
+                                            </div>
+
+        
+                    </div>
+
+                                    
+        <div x-bind:tabindex="$el.querySelector('[autofocus]') ? '-1' : '0'" x-bind:class="{
+                'fi-active': step === 'form.minecraft::data::wizard-step',
+            }" x-on:expand="
+                if (! isStepAccessible('form.minecraft::data::wizard-step')) {
+                    return
+                }
+
+                step = 'form.minecraft::data::wizard-step'            " x-ref="step-form.minecraft::data::wizard-step" aria-labelledby="form.minecraft::data::wizard-step-tab" id="form.minecraft::data::wizard-step" role="group" class="fi-sc-wizard-step" tabindex="0">
+            
+                    </div>
+
+                                    
+        <div x-bind:tabindex="$el.querySelector('[autofocus]') ? '-1' : '0'" x-bind:class="{
+                'fi-active': step === 'form.server::data::wizard-step',
+            }" x-on:expand="
+                if (! isStepAccessible('form.server::data::wizard-step')) {
+                    return
+                }
+
+                step = 'form.server::data::wizard-step'            " x-ref="step-form.server::data::wizard-step" aria-labelledby="form.server::data::wizard-step-tab" id="form.server::data::wizard-step" role="group" class="fi-sc-wizard-step" tabindex="0">
+            
+        <div class="fi-grid  fi-sc  fi-sc-has-gap" style="--cols-default: repeat(1, minmax(0, 1fr));">
+                                                
+        <div wire:partial="schema-component::form.name" x-data="filamentSchemaComponent({
+                    path: 'data.name',
+                    containerPath: 'data',
+                    $wire,
+                })" wire:key="4FoDnUylLxPKlYovUOXH.form.name" class="fi-grid-col" style="--col-span-default: span 1 / span 1;">
+                            <div class="fi-sc-component">
+                    
+        <div data-field-wrapper="" class="fi-fo-field">
+            
+            
+                            <div class="fi-fo-field-label-col">
+                    
+                    <div class="fi-fo-field-label-ctn">
+                        
+                                                    <label for="form.name" class="fi-fo-field-label">
+                                
+                                                                    <span class="fi-fo-field-label-content">
+                                        Server name<sup class="fi-fo-field-label-required-mark">*</sup>
+                                                                            </span>
+                                
+                                                            </label>
+                        
+                                            </div>
+
+                                    </div>
+            
+                            <div class="fi-fo-field-content-col">
+                    
+                                            
+        <div x-on:focus-input.stop="$el.querySelector('input')?.focus()" class="fi-fo-text-input fi-input-wrp">
+            
+                        <div class="fi-input-wrp-content-ctn">
+                
+        <input aria-describedby="form.name-helper-text" id="form.name" maxlength="191" placeholder="bluebird" required="required" type="text" wire:model.live.blur="data.name" class="fi-input" value="">
+
+        
+                    </div>
+
+                            <div class="fi-input-wrp-suffix">
+                    
+                    
+                                            <div class="fi-input-wrp-actions">
+                                                            
+        
+        <button x-tooltip="{
+                    content: 'Pick a random name',
+                    theme: $store.theme,
+                    allowHTML: false,
+                }" aria-label="Random name" type="button" wire:loading.attr="aria-disabled" wire:loading.class="fi-disabled" class="fi-ac-icon-btn-action fi-icon-btn fi-size-sm fi-color fi-color-primary fi-text-color-600 hover:fi-text-color-500 dark:fi-text-color-400 dark:hover:fi-text-color-300" wire:click="mountAction('random_name', {}, JSON.parse('{\u0022schemaComponent\u0022:\u0022form.name\u0022}'))">
+            <svg wire:loading.remove.delay.default="1" wire:target="mountAction('random_name', {}, JSON.parse('{\u0022schemaComponent\u0022:\u0022form.name\u0022}'))" class="fi-icon fi-size-xl" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14"></path>
+  <path d="M8 8.5a.5 .5 0 1 0 1 0a.5 .5 0 1 0 -1 0" fill="currentColor"></path>
+  <path d="M15 8.5a.5 .5 0 1 0 1 0a.5 .5 0 1 0 -1 0" fill="currentColor"></path>
+  <path d="M15 15.5a.5 .5 0 1 0 1 0a.5 .5 0 1 0 -1 0" fill="currentColor"></path>
+  <path d="M8 15.5a.5 .5 0 1 0 1 0a.5 .5 0 1 0 -1 0" fill="currentColor"></path>
+  <path d="M11.5 12a.5 .5 0 1 0 1 0a.5 .5 0 1 0 -1 0" fill="currentColor"></path>
+</svg>                <svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" wire:loading.delay.default="" wire:target="mountAction('random_name', {}, JSON.parse('{\u0022schemaComponent\u0022:\u0022form.name\u0022}'))" class="fi-icon fi-loading-indicator fi-size-xl">
+        <path clip-rule="evenodd" d="M12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19ZM12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill-rule="evenodd" fill="currentColor" opacity="0.2"></path>
+        <path d="M2 12C2 6.47715 6.47715 2 12 2V5C8.13401 5 5 8.13401 5 12H2Z" fill="currentColor"></path>
+    </svg>
+                    </button>
+
+        
+                                                            </div>
+                                    </div>
+                    </div>
+
+                            
+                    
+        <div id="form.name-helper-text" class="fi-sc fi-inline  fi-sc-has-gap fi-sc-dense">
+                                                
+        <div x-data="filamentSchemaComponent({
+                    path: 'data.name',
+                    containerPath: 'data',
+                    $wire,
+                })">
+                            <div class="fi-sc-component">
+                    
+        <span class="fi-sc-text">
+            Shown in the panel. You can change it later.        </span>
+
+                        </div>
+                    </div>
+
+                                            </div>
+
+        
+                                    </div>
+                    </div>
+
+                        </div>
+                    </div>
+
+                                                                        
+        <div wire:partial="schema-component::form.subdomain" wire:key="4FoDnUylLxPKlYovUOXH.form.subdomain" class="fi-grid-col fi-hidden" style="--col-span-default: span 1 / span 1;">
+                    </div>
+
+                                                                        
+        <div wire:partial="schema-component::form.node_id" wire:key="4FoDnUylLxPKlYovUOXH.form.node_id" class="fi-grid-col fi-hidden" style="--col-span-default: span 1 / span 1;">
+                    </div>
+
+                                                                        
+        <div wire:partial="schema-component::form.allocation_id" wire:key="4FoDnUylLxPKlYovUOXH.form.allocation_id" class="fi-grid-col fi-hidden" style="--col-span-default: span 1 / span 1;">
+                    </div>
+
+                                                                        
+        <div x-data="filamentSchemaComponent({
+                    path: 'data',
+                    containerPath: 'data',
+                    $wire,
+                })" class="fi-grid-col" style="--col-span-default: span 1 / span 1;">
+                            <div class="fi-sc-component">
+                    <div class="smk-notice" role="alert">
+    <svg aria-hidden="true" class="smk-notice-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M13.55 17.733a5.806 5.806 0 0 1 -7.356 -4.052a5.81 5.81 0 0 1 1.537 -5.627l2.054 -2.054l7.165 7.165"></path>
+  <path d="M4 20l3.5 -3.5"></path>
+  <path d="M15 4l-3.5 3.5"></path>
+  <path d="M20 9l-3.5 3.5"></path>
+  <path d="M16 16l4 4"></path>
+  <path d="M20 16l-4 4"></path>
+</svg>    <div>
+        <strong>No free port on Amsterdam</strong>
+        <p>
+            <!--[if BLOCK]><![endif]-->                Every port on this node is in use. Add a port, then press Next again.
+                <a href="http://127.0.0.1:8001/admin/nodes/1/edit?tab=allocations%3A%3Adata%3A%3Atab" data-demo-url="http://127.0.0.1:8001/admin/nodes/1/edit?tab=allocations%3A%3Adata%3A%3Atab">Add a port</a>
+            <!--[if ENDBLOCK]><![endif]-->        </p>
+    </div>
+</div>
+                </div>
+                    </div>
+
+                                            </div>
+
+        
+                    </div>
+
+                                    
+        <div x-bind:tabindex="$el.querySelector('[autofocus]') ? '-1' : '0'" x-bind:class="{
+                'fi-active': step === 'form.resources::data::wizard-step',
+            }" x-on:expand="
+                if (! isStepAccessible('form.resources::data::wizard-step')) {
+                    return
+                }
+
+                step = 'form.resources::data::wizard-step'            " x-ref="step-form.resources::data::wizard-step" aria-labelledby="form.resources::data::wizard-step-tab" id="form.resources::data::wizard-step" role="group" class="fi-sc-wizard-step" tabindex="0">
+            
+        <div class="fi-grid  fi-sc  fi-sc-has-gap" style="--cols-default: repeat(1, minmax(0, 1fr));">
+                                                
+        <div x-data="filamentSchemaComponent({
+                    path: 'data',
+                    containerPath: 'data',
+                    $wire,
+                })" class="fi-grid-col" style="--col-span-default: span 1 / span 1;">
+                            <div class="fi-sc-component">
+                    
+        <span class="fi-sc-text">
+            Pick what the game needs. You can change it later.        </span>
+
+                        </div>
+                    </div>
+
+                                                                        
+        <div wire:partial="schema-component::form.ram" x-data="filamentSchemaComponent({
+                    path: 'data.ram',
+                    containerPath: 'data',
+                    $wire,
+                })" wire:key="4FoDnUylLxPKlYovUOXH.form.ram" class="fi-grid-col" style="--col-span-default: span 1 / span 1;">
+                            <div class="fi-sc-component">
+                    
+        <div data-field-wrapper="" class="fi-fo-toggle-buttons-wrp fi-fo-field" tabindex="-1">
+                            <span id="form.ram-required" class="fi-sr-only">Select at least one option.</span>
+            
+            
+                            <div class="fi-fo-field-label-col">
+                    
+                    <div class="fi-fo-field-label-ctn">
+                        
+                                                    <div id="form.ram-label" class="fi-fo-field-label">
+                                
+                                                                    <span class="fi-fo-field-label-content">
+                                        RAM<sup class="fi-fo-field-label-required-mark">*</sup>
+                                                                            </span>
+                                
+                                                            </div>
+                        
+                                            </div>
+
+                                    </div>
+            
+                            <div class="fi-fo-field-content-col">
+                    
+                                            
+        <div aria-describedby="form.ram-required" aria-labelledby="form.ram-label" role="group" x-load="" x-load-src="http://127.0.0.1:8001/js/filament/forms/components/toggle-buttons.js?v=5.10.2.0" x-data="toggleButtonsFormComponent({
+                    stateBindingModifiers: JSON.parse('[\u0022live\u0022]'),
+                    state: $wire.$entangle('data.ram', false),
+                })" class="fi-fo-toggle-buttons fi-inline">
+                            <input type="checkbox" hidden="" x-ref="submissionLock">
+                                        
+                <div class="fi-fo-toggle-buttons-btn-ctn">
+                    
+                    <button type="button" id="form.ram-2" aria-pressed="false" x-bind:aria-pressed="isSelected('2') ? 'true' : 'false'" x-bind:disabled="submissionLocked || false" x-on:blur="blur()" x-on:click="select('2')" aria-describedby="form.ram-required" class="fi-btn fi-size-md fi-color fi-color-primary fi-bg-color-600 hover:fi-bg-color-500 dark:fi-bg-color-600 dark:hover:fi-bg-color-500 fi-text-color-0 hover:fi-text-color-0 dark:fi-text-color-0 dark:hover:fi-text-color-0">
+                        
+                                                    2 GB                                            </button>
+                </div>
+                                            
+                <div class="fi-fo-toggle-buttons-btn-ctn">
+                    
+                    <button type="button" id="form.ram-4" aria-pressed="true" x-bind:aria-pressed="isSelected('4') ? 'true' : 'false'" x-bind:disabled="submissionLocked || false" x-on:blur="blur()" x-on:click="select('4')" aria-describedby="form.ram-required" class="fi-btn fi-size-md fi-color fi-color-primary fi-bg-color-600 hover:fi-bg-color-500 dark:fi-bg-color-600 dark:hover:fi-bg-color-500 fi-text-color-0 hover:fi-text-color-0 dark:fi-text-color-0 dark:hover:fi-text-color-0">
+                        
+                                                    4 GB                                            </button>
+                </div>
+                                            
+                <div class="fi-fo-toggle-buttons-btn-ctn">
+                    
+                    <button type="button" id="form.ram-6" aria-pressed="false" x-bind:aria-pressed="isSelected('6') ? 'true' : 'false'" x-bind:disabled="submissionLocked || false" x-on:blur="blur()" x-on:click="select('6')" aria-describedby="form.ram-required" class="fi-btn fi-size-md fi-color fi-color-primary fi-bg-color-600 hover:fi-bg-color-500 dark:fi-bg-color-600 dark:hover:fi-bg-color-500 fi-text-color-0 hover:fi-text-color-0 dark:fi-text-color-0 dark:hover:fi-text-color-0">
+                        
+                                                    6 GB                                            </button>
+                </div>
+                                            
+                <div class="fi-fo-toggle-buttons-btn-ctn">
+                    
+                    <button type="button" id="form.ram-8" aria-pressed="false" x-bind:aria-pressed="isSelected('8') ? 'true' : 'false'" x-bind:disabled="submissionLocked || false" x-on:blur="blur()" x-on:click="select('8')" aria-describedby="form.ram-required" class="fi-btn fi-size-md fi-color fi-color-primary fi-bg-color-600 hover:fi-bg-color-500 dark:fi-bg-color-600 dark:hover:fi-bg-color-500 fi-text-color-0 hover:fi-text-color-0 dark:fi-text-color-0 dark:hover:fi-text-color-0">
+                        
+                                                    8 GB                                            </button>
+                </div>
+                                            
+                <div class="fi-fo-toggle-buttons-btn-ctn">
+                    
+                    <button type="button" id="form.ram-12" aria-pressed="false" x-bind:aria-pressed="isSelected('12') ? 'true' : 'false'" x-bind:disabled="submissionLocked || false" x-on:blur="blur()" x-on:click="select('12')" aria-describedby="form.ram-required" class="fi-btn fi-size-md fi-color fi-color-primary fi-bg-color-600 hover:fi-bg-color-500 dark:fi-bg-color-600 dark:hover:fi-bg-color-500 fi-text-color-0 hover:fi-text-color-0 dark:fi-text-color-0 dark:hover:fi-text-color-0">
+                        
+                                                    12 GB                                            </button>
+                </div>
+                                            
+                <div class="fi-fo-toggle-buttons-btn-ctn">
+                    
+                    <button type="button" id="form.ram-16" aria-pressed="false" x-bind:aria-pressed="isSelected('16') ? 'true' : 'false'" x-bind:disabled="submissionLocked || false" x-on:blur="blur()" x-on:click="select('16')" aria-describedby="form.ram-required" class="fi-btn fi-size-md fi-color fi-color-primary fi-bg-color-600 hover:fi-bg-color-500 dark:fi-bg-color-600 dark:hover:fi-bg-color-500 fi-text-color-0 hover:fi-text-color-0 dark:fi-text-color-0 dark:hover:fi-text-color-0">
+                        
+                                                    16 GB                                            </button>
+                </div>
+                                            
+                <div class="fi-fo-toggle-buttons-btn-ctn">
+                    
+                    <button type="button" id="form.ram-custom" aria-pressed="false" x-bind:aria-pressed="isSelected('custom') ? 'true' : 'false'" x-bind:disabled="submissionLocked || false" x-on:blur="blur()" x-on:click="select('custom')" aria-describedby="form.ram-required" class="fi-btn fi-size-md fi-color fi-color-primary fi-bg-color-600 hover:fi-bg-color-500 dark:fi-bg-color-600 dark:hover:fi-bg-color-500 fi-text-color-0 hover:fi-text-color-0 dark:fi-text-color-0 dark:hover:fi-text-color-0">
+                        
+                                                    Custom                                            </button>
+                </div>
+                                    </div>
+
+                            
+                    
+                                    </div>
+                    </div>
+
+                        </div>
+                    </div>
+
+                                                                        
+        <div wire:partial="schema-component::form.ram_custom" wire:key="4FoDnUylLxPKlYovUOXH.form.ram_custom" class="fi-grid-col fi-hidden" style="--col-span-default: span 1 / span 1;">
+                    </div>
+
+                                                                        
+        <div wire:partial="schema-component::form.cpu" x-data="filamentSchemaComponent({
+                    path: 'data.cpu',
+                    containerPath: 'data',
+                    $wire,
+                })" wire:key="4FoDnUylLxPKlYovUOXH.form.cpu" class="fi-grid-col" style="--col-span-default: span 1 / span 1;">
+                            <div class="fi-sc-component">
+                    
+        <div data-field-wrapper="" class="fi-fo-toggle-buttons-wrp fi-fo-field" tabindex="-1">
+                            <span id="form.cpu-required" class="fi-sr-only">Select at least one option.</span>
+            
+            
+                            <div class="fi-fo-field-label-col">
+                    
+                    <div class="fi-fo-field-label-ctn">
+                        
+                                                    <div id="form.cpu-label" class="fi-fo-field-label">
+                                
+                                                                    <span class="fi-fo-field-label-content">
+                                        CPU<sup class="fi-fo-field-label-required-mark">*</sup>
+                                                                            </span>
+                                
+                                                            </div>
+                        
+                                            </div>
+
+                                    </div>
+            
+                            <div class="fi-fo-field-content-col">
+                    
+                                            
+        <div aria-describedby="form.cpu-required" aria-labelledby="form.cpu-label" role="group" x-load="" x-load-src="http://127.0.0.1:8001/js/filament/forms/components/toggle-buttons.js?v=5.10.2.0" x-data="toggleButtonsFormComponent({
+                    stateBindingModifiers: JSON.parse('[\u0022live\u0022]'),
+                    state: $wire.$entangle('data.cpu', false),
+                })" class="fi-fo-toggle-buttons fi-inline">
+                            <input type="checkbox" hidden="" x-ref="submissionLock">
+                                        
+                <div class="fi-fo-toggle-buttons-btn-ctn">
+                    
+                    <button type="button" id="form.cpu-100" aria-pressed="true" x-bind:aria-pressed="isSelected('100') ? 'true' : 'false'" x-bind:disabled="submissionLocked || false" x-on:blur="blur()" x-on:click="select('100')" aria-describedby="form.cpu-required" class="fi-btn fi-size-md fi-color fi-color-primary fi-bg-color-600 hover:fi-bg-color-500 dark:fi-bg-color-600 dark:hover:fi-bg-color-500 fi-text-color-0 hover:fi-text-color-0 dark:fi-text-color-0 dark:hover:fi-text-color-0">
+                        
+                                                    1 core                                            </button>
+                </div>
+                                            
+                <div class="fi-fo-toggle-buttons-btn-ctn">
+                    
+                    <button type="button" id="form.cpu-150" aria-pressed="false" x-bind:aria-pressed="isSelected('150') ? 'true' : 'false'" x-bind:disabled="submissionLocked || false" x-on:blur="blur()" x-on:click="select('150')" aria-describedby="form.cpu-required" class="fi-btn fi-size-md fi-color fi-color-primary fi-bg-color-600 hover:fi-bg-color-500 dark:fi-bg-color-600 dark:hover:fi-bg-color-500 fi-text-color-0 hover:fi-text-color-0 dark:fi-text-color-0 dark:hover:fi-text-color-0">
+                        
+                                                    1.5 cores                                            </button>
+                </div>
+                                            
+                <div class="fi-fo-toggle-buttons-btn-ctn">
+                    
+                    <button type="button" id="form.cpu-200" aria-pressed="false" x-bind:aria-pressed="isSelected('200') ? 'true' : 'false'" x-bind:disabled="submissionLocked || false" x-on:blur="blur()" x-on:click="select('200')" aria-describedby="form.cpu-required" class="fi-btn fi-size-md fi-color fi-color-primary fi-bg-color-600 hover:fi-bg-color-500 dark:fi-bg-color-600 dark:hover:fi-bg-color-500 fi-text-color-0 hover:fi-text-color-0 dark:fi-text-color-0 dark:hover:fi-text-color-0">
+                        
+                                                    2 cores                                            </button>
+                </div>
+                                            
+                <div class="fi-fo-toggle-buttons-btn-ctn">
+                    
+                    <button type="button" id="form.cpu-300" aria-pressed="false" x-bind:aria-pressed="isSelected('300') ? 'true' : 'false'" x-bind:disabled="submissionLocked || false" x-on:blur="blur()" x-on:click="select('300')" aria-describedby="form.cpu-required" class="fi-btn fi-size-md fi-color fi-color-primary fi-bg-color-600 hover:fi-bg-color-500 dark:fi-bg-color-600 dark:hover:fi-bg-color-500 fi-text-color-0 hover:fi-text-color-0 dark:fi-text-color-0 dark:hover:fi-text-color-0">
+                        
+                                                    3 cores                                            </button>
+                </div>
+                                            
+                <div class="fi-fo-toggle-buttons-btn-ctn">
+                    
+                    <button type="button" id="form.cpu-400" aria-pressed="false" x-bind:aria-pressed="isSelected('400') ? 'true' : 'false'" x-bind:disabled="submissionLocked || false" x-on:blur="blur()" x-on:click="select('400')" aria-describedby="form.cpu-required" class="fi-btn fi-size-md fi-color fi-color-primary fi-bg-color-600 hover:fi-bg-color-500 dark:fi-bg-color-600 dark:hover:fi-bg-color-500 fi-text-color-0 hover:fi-text-color-0 dark:fi-text-color-0 dark:hover:fi-text-color-0">
+                        
+                                                    4 cores                                            </button>
+                </div>
+                                            
+                <div class="fi-fo-toggle-buttons-btn-ctn">
+                    
+                    <button type="button" id="form.cpu-custom" aria-pressed="false" x-bind:aria-pressed="isSelected('custom') ? 'true' : 'false'" x-bind:disabled="submissionLocked || false" x-on:blur="blur()" x-on:click="select('custom')" aria-describedby="form.cpu-required" class="fi-btn fi-size-md fi-color fi-color-primary fi-bg-color-600 hover:fi-bg-color-500 dark:fi-bg-color-600 dark:hover:fi-bg-color-500 fi-text-color-0 hover:fi-text-color-0 dark:fi-text-color-0 dark:hover:fi-text-color-0">
+                        
+                                                    Custom                                            </button>
+                </div>
+                                    </div>
+
+                            
+                    
+                                    </div>
+                    </div>
+
+                        </div>
+                    </div>
+
+                                                                        
+        <div wire:partial="schema-component::form.cpu_custom" wire:key="4FoDnUylLxPKlYovUOXH.form.cpu_custom" class="fi-grid-col fi-hidden" style="--col-span-default: span 1 / span 1;">
+                    </div>
+
+                                                                        
+        <div wire:partial="schema-component::form.disk" x-data="filamentSchemaComponent({
+                    path: 'data.disk',
+                    containerPath: 'data',
+                    $wire,
+                })" wire:key="4FoDnUylLxPKlYovUOXH.form.disk" class="fi-grid-col" style="--col-span-default: span 1 / span 1;">
+                            <div class="fi-sc-component">
+                    
+        <div data-field-wrapper="" class="fi-fo-toggle-buttons-wrp fi-fo-field" tabindex="-1">
+                            <span id="form.disk-required" class="fi-sr-only">Select at least one option.</span>
+            
+            
+                            <div class="fi-fo-field-label-col">
+                    
+                    <div class="fi-fo-field-label-ctn">
+                        
+                                                    <div id="form.disk-label" class="fi-fo-field-label">
+                                
+                                                                    <span class="fi-fo-field-label-content">
+                                        Disk<sup class="fi-fo-field-label-required-mark">*</sup>
+                                                                            </span>
+                                
+                                                            </div>
+                        
+                                            </div>
+
+                                    </div>
+            
+                            <div class="fi-fo-field-content-col">
+                    
+                                            
+        <div aria-describedby="form.disk-required" aria-labelledby="form.disk-label" role="group" x-load="" x-load-src="http://127.0.0.1:8001/js/filament/forms/components/toggle-buttons.js?v=5.10.2.0" x-data="toggleButtonsFormComponent({
+                    stateBindingModifiers: JSON.parse('[\u0022live\u0022]'),
+                    state: $wire.$entangle('data.disk', false),
+                })" class="fi-fo-toggle-buttons fi-inline">
+                            <input type="checkbox" hidden="" x-ref="submissionLock">
+                                        
+                <div class="fi-fo-toggle-buttons-btn-ctn">
+                    
+                    <button type="button" id="form.disk-5120" aria-pressed="false" x-bind:aria-pressed="isSelected('5120') ? 'true' : 'false'" x-bind:disabled="submissionLocked || false" x-on:blur="blur()" x-on:click="select('5120')" aria-describedby="form.disk-required" class="fi-btn fi-size-md fi-color fi-color-primary fi-bg-color-600 hover:fi-bg-color-500 dark:fi-bg-color-600 dark:hover:fi-bg-color-500 fi-text-color-0 hover:fi-text-color-0 dark:fi-text-color-0 dark:hover:fi-text-color-0">
+                        
+                                                    5 GB                                            </button>
+                </div>
+                                            
+                <div class="fi-fo-toggle-buttons-btn-ctn">
+                    
+                    <button type="button" id="form.disk-10240" aria-pressed="true" x-bind:aria-pressed="isSelected('10240') ? 'true' : 'false'" x-bind:disabled="submissionLocked || false" x-on:blur="blur()" x-on:click="select('10240')" aria-describedby="form.disk-required" class="fi-btn fi-size-md fi-color fi-color-primary fi-bg-color-600 hover:fi-bg-color-500 dark:fi-bg-color-600 dark:hover:fi-bg-color-500 fi-text-color-0 hover:fi-text-color-0 dark:fi-text-color-0 dark:hover:fi-text-color-0">
+                        
+                                                    10 GB                                            </button>
+                </div>
+                                            
+                <div class="fi-fo-toggle-buttons-btn-ctn">
+                    
+                    <button type="button" id="form.disk-20480" aria-pressed="false" x-bind:aria-pressed="isSelected('20480') ? 'true' : 'false'" x-bind:disabled="submissionLocked || false" x-on:blur="blur()" x-on:click="select('20480')" aria-describedby="form.disk-required" class="fi-btn fi-size-md fi-color fi-color-primary fi-bg-color-600 hover:fi-bg-color-500 dark:fi-bg-color-600 dark:hover:fi-bg-color-500 fi-text-color-0 hover:fi-text-color-0 dark:fi-text-color-0 dark:hover:fi-text-color-0">
+                        
+                                                    20 GB                                            </button>
+                </div>
+                                            
+                <div class="fi-fo-toggle-buttons-btn-ctn">
+                    
+                    <button type="button" id="form.disk-40960" aria-pressed="false" x-bind:aria-pressed="isSelected('40960') ? 'true' : 'false'" x-bind:disabled="submissionLocked || false" x-on:blur="blur()" x-on:click="select('40960')" aria-describedby="form.disk-required" class="fi-btn fi-size-md fi-color fi-color-primary fi-bg-color-600 hover:fi-bg-color-500 dark:fi-bg-color-600 dark:hover:fi-bg-color-500 fi-text-color-0 hover:fi-text-color-0 dark:fi-text-color-0 dark:hover:fi-text-color-0">
+                        
+                                                    40 GB                                            </button>
+                </div>
+                                            
+                <div class="fi-fo-toggle-buttons-btn-ctn">
+                    
+                    <button type="button" id="form.disk-custom" aria-pressed="false" x-bind:aria-pressed="isSelected('custom') ? 'true' : 'false'" x-bind:disabled="submissionLocked || false" x-on:blur="blur()" x-on:click="select('custom')" aria-describedby="form.disk-required" class="fi-btn fi-size-md fi-color fi-color-primary fi-bg-color-600 hover:fi-bg-color-500 dark:fi-bg-color-600 dark:hover:fi-bg-color-500 fi-text-color-0 hover:fi-text-color-0 dark:fi-text-color-0 dark:hover:fi-text-color-0">
+                        
+                                                    Custom                                            </button>
+                </div>
+                                    </div>
+
+                            
+                    
+                                    </div>
+                    </div>
+
+                        </div>
+                    </div>
+
+                                                                        
+        <div wire:partial="schema-component::form.disk_custom" wire:key="4FoDnUylLxPKlYovUOXH.form.disk_custom" class="fi-grid-col fi-hidden" style="--col-span-default: span 1 / span 1;">
+                    </div>
+
+                                            </div>
+
+        
+                    </div>
+
+                                    
+        <div x-bind:tabindex="$el.querySelector('[autofocus]') ? '-1' : '0'" x-bind:class="{
+                'fi-active': step === 'form.review::data::wizard-step',
+            }" x-on:expand="
+                if (! isStepAccessible('form.review::data::wizard-step')) {
+                    return
+                }
+
+                step = 'form.review::data::wizard-step'            " x-ref="step-form.review::data::wizard-step" aria-labelledby="form.review::data::wizard-step-tab" id="form.review::data::wizard-step" role="group" class="fi-sc-wizard-step" tabindex="0">
+            
+        <div class="fi-grid  fi-sc  fi-sc-has-gap" style="--cols-default: repeat(1, minmax(0, 1fr));">
+                                                
+        <div x-data="filamentSchemaComponent({
+                    path: 'data',
+                    containerPath: 'data',
+                    $wire,
+                })" class="fi-grid-col" style="--col-span-default: span 1 / span 1;">
+                            <div class="fi-sc-component">
+                    <dl class="smk-review">
+    <!--[if BLOCK]><![endif]-->        <div>
+            <dt>Name</dt>
+            <dd>—</dd>
+        </div>
+            <div>
+            <dt>Game</dt>
+            <dd>—</dd>
+        </div>
+            <div>
+            <dt>Address</dt>
+            <dd>—</dd>
+        </div>
+            <div>
+            <dt>RAM</dt>
+            <dd>4 GB</dd>
+        </div>
+            <div>
+            <dt>CPU</dt>
+            <dd>100%</dd>
+        </div>
+            <div>
+            <dt>Disk</dt>
+            <dd>10 GB</dd>
+        </div>
+            <div>
+            <dt>Egg</dt>
+            <dd>—</dd>
+        </div>
+            <div>
+            <dt>First start</dt>
+            <dd>You start it when the installation is done</dd>
+        </div>
+    <!--[if ENDBLOCK]><![endif]--></dl>
+                </div>
+                    </div>
+
+                                                                        
+        <div wire:partial="schema-component::form.advanced::data::section" x-data="filamentSchemaComponent({
+                    path: 'data',
+                    containerPath: 'data',
+                    $wire,
+                })" wire:key="4FoDnUylLxPKlYovUOXH.form.advanced::data::section" class="fi-grid-col" style="--col-span-default: span 1 / span 1;">
+                            <div class="fi-sc-component">
+                    
+        <div id="form.advanced::data::section" class="fi-sc-section">
+            
+            
+            <section x-data="{
+                    isCollapsed: true,
+                }" x-on:collapse-section.window="if ($event.detail.id == ('form.advanced::data::section' ?? $el.id)) isCollapsed = true" x-on:expand="isCollapsed = false" x-on:expand-section.window="if ($event.detail.id == ('form.advanced::data::section' ?? $el.id)) isCollapsed = false" x-on:open-section.window="if ($event.detail.id == ('form.advanced::data::section' ?? $el.id)) isCollapsed = false" x-on:toggle-section.window="if ($event.detail.id == ('form.advanced::data::section' ?? $el.id)) isCollapsed = ! isCollapsed" x-on:reset-schema-component-state.window="if (($event.detail.livewireId === '4FoDnUylLxPKlYovUOXH') &amp;&amp; ($event.detail.schemaKey === 'form')) $nextTick(() => isCollapsed = true)" x-bind:class="isCollapsed &amp;&amp; 'fi-collapsed'" aria-labelledby="form.advanced::data::section-heading" aria-describedby="form.advanced::data::section-description" class="fi-section fi-section-has-header fi-collapsible fi-collapsed">
+                                    <header x-on:click="if (! $event.target.closest('.fi-section-header-after-ctn')) isCollapsed = ! isCollapsed" class="fi-section-header">
+                        
+                                                    <div class="fi-section-header-text-ctn">
+                                                                    <h2 id="form.advanced::data::section-heading" class="fi-section-header-heading">
+                                        Advanced                                    </h2>
+                                
+                                                                    <p id="form.advanced::data::section-description" class="fi-section-header-description">
+                                        Change these only if you know you need to.                                    </p>
+                                                            </div>
+                        
+                        
+                                                    
+                            <button type="button" x-on:click.stop="isCollapsed = ! isCollapsed" aria-label="Expand section" x-bind:aria-label="isCollapsed ? 'Expand section' : 'Collapse section'" aria-expanded="false" x-bind:aria-expanded="(! isCollapsed).toString()" aria-controls="form.advanced::data::section-content" class="fi-icon-btn fi-size-md fi-section-collapse-btn">
+                                <svg class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M6 15l6 -6l6 6"></path>
+</svg>                            </button>
+                                            </header>
+                
+                                    <div id="form.advanced::data::section-content" class="fi-section-content-ctn">
+                        
+        <div class="fi-section-content fi-grid  md:fi-grid-cols fi-sc  fi-sc-has-gap" style="--cols-default: repeat(1, minmax(0, 1fr)); --cols-md: repeat(2, minmax(0, 1fr));">
+                                                
+        <div wire:partial="schema-component::form.image" x-data="filamentSchemaComponent({
+                    path: 'data.image',
+                    containerPath: 'data',
+                    $wire,
+                })" wire:key="4FoDnUylLxPKlYovUOXH.form.image" class="fi-grid-col" style="--col-span-default: span 1 / span 1;">
+                            <div class="fi-sc-component">
+                    
+        <div data-field-wrapper="" class="fi-fo-field">
+            
+            
+                            <div class="fi-fo-field-label-col">
+                    
+                    <div class="fi-fo-field-label-ctn">
+                        
+                                                    <label for="form.image" class="fi-fo-field-label">
+                                
+                                                                    <span class="fi-fo-field-label-content">
+                                        Docker image                                    </span>
+                                
+                                                            </label>
+                        
+                                            </div>
+
+                                    </div>
+            
+                            <div class="fi-fo-field-content-col">
+                    
+                                            
+        <div x-on:focus-input.stop="$el.querySelector('input')?.focus()" class="fi-fo-text-input fi-input-wrp">
+            
+                        <div class="fi-input-wrp-content-ctn">
+                
+        <input id="form.image" maxlength="255" type="text" wire:model="data.image" class="fi-input" value="">
+
+        
+                    </div>
+
+                    </div>
+
+                            
+                    
+                                    </div>
+                    </div>
+
+                        </div>
+                    </div>
+
+                                                                        
+        <div wire:partial="schema-component::form.backups" x-data="filamentSchemaComponent({
+                    path: 'data.backups',
+                    containerPath: 'data',
+                    $wire,
+                })" wire:key="4FoDnUylLxPKlYovUOXH.form.backups" class="fi-grid-col" style="--col-span-default: span 1 / span 1;">
+                            <div class="fi-sc-component">
+                    
+        <div data-field-wrapper="" class="fi-fo-field">
+            
+            
+                            <div class="fi-fo-field-label-col">
+                    
+                    <div class="fi-fo-field-label-ctn">
+                        
+                                                    <label for="form.backups" class="fi-fo-field-label">
+                                
+                                                                    <span class="fi-fo-field-label-content">
+                                        Backups allowed<sup class="fi-fo-field-label-required-mark">*</sup>
+                                                                            </span>
+                                
+                                                            </label>
+                        
+                                            </div>
+
+                                    </div>
+            
+                            <div class="fi-fo-field-content-col">
+                    
+                                            
+        <div x-on:focus-input.stop="$el.querySelector('input')?.focus()" class="fi-fo-text-input fi-input-wrp">
+            
+                        <div class="fi-input-wrp-content-ctn">
+                
+        <input id="form.backups" inputmode="numeric" max="100" min="0" required="required" step="1" type="number" wire:model="data.backups" class="fi-input" value="2">
+
+        
+                    </div>
+
+                    </div>
+
+                            
+                    
+                                    </div>
+                    </div>
+
+                        </div>
+                    </div>
+
+                                                                        
+        <div wire:partial="schema-component::form.startup" x-data="filamentSchemaComponent({
+                    path: 'data.startup',
+                    containerPath: 'data',
+                    $wire,
+                })" wire:key="4FoDnUylLxPKlYovUOXH.form.startup" class="fi-grid-col" style="--col-span-default: 1 / -1;">
+                            <div class="fi-sc-component">
+                    
+        <div data-field-wrapper="" class="fi-fo-textarea-wrp fi-fo-field">
+            
+            
+                            <div class="fi-fo-field-label-col">
+                    
+                    <div class="fi-fo-field-label-ctn">
+                        
+                                                    <label for="form.startup" class="fi-fo-field-label">
+                                
+                                                                    <span class="fi-fo-field-label-content">
+                                        Startup command                                    </span>
+                                
+                                                            </label>
+                        
+                                            </div>
+
+                                    </div>
+            
+                            <div class="fi-fo-field-content-col">
+                    
+                                            
+        <div class="fi-fo-textarea fi-input-wrp">
+            
+                        <div class="fi-input-wrp-content-ctn">
+                
+        <div wire:ignore.self="" style="">
+            <textarea x-load="" x-load-src="http://127.0.0.1:8001/js/filament/forms/components/textarea.js?v=5.10.2.0" x-data="textareaFormComponent({
+                            initialHeight: 3.75,
+                            shouldAutosize: false,
+                            state: $wire.$entangle('data.startup'),
+                        })" x-model="state" id="form.startup" rows="2" wire:model="data.startup"></textarea>
+        </div>
+
+                    </div>
+
+                    </div>
+
+                            
+                    
+                                    </div>
+                    </div>
+
+                        </div>
+                    </div>
+
+                                                                        
+        <div wire:partial="schema-component::form.environment" x-data="filamentSchemaComponent({
+                    path: 'data.environment',
+                    containerPath: 'data',
+                    $wire,
+                })" wire:key="4FoDnUylLxPKlYovUOXH.form.environment" class="fi-grid-col" style="--col-span-default: 1 / -1;">
+                            <div class="fi-sc-component">
+                    
+        <div data-field-wrapper="" class="fi-fo-key-value-wrp fi-fo-field">
+            
+            
+                            <div class="fi-fo-field-label-col">
+                    
+                    <div class="fi-fo-field-label-ctn">
+                        
+                                                    <div id="form.environment-label" class="fi-fo-field-label">
+                                
+                                                                    <span class="fi-fo-field-label-content">
+                                        Egg variables                                    </span>
+                                
+                                                            </div>
+                        
+                                            </div>
+
+                                    </div>
+            
+                            <div class="fi-fo-field-content-col">
+                    
+                                            
+        <div aria-describedby="form.environment-helper-text" aria-labelledby="form.environment-label" role="group" class="fi-fo-key-value fi-input-wrp">
+            
+                        <div class="fi-input-wrp-content-ctn">
+                
+        <div x-load="" x-load-src="http://127.0.0.1:8001/js/filament/forms/components/key-value.js?v=5.10.2.0" x-id="['key-value-row']" x-data="keyValueFormComponent({
+                        state: $wire.$entangle('data.environment', false),
+                        reordering: [],
+                    })" wire:ignore="" wire:key="4FoDnUylLxPKlYovUOXH.form.environment.198b0c1f825b7d54462bd9e5f2c97db9" class="fi-fo-key-value-table-ctn">
+                <table aria-labelledby="form.environment-label" id="form.environment" class="fi-fo-key-value-table">
+                    <thead>
+                        <tr>
+                            
+                            <th scope="col">
+                                Variable                            </th>
+
+                            <th scope="col">
+                                Value                            </th>
+
+                                                            <th scope="col" x-show="rows.length" class="fi-has-action">
+                                    <span class="fi-sr-only">Actions</span>
+                                </th>
+                                                    </tr>
+                    </thead>
+
+                    <tbody>
+                        <template x-bind:key="row.id" x-for="(row, index) in rows">
+                            <tr>
+                                
+                                <td>
+                                    <input aria-label="Variable" placeholder="" type="text" x-model="row.key" x-on:input.debounce.500ms="updateState" class="fi-input">
+                                </td>
+
+                                <td>
+                                    <input aria-label="Value" placeholder="" type="text" x-model="row.value" x-on:input.debounce.500ms="updateState" class="fi-input">
+                                </td>
+
+                                                                    <td class="fi-has-action">
+                                        <div x-on:click="deleteRow(index)">
+                                            
+        
+        <button x-tooltip="{
+                    content: 'Delete row',
+                    theme: $store.theme,
+                    allowHTML: false,
+                }" aria-label="Delete row" type="button" wire:loading.attr="aria-disabled" wire:loading.class="fi-disabled" class="fi-ac-icon-btn-action fi-icon-btn fi-size-sm fi-color fi-color-danger fi-text-color-600 hover:fi-text-color-500 dark:fi-text-color-400 dark:hover:fi-text-color-300">
+            <svg class="fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M4 7l16 0"></path>
+  <path d="M10 11l0 6"></path>
+  <path d="M14 11l0 6"></path>
+  <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+  <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+</svg>            
+                    </button>
+
+        
+                                                </div>
+                                    </td>
+                                                            </tr>
+                        </template><tr>
+                                
+                                <td>
+                                    <input aria-label="Variable" placeholder="" type="text" x-model="row.key" x-on:input.debounce.500ms="updateState" class="fi-input" value="">
+                                </td>
+
+                                <td>
+                                    <input aria-label="Value" placeholder="" type="text" x-model="row.value" x-on:input.debounce.500ms="updateState" class="fi-input" value="">
+                                </td>
+
+                                                                    <td class="fi-has-action">
+                                        <div x-on:click="deleteRow(index)">
+                                            
+        
+        <button x-tooltip="{
+                    content: 'Delete row',
+                    theme: $store.theme,
+                    allowHTML: false,
+                }" aria-label="Delete row" type="button" wire:loading.attr="aria-disabled" wire:loading.class="fi-disabled" class="fi-ac-icon-btn-action fi-icon-btn fi-size-sm fi-color fi-color-danger fi-text-color-600 hover:fi-text-color-500 dark:fi-text-color-400 dark:hover:fi-text-color-300">
+            <svg class="fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M4 7l16 0"></path>
+  <path d="M10 11l0 6"></path>
+  <path d="M14 11l0 6"></path>
+  <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+  <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+</svg>            
+                    </button>
+
+        
+                                                </div>
+                                    </td>
+                                                            </tr>
+                    </tbody>
+                </table>
+
+            
+                            <div x-on:click="addRow" class="fi-fo-key-value-add-action-ctn">
+                    
+        
+        <button x-tooltip="{
+                    content: 'Add row',
+                    theme: $store.theme,
+                    allowHTML: false,
+                }" type="button" wire:loading.attr="aria-disabled" wire:loading.class="fi-disabled" class="fi-ac-link-action fi-link fi-size-md">
+                                                        
+                            <span class="fi-link-label">
+                    Add row                </span>
+            
+            
+                    </button>
+
+        
+                        </div>
+                    </div>
+
+                    </div>
+
+                    </div>
+
+                            
+                    
+        <div id="form.environment-helper-text" class="fi-sc fi-inline  fi-sc-has-gap fi-sc-dense">
+                                                
+        <div x-data="filamentSchemaComponent({
+                    path: 'data.environment',
+                    containerPath: 'data',
+                    $wire,
+                })">
+                            <div class="fi-sc-component">
+                    
+        <span class="fi-sc-text">
+            Overrides for variables of the egg, by their name.        </span>
+
+                        </div>
+                    </div>
+
+                                            </div>
+
+        
+                                    </div>
+                    </div>
+
+                        </div>
+                    </div>
+
+                                                                        
+        <div wire:partial="schema-component::form.skip_scripts" x-data="filamentSchemaComponent({
+                    path: 'data.skip_scripts',
+                    containerPath: 'data',
+                    $wire,
+                })" wire:key="4FoDnUylLxPKlYovUOXH.form.skip_scripts" class="fi-grid-col" style="--col-span-default: span 1 / span 1;">
+                            <div class="fi-sc-component">
+                    
+        <div data-field-wrapper="" class="fi-fo-field">
+            
+            
+                            <div class="fi-fo-field-label-col">
+                    
+                    <div class="fi-fo-field-label-ctn">
+                        
+                                                    <label for="form.skip_scripts" class="fi-fo-field-label">
+                                
+        <button x-data="{ state: $wire.$entangle('data.skip_scripts', false) }" x-bind:aria-checked="state ? 'true' : 'false'" x-on:click="state = ! state" x-bind:class="state ? 'fi-toggle-on fi-color fi-color-primary fi-bg-color-500 fi-text-color-500 dark:fi-bg-color-400' : 'fi-toggle-off'" role="switch" type="button" aria-describedby="form.skip_scripts-helper-text" aria-checked="false" id="form.skip_scripts" wire:target="data.skip_scripts" class="fi-fo-toggle fi-toggle fi-toggle-off">
+            <div>
+                <div aria-hidden="true"></div>
+                <div aria-hidden="true"></div>
+            </div>
+        </button>
+
+        
+        
+                                                                    <span class="fi-fo-field-label-content">
+                                        Skip the install script                                    </span>
+                                
+                                                            </label>
+                        
+                                            </div>
+
+                                    </div>
+            
+                            <div class="fi-fo-field-content-col">
+                    
+                                                                
+                    
+        <div id="form.skip_scripts-helper-text" class="fi-sc fi-inline  fi-sc-has-gap fi-sc-dense">
+                                                
+        <div x-data="filamentSchemaComponent({
+                    path: 'data.skip_scripts',
+                    containerPath: 'data',
+                    $wire,
+                })">
+                            <div class="fi-sc-component">
+                    
+        <span class="fi-sc-text">
+            The server starts empty. Only for files you add yourself.        </span>
+
+                        </div>
+                    </div>
+
+                                            </div>
+
+        
+                                    </div>
+                    </div>
+
+                        </div>
+                    </div>
+
+                                            </div>
+
+        
+                                            </div>
+                            </section>
+
+                    </div>
+
+                        </div>
+                    </div>
+
+                                            </div>
+
+        
+                    </div>
+
+                    
+            <div class="fi-sc-wizard-footer">
+                <div x-on:click="goToPreviousStep" x-show="! isFirstStep()" style="display: none;">
+                    
+        
+        
+        <button type="button" wire:loading.attr="aria-disabled" wire:loading.class="fi-disabled" class="fi-ac-btn-action fi-btn fi-size-md">
+                                                                        
+                                                Back                            
+            
+            
+                    </button>
+
+        
+                        </div>
+
+                <div x-show="isFirstStep()">
+                                    </div>
+
+                <div x-on:click.capture="if ($el.hasAttribute('aria-disabled')) { $event.preventDefault(); $event.stopImmediatePropagation() }" x-on:click="if (! $el.hasAttribute('aria-disabled')) requestNextStep()" x-bind:class="{ 'fi-hidden': isLastStep() }" wire:loading.attr="aria-disabled">
+                    
+        
+        
+        <button type="button" wire:loading.attr="aria-disabled" wire:loading.class="fi-disabled" wire:target="callSchemaComponentMethod('form.data::wizard', 'nextStep', JSON.parse('{\u0022currentStepIndex\u0022:0,\u0022currentStepKey\u0022:\u0022form.game::data::wizard-step\u0022}')), callSchemaComponentMethod('form.data::wizard', 'nextStep', JSON.parse('{\u0022currentStepIndex\u0022:1,\u0022currentStepKey\u0022:\u0022form.minecraft::data::wizard-step\u0022}')), callSchemaComponentMethod('form.data::wizard', 'nextStep', JSON.parse('{\u0022currentStepIndex\u0022:2,\u0022currentStepKey\u0022:\u0022form.server::data::wizard-step\u0022}')), callSchemaComponentMethod('form.data::wizard', 'nextStep', JSON.parse('{\u0022currentStepIndex\u0022:3,\u0022currentStepKey\u0022:\u0022form.resources::data::wizard-step\u0022}'))" class="fi-ac-btn-action fi-btn fi-size-md  fi-color fi-color-primary fi-bg-color-600 hover:fi-bg-color-500 dark:fi-bg-color-600 dark:hover:fi-bg-color-500 fi-text-color-0 hover:fi-text-color-0 dark:fi-text-color-0 dark:hover:fi-text-color-0">
+            
+                                                Next                            
+            
+                                                <svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" wire:loading.delay.default="" wire:target="callSchemaComponentMethod('form.data::wizard', 'nextStep', JSON.parse('{\u0022currentStepIndex\u0022:0,\u0022currentStepKey\u0022:\u0022form.game::data::wizard-step\u0022}')), callSchemaComponentMethod('form.data::wizard', 'nextStep', JSON.parse('{\u0022currentStepIndex\u0022:1,\u0022currentStepKey\u0022:\u0022form.minecraft::data::wizard-step\u0022}')), callSchemaComponentMethod('form.data::wizard', 'nextStep', JSON.parse('{\u0022currentStepIndex\u0022:2,\u0022currentStepKey\u0022:\u0022form.server::data::wizard-step\u0022}')), callSchemaComponentMethod('form.data::wizard', 'nextStep', JSON.parse('{\u0022currentStepIndex\u0022:3,\u0022currentStepKey\u0022:\u0022form.resources::data::wizard-step\u0022}'))" class="fi-icon fi-loading-indicator fi-size-xl">
+        <path clip-rule="evenodd" d="M12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19ZM12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill-rule="evenodd" fill="currentColor" opacity="0.2"></path>
+        <path d="M2 12C2 6.47715 6.47715 2 12 2V5C8.13401 5 5 8.13401 5 12H2Z" fill="currentColor"></path>
+    </svg>                            
+                    </button>
+
+        
+                        </div>
+
+                <div x-bind:class="{ 'fi-hidden': ! isLastStep() }" class="fi-hidden">
+                    <button class="fi-color fi-color-primary fi-bg-color-600 hover:fi-bg-color-500 dark:fi-bg-color-600 dark:hover:fi-bg-color-500 fi-text-color-0 hover:fi-text-color-0 dark:fi-text-color-0 dark:hover:fi-text-color-0 fi-btn fi-size-md" type="submit" wire:loading.attr="disabled" wire:loading.class="fi-disabled" wire:target="create">
+                        <svg wire:loading.remove.delay.default="1" wire:target="create" class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M4 13a8 8 0 0 1 7 7a6 6 0 0 0 3 -5a9 9 0 0 0 6 -8a3 3 0 0 0 -3 -3a9 9 0 0 0 -8 6a6 6 0 0 0 -5 3"></path>
+  <path d="M7 14a6 6 0 0 0 -3 6a6 6 0 0 0 6 -3"></path>
+  <path d="M14 9a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
+</svg>
+        
+                        <svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" wire:loading.delay.default="" wire:target="create" class="fi-icon fi-loading-indicator fi-size-md">
+        <path clip-rule="evenodd" d="M12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19ZM12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill-rule="evenodd" fill="currentColor" opacity="0.2"></path>
+        <path d="M2 12C2 6.47715 6.47715 2 12 2V5C8.13401 5 5 8.13401 5 12H2Z" fill="currentColor"></path>
+    </svg>
+        
+            
+                        Create server
+            
+    
+    
+    </button>
+                </div>
+            </div>
+        </div>
+
+                        </div>
+                    </div>
+
+                                            </div>
+
+        
+    </form>
+
+                
+
+                
+
+                
+            </div>
+
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->        </div>
+
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if BLOCK]><![endif]-->        <!--[if BLOCK]><![endif]-->    <div wire:partial="action-modals" x-data="filamentActionModals({
+                    livewireId: '4FoDnUylLxPKlYovUOXH',
+                })" style="height: 0">
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    <!--[if ENDBLOCK]><![endif]-->    <!--[if ENDBLOCK]><![endif]-->
+    
+
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]-->                <!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></div>
+
+                
+            </main>
+
+            
+
+            <footer class="flex flex-col items-center justify-center text-center space-y-2 p-4 text-gray-600 dark:text-gray-400">
+    
+
+    <a class="font-semibold" href="https://pelican.dev/docs/#core-team" target="_blank" data-demo-url="https://pelican.dev/docs/#core-team">
+        © 2026 Pelican
+    </a>
+
+    
+    
+</footer>
+
+        </div>
+
+        
+    </div>
+
+        <div wire:id="hcn2tZf6ZU8x58Pxnvhk" wire:name="Filament\Livewire\Notifications" x-init="$wire.pullNotificationsFromSession()">
+    <div class="fi-no fi-align-right fi-vertical-align-start" role="status" aria-atomic="false">
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if BLOCK]><![endif]-->                <!--[if ENDBLOCK]><![endif]--></div>
+
+        
+
+        
+
+            
+            
+        
+                
+            
+        
+                
+            
+        
+                
+            
+        
+                
+            
+        
+                
+            
+        
+                
+            
+        
+    
+<style>
+    :root {
+            }
+
+    </style>
+
+        
+                    
+        
+        
+        
+
+        
+    
+
+
+<div aria-describedby="database-notifications.description" aria-labelledby="database-notifications.heading" aria-modal="true" id="database-notifications" role="dialog" tabindex="-1" x-data="filamentModal({
+                id: 'database-notifications',
+                isScrollLocked: true,
+                shouldRestoreFocus: true,
+            })" data-fi-modal-id="database-notifications" x-on:close-modal.window="if (($event.detail.id === 'database-notifications') &amp;&amp; isOpen) close()" x-on:close-modal-quietly.window="if (($event.detail.id === 'database-notifications') &amp;&amp; isOpen) closeQuietly()" x-on:open-modal.window="if (($event.detail.id === 'database-notifications') &amp;&amp; (! isOpen)) open()" x-bind:class="{
+        'fi-modal-open': isOpen,
+    }" x-show="isOpen" class="fi-modal fi-absolute-positioning-context fi-modal-slide-over fi-modal-slide-over-from-end fi-no-database" wire:poll.30s="" data-teleport-target="true" style="display: none;">
+    <!--[if BLOCK]><![endif]-->        <div aria-hidden="true" x-show="isOpen" x-transition.duration.300ms.opacity="" class="fi-modal-close-overlay" style="display: none;"></div>
+    <!--[if ENDBLOCK]><![endif]-->
+    <div tabindex="-1" x-on:click.self="$dispatch('close-modal', { id: 'database-notifications' })" x-trap.noreturn="isTrapActive" class="fi-modal-window-ctn fi-clickable">
+        <div x-on:keydown.window.escape="if (isTopmost()) $dispatch('close-modal', { id: 'database-notifications' })" x-show="isWindowVisible" x-transition:enter="fi-transition-enter" x-transition:leave="fi-transition-leave" x-transition:enter-start="fi-transition-enter-start" x-transition:enter-end="fi-transition-enter-end" x-transition:leave-start="fi-transition-leave-start" x-transition:leave-end="fi-transition-leave-end" wire:key="CevXdvrpPHiHxHH6uDiB.modal.database-notifications.window" tabindex="-1" autofocus="autofocus" class="fi-modal-window fi-modal-window-has-close-btn fi-modal-window-has-icon fi-align-center fi-width-md" style="display: none;">
+            <!--[if BLOCK]><![endif]-->                <div wire:key="CevXdvrpPHiHxHH6uDiB.modal.database-notifications.header" class="fi-modal-header">
+                    <!--[if BLOCK]><![endif]-->                        
+                        <button class="fi-icon-btn fi-size-md fi-modal-close-btn" title="Close" aria-label="Close" tabindex="-1" type="button" wire:loading.attr="aria-disabled" wire:loading.class="fi-disabled" x-on:click="$dispatch('close-modal', { id: 'database-notifications' })">
+    <svg class="fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M18 6l-12 12"></path>
+  <path d="M6 6l12 12"></path>
+</svg>
+
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></button>
+                    <!--[if ENDBLOCK]><![endif]-->
+                    <!--[if BLOCK]><![endif]-->                        <!--[if BLOCK]><![endif]-->                            <div class="fi-modal-icon-ctn">
+                                <div class="fi-modal-icon-bg">
+                                    <svg class="fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M9.346 5.353c.21 -.129 .428 -.246 .654 -.353a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3m-1 3h-13a4 4 0 0 0 2 -3v-3a6.996 6.996 0 0 1 1.273 -3.707"></path>
+  <path d="M9 17v1a3 3 0 0 0 6 0v-1"></path>
+  <path d="M3 3l18 18"></path>
+</svg>
+                                </div>
+                            </div>
+                        <!--[if ENDBLOCK]><![endif]-->
+                        <div>
+                            <h2 id="database-notifications.heading" class="fi-modal-heading">
+                                No notifications
+                            </h2>
+
+                            <!--[if BLOCK]><![endif]-->                                <p id="database-notifications.description" class="fi-modal-description">
+                                    Please check again later.
+                                </p>
+                            <!--[if ENDBLOCK]><![endif]-->                        </div>
+                    <!--[if ENDBLOCK]><![endif]-->                </div>
+            <!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->        </div>
+    </div>
+</div><script>(()=>{const top_=window.top;const theme=(d)=>{document.documentElement.classList.toggle('dark',d);document.querySelectorAll('.ps,.ps-ui').forEach(e=>e.classList.toggle('dark',d));document.querySelectorAll('iframe').forEach(f=>{try{f.contentWindow.postMessage({demo:'theme',dark:d},'*')}catch(e){}})};addEventListener('message',e=>{if(e.data&&e.data.demo==='theme')theme(e.data.dark)});document.addEventListener('click',e=>{const go=e.target.closest('[data-demo-go]');if(go){e.preventDefault();e.stopPropagation();top_.postMessage({demo:'go',id:go.getAttribute('data-demo-go')},'*');return}const a=e.target.closest('a,button,[role=tab],[role=button],input[type=submit]');if(!a)return;if(a.matches('a[target=_blank]')&&/^https?:/.test(a.getAttribute('data-demo-url')||'')&&!a.hasAttribute('data-demo-inside')){e.preventDefault();open(a.getAttribute('data-demo-url'),'_blank','noopener');return}e.preventDefault();e.stopPropagation();top_.postMessage({demo:'dead',label:(a.innerText||a.getAttribute('aria-label')||a.getAttribute('data-tip')||'').trim().replace(/\s+/g,' ').slice(0,60)},'*')},true);document.addEventListener('submit',e=>e.preventDefault(),true);top_.postMessage({demo:'ready'},'*')})();</script></body></html>
