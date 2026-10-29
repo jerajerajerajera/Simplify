@@ -13,6 +13,11 @@ use App\Models\Server;
 use App\Models\User;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Support\Facades\DB;
+use Simplify\Core\Server\Looks;
+use Simplify\Core\Subdomains\Models\Subdomain;
+use Simplify\Core\Support\PanelSettings;
+use Simplify\Core\Support\Preferences;
+use Simplify\Hosting\Services\Settings;
 
 define('LARAVEL_START', microtime(true));
 require getcwd().'/vendor/autoload.php';
@@ -83,15 +88,15 @@ $part('people and roles', function () {
         }
     }
 });
-$part('settings (setup done)', fn () => Simplify\Core\Support\PanelSettings::save(['setup_done' => true, 'brand_name' => 'Northwind Games', 'support_url' => 'https://discord.gg/example']));
+$part('settings (setup done)', fn () => PanelSettings::save(['setup_done' => true, 'brand_name' => 'Northwind Games', 'support_url' => 'https://discord.gg/example']));
 $part('server colours', function () use ($list, $servers) {
     foreach ($list as [$name, , , , , , $color]) {
         if ($color) {
-            Simplify\Core\Server\Looks::save($servers[$name], $color, null);
+            Looks::save($servers[$name], $color, null);
         }
     }
 });
-$part('server groups', fn () => Simplify\Core\Support\Preferences::set($admin, 'overview.groups', ['order' => 'name', 'groups' => [
+$part('server groups', fn () => Preferences::set($admin, 'overview.groups', ['order' => 'name', 'groups' => [
     ['id' => 'mc', 'name' => 'Minecraft', 'color' => '#4caf50', 'sort' => 'overview', 'servers' => [$uuid('Survival SMP'), $uuid('Creative Builds'), $uuid('All the Mods 10'), $uuid('Skyblock')]],
     ['id' => 'friends', 'name' => 'Friends', 'color' => '#8e6bd8', 'sort' => 'overview', 'servers' => [$uuid('Valheim Vikings'), $uuid('Palworld Island'), $uuid('Terraria Co-op')]],
 ]]));
@@ -101,10 +106,10 @@ $part('announcements', function () use ($admin) {
         ['category' => 'info', 'title' => 'New node in Amsterdam', 'body' => 'New servers start faster from today.', 'audience' => 'everyone', 'in_bell' => false, 'starts_at' => now()->subHour(), 'created_by' => $admin->id, 'created_at' => now()->subMinute(), 'updated_at' => now()],
     ]);
 });
-$part('subdomains', function () use ($list, $uuid) {
+$part('subdomains', function () use ($uuid) {
     Simplify\Core\Subdomains\Services\Settings::save(['domain' => 'play.example.com', 'target' => 'node.example.com', 'port_min' => 25565, 'port_max' => 25600, 'zone_id' => str_repeat('a1', 16)]);
     foreach (['Survival SMP' => 'survival', 'Creative Builds' => 'creative', 'All the Mods 10' => 'atm10', 'Skyblock' => 'skyblock'] as $name => $sub) {
-        DB::table('simplify_core_subdomains')->insert(['server_uuid' => $uuid($name), 'name' => $sub, 'status' => Simplify\Core\Subdomains\Models\Subdomain::ACTIVE, 'message' => '', 'created_at' => now(), 'updated_at' => now()]);
+        DB::table('simplify_core_subdomains')->insert(['server_uuid' => $uuid($name), 'name' => $sub, 'status' => Subdomain::ACTIVE, 'message' => '', 'created_at' => now(), 'updated_at' => now()]);
     }
 });
 $part('website list', function () use ($servers) {
@@ -112,7 +117,7 @@ $part('website list', function () use ($servers) {
         DB::table('simplify_core_embed_servers')->insert(['server_id' => $servers[$name]->id, 'created_at' => now(), 'updated_at' => now()]);
     }
 });
-$part('hosting links', fn () => Simplify\Hosting\Services\Settings::save(['billing_url' => 'https://billing.example.com/clientarea.php?action=productdetails&id={external_id}',
+$part('hosting links', fn () => Settings::save(['billing_url' => 'https://billing.example.com/clientarea.php?action=productdetails&id={external_id}',
     'client_area_url' => 'https://billing.example.com/clientarea.php', 'order_url' => 'https://billing.example.com/order', 'host_mode' => false]));
 $part('egg updates', function () use ($eggs) {
     DB::table('simplify_egg_updates')->insert([
