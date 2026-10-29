@@ -166,6 +166,7 @@ async function walk(page, node, reach, parent, inherited = []) {
   node._children = children;
   const screen = { id, title: node.title, group: node.group || parent?.group, parent: parent?.id || null, url: rel(page.url()) };
   if (!parent || node.root) byUrl[norm(page.url())] ??= id;
+  for (const alias of node.aliases || []) byUrl[norm(alias)] ??= id;
   await snapshot(page, screen, marks);
   if (node.phone) {
     await page.setViewportSize(PHONE);
@@ -229,7 +230,7 @@ async function login(browser, email) {
   }
 
   // The server page and every add-on page of a server.
-  await walk(page, { id: 'server', title: `Serverpagina (${mainServer})`, group: 'Server', phone: true, children: [
+  await walk(page, { id: 'server', title: `Serverpagina (${mainServer})`, group: 'Server', phone: true, aliases: [serverUrl], children: [
     { id: 'server-menu', title: 'Server ⋯-menu', click: '.ps-info-more-button', toggle: true },
   ] }, open(page, serverUrl, async () => sleep(1500)));
   const serverPages = new Map();
