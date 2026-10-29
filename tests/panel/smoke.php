@@ -44,14 +44,14 @@ use Simplify\Core\Push\Push;
 use Simplify\Core\Push\UpdateNotices;
 use Simplify\Core\Push\WebPush;
 use Simplify\Core\Server\Looks;
-use Simplify\Core\Support\Assets;
-use Simplify\Core\Support\Brand;
-use Simplify\Core\Support\PanelSettings;
 use Simplify\Core\Subdomains\Filament\AutomaticSubdomains;
 use Simplify\Core\Subdomains\Filament\ServerSubdomain;
 use Simplify\Core\Subdomains\Models\Subdomain;
 use Simplify\Core\Subdomains\Services\Settings as SubdomainSettings;
 use Simplify\Core\Subdomains\Subdomains;
+use Simplify\Core\Support\Assets;
+use Simplify\Core\Support\Brand;
+use Simplify\Core\Support\PanelSettings;
 use Simplify\Core\Support\Preferences;
 
 define('LARAVEL_START', microtime(true));
@@ -673,6 +673,7 @@ step('subdomains: the settings and server pages open, and the token is stored en
     }
 });
 step('subdomains: a subdomain reaches Cloudflare and shows on the server card', function () use ($admin, $server, &$calls) {
+    auth()->setUser($admin);
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('server'));
     Filament\Facades\Filament::setTenant($server);
     $calls = [];
