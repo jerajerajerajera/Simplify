@@ -47,8 +47,8 @@ jobs:
           echo '{' > versions.json
           for pair in Simplify:pelican-simplify Simplify-Toolkit:simplify-toolkit Simplify-EggUpdates:simplify-egg-updates Simplify-Explain:simplify-explain Simplify-ServerMaker:simplify-server-maker Simplify-Hosting:simplify-hosting; do
             repo=${pair%%:*}; id=${pair##*:}
-            # The folder must carry the id from plugin.json (Toolkit kept the id simplify-mods for a while).
-            git clone --quiet --depth 1 "https://github.com/jerajerajerajera/$repo.git" "plugins/$id"
+            # Always main: Toolkit's default branch still points at the old Mods code. The folder must carry the id from plugin.json.
+            git clone --quiet --depth 1 --branch main "https://github.com/jerajerajerajera/$repo.git" "plugins/$id"
             real=$(php -r "echo json_decode(file_get_contents('plugins/$id/plugin.json'), true)['id'];")
             if [ "$real" != "$id" ]; then mv "plugins/$id" "plugins/$real"; id=$real; fi
             version=$(php -r "echo json_decode(file_get_contents('plugins/$id/plugin.json'), true)['version'];")

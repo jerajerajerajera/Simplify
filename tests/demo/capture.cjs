@@ -231,7 +231,6 @@ async function login(browser, email) {
   // The server page and every add-on page of a server.
   await walk(page, { id: 'server', title: `Serverpagina (${mainServer})`, group: 'Server', phone: true, children: [
     { id: 'server-menu', title: 'Server ⋯-menu', click: '.ps-info-more-button', toggle: true },
-    { id: 'server-explain', title: 'Explain-knop', click: { css: 'main button', text: /Explain/i }, wait: 2500 },
   ] }, open(page, serverUrl, async () => sleep(1500)));
   const serverPages = new Map();
   for (const [name, pages] of Object.entries(urls.server)) for (const p of pages) if (p.url && !serverPages.has(p.class)) serverPages.set(p.class, { ...p, server: name });
@@ -258,7 +257,7 @@ async function login(browser, email) {
     expand: { css: 'main [role=tab]', title: 'Instellingen · ', child: { wait: 1500 } } }, open(page, settings));
   for (const p of urls.admin.filter((x) => x.url !== settings && !/Setup$/.test(x.class))) {
     const extra = /People$/.test(p.class) ? { expand: { css: 'main .s-segment', title: 'People · ' }, children: [{ id: 'people-add', title: 'Persoon toevoegen', click: { css: 'main button', text: /Add person/i }, wait: 1200 }] }
-      : /AnnouncementResource$/.test(p.class) ? { children: [{ id: 'announcements-new', title: 'Nieuwe aankondiging', click: { css: 'main .fi-header button, main .fi-header a', text: /New|Create|Add/i }, wait: 1200 }] } : {};
+      : /AnnouncementResource$/.test(p.class) ? { children: [{ id: 'announcements-new', title: 'Nieuwe aankondiging', click: { css: 'main button, main a', text: /^\s*New announcement\s*$/i }, wait: 1200 }] } : {};
     await walk(page, { id: 'admin-' + slug(p.title), title: p.title, group: 'Beheer', ...extra }, open(page, p.url));
   }
 
