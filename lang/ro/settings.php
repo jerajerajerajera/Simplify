@@ -55,6 +55,5 @@ return [
     'parts' => [
         'heading' => 'Integrat',
         'help' => 'Acestea erau add-on-uri separate. Dacă dezactivezi unul, dispare peste tot, iar datele lui se păstrează.',
-        'standalone' => 'Pluginul separat :name este încă instalat, așa că această parte rămâne oprită. Deschiderea acestei pagini îi copiază datele în Simplify. Dezinstalează pluginul ca să treci la aceasta.',
     ],
 ];

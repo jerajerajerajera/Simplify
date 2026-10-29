@@ -55,6 +55,5 @@ return [
     'parts' => [
         'heading' => 'Built in',
         'help' => 'These used to be separate add-ons. Turning one off hides it everywhere and keeps its data.',
-        'standalone' => 'The separate :name plugin is still installed, so this part stays off. Opening this page copies its data into Simplify. Uninstall the plugin to switch over.',
     ],
 ];

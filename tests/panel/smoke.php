@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Testing\TestResponse;
 use Illuminate\Validation\ValidationException;
@@ -38,7 +37,6 @@ use Simplify\Core\Filament\App\Pages\Notifications;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Filament\Server\ServerPage;
 use Simplify\Core\Overview\Listing;
-use Simplify\Core\Parts\Parts;
 use Simplify\Core\People\People;
 use Simplify\Core\Push\Push;
 use Simplify\Core\Push\UpdateNotices;
@@ -577,26 +575,6 @@ step('announcements: unpin moves a bar to the bell, pin brings it back, and the 
     Artisan::call('simplify:announcements');
     if ($player->notifications()->where('data->viewData->simplify_announcement', $bell->id)->count() !== 1) {
         throw new RuntimeException('the bell item did not arrive exactly once');
-    }
-});
-step('announcements: the separate plugin\'s data is copied over', function () {
-    Schema::create('simplify_announcements', function ($table) {
-        $table->id();
-        $table->string('title', 120);
-        $table->string('audience', 16)->default('everyone');
-        $table->timestamps();
-    });
-    try {
-        DB::table('simplify_announcements')->insert(['id' => 77, 'title' => 'Smoke from the add-on', 'audience' => 'everyone']);
-        Parts::import('announcements');
-        if (Announcement::query()->pluck('title', 'id')->all() !== [77 => 'Smoke from the add-on']) {
-            throw new RuntimeException('not copied: '.json_encode(Announcement::query()->pluck('title', 'id')));
-        }
-        if (Announcement::create(['title' => 'Smoke after the copy'])->id <= 77) {
-            throw new RuntimeException('a new announcement reuses a copied id');
-        }
-    } finally {
-        Schema::drop('simplify_announcements');
     }
 });
 step('embed: the server owner opens Website, and the settings page shows the code for a website', function () use ($admin, $server) {

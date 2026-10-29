@@ -8,7 +8,6 @@ use App\Enums\ContainerStatus;
 use App\Models\Server;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Event;
-use Simplify\Core\Parts\Parts;
 use Simplify\Core\Subdomains\Subdomains;
 use Throwable;
 
@@ -99,12 +98,11 @@ final class ServerList
         ]);
     }
 
-    /** The subdomain when it works, from the separate Subdomains plugin while that is still installed. */
+    /** The subdomain when it works. */
     private static function subdomain(Server $server): ?string
     {
-        $api = Parts::standalone('subdomains') ? 'Simplify\\Subdomains\\Subdomains' : Subdomains::class;
         try {
-            return $api::address($server);
+            return Subdomains::address($server);
         } catch (Throwable $error) {
             report($error);
 

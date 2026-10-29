@@ -55,6 +55,5 @@ return [
     'parts' => [
         'heading' => 'Eingebaut',
         'help' => 'Das waren früher eigene Add-ons. Schaltest du eins aus, verschwindet es überall und seine Daten bleiben erhalten.',
-        'standalone' => 'Das eigene Plugin :name ist noch installiert, deshalb bleibt dieser Teil aus. Beim Öffnen dieser Seite werden seine Daten in Simplify kopiert. Deinstalliere das Plugin, um umzusteigen.',
     ],
 ];

@@ -55,6 +55,5 @@ return [
     'parts' => [
         'heading' => 'Indbygget',
         'help' => 'Disse var tidligere separate add-ons. Slår du en fra, forsvinder den overalt, og dens data bevares.',
-        'standalone' => 'Det separate plugin :name er stadig installeret, så denne del forbliver slået fra. Når du åbner denne side, kopieres dens data til Simplify. Afinstaller pluginet for at skifte.',
     ],
 ];

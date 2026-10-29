@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Simplify no longer copies data from the separate Announcements, Embed and Subdomains plugins, and no longer waits for them to be uninstalled. Those plugins never reached the Hub; remove them before updating. Subdomains from PelicanSimplify 0.6 and 0.7 are still taken over.
+- One class for the three built-in parts, and the Add-ons tab of Settings shows their names instead of raw translation keys.
+
 ## 1.2.0
 
 Announcements, Embed and Subdomains are now part of Simplify, so you no longer need separate plugins for them.

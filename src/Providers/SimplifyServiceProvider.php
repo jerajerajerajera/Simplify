@@ -69,13 +69,11 @@ final class SimplifyServiceProvider extends ServiceProvider
         Route::get('/simplify-worker.js', [WebAppController::class, 'worker'])->name('simplify.worker');
 
         // Embed: public and read-only, without a session, so any website can show the list. These are the addresses
-        // PelicanSimplify and the separate Embed plugin used, so websites that show the list keep working. Left to
-        // that plugin while it is installed; the controller answers 404 while the part is off.
-        if (! Parts::standalone('embed')) {
-            Route::get('/simplify/embed/servers.json', [EmbedController::class, 'servers'])->middleware('throttle:120,1')->name('simplify.embed.servers');
-            Route::get('/simplify/embed.js', [EmbedController::class, 'script'])->name('simplify.embed.script');
-            Route::get('/simplify/embed', [EmbedController::class, 'frame'])->middleware('throttle:120,1')->name('simplify.embed.frame');
-        }
+        // PelicanSimplify used, so websites that show the list keep working. The controller answers 404 while the
+        // part is off.
+        Route::get('/simplify/embed/servers.json', [EmbedController::class, 'servers'])->middleware('throttle:120,1')->name('simplify.embed.servers');
+        Route::get('/simplify/embed.js', [EmbedController::class, 'script'])->name('simplify.embed.script');
+        Route::get('/simplify/embed', [EmbedController::class, 'frame'])->middleware('throttle:120,1')->name('simplify.embed.frame');
 
         // Add-ons check Event::hasListeners('simplify.push'), so there is no listener while an admin turned push off.
         if (Push::enabled()) {
