@@ -277,11 +277,6 @@
   --s-h: 28px;
 }
 
-.s-addon-sections {
-  display: grid;
-  gap: var(--s-space-4);
-}
-
 /* People & roles */
 .s-avatar {
   align-items: center;
