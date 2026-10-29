@@ -1153,7 +1153,7 @@ body:has(.ps-server-top) .fi-page-header-main-ctn { padding-top: 0 !important; }
 .ps.ps-server-top > .ps-main { grid-area: top; padding: 32px 0 0; }
 .ps.ps-server-top.is-server-full-width ~ * { max-width: none; }
 .ps-server-menu { grid-area: nav; position: sticky; top: 14px; align-self: start; display: flex; flex-direction: column; gap: 1px; max-height: calc(100dvh - 28px); padding: 10px; overflow-y: auto; scrollbar-width: thin; border: 1px solid var(--ps-line); border-radius: var(--ps-radius-lg); background: var(--ps-surface); }
-.ps-server-menu .ps-widget { display: flex; flex: none; flex-direction: row; align-items: center; justify-content: flex-start; gap: 10px; min-height: 40px; padding: 4px 8px; border: 1px solid transparent; border-radius: 10px; background: none; color: var(--ps-ink); text-decoration: none; }
+.ps-server-menu .ps-widget { display: flex; flex: none; height: auto; flex-direction: row; align-items: center; justify-content: flex-start; gap: 10px; min-height: 40px; padding: 4px 8px; border: 1px solid transparent; border-radius: 10px; background: none; color: var(--ps-ink); text-decoration: none; }
 .ps-server-menu .ps-widget:is(:hover, :focus-visible) { background: var(--ps-raised); }
 .ps-server-menu .ps-widget[aria-current="page"] { border-color: var(--ps-line-strong); background: var(--ps-raised); }
 .ps-server-menu .ps-widget-icon { width: 30px; height: 30px; border-radius: 9px; background: none; color: var(--ps-muted); }
