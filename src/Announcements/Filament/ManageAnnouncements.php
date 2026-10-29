@@ -10,7 +10,6 @@ use Filament\Actions\CreateAction;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ManageRecords;
-use Simplify\Core\Announcements\Filament\AnnouncementResource;
 use Simplify\Core\Announcements\Models\GameCommand;
 use Simplify\Core\Announcements\Support\GameChat;
 

@@ -20,7 +20,6 @@ use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Simplify\Core\Announcements\Filament\ManageAnnouncements;
 use Simplify\Core\Announcements\Models\Announcement;
 use Simplify\Core\Announcements\Services\Bell;
 use Simplify\Core\Announcements\Services\Push;
