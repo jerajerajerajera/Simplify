@@ -18,6 +18,7 @@ use Simplify\Core\Announcements\Livewire\AnnouncementBars;
 use Simplify\Core\Announcements\Models\Announcement;
 use Simplify\Core\Announcements\Policies\AnnouncementPolicy;
 use Simplify\Core\Console\UpdateNoticesCommand;
+use Simplify\Core\Embed\EmbedController;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Http\Controllers\AssetController;
 use Simplify\Core\Http\Controllers\BannerController;
@@ -59,6 +60,15 @@ final class SimplifyServiceProvider extends ServiceProvider
         Route::get('/simplify/manifest.webmanifest', [WebAppController::class, 'manifest'])->name('simplify.manifest');
         // At the root, so the worker's scope can be the whole panel.
         Route::get('/simplify-worker.js', [WebAppController::class, 'worker'])->name('simplify.worker');
+
+        // Embed: public and read-only, without a session, so any website can show the list. These are the addresses
+        // PelicanSimplify and the separate Embed plugin used, so websites that show the list keep working. Left to
+        // that plugin while it is installed; the controller answers 404 while the part is off.
+        if (! Parts::standalone('embed')) {
+            Route::get('/simplify/embed/servers.json', [EmbedController::class, 'servers'])->middleware('throttle:120,1')->name('simplify.embed.servers');
+            Route::get('/simplify/embed.js', [EmbedController::class, 'script'])->name('simplify.embed.script');
+            Route::get('/simplify/embed', [EmbedController::class, 'frame'])->middleware('throttle:120,1')->name('simplify.embed.frame');
+        }
 
         // Add-ons check Event::hasListeners('simplify.push'), so there is no listener while an admin turned push off.
         if (Push::enabled()) {

@@ -29,6 +29,9 @@ use Simplify\Core\Announcements\Filament\AnnouncementResource;
 use Simplify\Core\Announcements\Livewire\AnnouncementBars;
 use Simplify\Core\Announcements\Models\Announcement;
 use Simplify\Core\Announcements\Services\Bell as AnnouncementBell;
+use Simplify\Core\Embed\Filament\EmbedSettings;
+use Simplify\Core\Embed\Filament\Website as EmbedWebsite;
+use Simplify\Core\Embed\Services\EmbedServers;
 use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\Admin\Pages\Setup;
 use Simplify\Core\Filament\App\Pages\Notifications;
@@ -591,21 +594,62 @@ step('announcements: the separate plugin\'s data is copied over', function () {
         Schema::drop('simplify_announcements');
     }
 });
-step('announcements: a root admin turns the part off', function () {
-    PanelSettings::save(['part_announcements' => false]);
+step('embed: the server owner opens Website, and the settings page shows the code for a website', function () use ($admin, $server) {
+    $url = EmbedWebsite::getUrl(panel: 'server', tenant: $server);
+    expectOk(visit($admin, $url), $url);
+    $url = EmbedSettings::getUrl(panel: 'admin');
+    $response = visit($admin, $url);
+    expectOk($response, $url);
+    if (! str_contains($response->getContent(), 'simplify/embed.js')) {
+        throw new RuntimeException('the code for a website is missing');
+    }
 });
-step('announcements: turned off, the bars, admin page and add-on row are gone', function () use ($admin) {
+step('embed: the public list shows only servers put on the website, without private details', function () use ($server) {
+    $guest = new class(app())
+    {
+        use MakesHttpRequests;
+
+        public function __construct(public $app) {}
+    };
+    EmbedServers::replace([]);
+    $empty = $guest->get('/simplify/embed/servers.json');
+    expectOk($empty, 'servers.json');
+    if ($empty->headers->get('Access-Control-Allow-Origin') !== '*' || $empty->json('servers') !== []) {
+        throw new RuntimeException('the empty list is wrong: '.$empty->getContent());
+    }
+    EmbedServers::setVisible($server, true);
+    try {
+        $servers = $guest->get('/simplify/embed/servers.json')->json('servers');
+        if (count($servers) !== 1 || $servers[0]['name'] !== $server->name || array_key_exists('uuid', $servers[0]) || array_key_exists('node', $servers[0])) {
+            throw new RuntimeException('unexpected list: '.json_encode($servers));
+        }
+        expectOk($guest->get('/simplify/embed.js'), 'embed.js');
+        $page = $guest->get('/simplify/embed?page=1&style=dark&server=abc');
+        expectOk($page, 'embed page');
+        if (! str_contains($page->getContent(), 'data-server="abc"')) {
+            throw new RuntimeException('the option did not reach the script');
+        }
+    } finally {
+        EmbedServers::replace([]);
+    }
+});
+step('a root admin turns the parts off', function () {
+    PanelSettings::save(['part_announcements' => false, 'part_embed' => false]);
+});
+step('parts that are off are gone: bars, admin pages, public list and add-on rows', function () use ($admin) {
     try {
         $page = visit($admin, '/');
         expectOk($page, '/');
         if (str_contains($page->getContent(), 'Smoke from the add-on') || app(AddonRegistry::class)->find('simplify-announcements') !== null) {
             throw new RuntimeException('a part that is off still shows');
         }
-        if (visit($admin, '/admin/simplify-announcements')->getStatusCode() !== 404) {
-            throw new RuntimeException('the admin page of a part that is off still opens');
+        foreach (['/admin/simplify-announcements', '/admin/simplify-embed', '/simplify/embed/servers.json'] as $url) {
+            if (visit($admin, $url)->getStatusCode() !== 404) {
+                throw new RuntimeException("$url of a part that is off still opens");
+            }
         }
     } finally {
-        PanelSettings::save(['part_announcements' => true]);
+        PanelSettings::save(['part_announcements' => true, 'part_embed' => true]);
         Announcement::query()->delete();
     }
 });
