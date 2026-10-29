@@ -29,7 +29,7 @@ use Simplify\Core\Support\PanelSettings;
 
 final class SimplifyPlugin implements Plugin
 {
-    public const ID = 'pelican-simplify';
+    public const ID = 'simplify';
 
     public function getId(): string
     {
@@ -38,7 +38,7 @@ final class SimplifyPlugin implements Plugin
 
     public function register(Panel $panel): void
     {
-        $panel->renderHook('panels::head.end', fn () => view('pelican-simplify::head'));
+        $panel->renderHook('panels::head.end', fn () => view('simplify::head'));
         Brand::apply($panel);
         $panel->middleware([FramePolicy::class]);
 
@@ -48,11 +48,11 @@ final class SimplifyPlugin implements Plugin
         }
         if (in_array($panel->getId(), ['app', 'server'], true)) {
             $panel->userMenuItems([
-                Action::make('simplify-overview')->label(fn () => __('pelican-simplify::settings.overview'))->icon('tabler-layout-grid')
+                Action::make('simplify-overview')->label(fn () => __('simplify::settings.overview'))->icon('tabler-layout-grid')
                     ->url(fn () => Overview::getUrl(panel: 'app')),
-                Action::make('simplify-notifications')->label(fn () => __('pelican-simplify::push.menu'))->icon('tabler-bell')
+                Action::make('simplify-notifications')->label(fn () => __('simplify::push.menu'))->icon('tabler-bell')
                     ->url(fn () => Notifications::getUrl(panel: 'app'))->visible(fn () => Notifications::canAccess()),
-                Action::make('simplify-support')->label(fn () => __('pelican-simplify::settings.support'))->icon('tabler-lifebuoy')
+                Action::make('simplify-support')->label(fn () => __('simplify::settings.support'))->icon('tabler-lifebuoy')
                     ->url(fn () => PanelSettings::get('support_url'), shouldOpenInNewTab: true)
                     ->visible(fn () => PanelSettings::get('support_url') !== null),
             ]);

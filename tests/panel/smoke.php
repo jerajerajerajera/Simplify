@@ -1,7 +1,7 @@
 <?php
 
 // Loads Simplify inside a real Pelican panel and opens its pages. Run from the panel folder after
-// `php artisan p:plugin:install pelican-simplify`: php plugins/pelican-simplify/tests/panel/smoke.php
+// `php artisan p:plugin:install simplify`: php plugins/simplify/tests/panel/smoke.php
 use App\Models\Role;
 use App\Models\Server;
 use App\Models\User;

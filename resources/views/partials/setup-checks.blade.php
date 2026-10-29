@@ -4,7 +4,7 @@
             <x-filament::icon :icon="$check['ok'] ? 'tabler-circle-check' : 'tabler-alert-triangle'" @class(['s-row-icon', 's-ok' => $check['ok'], 's-warn' => ! $check['ok']]) />
             <div class="s-row-text">{{ $check['text'] }}</div>
             <span @class(['s-badge', 's-badge-ok' => $check['ok'], 's-badge-warn' => ! $check['ok']])>
-                {{ __($check['ok'] ? 'pelican-simplify::setup.checks.ok' : 'pelican-simplify::setup.checks.missing') }}
+                {{ __($check['ok'] ? 'simplify::setup.checks.ok' : 'simplify::setup.checks.missing') }}
             </span>
         </div>
     @endforeach

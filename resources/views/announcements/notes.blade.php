@@ -10,12 +10,12 @@
                     <x-filament::icon class="ps-note-icon" :icon="Rules::icon($announcement->category)" />
                     <p class="ps-note-text" title="{{ $announcement->title }}{{ filled($announcement->body) ? ' · '.$announcement->body : '' }}"><strong>{{ $announcement->title }}</strong>@if (filled($announcement->body)) <span>{{ $announcement->body }}</span>@endif</p>
                     @if ($announcement->button_url)
-                        <a class="ps-btn is-sm is-subtle ps-note-link" href="{{ $announcement->button_url }}" @if (! str_starts_with($announcement->button_url, '/')) target="_blank" rel="noopener" @endif>{{ $announcement->button_label ?: __('pelican-simplify::announcements.bars.open') }}</a>
+                        <a class="ps-btn is-sm is-subtle ps-note-link" href="{{ $announcement->button_url }}" @if (! str_starts_with($announcement->button_url, '/')) target="_blank" rel="noopener" @endif>{{ $announcement->button_label ?: __('simplify::announcements.bars.open') }}</a>
                     @endif
                     @if ($index === 1 && $announcements->count() > 2)
-                        <button type="button" class="ps-btn is-sm is-subtle ps-notes-more" x-on:click="open=!open" :aria-expanded="open" aria-label="{{ __('pelican-simplify::dashboard.ui.more') }}">+{{ $announcements->count() - 2 }}</button>
+                        <button type="button" class="ps-btn is-sm is-subtle ps-notes-more" x-on:click="open=!open" :aria-expanded="open" aria-label="{{ __('simplify::dashboard.ui.more') }}">+{{ $announcements->count() - 2 }}</button>
                     @endif
-                    <button type="button" class="ps-btn is-icon is-sm is-subtle ps-note-pin" wire:click="unpin({{ $announcement->id }})" aria-pressed="true" aria-label="{{ __('pelican-simplify::announcements.bars.unpin') }}" data-tip="{{ __('pelican-simplify::announcements.bars.unpin') }}">
+                    <button type="button" class="ps-btn is-icon is-sm is-subtle ps-note-pin" wire:click="unpin({{ $announcement->id }})" aria-pressed="true" aria-label="{{ __('simplify::announcements.bars.unpin') }}" data-tip="{{ __('simplify::announcements.bars.unpin') }}">
                         <x-filament::icon icon="tabler-pinned-filled" />
                     </button>
                 </div>

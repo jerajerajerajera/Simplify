@@ -63,20 +63,20 @@ final class CloudflareDns
                 $name = implode('.', array_slice($labels, $i));
                 $result = $send('GET', '/zones?name='.rawurlencode($name), null);
                 if (! ($result['success'] ?? false)) {
-                    return self::result(false, __('pelican-simplify::subdomains.test.refused', ['error' => self::error($result)]));
+                    return self::result(false, __('simplify::subdomains.test.refused', ['error' => self::error($result)]));
                 }
                 $zone = $result['result'][0]['id'] ?? null;
                 if (is_string($zone) && preg_match(Settings::ZONE, $zone)) {
-                    return self::result(true, __('pelican-simplify::subdomains.test.works', ['zone' => $name]), $zone);
+                    return self::result(true, __('simplify::subdomains.test.works', ['zone' => $name]), $zone);
                 }
             }
         } catch (Throwable $error) {
             report($error);
 
-            return self::result(false, __('pelican-simplify::subdomains.test.unreachable'));
+            return self::result(false, __('simplify::subdomains.test.unreachable'));
         }
 
-        return self::result(false, __('pelican-simplify::subdomains.test.cannot_see', ['domain' => $domain]));
+        return self::result(false, __('simplify::subdomains.test.cannot_see', ['domain' => $domain]));
     }
 
     /**
@@ -152,7 +152,7 @@ final class CloudflareDns
             foreach ($wanted as $record) {
                 foreach ($this->find(['name.exact' => $record['name']]) as $other) {
                     if (($other['comment'] ?? '') !== self::comment($uuid)) {
-                        return __('pelican-simplify::subdomains.errors.record_exists', ['name' => $record['name']]);
+                        return __('simplify::subdomains.errors.record_exists', ['name' => $record['name']]);
                     }
                 }
             }
@@ -165,13 +165,13 @@ final class CloudflareDns
                     'delete' => ($this->send)('DELETE', $base.'/'.rawurlencode((string) $record['id']), null),
                 };
                 if (! ($result['success'] ?? false)) {
-                    return __('pelican-simplify::subdomains.errors.refused', ['name' => $record['name'], 'error' => self::error($result)]);
+                    return __('simplify::subdomains.errors.refused', ['name' => $record['name'], 'error' => self::error($result)]);
                 }
             }
 
             return null;
         } catch (Throwable $error) {
-            return __('pelican-simplify::subdomains.errors.unreachable', ['error' => $error->getMessage()]);
+            return __('simplify::subdomains.errors.unreachable', ['error' => $error->getMessage()]);
         }
     }
 

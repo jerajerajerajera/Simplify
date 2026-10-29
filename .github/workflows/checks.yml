@@ -60,26 +60,44 @@ jobs:
           php artisan key:generate --force
           php artisan migrate --force
           yarn install --silent
-      - name: Install Simplify
+      # Until 1.4.0 the plugin id was pelican-simplify, the id of the old PelicanSimplify too: install 1.3.11 first and
+      # leave PelicanSimplify 0.7.0's files in storage, so the job proves the new id takes over both.
+      - name: Install the old pelican-simplify 1.3.11 and PelicanSimplify's files
         run: |
-          mkdir -p panel/plugins/pelican-simplify
-          tar -C plugin --exclude=.git --exclude=dist -cf - . | tar -C panel/plugins/pelican-simplify -xf -
+          git clone --quiet --depth 1 --branch v1.3.11 "https://github.com/${{ github.repository }}.git" panel/plugins/pelican-simplify
+          rm -rf panel/plugins/pelican-simplify/.git
           cd panel
           php artisan p:plugin:install pelican-simplify
+          php -r '$db = new PDO("sqlite:database/database.sqlite"); $db->prepare("INSERT INTO simplify_settings (key, value) VALUES (?, ?)")->execute(["support_url", json_encode("https://example.com/kept")]);'
+          mkdir -p storage/app/private/simplify storage/app/simplify
+          for d in storage/app/private storage/app; do
+            echo '[{"id":"0123456789abcdef","category":"warning","title":"Old announcement","text":"From 0.7.0","audience":"everyone","button":{"label":"Read","url":"https://example.com"},"created_at":1761696000,"updated_at":1761696000,"push":true,"pushed_at":1761696000,"pinned":true,"ingame":{"enabled":true,"targets":"all","servers":[],"repeat":30}}]' > $d/simplify/announcements.json
+            echo '{"accent_color":"#e11d48","brand":{"mode":"text","text":"Old panel"}}' > $d/simplify/appearance.json
+            echo '{"style":"dark","corners":"square","players":false}' > $d/simplify/website-embed.json
+          done
+      - name: Install Simplify
+        run: |
+          mkdir -p panel/plugins/simplify
+          tar -C plugin --exclude=.git --exclude=dist -cf - . | tar -C panel/plugins/simplify -xf -
+          cd panel
+          php artisan p:plugin:install simplify
           php artisan p:plugin:list | tee plugins.txt
           grep -E 'Simplify .*\| enabled' plugins.txt || { echo 'Simplify did not install'; exit 1; }
+          test ! -e plugins/pelican-simplify || { echo 'The old pelican-simplify folder is still there'; exit 1; }
+          test "$(grep -c '| Simplify ' plugins.txt)" = 1 || { echo 'Simplify is listed twice'; exit 1; }
+          php -r '$db = new PDO("sqlite:database/database.sqlite"); $v = fn ($k) => json_decode((string) $db->query("SELECT value FROM simplify_settings WHERE key = \"$k\"")->fetchColumn()); $a = $db->query("SELECT title, in_bell, push, in_game, in_game_repeat FROM simplify_core_announcements")->fetchAll(PDO::FETCH_ASSOC); $e = $db->query("SELECT value FROM simplify_core_embed_settings WHERE key = \"style\"")->fetchColumn(); echo json_encode([$v("support_url"), $v("accent"), $v("brand_name"), $a, $e]), PHP_EOL; exit($v("support_url") === "https://example.com/kept" && $v("accent") === "#e11d48" && $v("brand_name") === "Old panel" && count($a) === 1 && $a[0]["title"] === "Old announcement" && (int) $a[0]["in_bell"] === 1 && (int) $a[0]["push"] === 0 && (int) $a[0]["in_game_repeat"] === 30 && $e === "\"dark\"" ? 0 : 1);' || { echo 'The old settings were not kept or not imported'; exit 1; }
       - name: Install Simplify over its own tables
         # An install that stopped halfway leaves tables without their migration rows; the next install keeps them.
         working-directory: panel
         run: |
           php artisan tinker --execute="DB::table('migrations')->where('migration', 'like', '%simplify%')->delete();"
-          php artisan tinker --execute="app('migrator')->run(base_path('plugins/pelican-simplify/database/migrations')); echo 'ran '.DB::table('migrations')->where('migration', 'like', '%simplify%')->count();" | tee again.txt
-          grep -qx "ran $(ls plugins/pelican-simplify/database/migrations | wc -l)" again.txt || { echo 'Simplify did not install over its own tables'; exit 1; }
+          php artisan tinker --execute="app('migrator')->run(base_path('plugins/simplify/database/migrations')); echo 'ran '.DB::table('migrations')->where('migration', 'like', '%simplify%')->count();" | tee again.txt
+          grep -qx "ran $(ls plugins/simplify/database/migrations | wc -l)" again.txt || { echo 'Simplify did not install over its own tables'; exit 1; }
       - name: Open the pages
         working-directory: panel
         # The last line must say so: an exit code alone missed a crash before the first step once.
         run: |
-          php plugins/pelican-simplify/tests/panel/smoke.php | tee smoke.txt
+          php plugins/simplify/tests/panel/smoke.php | tee smoke.txt
           tail -n 1 smoke.txt | grep -qx 'All steps passed'
       - name: Laravel log
         if: failure()

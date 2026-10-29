@@ -72,7 +72,7 @@ final class EmbedController
         }
         $html = '<!doctype html><html lang="'.e(str_replace('_', '-', app()->getLocale())).'"><head><meta charset="utf-8">'
             .'<meta name="viewport" content="width=device-width,initial-scale=1">'
-            .'<title>'.e(__('pelican-simplify::embed-list.title', ['name' => (string) config('app.name', 'Pelican')])).'</title>'
+            .'<title>'.e(__('simplify::embed-list.title', ['name' => (string) config('app.name', 'Pelican')])).'</title>'
             .'<style>html,body{margin:0}'.$style.'</style></head>'
             .'<body><div id="simplify-servers"></div><script src="'.e(url('/simplify/embed.js')).'"'.$attributes.' defer></script></body></html>';
 

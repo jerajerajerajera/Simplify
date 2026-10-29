@@ -33,7 +33,7 @@ final class EmbedSettings extends FormPage
 
     public static function getNavigationLabel(): string
     {
-        return __('pelican-simplify::embed.name');
+        return __('simplify::embed.name');
     }
 
     /** In the Simplify group of Pelican's menu, with the other Simplify add-ons (Simplify's ADDONS.md, "Admin menu"). */
@@ -53,7 +53,7 @@ final class EmbedSettings extends FormPage
 
     public function form(Schema $schema): Schema
     {
-        $t = fn (string $key) => __('pelican-simplify::embed.settings.'.$key);
+        $t = fn (string $key) => __('simplify::embed.settings.'.$key);
 
         return $schema->statePath('data')->components([
             Section::make($t('servers'))->description($t('servers_help'))->schema([
@@ -104,7 +104,7 @@ final class EmbedSettings extends FormPage
                     ->placeholder($t('pick_game'))
                     ->options(fn () => array_combine(ServerList::games(), ServerList::games()))
                     ->visible(fn (Get $get) => $get('code.show') === 'game'),
-                View::make('pelican-simplify::embed.code')->columnSpanFull()->viewData(fn (Get $get) => $this->codeFor($get)),
+                View::make('simplify::embed.code')->columnSpanFull()->viewData(fn (Get $get) => $this->codeFor($get)),
             ]),
         ]);
     }
@@ -125,6 +125,6 @@ final class EmbedSettings extends FormPage
         $state = $this->form->getState();
         EmbedOptions::save((array) ($state['options'] ?? []));
         EmbedServers::replace(array_map('intval', (array) ($state['servers'] ?? [])));
-        Notification::make()->title(__('pelican-simplify::embed.saved'))->success()->send();
+        Notification::make()->title(__('simplify::embed.saved'))->success()->send();
     }
 }

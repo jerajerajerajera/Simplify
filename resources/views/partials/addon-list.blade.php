@@ -9,10 +9,10 @@
                 @endif
             </div>
             @if ($url = $addon['url'])
-                <a class="s-btn" href="{{ $url }}">{{ __('pelican-simplify::settings.addons.open') }}</a>
+                <a class="s-btn" href="{{ $url }}">{{ __('simplify::settings.addons.open') }}</a>
             @endif
         </div>
     @empty
-        <p class="s-muted">{{ __('pelican-simplify::settings.addons.none') }}</p>
+        <p class="s-muted">{{ __('simplify::settings.addons.none') }}</p>
     @endforelse
 </div>

@@ -96,7 +96,7 @@ final class Listing
             'background' => Artwork::background($server, $look['banner'] ?? null),
             'software' => $server->egg?->name,
             'game' => $minecraft ? 'minecraft' : 'other',
-            'game_label' => $minecraft ? 'Minecraft' : ($server->egg?->name ?: __('pelican-simplify::dashboard.page.other_game')),
+            'game_label' => $minecraft ? 'Minecraft' : ($server->egg?->name ?: __('simplify::dashboard.page.other_game')),
             'status' => $status,
             'mine' => $mine,
             'node_id' => (int) $server->node_id,

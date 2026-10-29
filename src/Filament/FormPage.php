@@ -23,7 +23,7 @@ abstract class FormPage extends Page implements HasSchemas
 {
     use InteractsWithForms;
 
-    protected string $view = 'pelican-simplify::form-page';
+    protected string $view = 'simplify::form-page';
 
     /** @var array<string, mixed>|null */
     public ?array $data = [];
@@ -52,7 +52,7 @@ abstract class FormPage extends Page implements HasSchemas
             Action::make('save')
                 ->hiddenLabel()
                 ->icon('tabler-device-floppy')
-                ->tooltip(__('pelican-simplify::settings.save'))
+                ->tooltip(__('simplify::settings.save'))
                 ->action('save')
                 ->keyBindings(['mod+s']),
         ];

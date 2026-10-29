@@ -35,7 +35,7 @@ final class Settings extends Page implements HasForms
 
     protected static ?int $navigationSort = 1;
 
-    protected string $view = 'pelican-simplify::pages.settings';
+    protected string $view = 'simplify::pages.settings';
 
     /** @var array<string, mixed> */
     public ?array $data = [];
@@ -53,17 +53,17 @@ final class Settings extends Page implements HasForms
 
     public static function getNavigationLabel(): string
     {
-        return __('pelican-simplify::settings.title');
+        return __('simplify::settings.title');
     }
 
     public function getTitle(): string|Htmlable
     {
-        return __('pelican-simplify::settings.title');
+        return __('simplify::settings.title');
     }
 
     public function getHeading(): string|Htmlable
     {
-        return self::logoHeading(__('pelican-simplify::settings.page_title'));
+        return self::logoHeading(__('simplify::settings.page_title'));
     }
 
     /** A page title beside Simplify's logo, as on the settings page and the setup. */
@@ -78,7 +78,7 @@ final class Settings extends Page implements HasForms
 
     public function getSubheading(): string
     {
-        return __('pelican-simplify::settings.version_line', ['version' => Assets::version()]);
+        return __('simplify::settings.version_line', ['version' => Assets::version()]);
     }
 
     public function mount(): void
@@ -95,7 +95,7 @@ final class Settings extends Page implements HasForms
     protected function getHeaderActions(): array
     {
         return [
-            Action::make('setup')->label(__('pelican-simplify::setup.again'))->icon('tabler-wand')->color('gray')->button()
+            Action::make('setup')->label(__('simplify::setup.again'))->icon('tabler-wand')->color('gray')->button()
                 ->url(fn () => Setup::getUrl(panel: 'admin')),
         ];
     }
@@ -103,23 +103,23 @@ final class Settings extends Page implements HasForms
     public function form(Schema $schema): Schema
     {
         $pelican = array_map(fn (array $tab) => Tab::make($tab['label'])->key($tab['key'])->icon($tab['icon'])->schema([
-            View::make('pelican-simplify::partials.pelican-settings')->viewData($tab),
+            View::make('simplify::partials.pelican-settings')->viewData($tab),
         ]), self::pelicanTabs());
 
         return $schema->statePath('data')->components([
             Tabs::make()->vertical()->persistTabInQueryString()->columnSpanFull()->extraAttributes(['class' => 's-settings-tabs'])->tabs([
-                Tab::make(__('pelican-simplify::settings.general.tab'))->key('general')->icon('tabler-adjustments')->schema([
+                Tab::make(__('simplify::settings.general.tab'))->key('general')->icon('tabler-adjustments')->schema([
                     SettingsFields::support(),
                     SettingsFields::startPage(),
                     SettingsFields::refresh(),
                 ]),
-                Tab::make(__('pelican-simplify::settings.appearance.tab'))->key('appearance')->icon('tabler-palette')->schema([
+                Tab::make(__('simplify::settings.appearance.tab'))->key('appearance')->icon('tabler-palette')->schema([
                     SettingsFields::colours(),
                     SettingsFields::brand(),
                     SettingsFields::app(),
                 ]),
-                Tab::make(__('pelican-simplify::settings.addons.heading'))->key('addons')->icon('tabler-puzzle')->schema([
-                    View::make('pelican-simplify::partials.addon-list'),
+                Tab::make(__('simplify::settings.addons.heading'))->key('addons')->icon('tabler-puzzle')->schema([
+                    View::make('simplify::partials.addon-list'),
                 ]),
                 ...$pelican,
             ]),
@@ -135,9 +135,9 @@ final class Settings extends Page implements HasForms
     {
         $tab = fn (string $key, string $group, string $label, string $icon) => ['key' => 'settings:'.$key, 'group' => $group, 'label' => $label, 'icon' => $icon, 'url' => self::getUrl(['tab' => $key], panel: 'admin')];
         $items = [
-            $tab('general', 'panel', __('pelican-simplify::settings.general.tab'), 'settings'),
-            $tab('appearance', 'panel', __('pelican-simplify::settings.appearance.tab'), 'palette'),
-            $tab('addons', 'addons', __('pelican-simplify::settings.addons.heading'), 'puzzle'),
+            $tab('general', 'panel', __('simplify::settings.general.tab'), 'settings'),
+            $tab('appearance', 'panel', __('simplify::settings.appearance.tab'), 'palette'),
+            $tab('addons', 'addons', __('simplify::settings.addons.heading'), 'puzzle'),
         ];
         foreach (self::addonRows() as $addon) {
             if ($addon['url']) {
@@ -175,7 +175,7 @@ final class Settings extends Page implements HasForms
     {
         abort_unless(self::canAccess(), 403);
         PanelSettings::saveForm($this->form->getState());
-        Notification::make()->title(__('pelican-simplify::settings.saved'))->success()->send();
+        Notification::make()->title(__('simplify::settings.saved'))->success()->send();
     }
 
     /**

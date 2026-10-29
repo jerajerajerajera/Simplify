@@ -31,7 +31,7 @@ final class ManageAnnouncements extends ManageRecords
     /** The chat command per game for "Also send in game". Empty is the automatic command, "-" skips the game. */
     private function commandsAction(): Action
     {
-        $text = fn (string $key): string => __('pelican-simplify::announcements.commands.'.$key);
+        $text = fn (string $key): string => __('simplify::announcements.commands.'.$key);
 
         return Action::make('commands')
             ->label($text('action'))
@@ -39,7 +39,7 @@ final class ManageAnnouncements extends ManageRecords
             ->color('gray')
             ->modalHeading($text('heading'))
             ->modalDescription($text('help'))
-            ->modalSubmitActionLabel(__('pelican-simplify::announcements.commands.save'))
+            ->modalSubmitActionLabel(__('simplify::announcements.commands.save'))
             ->fillForm(fn (): array => collect(GameCommand::query()->pluck('command', 'egg_id'))->mapWithKeys(fn (string $command, int $egg) => ['egg_'.$egg => $command])->all())
             ->schema(fn (): array => Egg::query()->orderBy('name')->get()->map(fn (Egg $egg) => TextInput::make('egg_'.$egg->id)
                 ->label($egg->name)
@@ -58,7 +58,7 @@ final class ManageAnnouncements extends ManageRecords
                         ? GameCommand::query()->whereKey($egg)->delete()
                         : GameCommand::query()->updateOrCreate(['egg_id' => $egg], ['command' => $command]);
                 }
-                Notification::make()->title(__('pelican-simplify::announcements.commands.saved'))->success()->send();
+                Notification::make()->title(__('simplify::announcements.commands.saved'))->success()->send();
             });
     }
 }

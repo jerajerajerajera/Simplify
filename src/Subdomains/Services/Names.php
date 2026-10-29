@@ -34,13 +34,13 @@ final class Names
             return null;
         }
         if (strlen($name) > 63 || ! preg_match(self::FORMAT, $name)) {
-            return __('pelican-simplify::subdomains.errors.name_format');
+            return __('simplify::subdomains.errors.name_format');
         }
         if (in_array($name, self::RESERVED, true) || $name === $this->gameName()) {
-            return __('pelican-simplify::subdomains.errors.reserved');
+            return __('simplify::subdomains.errors.reserved');
         }
         if (($this->taken)($name, $uuid)) {
-            return __('pelican-simplify::subdomains.errors.taken');
+            return __('simplify::subdomains.errors.taken');
         }
 
         return null;

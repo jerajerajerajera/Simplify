@@ -40,7 +40,7 @@ final class ServerSubdomain extends FormPage
 
     public static function getNavigationLabel(): string
     {
-        return __('pelican-simplify::subdomains.subdomain');
+        return __('simplify::subdomains.subdomain');
     }
 
     public function mount(): void
@@ -60,11 +60,11 @@ final class ServerSubdomain extends FormPage
     public function form(Schema $schema): Schema
     {
         return $schema->statePath('data')->components([
-            Section::make(__('pelican-simplify::subdomains.subdomain'))
-                ->description(__('pelican-simplify::subdomains.server.help'))
+            Section::make(__('simplify::subdomains.subdomain'))
+                ->description(__('simplify::subdomains.server.help'))
                 ->schema([
                     TextInput::make('name')
-                        ->label(__('pelican-simplify::subdomains.server.name'))
+                        ->label(__('simplify::subdomains.server.name'))
                         ->maxLength(63)
                         ->placeholder('oak')
                         ->dehydrateStateUsing(fn ($state) => strtolower(trim((string) $state)))
@@ -81,7 +81,7 @@ final class ServerSubdomain extends FormPage
         if ($state['name'] === '') {
             return '';
         }
-        $label = __('pelican-simplify::subdomains.status.'.($state['status'] ?: Subdomain::PENDING));
+        $label = __('simplify::subdomains.status.'.($state['status'] ?: Subdomain::PENDING));
         $detail = $state['status'] === Subdomain::ACTIVE ? (string) Subdomains::address($this->server()) : $state['message'];
 
         return $detail !== '' ? $label.': '.$detail : $label;
@@ -97,7 +97,7 @@ final class ServerSubdomain extends FormPage
             throw ValidationException::withMessages(['data.name' => collect($error->errors())->flatten()->first()]);
         }
         Notification::make()
-            ->title(__('pelican-simplify::subdomains.server.'.($name !== '' ? 'saved' : 'removed')))
+            ->title(__('simplify::subdomains.server.'.($name !== '' ? 'saved' : 'removed')))
             ->success()
             ->send();
     }

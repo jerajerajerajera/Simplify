@@ -34,8 +34,8 @@ final class UpdateNotices
         $panel = $versions->latestPanelVersion();
         if ($panel !== null && ! $versions->isLatestPanel()) {
             $sent += self::inTheirLanguage($admins, fn (string $locale) => [
-                'title' => __('pelican-simplify::push.panel_update', ['version' => $panel], $locale),
-                'body' => __('pelican-simplify::push.panel_update_body', ['current' => $versions->currentPanelVersion()], $locale),
+                'title' => __('simplify::push.panel_update', ['version' => $panel], $locale),
+                'body' => __('simplify::push.panel_update_body', ['current' => $versions->currentPanelVersion()], $locale),
                 'url' => $home,
                 'tag' => 'pelican-'.$panel,
             ]);
@@ -55,8 +55,8 @@ final class UpdateNotices
         }
         if ($older !== []) {
             $sent += self::inTheirLanguage($admins, fn (string $locale) => [
-                'title' => __('pelican-simplify::push.wings_update', ['version' => $wings], $locale),
-                'body' => __('pelican-simplify::push.wings_update_body', ['nodes' => implode(', ', $older)], $locale),
+                'title' => __('simplify::push.wings_update', ['version' => $wings], $locale),
+                'body' => __('simplify::push.wings_update_body', ['nodes' => implode(', ', $older)], $locale),
                 'url' => $home,
                 'tag' => 'wings-'.$wings,
             ]);

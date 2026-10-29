@@ -219,7 +219,7 @@ final class ServerList
     {
         $texts = [];
         foreach (['online', 'starting', 'stopping', 'installing', 'offline', 'players', 'copy', 'copied', 'selected', 'view', 'empty', 'copy_address'] as $key) {
-            $texts[$key] = __('pelican-simplify::embed-list.'.$key);
+            $texts[$key] = __('simplify::embed-list.'.$key);
         }
 
         return $texts;

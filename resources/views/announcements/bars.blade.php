@@ -19,7 +19,7 @@
                     @if ($announcement->ends_at)
                         {{-- Shown in the browser's own time zone. --}}
                         <span class="block text-xs opacity-75">
-                            {{ __('pelican-simplify::announcements.bars.until') }}
+                            {{ __('simplify::announcements.bars.until') }}
                             <time
                                 datetime="{{ $announcement->ends_at->toIso8601String() }}"
                                 x-data
@@ -39,7 +39,7 @@
                         :color="Rules::color($announcement->category)"
                         size="sm"
                     >
-                        {{ $announcement->button_label ?: __('pelican-simplify::announcements.bars.open') }}
+                        {{ $announcement->button_label ?: __('simplify::announcements.bars.open') }}
                     </x-filament::button>
                 </x-slot>
             @endif
@@ -48,8 +48,8 @@
                 <x-filament::icon-button
                     icon="tabler-pinned-filled"
                     color="gray"
-                    :label="__('pelican-simplify::announcements.bars.unpin')"
-                    :tooltip="__('pelican-simplify::announcements.bars.unpin')"
+                    :label="__('simplify::announcements.bars.unpin')"
+                    :tooltip="__('simplify::announcements.bars.unpin')"
                     aria-pressed="true"
                     wire:click="unpin({{ $announcement->id }})"
                 />
