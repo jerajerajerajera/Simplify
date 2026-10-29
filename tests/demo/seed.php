@@ -9,7 +9,9 @@ use App\Models\Allocation;
 use App\Models\Egg;
 use App\Models\Node;
 use App\Models\Role;
+use App\Models\Schedule;
 use App\Models\Server;
+use App\Models\Task;
 use App\Models\User;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Support\Facades\DB;
@@ -140,5 +142,13 @@ $part('egg updates', function () use ($eggs) {
 $part('toolkit software', function () use ($servers) {
     foreach (['Survival SMP' => 'paper', 'Creative Builds' => 'paper', 'Skyblock' => 'paper', 'All the Mods 10' => 'forge'] as $name => $loader) {
         DB::table('simplify_toolkit_servers')->insert(['server_id' => $servers[$name]->id, 'loader' => $loader, 'minecraft' => '1.21.1', 'created_at' => now(), 'updated_at' => now()]);
+    }
+});
+// One schedule with three tasks, so the Edit schedule page shows its Tasks block (old plugin issue #236: no way to scroll to it).
+$part('schedule', function () use ($servers) {
+    $schedule = Schedule::create(['server_id' => $servers['Survival SMP']->id, 'name' => 'Nightly restart', 'cron_minute' => '0', 'cron_hour' => '4',
+        'cron_day_of_month' => '*', 'cron_month' => '*', 'cron_day_of_week' => '*', 'only_when_online' => true, 'next_run_at' => now()->addDay()->setTime(4, 0)]);
+    foreach ([['command', 'say Restarting in 5 minutes', 0], ['command', 'save-all', 240], ['power', 'restart', 60]] as $i => [$action, $payload, $offset]) {
+        Task::create(['schedule_id' => $schedule->id, 'sequence_id' => $i + 1, 'action' => $action, 'payload' => $payload, 'time_offset' => $offset]);
     }
 });

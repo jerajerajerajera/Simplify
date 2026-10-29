@@ -238,6 +238,9 @@ async function login(browser, email) {
   await walk(page, { id: 'server', title: `Serverpagina (${mainServer})`, group: 'Server', phone: true, aliases: [serverUrl], children: [
     { id: 'server-menu', title: 'Server ⋯-menu', click: '.ps-info-more-button', toggle: true },
   ] }, open(page, serverUrl, async () => sleep(1500)));
+  // Pelican's Edit schedule page with three tasks: the content must scroll inside its box so Tasks stays reachable.
+  if (urls.schedules?.[mainServer]) await walk(page, { id: 'server-schedule-edit', title: `Schedule bewerken (${mainServer})`, group: 'Server', phone: true }, open(page, urls.schedules[mainServer], async () => sleep(1500)));
+  else problems.push('no schedule to record');
   const serverPages = new Map();
   for (const [name, pages] of Object.entries(urls.server)) for (const p of pages) if (p.url && !serverPages.has(p.class)) serverPages.set(p.class, { ...p, server: name });
   // Each add-on page on the main server when it has one there, otherwise on the first server that has it.
