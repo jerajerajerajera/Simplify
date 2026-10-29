@@ -46,6 +46,8 @@ return [
         'app_icon_help' => 'Un PNG, JPEG ou WebP carré d\'au moins 512 pixels, jusqu\'à 1 Mo. Vide utilise l\'icône Simplify.',
         'app_badge' => 'Icône de la barre d’état',
         'app_badge_help' => 'Un PNG à fond transparent, affiché en blanc dans la barre d’état d’Android. Vide : l’icône de l’app si son fond est transparent, sinon le pélican.',
+        'server_colours' => 'Couleur propre à chaque serveur',
+        'server_colours_help' => 'Chaque serveur reçoit sa propre couleur, celle de son groupe ou choisie pour lui. Désactivé : chaque serveur utilise la couleur d\'accent.',
     ],
     'addons' => [
         'heading' => 'Add-ons',

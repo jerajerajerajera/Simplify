@@ -46,6 +46,8 @@ return [
         'app_icon_help' => 'En kvadratisk PNG, JPEG eller WebP på minst 512 pixlar, upp till 1 MB. Tomt använder Simplify-ikonen.',
         'app_badge' => 'Statusfältsikon',
         'app_badge_help' => 'En PNG med genomskinlig bakgrund, visas vit i Androids statusfält. Tomt använder appikonen om den har genomskinlig bakgrund, annars pelikanen.',
+        'server_colours' => 'Egen färg per server',
+        'server_colours_help' => 'Varje server får en egen färg, från sin grupp eller vald för den. Av: alla servrar använder accentfärgen.',
     ],
     'addons' => [
         'heading' => 'Tillägg',

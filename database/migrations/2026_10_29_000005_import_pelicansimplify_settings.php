@@ -81,6 +81,7 @@ return new class extends Migration
         $this->setting('brand_name', $name !== '' ? $name : null);
         $this->setting('brand_logo', ($brand['mode'] ?? 'text') === 'logo' ? $logo : null);
         $this->setting('logo_height', $logo !== null ? $height : null);
+        $this->setting('server_colours', ($saved['individual_colors'] ?? true) === false ? false : null);
     }
 
     private function website(): void

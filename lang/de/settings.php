@@ -46,6 +46,8 @@ return [
         'app_icon_help' => 'Ein quadratisches PNG, JPEG oder WebP mit mindestens 512 Pixeln, bis 1 MB. Leer nutzt das Simplify-Symbol.',
         'app_badge' => 'Statusleisten-Symbol',
         'app_badge_help' => 'Ein PNG mit transparentem Hintergrund, in Androids Statusleiste weiß dargestellt. Leer nutzt das App-Symbol, wenn es einen transparenten Hintergrund hat, sonst den Pelikan.',
+        'server_colours' => 'Eigene Farbe pro Server',
+        'server_colours_help' => 'Jeder Server bekommt eine eigene Farbe, von seiner Gruppe oder für ihn gewählt. Aus: Jeder Server nutzt die Akzentfarbe.',
     ],
     'addons' => [
         'heading' => 'Add-ons',

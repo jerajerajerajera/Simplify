@@ -46,6 +46,8 @@ return [
         'app_icon_help' => 'A square PNG, JPEG or WebP of at least 512 pixels, up to 1 MB. Empty uses the Simplify icon.',
         'app_badge' => 'Status bar icon',
         'app_badge_help' => 'A PNG with a transparent background, shown in white in Android\'s status bar. Empty uses the app icon if it has a transparent background, otherwise the pelican.',
+        'server_colours' => 'Individual colours per server',
+        'server_colours_help' => 'Each server gets its own colour, from its group or chosen for it. Off: every server uses the accent colour.',
     ],
     'addons' => [
         'heading' => 'Add-ons',

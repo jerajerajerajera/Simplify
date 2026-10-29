@@ -46,6 +46,8 @@ return [
         'app_icon_help' => 'Een vierkante PNG, JPEG of WebP van minstens 512 pixels, tot 1 MB. Leeg gebruikt het Simplify-icoon.',
         'app_badge' => 'Statusbalkicoon',
         'app_badge_help' => 'Een PNG met transparante achtergrond, wit getoond in de statusbalk van Android. Leeg gebruikt het app-icoon als dat een transparante achtergrond heeft, anders de pelikaan.',
+        'server_colours' => 'Eigen kleur per server',
+        'server_colours_help' => 'Elke server krijgt een eigen kleur, van zijn groep of voor hem gekozen. Uit: elke server gebruikt de accentkleur.',
     ],
     'addons' => [
         'heading' => 'Add-ons',

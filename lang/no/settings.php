@@ -46,6 +46,8 @@ return [
         'app_icon_help' => 'En kvadratisk PNG, JPEG eller WebP på minst 512 piksler, opptil 1 MB. Tomt bruker Simplify-ikonet.',
         'app_badge' => 'Statuslinjeikon',
         'app_badge_help' => 'En PNG med gjennomsiktig bakgrunn, vist hvit i statuslinjen på Android. Tom bruker app-ikonet hvis det har gjennomsiktig bakgrunn, ellers pelikanen.',
+        'server_colours' => 'Egen farge per server',
+        'server_colours_help' => 'Hver server får sin egen farge, fra gruppen sin eller valgt for den. Av: alle servere bruker aksentfargen.',
     ],
     'addons' => [
         'heading' => 'Tillegg',

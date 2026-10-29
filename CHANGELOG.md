@@ -2,6 +2,7 @@
 
 ## 1.4.2
 
+- Appearance → Colours has the switch "Individual colours per server" again, as in PelicanSimplify 0.7.0. It is on by default; off, every server uses the panel's accent colour on the overview and its own page. A 0.7.0 panel that had it off keeps it off.
 - Server cards show the icon uploaded for the server in Pelican, and without one the egg's icon large, as in PelicanSimplify 0.7.0. Before, a server without an icon of its own showed a plain cube with the egg's icon only as the small badge.
 
 ## 1.4.1

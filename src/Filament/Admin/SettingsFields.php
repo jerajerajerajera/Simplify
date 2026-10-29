@@ -52,6 +52,8 @@ final class SettingsFields
             ColorPicker::make('accent')->label(__(self::T.'appearance.accent'))
                 ->helperText(__(self::T.'appearance.accent_help'))
                 ->hex()->regex('/^#[0-9a-fA-F]{6}$/'),
+            Toggle::make('server_colours')->label(__(self::T.'appearance.server_colours'))
+                ->helperText(__(self::T.'appearance.server_colours_help')),
         ]);
     }
 

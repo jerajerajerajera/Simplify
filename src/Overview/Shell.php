@@ -35,6 +35,7 @@ trait Shell
             'panel_name' => trim((string) $settings['brand_name']) ?: (string) config('app.name', 'Pelican'),
             'appearance' => [
                 'accent_color' => $settings['accent'],
+                'server_colours' => (bool) $settings['server_colours'],
                 'brand' => ['mode' => $logo ? 'logo' : 'text', 'logo_url' => $logo ? url('/simplify/brand/'.$logo) : null, 'logo_height' => $settings['logo_height']],
             ],
             'build_version' => Assets::version(),

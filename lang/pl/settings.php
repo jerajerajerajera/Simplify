@@ -46,6 +46,8 @@ return [
         'app_icon_help' => 'Kwadratowy PNG, JPEG lub WebP o boku co najmniej 512 pikseli, do 1 MB. Puste używa ikony Simplify.',
         'app_badge' => 'Ikona paska stanu',
         'app_badge_help' => 'PNG z przezroczystym tłem, wyświetlany na biało na pasku stanu Androida. Puste: ikona aplikacji, jeśli ma przezroczyste tło, w przeciwnym razie pelikan.',
+        'server_colours' => 'Osobny kolor dla każdego serwera',
+        'server_colours_help' => 'Każdy serwer ma własny kolor, z grupy lub wybrany dla niego. Wyłączone: wszystkie serwery używają koloru akcentu.',
     ],
     'addons' => [
         'heading' => 'Dodatki',
