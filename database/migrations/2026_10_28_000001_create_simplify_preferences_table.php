@@ -8,16 +8,18 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('simplify_preferences', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedInteger('user_id');
-            $table->string('key', 64);
-            $table->json('value');
-            $table->timestamps();
+        if (! Schema::hasTable('simplify_preferences')) {
+            Schema::create('simplify_preferences', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedInteger('user_id');
+                $table->string('key', 64);
+                $table->json('value');
+                $table->timestamps();
 
-            $table->unique(['user_id', 'key']);
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
-        });
+                $table->unique(['user_id', 'key']);
+                $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+            });
+        }
     }
 
     public function down(): void
