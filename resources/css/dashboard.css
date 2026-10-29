@@ -1170,6 +1170,10 @@ body:has(.ps-server-top) .fi-header-actions-ctn { margin-inline-start: auto; }
 body:has(.ps-server-top) .fi-page-header-main-ctn:not(:has(.fi-ta, > .fi-header :is(.fi-btn, .fi-breadcrumbs))) { position: relative; }
 body:has(.ps-server-top) .fi-page-header-main-ctn:not(:has(.fi-ta, > .fi-header :is(.fi-btn, .fi-breadcrumbs))) > .fi-header { position: absolute; top: 14px; inset-inline-end: 16px; z-index: 2; }
 body:has(.ps-server-top) .fi-page-header-main-ctn:not(:has(.fi-ta, > .fi-header :is(.fi-btn, .fi-breadcrumbs))):has(> .fi-header .fi-header-actions-ctn > *) .fi-grid-col:first-child > .fi-sc-component > .fi-section > .fi-section-header { padding-inline-end: 72px; }
+/* The page never scrolls (server.js fitPage): the menu and the page next to it are as tall as the window under the
+   cards, and each scrolls inside itself. Only max-height, so nothing inside takes the full height. */
+html.ps-fit body:has(.ps-server-top) .fi-main-ctn > .fi-main { max-height: var(--ps-fit); padding-bottom: 0 !important; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
+html.ps-fit .ps-server-menu { max-height: var(--ps-fit); }
 html.ps-console-big .ps-server-menu { display: none; }
 html.ps-console-big body:has(.ps-server-top) .fi-main-ctn > .fi-main { grid-column: 1 / -1; }
 
