@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.7
+
+- The server menu next to the console lists all sections again. Since 1.3.5 its first item filled the whole menu, so only Console showed.
+
 ## 1.3.6
 
 - On a server's pages (Website, Minecraft, Plugins and Pelican's own pages) the page title is gone: the menu on the left already says where you are. An icon action such as Save sits in the top corner of the page's card instead of outside it, and the page starts level with the menu.
