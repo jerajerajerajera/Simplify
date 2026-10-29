@@ -91,6 +91,7 @@ jobs:
           php ../demo/tests/demo/seed.php 8090 > servers.json
           php ../demo/tests/demo/urls.php > urls.json
           cat urls.json
+          nohup node ../demo/tests/demo/fake-minecraft.cjs --servers servers.json > minecraft.out 2>&1 &
           nohup node ../demo/tests/demo/fake-wings.cjs --port 8090 --servers servers.json --log wings.log > wings.out 2>&1 &
           PHP_CLI_SERVER_WORKERS=8 nohup php artisan serve --host 127.0.0.1 --port 8001 > serve.log 2>&1 &
           for i in $(seq 1 30); do curl -sf -o /dev/null http://127.0.0.1:8001/login && break; sleep 1; done

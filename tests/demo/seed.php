@@ -73,7 +73,7 @@ foreach ($list as $i => [$name, $eggName, $state, $memory, $cpu, $owner, $color]
             ? ['/plugins/EssentialsX-2.21.0.jar' => 'jar', '/plugins/LuckPerms-Bukkit-5.4.141.jar' => 'jar', '/plugins/WorldEdit-7.3.9.jar' => 'jar']
             : ['/mods/jei-1.21.1-forge-19.21.0.jar' => 'jar', '/mods/create-1.21.1-6.0.4.jar' => 'jar'];
     }
-    $out[] = ['uuid' => $server->uuid, 'name' => $name, 'state' => $state, 'memory' => $memory, 'cpu' => $cpu, 'files' => $files];
+    $out[] = ['uuid' => $server->uuid, 'name' => $name, 'port' => $allocation->port, 'state' => $state, 'memory' => $memory, 'cpu' => $cpu, 'files' => $files];
 }
 echo json_encode($out, JSON_UNESCAPED_SLASHES), "\n";
 $uuid = fn (string $name) => $servers[$name]->uuid;
