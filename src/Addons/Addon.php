@@ -6,6 +6,8 @@ namespace Simplify\Core\Addons;
 
 use App\Models\Server;
 use App\Models\User;
+use Filament\Forms\Components\Field;
+use Filament\Schemas\Components\Component;
 
 /**
  * What an add-on shows inside Simplify. See ADDONS.md.
@@ -135,7 +137,7 @@ abstract class Addon
      * set up in one go. Field names are relative to the add-on: they get setupState() and come back in saveSetup().
      * Empty: the setup links to settingsUrl() instead.
      *
-     * @return list<\Filament\Schemas\Components\Component|\Filament\Forms\Components\Field>
+     * @return list<Component|Field>
      */
     public function setupFields(): array
     {
