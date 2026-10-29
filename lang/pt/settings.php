@@ -52,4 +52,9 @@ return [
         'none' => 'Nenhum add-on instalado. Add-ons como o Server Maker são plugins separados no Pelican Hub.',
         'open' => 'Definições',
     ],
+    'parts' => [
+        'heading' => 'Integrado',
+        'help' => 'Antes eram add-ons separados. Se desligares um, desaparece em todo o lado e os dados são mantidos.',
+        'standalone' => 'O plugin separado :name ainda está instalado, por isso esta parte fica desligada. Abrir esta página copia os dados para o Simplify. Desinstala o plugin para mudar.',
+    ],
 ];

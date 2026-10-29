@@ -23,12 +23,17 @@ use Livewire\Features\SupportTesting\Testable;
 use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Addons\Button;
+use Simplify\Core\Announcements\Filament\AnnouncementResource;
+use Simplify\Core\Announcements\Livewire\AnnouncementBars;
+use Simplify\Core\Announcements\Models\Announcement;
+use Simplify\Core\Announcements\Services\Bell as AnnouncementBell;
 use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\Admin\Pages\Setup;
 use Simplify\Core\Filament\App\Pages\Notifications;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Filament\Server\ServerPage;
 use Simplify\Core\Overview\Listing;
+use Simplify\Core\Parts\Parts;
 use Simplify\Core\People\People;
 use Simplify\Core\Push\Push;
 use Simplify\Core\Push\UpdateNotices;
@@ -519,6 +524,88 @@ step('update notices tell root admins about a new Pelican once', function () use
         throw new RuntimeException('the same update was announced twice');
     }
     $device->delete();
+});
+step('announcements: live bars show for the right people, and the admin list is for root admins', function () use ($admin) {
+    $player = User::where('email', 'smoke-player@example.com')->first()
+        ?? User::withoutEvents(fn () => User::factory()->create(['email' => 'smoke-player@example.com']));
+    Announcement::query()->delete();
+    Announcement::create(['category' => 'warning', 'title' => 'Smoke maintenance tonight', 'ends_at' => now()->addHour(), 'button_url' => '/']);
+    Announcement::create(['title' => 'Smoke for admins', 'audience' => 'admins']);
+    Announcement::create(['title' => 'Smoke later', 'starts_at' => now()->addDay()]);
+    $response = visit($player, '/');
+    expectOk($response, '/');
+    $page = $response->getContent();
+    if (! str_contains($page, 'Smoke maintenance tonight') || str_contains($page, 'Smoke for admins') || str_contains($page, 'Smoke later')) {
+        throw new RuntimeException('the wrong bars show for a player');
+    }
+    if (! str_contains(visit($admin, '/')->getContent(), 'Smoke for admins')) {
+        throw new RuntimeException('an admin misses the admins-only bar');
+    }
+    $url = AnnouncementResource::getUrl(panel: 'admin');
+    $list = visit($admin, $url);
+    expectOk($list, $url);
+    if (! str_contains($list->getContent(), 'Smoke later') || str_contains((string) visit($player, $url)->getContent(), 'Smoke later')) {
+        throw new RuntimeException('the admin list is wrong or opens for a player');
+    }
+});
+step('announcements: unpin moves a bar to the bell, pin brings it back, and the scheduler fills the bell once', function () {
+    $player = User::where('email', 'smoke-player@example.com')->firstOrFail();
+    $live = Announcement::query()->where('title', 'Smoke maintenance tonight')->firstOrFail();
+    auth()->setUser($player);
+    Livewire\Livewire::test(AnnouncementBars::class)->call('unpin', $live->id);
+    if (Announcement::barsFor($player)->whereKey($live->id)->exists() || ! AnnouncementBell::has($live->id, $player)) {
+        throw new RuntimeException('unpinning did not move the bar to the bell');
+    }
+    Livewire\Livewire::test(AnnouncementBars::class)->call('pin', $live->id);
+    if (Announcement::barsFor($player)->whereKey($live->id)->doesntExist() || AnnouncementBell::has($live->id, $player)) {
+        throw new RuntimeException('pinning did not bring the bar back');
+    }
+    $bell = Announcement::create(['title' => 'Smoke in the bell', 'in_bell' => true]);
+    if (Artisan::call('simplify:announcements') !== 0) {
+        throw new RuntimeException('the scheduler command failed: '.Artisan::output());
+    }
+    Artisan::call('simplify:announcements');
+    if ($player->notifications()->where('data->viewData->simplify_announcement', $bell->id)->count() !== 1) {
+        throw new RuntimeException('the bell item did not arrive exactly once');
+    }
+});
+step('announcements: the separate plugin\'s data is copied over', function () {
+    Illuminate\Support\Facades\Schema::create('simplify_announcements', function ($table) {
+        $table->id();
+        $table->string('title', 120);
+        $table->string('audience', 16)->default('everyone');
+        $table->timestamps();
+    });
+    try {
+        Illuminate\Support\Facades\DB::table('simplify_announcements')->insert(['id' => 77, 'title' => 'Smoke from the add-on', 'audience' => 'everyone']);
+        Parts::import('announcements');
+        if (Announcement::query()->pluck('title', 'id')->all() !== [77 => 'Smoke from the add-on']) {
+            throw new RuntimeException('not copied: '.json_encode(Announcement::query()->pluck('title', 'id')));
+        }
+        if (Announcement::create(['title' => 'Smoke after the copy'])->id <= 77) {
+            throw new RuntimeException('a new announcement reuses a copied id');
+        }
+    } finally {
+        Illuminate\Support\Facades\Schema::drop('simplify_announcements');
+    }
+});
+step('announcements: a root admin turns the part off', function () {
+    PanelSettings::save(['part_announcements' => false]);
+});
+step('announcements: turned off, the bars, admin page and add-on row are gone', function () use ($admin) {
+    try {
+        $page = visit($admin, '/');
+        expectOk($page, '/');
+        if (str_contains($page->getContent(), 'Smoke from the add-on') || app(AddonRegistry::class)->find('simplify-announcements') !== null) {
+            throw new RuntimeException('a part that is off still shows');
+        }
+        if (visit($admin, '/admin/simplify-announcements')->getStatusCode() !== 404) {
+            throw new RuntimeException('the admin page of a part that is off still opens');
+        }
+    } finally {
+        PanelSettings::save(['part_announcements' => true]);
+        Announcement::query()->delete();
+    }
 });
 if ($failed || $passed === 0) {
     exit(1);

@@ -37,6 +37,8 @@ final class PanelSettings
         'app_icon' => [null, ['nullable', 'string', 'regex:#^'.Brand::DIRECTORY.'/'.Brand::FILE_PATTERN.'$#']],
         'app_badge' => [null, ['nullable', 'string', 'regex:#^'.Brand::DIRECTORY.'/'.Brand::FILE_PATTERN.'$#']],
         'logo_height' => [32, ['required', 'integer', 'min:16', 'max:64']],
+        // Parts that used to be separate add-ons (Parts).
+        'part_announcements' => [true, ['required', 'boolean']],
     ];
 
     /** @return array<string, mixed> */
