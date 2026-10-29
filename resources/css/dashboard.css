@@ -205,10 +205,10 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-card-graph path { fill: none; vector-effect: non-scaling-stroke; }
 .ps-card-graph circle { fill: var(--ps-accent); stroke: none; }
 .ps-card-graph .ps-card-graph-axis { stroke: var(--ps-line); stroke-width: 1; opacity: .6; }
-.ps-card-bottom { display: flex; flex: none; align-items: center; justify-content: space-between; margin-top: 6px; padding-top: 11px; border-top: 1px solid var(--ps-line); color: var(--ps-accent); font-size: 15px; font-weight: 650; }
+.ps-card-bottom { display: flex; flex: none; align-self: stretch; align-items: center; justify-content: space-between; margin-top: 6px; padding-top: 11px; border-top: 1px solid var(--ps-line); color: var(--ps-accent); font-size: 15px; font-weight: 650; }
 .ps-server-grid.no-metrics .ps-card-bottom { margin-top: auto; }
-.ps-card-bottom svg { width: 17px; height: 17px; }
-.ps-card-extras { display: flex; flex: 1; justify-content: flex-end; gap: 4px; min-width: 0; margin-inline: 8px; overflow: hidden; }
+.ps-card-bottom svg { flex: none; width: 17px; height: 17px; }
+.ps-card-extras { display: flex; flex: 1 1 0; width: 0; justify-content: flex-end; gap: 4px; min-width: 0; margin-inline: 8px; overflow: hidden; }
 .ps-card-extras .ps-badge { display: block; flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; min-height: 0; padding-block: 2px; line-height: 16px; }
 .ps-card-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; border-top: 1px solid var(--ps-line); background: color-mix(in srgb, var(--ps-surface) 82%, transparent); transition: padding var(--ps-slow); }
 .ps-list-player-count { display: inline-flex; align-items: center; justify-content: flex-end; gap: 10px; margin-inline-start: auto; min-height: var(--ps-h-sm); padding: 5px 16px; border: 0; background: transparent; color: var(--ps-accent); font-size: 14px; font-weight: 650; white-space: nowrap; }
