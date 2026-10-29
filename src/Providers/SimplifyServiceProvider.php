@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Simplify\Core\Providers;
 
 use App\Models\Server;
-use Illuminate\Auth\Events\Login;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Container\Container;
 use Illuminate\Support\Facades\Event;
@@ -20,7 +19,6 @@ use Simplify\Core\Announcements\Models\Announcement;
 use Simplify\Core\Announcements\Policies\AnnouncementPolicy;
 use Simplify\Core\Console\UpdateNoticesCommand;
 use Simplify\Core\Embed\EmbedController;
-use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Http\Controllers\AssetController;
 use Simplify\Core\Http\Controllers\BannerController;
 use Simplify\Core\Http\Controllers\BrandController;
@@ -30,7 +28,6 @@ use Simplify\Core\Server\Looks;
 use Simplify\Core\Subdomains\Console\SyncSubdomains;
 use Simplify\Core\Subdomains\Subdomains;
 use Simplify\Core\Support\Brand;
-use Simplify\Core\Support\PanelSettings;
 use Throwable;
 
 final class SimplifyServiceProvider extends ServiceProvider
@@ -72,12 +69,6 @@ final class SimplifyServiceProvider extends ServiceProvider
         if (Push::enabled()) {
             Event::listen('simplify.push', fn (array $message) => Push::fromEvent($message));
         }
-        // The overview as start page: only where nothing else asked for a page, so a link someone followed still wins.
-        Event::listen(Login::class, function () {
-            if (PanelSettings::get('start_page') === 'overview' && app()->bound('session') && ! session()->has('url.intended')) {
-                session()->put('url.intended', Overview::getUrl(panel: 'app'));
-            }
-        });
         Gate::policy(Announcement::class, AnnouncementPolicy::class);
         Livewire::component('simplify-core-announcement-bars', AnnouncementBars::class);
 

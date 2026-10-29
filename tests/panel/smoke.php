@@ -6,7 +6,6 @@ use App\Models\Role;
 use App\Models\Server;
 use App\Models\User;
 use Filament\Support\Colors\Color;
-use Illuminate\Auth\Events\Login;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithAuthentication;
@@ -197,6 +196,18 @@ step('the first visit to the settings opens the setup, and finishing it saves th
         throw new RuntimeException('the setup was not saved: '.json_encode(PanelSettings::all()));
     }
 });
+step('opening the panel shows the overview, unless Pelican is the start page', function () use ($admin) {
+    $home = visit($admin, url('/'));
+    if (! $home->isRedirect(Overview::getUrl(panel: 'app'))) {
+        throw new RuntimeException('the panel opened without the overview (HTTP '.$home->getStatusCode().')');
+    }
+    PanelSettings::save(['start_page' => 'pelican']);
+    try {
+        expectOk(visit($admin, url('/')), url('/'));
+    } finally {
+        PanelSettings::save(['start_page' => 'overview']);
+    }
+});
 step('settings page renders with its menu, Pelican tabs included', function () use ($admin) {
     $url = Settings::getUrl(panel: 'admin');
     $response = visit($admin, $url);
@@ -313,11 +324,7 @@ step('the console page shows the Simplify header, server card and menu', functio
         }
     }
 });
-step('signing in lands on the overview, and add-ons give server links, customer links and host mode', function ($app) use ($admin, $server) {
-    event(new Login('web', $admin, false));
-    if (session('url.intended') !== Overview::getUrl(panel: 'app')) {
-        throw new RuntimeException('signing in does not lead to the overview: '.json_encode(session('url.intended')));
-    }
+step('add-ons give server links, customer links and host mode', function ($app) use ($admin, $server) {
     $app->tag([HostingAddon::class], AddonRegistry::TAG);
     $url = Filament\Facades\Filament::getPanel('server')->getUrl($server);
     $response = visit($admin, $url);
@@ -540,13 +547,15 @@ step('announcements: live bars show for the right people, and the admin list is 
     Announcement::create(['category' => 'warning', 'title' => 'Smoke maintenance tonight', 'ends_at' => now()->addHour(), 'button_url' => '/']);
     Announcement::create(['title' => 'Smoke for admins', 'audience' => 'admins']);
     Announcement::create(['title' => 'Smoke later', 'starts_at' => now()->addDay()]);
-    $response = visit($player, '/');
-    expectOk($response, '/');
+    // The overview is the start page: Pelican's list at / sends there.
+    $home = Overview::getUrl(panel: 'app');
+    $response = visit($player, $home);
+    expectOk($response, $home);
     $page = $response->getContent();
     if (! str_contains($page, 'Smoke maintenance tonight') || str_contains($page, 'Smoke for admins') || str_contains($page, 'Smoke later')) {
         throw new RuntimeException('the wrong bars show for a player');
     }
-    if (! str_contains(visit($admin, '/')->getContent(), 'Smoke for admins')) {
+    if (! str_contains(visit($admin, $home)->getContent(), 'Smoke for admins')) {
         throw new RuntimeException('an admin misses the admins-only bar');
     }
     $url = AnnouncementResource::getUrl(panel: 'admin');
