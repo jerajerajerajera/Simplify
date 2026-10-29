@@ -91,6 +91,20 @@ final class Subdomains
         return self::minecraft($server) ? $host : $host.':'.(int) $server->allocation?->port;
     }
 
+    /** @var array<string, ?string>|null active subdomain names by server uuid: one query for all tiles of a page */
+    private static ?array $active = null;
+
+    /** The server's address for its tile, when it has an active subdomain. */
+    public static function badge(Server $server): ?string
+    {
+        if (! self::ready()) {
+            return null;
+        }
+        self::$active ??= Subdomain::query()->where('status', Subdomain::ACTIVE)->pluck('name', 'server_uuid')->all();
+
+        return self::join($server, self::$active[$server->uuid] ?? null);
+    }
+
     /** @return array{name: string, status: string, message: string} what the server page shows */
     public static function state(Server $server): array
     {
