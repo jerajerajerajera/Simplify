@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Simplify\Core;
 
-use App\Enums\ConsoleWidgetPosition;
-use App\Filament\Server\Pages\Console;
 use App\Models\Server;
 use Filament\Actions\Action;
 use Filament\Contracts\Plugin;
@@ -22,7 +20,6 @@ use Simplify\Core\Filament\Admin\Pages\Setup;
 use Simplify\Core\Filament\App\Pages\Notifications;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Filament\Server\ServerPage;
-use Simplify\Core\Filament\Server\Widgets\AddonSections;
 use Simplify\Core\Http\Middleware\FramePolicy;
 use Simplify\Core\Http\Middleware\StartPage;
 use Simplify\Core\Subdomains\Filament\AutomaticSubdomains;
@@ -66,7 +63,6 @@ final class SimplifyPlugin implements Plugin
         if ($panel->getId() === 'server') {
             // Simplify's header, server card and menu around every page of a server.
             $panel->renderHook(PanelsRenderHook::CONTENT_BEFORE, fn () => self::serverTop());
-            Console::registerCustomWidgets(ConsoleWidgetPosition::BelowConsole, [AddonSections::class]);
         }
         if ($panel->getId() === 'admin') {
             $panel->pages([Settings::class, Setup::class, People::class]);
