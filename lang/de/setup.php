@@ -11,7 +11,7 @@ return [
         'look' => 'Aussehen',
         'app' => 'App',
         'addons' => 'Add-ons',
-        'finish' => 'Bestandteile & Add-ons',
+        'finish' => 'Add-ons einrichten',
     ],
     'checks' => [
         'https' => 'Das Panel läuft über https. Browser installieren die App und senden Benachrichtigungen nur über https.',

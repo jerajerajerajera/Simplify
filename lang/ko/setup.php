@@ -11,7 +11,7 @@ return [
         'look' => '모양',
         'app' => '앱',
         'addons' => '애드온',
-        'finish' => '구성 요소 및 애드온',
+        'finish' => '애드온 설정',
     ],
     'checks' => [
         'https' => '패널이 https로 실행 중입니다. 브라우저는 https에서만 앱을 설치하고 알림을 보냅니다.',

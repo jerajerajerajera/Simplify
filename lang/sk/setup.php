@@ -11,7 +11,7 @@ return [
         'look' => 'Vzhľad',
         'app' => 'Aplikácia',
         'addons' => 'Doplnky',
-        'finish' => 'Súčasti a doplnky',
+        'finish' => 'Nastaviť doplnky',
     ],
     'checks' => [
         'https' => 'Panel beží cez https. Prehliadače inštalujú aplikáciu a posielajú upozornenia len cez https.',

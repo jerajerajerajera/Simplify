@@ -11,7 +11,7 @@ return [
         'look' => 'Utseende',
         'app' => 'App',
         'addons' => 'Tillägg',
-        'finish' => 'Delar och add-ons',
+        'finish' => 'Ställ in add-ons',
     ],
     'checks' => [
         'https' => 'Panelen körs på https. Webbläsare installerar bara appen och skickar bara aviseringar över https.',

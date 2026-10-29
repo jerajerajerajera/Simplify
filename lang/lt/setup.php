@@ -11,7 +11,7 @@ return [
         'look' => 'Išvaizda',
         'app' => 'Programėlė',
         'addons' => 'Priedai',
-        'finish' => 'Dalys ir priedai',
+        'finish' => 'Nustatyti priedus',
     ],
     'checks' => [
         'https' => 'Skydelis veikia per https. Naršyklės programėlę diegia ir pranešimus siunčia tik per https.',

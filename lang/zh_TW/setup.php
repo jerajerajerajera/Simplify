@@ -11,7 +11,7 @@ return [
         'look' => '外觀',
         'app' => '應用程式',
         'addons' => '附加元件',
-        'finish' => '元件與附加元件',
+        'finish' => '設定附加元件',
     ],
     'checks' => [
         'https' => '面板在 https 上執行。瀏覽器只會透過 https 安裝應用程式和傳送通知。',

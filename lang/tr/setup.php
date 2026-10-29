@@ -11,7 +11,7 @@ return [
         'look' => 'Görünüm',
         'app' => 'Uygulama',
         'addons' => 'Ek özellikler',
-        'finish' => 'Parçalar ve eklentiler',
+        'finish' => 'Eklentileri ayarla',
     ],
     'checks' => [
         'https' => 'Panel https üzerinde çalışıyor. Tarayıcılar uygulamayı yalnızca https üzerinden kurar ve bildirim gönderir.',

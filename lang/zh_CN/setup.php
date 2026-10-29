@@ -11,7 +11,7 @@ return [
         'look' => '外观',
         'app' => '应用',
         'addons' => '附加组件',
-        'finish' => '组件和附加组件',
+        'finish' => '设置附加组件',
     ],
     'checks' => [
         'https' => '面板运行在 https 上。浏览器只会通过 https 安装应用和发送通知。',
