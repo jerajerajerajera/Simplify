@@ -11,7 +11,7 @@ permissions:
 jobs:
   demo:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 50
     env:
       PELICAN: '1.0.0-rc.2'
     steps:
