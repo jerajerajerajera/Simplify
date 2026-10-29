@@ -552,13 +552,15 @@ step('announcements: live bars show for the right people, and the admin list is 
     Announcement::create(['category' => 'warning', 'title' => 'Smoke maintenance tonight', 'ends_at' => now()->addHour(), 'button_url' => '/']);
     Announcement::create(['title' => 'Smoke for admins', 'audience' => 'admins']);
     Announcement::create(['title' => 'Smoke later', 'starts_at' => now()->addDay()]);
-    $response = visit($player, '/');
-    expectOk($response, '/');
+    // The overview is the start page: Pelican's list at / sends there.
+    $home = Overview::getUrl(panel: 'app');
+    $response = visit($player, $home);
+    expectOk($response, $home);
     $page = $response->getContent();
     if (! str_contains($page, 'Smoke maintenance tonight') || str_contains($page, 'Smoke for admins') || str_contains($page, 'Smoke later')) {
         throw new RuntimeException('the wrong bars show for a player');
     }
-    if (! str_contains(visit($admin, '/')->getContent(), 'Smoke for admins')) {
+    if (! str_contains(visit($admin, $home)->getContent(), 'Smoke for admins')) {
         throw new RuntimeException('an admin misses the admins-only bar');
     }
     $url = AnnouncementResource::getUrl(panel: 'admin');
