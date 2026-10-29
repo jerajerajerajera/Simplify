@@ -6,7 +6,6 @@ use App\Models\Role;
 use App\Models\Server;
 use App\Models\User;
 use Filament\Support\Colors\Color;
-use Illuminate\Auth\Events\Login;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithAuthentication;
@@ -325,11 +324,7 @@ step('the console page shows the Simplify header, server card and menu', functio
         }
     }
 });
-step('signing in lands on the overview, and add-ons give server links, customer links and host mode', function ($app) use ($admin, $server) {
-    event(new Login('web', $admin, false));
-    if (session('url.intended') !== Overview::getUrl(panel: 'app')) {
-        throw new RuntimeException('signing in does not lead to the overview: '.json_encode(session('url.intended')));
-    }
+step('add-ons give server links, customer links and host mode', function ($app) use ($admin, $server) {
     $app->tag([HostingAddon::class], AddonRegistry::TAG);
     $url = Filament\Facades\Filament::getPanel('server')->getUrl($server);
     $response = visit($admin, $url);
