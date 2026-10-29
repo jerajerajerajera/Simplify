@@ -664,7 +664,7 @@ Subdomains::$transport = function (string $method, string $path, ?array $body) u
 step('subdomains: the settings and server pages open, and the token is stored encrypted', function () use ($admin, $server) {
     SubdomainSettings::save(['domain' => 'Example.com', 'target' => 'play.example.com', 'port_min' => 1, 'port_max' => 65535, 'zone_id' => str_repeat('a', 32), 'token' => 'smoke-token']);
     SubdomainSettings::flush();
-    $stored = (string) Illuminate\Support\Facades\DB::table(SubdomainSettings::TABLE)->where('key', 'token')->value('value');
+    $stored = (string) DB::table(SubdomainSettings::TABLE)->where('key', 'token')->value('value');
     if (! Subdomains::ready() || SubdomainSettings::domain() !== 'example.com' || $stored === '' || str_contains($stored, 'smoke-token')) {
         throw new RuntimeException('settings not saved right: missing '.implode(', ', SubdomainSettings::missing()));
     }
@@ -696,7 +696,7 @@ step('subdomains: forgetting a server removes its records', function () use ($se
 });
 step('subdomains: settings and subdomains from PelicanSimplify 0.6 and 0.7 are taken over', function () {
     Subdomain::query()->delete();
-    Illuminate\Support\Facades\DB::table(SubdomainSettings::TABLE)->delete();
+    DB::table(SubdomainSettings::TABLE)->delete();
     $disk = Storage::disk('local');
     $disk->put('simplify/subdomains.json', json_encode(['domain' => 'old.example', 'target' => 'play.old.example', 'port_min' => 25565, 'port_max' => 25600, 'zone_id' => str_repeat('b', 32), 'token' => encrypt('old-token')]));
     $disk->put('simplify/subdomains/dddddddd-0000-0000-0000-000000000004.json', json_encode(['name' => 'oak', 'status' => 'active', 'port' => 25566]));
@@ -710,7 +710,7 @@ step('subdomains: settings and subdomains from PelicanSimplify 0.6 and 0.7 are t
         $disk->deleteDirectory('simplify/subdomains');
         $disk->delete('simplify/subdomains.json');
         Subdomain::query()->delete();
-        Illuminate\Support\Facades\DB::table(SubdomainSettings::TABLE)->delete();
+        DB::table(SubdomainSettings::TABLE)->delete();
         SubdomainSettings::flush();
     }
 });
