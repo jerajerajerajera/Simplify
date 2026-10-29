@@ -1,0 +1,4941 @@
+{
+ "base": "http://127.0.0.1:8001",
+ "screens": [
+  {
+   "id": "overview-grid",
+   "title": "Overzicht, grid",
+   "stand": "phone360-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (4101 > 780), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 4101,
+     "pageScrollW": 360,
+     "card": "0..3985 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/overview-grid.png"
+  },
+  {
+   "id": "overview-compact",
+   "title": "Overzicht, compact",
+   "stand": "phone360-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1622 > 780), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1622,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "span: \"Running\"",
+      "span: \"Running\"",
+      "span: \"Running\"",
+      "span: \"Running\"",
+      "span: \"Starting\"",
+      "span: \"Running\"",
+      "span: \"Running\"",
+      "span: \"Running\""
+     ],
+     "card": "0..1506 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/overview-compact.png"
+  },
+  {
+   "id": "overview-list",
+   "title": "Overzicht, list",
+   "stand": "phone360-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1766 > 780), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1766,
+     "pageScrollW": 360,
+     "card": "0..1650 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/overview-list.png"
+  },
+  {
+   "id": "overview-phone-menu",
+   "title": "Overzicht, telefoonmenu open",
+   "stand": "phone360-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (4101 > 780), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 4101,
+     "pageScrollW": 360,
+     "card": "0..3985 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/overview-phone-menu.png"
+  },
+  {
+   "id": "overview-account",
+   "title": "Accountmenu open",
+   "stand": "phone360-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (4101 > 780), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 4101,
+     "pageScrollW": 360,
+     "card": "0..3985 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/overview-account.png"
+  },
+  {
+   "id": "overview-account-theme",
+   "title": "Accountmenu, themakeuze open",
+   "stand": "phone360-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (4101 > 780), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 4101,
+     "pageScrollW": 360,
+     "card": "0..3985 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/overview-account-theme.png"
+  },
+  {
+   "id": "overview-bell",
+   "title": "Bel (aankondigingen) open",
+   "stand": "phone360-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (4101 > 780), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 4101,
+     "pageScrollW": 360,
+     "card": "0..3985 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/overview-bell.png"
+  },
+  {
+   "id": "overview-admin",
+   "title": "Beheermenu (schild) open",
+   "stand": "phone360-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (4101 > 780), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 4101,
+     "pageScrollW": 360,
+     "card": "0..3985 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/overview-admin.png"
+  },
+  {
+   "id": "overview-customize",
+   "title": "Weergave aanpassen open",
+   "stand": "phone360-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (4101 > 780), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 4101,
+     "pageScrollW": 360,
+     "card": "0..3985 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/overview-customize.png"
+  },
+  {
+   "id": "overview-groups",
+   "title": "Servergroepen open",
+   "stand": "phone360-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (4101 > 780), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 4101,
+     "pageScrollW": 360,
+     "card": "0..3985 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/overview-groups.png"
+  },
+  {
+   "id": "overview-health",
+   "title": "Gezondheid van de host open",
+   "stand": "phone360-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (4101 > 780), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 4101,
+     "pageScrollW": 360,
+     "card": "0..3985 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/overview-health.png"
+  },
+  {
+   "id": "app-notifications",
+   "title": "Notifications",
+   "stand": "phone360-dark",
+   "url": "/simplify-notifications",
+   "main": {
+    "url": "/simplify-notifications",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (793 > 780), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 793,
+     "pageScrollW": 360,
+     "card": "64..737 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/app-notifications.png"
+  },
+  {
+   "id": "app-server-maker",
+   "title": "Server Maker",
+   "stand": "phone360-dark",
+   "url": "/server-maker",
+   "main": {
+    "url": "/server-maker",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1928 > 780), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1928,
+     "pageScrollW": 360,
+     "card": "64..1872 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/app-server-maker.png"
+  },
+  {
+   "id": "profile",
+   "title": "Profiel",
+   "stand": "phone360-dark",
+   "url": "/profile",
+   "main": {
+    "url": "/profile",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1041 > 780), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sc-tab-b6431cac22d44722d9edc3d67000376a \"SSH Keys\" sticks 94px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1041,
+     "pageScrollW": 360,
+     "card": "64..985 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/profile.png"
+  },
+  {
+   "id": "server-console",
+   "title": "Server · Console (Survival SMP)",
+   "stand": "phone360-dark",
+   "url": "/server/mbpmkmpw/console",
+   "main": {
+    "url": "/server/mbpmkmpw/console",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1424 > 780), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1424,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "ps-player-empty: \"Names not available\"",
+      "small: \"of 200% allocated\"",
+      "small: \"of 4.0 GB allocated\"",
+      "strong: \"858.3 MB\"",
+      "small: \"of 20.0 GB allocated\""
+     ],
+     "card": "477..1378 of 780",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,538 296x570; terminal 15,478 330x640; bar top 1170"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/server-console.png"
+  },
+  {
+   "id": "server-console-typed",
+   "title": "Server · Console na een commando",
+   "stand": "phone360-dark",
+   "url": "/server/mbpmkmpw/console",
+   "main": {
+    "url": "/server/mbpmkmpw/console",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1424 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: a \"Northwind Games× PelicanNorthwind Games\" (14,-413 284x55) | ps-btn.ps-back-overview \"All servers\" (14,-350 134x38) | Unpin \"\" (311,-299 30x20) | Unpin \"\" (311,-269 30x20) | Panel navigation \"\" (308,-413 38x38) | Rename \"\" (224,-215 30x30) | ps-address.ps-info-address \"play.example.com:25565\" (87,-157 208x20) | Stop server \"Stop\" (29,-125 121x44)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1424,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-statusbar-name: \"Survival SMP\"",
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "ps-player-empty: \"Names not available\"",
+      "small: \"of 200% allocated\"",
+      "small: \"of 4.0 GB allocated\"",
+      "strong: \"858.3 MB\"",
+      "small: \"of 20.0 GB allocated\""
+     ],
+     "card": "48..949 of 780",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,109 296x570; terminal 15,49 330x640; bar top 741"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/server-console-typed.png"
+  },
+  {
+   "id": "server-more",
+   "title": "Server · ⋯-menu open",
+   "stand": "phone360-dark",
+   "url": "/server/mbpmkmpw/console",
+   "main": {
+    "url": "/server/mbpmkmpw/console",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1424 > 780), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1424,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "ps-player-empty: \"Names not available\"",
+      "small: \"of 200% allocated\"",
+      "small: \"of 4.0 GB allocated\"",
+      "strong: \"858.3 MB\"",
+      "small: \"of 20.0 GB allocated\""
+     ],
+     "popups": [
+      "ps-info-menu 101,356 230x256"
+     ],
+     "card": "477..1378 of 780",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,538 296x570; terminal 15,478 330x640; bar top 1170"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/server-more.png"
+  },
+  {
+   "id": "server-colour",
+   "title": "Server · kleurkiezer open",
+   "stand": "phone360-dark",
+   "url": "/server/mbpmkmpw/console",
+   "main": {
+    "url": "/server/mbpmkmpw/console",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1424 > 780), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1424,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "ps-player-empty: \"Names not available\"",
+      "small: \"of 200% allocated\"",
+      "small: \"of 4.0 GB allocated\"",
+      "strong: \"858.3 MB\"",
+      "small: \"of 20.0 GB allocated\""
+     ],
+     "popups": [
+      "ps-dropdown.is-end.ps-color-dropdown 83,356 248x205"
+     ],
+     "card": "477..1378 of 780",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,538 296x570; terminal 15,478 330x640; bar top 1170"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/server-colour.png"
+  },
+  {
+   "id": "server-phone-more",
+   "title": "Server · telefoon: Meer-menu open",
+   "stand": "phone360-dark",
+   "url": "/server/mbpmkmpw/console",
+   "main": {
+    "url": "/server/mbpmkmpw/console",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1424 > 780), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1424,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "ps-player-empty: \"Names not available\"",
+      "small: \"of 200% allocated\"",
+      "small: \"of 4.0 GB allocated\"",
+      "strong: \"858.3 MB\"",
+      "small: \"of 20.0 GB allocated\""
+     ],
+     "popups": [
+      "ps-phone-more-menu 92,246 260x468 scrolls"
+     ],
+     "panes": [
+      "ps-phone-more-menu 466/596"
+     ],
+     "card": "477..1378 of 780",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,538 296x570; terminal 15,478 330x640; bar top 1170"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/server-phone-more.png"
+  },
+  {
+   "id": "server-console",
+   "title": "Server · Console",
+   "stand": "phone360-dark",
+   "url": "/server/mbpmkmpw/console",
+   "main": {
+    "url": "/server/mbpmkmpw/console",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1424 > 780), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1424,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "ps-player-empty: \"Names not available\"",
+      "small: \"of 200% allocated\"",
+      "small: \"of 4.0 GB allocated\"",
+      "strong: \"858.3 MB\"",
+      "small: \"of 20.0 GB allocated\""
+     ],
+     "card": "477..1378 of 780",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,538 296x570; terminal 15,478 330x640; bar top 1170"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/server-console.png"
+  },
+  {
+   "id": "server-files",
+   "title": "Server · Files",
+   "stand": "phone360-dark",
+   "url": "/server/mbpmkmpw/files",
+   "main": {
+    "url": "/server/mbpmkmpw/files",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (981 > 780), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 981,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "ps-player-empty: \"Names not available\"",
+      "small: \"of 200% allocated\"",
+      "small: \"of 4.0 GB allocated\"",
+      "strong: \"858.3 MB\"",
+      "small: \"of 20.0 GB allocated\""
+     ],
+     "card": "477..935 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/server-files.png"
+  },
+  {
+   "id": "server-backups",
+   "title": "Server · Backups",
+   "stand": "phone360-dark",
+   "url": "/server/mbpmkmpw/backups",
+   "main": {
+    "url": "/server/mbpmkmpw/backups",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1103 > 780), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1103,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "ps-player-empty: \"Names not available\"",
+      "small: \"of 200% allocated\"",
+      "small: \"of 4.0 GB allocated\"",
+      "strong: \"858.3 MB\"",
+      "small: \"of 20.0 GB allocated\""
+     ],
+     "card": "477..1057 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/server-backups.png"
+  },
+  {
+   "id": "server-backups-new",
+   "title": "Server · Backups, nieuw-dialoog open",
+   "stand": "phone360-dark",
+   "url": "/server/mbpmkmpw/backups",
+   "main": {
+    "url": "/server/mbpmkmpw/backups",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1103 > 780), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1103,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "ps-player-empty: \"Names not available\"",
+      "small: \"of 200% allocated\"",
+      "small: \"of 4.0 GB allocated\"",
+      "strong: \"858.3 MB\"",
+      "small: \"of 20.0 GB allocated\""
+     ],
+     "popups": [
+      "fi-modal-window.fi-modal-window-has-close-btn.fi-modal-windo 19,205 323x370"
+     ],
+     "card": "477..1057 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/server-backups-new.png"
+  },
+  {
+   "id": "server-schedules",
+   "title": "Server · Schedules",
+   "stand": "phone360-dark",
+   "url": "/server/mbpmkmpw/schedules",
+   "main": {
+    "url": "/server/mbpmkmpw/schedules",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (938 > 780), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 938,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "ps-player-empty: \"Names not available\"",
+      "small: \"of 200% allocated\"",
+      "small: \"of 4.0 GB allocated\"",
+      "strong: \"858.3 MB\"",
+      "small: \"of 20.0 GB allocated\""
+     ],
+     "card": "477..892 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/server-schedules.png"
+  },
+  {
+   "id": "server-schedule-edit",
+   "title": "Server · Schedule bewerken (3 taken)",
+   "stand": "phone360-dark",
+   "url": "/server/mbpmkmpw/schedules/1/edit",
+   "main": {
+    "url": "/server/mbpmkmpw/schedules/1/edit",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1832 > 780), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1832,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "ps-player-empty: \"Names not available\"",
+      "small: \"of 200% allocated\"",
+      "small: \"of 4.0 GB allocated\"",
+      "strong: \"858.3 MB\"",
+      "small: \"of 20.0 GB allocated\""
+     ],
+     "card": "477..1786 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/server-schedule-edit.png"
+  },
+  {
+   "id": "server-schedules-new",
+   "title": "Server · Schedules, nieuw-dialoog open",
+   "stand": "phone360-dark",
+   "url": "/server/mbpmkmpw/schedules/1/edit",
+   "main": {
+    "url": "/server/mbpmkmpw/schedules/1/edit",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1832 > 780), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1832,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "ps-player-empty: \"Names not available\"",
+      "small: \"of 200% allocated\"",
+      "small: \"of 4.0 GB allocated\"",
+      "strong: \"858.3 MB\"",
+      "small: \"of 20.0 GB allocated\""
+     ],
+     "card": "477..1786 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/server-schedules-new.png"
+  },
+  {
+   "id": "server-users",
+   "title": "Server · Users",
+   "stand": "phone360-dark",
+   "url": "/server/mbpmkmpw/subusers",
+   "main": {
+    "url": "/server/mbpmkmpw/subusers",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (981 > 780), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 981,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "ps-player-empty: \"Names not available\"",
+      "small: \"of 200% allocated\"",
+      "small: \"of 4.0 GB allocated\"",
+      "strong: \"858.3 MB\"",
+      "small: \"of 20.0 GB allocated\""
+     ],
+     "card": "477..935 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/server-users.png"
+  },
+  {
+   "id": "server-users-new",
+   "title": "Server · Users, nieuw-dialoog open",
+   "stand": "phone360-dark",
+   "url": "/server/mbpmkmpw/subusers",
+   "main": {
+    "url": "/server/mbpmkmpw/subusers",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (981 > 780), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 981,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "ps-player-empty: \"Names not available\"",
+      "small: \"of 200% allocated\"",
+      "small: \"of 4.0 GB allocated\"",
+      "strong: \"858.3 MB\"",
+      "small: \"of 20.0 GB allocated\""
+     ],
+     "panes": [
+      "fi-modal-window-ctn.fi-clickable 780/889"
+     ],
+     "card": "477..935 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/server-users-new.png"
+  },
+  {
+   "id": "server-databases",
+   "title": "Server · Databases",
+   "stand": "phone360-dark",
+   "url": "/server/mbpmkmpw/databases",
+   "main": {
+    "url": "/server/mbpmkmpw/databases",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (929 > 780), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 929,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "ps-player-empty: \"Names not available\"",
+      "small: \"of 200% allocated\"",
+      "small: \"of 4.0 GB allocated\"",
+      "strong: \"858.3 MB\"",
+      "small: \"of 20.0 GB allocated\""
+     ],
+     "card": "477..883 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/server-databases.png"
+  },
+  {
+   "id": "server-databases-new",
+   "title": "Server · Databases, nieuw-dialoog open",
+   "stand": "phone360-dark",
+   "url": "/server/mbpmkmpw/databases",
+   "main": {
+    "url": "/server/mbpmkmpw/databases",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (929 > 780), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 929,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "ps-player-empty: \"Names not available\"",
+      "small: \"of 200% allocated\"",
+      "small: \"of 4.0 GB allocated\"",
+      "strong: \"858.3 MB\"",
+      "small: \"of 20.0 GB allocated\""
+     ],
+     "card": "477..883 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/server-databases-new.png"
+  },
+  {
+   "id": "server-network",
+   "title": "Server · Network",
+   "stand": "phone360-dark",
+   "url": "/server/mbpmkmpw/allocations",
+   "main": {
+    "url": "/server/mbpmkmpw/allocations",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (801 > 780), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 801,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "ps-player-empty: \"Names not available\"",
+      "small: \"of 200% allocated\"",
+      "small: \"of 4.0 GB allocated\"",
+      "strong: \"858.3 MB\"",
+      "small: \"of 20.0 GB allocated\""
+     ],
+     "card": "477..755 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/server-network.png"
+  },
+  {
+   "id": "server-activity",
+   "title": "Server · Activity",
+   "stand": "phone360-dark",
+   "url": "/server/mbpmkmpw/activities",
+   "main": {
+    "url": "/server/mbpmkmpw/activities",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (929 > 780), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 929,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "ps-player-empty: \"Names not available\"",
+      "small: \"of 200% allocated\"",
+      "small: \"of 4.0 GB allocated\"",
+      "strong: \"858.3 MB\"",
+      "small: \"of 20.0 GB allocated\""
+     ],
+     "card": "477..883 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/server-activity.png"
+  },
+  {
+   "id": "server-mounts",
+   "title": "Server · Mounts",
+   "stand": "phone360-dark",
+   "url": "/server/mbpmkmpw/mounts",
+   "main": {
+    "url": "/server/mbpmkmpw/mounts",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "ps-player-empty: \"Names not available\"",
+      "small: \"of 200% allocated\"",
+      "small: \"of 4.0 GB allocated\"",
+      "strong: \"858.3 MB\"",
+      "small: \"of 20.0 GB allocated\""
+     ],
+     "card": "477..733 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/server-mounts.png"
+  },
+  {
+   "id": "server-minecraft",
+   "title": "Server · Minecraft",
+   "stand": "phone360-dark",
+   "url": "/server/mbpmkmpw/minecraft",
+   "main": {
+    "url": "/server/mbpmkmpw/minecraft",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2480 > 780), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2480,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "ps-player-empty: \"Names not available\"",
+      "small: \"of 200% allocated\"",
+      "small: \"of 4.0 GB allocated\"",
+      "strong: \"858.3 MB\"",
+      "small: \"of 20.0 GB allocated\""
+     ],
+     "card": "477..2434 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/server-minecraft.png"
+  },
+  {
+   "id": "server-startup",
+   "title": "Server · Startup",
+   "stand": "phone360-dark",
+   "url": "/server/mbpmkmpw/startup",
+   "main": {
+    "url": "/server/mbpmkmpw/startup",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1000 > 780), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1000,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "ps-player-empty: \"Names not available\"",
+      "small: \"of 200% allocated\"",
+      "small: \"of 4.0 GB allocated\"",
+      "strong: \"858.3 MB\"",
+      "small: \"of 20.0 GB allocated\""
+     ],
+     "card": "477..954 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/server-startup.png"
+  },
+  {
+   "id": "server-plugins",
+   "title": "Server · Plugins",
+   "stand": "phone360-dark",
+   "url": "/server/mbpmkmpw/plugins",
+   "main": {
+    "url": "/server/mbpmkmpw/plugins",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (3198 > 780), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 3198,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "ps-player-empty: \"Names not available\"",
+      "small: \"of 200% allocated\"",
+      "small: \"of 4.0 GB allocated\"",
+      "strong: \"858.3 MB\"",
+      "small: \"of 20.0 GB allocated\"",
+      "sm-title: \"VeinMiner Enchantment\""
+     ],
+     "card": "477..3152 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/server-plugins.png"
+  },
+  {
+   "id": "server-settings",
+   "title": "Server · Settings",
+   "stand": "phone360-dark",
+   "url": "/server/mbpmkmpw/settings",
+   "main": {
+    "url": "/server/mbpmkmpw/settings",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2918 > 780), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2918,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "ps-player-empty: \"Names not available\"",
+      "small: \"of 200% allocated\"",
+      "small: \"of 4.0 GB allocated\"",
+      "strong: \"858.3 MB\"",
+      "small: \"of 20.0 GB allocated\""
+     ],
+     "card": "477..2872 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/server-settings.png"
+  },
+  {
+   "id": "server-webhooks",
+   "title": "Server · Webhooks",
+   "stand": "phone360-dark",
+   "url": "/server/mbpmkmpw/webhook",
+   "main": {
+    "url": "/server/mbpmkmpw/webhook",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (989 > 780), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 989,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "ps-player-empty: \"Names not available\"",
+      "small: \"of 200% allocated\"",
+      "small: \"of 4.0 GB allocated\"",
+      "strong: \"858.3 MB\"",
+      "small: \"of 20.0 GB allocated\""
+     ],
+     "card": "477..943 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/server-webhooks.png"
+  },
+  {
+   "id": "server-website",
+   "title": "Server · Website",
+   "stand": "phone360-dark",
+   "url": "/server/mbpmkmpw/website",
+   "main": {
+    "url": "/server/mbpmkmpw/website",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1986 > 780), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1986,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "ps-player-empty: \"Names not available\"",
+      "small: \"of 200% allocated\"",
+      "small: \"of 4.0 GB allocated\"",
+      "strong: \"858.3 MB\"",
+      "small: \"of 20.0 GB allocated\""
+     ],
+     "card": "477..1940 of 780"
+    }
+   },
+   "frames": [
+    {
+     "box": "38,1384 284x420",
+     "url": "blank",
+     "w": 282,
+     "h": 418,
+     "dark": false,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 418,
+      "pageScrollW": 282
+     }
+    }
+   ],
+   "shot": "phone360-dark/server-website.png"
+  },
+  {
+   "id": "server-open-in-admin",
+   "title": "Server · Open in Admin",
+   "stand": "phone360-dark",
+   "url": "/admin/servers/1/edit",
+   "main": {
+    "url": "/admin/servers/1/edit",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1385 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1385,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256",
+      "form.description 60/132"
+     ],
+     "card": "44..1329 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/server-open-in-admin.png"
+  },
+  {
+   "id": "server2-console",
+   "title": "Server · Console (Valheim Vikings)",
+   "stand": "phone360-dark",
+   "url": "/server/uri8rhey/console",
+   "main": {
+    "url": "/server/uri8rhey/console",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1372 > 780), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1372,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "small: \"of 200% allocated\"",
+      "small: \"of 4.0 GB allocated\"",
+      "strong: \"858.3 MB\"",
+      "small: \"of 20.0 GB allocated\""
+     ],
+     "card": "477..1326 of 780",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,538 296x570; terminal 15,478 330x640; bar top 1118"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/server2-console.png"
+  },
+  {
+   "id": "admin-dashboard",
+   "title": "Beheer · Dashboard",
+   "stand": "phone360-dark",
+   "url": "/admin",
+   "main": {
+    "url": "/admin",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (919 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 919,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..863 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-dashboard.png"
+  },
+  {
+   "id": "admin-notifications",
+   "title": "Beheer · Pelican-meldingen open",
+   "stand": "phone360-dark",
+   "url": "/admin",
+   "main": {
+    "url": "/admin",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (919 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 919,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..863 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-notifications.png"
+  },
+  {
+   "id": "admin-usermenu",
+   "title": "Beheer · gebruikersmenu open",
+   "stand": "phone360-dark",
+   "url": "/admin",
+   "main": {
+    "url": "/admin",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (919 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 919,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..863 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-usermenu.png"
+  },
+  {
+   "id": "admin-sidebar-open",
+   "title": "Beheer · zijbalk open (klein venster)",
+   "stand": "phone360-dark",
+   "url": "/admin",
+   "main": {
+    "url": "/admin",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (919 > 780), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 919,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 528/1448"
+     ],
+     "card": "44..863 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-sidebar-open.png"
+  },
+  {
+   "id": "admin-health",
+   "title": "Beheer · Health",
+   "stand": "phone360-dark",
+   "url": "/admin/health",
+   "main": {
+    "url": "/admin/health",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1288 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,-498 40x40) | Settings \"Settings\" (-66,-454 40x40) | Plugins \"Plugins 6\" (-66,-410 40x40) | Eggs \"Eggs 8\" (-66,-342 40x40) | Nodes \"Nodes 1\" (-66,-298 40x40) | Servers \"Servers 10\" (-66,-254 40x40) | Simplify \"Simplify\" (-66,-186 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1288,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1232 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-health.png"
+  },
+  {
+   "id": "admin-panel-logs",
+   "title": "Beheer · Panel Logs",
+   "stand": "phone360-dark",
+   "url": "/admin/logs",
+   "main": {
+    "url": "/admin/logs",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (824 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,-569 40x40) | Settings \"Settings\" (-66,-525 40x40) | Plugins \"Plugins 6\" (-66,-481 40x40) | Eggs \"Eggs 8\" (-66,-413 40x40) | Nodes \"Nodes 1\" (-66,-369 40x40) | Servers \"Servers 10\" (-66,-325 40x40) | Simplify \"Simplify\" (-66,-257 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 824,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..768 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-panel-logs.png"
+  },
+  {
+   "id": "admin-settings",
+   "title": "Beheer · Settings",
+   "stand": "phone360-dark",
+   "url": "/admin/settings",
+   "main": {
+    "url": "/admin/settings",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1489 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1489,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1433 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-settings.png"
+  },
+  {
+   "id": "admin-settings-tab1",
+   "title": "Beheer · Settings, tabblad 2",
+   "stand": "phone360-dark",
+   "url": "/admin/settings?tab=captcha%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/settings?tab=captcha%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (824 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 824,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..768 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-settings-tab1.png"
+  },
+  {
+   "id": "admin-settings-tab2",
+   "title": "Beheer · Settings, tabblad 3",
+   "stand": "phone360-dark",
+   "url": "/admin/settings?tab=mail%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/settings?tab=mail%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (918 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 918,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..862 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-settings-tab2.png"
+  },
+  {
+   "id": "admin-settings-tab3",
+   "title": "Beheer · Settings, tabblad 4",
+   "stand": "phone360-dark",
+   "url": "/admin/settings?tab=backup%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/settings?tab=backup%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (824 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 824,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..768 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-settings-tab3.png"
+  },
+  {
+   "id": "admin-settings-tab4",
+   "title": "Beheer · Settings, tabblad 5",
+   "stand": "phone360-dark",
+   "url": "/admin/settings?tab=oauth%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/settings?tab=oauth%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1241 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1241,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1185 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-settings-tab4.png"
+  },
+  {
+   "id": "admin-settings-tab5",
+   "title": "Beheer · Settings, tabblad 6",
+   "stand": "phone360-dark",
+   "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1393 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1393,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1337 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-settings-tab5.png"
+  },
+  {
+   "id": "admin-settings-tab6",
+   "title": "Beheer · Settings, tabblad 7",
+   "stand": "phone360-dark",
+   "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1393 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1393,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1337 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-settings-tab6.png"
+  },
+  {
+   "id": "admin-settings-tab7",
+   "title": "Beheer · Settings, tabblad 8",
+   "stand": "phone360-dark",
+   "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1393 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1393,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1337 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-settings-tab7.png"
+  },
+  {
+   "id": "admin-settings-tab8",
+   "title": "Beheer · Settings, tabblad 9",
+   "stand": "phone360-dark",
+   "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1393 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1393,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1337 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-settings-tab8.png"
+  },
+  {
+   "id": "admin-simplify",
+   "title": "Beheer · Simplify",
+   "stand": "phone360-dark",
+   "url": "/admin/simplify",
+   "main": {
+    "url": "/admin/simplify",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1464 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,78 40x40) | Settings \"Settings\" (-66,122 40x40) | Plugins \"Plugins 6\" (-66,166 40x40) | Eggs \"Eggs 8\" (-66,234 40x40) | Nodes \"Nodes 1\" (-66,278 40x40) | Servers \"Servers 10\" (-66,322 40x40) | Simplify \"Simplify\" (-66,390 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1464,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1408 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-simplify.png"
+  },
+  {
+   "id": "admin-simplify-tab1",
+   "title": "Beheer · Simplify, tabblad 2",
+   "stand": "phone360-dark",
+   "url": "/admin/simplify?tab=appearance",
+   "main": {
+    "url": "/admin/simplify?tab=appearance",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2393 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,78 40x40) | Settings \"Settings\" (-66,122 40x40) | Plugins \"Plugins 6\" (-66,166 40x40) | Eggs \"Eggs 8\" (-66,234 40x40) | Nodes \"Nodes 1\" (-66,278 40x40) | Servers \"Servers 10\" (-66,322 40x40) | Simplify \"Simplify\" (-66,390 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2393,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..2337 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-simplify-tab1.png"
+  },
+  {
+   "id": "admin-simplify-tab2",
+   "title": "Beheer · Simplify, tabblad 3",
+   "stand": "phone360-dark",
+   "url": "/admin/simplify?tab=addons",
+   "main": {
+    "url": "/admin/simplify?tab=addons",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1203 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,78 40x40) | Settings \"Settings\" (-66,122 40x40) | Plugins \"Plugins 6\" (-66,166 40x40) | Eggs \"Eggs 8\" (-66,234 40x40) | Nodes \"Nodes 1\" (-66,278 40x40) | Servers \"Servers 10\" (-66,322 40x40) | Simplify \"Simplify\" (-66,390 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1203,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1147 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-simplify-tab2.png"
+  },
+  {
+   "id": "admin-simplify-tab3",
+   "title": "Beheer · Simplify, tabblad 4",
+   "stand": "phone360-dark",
+   "url": "/admin/simplify?tab=pelican-general",
+   "main": {
+    "url": "/admin/simplify?tab=pelican-general",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (945 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,78 40x40) | Settings \"Settings\" (-66,122 40x40) | Plugins \"Plugins 6\" (-66,166 40x40) | Eggs \"Eggs 8\" (-66,234 40x40) | Nodes \"Nodes 1\" (-66,278 40x40) | Servers \"Servers 10\" (-66,322 40x40) | Simplify \"Simplify\" (-66,390 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 945,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..889 of 780"
+    }
+   },
+   "frames": [
+    {
+     "box": "55,532 274x1384",
+     "url": "/admin/settings?tab=general%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 274,
+     "h": 1384,
+     "dark": false,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 1384,
+      "pageScrollW": 274,
+      "card": "0..1384 of 1384"
+     }
+    }
+   ],
+   "shot": "phone360-dark/admin-simplify-tab3.png"
+  },
+  {
+   "id": "admin-simplify-tab4",
+   "title": "Beheer · Simplify, tabblad 5",
+   "stand": "phone360-dark",
+   "url": "/admin/simplify?tab=pelican-captcha",
+   "main": {
+    "url": "/admin/simplify?tab=pelican-captcha",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (945 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,78 40x40) | Settings \"Settings\" (-66,122 40x40) | Plugins \"Plugins 6\" (-66,166 40x40) | Eggs \"Eggs 8\" (-66,234 40x40) | Nodes \"Nodes 1\" (-66,278 40x40) | Servers \"Servers 10\" (-66,322 40x40) | Simplify \"Simplify\" (-66,390 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 945,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..889 of 780"
+    }
+   },
+   "frames": [
+    {
+     "box": "55,532 274x320",
+     "url": "/admin/settings?tab=captcha%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 274,
+     "h": 320,
+     "dark": false,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 320,
+      "pageScrollW": 274,
+      "card": "0..320 of 320"
+     }
+    }
+   ],
+   "shot": "phone360-dark/admin-simplify-tab4.png"
+  },
+  {
+   "id": "admin-simplify-tab5",
+   "title": "Beheer · Simplify, tabblad 6",
+   "stand": "phone360-dark",
+   "url": "/admin/simplify?tab=pelican-mail",
+   "main": {
+    "url": "/admin/simplify?tab=pelican-mail",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (945 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,78 40x40) | Settings \"Settings\" (-66,122 40x40) | Plugins \"Plugins 6\" (-66,166 40x40) | Eggs \"Eggs 8\" (-66,234 40x40) | Nodes \"Nodes 1\" (-66,278 40x40) | Servers \"Servers 10\" (-66,322 40x40) | Simplify \"Simplify\" (-66,390 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 945,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..889 of 780"
+    }
+   },
+   "frames": [
+    {
+     "box": "55,532 274x729",
+     "url": "/admin/settings?tab=mail%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 274,
+     "h": 729,
+     "dark": false,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 729,
+      "pageScrollW": 274,
+      "card": "0..729 of 729"
+     }
+    }
+   ],
+   "shot": "phone360-dark/admin-simplify-tab5.png"
+  },
+  {
+   "id": "admin-simplify-tab6",
+   "title": "Beheer · Simplify, tabblad 7",
+   "stand": "phone360-dark",
+   "url": "/admin/simplify?tab=pelican-backup",
+   "main": {
+    "url": "/admin/simplify?tab=pelican-backup",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (945 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,78 40x40) | Settings \"Settings\" (-66,122 40x40) | Plugins \"Plugins 6\" (-66,166 40x40) | Eggs \"Eggs 8\" (-66,234 40x40) | Nodes \"Nodes 1\" (-66,278 40x40) | Servers \"Servers 10\" (-66,322 40x40) | Simplify \"Simplify\" (-66,390 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 945,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..889 of 780"
+    }
+   },
+   "frames": [
+    {
+     "box": "55,532 274x537",
+     "url": "/admin/settings?tab=backup%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 274,
+     "h": 537,
+     "dark": false,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 537,
+      "pageScrollW": 274,
+      "card": "0..537 of 537"
+     }
+    }
+   ],
+   "shot": "phone360-dark/admin-simplify-tab6.png"
+  },
+  {
+   "id": "admin-simplify-tab7",
+   "title": "Beheer · Simplify, tabblad 8",
+   "stand": "phone360-dark",
+   "url": "/admin/simplify?tab=pelican-oauth",
+   "main": {
+    "url": "/admin/simplify?tab=pelican-oauth",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (945 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,78 40x40) | Settings \"Settings\" (-66,122 40x40) | Plugins \"Plugins 6\" (-66,166 40x40) | Eggs \"Eggs 8\" (-66,234 40x40) | Nodes \"Nodes 1\" (-66,278 40x40) | Servers \"Servers 10\" (-66,322 40x40) | Simplify \"Simplify\" (-66,390 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 945,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..889 of 780"
+    }
+   },
+   "frames": [
+    {
+     "box": "55,532 274x1052",
+     "url": "/admin/settings?tab=oauth%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 274,
+     "h": 1052,
+     "dark": false,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 1052,
+      "pageScrollW": 274,
+      "card": "0..1052 of 1052"
+     }
+    }
+   ],
+   "shot": "phone360-dark/admin-simplify-tab7.png"
+  },
+  {
+   "id": "admin-simplify-tab8",
+   "title": "Beheer · Simplify, tabblad 9",
+   "stand": "phone360-dark",
+   "url": "/admin/simplify?tab=pelican-misc",
+   "main": {
+    "url": "/admin/simplify?tab=pelican-misc",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (945 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,78 40x40) | Settings \"Settings\" (-66,122 40x40) | Plugins \"Plugins 6\" (-66,166 40x40) | Eggs \"Eggs 8\" (-66,234 40x40) | Nodes \"Nodes 1\" (-66,278 40x40) | Servers \"Servers 10\" (-66,322 40x40) | Simplify \"Simplify\" (-66,390 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 945,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..889 of 780"
+    }
+   },
+   "frames": [
+    {
+     "box": "55,532 274x1328",
+     "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 274,
+     "h": 1328,
+     "dark": false,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 1328,
+      "pageScrollW": 274,
+      "card": "0..1328 of 1328"
+     }
+    }
+   ],
+   "shot": "phone360-dark/admin-simplify-tab8.png"
+  },
+  {
+   "id": "admin-people-roles",
+   "title": "Beheer · People & roles",
+   "stand": "phone360-dark",
+   "url": "/admin/simplify-people",
+   "main": {
+    "url": "/admin/simplify-people",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (995 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,34 40x40) | Settings \"Settings\" (-66,78 40x40) | Plugins \"Plugins 6\" (-66,122 40x40) | Eggs \"Eggs 8\" (-66,190 40x40) | Nodes \"Nodes 1\" (-66,234 40x40) | Servers \"Servers 10\" (-66,278 40x40) | Simplify \"Simplify\" (-66,346 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 995,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..939 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-people-roles.png"
+  },
+  {
+   "id": "admin-people-roles-tab1",
+   "title": "Beheer · People & roles, tabblad 2",
+   "stand": "phone360-dark",
+   "url": "/admin/simplify-people",
+   "main": {
+    "url": "/admin/simplify-people",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (824 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,34 40x40) | Settings \"Settings\" (-66,78 40x40) | Plugins \"Plugins 6\" (-66,122 40x40) | Eggs \"Eggs 8\" (-66,190 40x40) | Nodes \"Nodes 1\" (-66,234 40x40) | Servers \"Servers 10\" (-66,278 40x40) | Simplify \"Simplify\" (-66,346 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 824,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..768 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-people-roles-tab1.png"
+  },
+  {
+   "id": "admin-people-add",
+   "title": "Beheer · People, persoon toevoegen",
+   "stand": "phone360-dark",
+   "url": "/admin/simplify-people",
+   "main": {
+    "url": "/admin/simplify-people",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (824 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,34 40x40) | Settings \"Settings\" (-66,78 40x40) | Plugins \"Plugins 6\" (-66,122 40x40) | Eggs \"Eggs 8\" (-66,190 40x40) | Nodes \"Nodes 1\" (-66,234 40x40) | Servers \"Servers 10\" (-66,278 40x40) | Simplify \"Simplify\" (-66,346 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 824,
+     "pageScrollW": 360,
+     "popups": [
+      "fi-modal-window.fi-modal-window-has-close-btn.fi-modal-windo 0,0 360x780 scrolls"
+     ],
+     "panes": [
+      "Sidebar navigation 591/1256",
+      "fi-modal-window.fi-modal-window-has-close-btn.fi-modal-windo 780/4368"
+     ],
+     "card": "44..768 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-people-add.png"
+  },
+  {
+   "id": "admin-website-embed",
+   "title": "Beheer · Website embed",
+   "stand": "phone360-dark",
+   "url": "/admin/simplify-embed",
+   "main": {
+    "url": "/admin/simplify-embed",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2897 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,-98 40x40) | Settings \"Settings\" (-66,-54 40x40) | Plugins \"Plugins 6\" (-66,-10 40x40) | Eggs \"Eggs 8\" (-66,58 40x40) | Nodes \"Nodes 1\" (-66,102 40x40) | Servers \"Servers 10\" (-66,146 40x40) | Simplify \"Simplify\" (-66,214 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2897,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..2841 of 780"
+    }
+   },
+   "frames": [
+    {
+     "box": "40,2365 280x420",
+     "url": "blank",
+     "w": 278,
+     "h": 418,
+     "dark": false,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 418,
+      "pageScrollW": 278
+     }
+    }
+   ],
+   "shot": "phone360-dark/admin-website-embed.png"
+  },
+  {
+   "id": "admin-automatic-subdomains",
+   "title": "Beheer · Automatic subdomains",
+   "stand": "phone360-dark",
+   "url": "/admin/simplify-subdomains",
+   "main": {
+    "url": "/admin/simplify-subdomains",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1602 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,-274 40x40) | Settings \"Settings\" (-66,-230 40x40) | Plugins \"Plugins 6\" (-66,-186 40x40) | Eggs \"Eggs 8\" (-66,-118 40x40) | Nodes \"Nodes 1\" (-66,-74 40x40) | Servers \"Servers 10\" (-66,-30 40x40) | Simplify \"Simplify\" (-66,38 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1602,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1546 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-automatic-subdomains.png"
+  },
+  {
+   "id": "admin-egg-updates",
+   "title": "Beheer · Egg Updates",
+   "stand": "phone360-dark",
+   "url": "/admin/egg-updates",
+   "main": {
+    "url": "/admin/egg-updates",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (824 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,-54 40x40) | Settings \"Settings\" (-66,-10 40x40) | Plugins \"Plugins 6\" (-66,34 40x40) | Eggs \"Eggs 8\" (-66,102 40x40) | Nodes \"Nodes 1\" (-66,146 40x40) | Servers \"Servers 10\" (-66,190 40x40) | Simplify \"Simplify\" (-66,258 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 824,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..768 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-egg-updates.png"
+  },
+  {
+   "id": "admin-explain",
+   "title": "Beheer · Explain",
+   "stand": "phone360-dark",
+   "url": "/admin/simplify-explain",
+   "main": {
+    "url": "/admin/simplify-explain",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1190 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,-142 40x40) | Settings \"Settings\" (-66,-98 40x40) | Plugins \"Plugins 6\" (-66,-54 40x40) | Eggs \"Eggs 8\" (-66,14 40x40) | Nodes \"Nodes 1\" (-66,58 40x40) | Servers \"Servers 10\" (-66,102 40x40) | Simplify \"Simplify\" (-66,170 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1190,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1134 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-explain.png"
+  },
+  {
+   "id": "admin-hosting",
+   "title": "Beheer · Hosting",
+   "stand": "phone360-dark",
+   "url": "/admin/simplify-hosting",
+   "main": {
+    "url": "/admin/simplify-hosting",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1086 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,-186 40x40) | Settings \"Settings\" (-66,-142 40x40) | Plugins \"Plugins 6\" (-66,-98 40x40) | Eggs \"Eggs 8\" (-66,-30 40x40) | Nodes \"Nodes 1\" (-66,14 40x40) | Servers \"Servers 10\" (-66,58 40x40) | Simplify \"Simplify\" (-66,126 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1086,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1030 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-hosting.png"
+  },
+  {
+   "id": "admin-server-maker",
+   "title": "Beheer · Server Maker",
+   "stand": "phone360-dark",
+   "url": "/admin/server-maker",
+   "main": {
+    "url": "/admin/server-maker",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1688 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,-230 40x40) | Settings \"Settings\" (-66,-186 40x40) | Plugins \"Plugins 6\" (-66,-142 40x40) | Eggs \"Eggs 8\" (-66,-74 40x40) | Nodes \"Nodes 1\" (-66,-30 40x40) | Servers \"Servers 10\" (-66,14 40x40) | Simplify \"Simplify\" (-66,82 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1688,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1632 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-server-maker.png"
+  },
+  {
+   "id": "admin-maker-settings",
+   "title": "Beheer · Maker Settings",
+   "stand": "phone360-dark",
+   "url": "/admin/server-maker/settings",
+   "main": {
+    "url": "/admin/server-maker/settings",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (824 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 824,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..768 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-maker-settings.png"
+  },
+  {
+   "id": "admin-toolkit",
+   "title": "Beheer · Toolkit",
+   "stand": "phone360-dark",
+   "url": "/admin/simplify-toolkit",
+   "main": {
+    "url": "/admin/simplify-toolkit",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (824 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,-318 40x40) | Settings \"Settings\" (-66,-274 40x40) | Plugins \"Plugins 6\" (-66,-230 40x40) | Eggs \"Eggs 8\" (-66,-162 40x40) | Nodes \"Nodes 1\" (-66,-118 40x40) | Servers \"Servers 10\" (-66,-74 40x40) | Simplify \"Simplify\" (-66,-6 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 824,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..768 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-toolkit.png"
+  },
+  {
+   "id": "admin-api-keys",
+   "title": "Beheer · API Keys",
+   "stand": "phone360-dark",
+   "url": "/admin/api-keys",
+   "main": {
+    "url": "/admin/api-keys",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (824 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,-542 40x40) | Settings \"Settings\" (-66,-498 40x40) | Plugins \"Plugins 6\" (-66,-454 40x40) | Eggs \"Eggs 8\" (-66,-386 40x40) | Nodes \"Nodes 1\" (-66,-342 40x40) | Servers \"Servers 10\" (-66,-298 40x40) | Simplify \"Simplify\" (-66,-230 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 824,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..768 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-api-keys.png"
+  },
+  {
+   "id": "admin-backup-hosts",
+   "title": "Beheer · Backup Hosts",
+   "stand": "phone360-dark",
+   "url": "/admin/backup-hosts",
+   "main": {
+    "url": "/admin/backup-hosts",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (824 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,-569 40x40) | Settings \"Settings\" (-66,-525 40x40) | Plugins \"Plugins 6\" (-66,-481 40x40) | Eggs \"Eggs 8\" (-66,-413 40x40) | Nodes \"Nodes 1\" (-66,-369 40x40) | Servers \"Servers 10\" (-66,-325 40x40) | Simplify \"Simplify\" (-66,-257 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 824,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..768 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-backup-hosts.png"
+  },
+  {
+   "id": "admin-database-hosts",
+   "title": "Beheer · Database Hosts",
+   "stand": "phone360-dark",
+   "url": "/admin/database-hosts",
+   "main": {
+    "url": "/admin/database-hosts",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (824 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,-569 40x40) | Settings \"Settings\" (-66,-525 40x40) | Plugins \"Plugins 6\" (-66,-481 40x40) | Eggs \"Eggs 8\" (-66,-413 40x40) | Nodes \"Nodes 1\" (-66,-369 40x40) | Servers \"Servers 10\" (-66,-325 40x40) | Simplify \"Simplify\" (-66,-257 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 824,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..768 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-database-hosts.png"
+  },
+  {
+   "id": "admin-eggs",
+   "title": "Beheer · Eggs",
+   "stand": "phone360-dark",
+   "url": "/admin/eggs",
+   "main": {
+    "url": "/admin/eggs",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2466 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2466,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..2410 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-eggs.png"
+  },
+  {
+   "id": "admin-eggs-edit",
+   "title": "Beheer · Eggs, bewerken",
+   "stand": "phone360-dark",
+   "url": "/admin/eggs/1/edit",
+   "main": {
+    "url": "/admin/eggs/1/edit",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2526 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2526,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..2470 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-eggs-edit.png"
+  },
+  {
+   "id": "admin-eggs-edit-tab1",
+   "title": "Beheer · Eggs, bewerken, tabblad 2",
+   "stand": "phone360-dark",
+   "url": "/admin/eggs/1/edit?tab=process-management%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/eggs/1/edit?tab=process-management%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2269 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2269,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..2213 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-eggs-edit-tab1.png"
+  },
+  {
+   "id": "admin-eggs-edit-tab2",
+   "title": "Beheer · Eggs, bewerken, tabblad 3",
+   "stand": "phone360-dark",
+   "url": "/admin/eggs/1/edit?tab=egg-variables%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/eggs/1/edit?tab=egg-variables%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (857 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 857,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..801 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-eggs-edit-tab2.png"
+  },
+  {
+   "id": "admin-eggs-edit-tab3",
+   "title": "Beheer · Eggs, bewerken, tabblad 4",
+   "stand": "phone360-dark",
+   "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1739 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1739,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1683 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-eggs-edit-tab3.png"
+  },
+  {
+   "id": "admin-eggs-edit-tab4",
+   "title": "Beheer · Eggs, bewerken, tabblad 5",
+   "stand": "phone360-dark",
+   "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1739 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1739,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1683 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-eggs-edit-tab4.png"
+  },
+  {
+   "id": "admin-eggs-edit-tab5",
+   "title": "Beheer · Eggs, bewerken, tabblad 6",
+   "stand": "phone360-dark",
+   "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1739 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1739,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1683 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-eggs-edit-tab5.png"
+  },
+  {
+   "id": "admin-eggs-edit-tab6",
+   "title": "Beheer · Eggs, bewerken, tabblad 7",
+   "stand": "phone360-dark",
+   "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1739 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1739,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1683 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-eggs-edit-tab6.png"
+  },
+  {
+   "id": "admin-mounts",
+   "title": "Beheer · Mounts",
+   "stand": "phone360-dark",
+   "url": "/admin/mounts",
+   "main": {
+    "url": "/admin/mounts",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (824 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,-569 40x40) | Settings \"Settings\" (-66,-525 40x40) | Plugins \"Plugins 6\" (-66,-481 40x40) | Eggs \"Eggs 8\" (-66,-413 40x40) | Nodes \"Nodes 1\" (-66,-369 40x40) | Servers \"Servers 10\" (-66,-325 40x40) | Simplify \"Simplify\" (-66,-257 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 824,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..768 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-mounts.png"
+  },
+  {
+   "id": "admin-nodes",
+   "title": "Beheer · Nodes",
+   "stand": "phone360-dark",
+   "url": "/admin/nodes",
+   "main": {
+    "url": "/admin/nodes",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (824 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 824,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..768 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-nodes.png"
+  },
+  {
+   "id": "admin-nodes-edit",
+   "title": "Beheer · Nodes, bewerken",
+   "stand": "phone360-dark",
+   "url": "/admin/nodes/1/edit",
+   "main": {
+    "url": "/admin/nodes/1/edit",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1793 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1793,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1737 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-nodes-edit.png"
+  },
+  {
+   "id": "admin-nodes-edit-tab1",
+   "title": "Beheer · Nodes, bewerken, tabblad 2",
+   "stand": "phone360-dark",
+   "url": "/admin/nodes/1/edit?tab=basic-settings%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/nodes/1/edit?tab=basic-settings%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1129 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1129,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1073 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-nodes-edit-tab1.png"
+  },
+  {
+   "id": "admin-nodes-edit-tab2",
+   "title": "Beheer · Nodes, bewerken, tabblad 3",
+   "stand": "phone360-dark",
+   "url": "/admin/nodes/1/edit?tab=advanced-settings%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/nodes/1/edit?tab=advanced-settings%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2225 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2225,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..2169 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-nodes-edit-tab2.png"
+  },
+  {
+   "id": "admin-nodes-edit-tab3",
+   "title": "Beheer · Nodes, bewerken, tabblad 4",
+   "stand": "phone360-dark",
+   "url": "/admin/nodes/1/edit?tab=configuration-file%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/nodes/1/edit?tab=configuration-file%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1261 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1261,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1205 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-nodes-edit-tab3.png"
+  },
+  {
+   "id": "admin-nodes-edit-tab4",
+   "title": "Beheer · Nodes, bewerken, tabblad 5",
+   "stand": "phone360-dark",
+   "url": "/admin/nodes/1/edit?tab=diagnostics%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/nodes/1/edit?tab=diagnostics%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1772 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1772,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1716 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-nodes-edit-tab4.png"
+  },
+  {
+   "id": "admin-nodes-edit-tab5",
+   "title": "Beheer · Nodes, bewerken, tabblad 6",
+   "stand": "phone360-dark",
+   "url": "/admin/nodes/1/edit?tab=diagnostics%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/nodes/1/edit?tab=diagnostics%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1772 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1772,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1716 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-nodes-edit-tab5.png"
+  },
+  {
+   "id": "admin-nodes-edit-tab6",
+   "title": "Beheer · Nodes, bewerken, tabblad 7",
+   "stand": "phone360-dark",
+   "url": "/admin/nodes/1/edit?tab=diagnostics%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/nodes/1/edit?tab=diagnostics%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1772 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1772,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1716 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-nodes-edit-tab6.png"
+  },
+  {
+   "id": "admin-plugins",
+   "title": "Beheer · Plugins",
+   "stand": "phone360-dark",
+   "url": "/admin/plugins",
+   "main": {
+    "url": "/admin/plugins",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1081 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1081,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1025 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-plugins.png"
+  },
+  {
+   "id": "admin-roles",
+   "title": "Beheer · Roles",
+   "stand": "phone360-dark",
+   "url": "/admin/roles",
+   "main": {
+    "url": "/admin/roles",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (824 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,-386 40x40) | Settings \"Settings\" (-66,-342 40x40) | Plugins \"Plugins 6\" (-66,-298 40x40) | Eggs \"Eggs 8\" (-66,-230 40x40) | Nodes \"Nodes 1\" (-66,-186 40x40) | Servers \"Servers 10\" (-66,-142 40x40) | Simplify \"Simplify\" (-66,-74 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 824,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..768 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-roles.png"
+  },
+  {
+   "id": "admin-roles-edit",
+   "title": "Beheer · Roles, bewerken",
+   "stand": "phone360-dark",
+   "url": "/admin/roles/1/edit",
+   "main": {
+    "url": "/admin/roles/1/edit",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (824 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,-386 40x40) | Settings \"Settings\" (-66,-342 40x40) | Plugins \"Plugins 6\" (-66,-298 40x40) | Eggs \"Eggs 8\" (-66,-230 40x40) | Nodes \"Nodes 1\" (-66,-186 40x40) | Servers \"Servers 10\" (-66,-142 40x40) | Simplify \"Simplify\" (-66,-74 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 824,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..768 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-roles-edit.png"
+  },
+  {
+   "id": "admin-servers",
+   "title": "Beheer · Servers",
+   "stand": "phone360-dark",
+   "url": "/admin/servers",
+   "main": {
+    "url": "/admin/servers",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1417 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1417,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1361 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-servers.png"
+  },
+  {
+   "id": "admin-servers-edit",
+   "title": "Beheer · Servers, bewerken",
+   "stand": "phone360-dark",
+   "url": "/admin/servers/1/edit",
+   "main": {
+    "url": "/admin/servers/1/edit",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1385 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1385,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256",
+      "form.description 60/132"
+     ],
+     "card": "44..1329 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-servers-edit.png"
+  },
+  {
+   "id": "admin-servers-edit-tab1",
+   "title": "Beheer · Servers, bewerken, tabblad 2",
+   "stand": "phone360-dark",
+   "url": "/admin/servers/1/edit?tab=environment-configuration%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/servers/1/edit?tab=environment-configuration%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2327 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2327,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..2271 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-servers-edit-tab1.png"
+  },
+  {
+   "id": "admin-servers-edit-tab2",
+   "title": "Beheer · Servers, bewerken, tabblad 3",
+   "stand": "phone360-dark",
+   "url": "/admin/servers/1/edit?tab=egg%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/servers/1/edit?tab=egg%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1124 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1124,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1068 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-servers-edit-tab2.png"
+  },
+  {
+   "id": "admin-servers-edit-tab3",
+   "title": "Beheer · Servers, bewerken, tabblad 4",
+   "stand": "phone360-dark",
+   "url": "/admin/servers/1/edit?tab=mounts%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/servers/1/edit?tab=mounts%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (824 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 824,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..768 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-servers-edit-tab3.png"
+  },
+  {
+   "id": "admin-servers-edit-tab4",
+   "title": "Beheer · Servers, bewerken, tabblad 5",
+   "stand": "phone360-dark",
+   "url": "/admin/servers/1/edit?tab=actions%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/servers/1/edit?tab=actions%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1557 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1557,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1501 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-servers-edit-tab4.png"
+  },
+  {
+   "id": "admin-servers-edit-tab5",
+   "title": "Beheer · Servers, bewerken, tabblad 6",
+   "stand": "phone360-dark",
+   "url": "/admin/servers/1/edit?tab=actions%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/servers/1/edit?tab=actions%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1557 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1557,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1501 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-servers-edit-tab5.png"
+  },
+  {
+   "id": "admin-servers-edit-tab6",
+   "title": "Beheer · Servers, bewerken, tabblad 7",
+   "stand": "phone360-dark",
+   "url": "/admin/servers/1/edit?tab=actions%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/servers/1/edit?tab=actions%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1557 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,96 40x40) | Settings \"Settings\" (-66,140 40x40) | Plugins \"Plugins 6\" (-66,184 40x40) | Eggs \"Eggs 8\" (-66,252 40x40) | Nodes \"Nodes 1\" (-66,296 40x40) | Servers \"Servers 10\" (-66,340 40x40) | Simplify \"Simplify\" (-66,408 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1557,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1501 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-servers-edit-tab6.png"
+  },
+  {
+   "id": "admin-users",
+   "title": "Beheer · Users",
+   "stand": "phone360-dark",
+   "url": "/admin/users",
+   "main": {
+    "url": "/admin/users",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (832 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,-430 40x40) | Settings \"Settings\" (-66,-386 40x40) | Plugins \"Plugins 6\" (-66,-342 40x40) | Eggs \"Eggs 8\" (-66,-274 40x40) | Nodes \"Nodes 1\" (-66,-230 40x40) | Servers \"Servers 10\" (-66,-186 40x40) | Simplify \"Simplify\" (-66,-118 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 832,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..776 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-users.png"
+  },
+  {
+   "id": "admin-users-edit",
+   "title": "Beheer · Users, bewerken",
+   "stand": "phone360-dark",
+   "url": "/admin/users/1/edit",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2314 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,-430 40x40) | Settings \"Settings\" (-66,-386 40x40) | Plugins \"Plugins 6\" (-66,-342 40x40) | Eggs \"Eggs 8\" (-66,-274 40x40) | Nodes \"Nodes 1\" (-66,-230 40x40) | Servers \"Servers 10\" (-66,-186 40x40) | Simplify \"Simplify\" (-66,-118 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2314,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..2258 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-users-edit.png"
+  },
+  {
+   "id": "admin-users-edit-tab1",
+   "title": "Beheer · Users, bewerken, tabblad 2",
+   "stand": "phone360-dark",
+   "url": "/admin/users/1/edit",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1556 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,-430 40x40) | Settings \"Settings\" (-66,-386 40x40) | Plugins \"Plugins 6\" (-66,-342 40x40) | Eggs \"Eggs 8\" (-66,-274 40x40) | Nodes \"Nodes 1\" (-66,-230 40x40) | Servers \"Servers 10\" (-66,-186 40x40) | Simplify \"Simplify\" (-66,-118 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1556,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1500 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-users-edit-tab1.png"
+  },
+  {
+   "id": "admin-users-edit-tab2",
+   "title": "Beheer · Users, bewerken, tabblad 3",
+   "stand": "phone360-dark",
+   "url": "/admin/users/1/edit",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1754 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,-430 40x40) | Settings \"Settings\" (-66,-386 40x40) | Plugins \"Plugins 6\" (-66,-342 40x40) | Eggs \"Eggs 8\" (-66,-274 40x40) | Nodes \"Nodes 1\" (-66,-230 40x40) | Servers \"Servers 10\" (-66,-186 40x40) | Simplify \"Simplify\" (-66,-118 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1754,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1698 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-users-edit-tab2.png"
+  },
+  {
+   "id": "admin-users-edit-tab3",
+   "title": "Beheer · Users, bewerken, tabblad 4",
+   "stand": "phone360-dark",
+   "url": "/admin/users/1/edit",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1572 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,-430 40x40) | Settings \"Settings\" (-66,-386 40x40) | Plugins \"Plugins 6\" (-66,-342 40x40) | Eggs \"Eggs 8\" (-66,-274 40x40) | Nodes \"Nodes 1\" (-66,-230 40x40) | Servers \"Servers 10\" (-66,-186 40x40) | Simplify \"Simplify\" (-66,-118 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1572,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1516 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-users-edit-tab3.png"
+  },
+  {
+   "id": "admin-users-edit-tab4",
+   "title": "Beheer · Users, bewerken, tabblad 5",
+   "stand": "phone360-dark",
+   "url": "/admin/users/1/edit",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1572 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,-430 40x40) | Settings \"Settings\" (-66,-386 40x40) | Plugins \"Plugins 6\" (-66,-342 40x40) | Eggs \"Eggs 8\" (-66,-274 40x40) | Nodes \"Nodes 1\" (-66,-230 40x40) | Servers \"Servers 10\" (-66,-186 40x40) | Simplify \"Simplify\" (-66,-118 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1572,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1516 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-users-edit-tab4.png"
+  },
+  {
+   "id": "admin-users-edit-tab5",
+   "title": "Beheer · Users, bewerken, tabblad 6",
+   "stand": "phone360-dark",
+   "url": "/admin/users/1/edit",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1572 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,-430 40x40) | Settings \"Settings\" (-66,-386 40x40) | Plugins \"Plugins 6\" (-66,-342 40x40) | Eggs \"Eggs 8\" (-66,-274 40x40) | Nodes \"Nodes 1\" (-66,-230 40x40) | Servers \"Servers 10\" (-66,-186 40x40) | Simplify \"Simplify\" (-66,-118 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1572,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1516 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-users-edit-tab5.png"
+  },
+  {
+   "id": "admin-users-edit-tab6",
+   "title": "Beheer · Users, bewerken, tabblad 7",
+   "stand": "phone360-dark",
+   "url": "/admin/users/1/edit",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1572 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,-430 40x40) | Settings \"Settings\" (-66,-386 40x40) | Plugins \"Plugins 6\" (-66,-342 40x40) | Eggs \"Eggs 8\" (-66,-274 40x40) | Nodes \"Nodes 1\" (-66,-230 40x40) | Servers \"Servers 10\" (-66,-186 40x40) | Simplify \"Simplify\" (-66,-118 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1572,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..1516 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-users-edit-tab6.png"
+  },
+  {
+   "id": "admin-webhooks",
+   "title": "Beheer · Webhooks",
+   "stand": "phone360-dark",
+   "url": "/admin/webhooks",
+   "main": {
+    "url": "/admin/webhooks",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (824 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,-569 40x40) | Settings \"Settings\" (-66,-525 40x40) | Plugins \"Plugins 6\" (-66,-481 40x40) | Eggs \"Eggs 8\" (-66,-413 40x40) | Nodes \"Nodes 1\" (-66,-369 40x40) | Servers \"Servers 10\" (-66,-325 40x40) | Simplify \"Simplify\" (-66,-257 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 824,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..768 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-webhooks.png"
+  },
+  {
+   "id": "admin-announcements",
+   "title": "Beheer · Announcements",
+   "stand": "phone360-dark",
+   "url": "/admin/simplify-announcements",
+   "main": {
+    "url": "/admin/simplify-announcements",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (988 > 780), the page scrolls"
+     },
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: Expand sidebar \"\" (-59,14 36x36) | Dashboard \"Dashboard\" (-66,-10 40x40) | Settings \"Settings\" (-66,34 40x40) | Plugins \"Plugins 6\" (-66,78 40x40) | Eggs \"Eggs 8\" (-66,146 40x40) | Nodes \"Nodes 1\" (-66,190 40x40) | Servers \"Servers 10\" (-66,234 40x40) | Simplify \"Simplify\" (-66,302 40x40)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-sidebar-header-ctn \"Northwind Games\" sticks 82px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 988,
+     "pageScrollW": 360,
+     "panes": [
+      "Sidebar navigation 591/1256"
+     ],
+     "card": "44..932 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/admin-announcements.png"
+  },
+  {
+   "id": "host",
+   "title": "Hostmodus",
+   "stand": "phone360-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "0..734 of 780"
+    }
+   },
+   "frames": [
+    {
+     "box": "14,209 332x590",
+     "url": "/admin/health?simplify_embed=1",
+     "w": 332,
+     "h": 590,
+     "dark": false,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (1176 > 590), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 1176,
+      "pageScrollW": 332,
+      "card": "0..1176 of 590"
+     }
+    }
+   ],
+   "shot": "phone360-dark/host.png"
+  },
+  {
+   "id": "host-phone-menu",
+   "title": "Hostmodus · telefoonmenu open",
+   "stand": "phone360-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 96,64 250x164"
+     ],
+     "card": "0..734 of 780"
+    }
+   },
+   "frames": [
+    {
+     "box": "14,209 332x590",
+     "url": "/admin/health?simplify_embed=1",
+     "w": 332,
+     "h": 590,
+     "dark": false,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (1176 > 590), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 1176,
+      "pageScrollW": 332,
+      "card": "0..1176 of 590"
+     }
+    }
+   ],
+   "shot": "phone360-dark/host-phone-menu.png"
+  },
+  {
+   "id": "host-x",
+   "title": "Hostmodus · ",
+   "stand": "phone360-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "0..734 of 780"
+    }
+   },
+   "frames": [
+    {
+     "box": "14,209 332x590",
+     "url": "/admin/health?simplify_embed=1",
+     "w": 332,
+     "h": 590,
+     "dark": false,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (1176 > 590), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 1176,
+      "pageScrollW": 332,
+      "card": "0..1176 of 590"
+     }
+    }
+   ],
+   "shot": "phone360-dark/host-x.png"
+  },
+  {
+   "id": "host-x",
+   "title": "Hostmodus · ",
+   "stand": "phone360-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "0..734 of 780"
+    }
+   },
+   "frames": [
+    {
+     "box": "14,209 332x590",
+     "url": "/admin/health?simplify_embed=1",
+     "w": 332,
+     "h": 590,
+     "dark": false,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (1176 > 590), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 1176,
+      "pageScrollW": 332,
+      "card": "0..1176 of 590"
+     }
+    }
+   ],
+   "shot": "phone360-dark/host-x.png"
+  },
+  {
+   "id": "host-x",
+   "title": "Hostmodus · ",
+   "stand": "phone360-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "0..734 of 780"
+    }
+   },
+   "frames": [
+    {
+     "box": "14,209 332x590",
+     "url": "/admin/health?simplify_embed=1",
+     "w": 332,
+     "h": 590,
+     "dark": false,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (1176 > 590), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 1176,
+      "pageScrollW": 332,
+      "card": "0..1176 of 590"
+     }
+    }
+   ],
+   "shot": "phone360-dark/host-x.png"
+  },
+  {
+   "id": "host-x",
+   "title": "Hostmodus · ",
+   "stand": "phone360-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "0..734 of 780"
+    }
+   },
+   "frames": [
+    {
+     "box": "14,209 332x590",
+     "url": "/admin/health?simplify_embed=1",
+     "w": 332,
+     "h": 590,
+     "dark": false,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (1176 > 590), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 1176,
+      "pageScrollW": 332,
+      "card": "0..1176 of 590"
+     }
+    }
+   ],
+   "shot": "phone360-dark/host-x.png"
+  },
+  {
+   "id": "host-x",
+   "title": "Hostmodus · ",
+   "stand": "phone360-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "0..734 of 780"
+    }
+   },
+   "frames": [
+    {
+     "box": "14,209 332x590",
+     "url": "/admin/health?simplify_embed=1",
+     "w": 332,
+     "h": 590,
+     "dark": false,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (1176 > 590), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 1176,
+      "pageScrollW": 332,
+      "card": "0..1176 of 590"
+     }
+    }
+   ],
+   "shot": "phone360-dark/host-x.png"
+  },
+  {
+   "id": "host-x",
+   "title": "Hostmodus · ",
+   "stand": "phone360-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "0..734 of 780"
+    }
+   },
+   "frames": [
+    {
+     "box": "14,209 332x590",
+     "url": "/admin/health?simplify_embed=1",
+     "w": 332,
+     "h": 590,
+     "dark": false,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (1176 > 590), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 1176,
+      "pageScrollW": 332,
+      "card": "0..1176 of 590"
+     }
+    }
+   ],
+   "shot": "phone360-dark/host-x.png"
+  },
+  {
+   "id": "host-x",
+   "title": "Hostmodus · ",
+   "stand": "phone360-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 360,
+    "h": 780,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 123px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "0..734 of 780"
+    }
+   },
+   "frames": [
+    {
+     "box": "14,209 332x590",
+     "url": "/admin/health?simplify_embed=1",
+     "w": 332,
+     "h": 590,
+     "dark": false,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (1176 > 590), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 1176,
+      "pageScrollW": 332,
+      "card": "0..1176 of 590"
+     }
+    }
+   ],
+   "shot": "phone360-dark/host-x.png"
+  }
+ ],
+ "problems": [
+  "  page error: Simplify.brandTextStyle is not a function",
+  "phone360-dark  page error: Simplify.brandTextStyle is not a function",
+  "phone360-dark  page error: Simplify.brandTextStyle is not a function",
+  "phone360-dark overview-list: nothing to click for .ps-mobile-menu",
+  "phone360-dark overview-phone-menu: nothing to click for .ps-account-button",
+  "phone360-dark overview-account: nothing to click for #ps-account-actions button[aria-label]:nth-child(2)",
+  "phone360-dark overview-account-theme: nothing to click for .ps-mobile-menu",
+  "phone360-dark overview-account-theme: nothing to click for [x-ref=\"notifyButton\"]",
+  "phone360-dark overview-bell: nothing to click for .ps-mobile-menu",
+  "phone360-dark overview-bell: nothing to click for [x-ref=\"adminButton\"]",
+  "phone360-dark overview-admin: nothing to click for .ps-mobile-menu",
+  "phone360-dark overview-admin: nothing to click for [x-ref=\"overviewAppearance\"]",
+  "phone360-dark overview-customize: nothing to click for .ps-mobile-menu",
+  "phone360-dark overview-customize: nothing to click for [x-ref=\"overviewGroupsButton\"]",
+  "phone360-dark overview-health: nothing to click for .ps-server-card .ps-card-menu-button, .ps-server-card button[aria-label*=\"options\" i], .ps-server-card button[aria-label*=\"menu\" i]",
+  "phone360-dark profile page error: Simplify.brandTextStyle is not a function",
+  "phone360-dark server-console-typed: nothing to click for .ps-console-grow",
+  "phone360-dark server-colour: nothing to click for .ps-info-motd, .ps-motd-preview",
+  "phone360-dark server-phone-more page error: Simplify.brandTextStyle is not a function",
+  "phone360-dark server-console page error: Simplify.brandTextStyle is not a function",
+  "phone360-dark server-files: nothing to click for .fi-ta-row .fi-ta-actions button, .fi-ta-row .fi-dropdown-trigger button",
+  "phone360-dark server-files: nothing to click for .fi-ta-row a:has-text(\"plugins\"), .fi-ta-row a:has-text(\"mods\")",
+  "phone360-dark server-files page error: Simplify.brandTextStyle is not a function",
+  "phone360-dark server-backups-new page error: Simplify.brandTextStyle is not a function",
+  "phone360-dark server-schedules page error: Simplify.brandTextStyle is not a function",
+  "phone360-dark server-schedules-new page error: Simplify.brandTextStyle is not a function",
+  "phone360-dark server-users-new page error: Simplify.brandTextStyle is not a function",
+  "phone360-dark server-databases: click .fi-header-actions button, .fi-ac-btn-action, .fi-page-header-main-ctn button: locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator('.fi-h",
+  "phone360-dark server-databases-new page error: Simplify.brandTextStyle is not a function",
+  "phone360-dark server-network page error: Simplify.brandTextStyle is not a function",
+  "phone360-dark server-activity page error: Simplify.brandTextStyle is not a function",
+  "phone360-dark server-mounts page error: Simplify.brandTextStyle is not a function",
+  "phone360-dark server-minecraft page error: Simplify.brandTextStyle is not a function",
+  "phone360-dark server-startup page error: Simplify.brandTextStyle is not a function",
+  "phone360-dark server-plugins page error: Simplify.brandTextStyle is not a function",
+  "phone360-dark server-settings page error: Simplify.brandTextStyle is not a function",
+  "phone360-dark server-webhooks: nothing to click for .fi-header-actions button, .fi-ac-btn-action, .fi-page-header-main-ctn button",
+  "phone360-dark server-webhooks page error: Simplify.brandTextStyle is not a function",
+  "phone360-dark server-open-in-admin page error: Simplify.brandTextStyle is not a function",
+  "phone360-dark admin-dashboard: click .fi-topbar-database-notifications-btn, button[aria-label*=\"notification\" i], .fi-topbar button:has(.fi-topbar-database-notifications-badge): locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator('.fi-t",
+  "phone360-dark admin-notifications: nothing to click for .fi-modal-window button:has-text(\"Show more\"), .fi-dropdown-panel button:has-text(\"Show more\"), button:has-text(\"Show more\")",
+  "phone360-dark admin-notifications: click .fi-user-menu button, .fi-user-menu .fi-dropdown-trigger, .fi-topbar .fi-avatar: locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator('.fi-u",
+  "phone360-dark admin-usermenu: nothing to click for .fi-global-search-field input, .fi-global-search input, .fi-topbar input[type=search]",
+  "phone360-dark admin-usermenu: nothing to click for .fi-global-search-btn, .fi-topbar button[aria-label*=\"search\" i]",
+  "phone360-dark: no global search found",
+  "phone360-dark admin-mounts console: http://127.0.0.1:8090/api/system does not match node token_id !",
+  "phone360-dark admin-announcements: nothing to click for main a:has-text(\"New announcement\"), main button:has-text(\"New announcement\")",
+  "phone360-dark admin-announcements page error: Simplify.brandTextStyle is not a function",
+  "phone360-dark host-x: nothing to click for .ps-host-tabs button:nth-child(2)"
+ ]
+}
