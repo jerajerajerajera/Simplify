@@ -1036,7 +1036,7 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   .ps-phone-more-menu .ps-menu-item[aria-current="page"] { background: var(--ps-raised); }
   .ps .ps-quick-commands { display: flex; flex: none; gap: 6px; padding: 8px 12px 0; overflow-x: auto; scrollbar-width: none; border-top: 1px solid var(--ps-console-line); }
   .ps .ps-quick-commands::-webkit-scrollbar { display: none; }
-  .ps .ps-quick-commands { background: var(--ps-console-raised); }
+  .ps .ps-quick-commands { background: transparent; }
   .ps-quick-command { flex: none; min-height: 36px; padding: 0 12px; border: 1px solid var(--ps-console-line); border-radius: var(--ps-radius-pill); background: var(--ps-console-raised); color: var(--ps-console-ink); font: 12px var(--ps-mono); white-space: nowrap; }
   .ps-quick-command:disabled { opacity: .45; }
 }
@@ -1212,11 +1212,15 @@ body:has(.ps-server-top.is-console) :is(.fi-header, .fi-wi-stats-overview, .fi-w
 /* Pelican's charts load late: until then an empty card stands in for each, so they go by component name. */
 body:has(.ps-server-top.is-console) :is([wire\:name$="\\ServerCpuChart"], [wire\:name$="\\ServerMemoryChart"], [wire\:name$="\\ServerNetworkChart"]) { display: none !important; }
 #terminal :is(.xterm-viewport, .xterm-screen) { background: transparent !important; }
-:has(> #terminal) { overflow: hidden; border: 1px solid var(--ps-console-line); border-radius: var(--ps-radius-lg); background: var(--ps-console-bg) !important; color: var(--ps-console-ink); box-shadow: none !important; }
-/* Pelican's own terminal colour behind the output, so the output has no box of its own. */
-#terminal { position: relative; padding: 68px 17px 14px; background: #131a20; }
+:has(> #terminal) { overflow: hidden; border: 1px solid var(--ps-console-line); border-radius: var(--ps-radius-lg); background: #131a20 !important; color: var(--ps-console-ink); box-shadow: none !important; }
+/* Pelican's own terminal colour for the whole card, so the output has no box of its own. The room around the output is
+   padding of xterm's own element: Pelican's fit counts that one, not the padding of #terminal, so the rows and columns
+   fit the box and no line ends behind the command bar or the right edge. */
+#terminal { position: relative; padding: 0; background: transparent; }
+#terminal > .xterm { padding: 68px 17px 14px; }
+#terminal .xterm-rows > div { padding-inline: 0 !important; }
 #terminal > .ps-console-title { position: absolute; inset: 0 0 auto; height: 56px; color: var(--ps-console-ink); }
-:has(> #terminal) > div:has(#send-command) { gap: 10px; min-height: 62px; padding: 10px 14px; border-top: 1px solid var(--ps-console-line); background: var(--ps-console-raised) !important; color: var(--ps-console-muted); border-radius: 0 !important; }
+:has(> #terminal) > div:has(#send-command) { gap: 10px; min-height: 62px; padding: 10px 14px; border-top: 1px solid var(--ps-console-line); background: transparent !important; color: var(--ps-console-muted); border-radius: 0 !important; }
 #send-command { height: 42px; padding: 8px 10px !important; border: 1px solid var(--ps-console-line) !important; border-radius: var(--ps-radius-sm); background: var(--ps-console-bg) !important; color: var(--ps-console-ink); font: 13px var(--ps-mono); }
 #send-command:focus { border-color: var(--ps-accent) !important; }
 #send-command::placeholder { color: var(--ps-console-muted); }
@@ -1232,8 +1236,8 @@ html.ps-console-window body:has(.ps-server-top) .fi-main-ctn > .fi-main { grid-c
   .ps.ps-server-top > .ps-main { padding: 16px 0 0; }
   .ps-server-menu { display: none; }
   .ps-console-grow { display: none !important; }
-  #terminal { padding: 60px 10px 10px; }
+  #terminal > .xterm { padding: 60px 10px 10px; }
   #terminal > .ps-console-title { height: 48px; }
-  .ps-ui.ps-quick-commands { display: flex; flex: none; gap: 6px; padding: 8px 12px; overflow-x: auto; scrollbar-width: none; background: #131a20; }
+  .ps-ui.ps-quick-commands { display: flex; flex: none; gap: 6px; padding: 8px 12px; overflow-x: auto; scrollbar-width: none; background: transparent; }
 }
 .ps-live-bars[hidden] { display: none; }
