@@ -37,11 +37,45 @@ final class WebApp
     public static function icon(int $size): array
     {
         $own = Brand::logoFile(PanelSettings::get('app_icon'));
+        if ($own !== null && function_exists('imagecreatefromstring')) {
+            // Chrome only offers "Install" with a square PNG, WebP or SVG of at least 144px: the admin's own icon is
+            // served as a square PNG in exactly the size the manifest names, whatever was uploaded.
+            return [route('simplify.app-icon', ['size' => $size, 'v' => substr(md5($own), 0, 8)]), 'image/png'];
+        }
         if ($own !== null) {
             return [url('/simplify/brand/'.$own), 'image/'.(str_ends_with($own, '.png') ? 'png' : (str_ends_with($own, '.webp') ? 'webp' : 'jpeg'))];
         }
 
         return [Assets::url('app-icon-'.$size.'.png'), 'image/png'];
+    }
+
+    /** The admin's own app icon as a square PNG of $size pixels (cropped to its middle), or null without one. */
+    public static function ownIconPng(int $size): ?string
+    {
+        $own = Brand::logoFile(PanelSettings::get('app_icon'));
+        $path = $own !== null ? Brand::path($own) : null;
+        if ($path === null || ! function_exists('imagecreatefromstring')) {
+            return null;
+        }
+
+        $png = Cache::rememberForever('simplify.app-icon.'.$own.'.'.$size, function () use ($path, $size) {
+            $source = @imagecreatefromstring((string) file_get_contents($path));
+            if ($source === false) {
+                return null;
+            }
+            $side = min(imagesx($source), imagesy($source));
+            $icon = imagecreatetruecolor($size, $size);
+            imagealphablending($icon, false);
+            imagesavealpha($icon, true);
+            imagefill($icon, 0, 0, imagecolorallocatealpha($icon, 0, 0, 0, 127));
+            imagecopyresampled($icon, $source, 0, 0, intdiv(imagesx($source) - $side, 2), intdiv(imagesy($source) - $side, 2), $size, $size, $side, $side);
+            ob_start();
+            imagepng($icon);
+
+            return base64_encode((string) ob_get_clean());
+        });
+
+        return is_string($png) ? (base64_decode($png, true) ?: null) : null;
     }
 
     /**
