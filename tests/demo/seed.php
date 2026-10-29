@@ -53,11 +53,22 @@ $list = [
     ['Discord bot', 'Node.js', 'running', 180, 2, $admin, null],
 ];
 $minecraft = ['Paper', 'Forge'];
+// Egg descriptions as the pelican-eggs repository has them.
+$about = [
+    'Paper' => 'High performance Spigot fork that aims to fix gameplay and mechanics inconsistencies.',
+    'Forge' => 'Minecraft Forge Server. Minecraft Forge is a modding API (Application Programming Interface), which makes it easier to create mods, and also make sure mods are compatible with each other.',
+    'Valheim' => 'A brutal exploration and survival game for 1-10 players, set in a procedurally-generated purgatory inspired by viking culture.',
+    'Palworld' => 'Fight, farm, build and work alongside mysterious creatures called "Pals" in this completely new multiplayer, open world survival and crafting game!',
+    'Rust' => 'The only aim in Rust is to survive. To do this you will need to overcome struggles such as hunger, thirst and cold. Build a fire. Build a shelter. Kill animals for meat. Protect yourself from other players, and kill them for meat.',
+    'Counter-Strike 2' => 'For over two decades, Counter-Strike has offered an elite competitive experience, one shaped by millions of players from across the globe.',
+    'Terraria' => 'Dig, fight, explore, build! Nothing is impossible in this action-packed adventure game. The world is your canvas and the ground itself is your paint.',
+    'Node.js' => 'A generic Node.js egg. Runs a JavaScript app such as a Discord bot from its own files.',
+];
 $eggs = [];
 $out = [];
 $servers = [];
 foreach ($list as $i => [$name, $eggName, $state, $memory, $cpu, $owner, $color]) {
-    $eggs[$eggName] ??= Egg::factory()->create(['name' => $eggName, 'author' => 'panel@example.com', 'features' => in_array($eggName, $minecraft, true) ? ['eula', 'java_version'] : [],
+    $eggs[$eggName] ??= Egg::factory()->create(['name' => $eggName, 'description' => $about[$eggName] ?? '', 'author' => 'panel@example.com', 'features' => in_array($eggName, $minecraft, true) ? ['eula', 'java_version'] : [],
         'docker_images' => ['ghcr.io/pelican-eggs/yolks:java_21'], 'update_url' => null]);
     $allocation = Allocation::factory()->create(['node_id' => $node->id, 'ip' => '127.0.0.1', 'ip_alias' => 'play.example.com', 'port' => 25565 + $i]);
     $server = Server::factory()->create(['name' => $name, 'owner_id' => $owner->id, 'node_id' => $node->id, 'allocation_id' => $allocation->id, 'egg_id' => $eggs[$eggName]->id,
