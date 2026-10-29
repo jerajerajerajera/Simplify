@@ -1,7 +1,13 @@
 # Changelog
 
-## Unreleased
+## 1.3.0
 
+The setup has a new first step that recommends the add-ons, and it now looks like the rest of Simplify.
+
+- **Add-ons first**: a card for each add-on (Server Maker, Toolkit, Explain, Egg Updates and Hosting) shows whether it is installed. If it isn't, the card has a button to its page on the Pelican Hub. Install the ones you want, press **Check again**, and set everything up in one go.
+- **Same style as the settings**: the Simplify logo in the heading, one card with the steps on the left, and the same flat sections.
+- **Set up add-ons**: the last step asks the installed add-ons their most important questions and links to each add-on's own settings page.
+- For add-on makers: the add-on API is now version 3, with the optional `setupFields()`, `setupState()` and `saveSetup()` (see ADDONS.md).
 - Announcements, embed and subdomains are core features: always there, like the overview. The switches for them under Settings → Add-ons are gone, and they no longer show in the add-on list. Use the ones you want.
 - Simplify no longer copies data from the separate Announcements, Embed and Subdomains plugins of Simplify 1.1; remove them before updating. Subdomains from PelicanSimplify 0.6 and 0.7 are still taken over.
 

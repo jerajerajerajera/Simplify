@@ -2,7 +2,7 @@
 
 return [
     'title' => 'Simplify sąranka',
-    'intro' => 'Keturi trumpi žingsniai. Viską vėliau galima pakeisti Simplify nustatymuose.',
+    'intro' => 'Penki trumpi žingsniai. Viską vėliau galėsi pakeisti Simplify nustatymuose.',
     'again' => 'Vykdyti sąranką iš naujo',
     'finish' => 'Baigti sąranką',
     'done' => 'Simplify paruoštas',
@@ -11,6 +11,7 @@ return [
         'look' => 'Išvaizda',
         'app' => 'Programėlė',
         'addons' => 'Priedai',
+        'finish' => 'Nustatyti priedus',
     ],
     'checks' => [
         'https' => 'Skydelis veikia per https. Naršyklės programėlę diegia ir pranešimus siunčia tik per https.',
@@ -18,7 +19,7 @@ return [
         'ok' => 'Paruošta',
         'missing' => 'Trūksta',
     ],
-    'addons_intro' => 'Priedai yra atskiri įskiepiai Pelican Hub. Įdiekite norimus ten; Simplify jie atsiras patys.',
+    'addons_intro' => 'Simplify veikia ir vienas. Kiekvienas priedas prideda vieną dalyką, ir rekomenduojame juos visus. Pirmiausia įdiek norimus iš Pelican Hub, tada grįžk: ši sąranka viską nustatys vienu kartu.',
     'installed' => 'Įdiegta',
     'hub' => 'Hub',
     'catalog' => [
@@ -43,4 +44,12 @@ return [
             'description' => 'Atsiskaitymo nuorodos, klientų zona ir pagrindinio kompiuterio režimas dideliems skydeliams.',
         ],
     ],
+    'addons_title' => 'Išnaudok Simplify daugiau',
+    'addons_count' => 'Įdiegta :installed iš :total',
+    'check_again' => 'Tikrinti dar kartą',
+    'recommended' => 'Rekomenduojama',
+    'set_up_later' => 'Nustatoma paskutiniame žingsnyje',
+    'free_on_hub' => 'Įdiek iš Pelican Hub',
+    'addon_pages' => 'Priedų nustatymai',
+    'addon_pages_help' => 'Kiekvienas priedas turi ir savo nustatymų puslapį viskam, ko sąranka neklausia.',
 ];

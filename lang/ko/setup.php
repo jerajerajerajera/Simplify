@@ -2,7 +2,7 @@
 
 return [
     'title' => 'Simplify 설정',
-    'intro' => '짧은 4단계입니다. 모든 항목은 나중에 Simplify 설정에서 바꿀 수 있습니다.',
+    'intro' => '짧은 5단계입니다. 모든 항목은 나중에 Simplify 설정에서 바꿀 수 있습니다.',
     'again' => '설정 다시 실행',
     'finish' => '설정 완료',
     'done' => 'Simplify 설정이 끝났습니다',
@@ -11,6 +11,7 @@ return [
         'look' => '모양',
         'app' => '앱',
         'addons' => '애드온',
+        'finish' => '애드온 설정',
     ],
     'checks' => [
         'https' => '패널이 https로 실행 중입니다. 브라우저는 https에서만 앱을 설치하고 알림을 보냅니다.',
@@ -18,7 +19,7 @@ return [
         'ok' => '준비됨',
         'missing' => '없음',
     ],
-    'addons_intro' => '애드온은 Pelican Hub의 별도 플러그인입니다. 원하는 것을 그곳에서 설치하면 Simplify에 자동으로 나타납니다.',
+    'addons_intro' => 'Simplify는 단독으로도 작동합니다. 각 애드온은 기능 하나를 더하며, 모두 추천합니다. 먼저 Pelican Hub에서 원하는 애드온을 설치한 뒤 돌아오세요. 이 설정에서 한 번에 모두 설정합니다.',
     'installed' => '설치됨',
     'hub' => 'Hub에서 보기',
     'catalog' => [
@@ -43,4 +44,12 @@ return [
             'description' => '청구 링크, 고객용 클라이언트 영역, 대규모 패널을 위한 호스트 모드.',
         ],
     ],
+    'addons_title' => 'Simplify로 더 많은 일을',
+    'addons_count' => ':total개 중 :installed개 설치됨',
+    'check_again' => '다시 확인',
+    'recommended' => '추천',
+    'set_up_later' => '마지막 단계에서 설정',
+    'free_on_hub' => 'Pelican Hub에서 설치',
+    'addon_pages' => '애드온 설정',
+    'addon_pages_help' => '각 애드온에는 설정 마법사가 묻지 않는 항목을 위한 자체 설정 페이지도 있습니다.',
 ];

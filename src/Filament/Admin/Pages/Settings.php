@@ -63,10 +63,16 @@ final class Settings extends Page implements HasForms
 
     public function getHeading(): string|Htmlable
     {
+        return self::logoHeading(__('pelican-simplify::settings.page_title'));
+    }
+
+    /** A page title beside Simplify's logo, as on the settings page and the setup. */
+    public static function logoHeading(string $title): HtmlString
+    {
         return new HtmlString(sprintf(
             '<span class="s-heading"><span class="s-logo-tile"><img class="s-logo" src="%s" alt=""></span>%s</span>',
             e(Assets::url('logo.svg')),
-            e(__('pelican-simplify::settings.page_title')),
+            e($title),
         ));
     }
 

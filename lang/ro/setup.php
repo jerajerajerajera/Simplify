@@ -2,7 +2,7 @@
 
 return [
     'title' => 'Configurați Simplify',
-    'intro' => 'Patru pași scurți. Totul poate fi schimbat mai târziu în setările Simplify.',
+    'intro' => 'Cinci pași scurți. Totul se poate schimba ulterior în setările Simplify.',
     'again' => 'Rulați din nou configurarea',
     'finish' => 'Finalizați configurarea',
     'done' => 'Simplify este configurat',
@@ -11,6 +11,7 @@ return [
         'look' => 'Aspect',
         'app' => 'Aplicație',
         'addons' => 'Extensii',
+        'finish' => 'Configurează add-on-urile',
     ],
     'checks' => [
         'https' => 'Panoul rulează pe https. Browserele instalează aplicația și trimit notificări doar prin https.',
@@ -18,7 +19,7 @@ return [
         'ok' => 'Gata',
         'missing' => 'Lipsește',
     ],
-    'addons_intro' => 'Extensiile sunt pluginuri separate pe Pelican Hub. Instalați-le acolo pe cele dorite; apar singure în Simplify.',
+    'addons_intro' => 'Simplify funcționează și singur. Fiecare add-on adaugă un lucru și le recomandăm pe toate. Instalează mai întâi pe cele dorite din Pelican Hub, apoi revino: această configurare setează totul dintr-odată.',
     'installed' => 'Instalat',
     'hub' => 'Pe Hub',
     'catalog' => [
@@ -43,4 +44,12 @@ return [
             'description' => 'Linkuri de facturare, o zonă pentru clienți și modul gazdă pentru panouri mari.',
         ],
     ],
+    'addons_title' => 'Fă mai mult cu Simplify',
+    'addons_count' => ':installed din :total instalate',
+    'check_again' => 'Verifică din nou',
+    'recommended' => 'Recomandat',
+    'set_up_later' => 'Se configurează la ultimul pas',
+    'free_on_hub' => 'Instalează-l din Pelican Hub',
+    'addon_pages' => 'Setările add-on-urilor',
+    'addon_pages_help' => 'Fiecare add-on are și propria pagină de setări, pentru tot ce nu întreabă configurarea.',
 ];

@@ -2,7 +2,7 @@
 
 return [
     'title' => 'Simplify instellen',
-    'intro' => 'Vier korte stappen. Alles kun je later wijzigen in de instellingen van Simplify.',
+    'intro' => 'Vijf korte stappen. Alles kun je later wijzigen in de instellingen van Simplify.',
     'again' => 'Instellen opnieuw doorlopen',
     'finish' => 'Instellen afronden',
     'done' => 'Simplify is ingesteld',
@@ -11,6 +11,7 @@ return [
         'look' => 'Uiterlijk',
         'app' => 'App',
         'addons' => 'Add-ons',
+        'finish' => 'Add-ons instellen',
     ],
     'checks' => [
         'https' => 'Het paneel draait op https. Browsers installeren de app en sturen meldingen alleen via https.',
@@ -18,7 +19,7 @@ return [
         'ok' => 'Klaar',
         'missing' => 'Ontbreekt',
     ],
-    'addons_intro' => 'Add-ons zijn losse plugins op de Pelican Hub. Installeer daar de add-ons die je wilt; ze verschijnen vanzelf in Simplify.',
+    'addons_intro' => 'Simplify werkt op zichzelf. Elke add-on voegt één ding toe, en we raden ze allemaal aan. Installeer eerst de add-ons die je wilt via de Pelican Hub en kom dan terug: deze setup stelt alles in één keer in.',
     'installed' => 'Geïnstalleerd',
     'hub' => 'Op de Hub',
     'catalog' => [
@@ -43,4 +44,12 @@ return [
             'description' => 'Factuurlinks, een klantportaal voor klanten en hostmodus voor grote panelen.',
         ],
     ],
+    'addons_title' => 'Haal meer uit Simplify',
+    'addons_count' => ':installed van :total geïnstalleerd',
+    'check_again' => 'Opnieuw controleren',
+    'recommended' => 'Aanbevolen',
+    'set_up_later' => 'Instellen in de laatste stap',
+    'free_on_hub' => 'Installeer via de Pelican Hub',
+    'addon_pages' => 'Instellingen van add-ons',
+    'addon_pages_help' => 'Elke add-on heeft ook een eigen instellingenpagina, voor alles wat de setup niet vraagt.',
 ];

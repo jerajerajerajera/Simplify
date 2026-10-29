@@ -2,7 +2,7 @@
 
 return [
     'title' => 'Sett opp Simplify',
-    'intro' => 'Fire korte trinn. Alt kan endres senere i Simplifys innstillinger.',
+    'intro' => 'Fem korte steg. Alt kan endres senere i Simplifys innstillinger.',
     'again' => 'Kjør oppsettet på nytt',
     'finish' => 'Fullfør oppsettet',
     'done' => 'Simplify er satt opp',
@@ -11,6 +11,7 @@ return [
         'look' => 'Utseende',
         'app' => 'App',
         'addons' => 'Tillegg',
+        'finish' => 'Sett opp add-ons',
     ],
     'checks' => [
         'https' => 'Panelet kjører på https. Nettlesere installerer bare appen og sender bare varsler over https.',
@@ -18,7 +19,7 @@ return [
         'ok' => 'Klar',
         'missing' => 'Mangler',
     ],
-    'addons_intro' => 'Tillegg er separate plugins på Pelican Hub. Installer de du vil ha der; de dukker opp i Simplify av seg selv.',
+    'addons_intro' => 'Simplify fungerer på egen hånd. Hver add-on legger til én ting, og vi anbefaler alle. Installer først de du vil ha fra Pelican Hub, og kom så tilbake: dette oppsettet stiller inn alt på én gang.',
     'installed' => 'Installert',
     'hub' => 'På Hub',
     'catalog' => [
@@ -43,4 +44,12 @@ return [
             'description' => 'Faktureringslenker, et kundeområde for kunder og vertsmodus for store paneler.',
         ],
     ],
+    'addons_title' => 'Få mer ut av Simplify',
+    'addons_count' => ':installed av :total installert',
+    'check_again' => 'Sjekk igjen',
+    'recommended' => 'Anbefalt',
+    'set_up_later' => 'Settes opp i siste steg',
+    'free_on_hub' => 'Installer den fra Pelican Hub',
+    'addon_pages' => 'Innstillinger for add-ons',
+    'addon_pages_help' => 'Hver add-on har også sin egen innstillingsside, for alt oppsettet ikke spør om.',
 ];

@@ -12,24 +12,25 @@ final class Catalog
 {
     public const HUB = 'https://hub.pelican.dev/plugins/';
 
-    /** id => icon */
+    /** id => [icon, colour of its card]; the Hub page of each is HUB.id */
     public const ADDONS = [
-        'simplify-server-maker' => 'tabler-wand',
-        'simplify-toolkit' => 'tabler-cube',
-        'simplify-explain' => 'tabler-message-question',
-        'simplify-egg-updates' => 'tabler-egg',
-        'simplify-hosting' => 'tabler-receipt',
+        'simplify-server-maker' => ['tabler-wand', '#6ea8fe'],
+        'simplify-toolkit' => ['tabler-cube', '#4ec9a0'],
+        'simplify-explain' => ['tabler-message-question', '#e0a050'],
+        'simplify-egg-updates' => ['tabler-egg', '#e7c95a'],
+        'simplify-hosting' => ['tabler-receipt', '#b48cf2'],
     ];
 
-    /** @return list<array{id: string, icon: string, name: string, description: string, url: string, installed: bool}> */
+    /** @return list<array{id: string, icon: string, tone: string, name: string, description: string, url: string, installed: bool}> */
     public static function all(AddonRegistry $registry): array
     {
         $list = [];
-        foreach (self::ADDONS as $id => $icon) {
+        foreach (self::ADDONS as $id => [$icon, $tone]) {
             $key = 'pelican-simplify::setup.catalog.'.substr($id, strlen('simplify-'));
             $list[] = [
                 'id' => $id,
                 'icon' => $icon,
+                'tone' => $tone,
                 'name' => __($key.'.name'),
                 'description' => __($key.'.description'),
                 'url' => self::HUB.$id,

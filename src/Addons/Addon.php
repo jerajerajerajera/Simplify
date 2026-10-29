@@ -6,6 +6,8 @@ namespace Simplify\Core\Addons;
 
 use App\Models\Server;
 use App\Models\User;
+use Filament\Forms\Components\Field;
+use Filament\Schemas\Components\Component;
 
 /**
  * What an add-on shows inside Simplify. See ADDONS.md.
@@ -21,8 +23,11 @@ use App\Models\User;
  */
 abstract class Addon
 {
-    /** The contract version: 1 in Simplify 1.0, 2 since 1.1 (serverInfo, serverLinks, customerLinks, hostModeDefault). Raised whenever a method is added. */
-    public const API = 2;
+    /**
+     * The contract version: 1 in Simplify 1.0, 2 since 1.1 (serverInfo, serverLinks, customerLinks, hostModeDefault),
+     * 3 since 1.3 (setupFields, setupState, saveSetup). Raised whenever a method is added.
+     */
+    public const API = 3;
 
     /** The add-on's plugin id, for example "simplify-server-maker". */
     abstract public function id(): string;
@@ -126,4 +131,33 @@ abstract class Addon
     {
         return [];
     }
+
+    /**
+     * Filament form components for the add-on's most important settings, asked in Simplify's setup so a new panel is
+     * set up in one go. Field names are relative to the add-on: they get setupState() and come back in saveSetup().
+     * Empty: the setup links to settingsUrl() instead.
+     *
+     * @return list<Component|Field>
+     */
+    public function setupFields(): array
+    {
+        return [];
+    }
+
+    /**
+     * The current values for setupFields(), by field name.
+     *
+     * @return array<string, mixed>
+     */
+    public function setupState(): array
+    {
+        return [];
+    }
+
+    /**
+     * Saves what the setup asked, by field name, after the setup's own checks passed.
+     *
+     * @param  array<string, mixed>  $state
+     */
+    public function saveSetup(array $state): void {}
 }

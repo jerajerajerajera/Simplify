@@ -2,7 +2,7 @@
 
 return [
     'title' => 'Siapkan Simplify',
-    'intro' => 'Empat langkah singkat. Semuanya dapat diubah nanti di pengaturan Simplify.',
+    'intro' => 'Lima langkah singkat. Semuanya bisa diubah nanti di pengaturan Simplify.',
     'again' => 'Jalankan penyiapan lagi',
     'finish' => 'Selesaikan penyiapan',
     'done' => 'Simplify sudah siap',
@@ -11,6 +11,7 @@ return [
         'look' => 'Tampilan',
         'app' => 'Aplikasi',
         'addons' => 'Add-on',
+        'finish' => 'Atur add-on',
     ],
     'checks' => [
         'https' => 'Panel berjalan di https. Browser hanya memasang aplikasi dan mengirim notifikasi melalui https.',
@@ -18,7 +19,7 @@ return [
         'ok' => 'Siap',
         'missing' => 'Tidak ada',
     ],
-    'addons_intro' => 'Add-on adalah plugin terpisah di Pelican Hub. Pasang yang Anda inginkan di sana; add-on muncul sendiri di Simplify.',
+    'addons_intro' => 'Simplify bisa berjalan sendiri. Setiap add-on menambahkan satu hal, dan kami menyarankan semuanya. Pasang dulu yang kamu mau dari Pelican Hub, lalu kembali: penyiapan ini mengatur semuanya sekaligus.',
     'installed' => 'Terpasang',
     'hub' => 'Di Hub',
     'catalog' => [
@@ -43,4 +44,12 @@ return [
             'description' => 'Tautan tagihan, area klien untuk pelanggan, dan mode host untuk panel besar.',
         ],
     ],
+    'addons_title' => 'Lakukan lebih banyak dengan Simplify',
+    'addons_count' => ':installed dari :total terpasang',
+    'check_again' => 'Periksa lagi',
+    'recommended' => 'Disarankan',
+    'set_up_later' => 'Diatur di langkah terakhir',
+    'free_on_hub' => 'Pasang dari Pelican Hub',
+    'addon_pages' => 'Pengaturan add-on',
+    'addon_pages_help' => 'Setiap add-on juga punya halaman pengaturan sendiri untuk semua yang tidak ditanyakan penyiapan.',
 ];
