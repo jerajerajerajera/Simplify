@@ -50,6 +50,7 @@
                     </button>
                 </div>
             </div>
+            @livewire('simplify-core-announcement-bars', ['compact' => true], key('simplify-server-notes'))
             <div class="ps-motd-preview ps-motd-display ps-info-motd" x-show="server.motd" x-effect="server.motd; $nextTick(() => fitMotd($el))" aria-label="{{ $u('message_of_the_day') }}"><template x-for="(part, index) in motdPreview(server.motd || '')" :key="index"><span :style="part.style" x-text="part.text"></span></template></div>
             {{-- Power: one button that follows the state (Start or Stop), Restart, and the rest under ⋯. --}}
             <div class="ps-info-power" x-on:click.outside="colorMenu=false; infoMenu=false" x-on:keydown.escape.stop="colorMenu=false; infoMenu=false">

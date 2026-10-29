@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.5
+
+- On a server page the announcements sit in the server card, between the name and the power buttons, as short rows instead of bars above the console. With more than two, a +N button shows the rest.
+- The console and the server menu on the left fit the height of the window, so the page no longer scrolls.
+
 ## 1.3.4
 
 - In host mode the settings sit straight on the page again, as in PelicanSimplify 0.7.0. Simplify's settings, the add-ons' pages and Pelican's settings tabs no longer have a card around them or around each section, and the extra margin and the page header are gone. A thin line separates the sections.

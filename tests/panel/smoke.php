@@ -565,6 +565,25 @@ step('announcements: live bars show for the right people, and the admin list is 
         throw new RuntimeException('the admin list is wrong or opens for a player');
     }
 });
+step('announcements: a server page shows them as short rows in the server card, not as bars above the console', function () use ($admin, $server) {
+    $note = Announcement::create(['title' => 'Smoke card note', 'body' => 'Short and in the card']);
+    try {
+        $url = Filament\Facades\Filament::getPanel('server')->getUrl($server);
+        $response = visit($admin, $url);
+        if ($response->isRedirect()) {
+            $url = (string) $response->headers->get('Location');
+            $response = visit($admin, $url);
+        }
+        expectOk($response, $url);
+        $page = $response->getContent();
+        $card = strpos($page, 'ps-info-notes');
+        if ($card === false || strpos($page, 'Smoke card note', $card) === false || str_contains($page, 'simplify-announcement-')) {
+            throw new RuntimeException('the announcement is not a row in the server card');
+        }
+    } finally {
+        $note->delete();
+    }
+});
 step('announcements: unpin moves a bar to the bell, pin brings it back, and the scheduler fills the bell once', function () {
     $player = User::where('email', 'smoke-player@example.com')->firstOrFail();
     $live = Announcement::query()->where('title', 'Smoke maintenance tonight')->firstOrFail();
