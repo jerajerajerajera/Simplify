@@ -134,8 +134,14 @@ const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g
       return [...card.querySelectorAll('.ps-badge')].filter((b) => b.checkVisibility()).map((b) => b.getBoundingClientRect())
         .filter((b) => name && b.width && b.left < name.right && b.right > name.left && b.top < name.bottom && b.bottom > name.top).map(() => card.querySelector('h3').textContent);
     }));
+    const outside = () => page.evaluate(() => [...document.querySelectorAll('.ps-server-card')].filter((c) => c.checkVisibility()).flatMap((card) => {
+      const box = card.getBoundingClientRect();
+      return [...card.querySelectorAll('.ps-card-bottom > *')].filter((e) => e.checkVisibility()).map((e) => e.getBoundingClientRect())
+        .filter((e) => e.width && (e.left < box.left || e.right > box.right)).map(() => card.querySelector('h3').textContent);
+    }));
     for (const view of ['grid', 'compact']) {
       await ps('d.setOverviewView(a)', view); await sleep(600);
+      ok(`${view}: the bottom row (players, badges, arrow) stays inside the card`, (await outside()).length === 0, (await outside()).join(', '));
       ok(`${view}: add-on badges show on the cards`, (await page.locator('.ps-server-card:visible .ps-badge', { hasText: 'Paper 1.21.4' }).count()) === 6);
       ok(`${view}: no badge covers a server name`, (await covered()).length === 0, (await covered()).join(', '));
     }
