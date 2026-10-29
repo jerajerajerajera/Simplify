@@ -478,8 +478,8 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   z-index: 2;
   isolation: isolate;
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto auto;
-  grid-template-areas: "icons content motd power";
+  grid-template-columns: auto minmax(0, max-content) minmax(0, 1fr) auto auto;
+  grid-template-areas: "icons content notes motd power";
   align-items: center;
   gap: 20px;
   margin-bottom: 14px;
@@ -520,6 +520,28 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 .ps-address:disabled { color: var(--ps-muted); cursor: default; }
 .ps-btn.ps-address { padding: 0 14px; }
 .ps-info-motd { grid-area: motd; width: 340px; margin: 0; padding: 8px 12px; font-size: 13px; }
+/* Announcements as two short rows beside the name; +n on the second opens the rest. The card keeps its height
+   while they are closed, and the rows keep their width. */
+.ps-info-notes { grid-area: notes; display: flex; min-width: 0; }
+.ps-notes { display: grid; flex: 1; gap: 4px; min-width: 0; max-width: 520px; margin-inline-start: auto; }
+.ps-notes:not(.is-open) > .ps-note:nth-child(n + 3) { display: none; }
+/* With announcements they get room of their own; on narrower screens a row under the name. */
+.ps-server-info:has(.ps-note) { grid-template-columns: auto minmax(0, max-content) minmax(240px, 1fr) auto auto; }
+@media (max-width: 1100px) {
+  .ps-server-info:has(.ps-note) { grid-template-columns: auto minmax(0, 1fr) auto auto; grid-template-areas: "icons content motd power" "notes notes notes notes"; }
+  .ps-server-info:has(.ps-note) .ps-notes { max-width: none; }
+}
+.ps-note { --ps-tone: var(--ps-info); display: flex; align-items: center; gap: 8px; min-width: 0; height: 30px; padding: 0 4px 0 10px; border: 1px solid color-mix(in srgb, var(--ps-tone) 35%, var(--ps-line)); border-radius: var(--ps-radius-sm); background: color-mix(in srgb, var(--ps-tone) 10%, var(--ps-surface)); font-size: 12px; }
+.ps-note.is-warning { --ps-tone: var(--ps-warn); }
+.ps-note.is-success { --ps-tone: var(--ps-ok); }
+.ps-note-icon { flex: none; width: 16px; height: 16px; color: var(--ps-tone); }
+.ps-note-text { flex: 1; min-width: 0; margin: 0; overflow: hidden; color: var(--ps-muted); text-overflow: ellipsis; white-space: nowrap; }
+.ps-note-text strong { color: var(--ps-ink); font-weight: 650; }
+.ps-note .ps-btn.is-sm { flex: none; min-height: 24px; height: 24px; }
+.ps-note-pin.is-icon { width: 24px; }
+.ps-note-pin svg { width: 14px; height: 14px; }
+.ps-notes-more { padding: 0 8px; font-weight: 650; }
+.ps-notes.is-open .ps-notes-more { background: var(--ps-raised); }
 .ps-info-power { grid-area: power; position: relative; display: flex; align-items: center; gap: 8px; }
 .ps-info-power > .ps-btn { background: color-mix(in srgb, var(--ps-surface) 88%, transparent); backdrop-filter: blur(6px); }
 .ps-info-power > .ps-btn.is-primary { background: var(--ps-accent); }
@@ -767,7 +789,7 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 }
 @media (max-width: 960px) {
   .ps-console-grow, .ps-console-window { display: none !important; }
-  .ps-server-info { grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "icons content power"; }
+  .ps-server-info { grid-template-columns: auto minmax(0, max-content) minmax(0, 1fr) auto; grid-template-areas: "icons content notes power"; }
   .ps-info-motd { display: none !important; }
 }
 
@@ -975,7 +997,9 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 @media (max-width: 600px) {
   .ps .ps-statusbar-power .ps-btn { width: 40px; height: 40px; }
 
-  .ps .ps-server-info { grid-template-columns: 44px minmax(0, 1fr); grid-template-areas: "icons content" "power power"; gap: 12px 14px; margin-bottom: 12px; padding: 14px; }
+  .ps .ps-server-info { grid-template-columns: 44px minmax(0, 1fr); grid-template-areas: "icons content" "notes notes" "power power"; gap: 12px 14px; margin-bottom: 12px; padding: 14px; }
+  .ps .ps-info-notes:not(:has(.ps-note)) { display: none; }
+  .ps .ps-notes { max-width: none; }
   .ps .ps-info-icon { width: 44px; height: 44px; border-radius: 12px; }
   .ps .ps-software-icon img { width: 34px; height: 34px; }
   .ps .ps-software-icon.is-badge { width: 22px; height: 22px; inset-inline-end: -6px; bottom: -6px; }
@@ -1048,7 +1072,7 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   .ps .ps-software-icon.is-badge { display: none; }
   .ps .ps-game-title { margin-bottom: 0; }
   .ps .ps-game-title h2 { font-size: 17px; }
-  .ps .ps-alias-button, .ps .ps-info-meta-item, .ps .ps-info-motd, .ps .ps-server-stats { display: none !important; }
+  .ps .ps-alias-button, .ps .ps-info-meta-item, .ps .ps-info-motd, .ps .ps-info-notes, .ps .ps-server-stats { display: none !important; }
   .ps .ps-info-power > .ps-btn > span { display: none; }
   .ps .ps-info-power > .ps-btn { width: 40px; padding: 0; }
   .ps-modal-layer { --ps-modal-gap: 8px; }

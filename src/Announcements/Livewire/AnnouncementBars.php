@@ -22,9 +22,12 @@ final class AnnouncementBars extends Component
 
     private const LIMIT = 5;
 
+    /** Short rows in the server card instead of bars (pages/server.blade.php). */
+    public bool $compact = false;
+
     public function render(): View
     {
-        return view('pelican-simplify::announcements.bars', ['announcements' => $this->announcements()]);
+        return view('pelican-simplify::announcements.'.($this->compact ? 'notes' : 'bars'), ['announcements' => $this->announcements()]);
     }
 
     public function unpin(int $id): void
