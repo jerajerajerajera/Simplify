@@ -1,5 +1,5 @@
 <div>
-    @forelse (\Simplify\Core\Filament\Admin\Pages\Settings::addonRows() as $addon)
+    @forelse ($rows ?? \Simplify\Core\Filament\Admin\Pages\Settings::addonRows() as $addon)
         <div class="s-row">
             <x-filament::icon :icon="$addon['icon']" class="s-row-icon" />
             <div class="s-row-text">
