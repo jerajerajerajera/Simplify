@@ -2,7 +2,6 @@
 
 return [
     'name' => '웹사이트 임베드',
-    'description' => '서버를 어떤 웹사이트에든 상태와 접속 주소와 함께 보여줍니다.',
     'save' => '저장',
     'saved' => '저장됨',
     'settings' => [

@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Inserción en la web',
-    'description' => 'Muestra tus servidores en cualquier web, con su estado y su dirección de conexión.',
     'save' => 'Guardar',
     'saved' => 'Guardado',
     'settings' => [

@@ -69,7 +69,4 @@ return [
         'removing' => 'Menghapus…',
         'error' => 'Tidak terhubung',
     ],
-    'addon' => [
-        'description' => 'Memberi setiap server alamatnya sendiri, seperti oak.example.com, dengan record DNS di Cloudflare.',
-    ],
 ];

@@ -69,7 +69,4 @@ return [
         'removing' => 'Уклања се…',
         'error' => 'Није повезано',
     ],
-    'addon' => [
-        'description' => 'Даје сваком серверу сопствену адресу, на пример oak.example.com, са DNS записима у Cloudflare-у.',
-    ],
 ];

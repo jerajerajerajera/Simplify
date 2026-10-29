@@ -69,7 +69,4 @@ return [
         'removing' => 'Fjerner…',
         'error' => 'Ikke tilkoblet',
     ],
-    'addon' => [
-        'description' => 'Gir hver server sin egen adresse, som oak.example.com, med DNS-oppføringer i Cloudflare.',
-    ],
 ];

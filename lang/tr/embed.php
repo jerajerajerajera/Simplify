@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Web sitesine yerleştirme',
-    'description' => 'Sunucularını her web sitesinde, durumları ve bağlantı adresleriyle gösterir.',
     'save' => 'Kaydet',
     'saved' => 'Kaydedildi',
     'settings' => [

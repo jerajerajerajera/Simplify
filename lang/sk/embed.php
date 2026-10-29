@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Vloženie na web',
-    'description' => 'Zobrazí tvoje servery na akomkoľvek webe, so stavom a adresou na pripojenie.',
     'save' => 'Uložiť',
     'saved' => 'Uložené',
     'settings' => [

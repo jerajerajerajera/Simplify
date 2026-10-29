@@ -3,10 +3,6 @@
 return [
     'title' => 'Közlemények',
     'model' => 'közlemény',
-    'addon' => [
-        'name' => 'Közlemények',
-        'description' => 'Info-, figyelmeztető és siker üzenetek minden oldal tetején.',
-    ],
     'form' => [
         'category' => 'Kategória',
         'title' => 'Cím',

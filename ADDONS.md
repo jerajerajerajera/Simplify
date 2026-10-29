@@ -119,10 +119,9 @@ Use the number below as `$navigationSort` for your add-on's main admin page (its
 
 Pages on a server (such as Subdomain or Website) stay in the server's own menu.
 
-Announcements, Embed and Subdomains were separate add-ons until Simplify 1.2 and are now part of the core, each with
-its own switch under Settings → Add-ons → Built in. Their ids (`simplify-announcements`, `simplify-embed`,
-`simplify-subdomains`) still show in the add-on list. Plugins that used Simplify Subdomains can call
-`Simplify\Core\Subdomains\Subdomains` with the same methods; its `ready()` is false while the part is off.
+Announcements, embed and subdomains are core features of Simplify since 1.2. Plugins that used Simplify Subdomains
+can call `Simplify\Core\Subdomains\Subdomains` with the same methods; its `ready()` is false until a root admin has
+set subdomains up.
 
 ## Events
 

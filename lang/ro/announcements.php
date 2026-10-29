@@ -3,10 +3,6 @@
 return [
     'title' => 'Anunțuri',
     'model' => 'anunț',
-    'addon' => [
-        'name' => 'Anunțuri',
-        'description' => 'Mesaje de informare, avertizare și succes în partea de sus a fiecărei pagini.',
-    ],
     'form' => [
         'category' => 'Categorie',
         'title' => 'Titlu',

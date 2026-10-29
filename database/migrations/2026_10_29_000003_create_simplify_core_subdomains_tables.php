@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Simplify\Core\Parts\Parts;
 
 // Subdomains, formerly the separate plugin Simplify Subdomains. Its own table names are kept free, because
 // uninstalling that plugin drops them.
@@ -28,8 +27,6 @@ return new class extends Migration
             $table->unsignedInteger('port')->nullable();
             $table->timestamps();
         });
-
-        Parts::import('subdomains');
     }
 
     public function down(): void

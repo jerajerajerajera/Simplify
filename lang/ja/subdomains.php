@@ -69,7 +69,4 @@ return [
         'removing' => '削除中…',
         'error' => '未接続',
     ],
-    'addon' => [
-        'description' => '各サーバーに oak.example.com のような専用アドレスを付け、DNS レコードを Cloudflare に作成します。',
-    ],
 ];

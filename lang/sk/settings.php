@@ -52,9 +52,4 @@ return [
         'none' => 'Nie sú nainštalované žiadne doplnky. Doplnky ako Server Maker sú samostatné pluginy na Pelican Hub.',
         'open' => 'Nastavenia',
     ],
-    'parts' => [
-        'heading' => 'Vstavané',
-        'help' => 'Predtým to boli samostatné add-ony. Keď jeden vypneš, zmizne všade a jeho údaje zostanú uložené.',
-        'standalone' => 'Samostatný plugin :name je stále nainštalovaný, preto táto časť zostáva vypnutá. Otvorením tejto stránky sa jeho údaje skopírujú do Simplify. Na prechod plugin odinštaluj.',
-    ],
 ];

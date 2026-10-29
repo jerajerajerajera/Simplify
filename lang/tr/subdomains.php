@@ -69,7 +69,4 @@ return [
         'removing' => 'Kaldırılıyor…',
         'error' => 'Bağlı değil',
     ],
-    'addon' => [
-        'description' => 'Her sunucuya oak.example.com gibi kendi adresini verir, DNS kayıtları Cloudflare\'de.',
-    ],
 ];

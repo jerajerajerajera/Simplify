@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Nhúng vào trang web',
-    'description' => 'Hiển thị máy chủ của bạn trên bất kỳ trang web nào, kèm trạng thái và địa chỉ kết nối.',
     'save' => 'Lưu',
     'saved' => 'Đã lưu',
     'settings' => [
