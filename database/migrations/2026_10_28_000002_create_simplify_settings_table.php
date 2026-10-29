@@ -8,12 +8,14 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('simplify_settings', function (Blueprint $table) {
-            $table->id();
-            $table->string('key', 64)->unique();
-            $table->json('value')->nullable();
-            $table->timestamps();
-        });
+        if (! Schema::hasTable('simplify_settings')) {
+            Schema::create('simplify_settings', function (Blueprint $table) {
+                $table->id();
+                $table->string('key', 64)->unique();
+                $table->json('value')->nullable();
+                $table->timestamps();
+            });
+        }
     }
 
     public function down(): void

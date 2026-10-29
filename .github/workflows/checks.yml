@@ -68,6 +68,13 @@ jobs:
           php artisan p:plugin:install pelican-simplify
           php artisan p:plugin:list | tee plugins.txt
           grep -E 'Simplify .*\| enabled' plugins.txt || { echo 'Simplify did not install'; exit 1; }
+      - name: Install Simplify over its own tables
+        # An install that stopped halfway leaves tables without their migration rows; the next install keeps them.
+        working-directory: panel
+        run: |
+          php artisan tinker --execute="DB::table('migrations')->where('migration', 'like', '%simplify%')->delete();"
+          php artisan tinker --execute="app('migrator')->run(base_path('plugins/pelican-simplify/database/migrations')); echo 'ran '.DB::table('migrations')->where('migration', 'like', '%simplify%')->count();" | tee again.txt
+          grep -qx "ran $(ls plugins/pelican-simplify/database/migrations | wc -l)" again.txt || { echo 'Simplify did not install over its own tables'; exit 1; }
       - name: Open the pages
         working-directory: panel
         # The last line must say so: an exit code alone missed a crash before the first step once.

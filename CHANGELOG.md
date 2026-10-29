@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.2
+
+- Installing Simplify again after an install that stopped halfway no longer fails with "table simplify_core_announcements already exists": Simplify keeps the tables that are already there.
+
 ## 1.3.1
 
 Smaller inside, the same outside: a cleanup of the code after the three features moved into the core.

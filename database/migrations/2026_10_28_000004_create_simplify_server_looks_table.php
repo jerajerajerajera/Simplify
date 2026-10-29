@@ -8,15 +8,17 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('simplify_server_looks', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedInteger('server_id')->unique();
-            $table->char('color', 7)->nullable();
-            $table->string('banner', 160)->nullable();
-            $table->timestamps();
+        if (! Schema::hasTable('simplify_server_looks')) {
+            Schema::create('simplify_server_looks', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedInteger('server_id')->unique();
+                $table->char('color', 7)->nullable();
+                $table->string('banner', 160)->nullable();
+                $table->timestamps();
 
-            $table->foreign('server_id')->references('id')->on('servers')->cascadeOnDelete();
-        });
+                $table->foreign('server_id')->references('id')->on('servers')->cascadeOnDelete();
+            });
+        }
     }
 
     public function down(): void
