@@ -211,7 +211,8 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-card-extras { display: flex; gap: 4px; min-width: 0; margin-top: 8px; overflow: hidden; }
 .ps-card-extras .ps-badge { display: block; flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 .ps-server-open:has(.ps-card-badges > .ps-badge:nth-of-type(3)) .ps-card-head { margin-bottom: 26px; }
-.ps-server-grid:is(.is-compact, .is-list) .ps-card-extras { display: none !important; }
+.ps-server-grid.is-compact .ps-card-extras { display: none !important; }
+.ps-server-grid.is-list .ps-card-extras { margin-top: 4px; }
 .ps-card-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; border-top: 1px solid var(--ps-line); background: color-mix(in srgb, var(--ps-surface) 82%, transparent); transition: padding var(--ps-slow); }
 .ps-list-player-count { display: inline-flex; align-items: center; justify-content: flex-end; gap: 10px; margin-inline-start: auto; min-height: var(--ps-h-sm); padding: 5px 16px; border: 0; background: transparent; color: var(--ps-accent); font-size: 14px; font-weight: 650; white-space: nowrap; }
 .ps-list-player-count:disabled { cursor: default; }
@@ -980,6 +981,7 @@ span.ps-card-background.ps-banner-color { width: 100%; opacity: .5; filter: none
   .ps .ps-server-grid.is-list .ps-card-real-name, .ps .ps-server-grid.is-list .ps-card-real-name.no-alias { display: none; }
   .ps .ps-server-grid.is-list .ps-card-motd { display: none; }
   .ps .ps-server-grid.is-list .ps-card-badges { position: static; grid-column: 2; grid-row: 2; flex-direction: row; justify-content: flex-start; gap: 6px; transform: none; }
+  .ps .ps-card-badges > .ps-badge:nth-of-type(n+3), .ps .ps-card-extras { display: none !important; }
   .ps .ps-server-grid.is-list .ps-card-usage { grid-column: 2; grid-row: 3; display: flex; justify-self: start; gap: 14px; width: auto; max-width: 100%; margin: 2px 0 0; }
   .ps .ps-server-grid.is-list .ps-card-mini-metric { padding: 0; border: 0; background: none; }
   .ps .ps-server-grid.is-list .ps-card-graph { display: none; }
