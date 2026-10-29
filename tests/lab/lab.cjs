@@ -94,9 +94,14 @@ const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g
       posts.push(`${r.status()} calls=${sent} ${got}`.slice(0, 700));
     };
     page.on('response', listen);
+    const said = (m) => posts.push('console ' + m.type() + ': ' + m.text().slice(0, 200));
+    page.on('console', said);
+    await page.evaluate(() => { window.__noLog = []; const t0 = performance.now(); new MutationObserver(() => { const n = document.querySelector('.fi-no'); window.__noLog.push(Math.round(performance.now() - t0) + 'ms:' + (n?.children.length ?? 'x') + ':' + (n?.textContent.trim().slice(0, 40) ?? '')); }).observe(document.body, { childList: true, subtree: true, characterData: true }); });
     await click(page.locator('main button[type=submit]', { hasText: 'Save' }), 'settings save');
     const saved = await page.getByText(/settings saved/i).first().waitFor({ timeout: 8000 }).then(() => true, () => false);
     page.off('response', listen);
+    page.off('console', said);
+    if (!saved) posts.push('mutations ' + [...new Set(await page.evaluate(() => window.__noLog))].slice(0, 30).join(' '));
     if (!saved) {
       posts.push(await page.evaluate(() => [...document.querySelectorAll('body *')].filter((e) => /settings saved/i.test(e.textContent) && ![...e.children].some((c) => /settings saved/i.test(c.textContent)))
         .map((e) => `${e.tagName}.${e.className} visible=${e.checkVisibility?.()} ${JSON.stringify(e.getBoundingClientRect())}`).join(' ; ') || 'no element with the text'));
