@@ -71,8 +71,8 @@
                                         <small class="ps-card-real-name" :class="{'no-alias': !cardNames(s).small}" x-text="cardNames(s).small ? '('+cardNames(s).small+')' : ' '"></small>
                                     </div>
                                     <div class="ps-card-motd ps-motd-preview ps-motd-display" x-show="overviewPreferences.showMotd && s.game==='minecraft' && s.motd" x-data="{observer:null,init(){this.observer=new ResizeObserver(()=>this.fitMotd(this.$el));this.observer.observe(this.$el)},destroy(){this.observer?.disconnect()}}" x-effect="s.motd; overviewPreferences.showMotd; $nextTick(()=>fitMotd($el))"><template x-for="(part,index) in motdPreview(s.motd)" :key="index"><span :style="part.style" x-text="part.text"></span></template></div>
-                                    {{-- Add-on badges (version, address) on a line under the name; the corner keeps only game and status, as in 0.7.0. --}}
-                                    <div class="ps-card-extras" x-show="s.badges?.length"><template x-for="badge in s.badges || []" :key="badge"><span class="ps-badge" x-text="badge"></span></template></div>
+                                    {{-- Add-on badges: the first (such as the version) joins game and status in the corner, the rest (such as the address) get the full width under the name. --}}
+                                    <div class="ps-card-extras" x-show="s.badges?.length > 1"><template x-for="badge in (s.badges || []).slice(1)" :key="badge"><span class="ps-badge" x-text="badge"></span></template></div>
                                 </div>
                                 <div class="ps-card-usage" x-show="overviewMetrics().length" :class="{'single-metric': overviewMetrics().length===1}">
                                     <template x-for="metric in overviewMetrics()" :key="metric.key">
@@ -92,7 +92,7 @@
                                 <div class="ps-card-badges ps-identity-badges">
                                     <span class="ps-badge is-strong ps-list-game"><svg aria-hidden="true"><use :href="s.game==='minecraft' ? '#ps-cube' : '#ps-gamepad'"/></svg><span x-text="s.game_label"></span></span>
                                     <span class="ps-badge ps-status" :class="s.status"><i></i><span x-text="Simplify.status(s.status)"></span></span>
-                                    <template x-for="badge in overviewView==='list' ? s.badges || [] : []" :key="badge"><span class="ps-badge" x-text="badge"></span></template>
+                                    <template x-for="badge in (s.badges || []).slice(0, {list: 99, grid: 1}[overviewView] || 0)" :key="badge"><span class="ps-badge" x-text="badge"></span></template>
                                 </div>
                                 <div class="ps-card-bottom" x-show="overviewView!=='list'">
                                     <span x-text="playerCount(s)"></span>
