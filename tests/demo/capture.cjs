@@ -34,6 +34,10 @@ const serialize = () => {
   for (const el of document.querySelectorAll('.ps-server-open, .ps-host-server')) {
     try { const s = window.Alpine?.$data(el)?.s; if (s?.url) el.setAttribute('data-demo-href', s.url); } catch {}
   }
+  // Scrolled boxes keep their place; the fitted heights of a server page (--ps-fit, terminal, menu) are noted so
+  // the demo can fit them to its own window.
+  for (const el of document.querySelectorAll('*')) if (el.scrollTop > 0) el.setAttribute('data-demo-scroll', el.scrollTop);
+  for (const el of document.querySelectorAll('#terminal, .ps-server-menu')) if (el.style.height) el.setAttribute('data-demo-h', parseFloat(el.style.height));
   const abs = (v) => { try { return new URL(v, location.href).href; } catch { return v; } };
   const doc = document.documentElement.cloneNode(true);
   for (const el of doc.querySelectorAll('script, noscript, link[rel~=modulepreload], link[rel~=preload], link[rel~=prefetch], link[rel~=manifest], link[rel~=preconnect], link[rel~=dns-prefetch]')) el.remove();
@@ -98,7 +102,7 @@ async function resolveTokens(request, html, pageUrl) {
 
 // Every recorded page gets this script: buttons marked data-demo-go open that screen in the demo, other buttons and
 // links say they are not part of the demo, and the theme follows the demo's light/dark switch.
-const DEMO_SCRIPT = `<script>(()=>{const top_=window.top;const theme=(d)=>{document.documentElement.classList.toggle('dark',d);document.querySelectorAll('.ps,.ps-ui').forEach(e=>e.classList.toggle('dark',d));document.querySelectorAll('iframe').forEach(f=>{try{f.contentWindow.postMessage({demo:'theme',dark:d},'*')}catch(e){}})};addEventListener('message',e=>{if(e.data&&e.data.demo==='theme')theme(e.data.dark)});document.addEventListener('click',e=>{const go=e.target.closest('[data-demo-go]');if(go){e.preventDefault();e.stopPropagation();top_.postMessage({demo:'go',id:go.getAttribute('data-demo-go')},'*');return}const a=e.target.closest('a,button,[role=tab],[role=button],input[type=submit]');if(!a)return;if(a.matches('a[target=_blank]')&&/^https?:/.test(a.getAttribute('data-demo-url')||'')&&!a.hasAttribute('data-demo-inside')){e.preventDefault();open(a.getAttribute('data-demo-url'),'_blank','noopener');return}e.preventDefault();e.stopPropagation();top_.postMessage({demo:'dead',label:(a.innerText||a.getAttribute('aria-label')||a.getAttribute('data-tip')||'').trim().replace(/\\s+/g,' ').slice(0,60)},'*')},true);document.addEventListener('submit',e=>e.preventDefault(),true);top_.postMessage({demo:'ready'},'*')})();</script>`;
+const DEMO_SCRIPT = `<script>(()=>{const top_=window.top;const theme=(d)=>{document.documentElement.classList.toggle('dark',d);document.querySelectorAll('.ps,.ps-ui').forEach(e=>e.classList.toggle('dark',d));document.querySelectorAll('iframe').forEach(f=>{try{f.contentWindow.postMessage({demo:'theme',dark:d},'*')}catch(e){}})};addEventListener('message',e=>{if(e.data&&e.data.demo==='theme')theme(e.data.dark)});document.addEventListener('click',e=>{const go=e.target.closest('[data-demo-go]');if(go){e.preventDefault();e.stopPropagation();top_.postMessage({demo:'go',id:go.getAttribute('data-demo-go')},'*');return}const a=e.target.closest('a,button,[role=tab],[role=button],input[type=submit]');if(!a)return;if(a.matches('a[target=_blank]')&&/^https?:/.test(a.getAttribute('data-demo-url')||'')&&!a.hasAttribute('data-demo-inside')){e.preventDefault();open(a.getAttribute('data-demo-url'),'_blank','noopener');return}e.preventDefault();e.stopPropagation();top_.postMessage({demo:'dead',label:(a.innerText||a.getAttribute('aria-label')||a.getAttribute('data-tip')||'').trim().replace(/\\s+/g,' ').slice(0,60)},'*')},true);document.addEventListener('submit',e=>e.preventDefault(),true);const r=document.documentElement,was=parseFloat(r.style.getPropertyValue('--ps-fit'));const fit=()=>{if(was){const m=document.querySelector('.fi-main-ctn > .fi-main'),on=!!m&&innerWidth>600&&innerHeight>500;r.classList.toggle('ps-fit',on);if(on){const f=document.querySelector('.fi-footer,[data-ps-footer]')?.offsetHeight||0,h=Math.max(240,Math.floor(innerHeight-(m.getBoundingClientRect().top+scrollY)-f-14));r.style.setProperty('--ps-fit',h+'px');document.querySelectorAll('[data-demo-h]').forEach(e=>e.style.height=Math.max(240,+e.dataset.demoH+h-was)+'px')}else document.querySelectorAll('[data-demo-h]').forEach(e=>e.style.height='')}document.querySelectorAll('[data-demo-scroll]').forEach(e=>e.scrollTop=+e.dataset.demoScroll)};addEventListener('resize',fit);addEventListener('load',fit);fit();top_.postMessage({demo:'ready'},'*')})();</script>`;
 
 async function serializeTo(frame, file, request) {
   const html = await frame.evaluate(serialize);
@@ -250,7 +254,10 @@ async function login(browser, email) {
       }
     }
     if (!use) { problems.push(`server page ${p.class}: no server opens it`); continue; }
-    await walk(page, { id: 'server-' + slug(p.title || p.class.split('\\').pop()), title: `${p.title} (${use.server || mainServer})`, group: 'Server' }, open(page, use.url, async () => sleep(1200)));
+    // The plugin page is shown scrolled halfway when the page scrolls inside its box.
+    const id = 'server-' + slug(p.title || p.class.split('\\').pop());
+    const scroll = id === 'server-plugins' ? (pg) => pg.evaluate(() => { const m = document.querySelector('.ps-fit .fi-main-ctn > .fi-main'); if (m) m.scrollTop = (m.scrollHeight - m.clientHeight) / 2; }) : async () => {};
+    await walk(page, { id, title: `${p.title} (${use.server || mainServer})`, group: 'Server' }, open(page, use.url, async (pg) => { await sleep(1200); await scroll(pg); }));
   }
 
   // Admin side: the settings with every tab, people, announcements and every add-on page.
