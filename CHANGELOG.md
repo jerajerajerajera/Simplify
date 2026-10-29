@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.3.1
+
+Smaller inside, the same outside: a cleanup of the code after the three features moved into the core.
+
+- The host health dock says "hosts reporting" in the panel's language instead of English.
+- On the Website embed pages, Enter now saves the form, like on the subdomain pages.
+- The "Card title" choice (alias or name) is gone from Customize overview: Simplify never had aliases, so it did nothing.
+- Inside: one page base for the settings-like pages, one Minecraft check, no leftover code from PelicanSimplify 0.7.0, and texts that nothing showed any more are gone from all 32 languages.
+
 ## 1.3.0
 
 The setup has a new first step that recommends the add-ons, and it now looks like the rest of Simplify.
