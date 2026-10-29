@@ -41,7 +41,10 @@
         addEventListener('resize', () => this.fitPage());
         this.$nextTick(() => {
           this.fitPage();
-          new ResizeObserver(() => this.fitPage()).observe(this.$root.querySelector('.ps-main'));
+          // The server card (a MOTD or status arriving later) and the page itself (Livewire filling in after load):
+          // the page is capped at --ps-fit, so only its content changes size.
+          const observer = new ResizeObserver(() => this.fitPage());
+          [this.$root.querySelector('.ps-main'), document.querySelector('.fi-main-ctn > .fi-main > *')].forEach(el => el && observer.observe(el));
         });
       },
       destroy() {
