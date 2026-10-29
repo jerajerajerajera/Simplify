@@ -3,6 +3,7 @@
 ## 1.4.3
 
 - The notifications menu always ends inside the window, so its last item and "Show more" are no longer cut off when the top bar has a second row (announcements on a narrower window) or the panel is zoomed.
+- Server page: the power buttons follow Pelican's rules. While a server is starting or stopping the main button is Force stop instead of a greyed-out Stop, and Restart works in every state but installing or restoring. Before, a server that Wings kept on "starting" (its startup message not recognised) could not be stopped or restarted from Simplify.
 
 ## 1.4.2
 

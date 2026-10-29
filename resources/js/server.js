@@ -184,8 +184,15 @@
 
       /* Card ------------------------------------------------------------------------------------- */
       /** The power button that fits the state: Stop while the server runs, Start otherwise. */
+      /** Like Pelican's own buttons: Stop while running, Force stop while it starts or stops (Wings refuses a stop then). */
       mainPower() {
-        return ['running', 'starting'].includes(this.status) ? { action: 'stop', label: t('dashboard.stop'), icon: 'stop' } : { action: 'start', label: t('dashboard.start'), icon: 'play' };
+        if (this.status === 'running') return { action: 'stop', label: t('dashboard.stop'), icon: 'stop', permission: 'control.stop' };
+        if (['starting', 'stopping', 'restarting'].includes(this.status)) return { action: 'kill', label: t('dashboard.force_stop'), icon: 'kill', permission: 'control.stop' };
+        return { action: 'start', label: t('dashboard.start'), icon: 'play', permission: 'control.start' };
+      },
+      /** Restart works in every state but these, as in Pelican. */
+      canRestart() {
+        return !['missing', 'installing', 'install failed', 'restoring'].includes(this.status);
       },
       async power(action) {
         if (this.busy) return;
