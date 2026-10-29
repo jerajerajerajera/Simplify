@@ -57,13 +57,6 @@
                         <button type="button" :aria-pressed="overviewPreferences.largeIcon==='egg'" x-on:click="setOverviewPreference('largeIcon','egg')">{{ $u('game') }}</button>
                     </div>
                 </div>
-                <div class="ps-customize-row">
-                    <div><strong>{{ $u('card_title') }}</strong><small>{{ $u('show_the_alias_you_gave_it') }}</small></div>
-                    <div class="ps-segmented" role="group" aria-label="{{ $u('card_title') }}">
-                        <button type="button" :aria-pressed="overviewPreferences.largeName==='alias'" x-on:click="setOverviewPreference('largeName','alias')">{{ $u('alias') }}</button>
-                        <button type="button" :aria-pressed="overviewPreferences.largeName==='name'" x-on:click="setOverviewPreference('largeName','name')">{{ $u('name') }}</button>
-                    </div>
-                </div>
                 <span class="ps-customize-sub">{{ $u('show_on_each_card') }}</span>
                 <template x-for="option in [{key:'showMotd',label:@js($u('message_of_the_day')),hint:@js($u('the_minecraft_motd_under_the_server'))},{key:'showCpu',label:@js($u('cpu_usage')),hint:@js($u('a_small_live_cpu_graph'))},{key:'showRam',label:@js($u('memory_usage')),hint:@js($u('a_small_live_ram_graph'))}]" :key="option.key">
                     <button type="button" class="ps-customize-switch" role="switch" :aria-checked="overviewPreferences[option.key]" x-on:click="setOverviewPreference(option.key, !overviewPreferences[option.key])">

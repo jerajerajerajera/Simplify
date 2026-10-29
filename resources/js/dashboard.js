@@ -5,10 +5,10 @@
   const t = (key, params) => (window.Simplify?.t ? window.Simplify.t(key, params) : key);
   const tc = (key, count, params) => (window.Simplify?.tc ? window.Simplify.tc(key, count, params) : key);
   const MINECRAFT_VERSION = /(?:^|[^0-9])((?:1\.[0-9]+(?:\.[0-9]+)?|2[6-9]\.[0-9]+(?:\.[0-9]+)?))(?![0-9])/;
-  const OVERVIEW_DEFAULTS = { showMotd: false, largeIcon: 'server', largeName: 'alias', groupByNode: 'auto', showCpu: true, showRam: true, quickActions: 'hover', minecraftAlwaysGreen: true, fullWidth: false, showGroupsButton: true, columns: 'auto', cardWidth: 'normal', serverScope: 'all', halloween: true, healthPlace: 'top-bar' };
+  const OVERVIEW_DEFAULTS = { showMotd: false, largeIcon: 'server', groupByNode: 'auto', showCpu: true, showRam: true, quickActions: 'hover', minecraftAlwaysGreen: true, fullWidth: false, showGroupsButton: true, columns: 'auto', cardWidth: 'normal', serverScope: 'all', halloween: true, healthPlace: 'top-bar' };
   const OVERVIEW_SWITCHES = ['showMotd', 'showCpu', 'showRam', 'minecraftAlwaysGreen', 'fullWidth', 'showGroupsButton', 'halloween'];
   // Overview settings that pick one of a fixed set of values.
-  const OVERVIEW_CHOICES = { largeIcon: ['server', 'egg'], largeName: ['alias', 'name'], groupByNode: ['auto', 'always', 'off'], quickActions: ['off', 'on', 'hover'], columns: ['auto', '2', '3', '4', '5', '6'], cardWidth: ['narrow', 'normal', 'wide'], serverScope: ['all', 'mine', 'others'], healthPlace: ['top-bar', 'above', 'bottom'] };
+  const OVERVIEW_CHOICES = { largeIcon: ['server', 'egg'], groupByNode: ['auto', 'always', 'off'], quickActions: ['off', 'on', 'hover'], columns: ['auto', '2', '3', '4', '5', '6'], cardWidth: ['narrow', 'normal', 'wide'], serverScope: ['all', 'mine', 'others'], healthPlace: ['top-bar', 'above', 'bottom'] };
   const OVERVIEW_VIEWS = ['grid', 'compact', 'list'];
   // Own server groups in the overview: at most this many groups, names at most this long.
   const GROUP_LIMIT = 30;
@@ -32,8 +32,6 @@
       hostSection: null,
       hostPage: null,
       hostServer: null,
-      busy: false,
-      modal: null,
       refreshSeconds: Math.max(5, Number(boot.performance?.overview_seconds) || 15) * 1000,
       overviewDockObserver: null,
       appearanceMenu: false,
@@ -342,8 +340,6 @@
           return '';
         }
       },
-      /** Create buttons for the top bar or the toolbar: the add-ons' buttons, the main one first. */
-      /** Add-on buttons first (the primary one leads), then Pelican's own form; the first one reads "Create server". */
       /** One "Create server": an add-on's main button (Server Maker), else Pelican's own form; other add-on buttons keep their label. */
       createButtons() {
         const create = this.boot.create || [], main = create.find((b) => b.primary) || create.find((b) => b.native);
@@ -358,7 +354,7 @@
       },
       /** The Halloween touches show in season, unless the panel or this person turned them off. */
       halloween(date = new Date()) {
-        return this.boot.appearance?.seasonal !== false && this.overviewPreferences.halloween !== false && this.halloweenSeason(date);
+        return this.overviewPreferences.halloween !== false && this.halloweenSeason(date);
       },
       /** A few bats leave one server card when the overview opens, once per visit. */
       releaseBats() {
@@ -398,7 +394,7 @@
         // Halloween turns the overview's neutral accent orange; a panel accent of your own stays.
         if (id === 'overview' && this.halloween() && (common || '#878787').toLowerCase() === '#878787')
           return { '--ps-accent': this.themeDark ? '#f0a35a' : '#c2621a', '--ps-on-accent': this.themeDark ? '#111118' : '#ffffff' };
-        if (/^#[0-9a-f]{6}$/i.test(common || '') && (id === 'overview' || appearance.individual_colors === false))
+        if (id === 'overview' && /^#[0-9a-f]{6}$/i.test(common || ''))
           return { '--ps-accent': common, '--ps-on-accent': accentInk(common) };
         if (id === 'overview') return { '--ps-accent': this.themeDark ? '#c0c0c5' : '#55555f', '--ps-on-accent': this.themeDark ? '#111118' : '#ffffff' };
         const color = (this.server?.uuid === id ? this.server : this.boot.servers?.find((s) => s.uuid === id))?.color;
@@ -489,7 +485,7 @@
         return Math.floor(count) + ' / ' + (s?.max_players != null && Number.isFinite(max) && max >= 0 ? Math.floor(max) : 0);
       },
       openHostHealth() {
-        if (this.server || this.busy || this.modal || !this.boot.features?.host_health) return;
+        if (this.server || !this.boot.features?.host_health) return;
         this.healthExpanded = !this.healthExpanded;
         this.healthOpenNodes = [];
       },
@@ -500,7 +496,7 @@
         return this.healthOpenNodes.some((id) => String(id) === String(node.id));
       },
       toggleHealthNode(node) {
-        if (!this.healthExpanded || this.server || this.busy || this.modal || !this.boot.features?.host_health || !this.healthNodes().some((n) => String(n.id) === String(node.id))) return;
+        if (!this.healthExpanded || this.server || !this.boot.features?.host_health || !this.healthNodes().some((n) => String(n.id) === String(node.id))) return;
         this.healthOpenNodes = this.healthNodeOpen(node) ? this.healthOpenNodes.filter((id) => String(id) !== String(node.id)) : [...this.healthOpenNodes, node.id];
       },
       nodeServers(node) {
@@ -531,7 +527,7 @@
       },
       canOverviewPower(s, action) {
         const permission = { start: 'control.start', stop: 'control.stop', kill: 'control.stop', restart: 'control.restart' }[action];
-        return this.quickActionsMode() !== 'off' && !!permission && !!s.linked && !!s.permissions?.[permission]
+        return this.quickActionsMode() !== 'off' && !!permission && !!s.permissions?.[permission]
           && !['installing', 'install failed', 'restoring'].includes(s.status)
           && (action !== 'start' || s.status === 'offline')
           && (!['stop', 'kill', 'restart'].includes(action) || s.status !== 'offline');
@@ -547,18 +543,13 @@
         this.overviewPowerBusy = s.uuid;
         try {
           await wire.overviewPower(s.uuid, action);
-          this.toast(t('dashboard.power_sent', { action: POWER_LABELS[action], server: s.alias || s.name }), 'ok');
+          this.toast(t('dashboard.power_sent', { action: POWER_LABELS[action], server: s.name }), 'ok');
           await this.refreshOverview();
         } catch (error) {
           this.toast(error?.message || t('dashboard.the_power_action_could_not_be'), 'danger');
         } finally {
           this.overviewPowerBusy = null;
         }
-      },
-      /** Large and secondary card names, following the "Large name" preference. */
-      cardNames(s) {
-        if (!s.alias) return { large: s.name, small: '' };
-        return this.overviewPreferences.largeName === 'name' ? { large: s.name, small: s.alias } : { large: s.alias, small: s.name };
       },
       fitCardTitle(row, name) {
         const title = row.querySelector('h3');
@@ -571,9 +562,7 @@
           while (size > 12 && (title.scrollHeight > title.clientHeight + 1 || title.scrollWidth > title.clientWidth + 1)) title.style.fontSize = --size + 'px';
           return;
         }
-        const original = row.querySelector('.ps-card-real-name');
-        const reserve = this.overviewView === 'list' && typeof innerWidth !== 'undefined' && innerWidth > 700 && original && !original.classList.contains('no-alias') ? original.getBoundingClientRect().width + 8 : 0;
-        const available = Math.max(0, row.getBoundingClientRect().width - reserve);
+        const available = row.getBoundingClientRect().width;
         // Measure the text itself: scrollWidth rounds, so a name a fraction too wide would get "…" instead of fitting.
         let needed = title.scrollWidth;
         try {
@@ -707,7 +696,7 @@
       groupServerList(group) {
         const all = this.boot.servers || [];
         const members = this.groupMembers(group, this.sortServers(all, this.overviewServerOrder));
-        const others = all.filter((s) => !group.servers.includes(s.uuid)).sort((a, b) => this.cardNames(a).large.localeCompare(this.cardNames(b).large));
+        const others = all.filter((s) => !group.servers.includes(s.uuid)).sort((a, b) => a.name.localeCompare(b.name));
         return [...members, ...others];
       },
       addOverviewGroup() {
@@ -1034,13 +1023,6 @@
         } catch {
           return '#';
         }
-      },
-      /** Colour banner: inline style for a chosen colour, {} for the accent-based one, null for image banners. */
-      bannerColor(s) {
-        const id = String(s?.background_id || '');
-        if (id === 'color') return {};
-        const match = id.match(/^color:(#[0-9a-f]{6})$/i);
-        return match ? { '--ps-banner': match[1] } : null;
       },
       trafficBytes(v) {
         if (!Number.isFinite(Number(v)) || Number(v) < 0) return '—';
