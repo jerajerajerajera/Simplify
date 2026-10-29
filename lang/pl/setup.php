@@ -23,7 +23,7 @@ return [
     'installed' => 'Zainstalowany',
     'hub' => 'W Hubie',
     'catalog' => [
-        'server-maker' => [
+        'servermaker' => [
             'name' => 'Server Maker',
             'description' => 'Pozwól innym tworzyć własne serwery w ustalonych przez ciebie granicach.',
         ],
@@ -35,7 +35,7 @@ return [
             'name' => 'Explain',
             'description' => 'Błędy w konsoli wyjaśnione prostymi słowami.',
         ],
-        'egg-updates' => [
+        'eggupdates' => [
             'name' => 'Egg Updates',
             'description' => 'Utrzymuj eggi na bieżąco i najpierw testuj aktualizacje.',
         ],

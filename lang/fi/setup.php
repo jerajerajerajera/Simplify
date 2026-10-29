@@ -23,7 +23,7 @@ return [
     'installed' => 'Asennettu',
     'hub' => 'Hubissa',
     'catalog' => [
-        'server-maker' => [
+        'servermaker' => [
             'name' => 'Server Maker',
             'description' => 'Anna ihmisten luoda omia palvelimia asettamissasi rajoissa.',
         ],
@@ -35,7 +35,7 @@ return [
             'name' => 'Explain',
             'description' => 'Konsolin virheet selitettynä selkokielellä.',
         ],
-        'egg-updates' => [
+        'eggupdates' => [
             'name' => 'Egg Updates',
             'description' => 'Pidä eggit ajan tasalla ja kokeile päivityksiä ensin.',
         ],

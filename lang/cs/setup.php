@@ -23,7 +23,7 @@ return [
     'installed' => 'Nainstalováno',
     'hub' => 'Na Hubu',
     'catalog' => [
-        'server-maker' => [
+        'servermaker' => [
             'name' => 'Server Maker',
             'description' => 'Nechte lidi vytvářet vlastní servery v mezích, které určíte.',
         ],
@@ -35,7 +35,7 @@ return [
             'name' => 'Explain',
             'description' => 'Chyby v konzoli vysvětlené jednoduchými slovy.',
         ],
-        'egg-updates' => [
+        'eggupdates' => [
             'name' => 'Egg Updates',
             'description' => 'Udržujte své eggy aktuální a aktualizace nejdřív vyzkoušejte.',
         ],

@@ -23,7 +23,7 @@ return [
     'installed' => 'Εγκατεστημένο',
     'hub' => 'Στο Hub',
     'catalog' => [
-        'server-maker' => [
+        'servermaker' => [
             'name' => 'Server Maker',
             'description' => 'Αφήστε τους χρήστες να δημιουργούν δικούς τους διακομιστές μέσα σε όρια που ορίζετε.',
         ],
@@ -35,7 +35,7 @@ return [
             'name' => 'Explain',
             'description' => 'Σφάλματα κονσόλας εξηγημένα με απλά λόγια.',
         ],
-        'egg-updates' => [
+        'eggupdates' => [
             'name' => 'Egg Updates',
             'description' => 'Κρατήστε τα eggs ενημερωμένα και δοκιμάστε πρώτα τις ενημερώσεις.',
         ],

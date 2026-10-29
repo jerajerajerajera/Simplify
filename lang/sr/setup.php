@@ -23,7 +23,7 @@ return [
     'installed' => 'Инсталирано',
     'hub' => 'На Hub-у',
     'catalog' => [
-        'server-maker' => [
+        'servermaker' => [
             'name' => 'Server Maker',
             'description' => 'Дозволите људима да сами праве сервере у границама које ви поставите.',
         ],
@@ -35,7 +35,7 @@ return [
             'name' => 'Explain',
             'description' => 'Грешке из конзоле објашњене једноставним речима.',
         ],
-        'egg-updates' => [
+        'eggupdates' => [
             'name' => 'Egg Updates',
             'description' => 'Држите egg-ове ажурним и прво испробајте ажурирања.',
         ],
