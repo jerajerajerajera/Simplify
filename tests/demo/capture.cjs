@@ -149,11 +149,11 @@ async function walk(page, node, reach, parent, inherited = []) {
   if (node.expand) {
     const texts = await page.locator(node.expand.css + ' >> visible=true').allInnerTexts().catch(() => []);
     const ids = new Set();
-    texts.forEach((raw, nth) => {
+    texts.slice(0, node.expand.limit || texts.length).forEach((raw, nth) => {
       const text = raw.trim().split('\n')[0].trim();
       if (!text) return;
       let child = `${id}-${slug(text)}`;
-      if (ids.has(child)) child += '-' + nth;
+      if (ids.has(child) || screens.some((x) => x.id === child)) child += '-' + nth;
       ids.add(child);
       children.push({ id: child, title: (node.expand.title || '') + text, click: { css: node.expand.css, nth }, sibling: true, ...(node.expand.child || {}) });
     });
@@ -269,9 +269,10 @@ async function login(browser, email) {
     await p.locator('.ps-account-button').first().click(); await sleep(400);
     await p.locator('#ps-account-actions button[aria-label="Switch to host mode"]').first().click(); await settle(p, 2500);
   };
+  // Every section and page of the admin tree once, as siblings; the server list with the first three servers.
   await walk(page, { id: 'host', title: 'Hostmodus', group: 'Hostmodus', phone: true,
-    expand: { css: '.ps-host-group-head', title: 'Hostmodus · ', keep: true, child: { wait: 2500, expand: { css: '.ps-host-leaf', title: '', child: { wait: 2500 } } } },
-    children: [{ id: 'host-servers', title: 'Hostmodus · Servers', click: { css: '.ps-host-tabs button', text: /Servers/ }, links: [{ click: { css: '.ps-host-tabs button', nth: 0 }, to: 'host' }], expand: { css: '.ps-host-server strong', title: 'Hostmodus · server ', child: { wait: 3000 } } }],
+    expand: { css: '.ps-host-group-head, .ps-host-leaf', title: 'Hostmodus · ', child: { wait: 1500 } },
+    children: [{ id: 'host-serverlist', title: 'Hostmodus · serverlijst', click: { css: '.ps-host-tabs button', nth: 1 }, links: [{ click: { css: '.ps-host-tabs button', nth: 0 }, to: 'host' }], expand: { css: '.ps-host-server strong', title: 'Hostmodus · server ', limit: 3, child: { wait: 2000 } } }],
   }, open(page, overview, hostOn));
   await alpine(page, 'd.setHostMode(false)').catch(() => {});
 
