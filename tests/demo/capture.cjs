@@ -255,10 +255,8 @@ async function login(browser, email) {
       }
     }
     if (!use) { problems.push(`server page ${p.class}: no server opens it`); continue; }
-    // The plugin page is shown scrolled halfway when the page scrolls inside its box.
     const id = 'server-' + slug(p.title || p.class.split('\\').pop());
-    const scroll = id === 'server-plugins' ? (pg) => pg.evaluate(() => { const m = document.querySelector('.ps-fit .fi-main-ctn > .fi-main'); if (m) m.scrollTop = (m.scrollHeight - m.clientHeight) / 2; }) : async () => {};
-    await walk(page, { id, title: `${p.title} (${use.server || mainServer})`, group: 'Server' }, open(page, use.url, async (pg) => { await sleep(1200); await scroll(pg); }));
+    await walk(page, { id, title: `${p.title} (${use.server || mainServer})`, group: 'Server' }, open(page, use.url, async () => sleep(1200)));
   }
 
   // Admin side: the settings with every tab, people, announcements and every add-on page.
