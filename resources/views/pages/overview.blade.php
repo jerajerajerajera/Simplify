@@ -9,7 +9,7 @@
     @include('pelican-simplify::dashboard.icons')
     @include('pelican-simplify::dashboard.halloween')
     <main class="ps-main">
-        @include('pelican-simplify::dashboard.header')
+        @include('pelican-simplify::dashboard.header', ['notes' => 'host'])
         @include('pelican-simplify::dashboard.host')
         @include('pelican-simplify::dashboard.overview')
     </main>

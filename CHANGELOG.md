@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.3.11
+
+- On every server page, Pelican's own pages too, the page is one card at the window's height, rounded at the top and bottom like the menu next to it. It keeps that height with or without content, and only what is inside it scrolls; its title and buttons stay at the top.
+- Pelican's buttons on a list (the bell on Backups, the filter on Webhooks) sit in the card's head, in the row of the search field, and the table lines up with the rest of the card.
+- Minecraft, Plugins, Startup, Settings and Schedules have no separate boxes any more: their parts sit in that one card, split by lines, with Plugins' two columns side by side in it.
+- Host mode in a small window: the page itself never scrolls. A server in the frame fits the frame's height too (the console gets smaller), and the panel's announcements sit in the title bar as short rows instead of large bars above it.
+- Website: the preview of the saved list is as tall as the list instead of a fixed, mostly empty frame.
+
 ## 1.3.10
 
 - A server's pages fit the window: the menu and the page next to it end at the bottom of the window, and only the page's own content scrolls, never the page itself. The console fills the space down to the footer.

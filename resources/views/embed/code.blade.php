@@ -44,13 +44,14 @@
                 </p>
             </div>
         @endforeach
-        {{-- The preview loads only once it is on screen, so the page itself is ready at once. --}}
+        {{-- The preview loads only once it is on screen, so the page itself is ready at once, and is as tall as the list (up to 420px). --}}
         <div class="se-block" x-data="{ shown: false }" x-intersect.once="shown = true">
             <strong>{{ __('pelican-simplify::embed.code.preview') }}</strong>
             <iframe
                 x-bind:src="shown ? {{ \Illuminate\Support\Js::from(str_replace('page=1', 'page=0', $snippet['page'])) }} : null"
                 title="{{ __('pelican-simplify::embed.code.preview') }}"
                 class="se-preview"
+                x-on:load="const fit = () => { try { $el.style.height = Math.min(420, Math.max(80, $el.contentDocument.documentElement.scrollHeight)) + 'px' } catch {} }; fit(); try { new ResizeObserver(fit).observe($el.contentDocument.body) } catch {}"
             ></iframe>
         </div>
     </div>
