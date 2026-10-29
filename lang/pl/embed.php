@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Osadzanie na stronie',
-    'save' => 'Zapisz',
     'saved' => 'Zapisano',
     'settings' => [
         'servers' => 'Serwery na twojej stronie',

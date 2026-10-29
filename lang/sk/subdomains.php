@@ -3,7 +3,6 @@
 return [
     'title' => 'Automatické subdomény',
     'subdomain' => 'Subdoména',
-    'save' => 'Uložiť',
     'saved' => 'Nastavenia uložené',
     'settings' => [
         'addresses' => 'Adresy',

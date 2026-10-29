@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Inserción en la web',
-    'save' => 'Guardar',
     'saved' => 'Guardado',
     'settings' => [
         'servers' => 'Servidores en tu web',

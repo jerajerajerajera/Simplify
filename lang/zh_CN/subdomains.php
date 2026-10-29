@@ -3,7 +3,6 @@
 return [
     'title' => '自动子域名',
     'subdomain' => '子域名',
-    'save' => '保存',
     'saved' => '设置已保存',
     'settings' => [
         'addresses' => '地址',

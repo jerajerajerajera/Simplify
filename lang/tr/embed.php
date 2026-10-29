@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Web sitesine yerleştirme',
-    'save' => 'Kaydet',
     'saved' => 'Kaydedildi',
     'settings' => [
         'servers' => 'Web sitendeki sunucular',

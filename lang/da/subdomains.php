@@ -3,7 +3,6 @@
 return [
     'title' => 'Automatiske underdomæner',
     'subdomain' => 'Underdomæne',
-    'save' => 'Gem',
     'saved' => 'Indstillinger gemt',
     'settings' => [
         'addresses' => 'Adresser',

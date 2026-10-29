@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Încorporare pe site',
-    'save' => 'Salvează',
     'saved' => 'Salvat',
     'settings' => [
         'servers' => 'Servere pe site-ul tău',

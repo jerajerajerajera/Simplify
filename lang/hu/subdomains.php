@@ -3,7 +3,6 @@
 return [
     'title' => 'Automatikus aldomainek',
     'subdomain' => 'Aldomain',
-    'save' => 'Mentés',
     'saved' => 'Beállítások mentve',
     'settings' => [
         'addresses' => 'Címek',

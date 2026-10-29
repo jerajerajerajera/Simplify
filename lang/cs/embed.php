@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Vložení na web',
-    'save' => 'Uložit',
     'saved' => 'Uloženo',
     'settings' => [
         'servers' => 'Servery na tvém webu',

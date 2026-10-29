@@ -3,7 +3,6 @@
 return [
     'title' => 'Otomatik alt alan adları',
     'subdomain' => 'Alt alan adı',
-    'save' => 'Kaydet',
     'saved' => 'Ayarlar kaydedildi',
     'settings' => [
         'addresses' => 'Adresler',

@@ -3,7 +3,6 @@
 return [
     'title' => 'Automatic subdomains',
     'subdomain' => 'Subdomain',
-    'save' => 'Save',
     'saved' => 'Settings saved',
     'settings' => [
         'addresses' => 'Addresses',

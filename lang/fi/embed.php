@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Verkkosivuupotus',
-    'save' => 'Tallenna',
     'saved' => 'Tallennettu',
     'settings' => [
         'servers' => 'Palvelimet verkkosivullasi',

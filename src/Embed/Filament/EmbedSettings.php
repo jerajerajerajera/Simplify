@@ -5,49 +5,31 @@ declare(strict_types=1);
 namespace Simplify\Core\Embed\Filament;
 
 use App\Models\Server;
-use Filament\Actions\Action;
 use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
-use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Notifications\Notification;
-use Filament\Pages\Page;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Components\View;
-use Filament\Schemas\Contracts\HasSchemas;
 use Filament\Schemas\Schema;
-use Illuminate\Contracts\Support\Htmlable;
 use Simplify\Core\Embed\Services\EmbedOptions;
 use Simplify\Core\Embed\Services\EmbedServers;
 use Simplify\Core\Embed\Services\ServerList;
+use Simplify\Core\Filament\FormPage;
 
 /**
  * Where a root admin picks the servers on the website, how the list looks, and copies the code for a website.
- *
- * @property Schema $form
  */
-final class EmbedSettings extends Page implements HasSchemas
+final class EmbedSettings extends FormPage
 {
-    use InteractsWithForms;
-
     protected static string|\BackedEnum|null $navigationIcon = 'tabler-code';
 
     protected static ?int $navigationSort = 30;
 
     protected static ?string $slug = 'simplify-embed';
-
-    protected string $view = 'pelican-simplify::embed.form-page';
-
-    /** @var array<string, mixed>|null */
-    public ?array $data = [];
-
-    public static function canAccess(): bool
-    {
-        return (bool) user()?->isRootAdmin();
-    }
 
     public static function getNavigationLabel(): string
     {
@@ -58,11 +40,6 @@ final class EmbedSettings extends Page implements HasSchemas
     public static function getNavigationGroup(): ?string
     {
         return 'Simplify';
-    }
-
-    public function getTitle(): string|Htmlable
-    {
-        return __('pelican-simplify::embed.name');
     }
 
     public function mount(): void
@@ -140,18 +117,6 @@ final class EmbedSettings extends Page implements HasSchemas
             'game' => filled($get('code.game')) ? ['game' => (string) $get('code.game')] : null,
             default => [],
         }];
-    }
-
-    protected function getHeaderActions(): array
-    {
-        return [
-            Action::make('save')
-                ->hiddenLabel()
-                ->icon('tabler-device-floppy')
-                ->tooltip(__('pelican-simplify::embed.save'))
-                ->action('save')
-                ->keyBindings(['mod+s']),
-        ];
     }
 
     public function save(): void

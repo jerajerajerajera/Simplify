@@ -3,7 +3,6 @@
 return [
     'title' => 'Automaattiset aliverkkotunnukset',
     'subdomain' => 'Aliverkkotunnus',
-    'save' => 'Tallenna',
     'saved' => 'Asetukset tallennettu',
     'settings' => [
         'addresses' => 'Osoitteet',

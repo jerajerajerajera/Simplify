@@ -3,7 +3,6 @@
 return [
     'title' => 'Automatische subdomeinen',
     'subdomain' => 'Subdomein',
-    'save' => 'Opslaan',
     'saved' => 'Instellingen opgeslagen',
     'settings' => [
         'addresses' => 'Adressen',

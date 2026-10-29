@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Sematan situs web',
-    'save' => 'Simpan',
     'saved' => 'Tersimpan',
     'settings' => [
         'servers' => 'Server di situs webmu',

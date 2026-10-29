@@ -2,7 +2,6 @@
 
 return [
     'name' => '웹사이트 임베드',
-    'save' => '저장',
     'saved' => '저장됨',
     'settings' => [
         'servers' => '웹사이트에 표시할 서버',

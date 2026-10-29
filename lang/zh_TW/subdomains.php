@@ -3,7 +3,6 @@
 return [
     'title' => '自動子網域',
     'subdomain' => '子網域',
-    'save' => '儲存',
     'saved' => '設定已儲存',
     'settings' => [
         'addresses' => '地址',

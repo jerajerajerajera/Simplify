@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Weboldalba ágyazás',
-    'save' => 'Mentés',
     'saved' => 'Mentve',
     'settings' => [
         'servers' => 'Szerverek a weboldaladon',

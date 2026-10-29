@@ -3,7 +3,6 @@
 return [
     'title' => 'Subdomenii automate',
     'subdomain' => 'Subdomeniu',
-    'save' => 'Salvați',
     'saved' => 'Setările au fost salvate',
     'settings' => [
         'addresses' => 'Adrese',
