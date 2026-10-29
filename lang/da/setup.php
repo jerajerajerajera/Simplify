@@ -23,7 +23,7 @@ return [
     'installed' => 'Installeret',
     'hub' => 'På Hub',
     'catalog' => [
-        'server-maker' => [
+        'servermaker' => [
             'name' => 'Server Maker',
             'description' => 'Lad folk oprette deres egne servere inden for de grænser, du sætter.',
         ],
@@ -35,7 +35,7 @@ return [
             'name' => 'Explain',
             'description' => 'Konsolfejl forklaret i almindeligt sprog.',
         ],
-        'egg-updates' => [
+        'eggupdates' => [
             'name' => 'Egg Updates',
             'description' => 'Hold dine eggs opdaterede, og prøv opdateringer først.',
         ],

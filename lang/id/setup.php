@@ -23,7 +23,7 @@ return [
     'installed' => 'Terpasang',
     'hub' => 'Di Hub',
     'catalog' => [
-        'server-maker' => [
+        'servermaker' => [
             'name' => 'Server Maker',
             'description' => 'Biarkan orang membuat server sendiri dalam batas yang Anda tetapkan.',
         ],
@@ -35,7 +35,7 @@ return [
             'name' => 'Explain',
             'description' => 'Penjelasan galat konsol dengan bahasa sederhana.',
         ],
-        'egg-updates' => [
+        'eggupdates' => [
             'name' => 'Egg Updates',
             'description' => 'Jaga egg Anda tetap terbaru dan coba pembaruan dulu.',
         ],

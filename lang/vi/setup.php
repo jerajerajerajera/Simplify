@@ -23,7 +23,7 @@ return [
     'installed' => 'Đã cài',
     'hub' => 'Trên Hub',
     'catalog' => [
-        'server-maker' => [
+        'servermaker' => [
             'name' => 'Server Maker',
             'description' => 'Cho phép mọi người tự tạo máy chủ trong giới hạn bạn đặt ra.',
         ],
@@ -35,7 +35,7 @@ return [
             'name' => 'Explain',
             'description' => 'Giải thích lỗi console bằng lời dễ hiểu.',
         ],
-        'egg-updates' => [
+        'eggupdates' => [
             'name' => 'Egg Updates',
             'description' => 'Giữ egg luôn mới và thử cập nhật trước.',
         ],

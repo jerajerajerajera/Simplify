@@ -23,7 +23,7 @@ return [
     'installed' => 'Geïnstalleerd',
     'hub' => 'Op de Hub',
     'catalog' => [
-        'server-maker' => [
+        'servermaker' => [
             'name' => 'Server Maker',
             'description' => 'Laat mensen zelf servers maken binnen grenzen die jij kiest.',
         ],
@@ -35,7 +35,7 @@ return [
             'name' => 'Explain',
             'description' => 'Foutmeldingen in de console in gewone taal uitgelegd.',
         ],
-        'egg-updates' => [
+        'eggupdates' => [
             'name' => 'Egg Updates',
             'description' => 'Houd je eggs bij en probeer updates eerst uit.',
         ],

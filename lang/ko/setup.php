@@ -23,7 +23,7 @@ return [
     'installed' => '설치됨',
     'hub' => 'Hub에서 보기',
     'catalog' => [
-        'server-maker' => [
+        'servermaker' => [
             'name' => 'Server Maker',
             'description' => '정해 둔 한도 안에서 사용자가 직접 서버를 만들 수 있습니다.',
         ],
@@ -35,7 +35,7 @@ return [
             'name' => 'Explain',
             'description' => '콘솔 오류를 쉬운 말로 설명합니다.',
         ],
-        'egg-updates' => [
+        'eggupdates' => [
             'name' => 'Egg Updates',
             'description' => 'egg를 최신으로 유지하고 업데이트를 먼저 시험해 봅니다.',
         ],

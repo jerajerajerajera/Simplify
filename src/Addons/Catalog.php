@@ -14,10 +14,10 @@ final class Catalog
 
     /** id => [icon, colour of its card]; the Hub page of each is HUB.id */
     public const ADDONS = [
-        'simplify-server-maker' => ['tabler-wand', '#6ea8fe'],
+        'simplify-servermaker' => ['tabler-wand', '#6ea8fe'],
         'simplify-toolkit' => ['tabler-cube', '#4ec9a0'],
         'simplify-explain' => ['tabler-message-question', '#e0a050'],
-        'simplify-egg-updates' => ['tabler-egg', '#e7c95a'],
+        'simplify-eggupdates' => ['tabler-egg', '#e7c95a'],
         'simplify-hosting' => ['tabler-receipt', '#b48cf2'],
     ];
 

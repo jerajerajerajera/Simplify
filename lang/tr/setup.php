@@ -23,7 +23,7 @@ return [
     'installed' => 'Kurulu',
     'hub' => 'Hub\'da',
     'catalog' => [
-        'server-maker' => [
+        'servermaker' => [
             'name' => 'Server Maker',
             'description' => 'Belirlediğin sınırlar içinde herkesin kendi sunucusunu oluşturmasına izin ver.',
         ],
@@ -35,7 +35,7 @@ return [
             'name' => 'Explain',
             'description' => 'Konsol hatalarının sade dille açıklaması.',
         ],
-        'egg-updates' => [
+        'eggupdates' => [
             'name' => 'Egg Updates',
             'description' => 'Egg\'lerini güncel tut ve güncellemeleri önce dene.',
         ],
