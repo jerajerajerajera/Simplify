@@ -27,7 +27,11 @@ const measure = () => {
   const push = (kind, text) => r.problems.push({ kind, text });
   const name = (el) => (el.getAttribute('aria-label') || el.id || (typeof el.className === 'string' && el.className.trim().split(/\s+/).slice(0, 3).join('.')) || el.tagName.toLowerCase()).slice(0, 60);
   const text = (el) => (el.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 50);
-  const visible = (el) => { if (!(el instanceof Element)) return false; const b = el.getBoundingClientRect(); if (b.width < 1 || b.height < 1) return false; const cs = getComputedStyle(el); if (cs.visibility === 'hidden' || cs.display === 'none' || cs.opacity === '0') return false; for (let a = el; a; a = a.parentElement) { const c = a === el ? cs : getComputedStyle(a); if (c.display === 'none' || c.visibility === 'hidden') return false; if (a.hasAttribute('inert') || a.getAttribute('aria-hidden') === 'true' || a.hidden) return false; } return true; };
+  // A closed Filament sidebar sits off the screen on purpose: nothing in it counts.
+  const parked = (el) => { const sb = el.closest('.fi-sidebar'); if (!sb) return false; const b = sb.getBoundingClientRect(); return b.right <= 0 || b.left >= W; };
+  const visible = (el) => { if (!(el instanceof Element)) return false; const b = el.getBoundingClientRect(); if (b.width < 1 || b.height < 1) return false; const cs = getComputedStyle(el); if (cs.visibility === 'hidden' || cs.display === 'none' || cs.opacity === '0') return false; for (let a = el; a; a = a.parentElement) { const c = a === el ? cs : getComputedStyle(a); if (c.display === 'none' || c.visibility === 'hidden') return false; if (a.hasAttribute('inert') || a.getAttribute('aria-hidden') === 'true' || a.hidden) return false; } return !parked(el); };
+  // Between a child and the box that clips it: a pane that scrolls, a fixed or absolute layer, or an animation (ticker) means the child is reachable or placed on purpose.
+  const between = (child, box) => { for (let a = child; a && a !== box; a = a.parentElement) { const c = getComputedStyle(a); if (/(fixed|absolute|sticky)/.test(c.position) || c.animationName !== 'none' || (c.transform !== 'none' && a !== child)) return true; if (a !== child && /(auto|scroll)/.test(c.overflowY + c.overflowX) && (a.scrollHeight > a.clientHeight + 2 || a.scrollWidth > a.clientWidth + 2)) return true; } return false; };
   const scrollAncestor = (el, axis) => { for (let a = el.parentElement; a && a !== document.body; a = a.parentElement) { const cs = getComputedStyle(a); const o = axis === 'x' ? cs.overflowX : cs.overflowY; if (/(auto|scroll)/.test(o) && (axis === 'x' ? a.scrollWidth > a.clientWidth + 2 : a.scrollHeight > a.clientHeight + 2)) return a; } return null; };
   const all = [...document.querySelectorAll('body *')].filter(visible);
   // 1. The page itself.
@@ -56,13 +60,13 @@ const measure = () => {
     if (!el.matches('button, a, input, select, textarea, [role=button], [role=tab]')) continue;
     const b = el.getBoundingClientRect();
     if (b.width < 8 || b.height < 8) continue;
-    const right = b.right > W + 2 && !scrollAncestor(el, 'x'), bottom = b.bottom > H + 2 && !scrollAncestor(el, 'y') && !(root.scrollHeight > H + 2), left = b.left < -2, top = b.top < -2;
+    const right = b.right > W + 2 && !scrollAncestor(el, 'x'), bottom = b.bottom > H + 2 && !scrollAncestor(el, 'y') && !(root.scrollHeight > H + 2), left = b.left < -2 && !scrollAncestor(el, 'x') && scrollX === 0, top = b.top < -2 && !scrollAncestor(el, 'y') && scrollY === 0;
     if ((right || bottom || left || top) && off.length < 8) off.push(`${name(el)} "${text(el)}" (${Math.round(b.left)},${Math.round(b.top)} ${Math.round(b.width)}x${Math.round(b.height)})`);
   }
   if (off.length) push('offscreen', 'control off the screen: ' + off.join(' | '));
   // 4. Popups, menus and dialogs must sit inside the window.
   for (const el of document.querySelectorAll('[role=dialog], [role=menu], .fi-dropdown-panel, .fi-modal-window, .ps-dropdown, .ps-modal, .ps-sheet, .ps-account-menu, .ps-nav-items, .fi-global-search-results-ctn, .ps-phone-more-menu')) {
-    if (!visible(el)) continue;
+    if (!visible(el) || el.closest('.fi-sidebar')) continue;
     const b = el.getBoundingClientRect();
     const tall = el.scrollHeight > el.clientHeight + 2;
     r.info.popups = r.info.popups || []; r.info.popups.push(`${name(el)} ${Math.round(b.left)},${Math.round(b.top)} ${Math.round(b.width)}x${Math.round(b.height)}${tall ? ' scrolls' : ''}`);
@@ -83,7 +87,7 @@ const measure = () => {
       if (cb.width < 6 || cb.height < 6) continue;
       const dx = Math.max(cb.right - b.right, b.left - cb.left), dy = Math.max(cb.bottom - b.bottom, b.top - cb.top);
       const clipX = /(hidden|clip)/.test(cs.overflowX) && dx > 4, clipY = /(hidden|clip)/.test(cs.overflowY) && dy > 4;
-      if ((clipX || clipY) && !c.matches('.sr-only, .fi-sr-only, [x-cloak]') && getComputedStyle(c).position !== 'absolute' && getComputedStyle(c).position !== 'fixed') {
+      if ((clipX || clipY) && !c.matches('.sr-only, .fi-sr-only, [x-cloak]') && !between(c, el)) {
         if (el.scrollHeight <= el.clientHeight + 2 && el.scrollWidth <= el.clientWidth + 2 && !clipX && cb.top >= b.top) continue;
         stick.push(`${name(c)} "${text(c)}" sticks ${Math.round(Math.max(dx, dy))}px out of ${name(el)}`); reported.add(el); break;
       }
