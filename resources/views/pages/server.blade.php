@@ -97,7 +97,8 @@
                 <article class="ps-card ps-stat">
                     <div class="ps-stat-top"><span x-text="metric.label"></span><svg aria-hidden="true"><use :href="'#ps-'+metric.icon"/></svg></div>
                     <strong x-text="metricValue(metric.key)"></strong>
-                    <small x-text="metricLimit(metric.key)"></small>
+                    {{-- A long line (traffic "since server start") keeps its first part; the whole line is the tooltip. --}}
+                    <small x-text="metricLimit(metric.key).split(' · ')[0]" :data-tip="metricLimit(metric.key).includes(' · ') ? metricLimit(metric.key) : null"></small>
                     <svg class="ps-spark" viewBox="0 0 200 36" preserveAspectRatio="none" aria-hidden="true"><path :d="spark(metric.key)"/></svg>
                 </article>
             </template>

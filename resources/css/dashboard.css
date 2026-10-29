@@ -640,7 +640,9 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   .ps-account { flex-wrap: wrap; width: 100%; }
   .ps-account-button { flex: 1 1 auto; max-width: none; }
   .ps-account-menu { order: 0; }
-  .ps-account.account-open .ps-account-menu { margin: 0 0 0 8px; }
+  /* The phone menu is narrower than every account button in a row: the buttons get a row of their own and wrap. */
+  .ps-account.account-open .ps-account-menu { flex: 0 0 100%; width: 100%; height: auto; margin: 8px 0 0; }
+  .ps-account-actions-inner { flex-wrap: wrap; width: 100%; }
   .ps-server-scroll { padding: 4px 0; }
   .ps-server-stage, .ps-server-stage.is-list { max-width: 100%; margin: 0; }
   .ps-overview-toolbar { margin-bottom: 10px; }

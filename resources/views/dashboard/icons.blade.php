@@ -6,6 +6,7 @@
         <symbol id="ps-traffic" viewBox="0 0 24 24"><path d="M17 3l0 18"/> <path d="M10 18l-3 3l-3 -3"/> <path d="M7 21l0 -18"/> <path d="M20 6l-3 -3l-3 3"/></symbol>
         <symbol id="ps-gamepad" viewBox="0 0 24 24"><path d="M12 5h3.5a5 5 0 0 1 0 10h-5.5l-4.015 4.227a2.3 2.3 0 0 1 -3.923 -2.035l1.634 -8.173a5 5 0 0 1 4.904 -4.019h3.4z"/> <path d="M14 15l4.07 4.284a2.3 2.3 0 0 0 3.925 -2.023l-1.6 -8.232"/> <path d="M8 9v2"/> <path d="M7 10h2"/> <path d="M14 10h2"/></symbol>
         <symbol id="ps-cube" viewBox="0 0 24 24"><path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5"/> <path d="M12 12l8 -4.5"/> <path d="M12 12l0 9"/> <path d="M12 12l-8 -4.5"/></symbol>
+        <symbol id="ps-lock" viewBox="0 0 24 24"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6z"/> <path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"/> <path d="M8 11v-4a4 4 0 1 1 8 0v4"/></symbol>
         <symbol id="ps-menu" viewBox="0 0 24 24"><path d="M4 6l16 0"/> <path d="M4 12l16 0"/> <path d="M4 18l16 0"/></symbol>
         <symbol id="ps-creeper" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><path fill="currentColor" stroke="none" d="M6 7h4v4H6zm8 0h4v4h-4zm-4 4h4v3h3v5h-3v-3h-4v3H7v-5h3z"/></symbol>
         <symbol id="ps-simplify" viewBox="0 0 24 24"><path d="M5 20h11l3-4-5-6V6l-3-3-3 2v5l-4 5 1 5Z"/><path d="m14 6 8 3h-8M5 17l7-5 4 5M11 6h.01"/></symbol>
