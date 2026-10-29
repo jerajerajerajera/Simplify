@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Simplify\Core\Addons;
 
 use App\Models\Server;
+use App\Models\User;
 
 /**
  * What an add-on shows inside Simplify. See ADDONS.md.
@@ -20,6 +21,9 @@ use App\Models\Server;
  */
 abstract class Addon
 {
+    /** The contract version: 1 in Simplify 1.0, 2 since 1.1 (serverInfo, serverLinks, customerLinks, hostModeDefault). Raised whenever a method is added. */
+    public const API = 2;
+
     /** The add-on's plugin id, for example "simplify-server-maker". */
     abstract public function id(): string;
 
@@ -83,6 +87,34 @@ abstract class Addon
     public function serverInfo(Server $server): array
     {
         return [];
+    }
+
+    /**
+     * Links in the ⋯ menu of the server's page, for example "Upgrade this server" on the hoster's billing page.
+     * They open in a new tab.
+     *
+     * @return list<Button>
+     */
+    public function serverLinks(Server $server): array
+    {
+        return [];
+    }
+
+    /**
+     * Links for customers (users who are not admins) at the top of the overview, beside a greeting, for example the
+     * hoster's client area. The greeting shows only when an add-on gives at least one link.
+     *
+     * @return list<Button>
+     */
+    public function customerLinks(User $user): array
+    {
+        return [];
+    }
+
+    /** Whether host mode is the default for admins on panels with more than one node, until they pick a mode. */
+    public function hostModeDefault(): bool
+    {
+        return false;
     }
 
     /**

@@ -62,8 +62,10 @@
                     <label class="ps-menu-item" role="menuitem" x-show="server.can_edit"><svg aria-hidden="true"><use href="#ps-image"/></svg><span>{{ $u('server_background') }}</span><input type="file" accept="image/png,image/jpeg,image/webp" hidden x-on:change="infoMenu=false; $event.target.files[0] && saveLook(server.color, $event.target.files[0]); $event.target.value=''"></label>
                     <button type="button" class="ps-menu-item" role="menuitem" x-show="server.can_edit && server.background_id==='upload'" :disabled="busy" x-on:click="infoMenu=false; saveLook(server.color, null, true)"><svg aria-hidden="true"><use href="#ps-close"/></svg><span>{{ $u('no_background') }}</span></button>
                     <button type="button" class="ps-menu-item" role="menuitem" x-show="server.can_edit" x-on:click="infoMenu=false; saveName(@js($u('server_name')), @js($u('rename')))"><svg aria-hidden="true"><use href="#ps-edit"/></svg><span>{{ $u('rename') }}</span></button>
-                    <span class="ps-label ps-menu-heading" x-show="server.billing_url" x-cloak>{{ $u('plan') }}</span>
-                    <a class="ps-menu-item" role="menuitem" x-show="server.billing_url" x-cloak :href="safeLink(server.billing_url)" target="_blank" rel="noopener noreferrer" x-on:click="infoMenu=false"><svg aria-hidden="true"><use href="#ps-arrow-right"/></svg><span>{{ $u('upgrade_this_server') }}</span><svg class="ps-menu-item-out" aria-hidden="true"><use href="#ps-external"/></svg></a>
+                    <template x-if="server.links?.length"><hr></template>
+                    <template x-for="link in server.links || []" :key="link.url">
+                        <a class="ps-menu-item" role="menuitem" :href="safeLink(link.url)" target="_blank" rel="noopener noreferrer" x-on:click="infoMenu=false"><svg aria-hidden="true"><use href="#ps-arrow-right"/></svg><span x-text="link.label"></span><svg class="ps-menu-item-out" aria-hidden="true"><use href="#ps-external"/></svg></a>
+                    </template>
                     <hr>
                     <button type="button" class="ps-menu-item is-danger" role="menuitem" :disabled="busy || !server.permissions['control.stop'] || status==='offline'" x-on:click="infoMenu=false; power('kill')"><svg aria-hidden="true"><use href="#ps-kill"/></svg><span>{{ $u('force_stop') }}</span></button>
                 </div>
@@ -128,10 +130,11 @@
     </nav>
     {{-- The title row of Pelican's console, put above its output by server.js. --}}
     <template x-ref="consoleBar">
-        <div class="ps-console-title ps-ui">
+        <div class="ps-console-title ps-ui" data-quick="{{ $u('quick_commands') }}">
             <span class="ps-terminal-icon" aria-hidden="true">›_</span>
             <strong>{{ $u('live_console') }}</strong>
             <span class="ps-console-dot"></span>
+            <span class="ps-live-bars" aria-hidden="true" hidden><i></i><i></i><i></i><i></i></span>
             <span class="ps-console-state" data-connecting="{{ $u('connecting_to_wings') }}" data-connected="{{ $u('connected_to_wings') }}">{{ $u('connecting_to_wings') }}</span>
             <button type="button" class="ps-console-clear ps-console-tool ps-console-grow" data-normal="{{ $u('normal_size') }}" data-bigger="{{ $u('bigger_console') }}" aria-label="{{ $u('bigger_console') }}" aria-pressed="false"><svg aria-hidden="true"><use href="#ps-expand"/></svg></button>
             <button type="button" class="ps-console-clear ps-console-tool ps-console-window" aria-label="{{ $u('open_the_console_in_a_new') }}" data-tip="{{ $u('open_in_a_new_window') }}"><svg aria-hidden="true"><use href="#ps-external"/></svg></button>

@@ -10,8 +10,8 @@ use App\Models\User;
 use Filament\Facades\Filament;
 use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
+use Simplify\Core\Addons\Button;
 use Simplify\Core\Server\Looks;
-use Simplify\Core\Support\Billing;
 use Throwable;
 
 /**
@@ -53,7 +53,7 @@ final class Listing
             'address' => $allocation === null ? null : ($allocation->alias ?: $allocation->ip).':'.$allocation->port,
             'minecraft' => Artwork::minecraft($server),
             'can_edit' => Looks::canEdit($user, $server),
-            'billing_url' => Billing::url($server),
+            'links' => array_map(fn (Button $link) => ['label' => $link->label, 'url' => $link->url], app(AddonRegistry::class)->collect(fn (Addon $addon) => $addon->serverLinks($server))),
         ];
     }
 

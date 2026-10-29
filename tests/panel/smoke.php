@@ -22,6 +22,7 @@ use Illuminate\Validation\ValidationException;
 use Livewire\Features\SupportTesting\Testable;
 use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
+use Simplify\Core\Addons\Button;
 use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\Admin\Pages\Setup;
 use Simplify\Core\Filament\App\Pages\Notifications;
@@ -109,6 +110,34 @@ final class SmokeAddon extends Addon
     }
 }
 
+final class HostingAddon extends Addon
+{
+    public function id(): string
+    {
+        return 'hosting-addon';
+    }
+
+    public function name(): string
+    {
+        return 'Hosting add-on';
+    }
+
+    public function serverLinks(Server $server): array
+    {
+        return [new Button('Upgrade this server', 'https://billing.example.com/s/'.$server->uuid)];
+    }
+
+    public function customerLinks(User $user): array
+    {
+        return [new Button('Client area', 'https://billing.example.com/clientarea')];
+    }
+
+    public function hostModeDefault(): bool
+    {
+        return true;
+    }
+}
+
 final class BadgeAddon extends Addon
 {
     public static int $asked = 0;
@@ -149,10 +178,9 @@ step('the first visit to the settings opens the setup, and finishing it saves th
     }
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('admin'));
     $setup = Livewire\Livewire::actingAs($admin)->test(Setup::class)
-        ->set('data.profile', 'hosting')->set('data.billing_url', 'https://billing.example.com/s/{uuid}')
         ->set('data.support_url', 'mailto:help@example.com')->call('finish');
     noErrors($setup);
-    if (! PanelSettings::get('setup_done') || PanelSettings::get('profile') !== 'hosting' || PanelSettings::get('support_url') !== 'mailto:help@example.com') {
+    if (! PanelSettings::get('setup_done') || PanelSettings::get('support_url') !== 'mailto:help@example.com') {
         throw new RuntimeException('the setup was not saved: '.json_encode(PanelSettings::all()));
     }
 });
@@ -272,11 +300,12 @@ step('the console page shows the Simplify header, server card and menu', functio
         }
     }
 });
-step('a hosting panel: signing in lands on the overview, and customers get billing and support links', function () use ($admin, $server) {
+step('signing in lands on the overview, and add-ons give server links, customer links and host mode', function ($app) use ($admin, $server) {
     event(new Login('web', $admin, false));
     if (session('url.intended') !== Overview::getUrl(panel: 'app')) {
         throw new RuntimeException('signing in does not lead to the overview: '.json_encode(session('url.intended')));
     }
+    $app->tag([HostingAddon::class], AddonRegistry::TAG);
     $url = Filament\Facades\Filament::getPanel('server')->getUrl($server);
     $response = visit($admin, $url);
     if ($response->isRedirect()) {
@@ -284,15 +313,26 @@ step('a hosting panel: signing in lands on the overview, and customers get billi
         $response = visit($admin, $url);
     }
     expectOk($response, $url);
+    if (! str_contains($response->getContent(), 'mailto:help@example.com')) {
+        throw new RuntimeException('the support link is missing');
+    }
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('server'));
     auth()->setUser($admin);
     Filament\Facades\Filament::setTenant($server);
-    $billing = Livewire\Livewire::actingAs($admin)->test(ServerPage::class, ['server' => $server])->instance()->initial()['server']['billing_url'];
-    if ($billing !== 'https://billing.example.com/s/'.$server->uuid) {
-        throw new RuntimeException('the billing link is missing: '.json_encode($billing));
+    $links = Livewire\Livewire::actingAs($admin)->test(ServerPage::class, ['server' => $server])->instance()->initial()['server']['links'];
+    if (($links[0]['url'] ?? null) !== 'https://billing.example.com/s/'.$server->uuid) {
+        throw new RuntimeException('the server link is missing: '.json_encode($links));
     }
-    if (! str_contains($response->getContent(), 'mailto:help@example.com')) {
-        throw new RuntimeException('the support link is missing');
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
+    $own = Livewire\Livewire::actingAs($admin)->test(Overview::class)->instance()->initial();
+    if ($own['customer'] !== [] || $own['host_mode_auto'] !== true) {
+        throw new RuntimeException('admins get customer links or no host mode default: '.json_encode([$own['customer'], $own['host_mode_auto']]));
+    }
+    $customer = User::query()->where('email', 'smoke-customer@example.com')->first()
+        ?? User::withoutEvents(fn () => User::factory()->create(['username' => 'smoke-customer', 'email' => 'smoke-customer@example.com']));
+    $links = collect(Livewire\Livewire::actingAs($customer)->test(Overview::class)->instance()->initial()['customer'])->pluck('url')->all();
+    if ($links !== ['https://billing.example.com/clientarea', 'mailto:help@example.com']) {
+        throw new RuntimeException('the customer links are wrong: '.json_encode($links));
     }
 });
 step('a server gets a colour and banner from its page, shown on its card', function () use ($admin, $server) {

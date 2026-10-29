@@ -54,5 +54,9 @@ return [
             'name' => 'Plugins',
             'description' => 'Plugins aus dem Pelican Hub finden und installieren.',
         ],
+        'hosting' => [
+            'name' => 'Hosting',
+            'description' => 'Abrechnungslinks, ein Kundenbereich für Kunden und der Host-Modus für große Panels.',
+        ],
     ],
 ];

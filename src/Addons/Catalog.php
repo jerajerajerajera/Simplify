@@ -22,6 +22,7 @@ final class Catalog
         'simplify-egg-updates' => 'tabler-egg',
         'simplify-embed' => 'tabler-code',
         'simplify-plugins' => 'tabler-world-search',
+        'simplify-hosting' => 'tabler-receipt',
     ];
 
     /** @return list<array{id: string, icon: string, name: string, description: string, url: string, installed: bool}> */

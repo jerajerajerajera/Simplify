@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Simplify\Core\WebApp;
 
+use Illuminate\Support\Facades\Cache;
 use Simplify\Core\Support\Assets;
 use Simplify\Core\Support\Brand;
 use Simplify\Core\Support\PanelSettings;
@@ -43,6 +44,46 @@ final class WebApp
         return [Assets::url('app-icon-'.$size.'.png'), 'image/png'];
     }
 
+    /**
+     * The small icon in Android's status bar. Android only uses its transparency and paints it white, so the admin's
+     * own status bar icon comes first, then an app icon that is a PNG with a transparent background, then the pelican.
+     */
+    public static function badge(): string
+    {
+        $own = Brand::logoFile(PanelSettings::get('app_badge'));
+        if ($own !== null) {
+            return url('/simplify/brand/'.$own);
+        }
+        $icon = Brand::logoFile(PanelSettings::get('app_icon'));
+        if ($icon !== null && str_ends_with($icon, '.png')
+            && Cache::rememberForever('simplify.see-through.'.$icon, fn () => self::seeThrough((string) Brand::path($icon)))) {
+            return url('/simplify/brand/'.$icon);
+        }
+
+        return Assets::url('app-badge-96.png');
+    }
+
+    /** Whether a PNG has transparent parts; an opaque image would show as a white square. */
+    private static function seeThrough(string $path): bool
+    {
+        $image = function_exists('imagecreatefrompng') && is_file($path) ? @imagecreatefrompng($path) : false;
+        if ($image === false) {
+            return false;
+        }
+        $width = imagesx($image);
+        $height = imagesy($image);
+        $step = max(1, intdiv(min($width, $height), 64));
+        for ($y = 0; $y < $height; $y += $step) {
+            for ($x = 0; $x < $width; $x += $step) {
+                if (((imagecolorat($image, $x, $y) >> 24) & 0x7F) > 64) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
     /** @return array<string, mixed> */
     public static function manifest(): array
     {
@@ -77,10 +118,10 @@ final class WebApp
         $quote = fn (string $url) => str_replace(['\\', "'"], '', $url);
 
         return strtr($source, [
-            '__VERSION__' => substr(hash('xxh3', $source.self::icon(192)[0].$name), 0, 12),
+            '__VERSION__' => substr(hash('xxh3', $source.self::icon(192)[0].self::badge().$name), 0, 12),
             '__NAME__' => $name,
             '__ICON__' => $quote(self::icon(192)[0]),
-            '__BADGE__' => $quote(Assets::url('app-badge-96.png')),
+            '__BADGE__' => $quote(self::badge()),
         ]);
     }
 }

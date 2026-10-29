@@ -54,5 +54,9 @@ return [
             'name' => 'Plugins',
             'description' => 'Pelican Hub\'dan eklenti bul ve kur.',
         ],
+        'hosting' => [
+            'name' => 'Barındırma',
+            'description' => 'Fatura bağlantıları, müşteriler için bir müşteri alanı ve büyük paneller için ana bilgisayar modu.',
+        ],
     ],
 ];

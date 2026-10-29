@@ -103,6 +103,11 @@ $plain = new class extends Addon
 };
 check($plain->description() === '' && $plain->icon() === 'tabler-puzzle' && $plain->settingsUrl() === null && $plain->dashboardActions() === [] && $plain->hiddenServerPrefixes() === [], 'an add-on only has to give an id and a name');
 
+// The contract only grows with defaults: id() and name() stay the only methods an add-on must write.
+$required = array_values(array_map(fn (ReflectionMethod $m) => $m->name, array_filter((new ReflectionClass(Addon::class))->getMethods(), fn (ReflectionMethod $m) => $m->isAbstract())));
+check($required === ['id', 'name'], 'only id() and name() are abstract: '.json_encode($required));
+check(is_int(Addon::API) && Addon::API >= 2, 'Addon::API names the contract version');
+
 if ($failures) {
     echo "FAIL add-ons:\n  ".implode("\n  ", $failures)."\n";
     exit(1);

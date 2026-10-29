@@ -21,9 +21,6 @@ final class PanelSettings
     /** The checked settings for this request, kept in the container so a new request (or test app) starts fresh. */
     private const MEMO = 'simplify.settings.checked';
 
-    /** An https address, which may hold {uuid} and {external_id}; Laravel's url rule does not accept the braces. */
-    public const BILLING_URL = '#^https://[^\s<>"]+$#';
-
     /** An https address or a mailto: address; Laravel's url rule does not accept mailto:. */
     public const SUPPORT_URL = '#^(https://[^\s<>"]+|mailto:[^\s@<>"]+@[^\s@<>"]+)$#';
 
@@ -31,15 +28,14 @@ final class PanelSettings
     public const FIELDS = [
         'accent' => [null, ['nullable', 'regex:/^#[0-9a-fA-F]{6}$/']],
         'setup_done' => [false, ['required', 'boolean']],
-        'profile' => ['friends', ['required', 'in:friends,hosting']],
         'start_page' => ['overview', ['required', 'in:overview,pelican']],
-        'billing_url' => [null, ['nullable', 'max:255', 'regex:'.self::BILLING_URL]],
         'support_url' => [null, ['nullable', 'max:255', 'regex:'.self::SUPPORT_URL]],
         'push' => [true, ['required', 'boolean']],
         'overview_seconds' => [15, ['required', 'integer', 'min:5', 'max:300']],
         'brand_name' => [null, ['nullable', 'string', 'max:40']],
         'brand_logo' => [null, ['nullable', 'string', 'regex:#^'.Brand::DIRECTORY.'/'.Brand::FILE_PATTERN.'$#']],
         'app_icon' => [null, ['nullable', 'string', 'regex:#^'.Brand::DIRECTORY.'/'.Brand::FILE_PATTERN.'$#']],
+        'app_badge' => [null, ['nullable', 'string', 'regex:#^'.Brand::DIRECTORY.'/'.Brand::FILE_PATTERN.'$#']],
         'logo_height' => [32, ['required', 'integer', 'min:16', 'max:64']],
     ];
 
@@ -91,7 +87,7 @@ final class PanelSettings
      */
     public static function saveForm(array $state): void
     {
-        foreach (['accent', 'brand_name', 'billing_url', 'support_url'] as $text) {
+        foreach (['accent', 'brand_name', 'support_url'] as $text) {
             if (array_key_exists($text, $state)) {
                 $state[$text] = trim((string) $state[$text]) ?: null;
             }
@@ -100,7 +96,7 @@ final class PanelSettings
             $state['accent'] = strtolower($state['accent']);
         }
         $previous = [];
-        foreach (['brand_logo', 'app_icon'] as $file) {
+        foreach (['brand_logo', 'app_icon', 'app_badge'] as $file) {
             if (array_key_exists($file, $state)) {
                 $state[$file] = $state[$file] ?: null;
                 $previous[$file] = self::get($file);

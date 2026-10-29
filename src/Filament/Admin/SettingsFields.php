@@ -10,7 +10,6 @@ use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
-use Filament\Schemas\Components\Utilities\Get;
 use Simplify\Core\Support\Brand;
 use Simplify\Core\Support\PanelSettings;
 
@@ -19,18 +18,11 @@ final class SettingsFields
 {
     private const T = 'pelican-simplify::settings.';
 
-    public static function profile(): Section
+    /** Help for everyone on the panel. Hosting details (billing, client area) come from the Simplify Hosting add-on. */
+    public static function support(): Section
     {
-        return Section::make(__(self::T.'profile.heading'))->schema([
-            Radio::make('profile')->hiddenLabel()->required()
-                ->options(['friends' => __(self::T.'profile.friends'), 'hosting' => __(self::T.'profile.hosting')])
-                ->descriptions(['friends' => __(self::T.'profile.friends_help'), 'hosting' => __(self::T.'profile.hosting_help')])
-                ->live(),
-            TextInput::make('billing_url')->label(__(self::T.'profile.billing'))->maxLength(255)->regex(PanelSettings::BILLING_URL)
-                ->placeholder('https://billing.example.com/clientarea.php?action=productdetails&id={external_id}')
-                ->helperText(__(self::T.'profile.billing_help'))
-                ->visible(fn (Get $get) => $get('profile') === 'hosting'),
-            TextInput::make('support_url')->label(__(self::T.'profile.support'))->maxLength(255)
+        return Section::make(__(self::T.'profile.support'))->schema([
+            TextInput::make('support_url')->hiddenLabel()->maxLength(255)
                 ->regex(PanelSettings::SUPPORT_URL)->placeholder('https://example.com/support')
                 ->helperText(__(self::T.'profile.support_help')),
         ]);
@@ -80,6 +72,7 @@ final class SettingsFields
     {
         return Section::make(__(self::T.'appearance.app'))->description(__(self::T.'appearance.app_help'))->schema([
             self::image('app_icon', 'appearance.app_icon', 'appearance.app_icon_help')->imageCropAspectRatio('1:1'),
+            self::image('app_badge', 'appearance.app_badge', 'appearance.app_badge_help')->acceptedFileTypes(['image/png']),
             Toggle::make('push')->label(__(self::T.'general.push_on'))->helperText(__(self::T.'general.push_help')),
         ]);
     }

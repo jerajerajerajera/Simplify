@@ -138,10 +138,6 @@
   color: var(--s-warn);
 }
 
-.s-badge-danger {
-  color: var(--s-danger);
-}
-
 /* List row: icon, text, action. Used for add-ons and settings. */
 .s-row {
   align-items: center;
