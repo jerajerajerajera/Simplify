@@ -1,25 +1,25 @@
 <x-filament-panels::page>
-    <div class="s-push" x-data="simplifyPush(@js(__('pelican-simplify::push.browser')))" x-init="start()">
+    <div class="s-push" x-data="simplifyPush(@js(__('simplify::push.browser')))" x-init="start()">
         <div class="s-card">
             <div class="s-row">
                 <x-filament::icon icon="tabler-device-mobile" class="s-row-icon" />
                 <div class="s-row-text">
-                    <div>{{ __('pelican-simplify::push.this_device') }}</div>
-                    <div class="s-muted" x-show="state === 'on'" x-cloak>{{ __('pelican-simplify::push.this_on') }}</div>
-                    <div class="s-muted" x-show="state === 'off'" x-cloak>{{ __('pelican-simplify::push.this_off') }}</div>
-                    <div class="s-muted" x-show="state === 'blocked'" x-cloak>{{ __('pelican-simplify::push.blocked') }}</div>
-                    <div class="s-muted" x-show="state === 'install'" x-cloak>{{ __('pelican-simplify::push.install') }}</div>
-                    <div class="s-muted" x-show="state === 'unsupported'" x-cloak>{{ __('pelican-simplify::push.unsupported') }}</div>
+                    <div>{{ __('simplify::push.this_device') }}</div>
+                    <div class="s-muted" x-show="state === 'on'" x-cloak>{{ __('simplify::push.this_on') }}</div>
+                    <div class="s-muted" x-show="state === 'off'" x-cloak>{{ __('simplify::push.this_off') }}</div>
+                    <div class="s-muted" x-show="state === 'blocked'" x-cloak>{{ __('simplify::push.blocked') }}</div>
+                    <div class="s-muted" x-show="state === 'install'" x-cloak>{{ __('simplify::push.install') }}</div>
+                    <div class="s-muted" x-show="state === 'unsupported'" x-cloak>{{ __('simplify::push.unsupported') }}</div>
                 </div>
                 <div class="s-bar">
                     <button type="button" class="s-btn s-btn-small" x-show="state === 'on'" x-cloak wire:click="test" :disabled="busy">
-                        {{ __('pelican-simplify::push.test') }}
+                        {{ __('simplify::push.test') }}
                     </button>
                     <button type="button" class="s-btn s-btn-small" x-show="state === 'on'" x-cloak x-on:click="off()" :disabled="busy">
-                        {{ __('pelican-simplify::push.turn_off') }}
+                        {{ __('simplify::push.turn_off') }}
                     </button>
                     <button type="button" class="s-btn s-btn-small s-btn-primary" x-show="state === 'off' || state === 'blocked'" x-cloak x-on:click="on()" :disabled="busy">
-                        {{ __('pelican-simplify::push.turn_on') }}
+                        {{ __('simplify::push.turn_on') }}
                     </button>
                 </div>
             </div>
@@ -29,8 +29,8 @@
             <label class="s-row">
                 <x-filament::icon icon="tabler-speakerphone" class="s-row-icon" />
                 <span class="s-row-text">
-                    <span>{{ __('pelican-simplify::push.messages') }}</span>
-                    <span class="s-muted s-block">{{ __('pelican-simplify::push.messages_help') }}</span>
+                    <span>{{ __('simplify::push.messages') }}</span>
+                    <span class="s-muted s-block">{{ __('simplify::push.messages_help') }}</span>
                 </span>
                 <input type="checkbox" class="s-switch" wire:model.live="messages">
             </label>
@@ -38,8 +38,8 @@
                 <label class="s-row">
                     <x-filament::icon icon="tabler-refresh-alert" class="s-row-icon" />
                     <span class="s-row-text">
-                        <span>{{ __('pelican-simplify::push.updates') }}</span>
-                        <span class="s-muted s-block">{{ __('pelican-simplify::push.updates_help') }}</span>
+                        <span>{{ __('simplify::push.updates') }}</span>
+                        <span class="s-muted s-block">{{ __('simplify::push.updates_help') }}</span>
                     </span>
                     <input type="checkbox" class="s-switch" wire:model.live="updates">
                 </label>
@@ -49,25 +49,25 @@
         @php($devices = $this->devices())
         @if ($devices !== [])
             <div class="s-card">
-                <h2 class="s-section-title">{{ __('pelican-simplify::push.devices') }}</h2>
+                <h2 class="s-section-title">{{ __('simplify::push.devices') }}</h2>
                 @foreach ($devices as $device)
                     <div class="s-row" wire:key="device-{{ $device['device'] }}">
                         <div class="s-row-text">
                             <div>
                                 {{ $device['label'] }}
                                 @if ($device['device'] === $current)
-                                    <span class="s-badge s-badge-ok">{{ __('pelican-simplify::push.this_badge') }}</span>
+                                    <span class="s-badge s-badge-ok">{{ __('simplify::push.this_badge') }}</span>
                                 @endif
                             </div>
                             <div class="s-muted">
-                                {{ __('pelican-simplify::push.added', ['time' => $device['added']]) }}
+                                {{ __('simplify::push.added', ['time' => $device['added']]) }}
                                 @if ($device['last'])
-                                    · {{ __('pelican-simplify::push.last', ['time' => $device['last']]) }}
+                                    · {{ __('simplify::push.last', ['time' => $device['last']]) }}
                                 @endif
                             </div>
                         </div>
                         <button type="button" class="s-btn s-btn-icon" wire:click="remove(@js($device['device']))"
-                            title="{{ __('pelican-simplify::push.remove') }}" aria-label="{{ __('pelican-simplify::push.remove') }}">
+                            title="{{ __('simplify::push.remove') }}" aria-label="{{ __('simplify::push.remove') }}">
                             <x-filament::icon icon="tabler-trash" />
                         </button>
                     </div>

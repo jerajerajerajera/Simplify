@@ -171,13 +171,13 @@ final class HostHealth
             }
 
             return $problem[0] === 'nodes_silent'
-                ? trans_choice('pelican-simplify::dashboard.health.problems.nodes_silent', (int) $values['count'])
-                : __('pelican-simplify::dashboard.health.problems.'.$problem[0], $values);
+                ? trans_choice('simplify::dashboard.health.problems.nodes_silent', (int) $values['count'])
+                : __('simplify::dashboard.health.problems.'.$problem[0], $values);
         };
-        $result['label'] = __('pelican-simplify::dashboard.health.labels.'.$result['label_key']);
+        $result['label'] = __('simplify::dashboard.health.labels.'.$result['label_key']);
         $result['problem'] = $say($result['problem'] ?? null);
         foreach ($result['nodes'] ?? [] as $index => $node) {
-            $result['nodes'][$index]['label'] = __('pelican-simplify::dashboard.health.labels.'.$node['label_key']);
+            $result['nodes'][$index]['label'] = __('simplify::dashboard.health.labels.'.$node['label_key']);
             $result['nodes'][$index]['problem'] = $say($node['problem'] ?? null);
         }
 

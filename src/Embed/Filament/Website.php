@@ -35,7 +35,7 @@ final class Website extends FormPage
 
     public static function getNavigationLabel(): string
     {
-        return __('pelican-simplify::embed.server.title');
+        return __('simplify::embed.server.title');
     }
 
     public function mount(): void
@@ -47,14 +47,14 @@ final class Website extends FormPage
     public function form(Schema $schema): Schema
     {
         return $schema->statePath('data')->components([
-            Section::make(__('pelican-simplify::embed.server.title'))
-                ->description(__('pelican-simplify::embed.server.help'))
+            Section::make(__('simplify::embed.server.title'))
+                ->description(__('simplify::embed.server.help'))
                 ->schema([
                     Toggle::make('visible')
-                        ->label(__('pelican-simplify::embed.server.show'))
+                        ->label(__('simplify::embed.server.show'))
                         ->live()
                         ->afterStateUpdated(fn (bool $state) => $this->toggle($state)),
-                    View::make('pelican-simplify::embed.code')
+                    View::make('simplify::embed.code')
                         ->viewData(fn () => ['show' => ['server' => (string) $this->server()->uuid_short]])
                         ->visible(fn (Get $get) => (bool) $get('visible')),
                 ]),
@@ -66,7 +66,7 @@ final class Website extends FormPage
         abort_unless(self::canAccess(), 403);
         EmbedServers::setVisible($this->server(), $visible);
         Notification::make()
-            ->title(__('pelican-simplify::embed.server.'.($visible ? 'shown' : 'hidden')))
+            ->title(__('simplify::embed.server.'.($visible ? 'shown' : 'hidden')))
             ->success()
             ->send();
     }

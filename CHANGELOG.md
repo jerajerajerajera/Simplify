@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.0
+
+- The plugin id is now `simplify`, with its own listing on the Pelican Hub. Installing it on a panel with the old id `pelican-simplify` (Simplify 1.x, or PelicanSimplify 0.7.0 and before) removes the old plugin's folder once the install is done. Its tables and settings stay, so Simplify 1.x panels keep everything.
+- From PelicanSimplify 0.6 and 0.7 Simplify now also takes over the announcements (with their in-game, bell and app notification choices, without sending them again), the panel's accent colour, name and logo, and the website list: its look and which servers are on it. Each part is only filled while it is still empty in Simplify. The old files stay where they are.
+
 ## 1.3.11
 
 - On every server page, Pelican's own pages too, the page is one card at the window's height, rounded at the top and bottom like the menu next to it. It keeps that height with or without content, and only what is inside it scrolls; its title and buttons stay at the top.

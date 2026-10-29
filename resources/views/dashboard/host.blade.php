@@ -59,7 +59,7 @@
                     </span>
                 </button>
                 <div class="ps-health-grid" x-show="healthChecks().length" role="group" aria-label="{{ $u('current_health_checks') }}">
-                    @include('pelican-simplify::dashboard.health-checks', ['open' => 'openHostSection(section)'])
+                    @include('simplify::dashboard.health-checks', ['open' => 'openHostSection(section)'])
                 </div>
             </div>
         </template>

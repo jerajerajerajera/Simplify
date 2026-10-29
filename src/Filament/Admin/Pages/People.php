@@ -28,7 +28,7 @@ final class People extends Page
 
     protected static ?int $navigationSort = 2;
 
-    protected string $view = 'pelican-simplify::pages.people';
+    protected string $view = 'simplify::pages.people';
 
     private const PER_PAGE = 25;
 
@@ -51,12 +51,12 @@ final class People extends Page
 
     public static function getNavigationLabel(): string
     {
-        return __('pelican-simplify::people.title');
+        return __('simplify::people.title');
     }
 
     public function getTitle(): string|Htmlable
     {
-        return __('pelican-simplify::people.title');
+        return __('simplify::people.title');
     }
 
     public function mount(): void
@@ -120,16 +120,16 @@ final class People extends Page
 
     public function addPersonAction(): Action
     {
-        return Action::make('addPerson')->label(__('pelican-simplify::people.add'))->icon('tabler-user-plus')
-            ->modalHeading(__('pelican-simplify::people.add'))->modalDescription(__('pelican-simplify::people.add_help'))
-            ->schema($this->personFields())->modalSubmitActionLabel(__('pelican-simplify::people.add_submit'))
-            ->action(fn (array $data) => $this->guarded(fn () => PeopleService::createUser($data), __('pelican-simplify::people.added')));
+        return Action::make('addPerson')->label(__('simplify::people.add'))->icon('tabler-user-plus')
+            ->modalHeading(__('simplify::people.add'))->modalDescription(__('simplify::people.add_help'))
+            ->schema($this->personFields())->modalSubmitActionLabel(__('simplify::people.add_submit'))
+            ->action(fn (array $data) => $this->guarded(fn () => PeopleService::createUser($data), __('simplify::people.added')));
     }
 
     public function editPersonAction(): Action
     {
-        return Action::make('editPerson')->modalHeading(__('pelican-simplify::people.edit'))
-            ->schema($this->personFields())->modalSubmitActionLabel(__('pelican-simplify::people.save'))
+        return Action::make('editPerson')->modalHeading(__('simplify::people.edit'))
+            ->schema($this->personFields())->modalSubmitActionLabel(__('simplify::people.save'))
             ->fillForm(function (array $arguments): array {
                 $user = User::query()->findOrFail((int) ($arguments['user'] ?? 0));
 
@@ -137,19 +137,19 @@ final class People extends Page
             })
             ->action(fn (array $data, array $arguments) => $this->guarded(
                 fn () => PeopleService::updateUser(User::query()->findOrFail((int) $arguments['user']), $data),
-                __('pelican-simplify::people.saved'),
+                __('simplify::people.saved'),
             ));
     }
 
     public function resetPasswordAction(): Action
     {
         return Action::make('resetPassword')->requiresConfirmation()
-            ->modalHeading(__('pelican-simplify::people.reset'))->modalDescription(__('pelican-simplify::people.reset_help'))
-            ->modalSubmitActionLabel(__('pelican-simplify::people.reset_submit'))
+            ->modalHeading(__('simplify::people.reset'))->modalDescription(__('simplify::people.reset_help'))
+            ->modalSubmitActionLabel(__('simplify::people.reset_submit'))
             ->action(function (array $arguments): void {
                 $status = PeopleService::sendPasswordReset(User::query()->findOrFail((int) $arguments['user']));
                 $sent = $status === Password::RESET_LINK_SENT;
-                $notification = Notification::make()->title(__($sent ? 'pelican-simplify::people.reset_sent' : 'pelican-simplify::people.reset_failed'));
+                $notification = Notification::make()->title(__($sent ? 'simplify::people.reset_sent' : 'simplify::people.reset_failed'));
                 ($sent ? $notification->success() : $notification->body(__($status))->warning())->send();
             });
     }
@@ -157,26 +157,26 @@ final class People extends Page
     public function deletePersonAction(): Action
     {
         return Action::make('deletePerson')->requiresConfirmation()->color('danger')
-            ->modalHeading(__('pelican-simplify::people.delete'))->modalDescription(__('pelican-simplify::people.delete_help'))
-            ->modalSubmitActionLabel(__('pelican-simplify::people.delete_submit'))
+            ->modalHeading(__('simplify::people.delete'))->modalDescription(__('simplify::people.delete_help'))
+            ->modalSubmitActionLabel(__('simplify::people.delete_submit'))
             ->action(fn (array $arguments) => $this->guarded(
                 fn () => PeopleService::deleteUser(User::query()->findOrFail((int) $arguments['user'])),
-                __('pelican-simplify::people.deleted'),
+                __('simplify::people.deleted'),
             ));
     }
 
     public function addRoleAction(): Action
     {
-        return Action::make('addRole')->label(__('pelican-simplify::people.roles.add'))->icon('tabler-shield-plus')->slideOver()
-            ->modalHeading(__('pelican-simplify::people.roles.add'))->modalSubmitActionLabel(__('pelican-simplify::people.roles.add'))
+        return Action::make('addRole')->label(__('simplify::people.roles.add'))->icon('tabler-shield-plus')->slideOver()
+            ->modalHeading(__('simplify::people.roles.add'))->modalSubmitActionLabel(__('simplify::people.roles.add'))
             ->schema($this->roleFields())
-            ->action(fn (array $data) => $this->guarded(fn () => PeopleService::saveRole(null, ...$this->roleData($data)), __('pelican-simplify::people.roles.added')));
+            ->action(fn (array $data) => $this->guarded(fn () => PeopleService::saveRole(null, ...$this->roleData($data)), __('simplify::people.roles.added')));
     }
 
     public function editRoleAction(): Action
     {
         return Action::make('editRole')->slideOver()->schema($this->roleFields())
-            ->modalHeading(__('pelican-simplify::people.roles.edit'))->modalSubmitActionLabel(__('pelican-simplify::people.save'))
+            ->modalHeading(__('simplify::people.roles.edit'))->modalSubmitActionLabel(__('simplify::people.save'))
             ->fillForm(function (array $arguments): array {
                 $role = Role::query()->findOrFail((int) ($arguments['role'] ?? 0));
                 abort_if($role->isRootAdmin(), 403);
@@ -190,18 +190,18 @@ final class People extends Page
             })
             ->action(fn (array $data, array $arguments) => $this->guarded(
                 fn () => PeopleService::saveRole(Role::query()->findOrFail((int) $arguments['role']), ...$this->roleData($data)),
-                __('pelican-simplify::people.saved'),
+                __('simplify::people.saved'),
             ));
     }
 
     public function deleteRoleAction(): Action
     {
         return Action::make('deleteRole')->requiresConfirmation()->color('danger')
-            ->modalHeading(__('pelican-simplify::people.roles.delete'))->modalDescription(__('pelican-simplify::people.roles.delete_help'))
-            ->modalSubmitActionLabel(__('pelican-simplify::people.delete_submit'))
+            ->modalHeading(__('simplify::people.roles.delete'))->modalDescription(__('simplify::people.roles.delete_help'))
+            ->modalSubmitActionLabel(__('simplify::people.delete_submit'))
             ->action(fn (array $arguments) => $this->guarded(
                 fn () => PeopleService::deleteRole(Role::query()->findOrFail((int) $arguments['role'])),
-                __('pelican-simplify::people.roles.deleted'),
+                __('simplify::people.roles.deleted'),
             ));
     }
 
@@ -209,11 +209,11 @@ final class People extends Page
     private function personFields(): array
     {
         return [
-            TextInput::make('username')->label(__('pelican-simplify::people.username'))->required()->maxLength(255)->regex('/^[A-Za-z0-9_.-]+$/'),
-            TextInput::make('email')->label(__('pelican-simplify::people.email'))->email()->required()->maxLength(255),
-            CheckboxList::make('roles')->label(__('pelican-simplify::people.roles.title'))->columns(2)
+            TextInput::make('username')->label(__('simplify::people.username'))->required()->maxLength(255)->regex('/^[A-Za-z0-9_.-]+$/'),
+            TextInput::make('email')->label(__('simplify::people.email'))->email()->required()->maxLength(255),
+            CheckboxList::make('roles')->label(__('simplify::people.roles.title'))->columns(2)
                 ->options(fn () => Role::query()->orderBy('name')->pluck('name', 'id')->all())
-                ->helperText(__('pelican-simplify::people.roles_help')),
+                ->helperText(__('simplify::people.roles_help')),
         ];
     }
 
@@ -228,9 +228,9 @@ final class People extends Page
         }
 
         return [
-            TextInput::make('name')->label(__('pelican-simplify::people.roles.name'))->required()->maxLength(64),
-            Section::make(__('pelican-simplify::people.roles.permissions'))
-                ->description(__('pelican-simplify::people.roles.permissions_help'))->schema($groups),
+            TextInput::make('name')->label(__('simplify::people.roles.name'))->required()->maxLength(64),
+            Section::make(__('simplify::people.roles.permissions'))
+                ->description(__('simplify::people.roles.permissions_help'))->schema($groups),
         ];
     }
 
@@ -254,7 +254,7 @@ final class People extends Page
             $run();
             Notification::make()->title($done)->success()->send();
         } catch (ValidationException $exception) {
-            Notification::make()->title(__('pelican-simplify::people.not_saved'))->body(collect($exception->errors())->flatten()->first())->danger()->send();
+            Notification::make()->title(__('simplify::people.not_saved'))->body(collect($exception->errors())->flatten()->first())->danger()->send();
             throw $exception;
         }
     }

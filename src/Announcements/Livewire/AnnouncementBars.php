@@ -27,7 +27,7 @@ final class AnnouncementBars extends Component
 
     public function render(): View
     {
-        return view('pelican-simplify::announcements.'.($this->compact ? 'notes' : 'bars'), ['announcements' => $this->announcements()]);
+        return view('simplify::announcements.'.($this->compact ? 'notes' : 'bars'), ['announcements' => $this->announcements()]);
     }
 
     public function unpin(int $id): void

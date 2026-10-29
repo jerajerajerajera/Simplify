@@ -299,6 +299,6 @@ final class AnnouncementResource extends Resource
     /** @param  array<string, string>  $replace */
     private static function text(string $key, array $replace = []): string
     {
-        return __('pelican-simplify::announcements.'.$key, $replace);
+        return __('simplify::announcements.'.$key, $replace);
     }
 }

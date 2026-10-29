@@ -57,7 +57,7 @@ final class InGame
     {
         $result = self::NOTHING;
         $message = GameChat::message(
-            __('pelican-simplify::announcements.in_game.prefix'),
+            __('simplify::announcements.in_game.prefix'),
             $announcement->title,
             $announcement->body,
         );

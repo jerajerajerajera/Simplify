@@ -142,7 +142,7 @@ final class Subdomains
                 ['name' => $name === '' ? null : $name, 'status' => $name === '' ? Subdomain::REMOVING : Subdomain::PENDING, 'message' => ''],
             );
         } catch (UniqueConstraintViolationException) {
-            throw ValidationException::withMessages(['name' => __('pelican-simplify::subdomains.errors.taken')]);
+            throw ValidationException::withMessages(['name' => __('simplify::subdomains.errors.taken')]);
         }
         $uuid = $server->uuid;
         self::afterResponse(function () use ($uuid) {
@@ -159,7 +159,7 @@ final class Subdomains
             return 'removed';
         }
         if (! self::ready()) {
-            return self::mark($row, Subdomain::ERROR, __('pelican-simplify::subdomains.errors.not_set_up'));
+            return self::mark($row, Subdomain::ERROR, __('simplify::subdomains.errors.not_set_up'));
         }
         $name = (string) $row->name;
         $port = (int) $server->allocation?->port;
@@ -168,7 +168,7 @@ final class Subdomains
             $dns->remove($server->uuid);
             $settings = Settings::all();
 
-            return self::mark($row, Subdomain::ERROR, __('pelican-simplify::subdomains.errors.not_forwarded', [
+            return self::mark($row, Subdomain::ERROR, __('simplify::subdomains.errors.not_forwarded', [
                 'port' => $port,
                 'min' => $settings['port_min'],
                 'max' => $settings['port_max'],

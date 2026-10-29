@@ -19,7 +19,7 @@
             <button type="button" class="ps-btn ps-health-pill" :class="boot.host_health?.state || 'unavailable'" x-on:click="healthPopover=!healthPopover; healthExpanded=false; healthOpenNodes=[]; placeHealthPopover()" :aria-expanded="healthPopover" aria-controls="ps-health-panel" :aria-label="Simplify.fill(@js($u('host_health_label')), { state: boot.host_health?.label || @js($u('unavailable')) })">
                 <svg aria-hidden="true"><use href="#ps-heart"/></svg><span x-text="boot.host_health?.label || @js($u('unavailable'))"></span>
             </button>
-            @include('pelican-simplify::dashboard.create-buttons')
+            @include('simplify::dashboard.create-buttons')
         </div>
         <button type="button" class="ps-btn is-icon is-subtle ps-mobile-menu" aria-label="{{ $u('panel_navigation') }}" aria-controls="ps-navigation-items" :aria-expanded="navMenu"
                 x-on:click="navMenu=!navMenu; accountMenu=false; appearanceMenu=false; groupsMenu=false; notifyMenu=false">
@@ -94,8 +94,8 @@
                     </div>
                 </div>
             </div>
-            @include('pelican-simplify::dashboard.groups-menu')
-            @include('pelican-simplify::dashboard.customize-menu')
+            @include('simplify::dashboard.groups-menu')
+            @include('simplify::dashboard.customize-menu')
             <button type="button" x-show="installable" x-cloak x-on:click="installApp()" class="ps-btn is-icon is-subtle ps-nav-view" data-tip="{{ $u('install_app') }}" aria-label="{{ $u('install_app') }}">
                 <svg aria-hidden="true"><use href="#ps-download"/></svg><span class="ps-mobile-label">{{ $u('install_app') }}</span>
             </button>
@@ -123,7 +123,7 @@
                         <div class="ps-admin-health">
                             <a class="ps-admin-health-title" :href="adminHealthPage().url"><svg aria-hidden="true"><use href="#ps-heart"/></svg><span>{{ $u('host_health_checks') }}</span></a>
                             <div class="ps-health-grid">
-                                @include('pelican-simplify::dashboard.health-checks', ['open' => 'location.href = adminHealthPage().url'])
+                                @include('simplify::dashboard.health-checks', ['open' => 'location.href = adminHealthPage().url'])
                             </div>
                         </div>
                     </template>
@@ -132,7 +132,7 @@
             <a x-show="boot.admin_url" :href="boot.admin_url" class="ps-btn is-icon is-subtle ps-nav-admin" data-tip="{{ $u('legacy_panel') }}" aria-label="{{ $u('legacy_panel') }}">
                 <svg aria-hidden="true"><use href="#ps-legacy"/></svg><span class="ps-mobile-label">{{ $u('legacy_panel') }}</span>
             </a>
-            @include('pelican-simplify::dashboard.account')
+            @include('simplify::dashboard.account')
         </div>
     </nav>
 </header>

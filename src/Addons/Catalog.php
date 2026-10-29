@@ -26,7 +26,7 @@ final class Catalog
     {
         $list = [];
         foreach (self::ADDONS as $id => [$icon, $tone]) {
-            $key = 'pelican-simplify::setup.catalog.'.substr($id, strlen('simplify-'));
+            $key = 'simplify::setup.catalog.'.substr($id, strlen('simplify-'));
             $list[] = [
                 'id' => $id,
                 'icon' => $icon,

@@ -36,7 +36,7 @@ final class Setup extends Page implements HasForms
 
     protected static bool $shouldRegisterNavigation = false;
 
-    protected string $view = 'pelican-simplify::pages.setup';
+    protected string $view = 'simplify::pages.setup';
 
     /** @var array<string, mixed> */
     public ?array $data = [];
@@ -48,17 +48,17 @@ final class Setup extends Page implements HasForms
 
     public function getTitle(): string|Htmlable
     {
-        return __('pelican-simplify::setup.title');
+        return __('simplify::setup.title');
     }
 
     public function getHeading(): string|Htmlable
     {
-        return Settings::logoHeading(__('pelican-simplify::setup.title'));
+        return Settings::logoHeading(__('simplify::setup.title'));
     }
 
     public function getSubheading(): string
     {
-        return __('pelican-simplify::setup.intro');
+        return __('simplify::setup.intro');
     }
 
     public function mount(): void
@@ -72,22 +72,22 @@ final class Setup extends Page implements HasForms
 
     public function form(Schema $schema): Schema
     {
-        $step = fn (string $key, string $icon, array $schema) => Step::make(__('pelican-simplify::setup.steps.'.$key))
+        $step = fn (string $key, string $icon, array $schema) => Step::make(__('simplify::setup.steps.'.$key))
             ->icon($icon)->schema($schema);
 
         return $schema->statePath('data')->components([
             Wizard::make([
-                $step('addons', 'tabler-puzzle', [View::make('pelican-simplify::partials.setup-addons')]),
+                $step('addons', 'tabler-puzzle', [View::make('simplify::partials.setup-addons')]),
                 $step('panel', 'tabler-users-group', [SettingsFields::startPage(), SettingsFields::support()]),
                 $step('look', 'tabler-palette', [SettingsFields::colours(), SettingsFields::brand()]),
-                $step('app', 'tabler-device-mobile', [View::make('pelican-simplify::partials.setup-checks'), SettingsFields::app()]),
+                $step('app', 'tabler-device-mobile', [View::make('simplify::partials.setup-checks'), SettingsFields::app()]),
                 $step('finish', 'tabler-checklist', [
                     ...$this->addonSections(),
-                    Section::make(__('pelican-simplify::setup.addon_pages'))->description(__('pelican-simplify::setup.addon_pages_help'))
-                        ->schema([View::make('pelican-simplify::partials.addon-list')]),
+                    Section::make(__('simplify::setup.addon_pages'))->description(__('simplify::setup.addon_pages_help'))
+                        ->schema([View::make('simplify::partials.addon-list')]),
                 ]),
             ])->skippable()->columnSpanFull()->extraAttributes(['class' => 's-setup'])
-                ->submitAction(new HtmlString(view('pelican-simplify::partials.setup-submit')->render())),
+                ->submitAction(new HtmlString(view('simplify::partials.setup-submit')->render())),
         ]);
     }
 
@@ -106,7 +106,7 @@ final class Setup extends Page implements HasForms
 
             return [];
         });
-        Notification::make()->title(__('pelican-simplify::setup.done'))->success()->send();
+        Notification::make()->title(__('simplify::setup.done'))->success()->send();
         $this->redirect(Settings::getUrl(panel: 'admin'));
     }
 
@@ -143,8 +143,8 @@ final class Setup extends Page implements HasForms
         }
 
         return [
-            ['ok' => str_starts_with(url('/'), 'https://'), 'text' => __('pelican-simplify::setup.checks.https')],
-            ['ok' => $keys, 'text' => __('pelican-simplify::setup.checks.openssl')],
+            ['ok' => str_starts_with(url('/'), 'https://'), 'text' => __('simplify::setup.checks.https')],
+            ['ok' => $keys, 'text' => __('simplify::setup.checks.openssl')],
         ];
     }
 }

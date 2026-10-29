@@ -41,7 +41,7 @@ final class ServerPage extends Component
 
     public function render(): View
     {
-        return view('pelican-simplify::pages.server', ['sections' => self::sections()]);
+        return view('simplify::pages.server', ['sections' => self::sections()]);
     }
 
     /** @return array<string, mixed> */

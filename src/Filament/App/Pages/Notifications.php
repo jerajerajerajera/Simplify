@@ -21,7 +21,7 @@ final class Notifications extends Page
 
     protected static bool $shouldRegisterNavigation = false;
 
-    protected string $view = 'pelican-simplify::pages.notifications';
+    protected string $view = 'simplify::pages.notifications';
 
     public bool $messages = true;
 
@@ -37,7 +37,7 @@ final class Notifications extends Page
 
     public function getTitle(): string|Htmlable
     {
-        return __('pelican-simplify::push.title');
+        return __('simplify::push.title');
     }
 
     public function mount(): void
@@ -70,11 +70,11 @@ final class Notifications extends Page
         try {
             $this->current = Push::subscribe(user(), $subscription, $label)->device;
         } catch (InvalidArgumentException) {
-            Notification::make()->title(__('pelican-simplify::push.unsupported'))->danger()->send();
+            Notification::make()->title(__('simplify::push.unsupported'))->danger()->send();
 
             return false;
         }
-        Notification::make()->title(__('pelican-simplify::push.on'))->success()->send();
+        Notification::make()->title(__('simplify::push.on'))->success()->send();
 
         return true;
     }
@@ -96,11 +96,11 @@ final class Notifications extends Page
     public function test(): void
     {
         $device = $this->current ? PushDevice::query()->where('user_id', user()->id)->where('device', $this->current)->first() : null;
-        $result = $device ? Push::test($device, __('pelican-simplify::push.test_title'), __('pelican-simplify::push.test_body')) : 'gone';
+        $result = $device ? Push::test($device, __('simplify::push.test_title'), __('simplify::push.test_body')) : 'gone';
         if ($result === 'gone') {
             $this->current = null;
         }
-        Notification::make()->title(__('pelican-simplify::push.test_'.$result))->{$result === 'sent' ? 'success' : 'warning'}()->send();
+        Notification::make()->title(__('simplify::push.test_'.$result))->{$result === 'sent' ? 'success' : 'warning'}()->send();
     }
 
     /** @return list<array{device: string, label: string, added: string, last: ?string}> */

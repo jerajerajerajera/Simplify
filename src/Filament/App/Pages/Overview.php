@@ -32,16 +32,16 @@ final class Overview extends Page
 
     protected static ?int $navigationSort = -1;
 
-    protected string $view = 'pelican-simplify::pages.overview';
+    protected string $view = 'simplify::pages.overview';
 
     public static function getNavigationLabel(): string
     {
-        return __('pelican-simplify::dashboard.page.title');
+        return __('simplify::dashboard.page.title');
     }
 
     public function getTitle(): string|Htmlable
     {
-        return __('pelican-simplify::dashboard.page.title');
+        return __('simplify::dashboard.page.title');
     }
 
     /** @return array<string, mixed> everything the page needs on first paint */
@@ -79,7 +79,7 @@ final class Overview extends Page
 
         return [
             ...array_map(fn (Button $link) => $link->toArray(), $links),
-            ...$support === null ? [] : [['label' => __('pelican-simplify::settings.support'), 'url' => $support]],
+            ...$support === null ? [] : [['label' => __('simplify::settings.support'), 'url' => $support]],
         ];
     }
 

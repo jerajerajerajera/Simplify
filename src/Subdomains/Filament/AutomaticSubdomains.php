@@ -30,7 +30,7 @@ final class AutomaticSubdomains extends FormPage
 
     public static function getNavigationLabel(): string
     {
-        return __('pelican-simplify::subdomains.title');
+        return __('simplify::subdomains.title');
     }
 
     /** In the Simplify group of Pelican's menu, with the other Simplify add-ons (Simplify's ADDONS.md, "Admin menu"). */
@@ -47,49 +47,49 @@ final class AutomaticSubdomains extends FormPage
     public function form(Schema $schema): Schema
     {
         return $schema->statePath('data')->components([
-            Section::make(__('pelican-simplify::subdomains.settings.addresses'))
-                ->description(__('pelican-simplify::subdomains.settings.addresses_help'))
+            Section::make(__('simplify::subdomains.settings.addresses'))
+                ->description(__('simplify::subdomains.settings.addresses_help'))
                 ->columns(2)
                 ->schema([
                     self::hostInput('domain', 'example.com', 200)
-                        ->label(__('pelican-simplify::subdomains.settings.domain'))
-                        ->helperText(__('pelican-simplify::subdomains.settings.domain_help')),
+                        ->label(__('simplify::subdomains.settings.domain'))
+                        ->helperText(__('simplify::subdomains.settings.domain_help')),
                     self::hostInput('target', 'play.example.com', 253)
-                        ->label(__('pelican-simplify::subdomains.settings.target'))
-                        ->helperText(__('pelican-simplify::subdomains.settings.target_help')),
+                        ->label(__('simplify::subdomains.settings.target'))
+                        ->helperText(__('simplify::subdomains.settings.target_help')),
                     TextInput::make('port_min')
-                        ->label(__('pelican-simplify::subdomains.settings.port_min'))
+                        ->label(__('simplify::subdomains.settings.port_min'))
                         ->integer()->minValue(1)->maxValue(65535)->required(),
                     TextInput::make('port_max')
-                        ->label(__('pelican-simplify::subdomains.settings.port_max'))
+                        ->label(__('simplify::subdomains.settings.port_max'))
                         ->integer()->minValue(1)->maxValue(65535)->required()->gte('port_min')
-                        ->helperText(__('pelican-simplify::subdomains.settings.ports_help')),
+                        ->helperText(__('simplify::subdomains.settings.ports_help')),
                 ]),
-            Section::make(__('pelican-simplify::subdomains.settings.cloudflare_token'))
-                ->description(__('pelican-simplify::subdomains.form.token_help'))
+            Section::make(__('simplify::subdomains.settings.cloudflare_token'))
+                ->description(__('simplify::subdomains.form.token_help'))
                 ->columns(2)
                 ->schema([
                     TextInput::make('token')
-                        ->label(__('pelican-simplify::subdomains.form.api_token'))
+                        ->label(__('simplify::subdomains.form.api_token'))
                         ->password()
                         ->autocomplete(false)
                         ->maxLength(200)
                         ->columnSpanFull()
                         ->placeholder(fn () => Settings::all()['has_token']
-                            ? __('pelican-simplify::subdomains.form.token_saved')
-                            : __('pelican-simplify::subdomains.form.token_paste')),
+                            ? __('simplify::subdomains.form.token_saved')
+                            : __('simplify::subdomains.form.token_paste')),
                     TextInput::make('zone_id')
-                        ->label(__('pelican-simplify::subdomains.form.zone_id'))
+                        ->label(__('simplify::subdomains.form.zone_id'))
                         ->rules(['nullable', 'regex:'.Settings::ZONE])
                         ->maxLength(32)
-                        ->placeholder(__('pelican-simplify::subdomains.form.zone_placeholder'))
-                        ->helperText(__('pelican-simplify::subdomains.form.zone_help')),
+                        ->placeholder(__('simplify::subdomains.form.zone_placeholder'))
+                        ->helperText(__('simplify::subdomains.form.zone_help')),
                     Toggle::make('remove_token')
-                        ->label(__('pelican-simplify::subdomains.form.remove_token'))
+                        ->label(__('simplify::subdomains.form.remove_token'))
                         ->visible(fn () => Settings::all()['has_token']),
                     Actions::make([
                         Action::make('test')
-                            ->label(__('pelican-simplify::subdomains.form.test'))
+                            ->label(__('simplify::subdomains.form.test'))
                             ->icon('tabler-plug-connected')
                             ->color('gray')
                             ->action(fn () => $this->test()),
@@ -105,7 +105,7 @@ final class AutomaticSubdomains extends FormPage
         $state = $this->form->getState();
         Settings::save($state, ! empty($state['remove_token']));
         $this->fillForm();
-        Notification::make()->title(__('pelican-simplify::subdomains.saved'))->success()->send();
+        Notification::make()->title(__('simplify::subdomains.saved'))->success()->send();
     }
 
     /** Checks the typed (or saved) token and fills in the zone ID of the domain. */
@@ -118,15 +118,15 @@ final class AutomaticSubdomains extends FormPage
         }
         $domain = strtolower(trim((string) data_get($this->data, 'domain', '')));
         $result = match (true) {
-            $token === '' => ['ok' => false, 'message' => __('pelican-simplify::subdomains.test.token_first'), 'zone_id' => null],
-            $domain === '' => ['ok' => false, 'message' => __('pelican-simplify::subdomains.test.domain_first'), 'zone_id' => null],
+            $token === '' => ['ok' => false, 'message' => __('simplify::subdomains.test.token_first'), 'zone_id' => null],
+            $domain === '' => ['ok' => false, 'message' => __('simplify::subdomains.test.domain_first'), 'zone_id' => null],
             default => CloudflareDns::findZone(Subdomains::$transport ?? CloudflareDns::http($token), $domain),
         };
         if ($result['zone_id'] !== null) {
             data_set($this->data, 'zone_id', $result['zone_id']);
         }
         Notification::make()
-            ->title(__('pelican-simplify::subdomains.test.'.($result['ok'] ? 'title_ok' : 'title_failed')))
+            ->title(__('simplify::subdomains.test.'.($result['ok'] ? 'title_ok' : 'title_failed')))
             ->body($result['message'])
             ->status($result['ok'] ? 'success' : 'danger')
             ->send();
@@ -136,7 +136,7 @@ final class AutomaticSubdomains extends FormPage
     {
         return TextInput::make($name)
             ->rules(['nullable', 'regex:'.Settings::HOST])
-            ->validationMessages(['regex' => __('pelican-simplify::subdomains.settings.host_name')])
+            ->validationMessages(['regex' => __('simplify::subdomains.settings.host_name')])
             ->dehydrateStateUsing(fn ($state) => strtolower(trim((string) $state)))
             ->placeholder($placeholder)
             ->maxLength($length);
@@ -151,10 +151,10 @@ final class AutomaticSubdomains extends FormPage
     {
         $missing = Settings::missing();
         if ($missing === []) {
-            return __('pelican-simplify::subdomains.settings.ready');
+            return __('simplify::subdomains.settings.ready');
         }
-        $items = array_map(fn (string $item) => __('pelican-simplify::subdomains.missing.'.$item), $missing);
+        $items = array_map(fn (string $item) => __('simplify::subdomains.missing.'.$item), $missing);
 
-        return __('pelican-simplify::subdomains.settings.still_missing', ['items' => implode(', ', $items)]);
+        return __('simplify::subdomains.settings.still_missing', ['items' => implode(', ', $items)]);
     }
 }

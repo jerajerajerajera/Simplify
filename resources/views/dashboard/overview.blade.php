@@ -38,7 +38,7 @@
                 </div>
                 {{-- Create buttons at the end of the filter row, unless they sit in the top bar with host health. --}}
                 <div class="ps-create-buttons" x-show="healthPlace()!=='top-bar' && createButtons().length">
-                    @include('pelican-simplify::dashboard.create-buttons')
+                    @include('simplify::dashboard.create-buttons')
                 </div>
             </div>
             <div class="ps-server-grid" :class="{'is-list': overviewView==='list', 'is-compact': overviewView==='compact', 'has-motd': overviewPreferences.showMotd, 'no-metrics': !overviewMetrics().length, 'no-quick-actions': quickActionsMode()==='off', 'quick-actions-on': quickActionsMode()==='on'}">

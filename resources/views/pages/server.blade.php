@@ -1,12 +1,12 @@
-@php($u = fn (string $key, array $values = []) => __('pelican-simplify::dashboard.ui.'.$key, $values))
+@php($u = fn (string $key, array $values = []) => __('simplify::dashboard.ui.'.$key, $values))
 <div @class(['ps server-active ps-server-top', 'is-console' => $console]) data-simplify-root x-cloak wire:ignore.self
      x-data="simplifyServer($wire, @js($this->initial()))"
      x-on:resize.window.debounce.150ms="applyScale()"
      :class="{'dark': themeDark, 'is-server-full-width': overviewPreferences.fullWidth, 'ps-halloween': halloween()}"
      :style="accentStyle(server.uuid)">
-    @include('pelican-simplify::dashboard.assets')
-    @include('pelican-simplify::dashboard.icons')
-    @include('pelican-simplify::dashboard.halloween')
+    @include('simplify::dashboard.assets')
+    @include('simplify::dashboard.icons')
+    @include('simplify::dashboard.halloween')
     {{-- Status bar: slides in once the server card scrolls out of view, so status and power stay in reach. --}}
     <div class="ps-statusbar" :class="{'is-visible': statusBarVisible}" :inert="!statusBarVisible" role="region" aria-label="{{ $u('server_status') }}">
         <span class="ps-statusbar-name" x-text="server.name"></span>
@@ -21,7 +21,7 @@
         </div>
     </div>
     <div class="ps-main">
-        @include('pelican-simplify::dashboard.header', ['notes' => true])
+        @include('simplify::dashboard.header', ['notes' => true])
         <article class="ps-server-info" aria-label="{{ $u('server_information') }}" x-init="watchServerInfo($el)">
             {{-- Artwork has its own clipping layer, so it stays inside the card while the ⋯ menu lets the card overflow. --}}
             <span class="ps-info-decor">

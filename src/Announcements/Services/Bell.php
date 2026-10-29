@@ -57,7 +57,7 @@ final class Bell
     {
         $actions = $kind === self::UNPINNED ? [
             Action::make('pin')
-                ->label(__('pelican-simplify::announcements.bars.pin_again'))
+                ->label(__('simplify::announcements.bars.pin_again'))
                 ->icon('tabler-pin')
                 ->button()
                 ->dispatch(AnnouncementBars::PIN_EVENT, ['id' => $announcement->id])

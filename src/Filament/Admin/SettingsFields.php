@@ -16,7 +16,7 @@ use Simplify\Core\Support\PanelSettings;
 /** The settings sections, shared by the settings page and the setup wizard so both ask the same thing the same way. */
 final class SettingsFields
 {
-    private const T = 'pelican-simplify::settings.';
+    private const T = 'simplify::settings.';
 
     /** Help for everyone on the panel. Hosting details (billing, client area) come from the Simplify Hosting add-on. */
     public static function support(): Section
