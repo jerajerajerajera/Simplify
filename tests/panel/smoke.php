@@ -14,8 +14,10 @@ use Illuminate\Foundation\Testing\Concerns\InteractsWithSession;
 use Illuminate\Foundation\Testing\Concerns\MakesHttpRequests;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Testing\TestResponse;
 use Illuminate\Validation\ValidationException;
@@ -570,14 +572,14 @@ step('announcements: unpin moves a bar to the bell, pin brings it back, and the 
     }
 });
 step('announcements: the separate plugin\'s data is copied over', function () {
-    Illuminate\Support\Facades\Schema::create('simplify_announcements', function ($table) {
+    Schema::create('simplify_announcements', function ($table) {
         $table->id();
         $table->string('title', 120);
         $table->string('audience', 16)->default('everyone');
         $table->timestamps();
     });
     try {
-        Illuminate\Support\Facades\DB::table('simplify_announcements')->insert(['id' => 77, 'title' => 'Smoke from the add-on', 'audience' => 'everyone']);
+        DB::table('simplify_announcements')->insert(['id' => 77, 'title' => 'Smoke from the add-on', 'audience' => 'everyone']);
         Parts::import('announcements');
         if (Announcement::query()->pluck('title', 'id')->all() !== [77 => 'Smoke from the add-on']) {
             throw new RuntimeException('not copied: '.json_encode(Announcement::query()->pluck('title', 'id')));
@@ -586,7 +588,7 @@ step('announcements: the separate plugin\'s data is copied over', function () {
             throw new RuntimeException('a new announcement reuses a copied id');
         }
     } finally {
-        Illuminate\Support\Facades\Schema::drop('simplify_announcements');
+        Schema::drop('simplify_announcements');
     }
 });
 step('announcements: a root admin turns the part off', function () {
