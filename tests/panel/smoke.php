@@ -197,6 +197,18 @@ step('the first visit to the settings opens the setup, and finishing it saves th
         throw new RuntimeException('the setup was not saved: '.json_encode(PanelSettings::all()));
     }
 });
+step('opening the panel shows the overview, unless Pelican is the start page', function () use ($admin) {
+    $home = visit($admin, url('/'));
+    if (! $home->isRedirect(Overview::getUrl(panel: 'app'))) {
+        throw new RuntimeException('the panel opened without the overview (HTTP '.$home->getStatusCode().')');
+    }
+    PanelSettings::save(['start_page' => 'pelican']);
+    try {
+        expectOk(visit($admin, url('/')), url('/'));
+    } finally {
+        PanelSettings::save(['start_page' => 'overview']);
+    }
+});
 step('settings page renders with its menu, Pelican tabs included', function () use ($admin) {
     $url = Settings::getUrl(panel: 'admin');
     $response = visit($admin, $url);
