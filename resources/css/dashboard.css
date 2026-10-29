@@ -484,7 +484,8 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   gap: 20px;
   margin-bottom: 14px;
   padding: 18px 22px;
-  overflow: hidden;
+  /* Visible, so the ⋯ and colour menus open below the card; the artwork clips itself (.ps-info-decor). */
+  overflow: visible;
   border: 1px solid var(--ps-accent);
   border-radius: var(--ps-radius-lg);
   background: var(--ps-surface);

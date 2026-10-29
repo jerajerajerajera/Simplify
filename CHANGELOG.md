@@ -11,6 +11,7 @@
 - Phone: the account menu's buttons get a row of their own and wrap, instead of the last ones being cut off.
 - Server page: the Network usage card shows the traffic used without the cut-off "· since server start"; the whole line is its tooltip.
 - Scrollbars everywhere in the panel (menus, content boxes, dropdowns, the console, host mode) are one dark rounded bar without a track or outline, with room above and below, instead of the browser's own bar. Firefox gets the thin bar in the same colour.
+- Server page: the ⋯ menu and the colour menu open below the server card again. Before, the card cut them off, so only their top edge showed inside the card.
 
 ## 1.4.2
 
