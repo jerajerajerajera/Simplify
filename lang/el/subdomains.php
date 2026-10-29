@@ -69,7 +69,4 @@ return [
         'removing' => 'Αφαίρεση…',
         'error' => 'Μη συνδεδεμένο',
     ],
-    'addon' => [
-        'description' => 'Δίνει σε κάθε διακομιστή τη δική του διεύθυνση, όπως oak.example.com, με εγγραφές DNS στο Cloudflare.',
-    ],
 ];

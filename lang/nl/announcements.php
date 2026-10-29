@@ -3,10 +3,6 @@
 return [
     'title' => 'Aankondigingen',
     'model' => 'aankondiging',
-    'addon' => [
-        'name' => 'Aankondigingen',
-        'description' => 'Info-, waarschuwings- en succesberichten bovenaan elke pagina.',
-    ],
     'form' => [
         'category' => 'Categorie',
         'title' => 'Titel',

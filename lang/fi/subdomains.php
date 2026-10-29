@@ -69,7 +69,4 @@ return [
         'removing' => 'Poistetaan…',
         'error' => 'Ei yhdistetty',
     ],
-    'addon' => [
-        'description' => 'Antaa jokaiselle palvelimelle oman osoitteen, kuten oak.example.com, DNS-tietueilla Cloudflaressa.',
-    ],
 ];

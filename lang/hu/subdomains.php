@@ -69,7 +69,4 @@ return [
         'removing' => 'Eltávolítás…',
         'error' => 'Nincs csatlakoztatva',
     ],
-    'addon' => [
-        'description' => 'Minden szerver saját címet kap, például oak.example.com, DNS-rekordokkal a Cloudflare-ben.',
-    ],
 ];

@@ -69,7 +69,4 @@ return [
         'removing' => '제거 중…',
         'error' => '연결 안 됨',
     ],
-    'addon' => [
-        'description' => '각 서버에 oak.example.com 같은 고유 주소를 주고, DNS 레코드는 Cloudflare에 만듭니다.',
-    ],
 ];

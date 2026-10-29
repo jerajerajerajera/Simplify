@@ -3,10 +3,6 @@
 return [
     'title' => '공지',
     'model' => '공지',
-    'addon' => [
-        'name' => '공지',
-        'description' => '모든 페이지 상단에 표시되는 정보, 경고, 성공 메시지.',
-    ],
     'form' => [
         'category' => '분류',
         'title' => '제목',

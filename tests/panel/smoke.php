@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Testing\TestResponse;
 use Illuminate\Validation\ValidationException;
@@ -38,7 +37,6 @@ use Simplify\Core\Filament\App\Pages\Notifications;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Filament\Server\ServerPage;
 use Simplify\Core\Overview\Listing;
-use Simplify\Core\Parts\Parts;
 use Simplify\Core\People\People;
 use Simplify\Core\Push\Push;
 use Simplify\Core\Push\UpdateNotices;
@@ -579,26 +577,6 @@ step('announcements: unpin moves a bar to the bell, pin brings it back, and the 
         throw new RuntimeException('the bell item did not arrive exactly once');
     }
 });
-step('announcements: the separate plugin\'s data is copied over', function () {
-    Schema::create('simplify_announcements', function ($table) {
-        $table->id();
-        $table->string('title', 120);
-        $table->string('audience', 16)->default('everyone');
-        $table->timestamps();
-    });
-    try {
-        DB::table('simplify_announcements')->insert(['id' => 77, 'title' => 'Smoke from the add-on', 'audience' => 'everyone']);
-        Parts::import('announcements');
-        if (Announcement::query()->pluck('title', 'id')->all() !== [77 => 'Smoke from the add-on']) {
-            throw new RuntimeException('not copied: '.json_encode(Announcement::query()->pluck('title', 'id')));
-        }
-        if (Announcement::create(['title' => 'Smoke after the copy'])->id <= 77) {
-            throw new RuntimeException('a new announcement reuses a copied id');
-        }
-    } finally {
-        Schema::drop('simplify_announcements');
-    }
-});
 step('embed: the server owner opens Website, and the settings page shows the code for a website', function () use ($admin, $server) {
     $url = EmbedWebsite::getUrl(panel: 'server', tenant: $server);
     expectOk(visit($admin, $url), $url);
@@ -681,7 +659,7 @@ step('subdomains: a subdomain reaches Cloudflare and shows on the server card', 
     if (! in_array('POST /zones/'.str_repeat('a', 32).'/dns_records', $calls, true) || Subdomain::of($server->uuid)?->status !== Subdomain::ACTIVE) {
         throw new RuntimeException('not connected: '.json_encode($calls));
     }
-    $badges = app(AddonRegistry::class)->find('simplify-subdomains')?->tileBadges($server->fresh(['allocation', 'egg'])) ?? [];
+    $badges = Listing::one($admin, $server->fresh(['allocation', 'egg']))['badges'];
     if (! str_starts_with((string) ($badges[0] ?? ''), 'smoke-oak.example.com')) {
         throw new RuntimeException('no address on the card: '.json_encode($badges));
     }
@@ -713,26 +691,6 @@ step('subdomains: settings and subdomains from PelicanSimplify 0.6 and 0.7 are t
         Subdomain::query()->delete();
         DB::table(SubdomainSettings::TABLE)->delete();
         SubdomainSettings::flush();
-    }
-});
-step('a root admin turns the parts off', function () {
-    PanelSettings::save(['part_announcements' => false, 'part_embed' => false, 'part_subdomains' => false]);
-});
-step('parts that are off are gone: bars, admin pages, public list and add-on rows', function () use ($admin) {
-    try {
-        $page = visit($admin, '/');
-        expectOk($page, '/');
-        if (str_contains($page->getContent(), 'Smoke from the add-on') || app(AddonRegistry::class)->find('simplify-announcements') !== null) {
-            throw new RuntimeException('a part that is off still shows');
-        }
-        foreach (['/admin/simplify-announcements', '/admin/simplify-embed', '/admin/simplify-subdomains', '/simplify/embed/servers.json'] as $url) {
-            if (visit($admin, $url)->getStatusCode() !== 404) {
-                throw new RuntimeException("$url of a part that is off still opens");
-            }
-        }
-    } finally {
-        PanelSettings::save(['part_announcements' => true, 'part_embed' => true, 'part_subdomains' => true]);
-        Announcement::query()->delete();
     }
 });
 if ($failed || $passed === 0) {

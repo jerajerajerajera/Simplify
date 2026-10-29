@@ -3,10 +3,6 @@
 return [
     'title' => '公告',
     'model' => '公告',
-    'addon' => [
-        'name' => '公告',
-        'description' => '在每個頁面頂端顯示的資訊、警告與成功訊息。',
-    ],
     'form' => [
         'category' => '類別',
         'title' => '標題',

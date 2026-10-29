@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Incorporação no site',
-    'description' => 'Mostra seus servidores em qualquer site, com status e endereço de conexão.',
     'save' => 'Salvar',
     'saved' => 'Salvo',
     'settings' => [

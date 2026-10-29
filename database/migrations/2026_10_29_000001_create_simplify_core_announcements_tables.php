@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Simplify\Core\Parts\Parts;
 
 // Announcements, formerly the separate plugin Simplify Announcements. Its own table names are kept free, because
 // uninstalling that plugin drops them.
@@ -60,8 +59,6 @@ return new class extends Migration
 
             $table->foreign('egg_id')->references('id')->on('eggs')->cascadeOnDelete();
         });
-
-        Parts::import('announcements');
     }
 
     public function down(): void

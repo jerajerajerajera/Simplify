@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Weboldalba ágyazás',
-    'description' => 'Megmutatja a szervereidet bármely weboldalon, állapotukkal és csatlakozási címükkel.',
     'save' => 'Mentés',
     'saved' => 'Mentve',
     'settings' => [

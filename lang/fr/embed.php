@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Intégration au site web',
-    'description' => 'Affiche vos serveurs sur n\'importe quel site, avec leur état et leur adresse de connexion.',
     'save' => 'Enregistrer',
     'saved' => 'Enregistré',
     'settings' => [

@@ -3,10 +3,6 @@
 return [
     'title' => 'Pranešimai',
     'model' => 'pranešimas',
-    'addon' => [
-        'name' => 'Pranešimai',
-        'description' => 'Informaciniai, įspėjimo ir sėkmės pranešimai kiekvieno puslapio viršuje.',
-    ],
     'form' => [
         'category' => 'Kategorija',
         'title' => 'Pavadinimas',

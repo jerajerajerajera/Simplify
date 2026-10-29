@@ -69,7 +69,4 @@ return [
         'removing' => 'Rimozione…',
         'error' => 'Non connesso',
     ],
-    'addon' => [
-        'description' => 'Dà a ogni server un indirizzo proprio, come oak.example.com, con record DNS in Cloudflare.',
-    ],
 ];

@@ -3,10 +3,6 @@
 return [
     'title' => 'Pengumuman',
     'model' => 'pengumuman',
-    'addon' => [
-        'name' => 'Pengumuman',
-        'description' => 'Pesan info, peringatan, dan sukses di bagian atas setiap halaman.',
-    ],
     'form' => [
         'category' => 'Kategori',
         'title' => 'Judul',

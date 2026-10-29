@@ -69,7 +69,4 @@ return [
         'removing' => 'Tar bort…',
         'error' => 'Inte ansluten',
     ],
-    'addon' => [
-        'description' => 'Ger varje server en egen adress, som oak.example.com, med DNS-poster i Cloudflare.',
-    ],
 ];

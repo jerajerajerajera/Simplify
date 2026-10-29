@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Simplify\Core\Parts\Parts;
 
 // Embed, formerly the separate plugin Simplify Embed. Its own table names are kept free, because uninstalling that
 // plugin drops them.
@@ -23,8 +22,6 @@ return new class extends Migration
             $table->foreign('server_id')->references('id')->on('servers')->cascadeOnDelete();
             $table->timestamps();
         });
-
-        Parts::import('embed');
     }
 
     public function down(): void

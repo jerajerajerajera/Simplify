@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Website-Einbettung',
-    'description' => 'Zeigt deine Server auf jeder Website, mit Status und Verbindungsadresse.',
     'save' => 'Speichern',
     'saved' => 'Gespeichert',
     'settings' => [
