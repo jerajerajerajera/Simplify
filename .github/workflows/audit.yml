@@ -1,0 +1,94 @@
+name: Screen audit
+# A real Pelican panel with this checkout of Simplify and the add-ons (main), example data, a fake Wings with a live
+# console, and a browser that opens every screen, tab, menu and overlay on eight window sizes and measures cut-off
+# text, scrolling pages, popups off the screen and the console's colours. Result on the branch audit-results.
+on:
+  workflow_dispatch:
+    inputs:
+      only:
+        description: 'Stands, comma separated (empty = all): d1920,d1440,laag1366,d1100,hoog1280,tablet768,phone390,phone360'
+        default: ''
+  push:
+    branches: ['claude/project-thread-k01bn2']
+    paths: ['tests/audit/**', '.github/workflows/audit.yml']
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      PELICAN: '1.0.0-rc.2'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: simplify
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: bcmath, gd, intl, mbstring, pdo_sqlite, sqlite3, zip
+          tools: composer
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install -g yarn
+      - name: Install Pelican
+        run: |
+          git clone --quiet --depth 1 --branch "v$PELICAN" https://github.com/pelican-dev/panel.git panel
+          cd panel
+          composer install --no-interaction --no-progress --prefer-dist
+          sed -i "s/'version' => 'canary'/'version' => '$PELICAN'/" config/app.php
+          cp .env.example .env
+          sed -i 's/^APP_INSTALLED=.*/APP_INSTALLED=true/; s/^APP_DEBUG=.*/APP_DEBUG=false/; s#^APP_URL=.*#APP_URL=http://127.0.0.1:8001#' .env
+          printf 'DB_CONNECTION=sqlite\nQUEUE_CONNECTION=sync\nCACHE_STORE=file\nSESSION_DRIVER=file\nMAIL_MAILER=log\n' >> .env
+          touch database/database.sqlite
+          php artisan key:generate --force
+          php artisan migrate --force --seed
+          yarn install --silent
+          yarn build
+      - name: Install Simplify (this checkout) and the add-ons (main)
+        working-directory: panel
+        run: |
+          mkdir -p plugins/simplify
+          tar -C ../simplify --exclude=.git --exclude=tests --exclude=.github -cf - . | tar -C plugins/simplify -xf -
+          php artisan p:plugin:install simplify
+          for pair in Simplify-Toolkit:simplify-toolkit Simplify-EggUpdates:simplify-eggupdates Simplify-Explain:simplify-explain Simplify-ServerMaker:simplify-servermaker Simplify-Hosting:simplify-hosting; do
+            repo=${pair%%:*}; id=${pair##*:}
+            git clone --quiet --depth 1 --branch main "https://github.com/jerajerajerajera/$repo.git" "plugins/$id"
+            real=$(php -r "echo json_decode(file_get_contents('plugins/$id/plugin.json'), true)['id'];")
+            if [ "$real" != "$id" ]; then mv "plugins/$id" "plugins/$real"; id=$real; fi
+            rm -rf "plugins/$id/.git"
+            php artisan p:plugin:install "$id"
+          done
+          php artisan p:plugin:list
+      - name: Seed and start the panel and the fake Wings
+        working-directory: panel
+        run: |
+          php ../simplify/tests/audit/seed.php 8090 > servers.json
+          php ../simplify/tests/audit/urls.php > urls.json
+          cat urls.json
+          nohup node ../simplify/tests/audit/fake-minecraft.cjs --servers servers.json > minecraft.out 2>&1 &
+          nohup node ../simplify/tests/audit/fake-wings.cjs --port 8090 --servers servers.json --log wings.log > wings.out 2>&1 &
+          PHP_CLI_SERVER_WORKERS=8 nohup php artisan serve --host 127.0.0.1 --port 8001 > serve.log 2>&1 &
+          for i in $(seq 1 30); do curl -sf -o /dev/null http://127.0.0.1:8001/login && break; sleep 1; done
+          curl -sS http://127.0.0.1:8090/api/system
+      - name: Open every screen
+        run: |
+          cd simplify/tests/audit
+          npm init -y > /dev/null
+          npm install --silent playwright@1.48.2
+          npx playwright install --with-deps chromium > /dev/null
+          node audit.cjs --base http://127.0.0.1:8001 --urls ../../../panel/urls.json --out ../../../result ${{ inputs.only && format('--only {0}', inputs.only) || '' }}
+      - if: always()
+        name: Logs
+        run: |
+          tail -n 40 panel/wings.log || true
+          grep -h -E '^\[[0-9-]+ [0-9:]+\]' panel/storage/logs/*.log | cut -c1-600 | tail -n 30 || true
+      - if: always()
+        name: Result to the audit-results branch
+        run: |
+          cd result
+          git init -q -b results
+          git add -A
+          git -c user.name=audit -c user.email=audit@users.noreply.github.com commit -qm "Audit ${{ github.sha }}"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" results:refs/heads/audit-results
