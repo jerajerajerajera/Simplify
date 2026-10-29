@@ -9,13 +9,22 @@ on:
 permissions:
   contents: write
 jobs:
+  # One recording of the latest main of every repo, plus one per proposal in tests/demo/voorstel.json: the same panel
+  # with that proposal's branches, so Jeroen can approve a UI change in the demo before it is released.
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      variants: ${{ steps.list.outputs.variants }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: list
+        run: echo "variants=$(python3 -c "import json,os;p='tests/demo/voorstel.json';print(json.dumps(['main']+[v['name'] for v in (json.load(open(p)) if os.path.exists(p) else [])]))")" >> "$GITHUB_OUTPUT"
   demo:
-    # main: the latest main of every repo. voorstel: the same, with the branches from tests/demo/voorstel.json, for a
-    # proposal Jeroen approves in the demo before it is released.
+    needs: plan
     strategy:
       fail-fast: false
       matrix:
-        variant: [main, voorstel]
+        variant: ${{ fromJson(needs.plan.outputs.variants) }}
     runs-on: ubuntu-latest
     timeout-minutes: 50
     env:
@@ -26,8 +35,7 @@ jobs:
           path: demo
       - name: Anything to record?
         id: plan
-        run: |
-          if [ "${{ matrix.variant }}" = voorstel ] && [ ! -f demo/tests/demo/voorstel.json ]; then echo "skip=1" >> "$GITHUB_OUTPUT"; else echo "skip=0" >> "$GITHUB_OUTPUT"; fi
+        run: echo "skip=0" >> "$GITHUB_OUTPUT"
       - if: steps.plan.outputs.skip == '0'
         uses: shivammathur/setup-php@v2
         with:
@@ -64,7 +72,7 @@ jobs:
             repo=${pair%%:*}; id=${pair##*:}
             # Always main: Toolkit's default branch still points at the old Mods code. The folder must carry the id from plugin.json.
             branch=main
-            if [ "${{ matrix.variant }}" = voorstel ]; then branch=$(php -r "echo json_decode(file_get_contents('../demo/tests/demo/voorstel.json'), true)['branches']['$repo'] ?? 'main';"); fi
+            if [ "${{ matrix.variant }}" != main ]; then branch=$(php -r 'foreach (json_decode(file_get_contents("../demo/tests/demo/voorstel.json"), true) as $v) { if ($v["name"] === $argv[1]) { echo $v["branches"][$argv[2]] ?? "main"; exit; } } echo "main";' "${{ matrix.variant }}" "$repo"); fi
             git clone --quiet --depth 1 --branch "$branch" "https://github.com/jerajerajerajera/$repo.git" "plugins/$id"
             real=$(php -r "echo json_decode(file_get_contents('plugins/$id/plugin.json'), true)['id'];")
             if [ "$real" != "$id" ]; then mv "plugins/$id" "plugins/$real"; id=$real; fi
@@ -107,4 +115,4 @@ jobs:
           git init -q -b results
           git add -A
           git -c user.name=demo -c user.email=demo@users.noreply.github.com commit -qm "Demo ${{ github.sha }}"
-          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "results:refs/heads/demo-results$([ "${{ matrix.variant }}" = voorstel ] && echo -voorstel)"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "results:refs/heads/demo-results$([ "${{ matrix.variant }}" != main ] && echo "-${{ matrix.variant }}")"
