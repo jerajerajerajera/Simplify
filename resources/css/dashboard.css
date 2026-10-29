@@ -101,8 +101,8 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-overview { display: flex; flex: 1 1 0; flex-direction: column; min-height: 0; overflow: hidden; }
 .ps-server-scroll { display: flex; flex: 1 1 0; flex-direction: column; min-height: 0; overflow: hidden auto; padding: 12px 4px; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: var(--ps-line) transparent; }
 .ps-server-scroll:focus-visible { outline: 2px solid var(--ps-line); outline-offset: 2px; border-radius: var(--ps-radius); }
-.ps-server-stage { flex: none; width: 100%; max-width: var(--ps-grid-width); margin: auto; }
-.ps-server-stage.is-list { max-width: 1088px; margin: clamp(4px, calc(4dvh - 28px), 24px) auto 0; }
+.ps-server-stage { flex: none; width: 100%; max-width: var(--ps-grid-width); margin: clamp(4px, calc(4dvh - 28px), 24px) auto 0; }
+.ps-server-stage.is-list { max-width: 1088px; }
 /* Hosting customers: greeting left, account links right, on the same line as far as it fits. */
 .ps-customer-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; margin: 0 0 14px; }
 .ps-customer-head h2 { margin: 0; font-size: var(--ps-text-lg); font-weight: 650; }
@@ -208,9 +208,11 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-card-bottom { display: flex; flex: none; align-self: stretch; align-items: center; justify-content: space-between; margin-top: 6px; padding-top: 11px; border-top: 1px solid var(--ps-line); color: var(--ps-accent); font-size: 15px; font-weight: 650; }
 .ps-server-grid.no-metrics .ps-card-bottom { margin-top: auto; }
 .ps-card-bottom svg { flex: none; width: 17px; height: 17px; }
-.ps-card-extras { display: flex; flex: 1 1 0; width: 0; justify-content: flex-end; gap: 4px; min-width: 0; margin-inline: 8px; overflow: hidden; }
-.ps-card-extras .ps-badge { display: block; flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; min-height: 0; padding-block: 2px; line-height: 16px; }
-.ps-card-extras .ps-badge:not(:last-child) { flex-shrink: 0; }
+.ps-card-extras { display: flex; gap: 4px; min-width: 0; margin-top: 8px; overflow: hidden; }
+.ps-card-extras .ps-badge { display: block; flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.ps-server-open:has(.ps-card-badges > .ps-badge:nth-of-type(3)) .ps-card-head { margin-bottom: 26px; }
+.ps-server-grid.is-compact .ps-card-extras { display: none !important; }
+.ps-server-grid.is-list .ps-card-extras { margin-top: 4px; }
 .ps-card-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; border-top: 1px solid var(--ps-line); background: color-mix(in srgb, var(--ps-surface) 82%, transparent); transition: padding var(--ps-slow); }
 .ps-list-player-count { display: inline-flex; align-items: center; justify-content: flex-end; gap: 10px; margin-inline-start: auto; min-height: var(--ps-h-sm); padding: 5px 16px; border: 0; background: transparent; color: var(--ps-accent); font-size: 14px; font-weight: 650; white-space: nowrap; }
 .ps-list-player-count:disabled { cursor: default; }
@@ -979,6 +981,7 @@ span.ps-card-background.ps-banner-color { width: 100%; opacity: .5; filter: none
   .ps .ps-server-grid.is-list .ps-card-real-name, .ps .ps-server-grid.is-list .ps-card-real-name.no-alias { display: none; }
   .ps .ps-server-grid.is-list .ps-card-motd { display: none; }
   .ps .ps-server-grid.is-list .ps-card-badges { position: static; grid-column: 2; grid-row: 2; flex-direction: row; justify-content: flex-start; gap: 6px; transform: none; }
+  .ps .ps-card-badges > .ps-badge:nth-of-type(n+3), .ps .ps-card-extras { display: none !important; }
   .ps .ps-server-grid.is-list .ps-card-usage { grid-column: 2; grid-row: 3; display: flex; justify-self: start; gap: 14px; width: auto; max-width: 100%; margin: 2px 0 0; }
   .ps .ps-server-grid.is-list .ps-card-mini-metric { padding: 0; border: 0; background: none; }
   .ps .ps-server-grid.is-list .ps-card-graph { display: none; }
