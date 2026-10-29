@@ -19,5 +19,22 @@
    "host-webhooks",
    "host-backup-hosts"
   ]
+ },
+ {
+  "name": "contentvak-kaart",
+  "title": "Contentvak als kaart (1.3.11)",
+  "text": "Op serverpagina's behalve de console is het contentvak een kaart met ronde hoeken boven en onder; alleen de inhoud scrolt, sectiekop en opslaanknop blijven staan. Website-preview groeit mee met de lijst.",
+  "branches": {
+   "Simplify": "claude/embed-preview-fit"
+  },
+  "screens": [
+   "server",
+   "server-website",
+   "server-plugins",
+   "server-minecraft",
+   "server-files",
+   "server-backups",
+   "server-schedules"
+  ]
  }
 ]

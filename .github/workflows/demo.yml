@@ -26,7 +26,7 @@ jobs:
       matrix:
         variant: ${{ fromJson(needs.plan.outputs.variants) }}
     runs-on: ubuntu-latest
-    timeout-minutes: 50
+    timeout-minutes: 120
     env:
       PELICAN: '1.0.0-rc.2'
     steps:
@@ -104,7 +104,7 @@ jobs:
           npm init -y > /dev/null
           npm install --silent playwright@1.48.2
           npx playwright install --with-deps chromium > /dev/null
-          node capture.cjs --base http://127.0.0.1:8001 --urls ../../../panel/urls.json --versions ../../../panel/versions.json --out ../../../result
+          node capture.cjs --base http://127.0.0.1:8001 --urls ../../../panel/urls.json --versions ../../../panel/versions.json --out ../../../result --crawl ${{ matrix.variant == 'main' && '300' || '0' }}
       - if: always() && steps.plan.outputs.skip == '0'
         name: Laravel log
         run: grep -h -E '^\[[0-9-]+ [0-9:]+\]' panel/storage/logs/*.log | cut -c1-600 | tail -n 30 || true

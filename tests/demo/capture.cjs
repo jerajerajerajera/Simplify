@@ -196,6 +196,44 @@ const open = (page, url, after) => async () => {
   if (after) await after(page);
 };
 
+const SKIP = /logout|delete|destroy|remove|download|export|impersonat|switch|oauth|redirect|two-factor|2fa|\/api\/|\/docs|\.(zip|tar|gz|json|js|css|png|jpe?g|svg|webp|ico)(\?|$)/i;
+async function crawl(page, limit = 300) {
+  const origin = new URL(base).origin, seen = new Set(Object.keys(byUrl)), shapes = {}, queue = [];
+  const linksIn = (html) => [...html.matchAll(/data-demo-(?:url|href)="([^"]*)"/g)].map((m) => m[1].replace(/&amp;/g, '&'));
+  const add = (u) => {
+    let x; try { x = new URL(u, base); } catch { return; }
+    if (x.origin !== origin || SKIP.test(x.pathname + x.search)) return;
+    const key = norm(x.href);
+    if (seen.has(key)) return;
+    const shape = key.replace(/\/\d+(?=\/|$|\?)/g, '/#');
+    if (!key.startsWith('/server/') && (shapes[shape] = (shapes[shape] || 0) + 1) > 2) return;
+    seen.add(key); queue.push(x.href);
+  };
+  for (const f of fs.readdirSync(path.join(out, 'screens'))) for (const u of linksIn(fs.readFileSync(path.join(out, 'screens', f), 'utf8'))) add(u);
+  let n = 0;
+  while (queue.length && n < limit) {
+    const url = queue.shift();
+    try {
+      const r = await page.goto(rel(url));
+      await settle(page, 1000);
+      if (!r || r.status() !== 200 || page.url().includes('/login')) { problems.push(`crawl ${rel(url)}: HTTP ${r ? r.status() : 'none'}`); continue; }
+      const key = norm(page.url());
+      if (byUrl[key]) { byUrl[norm(url)] ??= byUrl[key]; continue; }
+      const p = new URL(page.url()).pathname;
+      const heading = (await page.locator('h1 >> visible=true').first().innerText({ timeout: 1500 }).catch(() => '')).trim().split('\n')[0];
+      const title = heading || (await page.title()).replace(/\s*[-|·].*$/, '') || p;
+      let id = 'p-' + slug(p.replace(/^\/(admin|server)\//, '$1-'));
+      while (screens.some((s) => s.id === id)) id += '-x';
+      byUrl[key] = id; byUrl[norm(url)] ??= id;
+      await snapshot(page, { id, title, group: p.startsWith('/admin') ? 'Beheer · alle pagina\'s' : p.startsWith('/server') ? 'Server · alle pagina\'s' : 'Klantkant', parent: null, url: rel(page.url()), crawled: true }, []);
+      n++;
+      for (const u of linksIn(fs.readFileSync(path.join(out, 'screens', id + '.html'), 'utf8'))) add(u);
+    } catch (e) { problems.push(`crawl ${rel(url)}: ${String(e.message).split('\n')[0]}`); }
+  }
+  log(`crawled ${n} pages, ${queue.length} left in the queue`);
+  if (queue.length) problems.push(`crawl stopped at ${limit} pages; not recorded: ${queue.slice(0, 20).map(rel).join(', ')}`);
+}
+
 async function login(browser, email) {
   const context = await browser.newContext({ viewport: DESKTOP, baseURL: base });
   const page = await context.newPage();
@@ -237,7 +275,8 @@ async function login(browser, email) {
   // The server page and every add-on page of a server.
   await walk(page, { id: 'server', title: `Serverpagina (${mainServer})`, group: 'Server', phone: true, aliases: [serverUrl], children: [
     { id: 'server-menu', title: 'Server ⋯-menu', click: '.ps-info-more-button', toggle: true },
-  ] }, open(page, serverUrl, async () => sleep(1500)));
+  ], // Every item of the server menu (Files, Backups, Schedules, Settings...) as its own screen, linked to each other.
+  expand: { css: '.ps-server-menu a', title: 'Server · ', child: { wait: 1500, root: true } } }, open(page, serverUrl, async () => sleep(1500)));
   // Pelican's Edit schedule page with three tasks: the content must scroll inside its box so Tasks stays reachable.
   if (urls.schedules?.[mainServer]) await walk(page, { id: 'server-schedule-edit', title: `Schedule bewerken (${mainServer})`, group: 'Server', phone: true }, open(page, urls.schedules[mainServer], async () => sleep(1500)));
   else problems.push('no schedule to record');
@@ -259,6 +298,7 @@ async function login(browser, email) {
     }
     if (!use) { problems.push(`server page ${p.class}: no server opens it`); continue; }
     const id = 'server-' + slug(p.title || p.class.split('\\').pop());
+    if (screens.some((s) => s.id === id)) continue;
     await walk(page, { id, title: `${p.title} (${use.server || mainServer})`, group: 'Server' }, open(page, use.url, async () => sleep(1200)));
   }
 
@@ -284,6 +324,12 @@ async function login(browser, email) {
     children: [{ id: 'host-serverlist', title: 'Hostmodus · serverlijst', click: { css: '.ps-host-tabs button', nth: 1 }, links: [{ click: { css: '.ps-host-tabs button', nth: 0 }, to: 'host' }], expand: { css: '.ps-host-server strong', title: 'Hostmodus · server ', limit: 3, child: { wait: 2000 } } }],
   }, open(page, overview, hostOn));
   await alpine(page, 'd.setHostMode(false)').catch(() => {});
+
+  // Every other page reachable by a plain link (each server's page and its menu: Files, Schedules, Settings...,
+  // Pelican's admin lists and edit pages), so clicking around in the demo opens the real page instead of stopping.
+  // Breadth first from the screens above; links with side effects are skipped, and the same page shape (ids
+  // replaced by #) is recorded at most a few times, except server pages, which are recorded for every server.
+  await crawl(page, Number(arg('crawl', 300)));
 
   // The customer's own view: only their servers, with the hosting links.
   const customer = await login(browser, 'sam@example.com');
