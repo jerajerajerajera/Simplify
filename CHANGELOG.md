@@ -2,7 +2,7 @@
 
 ## 1.3.5
 
-- On a server page the announcements sit in the server card, between the name and the power buttons, as short rows instead of bars above the console. With more than two, a +N button shows the rest; the card does not get taller.
+- On a server page the announcements sit in the server card, between the name and the power buttons, as short rows instead of bars above the console. With more than two, a +N button shows the rest.
 - The console and the server menu on the left fit the height of the window, so the page no longer scrolls.
 
 ## 1.3.4
