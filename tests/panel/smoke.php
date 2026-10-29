@@ -44,6 +44,11 @@ use Simplify\Core\Push\Push;
 use Simplify\Core\Push\UpdateNotices;
 use Simplify\Core\Push\WebPush;
 use Simplify\Core\Server\Looks;
+use Simplify\Core\Subdomains\Filament\AutomaticSubdomains;
+use Simplify\Core\Subdomains\Filament\ServerSubdomain;
+use Simplify\Core\Subdomains\Models\Subdomain;
+use Simplify\Core\Subdomains\Services\Settings as SubdomainSettings;
+use Simplify\Core\Subdomains\Subdomains;
 use Simplify\Core\Support\Assets;
 use Simplify\Core\Support\Brand;
 use Simplify\Core\Support\PanelSettings;
@@ -633,8 +638,85 @@ step('embed: the public list shows only servers put on the website, without priv
         EmbedServers::replace([]);
     }
 });
+// Cloudflare in memory for the subdomain steps: every call is kept, every write succeeds.
+$records = [];
+$calls = [];
+Subdomains::$transport = function (string $method, string $path, ?array $body) use (&$records, &$calls): array {
+    $calls[] = $method.' '.strtok($path, '?');
+    if (str_starts_with($path, '/zones?')) {
+        return ['success' => true, 'result' => [['id' => str_repeat('a', 32)]]];
+    }
+    if ($method === 'GET') {
+        parse_str((string) parse_url($path, PHP_URL_QUERY), $query);
+
+        return ['success' => true, 'result' => array_values(array_filter($records, fn ($r) => ($r['comment'] ?? '') === ($query['comment_exact'] ?? $r['comment'] ?? '')
+            && $r['name'] === ($query['name_exact'] ?? $r['name'])))];
+    }
+    $id = $method === 'POST' ? 'r'.count($calls) : basename($path);
+    if ($method === 'DELETE') {
+        unset($records[$id]);
+    } else {
+        $records[$id] = $body + ['id' => $id];
+    }
+
+    return ['success' => true];
+};
+step('subdomains: the settings and server pages open, and the token is stored encrypted', function () use ($admin, $server) {
+    SubdomainSettings::save(['domain' => 'Example.com', 'target' => 'play.example.com', 'port_min' => 1, 'port_max' => 65535, 'zone_id' => str_repeat('a', 32), 'token' => 'smoke-token']);
+    SubdomainSettings::flush();
+    $stored = (string) DB::table(SubdomainSettings::TABLE)->where('key', 'token')->value('value');
+    if (! Subdomains::ready() || SubdomainSettings::domain() !== 'example.com' || $stored === '' || str_contains($stored, 'smoke-token')) {
+        throw new RuntimeException('settings not saved right: missing '.implode(', ', SubdomainSettings::missing()));
+    }
+    foreach ([ServerSubdomain::getUrl(panel: 'server', tenant: $server), AutomaticSubdomains::getUrl(panel: 'admin')] as $url) {
+        expectOk(visit($admin, $url), $url);
+    }
+});
+step('subdomains: a subdomain reaches Cloudflare and shows on the server card', function () use ($admin, $server, &$calls) {
+    auth()->setUser($admin);
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('server'));
+    Filament\Facades\Filament::setTenant($server);
+    $calls = [];
+    noErrors(Livewire\Livewire::actingAs($admin)->test(ServerSubdomain::class)->set('data.name', 'smoke-oak')->call('save'));
+    if (! in_array('POST /zones/'.str_repeat('a', 32).'/dns_records', $calls, true) || Subdomain::of($server->uuid)?->status !== Subdomain::ACTIVE) {
+        throw new RuntimeException('not connected: '.json_encode($calls));
+    }
+    $badges = app(AddonRegistry::class)->find('simplify-subdomains')?->tileBadges($server->fresh(['allocation', 'egg'])) ?? [];
+    if (! str_starts_with((string) ($badges[0] ?? ''), 'smoke-oak.example.com')) {
+        throw new RuntimeException('no address on the card: '.json_encode($badges));
+    }
+    if (Artisan::call('simplify:subdomains') !== 0) {
+        throw new RuntimeException('the sync command failed: '.Artisan::output());
+    }
+});
+step('subdomains: forgetting a server removes its records', function () use ($server, &$records) {
+    Subdomains::forget($server->uuid);
+    if ($records !== [] || Subdomain::of($server->uuid) !== null) {
+        throw new RuntimeException('records left: '.json_encode($records));
+    }
+});
+step('subdomains: settings and subdomains from PelicanSimplify 0.6 and 0.7 are taken over', function () {
+    Subdomain::query()->delete();
+    DB::table(SubdomainSettings::TABLE)->delete();
+    $disk = Storage::disk('local');
+    $disk->put('simplify/subdomains.json', json_encode(['domain' => 'old.example', 'target' => 'play.old.example', 'port_min' => 25565, 'port_max' => 25600, 'zone_id' => str_repeat('b', 32), 'token' => encrypt('old-token')]));
+    $disk->put('simplify/subdomains/dddddddd-0000-0000-0000-000000000004.json', json_encode(['name' => 'oak', 'status' => 'active', 'port' => 25566]));
+    try {
+        (require dirname(__DIR__, 2).'/database/migrations/2026_10_29_000004_import_pelicansimplify_subdomains.php')->up();
+        SubdomainSettings::flush();
+        if (SubdomainSettings::domain() !== 'old.example' || SubdomainSettings::credentials()[0] !== 'old-token' || Subdomain::of('dddddddd-0000-0000-0000-000000000004')?->name !== 'oak') {
+            throw new RuntimeException('not taken over');
+        }
+    } finally {
+        $disk->deleteDirectory('simplify/subdomains');
+        $disk->delete('simplify/subdomains.json');
+        Subdomain::query()->delete();
+        DB::table(SubdomainSettings::TABLE)->delete();
+        SubdomainSettings::flush();
+    }
+});
 step('a root admin turns the parts off', function () {
-    PanelSettings::save(['part_announcements' => false, 'part_embed' => false]);
+    PanelSettings::save(['part_announcements' => false, 'part_embed' => false, 'part_subdomains' => false]);
 });
 step('parts that are off are gone: bars, admin pages, public list and add-on rows', function () use ($admin) {
     try {
@@ -643,13 +725,13 @@ step('parts that are off are gone: bars, admin pages, public list and add-on row
         if (str_contains($page->getContent(), 'Smoke from the add-on') || app(AddonRegistry::class)->find('simplify-announcements') !== null) {
             throw new RuntimeException('a part that is off still shows');
         }
-        foreach (['/admin/simplify-announcements', '/admin/simplify-embed', '/simplify/embed/servers.json'] as $url) {
+        foreach (['/admin/simplify-announcements', '/admin/simplify-embed', '/admin/simplify-subdomains', '/simplify/embed/servers.json'] as $url) {
             if (visit($admin, $url)->getStatusCode() !== 404) {
                 throw new RuntimeException("$url of a part that is off still opens");
             }
         }
     } finally {
-        PanelSettings::save(['part_announcements' => true, 'part_embed' => true]);
+        PanelSettings::save(['part_announcements' => true, 'part_embed' => true, 'part_subdomains' => true]);
         Announcement::query()->delete();
     }
 });

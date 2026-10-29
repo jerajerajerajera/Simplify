@@ -25,6 +25,8 @@ use Simplify\Core\Filament\Server\ServerPage;
 use Simplify\Core\Filament\Server\Widgets\AddonSections;
 use Simplify\Core\Http\Middleware\FramePolicy;
 use Simplify\Core\Parts\Parts;
+use Simplify\Core\Subdomains\Filament\AutomaticSubdomains;
+use Simplify\Core\Subdomains\Filament\ServerSubdomain;
 use Simplify\Core\Support\Brand;
 use Simplify\Core\Support\PanelSettings;
 
@@ -86,6 +88,13 @@ final class SimplifyPlugin implements Plugin
             match ($panel->getId()) {
                 'admin' => $panel->pages([EmbedSettings::class]),
                 'server' => $panel->pages([Website::class]),
+                default => null,
+            };
+        }
+        if (Parts::on('subdomains')) {
+            match ($panel->getId()) {
+                'admin' => $panel->pages([AutomaticSubdomains::class]),
+                'server' => $panel->pages([ServerSubdomain::class]),
                 default => null,
             };
         }

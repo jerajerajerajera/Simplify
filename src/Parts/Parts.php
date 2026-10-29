@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Simplify\Core\Announcements\AnnouncementsAddon;
 use Simplify\Core\Embed\EmbedAddon;
+use Simplify\Core\Subdomains\SubdomainsAddon;
 use Simplify\Core\Support\PanelSettings;
 use Throwable;
 
@@ -38,6 +39,14 @@ final class Parts
             'tables' => [
                 'simplify_embed_settings' => 'simplify_core_embed_settings',
                 'simplify_embed_servers' => 'simplify_core_embed_servers',
+            ],
+        ],
+        'subdomains' => [
+            'provider' => 'Simplify\\Subdomains\\Providers\\SubdomainsServiceProvider',
+            'addon' => SubdomainsAddon::class,
+            'tables' => [
+                'simplify_subdomain_settings' => 'simplify_core_subdomain_settings',
+                'simplify_subdomains' => 'simplify_core_subdomains',
             ],
         ],
     ];
