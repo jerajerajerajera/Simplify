@@ -15,7 +15,7 @@ final class MakerAddon extends Addon
 {
     public function id(): string
     {
-        return 'simplify-server-maker';
+        return 'simplify-servermaker';
     }
 
     public function name(): string
@@ -51,7 +51,7 @@ final class SecondMaker extends Addon
 {
     public function id(): string
     {
-        return 'simplify-server-maker';
+        return 'simplify-servermaker';
     }
 
     public function name(): string

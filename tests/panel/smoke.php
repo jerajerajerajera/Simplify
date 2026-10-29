@@ -185,7 +185,7 @@ step('the first visit to the settings opens the setup, and finishing it saves th
     $url = Setup::getUrl(panel: 'admin');
     $page = visit($admin, $url);
     expectOk($page, $url);
-    if (! str_contains($page->getContent(), 'hub.pelican.dev/plugins/simplify-server-maker') || ! str_contains($page->getContent(), 's-addon-card')) {
+    if (! str_contains($page->getContent(), 'hub.pelican.dev/plugins/simplify-servermaker') || ! str_contains($page->getContent(), 's-addon-card')) {
         throw new RuntimeException('the setup does not recommend the add-ons');
     }
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('admin'));

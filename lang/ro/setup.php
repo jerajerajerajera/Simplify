@@ -23,7 +23,7 @@ return [
     'installed' => 'Instalat',
     'hub' => 'Pe Hub',
     'catalog' => [
-        'server-maker' => [
+        'servermaker' => [
             'name' => 'Server Maker',
             'description' => 'Lăsați oamenii să-și creeze propriile servere în limitele stabilite de dumneavoastră.',
         ],
@@ -35,7 +35,7 @@ return [
             'name' => 'Explain',
             'description' => 'Explicații pe înțeles ale erorilor din consolă.',
         ],
-        'egg-updates' => [
+        'eggupdates' => [
             'name' => 'Egg Updates',
             'description' => 'Țineți egg-urile la zi și încercați mai întâi actualizările.',
         ],

@@ -23,7 +23,7 @@ return [
     'installed' => 'Įdiegta',
     'hub' => 'Hub',
     'catalog' => [
-        'server-maker' => [
+        'servermaker' => [
             'name' => 'Server Maker',
             'description' => 'Leiskite žmonėms kurti savo serverius jūsų nustatytose ribose.',
         ],
@@ -35,7 +35,7 @@ return [
             'name' => 'Explain',
             'description' => 'Konsolės klaidų paaiškinimai paprasta kalba.',
         ],
-        'egg-updates' => [
+        'eggupdates' => [
             'name' => 'Egg Updates',
             'description' => 'Laikykite egg atnaujintus ir pirmiausia išbandykite atnaujinimus.',
         ],

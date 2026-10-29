@@ -23,7 +23,7 @@ return [
     'installed' => 'Telepítve',
     'hub' => 'A Hubon',
     'catalog' => [
-        'server-maker' => [
+        'servermaker' => [
             'name' => 'Server Maker',
             'description' => 'Hagyd, hogy mások saját szervert hozzanak létre az általad megadott keretek között.',
         ],
@@ -35,7 +35,7 @@ return [
             'name' => 'Explain',
             'description' => 'Konzolhibák egyszerű magyarázattal.',
         ],
-        'egg-updates' => [
+        'eggupdates' => [
             'name' => 'Egg Updates',
             'description' => 'Tartsd naprakészen az egg-eket, és előbb próbáld ki a frissítéseket.',
         ],

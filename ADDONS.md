@@ -22,9 +22,9 @@ use Simplify\Core\Addons\Button;
 
 final class ServerMakerAddon extends Addon
 {
-    public function id(): string { return 'simplify-server-maker'; }
+    public function id(): string { return 'simplify-servermaker'; }
     public function name(): string { return 'Server Maker'; }
-    public function description(): string { return __('simplify-server-maker::addon.description'); }
+    public function description(): string { return __('simplify-servermaker::addon.description'); }
     public function icon(): string { return 'tabler-server'; }
 
     public function dashboardActions(): array
@@ -33,7 +33,7 @@ final class ServerMakerAddon extends Addon
             return [];
         }
 
-        return [new Button(__('simplify-server-maker::addon.create'), CreateServer::getUrl(panel: 'admin'), 'tabler-plus', primary: true)];
+        return [new Button(__('simplify-servermaker::addon.create'), CreateServer::getUrl(panel: 'admin'), 'tabler-plus', primary: true)];
     }
 
     public function settingsUrl(): ?string { return MakerSettings::getUrl(panel: 'admin'); }

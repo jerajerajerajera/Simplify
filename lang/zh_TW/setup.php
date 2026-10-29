@@ -23,7 +23,7 @@ return [
     'installed' => '已安裝',
     'hub' => '在 Hub 上',
     'catalog' => [
-        'server-maker' => [
+        'servermaker' => [
             'name' => 'Server Maker',
             'description' => '讓使用者在你設定的限制內自行建立伺服器。',
         ],
@@ -35,7 +35,7 @@ return [
             'name' => 'Explain',
             'description' => '用淺顯的語言解釋主控台錯誤。',
         ],
-        'egg-updates' => [
+        'eggupdates' => [
             'name' => 'Egg Updates',
             'description' => '讓你的 egg 保持最新，並先試用更新。',
         ],
