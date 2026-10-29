@@ -6,6 +6,7 @@ namespace Simplify\Core\Parts;
 
 use App\Models\Server;
 use Simplify\Core\Addons\Addon;
+use Simplify\Core\Subdomains\Models\Subdomain;
 use Simplify\Core\Subdomains\Subdomains;
 
 /** One of Simplify's own parts in the add-on list, like an add-on. Left out while the part is off (Parts). */
@@ -38,10 +39,17 @@ final class PartAddon extends Addon
         return user()?->isRootAdmin() ? Parts::PARTS[$this->part]['page']::getUrl(panel: 'admin') : null;
     }
 
+    /** @var array<string, ?string>|null active subdomain names by server uuid: one query for all tiles of a page */
+    private ?array $active = null;
+
     public function tileBadges(Server $server): array
     {
-        $badge = $this->part === 'subdomains' ? Subdomains::badge($server) : null;
+        if ($this->part !== 'subdomains' || ! Subdomains::ready()) {
+            return [];
+        }
+        $this->active ??= Subdomain::query()->where('status', Subdomain::ACTIVE)->pluck('name', 'server_uuid')->all();
+        $address = Subdomains::join($server, $this->active[$server->uuid] ?? null);
 
-        return $badge === null ? [] : [$badge];
+        return $address === null ? [] : [$address];
     }
 }
