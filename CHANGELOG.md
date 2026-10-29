@@ -2,7 +2,7 @@
 
 ## 1.1.2
 
-- Add-on details on a server card (game version, address) get their own line under the server name, so the address stays readable. Compact cards leave them out.
+- Add-on details on a server card stay readable: the first one (such as the game version) joins game and status in the corner, the others (such as the address) get the full width under the server name. Compact cards leave them out.
 - The overview starts right under the top bar instead of in the middle of the screen, so a short list no longer leaves an empty band above it.
 - The setup's "Four short steps" line sits under the title, with room before the steps.
 
