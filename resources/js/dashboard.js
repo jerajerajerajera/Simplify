@@ -399,6 +399,8 @@
         if (id === 'overview' && /^#[0-9a-f]{6}$/i.test(common || ''))
           return { '--ps-accent': common, '--ps-on-accent': accentInk(common) };
         if (id === 'overview') return { '--ps-accent': this.themeDark ? '#c0c0c5' : '#55555f', '--ps-on-accent': this.themeDark ? '#111118' : '#ffffff' };
+        // Individual colours off: every server takes the panel's accent, as the overview does.
+        if (appearance.server_colours === false) return this.accentStyle('overview');
         const color = (this.server?.uuid === id ? this.server : this.boot.servers?.find((s) => s.uuid === id))?.color;
         if (typeof color === 'string' && /^#[0-9a-f]{6}$/i.test(color)) return { '--ps-accent': color, '--ps-on-accent': accentInk(color) };
         let hash = 2166136261;

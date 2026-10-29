@@ -46,6 +46,8 @@ return [
         'app_icon_help' => 'Neliön muotoinen PNG, JPEG tai WebP, vähintään 512 pikseliä ja enintään 1 MB. Tyhjä käyttää Simplifyn kuvaketta.',
         'app_badge' => 'Tilarivin kuvake',
         'app_badge_help' => 'PNG-kuva läpinäkyvällä taustalla, näytetään valkoisena Androidin tilarivillä. Tyhjänä käytetään sovelluksen kuvaketta, jos sen tausta on läpinäkyvä, muuten pelikaania.',
+        'server_colours' => 'Oma väri jokaiselle palvelimelle',
+        'server_colours_help' => 'Jokainen palvelin saa oman värinsä, ryhmästään tai sille valittuna. Pois: kaikki palvelimet käyttävät korostusväriä.',
     ],
     'addons' => [
         'heading' => 'Lisätoiminnot',

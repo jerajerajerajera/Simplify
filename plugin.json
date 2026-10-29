@@ -2,7 +2,7 @@
     "id": "simplify",
     "name": "Simplify",
     "author": "jera",
-    "version": "1.4.1",
+    "version": "1.4.2",
     "description": "One clear overview of your servers, with add-ons that plug into it.",
     "category": "plugin",
     "namespace": "Simplify\\Core",
