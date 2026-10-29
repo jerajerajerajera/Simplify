@@ -1161,6 +1161,15 @@ body:has(.ps-server-top) .fi-page-header-main-ctn { padding-top: 0 !important; }
 .ps-server-menu .ps-widget-icon svg { width: 17px; height: 17px; }
 .ps-server-menu .ps-widget strong { font-size: 14px; font-weight: 600; -webkit-line-clamp: 1; }
 .ps-phone-sections .ps-menu-item svg { width: 18px; height: 18px; }
+/* Pelican's page title repeats the menu, so it goes, as in 0.7.0. An icon action (such as Save) sits in the top corner
+   of the page's own card; buttons with a label, and a page with a table (its tools sit in that corner), keep a row. */
+body:has(.ps-server-top) .fi-header :is(.fi-header-heading, .fi-header-subheading, .fi-breadcrumbs:has(.fi-breadcrumbs-item:only-child)) { display: none !important; }
+body:has(.ps-server-top) .fi-header:not(:has(.fi-header-actions-ctn > *, .fi-breadcrumbs-item + .fi-breadcrumbs-item)) { display: none !important; }
+body:has(.ps-server-top) .fi-header { justify-content: space-between; margin: 0 0 14px !important; }
+body:has(.ps-server-top) .fi-header-actions-ctn { margin-inline-start: auto; }
+body:has(.ps-server-top) .fi-page-header-main-ctn:not(:has(.fi-ta, > .fi-header :is(.fi-btn, .fi-breadcrumbs))) { position: relative; }
+body:has(.ps-server-top) .fi-page-header-main-ctn:not(:has(.fi-ta, > .fi-header :is(.fi-btn, .fi-breadcrumbs))) > .fi-header { position: absolute; top: 14px; inset-inline-end: 16px; z-index: 2; }
+body:has(.ps-server-top) .fi-page-header-main-ctn:not(:has(.fi-ta, > .fi-header :is(.fi-btn, .fi-breadcrumbs))):has(> .fi-header .fi-header-actions-ctn > *) .fi-grid-col:first-child > .fi-sc-component > .fi-section > .fi-section-header { padding-inline-end: 72px; }
 html.ps-console-big .ps-server-menu { display: none; }
 html.ps-console-big body:has(.ps-server-top) .fi-main-ctn > .fi-main { grid-column: 1 / -1; }
 
