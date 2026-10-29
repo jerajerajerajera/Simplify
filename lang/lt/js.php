@@ -84,7 +84,6 @@ return [
         ],
         'other_plugins' => 'Kiti įskiepiai',
         'create_server' => 'Sukurti serverį',
-        'new_server' => 'Naujas serveris',
         'enhanced_by' => 'Patobulino',
         'build' => 'Versija :version',
         'power_sent' => ':action išsiųsta į :server',

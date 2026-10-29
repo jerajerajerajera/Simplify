@@ -84,7 +84,6 @@ return [
         ],
         'other_plugins' => '其他外掛',
         'create_server' => '建立伺服器',
-        'new_server' => '新伺服器',
         'enhanced_by' => '增強自',
         'build' => '建置 :version',
         'power_sent' => '已向 :server 傳送 :action',

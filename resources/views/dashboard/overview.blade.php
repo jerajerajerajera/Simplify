@@ -90,10 +90,12 @@
                                 <div class="ps-card-badges ps-identity-badges">
                                     <span class="ps-badge is-strong ps-list-game"><svg aria-hidden="true"><use :href="s.game==='minecraft' ? '#ps-cube' : '#ps-gamepad'"/></svg><span x-text="s.game_label"></span></span>
                                     <span class="ps-badge ps-status" :class="s.status"><i></i><span x-text="Simplify.status(s.status)"></span></span>
-                                    <template x-for="badge in s.badges || []" :key="badge"><span class="ps-badge" x-text="badge"></span></template>
+                                    <template x-for="badge in overviewView==='list' ? s.badges || [] : []" :key="badge"><span class="ps-badge" x-text="badge"></span></template>
                                 </div>
                                 <div class="ps-card-bottom" x-show="overviewView!=='list'">
                                     <span x-text="playerCount(s)"></span>
+                                    {{-- Add-on badges (version, address) on the bottom row, so the corner keeps only game and status as in 0.7.0. --}}
+                                    <span class="ps-card-extras"><template x-for="badge in s.badges || []" :key="badge"><span class="ps-badge" x-text="badge"></span></template></span>
                                     <svg aria-hidden="true"><use :href="s.linked ? '#ps-chevron' : '#ps-lock'"/></svg>
                                 </div>
                             </button>

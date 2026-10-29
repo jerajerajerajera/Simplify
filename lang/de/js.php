@@ -84,7 +84,6 @@ return [
         ],
         'other_plugins' => 'Andere Plugins',
         'create_server' => 'Server erstellen',
-        'new_server' => 'Neuer Server',
         'enhanced_by' => 'Erweitert durch',
         'build' => 'Build :version',
         'power_sent' => ':action an :server gesendet',

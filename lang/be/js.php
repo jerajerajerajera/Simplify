@@ -84,7 +84,6 @@ return [
         ],
         'other_plugins' => 'Іншыя плагіны',
         'create_server' => 'Стварыць сервер',
-        'new_server' => 'Новы сервер',
         'enhanced_by' => 'Палепшана з дапамогай',
         'build' => 'Зборка :version',
         'power_sent' => ':action адпраўлена на :server',

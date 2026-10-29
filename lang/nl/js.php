@@ -84,7 +84,6 @@ return [
         ],
         'other_plugins' => 'Andere plugins',
         'create_server' => 'Server maken',
-        'new_server' => 'Nieuwe server',
         'enhanced_by' => 'Verbeterd door',
         'build' => 'Build :version',
         'power_sent' => ':action verstuurd naar :server',

@@ -84,7 +84,6 @@ return [
         ],
         'other_plugins' => '他のプラグイン',
         'create_server' => 'サーバーを作成',
-        'new_server' => '新しいサーバー',
         'enhanced_by' => 'Enhanced by',
         'build' => 'ビルド :version',
         'power_sent' => ':server に :action を送信しました',

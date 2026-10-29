@@ -84,7 +84,6 @@ return [
         ],
         'other_plugins' => '다른 플러그인',
         'create_server' => '서버 만들기',
-        'new_server' => '새 서버',
         'enhanced_by' => 'Enhanced by',
         'build' => '빌드 :version',
         'power_sent' => ':server 에 :action 보냄',

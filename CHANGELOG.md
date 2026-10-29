@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.1
+
+- Add-on details on a server card, such as the game version and the address, now sit on the bottom row instead of over the server name.
+- Admins see one **Create server** button again, as in 0.7.0: the Server Maker when it is installed, otherwise Pelican's own form.
+
 ## 1.1.0
 
 The Simplify you know from 0.7.0 is back, rebuilt in far less code.
