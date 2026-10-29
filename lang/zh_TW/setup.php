@@ -26,17 +26,9 @@ return [
             'name' => 'Server Maker',
             'description' => '讓使用者在你設定的限制內自行建立伺服器。',
         ],
-        'subdomains' => [
-            'name' => 'Subdomains',
-            'description' => '為每台伺服器提供你網域下的專屬位址。',
-        ],
-        'mods' => [
-            'name' => 'Mods',
-            'description' => '在伺服器頁面管理 Minecraft 模組、外掛、MOTD 和 server.properties。',
-        ],
-        'announcements' => [
-            'name' => 'Announcements',
-            'description' => '在面板和遊戲中通知所有人維護訊息。',
+        'toolkit' => [
+            'name' => 'Toolkit',
+            'description' => '為你的伺服器提供的實用工具。目前：Minecraft 外掛與模組、MOTD、server.properties、圖示和 EULA。',
         ],
         'explain' => [
             'name' => 'Explain',
@@ -45,14 +37,6 @@ return [
         'egg-updates' => [
             'name' => 'Egg Updates',
             'description' => '讓你的 egg 保持最新，並先試用更新。',
-        ],
-        'embed' => [
-            'name' => 'Website embed',
-            'description' => '在你自己的網站上展示伺服器。',
-        ],
-        'plugins' => [
-            'name' => 'Plugins',
-            'description' => '從 Pelican Hub 尋找並安裝外掛。',
         ],
         'hosting' => [
             'name' => '託管',

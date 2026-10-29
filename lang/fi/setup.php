@@ -26,17 +26,9 @@ return [
             'name' => 'Server Maker',
             'description' => 'Anna ihmisten luoda omia palvelimia asettamissasi rajoissa.',
         ],
-        'subdomains' => [
-            'name' => 'Subdomains',
-            'description' => 'Anna jokaiselle palvelimelle oma osoite verkkotunnuksesi alla.',
-        ],
-        'mods' => [
-            'name' => 'Mods',
-            'description' => 'Minecraft-modit, lisäosat, MOTD ja server.properties palvelimen sivulta.',
-        ],
-        'announcements' => [
-            'name' => 'Announcements',
-            'description' => 'Kerro kaikille huollosta paneelissa ja pelissä.',
+        'toolkit' => [
+            'name' => 'Toolkit',
+            'description' => 'Käteviä työkaluja palvelimillesi. Nyt: Minecraft-pluginit ja -modit, MOTD, server.properties, kuvake ja EULA.',
         ],
         'explain' => [
             'name' => 'Explain',
@@ -45,14 +37,6 @@ return [
         'egg-updates' => [
             'name' => 'Egg Updates',
             'description' => 'Pidä eggit ajan tasalla ja kokeile päivityksiä ensin.',
-        ],
-        'embed' => [
-            'name' => 'Website embed',
-            'description' => 'Näytä palvelimesi omalla verkkosivustollasi.',
-        ],
-        'plugins' => [
-            'name' => 'Plugins',
-            'description' => 'Etsi ja asenna lisäosia Pelican Hubista.',
         ],
         'hosting' => [
             'name' => 'Hosting',

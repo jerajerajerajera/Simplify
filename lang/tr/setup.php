@@ -26,17 +26,9 @@ return [
             'name' => 'Server Maker',
             'description' => 'Belirlediğin sınırlar içinde herkesin kendi sunucusunu oluşturmasına izin ver.',
         ],
-        'subdomains' => [
-            'name' => 'Subdomains',
-            'description' => 'Her sunucuya alan adın altında kendi adresini ver.',
-        ],
-        'mods' => [
-            'name' => 'Mods',
-            'description' => 'Sunucu sayfasından Minecraft modları, eklentiler, MOTD ve server.properties.',
-        ],
-        'announcements' => [
-            'name' => 'Announcements',
-            'description' => 'Bakımı herkese panelde ve oyunda duyur.',
+        'toolkit' => [
+            'name' => 'Toolkit',
+            'description' => 'Sunucuların için kullanışlı araçlar. Şimdilik: Minecraft eklentileri ve modları, MOTD, server.properties, simge ve EULA.',
         ],
         'explain' => [
             'name' => 'Explain',
@@ -45,14 +37,6 @@ return [
         'egg-updates' => [
             'name' => 'Egg Updates',
             'description' => 'Egg\'lerini güncel tut ve güncellemeleri önce dene.',
-        ],
-        'embed' => [
-            'name' => 'Website embed',
-            'description' => 'Sunucularını kendi web sitende göster.',
-        ],
-        'plugins' => [
-            'name' => 'Plugins',
-            'description' => 'Pelican Hub\'dan eklenti bul ve kur.',
         ],
         'hosting' => [
             'name' => 'Barındırma',

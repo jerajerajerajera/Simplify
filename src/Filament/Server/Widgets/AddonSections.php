@@ -9,7 +9,7 @@ use Filament\Widgets\Widget;
 use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
 
-/** What add-ons show on a server page, such as Mods' plugin list, under Pelican's console. */
+/** What add-ons show on a server page, such as Toolkit's plugin list, under Pelican's console. */
 final class AddonSections extends Widget
 {
     protected string $view = 'pelican-simplify::widgets.addon-sections';

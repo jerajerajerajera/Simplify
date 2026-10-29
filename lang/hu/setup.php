@@ -26,17 +26,9 @@ return [
             'name' => 'Server Maker',
             'description' => 'Hagyd, hogy mások saját szervert hozzanak létre az általad megadott keretek között.',
         ],
-        'subdomains' => [
-            'name' => 'Subdomains',
-            'description' => 'Adj minden szervernek saját címet a domaineden.',
-        ],
-        'mods' => [
-            'name' => 'Mods',
-            'description' => 'Minecraft modok, bővítmények, MOTD és server.properties a szerver oldaláról.',
-        ],
-        'announcements' => [
-            'name' => 'Announcements',
-            'description' => 'Tájékoztass mindenkit a karbantartásról a panelen és a játékban.',
+        'toolkit' => [
+            'name' => 'Toolkit',
+            'description' => 'Hasznos eszközök a szervereidhez. Most: Minecraft pluginok és modok, MOTD, server.properties, ikon és EULA.',
         ],
         'explain' => [
             'name' => 'Explain',
@@ -45,14 +37,6 @@ return [
         'egg-updates' => [
             'name' => 'Egg Updates',
             'description' => 'Tartsd naprakészen az egg-eket, és előbb próbáld ki a frissítéseket.',
-        ],
-        'embed' => [
-            'name' => 'Website embed',
-            'description' => 'Mutasd meg a szervereidet a saját weboldaladon.',
-        ],
-        'plugins' => [
-            'name' => 'Plugins',
-            'description' => 'Bővítmények keresése és telepítése a Pelican Hubról.',
         ],
         'hosting' => [
             'name' => 'Hosting',

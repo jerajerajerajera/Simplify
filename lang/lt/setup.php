@@ -26,17 +26,9 @@ return [
             'name' => 'Server Maker',
             'description' => 'Leiskite žmonėms kurti savo serverius jūsų nustatytose ribose.',
         ],
-        'subdomains' => [
-            'name' => 'Subdomains',
-            'description' => 'Suteikite kiekvienam serveriui savo adresą jūsų domene.',
-        ],
-        'mods' => [
-            'name' => 'Mods',
-            'description' => 'Minecraft modai, įskiepiai, MOTD ir server.properties serverio puslapyje.',
-        ],
-        'announcements' => [
-            'name' => 'Announcements',
-            'description' => 'Praneškite visiems apie priežiūrą skydelyje ir žaidime.',
+        'toolkit' => [
+            'name' => 'Toolkit',
+            'description' => 'Naudingi įrankiai jūsų serveriams. Dabar: Minecraft įskiepiai ir modai, MOTD, server.properties, piktograma ir EULA.',
         ],
         'explain' => [
             'name' => 'Explain',
@@ -45,14 +37,6 @@ return [
         'egg-updates' => [
             'name' => 'Egg Updates',
             'description' => 'Laikykite egg atnaujintus ir pirmiausia išbandykite atnaujinimus.',
-        ],
-        'embed' => [
-            'name' => 'Website embed',
-            'description' => 'Rodykite savo serverius savo svetainėje.',
-        ],
-        'plugins' => [
-            'name' => 'Plugins',
-            'description' => 'Raskite ir įdiekite įskiepius iš Pelican Hub.',
         ],
         'hosting' => [
             'name' => 'Talpinimas',

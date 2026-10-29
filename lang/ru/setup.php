@@ -26,17 +26,9 @@ return [
             'name' => 'Server Maker',
             'description' => 'Пусть люди сами создают серверы в заданных вами пределах.',
         ],
-        'subdomains' => [
-            'name' => 'Subdomains',
-            'description' => 'Дайте каждому серверу свой адрес в вашем домене.',
-        ],
-        'mods' => [
-            'name' => 'Mods',
-            'description' => 'Моды Minecraft, плагины, MOTD и server.properties со страницы сервера.',
-        ],
-        'announcements' => [
-            'name' => 'Announcements',
-            'description' => 'Сообщайте всем об обслуживании, в панели и в игре.',
+        'toolkit' => [
+            'name' => 'Toolkit',
+            'description' => 'Полезные инструменты для ваших серверов. Сейчас: плагины и моды Minecraft, MOTD, server.properties, иконка и EULA.',
         ],
         'explain' => [
             'name' => 'Explain',
@@ -45,14 +37,6 @@ return [
         'egg-updates' => [
             'name' => 'Egg Updates',
             'description' => 'Держите egg актуальными и сначала проверяйте обновления.',
-        ],
-        'embed' => [
-            'name' => 'Website embed',
-            'description' => 'Покажите свои серверы на своём сайте.',
-        ],
-        'plugins' => [
-            'name' => 'Plugins',
-            'description' => 'Ищите и устанавливайте плагины из Pelican Hub.',
         ],
         'hosting' => [
             'name' => 'Хостинг',

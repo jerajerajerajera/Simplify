@@ -26,17 +26,9 @@ return [
             'name' => 'Server Maker',
             'description' => 'Nechte lidi vytvářet vlastní servery v mezích, které určíte.',
         ],
-        'subdomains' => [
-            'name' => 'Subdomains',
-            'description' => 'Dejte každému serveru vlastní adresu ve vaší doméně.',
-        ],
-        'mods' => [
-            'name' => 'Mods',
-            'description' => 'Módy Minecraft, pluginy, MOTD a server.properties ze stránky serveru.',
-        ],
-        'announcements' => [
-            'name' => 'Announcements',
-            'description' => 'Dejte všem vědět o údržbě, v panelu i ve hře.',
+        'toolkit' => [
+            'name' => 'Toolkit',
+            'description' => 'Užitečné nástroje pro tvé servery. Teď: pluginy a mody pro Minecraft, MOTD, server.properties, ikona a EULA.',
         ],
         'explain' => [
             'name' => 'Explain',
@@ -45,14 +37,6 @@ return [
         'egg-updates' => [
             'name' => 'Egg Updates',
             'description' => 'Udržujte své eggy aktuální a aktualizace nejdřív vyzkoušejte.',
-        ],
-        'embed' => [
-            'name' => 'Website embed',
-            'description' => 'Ukažte své servery na vlastním webu.',
-        ],
-        'plugins' => [
-            'name' => 'Plugins',
-            'description' => 'Hledejte a instalujte pluginy z Pelican Hub.',
         ],
         'hosting' => [
             'name' => 'Hosting',

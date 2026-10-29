@@ -26,17 +26,9 @@ return [
             'name' => 'Server Maker',
             'description' => '정해 둔 한도 안에서 사용자가 직접 서버를 만들 수 있습니다.',
         ],
-        'subdomains' => [
-            'name' => 'Subdomains',
-            'description' => '모든 서버에 내 도메인의 고유 주소를 줍니다.',
-        ],
-        'mods' => [
-            'name' => 'Mods',
-            'description' => '서버 페이지에서 Minecraft 모드, 플러그인, MOTD, server.properties 관리.',
-        ],
-        'announcements' => [
-            'name' => 'Announcements',
-            'description' => '점검 소식을 패널과 게임 안에서 모두에게 알립니다.',
+        'toolkit' => [
+            'name' => 'Toolkit',
+            'description' => '서버에 유용한 도구 모음. 지금은 Minecraft 플러그인과 모드, MOTD, server.properties, 아이콘, EULA.',
         ],
         'explain' => [
             'name' => 'Explain',
@@ -45,14 +37,6 @@ return [
         'egg-updates' => [
             'name' => 'Egg Updates',
             'description' => 'egg를 최신으로 유지하고 업데이트를 먼저 시험해 봅니다.',
-        ],
-        'embed' => [
-            'name' => 'Website embed',
-            'description' => '내 웹사이트에 서버를 보여 줍니다.',
-        ],
-        'plugins' => [
-            'name' => 'Plugins',
-            'description' => 'Pelican Hub에서 플러그인을 찾아 설치합니다.',
         ],
         'hosting' => [
             'name' => '호스팅',
