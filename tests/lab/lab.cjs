@@ -144,11 +144,18 @@ const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g
     for (const view of ['grid', 'compact']) {
       await ps('d.setOverviewView(a)', view); await sleep(600);
       ok(`${view}: the bottom row (players, badges, arrow) stays inside the card`, (await outside()).length === 0, (await outside()).join(', '));
-      ok(`${view}: add-on badges show on the cards`, (await page.locator('.ps-server-card:visible .ps-badge', { hasText: 'Paper 1.21.4' }).count()) === 6);
+      ok(`${view}: add-on badges ${view === 'grid' ? 'show under the name' : 'stay off compact cards'}`, (await page.locator('.ps-server-card:visible .ps-badge', { hasText: 'Paper 1.21.4' }).count()) === (view === 'grid' ? 6 : 0));
+      if (view === 'grid') {
+        const cut = await page.evaluate(() => [...document.querySelectorAll('.ps-card-extras .ps-badge')].filter((b) => b.checkVisibility() && b.scrollWidth > b.clientWidth + 1).map((b) => b.textContent));
+        ok('grid: the address badge is not cut short', cut.length === 0, cut.join(', '));
+      }
       ok(`${view}: no badge covers a server name`, (await covered()).length === 0, (await covered()).join(', '));
     }
     await ps('d.setOverviewView(a)', 'grid'); await sleep(500);
     await shot('action-overview-addon-badges');
+    // No empty band between the top bar and the first row of the overview.
+    const gap = await page.evaluate(() => Math.round(document.querySelector('.ps-server-stage').getBoundingClientRect().top - document.querySelector('.ps-top, header').getBoundingClientRect().bottom));
+    ok('the overview starts right under the top bar', gap < 60, gap + 'px');
     const create = await page.locator('.ps-create-button:visible').allInnerTexts();
     ok('one Create server button, add-on buttons keep their label', create.filter((t) => /create server/i.test(t)).length === 1 && !create.some((t) => /new server/i.test(t)) && create.some((t) => /browse hub/i.test(t)), create.join(' | '));
     for (const [scope, expect] of [['My servers', 5], ['Others', 1], ['All servers', 6]]) {
