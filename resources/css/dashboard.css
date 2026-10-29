@@ -1178,6 +1178,14 @@ html.ps-fit .ps-server-menu { max-height: var(--ps-fit); }
 /* Filament's page leaves 32px under the content and a gap for an empty slot: in a fitted page that is an empty band. */
 html.ps-fit body:has(.ps-server-top) .fi-page-header-main-ctn { padding-bottom: 0; }
 html.ps-fit body:has(.ps-server-top) .fi-page-content > div:empty { display: none; }
+/* The page is one card at the window's height, rounded at top and bottom like the menu: only what is inside it
+   scrolls. The cards Filament draws inside it lose their own frame; a title bar and the save button stay on top. */
+html.ps-fit body:has(.ps-server-top) .fi-main-ctn > .fi-main:not(:has(#terminal)) { border: 1px solid var(--ps-line); border-radius: var(--ps-radius-lg); background: var(--ps-surface); }
+html.ps-fit body:has(.ps-server-top) .fi-main:not(:has(#terminal)) :is(.fi-section:not(.fi-section .fi-section), .fi-ta-ctn:not(.fi-section .fi-ta-ctn)) { border: 0 !important; border-radius: 0 !important; background: transparent !important; box-shadow: none !important; outline: 0 !important; }
+html.ps-fit body:has(.ps-server-top) .fi-main:not(:has(#terminal)) .fi-grid-col + .fi-grid-col > .fi-sc-component > .fi-section { border-inline-start: 1px solid var(--ps-line) !important; }
+html.ps-fit body:has(.ps-server-top) .fi-page-header-main-ctn:has(> .fi-header) { row-gap: 0; }
+html.ps-fit body:has(.ps-server-top) .fi-page-header-main-ctn:not(:has(.fi-ta, > .fi-header :is(.fi-btn, .fi-breadcrumbs))) > .fi-header { position: sticky; top: 14px; align-self: flex-end; height: 0; margin: 0 16px 0 0 !important; overflow: visible; }
+html.ps-fit body:has(.ps-server-top) .fi-main .fi-section:not(.fi-section .fi-section) > .fi-section-header { position: sticky; top: 0; z-index: 1; background: var(--ps-surface) !important; }
 html.ps-console-big .ps-server-menu { display: none; }
 html.ps-console-big body:has(.ps-server-top) .fi-main-ctn > .fi-main { grid-column: 1 / -1; }
 

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.11
+
+- On a server's pages the page is one card at the window's height, rounded at the top and bottom like the menu next to it. Only what is inside it scrolls; its title and the save button stay at the top.
+- Website: the preview of the saved list is as tall as the list instead of a fixed, mostly empty frame.
+
 ## 1.3.10
 
 - A server's pages fit the window: the menu and the page next to it end at the bottom of the window, and only the page's own content scrolls, never the page itself. The console fills the space down to the footer.
