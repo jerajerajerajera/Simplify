@@ -98,7 +98,8 @@ const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g
     page.on('console', said);
     await page.evaluate(() => { window.__noLog = []; const t0 = performance.now(); new MutationObserver(() => { const n = document.querySelector('.fi-no'); window.__noLog.push(Math.round(performance.now() - t0) + 'ms:' + (n?.children.length ?? 'x') + ':' + (n?.textContent.trim().slice(0, 40) ?? '')); }).observe(document.body, { childList: true, subtree: true, characterData: true }); });
     await click(page.locator('main button[type=submit]', { hasText: 'Save' }), 'settings save');
-    const saved = await page.getByText(/settings saved/i).first().waitFor({ timeout: 8000 }).then(() => true, () => false);
+    // Filament's toast slides in; on beta38 Playwright does not always count it as visible, so it only has to arrive.
+    const saved = await page.locator('.fi-no', { hasText: /settings saved/i }).first().waitFor({ state: 'attached', timeout: 8000 }).then(() => true, () => false);
     page.off('response', listen);
     page.off('console', said);
     if (!saved) posts.push('mutations ' + [...new Set(await page.evaluate(() => window.__noLog))].slice(0, 30).join(' '));
