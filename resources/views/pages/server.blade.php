@@ -44,7 +44,7 @@
                 <div class="ps-info-meta">
                     <span class="ps-badge ps-status" :class="status"><i></i><span x-text="Simplify.status(status)"></span></span>
                     <span class="ps-info-meta-item" :data-tip="server.software || @js($u('not_reported'))"><svg aria-hidden="true"><use :href="server.minecraft ? '#ps-cube' : '#ps-gamepad'"/></svg><span x-text="softwareLabel()"></span></span>
-                    <template x-for="badge in server.badges || []" :key="badge"><span class="ps-info-meta-item" x-text="badge"></span></template>
+                    <template x-for="badge in metaBadges()" :key="badge"><span class="ps-info-meta-item" x-text="badge"></span></template>
                     <button type="button" class="ps-address ps-info-address" x-on:click="copyText(server.address)" :disabled="!server.address" data-tip="{{ $u('copy_server_address') }}">
                         <svg aria-hidden="true"><use href="#ps-link"/></svg><span x-text="server.address || @js($u('no_address_assigned'))"></span><svg aria-hidden="true"><use href="#ps-copy"/></svg>
                     </button>
