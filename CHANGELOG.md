@@ -15,6 +15,7 @@
 - App: a panel with its own app icon can be installed as an app again. Chrome only offers Install with a square PNG of the size the manifest names, so Simplify now serves the uploaded icon (also a JPEG or a non-square image) as a square PNG of 192 and 512 pixels.
 - Overview list: when the quick power buttons slide in, the player count moves along smoothly with the rest of the row instead of jumping.
 - App: the splash screen of the installed app is dark, like the panel, instead of white. Android picks this up when Chrome next updates the app, or on a new install.
+- The browser tab icon is the Simplify logo at full size on a transparent background, instead of a small logo in a dark circle.
 
 ## 1.4.2
 
