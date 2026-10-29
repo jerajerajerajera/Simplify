@@ -68,7 +68,7 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps.server-active .ps-heading { gap: 18px; }
 @media (max-width: 600px) { .ps.server-active .ps-heading { flex-direction: column; align-items: flex-start; gap: 8px; } }
 .ps-identity { min-width: 0; }
-.ps h1 { font-size: 25px; font-weight: 750; line-height: 1.25; letter-spacing: -.8px; overflow-wrap: anywhere; }
+.ps h1 { font-size: 25px; font-weight: 750; line-height: 1.25; letter-spacing: -.8px; overflow-wrap: break-word; }
 .ps-panel-name { min-width: 0; color: var(--ps-ink); }
 /* "× Pelican" stays one word; on a narrow screen the panel name wraps instead. */
 .ps-title-pelican { flex: none; white-space: nowrap; color: var(--ps-muted); }
@@ -1265,6 +1265,8 @@ html.ps-low .ps.ps-server-top > .ps-main { padding-top: 12px; }
 html.ps-low .ps-server-info { margin-bottom: 8px; padding-block: 10px; }
 html.ps-low .ps-server-stats { display: grid; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 8px; margin-bottom: 8px; }
 html.ps-low .ps-server-stats > .ps-stat { padding: 8px 10px; }
+/* The traffic line is the longest value: it gets two columns' width. */
+html.ps-low .ps-server-stats > .ps-stat:last-child { grid-column: span 2; }
 html.ps-low .ps-server-stats > .ps-stat > small, html.ps-low .ps-server-stats .ps-spark { display: none; }
 html.ps-low .ps-server-stats > .ps-stat > strong { font-size: 15px; }
 html.ps-low .ps-server-stats .ps-stat-top svg { display: none; }
