@@ -185,9 +185,16 @@
         }
       },
       /** "Paper 1.21.4", "Valheim" or "Not reported" for the line under the server name. */
+      /** Software and version once: Paper reports "Paper 1.21.1" itself, and an add-on badge may already say the same. */
       softwareLabel() {
-        const software = this.server.software || t('dashboard.not_reported');
-        return this.server.reported_version ? software + ' ' + this.server.reported_version : software;
+        const software = this.server.software || '', version = this.server.reported_version || '';
+        const named = software && [version, ...(this.server.badges || [])].find(text => text.toLowerCase().includes(software.toLowerCase()));
+        return named || (version ? (software + ' ' + version).trim() : software) || t('dashboard.not_reported');
+      },
+      /** The add-on badges the software label does not already say. */
+      metaBadges() {
+        const label = this.softwareLabel().toLowerCase();
+        return (this.server.badges || []).filter(badge => !label.includes(badge.toLowerCase()));
       },
       async copyText(text, message = t('dashboard.address_copied')) {
         try {

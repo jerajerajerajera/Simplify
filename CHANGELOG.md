@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.9
+
+- A server's software and version show once on its page. Paper reports "Paper 1.21.1" itself, so the server card read "Paper  Paper 1.21.1  Paper 1.21.1".
+
 ## 1.3.8
 
 - Simplify icon buttons on every page of the panel, also in the normal admin panel (Announcements, Website embed, Egg Updates and Pelican's own pages): Tabler icons at one size in a quiet button, instead of Pelican's large coloured glyphs. Icons in table rows stay plain until hovered, and buttons with a label get the same icon size.
