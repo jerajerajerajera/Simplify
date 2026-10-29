@@ -1,0 +1,13 @@
+{
+    "id": "simplify-lab",
+    "name": "Simplify lab add-on",
+    "author": "jera",
+    "version": "1.0.0",
+    "description": "Only for the lab: two badges on every server card and one toolbar button, like Mods, Subdomains and Plugins.",
+    "category": "plugin",
+    "namespace": "Simplify\\Lab",
+    "class": "LabPlugin",
+    "panels": ["app"],
+    "panel_version": "^1.0.0-beta38",
+    "api_version": 1
+}
