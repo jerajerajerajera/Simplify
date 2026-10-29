@@ -6,9 +6,9 @@ namespace Simplify\Core\Parts;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use Simplify\Core\Announcements\AnnouncementsAddon;
-use Simplify\Core\Embed\EmbedAddon;
-use Simplify\Core\Subdomains\SubdomainsAddon;
+use Simplify\Core\Announcements\Filament\AnnouncementResource;
+use Simplify\Core\Embed\Filament\EmbedSettings;
+use Simplify\Core\Subdomains\Filament\AutomaticSubdomains;
 use Simplify\Core\Support\PanelSettings;
 use Throwable;
 
@@ -20,13 +20,16 @@ use Throwable;
 final class Parts
 {
     /**
-     * part => [the separate plugin's service provider, the part's add-on class, its tables => Simplify's tables].
-     * Tables are listed parents first.
+     * part => [the separate plugin's service provider, the part's icon, its admin page, its name and description
+     * (translation keys), its tables => Simplify's tables]. Tables are listed parents first.
      */
     public const PARTS = [
         'announcements' => [
             'provider' => 'Simplify\\Announcements\\Providers\\AnnouncementsProvider',
-            'addon' => AnnouncementsAddon::class,
+            'icon' => 'tabler-speakerphone',
+            'page' => AnnouncementResource::class,
+            'name' => 'announcements.addon.name',
+            'description' => 'announcements.addon.description',
             'tables' => [
                 'simplify_announcements' => 'simplify_core_announcements',
                 'simplify_announcement_dismissals' => 'simplify_core_announcement_dismissals',
@@ -35,7 +38,10 @@ final class Parts
         ],
         'embed' => [
             'provider' => 'Simplify\\Embed\\Providers\\EmbedProvider',
-            'addon' => EmbedAddon::class,
+            'icon' => 'tabler-code',
+            'page' => EmbedSettings::class,
+            'name' => 'embed.name',
+            'description' => 'embed.description',
             'tables' => [
                 'simplify_embed_settings' => 'simplify_core_embed_settings',
                 'simplify_embed_servers' => 'simplify_core_embed_servers',
@@ -43,7 +49,10 @@ final class Parts
         ],
         'subdomains' => [
             'provider' => 'Simplify\\Subdomains\\Providers\\SubdomainsServiceProvider',
-            'addon' => SubdomainsAddon::class,
+            'icon' => 'tabler-world',
+            'page' => AutomaticSubdomains::class,
+            'name' => 'subdomains.title',
+            'description' => 'subdomains.addon.description',
             'tables' => [
                 'simplify_subdomain_settings' => 'simplify_core_subdomain_settings',
                 'simplify_subdomains' => 'simplify_core_subdomains',
@@ -63,22 +72,18 @@ final class Parts
         return app()->providerIsLoaded(self::PARTS[$part]['provider']);
     }
 
-    /** Leaves out the add-on class of a part that is off, so it shows nowhere in Simplify. */
-    public static function allows(string $addonClass): bool
+    /** The container name under which the part's add-on (a PartAddon) is bound and tagged. */
+    public static function addon(string $part): string
     {
-        foreach (self::PARTS as $part => $definition) {
-            if ($definition['addon'] === $addonClass) {
-                return self::on($part);
-            }
-        }
-
-        return true;
+        return 'simplify.parts.'.$part;
     }
 
-    /** @return list<class-string> */
-    public static function addons(): array
+    /** Leaves out the add-on of a part that is off, so it shows nowhere in Simplify. */
+    public static function allows(string $addon): bool
     {
-        return array_values(array_column(self::PARTS, 'addon'));
+        $part = substr($addon, strlen(self::addon('')));
+
+        return ! isset(self::PARTS[$part]) || self::addon($part) !== $addon || self::on($part);
     }
 
     /**

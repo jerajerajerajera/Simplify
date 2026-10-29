@@ -25,6 +25,7 @@ use Simplify\Core\Http\Controllers\AssetController;
 use Simplify\Core\Http\Controllers\BannerController;
 use Simplify\Core\Http\Controllers\BrandController;
 use Simplify\Core\Http\Controllers\WebAppController;
+use Simplify\Core\Parts\PartAddon;
 use Simplify\Core\Parts\Parts;
 use Simplify\Core\Push\Push;
 use Simplify\Core\Server\Looks;
@@ -39,7 +40,10 @@ final class SimplifyServiceProvider extends ServiceProvider
     public function register(): void
     {
         // Simplify's own parts show up like add-ons, unless they are off.
-        $this->app->tag(Parts::addons(), AddonRegistry::TAG);
+        foreach (array_keys(Parts::PARTS) as $part) {
+            $this->app->bind(Parts::addon($part), fn () => new PartAddon($part));
+            $this->app->tag([Parts::addon($part)], AddonRegistry::TAG);
+        }
         $this->app->singleton(AddonRegistry::class, fn (Container $app) => new AddonRegistry(
             // The container has no public list of a tag's class names. Reading them lets one add-on fail to build
             // without hiding the add-ons after it, which iterating $app->tagged() would do.

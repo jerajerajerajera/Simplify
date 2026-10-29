@@ -2,39 +2,41 @@
 
 declare(strict_types=1);
 
-namespace Simplify\Core\Subdomains;
+namespace Simplify\Core\Parts;
 
 use App\Models\Server;
 use Simplify\Core\Addons\Addon;
-use Simplify\Core\Subdomains\Filament\AutomaticSubdomains;
 use Simplify\Core\Subdomains\Models\Subdomain;
+use Simplify\Core\Subdomains\Subdomains;
 
-/** Subdomains in Simplify's add-on list and on server cards, like an add-on. Left out while the part is off (Parts). */
-final class SubdomainsAddon extends Addon
+/** One of Simplify's own parts in the add-on list, like an add-on. Left out while the part is off (Parts). */
+final class PartAddon extends Addon
 {
+    public function __construct(private readonly string $part) {}
+
     public function id(): string
     {
-        return 'simplify-subdomains';
+        return 'simplify-'.$this->part;
     }
 
     public function name(): string
     {
-        return 'Subdomains';
+        return __('pelican-simplify::'.Parts::PARTS[$this->part]['name']);
     }
 
     public function description(): string
     {
-        return __('pelican-simplify::subdomains.addon.description');
+        return __('pelican-simplify::'.Parts::PARTS[$this->part]['description']);
     }
 
     public function icon(): string
     {
-        return 'tabler-world';
+        return Parts::PARTS[$this->part]['icon'];
     }
 
     public function settingsUrl(): ?string
     {
-        return user()?->isRootAdmin() ? AutomaticSubdomains::getUrl(panel: 'admin') : null;
+        return user()?->isRootAdmin() ? Parts::PARTS[$this->part]['page']::getUrl(panel: 'admin') : null;
     }
 
     /** @var array<string, ?string>|null active subdomain names by server uuid: one query for all tiles of a page */
@@ -42,7 +44,7 @@ final class SubdomainsAddon extends Addon
 
     public function tileBadges(Server $server): array
     {
-        if (! Subdomains::ready()) {
+        if ($this->part !== 'subdomains' || ! Subdomains::ready()) {
             return [];
         }
         $this->active ??= Subdomain::query()->where('status', Subdomain::ACTIVE)->pluck('name', 'server_uuid')->all();
