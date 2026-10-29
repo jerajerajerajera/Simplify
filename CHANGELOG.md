@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.6
+
+- On a server's pages (Website, Minecraft, Plugins and Pelican's own pages) the page title is gone: the menu on the left already says where you are. An icon action such as Save sits in the top corner of the page's card instead of outside it, and the page starts level with the menu.
+- Pelican's icon actions on a server's pages and in host mode are Simplify icon buttons again, as in PelicanSimplify 0.7.0: the same Tabler icons, at the same size, in a quiet button instead of a large coloured glyph.
+
 ## 1.3.5
 
 - On a server page the announcements sit in the server card, between the name and the power buttons, as short rows instead of bars above the console. With more than two, a +N button shows the rest.
