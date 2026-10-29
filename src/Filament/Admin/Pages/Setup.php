@@ -48,6 +48,11 @@ final class Setup extends Page implements HasForms
         return __('pelican-simplify::setup.title');
     }
 
+    public function getSubheading(): string
+    {
+        return __('pelican-simplify::setup.intro');
+    }
+
     public function mount(): void
     {
         $this->form->fill(PanelSettings::all());

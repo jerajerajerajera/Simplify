@@ -71,6 +71,8 @@
                                         <small class="ps-card-real-name" :class="{'no-alias': !cardNames(s).small}" x-text="cardNames(s).small ? '('+cardNames(s).small+')' : ' '"></small>
                                     </div>
                                     <div class="ps-card-motd ps-motd-preview ps-motd-display" x-show="overviewPreferences.showMotd && s.game==='minecraft' && s.motd" x-data="{observer:null,init(){this.observer=new ResizeObserver(()=>this.fitMotd(this.$el));this.observer.observe(this.$el)},destroy(){this.observer?.disconnect()}}" x-effect="s.motd; overviewPreferences.showMotd; $nextTick(()=>fitMotd($el))"><template x-for="(part,index) in motdPreview(s.motd)" :key="index"><span :style="part.style" x-text="part.text"></span></template></div>
+                                    {{-- Add-on badges (version, address) on a line under the name; the corner keeps only game and status, as in 0.7.0. --}}
+                                    <div class="ps-card-extras" x-show="s.badges?.length"><template x-for="badge in s.badges || []" :key="badge"><span class="ps-badge" x-text="badge"></span></template></div>
                                 </div>
                                 <div class="ps-card-usage" x-show="overviewMetrics().length" :class="{'single-metric': overviewMetrics().length===1}">
                                     <template x-for="metric in overviewMetrics()" :key="metric.key">
@@ -94,8 +96,6 @@
                                 </div>
                                 <div class="ps-card-bottom" x-show="overviewView!=='list'">
                                     <span x-text="playerCount(s)"></span>
-                                    {{-- Add-on badges (version, address) on the bottom row, so the corner keeps only game and status as in 0.7.0. --}}
-                                    <span class="ps-card-extras"><template x-for="badge in s.badges || []" :key="badge"><span class="ps-badge" x-text="badge"></span></template></span>
                                     <svg aria-hidden="true"><use :href="s.linked ? '#ps-chevron' : '#ps-lock'"/></svg>
                                 </div>
                             </button>
