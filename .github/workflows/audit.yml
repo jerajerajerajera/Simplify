@@ -1,7 +1,7 @@
 name: Screen audit
 # A real Pelican panel with this checkout of Simplify and the add-ons (main), example data, a fake Wings with a live
 # console, and a browser that opens every screen, tab, menu and overlay on eight window sizes and measures cut-off
-# text, scrolling pages, popups off the screen and the console's colours. Result on the branch audit-results.
+# text, scrolling pages, popups off the screen and the console's colours. Result on the branch audit-results-<branch>-<stand>.
 on:
   workflow_dispatch:
     inputs:
@@ -24,7 +24,7 @@ jobs:
     steps:
       - id: list
         run: echo "stands=$(python3 -c "import json;s='${{ inputs.only }}'.strip();print(json.dumps(s.split(',') if s else ['d1920','d1440','laag1366','d1100','hoog1280','tablet768','phone390','phone360']))")" >> "$GITHUB_OUTPUT"
-  # One job per stand, side by side; each pushes its screens to the branch audit-results-<stand>.
+  # One job per stand, side by side; each pushes its screens to the branch audit-results-<branch>-<stand>.
   audit:
     needs: plan
     strategy:
@@ -108,4 +108,4 @@ jobs:
           git init -q -b results
           git add -A
           git -c user.name=audit -c user.email=audit@users.noreply.github.com commit -qm "Audit ${{ github.sha }} ${{ matrix.stand }}"
-          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" results:refs/heads/audit-results-${{ matrix.stand }}
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "results:refs/heads/audit-results-$(echo "${{ github.ref_name }}" | tr "/" "-")-${{ matrix.stand }}"
