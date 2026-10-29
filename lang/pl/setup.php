@@ -11,7 +11,7 @@ return [
         'look' => 'Wygląd',
         'app' => 'Aplikacja',
         'addons' => 'Dodatki',
-        'finish' => 'Części i dodatki',
+        'finish' => 'Skonfiguruj dodatki',
     ],
     'checks' => [
         'https' => 'Panel działa przez https. Przeglądarki instalują aplikację i wysyłają powiadomienia tylko przez https.',

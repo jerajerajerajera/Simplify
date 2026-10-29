@@ -11,7 +11,7 @@ return [
         'look' => 'Udseende',
         'app' => 'App',
         'addons' => 'Tilføjelser',
-        'finish' => 'Dele og add-ons',
+        'finish' => 'Opsæt add-ons',
     ],
     'checks' => [
         'https' => 'Panelet kører på https. Browsere installerer kun appen og sender kun notifikationer over https.',

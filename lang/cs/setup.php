@@ -11,7 +11,7 @@ return [
         'look' => 'Vzhled',
         'app' => 'Aplikace',
         'addons' => 'Doplňky',
-        'finish' => 'Součásti a doplňky',
+        'finish' => 'Nastavit doplňky',
     ],
     'checks' => [
         'https' => 'Panel běží přes https. Prohlížeče instalují aplikaci a posílají oznámení jen přes https.',

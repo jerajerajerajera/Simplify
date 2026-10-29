@@ -11,7 +11,7 @@ return [
         'look' => 'Tampilan',
         'app' => 'Aplikasi',
         'addons' => 'Add-on',
-        'finish' => 'Bagian & add-on',
+        'finish' => 'Atur add-on',
     ],
     'checks' => [
         'https' => 'Panel berjalan di https. Browser hanya memasang aplikasi dan mengirim notifikasi melalui https.',

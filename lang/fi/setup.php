@@ -11,7 +11,7 @@ return [
         'look' => 'Ulkoasu',
         'app' => 'Sovellus',
         'addons' => 'Lisätoiminnot',
-        'finish' => 'Osat ja lisäosat',
+        'finish' => 'Lisäosien asetukset',
     ],
     'checks' => [
         'https' => 'Paneeli toimii https-yhteydellä. Selaimet asentavat sovelluksen ja lähettävät ilmoituksia vain https-yhteydellä.',

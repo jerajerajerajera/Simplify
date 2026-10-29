@@ -11,7 +11,7 @@ return [
         'look' => 'Megjelenés',
         'app' => 'Alkalmazás',
         'addons' => 'Kiegészítők',
-        'finish' => 'Részek és bővítmények',
+        'finish' => 'Bővítmények beállítása',
     ],
     'checks' => [
         'https' => 'A panel https-en fut. A böngészők csak https-en telepítik az alkalmazást és küldenek értesítéseket.',

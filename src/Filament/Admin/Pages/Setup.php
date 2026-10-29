@@ -24,9 +24,9 @@ use Simplify\Core\Support\PanelSettings;
 use Throwable;
 
 /**
- * The first setup: which add-ons to install first, where people start, how it looks, the app, and the built-in parts
- * and installed add-ons. Every answer can be changed later on the settings page; nothing outside these settings and
- * the add-ons' own setup answers is touched.
+ * The first setup: which add-ons to install first, where people start, how it looks, the app, and the installed
+ * add-ons. Every answer can be changed later on the settings page; nothing outside these settings and the add-ons'
+ * own setup answers is touched.
  */
 final class Setup extends Page implements HasForms
 {
@@ -82,7 +82,6 @@ final class Setup extends Page implements HasForms
                 $step('look', 'tabler-palette', [SettingsFields::colours(), SettingsFields::brand()]),
                 $step('app', 'tabler-device-mobile', [View::make('pelican-simplify::partials.setup-checks'), SettingsFields::app()]),
                 $step('finish', 'tabler-checklist', [
-                    SettingsFields::parts(),
                     ...$this->addonSections(),
                     Section::make(__('pelican-simplify::setup.addon_pages'))->description(__('pelican-simplify::setup.addon_pages_help'))
                         ->schema([View::make('pelican-simplify::partials.addon-list')]),

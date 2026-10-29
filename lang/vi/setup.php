@@ -11,7 +11,7 @@ return [
         'look' => 'Giao diện',
         'app' => 'Ứng dụng',
         'addons' => 'Tiện ích bổ sung',
-        'finish' => 'Thành phần & tiện ích',
+        'finish' => 'Thiết lập tiện ích',
     ],
     'checks' => [
         'https' => 'Panel chạy trên https. Trình duyệt chỉ cài ứng dụng và gửi thông báo qua https.',

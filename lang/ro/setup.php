@@ -11,7 +11,7 @@ return [
         'look' => 'Aspect',
         'app' => 'Aplicație',
         'addons' => 'Extensii',
-        'finish' => 'Componente și add-on-uri',
+        'finish' => 'Configurează add-on-urile',
     ],
     'checks' => [
         'https' => 'Panoul rulează pe https. Browserele instalează aplicația și trimit notificări doar prin https.',

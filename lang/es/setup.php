@@ -11,7 +11,7 @@ return [
         'look' => 'Apariencia',
         'app' => 'App',
         'addons' => 'Add-ons',
-        'finish' => 'Partes y add-ons',
+        'finish' => 'Configurar add-ons',
     ],
     'checks' => [
         'https' => 'El panel funciona con https. Los navegadores solo instalan la app y envían notificaciones por https.',

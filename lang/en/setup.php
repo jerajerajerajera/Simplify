@@ -11,7 +11,7 @@ return [
         'look' => 'Look',
         'app' => 'App',
         'addons' => 'Add-ons',
-        'finish' => 'Parts & add-ons',
+        'finish' => 'Set up add-ons',
     ],
     'checks' => [
         'https' => 'The panel runs on https. Browsers only install the app and send notifications over https.',

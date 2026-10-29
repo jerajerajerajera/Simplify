@@ -191,17 +191,13 @@ step('the first visit to the settings opens the setup, and finishing it saves th
     if (! str_contains($page->getContent(), 'hub.pelican.dev/plugins/simplify-server-maker') || ! str_contains($page->getContent(), 's-addon-card')) {
         throw new RuntimeException('the setup does not recommend the add-ons');
     }
-    if (! str_contains($page->getContent(), 'part_embed')) {
-        throw new RuntimeException('the setup does not ask for the built-in parts');
-    }
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('admin'));
     $setup = Livewire\Livewire::actingAs($admin)->test(Setup::class)
-        ->set('data.support_url', 'mailto:help@example.com')->set('data.part_embed', false)->call('finish');
+        ->set('data.support_url', 'mailto:help@example.com')->call('finish');
     noErrors($setup);
-    if (! PanelSettings::get('setup_done') || PanelSettings::get('support_url') !== 'mailto:help@example.com' || PanelSettings::get('part_embed') !== false) {
+    if (! PanelSettings::get('setup_done') || PanelSettings::get('support_url') !== 'mailto:help@example.com') {
         throw new RuntimeException('the setup was not saved: '.json_encode(PanelSettings::all()));
     }
-    PanelSettings::save(['part_embed' => true]);
 });
 step('settings page renders with its menu, Pelican tabs included', function () use ($admin) {
     $url = Settings::getUrl(panel: 'admin');

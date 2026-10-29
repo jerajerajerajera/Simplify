@@ -11,7 +11,7 @@ return [
         'look' => 'Uiterlijk',
         'app' => 'App',
         'addons' => 'Add-ons',
-        'finish' => 'Onderdelen & add-ons',
+        'finish' => 'Add-ons instellen',
     ],
     'checks' => [
         'https' => 'Het paneel draait op https. Browsers installeren de app en sturen meldingen alleen via https.',
