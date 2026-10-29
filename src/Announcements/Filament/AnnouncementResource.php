@@ -18,6 +18,9 @@ use Filament\Forms\Components\ToggleButtons;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Schema;
+use Filament\Support\Enums\FontWeight;
+use Filament\Tables\Columns\Layout\Split;
+use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Simplify\Core\Announcements\Models\Announcement;
@@ -150,57 +153,71 @@ final class AnnouncementResource extends Resource
 
         return $table
             ->defaultSort('created_at', 'desc')
+            // Two rows, as the panel is too narrow for nine columns: the announcement itself, then what it does.
             ->columns([
-                TextColumn::make('title')
-                    ->label(self::text('form.title'))
-                    ->icon(fn (Announcement $record): string => Rules::icon($record->category))
-                    ->iconColor(fn (Announcement $record): string => Rules::color($record->category))
-                    ->description(fn (Announcement $record): ?string => $record->body ? str($record->body)->limit(80)->toString() : null)
-                    ->searchable()
-                    ->wrap(),
-                TextColumn::make('state')
-                    ->label(self::text('table.state'))
-                    ->state(fn (Announcement $record): string => $record->state())
-                    ->badge()
-                    ->color(fn (string $state): string => match ($state) {
-                        'live' => 'success',
-                        'scheduled' => 'info',
-                        default => 'gray',
-                    })
-                    ->formatStateUsing(fn (string $state): string => self::text('state.'.$state)),
-                TextColumn::make('starts_at')
-                    ->label(self::text('form.starts_at'))
-                    ->dateTime(timezone: $zone)
-                    ->placeholder(self::text('table.right_away')),
-                TextColumn::make('ends_at')
-                    ->label(self::text('form.ends_at'))
-                    ->dateTime(timezone: $zone)
-                    ->placeholder(self::text('table.until_ended')),
-                TextColumn::make('audience')
-                    ->label(self::text('form.audience'))
-                    ->badge()
-                    ->color('gray')
-                    ->formatStateUsing(fn (string $state): string => self::text('audience.'.$state)),
-                TextColumn::make('in_bell_at')
-                    ->label(self::text('table.in_bell'))
-                    ->icon('tabler-bell')
-                    ->state(fn (Announcement $record): ?string => match (true) {
-                        ! $record->in_bell => null,
-                        $record->in_bell_at !== null => self::text('table.in_bell_sent'),
-                        default => self::text('table.in_bell_waiting'),
-                    })
-                    ->placeholder('-'),
-                TextColumn::make('pushed_to')
-                    ->label(self::text('table.push'))
-                    ->icon('tabler-device-mobile')
-                    ->state(fn (Announcement $record): ?string => $record->push ? self::text('table.pushed_to', ['count' => $record->pushed_to]) : null)
-                    ->placeholder('-')
-                    ->visible(Push::available()),
-                TextColumn::make('in_game_result')
-                    ->label(self::text('table.in_game'))
-                    ->icon('tabler-device-gamepad-2')
-                    ->state(fn (Announcement $record): ?string => self::inGameSummary($record))
-                    ->placeholder('-'),
+                Stack::make([
+                    TextColumn::make('title')
+                        ->label(self::text('form.title'))
+                        ->weight(FontWeight::SemiBold)
+                        ->icon(fn (Announcement $record): string => Rules::icon($record->category))
+                        ->iconColor(fn (Announcement $record): string => Rules::color($record->category))
+                        ->description(fn (Announcement $record): ?string => $record->body ? str($record->body)->limit(200)->toString() : null)
+                        ->searchable()
+                        ->wrap(),
+                    Split::make([
+                        TextColumn::make('state')
+                            ->state(fn (Announcement $record): string => $record->state())
+                            ->badge()
+                            ->color(fn (string $state): string => match ($state) {
+                                'live' => 'success',
+                                'scheduled' => 'info',
+                                default => 'gray',
+                            })
+                            ->formatStateUsing(fn (string $state): string => self::text('state.'.$state))
+                            ->grow(false),
+                        TextColumn::make('starts_at')
+                            ->prefix(self::text('form.starts_at').': ')
+                            ->dateTime(timezone: $zone)
+                            ->placeholder(self::text('table.right_away'))
+                            ->color('gray')
+                            ->grow(false),
+                        TextColumn::make('ends_at')
+                            ->prefix(self::text('form.ends_at').': ')
+                            ->dateTime(timezone: $zone)
+                            ->placeholder(self::text('table.until_ended'))
+                            ->color('gray')
+                            ->grow(false),
+                        TextColumn::make('audience')
+                            ->badge()
+                            ->color('gray')
+                            ->tooltip(self::text('form.audience'))
+                            ->formatStateUsing(fn (string $state): string => self::text('audience.'.$state))
+                            ->grow(false),
+                        TextColumn::make('in_bell_at')
+                            ->icon('tabler-bell')
+                            ->tooltip(self::text('table.in_bell'))
+                            ->state(fn (Announcement $record): ?string => match (true) {
+                                ! $record->in_bell => null,
+                                $record->in_bell_at !== null => self::text('table.in_bell_sent'),
+                                default => self::text('table.in_bell_waiting'),
+                            })
+                            ->color('gray')
+                            ->grow(false),
+                        TextColumn::make('pushed_to')
+                            ->icon('tabler-device-mobile')
+                            ->tooltip(self::text('table.push'))
+                            ->state(fn (Announcement $record): ?string => $record->push ? self::text('table.pushed_to', ['count' => $record->pushed_to]) : null)
+                            ->color('gray')
+                            ->visible(Push::available())
+                            ->grow(false),
+                        TextColumn::make('in_game_result')
+                            ->icon('tabler-device-gamepad-2')
+                            ->tooltip(self::text('table.in_game'))
+                            ->state(fn (Announcement $record): ?string => self::inGameSummary($record))
+                            ->color('gray')
+                            ->grow(false),
+                    ])->from('md'),
+                ])->space(2),
             ])
             ->recordActions([
                 EditAction::make()->after(fn () => self::deliverNow()),

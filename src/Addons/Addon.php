@@ -123,7 +123,8 @@ abstract class Addon
     }
 
     /**
-     * Livewire components shown on the server's Simplify page. Each one receives the server as `server`.
+     * Livewire components that were shown under a server's console. Simplify 1.3.9 and later no longer show them, as
+     * the console page fits the window; the method stays so add-ons that still return sections keep working.
      *
      * @return list<class-string>
      */

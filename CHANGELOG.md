@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.3.10
+
+- A server's pages fit the window: the menu and the page next to it end at the bottom of the window, and only the page's own content scrolls, never the page itself. The console fills the space down to the footer.
+- Nothing under the console any more: the server info card from add-ons is gone, because the same information is under Minecraft and Plugins in the menu.
+- On a server page the announcements sit in the empty space of the top bar, between All servers and the icons. On narrower windows and phones they get a row of their own under it. The server card shows the MOTD again.
+- Admin → Announcements shows each announcement's title and text across the full width on the top row, with its details (state, dates, audience, bell, push, in-game) on the row below.
+
 ## 1.3.9
 
 - A server's software and version show once on its page. Paper reports "Paper 1.21.1" itself, so the server card read "Paper  Paper 1.21.1  Paper 1.21.1".

@@ -36,10 +36,16 @@
           if (new URLSearchParams(location.search).has('simplify_console')) document.documentElement.classList.add('ps-console-window');
           this.liveTimer = setInterval(() => this.live(), 1000);
           this.$nextTick(() => this.live());
-          // The console fits the window: again when the window or the cards above it change size.
-          addEventListener('resize', () => this.fitConsole());
-          this.$nextTick(() => new ResizeObserver(() => this.fitConsole()).observe(this.$root.querySelector('.ps-main')));
         }
+        // The page fits the window: again when the window or the cards above it change size.
+        addEventListener('resize', () => this.fitPage());
+        this.$nextTick(() => {
+          this.fitPage();
+          // The server card (a MOTD or status arriving later) and the page itself (Livewire filling in after load):
+          // the page is capped at --ps-fit, so only its content changes size.
+          const observer = new ResizeObserver(() => this.fitPage());
+          [this.$root.querySelector('.ps-main'), document.querySelector('.fi-main-ctn > .fi-main > *')].forEach(el => el && observer.observe(el));
+        });
       },
       destroy() {
         base.destroy.call(this);
@@ -120,28 +126,37 @@
         bar.querySelector('.ps-console-dot').classList.toggle('connected', connected);
         bar.querySelector('.ps-live-bars').hidden = !connected;
         this.quickCommands(terminal, bar.dataset.quick);
-        if (!terminal.style.height) this.fitConsole();
+        if (!terminal.style.height) this.fitPage();
         state.textContent = connected ? state.dataset.connected : state.dataset.connecting;
       },
 
-      /** The console fills the window under the cards, so the page itself does not scroll, and the menu beside it is
-          as tall. Pelican's terminal fits its rows to the new height on the resize event. Phones and low windows scroll. */
-      fitConsole() {
+      /** The page never scrolls: the menu and the page next to it get the window's height under the cards, and only
+          the page scrolls inside it (--ps-fit, dashboard.css). The console fills that height, with the menu as tall;
+          Pelican's terminal fits its rows to the new height on the resize event. Phones and low windows scroll. */
+      fitPage() {
+        const root = document.documentElement, main = document.querySelector('.fi-main-ctn > .fi-main');
+        const fit = !!main && innerWidth > 600 && innerHeight > 500 && !root.classList.contains('ps-console-window');
+        root.classList.toggle('ps-fit', fit);
+        if (!fit) {
+          root.style.removeProperty('--ps-fit');
+          return this.fitConsole(0, main);
+        }
+        const footer = document.querySelector('.fi-footer, [data-ps-footer]')?.offsetHeight || 0;
+        const height = Math.max(240, Math.floor(innerHeight - (main.getBoundingClientRect().top + scrollY) - footer - 14));
+        root.style.setProperty('--ps-fit', height + 'px');
+        this.fitConsole(height, main);
+      },
+      fitConsole(space, main) {
         const terminal = document.getElementById('terminal'), card = terminal?.parentElement, menu = document.querySelector('.ps-server-menu');
         if (!card) return;
-        const fit = innerWidth > 600 && innerHeight > 500 && !document.documentElement.classList.contains('ps-console-window');
         let height = '';
-        if (fit) {
-          const footer = document.querySelector('.fi-footer, [data-ps-footer]')?.offsetHeight || 0;
-          const below = card.getBoundingClientRect().bottom - terminal.getBoundingClientRect().bottom;
-          const main = parseFloat(getComputedStyle(card.closest('.fi-main') || card).paddingBottom) || 0;
-          height = Math.max(240, Math.floor(innerHeight - (terminal.getBoundingClientRect().top + scrollY) - below - main - footer)) + 'px';
-        }
+        // The terminal takes whatever the page has left (or gives back what it is short), so nothing else needs measuring.
+        if (space) height = Math.max(240, Math.floor(terminal.offsetHeight + space - main.scrollHeight)) + 'px';
         if (terminal.style.height !== height) {
           terminal.style.height = height;
           dispatchEvent(new Event('resize'));
         }
-        if (menu) menu.style.height = fit ? card.offsetHeight + 'px' : '';
+        if (menu) menu.style.height = space ? card.offsetHeight + 'px' : '';
       },
 
       /** Minecraft: a row of common commands above Pelican's command line; a click puts one in the line to finish or send. */

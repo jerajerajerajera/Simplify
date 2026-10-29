@@ -565,7 +565,7 @@ step('announcements: live bars show for the right people, and the admin list is 
         throw new RuntimeException('the admin list is wrong or opens for a player');
     }
 });
-step('announcements: a server page shows them as short rows in the server card, not as bars above the console', function () use ($admin, $server) {
+step('announcements: a server page shows them as short rows in the top bar, not as bars above the console', function () use ($admin, $server) {
     $note = Announcement::create(['title' => 'Smoke card note', 'body' => 'Short and in the card']);
     try {
         $url = Filament\Facades\Filament::getPanel('server')->getUrl($server);
@@ -578,7 +578,7 @@ step('announcements: a server page shows them as short rows in the server card, 
         $page = $response->getContent();
         $card = strpos($page, 'ps-info-notes');
         if ($card === false || strpos($page, 'Smoke card note', $card) === false || str_contains($page, 'simplify-announcement-')) {
-            throw new RuntimeException('the announcement is not a row in the server card');
+            throw new RuntimeException('the announcement is not a row in the top bar');
         }
     } finally {
         $note->delete();

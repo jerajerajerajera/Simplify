@@ -8,6 +8,10 @@
             <svg aria-hidden="true"><use href="#ps-back"/></svg><span>{{ $u('all_servers') }}</span>
         </a>
     </div>
+    @if (! empty($notes))
+        {{-- A server's announcements, as short rows in the bar (announcements/notes.blade.php). --}}
+        @livewire('simplify-core-announcement-bars', ['compact' => true], key('simplify-server-notes'))
+    @endif
     <nav class="ps-top-actions" aria-label="{{ $u('panel_navigation') }}" :class="{'nav-open': navMenu}"
          x-on:click.outside="navMenu=false; accountMenu=false" x-on:keydown.escape.stop="navMenu=false; accountMenu=false">
         {{-- Health in the top bar: the button opens the details below it; the create buttons sit next to it. --}}
