@@ -10,5 +10,6 @@ php tests/host-health.php
 php tests/push.php
 php tests/announcements-rules.php
 php tests/announcements-game-chat.php
+php tests/embed.php
 php tests/lang.php
 python3 tests/hub-check.py

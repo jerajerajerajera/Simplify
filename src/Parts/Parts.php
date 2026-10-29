@@ -7,6 +7,7 @@ namespace Simplify\Core\Parts;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Simplify\Core\Announcements\AnnouncementsAddon;
+use Simplify\Core\Embed\EmbedAddon;
 use Simplify\Core\Support\PanelSettings;
 use Throwable;
 
@@ -29,6 +30,14 @@ final class Parts
                 'simplify_announcements' => 'simplify_core_announcements',
                 'simplify_announcement_dismissals' => 'simplify_core_announcement_dismissals',
                 'simplify_announcement_commands' => 'simplify_core_announcement_commands',
+            ],
+        ],
+        'embed' => [
+            'provider' => 'Simplify\\Embed\\Providers\\EmbedProvider',
+            'addon' => EmbedAddon::class,
+            'tables' => [
+                'simplify_embed_settings' => 'simplify_core_embed_settings',
+                'simplify_embed_servers' => 'simplify_core_embed_servers',
             ],
         ],
     ];

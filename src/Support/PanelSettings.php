@@ -39,6 +39,7 @@ final class PanelSettings
         'logo_height' => [32, ['required', 'integer', 'min:16', 'max:64']],
         // Parts that used to be separate add-ons (Parts).
         'part_announcements' => [true, ['required', 'boolean']],
+        'part_embed' => [true, ['required', 'boolean']],
     ];
 
     /** @return array<string, mixed> */
