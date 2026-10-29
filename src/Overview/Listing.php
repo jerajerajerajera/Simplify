@@ -110,6 +110,8 @@ final class Listing
                 'control.restart' => $user->can(SubuserPermission::ControlRestart, $server),
             ],
             'server_icon' => $info['icon'] ?? null,
+            // The icon uploaded for the server in Pelican, used when the game itself reports none.
+            'icon' => $server->icon ?: null,
             'egg_icon' => is_string($egg) && $egg !== '' ? $egg : null,
             'players' => $info['players'] ?? null,
             'max_players' => $info['max_players'] ?? null,
