@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.3
+
+- The notifications menu always ends inside the window, so its last item and "Show more" are no longer cut off when the top bar has a second row (announcements on a narrower window) or the panel is zoomed.
+
 ## 1.4.2
 
 - Console: the output fits its box again. Lines no longer run past the right edge or end half hidden behind the command bar, and the whole console card, the command bar included, has one background colour.

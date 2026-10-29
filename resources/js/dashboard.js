@@ -148,7 +148,19 @@
       async toggleNotifications() {
         this.notifyMenu = !this.notifyMenu;
         this.appearanceMenu = this.groupsMenu = this.accountMenu = false;
-        if (this.notifyMenu) await this.loadNotificationPage(true);
+        if (this.notifyMenu) {
+          this.$nextTick(() => this.fitDropdown(document.getElementById('ps-notify-menu')));
+          await this.loadNotificationPage(true);
+        }
+      },
+      /** A menu under the top bar ends inside the window, wherever the bar ends (announcements can give it a second row). */
+      fitDropdown(menu) {
+        if (!menu || typeof window === 'undefined') return;
+        // In the phone menu it is part of that menu, which scrolls itself.
+        menu.style.maxHeight = '';
+        if (getComputedStyle(menu).position !== 'absolute') return;
+        const scale = this.uiScale || 1, top = menu.getBoundingClientRect().top / scale;
+        menu.style.maxHeight = Math.max(160, Math.floor(window.innerHeight / scale - top - 12)) + 'px';
       },
       /** New unread notifications since the last look drop down from the bell, one after another (as in 0.7.0). */
       async pollNotifications() {
