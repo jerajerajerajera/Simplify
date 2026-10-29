@@ -2,7 +2,7 @@
 
 return [
     'title' => 'Thiết lập Simplify',
-    'intro' => 'Bốn bước ngắn. Mọi thứ có thể đổi sau trong cài đặt Simplify.',
+    'intro' => 'Năm bước ngắn. Mọi thứ đều có thể đổi sau trong cài đặt của Simplify.',
     'again' => 'Chạy lại thiết lập',
     'finish' => 'Hoàn tất thiết lập',
     'done' => 'Simplify đã được thiết lập',
@@ -11,6 +11,7 @@ return [
         'look' => 'Giao diện',
         'app' => 'Ứng dụng',
         'addons' => 'Tiện ích bổ sung',
+        'finish' => 'Thành phần & tiện ích',
     ],
     'checks' => [
         'https' => 'Panel chạy trên https. Trình duyệt chỉ cài ứng dụng và gửi thông báo qua https.',
@@ -18,7 +19,7 @@ return [
         'ok' => 'Sẵn sàng',
         'missing' => 'Thiếu',
     ],
-    'addons_intro' => 'Tiện ích bổ sung là các plugin riêng trên Pelican Hub. Hãy cài những cái bạn muốn ở đó; chúng sẽ tự xuất hiện trong Simplify.',
+    'addons_intro' => 'Simplify tự hoạt động được. Mỗi tiện ích thêm một chức năng, và chúng tôi khuyên dùng tất cả. Hãy cài những tiện ích bạn muốn từ Pelican Hub trước, rồi quay lại: phần thiết lập này sẽ cài đặt mọi thứ một lần.',
     'installed' => 'Đã cài',
     'hub' => 'Trên Hub',
     'catalog' => [
@@ -43,4 +44,12 @@ return [
             'description' => 'Liên kết thanh toán, khu vực khách hàng và chế độ máy chủ cho bảng điều khiển lớn.',
         ],
     ],
+    'addons_title' => 'Làm được nhiều hơn với Simplify',
+    'addons_count' => 'Đã cài :installed/:total',
+    'check_again' => 'Kiểm tra lại',
+    'recommended' => 'Khuyên dùng',
+    'set_up_later' => 'Thiết lập ở bước cuối',
+    'free_on_hub' => 'Cài từ Pelican Hub',
+    'addon_pages' => 'Cài đặt tiện ích',
+    'addon_pages_help' => 'Mỗi tiện ích còn có trang cài đặt riêng cho những gì phần thiết lập không hỏi.',
 ];

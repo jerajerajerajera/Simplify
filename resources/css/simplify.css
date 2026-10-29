@@ -393,8 +393,260 @@
   color: var(--s-warn);
 }
 
-.s-setup-note {
+/* The setup: the same card as the settings, with the steps as the menu on the left and the step beside it. */
+.s-setup.fi-sc-wizard {
+  align-content: start;
+  background: var(--s-surface) !important;
+  border: 1px solid var(--s-line) !important;
+  border-radius: 20px !important;
+  box-shadow: none !important;
+  display: grid !important;
+  grid-template-columns: 236px minmax(0, 1fr);
+  overflow: clip;
+}
+
+.s-setup > :not(.fi-sc-wizard-header) {
+  grid-column: 2;
+  min-width: 0;
+}
+
+.s-setup > .fi-sc-wizard-header {
+  align-content: start;
+  background: none !important;
+  border: 0 !important;
+  border-inline-end: 1px solid var(--s-line) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  display: grid !important;
+  gap: 1px;
+  grid-column: 1;
+  grid-row: 1 / span 9;
+  grid-template-columns: minmax(0, 1fr) !important;
+  padding: 20px 10px 12px;
+}
+
+.s-setup .fi-sc-wizard-header-step {
+  border: 0 !important;
+  display: block !important;
+}
+
+/* Filament's arrows between the steps. */
+.s-setup .fi-sc-wizard-header-step > :not(button) {
+  display: none !important;
+}
+
+.s-setup .fi-sc-wizard-header-step > button {
+  align-items: center;
+  border-radius: var(--s-radius-sm);
+  display: flex;
+  gap: 9px;
+  min-height: 30px;
+  padding: 5px 9px !important;
+  text-align: start;
+  width: 100%;
+}
+
+.s-setup .fi-sc-wizard-header-step > button:hover {
+  background: var(--s-raised);
+}
+
+.s-setup .fi-sc-wizard-header-step.fi-active > button {
+  background: color-mix(in srgb, var(--s-tone) 14%, transparent);
+}
+
+.s-setup .fi-sc-wizard-header-step-icon-ctn {
+  background: color-mix(in srgb, var(--s-tone) 16%, transparent) !important;
+  border: 0 !important;
+  color: var(--s-tone) !important;
+  flex: none;
+  height: 22px !important;
+  width: 22px !important;
+}
+
+.s-setup .fi-sc-wizard-header-step.fi-active .fi-sc-wizard-header-step-icon-ctn {
+  background: var(--s-tone) !important;
+  color: #fff !important;
+}
+
+.s-setup :is(.fi-sc-wizard-header-step-icon-ctn .fi-icon, .fi-sc-wizard-header-step-number) {
+  color: inherit !important;
+  font-size: 11px;
+  height: 14px;
+  width: 14px;
+}
+
+.s-setup .fi-sc-wizard-header-step-label {
+  color: var(--s-ink) !important;
+  font: 550 13px/1.25 inherit !important;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.s-setup .fi-sc-wizard-header-step:nth-child(1) { --s-tone: #b48cf2; }
+.s-setup .fi-sc-wizard-header-step:nth-child(2) { --s-tone: #9a9aa6; }
+.s-setup .fi-sc-wizard-header-step:nth-child(3) { --s-tone: #e0a050; }
+.s-setup .fi-sc-wizard-header-step:nth-child(4) { --s-tone: #6ea8fe; }
+.s-setup .fi-sc-wizard-header-step:nth-child(5) { --s-tone: #4ec9a0; }
+
+.s-setup > .fi-sc-wizard-step {
+  padding: 22px 26px 8px !important;
+}
+
+.s-setup > .fi-sc-wizard-footer {
+  padding: 8px 26px 22px !important;
+}
+
+/* The first step: a card per add-on, with a small banner, to install from the Hub before the rest is set up. */
+.s-setup-addons-title {
+  color: var(--s-ink);
+  font-size: var(--s-text-lg);
+  font-weight: 650;
+}
+
+.s-setup-addons > p {
+  margin: 2px 0 var(--s-space-4);
+  max-width: 70ch;
+}
+
+.s-setup-addons-count {
+  align-items: center;
+  color: var(--s-muted);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 13px;
+  gap: var(--s-space-2);
+  justify-content: space-between;
   margin-bottom: var(--s-space-3);
+}
+
+.s-addon-cards {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.s-addon-card {
+  background: var(--s-surface);
+  border: 1px solid var(--s-line);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Dark in both themes, like the add-ons' banners on the Hub. */
+.s-addon-card-banner {
+  align-items: center;
+  background: radial-gradient(120% 140% at 100% 0%, color-mix(in srgb, var(--s-tone) 30%, transparent), transparent 60%), #111723;
+  color: #f1f4fa;
+  display: flex;
+  gap: var(--s-space-3);
+  min-height: 86px;
+  padding: 16px;
+}
+
+.s-addon-card-icon {
+  background: color-mix(in srgb, var(--s-tone) 22%, transparent);
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--s-tone) 40%, transparent);
+  color: var(--s-tone);
+  display: grid;
+  flex: none;
+  height: 44px;
+  place-items: center;
+  width: 44px;
+}
+
+.s-addon-card-icon svg {
+  height: 24px;
+  width: 24px;
+}
+
+.s-addon-card-name {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -.3px;
+  line-height: 1.15;
+  min-width: 0;
+}
+
+.s-addon-card-name small {
+  color: var(--s-tone);
+  display: block;
+  font-size: var(--s-text-sm);
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.s-addon-card-tag {
+  align-self: flex-start;
+  background: rgb(255 255 255 / .1);
+  border-radius: var(--s-radius-pill);
+  font-size: 11px;
+  font-weight: 700;
+  margin-inline-start: auto;
+  padding: 2px 8px;
+  white-space: nowrap;
+}
+
+.s-addon-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--s-space-3);
+  padding: 12px 16px 14px;
+}
+
+.s-addon-card-foot {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: var(--s-text-sm);
+  gap: var(--s-space-2);
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.s-addon-card-foot .s-badge svg {
+  height: 14px;
+  width: 14px;
+}
+
+@media (max-width: 900px) {
+  .s-setup.fi-sc-wizard {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .s-setup > :not(.fi-sc-wizard-header) {
+    grid-column: 1;
+  }
+
+  /* Phones: the steps as two tidy columns above the step, like the settings menu. */
+  .s-setup > .fi-sc-wizard-header {
+    border-bottom: 1px solid var(--s-line) !important;
+    border-inline-end: 0 !important;
+    gap: 2px 6px;
+    grid-row: auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    padding: 8px;
+  }
+
+  .s-setup > .fi-sc-wizard-step {
+    padding: 16px 14px 4px !important;
+  }
+
+  .s-setup > .fi-sc-wizard-footer {
+    padding: 8px 14px 16px !important;
+  }
+
+  .s-addon-cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .s-addon-card-banner {
+    min-height: 0;
+    padding: 12px;
+  }
 }
 
 [dir="rtl"] .s-switch:checked::after {
@@ -512,7 +764,7 @@ html.ps-frame[data-ps-tree] .s-settings-tabs.fi-vertical {
   padding: 22px 26px 8px;
 }
 
-.s-settings-tabs .fi-section {
+:is(.s-settings-tabs, .s-setup) .fi-section {
   border-radius: 16px !important;
   box-shadow: none !important;
 }

@@ -2,7 +2,7 @@
 
 return [
     'title' => 'Simplify einrichten',
-    'intro' => 'Vier kurze Schritte. Alles lässt sich später in den Einstellungen von Simplify ändern.',
+    'intro' => 'Fünf kurze Schritte. Alles lässt sich später in den Einstellungen von Simplify ändern.',
     'again' => 'Einrichtung erneut starten',
     'finish' => 'Einrichtung abschließen',
     'done' => 'Simplify ist eingerichtet',
@@ -11,6 +11,7 @@ return [
         'look' => 'Aussehen',
         'app' => 'App',
         'addons' => 'Add-ons',
+        'finish' => 'Bestandteile & Add-ons',
     ],
     'checks' => [
         'https' => 'Das Panel läuft über https. Browser installieren die App und senden Benachrichtigungen nur über https.',
@@ -18,7 +19,7 @@ return [
         'ok' => 'Bereit',
         'missing' => 'Fehlt',
     ],
-    'addons_intro' => 'Add-ons sind eigene Plugins im Pelican Hub. Installiere dort die, die du willst; sie erscheinen von selbst in Simplify.',
+    'addons_intro' => 'Simplify funktioniert auch allein. Jedes Add-on fügt eine Sache hinzu, und wir empfehlen alle. Installiere zuerst die gewünschten Add-ons aus dem Pelican Hub und komm dann zurück: Diese Einrichtung stellt alles in einem Durchgang ein.',
     'installed' => 'Installiert',
     'hub' => 'Im Hub',
     'catalog' => [
@@ -43,4 +44,12 @@ return [
             'description' => 'Abrechnungslinks, ein Kundenbereich für Kunden und der Host-Modus für große Panels.',
         ],
     ],
+    'addons_title' => 'Mehr aus Simplify herausholen',
+    'addons_count' => ':installed von :total installiert',
+    'check_again' => 'Erneut prüfen',
+    'recommended' => 'Empfohlen',
+    'set_up_later' => 'Wird im letzten Schritt eingerichtet',
+    'free_on_hub' => 'Aus dem Pelican Hub installieren',
+    'addon_pages' => 'Add-on-Einstellungen',
+    'addon_pages_help' => 'Jedes Add-on hat außerdem eine eigene Einstellungsseite für alles, was die Einrichtung nicht abfragt.',
 ];

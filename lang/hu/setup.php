@@ -2,7 +2,7 @@
 
 return [
     'title' => 'Simplify beállítása',
-    'intro' => 'Négy rövid lépés. Később mindent módosíthatsz a Simplify beállításaiban.',
+    'intro' => 'Öt rövid lépés. Később mindent módosíthatsz a Simplify beállításaiban.',
     'again' => 'Beállítás újrafuttatása',
     'finish' => 'Beállítás befejezése',
     'done' => 'A Simplify be van állítva',
@@ -11,6 +11,7 @@ return [
         'look' => 'Megjelenés',
         'app' => 'Alkalmazás',
         'addons' => 'Kiegészítők',
+        'finish' => 'Részek és bővítmények',
     ],
     'checks' => [
         'https' => 'A panel https-en fut. A böngészők csak https-en telepítik az alkalmazást és küldenek értesítéseket.',
@@ -18,7 +19,7 @@ return [
         'ok' => 'Kész',
         'missing' => 'Hiányzik',
     ],
-    'addons_intro' => 'A kiegészítők külön bővítmények a Pelican Hubon. Ott telepítsd, amelyiket szeretnéd; a Simplifyban maguktól megjelennek.',
+    'addons_intro' => 'A Simplify önmagában is működik. Minden bővítmény egy dolgot ad hozzá, és mindet ajánljuk. Először telepítsd a Pelican Hubról azokat, amelyeket szeretnél, majd gyere vissza: ez a beállítás egyszerre állít be mindent.',
     'installed' => 'Telepítve',
     'hub' => 'A Hubon',
     'catalog' => [
@@ -43,4 +44,12 @@ return [
             'description' => 'Számlázási linkek, ügyfélterület az ügyfeleknek és hoszt mód nagy panelekhez.',
         ],
     ],
+    'addons_title' => 'Hozz ki többet a Simplifyból',
+    'addons_count' => ':installed / :total telepítve',
+    'check_again' => 'Újraellenőrzés',
+    'recommended' => 'Ajánlott',
+    'set_up_later' => 'Az utolsó lépésben állítható be',
+    'free_on_hub' => 'Telepítsd a Pelican Hubról',
+    'addon_pages' => 'Bővítmények beállításai',
+    'addon_pages_help' => 'Minden bővítménynek saját beállítási oldala is van mindarra, amit a beállítás nem kérdez.',
 ];

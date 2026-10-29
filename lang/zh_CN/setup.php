@@ -2,7 +2,7 @@
 
 return [
     'title' => '设置 Simplify',
-    'intro' => '四个简短步骤。所有内容之后都可以在 Simplify 设置中修改。',
+    'intro' => '五个简短步骤。所有设置之后都可以在 Simplify 设置中更改。',
     'again' => '重新运行设置',
     'finish' => '完成设置',
     'done' => 'Simplify 已设置完成',
@@ -11,6 +11,7 @@ return [
         'look' => '外观',
         'app' => '应用',
         'addons' => '附加组件',
+        'finish' => '组件和附加组件',
     ],
     'checks' => [
         'https' => '面板运行在 https 上。浏览器只会通过 https 安装应用和发送通知。',
@@ -18,7 +19,7 @@ return [
         'ok' => '就绪',
         'missing' => '缺失',
     ],
-    'addons_intro' => '附加组件是 Pelican Hub 上的独立插件。在那里安装你需要的组件，它们会自动出现在 Simplify 中。',
+    'addons_intro' => 'Simplify 可以单独使用。每个附加组件增加一项功能，我们全部推荐。请先从 Pelican Hub 安装你需要的附加组件，然后回来：此设置会一次性完成所有配置。',
     'installed' => '已安装',
     'hub' => '在 Hub 上',
     'catalog' => [
@@ -43,4 +44,12 @@ return [
             'description' => '账单链接、客户专区，以及适合大型面板的主机模式。',
         ],
     ],
+    'addons_title' => '让 Simplify 做得更多',
+    'addons_count' => '已安装 :installed / :total',
+    'check_again' => '重新检查',
+    'recommended' => '推荐',
+    'set_up_later' => '在最后一步设置',
+    'free_on_hub' => '从 Pelican Hub 安装',
+    'addon_pages' => '附加组件设置',
+    'addon_pages_help' => '每个附加组件还有自己的设置页面，用于设置向导未询问的内容。',
 ];

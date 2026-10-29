@@ -2,7 +2,7 @@
 
 return [
     'title' => 'Ota Simplify käyttöön',
-    'intro' => 'Neljä lyhyttä vaihetta. Kaiken voi muuttaa myöhemmin Simplifyn asetuksista.',
+    'intro' => 'Viisi lyhyttä vaihetta. Kaikkea voi muuttaa myöhemmin Simplifyn asetuksista.',
     'again' => 'Suorita käyttöönotto uudelleen',
     'finish' => 'Viimeistele käyttöönotto',
     'done' => 'Simplify on otettu käyttöön',
@@ -11,6 +11,7 @@ return [
         'look' => 'Ulkoasu',
         'app' => 'Sovellus',
         'addons' => 'Lisätoiminnot',
+        'finish' => 'Osat ja lisäosat',
     ],
     'checks' => [
         'https' => 'Paneeli toimii https-yhteydellä. Selaimet asentavat sovelluksen ja lähettävät ilmoituksia vain https-yhteydellä.',
@@ -18,7 +19,7 @@ return [
         'ok' => 'Valmis',
         'missing' => 'Puuttuu',
     ],
-    'addons_intro' => 'Lisätoiminnot ovat erillisiä lisäosia Pelican Hubissa. Asenna haluamasi sieltä; ne ilmestyvät Simplifyhin itsestään.',
+    'addons_intro' => 'Simplify toimii myös yksinään. Jokainen lisäosa tuo yhden asian, ja suosittelemme niitä kaikkia. Asenna ensin haluamasi lisäosat Pelican Hubista ja palaa sitten: tämä käyttöönotto asettaa kaiken kerralla.',
     'installed' => 'Asennettu',
     'hub' => 'Hubissa',
     'catalog' => [
@@ -43,4 +44,12 @@ return [
             'description' => 'Laskutuslinkit, asiakasalue asiakkaille ja isäntätila suurille paneeleille.',
         ],
     ],
+    'addons_title' => 'Saa Simplifystä enemmän irti',
+    'addons_count' => ':installed / :total asennettu',
+    'check_again' => 'Tarkista uudelleen',
+    'recommended' => 'Suositeltu',
+    'set_up_later' => 'Asetetaan viimeisessä vaiheessa',
+    'free_on_hub' => 'Asenna Pelican Hubista',
+    'addon_pages' => 'Lisäosien asetukset',
+    'addon_pages_help' => 'Jokaisella lisäosalla on myös oma asetussivunsa kaikelle, mitä käyttöönotto ei kysy.',
 ];

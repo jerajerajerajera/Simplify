@@ -2,7 +2,7 @@
 
 return [
     'title' => 'Nastavení Simplify',
-    'intro' => 'Čtyři krátké kroky. Vše lze později změnit v nastavení Simplify.',
+    'intro' => 'Pět krátkých kroků. Vše můžeš později změnit v nastavení Simplify.',
     'again' => 'Spustit nastavení znovu',
     'finish' => 'Dokončit nastavení',
     'done' => 'Simplify je nastavený',
@@ -11,6 +11,7 @@ return [
         'look' => 'Vzhled',
         'app' => 'Aplikace',
         'addons' => 'Doplňky',
+        'finish' => 'Součásti a doplňky',
     ],
     'checks' => [
         'https' => 'Panel běží přes https. Prohlížeče instalují aplikaci a posílají oznámení jen přes https.',
@@ -18,7 +19,7 @@ return [
         'ok' => 'Připraveno',
         'missing' => 'Chybí',
     ],
-    'addons_intro' => 'Doplňky jsou samostatné pluginy na Pelican Hub. Nainstalujte tam ty, které chcete; v Simplify se objeví samy.',
+    'addons_intro' => 'Simplify funguje i samostatně. Každý doplněk přidá jednu věc a doporučujeme všechny. Nejdřív si z Pelican Hubu nainstaluj ty, které chceš, a pak se vrať: toto nastavení vše nastaví najednou.',
     'installed' => 'Nainstalováno',
     'hub' => 'Na Hubu',
     'catalog' => [
@@ -43,4 +44,12 @@ return [
             'description' => 'Odkazy na fakturaci, klientská zóna pro zákazníky a režim hostitele pro velké panely.',
         ],
     ],
+    'addons_title' => 'Získej ze Simplify víc',
+    'addons_count' => 'Nainstalováno :installed z :total',
+    'check_again' => 'Zkontrolovat znovu',
+    'recommended' => 'Doporučeno',
+    'set_up_later' => 'Nastaví se v posledním kroku',
+    'free_on_hub' => 'Nainstaluj z Pelican Hubu',
+    'addon_pages' => 'Nastavení doplňků',
+    'addon_pages_help' => 'Každý doplněk má také vlastní stránku nastavení pro vše, na co se průvodce neptá.',
 ];

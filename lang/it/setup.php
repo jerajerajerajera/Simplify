@@ -2,7 +2,7 @@
 
 return [
     'title' => 'Configura Simplify',
-    'intro' => 'Quattro brevi passaggi. Tutto si può cambiare dopo nelle impostazioni di Simplify.',
+    'intro' => 'Cinque brevi passaggi. Potrai cambiare tutto in seguito nelle impostazioni di Simplify.',
     'again' => 'Ripeti la configurazione',
     'finish' => 'Termina la configurazione',
     'done' => 'Simplify è configurato',
@@ -11,6 +11,7 @@ return [
         'look' => 'Aspetto',
         'app' => 'App',
         'addons' => 'Add-on',
+        'finish' => 'Componenti e add-on',
     ],
     'checks' => [
         'https' => 'Il pannello funziona in https. I browser installano l\'app e inviano notifiche solo via https.',
@@ -18,7 +19,7 @@ return [
         'ok' => 'Pronto',
         'missing' => 'Manca',
     ],
-    'addons_intro' => 'Gli add-on sono plugin separati sul Pelican Hub. Installa lì quelli che vuoi; compaiono da soli in Simplify.',
+    'addons_intro' => 'Simplify funziona da solo. Ogni add-on aggiunge una cosa e li consigliamo tutti. Installa prima quelli che vuoi dal Pelican Hub, poi torna qui: questa configurazione imposta tutto in una volta.',
     'installed' => 'Installato',
     'hub' => 'Sul Hub',
     'catalog' => [
@@ -43,4 +44,12 @@ return [
             'description' => 'Link di fatturazione, un\'area clienti e la modalità host per pannelli grandi.',
         ],
     ],
+    'addons_title' => 'Fai di più con Simplify',
+    'addons_count' => ':installed di :total installati',
+    'check_again' => 'Controlla di nuovo',
+    'recommended' => 'Consigliato',
+    'set_up_later' => 'Si imposta nell\'ultimo passaggio',
+    'free_on_hub' => 'Installalo dal Pelican Hub',
+    'addon_pages' => 'Impostazioni degli add-on',
+    'addon_pages_help' => 'Ogni add-on ha anche una propria pagina di impostazioni, per tutto ciò che la configurazione non chiede.',
 ];
