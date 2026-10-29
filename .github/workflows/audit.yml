@@ -11,6 +11,9 @@ on:
       toolkit:
         description: 'Branch of Simplify-Toolkit'
         default: 'main'
+      servermaker:
+        description: 'Branch of Simplify-ServerMaker'
+        default: 'main'
   push:
     branches: ['claude/project-thread-k01bn2']
     paths: ['tests/audit/**', '.github/workflows/audit.yml']
@@ -70,7 +73,7 @@ jobs:
           php artisan p:plugin:install simplify
           for pair in Simplify-Toolkit:simplify-toolkit Simplify-EggUpdates:simplify-eggupdates Simplify-Explain:simplify-explain Simplify-ServerMaker:simplify-servermaker Simplify-Hosting:simplify-hosting; do
             repo=${pair%%:*}; id=${pair##*:}
-            branch=main; [ "$repo" = Simplify-Toolkit ] && branch="${{ inputs.toolkit || 'main' }}"
+            branch=main; [ "$repo" = Simplify-Toolkit ] && branch="${{ inputs.toolkit || 'main' }}"; [ "$repo" = Simplify-ServerMaker ] && branch="${{ inputs.servermaker || 'main' }}"
             git clone --quiet --depth 1 --branch "$branch" "https://github.com/jerajerajerajera/$repo.git" "plugins/$id"
             real=$(php -r "echo json_decode(file_get_contents('plugins/$id/plugin.json'), true)['id'];")
             if [ "$real" != "$id" ]; then mv "plugins/$id" "plugins/$real"; id=$real; fi
