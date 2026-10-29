@@ -147,11 +147,8 @@
         const terminal = document.getElementById('terminal'), card = terminal?.parentElement, menu = document.querySelector('.ps-server-menu');
         if (!card) return;
         let height = '';
-        if (space) {
-          const below = card.getBoundingClientRect().bottom - terminal.getBoundingClientRect().bottom;
-          const above = terminal.getBoundingClientRect().top - main.getBoundingClientRect().top + main.scrollTop;
-          height = Math.max(240, Math.floor(space - above - below)) + 'px';
-        }
+        // The terminal takes whatever the page has left (or gives back what it is short), so nothing else needs measuring.
+        if (space) height = Math.max(240, Math.floor(terminal.offsetHeight + space - main.scrollHeight)) + 'px';
         if (terminal.style.height !== height) {
           terminal.style.height = height;
           dispatchEvent(new Event('resize'));

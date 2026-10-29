@@ -1174,6 +1174,9 @@ body:has(.ps-server-top) .fi-page-header-main-ctn:not(:has(.fi-ta, > .fi-header 
    cards, and each scrolls inside itself. Only max-height, so nothing inside takes the full height. */
 html.ps-fit body:has(.ps-server-top) .fi-main-ctn > .fi-main { max-height: var(--ps-fit); padding-bottom: 0 !important; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
 html.ps-fit .ps-server-menu { max-height: var(--ps-fit); }
+/* Filament's page leaves 32px under the content and a gap for an empty slot: in a fitted page that is an empty band. */
+html.ps-fit body:has(.ps-server-top) .fi-page-header-main-ctn { padding-bottom: 0; }
+html.ps-fit body:has(.ps-server-top) .fi-page-content > div:empty { display: none; }
 html.ps-console-big .ps-server-menu { display: none; }
 html.ps-console-big body:has(.ps-server-top) .fi-main-ctn > .fi-main { grid-column: 1 / -1; }
 
