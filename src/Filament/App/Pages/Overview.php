@@ -53,8 +53,7 @@ final class Overview extends Page
         return [
             ...$this->shell($user),
             'create' => [
-                ...array_map(fn (Button $button) => ['label' => $button->label, 'url' => $button->url, 'primary' => $button->primary],
-                    $addons->collect(fn (Addon $addon) => $addon->dashboardActions())),
+                ...array_map(fn (Button $button) => $button->toArray(), $addons->collect(fn (Addon $addon) => $addon->dashboardActions())),
                 ...AdminMenu::createServer(),
             ],
             'servers' => Listing::for($user),
@@ -79,7 +78,7 @@ final class Overview extends Page
         $support = PanelSettings::get('support_url');
 
         return [
-            ...array_map(fn (Button $link) => ['label' => $link->label, 'url' => $link->url], $links),
+            ...array_map(fn (Button $link) => $link->toArray(), $links),
             ...$support === null ? [] : [['label' => __('pelican-simplify::settings.support'), 'url' => $support]],
         ];
     }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Simplify\Core\Overview;
 
 use App\Models\Server;
+use Simplify\Core\Subdomains\Services\Games;
 use Simplify\Core\Support\Assets;
 
 /**
@@ -17,21 +18,12 @@ final class Artwork
 
     public const OTHER = 'bg-gaming.svg';
 
-    /** Bedrock has no Java server.properties, status ping or EULA, so it counts as any other game. */
-    public static function minecraft(Server $server): bool
-    {
-        $egg = (string) $server->egg?->name;
-
-        return preg_match('/minecraft|vanilla|paper|purpur|spigot|modrinth|curseforge|ftb|tekkit|hexxit|blightfall|b-team|forge|fabric|quilt|pack/i', $egg) === 1
-            && preg_match('/bedrock|pocketmine|nukkit/i', $egg) !== 1;
-    }
-
     public static function background(Server $server, ?string $banner): string
     {
         if ($banner !== null) {
             return $banner;
         }
-        if (! self::minecraft($server)) {
+        if (! Games::minecraft($server)) {
             return Assets::url(self::OTHER);
         }
 

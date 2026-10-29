@@ -15,4 +15,10 @@ final readonly class Button
         public ?string $icon = null,
         public bool $primary = false,
     ) {}
+
+    /** @return array{label: string, url: string, icon: ?string, primary: bool} */
+    public function toArray(): array
+    {
+        return ['label' => $this->label, 'url' => $this->url, 'icon' => $this->icon, 'primary' => $this->primary];
+    }
 }
