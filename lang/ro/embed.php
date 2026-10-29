@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Încorporare pe site',
-    'description' => 'Arată serverele tale pe orice site, cu starea și adresa de conectare.',
     'save' => 'Salvează',
     'saved' => 'Salvat',
     'settings' => [

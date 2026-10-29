@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Įterpimas į svetainę',
-    'description' => 'Rodo tavo serverius bet kurioje svetainėje, su būsena ir prisijungimo adresu.',
     'save' => 'Išsaugoti',
     'saved' => 'Išsaugota',
     'settings' => [

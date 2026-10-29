@@ -52,8 +52,4 @@ return [
         'none' => 'Kurulu ek özellik yok. Server Maker gibi ek özellikler Pelican Hub\'daki ayrı eklentilerdir.',
         'open' => 'Ayarlar',
     ],
-    'parts' => [
-        'heading' => 'Yerleşik',
-        'help' => 'Bunlar eskiden ayrı add-on\'lardı. Birini kapatırsan her yerden kaybolur ve verileri saklanır.',
-    ],
 ];

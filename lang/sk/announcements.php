@@ -3,10 +3,6 @@
 return [
     'title' => 'Oznámenia',
     'model' => 'oznámenie',
-    'addon' => [
-        'name' => 'Oznámenia',
-        'description' => 'Informačné, varovné a úspešné správy hore na každej stránke.',
-    ],
     'form' => [
         'category' => 'Kategória',
         'title' => 'Názov',

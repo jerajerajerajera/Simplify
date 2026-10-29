@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Sematan situs web',
-    'description' => 'Menampilkan servermu di situs web mana pun, lengkap dengan status dan alamat untuk bergabung.',
     'save' => 'Simpan',
     'saved' => 'Tersimpan',
     'settings' => [

@@ -3,10 +3,6 @@
 return [
     'title' => 'お知らせ',
     'model' => 'お知らせ',
-    'addon' => [
-        'name' => 'お知らせ',
-        'description' => 'すべてのページ上部に表示する情報・警告・成功メッセージ。',
-    ],
     'form' => [
         'category' => 'カテゴリ',
         'title' => 'タイトル',

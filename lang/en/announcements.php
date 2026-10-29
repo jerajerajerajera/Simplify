@@ -3,10 +3,6 @@
 return [
     'title' => 'Announcements',
     'model' => 'announcement',
-    'addon' => [
-        'name' => 'Announcements',
-        'description' => 'Info, warning and success messages at the top of every page.',
-    ],
     'form' => [
         'category' => 'Category',
         'title' => 'Title',

@@ -52,8 +52,4 @@ return [
         'none' => 'Ingen tilføjelser installeret. Tilføjelser som Server Maker er separate plugins på Pelican Hub.',
         'open' => 'Indstillinger',
     ],
-    'parts' => [
-        'heading' => 'Indbygget',
-        'help' => 'Disse var tidligere separate add-ons. Slår du en fra, forsvinder den overalt, og dens data bevares.',
-    ],
 ];

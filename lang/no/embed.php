@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Nettsideinnbygging',
-    'description' => 'Viser serverne dine på hvilken som helst nettside, med status og tilkoblingsadresse.',
     'save' => 'Lagre',
     'saved' => 'Lagret',
     'settings' => [

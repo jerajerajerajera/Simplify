@@ -69,7 +69,4 @@ return [
         'removing' => 'Выдаленне…',
         'error' => 'Не падключана',
     ],
-    'addon' => [
-        'description' => 'Дае кожнаму серверу ўласны адрас, напрыклад oak.example.com, з DNS-запісамі ў Cloudflare.',
-    ],
 ];

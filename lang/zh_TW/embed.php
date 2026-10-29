@@ -2,7 +2,6 @@
 
 return [
     'name' => '網站嵌入',
-    'description' => '在任何網站上顯示你的伺服器，包括狀態和連線位址。',
     'save' => '儲存',
     'saved' => '已儲存',
     'settings' => [

@@ -25,8 +25,6 @@ use Simplify\Core\Http\Controllers\AssetController;
 use Simplify\Core\Http\Controllers\BannerController;
 use Simplify\Core\Http\Controllers\BrandController;
 use Simplify\Core\Http\Controllers\WebAppController;
-use Simplify\Core\Parts\PartAddon;
-use Simplify\Core\Parts\Parts;
 use Simplify\Core\Push\Push;
 use Simplify\Core\Server\Looks;
 use Simplify\Core\Subdomains\Console\SyncSubdomains;
@@ -39,15 +37,10 @@ final class SimplifyServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        // Simplify's own parts show up like add-ons, unless they are off.
-        foreach (array_keys(Parts::PARTS) as $part) {
-            $this->app->bind(Parts::addon($part), fn () => new PartAddon($part));
-            $this->app->tag([Parts::addon($part)], AddonRegistry::TAG);
-        }
         $this->app->singleton(AddonRegistry::class, fn (Container $app) => new AddonRegistry(
             // The container has no public list of a tag's class names. Reading them lets one add-on fail to build
             // without hiding the add-ons after it, which iterating $app->tagged() would do.
-            fn () => array_filter((fn () => $this->tags[AddonRegistry::TAG] ?? [])->call($app), Parts::allows(...)),
+            fn () => (fn () => $this->tags[AddonRegistry::TAG] ?? [])->call($app),
             fn (string $class) => $app->make($class),
             fn (Throwable $error) => report($error),
         ));
@@ -90,29 +83,23 @@ final class SimplifyServiceProvider extends ServiceProvider
 
         // A deleted server's records leave Cloudflare after the response, so deleting never waits for it; the sync retries.
         Server::deleted(function (Server $server) {
-            if (Parts::on('subdomains')) {
-                $uuid = (string) $server->uuid;
-                $this->app->terminating(function () use ($uuid) {
-                    try {
-                        Subdomains::forget($uuid);
-                    } catch (Throwable $error) {
-                        report($error);
-                    }
-                });
-            }
+            $uuid = (string) $server->uuid;
+            $this->app->terminating(function () use ($uuid) {
+                try {
+                    Subdomains::forget($uuid);
+                } catch (Throwable $error) {
+                    report($error);
+                }
+            });
         });
 
         $this->commands([UpdateNoticesCommand::class, DeliverAnnouncements::class, SyncSubdomains::class]);
         $this->callAfterResolving(Schedule::class, function (Schedule $schedule) {
             $schedule->command(UpdateNoticesCommand::class)->hourly()->withoutOverlapping();
             // Every minute, so an announcement with a later start reaches the bell, devices and game chats on time.
-            if (Parts::on('announcements')) {
-                $schedule->command(DeliverAnnouncements::class)->everyMinute()->withoutOverlapping(10);
-            }
+            $schedule->command(DeliverAnnouncements::class)->everyMinute()->withoutOverlapping(10);
             // Retries subdomains that are not connected, follows port changes and removes records of deleted servers.
-            if (Parts::on('subdomains')) {
-                $schedule->command(SyncSubdomains::class)->everyFiveMinutes()->withoutOverlapping(10);
-            }
+            $schedule->command(SyncSubdomains::class)->everyFiveMinutes()->withoutOverlapping(10);
         });
     }
 }

@@ -69,7 +69,4 @@ return [
         'removing' => 'Šalinama…',
         'error' => 'Neprisijungta',
     ],
-    'addon' => [
-        'description' => 'Kiekvienam serveriui suteikia savo adresą, pvz., oak.example.com, su DNS įrašais Cloudflare.',
-    ],
 ];

@@ -3,10 +3,6 @@
 return [
     'title' => 'Thông báo',
     'model' => 'thông báo',
-    'addon' => [
-        'name' => 'Thông báo',
-        'description' => 'Tin nhắn thông tin, cảnh báo và thành công ở đầu mỗi trang.',
-    ],
     'form' => [
         'category' => 'Loại',
         'title' => 'Tiêu đề',

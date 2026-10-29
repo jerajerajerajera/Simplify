@@ -69,7 +69,4 @@ return [
         'removing' => 'Odebírání…',
         'error' => 'Nepřipojeno',
     ],
-    'addon' => [
-        'description' => 'Dá každému serveru vlastní adresu, například oak.example.com, se záznamy DNS v Cloudflare.',
-    ],
 ];

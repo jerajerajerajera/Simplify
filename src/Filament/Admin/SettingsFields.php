@@ -10,8 +10,6 @@ use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
-use Simplify\Core\Parts\PartAddon;
-use Simplify\Core\Parts\Parts;
 use Simplify\Core\Support\Brand;
 use Simplify\Core\Support\PanelSettings;
 
@@ -77,18 +75,6 @@ final class SettingsFields
             self::image('app_badge', 'appearance.app_badge', 'appearance.app_badge_help')->acceptedFileTypes(['image/png']),
             Toggle::make('push')->label(__(self::T.'general.push_on'))->helperText(__(self::T.'general.push_help')),
         ]);
-    }
-
-    /** The parts that used to be separate add-ons, each with an on/off switch. */
-    public static function parts(): Section
-    {
-        $toggles = [];
-        foreach (array_keys(Parts::PARTS) as $part) {
-            $addon = new PartAddon($part);
-            $toggles[] = Toggle::make('part_'.$part)->label($addon->name())->helperText($addon->description());
-        }
-
-        return Section::make(__(self::T.'parts.heading'))->description(__(self::T.'parts.help'))->schema($toggles);
     }
 
     private static function image(string $name, string $label, string $help): FileUpload

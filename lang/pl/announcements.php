@@ -3,10 +3,6 @@
 return [
     'title' => 'Ogłoszenia',
     'model' => 'ogłoszenie',
-    'addon' => [
-        'name' => 'Ogłoszenia',
-        'description' => 'Komunikaty informacyjne, ostrzeżenia i sukcesy na górze każdej strony.',
-    ],
     'form' => [
         'category' => 'Kategoria',
         'title' => 'Tytuł',

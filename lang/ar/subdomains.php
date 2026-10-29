@@ -69,7 +69,4 @@ return [
         'removing' => 'جارٍ الإزالة…',
         'error' => 'غير متصل',
     ],
-    'addon' => [
-        'description' => 'يمنح كل خادم عنوانًا خاصًا به، مثل oak.example.com، مع سجلات DNS في Cloudflare.',
-    ],
 ];
