@@ -61,6 +61,7 @@ const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g
     ok('first visit to the settings opens the setup', page.url().includes('simplify-setup'), page.url());
     for (let step = 1; step <= 5; step++) {
       await shot(`action-setup-step-${step}`);
+      if (step === 1) fs.writeFileSync(path.join(out, 'setup-dom.html'), await page.locator('.fi-sc-wizard').first().evaluate((e) => e.outerHTML).catch((e) => String(e)));
       const next = page.locator('main button:visible', { hasText: /^\s*Next\s*$/ });
       if (step < 5) await click(next, `setup next (step ${step})`);
     }
