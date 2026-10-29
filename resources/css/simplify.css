@@ -672,8 +672,50 @@ html.ps-frame[data-ps-tree] .fi-sc-tabs > .fi-tabs {
   display: none !important;
 }
 
-html.ps-frame[data-ps-tree] .s-settings-tabs.fi-vertical {
-  border: 0;
+/* It sits straight on host mode's page, as in 0.7.0: no header of its own, no card around the settings or each
+   section and no extra margin; a thin line between the sections. */
+html.ps-frame[data-ps-tree] :is(.fi-page:has(.s-settings) .fi-header, .fi-breadcrumbs) {
+  display: none !important;
+}
+
+html.ps-frame[data-ps-tree] .fi-main {
+  padding-top: 12px !important;
+}
+
+html.ps-frame[data-ps-tree] :is(.s-settings-tabs.fi-vertical, .fi-sc-tabs, .fi-section) {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+
+html.ps-frame[data-ps-tree] .s-settings-tabs.fi-vertical > .fi-sc-tabs-tab.fi-active {
+  margin: 0 !important;
+  padding: 0 0 8px !important;
+}
+
+html.ps-frame[data-ps-tree] :is(.fi-page-header-main-ctn, .fi-page-main) {
+  padding-top: 0 !important;
+  row-gap: 4px !important;
+}
+
+html.ps-frame[data-ps-tree] :is(.fi-section-header, .fi-section-content-ctn, .fi-section-content, .fi-section-footer) {
+  background: transparent !important;
+  border: 0 !important;
+  padding-inline: 0 !important;
+}
+
+html.ps-frame[data-ps-tree] .fi-section-header {
+  padding-block: 18px 10px !important;
+}
+
+html.ps-frame[data-ps-tree] .fi-section-content {
+  padding-block: 0 20px !important;
+}
+
+html.ps-frame[data-ps-tree] .fi-grid-col:not(:first-child) > .fi-sc-component > .fi-sc-section {
+  border-top: 1px solid var(--s-line);
 }
 
 /* Settings: one card with the menu on the left, in the style of host mode's tree, and the settings beside it.
