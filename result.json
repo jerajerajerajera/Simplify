@@ -1,0 +1,1153 @@
+{
+  "base": "http://127.0.0.1:8001",
+  "checks": [
+    {
+      "name": "login",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "first visit to the settings opens the setup",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-setup-step-1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: setup next (step 1)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-setup-step-2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: setup next (step 2)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-setup-step-3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: setup next (step 3)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-setup-step-4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: setup next (step 4)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-setup-step-5",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "the last step lists the add-ons",
+      "pass": false,
+      "detail": "Set up Simplify\n\nFive short steps. Everything can be changed later in Simplify's settings.\n\nAdd-ons\nCompleted\nYour panel\nCompleted\nLook\nCompleted\nApp\nCompleted\nSet up add-ons\nAdd-on settings\n\nEvery ad"
+    },
+    {
+      "name": "button: setup finish",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "finishing the setup opens the settings",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: settings tab General",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-settings-general",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: settings tab Appearance",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-settings-appearance",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: settings tab Add-ons",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-settings-add-ons",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "the menu has Simplify, add-on and Pelican tabs",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: settings tab Pelican Mail",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Pelican tab shows Pelican page in the frame",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Pelican tab frame has no menus or tab bar",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-settings-pelican-mail",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: settings back to General",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: settings save",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "settings saved",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-settings-saved",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "overview actions opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "overview lists the servers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "six server cards",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-overview-grid",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-overview-grid-phone",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "view grid shows the servers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-overview-compact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-overview-compact-phone",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "view compact shows the servers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-overview-list",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-overview-list-phone",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "view list shows the servers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "grid: the bottom row (players, badges, arrow) stays inside the card",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "grid: add-on badges show under the name",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "grid: the address badge is not cut short",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "grid: no badge covers a server name or the numbers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "compact: the bottom row (players, badges, arrow) stays inside the card",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "compact: add-on badges stay off compact cards",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "compact: no badge covers a server name or the numbers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "list: the bottom row (players, badges, arrow) stays inside the card",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "list: add-on badges show under the name",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "list: no badge covers a server name or the numbers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-overview-addon-badges",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "the overview starts right under the top bar",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "one Create server button, add-on buttons keep their label",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: owner chip My servers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "owner chip My servers shows 5 servers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: owner chip Others",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "owner chip Others shows 1 servers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: owner chip All servers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "owner chip All servers shows 6 servers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "game chips",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-overview-game-chip",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: customize",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-overview-customize",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: groups",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: order by created",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-groups-menu",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "overview with a group opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "group section shows",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-groups-saved",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "cards have power buttons",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-power",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: Healthy button",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-host-health",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "host mode opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: account menu",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: switch to host mode",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "host mode shows the admin tree",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "the tree carries the settings leaves",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "the page in the frame has no Pelican menus",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "the page in the frame loaded",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-host-mode",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: Nodes in the tree",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-host-nodes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: Pelican settings in the tree",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-host-settings",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: servers tab",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: Survival in host mode",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-host-server",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "the server in the frame loaded",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-host-mode-phone",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "host mode stays on after a reload",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: account menu",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: switch to simple mode",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "simple mode shows the cards again",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "server page actions opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "server card shows the name and join address",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "four or five number cards",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "the menu lists the server sections",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "the console has the live console title",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Pelican's own numbers are hidden",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no empty chart cards under the console",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "the footer is there",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-server-page",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: server ⋯ menu",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-server-menu",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: server colour",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: blue swatch",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-server-color",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: save colour",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "the card shows the uploaded background",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-look-saved",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: Files in the menu",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Files keeps the server card and menu",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-server-files",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "overview after look opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "overview shows the banner",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-overview-with-banner",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "people actions opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "people lists sam",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "people search finds sam only",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: add person",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "add person form opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-people-add",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: edit person",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "edit person form opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-people-edit",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: roles tab",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-roles",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "button: add role",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "add role form opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-roles-add",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "new role is listed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-roles-added",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "notifications actions opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "notification switches",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: action-notifications-switched",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "manifest serves (/simplify/manifest.webmanifest)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "manifest has a name and icons",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "worker serves (/simplify-worker.js)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "stylesheet serves (/simplify/assets/simplify.css?v=345ff7673605)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "overview desktop-light opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: overview-desktop-light",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "settings desktop-light opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: settings-desktop-light",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "setup desktop-light opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: setup-desktop-light",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "people desktop-light opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: people-desktop-light",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "notifications desktop-light opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: notifications-desktop-light",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "server-survival desktop-light opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: server-survival-desktop-light",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "server-creative-build desktop-light opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: server-creative-build-desktop-light",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "server-modpack-monday desktop-light opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: server-modpack-monday-desktop-light",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "server-rust-weekend desktop-light opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: server-rust-weekend-desktop-light",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "server-valheim-with-sam desktop-light opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: server-valheim-with-sam-desktop-light",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "server-discord-bot desktop-light opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: server-discord-bot-desktop-light",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "overview desktop-dark opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: overview-desktop-dark",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "settings desktop-dark opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: settings-desktop-dark",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "setup desktop-dark opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: setup-desktop-dark",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "people desktop-dark opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: people-desktop-dark",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "notifications desktop-dark opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: notifications-desktop-dark",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "server-survival desktop-dark opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: server-survival-desktop-dark",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "server-creative-build desktop-dark opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: server-creative-build-desktop-dark",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "server-modpack-monday desktop-dark opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: server-modpack-monday-desktop-dark",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "server-rust-weekend desktop-dark opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: server-rust-weekend-desktop-dark",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "server-valheim-with-sam desktop-dark opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: server-valheim-with-sam-desktop-dark",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "server-discord-bot desktop-dark opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: server-discord-bot-desktop-dark",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "overview phone-light opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: overview-phone-light",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "settings phone-light opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: settings-phone-light",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "setup phone-light opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: setup-phone-light",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "people phone-light opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: people-phone-light",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "notifications phone-light opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: notifications-phone-light",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "server-survival phone-light opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: server-survival-phone-light",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "server-creative-build phone-light opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: server-creative-build-phone-light",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "server-modpack-monday phone-light opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: server-modpack-monday-phone-light",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "server-rust-weekend phone-light opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: server-rust-weekend-phone-light",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "server-valheim-with-sam phone-light opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: server-valheim-with-sam-phone-light",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "server-discord-bot phone-light opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: server-discord-bot-phone-light",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "overview phone-dark opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: overview-phone-dark",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "settings phone-dark opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: settings-phone-dark",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "setup phone-dark opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: setup-phone-dark",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "people phone-dark opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: people-phone-dark",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "notifications phone-dark opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: notifications-phone-dark",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "server-survival phone-dark opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: server-survival-phone-dark",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "server-creative-build phone-dark opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: server-creative-build-phone-dark",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "server-modpack-monday phone-dark opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: server-modpack-monday-phone-dark",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "server-rust-weekend phone-dark opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: server-rust-weekend-phone-dark",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "server-valheim-with-sam phone-dark opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: server-valheim-with-sam-phone-dark",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "server-discord-bot phone-dark opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no sideways scrolling: server-discord-bot-phone-dark",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "issues": [
+    "the last step lists the add-ons: Set up Simplify\n\nFive short steps. Everything can be changed later in Simplify's settings.\n\nAdd-ons\nCompleted\nYour panel\nCompleted\nLook\nCompleted\nApp\nCompleted\nSet up add-ons\nAdd-on settings\n\nEvery ad"
+  ]
+}
