@@ -84,7 +84,6 @@ return [
         ],
         'other_plugins' => 'Muut lisäosat',
         'create_server' => 'Luo palvelin',
-        'new_server' => 'Uusi palvelin',
         'enhanced_by' => 'Parantanut',
         'build' => 'Koontiversio :version',
         'power_sent' => ':action lähetetty: :server',

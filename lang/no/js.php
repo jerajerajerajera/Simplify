@@ -84,7 +84,6 @@ return [
         ],
         'other_plugins' => 'Andre plugins',
         'create_server' => 'Opprett server',
-        'new_server' => 'Ny server',
         'enhanced_by' => 'Forbedret av',
         'build' => 'Bygg :version',
         'power_sent' => ':action sendt til :server',

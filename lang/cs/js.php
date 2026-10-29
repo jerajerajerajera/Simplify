@@ -84,7 +84,6 @@ return [
         ],
         'other_plugins' => 'Další pluginy',
         'create_server' => 'Vytvořit server',
-        'new_server' => 'Nový server',
         'enhanced_by' => 'Vylepšeno pomocí',
         'build' => 'Sestavení :version',
         'power_sent' => ':action odesláno na :server',

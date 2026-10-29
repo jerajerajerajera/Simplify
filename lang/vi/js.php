@@ -84,7 +84,6 @@ return [
         ],
         'other_plugins' => 'Plugin khác',
         'create_server' => 'Tạo máy chủ',
-        'new_server' => 'Máy chủ mới',
         'enhanced_by' => 'Được nâng cấp bởi',
         'build' => 'Bản build :version',
         'power_sent' => 'Đã gửi :action tới :server',

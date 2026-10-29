@@ -84,7 +84,6 @@ return [
         ],
         'other_plugins' => 'Más bővítmények',
         'create_server' => 'Szerver létrehozása',
-        'new_server' => 'Új szerver',
         'enhanced_by' => 'Továbbfejlesztette:',
         'build' => 'Build :version',
         'power_sent' => ':action elküldve: :server',

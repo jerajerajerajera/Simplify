@@ -84,7 +84,6 @@ return [
         ],
         'other_plugins' => 'Plugin lain',
         'create_server' => 'Buat server',
-        'new_server' => 'Server baru',
         'enhanced_by' => 'Ditingkatkan oleh',
         'build' => 'Build :version',
         'power_sent' => ':action dikirim ke :server',

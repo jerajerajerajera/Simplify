@@ -344,9 +344,11 @@
       },
       /** Create buttons for the top bar or the toolbar: the add-ons' buttons, the main one first. */
       /** Add-on buttons first (the primary one leads), then Pelican's own form; the first one reads "Create server". */
+      /** One "Create server": an add-on's main button (Server Maker), else Pelican's own form; other add-on buttons keep their label. */
       createButtons() {
-        const buttons = [...(this.boot.create || [])].sort((a, b) => b.primary - a.primary);
-        return buttons.map((button, index) => ({ ...button, primary: index === 0, label: index === 0 ? t('dashboard.create_server') : button.native ? t('dashboard.new_server') : button.label }));
+        const create = this.boot.create || [], main = create.find((b) => b.primary) || create.find((b) => b.native);
+        const rest = create.filter((b) => b !== main && !b.native).map((b) => ({ ...b, primary: false }));
+        return main ? [{ ...main, primary: true, label: t('dashboard.create_server') }, ...rest] : rest;
       },
 
       /** 25 October to 2 November, every year. */

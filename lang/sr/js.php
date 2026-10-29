@@ -84,7 +84,6 @@ return [
         ],
         'other_plugins' => 'Други додаци',
         'create_server' => 'Направи сервер',
-        'new_server' => 'Нови сервер',
         'enhanced_by' => 'Унапредио',
         'build' => 'Build :version',
         'power_sent' => ':action послато на :server',
