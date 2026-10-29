@@ -8,7 +8,8 @@ use App\Enums\ContainerStatus;
 use App\Models\Server;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Event;
-use Simplify\Subdomains\Subdomains;
+use Simplify\Core\Parts\Parts;
+use Simplify\Core\Subdomains\Subdomains;
 use Throwable;
 
 /**
@@ -18,7 +19,7 @@ use Throwable;
  * Other plugins can add details through the "simplify.embed.server" event. A listener receives the Server and
  * returns an array with any of: game, software, version, players, max_players, motd, address, icon and
  * modpack (name, version, url, icon). Simplify Mods adds players and modpacks this way. The address of
- * Simplify Subdomains is used when that plugin is installed.
+ * Simplify's subdomain is used when it works.
  */
 final class ServerList
 {
@@ -98,14 +99,12 @@ final class ServerList
         ]);
     }
 
-    /** The address from Simplify Subdomains when it is installed and the subdomain works. */
+    /** The subdomain when it works, from the separate Subdomains plugin while that is still installed. */
     private static function subdomain(Server $server): ?string
     {
-        if (! class_exists(Subdomains::class)) {
-            return null;
-        }
+        $api = Parts::standalone('subdomains') ? 'Simplify\\Subdomains\\Subdomains' : Subdomains::class;
         try {
-            return Subdomains::address($server);
+            return $api::address($server);
         } catch (Throwable $error) {
             report($error);
 
