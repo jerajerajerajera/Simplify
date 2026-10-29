@@ -884,9 +884,9 @@ html.ps-frame[data-ps-frame="settings"] :is(body, .fi-layout, .fi-main-ctn, .fi-
   }
 }
 
-/* Pelican's icon actions on Simplify's pages (a server's pages, host mode): Simplify icon buttons with the same Tabler
-   icons, instead of Pelican's large coloured glyphs, as in 0.7.0. In a table row they stay plain until hovered. */
-:is(html.ps-frame, body:has(.ps-server-top)) :is(.fi-ta-header-toolbar, .fi-ta-header, .fi-header-actions-ctn, .fi-ta-actions) .fi-icon-btn {
+/* Pelican's icon actions on every page of the panel: Simplify icon buttons with the same Tabler icons, instead of
+   Pelican's large coloured glyphs, as in 0.7.0. In a table row they stay plain until hovered. */
+:is(.fi-ta-header-toolbar, .fi-ta-header, .fi-header-actions-ctn, .fi-ta-actions) .fi-icon-btn {
   background: var(--s-surface) !important;
   border: 1px solid var(--s-line) !important;
   border-radius: var(--s-radius-sm) !important;
@@ -899,28 +899,37 @@ html.ps-frame[data-ps-frame="settings"] :is(body, .fi-layout, .fi-main-ctn, .fi-
   width: var(--s-h) !important;
 }
 
-:is(html.ps-frame, body:has(.ps-server-top)) :is(.fi-ta-header-toolbar, .fi-ta-header, .fi-header-actions-ctn, .fi-ta-actions) .fi-icon-btn .fi-icon {
+:is(.fi-ta-header-toolbar, .fi-ta-header, .fi-header-actions-ctn, .fi-ta-actions) .fi-icon-btn .fi-icon {
   color: inherit !important;
   height: 18px !important;
   width: 18px !important;
 }
 
-:is(html.ps-frame, body:has(.ps-server-top)) :is(.fi-ta-header-toolbar, .fi-ta-header, .fi-header-actions-ctn, .fi-ta-actions) .fi-icon-btn:hover:not(:disabled) {
+:is(.fi-ta-header-toolbar, .fi-ta-header, .fi-header-actions-ctn, .fi-ta-actions) .fi-icon-btn:hover:not(:disabled) {
   background: var(--s-raised) !important;
   border-color: var(--s-accent) !important;
   color: var(--s-accent) !important;
 }
 
-:is(html.ps-frame, body:has(.ps-server-top)) :is(.fi-ta-header-toolbar, .fi-ta-header, .fi-header-actions-ctn, .fi-ta-actions) .fi-icon-btn.fi-color-danger {
+:is(.fi-ta-header-toolbar, .fi-ta-header, .fi-header-actions-ctn, .fi-ta-actions) .fi-icon-btn.fi-color-danger {
   color: var(--s-danger) !important;
 }
 
-:is(html.ps-frame, body:has(.ps-server-top)) .fi-header-actions-ctn .fi-btn .fi-icon {
+:is(.fi-header-actions-ctn, .fi-ta-actions) .fi-btn .fi-icon {
   height: 18px !important;
   width: 18px !important;
 }
 
-:is(html.ps-frame, body:has(.ps-server-top)) .fi-ta-row .fi-ta-actions .fi-icon-btn:not(:hover) {
+.fi-ta-row .fi-ta-actions:not(:has(.fi-btn)) {
+  gap: 2px !important;
+}
+
+.fi-ta-row .fi-ta-actions .fi-icon-btn {
+  height: 30px !important;
+  width: 30px !important;
+}
+
+.fi-ta-row .fi-ta-actions .fi-icon-btn:not(:hover) {
   background: transparent !important;
   border-color: transparent !important;
 }
