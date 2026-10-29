@@ -8,15 +8,31 @@ on:
       only:
         description: 'Stands, comma separated (empty = all): d1920,d1440,laag1366,d1100,hoog1280,tablet768,phone390,phone360'
         default: ''
+      toolkit:
+        description: 'Branch of Simplify-Toolkit'
+        default: 'main'
   push:
     branches: ['claude/project-thread-k01bn2']
     paths: ['tests/audit/**', '.github/workflows/audit.yml']
 permissions:
   contents: write
 jobs:
-  audit:
+  plan:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    outputs:
+      stands: ${{ steps.list.outputs.stands }}
+    steps:
+      - id: list
+        run: echo "stands=$(python3 -c "import json;s='${{ inputs.only }}'.strip();print(json.dumps(s.split(',') if s else ['d1920','d1440','laag1366','d1100','hoog1280','tablet768','phone390','phone360']))")" >> "$GITHUB_OUTPUT"
+  # One job per stand, side by side; each pushes its screens to the branch audit-results-<stand>.
+  audit:
+    needs: plan
+    strategy:
+      fail-fast: false
+      matrix:
+        stand: ${{ fromJson(needs.plan.outputs.stands) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
     env:
       PELICAN: '1.0.0-rc.2'
     steps:
@@ -54,7 +70,8 @@ jobs:
           php artisan p:plugin:install simplify
           for pair in Simplify-Toolkit:simplify-toolkit Simplify-EggUpdates:simplify-eggupdates Simplify-Explain:simplify-explain Simplify-ServerMaker:simplify-servermaker Simplify-Hosting:simplify-hosting; do
             repo=${pair%%:*}; id=${pair##*:}
-            git clone --quiet --depth 1 --branch main "https://github.com/jerajerajerajera/$repo.git" "plugins/$id"
+            branch=main; [ "$repo" = Simplify-Toolkit ] && branch="${{ inputs.toolkit || 'main' }}"
+            git clone --quiet --depth 1 --branch "$branch" "https://github.com/jerajerajerajera/$repo.git" "plugins/$id"
             real=$(php -r "echo json_decode(file_get_contents('plugins/$id/plugin.json'), true)['id'];")
             if [ "$real" != "$id" ]; then mv "plugins/$id" "plugins/$real"; id=$real; fi
             rm -rf "plugins/$id/.git"
@@ -78,7 +95,7 @@ jobs:
           npm init -y > /dev/null
           npm install --silent playwright@1.48.2
           npx playwright install --with-deps chromium > /dev/null
-          node audit.cjs --base http://127.0.0.1:8001 --urls ../../../panel/urls.json --out ../../../result ${{ inputs.only && format('--only {0}', inputs.only) || '' }}
+          node audit.cjs --base http://127.0.0.1:8001 --urls ../../../panel/urls.json --out ../../../result --only ${{ matrix.stand }}
       - if: always()
         name: Logs
         run: |
@@ -90,5 +107,5 @@ jobs:
           cd result
           git init -q -b results
           git add -A
-          git -c user.name=audit -c user.email=audit@users.noreply.github.com commit -qm "Audit ${{ github.sha }}"
-          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" results:refs/heads/audit-results
+          git -c user.name=audit -c user.email=audit@users.noreply.github.com commit -qm "Audit ${{ github.sha }} ${{ matrix.stand }}"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" results:refs/heads/audit-results-${{ matrix.stand }}
