@@ -179,7 +179,7 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-card-egg-icon { border: 1px solid var(--ps-line); background: var(--ps-raised); }
 .ps-card-egg-icon img { width: 82%; height: 82%; object-fit: contain; }
 @media (prefers-reduced-motion: reduce) { .ps-card-icon, .ps-card-egg-icon { transition: none; } }
-.ps-card-badges { position: absolute; top: 12px; inset-inline-end: 12px; z-index: 2; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; max-width: calc(100% - 112px); transition: right var(--ps-slow); }
+.ps-card-badges { position: absolute; top: 12px; inset-inline-end: 12px; z-index: 2; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; max-width: calc(100% - 112px); transition: right var(--ps-slow), left var(--ps-slow); }
 .ps-card-title { flex: none; min-width: 0; }
 .ps-card-title-row { display: flex; flex-direction: column; height: 48px; min-width: 0; }
 .ps-card-title-row h3,
@@ -320,7 +320,7 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
   .ps-server-grid.is-list .ps-card-mini-metric { padding: 3px 6px; }
   .ps-server-grid.is-list .ps-card-graph { height: 18px; margin-top: 2px; }
   .ps-server-grid.is-list .ps-card-badges { top: 9px; inset-inline-end: 16px; flex-direction: row; }
-  .ps-server-grid.is-list .ps-card-footer { position: absolute; inset-inline-end: 8px; bottom: 6px; z-index: 3; border: 0; background: transparent; }
+  .ps-server-grid.is-list .ps-card-footer { position: absolute; inset-inline-end: 8px; bottom: 6px; z-index: 3; border: 0; background: transparent; transition: padding var(--ps-slow), right var(--ps-slow), left var(--ps-slow); }
   .ps-server-grid.is-list .ps-list-player-count { min-height: 0; padding: 2px 8px; }
   .ps-server-grid.is-list .has-power:is(:hover, :focus-within, .confirming-power, .power-shown) .ps-card-footer { padding-inline-end: 0; inset-inline-end: 112px; }
 }
