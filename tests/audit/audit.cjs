@@ -188,6 +188,16 @@ async function round(theme) {
   await openNav();
   await click('[x-ref="overviewGroupsButton"]'); await record('overview-groups', 'Servergroepen open'); await escape();
   if (await click('.ps-health-pill')) await record('overview-health', 'Gezondheid van de host open'); await escape();
+  // The menus under the top bar once more with one announcement bar and with none: their height must follow the bars.
+  const unpinBar = async () => { const b = page.locator('button[aria-label="Unpin"], .ps-announcement-unpin, [wire\\:click^="unpin"]').first(); if (!(await b.count())) return false; await b.click().catch(() => {}); await sleep(1500); return true; };
+  for (const [tag, label] of [['1bar', 'één aankondigingsbalk'], ['0bar', 'geen aankondigingsbalk']]) {
+    if (!(await unpinBar())) { problems.push(`${stand}: no announcement bar to unpin for ${tag}`); break; }
+    await openNav(); await click('[x-ref="notifyButton"]'); await record('overview-bell-' + tag, `Bel open, ${label}`); await escape();
+    await openNav(); await click('[x-ref="adminButton"]'); await record('overview-admin-' + tag, `Beheermenu open, ${label}`); await escape();
+    await openNav(); await click('[x-ref="overviewAppearance"]'); await record('overview-customize-' + tag, `Weergave aanpassen open, ${label}`); await escape();
+  }
+  // Pin both bars again for the next stand (the Livewire component keeps the choice per user).
+  await page.evaluate(() => { const c = window.Livewire?.all().find((x) => /announcement/i.test(x.name)); if (c) { c.call('pin', 1); c.call('pin', 2); } }).catch(() => {}); await sleep(1500);
   await click('.ps-server-card .ps-card-menu-button, .ps-server-card button[aria-label*="options" i], .ps-server-card button[aria-label*="menu" i]', 500) && await record('overview-card-menu', 'Serverkaart ⋯-menu open'); await escape();
   for (const p of urls.app.filter((x) => x.url !== overview)) { await goto(p.url); await record('app-' + slug(p.title), p.title); }
   if (urls.profile) { await goto(urls.profile); await record('profile', 'Profiel'); }
