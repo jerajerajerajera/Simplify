@@ -55,6 +55,5 @@ return [
     'parts' => [
         'heading' => 'Wbudowane',
         'help' => 'Wcześniej były to osobne add-ony. Wyłączenie jednego ukrywa go wszędzie, a jego dane zostają zachowane.',
-        'standalone' => 'Osobny plugin :name jest nadal zainstalowany, więc ta część pozostaje wyłączona. Otwarcie tej strony kopiuje jego dane do Simplify. Odinstaluj plugin, aby przejść.',
     ],
 ];

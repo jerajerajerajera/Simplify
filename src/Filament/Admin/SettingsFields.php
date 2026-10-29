@@ -85,9 +85,7 @@ final class SettingsFields
         $toggles = [];
         foreach (array_keys(Parts::PARTS) as $part) {
             $addon = new PartAddon($part);
-            $standalone = Parts::standalone($part);
-            $toggles[] = Toggle::make('part_'.$part)->label($addon->name())->disabled($standalone)
-                ->helperText($standalone ? __(self::T.'parts.standalone', ['name' => $addon->name()]) : $addon->description());
+            $toggles[] = Toggle::make('part_'.$part)->label($addon->name())->helperText($addon->description());
         }
 
         return Section::make(__(self::T.'parts.heading'))->description(__(self::T.'parts.help'))->schema($toggles);

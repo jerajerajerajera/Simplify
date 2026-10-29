@@ -55,6 +55,5 @@ return [
     'parts' => [
         'heading' => 'Yerleşik',
         'help' => 'Bunlar eskiden ayrı add-on\'lardı. Birini kapatırsan her yerden kaybolur ve verileri saklanır.',
-        'standalone' => 'Ayrı :name eklentisi hâlâ kurulu, bu yüzden bu bölüm kapalı kalıyor. Bu sayfayı açmak verilerini Simplify\'a kopyalar. Geçiş yapmak için eklentiyi kaldır.',
     ],
 ];

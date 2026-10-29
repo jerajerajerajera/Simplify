@@ -55,6 +55,5 @@ return [
     'parts' => [
         'heading' => 'Sisäänrakennettu',
         'help' => 'Nämä olivat ennen erillisiä add-oneja. Kun poistat yhden käytöstä, se katoaa kaikkialta ja sen tiedot säilyvät.',
-        'standalone' => 'Erillinen :name-plugin on yhä asennettuna, joten tämä osa pysyy pois käytöstä. Tämän sivun avaaminen kopioi sen tiedot Simplifyyn. Poista plugin vaihtaaksesi.',
     ],
 ];

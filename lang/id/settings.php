@@ -55,6 +55,5 @@ return [
     'parts' => [
         'heading' => 'Bawaan',
         'help' => 'Dulu ini add-on terpisah. Jika kamu mematikan salah satunya, ia hilang di mana-mana dan datanya tetap tersimpan.',
-        'standalone' => 'Plugin terpisah :name masih terpasang, jadi bagian ini tetap mati. Membuka halaman ini menyalin datanya ke Simplify. Copot plugin itu untuk beralih.',
     ],
 ];

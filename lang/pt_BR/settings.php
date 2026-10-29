@@ -55,6 +55,5 @@ return [
     'parts' => [
         'heading' => 'Integrado',
         'help' => 'Antes eram add-ons separados. Se você desligar um, ele some em todo lugar e os dados são mantidos.',
-        'standalone' => 'O plugin separado :name ainda está instalado, então esta parte fica desligada. Abrir esta página copia os dados para o Simplify. Desinstale o plugin para trocar.',
     ],
 ];

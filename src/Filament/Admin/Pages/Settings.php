@@ -19,7 +19,6 @@ use Illuminate\Support\HtmlString;
 use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Filament\Admin\SettingsFields;
-use Simplify\Core\Parts\Parts;
 use Simplify\Core\Support\Assets;
 use Simplify\Core\Support\PanelSettings;
 
@@ -83,12 +82,6 @@ final class Settings extends Page implements HasForms
             $this->redirect(Setup::getUrl(panel: 'admin'));
 
             return;
-        }
-        // A part whose separate plugin is still installed takes over that plugin's latest data, before it is uninstalled.
-        foreach (array_keys(Parts::PARTS) as $part) {
-            if (Parts::standalone($part)) {
-                Parts::import($part);
-            }
         }
         $this->form->fill(PanelSettings::all());
     }
