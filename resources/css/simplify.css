@@ -667,6 +667,47 @@ html.ps-frame[data-ps-frame="native"] .fi-header-heading {
   display: none !important;
 }
 
+/* A Pelican page in host mode sits straight on host mode's page, as in 0.7.0: no card around its table or form
+   and no band above it. Its search and buttons are in host mode's title bar (frame.js, data-ps-head-tools), so its
+   own header and table toolbar hide; the toolbar comes back for bulk actions once rows are selected. */
+html.ps-frame[data-ps-frame="native"] :is(.fi-section:not(.fi-section .fi-section), .fi-ta-ctn:not(.fi-section .fi-ta-ctn)) {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+
+html.ps-frame[data-ps-frame="native"] .fi-ta-ctn:not(.fi-section .fi-ta-ctn) :is(.fi-ta-header-ctn, .fi-ta-header, .fi-ta-header-toolbar, .fi-ta-content-ctn, .fi-pagination) {
+  background: transparent !important;
+}
+
+html.ps-frame[data-ps-head-tools] :is(.fi-header-actions-ctn .fi-ac > :is(button, a), .fi-ta-ctn:not(:is(.fi-resource-relation-managers, .fi-resource-relation-manager, .fi-sc-tabs, .fi-section, .fi-modal, .fi-ta-ctn) *) :is(.fi-ta-header-toolbar > .fi-ta-actions > :is(button, a), .fi-ta-search-field)) {
+  display: none !important;
+}
+
+html.ps-frame[data-ps-head-tools] .fi-header:not(:has(.fi-header-actions-ctn .fi-dropdown, .fi-breadcrumbs-item + .fi-breadcrumbs-item)),
+html.ps-frame[data-ps-head-tools] .fi-ta-ctn:not(:is(.fi-resource-relation-managers, .fi-resource-relation-manager, .fi-sc-tabs, .fi-section, .fi-modal, .fi-ta-ctn) *):not(:has(.fi-ta-record-checkbox:checked, .fi-ta-page-checkbox:checked)) .fi-ta-header-ctn {
+  display: none !important;
+}
+
+html.ps-frame[data-ps-head-tools] :is(.fi-main, .fi-page-header-main-ctn, .fi-page-main) {
+  padding: 0 !important;
+  row-gap: 0 !important;
+}
+
+html.ps-frame[data-ps-head-tools] .fi-page:not(:has(.fi-sc-tabs, .fi-fo-field)) .fi-ta-table :is(thead th:first-child, tbody td:first-child) {
+  padding-inline-start: 22px !important;
+}
+
+html.ps-frame[data-ps-head-tools] .fi-page:not(:has(.fi-sc-tabs, .fi-fo-field)) .fi-ta-table :is(thead th:last-child, tbody td:last-child > *) {
+  padding-inline-end: 18px !important;
+}
+
+html.ps-frame[data-ps-head-tools] .fi-page:not(:has(.fi-sc-tabs, .fi-fo-field)) .fi-pagination {
+  padding: 12px 22px !important;
+}
+
 /* A settings page opened from host mode's tree: the tree lists the tabs, so the page shows only the settings. */
 html.ps-frame[data-ps-tree] .fi-sc-tabs > .fi-tabs {
   display: none !important;
