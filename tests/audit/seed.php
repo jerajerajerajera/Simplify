@@ -13,6 +13,8 @@ use App\Models\Schedule;
 use App\Models\Server;
 use App\Models\Task;
 use App\Models\User;
+use Filament\Actions\Action;
+use Filament\Notifications\Notification;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Support\Facades\DB;
 use Simplify\Core\Server\Looks;
@@ -157,11 +159,11 @@ $part('schedule', function () use ($servers) {
 $part('database notifications', function () use ($admin) {
     for ($i = 1; $i <= 14; $i++) {
         $update = $i % 2 === 0;
-        Filament\Notifications\Notification::make()
+        Notification::make()
             ->title($update ? 'Plugin updated' : 'Simplify 1.4.'.$i.' is available')
             ->body($update ? 'Simplify updated from 1.4.'.($i - 1).' to 1.4.'.$i.'.' : 'Installing it now with a backup and automatic rollback. You get another notification when it is done.')
             ->icon($update ? 'tabler-check' : 'tabler-info-circle')
-            ->actions([Filament\Actions\Action::make('open')->label('Open plugins')->url('/admin/plugins')->markAsRead()])
+            ->actions([Action::make('open')->label('Open plugins')->url('/admin/plugins')->markAsRead()])
             ->sendToDatabase($admin, isEventDispatched: false);
     }
     DB::table('notifications')->update(['created_at' => now()->subDay(), 'updated_at' => now()->subDay()]);
