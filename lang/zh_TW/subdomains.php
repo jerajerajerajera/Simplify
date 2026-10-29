@@ -69,7 +69,4 @@ return [
         'removing' => '正在移除…',
         'error' => '未連接',
     ],
-    'addon' => [
-        'description' => '為每台伺服器提供獨立位址，例如 oak.example.com，DNS 記錄在 Cloudflare 中建立。',
-    ],
 ];

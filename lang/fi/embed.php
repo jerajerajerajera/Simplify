@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Verkkosivuupotus',
-    'description' => 'Näyttää palvelimesi millä tahansa verkkosivulla tilan ja yhdistämisosoitteen kera.',
     'save' => 'Tallenna',
     'saved' => 'Tallennettu',
     'settings' => [

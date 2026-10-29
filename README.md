@@ -1,7 +1,7 @@
 # Simplify
 
 A [Pelican](https://pelican.dev) plugin that gives you one clear overview of your servers, with announcements,
-subdomains and your servers on your own website built in. Add-ons such as Server Maker are separate plugins that show
+subdomains and your servers on your own website. Add-ons such as Server Maker are separate plugins that show
 up inside Simplify when both are installed.
 
 Simplify 1.0 is a rebuild from the ground up. The earlier PelicanSimplify (0.6.0 and before) lives in

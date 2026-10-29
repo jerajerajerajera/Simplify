@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Webindlejring',
-    'description' => 'Viser dine servere på enhver hjemmeside, med status og forbindelsesadresse.',
     'save' => 'Gem',
     'saved' => 'Gemt',
     'settings' => [

@@ -3,10 +3,6 @@
 return [
     'title' => 'Meddelanden',
     'model' => 'meddelande',
-    'addon' => [
-        'name' => 'Meddelanden',
-        'description' => 'Info-, varnings- och klartmeddelanden högst upp på varje sida.',
-    ],
     'form' => [
         'category' => 'Kategori',
         'title' => 'Rubrik',

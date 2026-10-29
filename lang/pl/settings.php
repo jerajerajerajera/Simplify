@@ -52,8 +52,4 @@ return [
         'none' => 'Brak zainstalowanych dodatków. Dodatki, takie jak Server Maker, to osobne pluginy w Pelican Hub.',
         'open' => 'Ustawienia',
     ],
-    'parts' => [
-        'heading' => 'Wbudowane',
-        'help' => 'Wcześniej były to osobne add-ony. Wyłączenie jednego ukrywa go wszędzie, a jego dane zostają zachowane.',
-    ],
 ];

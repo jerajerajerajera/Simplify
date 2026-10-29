@@ -2,7 +2,6 @@
 
 return [
     'name' => '网站嵌入',
-    'description' => '在任何网站上展示你的服务器，包括状态和连接地址。',
     'save' => '保存',
     'saved' => '已保存',
     'settings' => [

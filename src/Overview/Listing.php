@@ -12,6 +12,7 @@ use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Addons\Button;
 use Simplify\Core\Server\Looks;
+use Simplify\Core\Subdomains\Subdomains;
 use Throwable;
 
 /**
@@ -30,10 +31,11 @@ final class Listing
         $live = NodeUsage::read($servers->filter(fn (Server $server) => $server->status === null));
         $looks = Looks::forMany($servers->pluck('id')->all());
         $mine = $user->directAccessibleServers()->pluck('servers.id')->all();
+        $subdomains = $badges ? Subdomains::addresses($servers) : [];
 
         return $servers->map(fn (Server $server) => [
             ...self::card($user, $server, $live[$server->uuid] ?? null, $looks[$server->id] ?? [], in_array($server->id, $mine, true)),
-            ...$badges ? ['badges' => app(AddonRegistry::class)->collect(fn (Addon $addon) => $addon->tileBadges($server))] : [],
+            ...$badges ? ['badges' => self::badges($server, $subdomains[$server->uuid] ?? null)] : [],
         ])->all();
     }
 
@@ -49,12 +51,22 @@ final class Listing
 
         return [
             ...self::card($user, $server, $live, Looks::for($server), true),
-            'badges' => app(AddonRegistry::class)->collect(fn (Addon $addon) => $addon->tileBadges($server)),
+            'badges' => self::badges($server, Subdomains::address($server)),
             'address' => $allocation === null ? null : ($allocation->alias ?: $allocation->ip).':'.$allocation->port,
             'minecraft' => Artwork::minecraft($server),
             'can_edit' => Looks::canEdit($user, $server),
             'links' => array_map(fn (Button $link) => ['label' => $link->label, 'url' => $link->url], app(AddonRegistry::class)->collect(fn (Addon $addon) => $addon->serverLinks($server))),
         ];
+    }
+
+    /**
+     * The subdomain address first, then what add-ons put on the tile.
+     *
+     * @return list<string>
+     */
+    private static function badges(Server $server, ?string $subdomain): array
+    {
+        return [...$subdomain === null ? [] : [$subdomain], ...app(AddonRegistry::class)->collect(fn (Addon $addon) => $addon->tileBadges($server))];
     }
 
     /**

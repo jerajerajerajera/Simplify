@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Website embed',
-    'description' => 'Shows your servers on any website, with their status and join address.',
     'save' => 'Save',
     'saved' => 'Saved',
     'settings' => [

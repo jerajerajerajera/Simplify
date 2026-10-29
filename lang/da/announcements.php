@@ -3,10 +3,6 @@
 return [
     'title' => 'Meddelelser',
     'model' => 'meddelelse',
-    'addon' => [
-        'name' => 'Meddelelser',
-        'description' => 'Info-, advarsels- og succesbeskeder øverst på hver side.',
-    ],
     'form' => [
         'category' => 'Kategori',
         'title' => 'Titel',

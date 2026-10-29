@@ -52,8 +52,4 @@ return [
         'none' => 'Chưa cài tiện ích bổ sung nào. Các tiện ích bổ sung như Server Maker là plugin riêng trên Pelican Hub.',
         'open' => 'Cài đặt',
     ],
-    'parts' => [
-        'heading' => 'Tích hợp sẵn',
-        'help' => 'Đây trước kia là các add-on riêng. Tắt một mục sẽ ẩn nó ở mọi nơi và vẫn giữ dữ liệu của nó.',
-    ],
 ];

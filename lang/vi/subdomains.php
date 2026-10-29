@@ -69,7 +69,4 @@ return [
         'removing' => 'Đang gỡ…',
         'error' => 'Chưa kết nối',
     ],
-    'addon' => [
-        'description' => 'Cấp cho mỗi máy chủ một địa chỉ riêng, như oak.example.com, với bản ghi DNS trên Cloudflare.',
-    ],
 ];

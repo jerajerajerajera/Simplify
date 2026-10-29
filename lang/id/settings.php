@@ -52,8 +52,4 @@ return [
         'none' => 'Tidak ada add-on terpasang. Add-on seperti Server Maker adalah plugin terpisah di Pelican Hub.',
         'open' => 'Pengaturan',
     ],
-    'parts' => [
-        'heading' => 'Bawaan',
-        'help' => 'Dulu ini add-on terpisah. Jika kamu mematikan salah satunya, ia hilang di mana-mana dan datanya tetap tersimpan.',
-    ],
 ];

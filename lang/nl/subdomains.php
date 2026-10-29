@@ -69,7 +69,4 @@ return [
         'removing' => 'Weghalen…',
         'error' => 'Niet verbonden',
     ],
-    'addon' => [
-        'description' => 'Geeft elke server een eigen adres, zoals oak.example.com, met DNS-records in Cloudflare.',
-    ],
 ];

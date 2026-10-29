@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Osadzanie na stronie',
-    'description' => 'Pokazuje twoje serwery na dowolnej stronie, z ich stanem i adresem do połączenia.',
     'save' => 'Zapisz',
     'saved' => 'Zapisano',
     'settings' => [

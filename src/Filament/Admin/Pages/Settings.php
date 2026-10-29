@@ -113,7 +113,6 @@ final class Settings extends Page implements HasForms
                     SettingsFields::app(),
                 ]),
                 Tab::make(__('pelican-simplify::settings.addons.heading'))->key('addons')->icon('tabler-puzzle')->schema([
-                    SettingsFields::parts(),
                     View::make('pelican-simplify::partials.addon-list'),
                 ]),
                 ...$pelican,

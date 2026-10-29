@@ -52,8 +52,4 @@ return [
         'none' => 'Priedų neįdiegta. Priedai, pvz., Server Maker, yra atskiri įskiepiai Pelican Hub.',
         'open' => 'Nustatymai',
     ],
-    'parts' => [
-        'heading' => 'Įtaisyta',
-        'help' => 'Anksčiau tai buvo atskiri add-on. Išjungus vieną, jis dingsta visur, o jo duomenys išlieka.',
-    ],
 ];

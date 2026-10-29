@@ -24,7 +24,6 @@ use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Filament\Server\ServerPage;
 use Simplify\Core\Filament\Server\Widgets\AddonSections;
 use Simplify\Core\Http\Middleware\FramePolicy;
-use Simplify\Core\Parts\Parts;
 use Simplify\Core\Subdomains\Filament\AutomaticSubdomains;
 use Simplify\Core\Subdomains\Filament\ServerSubdomain;
 use Simplify\Core\Support\Brand;
@@ -70,34 +69,17 @@ final class SimplifyPlugin implements Plugin
         if ($panel->getId() === 'admin') {
             $panel->pages([Settings::class, Setup::class, People::class]);
         }
-        self::registerParts($panel);
-    }
-
-    /** The parts that used to be separate add-ons, each only while it is on (Parts). */
-    private static function registerParts(Panel $panel): void
-    {
-        if (Parts::on('announcements')) {
-            if ($panel->getId() === 'admin') {
-                $panel->resources([AnnouncementResource::class]);
-            } else {
-                // The bars sit where Pelican shows its own alert banners, on every page of the panel.
-                $panel->renderHook(PanelsRenderHook::PAGE_START, fn () => Blade::render("@livewire('simplify-core-announcement-bars')"));
-            }
+        if ($panel->getId() === 'admin') {
+            $panel->resources([AnnouncementResource::class]);
+        } else {
+            // The announcement bars sit where Pelican shows its own alert banners, on every page of the panel.
+            $panel->renderHook(PanelsRenderHook::PAGE_START, fn () => Blade::render("@livewire('simplify-core-announcement-bars')"));
         }
-        if (Parts::on('embed')) {
-            match ($panel->getId()) {
-                'admin' => $panel->pages([EmbedSettings::class]),
-                'server' => $panel->pages([Website::class]),
-                default => null,
-            };
-        }
-        if (Parts::on('subdomains')) {
-            match ($panel->getId()) {
-                'admin' => $panel->pages([AutomaticSubdomains::class]),
-                'server' => $panel->pages([ServerSubdomain::class]),
-                default => null,
-            };
-        }
+        match ($panel->getId()) {
+            'admin' => $panel->pages([EmbedSettings::class, AutomaticSubdomains::class]),
+            'server' => $panel->pages([Website::class, ServerSubdomain::class]),
+            default => null,
+        };
     }
 
     public function boot(Panel $panel): void {}

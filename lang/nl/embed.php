@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Website-embed',
-    'description' => 'Toont je servers op elke website, met hun status en verbindingsadres.',
     'save' => 'Opslaan',
     'saved' => 'Opgeslagen',
     'settings' => [

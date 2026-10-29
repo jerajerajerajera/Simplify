@@ -3,10 +3,6 @@
 return [
     'title' => 'Tiedotteet',
     'model' => 'tiedote',
-    'addon' => [
-        'name' => 'Tiedotteet',
-        'description' => 'Info-, varoitus- ja onnistumisviestit jokaisen sivun yläreunassa.',
-    ],
     'form' => [
         'category' => 'Luokka',
         'title' => 'Otsikko',

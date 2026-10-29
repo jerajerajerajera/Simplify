@@ -52,8 +52,4 @@ return [
         'none' => '未安装附加组件。Server Maker 等附加组件是 Pelican Hub 上的独立插件。',
         'open' => '设置',
     ],
-    'parts' => [
-        'heading' => '内置',
-        'help' => '这些以前是单独的附加组件。关闭后它会在所有地方隐藏，数据会保留。',
-    ],
 ];

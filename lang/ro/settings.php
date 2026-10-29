@@ -52,8 +52,4 @@ return [
         'none' => 'Nicio extensie instalată. Extensii precum Server Maker sunt pluginuri separate pe Pelican Hub.',
         'open' => 'Setări',
     ],
-    'parts' => [
-        'heading' => 'Integrat',
-        'help' => 'Acestea erau add-on-uri separate. Dacă dezactivezi unul, dispare peste tot, iar datele lui se păstrează.',
-    ],
 ];

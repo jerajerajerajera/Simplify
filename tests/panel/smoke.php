@@ -659,7 +659,7 @@ step('subdomains: a subdomain reaches Cloudflare and shows on the server card', 
     if (! in_array('POST /zones/'.str_repeat('a', 32).'/dns_records', $calls, true) || Subdomain::of($server->uuid)?->status !== Subdomain::ACTIVE) {
         throw new RuntimeException('not connected: '.json_encode($calls));
     }
-    $badges = app(AddonRegistry::class)->find('simplify-subdomains')?->tileBadges($server->fresh(['allocation', 'egg'])) ?? [];
+    $badges = Listing::one($admin, $server->fresh(['allocation', 'egg']))['badges'];
     if (! str_starts_with((string) ($badges[0] ?? ''), 'smoke-oak.example.com')) {
         throw new RuntimeException('no address on the card: '.json_encode($badges));
     }
@@ -691,26 +691,6 @@ step('subdomains: settings and subdomains from PelicanSimplify 0.6 and 0.7 are t
         Subdomain::query()->delete();
         DB::table(SubdomainSettings::TABLE)->delete();
         SubdomainSettings::flush();
-    }
-});
-step('a root admin turns the parts off', function () {
-    PanelSettings::save(['part_announcements' => false, 'part_embed' => false, 'part_subdomains' => false]);
-});
-step('parts that are off are gone: bars, admin pages, public list and add-on rows', function () use ($admin) {
-    try {
-        $page = visit($admin, '/');
-        expectOk($page, '/');
-        if (str_contains($page->getContent(), 'Smoke from the add-on') || app(AddonRegistry::class)->find('simplify-announcements') !== null) {
-            throw new RuntimeException('a part that is off still shows');
-        }
-        foreach (['/admin/simplify-announcements', '/admin/simplify-embed', '/admin/simplify-subdomains', '/simplify/embed/servers.json'] as $url) {
-            if (visit($admin, $url)->getStatusCode() !== 404) {
-                throw new RuntimeException("$url of a part that is off still opens");
-            }
-        }
-    } finally {
-        PanelSettings::save(['part_announcements' => true, 'part_embed' => true, 'part_subdomains' => true]);
-        Announcement::query()->delete();
     }
 });
 if ($failed || $passed === 0) {

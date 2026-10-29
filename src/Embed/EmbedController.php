@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Simplify\Core\Embed\Services\ServerList;
 use Simplify\Core\Embed\Services\Snippet;
-use Simplify\Core\Parts\Parts;
 use Simplify\Core\SimplifyPlugin;
 
 /**
@@ -21,7 +20,6 @@ final class EmbedController
 
     public function servers(): Response
     {
-        abort_unless(Parts::on('embed'), 404);
         $json = json_encode(ServerList::payload(), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
 
         return response($json, 200, [
@@ -33,7 +31,6 @@ final class EmbedController
 
     public function script(Request $request): Response
     {
-        abort_unless(Parts::on('embed'), 404);
         $path = plugin_path(SimplifyPlugin::ID, 'resources', 'js', 'embed.js');
         $etag = '"'.substr(hash_file('sha256', $path), 0, 16).'"';
         $headers = [
@@ -55,7 +52,6 @@ final class EmbedController
      */
     public function frame(Request $request): Response
     {
-        abort_unless(Parts::on('embed'), 404);
         $rules = ['server' => Snippet::ID, 'game' => Snippet::GAME, 'servers' => Snippet::IDS];
         $attributes = '';
         foreach (['style', 'accent', 'corners', 'players', 'modpack', 'join', 'server', 'game', 'servers'] as $key) {

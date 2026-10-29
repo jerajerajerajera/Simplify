@@ -3,10 +3,6 @@
 return [
     'title' => 'Duyurular',
     'model' => 'duyuru',
-    'addon' => [
-        'name' => 'Duyurular',
-        'description' => 'Her sayfanın üstünde bilgi, uyarı ve başarı mesajları.',
-    ],
     'form' => [
         'category' => 'Kategori',
         'title' => 'Başlık',

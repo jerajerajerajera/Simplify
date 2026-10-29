@@ -3,10 +3,6 @@
 return [
     'title' => 'Anúncios',
     'model' => 'anúncio',
-    'addon' => [
-        'name' => 'Anúncios',
-        'description' => 'Mensagens de informação, aviso e sucesso no topo de cada página.',
-    ],
     'form' => [
         'category' => 'Categoria',
         'title' => 'Título',

@@ -3,10 +3,6 @@
 return [
     'title' => 'Ankündigungen',
     'model' => 'Ankündigung',
-    'addon' => [
-        'name' => 'Ankündigungen',
-        'description' => 'Info-, Warn- und Erfolgsmeldungen oben auf jeder Seite.',
-    ],
     'form' => [
         'category' => 'Kategorie',
         'title' => 'Titel',

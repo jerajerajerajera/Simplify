@@ -9,7 +9,6 @@ use App\Models\Server;
 use Closure;
 use Illuminate\Database\UniqueConstraintViolationException;
 use Illuminate\Validation\ValidationException;
-use Simplify\Core\Parts\Parts;
 use Simplify\Core\Subdomains\Models\Subdomain;
 use Simplify\Core\Subdomains\Services\CloudflareDns;
 use Simplify\Core\Subdomains\Services\Games;
@@ -35,7 +34,7 @@ final class Subdomains
     /** True when a root admin has filled in everything, so servers can get a subdomain. */
     public static function ready(): bool
     {
-        return Parts::on('subdomains') && Settings::ready();
+        return Settings::ready();
     }
 
     /** The domain the subdomains are made in, such as example.com. */
@@ -72,12 +71,30 @@ final class Subdomains
     /** The join address when the subdomain works: oak.example.com for Minecraft Java, oak.example.com:2456 otherwise. */
     public static function address(Server $server): ?string
     {
-        if (! self::ready()) {
-            return null;
-        }
-        $row = Subdomain::of($server->uuid);
+        return self::addresses([$server])[$server->uuid] ?? null;
+    }
 
-        return $row?->status === Subdomain::ACTIVE ? self::join($server, $row->name) : null;
+    /**
+     * The join addresses of the servers whose subdomain works, by server uuid, in one query.
+     *
+     * @param  iterable<Server>  $servers
+     * @return array<string, string>
+     */
+    public static function addresses(iterable $servers): array
+    {
+        if (! self::ready()) {
+            return [];
+        }
+        $names = Subdomain::query()->where('status', Subdomain::ACTIVE)->pluck('name', 'server_uuid')->all();
+        $addresses = [];
+        foreach ($servers as $server) {
+            $address = self::join($server, $names[$server->uuid] ?? null);
+            if ($address !== null) {
+                $addresses[$server->uuid] = $address;
+            }
+        }
+
+        return $addresses;
     }
 
     /** The join address for a server's active subdomain name, null without a name. */

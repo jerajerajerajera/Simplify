@@ -2,7 +2,6 @@
 
 return [
     'name' => 'Webbinbäddning',
-    'description' => 'Visar dina servrar på vilken webbplats som helst, med status och anslutningsadress.',
     'save' => 'Spara',
     'saved' => 'Sparat',
     'settings' => [
