@@ -566,8 +566,7 @@ step('announcements: live bars show for the right people, and the admin list is 
     }
 });
 step('announcements: a server page shows them as short rows in the server card, not as bars above the console', function () use ($admin, $server) {
-    Announcement::query()->delete();
-    Announcement::create(['title' => 'Smoke card note', 'body' => 'Short and in the card']);
+    $note = Announcement::create(['title' => 'Smoke card note', 'body' => 'Short and in the card']);
     try {
         $url = Filament\Facades\Filament::getPanel('server')->getUrl($server);
         $response = visit($admin, $url);
@@ -582,7 +581,7 @@ step('announcements: a server page shows them as short rows in the server card, 
             throw new RuntimeException('the announcement is not a row in the server card');
         }
     } finally {
-        Announcement::query()->delete();
+        $note->delete();
     }
 });
 step('announcements: unpin moves a bar to the bell, pin brings it back, and the scheduler fills the bell once', function () {
