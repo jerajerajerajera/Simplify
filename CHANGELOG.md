@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.8
+
+- Simplify icon buttons on every page of the panel, also in the normal admin panel (Announcements, Website embed, Egg Updates and Pelican's own pages): Tabler icons at one size in a quiet button, instead of Pelican's large coloured glyphs. Icons in table rows stay plain until hovered, and buttons with a label get the same icon size.
+
 ## 1.3.7
 
 - The server menu next to the console lists all sections again. Since 1.3.5 its first item filled the whole menu, so only Console showed.
