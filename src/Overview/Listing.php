@@ -12,6 +12,7 @@ use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Addons\Button;
 use Simplify\Core\Server\Looks;
+use Simplify\Core\Subdomains\Services\Games;
 use Simplify\Core\Subdomains\Subdomains;
 use Throwable;
 
@@ -53,9 +54,9 @@ final class Listing
             ...self::card($user, $server, $live, Looks::for($server), true),
             'badges' => self::badges($server, Subdomains::address($server)),
             'address' => $allocation === null ? null : ($allocation->alias ?: $allocation->ip).':'.$allocation->port,
-            'minecraft' => Artwork::minecraft($server),
+            'minecraft' => Games::minecraft($server),
             'can_edit' => Looks::canEdit($user, $server),
-            'links' => array_map(fn (Button $link) => ['label' => $link->label, 'url' => $link->url], app(AddonRegistry::class)->collect(fn (Addon $addon) => $addon->serverLinks($server))),
+            'links' => array_map(fn (Button $link) => $link->toArray(), app(AddonRegistry::class)->collect(fn (Addon $addon) => $addon->serverLinks($server))),
         ];
     }
 
@@ -84,7 +85,7 @@ final class Listing
             'restoring_backup' => 'restoring',
             default => $server->status->value,
         };
-        $minecraft = Artwork::minecraft($server);
+        $minecraft = Games::minecraft($server);
         $info = in_array($status, ['offline', 'installing', 'install failed'], true) ? ['players' => 0] : self::info($server);
         $egg = $server->egg?->icon;
 

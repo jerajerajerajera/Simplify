@@ -105,7 +105,7 @@ final class Subdomains
         }
         $host = $name.'.'.Settings::domain();
 
-        return self::minecraft($server) ? $host : $host.':'.(int) $server->allocation?->port;
+        return Games::minecraft($server) ? $host : $host.':'.(int) $server->allocation?->port;
     }
 
     /** @return array{name: string, status: string, message: string} what the server page shows */
@@ -174,7 +174,7 @@ final class Subdomains
                 'max' => $settings['port_max'],
             ]));
         }
-        $error = $dns->sync($server->uuid, $name, $port, self::minecraft($server));
+        $error = $dns->sync($server->uuid, $name, $port, Games::minecraft($server));
         if ($name === '' && $error === null) {
             $row->delete();
 
@@ -218,11 +218,6 @@ final class Subdomains
                 self::sync($server);
             }
         }
-    }
-
-    public static function minecraft(Server $server): bool
-    {
-        return Games::minecraftJava((string) $server->egg?->name, (array) ($server->egg?->features ?? []));
     }
 
     private static function names(): Names
