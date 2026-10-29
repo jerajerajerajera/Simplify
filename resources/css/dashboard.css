@@ -140,8 +140,7 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--ps-accent) 7%, transparent);
   transition: box-shadow var(--ps-slow), border-color var(--ps-slow);
 }
-.ps-server-card:not(.locked):hover { box-shadow: 0 5px 22px color-mix(in srgb, var(--ps-accent) 12%, transparent); }
-.ps-server-card.locked > .ps-server-open { opacity: .62; }
+.ps-server-card:hover { box-shadow: 0 5px 22px color-mix(in srgb, var(--ps-accent) 12%, transparent); }
 .ps-card-background { position: absolute; inset: 0 0 0 auto; z-index: -1; width: 80%; height: 100%; object-fit: cover; opacity: .27; filter: blur(1.5px); pointer-events: none; mask-image: linear-gradient(to left, #000, transparent 95%); transition: transform var(--ps-slow); }
 .ps.dark .ps-card-background { opacity: .32; }
 .ps-offline-artwork { position: absolute; inset: 0 0 0 auto; z-index: -1; width: 80%; color: var(--ps-muted); opacity: .27; filter: blur(1.5px); pointer-events: none; mask-image: linear-gradient(to left, #000, transparent 95%); transition: transform var(--ps-slow); }
@@ -189,8 +188,6 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 /* Grid cards: a long name wraps onto a second line before it gets smaller. */
 .ps-server-grid:not(.is-list) .ps-card-title-row { height: auto; min-height: 48px; }
 .ps-server-grid:not(.is-list) .ps-card-title-row h3 { display: -webkit-box; height: auto; max-height: 2.6em; line-height: 1.3; white-space: normal; overflow-wrap: break-word; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
-.ps-card-real-name { display: block; height: 16px; overflow: hidden; color: var(--ps-muted); font-size: 11px; line-height: 16px; text-overflow: ellipsis; white-space: nowrap; }
-.ps-card-real-name.no-alias { visibility: hidden; }
 .ps-server-entry.has-card-motd .ps-card-title { display: flex; flex: 1 1 0; flex-direction: column; min-height: 0; }
 .ps-server-entry.has-card-motd .ps-card-motd { margin-block: auto; }
 .ps-card-usage { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: auto; }
@@ -293,8 +290,6 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-server-grid.is-list .ps-card-title { align-self: start; }
 .ps-server-grid.is-list .ps-card-title-row { flex-direction: row; align-items: center; gap: 8px; height: 30px; }
 .ps-server-grid.is-list .ps-card-title-row h3 { flex: 0 1 auto; width: auto; font-size: 21px; }
-.ps-server-grid.is-list .ps-card-real-name { flex: 0 1 auto; max-width: 45%; height: auto; line-height: 20px; }
-.ps-server-grid.is-list .ps-card-real-name.no-alias { display: none; }
 .ps-server-grid.is-list .ps-card-usage { justify-self: end; width: 100%; margin: 0; gap: 12px; }
 .ps-server-grid.is-list .ps-card-mini-metric { padding: 4px; }
 .ps-server-grid.is-list .ps-card-graph { height: 24px; }
@@ -339,8 +334,6 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
   .ps-server-grid.is-list .ps-card-head { min-height: 42px; }
   .ps-server-grid.is-list .ps-card-icons { --ps-icon-big: 42px; --ps-icon-small: 22px; --ps-icon-gap: 4px; --ps-icon-small-x: calc((var(--ps-icon-big) - var(--ps-icon-small)) / 2); --ps-icon-small-y: calc(var(--ps-icon-big) + var(--ps-icon-gap)); width: var(--ps-icon-big); height: calc(var(--ps-icon-big) + var(--ps-icon-gap) + var(--ps-icon-small)); }
   .ps-server-grid.is-list .ps-card-title-row { flex-direction: column; align-items: stretch; gap: 0; height: 48px; }
-  .ps-server-grid.is-list .ps-card-real-name { max-width: 100%; }
-  .ps-server-grid.is-list .ps-card-real-name.no-alias { display: block; }
   .ps-server-grid.is-list .ps-card-badges { position: static; grid-column: 1 / -1; flex-direction: row; justify-content: flex-end; max-width: 100%; }
   .ps-server-grid.is-list .ps-card-usage { grid-row: auto; max-width: 100%; }
   .ps-server-grid.is-list .has-power .ps-server-open,
@@ -598,26 +591,6 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 
 @media (min-width: 1700px) { .ps-main { padding-inline: 60px; } }
 
-/* Popup contents ----------------------------------------------------------------------------- */
-.ps-modal-body.is-flush > [x-show] { min-height: 0; }
-
-/* Game settings: vertical tabs beside one scrolling panel. */
-
-
-/* Backups, players, packages and other forms. */
-.ps-package { display: flex; align-items: center; gap: 14px; width: 100%; padding: 14px; border: 1px solid var(--ps-line); border-radius: var(--ps-radius); background: var(--ps-raised); color: var(--ps-ink); text-align: start; }
-button.ps-package:hover { border-color: var(--ps-accent); }
-.ps-package img { flex: none; width: 43px; height: 43px; border-radius: 9px; object-fit: contain; }
-.ps-package > :is(div, span) { flex: 1; min-width: 0; overflow-wrap: anywhere; }
-.ps-package strong { font-size: 13px; }
-.ps-package p { display: -webkit-box; margin: 4px 0; overflow: hidden; color: var(--ps-muted); font-size: 12px; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
-.ps-package small { color: var(--ps-muted); font-size: 11px; }
-.ps-package strong + small { margin-inline-start: 6px; }
-.ps-packages > .ps-alert { margin-bottom: 14px; }
-.ps-package img.is-placeholder { padding: 8px; background: var(--ps-surface); }
-.ps-package > .ps-btn, .ps-package > .ps-badge { flex: none; align-self: center; }
-/* Narrow: what is installed first (short), the search below. */
-
 /* Phones -------------------------------------------------------------------------------------- */
 @media (max-width: 600px) {
   .ps-main, .ps.server-active .ps-main { padding: 18px 14px 8px; }
@@ -771,10 +744,6 @@ button.ps-package:hover { border-color: var(--ps-accent); }
 @media (max-height: 500px) and (max-width: 760px) { .ps-host-main { height: max(260px, calc(100dvh - 16px)); } }
 @media (prefers-reduced-motion: reduce) { .ps-host-side { transition: none; } }
 
-.ps.is-embedded .ps-top { display: none; }
-.ps.is-embedded .ps-main { padding: 0; }
-body:has(.ps.is-embedded) :is(.fi-footer, [data-ps-footer], [data-ps-footer-wrapper]) { display: none !important; }
-body:has(.ps.is-embedded) :is(.fi-main, .fi-page, .fi-main-ctn) { max-width: none !important; padding-inline: 0 !important; }
 
 /* Buttons from other plugins: a row under the overview toolbar, small buttons in the console title, and the
    transparent layer a button runs in (visible only while the plugin's own dialog is open). */
@@ -801,9 +770,6 @@ body:has(.ps.is-embedded) :is(.fi-main, .fi-page, .fi-main-ctn) { max-width: non
   .ps-server-info { grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "icons content power"; }
   .ps-info-motd { display: none !important; }
 }
-/* The console alone in its own window: nothing but the console, edge to edge. */
-.ps.is-console-window .ps-main { padding: 10px; }
-body:has(.ps.is-console-window) :is(.fi-topbar, .fi-sidebar, .fi-footer, [data-ps-footer]) { display: none !important; }
 
 /* Live connection: the dot sends out a slow ripple and small bars move, so the console visibly feels live. */
 .ps-console-dot.connected { position: relative; animation: ps-live-dot 2s ease-in-out infinite; }
@@ -818,23 +784,15 @@ body:has(.ps.is-console-window) :is(.fi-topbar, .fi-sidebar, .fi-footer, [data-p
 @keyframes ps-live-bar { 0%, 100% { transform: scaleY(.3); } 50% { transform: scaleY(1); } }
 @media (prefers-reduced-motion: reduce) { .ps-console-dot.connected, .ps-console-dot.connected::after, .ps-live-bars i { animation: none; } }
 
-/* Colour banners: the accent turned a little (a neighbouring hue, slightly deeper), or a chosen colour,
-   fading in from the middle to the right like image banners. */
-.ps-banner-color { --ps-banner-c: var(--ps-banner, color-mix(in oklch, var(--ps-accent) 65%, #7c3aed)); display: block; background-image: linear-gradient(110deg, transparent 0%, color-mix(in srgb, var(--ps-banner-c) 45%, transparent) 70%, var(--ps-banner-c) 100%); }
-@supports (color: oklch(from red l c h)) { .ps-banner-color.is-auto { --ps-banner-c: oklch(from var(--ps-accent) calc(l * .8) calc(c + .07) calc(h + 40)); } }
-span.ps-server-banner.ps-banner-color { opacity: .75; filter: none; transform: none; }
-.ps.dark span.ps-server-banner.ps-banner-color { opacity: .6; }
-span.ps-card-background.ps-banner-color { width: 100%; opacity: .5; filter: none; mask-image: linear-gradient(to right, transparent 35%, #000 100%); }
 
 /* Cards in the style of the server page: rounder corners, a softer accent border that brightens on hover,
    and icons in rounded tinted squares. */
 .ps-server-card { border-color: color-mix(in srgb, var(--ps-accent) 38%, var(--ps-line)); border-radius: 20px; }
-.ps-server-card:not(.locked):hover { border-color: var(--ps-accent); }
+.ps-server-card:hover { border-color: var(--ps-accent); }
 .ps-card-icon, .ps-card-egg-icon { border-radius: 14px; }
 .ps-server-grid.is-list .ps-server-card { border-radius: 16px; }
 /* Inside the host mode pane the pane header already names the server: no floating status bar there,
    and the section menu sticks to the top of the frame. */
-.ps.is-embedded .ps-statusbar { display: none; }
 /* Docked sections are part of the page: scrolling past their content scrolls the page on. */
 
 /* Phones: a status bar whose name shrinks before the buttons. */
@@ -846,9 +804,6 @@ span.ps-card-background.ps-banner-color { width: 100%; opacity: .5; filter: none
   .ps-statusbar-power .ps-btn { width: 32px; height: 32px; padding: 0; }
 }
 @media (max-width: 420px) { .ps-statusbar-item { display: none; } }
-/* The banner sits flush at the top of the pane; its badges make room for the floating pane buttons. */
-.ps.is-embedded .ps-server-info { margin-top: 0; }
-.ps.is-embedded .ps-info-power { margin-inline-end: 74px; }
 /* The create icon's shine sweeps inside the icon only (moving the gradient, not the layer), so it never
    reaches the label next to it. */
 /* The server list fades out softly above the health tile instead of being cut off by a hard edge. */
@@ -919,7 +874,6 @@ span.ps-card-background.ps-banner-color { width: 100%; opacity: .5; filter: none
    sits on the wrapper because the menu itself scrolls (and would clip it). */
 :is(.ps-notify, .ps-overview-appearance):has(> .ps-dropdown.is-end:not([style*="display: none"]))::after { content: ""; position: absolute; top: calc(100% + 2px); inset-inline-end: 19px; z-index: calc(var(--ps-z-dropdown) + 1); width: 12px; height: 12px; border-top: 1px solid var(--ps-line); border-left: 1px solid var(--ps-line); background: var(--ps-surface); transform: rotate(45deg); pointer-events: none; }
 .ps-theme-option[aria-pressed="true"] { border-color: var(--ps-accent); color: var(--ps-accent); }
-.ps.is-embedded .ps-server-info { margin-bottom: 14px; }
 
 /* Resource presets on the Performance page: the same cards as the creator's resource step. */
 
@@ -978,7 +932,6 @@ span.ps-card-background.ps-banner-color { width: 100%; opacity: .5; filter: none
   .ps .ps-server-grid.is-list .ps-card-icons { --ps-icon-big: 48px; --ps-icon-small: 20px; --ps-icon-small-x: 32px; --ps-icon-small-y: 32px; width: 48px; height: 52px; }
   .ps .ps-server-grid.is-list .ps-card-title-row { flex-direction: row; align-items: baseline; gap: 6px; height: auto; }
   .ps .ps-server-grid.is-list .ps-card-title-row h3 { font-size: 17px !important; }
-  .ps .ps-server-grid.is-list .ps-card-real-name, .ps .ps-server-grid.is-list .ps-card-real-name.no-alias { display: none; }
   .ps .ps-server-grid.is-list .ps-card-motd { display: none; }
   .ps .ps-server-grid.is-list .ps-card-badges { position: static; grid-column: 2; grid-row: 2; flex-direction: row; justify-content: flex-start; gap: 6px; transform: none; }
   .ps .ps-card-badges > .ps-badge:nth-of-type(n+3), .ps .ps-card-extras { display: none !important; }
@@ -1106,10 +1059,6 @@ span.ps-card-background.ps-banner-color { width: 100%; opacity: .5; filter: none
 .ps-host-main { position: relative; }
 
 /* App notifications: settings popup and the offer under the bell. */
-.ps-push { display: grid; gap: 4px; }
-.ps-push .ps-label { display: block; margin: 14px 0 2px; }
-.ps-push .ps-help, .ps-push .ps-error { margin: 0 0 8px; }
-.ps-push .ps-customize-switch:disabled { opacity: .55; cursor: default; }
 .ps-push-offer { display: flex; align-items: center; gap: 8px; margin-top: 6px; padding: 8px 6px 8px 12px; border: 1px dashed var(--ps-line); border-radius: var(--ps-radius); background: var(--ps-raised); font-size: 12.5px; }
 .ps-push-offer > svg { flex: none; width: 18px; height: 18px; color: var(--ps-accent); }
 .ps-push-offer > span { flex: 1; min-width: 0; }
@@ -1156,7 +1105,6 @@ span.ps-card-background.ps-banner-color { width: 100%; opacity: .5; filter: none
 [dir="rtl"] :is(.ps-card-background, .ps-offline-artwork) { inset: 0 auto 0 0; mask-image: linear-gradient(to right, #000, transparent 95%); }
 [dir="rtl"] .ps-server-banner { object-position: left center; mask-image: linear-gradient(to left, transparent 45%, #000 100%); }
 [dir="rtl"] .ps-server-info .ps-offline-artwork { mask-image: linear-gradient(to left, transparent 30%, #000 78%); }
-[dir="rtl"] span.ps-card-background.ps-banner-color { mask-image: linear-gradient(to left, transparent 35%, #000 100%); }
 [dir="rtl"] .ps-account-menu { transform: translateX(-8px); }
 /* Console lines, commands and numbers with units stay left-to-right inside Arabic text. */
 [dir="rtl"] :is(.ps-card-usage-label > strong, .ps-card-bottom > span) { direction: ltr; unicode-bidi: isolate; }

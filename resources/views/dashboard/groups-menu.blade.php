@@ -45,12 +45,12 @@
                         <template x-for="(s, position) in groupServerList(group)" :key="s.uuid">
                             <div class="ps-group-server" :class="{'is-member': group.servers.includes(s.uuid)}">
                                 <button type="button" class="ps-customize-switch" role="switch" :aria-checked="group.servers.includes(s.uuid)" x-on:click="toggleGroupServer(group.id, s.uuid)">
-                                    <span><strong x-text="cardNames(s).large"></strong><small x-show="serverGroup(s.uuid) && serverGroup(s.uuid).id!==group.id" x-text="Simplify.fill(@js($u('now_in')), { group: serverGroup(s.uuid)?.name })"></small></span>
+                                    <span><strong x-text="s.name"></strong><small x-show="serverGroup(s.uuid) && serverGroup(s.uuid).id!==group.id" x-text="Simplify.fill(@js($u('now_in')), { group: serverGroup(s.uuid)?.name })"></small></span>
                                     <span class="ps-switch" :class="{'is-on': group.servers.includes(s.uuid)}" aria-hidden="true"></span>
                                 </button>
                                 <span class="ps-group-server-move" x-show="group.sort==='manual' && group.servers.includes(s.uuid)">
-                                    <button type="button" class="ps-btn is-sm is-icon is-subtle ps-group-up" :disabled="position===0" x-on:click="moveGroupServer(group.id, s.uuid, -1)" data-tip="{{ $u('move_up') }}" :aria-label="Simplify.fill(@js($u('move_up_name')), { name: cardNames(s).large })"><svg aria-hidden="true"><use href="#ps-chevron"/></svg></button>
-                                    <button type="button" class="ps-btn is-sm is-icon is-subtle ps-group-down" :disabled="position===groupCount(group)-1" x-on:click="moveGroupServer(group.id, s.uuid, 1)" data-tip="{{ $u('move_down') }}" :aria-label="Simplify.fill(@js($u('move_down_name')), { name: cardNames(s).large })"><svg aria-hidden="true"><use href="#ps-chevron"/></svg></button>
+                                    <button type="button" class="ps-btn is-sm is-icon is-subtle ps-group-up" :disabled="position===0" x-on:click="moveGroupServer(group.id, s.uuid, -1)" data-tip="{{ $u('move_up') }}" :aria-label="Simplify.fill(@js($u('move_up_name')), { name: s.name })"><svg aria-hidden="true"><use href="#ps-chevron"/></svg></button>
+                                    <button type="button" class="ps-btn is-sm is-icon is-subtle ps-group-down" :disabled="position===groupCount(group)-1" x-on:click="moveGroupServer(group.id, s.uuid, 1)" data-tip="{{ $u('move_down') }}" :aria-label="Simplify.fill(@js($u('move_down_name')), { name: s.name })"><svg aria-hidden="true"><use href="#ps-chevron"/></svg></button>
                                 </span>
                             </div>
                         </template>

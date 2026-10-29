@@ -43,32 +43,30 @@
             </div>
             <div class="ps-server-grid" :class="{'is-list': overviewView==='list', 'is-compact': overviewView==='compact', 'has-motd': overviewPreferences.showMotd, 'no-metrics': !overviewMetrics().length, 'no-quick-actions': quickActionsMode()==='off', 'quick-actions-on': quickActionsMode()==='on'}">
                 <template x-for="s in overviewItems()" :key="s.uuid">
-                    <div class="ps-server-entry" :class="{'is-node-heading': !!s.isNodeHeader, 'has-card-motd': overviewPreferences.showMotd && s.game==='minecraft' && !!s.motd, 'has-power': quickActionsMode()!=='off' && s.linked && Object.values(s.permissions || {}).some(Boolean), 'power-shown': quickActionsMode()==='on', 'confirming-power': powerConfirmation?.uuid===s.uuid}" :style="accentStyle(s.uuid)">
+                    <div class="ps-server-entry" :class="{'is-node-heading': !!s.isNodeHeader, 'has-card-motd': overviewPreferences.showMotd && s.game==='minecraft' && !!s.motd, 'has-power': quickActionsMode()!=='off' && Object.values(s.permissions || {}).some(Boolean), 'power-shown': quickActionsMode()==='on', 'confirming-power': powerConfirmation?.uuid===s.uuid}" :style="accentStyle(s.uuid)">
                         <template x-if="s.isNodeHeader">
                             <h2 class="ps-node-heading" :class="{'has-color': !!s.color}"><svg aria-hidden="true"><use :href="'#ps-'+(s.icon || 'host')"/></svg><span x-text="s.name"></span><small x-text="Simplify.choice(@js($u('server_count')), s.count)"></small></h2>
                         </template>
                         <template x-if="!s.isNodeHeader">
-                        <article class="ps-server-card" :class="{'locked': !s.linked}">
+                        <article class="ps-server-card">
                             <span class="ps-offline-artwork" x-show="s.status==='offline'" aria-label="{{ $u('server_offline') }}"><svg aria-hidden="true"><use href="#ps-offline"/></svg></span>
-                            <span class="ps-card-background ps-banner-color" :class="{'is-auto': s.background_id==='color'}" x-show="bannerColor(s) && s.status!=='offline'" :style="bannerColor(s)" aria-hidden="true"></span>
                             <img class="ps-card-background" x-show="s.background && s.status!=='offline'" :src="safeImage(s.background)" alt="" loading="lazy" x-on:error="$el.style.visibility='hidden'">
-                            <button class="ps-server-open" x-on:click="s.linked && (location.href=s.url)" :disabled="!s.linked" :aria-label="s.linked ? Simplify.fill(@js($u('open_name')), { name: s.name }) : Simplify.fill(@js($u('not_assigned')), { name: s.name })">
+                            <button class="ps-server-open" x-on:click="location.href=s.url" :aria-label="Simplify.fill(@js($u('open_name')), { name: s.name })">
                                 <div class="ps-card-head">
-                                    <span class="ps-card-icons" :class="{'egg-primary': overviewPreferences.largeIcon==='egg' && !!(s.egg_icon || s.software_icon)}">
+                                    <span class="ps-card-icons" :class="{'egg-primary': overviewPreferences.largeIcon==='egg' && !!s.egg_icon}">
                                         <span class="ps-card-icon">
                                             <img x-show="s.server_icon || s.icon" :src="safeImage(s.server_icon || s.icon)" alt="{{ $u('server_icon') }}" loading="lazy" x-on:load="$el.style.visibility=''" x-on:error="$el.style.visibility='hidden'">
                                             <svg x-show="!s.server_icon && !s.icon" aria-hidden="true"><use href="#ps-cube"/></svg>
                                         </span>
-                                        <span class="ps-card-egg-icon" x-show="s.egg_icon || s.software_icon" data-tip-label="Server software" :data-tip="softwareTooltip(s)" :aria-label="softwareTooltip(s)">
-                                            <img :src="safeImage(s.egg_icon || s.software_icon)" alt="" loading="lazy" x-on:load="$el.style.visibility=''" x-on:error="$el.style.visibility='hidden'">
+                                        <span class="ps-card-egg-icon" x-show="s.egg_icon" data-tip-label="Server software" :data-tip="softwareTooltip(s)" :aria-label="softwareTooltip(s)">
+                                            <img :src="safeImage(s.egg_icon)" alt="" loading="lazy" x-on:load="$el.style.visibility=''" x-on:error="$el.style.visibility='hidden'">
                                         </span>
                                     </span>
                                 </div>
                                 <div class="ps-card-title">
-                                    <div class="ps-card-title-row" x-data="{observer:null,width:0,init(){this.observer=new ResizeObserver(()=>{const w=this.$el.clientWidth;if(w!==this.width){this.width=w;this.fitCardTitle(this.$el,cardNames(s).large)}});this.observer.observe(this.$el)},destroy(){this.observer?.disconnect()}}"
-                                         x-effect="const name=cardNames(s).large; $nextTick(()=>fitCardTitle($el,name))">
-                                        <h3 x-text="cardNames(s).large"></h3>
-                                        <small class="ps-card-real-name" :class="{'no-alias': !cardNames(s).small}" x-text="cardNames(s).small ? '('+cardNames(s).small+')' : ' '"></small>
+                                    <div class="ps-card-title-row" x-data="{observer:null,width:0,init(){this.observer=new ResizeObserver(()=>{const w=this.$el.clientWidth;if(w!==this.width){this.width=w;this.fitCardTitle(this.$el,s.name)}});this.observer.observe(this.$el)},destroy(){this.observer?.disconnect()}}"
+                                         x-effect="const name=s.name; $nextTick(()=>fitCardTitle($el,name))">
+                                        <h3 x-text="s.name"></h3>
                                     </div>
                                     <div class="ps-card-motd ps-motd-preview ps-motd-display" x-show="overviewPreferences.showMotd && s.game==='minecraft' && s.motd" x-data="{observer:null,init(){this.observer=new ResizeObserver(()=>this.fitMotd(this.$el));this.observer.observe(this.$el)},destroy(){this.observer?.disconnect()}}" x-effect="s.motd; overviewPreferences.showMotd; $nextTick(()=>fitMotd($el))"><template x-for="(part,index) in motdPreview(s.motd)" :key="index"><span :style="part.style" x-text="part.text"></span></template></div>
                                     {{-- Add-on badges: on cards the first (such as the version) joins game and status in the corner and the rest (such as the address) get the full width under the name; the list shows them all under the name. --}}
@@ -96,19 +94,19 @@
                                 </div>
                                 <div class="ps-card-bottom" x-show="overviewView!=='list'">
                                     <span x-text="playerCount(s)"></span>
-                                    <svg aria-hidden="true"><use :href="s.linked ? '#ps-chevron' : '#ps-lock'"/></svg>
+                                    <svg aria-hidden="true"><use href="#ps-chevron"/></svg>
                                 </div>
                             </button>
                             <div class="ps-card-footer" x-show="overviewView==='list'">
-                                <button type="button" class="ps-list-player-count" x-show="overviewView==='list'" x-on:click="s.linked && (location.href=s.url)" :disabled="!s.linked" :aria-label="s.linked ? Simplify.fill(@js($u('open_name')), { name: s.name }) : Simplify.fill(@js($u('not_assigned')), { name: s.name })">
+                                <button type="button" class="ps-list-player-count" x-show="overviewView==='list'" x-on:click="location.href=s.url" :aria-label="Simplify.fill(@js($u('open_name')), { name: s.name })">
                                     <span x-text="playerCount(s)"></span>
-                                    <svg aria-hidden="true"><use :href="s.linked ? '#ps-chevron' : '#ps-lock'"/></svg>
+                                    <svg aria-hidden="true"><use href="#ps-chevron"/></svg>
                                 </button>
                             </div>
                             <div class="ps-overview-power-wrap" x-show="quickActionsMode()!=='off'">
-                                <div class="ps-overview-power" :class="{'is-confirming': powerConfirmation?.uuid===s.uuid}" role="group" :aria-label="Simplify.fill(@js($u('power_controls_for')), { name: s.alias || s.name })">
+                                <div class="ps-overview-power" :class="{'is-confirming': powerConfirmation?.uuid===s.uuid}" role="group" :aria-label="Simplify.fill(@js($u('power_controls_for')), { name: s.name })">
                                     <template x-for="action in [{key:'start',label:@js($u('start')),icon:'play'},{key:'stop',label:@js($u('stop')),icon:'stop'},{key:'restart',label:@js($u('restart')),icon:'restart'},{key:'kill',label:@js($u('force_stop')),icon:'kill'}]" :key="action.key">
-                                        <button type="button" class="ps-btn is-icon" :class="{'is-danger': action.key==='kill'}" :data-power="action.key" :data-tip="action.label" :aria-label="action.label+' '+(s.alias || s.name)" :disabled="!!overviewPowerBusy || !canOverviewPower(s, action.key)" x-on:click.stop="overviewPower(s, action.key)">
+                                        <button type="button" class="ps-btn is-icon" :class="{'is-danger': action.key==='kill'}" :data-power="action.key" :data-tip="action.label" :aria-label="action.label+' '+s.name" :disabled="!!overviewPowerBusy || !canOverviewPower(s, action.key)" x-on:click.stop="overviewPower(s, action.key)">
                                             <svg aria-hidden="true"><use :href="'#ps-'+action.icon"/></svg>
                                         </button>
                                     </template>
@@ -138,7 +136,7 @@
                 </span>
                 <div>
                     <div class="ps-host-heading"><h3>{{ $u('host_health') }}</h3><button type="button" class="ps-health-refresh" :class="{'is-busy': healthRefreshing}" :disabled="healthRefreshing" x-on:click.stop="refreshHostHealth()" x-on:keydown.stop aria-label="{{ $u('refresh_host_health') }}" data-tip="{{ $u('refresh_now') }}"><svg aria-hidden="true"><use href="#ps-restart"/></svg></button><svg class="ps-health-expand" :class="{'expanded': healthExpanded}" aria-hidden="true"><use href="#ps-chevron"/></svg></div>
-                    <span class="ps-health-status" :class="boot.host_health?.state || 'unavailable'"><strong x-text="boot.host_health?.label || @js($u('unavailable'))"></strong><small x-text="(boot.host_health?.available ?? 0)+' / '+(boot.host_health?.hosts ?? 0)+' hosts reporting'"></small></span>
+                    <span class="ps-health-status" :class="boot.host_health?.state || 'unavailable'"><strong x-text="boot.host_health?.label || @js($u('unavailable'))"></strong><small x-text="Simplify.tc('dashboard.hosts_reporting', boot.host_health?.hosts ?? 0, { available: boot.host_health?.available ?? 0 })"></small></span>
                     <small class="ps-health-problem" x-show="boot.host_health?.problem" x-text="boot.host_health?.problem"></small>
                     <small class="ps-health-phone-summary" x-text="Simplify.fill(@js($u('cpu_ram')), { cpu: hostValue('cpu'), ram: hostValue('memory') })"></small>
                 </div>
@@ -188,8 +186,7 @@
                                         <template x-for="item in nodeServers(node)" :key="item.uuid">
                                             <div class="ps-node-server">
                                                 <div>
-                                                    <a x-show="item.linked" :href="item.url" x-text="item.alias || item.name"></a>
-                                                    <strong x-show="!item.linked" x-text="item.alias || item.name"></strong>
+                                                    <a :href="item.url" x-text="item.name"></a>
                                                     <span class="ps-badge ps-status" :class="item.status" x-text="Simplify.status(item.status)"></span>
                                                 </div>
                                                 <span><small>{{ $u('cpu') }}</small><strong x-text="cpuLabel(item)"></strong></span>

@@ -2,7 +2,7 @@
      and the page or server on the right; each side scrolls on its own. Phones open the menu as a sheet. --}}
 <section class="ps-host" :class="{'menu-open': hostMenuOpen}" x-show="hostMode" x-cloak :style="accentStyle('overview')" x-on:keydown.escape="hostMenuOpen=false">
     <button type="button" class="ps-btn ps-host-menu-toggle" x-on:click="hostMenuOpen=true" aria-controls="ps-host-side" :aria-expanded="hostMenuOpen">
-        <svg aria-hidden="true"><use href="#ps-list"/></svg><span x-text="hostServer ? cardNames(hostServer).large : (hostPage && hostSection?.pages.length > 1 ? hostSection.label+' · '+hostPage.label : hostSection?.label || @js($u('admin')))"></span><svg class="ps-host-menu-chevron" aria-hidden="true"><use href="#ps-chevron"/></svg>
+        <svg aria-hidden="true"><use href="#ps-list"/></svg><span x-text="hostServer ? hostServer.name : (hostPage && hostSection?.pages.length > 1 ? hostSection.label+' · '+hostPage.label : hostSection?.label || @js($u('admin')))"></span><svg class="ps-host-menu-chevron" aria-hidden="true"><use href="#ps-chevron"/></svg>
     </button>
     <div class="ps-host-backdrop" x-show="hostMenuOpen" x-cloak x-on:click="hostMenuOpen=false"></div>
     <aside id="ps-host-side" class="ps-host-side" aria-label="{{ $u('host_menu') }}">
@@ -35,9 +35,9 @@
                     <div class="ps-host-node">
                         <span class="ps-label"><svg aria-hidden="true"><use href="#ps-host"/></svg><span x-text="node.name"></span><small x-text="Simplify.choice(@js($u('server_count')), node.servers.length)"></small></span>
                         <template x-for="s in node.servers" :key="s.uuid">
-                            <a class="ps-host-server" :href="s.linked ? s.url : null" :style="accentStyle(s.uuid)" :aria-disabled="!s.linked" :aria-current="hostServer?.uuid===s.uuid ? 'page' : null" x-on:click="if (s.linked && !$event.ctrlKey && !$event.metaKey && !$event.shiftKey) { $event.preventDefault(); openHostServer(s); }">
+                            <a class="ps-host-server" :href="s.url" :style="accentStyle(s.uuid)" :aria-current="hostServer?.uuid===s.uuid ? 'page' : null" x-on:click="if (!$event.ctrlKey && !$event.metaKey && !$event.shiftKey) { $event.preventDefault(); openHostServer(s); }">
                                 <i class="ps-host-dot ps-status" :class="s.status" :aria-label="Simplify.status(s.status)"></i>
-                                <strong x-text="cardNames(s).large"></strong>
+                                <strong x-text="s.name"></strong>
                                 <small x-text="hostServerVersion(s)"></small>
                                 <span class="ps-host-players"><svg aria-hidden="true"><use href="#ps-players"/></svg><span x-text="playerCount(s)"></span></span>
                             </a>
@@ -67,7 +67,7 @@
     <div class="ps-host-main">
         <header class="ps-host-head" x-show="hostServer" x-cloak :style="accentStyle(hostServer?.uuid || 'overview')">
             <i class="ps-host-dot ps-status" :class="hostServer?.status"></i>
-            <h2 class="ps-host-server-name" x-text="hostServer ? cardNames(hostServer).large : ''"></h2>
+            <h2 class="ps-host-server-name" x-text="hostServer ? hostServer.name : ''"></h2>
             <small x-text="hostServer ? hostServerVersion(hostServer) : ''"></small>
             <span class="ps-host-head-actions">
                 <button type="button" class="ps-btn is-sm is-icon" x-on:click="closeHostServer()" data-tip="{{ $u('close') }}" aria-label="{{ $u('close_server') }}"><svg aria-hidden="true"><use href="#ps-close"/></svg></button>
