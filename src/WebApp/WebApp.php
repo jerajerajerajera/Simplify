@@ -133,8 +133,9 @@ final class WebApp
             'start_url' => url('/'),
             'scope' => self::scope(),
             'display' => 'standalone',
-            'background_color' => self::LIGHT,
-            'theme_color' => self::LIGHT,
+            // The splash screen has one colour for both themes: the dark one, like Pelican's own default.
+            'background_color' => self::DARK,
+            'theme_color' => self::DARK,
             'icons' => [
                 ['src' => $icon192, 'sizes' => '192x192', 'type' => $type192, 'purpose' => 'any'],
                 ['src' => $icon512, 'sizes' => '512x512', 'type' => $type512, 'purpose' => 'any'],
