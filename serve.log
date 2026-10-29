@@ -1,0 +1,264 @@
+
+   WARN  Unable to respect the `PHP_CLI_SERVER_WORKERS` environment variable without the `--no-reload` flag. Only creating a single server.  
+
+  PHP Warning:  JIT is incompatible with third party extensions that override zend_execute_ex(). JIT disabled. in Unknown on line 0
+
+   INFO  Server running on [http://127.0.0.1:8001].  
+
+  Press Ctrl+C to stop the server
+
+  2026-10-29 08:02:09 /login ..................................... ~ 500.59ms
+  2026-10-29 08:02:29 /login ..................................... ~ 500.58ms
+  2026-10-29 08:02:29 /simplify/assets/core.css .................... ~ 0.17ms
+  2026-10-29 08:02:29 /simplify/assets/core.js ..................... ~ 0.08ms
+  2026-10-29 08:02:29 /css/charrafimed/global-search-modal/global-search-modal.css?v=5.0.1.0  ~ 1.87ms
+  2026-10-29 08:02:29 /fonts/filament/filament/inter/index.css?v=5.7.6.0  ~ 2.03ms
+  2026-10-29 08:02:29 /fonts/filament/filament/inter/inter-latin-wght-normal-NRMW37G5.woff2  ~ 2.12ms
+  2026-10-29 08:02:29 /build/assets/app-DUS3dRjx.css ............... ~ 2.53ms
+  2026-10-29 08:02:29 /css/filament/filament/app.css?v=5.7.6.0 ..... ~ 3.07ms
+  2026-10-29 08:02:29 /js/filament/actions/actions.js?v=5.7.6.0 .... ~ 1.64ms
+  2026-10-29 08:02:29 /js/filament/notifications/notifications.js?v=5.7.6.0  ~ 1.36ms
+  2026-10-29 08:02:29 /js/filament/schemas/schemas.js?v=5.7.6.0 .... ~ 1.50ms
+  2026-10-29 08:02:29 /js/filament/support/support.js?v=5.7.6.0 .... ~ 1.74ms
+  2026-10-29 08:02:29 /js/filament/tables/tables.js?v=5.7.6.0 ...... ~ 0.19ms
+  2026-10-29 08:02:29 /js/filament/filament/echo.js?v=5.7.6.0 ...... ~ 0.52ms
+  2026-10-29 08:02:29 /js/filament/filament/app.js?v=5.7.6.0 ....... ~ 0.85ms
+  2026-10-29 08:02:29 /build/assets/app-LXU2QhvW.js ................ ~ 1.26ms
+  2026-10-29 08:02:29 /build/assets/index-DsAe2DdM.js .............. ~ 0.75ms
+  2026-10-29 08:02:29 /livewire-69be1aab/livewire.min.js ........... ~ 0.67ms
+  2026-10-29 08:02:29 /simplify-worker.js ........................ ~ 500.45ms
+  2026-10-29 08:02:33 /livewire-69be1aab/update .................. ~ 500.42ms
+  2026-10-29 08:02:33 / ............................................ ~ 0.05ms
+  2026-10-29 08:02:33 /simplify ........................................ ~ 1s
+  2026-10-29 08:02:35 /css/charrafimed/global-search-modal/global-search-modal.css?v=5.0.1.0  ~ 0.13ms
+  2026-10-29 08:02:35 /fonts/filament/filament/inter/index.css?v=5.7.6.0  ~ 0.25ms
+  2026-10-29 08:02:35 /simplify/assets/dashboard.css ............... ~ 0.30ms
+  2026-10-29 08:02:35 /simplify/assets/dashboard.js .............. ~ 500.88ms
+  2026-10-29 08:02:35 /build/assets/app-DUS3dRjx.css ............. ~ 501.55ms
+  2026-10-29 08:02:35 /fonts/filament/filament/inter/inter-latin-wght-normal-NRMW37G5.woff2  ~ 501.81ms
+  2026-10-29 08:02:35 /js/filament/actions/actions.js?v=5.7.6.0 .. ~ 501.35ms
+  2026-10-29 08:02:35 /css/filament/filament/app.css?v=5.7.6.0 ... ~ 502.14ms
+  2026-10-29 08:02:35 /js/filament/notifications/notifications.js?v=5.7.6.0  ~ 0.88ms
+  2026-10-29 08:02:35 /js/filament/schemas/schemas.js?v=5.7.6.0 .... ~ 0.51ms
+  2026-10-29 08:02:35 /js/filament/support/support.js?v=5.7.6.0 .... ~ 0.66ms
+  2026-10-29 08:02:35 /js/filament/tables/tables.js?v=5.7.6.0 ...... ~ 0.81ms
+  2026-10-29 08:02:35 /js/filament/filament/app.js?v=5.7.6.0 ....... ~ 0.09ms
+  2026-10-29 08:02:35 /build/assets/app-LXU2QhvW.js ................ ~ 0.30ms
+  2026-10-29 08:02:35 /js/filament/filament/echo.js?v=5.7.6.0 ...... ~ 1.33ms
+  2026-10-29 08:02:35 /build/assets/index-DsAe2DdM.js .............. ~ 0.84ms
+  2026-10-29 08:02:36 /simplify/background/village ............... ~ 500.52ms
+  2026-10-29 08:02:36 /simplify/background/gaming .................. ~ 0.12ms
+  2026-10-29 08:02:36 /simplify/background/town .................... ~ 0.80ms
+  2026-10-29 08:02:36 /simplify .................................. ~ 500.43ms
+  2026-10-29 08:02:37 /css/charrafimed/global-search-modal/global-search-modal.css?v=5.0.1.0  ~ 0.17ms
+  2026-10-29 08:02:37 /fonts/filament/filament/inter/index.css?v=5.7.6.0  ~ 0.27ms
+  2026-10-29 08:02:37 /fonts/filament/filament/inter/inter-latin-wght-normal-NRMW37G5.woff2  ~ 0.35ms
+  2026-10-29 08:02:37 /js/filament/actions/actions.js?v=5.7.6.0 .... ~ 0.48ms
+  2026-10-29 08:02:37 /build/assets/app-DUS3dRjx.css ............... ~ 0.73ms
+  2026-10-29 08:02:37 /css/filament/filament/app.css?v=5.7.6.0 ..... ~ 1.02ms
+  2026-10-29 08:02:37 /js/filament/notifications/notifications.js?v=5.7.6.0  ~ 0.14ms
+  2026-10-29 08:02:37 /js/filament/schemas/schemas.js?v=5.7.6.0 .... ~ 0.24ms
+  2026-10-29 08:02:37 /js/filament/support/support.js?v=5.7.6.0 .... ~ 0.40ms
+  2026-10-29 08:02:37 /js/filament/tables/tables.js?v=5.7.6.0 ...... ~ 0.56ms
+  2026-10-29 08:02:37 /js/filament/filament/echo.js?v=5.7.6.0 ...... ~ 0.72ms
+  2026-10-29 08:02:37 /js/filament/filament/app.js?v=5.7.6.0 ....... ~ 0.90ms
+  2026-10-29 08:02:37 /build/assets/app-LXU2QhvW.js ................ ~ 0.06ms
+  2026-10-29 08:02:37 /build/assets/index-DsAe2DdM.js .............. ~ 0.41ms
+  2026-10-29 08:02:39 /simplify-worker.js .......................... ~ 0.12ms
+  2026-10-29 08:02:41 /simplify .................................. ~ 500.51ms
+  2026-10-29 08:02:41 /css/charrafimed/global-search-modal/global-search-modal.css?v=5.0.1.0  ~ 0.23ms
+  2026-10-29 08:02:41 /fonts/filament/filament/inter/index.css?v=5.7.6.0  ~ 0.41ms
+  2026-10-29 08:02:41 /fonts/filament/filament/inter/inter-latin-wght-normal-NRMW37G5.woff2  ~ 0.54ms
+  2026-10-29 08:02:41 /js/filament/actions/actions.js?v=5.7.6.0 .... ~ 0.69ms
+  2026-10-29 08:02:41 /build/assets/app-DUS3dRjx.css ............... ~ 1.07ms
+  2026-10-29 08:02:41 /css/filament/filament/app.css?v=5.7.6.0 ..... ~ 1.59ms
+  2026-10-29 08:02:41 /js/filament/notifications/notifications.js?v=5.7.6.0  ~ 0.20ms
+  2026-10-29 08:02:41 /js/filament/schemas/schemas.js?v=5.7.6.0 .... ~ 0.34ms
+  2026-10-29 08:02:41 /js/filament/support/support.js?v=5.7.6.0 .... ~ 0.64ms
+  2026-10-29 08:02:41 /js/filament/tables/tables.js?v=5.7.6.0 ...... ~ 0.87ms
+  2026-10-29 08:02:41 /js/filament/filament/echo.js?v=5.7.6.0 ...... ~ 1.22ms
+  2026-10-29 08:02:41 /js/filament/filament/app.js?v=5.7.6.0 ....... ~ 1.09ms
+  2026-10-29 08:02:41 /build/assets/app-LXU2QhvW.js ................ ~ 0.84ms
+  2026-10-29 08:02:41 /build/assets/index-DsAe2DdM.js .............. ~ 1.43ms
+  2026-10-29 08:02:41 /simplify/assets/monocraft-regular.woff2 ..... ~ 0.07ms
+  2026-10-29 08:02:42 /livewire-69be1aab/update .................... ~ 0.14ms
+  2026-10-29 08:02:44 /simplify-worker.js ........................ ~ 500.45ms
+  2026-10-29 08:02:45 /simplify .................................. ~ 500.50ms
+  2026-10-29 08:02:45 /css/charrafimed/global-search-modal/global-search-modal.css?v=5.0.1.0  ~ 0.24ms
+  2026-10-29 08:02:45 /fonts/filament/filament/inter/index.css?v=5.7.6.0  ~ 0.41ms
+  2026-10-29 08:02:45 /fonts/filament/filament/inter/inter-latin-wght-normal-NRMW37G5.woff2  ~ 0.51ms
+  2026-10-29 08:02:45 /js/filament/actions/actions.js?v=5.7.6.0 .... ~ 0.65ms
+  2026-10-29 08:02:45 /build/assets/app-DUS3dRjx.css ............... ~ 1.08ms
+  2026-10-29 08:02:45 /css/filament/filament/app.css?v=5.7.6.0 ..... ~ 1.60ms
+  2026-10-29 08:02:45 /js/filament/notifications/notifications.js?v=5.7.6.0  ~ 0.20ms
+  2026-10-29 08:02:45 /js/filament/schemas/schemas.js?v=5.7.6.0 .... ~ 0.37ms
+  2026-10-29 08:02:45 /js/filament/support/support.js?v=5.7.6.0 .... ~ 0.64ms
+  2026-10-29 08:02:45 /js/filament/tables/tables.js?v=5.7.6.0 ...... ~ 0.89ms
+  2026-10-29 08:02:45 /js/filament/filament/echo.js?v=5.7.6.0 ...... ~ 1.30ms
+  2026-10-29 08:02:45 /js/filament/filament/app.js?v=5.7.6.0 ....... ~ 0.51ms
+  2026-10-29 08:02:45 /build/assets/app-LXU2QhvW.js ................ ~ 0.83ms
+  2026-10-29 08:02:45 /build/assets/index-DsAe2DdM.js .............. ~ 1.43ms
+  2026-10-29 08:02:48 /simplify-worker.js .......................... ~ 0.13ms
+  2026-10-29 08:03:04 /simplify .................................... ~ 0.20ms
+  2026-10-29 08:03:04 /build/assets/app-DUS3dRjx.css ............... ~ 0.16ms
+  2026-10-29 08:03:04 /fonts/filament/filament/inter/inter-latin-wght-normal-NRMW37G5.woff2  ~ 0.19ms
+  2026-10-29 08:03:04 /css/charrafimed/global-search-modal/global-search-modal.css?v=5.0.1.0  ~ 1.07ms
+  2026-10-29 08:03:04 /fonts/filament/filament/inter/index.css?v=5.7.6.0  ~ 1.23ms
+  2026-10-29 08:03:04 /js/filament/actions/actions.js?v=5.7.6.0 .... ~ 0.70ms
+  2026-10-29 08:03:04 /js/filament/notifications/notifications.js?v=5.7.6.0  ~ 0.92ms
+  2026-10-29 08:03:04 /css/filament/filament/app.css?v=5.7.6.0 ..... ~ 1.83ms
+  2026-10-29 08:03:04 /js/filament/schemas/schemas.js?v=5.7.6.0 .... ~ 0.23ms
+  2026-10-29 08:03:04 /js/filament/support/support.js?v=5.7.6.0 .... ~ 0.51ms
+  2026-10-29 08:03:04 /js/filament/tables/tables.js?v=5.7.6.0 ...... ~ 0.77ms
+  2026-10-29 08:03:04 /js/filament/filament/echo.js?v=5.7.6.0 ...... ~ 1.09ms
+  2026-10-29 08:03:04 /js/filament/filament/app.js?v=5.7.6.0 ....... ~ 1.43ms
+  2026-10-29 08:03:04 /build/assets/app-LXU2QhvW.js ................ ~ 1.77ms
+  2026-10-29 08:03:04 /build/assets/index-DsAe2DdM.js .............. ~ 0.70ms
+  2026-10-29 08:03:05 /livewire-69be1aab/update .................. ~ 500.40ms
+  2026-10-29 08:03:07 /simplify-worker.js .......................... ~ 0.12ms
+  2026-10-29 08:03:09 /simplify .................................... ~ 0.13ms
+  2026-10-29 08:03:09 /css/charrafimed/global-search-modal/global-search-modal.css?v=5.0.1.0  ~ 0.13ms
+  2026-10-29 08:03:09 /fonts/filament/filament/inter/index.css?v=5.7.6.0  ~ 0.23ms
+  2026-10-29 08:03:09 /fonts/filament/filament/inter/inter-latin-wght-normal-NRMW37G5.woff2  ~ 0.31ms
+  2026-10-29 08:03:09 /js/filament/actions/actions.js?v=5.7.6.0 .... ~ 0.40ms
+  2026-10-29 08:03:09 /build/assets/app-DUS3dRjx.css ............... ~ 0.64ms
+  2026-10-29 08:03:09 /css/filament/filament/app.css?v=5.7.6.0 ..... ~ 0.94ms
+  2026-10-29 08:03:09 /js/filament/notifications/notifications.js?v=5.7.6.0  ~ 0.12ms
+  2026-10-29 08:03:09 /js/filament/schemas/schemas.js?v=5.7.6.0 .... ~ 0.20ms
+  2026-10-29 08:03:09 /js/filament/tables/tables.js?v=5.7.6.0 ...... ~ 0.34ms
+  2026-10-29 08:03:09 /js/filament/support/support.js?v=5.7.6.0 .... ~ 0.56ms
+  2026-10-29 08:03:09 /js/filament/filament/echo.js?v=5.7.6.0 ...... ~ 0.72ms
+  2026-10-29 08:03:09 /js/filament/filament/app.js?v=5.7.6.0 ....... ~ 0.28ms
+  2026-10-29 08:03:09 /build/assets/app-LXU2QhvW.js ................ ~ 0.48ms
+  2026-10-29 08:03:09 /build/assets/index-DsAe2DdM.js .............. ~ 0.67ms
+  2026-10-29 08:03:11 /simplify-worker.js ........................ ~ 500.42ms
+  2026-10-29 08:03:13 /simplify .................................. ~ 500.47ms
+  2026-10-29 08:03:13 /css/charrafimed/global-search-modal/global-search-modal.css?v=5.0.1.0  ~ 0.17ms
+  2026-10-29 08:03:13 /fonts/filament/filament/inter/index.css?v=5.7.6.0  ~ 0.26ms
+  2026-10-29 08:03:13 /fonts/filament/filament/inter/inter-latin-wght-normal-NRMW37G5.woff2  ~ 0.32ms
+  2026-10-29 08:03:13 /js/filament/actions/actions.js?v=5.7.6.0 .... ~ 0.40ms
+  2026-10-29 08:03:13 /build/assets/app-DUS3dRjx.css ............... ~ 0.66ms
+  2026-10-29 08:03:13 /css/filament/filament/app.css?v=5.7.6.0 ..... ~ 0.95ms
+  2026-10-29 08:03:13 /js/filament/notifications/notifications.js?v=5.7.6.0  ~ 0.13ms
+  2026-10-29 08:03:13 /js/filament/schemas/schemas.js?v=5.7.6.0 .... ~ 0.22ms
+  2026-10-29 08:03:13 /js/filament/support/support.js?v=5.7.6.0 .... ~ 0.37ms
+  2026-10-29 08:03:13 /js/filament/tables/tables.js?v=5.7.6.0 ...... ~ 0.52ms
+  2026-10-29 08:03:13 /js/filament/filament/echo.js?v=5.7.6.0 ...... ~ 0.72ms
+  2026-10-29 08:03:13 /js/filament/filament/app.js?v=5.7.6.0 ....... ~ 0.96ms
+  2026-10-29 08:03:13 /build/assets/app-LXU2QhvW.js ................ ~ 0.29ms
+  2026-10-29 08:03:13 /build/assets/index-DsAe2DdM.js .............. ~ 0.73ms
+  2026-10-29 08:03:14 /livewire-69be1aab/update .................... ~ 0.13ms
+  2026-10-29 08:03:16 /simplify-worker.js .......................... ~ 0.13ms
+  2026-10-29 08:03:17 /simplify .................................. ~ 500.44ms
+  2026-10-29 08:03:17 /build/assets/app-DUS3dRjx.css ............... ~ 0.13ms
+  2026-10-29 08:03:17 /css/charrafimed/global-search-modal/global-search-modal.css?v=5.0.1.0  ~ 0.49ms
+  2026-10-29 08:03:17 /fonts/filament/filament/inter/index.css?v=5.7.6.0  ~ 0.59ms
+  2026-10-29 08:03:17 /fonts/filament/filament/inter/inter-latin-wght-normal-NRMW37G5.woff2  ~ 0.70ms
+  2026-10-29 08:03:17 /js/filament/actions/actions.js?v=5.7.6.0 .... ~ 0.79ms
+  2026-10-29 08:03:17 /css/filament/filament/app.css?v=5.7.6.0 ..... ~ 0.98ms
+  2026-10-29 08:03:17 /js/filament/notifications/notifications.js?v=5.7.6.0  ~ 0.71ms
+  2026-10-29 08:03:17 /js/filament/schemas/schemas.js?v=5.7.6.0 .... ~ 0.21ms
+  2026-10-29 08:03:17 /js/filament/tables/tables.js?v=5.7.6.0 ...... ~ 0.35ms
+  2026-10-29 08:03:17 /js/filament/support/support.js?v=5.7.6.0 .... ~ 0.56ms
+  2026-10-29 08:03:17 /js/filament/filament/echo.js?v=5.7.6.0 ...... ~ 0.72ms
+  2026-10-29 08:03:17 /js/filament/filament/app.js?v=5.7.6.0 ....... ~ 0.29ms
+  2026-10-29 08:03:17 /build/assets/app-LXU2QhvW.js ................ ~ 0.49ms
+  2026-10-29 08:03:17 /build/assets/index-DsAe2DdM.js .............. ~ 0.63ms
+  2026-10-29 08:03:20 /simplify-worker.js .......................... ~ 0.14ms
+  2026-10-29 08:03:21 /simplify .................................. ~ 500.41ms
+  2026-10-29 08:03:22 /css/charrafimed/global-search-modal/global-search-modal.css?v=5.0.1.0  ~ 0.16ms
+  2026-10-29 08:03:22 /fonts/filament/filament/inter/index.css?v=5.7.6.0  ~ 0.26ms
+  2026-10-29 08:03:22 /fonts/filament/filament/inter/inter-latin-wght-normal-NRMW37G5.woff2  ~ 0.34ms
+  2026-10-29 08:03:22 /build/assets/app-DUS3dRjx.css ............... ~ 0.50ms
+  2026-10-29 08:03:22 /css/filament/filament/app.css?v=5.7.6.0 ..... ~ 0.78ms
+  2026-10-29 08:03:22 /js/filament/actions/actions.js?v=5.7.6.0 .... ~ 1.00ms
+  2026-10-29 08:03:22 /js/filament/notifications/notifications.js?v=5.7.6.0  ~ 0.31ms
+  2026-10-29 08:03:22 /js/filament/schemas/schemas.js?v=5.7.6.0 .... ~ 0.42ms
+  2026-10-29 08:03:22 /js/filament/support/support.js?v=5.7.6.0 .... ~ 0.60ms
+  2026-10-29 08:03:22 /js/filament/tables/tables.js?v=5.7.6.0 ...... ~ 0.42ms
+  2026-10-29 08:03:22 /js/filament/filament/echo.js?v=5.7.6.0 ...... ~ 0.44ms
+  2026-10-29 08:03:22 /js/filament/filament/app.js?v=5.7.6.0 ....... ~ 0.63ms
+  2026-10-29 08:03:22 /build/assets/app-LXU2QhvW.js ................ ~ 0.07ms
+  2026-10-29 08:03:22 /build/assets/index-DsAe2DdM.js .............. ~ 0.40ms
+  2026-10-29 08:03:22 /livewire-69be1aab/update .................... ~ 0.13ms
+  2026-10-29 08:03:24 /simplify-worker.js .......................... ~ 0.13ms
+  2026-10-29 08:03:26 /simplify .................................... ~ 0.13ms
+  2026-10-29 08:03:26 /css/charrafimed/global-search-modal/global-search-modal.css?v=5.0.1.0  ~ 0.13ms
+  2026-10-29 08:03:26 /fonts/filament/filament/inter/index.css?v=5.7.6.0  ~ 0.23ms
+  2026-10-29 08:03:26 /fonts/filament/filament/inter/inter-latin-wght-normal-NRMW37G5.woff2  ~ 0.31ms
+  2026-10-29 08:03:26 /js/filament/actions/actions.js?v=5.7.6.0 .... ~ 0.40ms
+  2026-10-29 08:03:26 /build/assets/app-DUS3dRjx.css ............... ~ 0.63ms
+  2026-10-29 08:03:26 /css/filament/filament/app.css?v=5.7.6.0 ..... ~ 0.95ms
+  2026-10-29 08:03:26 /js/filament/notifications/notifications.js?v=5.7.6.0  ~ 0.12ms
+  2026-10-29 08:03:26 /js/filament/schemas/schemas.js?v=5.7.6.0 .... ~ 0.21ms
+  2026-10-29 08:03:26 /js/filament/tables/tables.js?v=5.7.6.0 ...... ~ 0.35ms
+  2026-10-29 08:03:26 /js/filament/support/support.js?v=5.7.6.0 .... ~ 0.59ms
+  2026-10-29 08:03:26 /js/filament/filament/echo.js?v=5.7.6.0 ...... ~ 0.77ms
+  2026-10-29 08:03:26 /js/filament/filament/app.js?v=5.7.6.0 ....... ~ 0.41ms
+  2026-10-29 08:03:26 /build/assets/app-LXU2QhvW.js ................ ~ 0.78ms
+  2026-10-29 08:03:26 /build/assets/index-DsAe2DdM.js .............. ~ 1.43ms
+  2026-10-29 08:03:29 /simplify-worker.js .......................... ~ 0.13ms
+  2026-10-29 08:03:46 /simplify .................................... ~ 0.14ms
+  2026-10-29 08:03:46 /css/charrafimed/global-search-modal/global-search-modal.css?v=5.0.1.0  ~ 0.13ms
+  2026-10-29 08:03:46 /fonts/filament/filament/inter/index.css?v=5.7.6.0  ~ 0.27ms
+  2026-10-29 08:03:46 /build/assets/app-DUS3dRjx.css ............... ~ 0.43ms
+  2026-10-29 08:03:46 /fonts/filament/filament/inter/inter-latin-wght-normal-NRMW37G5.woff2  ~ 0.69ms
+  2026-10-29 08:03:46 /js/filament/actions/actions.js?v=5.7.6.0 .... ~ 0.78ms
+  2026-10-29 08:03:46 /css/filament/filament/app.css?v=5.7.6.0 ..... ~ 0.97ms
+  2026-10-29 08:03:46 /js/filament/notifications/notifications.js?v=5.7.6.0  ~ 0.14ms
+  2026-10-29 08:03:46 /js/filament/schemas/schemas.js?v=5.7.6.0 .... ~ 0.21ms
+  2026-10-29 08:03:46 /js/filament/support/support.js?v=5.7.6.0 .... ~ 0.36ms
+  2026-10-29 08:03:46 /js/filament/tables/tables.js?v=5.7.6.0 ...... ~ 0.50ms
+  2026-10-29 08:03:46 /js/filament/filament/app.js?v=5.7.6.0 ....... ~ 0.09ms
+  2026-10-29 08:03:46 /build/assets/app-LXU2QhvW.js ................ ~ 0.32ms
+  2026-10-29 08:03:46 /js/filament/filament/echo.js?v=5.7.6.0 ...... ~ 1.36ms
+  2026-10-29 08:03:46 /build/assets/index-DsAe2DdM.js .............. ~ 0.92ms
+  2026-10-29 08:03:49 /simplify-worker.js .......................... ~ 0.13ms
+  2026-10-29 08:03:52 /simplify .................................... ~ 0.13ms
+  2026-10-29 08:03:52 /css/charrafimed/global-search-modal/global-search-modal.css?v=5.0.1.0  ~ 0.25ms
+  2026-10-29 08:03:52 /fonts/filament/filament/inter/index.css?v=5.7.6.0  ~ 0.41ms
+  2026-10-29 08:03:52 /fonts/filament/filament/inter/inter-latin-wght-normal-NRMW37G5.woff2  ~ 0.57ms
+  2026-10-29 08:03:52 /js/filament/actions/actions.js?v=5.7.6.0 .... ~ 0.73ms
+  2026-10-29 08:03:52 /build/assets/app-DUS3dRjx.css ............... ~ 1.14ms
+  2026-10-29 08:03:52 /css/filament/filament/app.css?v=5.7.6.0 ..... ~ 1.71ms
+  2026-10-29 08:03:52 /js/filament/notifications/notifications.js?v=5.7.6.0  ~ 0.19ms
+  2026-10-29 08:03:52 /js/filament/schemas/schemas.js?v=5.7.6.0 .... ~ 0.34ms
+  2026-10-29 08:03:52 /js/filament/support/support.js?v=5.7.6.0 .... ~ 0.63ms
+  2026-10-29 08:03:52 /js/filament/tables/tables.js?v=5.7.6.0 ...... ~ 0.90ms
+  2026-10-29 08:03:52 /js/filament/filament/echo.js?v=5.7.6.0 ...... ~ 0.17ms
+  2026-10-29 08:03:52 /js/filament/filament/app.js?v=5.7.6.0 ....... ~ 0.53ms
+  2026-10-29 08:03:52 /build/assets/app-LXU2QhvW.js ................ ~ 0.87ms
+  2026-10-29 08:03:52 /build/assets/index-DsAe2DdM.js .............. ~ 1.50ms
+  2026-10-29 08:03:55 /simplify-worker.js .......................... ~ 0.14ms
+  2026-10-29 08:03:58 /simplify .................................. ~ 500.50ms
+  2026-10-29 08:03:58 /css/charrafimed/global-search-modal/global-search-modal.css?v=5.0.1.0  ~ 0.24ms
+  2026-10-29 08:03:58 /fonts/filament/filament/inter/index.css?v=5.7.6.0  ~ 0.40ms
+  2026-10-29 08:03:58 /fonts/filament/filament/inter/inter-latin-wght-normal-NRMW37G5.woff2  ~ 0.53ms
+  2026-10-29 08:03:58 /js/filament/actions/actions.js?v=5.7.6.0 .... ~ 0.62ms
+  2026-10-29 08:03:58 /build/assets/app-DUS3dRjx.css ............... ~ 1.05ms
+  2026-10-29 08:03:58 /css/filament/filament/app.css?v=5.7.6.0 ..... ~ 1.57ms
+  2026-10-29 08:03:58 /js/filament/notifications/notifications.js?v=5.7.6.0  ~ 0.22ms
+  2026-10-29 08:03:58 /js/filament/schemas/schemas.js?v=5.7.6.0 .... ~ 0.39ms
+  2026-10-29 08:03:58 /js/filament/tables/tables.js?v=5.7.6.0 ...... ~ 0.62ms
+  2026-10-29 08:03:58 /js/filament/support/support.js?v=5.7.6.0 .... ~ 0.97ms
+  2026-10-29 08:03:58 /js/filament/filament/echo.js?v=5.7.6.0 ...... ~ 1.18ms
+  2026-10-29 08:03:58 /js/filament/filament/app.js?v=5.7.6.0 ....... ~ 1.48ms
+  2026-10-29 08:03:58 /build/assets/app-LXU2QhvW.js ................ ~ 0.12ms
+  2026-10-29 08:03:58 /build/assets/index-DsAe2DdM.js .............. ~ 0.71ms
+  2026-10-29 08:04:00 /simplify-worker.js .......................... ~ 0.14ms
+  2026-10-29 08:04:03 /simplify .................................. ~ 500.44ms
+  2026-10-29 08:04:03 /css/charrafimed/global-search-modal/global-search-modal.css?v=5.0.1.0  ~ 0.15ms
+  2026-10-29 08:04:03 /fonts/filament/filament/inter/index.css?v=5.7.6.0  ~ 0.25ms
+  2026-10-29 08:04:03 /fonts/filament/filament/inter/inter-latin-wght-normal-NRMW37G5.woff2  ~ 0.33ms
+  2026-10-29 08:04:03 /js/filament/actions/actions.js?v=5.7.6.0 .... ~ 0.41ms
+  2026-10-29 08:04:03 /build/assets/app-DUS3dRjx.css ............... ~ 0.65ms
+  2026-10-29 08:04:03 /css/filament/filament/app.css?v=5.7.6.0 ..... ~ 0.94ms
+  2026-10-29 08:04:03 /js/filament/notifications/notifications.js?v=5.7.6.0  ~ 0.13ms
+  2026-10-29 08:04:03 /js/filament/schemas/schemas.js?v=5.7.6.0 .... ~ 0.23ms
+  2026-10-29 08:04:03 /js/filament/support/support.js?v=5.7.6.0 .... ~ 0.38ms
+  2026-10-29 08:04:03 /js/filament/tables/tables.js?v=5.7.6.0 ...... ~ 0.54ms
+  2026-10-29 08:04:03 /js/filament/filament/echo.js?v=5.7.6.0 ...... ~ 0.61ms
+  2026-10-29 08:04:03 /js/filament/filament/app.js?v=5.7.6.0 ....... ~ 0.30ms
+  2026-10-29 08:04:03 /build/assets/app-LXU2QhvW.js ................ ~ 0.50ms
+  2026-10-29 08:04:03 /build/assets/index-DsAe2DdM.js .............. ~ 0.64ms
+  2026-10-29 08:04:06 /simplify-worker.js .......................... ~ 0.14ms
