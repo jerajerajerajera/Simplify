@@ -256,9 +256,11 @@
         }
         const items = this.adminPages().flatMap((group) => group.items);
         const known = new Set([...plan.flatMap((section) => section.pages), 'settings']);
+        // An add-on's settings page that is also in Pelican's menu (Hosting) shows once, under Add-ons.
+        const tabUrls = new Set(menu.map((tab) => tab.url));
         return plan.map((section) => ({
           ...section,
-          pages: section.key === 'extensions' ? items.filter((item) => !known.has(item.key)) : [...(section.tabs || []), ...section.pages.map((key) => items.find((item) => item.key === key)).filter(Boolean)],
+          pages: section.key === 'extensions' ? items.filter((item) => !known.has(item.key) && !tabUrls.has(item.url)) : [...(section.tabs || []), ...section.pages.map((key) => items.find((item) => item.key === key)).filter(Boolean)],
         })).filter((section) => section.pages.length);
       },
       adminHealthPage() {
