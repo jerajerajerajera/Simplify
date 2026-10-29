@@ -22,6 +22,10 @@
       ],
       infoMenu: false,
       colorMenu: false,
+      // Set while a power action, rename or look change is on its way; Alpine treats an undefined name as an error.
+      busy: false,
+      // The last state Wings reported over the console socket, for Pelican versions without window.ServerStats.
+      socketState: null,
       colorDraft: null,
       statusBarVisible: false,
       sample: null,
@@ -34,6 +38,11 @@
         this.refreshTimer = setInterval(() => this.refresh(), this.refreshSeconds);
         if (boot.console) {
           if (new URLSearchParams(location.search).has('simplify_console')) document.documentElement.classList.add('ps-console-window');
+          // Every Pelican version passes Wings' "status" on as this Livewire event, the first one right after connecting.
+          window.Livewire?.on?.('console-status', (event) => {
+            const state = (Array.isArray(event) ? event[0] : event)?.state;
+            if (typeof state === 'string') this.socketState = state;
+          });
           this.liveTimer = setInterval(() => this.live(), 1000);
           this.$nextTick(() => this.live());
         }
@@ -82,7 +91,7 @@
       /** The newest numbers from Pelican's console (window.ServerStats), once per new frame. */
       live() {
         const stats = window.ServerStats, latest = stats?.latest?.();
-        const state = stats?.state?.();
+        const state = stats?.state?.() || this.socketState;
         this.consoleBar(!!state);
         if (state && state !== this.server.status) this.server = { ...this.server, status: state };
         if (!latest || latest.t === this.liveAt) return;
@@ -183,7 +192,6 @@
       },
 
       /* Card ------------------------------------------------------------------------------------- */
-      /** The power button that fits the state: Stop while the server runs, Start otherwise. */
       /** Like Pelican's own buttons: Stop while running, Force stop while it starts or stops (Wings refuses a stop then). */
       mainPower() {
         if (this.status === 'running') return { action: 'stop', label: t('dashboard.stop'), icon: 'stop', permission: 'control.stop' };

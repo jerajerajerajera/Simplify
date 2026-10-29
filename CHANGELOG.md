@@ -3,7 +3,9 @@
 ## 1.4.3
 
 - The notifications menu always ends inside the window, so its last item and "Show more" are no longer cut off when the top bar has a second row (announcements on a narrower window) or the panel is zoomed.
-- Server page: the power buttons follow Pelican's rules. While a server is starting or stopping the main button is Force stop instead of a greyed-out Stop, and Restart works in every state but installing or restoring. Before, a server that Wings kept on "starting" (its startup message not recognised) could not be stopped or restarted from Simplify.
+- Server page: Stop, Restart and Start work again. Since 1.3.1 they stayed greyed out on every server, because a value the buttons check was no longer set.
+- Server page: the console title shows "Connected" again on Pelican versions that do not report the server's state to plugins themselves (before 1.0.0-rc.2), instead of "Connecting to Wings..." while the log already runs. The server card's status follows Wings there too.
+- Server page: while a server is starting or stopping, the main power button is Force stop, and Restart works in every state but installing and restoring, as in Pelican's own console.
 
 ## 1.4.2
 
