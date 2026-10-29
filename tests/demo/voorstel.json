@@ -1,16 +1,1 @@
-[
-  {
-    "name": "addons-simplify-stijl",
-    "title": "Add-ons in Simplify-stijl",
-    "text": "Toolkit: icoonknoppen per plugin in Simplify-stijl en de CurseForge-sleutel als eigen kaart rechts. Server Maker: tandwiel en Start over als Simplify-icoonknoppen.",
-    "branches": { "Simplify-Toolkit": "claude/project-thread-o1d3tj", "Simplify-ServerMaker": "claude/project-thread-o1d3tj" },
-    "screens": ["server-plugins", "server-plugins@phone", "app-server-maker", "app-server-maker@phone", "admin-server-maker", "admin-toolkit"]
-  },
-  {
-    "name": "icoonknoppen-overal",
-    "title": "Simplify-icoonknoppen op alle beheerpagina's",
-    "text": "Losse icoontjes rechtsboven worden knoppen met rand (36px, icoon 18px); rij-acties 30px, rustig tot je eroverheen gaat; de prullenbak blijft rood. Kern PR #66.",
-    "branches": { "Simplify": "claude/simplify-icon-buttons-everywhere" },
-    "screens": ["admin-announcements", "admin-egg-updates", "admin-website-embed", "admin-explain", "admin-server-maker", "admin-toolkit", "admin-hosting", "admin-automatic-subdomains", "admin-maker-settings"]
-  }
-]
+[]
