@@ -48,6 +48,7 @@ return [
         'app_badge_help' => 'En PNG med genomskinlig bakgrund, visas vit i Androids statusfält. Tomt använder appikonen om den har genomskinlig bakgrund, annars pelikanen.',
         'server_colours' => 'Egen färg per server',
         'server_colours_help' => 'Varje server får en egen färg, från sin grupp eller vald för den. Av: alla servrar använder accentfärgen.',
+        'pelican_suffix' => 'Visa "× Pelican" efter namnet',
     ],
     'addons' => [
         'heading' => 'Tillägg',

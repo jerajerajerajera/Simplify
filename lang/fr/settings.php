@@ -48,6 +48,7 @@ return [
         'app_badge_help' => 'Un PNG à fond transparent, affiché en blanc dans la barre d’état d’Android. Vide : l’icône de l’app si son fond est transparent, sinon le pélican.',
         'server_colours' => 'Couleur propre à chaque serveur',
         'server_colours_help' => 'Chaque serveur reçoit sa propre couleur, celle de son groupe ou choisie pour lui. Désactivé : chaque serveur utilise la couleur d\'accent.',
+        'pelican_suffix' => 'Afficher « × Pelican » après le nom',
     ],
     'addons' => [
         'heading' => 'Add-ons',

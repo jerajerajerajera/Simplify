@@ -48,6 +48,7 @@ return [
         'app_badge_help' => 'En PNG med gennemsigtig baggrund, vist hvid i Androids statuslinje. Tom bruger app-ikonet, hvis det har gennemsigtig baggrund, ellers pelikanen.',
         'server_colours' => 'Egen farve pr. server',
         'server_colours_help' => 'Hver server får sin egen farve, fra sin gruppe eller valgt til den. Fra: alle servere bruger accentfarven.',
+        'pelican_suffix' => 'Vis "× Pelican" efter navnet',
     ],
     'addons' => [
         'heading' => 'Tilføjelser',

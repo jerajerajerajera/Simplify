@@ -48,6 +48,7 @@ return [
         'app_badge_help' => 'Un PNG cu fundal transparent, afișat alb în bara de stare Android. Gol folosește pictograma aplicației dacă are fundal transparent, altfel pelicanul.',
         'server_colours' => 'Culoare proprie pentru fiecare server',
         'server_colours_help' => 'Fiecare server primește propria culoare, de la grupul său sau aleasă pentru el. Oprit: toate serverele folosesc culoarea de accent.',
+        'pelican_suffix' => 'Afișați „× Pelican” după nume',
     ],
     'addons' => [
         'heading' => 'Extensii',

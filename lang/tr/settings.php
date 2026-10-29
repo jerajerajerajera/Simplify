@@ -48,6 +48,7 @@ return [
         'app_badge_help' => 'Şeffaf arka planlı bir PNG; Android durum çubuğunda beyaz gösterilir. Boşsa, arka planı şeffafsa uygulama simgesi, değilse pelikan kullanılır.',
         'server_colours' => 'Her sunucuya ayrı renk',
         'server_colours_help' => 'Her sunucu kendi rengini alır: grubunun rengi ya da onun için seçilen renk. Kapalı: tüm sunucular vurgu rengini kullanır.',
+        'pelican_suffix' => 'Adın ardından "× Pelican" göster',
     ],
     'addons' => [
         'heading' => 'Ek özellikler',

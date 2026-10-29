@@ -48,6 +48,7 @@ return [
         'app_badge_help' => 'PNG s průhledným pozadím, ve stavovém řádku Androidu zobrazené bíle. Prázdné použije ikonu aplikace, pokud má průhledné pozadí, jinak pelikána.',
         'server_colours' => 'Vlastní barva pro každý server',
         'server_colours_help' => 'Každý server má vlastní barvu, ze své skupiny nebo vybranou pro něj. Vypnuto: všechny servery používají barvu zvýraznění.',
+        'pelican_suffix' => 'Zobrazit "× Pelican" za názvem',
     ],
     'addons' => [
         'heading' => 'Doplňky',
