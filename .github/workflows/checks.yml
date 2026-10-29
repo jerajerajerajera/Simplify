@@ -80,7 +80,9 @@ jobs:
           mkdir -p panel/plugins/simplify
           tar -C plugin --exclude=.git --exclude=dist -cf - . | tar -C panel/plugins/simplify -xf -
           cd panel
-          php artisan p:plugin:install simplify
+          # As Admin → Plugins and the Hub install it: in a queue job.
+          php artisan tinker --execute="App\Jobs\Plugin\InstallPlugin::dispatch(App\Models\User::factory()->create(), 'simplify');"
+          php artisan queue:work --max-jobs=1 --stop-when-empty
           php artisan p:plugin:list | tee plugins.txt
           grep -E 'Simplify .*\| enabled' plugins.txt || { echo 'Simplify did not install'; exit 1; }
           test ! -e plugins/pelican-simplify || { echo 'The old pelican-simplify folder is still there'; exit 1; }

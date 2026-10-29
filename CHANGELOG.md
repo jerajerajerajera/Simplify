@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.1
+
+- Installing Simplify from Admin → Plugins or the Hub now also removes the old pelican-simplify folder. Those installs run in the panel's queue, where 1.4.0 only removed it once the queue worker restarted, so for a while both copies were loaded.
+
 ## 1.4.0
 
 - The plugin id is now `simplify`, with its own listing on the Pelican Hub. Installing it on a panel with the old id `pelican-simplify` (Simplify 1.x, or PelicanSimplify 0.7.0 and before) removes the old plugin's folder once the install is done. Its tables and settings stay, so Simplify 1.x panels keep everything.
