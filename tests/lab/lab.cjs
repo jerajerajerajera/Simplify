@@ -132,24 +132,24 @@ const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g
     }
     // The lab add-on puts two badges on every card (as Mods and Subdomains do); none may cover the server name.
     const covered = () => page.evaluate(() => [...document.querySelectorAll('.ps-server-card')].filter((c) => c.checkVisibility()).flatMap((card) => {
-      const name = card.querySelector('h3')?.getBoundingClientRect();
+      const others = [...card.querySelectorAll('h3, .ps-card-mini-metric')].filter((e) => e.checkVisibility()).map((e) => e.getBoundingClientRect());
       return [...card.querySelectorAll('.ps-badge')].filter((b) => b.checkVisibility()).map((b) => b.getBoundingClientRect())
-        .filter((b) => name && b.width && b.left < name.right && b.right > name.left && b.top < name.bottom && b.bottom > name.top).map(() => card.querySelector('h3').textContent);
+        .filter((b) => b.width && others.some((o) => b.left < o.right && b.right > o.left && b.top < o.bottom && b.bottom > o.top)).map(() => card.querySelector('h3').textContent);
     }));
     const outside = () => page.evaluate(() => [...document.querySelectorAll('.ps-server-card')].filter((c) => c.checkVisibility()).flatMap((card) => {
       const box = card.getBoundingClientRect();
       return [...card.querySelectorAll('.ps-card-bottom > *')].filter((e) => e.checkVisibility()).map((e) => e.getBoundingClientRect())
         .filter((e) => e.width && (e.left < box.left || e.right > box.right)).map(() => card.querySelector('h3').textContent);
     }));
-    for (const view of ['grid', 'compact']) {
+    for (const view of ['grid', 'compact', 'list']) {
       await ps('d.setOverviewView(a)', view); await sleep(600);
       ok(`${view}: the bottom row (players, badges, arrow) stays inside the card`, (await outside()).length === 0, (await outside()).join(', '));
-      ok(`${view}: add-on badges ${view === 'grid' ? 'show under the name' : 'stay off compact cards'}`, (await page.locator('.ps-server-card .ps-badge:visible', { hasText: /\.example\.com/ }).count()) === (view === 'grid' ? 6 : 0));
+      ok(`${view}: add-on badges ${view === 'compact' ? 'stay off compact cards' : 'show under the name'}`, (await page.locator('.ps-server-card .ps-badge:visible', { hasText: /\.example\.com/ }).count()) === (view === 'compact' ? 0 : 6));
       if (view === 'grid') {
         const cut = await page.evaluate(() => [...document.querySelectorAll('.ps-card-extras .ps-badge')].filter((b) => b.checkVisibility() && b.scrollWidth > b.clientWidth + 1).map((b) => b.textContent));
         ok('grid: the address badge is not cut short', cut.length === 0, cut.join(', '));
       }
-      ok(`${view}: no badge covers a server name`, (await covered()).length === 0, (await covered()).join(', '));
+      ok(`${view}: no badge covers a server name or the numbers`, (await covered()).length === 0, (await covered()).join(', '));
     }
     await ps('d.setOverviewView(a)', 'grid'); await sleep(500);
     await shot('action-overview-addon-badges');
