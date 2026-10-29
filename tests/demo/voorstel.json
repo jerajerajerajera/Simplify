@@ -1,0 +1,10 @@
+{
+  "name": "simplify-stijl-addons",
+  "title": "Add-ons in Simplify-stijl",
+  "text": "Toolkit: icoonknoppen per plugin in Simplify-stijl en de CurseForge-sleutel als eigen kaart rechts. Server Maker: tandwiel en Start over als Simplify-icoonknoppen.",
+  "branches": {
+    "Simplify-Toolkit": "claude/project-thread-o1d3tj",
+    "Simplify-ServerMaker": "claude/project-thread-o1d3tj"
+  },
+  "screens": ["server-plugins", "server-plugins@phone", "app-server-maker", "app-server-maker@phone", "admin-server-maker", "admin-toolkit"]
+}

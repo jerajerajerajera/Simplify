@@ -10,6 +10,12 @@ permissions:
   contents: write
 jobs:
   demo:
+    # main: the latest main of every repo. voorstel: the same, with the branches from tests/demo/voorstel.json, for a
+    # proposal Jeroen approves in the demo before it is released.
+    strategy:
+      fail-fast: false
+      matrix:
+        variant: [main, voorstel]
     runs-on: ubuntu-latest
     timeout-minutes: 50
     env:
@@ -18,16 +24,24 @@ jobs:
       - uses: actions/checkout@v4
         with:
           path: demo
-      - uses: shivammathur/setup-php@v2
+      - name: Anything to record?
+        id: plan
+        run: |
+          if [ "${{ matrix.variant }}" = voorstel ] && [ ! -f demo/tests/demo/voorstel.json ]; then echo "skip=1" >> "$GITHUB_OUTPUT"; else echo "skip=0" >> "$GITHUB_OUTPUT"; fi
+      - if: steps.plan.outputs.skip == '0'
+        uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
           extensions: bcmath, gd, intl, mbstring, pdo_sqlite, sqlite3, zip
           tools: composer
-      - uses: actions/setup-node@v4
+      - if: steps.plan.outputs.skip == '0'
+        uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: npm install -g yarn
-      - name: Install Pelican
+      - if: steps.plan.outputs.skip == '0'
+        run: npm install -g yarn
+      - if: steps.plan.outputs.skip == '0'
+        name: Install Pelican
         run: |
           git clone --quiet --depth 1 --branch "v$PELICAN" https://github.com/pelican-dev/panel.git panel
           cd panel
@@ -41,25 +55,29 @@ jobs:
           php artisan migrate --force --seed
           yarn install --silent
           yarn build
-      - name: Install Simplify and the add-ons (latest main of each)
+      - if: steps.plan.outputs.skip == '0'
+        name: Install Simplify and the add-ons
         working-directory: panel
         run: |
           echo '{' > versions.json
           for pair in Simplify:pelican-simplify Simplify-Toolkit:simplify-toolkit Simplify-EggUpdates:simplify-egg-updates Simplify-Explain:simplify-explain Simplify-ServerMaker:simplify-server-maker Simplify-Hosting:simplify-hosting; do
             repo=${pair%%:*}; id=${pair##*:}
             # Always main: Toolkit's default branch still points at the old Mods code. The folder must carry the id from plugin.json.
-            git clone --quiet --depth 1 --branch main "https://github.com/jerajerajerajera/$repo.git" "plugins/$id"
+            branch=main
+            if [ "${{ matrix.variant }}" = voorstel ]; then branch=$(php -r "echo json_decode(file_get_contents('../demo/tests/demo/voorstel.json'), true)['branches']['$repo'] ?? 'main';"); fi
+            git clone --quiet --depth 1 --branch "$branch" "https://github.com/jerajerajerajera/$repo.git" "plugins/$id"
             real=$(php -r "echo json_decode(file_get_contents('plugins/$id/plugin.json'), true)['id'];")
             if [ "$real" != "$id" ]; then mv "plugins/$id" "plugins/$real"; id=$real; fi
             version=$(php -r "echo json_decode(file_get_contents('plugins/$id/plugin.json'), true)['version'];")
-            echo "\"$id\": {\"repo\": \"$repo\", \"version\": \"$version\", \"commit\": \"$(git -C plugins/$id rev-parse --short HEAD)\"}," >> versions.json
+            echo "\"$id\": {\"repo\": \"$repo\", \"branch\": \"$branch\", \"version\": \"$version\", \"commit\": \"$(git -C plugins/$id rev-parse --short HEAD)\"}," >> versions.json
             rm -rf "plugins/$id/.git"
             php artisan p:plugin:install "$id"
           done
           echo "\"pelican\": {\"version\": \"$PELICAN\"}}" >> versions.json
           cat versions.json
           php artisan p:plugin:list
-      - name: Seed and start the panel and the fake Wings
+      - if: steps.plan.outputs.skip == '0'
+        name: Seed and start the panel and the fake Wings
         working-directory: panel
         run: |
           php ../demo/tests/demo/seed.php 8090 > servers.json
@@ -69,7 +87,8 @@ jobs:
           PHP_CLI_SERVER_WORKERS=8 nohup php artisan serve --host 127.0.0.1 --port 8001 > serve.log 2>&1 &
           for i in $(seq 1 30); do curl -sf -o /dev/null http://127.0.0.1:8001/login && break; sleep 1; done
           curl -sS http://127.0.0.1:8090/api/system
-      - name: Record every screen
+      - if: steps.plan.outputs.skip == '0'
+        name: Record every screen
         working-directory: panel
         run: |
           cd ../demo/tests/demo
@@ -77,14 +96,15 @@ jobs:
           npm install --silent playwright@1.48.2
           npx playwright install --with-deps chromium > /dev/null
           node capture.cjs --base http://127.0.0.1:8001 --urls ../../../panel/urls.json --versions ../../../panel/versions.json --out ../../../result
-      - name: Laravel log
-        if: always()
+      - if: always() && steps.plan.outputs.skip == '0'
+        name: Laravel log
         run: grep -h -E '^\[[0-9-]+ [0-9:]+\]' panel/storage/logs/*.log | cut -c1-600 | tail -n 30 || true
       # On a branch of its own, so build.py can fetch it with plain git.
-      - name: Result to the demo-results branch
+      - if: steps.plan.outputs.skip == '0'
+        name: Result to the demo-results branch
         run: |
           cd result
           git init -q -b results
           git add -A
           git -c user.name=demo -c user.email=demo@users.noreply.github.com commit -qm "Demo ${{ github.sha }}"
-          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "results:refs/heads/demo-results"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "results:refs/heads/demo-results$([ "${{ matrix.variant }}" = voorstel ] && echo -voorstel)"
