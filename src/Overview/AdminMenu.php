@@ -41,7 +41,7 @@ final class AdminMenu
         return [];
     }
 
-    /** @return list<array{label: string, items: list<array{key: string, label: string, url: string, icon: string}>}> */
+    /** @return list<array{label: string, items: list<array{key: string, label: string, url: string, icon: string, origin: string}>}> */
     public static function items(): array
     {
         if (! user()?->isAdmin()) {
@@ -63,6 +63,7 @@ final class AdminMenu
                     'label' => (string) $class::getNavigationLabel(),
                     'url' => $resource ? $class::getUrl('index', panel: 'admin') : $class::getUrl(panel: 'admin'),
                     'icon' => self::ICONS[$name] ?? 'plugins',
+                    'origin' => self::origin($class),
                 ];
             } catch (Throwable) {
                 continue;
@@ -71,5 +72,15 @@ final class AdminMenu
         usort($items, fn (array $a, array $b) => strnatcasecmp($a['label'], $b['label']));
 
         return $items === [] ? [] : [['label' => 'admin', 'items' => $items]];
+    }
+
+    /** Simplify's own pages are "core", the add-ons' pages (in the Simplify group) "addon"; the rest belongs to other plugins or Pelican. */
+    private static function origin(string $class): string
+    {
+        if (str_starts_with($class, 'Simplify\\Core\\')) {
+            return 'core';
+        }
+
+        return method_exists($class, 'getNavigationGroup') && $class::getNavigationGroup() === 'Simplify' ? 'addon' : '';
     }
 }

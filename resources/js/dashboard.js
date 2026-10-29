@@ -270,9 +270,16 @@
         const known = new Set([...plan.flatMap((section) => section.pages), 'settings']);
         // An add-on's settings page that is also in Pelican's menu (Hosting) shows once, under Add-ons.
         const tabUrls = new Set(menu.map((tab) => tab.url));
+        // Simplify's own pages (Announcements, Automatic subdomains, Website) join its settings, the add-ons' other pages
+        // join Add-ons: Other plugins is only for plugins that are not Simplify.
+        const own = (origin) => items.filter((item) => item.origin === origin && !known.has(item.key) && !tabUrls.has(item.url));
+        const extra = { panel: own('core'), addons: own('addon') };
+        if (!menu.length) extra.panel = [];
         return plan.map((section) => ({
           ...section,
-          pages: section.key === 'extensions' ? items.filter((item) => !known.has(item.key) && !tabUrls.has(item.url)) : [...(section.tabs || []), ...section.pages.map((key) => items.find((item) => item.key === key)).filter(Boolean)],
+          pages: section.key === 'extensions'
+            ? items.filter((item) => !known.has(item.key) && !tabUrls.has(item.url) && !(menu.length && item.origin))
+            : [...(section.tabs || []), ...(extra[section.key] || []), ...section.pages.map((key) => items.find((item) => item.key === key)).filter(Boolean)],
         })).filter((section) => section.pages.length);
       },
       adminHealthPage() {
