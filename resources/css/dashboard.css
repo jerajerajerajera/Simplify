@@ -524,13 +524,15 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
    second opens the rest over the page. Where the bar has no room for them they get a row of their own under it. */
 .ps-top .ps-info-notes { position: relative; flex: 1 1 0; align-self: center; min-width: 0; }
 .ps-top .ps-info-notes:not(:has(.ps-note)) { display: none; }
+/* Host mode has the panel's announcements in the bar too, so its frame keeps the window's height; the simple overview keeps the bars. */
+.ps:not(.host-mode) .ps-top[data-ps-notes="host"] .ps-info-notes, body:has(.ps.host-mode) .ps-bars { display: none; }
 .ps-notes { display: grid; gap: 4px; width: 100%; max-width: 560px; margin: 0 auto; }
 .ps-notes.is-open { position: absolute; inset: 0 0 auto; z-index: 2; }
 .ps-notes:not(.is-open) > .ps-note:nth-child(n + 3) { display: none; }
 .ps-top .ps-note { height: 26px; }
 .ps-top .ps-note .ps-btn.is-sm { min-height: 20px; height: 20px; }
 @media (max-width: 1100px) {
-  .ps.server-active .ps-top:has(.ps-note) { flex-wrap: wrap; }
+  .ps:is(.server-active, .host-mode) .ps-top:has(.ps-note) { flex-wrap: wrap; }
   .ps-top .ps-info-notes { order: 3; flex-basis: 100%; }
   .ps-notes { max-width: none; }
 }
@@ -1165,27 +1167,42 @@ body:has(.ps-server-top) .fi-page-header-main-ctn { padding-top: 0 !important; }
 /* Pelican's page title repeats the menu, so it goes, as in 0.7.0. An icon action (such as Save) sits in the top corner
    of the page's own card; buttons with a label, and a page with a table (its tools sit in that corner), keep a row. */
 body:has(.ps-server-top) .fi-header :is(.fi-header-heading, .fi-header-subheading, .fi-breadcrumbs:has(.fi-breadcrumbs-item:only-child)) { display: none !important; }
-body:has(.ps-server-top) .fi-header:not(:has(.fi-header-actions-ctn > *, .fi-breadcrumbs-item + .fi-breadcrumbs-item)) { display: none !important; }
+body:has(.ps-server-top) .fi-header:not(:has(.fi-header-actions-ctn > *)) { display: none !important; }
 body:has(.ps-server-top) .fi-header { justify-content: space-between; margin: 0 0 14px !important; }
 body:has(.ps-server-top) .fi-header-actions-ctn { margin-inline-start: auto; }
-body:has(.ps-server-top) .fi-page-header-main-ctn:not(:has(.fi-ta, > .fi-header :is(.fi-btn, .fi-breadcrumbs))) { position: relative; }
-body:has(.ps-server-top) .fi-page-header-main-ctn:not(:has(.fi-ta, > .fi-header :is(.fi-btn, .fi-breadcrumbs))) > .fi-header { position: absolute; top: 14px; inset-inline-end: 16px; z-index: 2; }
-body:has(.ps-server-top) .fi-page-header-main-ctn:not(:has(.fi-ta, > .fi-header :is(.fi-btn, .fi-breadcrumbs))):has(> .fi-header .fi-header-actions-ctn > *) .fi-grid-col:first-child > .fi-sc-component > .fi-section > .fi-section-header { padding-inline-end: 72px; }
+body:has(.ps-server-top) .fi-page-header-main-ctn:not(:has(.fi-ta, > .fi-header .fi-btn)) { position: relative; }
+body:has(.ps-server-top) .fi-page-header-main-ctn:not(:has(.fi-ta, > .fi-header .fi-btn)) > .fi-header { position: absolute; top: 14px; inset-inline-end: 16px; z-index: 2; }
+body:has(.ps-server-top) .fi-page-header-main-ctn:not(:has(.fi-ta, > .fi-header .fi-btn)):has(> .fi-header .fi-header-actions-ctn > *) .fi-grid-col:first-child > .fi-sc-component > .fi-section > .fi-section-header { padding-inline-end: 72px; }
 /* The page never scrolls (server.js fitPage): the menu and the page next to it are as tall as the window under the
-   cards, and each scrolls inside itself. Only max-height, so nothing inside takes the full height. */
-html.ps-fit body:has(.ps-server-top) .fi-main-ctn > .fi-main { max-height: var(--ps-fit); padding-bottom: 0 !important; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
-html.ps-fit .ps-server-menu { max-height: var(--ps-fit); }
-/* Filament's page leaves 32px under the content and a gap for an empty slot: in a fitted page that is an empty band. */
-html.ps-fit body:has(.ps-server-top) .fi-page-header-main-ctn { padding-bottom: 0; }
-html.ps-fit body:has(.ps-server-top) .fi-page-content > div:empty { display: none; }
-/* The page is one card at the window's height, rounded at top and bottom like the menu: only what is inside it
-   scrolls. The cards Filament draws inside it lose their own frame; a title bar and the save button stay on top. */
-html.ps-fit body:has(.ps-server-top) .fi-main-ctn > .fi-main:not(:has(#terminal)) { border: 1px solid var(--ps-line); border-radius: var(--ps-radius-lg); background: var(--ps-surface); }
-html.ps-fit body:has(.ps-server-top) .fi-main:not(:has(#terminal)) :is(.fi-section:not(.fi-section .fi-section), .fi-ta-ctn:not(.fi-section .fi-ta-ctn)) { border: 0 !important; border-radius: 0 !important; background: transparent !important; box-shadow: none !important; outline: 0 !important; }
-html.ps-fit body:has(.ps-server-top) .fi-main:not(:has(#terminal)) .fi-grid-col + .fi-grid-col > .fi-sc-component > .fi-section { border-inline-start: 1px solid var(--ps-line) !important; }
-html.ps-fit body:has(.ps-server-top) .fi-page-header-main-ctn:has(> .fi-header) { row-gap: 0; }
-html.ps-fit body:has(.ps-server-top) .fi-page-header-main-ctn:not(:has(.fi-ta, > .fi-header :is(.fi-btn, .fi-breadcrumbs))) > .fi-header { position: sticky; top: 14px; align-self: flex-end; height: 0; margin: 0 16px 0 0 !important; overflow: visible; }
-html.ps-fit body:has(.ps-server-top) .fi-main .fi-section:not(.fi-section .fi-section) > .fi-section-header { position: sticky; top: 0; z-index: 1; background: var(--ps-surface) !important; }
+   cards, also when there is little on the page. The page is one card like the menu, rounded at top and bottom: its
+   head (buttons, a title bar) stays and only what is under it scrolls. The cards Filament draws inside lose their
+   own frame and become parts split by a line; tables run from edge to edge. */
+html.ps-fit .ps-server-menu { height: var(--ps-fit); max-height: var(--ps-fit); }
+html.ps-fit body:has(.ps-server-top) .fi-main-ctn > .fi-main { box-sizing: border-box; display: flex; flex-direction: column; height: var(--ps-fit); padding: 0 !important; overflow: hidden; }
+html.ps-fit body:has(.ps-server-top:not(.is-console)) .fi-main-ctn > .fi-main { border: 1px solid var(--ps-line); border-radius: var(--ps-radius-lg); background: var(--ps-surface); }
+html.ps-fit body:has(.ps-server-top) .fi-main > .fi-page,
+html.ps-fit body:has(.ps-server-top) .fi-page-header-main-ctn { display: flex; flex: 1; flex-direction: column; min-height: 0; row-gap: 0 !important; padding: 0 !important; }
+html.ps-fit body:has(.ps-server-top) .fi-page-main { position: relative; flex: 1; min-height: 0; padding: 0 !important; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
+html.ps-fit body:has(.ps-server-top) .fi-page-content { row-gap: 0 !important; }
+html.ps-fit body:has(.ps-server-top) :is(.fi-page, .fi-page-content) > div:empty { display: none; }
+/* The head: a bar over the page, or, for a lone icon button on a list, in the row of the table's search field. */
+html.ps-fit body:has(.ps-server-top) :is(.fi-page-header-main-ctn:has(> .fi-header .fi-btn), .fi-page:not(.fi-resource-list-records-page) .fi-page-header-main-ctn:has(.fi-ta)) > .fi-header { flex: none; margin: 0 !important; padding: 12px 16px; border-bottom: 1px solid var(--ps-line); }
+html.ps-fit body:has(.ps-server-top) .fi-resource-list-records-page .fi-page-header-main-ctn:not(:has(> .fi-header .fi-btn)) { position: relative; }
+html.ps-fit body:has(.ps-server-top) .fi-resource-list-records-page .fi-page-header-main-ctn:not(:has(> .fi-header .fi-btn)) > .fi-header { position: absolute; top: 12px; inset-inline-end: 16px; z-index: 2; margin: 0 !important; }
+html.ps-fit body:has(.ps-server-top) .fi-resource-list-records-page .fi-page-header-main-ctn:not(:has(> .fi-header .fi-btn)):has(> .fi-header .fi-header-actions-ctn > *) .fi-ta-header-toolbar { padding-inline-end: 68px; }
+html.ps-fit body:has(.ps-server-top:not(.is-console)) .fi-main :is(.fi-section, .fi-ta-ctn, .sm-side > *) { margin: 0 !important; border: 0 !important; border-radius: 0 !important; background: transparent !important; box-shadow: none !important; outline: 0 !important; }
+html.ps-fit body:has(.ps-server-top) .fi-main .fi-ta-header-toolbar { padding-inline: 16px; }
+html.ps-fit body:has(.ps-server-top:not(.is-console)) .fi-main .fi-sc.fi-sc-has-gap:not(:is(.fi-section, .fi-fieldset) *) { gap: 0 !important; }
+html.ps-fit body:has(.ps-server-top:not(.is-console)) .fi-main :is(.fi-sc > .fi-grid-col:not(.fi-hidden) ~ .fi-grid-col:not(.fi-hidden):not(:is(.fi-section, .fi-fieldset) *), .sm-side > * + *) { border-top: 1px solid var(--ps-line) !important; }
+html.ps-fit body:has(.ps-server-top:not(.is-console)) .fi-main .fi-fieldset { margin: 0 !important; padding: 0 !important; border: 0 !important; }
+html.ps-fit body:has(.ps-server-top:not(.is-console)) .fi-main .fi-fieldset > legend { margin: 0 0 8px; padding: 0; font-weight: 600; }
+/* Loose fields and notices (a schedule's name, the startup command, a Minecraft warning) get a section's margin. */
+html.ps-fit body:has(.ps-server-top:not(.is-console)) .fi-main .fi-sc > .fi-grid-col:not(:has(.fi-section, .fi-ta-ctn, > .fi-sc-component > .fi-sc)):not(:is(.fi-section, .fi-fieldset) *) { padding: 12px 24px; }
+html.ps-fit body:has(.ps-server-top:not(.is-console)) .fi-main :is(form > :not(.fi-sc), .fi-page-content > :not(.fi-sc, .fi-ta, .relative, .sm-columns, form, div:empty)) { margin: 0; padding: 12px 24px; }
+/* Toolkit's Plugins page: its two columns in the one card, split by a line. */
+html.ps-fit body:has(.ps-server-top) .fi-main .sm-columns { gap: 0 !important; align-items: stretch; min-height: 100%; }
+html.ps-fit body:has(.ps-server-top) .fi-main .sm-columns > .fi-section { border-inline-end: 1px solid var(--ps-line) !important; }
+html.ps-fit body:has(.ps-server-top) .fi-main .sm-side { gap: 0 !important; }
 html.ps-console-big .ps-server-menu { display: none; }
 html.ps-console-big body:has(.ps-server-top) .fi-main-ctn > .fi-main { grid-column: 1 / -1; }
 

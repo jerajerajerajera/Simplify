@@ -41,10 +41,10 @@
         addEventListener('resize', () => this.fitPage());
         this.$nextTick(() => {
           this.fitPage();
-          // The server card (a MOTD or status arriving later) and the page itself (Livewire filling in after load):
-          // the page is capped at --ps-fit, so only its content changes size.
+          // The server card (a MOTD or status arriving later) and the page's content (Livewire filling in after load):
+          // the page itself has the fixed height --ps-fit, so only its content changes size.
           const observer = new ResizeObserver(() => this.fitPage());
-          [this.$root.querySelector('.ps-main'), document.querySelector('.fi-main-ctn > .fi-main > *')].forEach(el => el && observer.observe(el));
+          [this.$root.querySelector('.ps-main'), document.querySelector('.fi-main-ctn > .fi-main .fi-page-content')].forEach(el => el && observer.observe(el));
         });
       },
       destroy() {
@@ -132,17 +132,18 @@
 
       /** The page never scrolls: the menu and the page next to it get the window's height under the cards, and only
           the page scrolls inside it (--ps-fit, dashboard.css). The console fills that height, with the menu as tall;
-          Pelican's terminal fits its rows to the new height on the resize event. Phones and low windows scroll. */
+          Pelican's terminal fits its rows to the new height on the resize event. Phones scroll; a low window gets a smaller console. */
       fitPage() {
         const root = document.documentElement, main = document.querySelector('.fi-main-ctn > .fi-main');
-        const fit = !!main && innerWidth > 600 && innerHeight > 500 && !root.classList.contains('ps-console-window');
+        // Also in a low window, such as a server in host mode's frame: then the console gets smaller, the page never scrolls.
+        const fit = !!main && innerWidth > 600 && !root.classList.contains('ps-console-window');
         root.classList.toggle('ps-fit', fit);
         if (!fit) {
           root.style.removeProperty('--ps-fit');
           return this.fitConsole(0, main);
         }
         const footer = document.querySelector('.fi-footer, [data-ps-footer]')?.offsetHeight || 0;
-        const height = Math.max(240, Math.floor(innerHeight - (main.getBoundingClientRect().top + scrollY) - footer - 14));
+        const height = Math.max(160, Math.floor(innerHeight - (main.getBoundingClientRect().top + scrollY) - footer - 14));
         root.style.setProperty('--ps-fit', height + 'px');
         this.fitConsole(height, main);
       },
@@ -151,7 +152,8 @@
         if (!card) return;
         let height = '';
         // The terminal takes whatever the page has left (or gives back what it is short), so nothing else needs measuring.
-        if (space) height = Math.max(240, Math.floor(terminal.offsetHeight + space - main.scrollHeight)) + 'px';
+        const scroller = main.querySelector('.fi-page-main'), content = scroller?.querySelector('.fi-page-content');
+        if (space && content) height = Math.max(120, Math.floor(terminal.offsetHeight + scroller.clientHeight - content.offsetHeight)) + 'px';
         if (terminal.style.height !== height) {
           terminal.style.height = height;
           dispatchEvent(new Event('resize'));

@@ -2,7 +2,7 @@
     use Simplify\Core\Announcements\Support\Rules;
 @endphp
 
-<div @class(['flex flex-col gap-3', 'mt-3' => $announcements->isNotEmpty()])>
+<div @class(['ps-bars flex flex-col gap-3', 'mt-3' => $announcements->isNotEmpty()])>
     @foreach ($announcements as $announcement)
         <x-filament::callout
             wire:key="simplify-announcement-{{ $announcement->id }}"
