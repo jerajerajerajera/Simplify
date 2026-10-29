@@ -174,16 +174,18 @@ async function round(theme) {
   await goto(overview); await setTheme(theme); await goto(overview); await ready(); await alpine('d.setHostMode(false)'); await sleep(500);
   for (const view of ['grid', 'compact', 'list']) { await alpine(`d.setOverviewView('${view}')`); await sleep(700); await record('overview-' + view, 'Overzicht, ' + view); }
   await alpine(`d.setOverviewView('grid')`); await sleep(500);
-  if (onPhone) { await click('.ps-mobile-menu'); await record('overview-phone-menu', 'Overzicht, telefoonmenu open'); }
+  // Phones: the panel menu opens from the tab bar at the bottom (the account button sits inside it).
+  const openNav = async () => { if (!onPhone) return; if (!(await click('.ps-tabbar button[aria-controls="ps-navigation-items"]', 500))) await click('.ps-mobile-menu'); };
+  if (onPhone) { await openNav(); await record('overview-phone-menu', 'Overzicht, telefoonmenu open'); }
   await click('.ps-account-button'); await record('overview-account', 'Accountmenu open');
   await click('#ps-account-actions button[aria-label]:nth-child(2)'); await record('overview-account-theme', 'Accountmenu, themakeuze open'); await escape();
-  if (onPhone) await click('.ps-mobile-menu');
+  await openNav();
   await click('[x-ref="notifyButton"]'); await record('overview-bell', 'Bel (aankondigingen) open'); await escape();
-  if (onPhone) await click('.ps-mobile-menu');
+  await openNav();
   await click('[x-ref="adminButton"]'); await record('overview-admin', 'Beheermenu (schild) open'); await escape();
-  if (onPhone) await click('.ps-mobile-menu');
+  await openNav();
   await click('[x-ref="overviewAppearance"]'); await record('overview-customize', 'Weergave aanpassen open'); await escape();
-  if (onPhone) await click('.ps-mobile-menu');
+  await openNav();
   await click('[x-ref="overviewGroupsButton"]'); await record('overview-groups', 'Servergroepen open'); await escape();
   if (await click('.ps-health-pill')) await record('overview-health', 'Gezondheid van de host open'); await escape();
   await click('.ps-server-card .ps-card-menu-button, .ps-server-card button[aria-label*="options" i], .ps-server-card button[aria-label*="menu" i]', 500) && await record('overview-card-menu', 'Serverkaart ⋯-menu open'); await escape();
