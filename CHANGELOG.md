@@ -16,6 +16,12 @@
 - Overview list: when the quick power buttons slide in, the player count moves along smoothly with the rest of the row instead of jumping.
 - App: the splash screen of the installed app is dark, like the panel, instead of white. Android picks this up when Chrome next updates the app, or on a new install.
 - The browser tab icon is the Simplify logo at full size on a transparent background, instead of a small logo in a dark circle.
+- Every menu under the top bar (admin tools, customize, groups, notifications) ends inside the window, also when announcements give the bar a second row.
+- Tablets and narrow windows (up to 900 pixels): the top bar's buttons sit in the menu, as on a phone, so the panel name, the account button and the admin tools no longer fall off the screen or break up letter by letter.
+- Server page: the five numbers fill their rows on a tablet (three over two) and sit two by two on a phone, so values and labels are no longer cut off. On a phone "× Pelican" stays on one line.
+- Host mode: a server in a low frame folds its numbers into one slim row, so its box keeps a usable console instead of the frame scrolling.
+- The admin tools list each add-on once, and "People & roles" has its own icon.
+- Fixed a script error on server pages ("brandTextStyle is not a function").
 
 ## 1.4.2
 

@@ -20,7 +20,7 @@ final class AdminMenu
         'DatabaseHostResource' => 'database', 'BackupHostResource' => 'backups', 'UserResource' => 'players',
         'RoleResource' => 'lock', 'ApiKeyResource' => 'key', 'PluginResource' => 'plugins', 'Settings' => 'gear',
         'WebhookResource' => 'link', 'Health' => 'heart', 'ListLogs' => 'activity',
-        'AnnouncementResource' => 'bell', 'AutomaticSubdomains' => 'web', 'EmbedSettings' => 'code',
+        'People' => 'players', 'AnnouncementResource' => 'bell', 'AutomaticSubdomains' => 'web', 'EmbedSettings' => 'code',
     ];
 
     /** Pages that need parameters or that the menu does not list. */

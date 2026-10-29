@@ -152,7 +152,11 @@
           return this.fitConsole(0, main);
         }
         const footer = document.querySelector('.fi-footer, [data-ps-footer]')?.offsetHeight || 0;
-        const height = Math.max(160, Math.floor(innerHeight - (main.getBoundingClientRect().top + scrollY) - footer - 14));
+        const room = () => Math.floor(innerHeight - (main.getBoundingClientRect().top + scrollY) - footer - 14);
+        // A low window (a server in host mode's frame) folds the numbers into one slim row, so the box keeps a usable height.
+        root.classList.remove('ps-low');
+        if (room() < 320) root.classList.add('ps-low');
+        const height = Math.max(160, room());
         root.style.setProperty('--ps-fit', height + 'px');
         this.fitConsole(height, main);
       },

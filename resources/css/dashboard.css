@@ -69,8 +69,9 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 @media (max-width: 600px) { .ps.server-active .ps-heading { flex-direction: column; align-items: flex-start; gap: 8px; } }
 .ps-identity { min-width: 0; }
 .ps h1 { font-size: 25px; font-weight: 750; line-height: 1.25; letter-spacing: -.8px; overflow-wrap: anywhere; }
-.ps-panel-name { color: var(--ps-ink); }
-.ps-title-pelican { color: var(--ps-muted); }
+.ps-panel-name { min-width: 0; color: var(--ps-ink); }
+/* "× Pelican" stays one word; on a narrow screen the panel name wraps instead. */
+.ps-title-pelican { flex: none; white-space: nowrap; color: var(--ps-muted); }
 .ps-brand { display: flex; align-items: center; gap: .3em; }
 .ps-brand .ps-brand-logo { max-width: 240px; width: auto; object-fit: contain; }
 .ps-top-actions { position: relative; display: flex; align-items: center; gap: 6px; }
@@ -619,13 +620,16 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 
 @media (min-width: 1700px) { .ps-main { padding-inline: 60px; } }
 
-/* Phones -------------------------------------------------------------------------------------- */
-@media (max-width: 600px) {
-  .ps-main, .ps.server-active .ps-main { padding: 18px 14px 8px; }
-  .ps.server-active .ps-main { padding-bottom: 24px; }
-  .ps-top, .ps.server-active .ps-top { gap: 10px; margin-bottom: 16px; }
+/* Tablets: five numbers as three over two (four as two over two), each row filling the width. */
+@media (min-width: 601px) and (max-width: 900px) {
+  .ps-server-stats { display: flex; flex-wrap: wrap; }
+  .ps-server-stats > .ps-stat { flex: 1 1 calc(33.333% - 14px); min-width: 0; }
+  .ps-server-stats:has(> .ps-players-stat[style*="display: none"]) > .ps-stat { flex-basis: calc(50% - 14px); }
+}
+
+/* Phones and tablets: up to 900px the top bar has no room for every button, so they go into the menu. */
+@media (max-width: 900px) {
   .ps-heading { flex: 1; min-width: 0; }
-  .ps h1 { font-size: 22px; }
   .ps-mobile-menu { display: inline-flex !important; }
   .ps-mobile-label { display: block !important; font-size: 14px; font-weight: 500; }
   .ps-nav-items > .ps-nav-admin, .ps-nav-items > .ps-nav-view { order: 0; }
@@ -644,6 +648,15 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   /* The phone menu is narrower than every account button in a row: the buttons get a row of their own and wrap. */
   .ps-account.account-open .ps-account-menu { flex: 0 0 100%; width: 100%; height: auto; margin: 8px 0 0; }
   .ps-account-actions-inner { flex-wrap: wrap; width: 100%; }
+}
+
+/* Phones -------------------------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  .ps-main, .ps.server-active .ps-main { padding: 18px 14px 8px; }
+  .ps.server-active .ps-main { padding-bottom: 24px; }
+  .ps-top, .ps.server-active .ps-top { gap: 10px; margin-bottom: 16px; }
+  .ps-heading { flex: 1; min-width: 0; }
+  .ps h1 { font-size: 22px; }
   .ps-server-scroll { padding: 4px 0; }
   .ps-server-stage, .ps-server-stage.is-list { max-width: 100%; margin: 0; }
   .ps-overview-toolbar { margin-bottom: 10px; }
@@ -792,7 +805,7 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 /* A workspace open: it takes the block, and the console folds to a mini console under it: the status
    dot and the command line. The chevron pulls the last log lines open; "Full console" closes the workspace. */
 @media (max-width: 1200px) {
-  .ps-server-stats { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
+  .ps-server-stats { grid-template-columns: repeat(5, minmax(0, 1fr)); }
   .ps-info-motd { width: 260px; }
 }
 @media (max-width: 960px) {
@@ -1018,7 +1031,8 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   .ps .ps-info-power > .ps-power-main, .ps .ps-info-power > .ps-power-restart { flex: 1; min-height: 44px; }
   .ps .ps-info-power > .ps-info-more-button { width: 44px; height: 44px; }
   .ps .ps-statusbar-power .ps-btn { width: 40px; height: 40px; }
-  .ps .ps-server-stats { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-bottom: 12px; }
+  /* Two by two: four in a row left values and labels cut off on a phone. */
+  .ps .ps-server-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-bottom: 12px; }
   .ps .ps-server-stats .ps-stat { gap: 2px; padding: 10px 10px 8px; }
   .ps .ps-server-stats .ps-stat:last-child { display: none; }
   .ps .ps-server-stats .ps-stat > strong { font-size: 15px; }
@@ -1244,3 +1258,14 @@ html.ps-console-window body:has(.ps-server-top) .fi-main-ctn > .fi-main { grid-c
   .ps-ui.ps-quick-commands { display: flex; flex: none; gap: 6px; padding: 8px 12px; overflow-x: auto; scrollbar-width: none; background: transparent; }
 }
 .ps-live-bars[hidden] { display: none; }
+
+/* Low window (a server in host mode's frame): the numbers in one slim row and less room above the card, so the
+   page's box keeps its height without the page scrolling (server.js fitPage). */
+html.ps-low .ps.ps-server-top > .ps-main { padding-top: 12px; }
+html.ps-low .ps-server-info { margin-bottom: 8px; padding-block: 10px; }
+html.ps-low .ps-server-stats { display: grid; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 8px; margin-bottom: 8px; }
+html.ps-low .ps-server-stats > .ps-stat { padding: 8px 10px; }
+html.ps-low .ps-server-stats > .ps-stat > small, html.ps-low .ps-server-stats .ps-spark { display: none; }
+html.ps-low .ps-server-stats > .ps-stat > strong { font-size: 15px; }
+html.ps-low .ps-server-stats .ps-stat-top svg { display: none; }
+html.ps-low .ps-server-stats .ps-stat-top span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

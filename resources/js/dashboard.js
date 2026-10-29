@@ -98,6 +98,10 @@
         this.applyScale();
         // Measure again once the page has its content.
         this.$nextTick(() => this.applyScale());
+        // Every menu under the top bar ends inside the window when it opens, and again when the window changes.
+        const menus = { notifyMenu: 'ps-notify-menu', adminMenu: 'ps-admin-menu', appearanceMenu: 'ps-overview-appearance-menu', groupsMenu: 'ps-overview-groups-menu' };
+        for (const [key, id] of Object.entries(menus)) this.$watch(key, (open) => open && this.$nextTick(() => this.fitDropdown(document.getElementById(id))));
+        addEventListener('resize', () => Object.entries(menus).forEach(([key, id]) => this[key] && this.fitDropdown(document.getElementById(id))));
         this.restoreOverviewPreferences();
         this.overviewGroups = this.cleanOverviewGroups(this.boot.overview_groups?.groups);
         this.overviewServerOrder = SERVER_ORDERS.some((o) => o.key === this.boot.overview_groups?.order) ? this.boot.overview_groups.order : 'name';
@@ -148,10 +152,7 @@
       async toggleNotifications() {
         this.notifyMenu = !this.notifyMenu;
         this.appearanceMenu = this.groupsMenu = this.accountMenu = false;
-        if (this.notifyMenu) {
-          this.$nextTick(() => this.fitDropdown(document.getElementById('ps-notify-menu')));
-          await this.loadNotificationPage(true);
-        }
+        if (this.notifyMenu) await this.loadNotificationPage(true);
       },
       /** A menu under the top bar ends inside the window, wherever the bar ends (announcements can give it a second row). */
       fitDropdown(menu) {
@@ -272,7 +273,9 @@
         const tabUrls = new Set(menu.map((tab) => tab.url));
         // Simplify's own pages (Announcements, Automatic subdomains, Website) join its settings, the add-ons' other pages
         // join Add-ons: Other plugins is only for plugins that are not Simplify.
-        const own = (origin) => items.filter((item) => item.origin === origin && !known.has(item.key) && !tabUrls.has(item.url));
+        // An add-on page with the same name as the add-on's settings (Server Maker's own page) shows once.
+        const tabLabels = new Set(menu.map((tab) => tab.label));
+        const own = (origin) => items.filter((item) => item.origin === origin && !known.has(item.key) && !tabUrls.has(item.url) && !tabLabels.has(item.label));
         const extra = { panel: own('core'), addons: own('addon') };
         if (!menu.length) extra.panel = [];
         return plan.map((section) => ({
