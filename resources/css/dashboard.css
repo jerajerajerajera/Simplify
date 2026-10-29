@@ -99,7 +99,7 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 
 /* Overview ----------------------------------------------------------------------------------- */
 .ps-overview { display: flex; flex: 1 1 0; flex-direction: column; min-height: 0; overflow: hidden; }
-.ps-server-scroll { display: flex; flex: 1 1 0; flex-direction: column; min-height: 0; overflow: hidden auto; padding: 12px 4px; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: var(--ps-line) transparent; }
+.ps-server-scroll { display: flex; flex: 1 1 0; flex-direction: column; min-height: 0; overflow: hidden auto; padding: 12px 4px; overscroll-behavior: contain; }
 .ps-server-scroll:focus-visible { outline: 2px solid var(--ps-line); outline-offset: 2px; border-radius: var(--ps-radius); }
 .ps-server-stage { flex: none; width: 100%; max-width: var(--ps-grid-width); margin: clamp(4px, calc(4dvh - 28px), 24px) auto 0; }
 .ps-server-stage.is-list { max-width: 1088px; }
@@ -1157,7 +1157,7 @@ body:has(.ps-server-top) .fi-main-ctn > .fi-main { grid-area: main; width: auto;
 body:has(.ps-server-top) .fi-page-header-main-ctn { padding-top: 0 !important; }
 .ps.ps-server-top > .ps-main { grid-area: top; padding: 32px 0 0; }
 .ps.ps-server-top.is-server-full-width ~ * { max-width: none; }
-.ps-server-menu { grid-area: nav; position: sticky; top: 14px; align-self: start; display: flex; flex-direction: column; gap: 1px; max-height: calc(100dvh - 28px); padding: 10px; overflow-y: auto; scrollbar-width: thin; border: 1px solid var(--ps-line); border-radius: var(--ps-radius-lg); background: var(--ps-surface); }
+.ps-server-menu { grid-area: nav; position: sticky; top: 14px; align-self: start; display: flex; flex-direction: column; gap: 1px; max-height: calc(100dvh - 28px); padding: 10px; overflow-y: auto; border: 1px solid var(--ps-line); border-radius: var(--ps-radius-lg); background: var(--ps-surface); }
 .ps-server-menu .ps-widget { display: flex; flex: none; height: auto; flex-direction: row; align-items: center; justify-content: flex-start; gap: 10px; min-height: 40px; padding: 4px 8px; border: 1px solid transparent; border-radius: 10px; background: none; color: var(--ps-ink); text-decoration: none; }
 .ps-server-menu .ps-widget:is(:hover, :focus-visible) { background: var(--ps-raised); }
 .ps-server-menu .ps-widget[aria-current="page"] { border-color: var(--ps-line-strong); background: var(--ps-raised); }
@@ -1184,7 +1184,7 @@ html.ps-fit body:has(.ps-server-top) .fi-main-ctn > .fi-main { box-sizing: borde
 html.ps-fit body:has(.ps-server-top:not(.is-console)) .fi-main-ctn > .fi-main { border: 1px solid var(--ps-line); border-radius: var(--ps-radius-lg); background: var(--ps-surface); }
 html.ps-fit body:has(.ps-server-top) .fi-main > .fi-page,
 html.ps-fit body:has(.ps-server-top) .fi-page-header-main-ctn { display: flex; flex: 1; flex-direction: column; min-height: 0; row-gap: 0 !important; padding: 0 !important; }
-html.ps-fit body:has(.ps-server-top) .fi-page-main { position: relative; flex: 1; min-height: 0; padding: 0 !important; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
+html.ps-fit body:has(.ps-server-top) .fi-page-main { position: relative; flex: 1; min-height: 0; padding: 0 !important; overflow-y: auto; overscroll-behavior: contain; }
 html.ps-fit body:has(.ps-server-top) .fi-page-content { row-gap: 0 !important; }
 html.ps-fit body:has(.ps-server-top) :is(.fi-page, .fi-page-content) > div:empty { display: none; }
 /* The head: a bar over the page, or, for a lone icon button on a list, in the row of the table's search field. */

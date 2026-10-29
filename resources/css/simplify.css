@@ -7,6 +7,8 @@
   --s-ink: var(--gray-950);
   --s-muted: var(--gray-600);
   --s-line: var(--gray-200);
+  --s-scroll: color-mix(in oklab, var(--gray-400) 75%, transparent);
+  --s-scroll-hover: var(--gray-500);
   --s-accent: var(--primary-600);
   --s-on-accent: #fff;
   --s-ok: var(--success-700);
@@ -39,6 +41,9 @@
   --s-ink: var(--gray-50);
   --s-muted: var(--gray-400);
   --s-line: color-mix(in oklab, var(--gray-700) 60%, var(--gray-800));
+  /* Darker than the cards and the page behind them. */
+  --s-scroll: rgb(0 0 0 / .5);
+  --s-scroll-hover: rgb(0 0 0 / .7);
   --s-accent: var(--primary-500);
   --s-ok: var(--success-400);
   --s-warn: var(--warning-400);
@@ -928,3 +933,18 @@ html.ps-frame[data-ps-frame="settings"] :is(body, .fi-layout, .fi-main-ctn, .fi-
   background: transparent !important;
   border-color: transparent !important;
 }
+
+/* Scrollbars, everywhere in the panel: one dark rounded bar without a track or outline, with room above and below.
+   "html" before each part outranks Pelican's console stylesheet, which draws an outlined bar of its own. */
+html ::-webkit-scrollbar { width: 10px; height: 10px; background: transparent; }
+html ::-webkit-scrollbar-track, html ::-webkit-scrollbar-track-piece { margin: 6px; border: 0; background: transparent; box-shadow: none; }
+html ::-webkit-scrollbar-thumb { min-height: 32px; border: 2px solid transparent; border-radius: 999px; background: var(--s-scroll) padding-box; box-shadow: none; }
+html ::-webkit-scrollbar-thumb:hover { background-color: var(--s-scroll-hover); }
+html ::-webkit-scrollbar-button, html ::-webkit-scrollbar-corner { display: none; background: transparent; }
+/* Firefox has no ::-webkit-scrollbar: the thin bar in the same colour. Chrome would drop the rules above for these. */
+@supports not selector(::-webkit-scrollbar) {
+  * { scrollbar-width: thin; scrollbar-color: var(--s-scroll) transparent; }
+}
+/* The console's bar is xterm's own element. */
+html .xterm .xterm-scrollable-element > .scrollbar > .slider { border-radius: 999px; background: var(--s-scroll) !important; }
+html .xterm .xterm-scrollable-element > .scrollbar.vertical > .slider { left: 2px !important; width: 6px !important; }

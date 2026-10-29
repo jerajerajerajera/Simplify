@@ -10,6 +10,7 @@
 - Host mode: Roles and Pelican's own settings tabs (General, Captcha, Mail, Backup, OAuth, Misc) have their icons again; Announcements, Automatic subdomains and Website get their own icons.
 - Phone: the account menu's buttons get a row of their own and wrap, instead of the last ones being cut off.
 - Server page: the Network usage card shows the traffic used without the cut-off "· since server start"; the whole line is its tooltip.
+- Scrollbars everywhere in the panel (menus, content boxes, dropdowns, the console, host mode) are one dark rounded bar without a track or outline, with room above and below, instead of the browser's own bar. Firefox gets the thin bar in the same colour.
 
 ## 1.4.2
 
