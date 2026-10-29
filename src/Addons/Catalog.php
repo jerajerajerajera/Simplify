@@ -15,13 +15,9 @@ final class Catalog
     /** id => icon */
     public const ADDONS = [
         'simplify-server-maker' => 'tabler-wand',
-        'simplify-subdomains' => 'tabler-world',
-        'simplify-mods' => 'tabler-cube',
-        'simplify-announcements' => 'tabler-speakerphone',
+        'simplify-toolkit' => 'tabler-cube',
         'simplify-explain' => 'tabler-message-question',
         'simplify-egg-updates' => 'tabler-egg',
-        'simplify-embed' => 'tabler-code',
-        'simplify-plugins' => 'tabler-world-search',
         'simplify-hosting' => 'tabler-receipt',
     ];
 

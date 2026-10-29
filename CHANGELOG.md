@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.2.0
+
+Announcements, Embed and Subdomains are now part of Simplify, so you no longer need separate plugins for them.
+
+- **Announcements**: info, warning and success bars at the top of every page, with a pin button, in the bell, as app notification and in game chats.
+- **Embed**: your servers on your own website, with a script, an iframe or a status page. Websites that already show the list keep working.
+- **Subdomains**: every server its own address under your domain, made in Cloudflare and removed with the server. Subdomains from PelicanSimplify 0.6 and 0.7 are taken over.
+- Each of the three has its own switch under Settings → Add-ons → Built in. Turning one off hides it everywhere and keeps its data.
+- Already using the separate Announcements, Embed or Subdomains plugin? Simplify copies its data over and waits until you uninstall that plugin, so nothing shows twice.
+- The setup lists the add-ons that are still separate: Server Maker, Toolkit (formerly Mods), Explain, Egg Updates and Hosting. Plugins is no longer offered.
+
 ## 1.1.2
 
 - Add-on details on a server card stay readable: the first one (such as the game version) joins game and status in the corner, the others (such as the address) get the full width under the server name. Compact cards leave them out.

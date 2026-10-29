@@ -26,17 +26,9 @@ return [
             'name' => 'Server Maker',
             'description' => '決めた範囲内で、ユーザーが自分でサーバーを作れるようにします。',
         ],
-        'subdomains' => [
-            'name' => 'Subdomains',
-            'description' => '各サーバーにあなたのドメインの専用アドレスを付けます。',
-        ],
-        'mods' => [
-            'name' => 'Mods',
-            'description' => 'Minecraft の MOD、プラグイン、MOTD、server.properties をサーバーページから。',
-        ],
-        'announcements' => [
-            'name' => 'Announcements',
-            'description' => 'メンテナンスをパネルとゲーム内で全員に知らせます。',
+        'toolkit' => [
+            'name' => 'Toolkit',
+            'description' => 'サーバーに便利なツール集。現在は Minecraft のプラグインと MOD、MOTD、server.properties、アイコン、EULA。',
         ],
         'explain' => [
             'name' => 'Explain',
@@ -45,14 +37,6 @@ return [
         'egg-updates' => [
             'name' => 'Egg Updates',
             'description' => 'egg を最新に保ち、アップデートを先に試せます。',
-        ],
-        'embed' => [
-            'name' => 'Website embed',
-            'description' => '自分のウェブサイトにサーバーを表示します。',
-        ],
-        'plugins' => [
-            'name' => 'Plugins',
-            'description' => 'Pelican Hub のプラグインを探してインストールします。',
         ],
         'hosting' => [
             'name' => 'ホスティング',

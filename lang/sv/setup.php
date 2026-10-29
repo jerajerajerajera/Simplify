@@ -26,17 +26,9 @@ return [
             'name' => 'Server Maker',
             'description' => 'Låt folk skapa egna servrar inom gränser du sätter.',
         ],
-        'subdomains' => [
-            'name' => 'Subdomains',
-            'description' => 'Ge varje server en egen adress under din domän.',
-        ],
-        'mods' => [
-            'name' => 'Mods',
-            'description' => 'Minecraft-moddar, plugins, MOTD och server.properties från serversidan.',
-        ],
-        'announcements' => [
-            'name' => 'Announcements',
-            'description' => 'Berätta för alla om underhåll, i panelen och i spelet.',
+        'toolkit' => [
+            'name' => 'Toolkit',
+            'description' => 'Praktiska verktyg för dina servrar. Nu: Minecraft-plugins och mods, MOTD, server.properties, ikon och EULA.',
         ],
         'explain' => [
             'name' => 'Explain',
@@ -45,14 +37,6 @@ return [
         'egg-updates' => [
             'name' => 'Egg Updates',
             'description' => 'Håll dina eggs uppdaterade och prova uppdateringar först.',
-        ],
-        'embed' => [
-            'name' => 'Website embed',
-            'description' => 'Visa dina servrar på din egen webbplats.',
-        ],
-        'plugins' => [
-            'name' => 'Plugins',
-            'description' => 'Hitta och installera plugins från Pelican Hub.',
         ],
         'hosting' => [
             'name' => 'Hosting',

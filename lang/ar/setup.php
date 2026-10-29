@@ -26,17 +26,9 @@ return [
             'name' => 'Server Maker',
             'description' => 'اسمح للناس بإنشاء خوادمهم ضمن حدود تضعها أنت.',
         ],
-        'subdomains' => [
-            'name' => 'Subdomains',
-            'description' => 'امنح كل خادم عنوانًا خاصًا تحت نطاقك.',
-        ],
-        'mods' => [
-            'name' => 'Mods',
-            'description' => 'تعديلات Minecraft والإضافات وMOTD وserver.properties من صفحة الخادم.',
-        ],
-        'announcements' => [
-            'name' => 'Announcements',
-            'description' => 'أخبر الجميع بالصيانة، في اللوحة وداخل اللعبة.',
+        'toolkit' => [
+            'name' => 'Toolkit',
+            'description' => 'أدوات مفيدة لخوادمك. حاليًا: إضافات ومودات Minecraft و MOTD و server.properties والأيقونة و EULA.',
         ],
         'explain' => [
             'name' => 'Explain',
@@ -45,14 +37,6 @@ return [
         'egg-updates' => [
             'name' => 'Egg Updates',
             'description' => 'حافظ على تحديث الـ eggs وجرّب التحديثات أولًا.',
-        ],
-        'embed' => [
-            'name' => 'Website embed',
-            'description' => 'اعرض خوادمك على موقعك الخاص.',
-        ],
-        'plugins' => [
-            'name' => 'Plugins',
-            'description' => 'ابحث عن الإضافات من Pelican Hub وثبّتها.',
         ],
         'hosting' => [
             'name' => 'الاستضافة',

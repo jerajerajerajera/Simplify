@@ -26,17 +26,9 @@ return [
             'name' => 'Server Maker',
             'description' => 'Biarkan orang membuat server sendiri dalam batas yang Anda tetapkan.',
         ],
-        'subdomains' => [
-            'name' => 'Subdomains',
-            'description' => 'Beri setiap server alamatnya sendiri di domain Anda.',
-        ],
-        'mods' => [
-            'name' => 'Mods',
-            'description' => 'Mod Minecraft, plugin, MOTD, dan server.properties dari halaman server.',
-        ],
-        'announcements' => [
-            'name' => 'Announcements',
-            'description' => 'Beri tahu semua orang tentang pemeliharaan, di panel dan di dalam game.',
+        'toolkit' => [
+            'name' => 'Toolkit',
+            'description' => 'Alat praktis untuk servermu. Sekarang: plugin dan mod Minecraft, MOTD, server.properties, ikon, dan EULA.',
         ],
         'explain' => [
             'name' => 'Explain',
@@ -45,14 +37,6 @@ return [
         'egg-updates' => [
             'name' => 'Egg Updates',
             'description' => 'Jaga egg Anda tetap terbaru dan coba pembaruan dulu.',
-        ],
-        'embed' => [
-            'name' => 'Website embed',
-            'description' => 'Tampilkan server Anda di situs web Anda sendiri.',
-        ],
-        'plugins' => [
-            'name' => 'Plugins',
-            'description' => 'Temukan dan pasang plugin dari Pelican Hub.',
         ],
         'hosting' => [
             'name' => 'Hosting',

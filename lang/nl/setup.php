@@ -26,17 +26,9 @@ return [
             'name' => 'Server Maker',
             'description' => 'Laat mensen zelf servers maken binnen grenzen die jij kiest.',
         ],
-        'subdomains' => [
-            'name' => 'Subdomains',
-            'description' => 'Geef elke server een eigen adres onder je domein.',
-        ],
-        'mods' => [
-            'name' => 'Mods',
-            'description' => 'Minecraft-mods, plugins, MOTD en server.properties vanaf de serverpagina.',
-        ],
-        'announcements' => [
-            'name' => 'Announcements',
-            'description' => 'Laat iedereen weten wanneer er onderhoud is, in het paneel en in de game.',
+        'toolkit' => [
+            'name' => 'Toolkit',
+            'description' => 'Handige hulpmiddelen voor je servers. Nu: Minecraft-plugins en -mods, MOTD, server.properties, icoon en EULA.',
         ],
         'explain' => [
             'name' => 'Explain',
@@ -45,14 +37,6 @@ return [
         'egg-updates' => [
             'name' => 'Egg Updates',
             'description' => 'Houd je eggs bij en probeer updates eerst uit.',
-        ],
-        'embed' => [
-            'name' => 'Website embed',
-            'description' => 'Laat je servers zien op je eigen website.',
-        ],
-        'plugins' => [
-            'name' => 'Plugins',
-            'description' => 'Plugins van de Pelican Hub vinden en installeren.',
         ],
         'hosting' => [
             'name' => 'Hosting',

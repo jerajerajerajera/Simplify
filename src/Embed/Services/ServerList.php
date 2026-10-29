@@ -18,7 +18,7 @@ use Throwable;
  *
  * Other plugins can add details through the "simplify.embed.server" event. A listener receives the Server and
  * returns an array with any of: game, software, version, players, max_players, motd, address, icon and
- * modpack (name, version, url, icon). Simplify Mods adds players and modpacks this way. The address of
+ * modpack (name, version, url, icon). Simplify Toolkit adds players and modpacks this way. The address of
  * Simplify's subdomain is used when it works.
  */
 final class ServerList

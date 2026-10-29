@@ -26,17 +26,9 @@ return [
             'name' => 'Server Maker',
             'description' => 'Lăsați oamenii să-și creeze propriile servere în limitele stabilite de dumneavoastră.',
         ],
-        'subdomains' => [
-            'name' => 'Subdomains',
-            'description' => 'Dați fiecărui server propria adresă în domeniul dumneavoastră.',
-        ],
-        'mods' => [
-            'name' => 'Mods',
-            'description' => 'Moduri Minecraft, pluginuri, MOTD și server.properties din pagina serverului.',
-        ],
-        'announcements' => [
-            'name' => 'Announcements',
-            'description' => 'Anunțați pe toată lumea despre mentenanță, în panou și în joc.',
+        'toolkit' => [
+            'name' => 'Toolkit',
+            'description' => 'Unelte utile pentru serverele tale. Acum: pluginuri și moduri Minecraft, MOTD, server.properties, pictogramă și EULA.',
         ],
         'explain' => [
             'name' => 'Explain',
@@ -45,14 +37,6 @@ return [
         'egg-updates' => [
             'name' => 'Egg Updates',
             'description' => 'Țineți egg-urile la zi și încercați mai întâi actualizările.',
-        ],
-        'embed' => [
-            'name' => 'Website embed',
-            'description' => 'Afișați serverele pe propriul site.',
-        ],
-        'plugins' => [
-            'name' => 'Plugins',
-            'description' => 'Găsiți și instalați pluginuri de pe Pelican Hub.',
         ],
         'hosting' => [
             'name' => 'Găzduire',

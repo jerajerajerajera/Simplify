@@ -26,17 +26,9 @@ return [
             'name' => 'Server Maker',
             'description' => 'Αφήστε τους χρήστες να δημιουργούν δικούς τους διακομιστές μέσα σε όρια που ορίζετε.',
         ],
-        'subdomains' => [
-            'name' => 'Subdomains',
-            'description' => 'Δώστε σε κάθε διακομιστή δική του διεύθυνση στο domain σας.',
-        ],
-        'mods' => [
-            'name' => 'Mods',
-            'description' => 'Mods του Minecraft, πρόσθετα, MOTD και server.properties από τη σελίδα του διακομιστή.',
-        ],
-        'announcements' => [
-            'name' => 'Announcements',
-            'description' => 'Ενημερώστε όλους για συντήρηση, στο πάνελ και μέσα στο παιχνίδι.',
+        'toolkit' => [
+            'name' => 'Toolkit',
+            'description' => 'Χρήσιμα εργαλεία για τους servers σου. Τώρα: plugins και mods Minecraft, MOTD, server.properties, εικονίδιο και EULA.',
         ],
         'explain' => [
             'name' => 'Explain',
@@ -45,14 +37,6 @@ return [
         'egg-updates' => [
             'name' => 'Egg Updates',
             'description' => 'Κρατήστε τα eggs ενημερωμένα και δοκιμάστε πρώτα τις ενημερώσεις.',
-        ],
-        'embed' => [
-            'name' => 'Website embed',
-            'description' => 'Δείξτε τους διακομιστές σας στον δικό σας ιστότοπο.',
-        ],
-        'plugins' => [
-            'name' => 'Plugins',
-            'description' => 'Βρείτε και εγκαταστήστε πρόσθετα από το Pelican Hub.',
         ],
         'hosting' => [
             'name' => 'Φιλοξενία',

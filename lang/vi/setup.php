@@ -26,17 +26,9 @@ return [
             'name' => 'Server Maker',
             'description' => 'Cho phép mọi người tự tạo máy chủ trong giới hạn bạn đặt ra.',
         ],
-        'subdomains' => [
-            'name' => 'Subdomains',
-            'description' => 'Cho mỗi máy chủ một địa chỉ riêng dưới tên miền của bạn.',
-        ],
-        'mods' => [
-            'name' => 'Mods',
-            'description' => 'Mod Minecraft, plugin, MOTD và server.properties ngay từ trang máy chủ.',
-        ],
-        'announcements' => [
-            'name' => 'Announcements',
-            'description' => 'Báo cho mọi người về bảo trì, trên panel và trong game.',
+        'toolkit' => [
+            'name' => 'Toolkit',
+            'description' => 'Công cụ tiện dụng cho máy chủ của bạn. Hiện có: plugin và mod Minecraft, MOTD, server.properties, biểu tượng và EULA.',
         ],
         'explain' => [
             'name' => 'Explain',
@@ -45,14 +37,6 @@ return [
         'egg-updates' => [
             'name' => 'Egg Updates',
             'description' => 'Giữ egg luôn mới và thử cập nhật trước.',
-        ],
-        'embed' => [
-            'name' => 'Website embed',
-            'description' => 'Hiển thị máy chủ của bạn trên trang web riêng.',
-        ],
-        'plugins' => [
-            'name' => 'Plugins',
-            'description' => 'Tìm và cài plugin từ Pelican Hub.',
         ],
         'hosting' => [
             'name' => 'Lưu trữ',
