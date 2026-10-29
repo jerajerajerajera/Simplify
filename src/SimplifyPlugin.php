@@ -24,6 +24,7 @@ use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Filament\Server\ServerPage;
 use Simplify\Core\Filament\Server\Widgets\AddonSections;
 use Simplify\Core\Http\Middleware\FramePolicy;
+use Simplify\Core\Http\Middleware\StartPage;
 use Simplify\Core\Subdomains\Filament\AutomaticSubdomains;
 use Simplify\Core\Subdomains\Filament\ServerSubdomain;
 use Simplify\Core\Support\Brand;
@@ -46,6 +47,7 @@ final class SimplifyPlugin implements Plugin
 
         if ($panel->getId() === 'app') {
             $panel->pages([Overview::class, Notifications::class]);
+            $panel->middleware([StartPage::class]);
         }
         if (in_array($panel->getId(), ['app', 'server'], true)) {
             $panel->userMenuItems([
