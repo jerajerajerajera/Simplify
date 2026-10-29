@@ -52,4 +52,9 @@ return [
         'none' => 'Geen add-ons geïnstalleerd. Add-ons zoals Server Maker zijn losse plugins op de Pelican Hub.',
         'open' => 'Instellingen',
     ],
+    'parts' => [
+        'heading' => 'Ingebouwd',
+        'help' => 'Dit waren eerst losse add-ons. Zet je er een uit, dan verdwijnt hij overal en blijven de gegevens bewaard.',
+        'standalone' => 'De losse plugin :name is nog geïnstalleerd, dus dit onderdeel blijft uit. Bij het openen van deze pagina worden de gegevens naar Simplify gekopieerd. Verwijder de plugin om over te stappen.',
+    ],
 ];

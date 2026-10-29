@@ -52,4 +52,9 @@ return [
         'none' => 'Inga tillägg installerade. Tillägg som Server Maker är separata plugins på Pelican Hub.',
         'open' => 'Inställningar',
     ],
+    'parts' => [
+        'heading' => 'Inbyggt',
+        'help' => 'De här var tidigare separata add-ons. Stänger du av en försvinner den överallt och dess data sparas.',
+        'standalone' => 'Det separata pluginet :name är fortfarande installerat, så den här delen är avstängd. När du öppnar sidan kopieras dess data till Simplify. Avinstallera pluginet för att byta.',
+    ],
 ];

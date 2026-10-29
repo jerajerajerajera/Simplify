@@ -52,4 +52,9 @@ return [
         'none' => 'Nincs telepített kiegészítő. A kiegészítők, például a Server Maker, külön bővítmények a Pelican Hubon.',
         'open' => 'Beállítások',
     ],
+    'parts' => [
+        'heading' => 'Beépített',
+        'help' => 'Ezek korábban külön add-onok voltak. Ha kikapcsolsz egyet, mindenhol eltűnik, az adatai megmaradnak.',
+        'standalone' => 'A különálló :name plugin még telepítve van, ezért ez a rész kikapcsolva marad. Az oldal megnyitása átmásolja az adatait a Simplifybe. Az átálláshoz távolítsd el a plugint.',
+    ],
 ];

@@ -13,6 +13,7 @@ use Filament\Facades\Filament;
 use Filament\Panel;
 use Filament\View\PanelsRenderHook;
 use Illuminate\Support\Facades\Blade;
+use Simplify\Core\Announcements\Filament\AnnouncementResource;
 use Simplify\Core\Filament\Admin\Pages\People;
 use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\Admin\Pages\Setup;
@@ -21,6 +22,7 @@ use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Filament\Server\ServerPage;
 use Simplify\Core\Filament\Server\Widgets\AddonSections;
 use Simplify\Core\Http\Middleware\FramePolicy;
+use Simplify\Core\Parts\Parts;
 use Simplify\Core\Support\Brand;
 use Simplify\Core\Support\PanelSettings;
 
@@ -63,6 +65,20 @@ final class SimplifyPlugin implements Plugin
         }
         if ($panel->getId() === 'admin') {
             $panel->pages([Settings::class, Setup::class, People::class]);
+        }
+        self::registerParts($panel);
+    }
+
+    /** The parts that used to be separate add-ons, each only while it is on (Parts). */
+    private static function registerParts(Panel $panel): void
+    {
+        if (Parts::on('announcements')) {
+            if ($panel->getId() === 'admin') {
+                $panel->resources([AnnouncementResource::class]);
+            } else {
+                // The bars sit where Pelican shows its own alert banners, on every page of the panel.
+                $panel->renderHook(PanelsRenderHook::PAGE_START, fn () => Blade::render("@livewire('simplify-core-announcement-bars')"));
+            }
         }
     }
 
