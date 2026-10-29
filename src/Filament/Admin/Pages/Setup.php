@@ -84,7 +84,7 @@ final class Setup extends Page implements HasForms
                 $step('finish', 'tabler-checklist', [
                     ...$this->addonSections(),
                     Section::make(__('pelican-simplify::setup.addon_pages'))->description(__('pelican-simplify::setup.addon_pages_help'))
-                        ->schema([View::make('pelican-simplify::partials.addon-list')]),
+                        ->schema([View::make('pelican-simplify::partials.addon-list')->viewData(['rows' => $this->addonRows()])]),
                 ]),
             ])->skippable()->columnSpanFull()->extraAttributes(['class' => 's-setup'])
                 ->submitAction(new HtmlString(view('pelican-simplify::partials.setup-submit')->render())),
@@ -120,6 +120,21 @@ final class Setup extends Page implements HasForms
         return app(AddonRegistry::class)->collect(fn (Addon $addon) => ($fields = $addon->setupFields()) === [] ? [] : [
             Section::make($addon->name())->icon($addon->icon())->statePath('addons.'.$addon->id())->schema($fields),
         ]);
+    }
+
+    /**
+     * The add-ons' own settings pages, without Simplify's built-in features: those are set up on the settings page.
+     *
+     * @return list<array{id: string, name: string, description: string, icon: string, url: ?string}>
+     */
+    private function addonRows(): array
+    {
+        $own = array_map(fn (Addon $addon) => $addon->id(), array_filter(
+            app(AddonRegistry::class)->all(),
+            fn (Addon $addon) => str_starts_with($addon::class, 'Simplify\\Core\\'),
+        ));
+
+        return array_values(array_filter(Settings::addonRows(), fn (array $row) => ! in_array($row['id'], $own, true)));
     }
 
     /** @return list<array{id: string, icon: string, tone: string, name: string, description: string, url: string, installed: bool}> */
