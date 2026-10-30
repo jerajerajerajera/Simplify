@@ -634,7 +634,7 @@ step('announcements: unpin moves a bar to the bell, pin brings it back, and the 
 step('notifications: mark read, mark as unread, Clear read and ✕ move them to Archived and back', function () {
     $player = User::where('email', 'smoke-player@example.com')->firstOrFail();
     $player->notifications()->delete();
-    Preferences::set($player, 'notifications.archive', null);
+    Preferences::set($player, 'notifications.archive', []);
     foreach (['Smoke backup done', 'Smoke install done', 'Smoke subuser added'] as $title) {
         $player->notifyNow(Notification::make()->title($title)->toDatabase());
     }
@@ -663,7 +663,7 @@ step('notifications: mark read, mark as unread, Clear read and ✕ move them to 
         throw new RuntimeException('Mark as unread did not bring notifications back from Archived');
     }
     $player->notifications()->delete();
-    Preferences::set($player, 'notifications.archive', null);
+    Preferences::set($player, 'notifications.archive', []);
 });
 step('embed: the server owner opens Website, and the settings page shows the code for a website', function () use ($admin, $server) {
     $url = EmbedWebsite::getUrl(panel: 'server', tenant: $server);
