@@ -2,6 +2,18 @@
 
 ## 1.5.0
 
+- Back from PelicanSimplify 0.7.0: an owner deletes their own stopped server from its ⋯ menu after typing its name.
+- Back from 0.7.0: the server's ⋯ menu shows the SFTP username and a link that opens the SFTP connection; the password is your panel password.
+- Back from 0.7.0: friends mode (Settings → General). Everyone signed in sees every server's card; opening one still needs Pelican's access. A panel that had it on in 0.7.0 keeps it on.
+- Back from 0.7.0: the setup asks who the panel is for (me and my friends, or a hosting company), which sets friends mode, and starts with a system check: PHP extensions, writable folders, cache, storage, the queue, Pelican's scheduler, https and the keys for app notifications. Only what fails is listed, with how to fix it.
+- Back from 0.7.0: the notifications page warns when Pelican's scheduler is not running, and shows root admins the cron line to add.
+- Back from 0.7.0: Pelican's own messages in the bell (such as a finished backup) reach your devices as app notifications too, with their own switch.
+- Back from 0.7.0: the website embed can show one of your server groups.
+- Back from 0.7.0: on Pelican's own pages a button in the top bar leads back to Simplify.
+- Back from 0.7.0: an announcement can also be sent in game to the servers of your server groups.
+- Back from 0.7.0: Customize → server pages: open with the bigger console, show the last console lines on the other server pages, and use the whole width.
+- Back from 0.7.0: a server's background can be one of the standard scenes or an earlier upload, from the server's ⋯ menu. Settings → Appearance lists the uploads, and admins remove the ones no server uses.
+- Back from 0.7.0: the panel name's font (with the Monocraft pixel font), weight, one colour or a fade between two, letter spacing, capitals, and the name beside the logo. A 0.7.0 panel keeps its style.
 - A Minecraft server without an icon of its own (no server icon from the game, none set in Pelican, none on its egg) shows a grass block instead of the plain cube, on its card and on its page. An icon from the game, Pelican or the egg still comes first.
 - The browser tab on a server's pages reads "<server name> - Simplify", on the console and on every tab under it.
 - Server cards and the server page: when an icon does not load (for example an egg icon behind a wrong APP_URL, or a deleted file), the next one is used: the game's icon, then the icon set in Pelican, then the egg's icon, then the cube. Before, the spot stayed empty.
