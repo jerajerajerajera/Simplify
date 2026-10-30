@@ -8,7 +8,7 @@ return [
     'saved' => 'Innstillinger lagret',
     'page_title' => 'Simplify-innstillinger',
     'pelican_frame_title' => 'Pelican-innstillinger: :label',
-    'pelican_frame' => 'Pelicans egne :label-innstillinger. Lagre dem med Pelicans lagreknapp øverst til høyre i dette panelet.',
+    'pelican_frame' => 'Pelicans egne :label-innstillinger.',
     'version_line' => 'Versjon :version · Endringer gjelder for alle på dette panelet etter lagring.',
     'profile' => [
         'support' => 'Støttelenke',

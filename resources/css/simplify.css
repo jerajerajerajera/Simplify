@@ -882,13 +882,37 @@ html.ps-frame[data-ps-tree] .fi-grid-col:not(:first-child) > .fi-sc-component > 
   margin-top: var(--s-space-3);
 }
 
-.s-settings:has(.fi-active .s-pelican-frame) .s-bar {
-  display: none;
+/* The page inside that frame: only the form, straight in Simplify's card. Simplify's Save (the title bar in host
+   mode) saves it through Pelican's own button, which stays hidden (settings.blade.php). */
+html.ps-frame[data-ps-frame="settings"] :is(.fi-sc-tabs > .fi-tabs, .fi-header, .fi-breadcrumbs) {
+  display: none !important;
 }
 
-/* The page inside that frame: only the form, with Pelican's save button above it. */
-html.ps-frame[data-ps-frame="settings"] :is(.fi-sc-tabs > .fi-tabs, .fi-header-heading, .fi-breadcrumbs) {
-  display: none !important;
+html.ps-frame[data-ps-frame="settings"] :is(.fi-sc-tabs, .fi-section) {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+
+html.ps-frame[data-ps-frame="settings"] :is(.fi-sc-tabs-tab, .fi-section-header, .fi-section-content-ctn, .fi-section-content, .fi-section-footer) {
+  background: transparent !important;
+  border: 0 !important;
+  padding-inline: 0 !important;
+}
+
+html.ps-frame[data-ps-frame="settings"] .fi-section-header {
+  padding-block: 4px 10px !important;
+}
+
+html.ps-frame[data-ps-frame="settings"] .fi-section-content {
+  padding-block: 0 20px !important;
+}
+
+html.ps-frame[data-ps-frame="settings"] .fi-section + .fi-section,
+html.ps-frame[data-ps-frame="settings"] .fi-grid-col:not(:first-child) > .fi-sc-component > .fi-sc-section {
+  border-top: 1px solid var(--s-line) !important;
 }
 
 html.ps-frame[data-ps-frame="settings"] :is(body, .fi-layout, .fi-main-ctn, .fi-main, .fi-page) {
@@ -999,6 +1023,11 @@ html ::-webkit-scrollbar-button, html ::-webkit-scrollbar-corner { display: none
 /* The console's bar is xterm's own element. */
 html .xterm .xterm-scrollable-element > .scrollbar > .slider { border-radius: 999px; background: var(--s-scroll) !important; }
 html .xterm .xterm-scrollable-element > .scrollbar.vertical > .slider { left: 2px !important; width: 6px !important; }
+
+/* People & roles in host mode: tabs, search and the add button sit in the title bar (frame.js) and the list sits
+   straight on the page, as host mode's own box is already around it. */
+html.ps-frame[data-ps-head-tools] .s-people > .s-toolbar { display: none; }
+html.ps-frame[data-ps-frame="native"] .s-people > .s-card { border: 0; border-radius: 0; background: transparent; box-shadow: none; }
 
 /* Pelican's Health page (resources/overrides): what needs attention first, with a button where to fix it, then the
    checks that are fine as short rows. In host mode it sits straight on the page like Pelican's other pages. */

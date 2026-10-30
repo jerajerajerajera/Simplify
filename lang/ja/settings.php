@@ -8,7 +8,7 @@ return [
     'saved' => '設定を保存しました',
     'page_title' => 'Simplify 設定',
     'pelican_frame_title' => 'Pelican 設定: :label',
-    'pelican_frame' => 'Pelican 自身の :label 設定です。このパネル右上の Pelican の保存ボタンで保存してください。',
+    'pelican_frame' => 'Pelican 自身の :label 設定です。',
     'version_line' => 'バージョン :version · 保存すると、このパネルの全員に変更が適用されます。',
     'profile' => [
         'support' => 'サポートリンク',

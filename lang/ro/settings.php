@@ -8,7 +8,7 @@ return [
     'saved' => 'Setări salvate',
     'page_title' => 'Setări Simplify',
     'pelican_frame_title' => 'Setări Pelican: :label',
-    'pelican_frame' => 'Setările :label proprii ale Pelican. Salvați-le cu butonul de salvare al Pelican din dreapta sus a acestui panou.',
+    'pelican_frame' => 'Setările :label proprii ale Pelican.',
     'version_line' => 'Versiunea :version · Modificările se aplică tuturor celor de pe acest panou după salvare.',
     'profile' => [
         'support' => 'Link de asistență',

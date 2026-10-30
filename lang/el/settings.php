@@ -8,7 +8,7 @@ return [
     'saved' => 'Οι ρυθμίσεις αποθηκεύτηκαν',
     'page_title' => 'Ρυθμίσεις Simplify',
     'pelican_frame_title' => 'Ρυθμίσεις Pelican: :label',
-    'pelican_frame' => 'Οι ρυθμίσεις :label του ίδιου του Pelican. Αποθηκεύστε τες με το κουμπί αποθήκευσης του Pelican επάνω δεξιά σε αυτό το πάνελ.',
+    'pelican_frame' => 'Οι ρυθμίσεις :label του ίδιου του Pelican.',
     'version_line' => 'Έκδοση :version · Οι αλλαγές ισχύουν για όλους σε αυτό το πάνελ μετά την αποθήκευση.',
     'profile' => [
         'support' => 'Σύνδεσμος υποστήριξης',

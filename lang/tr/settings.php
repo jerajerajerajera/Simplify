@@ -8,7 +8,7 @@ return [
     'saved' => 'Ayarlar kaydedildi',
     'page_title' => 'Simplify ayarları',
     'pelican_frame_title' => 'Pelican ayarları: :label',
-    'pelican_frame' => 'Pelican\'ın kendi ayarları: :label. Onları bu panelin sağ üstündeki Pelican kaydet düğmesiyle kaydet.',
+    'pelican_frame' => 'Pelican\'ın kendi ayarları: :label.',
     'version_line' => 'Sürüm :version · Değişiklikler kaydettikten sonra bu paneldeki herkes için geçerli olur.',
     'profile' => [
         'support' => 'Destek bağlantısı',

@@ -8,7 +8,7 @@ return [
     'saved' => 'Nustatymai išsaugoti',
     'page_title' => 'Simplify nustatymai',
     'pelican_frame_title' => 'Pelican nustatymai: :label',
-    'pelican_frame' => 'Paties Pelican nustatymai: :label. Išsaugokite juos Pelican išsaugojimo mygtuku šio skydelio viršuje dešinėje.',
+    'pelican_frame' => 'Paties Pelican nustatymai: :label.',
     'version_line' => 'Versija :version · Išsaugoti pakeitimai galioja visiems šio skydelio naudotojams.',
     'profile' => [
         'support' => 'Pagalbos nuoroda',

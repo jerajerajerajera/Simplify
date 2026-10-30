@@ -8,7 +8,7 @@ return [
     'saved' => 'Beállítások mentve',
     'page_title' => 'Simplify-beállítások',
     'pelican_frame_title' => 'Pelican-beállítások: :label',
-    'pelican_frame' => 'A Pelican saját beállításai: :label. Mentsd őket a Pelican mentés gombjával a panel jobb felső sarkában.',
+    'pelican_frame' => 'A Pelican saját beállításai: :label.',
     'version_line' => 'Verzió: :version · A módosítások mentés után a panel minden felhasználójára érvényesek.',
     'profile' => [
         'support' => 'Támogatási hivatkozás',

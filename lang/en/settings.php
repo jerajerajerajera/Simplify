@@ -8,7 +8,7 @@ return [
     'saved' => 'Settings saved',
     'page_title' => 'Simplify settings',
     'pelican_frame_title' => 'Pelican settings: :label',
-    'pelican_frame' => 'Pelican\'s own :label settings. Save them with Pelican\'s save button at the top right of this panel.',
+    'pelican_frame' => 'Pelican\'s own :label settings.',
     'version_line' => 'Version :version · Changes apply to everyone on this panel after saving.',
     'profile' => [
         'support' => 'Support link',

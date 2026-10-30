@@ -8,7 +8,7 @@ return [
     'saved' => 'Paramètres enregistrés',
     'page_title' => 'Paramètres de Simplify',
     'pelican_frame_title' => 'Paramètres de Pelican : :label',
-    'pelican_frame' => 'Paramètres :label propres à Pelican. Enregistrez-les avec le bouton d’enregistrement de Pelican en haut à droite de ce panneau.',
+    'pelican_frame' => 'Paramètres :label propres à Pelican.',
     'version_line' => 'Version :version · Les modifications s’appliquent à tout le monde sur ce panel après l’enregistrement.',
     'profile' => [
         'support' => 'Lien d\'aide',

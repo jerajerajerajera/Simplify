@@ -8,7 +8,7 @@ return [
     'saved' => 'Indstillinger gemt',
     'page_title' => 'Simplify-indstillinger',
     'pelican_frame_title' => 'Pelican-indstillinger: :label',
-    'pelican_frame' => 'Pelicans egne :label-indstillinger. Gem dem med Pelicans gem-knap øverst til højre i dette panel.',
+    'pelican_frame' => 'Pelicans egne :label-indstillinger.',
     'version_line' => 'Version :version · Ændringer gælder for alle på dette panel, når de er gemt.',
     'profile' => [
         'support' => 'Supportlink',

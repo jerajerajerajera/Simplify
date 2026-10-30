@@ -8,7 +8,7 @@ return [
     'saved' => 'Подешавања сачувана',
     'page_title' => 'Simplify подешавања',
     'pelican_frame_title' => 'Pelican подешавања: :label',
-    'pelican_frame' => 'Сопствена :label подешавања Pelican-а. Сачувајте их Pelican-овим дугметом за чување горе десно на овом панелу.',
+    'pelican_frame' => 'Сопствена :label подешавања Pelican-а.',
     'version_line' => 'Верзија :version · Промене важе за све на овом панелу после чувања.',
     'profile' => [
         'support' => 'Линк за подршку',

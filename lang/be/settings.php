@@ -8,7 +8,7 @@ return [
     'saved' => 'Налады захаваны',
     'page_title' => 'Налады Simplify',
     'pelican_frame_title' => 'Налады Pelican: :label',
-    'pelican_frame' => 'Уласныя налады :label у Pelican. Захавайце іх кнопкай захавання Pelican у правым верхнім куце гэтай панэлі.',
+    'pelican_frame' => 'Уласныя налады :label у Pelican.',
     'version_line' => 'Версія :version · Змены пасля захавання дзейнічаюць для ўсіх на гэтай панэлі.',
     'profile' => [
         'support' => 'Спасылка на падтрымку',

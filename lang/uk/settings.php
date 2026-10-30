@@ -8,7 +8,7 @@ return [
     'saved' => 'Налаштування збережено',
     'page_title' => 'Налаштування Simplify',
     'pelican_frame_title' => 'Налаштування Pelican: :label',
-    'pelican_frame' => 'Власні налаштування :label у Pelican. Збережіть їх кнопкою збереження Pelican у правому верхньому куті цієї панелі.',
+    'pelican_frame' => 'Власні налаштування :label у Pelican.',
     'version_line' => 'Версія :version · Зміни після збереження діють для всіх на цій панелі.',
     'profile' => [
         'support' => 'Посилання на підтримку',

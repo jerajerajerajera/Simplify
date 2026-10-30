@@ -8,7 +8,7 @@ return [
     'saved' => 'Ustawienia zapisane',
     'page_title' => 'Ustawienia Simplify',
     'pelican_frame_title' => 'Ustawienia Pelican: :label',
-    'pelican_frame' => 'Własne ustawienia :label w Pelican. Zapisz je przyciskiem zapisu Pelican w prawym górnym rogu tego panelu.',
+    'pelican_frame' => 'Własne ustawienia :label w Pelican.',
     'version_line' => 'Wersja :version · Zmiany obowiązują wszystkich w tym panelu po zapisaniu.',
     'profile' => [
         'support' => 'Link do pomocy',

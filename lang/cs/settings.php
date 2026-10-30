@@ -8,7 +8,7 @@ return [
     'saved' => 'Nastavení uloženo',
     'page_title' => 'Nastavení Simplify',
     'pelican_frame_title' => 'Nastavení Pelican: :label',
-    'pelican_frame' => 'Vlastní nastavení :label v Pelican. Uložte je tlačítkem pro uložení Pelican vpravo nahoře v tomto panelu.',
+    'pelican_frame' => 'Vlastní nastavení :label v Pelican.',
     'version_line' => 'Verze :version · Změny po uložení platí pro všechny na tomto panelu.',
     'profile' => [
         'support' => 'Odkaz na podporu',

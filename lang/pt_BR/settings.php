@@ -8,7 +8,7 @@ return [
     'saved' => 'Configurações salvas',
     'page_title' => 'Configurações do Simplify',
     'pelican_frame_title' => 'Configurações do Pelican: :label',
-    'pelican_frame' => 'As configurações de :label do próprio Pelican. Salve-as com o botão de salvar do Pelican no canto superior direito deste painel.',
+    'pelican_frame' => 'As configurações de :label do próprio Pelican.',
     'version_line' => 'Versão :version · As alterações valem para todos neste painel depois de salvar.',
     'profile' => [
         'support' => 'Link de suporte',

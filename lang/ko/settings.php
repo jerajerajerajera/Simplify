@@ -8,7 +8,7 @@ return [
     'saved' => '설정을 저장했습니다',
     'page_title' => 'Simplify 설정',
     'pelican_frame_title' => 'Pelican 설정: :label',
-    'pelican_frame' => 'Pelican 자체의 :label 설정입니다. 이 패널 오른쪽 위의 Pelican 저장 버튼으로 저장하세요.',
+    'pelican_frame' => 'Pelican 자체의 :label 설정입니다.',
     'version_line' => '버전 :version · 저장하면 이 패널의 모두에게 변경 사항이 적용됩니다.',
     'profile' => [
         'support' => '지원 링크',

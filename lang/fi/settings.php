@@ -8,7 +8,7 @@ return [
     'saved' => 'Asetukset tallennettu',
     'page_title' => 'Simplifyn asetukset',
     'pelican_frame_title' => 'Pelicanin asetukset: :label',
-    'pelican_frame' => 'Pelicanin omat asetukset (:label). Tallenna ne Pelicanin tallennuspainikkeella tämän paneelin oikeassa yläkulmassa.',
+    'pelican_frame' => 'Pelicanin omat asetukset (:label).',
     'version_line' => 'Versio :version · Muutokset koskevat kaikkia tämän paneelin käyttäjiä tallennuksen jälkeen.',
     'profile' => [
         'support' => 'Tukilinkki',

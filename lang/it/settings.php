@@ -8,7 +8,7 @@ return [
     'saved' => 'Impostazioni salvate',
     'page_title' => 'Impostazioni di Simplify',
     'pelican_frame_title' => 'Impostazioni di Pelican: :label',
-    'pelican_frame' => 'Impostazioni :label di Pelican. Salvale con il pulsante di salvataggio di Pelican in alto a destra in questo riquadro.',
+    'pelican_frame' => 'Impostazioni :label di Pelican.',
     'version_line' => 'Versione :version · Le modifiche valgono per tutti su questo pannello dopo il salvataggio.',
     'profile' => [
         'support' => 'Link di assistenza',

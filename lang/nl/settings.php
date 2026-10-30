@@ -8,7 +8,7 @@ return [
     'saved' => 'Instellingen opgeslagen',
     'page_title' => 'Simplify-instellingen',
     'pelican_frame_title' => 'Pelican-instellingen: :label',
-    'pelican_frame' => 'Pelicans eigen instellingen voor :label. Sla ze op met de opslaanknop van Pelican rechtsboven in dit paneel.',
+    'pelican_frame' => 'Pelicans eigen instellingen voor :label.',
     'version_line' => 'Versie :version · Wijzigingen gelden na opslaan voor iedereen op dit paneel.',
     'profile' => [
         'support' => 'Hulplink',

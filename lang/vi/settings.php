@@ -8,7 +8,7 @@ return [
     'saved' => 'Đã lưu cài đặt',
     'page_title' => 'Cài đặt Simplify',
     'pelican_frame_title' => 'Cài đặt Pelican: :label',
-    'pelican_frame' => 'Cài đặt :label của chính Pelican. Lưu bằng nút lưu của Pelican ở góc trên bên phải panel này.',
+    'pelican_frame' => 'Cài đặt :label của chính Pelican.',
     'version_line' => 'Phiên bản :version · Thay đổi áp dụng cho mọi người trên panel này sau khi lưu.',
     'profile' => [
         'support' => 'Liên kết hỗ trợ',

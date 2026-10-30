@@ -37,16 +37,36 @@
     const settings = document.querySelector('.s-settings > .s-bar button[type="submit"]');
     const header = settings && root.dataset.psTree ? [] : [...document.querySelectorAll('.fi-header-actions-ctn .fi-ac > :is(button, a)')];
     const sources = visible ? [...header, ...(table?.querySelectorAll('.fi-ta-header-toolbar > .fi-ta-actions > :is(button, a)') || []), ...(settings ? [settings] : [])].filter((el) => !el.closest('.fi-dropdown')) : [];
-    const search = table?.querySelector('.fi-ta-search-field input') || null;
+    // Simplify's own pages (People & roles) have one toolbar: tabs, search and the add button.
+    const own = visible ? document.querySelector('.fi-main .s-toolbar') : null;
+    const segments = own ? [...own.querySelectorAll('.s-segments > button')] : [];
+    if (own) sources.push(...own.querySelectorAll('.s-bar > button'));
+    const search = table?.querySelector('.fi-ta-search-field input') || own?.querySelector('input[type="search"]') || null;
     const filters = table?.querySelector('.fi-ta-filters-dropdown .fi-dropdown-trigger > :is(button, a)') || null;
-    const next = JSON.stringify([!!search, !!filters, sources.map((el) => [label(el), el.disabled || el.getAttribute('aria-disabled')])]);
+    const next = JSON.stringify([!!search, !!filters, segments.map((el) => [label(el), el.classList.contains('is-active')]), sources.map((el) => [label(el), el.disabled || el.getAttribute('aria-disabled')])]);
     if (next === signature) return;
     signature = next;
     bar.replaceChildren();
-    const bridged = !!(sources.length || search || filters);
+    const bridged = !!(sources.length || search || filters || segments.length);
     root.toggleAttribute('data-ps-head-tools', bridged);
     if (!bridged) return bar.remove();
     if (!bar.isConnected) head.append(bar);
+    if (segments.length) {
+      const group = parent.createElement('div');
+      group.className = 'ps-segmented ps-frame-segments';
+      group.setAttribute('role', 'group');
+      for (const source of segments) {
+        const btn = parent.createElement('button');
+        btn.type = 'button';
+        btn.setAttribute('aria-pressed', String(source.classList.contains('is-active')));
+        const icon = source.querySelector('svg');
+        if (icon) btn.append(parent.importNode(icon, true));
+        btn.append(parent.createTextNode(label(source)));
+        btn.addEventListener('click', () => source.click());
+        group.append(btn);
+      }
+      bar.append(group);
+    }
     if (search) {
       const field = parent.createElement('label');
       field.className = 'ps-frame-search';
@@ -67,7 +87,7 @@
       const text = label(source);
       if (seen.has(text)) continue;
       seen.add(text);
-      if (/\/create(\?|$)/.test(source.getAttribute('href') || '')) primaries.push(button(source, text, true));
+      if (/\/create(\?|$)/.test(source.getAttribute('href') || '') || source.classList.contains('s-btn-primary')) primaries.push(button(source, text, true));
       else bar.append(button(source, text, false, source === settings ? 'save' : null));
     }
     if (filters) {
