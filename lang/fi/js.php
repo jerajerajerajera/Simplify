@@ -50,6 +50,7 @@ return [
         'close' => 'Sulje',
     ],
     'dashboard' => [
+        'eula_accepted_start_sent' => 'EULA hyväksytty, käynnistys lähetetty',
         'setting_up' => 'Valmistellaan: :server',
         'this_takes_a_few_minutes_longer' => 'Tämä kestää muutaman minuutin, isoilla peleillä kauemmin. Voit poistua sivulta; palvelimen asennus jatkuu.',
         'the_installation_did_not_finish' => 'Asennus ei valmistunut',

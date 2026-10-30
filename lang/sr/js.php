@@ -50,6 +50,7 @@ return [
         'close' => 'Затвори',
     ],
     'dashboard' => [
+        'eula_accepted_start_sent' => 'EULA прихваћена, покретање послато',
         'setting_up' => 'Подешава се :server',
         'this_takes_a_few_minutes_longer' => 'Ово траје неколико минута, дуже за велике игре. Можете напустити ову страницу; сервер наставља инсталацију.',
         'the_installation_did_not_finish' => 'Инсталација се није завршила',

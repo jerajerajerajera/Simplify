@@ -50,6 +50,7 @@ return [
         'close' => 'Uždaryti',
     ],
     'dashboard' => [
+        'eula_accepted_start_sent' => 'EULA priimta, paleidimas išsiųstas',
         'setting_up' => 'Ruošiama: :server',
         'this_takes_a_few_minutes_longer' => 'Tai užtrunka kelias minutes, dideliems žaidimams ilgiau. Galite palikti šį puslapį; serveris toliau diegiamas.',
         'the_installation_did_not_finish' => 'Diegimas nebaigtas',

@@ -50,6 +50,7 @@ return [
         'close' => '關閉',
     ],
     'dashboard' => [
+        'eula_accepted_start_sent' => '已接受 EULA，已傳送啟動指令',
         'setting_up' => '正在設定 :server',
         'this_takes_a_few_minutes_longer' => '這需要幾分鐘，大型遊戲會更久。你可以離開此頁面；伺服器會繼續安裝。',
         'the_installation_did_not_finish' => '安裝未完成',

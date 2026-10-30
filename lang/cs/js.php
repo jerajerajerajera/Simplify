@@ -50,6 +50,7 @@ return [
         'close' => 'Zavřít',
     ],
     'dashboard' => [
+        'eula_accepted_start_sent' => 'EULA přijata, spuštění odesláno',
         'setting_up' => 'Příprava :server',
         'this_takes_a_few_minutes_longer' => 'Trvá to několik minut, u velkých her déle. Tuto stránku můžete opustit; instalace bude pokračovat.',
         'the_installation_did_not_finish' => 'Instalace nebyla dokončena',

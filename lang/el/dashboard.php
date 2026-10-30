@@ -2,6 +2,11 @@
 
 return [
     'ui' => [
+        'eula_agree' => 'Πατώντας «:button» αποδέχεστε τη Σύμβαση Άδειας Χρήσης Τελικού Χρήστη (EULA) του Minecraft.',
+        'accept_the_minecraft_eula' => 'Αποδοχή του EULA του Minecraft',
+        'minecraft_needs_this_once_before_the' => 'Το Minecraft το χρειάζεται μία φορά πριν μπορέσει να τρέξει ο διακομιστής.',
+        'read_the_minecraft_eula' => 'Διαβάστε το EULA του Minecraft',
+        'accept_and_start' => 'Αποδοχή και εκκίνηση',
         'your_server_is_ready' => 'Ο διακομιστής σας είναι έτοιμος',
         'you_can_now_start_your_server' => 'Μπορείτε τώρα να ξεκινήσετε τον διακομιστή σας. Η πρώτη εκκίνηση διαρκεί λίγο περισσότερο όσο δημιουργείται ο κόσμος.',
         'you_can_now_start_your_server_2' => 'Μπορείτε τώρα να ξεκινήσετε τον διακομιστή σας.',

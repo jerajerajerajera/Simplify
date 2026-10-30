@@ -50,6 +50,7 @@ return [
         'close' => 'Zamknij',
     ],
     'dashboard' => [
+        'eula_accepted_start_sent' => 'EULA zaakceptowana, wysłano start',
         'setting_up' => 'Przygotowywanie :server',
         'this_takes_a_few_minutes_longer' => 'To trwa kilka minut, dłużej dla dużych gier. Możesz opuścić tę stronę; serwer instaluje się dalej.',
         'the_installation_did_not_finish' => 'Instalacja się nie zakończyła',

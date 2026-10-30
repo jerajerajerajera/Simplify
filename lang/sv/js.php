@@ -50,6 +50,7 @@ return [
         'close' => 'Stäng',
     ],
     'dashboard' => [
+        'eula_accepted_start_sent' => 'EULA godkänd, start skickad',
         'setting_up' => 'Konfigurerar :server',
         'this_takes_a_few_minutes_longer' => 'Det tar några minuter, längre för stora spel. Du kan lämna sidan; servern fortsätter att installeras.',
         'the_installation_did_not_finish' => 'Installationen slutfördes inte',

@@ -50,6 +50,7 @@ return [
         'close' => 'Закрыць',
     ],
     'dashboard' => [
+        'eula_accepted_start_sent' => 'EULA прынята, запуск адпраўлены',
         'setting_up' => 'Падрыхтоўка :server',
         'this_takes_a_few_minutes_longer' => 'Гэта займае некалькі хвілін, для вялікіх гульняў даўжэй. Можна пайсці з гэтай старонкі; усталяванне працягнецца.',
         'the_installation_did_not_finish' => 'Усталяванне не завяршылася',

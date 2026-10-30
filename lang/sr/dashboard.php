@@ -2,6 +2,11 @@
 
 return [
     'ui' => [
+        'eula_agree' => 'Кликом на „:button“ прихватате Уговор о лиценци за крајњег корисника (EULA) за Minecraft.',
+        'accept_the_minecraft_eula' => 'Прихватите Minecraft EULA',
+        'minecraft_needs_this_once_before_the' => 'Minecraft ово тражи једном пре него што сервер може да ради.',
+        'read_the_minecraft_eula' => 'Прочитај Minecraft EULA',
+        'accept_and_start' => 'Прихвати и покрени',
         'your_server_is_ready' => 'Ваш сервер је спреман',
         'you_can_now_start_your_server' => 'Сада можете покренути сервер. Прво покретање траје мало дуже док се прави свет.',
         'you_can_now_start_your_server_2' => 'Сада можете покренути сервер.',

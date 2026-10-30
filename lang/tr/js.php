@@ -50,6 +50,7 @@ return [
         'close' => 'Kapat',
     ],
     'dashboard' => [
+        'eula_accepted_start_sent' => 'EULA kabul edildi, başlatma gönderildi',
         'setting_up' => 'Kuruluyor: :server',
         'this_takes_a_few_minutes_longer' => 'Bu birkaç dakika sürer, büyük oyunlarda daha uzun. Bu sayfadan ayrılabilirsin; sunucu kurulmaya devam eder.',
         'the_installation_did_not_finish' => 'Kurulum tamamlanmadı',

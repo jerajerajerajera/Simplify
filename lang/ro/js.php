@@ -50,6 +50,7 @@ return [
         'close' => 'Închideți',
     ],
     'dashboard' => [
+        'eula_accepted_start_sent' => 'EULA acceptat, pornire trimisă',
         'setting_up' => 'Se configurează :server',
         'this_takes_a_few_minutes_longer' => 'Durează câteva minute, mai mult pentru jocurile mari. Puteți părăsi această pagină; serverul continuă instalarea.',
         'the_installation_did_not_finish' => 'Instalarea nu s-a finalizat',

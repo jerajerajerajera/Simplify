@@ -50,6 +50,7 @@ return [
         'close' => 'Zavrieť',
     ],
     'dashboard' => [
+        'eula_accepted_start_sent' => 'EULA prijatá, spustenie odoslané',
         'setting_up' => 'Príprava :server',
         'this_takes_a_few_minutes_longer' => 'Trvá to niekoľko minút, pri veľkých hrách dlhšie. Túto stránku môžete opustiť; inštalácia bude pokračovať.',
         'the_installation_did_not_finish' => 'Inštalácia sa nedokončila',

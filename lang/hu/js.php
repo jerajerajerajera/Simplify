@@ -50,6 +50,7 @@ return [
         'close' => 'Bezárás',
     ],
     'dashboard' => [
+        'eula_accepted_start_sent' => 'EULA elfogadva, indítás elküldve',
         'setting_up' => 'Beállítás: :server',
         'this_takes_a_few_minutes_longer' => 'Ez néhány percig tart, nagy játékoknál tovább. Elhagyhatod ezt az oldalt; a szerver telepítése folytatódik.',
         'the_installation_did_not_finish' => 'A telepítés nem fejeződött be',

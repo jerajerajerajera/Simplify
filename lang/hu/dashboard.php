@@ -2,6 +2,11 @@
 
 return [
     'ui' => [
+        'eula_agree' => 'A(z) „:button” gombra kattintva elfogadod a Minecraft végfelhasználói licencszerződését (EULA).',
+        'accept_the_minecraft_eula' => 'A Minecraft EULA elfogadása',
+        'minecraft_needs_this_once_before_the' => 'A Minecraftnak erre egyszer szüksége van, mielőtt a szerver futhatna.',
+        'read_the_minecraft_eula' => 'A Minecraft EULA elolvasása',
+        'accept_and_start' => 'Elfogadás és indítás',
         'your_server_is_ready' => 'A szervered készen áll',
         'you_can_now_start_your_server' => 'Most már elindíthatod a szerveredet. Az első indítás kicsit tovább tart, amíg a világ létrejön.',
         'you_can_now_start_your_server_2' => 'Most már elindíthatod a szerveredet.',

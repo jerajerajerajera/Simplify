@@ -50,6 +50,7 @@ return [
         'close' => 'Close',
     ],
     'dashboard' => [
+        'eula_accepted_start_sent' => 'EULA accepted, start sent',
         'setting_up' => 'Setting up :server',
         'this_takes_a_few_minutes_longer' => 'This takes a few minutes, longer for big games. You can leave this page; the server keeps installing.',
         'the_installation_did_not_finish' => 'The installation did not finish',

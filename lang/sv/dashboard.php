@@ -2,6 +2,11 @@
 
 return [
     'ui' => [
+        'eula_agree' => 'Genom att klicka på ”:button” godkänner du Minecrafts licensavtal för slutanvändare (EULA).',
+        'accept_the_minecraft_eula' => 'Godkänn Minecrafts EULA',
+        'minecraft_needs_this_once_before_the' => 'Minecraft behöver detta en gång innan servern kan köras.',
+        'read_the_minecraft_eula' => 'Läs Minecrafts EULA',
+        'accept_and_start' => 'Godkänn och starta',
         'your_server_is_ready' => 'Din server är redo',
         'you_can_now_start_your_server' => 'Du kan nu starta din server. Första starten tar lite längre tid medan världen skapas.',
         'you_can_now_start_your_server_2' => 'Du kan nu starta din server.',

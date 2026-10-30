@@ -50,6 +50,7 @@ return [
         'close' => 'Tutup',
     ],
     'dashboard' => [
+        'eula_accepted_start_sent' => 'EULA disetujui, perintah jalan dikirim',
         'setting_up' => 'Menyiapkan :server',
         'this_takes_a_few_minutes_longer' => 'Ini memakan beberapa menit, lebih lama untuk game besar. Anda boleh meninggalkan halaman ini; server tetap dipasang.',
         'the_installation_did_not_finish' => 'Instalasi tidak selesai',

@@ -2,6 +2,11 @@
 
 return [
     'ui' => [
+        'eula_agree' => 'Valitsemalla ”:button” hyväksyt Minecraftin käyttöoikeussopimuksen (EULA).',
+        'accept_the_minecraft_eula' => 'Hyväksy Minecraftin EULA',
+        'minecraft_needs_this_once_before_the' => 'Minecraft tarvitsee tämän kerran, ennen kuin palvelin voi toimia.',
+        'read_the_minecraft_eula' => 'Lue Minecraftin EULA',
+        'accept_and_start' => 'Hyväksy ja käynnistä',
         'your_server_is_ready' => 'Palvelimesi on valmis',
         'you_can_now_start_your_server' => 'Voit nyt käynnistää palvelimesi. Ensimmäinen käynnistys kestää hieman kauemmin, kun maailmaa luodaan.',
         'you_can_now_start_your_server_2' => 'Voit nyt käynnistää palvelimesi.',

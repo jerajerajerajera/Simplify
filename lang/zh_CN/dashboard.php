@@ -2,6 +2,11 @@
 
 return [
     'ui' => [
+        'eula_agree' => '点击“:button”即表示你同意 Minecraft 最终用户许可协议（EULA）。',
+        'accept_the_minecraft_eula' => '接受 Minecraft EULA',
+        'minecraft_needs_this_once_before_the' => '服务器运行前，Minecraft 需要你确认一次。',
+        'read_the_minecraft_eula' => '阅读 Minecraft EULA',
+        'accept_and_start' => '接受并启动',
         'your_server_is_ready' => '你的服务器已就绪',
         'you_can_now_start_your_server' => '你现在可以启动服务器了。首次启动需要创建世界，会稍慢一些。',
         'you_can_now_start_your_server_2' => '你现在可以启动服务器了。',

@@ -50,6 +50,7 @@ return [
         'close' => 'إغلاق',
     ],
     'dashboard' => [
+        'eula_accepted_start_sent' => 'قُبلت EULA وأُرسل أمر التشغيل',
         'setting_up' => 'جارٍ إعداد :server',
         'this_takes_a_few_minutes_longer' => 'يستغرق هذا بضع دقائق، وأطول للألعاب الكبيرة. يمكنك مغادرة هذه الصفحة؛ يستمر الخادم في التثبيت.',
         'the_installation_did_not_finish' => 'لم يكتمل التثبيت',

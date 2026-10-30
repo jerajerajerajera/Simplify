@@ -50,6 +50,7 @@ return [
         'close' => 'Luk',
     ],
     'dashboard' => [
+        'eula_accepted_start_sent' => 'EULA accepteret, start sendt',
         'setting_up' => 'Sætter :server op',
         'this_takes_a_few_minutes_longer' => 'Det tager et par minutter, længere for store spil. Du kan forlade denne side; serveren fortsætter med at installere.',
         'the_installation_did_not_finish' => 'Installationen blev ikke færdig',

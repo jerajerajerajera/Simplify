@@ -7,11 +7,13 @@ namespace Simplify\Core\Filament\Server;
 use App\Enums\SubuserPermission;
 use App\Facades\Activity;
 use App\Models\Server;
-use App\Services\Servers\ReinstallServerService;
+use App\Repositories\Daemon\DaemonFileRepository;
 use App\Repositories\Daemon\DaemonServerRepository;
+use App\Services\Servers\ReinstallServerService;
 use App\Services\Servers\ServerDeletionService;
 use Filament\Facades\Filament;
 use Filament\Navigation\NavigationItem;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Locked;
@@ -25,6 +27,7 @@ use Simplify\Core\Overview\Power;
 use Simplify\Core\Overview\Shell;
 use Simplify\Core\Server\Installation;
 use Simplify\Core\Server\Looks;
+use Simplify\Core\Subdomains\Services\Games;
 use Throwable;
 
 /**
@@ -98,6 +101,49 @@ final class ServerPage extends Component
         app(ReinstallServerService::class)->handle($this->server);
 
         return Listing::one($this->user(), $this->server->refresh());
+    }
+
+    /**
+     * Whether a Minecraft Java server still waits for its EULA (as in 0.7.0): only for people who may accept it, on an
+     * installed server, and quietly false when the node cannot be reached.
+     */
+    #[Renderless]
+    public function eulaNeeded(): bool
+    {
+        $egg = $this->server->egg;
+        $java = in_array('eula', (array) ($egg?->features ?? []), true)
+            || (Games::minecraft($this->server) && preg_match('/velocity|bungee|waterfall/i', (string) $egg?->name) !== 1);
+        if (! $java || ! $this->canAcceptEula() || $this->server->status !== null) {
+            return false;
+        }
+        try {
+            $content = app(DaemonFileRepository::class)->setServer($this->server)->getContent('eula.txt', 65536);
+        } catch (FileNotFoundException) {
+            return true;
+        } catch (Throwable) {
+            return false;
+        }
+
+        return preg_match('/^\s*eula\s*=\s*true\s*$/mi', $content) !== 1;
+    }
+
+    /** Accept and start: writes eula.txt and starts the server. */
+    #[Renderless]
+    public function acceptEula(): array
+    {
+        abort_unless($this->canAcceptEula(), 403);
+        abort_if($this->server->isInConflictState(), 409);
+        app(DaemonFileRepository::class)->setServer($this->server)
+            ->putContent('eula.txt', '# Accepted in Simplify by '.$this->user()->username.".\neula=true\n")->throw();
+        Power::send($this->server, 'start');
+
+        return $this->refresh();
+    }
+
+    private function canAcceptEula(): bool
+    {
+        return $this->user()->can(SubuserPermission::FileUpdate, $this->server)
+            && $this->user()->can(SubuserPermission::ControlStart, $this->server);
     }
 
     #[Renderless]

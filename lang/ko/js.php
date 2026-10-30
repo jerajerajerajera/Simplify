@@ -50,6 +50,7 @@ return [
         'close' => '닫기',
     ],
     'dashboard' => [
+        'eula_accepted_start_sent' => 'EULA 동의, 시작 명령 보냄',
         'setting_up' => ':server 설정 중',
         'this_takes_a_few_minutes_longer' => '몇 분 걸리며, 큰 게임은 더 오래 걸립니다. 이 페이지를 떠나도 서버 설치는 계속됩니다.',
         'the_installation_did_not_finish' => '설치가 끝나지 않았습니다',

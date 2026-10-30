@@ -50,6 +50,7 @@ return [
         'close' => 'Sluiten',
     ],
     'dashboard' => [
+        'eula_accepted_start_sent' => 'EULA geaccepteerd, start verstuurd',
         'setting_up' => ':server wordt klaargezet',
         'this_takes_a_few_minutes_longer' => 'Dit duurt een paar minuten, langer bij grote games. Je kunt deze pagina verlaten; de server blijft installeren.',
         'the_installation_did_not_finish' => 'De installatie is niet afgerond',

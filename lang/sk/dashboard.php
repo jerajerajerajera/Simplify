@@ -2,6 +2,11 @@
 
 return [
     'ui' => [
+        'eula_agree' => 'Kliknutím na „:button“ súhlasíte s licenčnou zmluvou s koncovým používateľom Minecraftu (EULA).',
+        'accept_the_minecraft_eula' => 'Prijmite EULA Minecraftu',
+        'minecraft_needs_this_once_before_the' => 'Minecraft to potrebuje raz, než môže server bežať.',
+        'read_the_minecraft_eula' => 'Prečítať EULA Minecraftu',
+        'accept_and_start' => 'Prijať a spustiť',
         'your_server_is_ready' => 'Váš server je pripravený',
         'you_can_now_start_your_server' => 'Teraz môžete server spustiť. Prvé spustenie trvá o niečo dlhšie, pretože sa vytvára svet.',
         'you_can_now_start_your_server_2' => 'Teraz môžete server spustiť.',

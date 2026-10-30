@@ -50,6 +50,7 @@ return [
         'close' => 'Đóng',
     ],
     'dashboard' => [
+        'eula_accepted_start_sent' => 'Đã chấp nhận EULA, đã gửi lệnh khởi động',
         'setting_up' => 'Đang thiết lập :server',
         'this_takes_a_few_minutes_longer' => 'Việc này mất vài phút, lâu hơn với game lớn. Bạn có thể rời trang; máy chủ vẫn tiếp tục cài.',
         'the_installation_did_not_finish' => 'Cài đặt chưa hoàn tất',

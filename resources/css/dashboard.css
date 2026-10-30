@@ -1380,6 +1380,9 @@ html.ps-low .ps-server-stats .ps-stat-top span { overflow: hidden; text-overflow
 .ps-ready-mark { display: grid; flex: none; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--ps-ok); color: #fff; }
 .ps-ready-mark svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
 .ps-ready-start { min-height: 42px; padding-inline: 18px; font-size: 15px; }
+.ps-ready.is-eula { border-color: color-mix(in srgb, var(--ps-accent) 40%, var(--ps-line)); background: color-mix(in srgb, var(--ps-accent) 8%, var(--ps-surface)); }
+.ps-ready.is-eula .ps-ready-mark { background: var(--ps-accent); color: var(--ps-on-accent); }
+.ps-ready small a { color: inherit; text-decoration: underline; }
 @media (max-width: 720px) {
   .ps-ready { position: relative; flex-wrap: wrap; padding-inline-end: 48px; }
   .ps-ready > div { flex-basis: calc(100% - 50px); }

@@ -2,6 +2,11 @@
 
 return [
     'ui' => [
+        'eula_agree' => '":button" düğmesine tıklayarak Minecraft Son Kullanıcı Lisans Sözleşmesi\'ni (EULA) kabul etmiş olursunuz.',
+        'accept_the_minecraft_eula' => 'Minecraft EULA\'sını kabul et',
+        'minecraft_needs_this_once_before_the' => 'Minecraft, sunucu çalışmadan önce bunu bir kez ister.',
+        'read_the_minecraft_eula' => 'Minecraft EULA\'sını oku',
+        'accept_and_start' => 'Kabul et ve başlat',
         'your_server_is_ready' => 'Sunucun hazır',
         'you_can_now_start_your_server' => 'Artık sunucunu başlatabilirsin. Dünya oluşturulurken ilk başlatma biraz daha uzun sürer.',
         'you_can_now_start_your_server_2' => 'Artık sunucunu başlatabilirsin.',

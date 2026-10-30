@@ -51,6 +51,9 @@
       sample: null,
       // The installation view (as in 0.7.0): the banner after it finished here, a browser notification on request.
       installReady: false,
+      // A Minecraft server that still waits for its EULA: the same banner asks for it (as in 0.7.0), once per page view.
+      eulaNeeded: false,
+      eulaChecked: false,
       installNotify: false,
       installNow: Date.now(),
       installTicks: 0,
@@ -124,6 +127,36 @@
         const u = server.usage || {};
         this.record({ cpu: u.cpu_percent, memory: u.memory_bytes, disk: u.disk_bytes, rx: u.network_rx_bytes, tx: u.network_tx_bytes }, Date.now() / 1000);
         this.paintAccent();
+        this.checkEula();
+      },
+      /** Once the server is installed and stopped, asks whether its Minecraft EULA is still open. */
+      async checkEula() {
+        if (this.eulaChecked || !this.server?.minecraft || this.server.setup || this.status !== 'offline' || !this.server.permissions?.['control.start']) return;
+        this.eulaChecked = true;
+        try {
+          this.eulaNeeded = await wire.eulaNeeded();
+        } catch {
+          this.eulaNeeded = false;
+        }
+      },
+      /** The banner's main button: accepts the EULA first when it is still open, otherwise just starts. */
+      async readyStart() {
+        if (!this.eulaNeeded) {
+          this.installReady = false;
+          return this.power('start');
+        }
+        if (this.busy) return;
+        this.busy = true;
+        try {
+          this.take(await wire.acceptEula());
+          this.eulaNeeded = false;
+          this.installReady = false;
+          this.toast(t('dashboard.eula_accepted_start_sent'), 'ok');
+        } catch {
+          this.toast(t('dashboard.the_action_could_not_be_completed'), 'danger');
+        } finally {
+          this.busy = false;
+        }
       },
       record(sample, at) {
         const previous = this.sample;

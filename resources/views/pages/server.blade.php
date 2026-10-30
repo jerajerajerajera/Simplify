@@ -24,15 +24,17 @@
     </div>
     <div class="ps-main">
         @include('simplify::dashboard.header', ['notes' => true])
-        {{-- Shown once after an installation finished on this page (as in 0.7.0): one clear next step. --}}
-        <div class="ps-ready" x-show="installReady && !installView() && !['running', 'starting'].includes(status)" x-cloak x-transition.opacity role="status">
-            <span class="ps-ready-mark" aria-hidden="true"><svg><use href="#ps-check"/></svg></span>
+        {{-- Shown once after an installation finished on this page (as in 0.7.0): one clear next step. The same banner asks
+             for the Minecraft EULA while it is still open, so starting never stops on it. --}}
+        <div class="ps-ready" :class="{ 'is-eula': eulaNeeded }" x-show="(installReady || eulaNeeded) && !installView() && !['running', 'starting'].includes(status)" x-cloak x-transition.opacity role="status">
+            <span class="ps-ready-mark" aria-hidden="true"><svg><use :href="eulaNeeded ? '#ps-file' : '#ps-check'"/></svg></span>
             <div>
-                <strong>{{ $u('your_server_is_ready') }}</strong>
-                <small x-text="server.minecraft ? @js($u('you_can_now_start_your_server')) : @js($u('you_can_now_start_your_server_2'))"></small>
+                <strong x-text="eulaNeeded ? @js($u('accept_the_minecraft_eula')) : @js($u('your_server_is_ready'))"></strong>
+                <small x-show="!eulaNeeded" x-text="server.minecraft ? @js($u('you_can_now_start_your_server')) : @js($u('you_can_now_start_your_server_2'))"></small>
+                <small x-show="eulaNeeded">{{ $u('minecraft_needs_this_once_before_the') }} {{ $u('eula_agree', ['button' => $u('accept_and_start')]) }} <a href="https://www.minecraft.net/eula" target="_blank" rel="noopener noreferrer">{{ $u('read_the_minecraft_eula') }}</a></small>
             </div>
-            <button type="button" class="ps-btn is-primary ps-ready-start" x-show="server.permissions['control.start']" x-on:click="installReady = false; power('start')" :disabled="busy"><svg aria-hidden="true"><use href="#ps-play"/></svg><span>{{ $u('start_server') }}</span></button>
-            <button type="button" class="ps-btn is-icon is-subtle" x-on:click="installReady = false" aria-label="{{ $u('dismiss') }}" data-tip="{{ $u('dismiss') }}"><svg aria-hidden="true"><use href="#ps-close"/></svg></button>
+            <button type="button" class="ps-btn is-primary ps-ready-start" x-show="server.permissions['control.start']" x-on:click="readyStart()" :disabled="busy"><svg aria-hidden="true"><use href="#ps-play"/></svg><span x-text="eulaNeeded ? @js($u('accept_and_start')) : @js($u('start_server'))"></span></button>
+            <button type="button" class="ps-btn is-icon is-subtle" x-on:click="installReady = false; eulaNeeded = false" aria-label="{{ $u('dismiss') }}" data-tip="{{ $u('dismiss') }}"><svg aria-hidden="true"><use href="#ps-close"/></svg></button>
         </div>
         <article class="ps-server-info" aria-label="{{ $u('server_information') }}" x-init="watchServerInfo($el)">
             {{-- Artwork has its own clipping layer, so it stays inside the card while the ⋯ menu lets the card overflow. --}}

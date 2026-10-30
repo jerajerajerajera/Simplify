@@ -50,6 +50,7 @@ return [
         'close' => '閉じる',
     ],
     'dashboard' => [
+        'eula_accepted_start_sent' => 'EULA に同意し、起動を送信しました',
         'setting_up' => ':server をセットアップ中',
         'this_takes_a_few_minutes_longer' => '数分かかります。大きなゲームではさらにかかります。このページを離れても、サーバーのインストールは続きます。',
         'the_installation_did_not_finish' => 'インストールが完了しませんでした',
