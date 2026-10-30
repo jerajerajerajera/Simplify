@@ -20,119 +20,22 @@ const LIGHT = ['d1440', 'phone390'];
 const screens = [], problems = [];
 let browser, page, stand = '', screen = '';
 
-// Everything measurable about the current document (also run inside frames).
-const measure = () => {
-  const root = document.documentElement, W = innerWidth, H = innerHeight;
-  const r = { url: location.pathname + location.search, w: W, h: H, dark: root.classList.contains('dark'), fit: root.classList.contains('ps-fit'), problems: [], info: {} };
-  const push = (kind, text) => r.problems.push({ kind, text });
-  const name = (el) => (el.getAttribute('aria-label') || el.id || (typeof el.className === 'string' && el.className.trim().split(/\s+/).slice(0, 3).join('.')) || el.tagName.toLowerCase()).slice(0, 60);
-  const text = (el) => (el.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 50);
-  // A closed Filament sidebar sits off the screen on purpose: nothing in it counts.
-  const parked = (el) => { const sb = el.closest('.fi-sidebar'); if (!sb) return false; const b = sb.getBoundingClientRect(); return b.right <= 0 || b.left >= W; };
-  const visible = (el) => { if (!(el instanceof Element)) return false; const b = el.getBoundingClientRect(); if (b.width < 1 || b.height < 1) return false; const cs = getComputedStyle(el); if (cs.visibility === 'hidden' || cs.display === 'none' || cs.opacity === '0') return false; for (let a = el; a; a = a.parentElement) { const c = a === el ? cs : getComputedStyle(a); if (c.display === 'none' || c.visibility === 'hidden') return false; if (a.hasAttribute('inert') || a.getAttribute('aria-hidden') === 'true' || a.hidden) return false; } return !parked(el); };
-  // Between a child and the box that clips it: a pane that scrolls, a fixed or absolute layer, or an animation (ticker) means the child is reachable or placed on purpose.
-  const between = (child, box) => { for (let a = child; a && a !== box; a = a.parentElement) { const c = getComputedStyle(a); if (/(fixed|absolute|sticky)/.test(c.position) || c.animationName !== 'none' || (c.transform !== 'none' && a !== child)) return true; if (a !== child && /(auto|scroll)/.test(c.overflowY + c.overflowX) && (a.scrollHeight > a.clientHeight + 2 || a.scrollWidth > a.clientWidth + 2)) return true; } return false; };
-  const scrollAncestor = (el, axis) => { for (let a = el.parentElement; a && a !== document.body; a = a.parentElement) { const cs = getComputedStyle(a); const o = axis === 'x' ? cs.overflowX : cs.overflowY; if (/(auto|scroll)/.test(o) && (axis === 'x' ? a.scrollWidth > a.clientWidth + 2 : a.scrollHeight > a.clientHeight + 2)) return a; } return null; };
-  const all = [...document.querySelectorAll('body *')].filter(visible);
-  // 1. The page itself.
-  r.info.pageScrollH = root.scrollHeight; r.info.pageScrollW = root.scrollWidth;
-  const bodyScroll = document.body.scrollHeight;
-  if (root.scrollWidth > W + 2 || bodyScroll > H + 2 && root.scrollWidth > W + 2) push('hscroll', `page is wider than the window (${root.scrollWidth} > ${W})`);
-  if (root.scrollHeight > H + 2) {
-    const before = scrollY; scrollTo(0, 50); const moved = scrollY !== before; scrollTo(0, before);
-    push(moved ? 'pagescroll' : 'tallnoscroll', `page is taller than the window (${root.scrollHeight} > ${H})${moved ? ', the page scrolls' : ', nothing scrolls'}`);
-  }
-  // 2. Text cut off: single-line text hidden without an ellipsis, and text shortened with an ellipsis (info).
-  const cut = [], ell = [];
-  for (const el of all) {
-    const cs = getComputedStyle(el);
-    if (el.matches('.sr-only, .fi-sr-only, script, style, svg, svg *')) continue;
-    if (cs.overflowX === 'hidden' && el.scrollWidth > el.clientWidth + 2 && (el.textContent || '').trim() && !el.querySelector('svg, img, canvas')) {
-      if (cs.textOverflow === 'ellipsis' && cs.whiteSpace === 'nowrap') ell.push(name(el) + ': "' + text(el) + '"');
-      else if (cs.whiteSpace === 'nowrap' || el.childElementCount === 0) cut.push(name(el) + ': "' + text(el) + '" (' + el.scrollWidth + '>' + el.clientWidth + ')');
-    }
-  }
-  if (cut.length) push('cut', 'text cut off without an ellipsis: ' + cut.slice(0, 6).join(' | ') + (cut.length > 6 ? ` (+${cut.length - 6})` : ''));
-  if (ell.length) r.info.ellipsis = ell.slice(0, 12);
-  // 3. Controls off the screen (not inside a pane that scrolls to them).
-  const off = [];
-  for (const el of all) {
-    if (!el.matches('button, a, input, select, textarea, [role=button], [role=tab]')) continue;
-    const b = el.getBoundingClientRect();
-    if (b.width < 8 || b.height < 8) continue;
-    const right = b.right > W + 2 && !scrollAncestor(el, 'x'), bottom = b.bottom > H + 2 && !scrollAncestor(el, 'y') && !(root.scrollHeight > H + 2), left = b.left < -2 && !scrollAncestor(el, 'x') && scrollX === 0, top = b.top < -2 && !scrollAncestor(el, 'y') && scrollY === 0;
-    if ((right || bottom || left || top) && off.length < 8) off.push(`${name(el)} "${text(el)}" (${Math.round(b.left)},${Math.round(b.top)} ${Math.round(b.width)}x${Math.round(b.height)})`);
-  }
-  if (off.length) push('offscreen', 'control off the screen: ' + off.join(' | '));
-  // 4. Popups, menus and dialogs must sit inside the window.
-  for (const el of document.querySelectorAll('[role=dialog], [role=menu], .fi-dropdown-panel, .fi-modal-window, .ps-dropdown, .ps-modal, .ps-sheet, .ps-account-menu, .ps-nav-items, .fi-global-search-results-ctn, .ps-phone-more-menu')) {
-    if (!visible(el) || el.closest('.fi-sidebar')) continue;
-    const b = el.getBoundingClientRect();
-    const tall = el.scrollHeight > el.clientHeight + 2;
-    r.info.popups = r.info.popups || []; r.info.popups.push(`${name(el)} ${Math.round(b.left)},${Math.round(b.top)} ${Math.round(b.width)}x${Math.round(b.height)}${tall ? ' scrolls' : ''}`);
-    if (b.left < -2 || b.top < -2 || b.right > W + 2 || b.bottom > H + 2) push('popupoff', `popup partly off the screen: ${name(el)} (${Math.round(b.left)},${Math.round(b.top)} ${Math.round(b.width)}x${Math.round(b.height)} in ${W}x${H})`);
-  }
-  // 5. Children sticking out of a box that clips (overflow hidden/clip): the notifications list, the account menu buttons.
-  const stick = []; const reported = new Set();
-  for (const el of all) {
-    const cs = getComputedStyle(el);
-    if (!/(hidden|clip)/.test(cs.overflowX) && !/(hidden|clip)/.test(cs.overflowY)) continue;
-    if (el.matches('svg, svg *, .xterm, .xterm *, canvas, [aria-hidden=true], .ps-spark, .ps-account-menu, .ps-dropdown, .fi-dropdown-panel, [x-transition], .ps-motd-preview, .ps-marquee, .ps-ticker, .ps-ticker *, .ps-bar-text, .ps-announcement-bar *')) continue;
-    if ([...reported].some((p) => p.contains(el))) continue;
-    const b = el.getBoundingClientRect();
-    if (b.width < 20 || b.height < 20) continue;
-    for (const c of el.querySelectorAll('button, a, input, select, textarea, img, li, p, h1, h2, h3, strong, span, div')) {
-      if (!visible(c) || c.matches('svg *') ) continue;
-      const cb = c.getBoundingClientRect();
-      if (cb.width < 6 || cb.height < 6) continue;
-      const dx = Math.max(cb.right - b.right, b.left - cb.left), dy = Math.max(cb.bottom - b.bottom, b.top - cb.top);
-      const clipX = /(hidden|clip)/.test(cs.overflowX) && dx > 4, clipY = /(hidden|clip)/.test(cs.overflowY) && dy > 4;
-      if ((clipX || clipY) && !c.matches('.sr-only, .fi-sr-only, [x-cloak]') && !between(c, el)) {
-        if (el.scrollHeight <= el.clientHeight + 2 && el.scrollWidth <= el.clientWidth + 2 && !clipX && cb.top >= b.top) continue;
-        stick.push(`${name(c)} "${text(c)}" sticks ${Math.round(Math.max(dx, dy))}px out of ${name(el)}`); reported.add(el); break;
-      }
-    }
-    if (stick.length >= 8) break;
-  }
-  if (stick.length) push('clipped', 'content clipped by its box: ' + stick.join(' | '));
-  // 6. Panes that scroll inside the page (info), and the content card on Simplify pages.
-  const panes = all.filter((el) => { const cs = getComputedStyle(el); return /(auto|scroll)/.test(cs.overflowY) && el.scrollHeight > el.clientHeight + 4 && !el.matches('.xterm-viewport'); }).map((el) => `${name(el)} ${el.clientHeight}/${el.scrollHeight}`);
-  if (panes.length) r.info.panes = panes.slice(0, 10);
-  const main = document.querySelector('.fi-main-ctn > .fi-main');
-  if (main && visible(main)) { const b = main.getBoundingClientRect(); r.info.card = `${Math.round(b.top)}..${Math.round(b.bottom)} of ${H}` + (r.fit ? ' fit=' + root.style.getPropertyValue('--ps-fit') : ''); if (r.fit && b.bottom > H + 2) push('cardoff', `content card ends below the window (${Math.round(b.bottom)} > ${H})`); }
-  // 7. The console: output area, its card and the command bar must share one colour; the last row must sit above the command bar.
-  const term = document.getElementById('terminal');
-  if (term && visible(term)) {
-    const card = term.parentElement, bar = card.querySelector(':scope > div:has(#send-command), form:has(#send-command)');
-    const bg = (el) => el && getComputedStyle(el).backgroundColor;
-    r.info.console = { card: bg(card), terminal: bg(term), xterm: bg(term.querySelector('.xterm')), viewport: bg(term.querySelector('.xterm-viewport')), bar: bg(bar) };
-    const rows = term.querySelector('.xterm-rows'), screenEl = term.querySelector('.xterm-screen');
-    if (screenEl) { const sb = screenEl.getBoundingClientRect(), tb = term.getBoundingClientRect(), barB = bar?.getBoundingClientRect();
-      r.info.consoleBox = `screen ${Math.round(sb.left)},${Math.round(sb.top)} ${Math.round(sb.width)}x${Math.round(sb.height)}; terminal ${Math.round(tb.left)},${Math.round(tb.top)} ${Math.round(tb.width)}x${Math.round(tb.height)}` + (barB ? `; bar top ${Math.round(barB.top)}` : '');
-      if (sb.right > tb.right + 1 || sb.bottom > tb.bottom + 1) push('consoleover', `console rows run out of the output box (screen bottom ${Math.round(sb.bottom)} / right ${Math.round(sb.right)}, box bottom ${Math.round(tb.bottom)} / right ${Math.round(tb.right)})`);
-      if (barB && sb.bottom > barB.top + 1) push('consoleover', `last console row sits behind the command bar (${Math.round(sb.bottom)} > ${Math.round(barB.top)})`);
-    }
-    const colours = new Set([r.info.console.card, r.info.console.bar].filter((c) => c && c !== 'rgba(0, 0, 0, 0)'));
-    if (colours.size > 1) push('colour', `console card and command bar differ in colour: ${[...colours].join(' vs ')}`);
-  }
-  // 8. Elements wider than the window (any), as a hint where sideways overflow comes from.
-  if (root.scrollWidth > W + 2) { const wide = all.filter((el) => el.getBoundingClientRect().right > W + 2 && !scrollAncestor(el, 'x')).slice(0, 5).map((el) => name(el)); if (wide.length) r.info.wide = wide; }
-  return r;
-};
-
+const { measure } = require('./measure.cjs');
 const settle = async (p, ms = 600) => { await p.waitForLoadState('networkidle', { timeout: 12000 }).catch(() => {}); await sleep(ms); };
 const alpine = (body) => page.evaluate((b) => { const el = document.querySelector('.ps'); return el && window.Alpine ? new Function('d', b)(window.Alpine.$data(el)) : null; }, body).catch(() => null);
 // The theme is set before any page script runs (both Filament's and Simplify's stored choice) and the browser's own
 // colour scheme follows it, so every page of the stand opens in that theme.
 const setTheme = async (theme) => { await page.context().addInitScript((t) => { try { localStorage.setItem('pelicanSimplify.theme', t); localStorage.setItem('theme', t); } catch {} document.documentElement?.classList.toggle('dark', t === 'dark'); }, theme); await page.emulateMedia({ colorScheme: theme }); await page.evaluate((t) => { localStorage.setItem('pelicanSimplify.theme', t); localStorage.setItem('theme', t); window.SimplifyTheme?.set(t); document.documentElement.classList.toggle('dark', t === 'dark'); }, theme); };
 
+// Simplify's own admin pages (by their path), so the measurement knows which admin pages must follow Simplify's style.
+const mopts = () => ({ simplifyAdmin: (urls.admin || []).filter((p) => /^Simplify\\/.test(p.class)).map((p) => rel(p.url)) });
 // Records the current state of the page (and its visible frames) under the given screen id.
 async function record(id, title, extra = {}) {
   screen = id;
   const dir = path.join(out, stand); fs.mkdirSync(dir, { recursive: true });
   const entry = { id, title, stand, url: rel(page.url()), ...extra };
   try {
-    entry.main = await page.evaluate(measure);
+    entry.main = await page.evaluate(measure, mopts());
     entry.frames = [];
     for (const f of page.frames()) {
       if (f === page.mainFrame()) continue;
@@ -140,7 +43,7 @@ async function record(id, title, extra = {}) {
       if (!handle) continue;
       const box = await handle.boundingBox().catch(() => null);
       if (!box || box.width < 50) continue;
-      const m = await f.evaluate(measure).catch((e) => ({ error: e.message }));
+      const m = await f.evaluate(measure, mopts()).catch((e) => ({ error: e.message }));
       entry.frames.push({ box: `${Math.round(box.x)},${Math.round(box.y)} ${Math.round(box.width)}x${Math.round(box.height)}`, ...m });
     }
     await page.screenshot({ path: path.join(dir, id + '.png'), fullPage: false, timeout: 15000 });
@@ -182,12 +85,20 @@ async function round(theme) {
   await openNav();
   await click('[x-ref="notifyButton"]'); await record('overview-bell', 'Bel (aankondigingen) open'); await escape();
   await openNav();
-  await click('[x-ref="adminButton"]'); await record('overview-admin', 'Beheermenu (schild) open'); await escape();
+  await click('[x-ref="adminButton"]'); await record('overview-admin', 'Beheermenu (schild) open');
+  // Admin tools (1.4.4, variant D): the second group open, its pages as tiles (on a phone they fold out under the group).
+  if (await click('.ps-admin-group-head:not(.is-open)', 700)) await record('overview-admin-group2', 'Beheermenu, tweede groep open'); await escape();
+  await openNav();
+  await click('[x-ref="notifyButton"]');
+  // The bell's expand button (1.4.4): a window with every notification.
+  if (await click('.ps-notify-all, [x-ref="notifyButton"] ~ .ps-dropdown button[aria-label*="all" i], .ps-dropdown button[aria-label*="expand" i]', 1200)) await record('overview-bell-all', 'Meldingenvenster (alle meldingen) open'); await escape(); await escape();
   await openNav();
   await click('[x-ref="overviewAppearance"]'); await record('overview-customize', 'Weergave aanpassen open'); await escape();
   await openNav();
   await click('[x-ref="overviewGroupsButton"]'); await record('overview-groups', 'Servergroepen open'); await escape();
   if (await click('.ps-health-pill')) await record('overview-health', 'Gezondheid van de host open'); await escape();
+  // Host health card's tab under its bottom edge (1.4.4): the nodes fold open.
+  if (await click('.ps-health-tab', 900)) { await record('overview-health-nodes', 'Host health, nodes uitgeklapt'); await click('.ps-health-tab', 600); }
   // The menus under the top bar once more with one announcement bar and with none: their height must follow the bars.
   const unpinBar = async () => { const b = page.locator('button[aria-label="Unpin"], .ps-announcement-unpin, [wire\\:click^="unpin"]').first(); if (!(await b.count())) return false; await b.click().catch(() => {}); await sleep(1500); return true; };
   for (const [tag, label] of [['1bar', 'één aankondigingsbalk'], ['0bar', 'geen aankondigingsbalk']]) {
@@ -256,6 +167,7 @@ async function round(theme) {
   await goto(overview); await ready();
   await alpine('d.setHostMode(true)'); await sleep(2500);
   await record('host', 'Hostmodus');
+  if (await click('.ps-health-tab', 900)) { await record('host-health-nodes', 'Hostmodus · host health, nodes uitgeklapt'); await click('.ps-health-tab', 600); }
   if (onPhone) { if (await click('.ps-host-menu-open, button[aria-controls="ps-host-menu"], .ps-mobile-menu', 600)) await record('host-phone-menu', 'Hostmodus · telefoonmenu open'); await escape(); }
   const heads = page.locator('.ps-host-group-head'); const hn = await heads.count();
   for (let i = 0; i < hn; i++) { const h = heads.nth(i); const label = (await h.innerText().catch(() => 'sectie ' + i)).trim().split('\n')[0]; await h.click().catch(() => {}); await sleep(2500); await record('host-' + slug(label), 'Hostmodus · ' + label);

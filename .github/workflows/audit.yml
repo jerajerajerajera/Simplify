@@ -14,6 +14,9 @@ on:
       servermaker:
         description: 'Branch of Simplify-ServerMaker'
         default: 'main'
+      simplify:
+        description: 'Branch of Simplify to audit (empty = this checkout); the audit itself always comes from this checkout'
+        default: ''
   push:
     branches: ['claude/project-thread-k01bn2']
     paths: ['tests/audit/**', '.github/workflows/audit.yml']
@@ -69,7 +72,13 @@ jobs:
         working-directory: panel
         run: |
           mkdir -p plugins/simplify
-          tar -C ../simplify --exclude=.git --exclude=tests --exclude=.github -cf - . | tar -C plugins/simplify -xf -
+          if [ -n "${{ inputs.simplify }}" ]; then
+            git clone --quiet --depth 1 --branch "${{ inputs.simplify }}" https://github.com/jerajerajerajera/Simplify.git simplify-src
+            echo "Simplify from branch ${{ inputs.simplify }} at $(git -C simplify-src rev-parse --short HEAD)"
+            tar -C simplify-src --exclude=.git --exclude=tests --exclude=.github -cf - . | tar -C plugins/simplify -xf - && rm -rf simplify-src
+          else
+            tar -C ../simplify --exclude=.git --exclude=tests --exclude=.github -cf - . | tar -C plugins/simplify -xf -
+          fi
           php artisan p:plugin:install simplify
           for pair in Simplify-Toolkit:simplify-toolkit Simplify-EggUpdates:simplify-eggupdates Simplify-Explain:simplify-explain Simplify-ServerMaker:simplify-servermaker Simplify-Hosting:simplify-hosting; do
             repo=${pair%%:*}; id=${pair##*:}
@@ -104,6 +113,10 @@ jobs:
         run: |
           tail -n 40 panel/wings.log || true
           grep -h -E '^\[[0-9-]+ [0-9:]+\]' panel/storage/logs/*.log | cut -c1-600 | tail -n 30 || true
+      - name: Style verdict (fails the job when a UI rule is broken)
+        id: style
+        continue-on-error: true
+        run: set -o pipefail; python3 simplify/tests/audit/style-report.py result/result.json | tee result/style.md
       - if: always()
         name: Result to the audit-results branch
         run: |
@@ -111,4 +124,7 @@ jobs:
           git init -q -b results
           git add -A
           git -c user.name=audit -c user.email=audit@users.noreply.github.com commit -qm "Audit ${{ github.sha }} ${{ matrix.stand }}"
-          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "results:refs/heads/audit-results-$(echo "${{ github.ref_name }}" | tr "/" "-")-${{ matrix.stand }}"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "results:refs/heads/audit-results-$(echo "${{ inputs.simplify || github.ref_name }}" | tr "/" "-")-${{ matrix.stand }}"
+      - name: Fail when the style verdict is red
+        if: steps.style.outcome == 'failure'
+        run: { echo "::error::UI rules broken, see style.md on the results branch"; exit 1; }
