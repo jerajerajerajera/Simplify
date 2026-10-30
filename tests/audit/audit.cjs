@@ -73,6 +73,8 @@ async function round(theme) {
   const ready = () => page.waitForSelector('.ps-server-card, .ps-compact-row, .ps-list-row', { timeout: 15000 }).catch(() => {});
   const onPhone = phone();
 
+  // Pelican's health checks run when its Health page opens; the overview's menus and host mode show their results.
+  await goto('/admin/health', 2500);
   // Overview and its menus.
   await goto(overview); await setTheme(theme); await goto(overview); await ready(); await alpine('d.setHostMode(false)'); await sleep(500);
   for (const view of ['grid', 'compact', 'list']) { await alpine(`d.setOverviewView('${view}')`); await sleep(700); await record('overview-' + view, 'Overzicht, ' + view); }
