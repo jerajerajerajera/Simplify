@@ -127,4 +127,6 @@ jobs:
           git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "results:refs/heads/audit-results-$(echo "${{ inputs.simplify || github.ref_name }}" | tr "/" "-")-${{ matrix.stand }}"
       - name: Fail when the style verdict is red
         if: steps.style.outcome == 'failure'
-        run: { echo "::error::UI rules broken, see style.md on the results branch"; exit 1; }
+        run: |
+          echo "::error::UI rules broken, see style.md on the results branch"
+          exit 1
