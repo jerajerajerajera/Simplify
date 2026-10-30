@@ -7,10 +7,12 @@ namespace Simplify\Core\Filament\Admin;
 use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Radio;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Components\View;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Simplify\Core\Support\Assets;
@@ -23,6 +25,9 @@ use Throwable;
 final class SettingsFields
 {
     private const T = 'simplify::settings.';
+
+    /** The settings the panel name's preview is drawn from. */
+    private const BRAND = ['accent', 'brand_font', 'brand_weight', 'brand_colour', 'brand_colour1', 'brand_colour2', 'brand_spacing', 'brand_uppercase'];
 
     /** Help for everyone on the panel. Hosting details (billing, client area) come from the Simplify Hosting add-on. */
     public static function support(): Section
@@ -40,6 +45,26 @@ final class SettingsFields
             Radio::make('start_page')->hiddenLabel()->required()
                 ->options(['overview' => __(self::T.'start.overview'), 'pelican' => __(self::T.'start.pelican')])
                 ->descriptions(['overview' => __(self::T.'start.overview_help'), 'pelican' => __(self::T.'start.pelican_help')]),
+        ]);
+    }
+
+    /** Friends mode: everyone signed in sees every server's card; opening one still needs Pelican's access. */
+    public static function visibility(): Section
+    {
+        return Section::make(__(self::T.'general.visibility'))->schema([
+            Toggle::make('friends_mode')->label(__(self::T.'general.friends_mode'))
+                ->helperText(__(self::T.'general.friends_mode_help')),
+        ]);
+    }
+
+    /** Setup only: picks friends mode for the panel's audience. Not stored; friends mode itself is the setting. */
+    public static function panelType(): Section
+    {
+        return Section::make(__(self::T.'general.panel_type'))->description(__(self::T.'general.panel_type_help'))->schema([
+            Radio::make('panel_type')->hiddenLabel()->dehydrated(false)->live()
+                ->options(['friends' => __(self::T.'general.panel_friends'), 'hosting' => __(self::T.'general.panel_hosting')])
+                ->descriptions(['friends' => __(self::T.'general.panel_friends_help'), 'hosting' => __(self::T.'general.panel_hosting_help')])
+                ->afterStateUpdated(fn (?string $state, Set $set) => $set('friends_mode', $state === 'friends')),
         ]);
     }
 
@@ -73,12 +98,30 @@ final class SettingsFields
                 ->helperText(__(self::T.'appearance.brand_name_help')),
             TextInput::make('logo_height')->label(__(self::T.'appearance.logo_height'))->live(onBlur: true)
                 ->integer()->minValue(16)->maxValue(64)->suffix('px')->required(),
-            Toggle::make('pelican_suffix')->label(__(self::T.'appearance.pelican_suffix'))->columnSpanFull(),
+            Select::make('brand_font')->label(__(self::T.'appearance.font'))->live()->selectablePlaceholder(false)->required()
+                ->options(self::labels('font', array_keys(Brand::FONTS))),
+            Select::make('brand_weight')->label(__(self::T.'appearance.weight'))->live()->selectablePlaceholder(false)->required()
+                ->options(self::labels('weight', [400, 500, 600, 700, 800, 900])),
+            Select::make('brand_colour')->label(__(self::T.'appearance.colour'))->live()->selectablePlaceholder(false)->required()
+                ->options(self::labels('colour', ['solid', 'gradient'])),
+            TextInput::make('brand_spacing')->label(__(self::T.'appearance.letter_spacing'))->live(onBlur: true)
+                ->integer()->minValue(-5)->maxValue(30)->suffix('/100 em')->required(),
+            ColorPicker::make('brand_colour1')->live()->hex()->regex('/^#[0-9a-fA-F]{6}$/')
+                ->label(fn (Get $get) => __(self::T.'appearance.'.($get('brand_colour') === 'gradient' ? 'start_colour' : 'text_colour')))
+                ->helperText(__(self::T.'appearance.text_colour_help')),
+            ColorPicker::make('brand_colour2')->label(__(self::T.'appearance.end_colour'))->live()->hex()->regex('/^#[0-9a-fA-F]{6}$/')
+                ->helperText(__(self::T.'appearance.end_colour_help'))->visible(fn (Get $get) => $get('brand_colour') === 'gradient'),
+            Toggle::make('brand_uppercase')->label(__(self::T.'appearance.uppercase'))->live(),
+            Toggle::make('pelican_suffix')->label(__(self::T.'appearance.pelican_suffix')),
             self::image('brand_logo', 'appearance.logo', 'appearance.logo_help')->columnSpanFull(),
+            Toggle::make('logo_text')->label(__(self::T.'appearance.logo_text'))->live()->columnSpanFull()
+                ->visible(fn (Get $get) => filled($get('brand_logo'))),
             self::preview('logo', fn (Get $get) => [
                 'image' => self::previewUrl($get('brand_logo')),
                 'name' => trim((string) $get('brand_name')) ?: (string) config('app.name'),
                 'height' => max(16, min(64, (int) $get('logo_height') ?: 32)),
+                'text' => (bool) $get('logo_text'),
+                'style' => Brand::textStyle(PanelSettings::check(array_combine(self::BRAND, array_map(fn ($key) => $get($key) ?: null, self::BRAND)))),
             ]),
         ]);
     }
@@ -98,6 +141,14 @@ final class SettingsFields
         ]);
     }
 
+    /** The banners people uploaded for their servers, to remove one that should not be there. Settings page only. */
+    public static function banners(): Section
+    {
+        return Section::make(__(self::T.'appearance.banners'))->schema([
+            View::make('simplify::partials.server-banners'),
+        ]);
+    }
+
     private static function image(string $name, string $label, string $help): FileUpload
     {
         return FileUpload::make($name)->live()->label(__(self::T.$label))->helperText(__(self::T.$help))
@@ -106,6 +157,17 @@ final class SettingsFields
     }
 
     /** A small picture of where an image ends up: the top bar, a phone's home screen or Android's status bar. */
+    /**
+     * Translated options for a select: value => settings.appearance.<prefix>_<value>.
+     *
+     * @param  list<string|int>  $values
+     * @return array<string|int, string>
+     */
+    private static function labels(string $prefix, array $values): array
+    {
+        return array_combine($values, array_map(fn ($value) => __(self::T."appearance.{$prefix}_{$value}"), $values));
+    }
+
     private static function preview(string $kind, callable $data): View
     {
         return View::make('simplify::partials.image-preview')->columnSpanFull()

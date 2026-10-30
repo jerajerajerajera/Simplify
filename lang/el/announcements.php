@@ -25,6 +25,8 @@ return [
         'in_game_servers' => 'Servers',
         'in_game_servers_all' => 'Όλοι οι servers',
         'in_game_servers_help' => 'Κενό: όλοι οι servers, έως 200.',
+        'in_game_groups' => 'Ομάδες διακομιστών',
+        'in_game_groups_help' => 'Οι ομάδες σας από τις Ομάδες διακομιστών. Διακομιστές που προσθέτετε αργότερα σε μια ομάδα τη λαμβάνουν επίσης.',
         'in_game_repeat' => 'Επανάληψη',
     ],
     'category' => [

@@ -39,12 +39,15 @@
       ],
       infoMenu: false,
       colorMenu: false,
+      bannerMenu: false,
+      bannerChoices: [],
       // Set while a power action, rename or look change is on its way; Alpine treats an undefined name as an error.
       busy: false,
       // The last state Wings reported over the console socket, for Pelican versions without window.ServerStats.
       socketState: null,
       colorDraft: null,
       statusBarVisible: false,
+      logLines: [],
       sample: null,
       // The installation view (as in 0.7.0): the banner after it finished here, a browser notification on request.
       installReady: false,
@@ -64,6 +67,12 @@
           this.installNow = Date.now();
           if (++this.installTicks % 5 === 0) this.refresh();
         }, 1000);
+        // Elsewhere than the console, the last console lines can show under the server card (Customize).
+        if (!boot.console) {
+          this.$watch('overviewPreferences.serverConsoleLog', (on) => (on ? this.readLog() : (this.logLines = [])));
+          this.logTimer = setInterval(() => this.readLog(), 4000);
+          this.$nextTick(() => this.readLog());
+        }
         if (boot.console) {
           if (new URLSearchParams(location.search).has('simplify_console')) document.documentElement.classList.add('ps-console-window');
           // Every Pelican version passes Wings' "status" on as this Livewire event, the first one right after connecting.
@@ -88,6 +97,15 @@
         base.destroy.call(this);
         clearInterval(this.liveTimer);
         clearInterval(this.installTimer);
+        clearInterval(this.logTimer);
+      },
+      async readLog() {
+        if (this.destroyed || document.hidden || !this.overviewPreferences.serverConsoleLog || !this.server.can_console || this.status === 'offline') return;
+        try {
+          this.logLines = await wire.logLines();
+        } catch {
+          this.logLines = [];
+        }
       },
       get status() {
         return this.server?.status || 'missing';
@@ -219,12 +237,19 @@
           bar = this.$refs.consoleBar.content.firstElementChild.cloneNode(true);
           terminal.prepend(bar);
           const grow = bar.querySelector('.ps-console-grow');
-          grow.addEventListener('click', () => {
-            const big = document.documentElement.classList.toggle('ps-console-big');
+          const size = (big) => {
+            document.documentElement.classList.toggle('ps-console-big', big);
             grow.setAttribute('aria-pressed', String(big));
             grow.setAttribute('aria-label', big ? grow.dataset.normal : grow.dataset.bigger);
             window.dispatchEvent(new Event('resize'));
+          };
+          // The bigger console is remembered on this device (Customize), so server pages open with it.
+          grow.addEventListener('click', () => {
+            const big = !document.documentElement.classList.contains('ps-console-big');
+            this.setOverviewPreference('serverBiggerConsole', big);
+            size(big);
           });
+          if (this.overviewPreferences.serverBiggerConsole) size(true);
           bar.querySelector('.ps-console-window').addEventListener('click', () => {
             const url = new URL(location.href);
             url.searchParams.set('simplify_console', '1');
@@ -351,6 +376,44 @@
           this.busy = false;
         }
       },
+      /** Stopped, or unable to run (unknown to Wings, failed install, suspended): the same list as ServerPage::deleteServer(). */
+      canDelete() {
+        return ['offline', 'missing', 'install failed', 'suspended'].includes(this.status);
+      },
+      /** Owners delete their own stopped server after typing its name; the page then goes back to the overview. */
+      async deleteServer() {
+        if (this.busy) return;
+        const name = await window.Simplify.confirm({ title: t('dashboard.delete_server_title', { name: this.server.name }), message: t('dashboard.delete_server_message'), confirmLabel: t('dashboard.delete_server'), tone: 'danger', input: true, requireText: this.server.name });
+        if (name !== this.server.name) return;
+        this.busy = true;
+        try {
+          await wire.deleteServer(name);
+          this.toast(t('dashboard.server_deleted'), 'ok');
+        } catch {
+          this.toast(t('dashboard.the_action_could_not_be_completed'), 'danger');
+          this.busy = false;
+        }
+      },
+      async openBannerMenu() {
+        this.infoMenu = false;
+        this.colorMenu = false;
+        this.bannerMenu = true;
+        try {
+          this.bannerChoices = await wire.banners();
+        } catch {}
+      },
+      async chooseBanner(id) {
+        if (this.busy) return;
+        this.busy = true;
+        try {
+          this.take(await wire.chooseBanner(id));
+          this.toast(t('dashboard.server_background_saved'), 'ok');
+        } catch {
+          this.toast(t('dashboard.the_action_could_not_be_completed'), 'danger');
+        } finally {
+          this.busy = false;
+        }
+      },
       openColorMenu() {
         this.infoMenu = false;
         this.colorDraft = this.server.color || '#3b82f6';
@@ -364,6 +427,7 @@
           if (file) await new Promise((resolve, reject) => wire.upload('banner', file, resolve, reject));
           this.take(await wire.saveLook(color, remove));
           this.colorMenu = false;
+          if (file) this.bannerChoices = await wire.banners();
           this.toast(file || remove ? t('dashboard.server_background_saved') : t('dashboard.server_color_saved'), 'ok');
         } catch {
           this.toast(t('dashboard.the_action_could_not_be_completed'), 'danger');

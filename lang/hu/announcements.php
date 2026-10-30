@@ -25,6 +25,8 @@ return [
         'in_game_servers' => 'Szerverek',
         'in_game_servers_all' => 'Minden szerver',
         'in_game_servers_help' => 'Üres: minden szerver, legfeljebb 200.',
+        'in_game_groups' => 'Szervercsoportok',
+        'in_game_groups_help' => 'A csoportjaid a Szervercsoportokból. A később csoportba tett szerverek is megkapják.',
         'in_game_repeat' => 'Ismétlés',
     ],
     'category' => [

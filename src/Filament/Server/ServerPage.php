@@ -8,6 +8,8 @@ use App\Enums\SubuserPermission;
 use App\Facades\Activity;
 use App\Models\Server;
 use App\Services\Servers\ReinstallServerService;
+use App\Repositories\Daemon\DaemonServerRepository;
+use App\Services\Servers\ServerDeletionService;
 use Filament\Facades\Filament;
 use Filament\Navigation\NavigationItem;
 use Illuminate\Contracts\View\View;
@@ -17,11 +19,13 @@ use Livewire\Attributes\Renderless;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Livewire\WithFileUploads;
+use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Overview\Listing;
 use Simplify\Core\Overview\Power;
 use Simplify\Core\Overview\Shell;
 use Simplify\Core\Server\Installation;
 use Simplify\Core\Server\Looks;
+use Throwable;
 
 /**
  * The top of every page of a server: Simplify's header, the server card with its power buttons and the live numbers.
@@ -58,6 +62,26 @@ final class ServerPage extends Component
         return Listing::one($this->user(), $this->server);
     }
 
+    /**
+     * The last console lines from Wings, for the strip under the server card on pages other than the console.
+     *
+     * @return list<string>
+     */
+    #[Renderless]
+    public function logLines(): array
+    {
+        abort_unless($this->user()->can(SubuserPermission::ControlConsole, $this->server), 403);
+        try {
+            $lines = app(DaemonServerRepository::class)->setServer($this->server)->getHttpClient()
+                ->timeout(5)->get('/api/servers/'.$this->server->uuid.'/logs', ['size' => 6])->throw()->json('data');
+        } catch (Throwable) {
+            return [];
+        }
+
+        // Without colour codes: the strip is plain text.
+        return array_values(array_map(fn (string $line) => (string) preg_replace('/\e\[[0-9;?]*[A-Za-z]/', '', $line), array_filter((array) $lines, 'is_string')));
+    }
+
     #[Renderless]
     public function power(string $action): void
     {
@@ -89,6 +113,43 @@ final class ServerPage extends Component
         return $this->refresh();
     }
 
+    /** The owner (or a root admin) deletes a stopped server after typing its exact name, as in Pelican's admin. */
+    public function deleteServer(string $confirmation): void
+    {
+        $user = $this->user();
+        abort_unless($user->isRootAdmin() || $this->server->owner_id === $user->id, 403);
+        abort_unless(hash_equals($this->server->name, $confirmation), 422);
+        // A stopped server, and one that cannot run: Wings does not know it, or its install failed.
+        abort_unless(in_array(Listing::one($user, $this->server)['status'], ['offline', 'missing', 'install failed', 'suspended'], true), 409);
+        app(ServerDeletionService::class)->handle($this->server);
+        $this->redirect(Overview::getUrl(panel: 'app'));
+    }
+
+    /**
+     * The backgrounds to pick from: Simplify's scenes and the uploads on servers this person may change.
+     *
+     * @return list<array{id: string, url: string, upload: bool}>
+     */
+    #[Renderless]
+    public function banners(): array
+    {
+        abort_unless(Looks::canEdit($this->user(), $this->server), 403);
+
+        return Looks::choices($this->user());
+    }
+
+    /** A picked background: 'auto', a scene, or an upload that is already on another server of theirs. */
+    #[Renderless]
+    public function chooseBanner(string $id): array
+    {
+        abort_unless(Looks::canEdit($this->user(), $this->server), 403);
+        $banner = Looks::stored($this->user(), $id);
+        abort_if($banner === false, 422);
+        Looks::save($this->server, Looks::for($this->server)['color'], $banner);
+
+        return $this->refresh();
+    }
+
     /** The uploaded file waits for saveLook(); the page itself is drawn in the browser, so nothing re-renders. */
     public function updatedBanner(): void
     {
@@ -113,16 +174,18 @@ final class ServerPage extends Component
     }
 
     /**
-     * Pelican's server menu (and the pages add-ons add to it), for the menu next to the page.
+     * Pelican's server menu (and the pages add-ons add to it), for the menu next to the page. Pelican's "Open in Admin"
+     * is left out: it leads to the legacy admin page, and the server page has its own settings.
      *
      * @return list<NavigationItem>
      */
     public static function sections(): array
     {
         $items = [];
+        $admin = trans('server/console.open_in_admin');
         foreach (Filament::getCurrentPanel()?->getNavigation() ?? [] as $group) {
             foreach ($group->getItems() as $item) {
-                if ($item->isVisible()) {
+                if ($item->isVisible() && (string) $item->getLabel() !== $admin) {
                     $items[] = $item;
                 }
             }

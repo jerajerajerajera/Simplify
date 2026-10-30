@@ -16,6 +16,7 @@ use Simplify\Core\Server\Looks;
 use Simplify\Core\Subdomains\Services\Games;
 use Simplify\Core\Subdomains\Subdomains;
 use Simplify\Core\Support\Assets;
+use Simplify\Core\Support\PanelSettings;
 use Throwable;
 
 /**
@@ -30,14 +31,16 @@ final class Listing
      */
     public static function for(User $user, bool $badges = true): array
     {
-        $servers = ServerQuery::for($user)->get();
+        $servers = ServerQuery::cards($user)->get();
+        // Friends mode shows servers the user cannot open; their cards have no link.
+        $open = PanelSettings::get('friends_mode') && ! $user->isAdmin() ? $user->accessibleServers()->pluck('servers.id')->all() : null;
         $live = NodeUsage::read($servers->filter(fn (Server $server) => $server->status === null));
         $looks = Looks::forMany($servers->pluck('id')->all());
         $mine = $user->directAccessibleServers()->pluck('servers.id')->all();
         $subdomains = $badges ? Subdomains::addresses($servers) : [];
 
         return $servers->map(fn (Server $server) => [
-            ...self::card($user, $server, $live[$server->uuid] ?? null, $looks[$server->id] ?? [], in_array($server->id, $mine, true)),
+            ...self::card($user, $server, $live[$server->uuid] ?? null, $looks[$server->id] ?? [], in_array($server->id, $mine, true), $open === null || in_array($server->id, $open, true)),
             ...$badges ? ['badges' => self::badges($server, $subdomains[$server->uuid] ?? null)] : [],
         ])->all();
     }
@@ -59,8 +62,27 @@ final class Listing
             'minecraft' => Games::minecraft($server),
             'can_edit' => Looks::canEdit($user, $server),
             ...Installation::info($server),
+            'can_delete' => $user->isRootAdmin() || $server->owner_id === $user->id,
+            'sftp' => self::sftp($user, $server),
+            'can_console' => $user->can(SubuserPermission::ControlConsole, $server),
             'links' => array_map(fn (Button $link) => $link->toArray(), app(AddonRegistry::class)->collect(fn (Addon $addon) => $addon->serverLinks($server))),
         ];
+    }
+
+    /**
+     * Where to connect with an SFTP program, for people who may use SFTP on this server.
+     *
+     * @return array{username: string, url: string}|null
+     */
+    private static function sftp(User $user, Server $server): ?array
+    {
+        if (! $user->can(SubuserPermission::FileSftp, $server)) {
+            return null;
+        }
+        $username = $user->username.'.'.$server->uuid_short;
+        $url = (string) $server->getSftpUrl();
+
+        return ['username' => $username, 'url' => str_starts_with($url, 'sftp://') ? 'sftp://'.rawurlencode($username).'@'.substr($url, 7) : ''];
     }
 
     /**
@@ -78,7 +100,7 @@ final class Listing
      * @param  array{color?: ?string, banner?: ?string}  $look
      * @return array<string, mixed>
      */
-    private static function card(User $user, Server $server, ?array $live, array $look, bool $mine): array
+    private static function card(User $user, Server $server, ?array $live, array $look, bool $mine, bool $open = true): array
     {
         // Installing or restoring: Wings has nothing useful to add yet.
         $status = match ($server->status?->value) {
@@ -97,6 +119,7 @@ final class Listing
             'name' => $server->name,
             'color' => $look['color'] ?? null,
             'background' => Artwork::background($server, $look['banner'] ?? null),
+            'background_id' => $look['banner_id'] ?? 'auto',
             'software' => $server->egg?->name,
             'game' => $minecraft ? 'minecraft' : 'other',
             'game_label' => $minecraft ? 'Minecraft' : ($server->egg?->name ?: __('simplify::dashboard.page.other_game')),
@@ -106,7 +129,7 @@ final class Listing
             'node_name' => (string) $server->node?->name,
             'created' => $server->created_at?->getTimestamp(),
             'port' => $server->allocation?->port,
-            'url' => Filament::getPanel('server')->getUrl($server),
+            'url' => $open ? Filament::getPanel('server')->getUrl($server) : null,
             'permissions' => [
                 'control.start' => $user->can(SubuserPermission::ControlStart, $server),
                 'control.stop' => $user->can(SubuserPermission::ControlStop, $server),

@@ -102,5 +102,22 @@
                 </div>
             </div>
         </template>
+        <template x-if="server">
+            <div class="ps-customize">
+                <span class="ps-customize-sub">{{ $u('server_pages') }}</span>
+                <button type="button" class="ps-customize-switch" role="switch" :aria-checked="overviewPreferences.serverBiggerConsole" x-on:click="setOverviewPreference('serverBiggerConsole', !overviewPreferences.serverBiggerConsole)">
+                    <span><strong>{{ $u('bigger_console') }}</strong><small>{{ $u('open_server_pages_with_the_large') }}</small></span>
+                    <span class="ps-switch" :class="{'is-on': overviewPreferences.serverBiggerConsole}" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="ps-customize-switch" role="switch" :aria-checked="overviewPreferences.serverConsoleLog" x-on:click="setOverviewPreference('serverConsoleLog', !overviewPreferences.serverConsoleLog)">
+                    <span><strong>{{ $u('log_in_the_mini_console') }}</strong><small>{{ $u('last_lines_on_other_pages') }}</small></span>
+                    <span class="ps-switch" :class="{'is-on': overviewPreferences.serverConsoleLog}" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="ps-customize-switch" role="switch" :aria-checked="overviewPreferences.fullWidth" x-on:click="setOverviewPreference('fullWidth', !overviewPreferences.fullWidth)">
+                    <span><strong>{{ $u('full_screen_width') }}</strong><small>{{ $u('use_the_whole_width_of_the') }}</small></span>
+                    <span class="ps-switch" :class="{'is-on': overviewPreferences.fullWidth}" aria-hidden="true"></span>
+                </button>
+            </div>
+        </template>
     </div>
 </div>

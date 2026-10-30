@@ -41,7 +41,10 @@ trait Shell
                 'server_colours' => (bool) $settings['server_colours'],
                 'pelican_suffix' => (bool) $settings['pelican_suffix'],
                 'seasonal' => (bool) $settings['seasonal'],
-                'brand' => ['mode' => $logo ? 'logo' : 'text', 'logo_url' => $logo ? url('/simplify/brand/'.$logo) : null, 'logo_height' => $settings['logo_height']],
+                'brand' => [
+                    'mode' => $logo ? 'logo' : 'text', 'logo_url' => $logo ? url('/simplify/brand/'.$logo) : null, 'logo_height' => $settings['logo_height'],
+                    'logo_text' => (bool) $settings['logo_text'], 'text_style' => Brand::textStyle($settings),
+                ],
             ],
             'panel_born' => self::panelBorn(),
             'build_version' => Assets::version(),
@@ -82,9 +85,9 @@ trait Shell
     }
 
     #[Renderless]
-    public function notificationPage(int $page = 1): array
+    public function notificationPage(int $page = 1, bool $archived = false): array
     {
-        return Bell::page($this->user(), $page);
+        return Bell::page($this->user(), $page, $archived);
     }
 
     /** @param list<string> $ids empty for every notification */
@@ -92,6 +95,15 @@ trait Shell
     public function markNotifications(array $ids, bool $read = true): array
     {
         Bell::mark($this->user(), $ids, $read);
+
+        return Bell::page($this->user());
+    }
+
+    /** @param list<string> $ids empty for "Clear read": every read notification moves to Archived */
+    #[Renderless]
+    public function archiveNotifications(array $ids = []): array
+    {
+        Bell::archiveNotifications($this->user(), $ids);
 
         return Bell::page($this->user());
     }

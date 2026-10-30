@@ -25,6 +25,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Simplify\Core\Announcements\Models\Announcement;
 use Simplify\Core\Announcements\Services\Bell;
+use Simplify\Core\Announcements\Services\InGame;
 use Simplify\Core\Announcements\Services\Push;
 use Simplify\Core\Announcements\Support\GameChat;
 use Simplify\Core\Announcements\Support\Rules;
@@ -138,6 +139,12 @@ final class AnnouncementResource extends Resource
                     ->searchable()
                     ->getSearchResultsUsing(fn (string $search): array => Server::query()->where('name', 'like', '%'.$search.'%')->orderBy('name')->limit(50)->pluck('name', 'id')->all())
                     ->getOptionLabelsUsing(fn (array $values): array => Server::query()->whereKey($values)->pluck('name', 'id')->all()),
+                Select::make('in_game_groups')
+                    ->label(self::text('form.in_game_groups'))
+                    ->helperText(self::text('form.in_game_groups_help'))
+                    ->multiple()
+                    ->options(fn (?Announcement $record): array => InGame::groups($record?->author ?? user()))
+                    ->visible(fn (?Announcement $record): bool => InGame::groups($record?->author ?? user()) !== []),
                 Select::make('in_game_repeat')
                     ->label(self::text('form.in_game_repeat'))
                     ->options(self::repeats())
