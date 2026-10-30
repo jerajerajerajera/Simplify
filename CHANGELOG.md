@@ -9,6 +9,7 @@
 - Host mode: a Pelican page's search field and buttons sit in the title bar again (as in PelicanSimplify 0.7.0), and its table or sections have no card of their own inside Simplify's box. Create is the named button, the others are icon buttons; selecting rows brings back the bulk actions.
 - Server page: the console is one box in one colour. Pelican's terminal painted a half see-through background of its own, which showed as a lighter box inside the card.
 - Server page: no empty grey badge next to the server's picture when its egg has no icon.
+- Settings → General, Appearance and the other settings open the settings again on a panel taken over from PelicanSimplify. They sent you to the first-time setup every time, because that panel had settings but no finished setup.
 - Admin tools → Pelican settings opens Pelican's tab inside Simplify's settings again, instead of Pelican's bare page.
 - Website embed: after saving, "One server" and "One game" pick the first on the list, so the code and the preview show straight away.
 

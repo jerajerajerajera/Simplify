@@ -83,8 +83,8 @@ final class Settings extends Page implements HasForms
 
     public function mount(): void
     {
-        // The first visit walks through the setup; the settings page is for changes afterwards.
-        if (! PanelSettings::get('setup_done')) {
+        // The first visit on a new panel walks through the setup; the settings page is for changes afterwards.
+        if (! PanelSettings::get('setup_done') && ! PanelSettings::configured()) {
             $this->redirect(Setup::getUrl(panel: 'admin'));
 
             return;

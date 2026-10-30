@@ -62,6 +62,16 @@ final class PanelSettings
         return $settings;
     }
 
+    /** Anything saved at all: a panel taken over from PelicanSimplify, or set up before, has settings without setup_done. */
+    public static function configured(): bool
+    {
+        try {
+            return Setting::query()->where('key', '!=', 'setup_done')->exists();
+        } catch (Throwable) {
+            return false;
+        }
+    }
+
     public static function get(string $key): mixed
     {
         return self::all()[$key] ?? null;
