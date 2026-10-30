@@ -18,7 +18,10 @@ on:
         description: 'Branch of Simplify to audit (empty = this checkout); the audit itself always comes from this checkout'
         default: ''
       section:
-        description: 'Only one section (empty = everything): seasons, extras or layers'
+        description: 'Only one section (empty = everything): seasons, extras, layers, or compare (the overview measured, 8 servers)'
+        default: ''
+      legacy:
+        description: 'A branch of PelicanSimplify to install instead of Simplify and the add-ons (with section compare)'
         default: ''
       legacy_brand:
         description: 'yes = a PelicanSimplify 0.7.0 appearance.json with a brand block before Simplify installs (its import migration)'
@@ -78,6 +81,14 @@ jobs:
       - name: Install Simplify (this checkout) and the add-ons (main)
         working-directory: panel
         run: |
+          if [ -n "${{ inputs.legacy }}" ]; then
+            git clone --quiet --depth 1 --branch "${{ inputs.legacy }}" https://github.com/jerajerajerajera/PelicanSimplify.git plugins/pelican-simplify
+            echo "PelicanSimplify from branch ${{ inputs.legacy }} at $(git -C plugins/pelican-simplify rev-parse --short HEAD)"
+            rm -rf plugins/pelican-simplify/.git
+            php artisan p:plugin:install pelican-simplify
+            php artisan p:plugin:list
+            exit 0
+          fi
           mkdir -p plugins/simplify
           if [ -n "${{ inputs.simplify }}" ]; then
             git clone --quiet --depth 1 --branch "${{ inputs.simplify }}" https://github.com/jerajerajerajera/Simplify.git simplify-src
@@ -106,8 +117,8 @@ jobs:
       - name: Seed and start the panel and the fake Wings
         working-directory: panel
         run: |
-          php ../simplify/tests/audit/seed.php 8090 > servers.json
-          php ../simplify/tests/audit/urls.php > urls.json
+          php ../simplify/tests/audit/seed.php 8090 ${{ inputs.section == 'compare' && '8' || '' }} > servers.json
+          php ../simplify/tests/audit/urls.php > urls.json || echo "{}" > urls.json
           cat urls.json
           nohup node ../simplify/tests/audit/fake-minecraft.cjs --servers servers.json > minecraft.out 2>&1 &
           nohup node ../simplify/tests/audit/fake-wings.cjs --port 8090 --servers servers.json --log wings.log > wings.out 2>&1 &
@@ -120,6 +131,7 @@ jobs:
           npm init -y > /dev/null
           npm install --silent playwright@1.48.2
           npx playwright install --with-deps chromium > /dev/null
+          if [ "${{ inputs.section }}" = compare ]; then node compare.cjs --base http://127.0.0.1:8001 --out ../../../result --only ${{ matrix.stand }}; exit 0; fi
           node audit.cjs --base http://127.0.0.1:8001 --urls ../../../panel/urls.json --out ../../../result --only ${{ matrix.stand }} --section "${{ inputs.section }}"
       - if: always()
         name: Logs
@@ -127,6 +139,7 @@ jobs:
           tail -n 40 panel/wings.log || true
           grep -h -E '^\[[0-9-]+ [0-9:]+\]' panel/storage/logs/*.log | cut -c1-600 | tail -n 30 || true
       - name: Style verdict (fails the job when a UI rule is broken)
+        if: inputs.section != 'compare'
         id: style
         continue-on-error: true
         run: set -o pipefail; python3 simplify/tests/audit/style-report.py result/result.json | tee result/style.md
@@ -137,7 +150,7 @@ jobs:
           git init -q -b results
           git add -A
           git -c user.name=audit -c user.email=audit@users.noreply.github.com commit -qm "Audit ${{ github.sha }} ${{ matrix.stand }}"
-          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "results:refs/heads/audit-results-$(echo "${{ inputs.simplify || github.ref_name }}" | tr "/" "-")${{ inputs.servermaker == 'none' && '-nosm' || '' }}-${{ matrix.stand }}"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "results:refs/heads/audit-results-$(echo "${{ inputs.legacy && format('legacy-{0}', inputs.legacy) || inputs.simplify || github.ref_name }}" | tr "/" "-")${{ inputs.section == 'compare' && '-compare' || '' }}${{ inputs.servermaker == 'none' && '-nosm' || '' }}-${{ matrix.stand }}"
       - name: Fail when the style verdict is red
         if: steps.style.outcome == 'failure'
         run: |

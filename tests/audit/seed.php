@@ -58,6 +58,11 @@ $list = [
     ['Broken Install', 'Paper', 'offline', 0, 0, $admin, null],
     ['Fresh Start', 'Paper', 'offline', 0, 0, $admin, null],
 ];
+// The overview comparison with PelicanSimplify 0.7.0 (seed.php <port> <count>): the same first servers, no groups.
+$limit = (int) ($argv[2] ?? 0);
+if ($limit > 0) {
+    $list = array_slice($list, 0, $limit);
+}
 $status = ['New World' => 'installing', 'Broken Install' => 'install_failed'];
 $minecraft = ['Paper', 'Forge'];
 // Egg descriptions as the pelican-eggs repository has them.
@@ -120,7 +125,7 @@ $part('server colours', function () use ($list, $servers) {
         }
     }
 });
-$part('server groups', fn () => Preferences::set($admin, 'overview.groups', ['order' => 'name', 'groups' => [
+$part('server groups', fn () => $limit > 0 ? throw new RuntimeException('left out for the comparison') : Preferences::set($admin, 'overview.groups', ['order' => 'name', 'groups' => [
     ['id' => 'mc', 'name' => 'Minecraft', 'color' => '#4caf50', 'sort' => 'overview', 'servers' => [$uuid('Survival SMP'), $uuid('Creative Builds'), $uuid('All the Mods 10'), $uuid('Skyblock')]],
     ['id' => 'friends', 'name' => 'Friends', 'color' => '#8e6bd8', 'sort' => 'overview', 'servers' => [$uuid('Valheim Vikings'), $uuid('Palworld Island'), $uuid('Terraria Co-op')]],
 ]]));
