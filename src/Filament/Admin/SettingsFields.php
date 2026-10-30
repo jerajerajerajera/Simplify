@@ -11,6 +11,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Components\View;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Simplify\Core\Support\Assets;
@@ -49,6 +50,17 @@ final class SettingsFields
         return Section::make(__(self::T.'general.visibility'))->schema([
             Toggle::make('friends_mode')->label(__(self::T.'general.friends_mode'))
                 ->helperText(__(self::T.'general.friends_mode_help')),
+        ]);
+    }
+
+    /** Setup only: picks friends mode for the panel's audience. Not stored; friends mode itself is the setting. */
+    public static function panelType(): Section
+    {
+        return Section::make(__(self::T.'general.panel_type'))->description(__(self::T.'general.panel_type_help'))->schema([
+            Radio::make('panel_type')->hiddenLabel()->dehydrated(false)->live()
+                ->options(['friends' => __(self::T.'general.panel_friends'), 'hosting' => __(self::T.'general.panel_hosting')])
+                ->descriptions(['friends' => __(self::T.'general.panel_friends_help'), 'hosting' => __(self::T.'general.panel_hosting_help')])
+                ->afterStateUpdated(fn (?string $state, Set $set) => $set('friends_mode', $state === 'friends')),
         ]);
     }
 
