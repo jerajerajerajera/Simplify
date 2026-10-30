@@ -696,6 +696,11 @@ html.ps-frame[data-ps-head-tools] :is(.fi-main, .fi-page-header-main-ctn, .fi-pa
   row-gap: 0 !important;
 }
 
+/* A form (settings, Automatic subdomains, Website) keeps room on both sides; only a bare table runs to the edges. */
+html.ps-frame[data-ps-head-tools] .fi-main:has(.fi-fo-field) {
+  padding: 4px 22px 22px !important;
+}
+
 html.ps-frame[data-ps-head-tools] .fi-page:not(:has(.fi-sc-tabs, .fi-fo-field)) .fi-ta-table :is(thead th:first-child, tbody td:first-child) {
   padding-inline-start: 22px !important;
 }
