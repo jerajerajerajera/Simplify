@@ -52,8 +52,8 @@ const measure = (opts = {}) => {
     const tall = el.scrollHeight > el.clientHeight + 2;
     r.info.popups = r.info.popups || []; r.info.popups.push(`${name(el)} ${Math.round(b.left)},${Math.round(b.top)} ${Math.round(b.width)}x${Math.round(b.height)}${tall ? ' scrolls' : ''}`);
     // Not counted: the phone navigation's menus, which sit in the page flow and scroll with it, and a Filament dialog
-    // that is taller than the window but scrolls inside itself.
-    const inFlow = (el.closest('.ps-nav-items') && getComputedStyle(el).position === 'static') || (el.matches('.fi-modal-window') && tall);
+    // that is taller than the window but scrolls inside itself (on a phone Pelican's own dialogs are always taken as such).
+    const inFlow = (el.closest('.ps-nav-items') && getComputedStyle(el).position === 'static') || (el.matches('.fi-modal-window') && (tall || W <= 600));
     if (!inFlow && (b.left < -2 || b.top < -2 || b.right > W + 2 || b.bottom > H + 2)) push('popupoff', `popup partly off the screen: ${name(el)} (${Math.round(b.left)},${Math.round(b.top)} ${Math.round(b.width)}x${Math.round(b.height)} in ${W}x${H})`);
   }
   // 5. Children sticking out of a box that clips (overflow hidden/clip): the notifications list, the account menu buttons.
