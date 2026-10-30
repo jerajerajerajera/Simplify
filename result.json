@@ -1,0 +1,1129 @@
+{
+ "base": "http://127.0.0.1:8001",
+ "screens": [
+  {
+   "id": "nav-1-files",
+   "title": "Navigatie · 1. Files",
+   "stand": "laag1366-dark",
+   "url": "/server/0qhmibp5/files",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/0qhmibp5/files",
+    "w": 1366,
+    "h": 650,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (664 > 650), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 664,
+     "pageScrollW": 1366,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1057,12 273x38"
+     ],
+     "panes": [
+      "Server sections 183/356",
+      "fi-page-main 183/294"
+     ],
+     "card": "423..608 of 650 fit=185px",
+     "topbar": "brand 36..361, badges 366..398, actions 1057..1330",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,84 1294x80",
+      "fi-main-content 270,423 1060x185"
+     ],
+     "box": "423..608 of 650"
+    }
+   },
+   "frames": [],
+   "shot": "laag1366-dark/nav-1-files.png"
+  },
+  {
+   "id": "nav-2-backups-tasks",
+   "title": "Navigatie · 2. Backups & tasks",
+   "stand": "laag1366-dark",
+   "url": "/server/0qhmibp5/backups",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/0qhmibp5/backups",
+    "w": 1366,
+    "h": 650,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (770 > 650), the page scrolls"
+     },
+     {
+      "kind": "cardoff",
+      "text": "content card ends below the window (714 > 650)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 770,
+     "pageScrollW": 1366,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1057,12 273x38"
+     ],
+     "panes": [
+      "Server sections 236/356",
+      "fi-page-main 188/318"
+     ],
+     "card": "476..714 of 650 fit=238px",
+     "topbar": "brand 36..361, badges 366..398, actions 1057..1330",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,84 1294x80",
+      "fi-main-content 270,476 1060x238"
+     ],
+     "box": "476..714 of 650"
+    }
+   },
+   "frames": [],
+   "shot": "laag1366-dark/nav-2-backups-tasks.png"
+  },
+  {
+   "id": "nav-3-schedules",
+   "title": "Navigatie · 3. Schedules",
+   "stand": "laag1366-dark",
+   "url": "/server/0qhmibp5/schedules",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/0qhmibp5/schedules",
+    "w": 1366,
+    "h": 650,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (770 > 650), the page scrolls"
+     },
+     {
+      "kind": "cardoff",
+      "text": "content card ends below the window (714 > 650)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 770,
+     "pageScrollW": 1366,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1057,12 273x38"
+     ],
+     "panes": [
+      "Server sections 236/356",
+      "fi-page-main 188/251"
+     ],
+     "card": "476..714 of 650 fit=238px",
+     "topbar": "brand 36..361, badges 366..398, actions 1057..1330",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,84 1294x80",
+      "fi-main-content 270,476 1060x238"
+     ],
+     "box": "476..714 of 650"
+    }
+   },
+   "frames": [],
+   "shot": "laag1366-dark/nav-3-schedules.png"
+  },
+  {
+   "id": "nav-4-console",
+   "title": "Navigatie · 4. Console",
+   "stand": "laag1366-dark",
+   "url": "/server/0qhmibp5/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/0qhmibp5/console",
+    "w": 1366,
+    "h": 650,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (720 > 650), the page scrolls"
+     },
+     {
+      "kind": "cardoff",
+      "text": "content card ends below the window (664 > 650)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 720,
+     "pageScrollW": 1366,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1057,12 273x38"
+     ],
+     "panes": [
+      "Server sections 211/356"
+     ],
+     "card": "451..664 of 650 fit=213px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,520 1008x57; terminal 271,452 1058x148; bar top 600",
+     "topbar": "brand 36..361, badges 366..398, actions 1057..1330",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,84 1294x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,451 1060x213"
+     ],
+     "box": "451..664 of 650"
+    }
+   },
+   "frames": [],
+   "shot": "laag1366-dark/nav-4-console.png"
+  },
+  {
+   "id": "nav-5-settings",
+   "title": "Navigatie · 5. Settings",
+   "stand": "laag1366-dark",
+   "url": "/server/0qhmibp5/settings",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/0qhmibp5/settings",
+    "w": 1366,
+    "h": 650,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (720 > 650), the page scrolls"
+     },
+     {
+      "kind": "cardoff",
+      "text": "content card ends below the window (664 > 650)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 720,
+     "pageScrollW": 1366,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1057,12 273x38"
+     ],
+     "panes": [
+      "Server sections 211/716",
+      "fi-page-main 211/1158"
+     ],
+     "card": "451..664 of 650 fit=213px",
+     "topbar": "brand 36..361, badges 366..398, actions 1057..1330",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,84 1294x80",
+      "fi-main-content 270,451 1060x213"
+     ],
+     "box": "451..664 of 650"
+    }
+   },
+   "frames": [],
+   "shot": "laag1366-dark/nav-5-settings.png"
+  },
+  {
+   "id": "nav-6-console",
+   "title": "Navigatie · 6. Console",
+   "stand": "laag1366-dark",
+   "url": "/server/0qhmibp5/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/0qhmibp5/console",
+    "w": 1366,
+    "h": 650,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (720 > 650), the page scrolls"
+     },
+     {
+      "kind": "cardoff",
+      "text": "content card ends below the window (664 > 650)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 720,
+     "pageScrollW": 1366,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1057,12 273x38"
+     ],
+     "panes": [
+      "Server sections 211/716"
+     ],
+     "card": "451..664 of 650 fit=213px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,520 1008x57; terminal 271,452 1058x148; bar top 600",
+     "topbar": "brand 36..361, badges 366..398, actions 1057..1330",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,84 1294x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,451 1060x213"
+     ],
+     "box": "451..664 of 650"
+    }
+   },
+   "frames": [],
+   "shot": "laag1366-dark/nav-6-console.png"
+  },
+  {
+   "id": "layers-server-more",
+   "title": "Lagen · ⋯-menu boven de console",
+   "stand": "laag1366-dark",
+   "url": "/server/0qhmibp5/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/0qhmibp5/console",
+    "w": 1366,
+    "h": 650,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (654 > 650), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 654,
+     "pageScrollW": 1366,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1057,12 273x38",
+      "ps-info-menu 1077,151 230x428"
+     ],
+     "panes": [
+      "Server sections 183/356"
+     ],
+     "card": "423..608 of 650 fit=185px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,492 1008x38; terminal 271,424 1058x120; bar top 544",
+     "topbar": "brand 36..361, badges 366..398, actions 1057..1330",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,84 1294x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,423 1060x185"
+     ],
+     "box": "423..608 of 650",
+     "dropdown": [
+      "ps-info-menu 428px of 433 max"
+     ],
+     "arrow": [
+      "ps-info-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1366-dark/layers-server-more.png"
+  },
+  {
+   "id": "layers-tip-ps-info-address-data-tip",
+   "title": "Lagen · tooltip .ps-info-address[data-tip]",
+   "stand": "laag1366-dark",
+   "url": "/server/0qhmibp5/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/0qhmibp5/console",
+    "w": 1366,
+    "h": 650,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (654 > 650), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 654,
+     "pageScrollW": 1366,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1057,12 273x38",
+      "ps-tooltip 370,160 145x33"
+     ],
+     "panes": [
+      "Server sections 183/356"
+     ],
+     "card": "423..608 of 650 fit=185px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,492 1008x38; terminal 271,424 1058x120; bar top 544",
+     "topbar": "brand 36..361, badges 366..398, actions 1057..1330",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,84 1294x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,423 1060x185"
+     ],
+     "box": "423..608 of 650"
+    }
+   },
+   "frames": [],
+   "shot": "laag1366-dark/layers-tip-ps-info-address-data-tip.png"
+  },
+  {
+   "id": "layers-tip-ps-info-meta-item-data-tip",
+   "title": "Lagen · tooltip .ps-info-meta-item[data-tip]",
+   "stand": "laag1366-dark",
+   "url": "/server/0qhmibp5/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/0qhmibp5/console",
+    "w": 1366,
+    "h": 650,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (654 > 650), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 654,
+     "pageScrollW": 1366,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1057,12 273x38",
+      "ps-tooltip 249,160 56x33"
+     ],
+     "panes": [
+      "Server sections 183/356"
+     ],
+     "card": "423..608 of 650 fit=185px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,492 1008x38; terminal 271,424 1058x120; bar top 544",
+     "topbar": "brand 36..361, badges 366..398, actions 1057..1330",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,84 1294x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,423 1060x185"
+     ],
+     "box": "423..608 of 650"
+    }
+   },
+   "frames": [],
+   "shot": "laag1366-dark/layers-tip-ps-info-meta-item-data-tip.png"
+  },
+  {
+   "id": "layers-bell",
+   "title": "Lagen · bell-menu boven de serverkaart",
+   "stand": "laag1366-dark",
+   "url": "/server/0qhmibp5/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/0qhmibp5/console",
+    "w": 1366,
+    "h": 650,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (654 > 650), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 654,
+     "pageScrollW": 1366,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1057,12 273x38 scrolls",
+      "ps-notify-menu 887,58 340x433 scrolls"
+     ],
+     "panes": [
+      "ps-notify-menu 431/2213",
+      "Server sections 183/356"
+     ],
+     "card": "423..608 of 650 fit=185px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,492 1008x38; terminal 271,424 1058x120; bar top 544",
+     "topbar": "brand 36..361, badges 366..398, actions 1057..1330",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,84 1294x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,423 1060x185"
+     ],
+     "box": "423..608 of 650",
+     "dropdown": [
+      "ps-notify-menu 433px of 433 max, scrolls"
+     ],
+     "arrow": [
+      "ps-notify-menu arrow 1208 button 1208"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1366-dark/layers-bell.png"
+  },
+  {
+   "id": "layers-admin",
+   "title": "Lagen · admin-menu boven de serverkaart",
+   "stand": "laag1366-dark",
+   "url": "/server/0qhmibp5/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/0qhmibp5/console",
+    "w": 1366,
+    "h": 650,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (654 > 650), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 654,
+     "pageScrollW": 1366,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1057,12 273x38 scrolls",
+      "ps-admin-menu 495,58 600x433 scrolls"
+     ],
+     "panes": [
+      "ps-admin-menu 431/447",
+      "Server sections 183/356"
+     ],
+     "card": "423..608 of 650 fit=185px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,492 1008x38; terminal 271,424 1058x120; bar top 544",
+     "topbar": "brand 36..361, badges 366..398, actions 1057..1330",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,84 1294x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,423 1060x185"
+     ],
+     "box": "423..608 of 650",
+     "dropdown": [
+      "ps-admin-menu 433px of 433 max, scrolls"
+     ],
+     "arrow": [
+      "ps-admin-menu arrow 1076 button 1076"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1366-dark/layers-admin.png"
+  },
+  {
+   "id": "layers-account",
+   "title": "Lagen · account-menu boven de serverkaart",
+   "stand": "laag1366-dark",
+   "url": "/server/0qhmibp5/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/0qhmibp5/console",
+    "w": 1366,
+    "h": 650,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (654 > 650), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 654,
+     "pageScrollW": 1366,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 827,12 503x38",
+      "ps-account-actions 1003,12 222x38"
+     ],
+     "panes": [
+      "Server sections 183/356"
+     ],
+     "card": "423..608 of 650 fit=185px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,492 1008x38; terminal 271,424 1058x120; bar top 544",
+     "topbar": "brand 36..361, badges 366..398, actions 827..1330",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,84 1294x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,423 1060x185"
+     ],
+     "box": "423..608 of 650"
+    }
+   },
+   "frames": [],
+   "shot": "laag1366-dark/layers-account.png"
+  },
+  {
+   "id": "scroll-overview",
+   "title": "Scrollbalk · overzicht",
+   "stand": "laag1366-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1366,
+    "h": 650,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 650,
+     "pageScrollW": 1366,
+     "popups": [
+      "ps-navigation-items 1013,212 317x38"
+     ],
+     "panes": [
+      "Servers 326/1568"
+     ],
+     "card": "0..604 of 650",
+     "topbar": "brand 36..361, badges 366..398, actions 727..1330",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1366x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1366x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1366-dark/scroll-overview.png"
+  },
+  {
+   "id": "scroll-settings",
+   "title": "Scrollbalk · instellingen",
+   "stand": "laag1366-dark",
+   "url": "/admin/simplify",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify",
+    "w": 1366,
+    "h": 650,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 650,
+     "pageScrollW": 1366,
+     "panes": [
+      "Sidebar navigation 398/1488",
+      "fi-tabs.fi-contained.fi-vertical 318/374",
+      "form.general 318/906"
+     ],
+     "card": "0..594 of 650",
+     "scope": "simplify",
+     "boxes": [
+      "s-settings-tabs.fi-sc-tabs.fi-contained 352,152 982x320"
+     ],
+     "actionsBelow": [
+      "\"Run setup again\" at y=58",
+      "\"\" at y=58"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1366-dark/scroll-settings.png"
+  },
+  {
+   "id": "scroll-frame",
+   "title": "Scrollbalk · pagina in het frame (hostmodus)",
+   "stand": "laag1366-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1366,
+    "h": 650,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 650,
+     "pageScrollW": 1366,
+     "popups": [
+      "ps-navigation-items 1145,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 361/402"
+     ],
+     "card": "0..604 of 650",
+     "topbar": "brand 36..361, badges 366..398, actions 1145..1330",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "112..600 of 650"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,160 1042x440",
+     "url": "/admin/servers?simplify_embed=1",
+     "w": 1042,
+     "h": 440,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (836 > 440), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 836,
+      "pageScrollW": 1042,
+      "card": "-198..638 of 440",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 2
+     }
+    }
+   ],
+   "shot": "laag1366-dark/scroll-frame.png"
+  },
+  {
+   "id": "scroll-console",
+   "title": "Scrollbalk · console",
+   "stand": "laag1366-dark",
+   "url": "/server/0qhmibp5/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/0qhmibp5/console",
+    "w": 1366,
+    "h": 650,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (654 > 650), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 654,
+     "pageScrollW": 1366,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1057,12 273x38"
+     ],
+     "panes": [
+      "Server sections 183/356"
+     ],
+     "card": "423..608 of 650 fit=185px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,492 1008x38; terminal 271,424 1058x120; bar top 544",
+     "topbar": "brand 36..361, badges 366..398, actions 1057..1330",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,84 1294x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,423 1060x185"
+     ],
+     "box": "423..608 of 650"
+    }
+   },
+   "frames": [],
+   "shot": "laag1366-dark/scroll-console.png"
+  },
+  {
+   "id": "other-plugins-open",
+   "title": "Other plugins · uitgeklapt",
+   "stand": "laag1366-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1366,
+    "h": 650,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 650,
+     "pageScrollW": 1366,
+     "popups": [
+      "ps-navigation-items 1145,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 335/344"
+     ],
+     "card": "0..604 of 650",
+     "topbar": "brand 36..361, badges 366..398, actions 1145..1330",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "112..600 of 650"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,160 1042x440",
+     "url": "/admin/health?simplify_embed=1",
+     "w": 1042,
+     "h": 440,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (443 > 440), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 443,
+      "pageScrollW": 1042,
+      "card": "0..443 of 440",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "laag1366-dark/other-plugins-open.png"
+  },
+  {
+   "id": "other-plugins-page",
+   "title": "Other plugins · pagina van een plugin",
+   "stand": "laag1366-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1366,
+    "h": 650,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 650,
+     "pageScrollW": 1366,
+     "popups": [
+      "ps-navigation-items 1145,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 335/344"
+     ],
+     "card": "0..604 of 650",
+     "topbar": "brand 36..361, badges 366..398, actions 1145..1330",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "112..600 of 650"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,160 1042x440",
+     "url": "/admin/site-directory?simplify_embed=1",
+     "w": 1042,
+     "h": 440,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 440,
+      "pageScrollW": 1042,
+      "card": "0..440 of 440",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 0
+     }
+    }
+   ],
+   "shot": "laag1366-dark/other-plugins-page.png"
+  },
+  {
+   "id": "create-menu-overview",
+   "title": "Create server · keuzemenu (overview)",
+   "stand": "laag1366-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1366,
+    "h": 650,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 650,
+     "pageScrollW": 1366,
+     "popups": [
+      "ps-navigation-items 1013,212 317x38",
+      "ps-modal 143,24 1080x602"
+     ],
+     "panes": [
+      "Servers 326/1568"
+     ],
+     "card": "0..604 of 650",
+     "topbar": "brand 36..361, badges 366..398, actions 727..1330",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1366x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1366x78"
+     ]
+    }
+   },
+   "frames": [
+    {
+     "box": "144,85 1078x540",
+     "url": "/server-maker?simplify_embed=1",
+     "w": 1078,
+     "h": 540,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (1497 > 540), the page scrolls"
+      },
+      {
+       "kind": "boxinbox",
+       "text": "box inside a box: fi-callout.fi-color.fi-color-warning (1014x78) in the content box | fi-callout.fi-color.fi-color-info (1014x78) in the content box"
+      },
+      {
+       "kind": "filamentlook",
+       "text": "bare Filament button(s) in host mode's frame: \"Next\" at y=489"
+      }
+     ],
+     "info": {
+      "pageScrollH": 1497,
+      "pageScrollW": 1078,
+      "ellipsis": [
+       "strong: \"American Truck Simulator Dedicated Server\"",
+       "strong: \"Among Us - Impostor Server\"",
+       "strong: \"Assetto Corsa (Freeroam + AI)\"",
+       "strong: \"Astroneer Dedicated Server\""
+      ],
+      "card": "0..1497 of 540",
+      "scope": "frame",
+      "boxes": [
+       "fi-callout.fi-color.fi-color-warning 32,12 1014x78",
+       "fi-callout.fi-color.fi-color-info 32,102 1014x78"
+      ],
+      "hostHead": "unreachable"
+     }
+    }
+   ],
+   "shot": "laag1366-dark/create-menu-overview.png"
+  },
+  {
+   "id": "create-desktop",
+   "title": "Create server (overzicht)",
+   "stand": "laag1366-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "create": {
+    "pop": {
+     "open": true,
+     "title": "Create server",
+     "src": "http://127.0.0.1:8001/server-maker?simplify_embed=1"
+    },
+    "url": "/simplify",
+    "frame": "/server-maker?simplify_embed=1",
+    "chrome": {
+     "bars": [],
+     "title": "Server Maker"
+    }
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 1366,
+    "h": 650,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 650,
+     "pageScrollW": 1366,
+     "popups": [
+      "ps-navigation-items 1013,212 317x38",
+      "ps-modal 143,24 1080x602"
+     ],
+     "panes": [
+      "Servers 326/1568"
+     ],
+     "card": "0..604 of 650",
+     "topbar": "brand 36..361, badges 366..398, actions 727..1330",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1366x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1366x78"
+     ]
+    }
+   },
+   "frames": [
+    {
+     "box": "144,85 1078x540",
+     "url": "/server-maker?simplify_embed=1",
+     "w": 1078,
+     "h": 540,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (1497 > 540), the page scrolls"
+      },
+      {
+       "kind": "boxinbox",
+       "text": "box inside a box: fi-callout.fi-color.fi-color-warning (1014x78) in the content box | fi-callout.fi-color.fi-color-info (1014x78) in the content box"
+      },
+      {
+       "kind": "filamentlook",
+       "text": "bare Filament button(s) in host mode's frame: \"Next\" at y=489"
+      }
+     ],
+     "info": {
+      "pageScrollH": 1497,
+      "pageScrollW": 1078,
+      "ellipsis": [
+       "strong: \"American Truck Simulator Dedicated Server\"",
+       "strong: \"Among Us - Impostor Server\"",
+       "strong: \"Assetto Corsa (Freeroam + AI)\"",
+       "strong: \"Astroneer Dedicated Server\""
+      ],
+      "card": "0..1497 of 540",
+      "scope": "frame",
+      "boxes": [
+       "fi-callout.fi-color.fi-color-warning 32,12 1014x78",
+       "fi-callout.fi-color.fi-color-info 32,102 1014x78"
+      ],
+      "hostHead": "unreachable"
+     }
+    }
+   ],
+   "shot": "laag1366-dark/create-desktop.png"
+  }
+ ],
+ "problems": [
+  "laag1366-dark nav-1-files: WRONG {\"clicked\":true,\"sockets\":0,\"live\":null,\"reloaded\":false,\"cardKept\":true,\"menuKept\":true,\"flashes\":0,\"current\":[\"Files\"],\"advancedOpen\":false,\"tab\":[\"Files\",\"\"],\"onConsole\":false,\"wings\":null,\"logPref\":false,\"logLines\":0,\"strip\":false,\"menuStyle\":\"\",\"menuH\":185,\"scroll\":14,\"url\":\"/server/0qhmibp5/files\"}",
+  "laag1366-dark nav-2-backups-tasks: WRONG {\"clicked\":true,\"sockets\":0,\"live\":null,\"reloaded\":false,\"cardKept\":true,\"menuKept\":true,\"flashes\":0,\"current\":[\"Backups & tasks\"],\"advancedOpen\":false,\"tab\":[\"Backups\\n        \\n\\n                    \\n                \\n            \\n            \\n    \\n        \\n            0\",\"Backups\"],\"onConsole\":false,\"wings\":null,\"logPref\":false,\"logLines\":0,\"strip\":false,\"menuStyle\":\"\",\"menuH\":238,\"scroll\":120,\"url\":\"/server/0qhmibp5/backups\"}",
+  "laag1366-dark nav-3-schedules: WRONG {\"clicked\":true,\"sockets\":0,\"live\":null,\"reloaded\":false,\"cardKept\":true,\"menuKept\":true,\"flashes\":0,\"current\":[\"Backups & tasks\"],\"advancedOpen\":false,\"tab\":[\"Schedules\",\"Schedules\"],\"onConsole\":false,\"wings\":null,\"logPref\":false,\"logLines\":0,\"strip\":false,\"menuStyle\":\"\",\"menuH\":238,\"scroll\":120,\"url\":\"/server/0qhmibp5/schedules\"}",
+  "laag1366-dark nav-3-schedules page error: Maximum call stack size exceeded.",
+  "laag1366-dark nav-3-schedules page error: Maximum call stack size exceeded.",
+  "laag1366-dark nav-3-schedules page error: Maximum call stack size exceeded.",
+  "laag1366-dark nav-3-schedules page error: Maximum call stack size exceeded.",
+  "laag1366-dark nav-3-schedules page error: Maximum call stack size exceeded.",
+  "laag1366-dark nav-3-schedules page error: Maximum call stack size exceeded.",
+  "laag1366-dark nav-3-schedules page error: Maximum call stack size exceeded.",
+  "laag1366-dark nav-3-schedules page error: Maximum call stack size exceeded.",
+  "laag1366-dark nav-3-schedules page error: Maximum call stack size exceeded.",
+  "laag1366-dark nav-3-schedules page error: Maximum call stack size exceeded.",
+  "laag1366-dark nav-4-console: WRONG {\"clicked\":true,\"sockets\":1,\"live\":false,\"reloaded\":false,\"cardKept\":true,\"menuKept\":true,\"flashes\":0,\"current\":[\"Console\"],\"advancedOpen\":false,\"tab\":[\"Console\"],\"onConsole\":true,\"wings\":\"Connected to Wings\",\"logPref\":false,\"logLines\":0,\"strip\":false,\"menuStyle\":\"185px\",\"menuH\":185,\"scroll\":42,\"url\":\"/server/0qhmibp5/console\"}",
+  "laag1366-dark nav-5-settings: WRONG {\"clicked\":true,\"sockets\":0,\"live\":null,\"reloaded\":false,\"cardKept\":true,\"menuKept\":true,\"flashes\":0,\"current\":[\"Settings\"],\"advancedOpen\":true,\"tab\":[\"Settings\"],\"onConsole\":false,\"wings\":null,\"logPref\":false,\"logLines\":0,\"strip\":false,\"menuStyle\":\"\",\"menuH\":213,\"scroll\":70,\"url\":\"/server/0qhmibp5/settings\"}",
+  "laag1366-dark nav-5-settings page error: Maximum call stack size exceeded.",
+  "laag1366-dark nav-5-settings page error: Maximum call stack size exceeded.",
+  "laag1366-dark nav-5-settings page error: Maximum call stack size exceeded.",
+  "laag1366-dark nav-5-settings page error: Maximum call stack size exceeded.",
+  "laag1366-dark nav-5-settings page error: Maximum call stack size exceeded.",
+  "laag1366-dark nav-5-settings page error: Maximum call stack size exceeded.",
+  "laag1366-dark nav-5-settings page error: Maximum call stack size exceeded.",
+  "laag1366-dark nav-5-settings page error: Maximum call stack size exceeded.",
+  "laag1366-dark nav-5-settings page error: Maximum call stack size exceeded.",
+  "laag1366-dark nav-5-settings page error: Maximum call stack size exceeded.",
+  "laag1366-dark nav-5-settings page error: Maximum call stack size exceeded.",
+  "laag1366-dark nav-5-settings page error: Maximum call stack size exceeded.",
+  "laag1366-dark nav-6-console: WRONG {\"clicked\":true,\"sockets\":1,\"live\":false,\"reloaded\":false,\"cardKept\":true,\"menuKept\":true,\"flashes\":0,\"current\":[\"Console\"],\"advancedOpen\":true,\"tab\":[\"Console\"],\"onConsole\":true,\"wings\":\"Connected to Wings\",\"logPref\":false,\"logLines\":0,\"strip\":false,\"menuStyle\":\"185px\",\"menuH\":185,\"scroll\":42,\"url\":\"/server/0qhmibp5/console\"}",
+  "laag1366-dark layers-server-more: ok {\"bad\":[],\"items\":[\"Server color\",\"Server background\",\"Rename\",\"Copy SFTP username\",\"Open SFTP connection\",\"Upgrade this server\",\"Force stop\",\"Delete server\"]}",
+  "laag1366-dark layers-tip-ps-info-address-data-tip: ok {\"text\":\"Copy server address\",\"ok\":true,\"on\":\"ps-tooltip is-visible\",\"opacity\":\"1\",\"rect\":\"370 160 145 33\"}",
+  "laag1366-dark layers-tip-ps-info-meta-item-data-tip: ok {\"text\":\"Paper\",\"ok\":true,\"on\":\"ps-tooltip is-visible\",\"opacity\":\"1\",\"rect\":\"249 160 56 33\"}",
+  "laag1366-dark layers-bell: ok {\"bad\":[],\"n\":7}",
+  "laag1366-dark layers-admin: ok {\"bad\":[],\"n\":12}",
+  "laag1366-dark layers-account: ok {\"bad\":[],\"n\":5}",
+  "laag1366-dark scroll-overview: ok {\"want\":\"rgba(255, 255, 255, 0.16)\",\"got\":[\"rgba(255, 255, 255, 0.16)\"],\"boxes\":[\"ps-server-scroll 326\"],\"css\":true}",
+  "laag1366-dark scroll-settings: ok {\"want\":\"rgba(255, 255, 255, 0.16)\",\"got\":[\"rgba(255, 255, 255, 0.16)\",\"rgba(255, 255, 255, 0.16)\",\"rgba(255, 255, 255, 0.16)\"],\"boxes\":[\"fi-sidebar-nav 398\",\"fi-tabs.fi-contained 318\",\"fi-sc-tabs-tab.fi-active 318\"],\"css\":true,\"place\":\"/admin/simplify\"}",
+  "laag1366-dark scroll-frame: ok {\"want\":\"rgba(255, 255, 255, 0.16)\",\"got\":[\"rgba(255, 255, 255, 0.16)\",\"rgba(255, 255, 255, 0.16)\"],\"boxes\":[\"fi.dark 836\",\"fi.dark 836\"],\"css\":true,\"place\":\"/admin/servers?simplify_embed=1\"}",
+  "laag1366-dark scroll-console: WRONG {\"want\":\"rgba(255, 255, 255, 0.16)\",\"got\":[],\"boxes\":[],\"css\":true}",
+  "laag1366-dark other-plugins: ok {\"real\":true,\"before\":\"false\",\"after\":\"true\",\"leafs\":1,\"head\":\"Other plugins Site directory\",\"toggle\":\"Other plugins · Site directory\"}",
+  "laag1366-dark create-desktop: ok {\"pop\":{\"open\":true,\"title\":\"Create server\",\"src\":\"http://127.0.0.1:8001/server-maker?simplify_embed=1\"},\"frame\":\"/server-maker?simplify_embed=1\",\"maker\":true,\"chrome\":{\"bars\":[],\"title\":\"Server Maker\"},\"page\":\"/simplify\"}",
+  "laag1366-dark create-server-page: WRONG no Create server button on a server page",
+  "laag1366-dark create-host-admin: WRONG no Create in Admin → Servers (/admin/servers?simplify_embed=1)"
+ ]
+}
