@@ -1,0 +1,337 @@
+{
+ "base": "http://127.0.0.1:8001",
+ "screens": [
+  {
+   "id": "setup-done",
+   "title": "Setup klaar (gewone beheerpagina)",
+   "stand": "laag1100-dark",
+   "url": "/admin/simplify-setup-done",
+   "docTitle": "Simplify is set up - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-setup-done",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 448/1448",
+      "s-done 406/471"
+     ],
+     "card": "0..644 of 700",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"Run setup again\" at y=136",
+      "\"Go to the panel\" at y=136"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\"",
+      "\"Go to the panel\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/setup-done.png"
+  },
+  {
+   "id": "setup-done-host",
+   "title": "Setup klaar (hostmodus, in het frame)",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 357/440"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "166..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,214 776x436",
+     "url": "/admin/simplify-setup-done?simplify_embed=1",
+     "w": 776,
+     "h": 436,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 436,
+      "pageScrollW": 776,
+      "panes": [
+       "s-done 422/441"
+      ],
+      "card": "0..436 of 436",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 2
+     }
+    }
+   ],
+   "shot": "laag1100-dark/setup-done-host.png"
+  },
+  {
+   "id": "server-installing",
+   "title": "Server · New World (installeert)",
+   "stand": "laag1100-dark",
+   "url": "/server/0pzljth1/console",
+   "docTitle": "New World - Simplify",
+   "main": {
+    "url": "/server/0pzljth1/console",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "boxinbox",
+      "text": "box inside a box: fi-callout.fi-color.fi-color-warning (794x78) in the content box"
+     }
+    ],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 183/274",
+      "fi-page-main 131/185"
+     ],
+     "card": "419..640 of 700 fit=221px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,578 744x38; terminal 271,510 792x120; bar top 630",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,138 1028x80",
+      "Installation progress 36,226 1028x179",
+      "fi-callout.fi-color.fi-color-warning 270,431 794x78",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,509 794x185"
+     ],
+     "box": "419..640 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server-installing.png"
+  },
+  {
+   "id": "server-install-failed",
+   "title": "Server · Broken Install (installatie mislukt)",
+   "stand": "laag1100-dark",
+   "url": "/server/6z3rr0mk/console",
+   "docTitle": "Broken Install - Simplify",
+   "main": {
+    "url": "/server/6z3rr0mk/console",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "boxinbox",
+      "text": "box inside a box: fi-callout.fi-color.fi-color-warning (794x78) in the content box"
+     }
+    ],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 183/274",
+      "fi-page-main 131/185"
+     ],
+     "card": "419..640 of 700 fit=221px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,578 744x38; terminal 271,510 792x120; bar top 630",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,138 1028x80",
+      "Installation progress 36,226 1028x179",
+      "fi-callout.fi-color.fi-color-warning 270,431 794x78",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,509 794x185"
+     ],
+     "box": "419..640 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server-install-failed.png"
+  },
+  {
+   "id": "server-eula",
+   "title": "Server · Fresh Start (EULA nog open)",
+   "stand": "laag1100-dark",
+   "url": "/server/mnki2uwd/console",
+   "docTitle": "Fresh Start - Simplify",
+   "main": {
+    "url": "/server/mnki2uwd/console",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 237/356"
+     ],
+     "card": "401..640 of 700 fit=239px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,470 744x76; terminal 271,402 792x174; bar top 576",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,247 1028x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,401 794x239"
+     ],
+     "box": "401..640 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server-eula.png"
+  },
+  {
+   "id": "server-eula-accepted",
+   "title": "Server · EULA geaccepteerd en gestart",
+   "stand": "laag1100-dark",
+   "url": "/server/mnki2uwd/console",
+   "docTitle": "Fresh Start - Simplify",
+   "main": {
+    "url": "/server/mnki2uwd/console",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 346/356"
+     ],
+     "card": "292..640 of 700 fit=348px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,361 744x190; terminal 271,293 792x283; bar top 576",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,138 1028x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,292 794x348"
+     ],
+     "box": "292..640 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server-eula-accepted.png"
+  },
+  {
+   "id": "notify-pinned",
+   "title": "Meldingen · vastgezette aankondiging bovenaan",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "ellipsis": [
+      "span: \"Counter-Strike 2\""
+     ],
+     "popups": [
+      "ps-navigation-items 747,212 317x38 scrolls",
+      "ps-notify-menu 621,258 340x384 scrolls"
+     ],
+     "panes": [
+      "ps-notify-menu 382/2097",
+      "Servers 376/1568"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 461..1064",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1100x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1100x78"
+     ],
+     "dropdown": [
+      "ps-notify-menu 384px of 467 max, scrolls"
+     ],
+     "arrow": [
+      "ps-notify-menu arrow 942 button 942"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/notify-pinned.png"
+  }
+ ],
+ "problems": [
+  "laag1100-dark setup-done: ok {\"scroll\":700,\"window\":700}",
+  "laag1100-dark setup-done-host: ok {\"frame\":{\"scroll\":436,\"window\":436},\"page\":{\"scroll\":700,\"window\":700}}",
+  "laag1100-dark server-installing: ok {\"shown\":true,\"text\":\"Setting up New World This takes a few minutes, longer for big games. You can leave this page; the server keeps installing. 1:08 Notify me when ready Server created Resources reserved Installing Paper Downloading the game\",\"eulaLink\":false,\"start\":false}",
+  "laag1100-dark server-install-failed: ok {\"shown\":true,\"text\":\"The installation did not finish The last lines of the installation log are below. Nothing was started. Try again Server created Resources reserved Installing Paper Stopped with an error 3 Ready to start Everything opens\",\"eulaLink\":false,\"start\":true}",
+  "laag1100-dark server-eula: ok {\"shown\":true,\"text\":\"Accept the Minecraft EULA Minecraft needs this once before the server can run. By clicking Accept and start, you agree to the Minecraft End User License Agreement (EULA). Read the Minecraft EULA Accept and start\",\"eulaLink\":true,\"start\":true}",
+  "laag1100-dark server-eula-accept: ok {\"bar\":false,\"status\":\"offline\"}",
+  "laag1100-dark notify-pinned: ok {\"shown\":true,\"items\":[\"Maintenance on Saturday\"],\"close\":false,\"first\":false}"
+ ]
+}
