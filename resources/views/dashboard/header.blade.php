@@ -112,11 +112,17 @@
                     <strong class="ps-dropdown-title">{{ $u('admin_tools') }}</strong>
                     <div class="ps-admin-groups">
                         <template x-for="section in hostSections().filter((x) => x.key !== 'health')" :key="section.key">
-                            <div class="ps-admin-group" :style="{'--ps-tone': section.color}">
-                                <span class="ps-admin-group-head"><span class="ps-host-rail-icon"><svg aria-hidden="true"><use :href="'#ps-'+section.icon"/></svg></span><span x-text="section.label"></span></span>
-                                <template x-for="item in section.pages" :key="item.key">
-                                    <a class="ps-admin-item" :href="item.url"><svg aria-hidden="true"><use :href="'#ps-'+item.icon"/></svg><span x-text="item.label"></span></a>
-                                </template>
+                            {{-- Each group starts folded; one opens at a time, so the menu stays short. --}}
+                            <div class="ps-admin-group" :class="{'is-open': adminOpen === section.key}" :style="{'--ps-tone': section.color}">
+                                <button type="button" class="ps-admin-group-head" :aria-expanded="adminOpen === section.key" x-on:click="adminOpen = adminOpen === section.key ? null : section.key; $nextTick(() => fitDropdown(document.getElementById('ps-admin-menu')))">
+                                    <span class="ps-host-rail-icon"><svg aria-hidden="true"><use :href="'#ps-'+section.icon"/></svg></span><span x-text="section.label"></span>
+                                    <small class="ps-admin-group-count" x-text="section.pages.length"></small><svg class="ps-admin-group-chevron" aria-hidden="true"><use href="#ps-chevron"/></svg>
+                                </button>
+                                <div class="ps-admin-group-items" x-show="adminOpen === section.key">
+                                    <template x-for="item in section.pages" :key="item.key">
+                                        <a class="ps-admin-item" :href="item.url"><svg aria-hidden="true"><use :href="'#ps-'+item.icon"/></svg><span x-text="item.label"></span></a>
+                                    </template>
+                                </div>
                             </div>
                         </template>
                     </div>

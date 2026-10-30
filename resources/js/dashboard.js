@@ -56,6 +56,7 @@
       incomingQueue: [],
       pushOffer: false,
       adminMenu: false,
+      adminOpen: null,
       overviewCompact: false,
       phone: false,
       overviewPreferences: { ...OVERVIEW_DEFAULTS },

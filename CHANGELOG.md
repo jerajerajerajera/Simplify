@@ -4,7 +4,8 @@
 
 - A cache that the panel cannot write no longer breaks the overview, the notifications or host health. This happens when `php artisan` ran as root, so the cache files belong to root. The page works out the numbers again instead, and root admins get a notification with the command that hands the files back to the web server.
 - A request that fails on the server shows a short message in the panel's own style, instead of Livewire's white "500 | Server Error" page over the whole panel.
-- Admin tools: on a wide window the groups sit in three columns, so the menu is about a third lower. It ends above the footer, so its last groups are no longer cut off on the overview. Every menu under the top bar (notifications, admin tools, customize, groups) is at most two thirds of the window high and scrolls inside when its content needs more.
+- Admin tools: the groups start folded, with how many pages each holds; a click opens one group at a time, so the menu stays short. It ends above the footer, so nothing is cut off on the overview. Every menu under the top bar (notifications, admin tools, customize, groups) is at most two thirds of the window high and scrolls inside when its content needs more.
+- The small arrow above a top-bar menu points at the middle of its button.
 - Server page: the console is one box in one colour. Pelican's terminal painted a half see-through background of its own, which showed as a lighter box inside the card.
 - Server page: no empty grey badge next to the server's picture when its egg has no icon.
 - Admin tools → Pelican settings opens Pelican's tab inside Simplify's settings again, instead of Pelican's bare page.
