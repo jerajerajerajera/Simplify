@@ -1,0 +1,794 @@
+{
+ "base": "http://127.0.0.1:8001",
+ "screens": [
+  {
+   "id": "first-eula-fresh-start",
+   "title": "First start · EULA open · Fresh Start",
+   "stand": "phone390-dark",
+   "url": "/server/7mu6iklh/console",
+   "docTitle": "Fresh Start - Simplify",
+   "main": {
+    "url": "/server/7mu6iklh/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1515 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1515,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "span: \"Backups & tasks\""
+     ],
+     "card": "620..1469 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,681 320x570; terminal 15,621 360x640; bar top 1261",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x236",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,620 362x705"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/first-eula-fresh-start.png"
+  },
+  {
+   "id": "first-eula-fresh-start-pulse",
+   "title": "First start · Start terwijl de EULA open is · Fresh Start",
+   "stand": "phone390-dark",
+   "url": "/server/7mu6iklh/console",
+   "docTitle": "Fresh Start - Simplify",
+   "main": {
+    "url": "/server/7mu6iklh/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1515 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1515,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "span: \"Backups & tasks\""
+     ],
+     "card": "620..1469 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,681 320x570; terminal 15,621 360x640; bar top 1261",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x236",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,620 362x705"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/first-eula-fresh-start-pulse.png"
+  },
+  {
+   "id": "first-eula-no-eula",
+   "title": "First start · EULA open · No EULA",
+   "stand": "phone390-dark",
+   "url": "/server/ubokttbj/console",
+   "docTitle": "No EULA - Simplify",
+   "main": {
+    "url": "/server/ubokttbj/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1442 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1442,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "span: \"Backups & tasks\""
+     ],
+     "card": "547..1396 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1188",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x705"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/first-eula-no-eula.png"
+  },
+  {
+   "id": "first-eula-no-eula-pulse",
+   "title": "First start · Start terwijl de EULA open is · No EULA",
+   "stand": "phone390-dark",
+   "url": "/server/ubokttbj/console",
+   "docTitle": "No EULA - Simplify",
+   "main": {
+    "url": "/server/ubokttbj/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1442 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1442,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "span: \"Backups & tasks\""
+     ],
+     "card": "547..1396 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1188",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x705"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/first-eula-no-eula-pulse.png"
+  },
+  {
+   "id": "first-installed",
+   "title": "First start · net geïnstalleerd, EULA al geaccepteerd (New World)",
+   "stand": "phone390-dark",
+   "url": "/server/cuslqgrw/console",
+   "docTitle": "New World - Simplify",
+   "main": {
+    "url": "/server/cuslqgrw/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1552 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1552,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "547..1506 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,718 320x570; terminal 15,658 360x640; bar top 1298",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-callout.fi-color.fi-color-warning 14,559 362x98",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,657 362x705"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/first-installed.png"
+  },
+  {
+   "id": "first-eula-fresh-start",
+   "title": "First start · EULA open · Fresh Start",
+   "stand": "phone390-light",
+   "url": "/server/7mu6iklh/console",
+   "docTitle": "Fresh Start - Simplify",
+   "main": {
+    "url": "/server/7mu6iklh/console",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1515 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1515,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "span: \"Backups & tasks\""
+     ],
+     "card": "620..1469 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,681 320x570; terminal 15,621 360x640; bar top 1261",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x236",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,620 362x705"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/first-eula-fresh-start.png"
+  },
+  {
+   "id": "first-eula-fresh-start-pulse",
+   "title": "First start · Start terwijl de EULA open is · Fresh Start",
+   "stand": "phone390-light",
+   "url": "/server/7mu6iklh/console",
+   "docTitle": "Fresh Start - Simplify",
+   "main": {
+    "url": "/server/7mu6iklh/console",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1515 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1515,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "span: \"Backups & tasks\""
+     ],
+     "card": "620..1469 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,681 320x570; terminal 15,621 360x640; bar top 1261",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x236",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,620 362x705"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/first-eula-fresh-start-pulse.png"
+  },
+  {
+   "id": "first-eula-no-eula",
+   "title": "First start · EULA open · No EULA",
+   "stand": "phone390-light",
+   "url": "/server/ubokttbj/console",
+   "docTitle": "No EULA - Simplify",
+   "main": {
+    "url": "/server/ubokttbj/console",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1442 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1442,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "span: \"Backups & tasks\""
+     ],
+     "card": "547..1396 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1188",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x705"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/first-eula-no-eula.png"
+  },
+  {
+   "id": "first-eula-no-eula-pulse",
+   "title": "First start · Start terwijl de EULA open is · No EULA",
+   "stand": "phone390-light",
+   "url": "/server/ubokttbj/console",
+   "docTitle": "No EULA - Simplify",
+   "main": {
+    "url": "/server/ubokttbj/console",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1442 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1442,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "span: \"Backups & tasks\""
+     ],
+     "card": "547..1396 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1188",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x705"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/first-eula-no-eula-pulse.png"
+  },
+  {
+   "id": "first-eula-ticked",
+   "title": "First start · vinkje aan · No EULA",
+   "stand": "phone390-light",
+   "url": "/server/ubokttbj/console",
+   "docTitle": "No EULA - Simplify",
+   "main": {
+    "url": "/server/ubokttbj/console",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1442 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1442,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "span: \"Backups & tasks\""
+     ],
+     "card": "547..1396 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1188",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x705"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/first-eula-ticked.png"
+  },
+  {
+   "id": "first-eula-started",
+   "title": "First start · na First start · No EULA",
+   "stand": "phone390-light",
+   "url": "/server/ubokttbj/console",
+   "docTitle": "No EULA - Simplify",
+   "main": {
+    "url": "/server/ubokttbj/console",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1442 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1442,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "span: \"Backups & tasks\""
+     ],
+     "card": "547..1396 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1188",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x705"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/first-eula-started.png"
+  },
+  {
+   "id": "first-installed",
+   "title": "First start · net geïnstalleerd, EULA al geaccepteerd (New World)",
+   "stand": "phone390-light",
+   "url": "/server/cuslqgrw/console",
+   "docTitle": "New World - Simplify",
+   "main": {
+    "url": "/server/cuslqgrw/console",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1552 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1552,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "547..1506 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,718 320x570; terminal 15,658 360x640; bar top 1298",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-callout.fi-color.fi-color-warning 14,559 362x98",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,657 362x705"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/first-installed.png"
+  },
+  {
+   "id": "overview",
+   "title": "Klant · overzicht",
+   "stand": "klant-phone390-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (879 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 879,
+     "pageScrollW": 390,
+     "card": "0..763 of 844",
+     "topbar": "brand 14..291, badges 296..328",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-phone390-dark/overview.png"
+  },
+  {
+   "id": "account",
+   "title": "Klant · accountmenu",
+   "stand": "klant-phone390-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (879 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 879,
+     "pageScrollW": 390,
+     "card": "0..763 of 844",
+     "topbar": "brand 14..291, badges 296..328",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-phone390-dark/account.png"
+  },
+  {
+   "id": "server-console",
+   "title": "Klant · console",
+   "stand": "klant-phone390-dark",
+   "url": "/server/n1zxwj0q/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n1zxwj0q/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1494 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1494,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "span: \"Backups & tasks\""
+     ],
+     "card": "547..1448 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1240",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-phone390-dark/server-console.png"
+  },
+  {
+   "id": "server-more",
+   "title": "Klant · ⋯-menu",
+   "stand": "klant-phone390-dark",
+   "url": "/server/n1zxwj0q/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n1zxwj0q/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1494 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1494,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "span: \"Backups & tasks\""
+     ],
+     "popups": [
+      "ps-info-menu 131,356 230x428"
+     ],
+     "card": "547..1448 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1240",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x757"
+     ],
+     "dropdown": [
+      "ps-info-menu 428px of 563 max"
+     ],
+     "arrow": [
+      "ps-info-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-phone390-dark/server-more.png"
+  }
+ ],
+ "problems": [
+  "phone390-dark first-eula-fresh-start: ok {\"badge\":\"Ready for its first start\",\"box\":true,\"boxPulse\":false,\"link\":true,\"ticked\":false,\"before\":true,\"main\":\"First start\",\"mainOff\":true,\"restart\":false,\"oldBanner\":false}",
+  "phone390-dark first-eula-fresh-start-pulse: ok {\"boxPulse\":true}",
+  "phone390-dark first-eula-no-eula: WRONG {\"badge\":null,\"box\":false,\"boxPulse\":false,\"link\":true,\"ticked\":false,\"before\":null,\"main\":\"Start\",\"mainOff\":false,\"restart\":true,\"oldBanner\":false}",
+  "phone390-dark first-eula-no-eula-pulse: WRONG {\"boxPulse\":false}",
+  "phone390-dark first-installed: ok {\"badge\":\"Ready for its first start\",\"box\":false,\"boxPulse\":false,\"link\":true,\"ticked\":false,\"before\":null,\"main\":\"First start\",\"mainOff\":false,\"restart\":false,\"oldBanner\":false,\"tinker\":\"done\"}",
+  "phone390-light first-eula-fresh-start: ok {\"badge\":\"Ready for its first start\",\"box\":true,\"boxPulse\":false,\"link\":true,\"ticked\":false,\"before\":true,\"main\":\"First start\",\"mainOff\":true,\"restart\":false,\"oldBanner\":false}",
+  "phone390-light first-eula-fresh-start-pulse: ok {\"boxPulse\":true}",
+  "phone390-light first-eula-no-eula: WRONG {\"badge\":null,\"box\":false,\"boxPulse\":false,\"link\":true,\"ticked\":false,\"before\":null,\"main\":\"Start\",\"mainOff\":false,\"restart\":true,\"oldBanner\":false}",
+  "phone390-light first-eula-no-eula-pulse: WRONG {\"boxPulse\":false}",
+  "phone390-light first-eula-start: WRONG {\"mainOnAfterTick\":true,\"wrote\":false,\"started\":true,\"after\":{\"badge\":null,\"box\":false,\"boxPulse\":false,\"link\":true,\"ticked\":false,\"before\":null,\"main\":\"Start\",\"mainOff\":false,\"restart\":true,\"oldBanner\":false},\"calls\":[\"POST /api/servers/d252308c-7c94-4892-8e4f-8c723aa3d623/power\"]}",
+  "phone390-light first-installed: ok {\"badge\":\"Ready for its first start\",\"box\":false,\"boxPulse\":false,\"link\":true,\"ticked\":false,\"before\":null,\"main\":\"First start\",\"mainOff\":false,\"restart\":false,\"oldBanner\":false,\"tinker\":\"done\"}",
+  "klant-phone390-dark overview: nothing to click for .ps-account-button"
+ ]
+}
