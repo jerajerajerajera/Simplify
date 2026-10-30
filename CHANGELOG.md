@@ -2,6 +2,7 @@
 
 ## 1.5.2
 
+- Create server with Server Maker opens Server Maker inside Simplify, in the same frame as Admin tools, instead of on its own page. Ctrl/cmd-click still opens it in a new tab.
 - Host mode and Admin tools: Other plugins folds open like the other groups, with each plugin's page by its own name, also when there is only one. Before, a single plugin page opened straight away under the name Other plugins.
 - Scrollbars are thinner and take a light tint of the background in the dark theme and a soft grey in the light theme, instead of a dark stripe.
 - Server page: the bottom of the server's ⋯ menu (Force stop, Delete server) can be clicked again where it hangs over the console. The console took the mouse there and showed a text cursor.
