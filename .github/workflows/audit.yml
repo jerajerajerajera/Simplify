@@ -69,6 +69,7 @@ jobs:
           touch database/database.sqlite
           php artisan key:generate --force
           php artisan migrate --force --seed
+          php artisan storage:link || true
           yarn install --silent
           yarn build
       - name: Install Simplify (this checkout) and the add-ons (main)

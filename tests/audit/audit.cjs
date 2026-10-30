@@ -239,6 +239,53 @@ async function round(theme) {
   if (await click('.ps-host-tabs button:nth-child(2)', 1200)) { await record('host-servers', 'Hostmodus · serverlijst'); if (await click('.ps-host-server strong, .ps-host-server', 3000)) { await record('host-server', 'Hostmodus · server open (console in frame)'); await click('.ps-host-server-head .ps-info-more-button, .ps-info-more-button', 500) && await record('host-server-more', 'Hostmodus · server ⋯-menu'); await escape(); } }
   await alpine('d.setHostMode(false)'); await sleep(800);
   if (['d1440', 'tablet768', 'phone390'].includes(stand.split('-')[0])) await seasons(theme);
+  // Last, because it changes what the account has read and archived.
+  if (theme === 'dark' && ['d1440', 'phone390'].includes(stand.split('-')[0])) await notifyFlow();
+}
+
+// Notifications (1.5.0, #90): Mark read on one, Clear read, ✕ to Archived, and Archived at the bottom of the window with
+// Show more and Mark as unread. Each step checks that the counts move the right way.
+async function notifyFlow() {
+  const overview = urls.app.find((p) => /App\\Pages\\Overview$/.test(p.class))?.url || '/';
+  const onPhone = phone();
+  const openBell = async () => { await goto(overview); await sleep(600); if (onPhone) { if (!(await page.locator('.ps-tabbar button[aria-controls="ps-navigation-items"]').count())) await page.locator('.ps-mobile-menu').first().click().catch(() => {}); else await page.locator('.ps-tabbar button[aria-controls="ps-navigation-items"]').first().click().catch(() => {}); await sleep(500); } await page.locator('[x-ref="notifyButton"]').first().click().catch(() => {}); await sleep(900); };
+  const count = (scope) => page.evaluate((sc) => { const root = document.querySelector(sc); if (!root) return null; const vis = (e) => e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden'; const items = [...root.querySelectorAll('.ps-notify-item')].filter(vis); const inArchive = (e) => !!e.closest('#ps-notify-archived'); return { items: items.filter((e) => !inArchive(e)).length, unread: items.filter((e) => !inArchive(e) && !e.classList.contains('is-read')).length, archived: items.filter(inArchive).length }; }, scope).catch(() => null);
+  const say = (step, ok, detail) => problems.push(`${stand} notify-${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
+  const bell = '#ps-notify-menu';
+  await openBell();
+  const c0 = await count(bell); await record('notify-bell', 'Meldingen · bel open', { counts: c0 });
+  if (!c0 || !c0.items) { say('bell', false, { c0, note: 'no notifications under the bell' }); return; }
+  // 1. Mark read on one unread notification.
+  const mark = page.locator(`${bell} .ps-notify-item:not(.is-read) .ps-notify-actions button.is-subtle >> visible=true`).first();
+  if (await mark.count()) { await mark.click().catch(() => {}); await sleep(1500); const c1 = await count(bell); await record('notify-mark-read', 'Meldingen · één melding gelezen', { counts: c1 }); say('mark-read', c1 && c1.unread === c0.unread - 1, { before: c0, after: c1 }); }
+  else say('mark-read', false, { note: 'no unread notification with a Mark read button' });
+  // 2. Clear read under the bell: read notifications go to Archived.
+  const c2a = await count(bell);
+  const clear = page.locator(`${bell} button:has-text("Clear read") >> visible=true`).first();
+  if (await clear.count()) { await clear.click().catch(() => {}); await sleep(1500); const c2 = await count(bell); await record('notify-clear-read', 'Meldingen · Clear read (bel)', { counts: c2 }); say('clear-read', c2 && c2.items < c2a.items && c2.items === c2a.unread, { before: c2a, after: c2 }); }
+  else say('clear-read', false, { note: 'no Clear read button under the bell', counts: c2a });
+  // 3. ✕ on one notification: it goes to Archived.
+  const c3a = await count(bell);
+  const close = page.locator(`${bell} .ps-notify-close >> visible=true`).first();
+  if (await close.count()) { await close.click().catch(() => {}); await sleep(1500); const c3 = await count(bell); await record('notify-close', 'Meldingen · ✕ op één melding', { counts: c3 }); say('close', c3 && c3.items === c3a.items - 1, { before: c3a, after: c3 }); }
+  else say('close', false, { note: 'no ✕ on a notification', counts: c3a });
+  // 4. The window: Archived at the bottom, closed; open it, Show more, Mark as unread.
+  await openBell();
+  await page.locator('.ps-notify-all-button, .ps-notify-all, [x-ref="notifyButton"] ~ .ps-dropdown button[aria-label*="all" i], .ps-dropdown button[aria-label*="expand" i]').first().click().catch(() => {}); await sleep(1500);
+  const win = '.ps-notify-all .ps-modal';
+  const w0 = await count(win); await record('notify-window', 'Meldingen · venster', { counts: w0 });
+  const toggle = page.locator(`${win} .ps-notify-archive-toggle >> visible=true`).first();
+  if (!(await toggle.count())) { say('archived', false, { note: 'no Archived section in the window', counts: w0 }); await escape(); return; }
+  await toggle.click().catch(() => {}); await sleep(1800);
+  const w1 = await count(win); await record('notify-archived', 'Meldingen · Archived open', { counts: w1 }); say('archived', w1 && w1.archived > 0, { counts: w1 });
+  const more = page.locator(`${win} .ps-notify-more >> visible=true`).first();
+  if (await more.count()) { await more.click().catch(() => {}); await sleep(1800); const w2 = await count(win); await record('notify-archived-more', 'Meldingen · Archived, Show more', { counts: w2 }); say('show-more', w2 && w2.archived > w1.archived, { before: w1, after: w2 }); }
+  else problems.push(`${stand} notify-show-more: no Show more under Archived (${w1 && w1.archived} archived)`);
+  const w3a = await count(win);
+  const unarch = page.locator(`${win} #ps-notify-archived .ps-notify-actions button.is-subtle >> visible=true`).first();
+  if (await unarch.count()) { await unarch.click().catch(() => {}); await sleep(1800); const w3 = await count(win); await record('notify-unarchived', 'Meldingen · Mark as unread vanuit Archived', { counts: w3 }); say('mark-unread', w3 && w3.archived === w3a.archived - 1 && w3.unread === w3a.unread + 1, { before: w3a, after: w3 }); }
+  else say('mark-unread', false, { note: 'no Mark as unread in Archived' });
+  await escape(); await escape();
 }
 // Seasonal touches (1.4.4): the holiday badge next to the panel name and its tooltip, on other dates through the
 // browser's clock, with "× Pelican" off and with a logo, and the panel setting that turns everything off.
