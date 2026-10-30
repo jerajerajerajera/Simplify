@@ -185,6 +185,8 @@ return [
         'server_software' => 'Szerverszoftver',
         'server_name' => 'Szerver neve',
         'rename' => 'Átnevezés',
+        'delete_server' => 'Szerver törlése',
+        'stop_to_delete' => 'Állítsd le a szervert a művelet előtt.',
         'not_reported' => 'Nincs jelentve',
         'no_address_assigned' => 'Nincs hozzárendelt cím',
         'action_server' => ':action + szerver',

@@ -185,6 +185,8 @@ return [
         'server_software' => '서버 소프트웨어',
         'server_name' => '서버 이름',
         'rename' => '이름 바꾸기',
+        'delete_server' => '서버 삭제',
+        'stop_to_delete' => '이 작업을 하기 전에 서버를 정지하세요.',
         'not_reported' => '보고 안 됨',
         'no_address_assigned' => '할당된 주소 없음',
         'action_server' => '서버 :action',

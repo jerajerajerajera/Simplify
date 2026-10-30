@@ -185,6 +185,8 @@ return [
         'server_software' => 'Serverio programinė įranga',
         'server_name' => 'Serverio pavadinimas',
         'rename' => 'Pervadinti',
+        'delete_server' => 'Ištrinti serverį',
+        'stop_to_delete' => 'Prieš atlikdami šį veiksmą sustabdykite serverį.',
         'not_reported' => 'Nepranešta',
         'no_address_assigned' => 'Adresas nepriskirtas',
         'action_server' => ':action serverį',

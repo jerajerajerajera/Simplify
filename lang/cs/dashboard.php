@@ -185,6 +185,8 @@ return [
         'server_software' => 'Software serveru',
         'server_name' => 'Název serveru',
         'rename' => 'Přejmenovat',
+        'delete_server' => 'Smazat server',
+        'stop_to_delete' => 'Před touto akcí server zastavte.',
         'not_reported' => 'Bez údajů',
         'no_address_assigned' => 'Adresa nepřidělena',
         'action_server' => ':action server',

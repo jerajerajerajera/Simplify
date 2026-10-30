@@ -185,6 +185,8 @@ return [
         'server_software' => 'ПЗ сервера',
         'server_name' => 'Ім\'я сервера',
         'rename' => 'Перейменувати',
+        'delete_server' => 'Видалити сервер',
+        'stop_to_delete' => 'Зупиніть сервер перед цією дією.',
         'not_reported' => 'Немає даних',
         'no_address_assigned' => 'Адресу не призначено',
         'action_server' => ':action сервер',

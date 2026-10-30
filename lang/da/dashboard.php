@@ -185,6 +185,8 @@ return [
         'server_software' => 'Serversoftware',
         'server_name' => 'Servernavn',
         'rename' => 'Omdøb',
+        'delete_server' => 'Slet server',
+        'stop_to_delete' => 'Stop serveren, før du udfører denne handling.',
         'not_reported' => 'Ikke rapporteret',
         'no_address_assigned' => 'Ingen adresse tildelt',
         'action_server' => ':action server',

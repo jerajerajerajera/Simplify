@@ -57,6 +57,7 @@ final class Listing
             'address' => $allocation === null ? null : ($allocation->alias ?: $allocation->ip).':'.$allocation->port,
             'minecraft' => Games::minecraft($server),
             'can_edit' => Looks::canEdit($user, $server),
+            'can_delete' => $user->isRootAdmin() || $server->owner_id === $user->id,
             'links' => array_map(fn (Button $link) => $link->toArray(), app(AddonRegistry::class)->collect(fn (Addon $addon) => $addon->serverLinks($server))),
         ];
     }

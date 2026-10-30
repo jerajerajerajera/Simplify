@@ -185,6 +185,8 @@ return [
         'server_software' => 'Phần mềm máy chủ',
         'server_name' => 'Tên máy chủ',
         'rename' => 'Đổi tên',
+        'delete_server' => 'Xóa máy chủ',
+        'stop_to_delete' => 'Hãy dừng máy chủ trước khi thực hiện thao tác này.',
         'not_reported' => 'Chưa báo cáo',
         'no_address_assigned' => 'Chưa gán địa chỉ',
         'action_server' => ':action máy chủ',

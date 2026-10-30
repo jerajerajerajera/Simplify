@@ -185,6 +185,8 @@ return [
         'server_software' => 'Servermjukvara',
         'server_name' => 'Servernamn',
         'rename' => 'Byt namn',
+        'delete_server' => 'Ta bort server',
+        'stop_to_delete' => 'Stoppa servern innan du utför den här åtgärden.',
         'not_reported' => 'Inte rapporterat',
         'no_address_assigned' => 'Ingen adress tilldelad',
         'action_server' => ':action server',

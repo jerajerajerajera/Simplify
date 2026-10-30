@@ -185,6 +185,8 @@ return [
         'server_software' => 'Server software',
         'server_name' => 'Server name',
         'rename' => 'Rename',
+        'delete_server' => 'Delete server',
+        'stop_to_delete' => 'Stop the server before performing this action.',
         'not_reported' => 'Not reported',
         'no_address_assigned' => 'No address assigned',
         'action_server' => ':action server',

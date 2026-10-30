@@ -185,6 +185,8 @@ return [
         'server_software' => 'Serversoftware',
         'server_name' => 'Servernaam',
         'rename' => 'Hernoemen',
+        'delete_server' => 'Server verwijderen',
+        'stop_to_delete' => 'Stop de server voordat je dit doet.',
         'not_reported' => 'Niet gemeld',
         'no_address_assigned' => 'Geen adres toegewezen',
         'action_server' => 'Server: :action',

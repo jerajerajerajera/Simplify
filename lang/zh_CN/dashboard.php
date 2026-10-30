@@ -185,6 +185,8 @@ return [
         'server_software' => '服务器软件',
         'server_name' => '服务器名称',
         'rename' => '重命名',
+        'delete_server' => '删除服务器',
+        'stop_to_delete' => '执行此操作前请先停止服务器。',
         'not_reported' => '未报告',
         'no_address_assigned' => '未分配地址',
         'action_server' => ':action 服务器',

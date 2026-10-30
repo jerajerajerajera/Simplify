@@ -185,6 +185,8 @@ return [
         'server_software' => 'Logiciel serveur',
         'server_name' => 'Nom du serveur',
         'rename' => 'Renommer',
+        'delete_server' => 'Supprimer le serveur',
+        'stop_to_delete' => 'Arrêtez le serveur avant d’effectuer cette action.',
         'not_reported' => 'Non transmis',
         'no_address_assigned' => 'Aucune adresse attribuée',
         'action_server' => ':action le serveur',

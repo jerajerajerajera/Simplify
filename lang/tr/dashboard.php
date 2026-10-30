@@ -185,6 +185,8 @@ return [
         'server_software' => 'Sunucu yazılımı',
         'server_name' => 'Sunucu adı',
         'rename' => 'Yeniden adlandır',
+        'delete_server' => 'Sunucuyu sil',
+        'stop_to_delete' => 'Bu işlemi yapmadan önce sunucuyu durdur.',
         'not_reported' => 'Bildirilmedi',
         'no_address_assigned' => 'Adres atanmadı',
         'action_server' => ':action + sunucu',

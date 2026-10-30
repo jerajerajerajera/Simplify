@@ -72,6 +72,7 @@
                     </template>
                     <hr>
                     <button type="button" class="ps-menu-item is-danger" role="menuitem" :disabled="busy || !server.permissions['control.stop'] || status==='offline'" x-on:click="infoMenu=false; power('kill')"><svg aria-hidden="true"><use href="#ps-kill"/></svg><span>{{ $u('force_stop') }}</span></button>
+                    <button type="button" class="ps-menu-item is-danger" role="menuitem" x-show="server.can_delete" :disabled="busy || status!=='offline'" :data-tip="status!=='offline' ? @js($u('stop_to_delete')) : null" x-on:click="infoMenu=false; deleteServer()"><svg aria-hidden="true"><use href="#ps-trash"/></svg><span>{{ $u('delete_server') }}</span></button>
                 </div>
                 <div class="ps-dropdown is-end ps-color-dropdown" x-show="colorMenu" x-cloak x-on:click.stop>
                     <span class="ps-label">{{ $u('server_color') }}</span>

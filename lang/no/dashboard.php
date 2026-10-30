@@ -185,6 +185,8 @@ return [
         'server_software' => 'Serverprogramvare',
         'server_name' => 'Servernavn',
         'rename' => 'Gi nytt navn',
+        'delete_server' => 'Slett server',
+        'stop_to_delete' => 'Stopp serveren før du utfører denne handlingen.',
         'not_reported' => 'Ikke rapportert',
         'no_address_assigned' => 'Ingen adresse tildelt',
         'action_server' => ':action server',

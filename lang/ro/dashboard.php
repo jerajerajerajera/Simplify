@@ -185,6 +185,8 @@ return [
         'server_software' => 'Software server',
         'server_name' => 'Numele serverului',
         'rename' => 'Redenumiți',
+        'delete_server' => 'Ștergeți serverul',
+        'stop_to_delete' => 'Opriți serverul înainte de a efectua această acțiune.',
         'not_reported' => 'Neraportat',
         'no_address_assigned' => 'Nicio adresă atribuită',
         'action_server' => ':action serverul',

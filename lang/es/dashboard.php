@@ -185,6 +185,8 @@ return [
         'server_software' => 'Software del servidor',
         'server_name' => 'Nombre del servidor',
         'rename' => 'Renombrar',
+        'delete_server' => 'Eliminar servidor',
+        'stop_to_delete' => 'Detén el servidor antes de hacer esta acción.',
         'not_reported' => 'Sin datos',
         'no_address_assigned' => 'Sin dirección asignada',
         'action_server' => ':action servidor',

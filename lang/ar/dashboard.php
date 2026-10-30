@@ -185,6 +185,8 @@ return [
         'server_software' => 'برنامج الخادم',
         'server_name' => 'اسم الخادم',
         'rename' => 'إعادة التسمية',
+        'delete_server' => 'حذف الخادم',
+        'stop_to_delete' => 'أوقف الخادم قبل تنفيذ هذا الإجراء.',
         'not_reported' => 'غير مُبلَّغ',
         'no_address_assigned' => 'لم يُعيَّن عنوان',
         'action_server' => ':action الخادم',

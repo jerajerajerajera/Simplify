@@ -185,6 +185,8 @@ return [
         'server_software' => 'Palvelinohjelmisto',
         'server_name' => 'Palvelimen nimi',
         'rename' => 'Nimeä uudelleen',
+        'delete_server' => 'Poista palvelin',
+        'stop_to_delete' => 'Pysäytä palvelin ennen tätä toimintoa.',
         'not_reported' => 'Ei ilmoitettu',
         'no_address_assigned' => 'Osoitetta ei ole määritetty',
         'action_server' => ':action palvelin',

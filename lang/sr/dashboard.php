@@ -185,6 +185,8 @@ return [
         'server_software' => 'Софтвер сервера',
         'server_name' => 'Назив сервера',
         'rename' => 'Преименуј',
+        'delete_server' => 'Обриши сервер',
+        'stop_to_delete' => 'Зауставите сервер пре ове радње.',
         'not_reported' => 'Није пријављено',
         'no_address_assigned' => 'Није додељена адреса',
         'action_server' => ':action сервер',

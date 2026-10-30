@@ -268,6 +268,20 @@
           this.busy = false;
         }
       },
+      /** Owners delete their own stopped server after typing its name; the page then goes back to the overview. */
+      async deleteServer() {
+        if (this.busy) return;
+        const name = await window.Simplify.confirm({ title: t('dashboard.delete_server_title', { name: this.server.name }), message: t('dashboard.delete_server_message'), confirmLabel: t('dashboard.delete_server'), tone: 'danger', input: true, requireText: this.server.name });
+        if (name !== this.server.name) return;
+        this.busy = true;
+        try {
+          await wire.deleteServer(name);
+          this.toast(t('dashboard.server_deleted'), 'ok');
+        } catch {
+          this.toast(t('dashboard.the_action_could_not_be_completed'), 'danger');
+          this.busy = false;
+        }
+      },
       openColorMenu() {
         this.infoMenu = false;
         this.colorDraft = this.server.color || '#3b82f6';

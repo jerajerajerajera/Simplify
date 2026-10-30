@@ -185,6 +185,8 @@ return [
         'server_software' => 'サーバーソフトウェア',
         'server_name' => 'サーバー名',
         'rename' => '名前を変更',
+        'delete_server' => 'サーバーを削除',
+        'stop_to_delete' => 'この操作の前にサーバーを停止してください。',
         'not_reported' => '未報告',
         'no_address_assigned' => 'アドレス未割り当て',
         'action_server' => 'サーバーを :action',

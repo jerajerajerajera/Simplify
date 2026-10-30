@@ -185,6 +185,8 @@ return [
         'server_software' => 'Софтуер на сървъра',
         'server_name' => 'Име на сървъра',
         'rename' => 'Преименувай',
+        'delete_server' => 'Изтрий сървъра',
+        'stop_to_delete' => 'Спрете сървъра, преди да извършите това действие.',
         'not_reported' => 'Не е отчетено',
         'no_address_assigned' => 'Няма зададен адрес',
         'action_server' => ':action сървъра',

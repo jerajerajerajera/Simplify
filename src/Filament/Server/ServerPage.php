@@ -7,6 +7,7 @@ namespace Simplify\Core\Filament\Server;
 use App\Enums\SubuserPermission;
 use App\Facades\Activity;
 use App\Models\Server;
+use App\Services\Servers\ServerDeletionService;
 use Filament\Facades\Filament;
 use Filament\Navigation\NavigationItem;
 use Illuminate\Contracts\View\View;
@@ -16,6 +17,7 @@ use Livewire\Attributes\Renderless;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Livewire\WithFileUploads;
+use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Overview\Listing;
 use Simplify\Core\Overview\Power;
 use Simplify\Core\Overview\Shell;
@@ -74,6 +76,17 @@ final class ServerPage extends Component
         }
 
         return $this->refresh();
+    }
+
+    /** The owner (or a root admin) deletes a stopped server after typing its exact name, as in Pelican's admin. */
+    public function deleteServer(string $confirmation): void
+    {
+        $user = $this->user();
+        abort_unless($user->isRootAdmin() || $this->server->owner_id === $user->id, 403);
+        abort_unless(hash_equals($this->server->name, $confirmation), 422);
+        abort_unless(Listing::one($user, $this->server)['status'] === 'offline', 409);
+        app(ServerDeletionService::class)->handle($this->server);
+        $this->redirect(Overview::getUrl(panel: 'app'));
     }
 
     /** The uploaded file waits for saveLook(); the page itself is drawn in the browser, so nothing re-renders. */

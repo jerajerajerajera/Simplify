@@ -185,6 +185,8 @@ return [
         'server_software' => 'Software server',
         'server_name' => 'Nama server',
         'rename' => 'Ganti nama',
+        'delete_server' => 'Hapus server',
+        'stop_to_delete' => 'Hentikan server sebelum melakukan aksi ini.',
         'not_reported' => 'Tidak dilaporkan',
         'no_address_assigned' => 'Tidak ada alamat',
         'action_server' => ':action + server',

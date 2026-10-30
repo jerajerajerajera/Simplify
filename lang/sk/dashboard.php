@@ -185,6 +185,8 @@ return [
         'server_software' => 'Softvér servera',
         'server_name' => 'Názov servera',
         'rename' => 'Premenovať',
+        'delete_server' => 'Odstrániť server',
+        'stop_to_delete' => 'Pred touto akciou server zastavte.',
         'not_reported' => 'Bez údajov',
         'no_address_assigned' => 'Adresa nepridelená',
         'action_server' => ':action server',

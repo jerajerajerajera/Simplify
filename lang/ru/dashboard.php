@@ -185,6 +185,8 @@ return [
         'server_software' => 'ПО сервера',
         'server_name' => 'Имя сервера',
         'rename' => 'Переименовать',
+        'delete_server' => 'Удалить сервер',
+        'stop_to_delete' => 'Остановите сервер перед этим действием.',
         'not_reported' => 'Нет данных',
         'no_address_assigned' => 'Адрес не назначен',
         'action_server' => ':action сервер',
