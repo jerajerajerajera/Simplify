@@ -182,10 +182,22 @@ async function round(theme) {
   if (await colour.count()) { await colour.click().catch(() => {}); await sleep(400); if (await click('.ps-menu-item:has-text("colour"), .ps-menu-item:has-text("Colour"), .ps-menu-item:has-text("color")', 500)) await record('server-colour', 'Server · kleurkiezer open'); await escape(); }
   if (await click('.ps-info-motd, .ps-motd-preview', 700)) { await record('server-motd', 'Server · MOTD-editor open'); await escape(); }
   if (onPhone) { if (await click('.ps-phone-more button', 500)) await record('server-phone-more', 'Server · telefoon: Meer-menu open'); await escape(); }
+  // Server menu (1.5.0): main items plus "Advanced" (a <details>) with Delete server at the bottom; no "Open in Admin".
+  const more = page.locator('.ps-server-menu-more > summary >> visible=true').first();
+  if (await more.count()) {
+    await more.click().catch(() => {}); await sleep(500); await record('server-menu-advanced', 'Server · menu, Advanced open');
+    const del = await page.evaluate(() => { const b = [...document.querySelectorAll('.ps-server-menu-more button, .ps-server-menu button')].find((x) => /delete/i.test(x.textContent)); return b ? { disabled: b.disabled || b.getAttribute('aria-disabled') === 'true', text: b.textContent.trim() } : null; });
+    problems.push(`${stand} server-menu: Delete server ${del ? (del.disabled ? 'disabled (running server: ok)' : 'ENABLED on a running server') : 'NOT FOUND'}`);
+    await more.click().catch(() => {}); await sleep(300);
+  }
+  const labels = await page.locator('.ps-server-menu a, .ps-phone-sections a, .ps-phone-more-menu a').evaluateAll((as) => as.map((a) => a.textContent.trim()));
+  if (labels.some((t) => /open in admin/i.test(t))) problems.push(`${stand} server-menu: "Open in Admin" is still in the menu`);
   const menu = await page.locator('.ps-server-menu a, .ps-phone-sections a, .ps-phone-more-menu a').evaluateAll((as) => [...new Map(as.map((a) => [a.getAttribute('href'), a.textContent.trim()])).entries()]);
   for (const [href, label] of menu) {
     if (!href || href === serverUrl || /\/server\/[^/]+\/?$/.test(href) && rel(href) === rel(serverUrl)) continue;
     await goto(href, 1500); await record('server-' + slug(label), `Server · ${label}`);
+    // Backups & tasks: tabs on top of the backup and schedule pages.
+    if (await page.locator('.ps-page-tabs >> visible=true').count()) { const tabs = page.locator('.ps-page-tabs a >> visible=true'); const n = await tabs.count(); for (let t = 0; t < n; t++) { const tl = (await tabs.nth(t).innerText().catch(() => '')).trim(); const th = await tabs.nth(t).getAttribute('href'); if (!th || rel(th) === rel(page.url()) || screens.some((x) => x.stand === stand && x.id === 'server-tab-' + slug(tl))) continue; await goto(th, 1500); await record('server-tab-' + slug(tl), `Server · ${label} › ${tl}`); if (!(await page.locator('.ps-page-tabs >> visible=true').count())) problems.push(`${stand} server-tab-${slug(tl)}: no page tabs on this page`); await goto(href, 1200); } }
     // Inside each section: the first row's actions or the first tab, so dialogs and dropdowns there are seen too.
     if (/schedule/i.test(label) && urls.schedules?.[mainServer]) { await goto(urls.schedules[mainServer], 1500); await record('server-schedule-edit', 'Server · Schedule bewerken (3 taken)'); }
     if (/file/i.test(label)) { if (await click('.fi-ta-row .fi-ta-actions button, .fi-ta-row .fi-dropdown-trigger button', 600)) await record('server-files-rowmenu', 'Server · Files, rijmenu open'); await escape(); if (await click('.fi-ta-row a:has-text("plugins"), .fi-ta-row a:has-text("mods")', 1500)) await record('server-files-folder', 'Server · Files, map open'); }
