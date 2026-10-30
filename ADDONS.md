@@ -130,6 +130,9 @@ is `false` to keep the current one, `null` for none, or a file the add-on stored
 `Looks::DIRECTORY.'/<name>.(png|jpg|jpeg|webp)'` (name `[A-Za-z0-9_-]`, at most 80). Uploads no server shows any more are
 deleted by Simplify.
 
+`Simplify\Core\Embed\Services\EmbedServers::visible($server)` and `setVisible($server, $on)` read and set a server's
+"Show on the website" choice (the same as its Website page). They check no permissions: the caller does that.
+
 ## Events
 
 Some things go through Laravel events with a plain string name, so an add-on needs no Simplify class for them.
