@@ -44,6 +44,8 @@
       hostMode: false,
       // An admin page opened from Admin tools outside host mode: Simplify's frame without the tree (host.blade.php).
       adminView: false,
+      // Image URLs that did not load (an egg icon behind a wrong APP_URL, a deleted file): the next icon is used instead.
+      brokenImages: {},
       hostTab: 'admin',
       hostMenuOpen: false,
       hostSection: null,
@@ -1297,6 +1299,13 @@
       /** Where host health shows on the overview: a button in the top bar (default), a bar above the servers or at the bottom. */
       healthPlace() {
         return this.boot.features?.host_health ? this.overviewPreferences.healthPlace : null;
+      },
+      /** A server's own picture: the game's icon, the icon set in Pelican, then its egg's icon; the first one that loads. */
+      serverIcon(s) {
+        return [s?.server_icon, s?.icon, s?.egg_icon].map((url) => this.safeImage(url)).find((url) => url && !this.brokenImages[url]) || '';
+      },
+      imageFailed(url) {
+        if (url) this.brokenImages = { ...this.brokenImages, [url]: true };
       },
       safeImage(s) {
         if (typeof s !== 'string' || !s.trim()) return '';

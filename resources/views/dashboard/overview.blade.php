@@ -56,8 +56,8 @@
                                     {{-- Without an icon of its own the server shows its egg's icon large, and not again as the small one. --}}
                                     <span class="ps-card-icons" :class="{'egg-primary': overviewPreferences.largeIcon==='egg' && !!s.egg_icon && !!(s.server_icon || s.icon)}">
                                         <span class="ps-card-icon">
-                                            <img x-show="s.server_icon || s.icon || s.egg_icon" :src="safeImage(s.server_icon || s.icon || s.egg_icon)" alt="{{ $u('server_icon') }}" loading="lazy" x-on:load="$el.style.visibility=''" x-on:error="$el.style.visibility='hidden'">
-                                            <svg x-show="!s.server_icon && !s.icon && !s.egg_icon" aria-hidden="true"><use href="#ps-cube"/></svg>
+                                            <img x-show="serverIcon(s)" :src="serverIcon(s)" alt="{{ $u('server_icon') }}" loading="lazy" x-on:error="imageFailed($el.getAttribute('src'))">
+                                            <svg x-show="!serverIcon(s)" aria-hidden="true"><use href="#ps-cube"/></svg>
                                         </span>
                                         <span class="ps-card-egg-icon" x-show="s.egg_icon && (s.server_icon || s.icon)" data-tip-label="Server software" :data-tip="softwareTooltip(s)" :aria-label="softwareTooltip(s)">
                                             <img :src="safeImage(s.egg_icon)" alt="" loading="lazy" x-on:load="$el.style.visibility=''" x-on:error="$el.style.visibility='hidden'">
