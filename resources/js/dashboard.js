@@ -182,7 +182,8 @@
         for (let box = menu.parentElement; box && box !== document.body; box = box.parentElement) {
           if (getComputedStyle(box).overflowY !== 'visible') bottom = Math.min(bottom, box.getBoundingClientRect().bottom);
         }
-        menu.style.maxHeight = Math.max(160, Math.floor((bottom - top) / scale - 12)) + 'px';
+        // At most two thirds of the window; a short menu stays as high as its content.
+        menu.style.maxHeight = Math.max(160, Math.floor(Math.min(bottom - top - 12, window.innerHeight * 2 / 3) / scale)) + 'px';
       },
       /** New unread notifications since the last look drop down from the bell, one after another (as in 0.7.0). */
       async pollNotifications() {
