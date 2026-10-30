@@ -31,7 +31,7 @@ for f in sys.argv[1:]:
             box = (m.get('info') or {}).get('box')
             if box and not tag:
                 top, rest = box.split('..'); bottom = rest.split(' of ')[0]
-                heights[(s['stand'], 'host' if s['id'].startswith('host') else 'admin' if s['id'].startswith('tile-') else 'server')].append((int(bottom) - int(top), s['id']))
+                heights[(s['stand'], 'host' if s['id'].startswith('host') else 'admin' if s['id'].startswith(('tile-', 'create-')) else 'server')].append((int(bottom) - int(top), s['id']))
 # The content box must be the same height on every page of a stand (host mode pages, server pages).
 for (stand, kind), hs in heights.items():
     counts = collections.Counter(h for h, _ in hs); common = counts.most_common(1)[0][0]
