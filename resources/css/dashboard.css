@@ -571,7 +571,7 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 .ps-info-power > .ps-btn.is-primary { background: var(--ps-accent); }
 .ps-info-power.is-locked { opacity: .45; filter: grayscale(.4); pointer-events: none; }
 .ps-info-menu { top: calc(100% + 8px); width: 230px; }
-.ps-info-menu hr { margin: 4px 0; border: 0; border-top: 1px solid var(--ps-line); }
+.ps-info-menu hr { margin: 2px 0; border: 0; border-top: 1px solid var(--ps-line); }
 .ps-menu-heading { display: block; margin: 6px 10px 2px; }
 .ps-menu-item + .ps-menu-heading { margin-top: 10px; }
 .ps-menu-note { margin: 0 10px 6px; color: var(--ps-muted); font: 400 12px/1.5 var(--ps-font); }

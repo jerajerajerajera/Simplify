@@ -24,10 +24,10 @@
     if ('serviceWorker' in navigator && window.isSecureContext) {
         addEventListener('load', () => navigator.serviceWorker.register(@js(route('simplify.worker')), { scope: @js(\Simplify\Core\WebApp\WebApp::scope()) }).catch(() => {}));
     }
-    // Simplify's own admin pages (settings, Health, People & roles, the form pages) get the height the window leaves them, so the page never scrolls:
+    // Simplify's own admin pages (settings, Health, People & roles, the form pages, the end of the setup) get the height the window leaves them, so the page never scrolls:
     // the card scrolls inside (simplify.css). In host mode's frame the frame itself already has the window's height.
     if (!document.documentElement.classList.contains('ps-frame')) {
-        const fitCards = '.s-settings-tabs.fi-vertical, .s-health, .s-people, .s-fit';
+        const fitCards = '.s-settings-tabs.fi-vertical, .s-health, .s-people, .s-fit, .s-done';
         let queued = 0;
         const fit = () => {
             queued = 0;
