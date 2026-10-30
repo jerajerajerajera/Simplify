@@ -9,6 +9,7 @@
 - Settings → Pelican's own tabs (Mail, Backup, Misc and the others): the form sits straight in Simplify's card instead of in a second box, and Simplify's Save button (in the title bar in host mode) saves it. Pelican's separate save icon is gone.
 - Host mode → People & roles: the People/Roles tabs, the search field and the add button are in the title bar, and the list sits straight on the page instead of in a second box.
 - A button whose menu is open no longer shows its tooltip over the menu's arrow.
+- Settings: Save sits in the head of the page next to "Run setup again", instead of a blue button under the card. Website → embed code: the copy buttons are Simplify's own buttons.
 - Notifications: the button at the top of the bell menu opens a window with every notification (as in PelicanSimplify 0.5), with "Customize notifications" above the list: turn notifications on or off for this device, send a test, and choose messages and updates. It replaces the settings button that went to a separate page. 32 languages.
 - Plugin updates: once an hour Simplify lets Pelican's own update check look for new plugin versions, and tells root admins once per version in the bell (and as an app notification when they get updates), with a button to Admin → Plugins. Pelican installs the update as before; Simplify downloads nothing. Until now Pelican only showed an update when someone opened Admin → Plugins. 32 languages.
 - The bell no longer shows PelicanSimplify's old "Plugin updated" and "… is available" notifications, whose button led to a page that no longer exists.

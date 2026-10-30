@@ -878,8 +878,9 @@ html.ps-frame[data-ps-tree] .fi-grid-col:not(:first-child) > .fi-sc-component > 
   width: 100%;
 }
 
+/* The form's own Save stays for Enter and host mode's title bar; on the page it is in the head (Settings.php). */
 .s-settings > .s-bar {
-  margin-top: var(--s-space-3);
+  display: none;
 }
 
 /* The page inside that frame: only the form, straight in Simplify's card. Simplify's Save (the title bar in host
