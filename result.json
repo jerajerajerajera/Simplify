@@ -1,0 +1,47 @@
+{
+ "base": "http://127.0.0.1:8001",
+ "screens": [
+  {
+   "id": "schedule-edit",
+   "title": "Schedules · taak bewerken (onderaan)",
+   "stand": "laag1366-dark",
+   "url": "/server/ybg7bq3e/schedules/1/edit",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ybg7bq3e/schedules/1/edit",
+    "w": 1366,
+    "h": 650,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 650,
+     "pageScrollW": 1366,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1057,12 273x38"
+     ],
+     "panes": [
+      "Server sections 350/356",
+      "fi-page-main 302/616"
+     ],
+     "card": "238..590 of 650 fit=352px",
+     "topbar": "brand 36..361, badges 366..398, actions 1057..1330",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,84 1294x80",
+      "fi-main-content 270,238 1060x352"
+     ],
+     "box": "238..590 of 650"
+    }
+   },
+   "frames": [],
+   "shot": "laag1366-dark/schedule-edit.png"
+  }
+ ],
+ "problems": [
+  "laag1366-dark schedule-edit: WRONG {\"url\":\"/server/ybg7bq3e/schedules/1/edit\",\"tasks\":0,\"scrollable\":true,\"scrolled\":314,\"pageScroll\":0,\"action\":null,\"inView\":false,\"clickable\":false}"
+ ]
+}
