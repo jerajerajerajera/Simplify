@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Wszystkie powiadomienia',
+        'customize_notifications' => 'Dostosuj powiadomienia',
         'phone_navigation' => 'Nawigacja na telefonie',
         'servers' => 'Serwery',
         'new' => 'Nowe',
@@ -46,6 +48,8 @@ return [
         'host_menu' => 'Menu hosta',
         'close_menu' => 'Zamknij menu',
         'admin_sections' => 'Sekcje administratora',
+        'expand_all' => 'Rozwiń wszystko',
+        'collapse_all' => 'Zwiń wszystko',
         'server_count' => ':count serwer|:count serwery|:count serwerów',
         'no_servers_yet' => 'Brak serwerów.',
         'health' => 'Kondycja',
@@ -159,8 +163,9 @@ return [
         'server_groups_button' => 'Przycisk grup serwerów',
         'a_button_in_the_top_bar' => 'Przycisk na górnym pasku do tworzenia własnych grup i wyboru kolejności serwerów',
         'more' => 'Więcej',
-        'halloween_theme' => 'Motyw Halloween',
-        'a_few_small_halloween_touches_until' => 'Kilka drobnych halloweenowych akcentów do 2 listopada',
+        'seasonal_touches' => 'Akcenty sezonowe',
+        'a_few_small_touches_for' => 'Kilka drobnych akcentów: :name',
+        'easter_egg' => 'Pisanka',
         'server_colors' => 'Kolory serwerów',
         'one_color_for_every_server_or' => 'Jeden kolor dla wszystkich serwerów lub kolor dla każdego serwera, dla wszystkich w panelu. Kolor dla grupy jest w Grupy serwerów.',
         'open_settings' => 'Otwórz ustawienia',
@@ -224,6 +229,21 @@ return [
             'http' => 'Wings odpowiedział HTTP :status',
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count node nie raportuje|:count nody nie raportują|:count nodów nie raportuje',
+        ],
+        'page' => [
+            'attention' => ':count wymaga uwagi|:count wymagają uwagi|:count wymaga uwagi',
+            'ok' => ':count w porządku',
+            'all_good' => 'Wszystko w porządku',
+            'open_nodes' => 'Otwórz węzły',
+            'release_notes' => 'Informacje o wydaniu',
+            'not_run' => 'Testy jeszcze się nie odbyły. Użyj przycisku odświeżania, aby je uruchomić.',
+            'status' => [
+                'ok' => 'OK',
+                'warning' => 'Ostrzeżenie',
+                'failed' => 'Niepowodzenie',
+                'crashed' => 'Awaria',
+                'skipped' => 'Pominięto',
+            ],
         ],
     ],
 ];

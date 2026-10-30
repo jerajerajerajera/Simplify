@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Simplify\Core\Support;
 
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Simplify\Core\Models\Setting;
@@ -35,6 +34,7 @@ final class PanelSettings
         'overview_seconds' => [15, ['required', 'integer', 'min:5', 'max:300']],
         'brand_name' => [null, ['nullable', 'string', 'max:40']],
         'pelican_suffix' => [true, ['required', 'boolean']],
+        'seasonal' => [true, ['required', 'boolean']],
         'brand_logo' => [null, ['nullable', 'string', 'regex:#^'.Brand::DIRECTORY.'/'.Brand::FILE_PATTERN.'$#']],
         'app_icon' => [null, ['nullable', 'string', 'regex:#^'.Brand::DIRECTORY.'/'.Brand::FILE_PATTERN.'$#']],
         'app_badge' => [null, ['nullable', 'string', 'regex:#^'.Brand::DIRECTORY.'/'.Brand::FILE_PATTERN.'$#']],
@@ -48,7 +48,7 @@ final class PanelSettings
             return app(self::MEMO);
         }
         try {
-            $saved = Cache::rememberForever(self::CACHE_KEY, fn () => Setting::query()->pluck('value', 'key')->all());
+            $saved = SafeCache::rememberForever(self::CACHE_KEY, fn () => Setting::query()->pluck('value', 'key')->all());
         } catch (Throwable) {
             // Before the migration has run, for example while the plugin installs.
             $saved = [];
@@ -61,6 +61,16 @@ final class PanelSettings
         app()->instance(self::MEMO, $settings);
 
         return $settings;
+    }
+
+    /** Anything saved at all: a panel taken over from PelicanSimplify, or set up before, has settings without setup_done. */
+    public static function configured(): bool
+    {
+        try {
+            return Setting::query()->where('key', '!=', 'setup_done')->exists();
+        } catch (Throwable) {
+            return false;
+        }
     }
 
     public static function get(string $key): mixed
@@ -77,7 +87,7 @@ final class PanelSettings
         foreach ($values as $key => $value) {
             Setting::query()->updateOrCreate(['key' => $key], ['value' => $value]);
         }
-        Cache::forget(self::CACHE_KEY);
+        SafeCache::forget(self::CACHE_KEY);
         app()->forgetInstance(self::MEMO);
     }
 

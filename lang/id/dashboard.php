@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Semua notifikasi',
+        'customize_notifications' => 'Sesuaikan notifikasi',
         'phone_navigation' => 'Navigasi ponsel',
         'servers' => 'Server',
         'new' => 'Baru',
@@ -46,6 +48,8 @@ return [
         'host_menu' => 'Menu host',
         'close_menu' => 'Tutup menu',
         'admin_sections' => 'Bagian admin',
+        'expand_all' => 'Bentangkan semua',
+        'collapse_all' => 'Ciutkan semua',
         'server_count' => ':count server',
         'no_servers_yet' => 'Belum ada server.',
         'health' => 'Kesehatan',
@@ -159,8 +163,9 @@ return [
         'server_groups_button' => 'Tombol grup server',
         'a_button_in_the_top_bar' => 'Tombol di bilah atas untuk membuat grup sendiri dan memilih urutan server Anda',
         'more' => 'Lainnya',
-        'halloween_theme' => 'Tema Halloween',
-        'a_few_small_halloween_touches_until' => 'Beberapa sentuhan kecil Halloween sampai 2 November',
+        'seasonal_touches' => 'Sentuhan musiman',
+        'a_few_small_touches_for' => 'Beberapa sentuhan kecil untuk :name',
+        'easter_egg' => 'Telur Paskah',
         'server_colors' => 'Warna server',
         'one_color_for_every_server_or' => 'Satu warna untuk semua server, atau satu warna per server, untuk semua orang di panel. Warna per grup ada di Grup server.',
         'open_settings' => 'Buka pengaturan',
@@ -224,6 +229,21 @@ return [
             'http' => 'Wings menjawab dengan HTTP :status',
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count node tidak melapor',
+        ],
+        'page' => [
+            'attention' => ':count perlu perhatian',
+            'ok' => ':count oke',
+            'all_good' => 'Semua baik',
+            'open_nodes' => 'Buka node',
+            'release_notes' => 'Catatan rilis',
+            'not_run' => 'Pemeriksaan belum dijalankan. Gunakan tombol muat ulang untuk menjalankannya.',
+            'status' => [
+                'ok' => 'Oke',
+                'warning' => 'Peringatan',
+                'failed' => 'Gagal',
+                'crashed' => 'Crash',
+                'skipped' => 'Dilewati',
+            ],
         ],
     ],
 ];

@@ -8,7 +8,7 @@ return [
     'saved' => 'Nustatymai išsaugoti',
     'page_title' => 'Simplify nustatymai',
     'pelican_frame_title' => 'Pelican nustatymai: :label',
-    'pelican_frame' => 'Paties Pelican nustatymai: :label. Išsaugokite juos Pelican išsaugojimo mygtuku šio skydelio viršuje dešinėje.',
+    'pelican_frame' => 'Paties Pelican nustatymai: :label.',
     'version_line' => 'Versija :version · Išsaugoti pakeitimai galioja visiems šio skydelio naudotojams.',
     'profile' => [
         'support' => 'Pagalbos nuoroda',
@@ -46,8 +46,16 @@ return [
         'app_icon_help' => 'Kvadratinis PNG, JPEG arba WebP, ne mažesnis nei 512 pikselių, iki 1 MB. Tuščias naudoja Simplify piktogramą.',
         'app_badge' => 'Būsenos juostos piktograma',
         'app_badge_help' => 'PNG su permatomu fonu, rodoma balta Android būsenos juostoje. Tuščia – programos piktograma, jei jos fonas permatomas, kitaip pelikanas.',
+        'preview' => [
+            'logo' => 'Viršutinėje juostoje',
+            'icon' => 'Telefono pradžios ekrane',
+            'badge' => 'Android būsenos juostoje ir pranešimuose',
+            'note' => 'Nauja žinutė',
+        ],
         'server_colours' => 'Atskira spalva kiekvienam serveriui',
         'server_colours_help' => 'Kiekvienas serveris gauna savo spalvą – savo grupės arba jam pasirinktą. Išjungta: visi serveriai naudoja akcento spalvą.',
+        'seasonal' => 'Sezoniniai akcentai',
+        'seasonal_help' => 'Maži akcentai per metų šventes. Kiekvienas gali juos išjungti sau skiltyje Customize.',
         'pelican_suffix' => 'Rodyti "× Pelican" po pavadinimu',
     ],
     'addons' => [

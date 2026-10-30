@@ -8,7 +8,7 @@ return [
     'saved' => 'Nastavenia uložené',
     'page_title' => 'Nastavenia Simplify',
     'pelican_frame_title' => 'Nastavenia Pelican: :label',
-    'pelican_frame' => 'Vlastné nastavenia :label v Pelican. Uložte ich tlačidlom na uloženie Pelican vpravo hore v tomto paneli.',
+    'pelican_frame' => 'Vlastné nastavenia :label v Pelican.',
     'version_line' => 'Verzia :version · Zmeny po uložení platia pre všetkých na tomto paneli.',
     'profile' => [
         'support' => 'Odkaz na podporu',
@@ -46,8 +46,16 @@ return [
         'app_icon_help' => 'Štvorcový PNG, JPEG alebo WebP aspoň 512 pixelov, do 1 MB. Prázdne použije ikonu Simplify.',
         'app_badge' => 'Ikona stavového riadka',
         'app_badge_help' => 'PNG s priehľadným pozadím, v stavovom riadku Androidu zobrazené nabielo. Prázdne použije ikonu aplikácie, ak má priehľadné pozadie, inak pelikána.',
+        'preview' => [
+            'logo' => 'V hornej lište',
+            'icon' => 'Na domovskej obrazovke telefónu',
+            'badge' => 'V stavovom riadku a upozorneniach Androidu',
+            'note' => 'Nová správa',
+        ],
         'server_colours' => 'Vlastná farba pre každý server',
         'server_colours_help' => 'Každý server má vlastnú farbu, zo svojej skupiny alebo vybranú preň. Vypnuté: všetky servery používajú farbu zvýraznenia.',
+        'seasonal' => 'Sezónne detaily',
+        'seasonal_help' => 'Drobné detaily počas sviatkov v roku. Každý si ich môže vypnúť v Customize.',
         'pelican_suffix' => 'Zobraziť "× Pelican" za názvom',
     ],
     'addons' => [

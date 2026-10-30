@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Все уведомления',
+        'customize_notifications' => 'Настроить уведомления',
         'phone_navigation' => 'Навигация на телефоне',
         'servers' => 'Серверы',
         'new' => 'Новое',
@@ -46,6 +48,8 @@ return [
         'host_menu' => 'Меню хоста',
         'close_menu' => 'Закрыть меню',
         'admin_sections' => 'Разделы администратора',
+        'expand_all' => 'Развернуть все',
+        'collapse_all' => 'Свернуть все',
         'server_count' => ':count сервер|:count сервера|:count серверов',
         'no_servers_yet' => 'Серверов пока нет.',
         'health' => 'Состояние',
@@ -159,8 +163,9 @@ return [
         'server_groups_button' => 'Кнопка групп серверов',
         'a_button_in_the_top_bar' => 'Кнопка в верхней панели для создания своих групп и выбора порядка серверов',
         'more' => 'Ещё',
-        'halloween_theme' => 'Тема Хэллоуина',
-        'a_few_small_halloween_touches_until' => 'Немного хэллоуинских деталей до 2 ноября',
+        'seasonal_touches' => 'Праздничные мелочи',
+        'a_few_small_touches_for' => 'Несколько мелочей: :name',
+        'easter_egg' => 'Пасхальное яйцо',
         'server_colors' => 'Цвета серверов',
         'one_color_for_every_server_or' => 'Один цвет для всех серверов или свой цвет для каждого, для всех на панели. Цвет группы задаётся в Группах серверов.',
         'open_settings' => 'Открыть настройки',
@@ -224,6 +229,21 @@ return [
             'http' => 'Wings ответил HTTP :status',
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count node не прислал данные|:count nodes не прислали данные|:count nodes не прислали данные',
+        ],
+        'page' => [
+            'attention' => ':count требует внимания|:count требуют внимания|:count требуют внимания',
+            'ok' => ':count в порядке',
+            'all_good' => 'Всё в порядке',
+            'open_nodes' => 'Открыть узлы',
+            'release_notes' => 'Примечания к выпуску',
+            'not_run' => 'Проверки ещё не запускались. Запустите их кнопкой обновления.',
+            'status' => [
+                'ok' => 'В порядке',
+                'warning' => 'Предупреждение',
+                'failed' => 'Ошибка',
+                'crashed' => 'Сбой',
+                'skipped' => 'Пропущено',
+            ],
         ],
     ],
 ];

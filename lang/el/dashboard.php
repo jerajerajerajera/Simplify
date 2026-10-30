@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Όλες οι ειδοποιήσεις',
+        'customize_notifications' => 'Προσαρμογή ειδοποιήσεων',
         'phone_navigation' => 'Πλοήγηση κινητού',
         'servers' => 'Διακομιστές',
         'new' => 'Νέο',
@@ -46,6 +48,8 @@ return [
         'host_menu' => 'Μενού host',
         'close_menu' => 'Κλείσιμο μενού',
         'admin_sections' => 'Ενότητες διαχείρισης',
+        'expand_all' => 'Ανάπτυξη όλων',
+        'collapse_all' => 'Σύμπτυξη όλων',
         'server_count' => ':count διακομιστής|:count διακομιστές',
         'no_servers_yet' => 'Δεν υπάρχουν ακόμη διακομιστές.',
         'health' => 'Υγεία',
@@ -159,8 +163,9 @@ return [
         'server_groups_button' => 'Κουμπί Ομάδες διακομιστών',
         'a_button_in_the_top_bar' => 'Ένα κουμπί στην επάνω γραμμή για να φτιάχνετε τις δικές σας ομάδες και να επιλέγετε τη σειρά των διακομιστών σας',
         'more' => 'Περισσότερα',
-        'halloween_theme' => 'Θέμα Halloween',
-        'a_few_small_halloween_touches_until' => 'Μερικές μικρές πινελιές Halloween έως τις 2 Νοεμβρίου',
+        'seasonal_touches' => 'Εποχιακές πινελιές',
+        'a_few_small_touches_for' => 'Μερικές μικρές πινελιές για :name',
+        'easter_egg' => 'Πασχαλινό αυγό',
         'server_colors' => 'Χρώματα διακομιστών',
         'one_color_for_every_server_or' => 'Ένα χρώμα για όλους τους διακομιστές ή ένα χρώμα ανά διακομιστή, για όλους στο πάνελ. Χρώμα ανά ομάδα υπάρχει στις Ομάδες διακομιστών.',
         'open_settings' => 'Άνοιγμα ρυθμίσεων',
@@ -224,6 +229,21 @@ return [
             'http' => 'Το Wings απάντησε με HTTP :status',
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count κόμβος δεν ανέφερε|:count κόμβοι δεν ανέφεραν',
+        ],
+        'page' => [
+            'attention' => ':count χρειάζεται προσοχή|:count χρειάζονται προσοχή',
+            'ok' => ':count εντάξει',
+            'all_good' => 'Όλα εντάξει',
+            'open_nodes' => 'Άνοιγμα κόμβων',
+            'release_notes' => 'Σημειώσεις έκδοσης',
+            'not_run' => 'Οι έλεγχοι δεν έχουν εκτελεστεί ακόμη. Χρησιμοποιήστε το κουμπί ανανέωσης για να τους εκτελέσετε.',
+            'status' => [
+                'ok' => 'Εντάξει',
+                'warning' => 'Προειδοποίηση',
+                'failed' => 'Απέτυχε',
+                'crashed' => 'Κατέρρευσε',
+                'skipped' => 'Παραλείφθηκε',
+            ],
         ],
     ],
 ];

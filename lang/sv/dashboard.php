@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Alla aviseringar',
+        'customize_notifications' => 'Anpassa aviseringar',
         'phone_navigation' => 'Telefonnavigering',
         'servers' => 'Servrar',
         'new' => 'Ny',
@@ -46,6 +48,8 @@ return [
         'host_menu' => 'Värdmeny',
         'close_menu' => 'Stäng menyn',
         'admin_sections' => 'Adminavsnitt',
+        'expand_all' => 'Expandera alla',
+        'collapse_all' => 'Fäll ihop alla',
         'server_count' => ':count server|:count servrar',
         'no_servers_yet' => 'Inga servrar ännu.',
         'health' => 'Hälsa',
@@ -159,8 +163,9 @@ return [
         'server_groups_button' => 'Knapp för servergrupper',
         'a_button_in_the_top_bar' => 'En knapp i toppfältet för att skapa egna grupper och välja ordningen på dina servrar',
         'more' => 'Mer',
-        'halloween_theme' => 'Halloweentema',
-        'a_few_small_halloween_touches_until' => 'Några små halloweendetaljer fram till 2 november',
+        'seasonal_touches' => 'Säsongsdetaljer',
+        'a_few_small_touches_for' => 'Några små detaljer för :name',
+        'easter_egg' => 'Påskägg',
         'server_colors' => 'Serverfärger',
         'one_color_for_every_server_or' => 'En färg för alla servrar, eller en färg per server, för alla på panelen. En färg per grupp finns under Servergrupper.',
         'open_settings' => 'Öppna inställningar',
@@ -224,6 +229,21 @@ return [
             'http' => 'Wings svarade med HTTP :status',
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count nod rapporterade inte|:count noder rapporterade inte',
+        ],
+        'page' => [
+            'attention' => ':count behöver åtgärdas|:count behöver åtgärdas',
+            'ok' => ':count ok',
+            'all_good' => 'Allt är bra',
+            'open_nodes' => 'Öppna noder',
+            'release_notes' => 'Versionsinformation',
+            'not_run' => 'Kontrollerna har inte körts än. Använd uppdateringsknappen för att köra dem.',
+            'status' => [
+                'ok' => 'OK',
+                'warning' => 'Varning',
+                'failed' => 'Misslyckades',
+                'crashed' => 'Kraschade',
+                'skipped' => 'Hoppades över',
+            ],
         ],
     ],
 ];

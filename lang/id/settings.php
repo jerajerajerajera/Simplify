@@ -8,7 +8,7 @@ return [
     'saved' => 'Pengaturan disimpan',
     'page_title' => 'Pengaturan Simplify',
     'pelican_frame_title' => 'Pengaturan Pelican: :label',
-    'pelican_frame' => 'Pengaturan :label milik Pelican sendiri. Simpan dengan tombol simpan Pelican di kanan atas panel ini.',
+    'pelican_frame' => 'Pengaturan :label milik Pelican sendiri.',
     'version_line' => 'Versi :version · Perubahan berlaku untuk semua orang di panel ini setelah disimpan.',
     'profile' => [
         'support' => 'Tautan bantuan',
@@ -46,8 +46,16 @@ return [
         'app_icon_help' => 'PNG, JPEG, atau WebP persegi minimal 512 piksel, hingga 1 MB. Kosong memakai ikon Simplify.',
         'app_badge' => 'Ikon bilah status',
         'app_badge_help' => 'PNG berlatar transparan, ditampilkan putih di bilah status Android. Kosong memakai ikon aplikasi jika latarnya transparan, jika tidak memakai pelikan.',
+        'preview' => [
+            'logo' => 'Di bilah atas',
+            'icon' => 'Di layar utama ponsel',
+            'badge' => 'Di bilah status dan notifikasi Android',
+            'note' => 'Pesan baru',
+        ],
         'server_colours' => 'Warna sendiri per server',
         'server_colours_help' => 'Setiap server mendapat warnanya sendiri, dari grupnya atau yang dipilih untuknya. Mati: semua server memakai warna aksen.',
+        'seasonal' => 'Sentuhan musiman',
+        'seasonal_help' => 'Sentuhan kecil pada hari raya sepanjang tahun. Setiap orang tetap bisa mematikannya untuk dirinya di Customize.',
         'pelican_suffix' => 'Tampilkan "× Pelican" setelah nama',
     ],
     'addons' => [

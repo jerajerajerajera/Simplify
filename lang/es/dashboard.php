@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Todas las notificaciones',
+        'customize_notifications' => 'Personalizar notificaciones',
         'phone_navigation' => 'Navegación del móvil',
         'servers' => 'Servidores',
         'new' => 'Nuevo',
@@ -46,6 +48,8 @@ return [
         'host_menu' => 'Menú de host',
         'close_menu' => 'Cerrar menú',
         'admin_sections' => 'Secciones de admin',
+        'expand_all' => 'Expandir todo',
+        'collapse_all' => 'Contraer todo',
         'server_count' => ':count servidor|:count servidores',
         'no_servers_yet' => 'Aún no hay servidores.',
         'health' => 'Salud',
@@ -159,8 +163,9 @@ return [
         'server_groups_button' => 'Botón de grupos de servidores',
         'a_button_in_the_top_bar' => 'Un botón en la barra superior para crear tus propios grupos y elegir el orden de tus servidores',
         'more' => 'Más',
-        'halloween_theme' => 'Tema de Halloween',
-        'a_few_small_halloween_touches_until' => 'Algunos toques de Halloween hasta el 2 de noviembre',
+        'seasonal_touches' => 'Detalles de temporada',
+        'a_few_small_touches_for' => 'Algunos pequeños detalles por :name',
+        'easter_egg' => 'Huevo de Pascua',
         'server_colors' => 'Colores de servidor',
         'one_color_for_every_server_or' => 'Un color para todos los servidores, o un color por servidor, para todos en el panel. El color por grupo está en Grupos de servidores.',
         'open_settings' => 'Abrir ajustes',
@@ -224,6 +229,21 @@ return [
             'http' => 'Wings respondió con HTTP :status',
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count node no informó|:count nodes no informaron',
+        ],
+        'page' => [
+            'attention' => ':count requiere atención|:count requieren atención',
+            'ok' => ':count bien',
+            'all_good' => 'Todo bien',
+            'open_nodes' => 'Abrir nodos',
+            'release_notes' => 'Notas de la versión',
+            'not_run' => 'Las comprobaciones aún no se han ejecutado. Usa el botón de actualizar para ejecutarlas.',
+            'status' => [
+                'ok' => 'Bien',
+                'warning' => 'Advertencia',
+                'failed' => 'Fallido',
+                'crashed' => 'Bloqueado',
+                'skipped' => 'Omitido',
+            ],
         ],
     ],
 ];

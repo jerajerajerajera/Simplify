@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Tutte le notifiche',
+        'customize_notifications' => 'Personalizza notifiche',
         'phone_navigation' => 'Navigazione su telefono',
         'servers' => 'Server',
         'new' => 'Nuovo',
@@ -46,6 +48,8 @@ return [
         'host_menu' => 'Menu host',
         'close_menu' => 'Chiudi menu',
         'admin_sections' => 'Sezioni admin',
+        'expand_all' => 'Espandi tutto',
+        'collapse_all' => 'Comprimi tutto',
         'server_count' => ':count server|:count server',
         'no_servers_yet' => 'Ancora nessun server.',
         'health' => 'Salute',
@@ -159,8 +163,9 @@ return [
         'server_groups_button' => 'Pulsante Gruppi di server',
         'a_button_in_the_top_bar' => 'Un pulsante nella barra in alto per creare i tuoi gruppi e scegliere l\'ordine dei server',
         'more' => 'Altro',
-        'halloween_theme' => 'Tema Halloween',
-        'a_few_small_halloween_touches_until' => 'Qualche piccolo tocco di Halloween fino al 2 novembre',
+        'seasonal_touches' => 'Tocchi stagionali',
+        'a_few_small_touches_for' => 'Qualche piccolo tocco per :name',
+        'easter_egg' => 'Uovo di Pasqua',
         'server_colors' => 'Colori dei server',
         'one_color_for_every_server_or' => 'Un colore per tutti i server o un colore per server, per tutti sul pannello. Un colore per gruppo si trova in Gruppi di server.',
         'open_settings' => 'Apri impostazioni',
@@ -224,6 +229,21 @@ return [
             'http' => 'Wings ha risposto con HTTP :status',
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count node non ha segnalato|:count node non hanno segnalato',
+        ],
+        'page' => [
+            'attention' => ':count richiede attenzione|:count richiedono attenzione',
+            'ok' => ':count ok',
+            'all_good' => 'Tutto a posto',
+            'open_nodes' => 'Apri nodi',
+            'release_notes' => 'Note di rilascio',
+            'not_run' => 'I controlli non sono ancora stati eseguiti. Usa il pulsante di aggiornamento per avviarli.',
+            'status' => [
+                'ok' => 'OK',
+                'warning' => 'Avviso',
+                'failed' => 'Fallito',
+                'crashed' => 'Bloccato',
+                'skipped' => 'Saltato',
+            ],
         ],
     ],
 ];

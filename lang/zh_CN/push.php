@@ -32,4 +32,8 @@ return [
     'panel_update_body' => '此面板运行的是 :current。',
     'wings_update' => 'Wings :version 已发布',
     'wings_update_body' => '运行旧版 Wings 的节点：:nodes。',
+    'plugin_update' => ':name :version 可用',
+    'plugin_update_unknown' => ':name 有更新',
+    'plugin_update_body' => '请在 Admin → Plugins 中更新，由 Pelican 安装。',
+    'open_plugins' => '打开插件',
 ];

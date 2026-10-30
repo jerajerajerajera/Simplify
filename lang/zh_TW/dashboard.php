@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => '所有通知',
+        'customize_notifications' => '自訂通知',
         'phone_navigation' => '手機導覽',
         'servers' => '伺服器',
         'new' => '新',
@@ -46,6 +48,8 @@ return [
         'host_menu' => '主機選單',
         'close_menu' => '關閉選單',
         'admin_sections' => '管理部分',
+        'expand_all' => '全部展開',
+        'collapse_all' => '全部收合',
         'server_count' => ':count 個伺服器',
         'no_servers_yet' => '還沒有伺服器。',
         'health' => '健康',
@@ -159,8 +163,9 @@ return [
         'server_groups_button' => '伺服器分組按鈕',
         'a_button_in_the_top_bar' => '頂端列中的一個按鈕，用於建立你自己的分組並選擇伺服器順序',
         'more' => '更多',
-        'halloween_theme' => '萬聖節主題',
-        'a_few_small_halloween_touches_until' => '11 月 2 日前的一些萬聖節小點綴',
+        'seasonal_touches' => '節日點綴',
+        'a_few_small_touches_for' => ':name 的一些小點綴',
+        'easter_egg' => '復活節彩蛋',
         'server_colors' => '伺服器顏色',
         'one_color_for_every_server_or' => '所有伺服器使用一種顏色，或每個伺服器一種顏色，對面板上的所有人生效。分組顏色在「伺服器分組」中設定。',
         'open_settings' => '開啟設定',
@@ -224,6 +229,21 @@ return [
             'http' => 'Wings 返回了 HTTP :status',
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count 個節點未報告',
+        ],
+        'page' => [
+            'attention' => ':count 項需要處理',
+            'ok' => ':count 項正常',
+            'all_good' => '一切正常',
+            'open_nodes' => '開啟節點',
+            'release_notes' => '發行說明',
+            'not_run' => '檢查尚未執行。請使用重新整理按鈕執行。',
+            'status' => [
+                'ok' => '正常',
+                'warning' => '警告',
+                'failed' => '失敗',
+                'crashed' => '當機',
+                'skipped' => '已略過',
+            ],
         ],
     ],
 ];

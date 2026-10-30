@@ -8,7 +8,7 @@ return [
     'saved' => 'Definições guardadas',
     'page_title' => 'Definições do Simplify',
     'pelican_frame_title' => 'Definições do Pelican: :label',
-    'pelican_frame' => 'As definições de :label do próprio Pelican. Guarde-as com o botão de guardar do Pelican no canto superior direito deste painel.',
+    'pelican_frame' => 'As definições de :label do próprio Pelican.',
     'version_line' => 'Versão :version · As alterações valem para todos neste painel depois de guardar.',
     'profile' => [
         'support' => 'Link de suporte',
@@ -46,8 +46,16 @@ return [
         'app_icon_help' => 'Um PNG, JPEG ou WebP quadrado de pelo menos 512 pixels, até 1 MB. Vazio usa o ícone do Simplify.',
         'app_badge' => 'Ícone da barra de estado',
         'app_badge_help' => 'Um PNG com fundo transparente, mostrado a branco na barra de estado do Android. Vazio usa o ícone da app se tiver fundo transparente; caso contrário, o pelicano.',
+        'preview' => [
+            'logo' => 'Na barra superior',
+            'icon' => 'No ecrã inicial de um telemóvel',
+            'badge' => 'Na barra de estado e nas notificações do Android',
+            'note' => 'Nova mensagem',
+        ],
         'server_colours' => 'Cor própria por servidor',
         'server_colours_help' => 'Cada servidor recebe a sua própria cor, do seu grupo ou escolhida para ele. Desligado: todos os servidores usam a cor de destaque.',
+        'seasonal' => 'Toques sazonais',
+        'seasonal_help' => 'Pequenos toques nos feriados ao longo do ano. Cada pessoa pode desligá-los para si em Customize.',
         'pelican_suffix' => 'Mostrar "× Pelican" depois do nome',
     ],
     'addons' => [

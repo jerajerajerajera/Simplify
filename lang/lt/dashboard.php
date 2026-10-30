@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Visi pranešimai',
+        'customize_notifications' => 'Tinkinti pranešimus',
         'phone_navigation' => 'Naršymas telefone',
         'servers' => 'Serveriai',
         'new' => 'Nauja',
@@ -46,6 +48,8 @@ return [
         'host_menu' => 'Hosto meniu',
         'close_menu' => 'Uždaryti meniu',
         'admin_sections' => 'Administravimo skiltys',
+        'expand_all' => 'Išskleisti viską',
+        'collapse_all' => 'Suskleisti viską',
         'server_count' => ':count serveris|:count serveriai|:count serverių',
         'no_servers_yet' => 'Serverių dar nėra.',
         'health' => 'Būsena',
@@ -159,8 +163,9 @@ return [
         'server_groups_button' => 'Serverių grupių mygtukas',
         'a_button_in_the_top_bar' => 'Mygtukas viršutinėje juostoje savoms grupėms kurti ir serverių tvarkai pasirinkti',
         'more' => 'Daugiau',
-        'halloween_theme' => 'Helovino tema',
-        'a_few_small_halloween_touches_until' => 'Keletas mažų Helovino detalių iki lapkričio 2 d.',
+        'seasonal_touches' => 'Sezoniniai akcentai',
+        'a_few_small_touches_for' => 'Keli maži akcentai: :name',
+        'easter_egg' => 'Velykinis margutis',
         'server_colors' => 'Serverių spalvos',
         'one_color_for_every_server_or' => 'Viena spalva visiems serveriams arba atskira spalva kiekvienam, visiems skydelio naudotojams. Grupės spalva nustatoma Serverių grupėse.',
         'open_settings' => 'Atidaryti nustatymus',
@@ -224,6 +229,21 @@ return [
             'http' => 'Wings atsakė HTTP :status',
             'node_problem' => ':node: :problem',
             'nodes_silent' => 'Duomenų neatsiuntė :count node|Duomenų neatsiuntė :count nodes|Duomenų neatsiuntė :count nodes',
+        ],
+        'page' => [
+            'attention' => ':count reikalauja dėmesio|:count reikalauja dėmesio|:count reikalauja dėmesio',
+            'ok' => ':count tvarkoje',
+            'all_good' => 'Viskas tvarkoje',
+            'open_nodes' => 'Atidaryti mazgus',
+            'release_notes' => 'Leidimo pastabos',
+            'not_run' => 'Patikros dar nevykdytos. Paleiskite jas atnaujinimo mygtuku.',
+            'status' => [
+                'ok' => 'Gerai',
+                'warning' => 'Įspėjimas',
+                'failed' => 'Nepavyko',
+                'crashed' => 'Sutriko',
+                'skipped' => 'Praleista',
+            ],
         ],
     ],
 ];

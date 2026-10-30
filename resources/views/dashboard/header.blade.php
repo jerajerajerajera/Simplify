@@ -2,7 +2,19 @@
 <header class="ps-top" @if (($notes ?? null) === 'host') data-ps-notes="host" @endif>
     <div class="ps-heading">
         <div class="ps-identity">
-            <a :href="boot.list_url"><h1 class="ps-brand" :style="brandStyle()"><template x-if="brand().logo_url"><img class="ps-brand-logo" :src="brand().logo_url" alt="" :style="{ height: (Number(brand().logo_height) || 32) + 'px' }"></template><span class="ps-panel-name" x-show="!brand().logo_url" x-text="boot.panel_name"></span><span class="ps-title-pelican" x-show="boot.appearance?.pelican_suffix !== false">{{ $u('pelican') }}</span><span class="ps-visually-hidden" x-show="brand().logo_url" x-text="boot.panel_name"></span><template x-if="halloween()"><svg class="ps-hw-lantern" viewBox="0 0 24 24" aria-hidden="true"><path class="ps-hw-body" d="M12 6.5c-1.6-.9-3.6-1-5.3-.2C3.8 7.6 2.5 10.7 3.3 14c.8 3.4 3.6 5.6 6.4 5.4.8 0 1.6-.3 2.3-.7.7.4 1.5.7 2.3.7 2.8.2 5.6-2 6.4-5.4.8-3.3-.5-6.4-3.4-7.7-1.7-.8-3.7-.7-5.3.2z"/><path class="ps-hw-ribs" d="M8.2 7.2c-1.4 3-1.4 7.5.6 11.6M15.8 7.2c1.4 3 1.4 7.5-.6 11.6"/><path class="ps-hw-stem" d="M12 6.5c0-1.6.6-2.8 2-3.6"/><g class="ps-hw-face"><path d="M7.4 11.6 9.6 10l.9 2.4z"/><path d="M16.6 11.6 14.4 10l-.9 2.4z"/><path d="M7 14.6c1.4 2.2 8.6 2.2 10 0-.9.5-1.6.6-2.2.6l-.5-.9-.7 1.1c-.8.1-1.4.1-2.2 0l-.7-1.1-.5.9c-.7 0-1.3-.1-2.2-.6z"/></g></svg></template></h1></a>
+            <a :href="boot.list_url"><h1 class="ps-brand" :style="brandStyle()"><template x-if="brand().logo_url"><img class="ps-brand-logo" :src="brand().logo_url" alt="" :style="{ height: (Number(brand().logo_height) || 32) + 'px' }"></template><span class="ps-panel-name" x-show="!brand().logo_url" x-text="boot.panel_name"></span><span class="ps-title-pelican" x-show="boot.appearance?.pelican_suffix !== false">{{ $u('pelican') }}</span><span class="ps-visually-hidden" x-show="brand().logo_url" x-text="boot.panel_name"></span></h1></a>
+            {{-- Seasonal touches: an icon for the holiday of the day (resources/js/seasons.js). Pointing at it, or tapping it, tells what the day is. --}}
+            <span class="ps-season-badges" x-show="seasonBadges().length" x-cloak>
+                <template x-for="badge in seasonBadges()" :key="badge.key">
+                    <button type="button" class="ps-season-badge" :class="'is-'+badge.key" :style="{ color: badge.color }" :data-tip-label="badge.label" :data-tip="badge.text" :aria-label="badge.label" x-on:click="$el.blur(); $el.focus()">
+                        <template x-if="badge.key==='halloween'"><svg class="ps-hw-lantern" viewBox="0 0 24 24" aria-hidden="true"><path class="ps-hw-body" d="M12 6.5c-1.6-.9-3.6-1-5.3-.2C3.8 7.6 2.5 10.7 3.3 14c.8 3.4 3.6 5.6 6.4 5.4.8 0 1.6-.3 2.3-.7.7.4 1.5.7 2.3.7 2.8.2 5.6-2 6.4-5.4.8-3.3-.5-6.4-3.4-7.7-1.7-.8-3.7-.7-5.3.2z"/><path class="ps-hw-ribs" d="M8.2 7.2c-1.4 3-1.4 7.5.6 11.6M15.8 7.2c1.4 3 1.4 7.5-.6 11.6"/><path class="ps-hw-stem" d="M12 6.5c0-1.6.6-2.8 2-3.6"/><g class="ps-hw-face"><path d="M7.4 11.6 9.6 10l.9 2.4z"/><path d="M16.6 11.6 14.4 10l-.9 2.4z"/><path d="M7 14.6c1.4 2.2 8.6 2.2 10 0-.9.5-1.6.6-2.2.6l-.5-.9-.7 1.1c-.8.1-1.4.1-2.2 0l-.7-1.1-.5.9c-.7 0-1.3-.1-2.2-.6z"/></g></svg></template>
+                        <template x-if="badge.key!=='halloween'"><svg aria-hidden="true"><use :href="'#ps-'+badge.icon"/></svg></template>
+                        <template x-if="badge.key==='hanukkah'"><span class="ps-season-nights" aria-hidden="true"><template x-for="n in 8" :key="n"><i :class="{'is-lit': n <= badge.day}"></i></template></span></template>
+                        <template x-if="badge.key==='diwali'"><span class="ps-season-lights" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></template>
+                    </button>
+                </template>
+                <span class="ps-season-countdown" x-show="newYearCountdown()" x-text="newYearCountdown()"></span>
+            </span>
         </div>
         <a x-show="server" x-cloak :href="boot.list_url" class="ps-btn ps-back-overview">
             <svg aria-hidden="true"><use href="#ps-back"/></svg><span>{{ $u('all_servers') }}</span>
@@ -54,22 +66,11 @@
                     <div class="ps-notify-head">
                         <strong class="ps-dropdown-title">{{ $u('notifications') }}</strong>
                         <button type="button" class="ps-btn is-sm is-subtle" x-show="unreadNotifications()" x-on:click="markNotifications([], true)">{{ $u('mark_all_read') }}</button>
-                        <a class="ps-btn is-sm is-icon is-subtle" x-show="boot.notifications_url" :href="boot.notifications_url" data-tip="{{ $u('notifications_on_this_device') }}" aria-label="{{ $u('notifications_on_this_device') }}"><svg aria-hidden="true"><use href="#ps-settings"/></svg></a>
+                        <button type="button" class="ps-btn is-sm is-icon is-subtle" x-on:click="openAllNotifications()" data-tip="{{ $u('all_notifications') }}" aria-label="{{ $u('all_notifications') }}"><svg aria-hidden="true"><use href="#ps-expand"/></svg></button>
                     </div>
                     <div class="ps-notify-list">
                         <template x-for="item in notifications()" :key="item.id">
-                            <div class="ps-notify-item" :class="['is-'+item.tone, item.unread === false ? 'is-read' : '']">
-                                <svg aria-hidden="true"><use :href="'#ps-'+(item.tone==='ok'?'check':item.tone==='info'?'info':'alert')"/></svg>
-                                <strong x-text="item.title"></strong>
-                                <small x-text="item.text" x-show="item.text"></small>
-                                <small class="ps-notify-time" x-show="item.time" x-text="item.time"></small>
-                                <span class="ps-notify-actions" x-show="item.action || item.pelican">
-                                    <template x-if="item.action">
-                                        <a class="ps-btn is-sm" :href="item.action.url" x-on:click="item.pelican && item.unread && markNotifications([item.key], true)" x-text="item.action.label"></a>
-                                    </template>
-                                    <button type="button" class="ps-btn is-sm is-subtle" x-show="item.pelican" x-on:click="markNotifications([item.key], !item.unread)" x-text="item.unread ? @js($u('mark_read')) : @js($u('mark_as_unread'))"></button>
-                                </span>
-                            </div>
+                            @include('simplify::dashboard.notify-item')
                         </template>
                         <p class="ps-empty" x-show="!notifications().length">{{ $u('you_are_all_caught_up') }}</p>
                     </div>
@@ -77,7 +78,7 @@
                         <div class="ps-push-offer">
                             <svg aria-hidden="true"><use href="#ps-bell"/></svg>
                             <span>{{ $u('get_announcements_as_notifications_on_this') }}</span>
-                            <a class="ps-btn is-sm" :href="boot.notifications_url">{{ $u('turn_on') }}</a>
+                            <button type="button" class="ps-btn is-sm" x-on:click="openAllNotifications()">{{ $u('turn_on') }}</button>
                             <button type="button" class="ps-btn is-sm is-icon is-subtle" data-tip="{{ $u('not_now') }}" aria-label="{{ $u('not_now') }}" x-on:click="hidePushOffer()"><svg aria-hidden="true"><use href="#ps-close"/></svg></button>
                         </div>
                     </div>
@@ -109,15 +110,35 @@
                 </button>
                 <div id="ps-admin-menu" class="ps-dropdown is-end ps-admin-menu" x-show="adminMenu" x-cloak x-transition.opacity>
                     <strong class="ps-dropdown-title">{{ $u('admin_tools') }}</strong>
-                    <div class="ps-admin-groups">
-                        <template x-for="section in hostSections().filter((x) => x.key !== 'health')" :key="section.key">
-                            <div class="ps-admin-group" :style="{'--ps-tone': section.color}">
-                                <span class="ps-admin-group-head"><span class="ps-host-rail-icon"><svg aria-hidden="true"><use :href="'#ps-'+section.icon"/></svg></span><span x-text="section.label"></span></span>
-                                <template x-for="item in section.pages" :key="item.key">
-                                    <a class="ps-admin-item" :href="item.url"><svg aria-hidden="true"><use :href="'#ps-'+item.icon"/></svg><span x-text="item.label"></span></a>
-                                </template>
-                            </div>
-                        </template>
+                    {{-- Groups on the left, one open at a time; its pages as tiles on the right. In the phone menu the tiles fold out under their group. --}}
+                    <div class="ps-admin-split">
+                        <div class="ps-admin-nav">
+                            <template x-for="section in adminSections()" :key="section.key">
+                                <div class="ps-admin-group" :class="{'is-open': adminGroup() === section.key}" :style="{'--ps-tone': section.color}">
+                                    <button type="button" class="ps-admin-group-head" :aria-expanded="adminGroup() === section.key" x-on:click="pickAdminGroup(section.key)">
+                                        <span class="ps-host-rail-icon"><svg aria-hidden="true"><use :href="'#ps-'+section.icon"/></svg></span><span class="ps-admin-group-name" x-text="section.label"></span>
+                                        <small class="ps-admin-group-count" x-text="section.pages.length"></small><svg class="ps-admin-group-chevron" aria-hidden="true"><use href="#ps-chevron"/></svg>
+                                    </button>
+                                    <div class="ps-admin-tiles is-inline" x-show="adminGroup() === section.key">
+                                        <template x-for="item in section.pages" :key="item.key">
+                                            <a class="ps-admin-tile" :href="item.url"><span class="ps-host-rail-icon"><svg aria-hidden="true"><use :href="'#ps-'+item.icon"/></svg></span><span x-text="item.label"></span></a>
+                                        </template>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                        <div class="ps-admin-pane">
+                            <template x-if="adminSection()">
+                                <div :style="{'--ps-tone': adminSection().color}">
+                                    <div class="ps-admin-pane-head"><span x-text="adminSection().label"></span><small x-text="adminSection().pages.length"></small></div>
+                                    <div class="ps-admin-tiles">
+                                        <template x-for="item in adminSection().pages" :key="item.key">
+                                            <a class="ps-admin-tile" :href="item.url"><span class="ps-host-rail-icon"><svg aria-hidden="true"><use :href="'#ps-'+item.icon"/></svg></span><span x-text="item.label"></span></a>
+                                        </template>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
                     </div>
                     <template x-if="adminHealthPage()">
                         <div class="ps-admin-health">
@@ -135,4 +156,49 @@
             @include('simplify::dashboard.account')
         </div>
     </nav>
+    {{-- Every notification in one window, with what this account gets on its devices above the list. --}}
+    <template x-teleport="body">
+        <div class="ps-modal-layer ps-ui ps-notify-all" :class="{'dark': themeDark}" x-show="notifyAll" x-cloak :data-open="notifyAll" x-on:click.self="notifyAll=false" x-on:keydown.escape.window="notifyAll && (notifyAll=false)" :style="accentStyle('overview')">
+            <section class="ps-modal" role="dialog" aria-modal="true" aria-labelledby="ps-notify-all-title">
+                <header class="ps-modal-head">
+                    <h2 id="ps-notify-all-title">{{ $u('all_notifications') }}</h2>
+                    <button type="button" class="ps-btn is-sm is-subtle" x-show="unreadNotifications()" x-on:click="markNotifications([], true)">{{ $u('mark_all_read') }}</button>
+                    <button type="button" class="ps-btn is-icon is-subtle" x-on:click="notifyAll=false" aria-label="{{ $u('close') }}" data-tip="{{ $u('close') }}"><svg aria-hidden="true"><use href="#ps-close"/></svg></button>
+                </header>
+                <div class="ps-modal-body">
+                    <div class="ps-notify-settings" x-show="push.enabled">
+                        <span class="ps-label">{{ $u('customize_notifications') }}</span>
+                        <div class="ps-notify-setting">
+                            <svg aria-hidden="true"><use href="#ps-monitor"/></svg>
+                            <span><strong>{{ __('simplify::push.this_device') }}</strong>
+                                <small x-text="{ on: @js(__('simplify::push.this_on')), off: @js(__('simplify::push.this_off')), blocked: @js(__('simplify::push.blocked')), install: @js(__('simplify::push.install')), unsupported: @js(__('simplify::push.unsupported')) }[push.state]"></small></span>
+                            <span class="ps-notify-setting-actions">
+                                <button type="button" class="ps-btn is-sm" x-show="push.state === 'on'" :disabled="push.busy" x-on:click="pushTest()">{{ __('simplify::push.test') }}</button>
+                                <button type="button" class="ps-btn is-sm" x-show="push.state === 'on'" :disabled="push.busy" x-on:click="pushOff()">{{ __('simplify::push.turn_off') }}</button>
+                                <button type="button" class="ps-btn is-sm is-primary" x-show="push.state === 'off' || push.state === 'blocked'" :disabled="push.busy" x-on:click="pushOn()">{{ __('simplify::push.turn_on') }}</button>
+                            </span>
+                        </div>
+                        <label class="ps-notify-setting">
+                            <svg aria-hidden="true"><use href="#ps-bell"/></svg>
+                            <span><strong>{{ __('simplify::push.messages') }}</strong><small>{{ __('simplify::push.messages_help') }}</small></span>
+                            <input type="checkbox" class="ps-switch" :checked="push.messages" x-on:change="pushChoose('messages', $event.target.checked)">
+                        </label>
+                        <label class="ps-notify-setting" x-show="push.updates !== null">
+                            <svg aria-hidden="true"><use href="#ps-download"/></svg>
+                            <span><strong>{{ __('simplify::push.updates') }}</strong><small>{{ __('simplify::push.updates_help') }}</small></span>
+                            <input type="checkbox" class="ps-switch" :checked="push.updates" x-on:change="pushChoose('updates', $event.target.checked)">
+                        </label>
+                    </div>
+                    <span class="ps-label">{{ $u('notifications') }}</span>
+                    <div class="ps-notify-list">
+                        <template x-for="item in notifications()" :key="item.id">
+                            @include('simplify::dashboard.notify-item')
+                        </template>
+                        <p class="ps-empty" x-show="!notifications().length">{{ $u('you_are_all_caught_up') }}</p>
+                    </div>
+                    <button type="button" class="ps-btn is-sm is-subtle ps-notify-more" x-show="feed.more" x-on:click="loadNotificationPage()" :disabled="feed.loading" x-text="feed.loading ? @js($u('loading')) : @js($u('show_more'))"></button>
+                </div>
+            </section>
+        </div>
+    </template>
 </header>

@@ -32,4 +32,8 @@ return [
     'panel_update_body' => 'Гэта панэль працуе на :current.',
     'wings_update' => 'Даступны Wings :version',
     'wings_update_body' => 'Старэйшы Wings на: :nodes.',
+    'plugin_update' => 'Даступны :name :version',
+    'plugin_update_unknown' => 'Для :name ёсць абнаўленне',
+    'plugin_update_body' => 'Абнавіце ў Admin → Plugins; Pelican усталюе яго.',
+    'open_plugins' => 'Адкрыць плагіны',
 ];

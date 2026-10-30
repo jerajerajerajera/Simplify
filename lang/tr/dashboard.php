@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Tüm bildirimler',
+        'customize_notifications' => 'Bildirimleri özelleştir',
         'phone_navigation' => 'Telefon gezintisi',
         'servers' => 'Sunucular',
         'new' => 'Yeni',
@@ -46,6 +48,8 @@ return [
         'host_menu' => 'Barındırma menüsü',
         'close_menu' => 'Menüyü kapat',
         'admin_sections' => 'Yönetim bölümleri',
+        'expand_all' => 'Tümünü genişlet',
+        'collapse_all' => 'Tümünü daralt',
         'server_count' => ':count sunucu',
         'no_servers_yet' => 'Henüz sunucu yok.',
         'health' => 'Durum',
@@ -159,8 +163,9 @@ return [
         'server_groups_button' => 'Sunucu grupları düğmesi',
         'a_button_in_the_top_bar' => 'Kendi gruplarını oluşturmak ve sunucularının sırasını seçmek için üst çubukta bir düğme',
         'more' => 'Daha fazla',
-        'halloween_theme' => 'Cadılar Bayramı teması',
-        'a_few_small_halloween_touches_until' => '2 Kasım\'a kadar birkaç küçük Cadılar Bayramı dokunuşu',
+        'seasonal_touches' => 'Mevsimsel dokunuşlar',
+        'a_few_small_touches_for' => ':name için birkaç küçük dokunuş',
+        'easter_egg' => 'Paskalya yumurtası',
         'server_colors' => 'Sunucu renkleri',
         'one_color_for_every_server_or' => 'Paneldeki herkes için tüm sunuculara tek renk veya sunucu başına bir renk. Grup başına renk Sunucu grupları altında.',
         'open_settings' => 'Ayarları aç',
@@ -224,6 +229,21 @@ return [
             'http' => 'Wings\'in yanıtı: HTTP :status',
             'node_problem' => ':node: :problem',
             'nodes_silent' => 'Bildirmeyen node: :count',
+        ],
+        'page' => [
+            'attention' => ':count dikkat gerektiriyor|:count dikkat gerektiriyor',
+            'ok' => ':count sorunsuz',
+            'all_good' => 'Her şey yolunda',
+            'open_nodes' => 'Düğümleri aç',
+            'release_notes' => 'Sürüm notları',
+            'not_run' => 'Kontroller henüz çalıştırılmadı. Başlatmak için yenile düğmesini kullanın.',
+            'status' => [
+                'ok' => 'Tamam',
+                'warning' => 'Uyarı',
+                'failed' => 'Başarısız',
+                'crashed' => 'Çöktü',
+                'skipped' => 'Atlandı',
+            ],
         ],
     ],
 ];

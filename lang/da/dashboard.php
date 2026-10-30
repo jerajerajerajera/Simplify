@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Alle notifikationer',
+        'customize_notifications' => 'Tilpas notifikationer',
         'phone_navigation' => 'Telefonnavigation',
         'servers' => 'Servere',
         'new' => 'Ny',
@@ -46,6 +48,8 @@ return [
         'host_menu' => 'Værtsmenu',
         'close_menu' => 'Luk menu',
         'admin_sections' => 'Administratorafsnit',
+        'expand_all' => 'Fold alle ud',
+        'collapse_all' => 'Fold alle sammen',
         'server_count' => ':count server|:count servere',
         'no_servers_yet' => 'Ingen servere endnu.',
         'health' => 'Tilstand',
@@ -159,8 +163,9 @@ return [
         'server_groups_button' => 'Knap til servergrupper',
         'a_button_in_the_top_bar' => 'En knap i topbjælken til at lave dine egne grupper og vælge rækkefølgen af dine servere',
         'more' => 'Mere',
-        'halloween_theme' => 'Halloween-tema',
-        'a_few_small_halloween_touches_until' => 'Et par små halloween-detaljer indtil 2. november',
+        'seasonal_touches' => 'Sæsonpræg',
+        'a_few_small_touches_for' => 'Et par små detaljer til :name',
+        'easter_egg' => 'Påskeæg',
         'server_colors' => 'Serverfarver',
         'one_color_for_every_server_or' => 'Én farve til alle servere, eller en farve pr. server, for alle på panelet. En farve pr. gruppe findes under Servergrupper.',
         'open_settings' => 'Åbn indstillinger',
@@ -224,6 +229,21 @@ return [
             'http' => 'Wings svarede med HTTP :status',
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count node rapporterede ikke|:count noder rapporterede ikke',
+        ],
+        'page' => [
+            'attention' => ':count kræver opmærksomhed|:count kræver opmærksomhed',
+            'ok' => ':count ok',
+            'all_good' => 'Alt er i orden',
+            'open_nodes' => 'Åbn noder',
+            'release_notes' => 'Udgivelsesnoter',
+            'not_run' => 'Kontrollerne er ikke kørt endnu. Brug opdateringsknappen for at køre dem.',
+            'status' => [
+                'ok' => 'OK',
+                'warning' => 'Advarsel',
+                'failed' => 'Mislykkedes',
+                'crashed' => 'Gik ned',
+                'skipped' => 'Sprunget over',
+            ],
         ],
     ],
 ];

@@ -88,10 +88,10 @@
                     <span class="ps-switch" :class="{'is-on': overviewPreferences.showGroupsButton}" aria-hidden="true"></span>
                 </button>
                 </div>
-                <button type="button" class="ps-customize-head is-toggle" x-show="(halloweenSeason() && boot.appearance?.seasonal !== false) || boot.settings_url" :aria-expanded="customizeOpen('overview.more')" aria-controls="ps-customize-overview-more" x-on:click="toggleCustomize('overview.more')"><span>{{ $u('more') }}</span><svg class="ps-customize-chevron" aria-hidden="true"><use href="#ps-chevron"/></svg></button>
+                <button type="button" class="ps-customize-head is-toggle" x-show="(seasonsToday().length && boot.appearance?.seasonal !== false) || boot.settings_url" :aria-expanded="customizeOpen('overview.more')" aria-controls="ps-customize-overview-more" x-on:click="toggleCustomize('overview.more')"><span>{{ $u('more') }}</span><svg class="ps-customize-chevron" aria-hidden="true"><use href="#ps-chevron"/></svg></button>
                 <div class="ps-customize-section" id="ps-customize-overview-more" x-show="customizeOpen('overview.more')">
-                <button type="button" class="ps-customize-switch" role="switch" x-show="halloweenSeason() && boot.appearance?.seasonal !== false" :aria-checked="overviewPreferences.halloween" x-on:click="setOverviewPreference('halloween', !overviewPreferences.halloween)">
-                    <span><strong>{{ $u('halloween_theme') }}</strong><small>{{ $u('a_few_small_halloween_touches_until') }}</small></span>
+                <button type="button" class="ps-customize-switch" role="switch" x-show="seasonsToday().length && boot.appearance?.seasonal !== false" :aria-checked="overviewPreferences.halloween" x-on:click="setOverviewPreference('halloween', !overviewPreferences.halloween)">
+                    <span><strong>{{ $u('seasonal_touches') }}</strong><small x-text="Simplify.fill(@js($u('a_few_small_touches_for')), { name: seasonNames() })"></small></span>
                     <span class="ps-switch" :class="{'is-on': overviewPreferences.halloween}" aria-hidden="true"></span>
                 </button>
                 {{-- Server colours are a panel setting; point administrators at it from here. Group colours live with each group. --}}

@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Kaikki ilmoitukset',
+        'customize_notifications' => 'Mukauta ilmoituksia',
         'phone_navigation' => 'Puhelimen navigointi',
         'servers' => 'Palvelimet',
         'new' => 'Uusi',
@@ -46,6 +48,8 @@ return [
         'host_menu' => 'Isäntävalikko',
         'close_menu' => 'Sulje valikko',
         'admin_sections' => 'Ylläpidon osiot',
+        'expand_all' => 'Laajenna kaikki',
+        'collapse_all' => 'Supista kaikki',
         'server_count' => ':count palvelin|:count palvelinta',
         'no_servers_yet' => 'Ei vielä palvelimia.',
         'health' => 'Kunto',
@@ -159,8 +163,9 @@ return [
         'server_groups_button' => 'Palvelinryhmät-painike',
         'a_button_in_the_top_bar' => 'Yläpalkin painike omien ryhmien tekemiseen ja palvelinten järjestyksen valitsemiseen',
         'more' => 'Lisää',
-        'halloween_theme' => 'Halloween-teema',
-        'a_few_small_halloween_touches_until' => 'Muutama pieni halloween-yksityiskohta 2. marraskuuta asti',
+        'seasonal_touches' => 'Vuodenaikojen yksityiskohdat',
+        'a_few_small_touches_for' => 'Muutama pieni yksityiskohta: :name',
+        'easter_egg' => 'Pääsiäismuna',
         'server_colors' => 'Palvelinten värit',
         'one_color_for_every_server_or' => 'Yksi väri kaikille palvelimille tai oma väri kullekin palvelimelle, kaikille paneelin käyttäjille. Ryhmäkohtainen väri on kohdassa Palvelinryhmät.',
         'open_settings' => 'Avaa asetukset',
@@ -224,6 +229,21 @@ return [
             'http' => 'Wings vastasi HTTP-koodilla :status',
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count solmu ei raportoinut|:count solmua ei raportoinut',
+        ],
+        'page' => [
+            'attention' => ':count vaatii huomiota|:count vaatii huomiota',
+            'ok' => ':count kunnossa',
+            'all_good' => 'Kaikki kunnossa',
+            'open_nodes' => 'Avaa nodet',
+            'release_notes' => 'Julkaisutiedot',
+            'not_run' => 'Tarkistuksia ei ole vielä ajettu. Käynnistä ne päivityspainikkeella.',
+            'status' => [
+                'ok' => 'OK',
+                'warning' => 'Varoitus',
+                'failed' => 'Epäonnistui',
+                'crashed' => 'Kaatui',
+                'skipped' => 'Ohitettu',
+            ],
         ],
     ],
 ];

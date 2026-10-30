@@ -23,17 +23,12 @@
             <div class="se-block">
                 <div class="se-head">
                     <strong>{{ __('simplify::embed.code.'.$key) }}</strong>
-                    <x-filament::button
-                        type="button"
-                        color="gray"
-                        size="sm"
-                        :icon="$key === 'page' ? 'tabler-link' : 'tabler-copy'"
-                        x-on:click="take({{ \Illuminate\Support\Js::from($key) }}, {{ \Illuminate\Support\Js::from($snippet[$key]) }})"
-                    >
+                    <button type="button" class="s-btn s-btn-small" x-on:click="take({{ \Illuminate\Support\Js::from($key) }}, {{ \Illuminate\Support\Js::from($snippet[$key]) }})">
+                        <x-filament::icon :icon="$key === 'page' ? 'tabler-link' : 'tabler-copy'" />
                         <span x-text="copied === {{ \Illuminate\Support\Js::from($key) }} ? {{ \Illuminate\Support\Js::from(__('simplify::embed.code.copied')) }} : (copied === {{ \Illuminate\Support\Js::from($key.'-selected') }} ? {{ \Illuminate\Support\Js::from(__('simplify::embed.code.selected')) }} : {{ \Illuminate\Support\Js::from(__('simplify::embed.code.'.($key === 'page' ? 'copy_link' : 'copy'))) }})">
                             {{ __('simplify::embed.code.'.($key === 'page' ? 'copy_link' : 'copy')) }}
                         </span>
-                    </x-filament::button>
+                    </button>
                 </div>
                 <pre x-ref="{{ $key }}">{{ $snippet[$key] }}</pre>
                 <p class="se-muted">

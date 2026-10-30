@@ -667,6 +667,57 @@ html.ps-frame[data-ps-frame="native"] .fi-header-heading {
   display: none !important;
 }
 
+/* A Pelican page in host mode sits straight on host mode's page, as in 0.7.0: no card around its table or form
+   and no band above it. Its search and buttons are in host mode's title bar (frame.js, data-ps-head-tools), so its
+   own header and table toolbar hide; the toolbar comes back for bulk actions once rows are selected. */
+html.ps-frame[data-ps-frame="native"] :is(.fi-section:not(.fi-section .fi-section), .fi-ta-ctn:not(.fi-section .fi-ta-ctn)) {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+
+html.ps-frame[data-ps-frame="native"] .fi-ta-ctn:not(.fi-section .fi-ta-ctn) :is(.fi-ta-header-ctn, .fi-ta-header, .fi-ta-header-toolbar, .fi-ta-content-ctn, .fi-pagination) {
+  background: transparent !important;
+}
+
+html.ps-frame[data-ps-head-tools] :is(.fi-header-actions-ctn .fi-ac > :is(button, a), .fi-ta-ctn:not(:is(.fi-resource-relation-managers, .fi-resource-relation-manager, .fi-sc-tabs, .fi-section, .fi-modal, .fi-ta-ctn) *) :is(.fi-ta-header-toolbar > .fi-ta-actions > :is(button, a), .fi-ta-search-field)) {
+  display: none !important;
+}
+
+html.ps-frame[data-ps-head-tools] .fi-header:not(:has(.fi-header-actions-ctn .fi-dropdown, .fi-breadcrumbs-item + .fi-breadcrumbs-item)),
+html.ps-frame[data-ps-head-tools] .fi-ta-ctn:not(:is(.fi-resource-relation-managers, .fi-resource-relation-manager, .fi-sc-tabs, .fi-section, .fi-modal, .fi-ta-ctn) *):not(:has(.fi-ta-record-checkbox:checked, .fi-ta-page-checkbox:checked)) .fi-ta-header-ctn {
+  display: none !important;
+}
+
+html.ps-frame[data-ps-head-tools] :is(.fi-main, .fi-page-header-main-ctn, .fi-page-main) {
+  padding: 0 !important;
+  row-gap: 0 !important;
+}
+
+/* A form (settings, Automatic subdomains, Website) keeps room on both sides; only a bare table runs to the edges. */
+html.ps-frame[data-ps-head-tools] .fi-main:has(.fi-fo-field) {
+  padding: 4px 22px 22px !important;
+}
+
+html.ps-frame[data-ps-head-tools] .fi-page:not(:has(.fi-sc-tabs, .fi-fo-field)) .fi-ta-table :is(thead th:first-child, tbody td:first-child) {
+  padding-inline-start: 22px !important;
+}
+
+html.ps-frame[data-ps-head-tools] .fi-page:not(:has(.fi-sc-tabs, .fi-fo-field)) .fi-ta-table :is(thead th:last-child, tbody td:last-child > *) {
+  padding-inline-end: 18px !important;
+}
+
+html.ps-frame[data-ps-head-tools] .fi-page:not(:has(.fi-sc-tabs, .fi-fo-field)) .fi-pagination {
+  padding: 12px 22px !important;
+}
+
+/* Save of Simplify's settings sits in host mode's title bar (frame.js). */
+html.ps-frame[data-ps-head-tools] .s-settings > .s-bar {
+  display: none !important;
+}
+
 /* A settings page opened from host mode's tree: the tree lists the tabs, so the page shows only the settings. */
 html.ps-frame[data-ps-tree] .fi-sc-tabs > .fi-tabs {
   display: none !important;
@@ -827,17 +878,42 @@ html.ps-frame[data-ps-tree] .fi-grid-col:not(:first-child) > .fi-sc-component > 
   width: 100%;
 }
 
+/* The form's own Save stays for Enter and host mode's title bar; on the page it is in the head (Settings.php). */
 .s-settings > .s-bar {
-  margin-top: var(--s-space-3);
-}
-
-.s-settings:has(.fi-active .s-pelican-frame) .s-bar {
   display: none;
 }
 
-/* The page inside that frame: only the form, with Pelican's save button above it. */
-html.ps-frame[data-ps-frame="settings"] :is(.fi-sc-tabs > .fi-tabs, .fi-header-heading, .fi-breadcrumbs) {
+/* The page inside that frame: only the form, straight in Simplify's card. Simplify's Save (the title bar in host
+   mode) saves it through Pelican's own button, which stays hidden (settings.blade.php). */
+html.ps-frame[data-ps-frame="settings"] :is(.fi-sc-tabs > .fi-tabs, .fi-header, .fi-breadcrumbs) {
   display: none !important;
+}
+
+html.ps-frame[data-ps-frame="settings"] :is(.fi-sc-tabs, .fi-section) {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+
+html.ps-frame[data-ps-frame="settings"] :is(.fi-sc-tabs-tab, .fi-section-header, .fi-section-content-ctn, .fi-section-content, .fi-section-footer) {
+  background: transparent !important;
+  border: 0 !important;
+  padding-inline: 0 !important;
+}
+
+html.ps-frame[data-ps-frame="settings"] .fi-section-header {
+  padding-block: 4px 10px !important;
+}
+
+html.ps-frame[data-ps-frame="settings"] .fi-section-content {
+  padding-block: 0 20px !important;
+}
+
+html.ps-frame[data-ps-frame="settings"] .fi-section + .fi-section,
+html.ps-frame[data-ps-frame="settings"] .fi-grid-col:not(:first-child) > .fi-sc-component > .fi-sc-section {
+  border-top: 1px solid var(--s-line) !important;
 }
 
 html.ps-frame[data-ps-frame="settings"] :is(body, .fi-layout, .fi-main-ctn, .fi-main, .fi-page) {
@@ -948,3 +1024,63 @@ html ::-webkit-scrollbar-button, html ::-webkit-scrollbar-corner { display: none
 /* The console's bar is xterm's own element. */
 html .xterm .xterm-scrollable-element > .scrollbar > .slider { border-radius: 999px; background: var(--s-scroll) !important; }
 html .xterm .xterm-scrollable-element > .scrollbar.vertical > .slider { left: 2px !important; width: 6px !important; }
+
+/* People & roles in host mode: tabs, search and the add button sit in the title bar (frame.js) and the list sits
+   straight on the page, as host mode's own box is already around it. */
+html.ps-frame[data-ps-head-tools] .s-people > .s-toolbar { display: none; }
+html.ps-frame[data-ps-frame="native"] .s-people > .s-card { border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+
+/* Pelican's Health page (resources/overrides): what needs attention first, with a button where to fix it, then the
+   checks that are fine as short rows. In host mode it sits straight on the page like Pelican's other pages. */
+.s-health { display: grid; gap: var(--s-space-3); }
+html.ps-frame[data-ps-frame="native"] .s-health { border: 0; border-radius: 0; background: transparent; box-shadow: none; padding: var(--s-space-4) 22px; }
+.s-health-sum { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; color: var(--s-ink); font-size: 13px; font-weight: 600; }
+.s-health-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--s-ok); }
+.s-health-dot.is-bad { background: var(--s-danger); }
+.s-health-sep { width: 1px; height: 14px; margin-inline: 4px; background: var(--s-line); }
+.s-health-when { margin-inline-start: auto; color: var(--s-muted); font-size: var(--s-text-sm); font-weight: 500; }
+.s-health-when.is-stale { color: var(--s-danger); }
+.s-health-label { margin-top: var(--s-space-1); color: var(--s-muted); font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.s-health-list { display: grid; gap: var(--s-space-2); }
+.s-health-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: var(--s-space-2); }
+.s-health-row { --s-tone: var(--s-ok); display: flex; align-items: center; gap: var(--s-space-3); min-width: 0; padding: 10px 12px; border: 1px solid var(--s-line); border-radius: var(--s-radius); background: var(--s-surface); }
+.s-health-row.is-bad { --s-tone: var(--s-danger); border-color: color-mix(in oklab, var(--s-danger) 40%, var(--s-line)); background: color-mix(in oklab, var(--s-danger) 7%, var(--s-surface)); }
+.s-health-row.is-warn { --s-tone: var(--s-warn); border-color: color-mix(in oklab, var(--s-warn) 40%, var(--s-line)); background: color-mix(in oklab, var(--s-warn) 7%, var(--s-surface)); }
+.s-health-row.is-skip { --s-tone: var(--s-muted); }
+.s-health-icon { display: grid; flex: none; place-items: center; width: 32px; height: 32px; border-radius: 9px; background: color-mix(in oklab, var(--s-tone) 16%, transparent); color: var(--s-tone); }
+.s-health-icon svg { width: 17px; height: 17px; }
+.s-health-text { display: grid; flex: 1; gap: 2px; min-width: 0; }
+.s-health-text b { overflow: hidden; color: var(--s-ink); font-size: 13.5px; font-weight: 650; text-overflow: ellipsis; white-space: nowrap; }
+.s-health-text small { color: var(--s-muted); font-size: var(--s-text-sm); overflow-wrap: anywhere; }
+.s-health-fix { flex: none; height: 32px; font-size: 13px; }
+.s-health-pill { flex: none; }
+.s-health-row.is-bad .s-health-pill { color: var(--s-danger); }
+.s-health-row.is-warn .s-health-pill { color: var(--s-warn); }
+.s-health-empty { margin: 0; color: var(--s-muted); }
+@media (max-width: 640px) { .s-health-row:is(.is-bad, .is-warn) { flex-wrap: wrap; } .s-health-row:is(.is-bad, .is-warn) .s-health-text { flex-basis: calc(100% - 44px); } .s-health-fix { margin-inline-start: 44px; } }
+
+/* Settings → Appearance: a small picture of where each uploaded image ends up. */
+.s-preview { display: grid; gap: var(--s-space-2); max-width: 340px; }
+.s-preview-label { display: inline-flex; align-items: center; gap: 6px; font-size: var(--s-text-sm); color: var(--s-muted); }
+.s-preview-label svg { width: 14px; height: 14px; }
+.s-preview-bar { display: flex; align-items: center; gap: var(--s-space-3); height: 48px; padding: 0 var(--s-space-3); border: 1px solid var(--s-line); border-radius: var(--s-radius); background: var(--s-surface); overflow: hidden; }
+.s-preview-bar img { max-width: 150px; object-fit: contain; }
+.s-preview-bar strong { font-size: var(--s-text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--s-ink); }
+.s-preview-bar-nav { display: flex; gap: 6px; margin-left: auto; }
+.s-preview-bar-nav i { width: 26px; height: 6px; border-radius: var(--s-radius-pill); background: var(--s-raised); }
+.s-preview-bar-me { width: 22px; height: 22px; border-radius: 50%; background: var(--s-raised); flex: none; }
+.s-preview-home { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-space-3); padding: var(--s-space-4) var(--s-space-3); border-radius: var(--s-radius); background: linear-gradient(160deg, color-mix(in oklab, var(--s-accent) 55%, #1e1b4b), #0f172a); }
+.s-preview-app { display: grid; justify-items: center; gap: 5px; min-width: 0; }
+.s-preview-app i, .s-preview-app img { width: 46px; height: 46px; border-radius: 12px; }
+.s-preview-app i { background: rgb(255 255 255 / .18); }
+.s-preview-app img { object-fit: cover; background: #fff; }
+.s-preview-app b { width: 34px; height: 5px; border-radius: var(--s-radius-pill); background: rgb(255 255 255 / .3); }
+.s-preview-app.is-ours b { width: auto; height: auto; max-width: 100%; background: none; font-size: 10px; font-weight: 500; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.s-preview-android { display: grid; gap: var(--s-space-2); padding: 0 0 var(--s-space-3); border-radius: var(--s-radius); background: #18181b; overflow: hidden; }
+.s-preview-status { display: flex; align-items: center; gap: var(--s-space-2); height: 26px; padding: 0 var(--s-space-3); font-size: 11px; color: #fff; }
+.s-preview-status img { width: 14px; height: 14px; object-fit: contain; filter: brightness(0) invert(1); }
+.s-preview-status-end { width: 13px; height: 13px; margin-left: auto; }
+.s-preview-note { display: flex; align-items: center; gap: var(--s-space-2); margin: 0 var(--s-space-2); padding: var(--s-space-2) var(--s-space-3); border-radius: var(--s-radius); background: #27272a; font-size: 11px; color: #d4d4d8; }
+.s-preview-note img { width: 22px; height: 22px; border-radius: 6px; object-fit: cover; flex: none; }
+.s-preview-note span { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.s-preview-note strong { color: #fff; font-weight: 500; }

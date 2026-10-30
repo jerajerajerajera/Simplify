@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Všechna oznámení',
+        'customize_notifications' => 'Upravit oznámení',
         'phone_navigation' => 'Navigace na telefonu',
         'servers' => 'Servery',
         'new' => 'Nové',
@@ -46,6 +48,8 @@ return [
         'host_menu' => 'Nabídka hostitele',
         'close_menu' => 'Zavřít nabídku',
         'admin_sections' => 'Sekce správce',
+        'expand_all' => 'Rozbalit vše',
+        'collapse_all' => 'Sbalit vše',
         'server_count' => ':count server|:count servery|:count serverů',
         'no_servers_yet' => 'Zatím žádné servery.',
         'health' => 'Stav',
@@ -159,8 +163,9 @@ return [
         'server_groups_button' => 'Tlačítko skupin serverů',
         'a_button_in_the_top_bar' => 'Tlačítko v horní liště pro vlastní skupiny a pořadí serverů',
         'more' => 'Více',
-        'halloween_theme' => 'Halloweenský motiv',
-        'a_few_small_halloween_touches_until' => 'Pár drobných halloweenských detailů do 2. listopadu',
+        'seasonal_touches' => 'Sezónní detaily',
+        'a_few_small_touches_for' => 'Pár drobných detailů: :name',
+        'easter_egg' => 'Velikonoční vajíčko',
         'server_colors' => 'Barvy serverů',
         'one_color_for_every_server_or' => 'Jedna barva pro všechny servery, nebo vlastní barva pro každý, pro všechny na panelu. Barva skupiny se nastavuje ve Skupinách serverů.',
         'open_settings' => 'Otevřít nastavení',
@@ -224,6 +229,21 @@ return [
             'http' => 'Wings odpověděl HTTP :status',
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count node neposlal údaje|:count nodes neposlaly údaje|:count nodes neposlalo údaje',
+        ],
+        'page' => [
+            'attention' => ':count vyžaduje pozornost|:count vyžadují pozornost|:count vyžaduje pozornost',
+            'ok' => ':count v pořádku',
+            'all_good' => 'Vše v pořádku',
+            'open_nodes' => 'Otevřít uzly',
+            'release_notes' => 'Poznámky k vydání',
+            'not_run' => 'Kontroly ještě neproběhly. Spusťte je tlačítkem pro obnovení.',
+            'status' => [
+                'ok' => 'OK',
+                'warning' => 'Varování',
+                'failed' => 'Selhalo',
+                'crashed' => 'Spadlo',
+                'skipped' => 'Přeskočeno',
+            ],
         ],
     ],
 ];

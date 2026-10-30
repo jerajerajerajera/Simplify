@@ -32,4 +32,8 @@ return [
     'panel_update_body' => 'Този панел работи с :current.',
     'wings_update' => 'Наличен е Wings :version',
     'wings_update_body' => 'По-стар Wings на: :nodes.',
+    'plugin_update' => ':name :version е наличен',
+    'plugin_update_unknown' => 'Има актуализация за :name',
+    'plugin_update_body' => 'Актуализирайте от Admin → Plugins; Pelican го инсталира.',
+    'open_plugins' => 'Отвори плъгините',
 ];

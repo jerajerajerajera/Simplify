@@ -5,6 +5,23 @@
   const COLORS = { '#ef4444': 'Red', '#f97316': 'Orange', '#eab308': 'Gold', '#84cc16': 'Lime', '#22c55e': 'Green', '#10b981': 'Mint', '#06b6d4': 'Cyan', '#3b82f6': 'Blue', '#6366f1': 'Indigo', '#a855f7': 'Purple', '#ec4899': 'Pink', '#f43f5e': 'Rose' };
   const SERIES = 30;
 
+  /* Pelican's console paints its output on a half see-through background of its own, which the card shows as a lighter
+     box inside the box. Its terminal is made with a clear background instead, so the card's colour runs underneath. */
+  const clearTerminal = (xterm) => {
+    if (!xterm?.Terminal || xterm.Terminal.simplifyClear) return xterm;
+    class Terminal extends xterm.Terminal {
+      constructor(options = {}) {
+        super({ ...options, allowTransparency: true, theme: { ...options.theme, background: 'rgba(0, 0, 0, 0)' } });
+      }
+    }
+    Terminal.simplifyClear = true;
+    return { ...xterm, Terminal };
+  };
+  let xterm = clearTerminal(window.Xterm);
+  try {
+    Object.defineProperty(window, 'Xterm', { configurable: true, get: () => xterm, set: (value) => { xterm = clearTerminal(value); } });
+  } catch {}
+
   window.simplifyServer = function (wire, boot) {
     const base = window.pelicanSimplify(wire, boot);
     return {

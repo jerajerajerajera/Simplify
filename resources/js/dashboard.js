@@ -5,6 +5,19 @@
   const t = (key, params) => (window.Simplify?.t ? window.Simplify.t(key, params) : key);
   const tc = (key, count, params) => (window.Simplify?.tc ? window.Simplify.tc(key, count, params) : key);
   const MINECRAFT_VERSION = /(?:^|[^0-9])((?:1\.[0-9]+(?:\.[0-9]+)?|2[6-9]\.[0-9]+(?:\.[0-9]+)?))(?![0-9])/;
+  /* A request that fails on the server shows Livewire's white error page over the whole panel. On Simplify's pages
+     it becomes one short message in the panel's own style instead; the cause is in Pelican's log. */
+  const quietServerErrors = () => {
+    if (window.simplifyQuietErrors || !window.Livewire?.hook) return;
+    window.simplifyQuietErrors = true;
+    window.Livewire.hook('request', ({ fail }) => fail(({ status, preventDefault }) => {
+      if (status < 500 || !document.querySelector('[data-simplify-root]')) return;
+      preventDefault();
+      window.Simplify?.toast(t('dashboard.server_error'), 'danger');
+    }));
+  };
+  if (window.Livewire) quietServerErrors();
+  else document.addEventListener('livewire:init', quietServerErrors, { once: true });
   const OVERVIEW_DEFAULTS = { showMotd: false, largeIcon: 'server', groupByNode: 'auto', showCpu: true, showRam: true, quickActions: 'hover', minecraftAlwaysGreen: true, fullWidth: false, showGroupsButton: true, columns: 'auto', cardWidth: 'normal', serverScope: 'all', halloween: true, healthPlace: 'top-bar' };
   const OVERVIEW_SWITCHES = ['showMotd', 'showCpu', 'showRam', 'minecraftAlwaysGreen', 'fullWidth', 'showGroupsButton', 'halloween'];
   // Overview settings that pick one of a fixed set of values.
@@ -20,6 +33,8 @@
   // core.js (loaded with the page) owns the contrast calculation.
   const accentInk = (color) => window.SimplifyTheme.accentInk(color);
 
+  // Today's holidays (seasonsToday), kept outside Alpine's state so working them out never triggers a redraw.
+  let seasonCache = null;
   window.pelicanSimplify = function (wire, boot) {
     return {
       boot,
@@ -31,6 +46,7 @@
       hostMenuOpen: false,
       hostSection: null,
       hostPage: null,
+      hostOpen: [],
       hostServer: null,
       refreshSeconds: Math.max(5, Number(boot.performance?.overview_seconds) || 15) * 1000,
       overviewDockObserver: null,
@@ -42,7 +58,10 @@
       incomingShown: false,
       incomingQueue: [],
       pushOffer: false,
+      notifyAll: false,
+      push: { enabled: false, state: 'unsupported', busy: false, endpoint: null, key: null, messages: true, updates: null },
       adminMenu: false,
+      adminOpen: null,
       overviewCompact: false,
       phone: false,
       overviewPreferences: { ...OVERVIEW_DEFAULTS },
@@ -81,13 +100,15 @@
       installable: '',
       uiScale: 1,
       destroyed: false,
+      seasonClock: 0,
+      easterFound: false,
 
       init() {
         this.initShell();
         this.restoreOverviewView();
         this.restoreHostMode();
         this.$nextTick(() => this.initOverviewDock());
-        setTimeout(() => this.releaseBats(), 600);
+        setTimeout(() => { this.releaseBats(); this.playSeason(); this.startSeasonClock(); }, 600);
         this.recordOverview(this.boot.servers);
         this.refreshTimer = setInterval(() => this.refreshOverview(), this.refreshSeconds);
         // Host health is asked right after first paint when no snapshot was ready, so Wings never holds up the page.
@@ -119,6 +140,7 @@
         this.overviewDockObserver?.disconnect();
         this.restoreFavicon();
         clearInterval(this.refreshTimer);
+        clearInterval(this.seasonTimer);
         window.removeEventListener('simplify:theme', this.themeListener);
         window.removeEventListener('simplify:notice', this.noticeListener);
         window.removeEventListener('simplify:installable', this.installListener);
@@ -144,7 +166,10 @@
         const alert = ['warning', 'critical'].includes(health?.state)
           ? [{ id: 'health', tone: health.state === 'critical' ? 'danger' : 'warn', title: t('dashboard.host_health_title', { state: health.label || t('dashboard.attention_needed') }), text: tc('dashboard.hosts_reporting', health.hosts ?? 0, { available: health.available ?? 0 }) }]
           : [];
-        return [...alert, ...this.feed.items];
+        const storage = this.feed.storage?.command
+          ? [{ id: 'storage', tone: 'danger', title: t('dashboard.storage_not_writable'), text: t('dashboard.storage_not_writable_text'), command: this.feed.storage.command }]
+          : [];
+        return [...storage, ...alert, ...this.feed.items];
       },
       unreadNotifications() {
         return this.notifications().filter((item) => !item.pelican).length + (Number(this.feed.unread) || 0);
@@ -160,8 +185,14 @@
         // In the phone menu it is part of that menu, which scrolls itself.
         menu.style.maxHeight = '';
         if (getComputedStyle(menu).position !== 'absolute') return;
-        const scale = this.uiScale || 1, top = menu.getBoundingClientRect().top / scale;
-        menu.style.maxHeight = Math.max(160, Math.floor(window.innerHeight / scale - top - 12)) + 'px';
+        const scale = this.uiScale || 1, top = menu.getBoundingClientRect().top;
+        // The menu ends at the window, or higher where a box around it clips (on the overview the page above the footer).
+        let bottom = window.innerHeight;
+        for (let box = menu.parentElement; box && box !== document.body; box = box.parentElement) {
+          if (getComputedStyle(box).overflowY !== 'visible') bottom = Math.min(bottom, box.getBoundingClientRect().bottom);
+        }
+        // At most two thirds of the window; a short menu stays as high as its content.
+        menu.style.maxHeight = Math.max(160, Math.floor(Math.min(bottom - top - 12, window.innerHeight * 2 / 3) / scale)) + 'px';
       },
       /** New unread notifications since the last look drop down from the bell, one after another (as in 0.7.0). */
       async pollNotifications() {
@@ -170,7 +201,7 @@
           const result = await wire.notificationPage(1);
           const known = new Set(this.feed.items.map((n) => n.key));
           const fresh = result.items.filter((n) => n.unread && !known.has(n.key));
-          this.feed = { ...this.feed, items: [...fresh, ...this.feed.items], unread: result.unread };
+          this.feed = { ...this.feed, items: [...fresh, ...this.feed.items], unread: result.unread, storage: result.storage };
           this.incomingQueue.push(...fresh.reverse());
           this.showIncomingNotice();
         } catch {}
@@ -208,6 +239,85 @@
           localStorage.setItem('pelicanSimplify.pushOffer', 'hidden');
         } catch {}
       },
+      /** The window with every notification; above the list, what this account gets on its devices. */
+      async openAllNotifications() {
+        this.notifyMenu = false;
+        this.notifyAll = true;
+        if (!this.feed.items.length) this.loadNotificationPage(true);
+        try {
+          const registration = 'serviceWorker' in navigator && window.isSecureContext ? await navigator.serviceWorker.getRegistration() : null;
+          const subscription = 'PushManager' in window ? await registration?.pushManager.getSubscription() : null;
+          const settings = await wire.pushSettings(subscription?.endpoint || null);
+          if (!settings) return (this.push.enabled = false);
+          const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+          const state = !registration || !('PushManager' in window)
+            ? (/iPhone|iPad/.test(navigator.userAgent) && !standalone ? 'install' : 'unsupported')
+            : Notification.permission === 'denied' ? 'blocked' : settings.current ? 'on' : 'off';
+          this.push = { ...this.push, ...settings, enabled: true, state, endpoint: subscription?.endpoint || null };
+        } catch {
+          this.push.enabled = false;
+        }
+      },
+      pushLabel() {
+        const agent = navigator.userAgent;
+        const browser = /Edg\//.test(agent) ? 'Edge' : /Firefox\//.test(agent) ? 'Firefox' : /SamsungBrowser/.test(agent) ? 'Samsung Internet'
+          : /Chrome\//.test(agent) ? 'Chrome' : /Safari\//.test(agent) ? 'Safari' : 'Browser';
+        const system = /iPhone/.test(agent) ? 'iPhone' : /iPad/.test(agent) ? 'iPad' : /Android/.test(agent) ? 'Android'
+          : /Windows/.test(agent) ? 'Windows' : /Mac OS X/.test(agent) ? 'Mac' : /Linux/.test(agent) ? 'Linux' : '';
+        return browser + (system ? ' · ' + system : '');
+      },
+      async pushOn() {
+        this.push.busy = true;
+        try {
+          if (await Notification.requestPermission() !== 'granted') return (this.push.state = 'blocked');
+          const registration = await navigator.serviceWorker.getRegistration();
+          const bytes = Uint8Array.from(atob(this.push.key.replace(/-/g, '+').replace(/_/g, '/')), (c) => c.charCodeAt(0));
+          let subscription = await registration.pushManager.getSubscription();
+          // A subscription made with an older panel key cannot be used anymore.
+          const old = subscription?.options?.applicationServerKey;
+          if (subscription && old && !new Uint8Array(old).every((value, index) => value === bytes[index])) {
+            await subscription.unsubscribe();
+            subscription = null;
+          }
+          subscription ||= await registration.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: bytes });
+          const result = await wire.pushOn(subscription.toJSON(), this.pushLabel());
+          this.toast(result.message, result.ok ? 'ok' : 'warn');
+          if (result.ok) {
+            this.push.endpoint = subscription.endpoint;
+            this.push.state = 'on';
+            this.pushOffer = false;
+          } else {
+            await subscription.unsubscribe().catch(() => {});
+          }
+        } catch {
+          this.push.state = 'unsupported';
+        } finally {
+          this.push.busy = false;
+        }
+      },
+      async pushOff() {
+        this.push.busy = true;
+        try {
+          await (await (await navigator.serviceWorker.getRegistration())?.pushManager.getSubscription())?.unsubscribe();
+        } catch {}
+        await wire.pushOff(this.push.endpoint || '').catch(() => {});
+        this.push.state = 'off';
+        this.push.busy = false;
+      },
+      async pushTest() {
+        this.push.busy = true;
+        try {
+          const result = await wire.pushTest(this.push.endpoint);
+          if (result.gone) this.push.state = 'off';
+          this.toast(result.message, result.ok ? 'ok' : 'warn');
+        } catch {} finally {
+          this.push.busy = false;
+        }
+      },
+      async pushChoose(kind, on) {
+        this.push[kind] = on;
+        await wire.pushChoose(kind, on).catch(() => (this.push[kind] = !on));
+      },
       /** The first (reset) or next page of Pelican's notifications, read ones included. */
       async loadNotificationPage(reset = false) {
         if (this.feed.loading) return;
@@ -216,7 +326,7 @@
         try {
           const result = await wire.notificationPage(page);
           const known = new Set(reset ? [] : this.feed.items.map((n) => n.key));
-          this.feed = { items: reset ? result.items : [...this.feed.items, ...result.items.filter((n) => !known.has(n.key))], page, more: !!result.more, unread: result.unread, loading: false };
+          this.feed = { items: reset ? result.items : [...this.feed.items, ...result.items.filter((n) => !known.has(n.key))], page, more: !!result.more, unread: result.unread, storage: result.storage, loading: false };
         } catch {
           this.feed.loading = false;
           if (!reset) this.toast(t('dashboard.older_notifications_could_not_be_loaded'), 'warn');
@@ -285,6 +395,24 @@
             : [...(section.tabs || []), ...(extra[section.key] || []), ...section.pages.map((key) => items.find((item) => item.key === key)).filter(Boolean)],
         })).filter((section) => section.pages.length);
       },
+      /** The Admin tools groups, without Health (its checks have their own row under the groups). */
+      adminSections() {
+        return this.hostSections().filter((section) => section.key !== 'health');
+      },
+      /** The open group: on a wide window always one (the first by default), in the phone menu none until tapped. */
+      adminGroup() {
+        const keys = this.adminSections().map((section) => section.key);
+        if (keys.includes(this.adminOpen)) return this.adminOpen;
+        return window.matchMedia('(max-width: 900px)').matches ? null : keys[0] || null;
+      },
+      adminSection() {
+        return this.adminSections().find((section) => section.key === this.adminGroup()) || null;
+      },
+      pickAdminGroup(key) {
+        const phone = window.matchMedia('(max-width: 900px)').matches;
+        this.adminOpen = phone && this.adminGroup() === key ? null : key;
+        this.$nextTick(() => this.fitDropdown(document.getElementById('ps-admin-menu')));
+      },
       adminHealthPage() {
         return this.adminPages().flatMap((group) => group.items).find((item) => item.key === 'health') || null;
       },
@@ -326,6 +454,7 @@
         if (section) this.openHostLeaf(section, section.pages[0]);
       },
       openHostLeaf(section, item) {
+        if (section && !this.hostOpen.includes(section.key)) this.hostOpen = [...this.hostOpen, section.key];
         this.hostSection = section;
         this.hostPage = item || null;
         this.hostServer = null;
@@ -334,9 +463,18 @@
           sessionStorage.setItem(this.hostModeKey() + '.place', JSON.stringify({ section: section?.key || null, page: item?.key || null }));
         } catch {}
       },
-      /** While a settings page is open the tree shows the settings groups open and folds the others to their heads. */
+      /** A group with more than one page folds open and shut; the open page's group opens with it. */
       hostBranchOpen(section) {
-        return section.pages.length > 1 && !!section.tabs === !!(this.hostSection?.tabs && !this.hostServer);
+        return section.pages.length > 1 && this.hostOpen.includes(section.key);
+      },
+      toggleHostBranch(section) {
+        this.hostOpen = this.hostOpen.includes(section.key) ? this.hostOpen.filter((key) => key !== section.key) : [...this.hostOpen, section.key];
+      },
+      hostAllOpen() {
+        return this.hostSections().every((section) => section.pages.length < 2 || this.hostOpen.includes(section.key));
+      },
+      toggleHostBranches() {
+        this.hostOpen = this.hostAllOpen() ? [] : this.hostSections().filter((section) => section.pages.length > 1).map((section) => section.key);
       },
       openHostServer(s) {
         this.hostServer = s;
@@ -371,14 +509,109 @@
         return main ? [{ ...main, primary: true, label: t('dashboard.create_server') }, ...rest] : rest;
       },
 
-      /** 25 October to 2 November, every year. */
-      halloweenSeason(date = new Date()) {
-        const month = date.getMonth(), day = date.getDate();
-        return (month === 9 && day >= 25) || (month === 10 && day <= 2);
+      /** The holidays on today (seasons.js), for this panel, whether or not they are turned off. Worked out once a day. */
+      seasonsToday() {
+        const today = new Date(), stamp = today.toDateString();
+        if (seasonCache?.stamp !== stamp) {
+          const born = this.boot.panel_born ? new Date(this.boot.panel_born * 1000) : null;
+          const list = window.SimplifySeasons?.active(today, { dutch: /^nl\b/i.test(document.documentElement.lang || ''), born }) || [];
+          seasonCache = { stamp, list };
+        }
+        return seasonCache.list;
       },
-      /** The Halloween touches show in season, unless the panel or this person turned them off. */
-      halloween(date = new Date()) {
-        return this.overviewPreferences.halloween !== false && this.halloweenSeason(date);
+      /** The seasonal touches show unless the panel (Settings, Appearance) or this person (Customize) turned them off. */
+      seasons() {
+        // The personal switch keeps its first name, halloween, so a choice made for Halloween still counts.
+        if (this.boot.appearance?.seasonal === false || this.overviewPreferences.halloween === false) return [];
+        return this.seasonsToday();
+      },
+      season(key) {
+        return this.seasons().some((s) => s.key === key);
+      },
+      /** The space-separated keys for data-season on the page, which the stylesheet (seasons.css) follows. */
+      seasonKeys() {
+        return this.seasons().map((s) => s.key).join(' ');
+      },
+      /** For the Customize switch: "Halloween", or "Hanukkah and Christmas". */
+      seasonNames() {
+        return this.seasonsToday().map((s) => t(`seasons.${s.key}.name`)).join(' · ');
+      },
+      /** The icons next to the panel name (two at most), each with a tooltip saying what the day is. */
+      seasonBadges() {
+        return this.seasons().filter((s) => !['valentine', 'easter'].includes(s.key)).slice(0, 2).map((s) => ({
+          key: s.key, icon: s.icon, color: s.color, day: s.day,
+          label: s.key === 'lunar' ? t('seasons.lunar.name_year', { animal: t('seasons.zodiac.' + ((s.start.getFullYear() - 2020) % 12 + 12) % 12) })
+            : s.key === 'hanukkah' ? t('seasons.hanukkah.name_night', { night: s.day }) : t(`seasons.${s.key}.name`),
+          text: s.key === 'birthday' ? t('seasons.birthday.text', { count: s.years, date: this.seasonDate(this.boot.panel_born) }) : t(`seasons.${s.key}.text`),
+        }));
+      },
+      seasonDate(timestamp) {
+        const date = new Date(timestamp * 1000), options = { day: 'numeric', month: 'long', year: 'numeric' };
+        try { return date.toLocaleDateString((document.documentElement.lang || 'en').replace('_', '-'), options); } catch { return date.toLocaleDateString('en', options); }
+      },
+      /** On 31 December from 23:00: the time left until the new year, as 0:42:10. */
+      newYearCountdown() {
+        const now = new Date(this.seasonClock || Date.now());
+        if (now.getMonth() !== 11 || now.getDate() !== 31 || now.getHours() < 23 || !this.season('newyear')) return '';
+        const left = Math.max(0, Math.ceil((new Date(now.getFullYear() + 1, 0, 1) - now) / 1000));
+        return `0:${String(Math.floor(left / 60)).padStart(2, '0')}:${String(left % 60).padStart(2, '0')}`;
+      },
+      /** The countdown ticks only on New Year's Eve; at midnight the fireworks go off once. */
+      startSeasonClock() {
+        const now = new Date();
+        if (this.seasonTimer || !(now.getMonth() === 11 && now.getDate() === 31 && this.season('newyear'))) return;
+        this.seasonTimer = setInterval(() => {
+          this.seasonClock = Date.now();
+          if (new Date().getMonth() === 0) {
+            clearInterval(this.seasonTimer);
+            seasonCache = null;
+            this.playSeason(true);
+          }
+        }, 1000);
+      },
+      /** A server's birthday: created on this day, at least a year ago (the number of years, or 0). */
+      serverBirthday(s) {
+        return this.seasons().length ? window.SimplifySeasons?.birthday(s.created) || 0 : 0;
+      },
+      serverBirthdayTip(s) {
+        return t('seasons.server_birthday', { name: s.name, count: this.serverBirthday(s) });
+      },
+      /** Easter: one server card a day hides a small egg, until this person finds it (once a year, on this device). */
+      easterEgg(s) {
+        if (this.server || !this.season('easter') || this.easterFound) return false;
+        try {
+          if (localStorage.getItem('simplify.easter') === String(new Date().getFullYear())) return false;
+        } catch {}
+        const cards = (this.boot.servers || []).map((server) => server.uuid).sort();
+        return cards.length > 0 && cards[new Date().getDate() % cards.length] === s.uuid;
+      },
+      findEasterEgg(event) {
+        const box = event.currentTarget.getBoundingClientRect();
+        window.SimplifySeasons?.confetti(box.left, box.top);
+        this.easterFound = true;
+        try { localStorage.setItem('simplify.easter', String(new Date().getFullYear())); } catch {}
+        window.Simplify?.toast(t('seasons.easter.found'), 'ok');
+      },
+      /** The holiday that leads today plays its small animation once per visit, on the overview only. */
+      playSeason(force = false) {
+        const lead = this.seasons()[0];
+        if (this.server || !lead || !window.SimplifySeasons) return;
+        try {
+          const key = 'simplify.season.' + lead.key;
+          if (!force && sessionStorage.getItem(key)) return;
+          sessionStorage.setItem(key, '1');
+        } catch {}
+        const brand = this.$root.querySelector('.ps-identity')?.getBoundingClientRect();
+        if (!brand) return;
+        const S = window.SimplifySeasons, top = brand.top + brand.height / 2;
+        if (lead.key === 'newyear') S.fireworks([[brand.right + 80, top], [innerWidth * .45, top - 6], [innerWidth * .62, top + 8]], ['#7c5cd6', '#e2a41a', '#d6456e', '#3a9bd9']);
+        if (lead.key === 'lunar') S.fireworks([[brand.right + 60, top], [innerWidth * .5, top + 4]], ['#d23b2f', '#e8b923']);
+        if (lead.key === 'holi') S.powder(brand);
+        if (lead.key === 'birthday') S.confetti(brand.right, top);
+      },
+      /** Halloween keeps its own name for what was built for it first: the web, the lantern and the bats. */
+      halloween() {
+        return this.season('halloween');
       },
       /** A few bats leave one server card when the overview opens, once per visit. */
       releaseBats() {
@@ -415,9 +648,10 @@
         if (String(id).startsWith('group-')) return {};
         const appearance = this.boot.appearance || {};
         const common = appearance.accent_color;
-        // Halloween turns the overview's neutral accent orange; a panel accent of your own stays.
-        if (id === 'overview' && this.halloween() && (common || '#878787').toLowerCase() === '#878787')
-          return { '--ps-accent': this.themeDark ? '#f0a35a' : '#c2621a', '--ps-on-accent': this.themeDark ? '#111118' : '#ffffff' };
+        // Some holidays (Halloween, King's Day, Christmas, Lunar New Year) tint the overview's neutral accent; a panel accent of your own stays.
+        const tint = this.seasons()[0]?.accent || this.seasons().find((s) => s.accent)?.accent;
+        if (id === 'overview' && tint && (common || '#878787').toLowerCase() === '#878787')
+          return { '--ps-accent': tint[this.themeDark ? 1 : 0], '--ps-on-accent': this.themeDark ? '#111118' : '#ffffff' };
         if (id === 'overview' && /^#[0-9a-f]{6}$/i.test(common || ''))
           return { '--ps-accent': common, '--ps-on-accent': accentInk(common) };
         if (id === 'overview') return { '--ps-accent': this.themeDark ? '#c0c0c5' : '#55555f', '--ps-on-accent': this.themeDark ? '#111118' : '#ffffff' };

@@ -10,8 +10,14 @@ use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\View;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use Simplify\Core\Support\Assets;
 use Simplify\Core\Support\Brand;
 use Simplify\Core\Support\PanelSettings;
+use Simplify\Core\WebApp\WebApp;
+use Throwable;
 
 /** The settings sections, shared by the settings page and the setup wizard so both ask the same thing the same way. */
 final class SettingsFields
@@ -54,19 +60,26 @@ final class SettingsFields
                 ->hex()->regex('/^#[0-9a-fA-F]{6}$/'),
             Toggle::make('server_colours')->label(__(self::T.'appearance.server_colours'))
                 ->helperText(__(self::T.'appearance.server_colours_help')),
+            Toggle::make('seasonal')->label(__(self::T.'appearance.seasonal'))
+                ->helperText(__(self::T.'appearance.seasonal_help')),
         ]);
     }
 
     public static function brand(): Section
     {
         return Section::make(__(self::T.'appearance.brand'))->columns(2)->schema([
-            TextInput::make('brand_name')->label(__(self::T.'appearance.brand_name'))
+            TextInput::make('brand_name')->label(__(self::T.'appearance.brand_name'))->live(onBlur: true)
                 ->placeholder(fn () => (string) config('app.name'))->maxLength(40)
                 ->helperText(__(self::T.'appearance.brand_name_help')),
-            TextInput::make('logo_height')->label(__(self::T.'appearance.logo_height'))
+            TextInput::make('logo_height')->label(__(self::T.'appearance.logo_height'))->live(onBlur: true)
                 ->integer()->minValue(16)->maxValue(64)->suffix('px')->required(),
             Toggle::make('pelican_suffix')->label(__(self::T.'appearance.pelican_suffix'))->columnSpanFull(),
             self::image('brand_logo', 'appearance.logo', 'appearance.logo_help')->columnSpanFull(),
+            self::preview('logo', fn (Get $get) => [
+                'image' => self::previewUrl($get('brand_logo')),
+                'name' => trim((string) $get('brand_name')) ?: (string) config('app.name'),
+                'height' => max(16, min(64, (int) $get('logo_height') ?: 32)),
+            ]),
         ]);
     }
 
@@ -75,15 +88,51 @@ final class SettingsFields
     {
         return Section::make(__(self::T.'appearance.app'))->description(__(self::T.'appearance.app_help'))->schema([
             self::image('app_icon', 'appearance.app_icon', 'appearance.app_icon_help')->imageCropAspectRatio('1:1'),
+            self::preview('icon', fn (Get $get) => ['icon' => self::appIcon($get)]),
             self::image('app_badge', 'appearance.app_badge', 'appearance.app_badge_help')->acceptedFileTypes(['image/png']),
+            self::preview('badge', fn (Get $get) => [
+                'icon' => self::appIcon($get),
+                'image' => self::previewUrl($get('app_badge')) ?? WebApp::badge(),
+            ]),
             Toggle::make('push')->label(__(self::T.'general.push_on'))->helperText(__(self::T.'general.push_help')),
         ]);
     }
 
     private static function image(string $name, string $label, string $help): FileUpload
     {
-        return FileUpload::make($name)->label(__(self::T.$label))->helperText(__(self::T.$help))
+        return FileUpload::make($name)->live()->label(__(self::T.$label))->helperText(__(self::T.$help))
             ->image()->acceptedFileTypes(['image/png', 'image/jpeg', 'image/webp'])->maxSize(1024)
             ->disk('local')->directory(Brand::DIRECTORY)->visibility('private');
+    }
+
+    /** A small picture of where an image ends up: the top bar, a phone's home screen or Android's status bar. */
+    private static function preview(string $kind, callable $data): View
+    {
+        return View::make('simplify::partials.image-preview')->columnSpanFull()
+            ->viewData(fn (Get $get) => ['kind' => $kind, 'name' => WebApp::name()] + $data($get));
+    }
+
+    private static function appIcon(Get $get): string
+    {
+        return self::previewUrl($get('app_icon')) ?? Assets::url('app-icon-192.png');
+    }
+
+    /** The image in an upload field: a fresh upload before saving, or the saved file. */
+    private static function previewUrl(mixed $state): ?string
+    {
+        foreach ((array) $state as $file) {
+            if ($file instanceof TemporaryUploadedFile) {
+                try {
+                    return $file->temporaryUrl();
+                } catch (Throwable) {
+                    return null;
+                }
+            }
+            if (is_string($file) && ($name = Brand::logoFile($file)) !== null) {
+                return url('/simplify/brand/'.$name);
+            }
+        }
+
+        return null;
     }
 }

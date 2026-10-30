@@ -8,7 +8,7 @@ return [
     'saved' => 'Đã lưu cài đặt',
     'page_title' => 'Cài đặt Simplify',
     'pelican_frame_title' => 'Cài đặt Pelican: :label',
-    'pelican_frame' => 'Cài đặt :label của chính Pelican. Lưu bằng nút lưu của Pelican ở góc trên bên phải panel này.',
+    'pelican_frame' => 'Cài đặt :label của chính Pelican.',
     'version_line' => 'Phiên bản :version · Thay đổi áp dụng cho mọi người trên panel này sau khi lưu.',
     'profile' => [
         'support' => 'Liên kết hỗ trợ',
@@ -46,8 +46,16 @@ return [
         'app_icon_help' => 'Ảnh PNG, JPEG hoặc WebP vuông tối thiểu 512 pixel, tối đa 1 MB. Để trống dùng biểu tượng Simplify.',
         'app_badge' => 'Biểu tượng thanh trạng thái',
         'app_badge_help' => 'Ảnh PNG nền trong suốt, hiển thị màu trắng trên thanh trạng thái Android. Để trống sẽ dùng biểu tượng ứng dụng nếu nền trong suốt, nếu không thì dùng chú bồ nông.',
+        'preview' => [
+            'logo' => 'Trên thanh trên cùng',
+            'icon' => 'Trên màn hình chính của điện thoại',
+            'badge' => 'Trên thanh trạng thái và thông báo của Android',
+            'note' => 'Tin nhắn mới',
+        ],
         'server_colours' => 'Màu riêng cho từng máy chủ',
         'server_colours_help' => 'Mỗi máy chủ có màu riêng, theo nhóm của nó hoặc màu được chọn cho nó. Tắt: mọi máy chủ dùng màu nhấn.',
+        'seasonal' => 'Điểm xuyết theo mùa',
+        'seasonal_help' => 'Những điểm xuyết nhỏ vào các ngày lễ trong năm. Mỗi người vẫn có thể tự tắt trong Customize.',
         'pelican_suffix' => 'Hiện "× Pelican" sau tên',
     ],
     'addons' => [

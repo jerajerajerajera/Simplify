@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Toutes les notifications',
+        'customize_notifications' => 'Personnaliser les notifications',
         'phone_navigation' => 'Navigation mobile',
         'servers' => 'Serveurs',
         'new' => 'Nouveau',
@@ -46,6 +48,8 @@ return [
         'host_menu' => 'Menu hôte',
         'close_menu' => 'Fermer le menu',
         'admin_sections' => 'Sections d’admin',
+        'expand_all' => 'Tout déplier',
+        'collapse_all' => 'Tout replier',
         'server_count' => ':count serveur|:count serveurs',
         'no_servers_yet' => 'Pas encore de serveurs.',
         'health' => 'Santé',
@@ -159,8 +163,9 @@ return [
         'server_groups_button' => 'Bouton Groupes de serveurs',
         'a_button_in_the_top_bar' => 'Un bouton dans la barre du haut pour créer vos propres groupes et choisir l’ordre de vos serveurs',
         'more' => 'Plus',
-        'halloween_theme' => 'Thème Halloween',
-        'a_few_small_halloween_touches_until' => 'Quelques petites touches d’Halloween jusqu’au 2 novembre',
+        'seasonal_touches' => 'Touches saisonnières',
+        'a_few_small_touches_for' => 'Quelques petites touches pour :name',
+        'easter_egg' => 'Œuf de Pâques',
         'server_colors' => 'Couleurs des serveurs',
         'one_color_for_every_server_or' => 'Une couleur pour tous les serveurs, ou une couleur par serveur, pour tout le monde sur le panel. Une couleur par groupe se trouve dans Groupes de serveurs.',
         'open_settings' => 'Ouvrir les paramètres',
@@ -224,6 +229,21 @@ return [
             'http' => 'Wings a répondu avec HTTP :status',
             'node_problem' => ':node : :problem',
             'nodes_silent' => ':count node ne s’est pas manifesté|:count nodes ne se sont pas manifestés',
+        ],
+        'page' => [
+            'attention' => ':count demande votre attention|:count demandent votre attention',
+            'ok' => ':count ok',
+            'all_good' => 'Tout va bien',
+            'open_nodes' => 'Ouvrir les nœuds',
+            'release_notes' => 'Notes de version',
+            'not_run' => 'Les vérifications n\'ont pas encore été lancées. Utilisez le bouton d\'actualisation pour les lancer.',
+            'status' => [
+                'ok' => 'OK',
+                'warning' => 'Avertissement',
+                'failed' => 'Échec',
+                'crashed' => 'Planté',
+                'skipped' => 'Ignoré',
+            ],
         ],
     ],
 ];

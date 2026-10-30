@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => '所有通知',
+        'customize_notifications' => '自定义通知',
         'phone_navigation' => '手机导航',
         'servers' => '服务器',
         'new' => '新',
@@ -46,6 +48,8 @@ return [
         'host_menu' => '主机菜单',
         'close_menu' => '关闭菜单',
         'admin_sections' => '管理部分',
+        'expand_all' => '全部展开',
+        'collapse_all' => '全部收起',
         'server_count' => ':count 个服务器',
         'no_servers_yet' => '还没有服务器。',
         'health' => '健康',
@@ -159,8 +163,9 @@ return [
         'server_groups_button' => '服务器分组按钮',
         'a_button_in_the_top_bar' => '顶栏中的一个按钮，用于创建你自己的分组并选择服务器顺序',
         'more' => '更多',
-        'halloween_theme' => '万圣节主题',
-        'a_few_small_halloween_touches_until' => '11 月 2 日前的一些万圣节小点缀',
+        'seasonal_touches' => '节日点缀',
+        'a_few_small_touches_for' => ':name 的一些小点缀',
+        'easter_egg' => '复活节彩蛋',
         'server_colors' => '服务器颜色',
         'one_color_for_every_server_or' => '所有服务器使用一种颜色，或每个服务器一种颜色，对面板上的所有人生效。分组颜色在“服务器分组”中设置。',
         'open_settings' => '打开设置',
@@ -224,6 +229,21 @@ return [
             'http' => 'Wings 返回了 HTTP :status',
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count 个节点未报告',
+        ],
+        'page' => [
+            'attention' => ':count 项需要处理',
+            'ok' => ':count 项正常',
+            'all_good' => '一切正常',
+            'open_nodes' => '打开节点',
+            'release_notes' => '发行说明',
+            'not_run' => '检查尚未运行。请使用刷新按钮运行。',
+            'status' => [
+                'ok' => '正常',
+                'warning' => '警告',
+                'failed' => '失败',
+                'crashed' => '崩溃',
+                'skipped' => '已跳过',
+            ],
         ],
     ],
 ];

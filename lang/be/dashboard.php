@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Усе апавяшчэнні',
+        'customize_notifications' => 'Наладзіць апавяшчэнні',
         'phone_navigation' => 'Навігацыя на тэлефоне',
         'servers' => 'Серверы',
         'new' => 'Новае',
@@ -46,6 +48,8 @@ return [
         'host_menu' => 'Меню хоста',
         'close_menu' => 'Закрыць меню',
         'admin_sections' => 'Раздзелы адміністратара',
+        'expand_all' => 'Разгарнуць усё',
+        'collapse_all' => 'Згарнуць усё',
         'server_count' => ':count сервер|:count серверы|:count сервераў',
         'no_servers_yet' => 'Сервераў пакуль няма.',
         'health' => 'Стан',
@@ -159,8 +163,9 @@ return [
         'server_groups_button' => 'Кнопка груп сервераў',
         'a_button_in_the_top_bar' => 'Кнопка ў верхняй панэлі для стварэння сваіх груп і выбару парадку сервераў',
         'more' => 'Яшчэ',
-        'halloween_theme' => 'Тэма Хэлоўіна',
-        'a_few_small_halloween_touches_until' => 'Трохі хэлоўінскіх дэталяў да 2 лістапада',
+        'seasonal_touches' => 'Святочныя драбніцы',
+        'a_few_small_touches_for' => 'Некалькі драбніц: :name',
+        'easter_egg' => 'Велікоднае яйка',
         'server_colors' => 'Колеры сервераў',
         'one_color_for_every_server_or' => 'Адзін колер для ўсіх сервераў або свой колер для кожнага, для ўсіх на панэлі. Колер групы задаецца ў Групах сервераў.',
         'open_settings' => 'Адкрыць налады',
@@ -224,6 +229,21 @@ return [
             'http' => 'Wings адказаў HTTP :status',
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count node не даслаў даных|:count nodes не даслалі даных|:count nodes не даслалі даных',
+        ],
+        'page' => [
+            'attention' => ':count патрабуе ўвагі|:count патрабуюць увагі|:count патрабуюць увагі',
+            'ok' => ':count у парадку',
+            'all_good' => 'Усё ў парадку',
+            'open_nodes' => 'Адкрыць вузлы',
+            'release_notes' => 'Нататкі да выпуску',
+            'not_run' => 'Праверкі яшчэ не запускаліся. Запусціце іх кнопкай абнаўлення.',
+            'status' => [
+                'ok' => 'У парадку',
+                'warning' => 'Папярэджанне',
+                'failed' => 'Памылка',
+                'crashed' => 'Збой',
+                'skipped' => 'Прапушчана',
+            ],
         ],
     ],
 ];

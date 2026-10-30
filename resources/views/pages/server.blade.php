@@ -3,10 +3,12 @@
      x-data="simplifyServer($wire, @js($this->initial()))"
      x-on:resize.window.debounce.150ms="applyScale()"
      :class="{'dark': themeDark, 'is-server-full-width': overviewPreferences.fullWidth, 'ps-halloween': halloween()}"
+     :data-season="seasonKeys()"
      :style="accentStyle(server.uuid)">
     @include('simplify::dashboard.assets')
     @include('simplify::dashboard.icons')
     @include('simplify::dashboard.halloween')
+    @include('simplify::dashboard.seasons')
     {{-- Status bar: slides in once the server card scrolls out of view, so status and power stay in reach. --}}
     <div class="ps-statusbar" :class="{'is-visible': statusBarVisible}" :inert="!statusBarVisible" role="region" aria-label="{{ $u('server_status') }}">
         <span class="ps-statusbar-name" x-text="server.name"></span>
@@ -29,8 +31,9 @@
                 <img class="ps-server-banner" x-show="server.background && status!=='offline'" :src="safeImage(server.background)" alt="" x-on:error="$el.style.visibility='hidden'">
             </span>
             <span class="ps-info-icons">
-                <span class="ps-info-icon ps-custom-server-icon" x-show="server.server_icon"><img :src="safeImage(server.server_icon)" alt="" x-on:error="$el.style.visibility='hidden'"></span>
-                <span class="ps-info-icon ps-software-icon" :class="{'is-badge': server.server_icon}" :data-tip="server.software || @js($u('server_software'))">
+                {{-- The same order as the server's card on the overview: the game's own icon, then the icon set in Pelican. --}}
+                <span class="ps-info-icon ps-custom-server-icon" x-show="server.server_icon || server.icon"><img :src="safeImage(server.server_icon || server.icon)" alt="" x-on:error="$el.style.visibility='hidden'"></span>
+                <span class="ps-info-icon ps-software-icon" x-show="server.egg_icon || !(server.server_icon || server.icon)" :class="{'is-badge': server.server_icon || server.icon}" :data-tip="server.software || @js($u('server_software'))">
                     <img x-show="server.egg_icon" :src="safeImage(server.egg_icon)" alt="" x-on:error="$el.style.visibility='hidden'">
                     <svg x-show="!server.egg_icon" aria-hidden="true"><use :href="server.minecraft ? '#ps-cube' : '#ps-gamepad'"/></svg>
                 </span>

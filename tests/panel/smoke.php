@@ -2,6 +2,7 @@
 
 // Loads Simplify inside a real Pelican panel and opens its pages. Run from the panel folder after
 // `php artisan p:plugin:install simplify`: php plugins/simplify/tests/panel/smoke.php
+use App\Filament\Admin\Pages\Health;
 use App\Models\Role;
 use App\Models\Server;
 use App\Models\User;
@@ -35,8 +36,10 @@ use Simplify\Core\Filament\Admin\Pages\Setup;
 use Simplify\Core\Filament\App\Pages\Notifications;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Filament\Server\ServerPage;
+use Simplify\Core\Models\Setting;
 use Simplify\Core\Overview\Listing;
 use Simplify\Core\People\People;
+use Simplify\Core\Push\PluginUpdates;
 use Simplify\Core\Push\Push;
 use Simplify\Core\Push\UpdateNotices;
 use Simplify\Core\Push\WebPush;
@@ -177,7 +180,15 @@ $admin = User::where('email', 'smoke-simplify@example.com')->first()
     ?? User::withoutEvents(fn () => User::factory()->create(['email' => 'smoke-simplify@example.com']));
 $admin->syncRoles(Role::getRootAdmin());
 
-step('the first visit to the settings opens the setup, and finishing it saves the answers', function () use ($admin) {
+step('a panel with settings opens them, a new panel opens the setup, and finishing it saves the answers', function () use ($admin) {
+    // CI took this panel over from PelicanSimplify: it has settings but never finished the setup.
+    $response = visit($admin, Settings::getUrl(panel: 'admin'));
+    if ($response->isRedirect()) {
+        throw new RuntimeException('a panel with settings was sent to the setup: '.$response->headers->get('Location'));
+    }
+    // A new panel: nothing saved yet.
+    Setting::query()->delete();
+    PanelSettings::save([]);
     $response = visit($admin, Settings::getUrl(panel: 'admin'));
     if (! $response->isRedirect() || ! str_contains((string) $response->headers->get('Location'), 'simplify-setup')) {
         throw new RuntimeException('the settings did not open the setup first (HTTP '.$response->getStatusCode().')');
@@ -293,6 +304,19 @@ step('host mode: the overview carries the admin tree, the health page and the he
     $pages = collect($initial['admin_pages'][0]['items'] ?? [])->pluck('key');
     if (! $pages->contains('health') || ! is_array($initial['health_checks']) || ! is_bool($initial['host_mode_auto'])) {
         throw new RuntimeException('host mode is missing parts: '.json_encode([$pages, $initial['health_checks'], $initial['host_mode_auto']]));
+    }
+});
+step('Pelican\'s Health page shows in Simplify\'s look', function () use ($admin) {
+    $url = Health::getUrl(panel: 'admin');
+    $response = visit($admin, $url);
+    expectOk($response, $url);
+    if (! str_contains($response->getContent(), 's-health')) {
+        throw new RuntimeException('the Health page still uses Pelican\'s own view');
+    }
+});
+step('the hourly check tells admins about plugin updates without failing', function () {
+    if (! is_int(PluginUpdates::send())) {
+        throw new RuntimeException('the plugin update check did not finish');
     }
 });
 step('a power action on a server the user cannot reach is refused', function () use ($admin) {

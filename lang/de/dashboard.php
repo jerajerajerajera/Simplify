@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Alle Benachrichtigungen',
+        'customize_notifications' => 'Benachrichtigungen anpassen',
         'phone_navigation' => 'Handy-Navigation',
         'servers' => 'Server',
         'new' => 'Neu',
@@ -46,6 +48,8 @@ return [
         'host_menu' => 'Host-Menü',
         'close_menu' => 'Menü schließen',
         'admin_sections' => 'Admin-Bereiche',
+        'expand_all' => 'Alle ausklappen',
+        'collapse_all' => 'Alle einklappen',
         'server_count' => ':count Server|:count Server',
         'no_servers_yet' => 'Noch keine Server.',
         'health' => 'Zustand',
@@ -159,8 +163,9 @@ return [
         'server_groups_button' => 'Button Servergruppen',
         'a_button_in_the_top_bar' => 'Ein Button in der oberen Leiste, um eigene Gruppen zu erstellen und die Reihenfolge deiner Server zu wählen',
         'more' => 'Mehr',
-        'halloween_theme' => 'Halloween-Theme',
-        'a_few_small_halloween_touches_until' => 'Ein paar kleine Halloween-Details bis zum 2. November',
+        'seasonal_touches' => 'Saisonale Details',
+        'a_few_small_touches_for' => 'Ein paar kleine Details für :name',
+        'easter_egg' => 'Osterei',
         'server_colors' => 'Serverfarben',
         'one_color_for_every_server_or' => 'Eine Farbe für jeden Server oder eine Farbe pro Server, für alle auf dem Panel. Eine Farbe pro Gruppe gibt es unter Servergruppen.',
         'open_settings' => 'Einstellungen öffnen',
@@ -224,6 +229,21 @@ return [
             'http' => 'Wings hat mit HTTP :status geantwortet',
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count Node hat sich nicht gemeldet|:count Nodes haben sich nicht gemeldet',
+        ],
+        'page' => [
+            'attention' => ':count braucht Aufmerksamkeit|:count brauchen Aufmerksamkeit',
+            'ok' => ':count in Ordnung',
+            'all_good' => 'Alles in Ordnung',
+            'open_nodes' => 'Nodes öffnen',
+            'release_notes' => 'Versionshinweise',
+            'not_run' => 'Die Prüfungen sind noch nicht gelaufen. Starte sie mit der Aktualisieren-Schaltfläche.',
+            'status' => [
+                'ok' => 'OK',
+                'warning' => 'Warnung',
+                'failed' => 'Fehlgeschlagen',
+                'crashed' => 'Abgestürzt',
+                'skipped' => 'Übersprungen',
+            ],
         ],
     ],
 ];

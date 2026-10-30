@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'All notifications',
+        'customize_notifications' => 'Customize notifications',
         'phone_navigation' => 'Phone navigation',
         'servers' => 'Servers',
         'new' => 'New',
@@ -46,6 +48,8 @@ return [
         'host_menu' => 'Host menu',
         'close_menu' => 'Close menu',
         'admin_sections' => 'Admin sections',
+        'expand_all' => 'Expand all',
+        'collapse_all' => 'Collapse all',
         'server_count' => ':count server|:count servers',
         'no_servers_yet' => 'No servers yet.',
         'health' => 'Health',
@@ -159,8 +163,9 @@ return [
         'server_groups_button' => 'Server groups button',
         'a_button_in_the_top_bar' => 'A button in the top bar to make your own groups and choose the order of your servers',
         'more' => 'More',
-        'halloween_theme' => 'Halloween theme',
-        'a_few_small_halloween_touches_until' => 'A few small Halloween touches until 2 November',
+        'seasonal_touches' => 'Seasonal touches',
+        'a_few_small_touches_for' => 'A few small touches for :name',
+        'easter_egg' => 'Easter egg',
         'server_colors' => 'Server colors',
         'one_color_for_every_server_or' => 'One color for every server, or a color per server, for everyone on the panel. A color per group is under Server groups.',
         'open_settings' => 'Open settings',
@@ -224,6 +229,21 @@ return [
             'http' => 'Wings answered with HTTP :status',
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count node did not report|:count nodes did not report',
+        ],
+        'page' => [
+            'attention' => ':count needs attention|:count need attention',
+            'ok' => ':count ok',
+            'all_good' => 'All good',
+            'open_nodes' => 'Open nodes',
+            'release_notes' => 'Release notes',
+            'not_run' => 'The health checks have not run yet. Use the refresh button to run them.',
+            'status' => [
+                'ok' => 'Ok',
+                'warning' => 'Warning',
+                'failed' => 'Failed',
+                'crashed' => 'Crashed',
+                'skipped' => 'Skipped',
+            ],
         ],
     ],
 ];

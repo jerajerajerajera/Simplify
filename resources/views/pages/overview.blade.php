@@ -5,9 +5,11 @@
      x-data="pelicanSimplify($wire, @js($this->initial()))"
      x-on:resize.window.debounce.150ms="applyScale(); restoreOverviewView()"
      :class="{'dark': themeDark, 'host-mode': hostMode, 'is-full-width': overviewPreferences.fullWidth, 'ps-halloween': halloween()}"
+     :data-season="seasonKeys()"
      :style="accentStyle('overview')">
     @include('simplify::dashboard.icons')
     @include('simplify::dashboard.halloween')
+    @include('simplify::dashboard.seasons')
     <main class="ps-main">
         @include('simplify::dashboard.header', ['notes' => 'host'])
         @include('simplify::dashboard.host')

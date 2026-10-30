@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Tất cả thông báo',
+        'customize_notifications' => 'Tùy chỉnh thông báo',
         'phone_navigation' => 'Điều hướng trên điện thoại',
         'servers' => 'Máy chủ',
         'new' => 'Mới',
@@ -46,6 +48,8 @@ return [
         'host_menu' => 'Menu host',
         'close_menu' => 'Đóng menu',
         'admin_sections' => 'Mục quản trị',
+        'expand_all' => 'Mở rộng tất cả',
+        'collapse_all' => 'Thu gọn tất cả',
         'server_count' => ':count máy chủ',
         'no_servers_yet' => 'Chưa có máy chủ.',
         'health' => 'Tình trạng',
@@ -159,8 +163,9 @@ return [
         'server_groups_button' => 'Nút nhóm máy chủ',
         'a_button_in_the_top_bar' => 'Nút trên thanh trên cùng để tạo nhóm riêng và chọn thứ tự máy chủ',
         'more' => 'Thêm',
-        'halloween_theme' => 'Giao diện Halloween',
-        'a_few_small_halloween_touches_until' => 'Vài điểm nhấn Halloween nhỏ đến hết 2 tháng 11',
+        'seasonal_touches' => 'Điểm xuyết theo mùa',
+        'a_few_small_touches_for' => 'Vài điểm xuyết nhỏ cho :name',
+        'easter_egg' => 'Trứng Phục Sinh',
         'server_colors' => 'Màu máy chủ',
         'one_color_for_every_server_or' => 'Một màu cho mọi máy chủ, hoặc mỗi máy chủ một màu, cho tất cả mọi người trên panel. Màu theo nhóm nằm trong Nhóm máy chủ.',
         'open_settings' => 'Mở cài đặt',
@@ -224,6 +229,21 @@ return [
             'http' => 'Wings trả lời với HTTP :status',
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count node không báo cáo',
+        ],
+        'page' => [
+            'attention' => ':count cần chú ý',
+            'ok' => ':count ổn',
+            'all_good' => 'Mọi thứ đều ổn',
+            'open_nodes' => 'Mở các node',
+            'release_notes' => 'Ghi chú phát hành',
+            'not_run' => 'Các kiểm tra chưa chạy. Dùng nút làm mới để chạy chúng.',
+            'status' => [
+                'ok' => 'Ổn',
+                'warning' => 'Cảnh báo',
+                'failed' => 'Thất bại',
+                'crashed' => 'Bị lỗi',
+                'skipped' => 'Bỏ qua',
+            ],
         ],
     ],
 ];

@@ -9,8 +9,8 @@ use App\Models\Server;
 use Illuminate\Http\Client\Pool;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
+use Simplify\Core\Support\SafeCache;
 
 /**
  * Live numbers for many servers at once: one request per node for all its servers, every node at the same time,
@@ -54,8 +54,8 @@ final class NodeUsage
             $now['rx_bytes'] += (float) $server['rx'];
             $now['tx_bytes'] += (float) $server['tx'];
         }
-        $before = Cache::get('simplify.node-traffic.'.$node->id);
-        Cache::put('simplify.node-traffic.'.$node->id, $now, 300);
+        $before = SafeCache::get('simplify.node-traffic.'.$node->id);
+        SafeCache::put('simplify.node-traffic.'.$node->id, $now, 300);
         $seconds = is_array($before) ? $now['at'] - $before['at'] : 0;
         // A counter that went down means a server restarted, and the first look has nothing to compare: both read 0 B/s.
         $rate = fn (string $key) => $seconds > 0 && $seconds <= 120 ? max(0.0, ($now[$key] - $before[$key]) / $seconds) : 0.0;
@@ -72,7 +72,7 @@ final class NodeUsage
         $lists = [];
         $ask = [];
         foreach ($nodes->reject(fn (Node $node) => $node->isUnderMaintenance()) as $node) {
-            $cached = Cache::get(self::key($node));
+            $cached = SafeCache::get(self::key($node));
             if (is_array($cached) || $cached === false) {
                 $lists[$node->id] = $cached;
             } else {
@@ -92,7 +92,7 @@ final class NodeUsage
             $response = $responses[(string) $node->id] ?? null;
             $list = $response instanceof Response && $response->successful() && is_array($response->json()) ? $response->json() : null;
             $numbers = $list === null ? false : self::fromList($list);
-            Cache::put(self::key($node), $numbers, $numbers === false ? self::UNREACHABLE : self::FRESH);
+            SafeCache::put(self::key($node), $numbers, $numbers === false ? self::UNREACHABLE : self::FRESH);
             $lists[$node->id] = $numbers;
         }
 

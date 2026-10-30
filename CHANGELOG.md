@@ -1,5 +1,31 @@
 # Changelog
 
+## 1.4.4
+
+- A cache that the panel cannot write no longer breaks the overview, the notifications or host health. This happens when `php artisan` ran as root, so the cache files belong to root. The page works out the numbers again instead, and root admins get a notification with the command that hands the files back to the web server.
+- A request that fails on the server shows a short message in the panel's own style, instead of Livewire's white "500 | Server Error" page over the whole panel.
+- Admin tools: the groups are straight rows on the left, with how many pages each holds; the open group has a stripe in its colour and an arrow towards its pages, which show as tiles on the right. One group at a time, so the menu stays short. In the phone menu the tiles fold out under their group. It ends above the footer, so nothing is cut off on the overview. Every menu under the top bar (notifications, admin tools, customize, groups) is at most two thirds of the window high and scrolls inside when its content needs more.
+- Settings → Appearance: under the logo, the app icon and the status bar icon a small picture shows where each one ends up: the top bar, a phone's home screen, and Android's status bar with a notification. It follows a new upload, the panel name and the logo height before you save.
+- Settings → Pelican's own tabs (Mail, Backup, Misc and the others): the form sits straight in Simplify's card instead of in a second box, and Simplify's Save button (in the title bar in host mode) saves it. Pelican's separate save icon is gone.
+- Host mode → People & roles: the People/Roles tabs, the search field and the add button are in the title bar, and the list sits straight on the page instead of in a second box.
+- A button whose menu is open no longer shows its tooltip over the menu's arrow.
+- Settings: Save sits in the head of the page next to "Run setup again", instead of a blue button under the card. Website → embed code: the copy buttons are Simplify's own buttons.
+- Notifications: the button at the top of the bell menu opens a window with every notification (as in PelicanSimplify 0.5), with "Customize notifications" above the list: turn notifications on or off for this device, send a test, and choose messages and updates. It replaces the settings button that went to a separate page. 32 languages.
+- Plugin updates: once an hour Simplify lets Pelican's own update check look for new plugin versions, and tells root admins once per version in the bell (and as an app notification when they get updates), with a button to Admin → Plugins. Pelican installs the update as before; Simplify downloads nothing. Until now Pelican only showed an update when someone opened Admin → Plugins. 32 languages.
+- The bell no longer shows PelicanSimplify's old "Plugin updated" and "… is available" notifications, whose button led to a page that no longer exists.
+- The small arrow above a top-bar menu points at the middle of its button.
+- Host mode: every group in the menu on the left folds open and shut, and "Expand all" / "Collapse all" above it opens or closes them all. The group of the open page stays open. 32 languages.
+- Host mode: a Pelican page's search field and buttons sit in the title bar again (as in PelicanSimplify 0.7.0), and its table or sections have no card of their own inside Simplify's box. Create is the named button, the others are icon buttons; selecting rows brings back the bulk actions.
+- Host mode: the settings in the tree (General, Appearance, Add-ons and Pelican's tabs) save with the button in the title bar too, like Announcements, Automatic subdomains and Website, instead of a separate button under the form.
+- Server page: the console is one box in one colour. Pelican's terminal painted a half see-through background of its own, which showed as a lighter box inside the card.
+- Server page: no empty grey badge next to the server's picture when its egg has no icon.
+- Server page: the server's icon set in Pelican shows in the console header too, as on its card on the overview. Before, the header skipped it and showed the egg's icon or the cube.
+- Settings → General, Appearance and the other settings open the settings again on a panel taken over from PelicanSimplify. They sent you to the first-time setup every time, because that panel had settings but no finished setup.
+- Admin tools → Pelican settings opens Pelican's tab inside Simplify's settings again, instead of Pelican's bare page.
+- Pelican's Health page in Simplify's look: a summary line with when the checks last ran, then what needs attention with a button to where you fix it (Nodes for outdated Wings, the release notes for an outdated panel), then the checks that are fine as short rows with their own icon. Pelican's refresh button stays; in host mode it sits in the title bar. 32 languages.
+- Overview: the Host health card folds open with a tab that sticks out under the middle of its bottom edge, instead of a small arrow in its title, so it is clearer that the card opens to show every node.
+- Website embed: after saving, "One server" and "One game" pick the first on the list, so the code and the preview show straight away.
+
 ## 1.4.3
 
 - The notifications menu always ends inside the window, so its last item and "Show more" are no longer cut off when the top bar has a second row (announcements on a narrower window) or the panel is zoomed.

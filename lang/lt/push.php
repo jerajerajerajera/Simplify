@@ -32,4 +32,8 @@ return [
     'panel_update_body' => 'Šis skydelis veikia su :current.',
     'wings_update' => 'Galima Wings :version',
     'wings_update_body' => 'Senesnis Wings: :nodes.',
+    'plugin_update' => ':name :version jau prieinamas',
+    'plugin_update_unknown' => ':name turi atnaujinimą',
+    'plugin_update_body' => 'Atnaujinkite Admin → Plugins; Pelican jį įdiegs.',
+    'open_plugins' => 'Atidaryti įskiepius',
 ];

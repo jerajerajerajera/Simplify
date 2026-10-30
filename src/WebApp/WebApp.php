@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Simplify\Core\WebApp;
 
-use Illuminate\Support\Facades\Cache;
 use Simplify\Core\Support\Assets;
 use Simplify\Core\Support\Brand;
 use Simplify\Core\Support\PanelSettings;
+use Simplify\Core\Support\SafeCache;
 
 /**
  * The panel as an app on a phone or desktop: a manifest with the panel's name and icons, and a small service worker
@@ -58,7 +58,7 @@ final class WebApp
             return null;
         }
 
-        $png = Cache::rememberForever('simplify.app-icon.'.$own.'.'.$size, function () use ($path, $size) {
+        $png = SafeCache::rememberForever('simplify.app-icon.'.$own.'.'.$size, function () use ($path, $size) {
             $source = @imagecreatefromstring((string) file_get_contents($path));
             if ($source === false) {
                 return null;
@@ -90,7 +90,7 @@ final class WebApp
         }
         $icon = Brand::logoFile(PanelSettings::get('app_icon'));
         if ($icon !== null && str_ends_with($icon, '.png')
-            && Cache::rememberForever('simplify.see-through.'.$icon, fn () => self::seeThrough((string) Brand::path($icon)))) {
+            && SafeCache::rememberForever('simplify.see-through.'.$icon, fn () => self::seeThrough((string) Brand::path($icon)))) {
             return url('/simplify/brand/'.$icon);
         }
 

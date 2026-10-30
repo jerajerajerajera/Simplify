@@ -32,4 +32,8 @@ return [
     'panel_update_body' => 'Dette panelet kjører :current.',
     'wings_update' => 'Wings :version er tilgjengelig',
     'wings_update_body' => 'Eldre Wings på: :nodes.',
+    'plugin_update' => ':name :version er tilgjengelig',
+    'plugin_update_unknown' => ':name har en oppdatering',
+    'plugin_update_body' => 'Oppdater den under Admin → Plugins; Pelican installerer den.',
+    'open_plugins' => 'Åpne plugins',
 ];

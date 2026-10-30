@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Összes értesítés',
+        'customize_notifications' => 'Értesítések testreszabása',
         'phone_navigation' => 'Telefonos navigáció',
         'servers' => 'Szerverek',
         'new' => 'Új',
@@ -46,6 +48,8 @@ return [
         'host_menu' => 'Gazdamenü',
         'close_menu' => 'Menü bezárása',
         'admin_sections' => 'Admin részek',
+        'expand_all' => 'Összes kibontása',
+        'collapse_all' => 'Összes összecsukása',
         'server_count' => ':count szerver|:count szerver',
         'no_servers_yet' => 'Még nincsenek szerverek.',
         'health' => 'Állapot',
@@ -159,8 +163,9 @@ return [
         'server_groups_button' => 'Szervercsoportok gomb',
         'a_button_in_the_top_bar' => 'Egy gomb a felső sávban saját csoportok létrehozásához és a szerverek sorrendjének megadásához',
         'more' => 'Több',
-        'halloween_theme' => 'Halloween téma',
-        'a_few_small_halloween_touches_until' => 'Néhány apró halloweeni díszítés november 2-ig',
+        'seasonal_touches' => 'Szezonális díszek',
+        'a_few_small_touches_for' => 'Néhány apró dísz: :name',
+        'easter_egg' => 'Húsvéti tojás',
         'server_colors' => 'Szerverszínek',
         'one_color_for_every_server_or' => 'Egy szín minden szervernek, vagy szerverenként egy szín, mindenkinek a panelen. Csoportonkénti szín a Szervercsoportoknál van.',
         'open_settings' => 'Beállítások megnyitása',
@@ -224,6 +229,21 @@ return [
             'http' => 'A Wings válasza: HTTP :status',
             'node_problem' => ':node: :problem',
             'nodes_silent' => 'Nem jelentett: :count csomópont|Nem jelentett: :count csomópont',
+        ],
+        'page' => [
+            'attention' => ':count figyelmet igényel|:count figyelmet igényel',
+            'ok' => ':count rendben',
+            'all_good' => 'Minden rendben',
+            'open_nodes' => 'Node-ok megnyitása',
+            'release_notes' => 'Kiadási megjegyzések',
+            'not_run' => 'Az ellenőrzések még nem futottak le. Indítsd el őket a frissítés gombbal.',
+            'status' => [
+                'ok' => 'Rendben',
+                'warning' => 'Figyelmeztetés',
+                'failed' => 'Sikertelen',
+                'crashed' => 'Összeomlott',
+                'skipped' => 'Kihagyva',
+            ],
         ],
     ],
 ];

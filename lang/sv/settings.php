@@ -8,7 +8,7 @@ return [
     'saved' => 'Inställningar sparade',
     'page_title' => 'Simplify-inställningar',
     'pelican_frame_title' => 'Pelican-inställningar: :label',
-    'pelican_frame' => 'Pelicans egna :label-inställningar. Spara dem med Pelicans sparaknapp uppe till höger i den här panelen.',
+    'pelican_frame' => 'Pelicans egna :label-inställningar.',
     'version_line' => 'Version :version · Ändringar gäller för alla på den här panelen när de har sparats.',
     'profile' => [
         'support' => 'Supportlänk',
@@ -46,8 +46,16 @@ return [
         'app_icon_help' => 'En kvadratisk PNG, JPEG eller WebP på minst 512 pixlar, upp till 1 MB. Tomt använder Simplify-ikonen.',
         'app_badge' => 'Statusfältsikon',
         'app_badge_help' => 'En PNG med genomskinlig bakgrund, visas vit i Androids statusfält. Tomt använder appikonen om den har genomskinlig bakgrund, annars pelikanen.',
+        'preview' => [
+            'logo' => 'I det övre fältet',
+            'icon' => 'På en telefons hemskärm',
+            'badge' => 'I Androids statusfält och aviseringar',
+            'note' => 'Nytt meddelande',
+        ],
         'server_colours' => 'Egen färg per server',
         'server_colours_help' => 'Varje server får en egen färg, från sin grupp eller vald för den. Av: alla servrar använder accentfärgen.',
+        'seasonal' => 'Säsongsdetaljer',
+        'seasonal_help' => 'Små detaljer på högtider under året. Alla kan stänga av dem för sig själva under Customize.',
         'pelican_suffix' => 'Visa "× Pelican" efter namnet',
     ],
     'addons' => [

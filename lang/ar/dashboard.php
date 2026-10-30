@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'كل الإشعارات',
+        'customize_notifications' => 'تخصيص الإشعارات',
         'phone_navigation' => 'التنقل على الهاتف',
         'servers' => 'الخوادم',
         'new' => 'جديد',
@@ -46,6 +48,8 @@ return [
         'host_menu' => 'قائمة المضيف',
         'close_menu' => 'إغلاق القائمة',
         'admin_sections' => 'أقسام الإدارة',
+        'expand_all' => 'توسيع الكل',
+        'collapse_all' => 'طي الكل',
         'server_count' => ':count خادم|خادم واحد|خادمان|:count خوادم|:count خادمًا|:count خادم',
         'no_servers_yet' => 'لا توجد خوادم بعد.',
         'health' => 'الصحة',
@@ -159,8 +163,9 @@ return [
         'server_groups_button' => 'زر مجموعات الخوادم',
         'a_button_in_the_top_bar' => 'زر في الشريط العلوي لإنشاء مجموعاتك واختيار ترتيب خوادمك',
         'more' => 'المزيد',
-        'halloween_theme' => 'سمة الهالوين',
-        'a_few_small_halloween_touches_until' => 'بعض لمسات الهالوين الصغيرة حتى 2 نوفمبر',
+        'seasonal_touches' => 'لمسات موسمية',
+        'a_few_small_touches_for' => 'بعض اللمسات الصغيرة بمناسبة :name',
+        'easter_egg' => 'بيضة عيد الفصح',
         'server_colors' => 'ألوان الخوادم',
         'one_color_for_every_server_or' => 'لون واحد لكل الخوادم، أو لون لكل خادم، لكل من في اللوحة. لون كل مجموعة موجود ضمن "مجموعات الخوادم".',
         'open_settings' => 'فتح الإعدادات',
@@ -224,6 +229,21 @@ return [
             'http' => 'ردّ Wings بـ HTTP :status',
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count عقدة لم تُبلغ|عقدة واحدة لم تُبلغ|عقدتان لم تُبلغا|:count عقد لم تُبلغ|:count عقدة لم تُبلغ|:count عقدة لم تُبلغ',
+        ],
+        'page' => [
+            'attention' => 'يحتاج :count إلى انتباه|يحتاج :count إلى انتباه',
+            'ok' => 'سليم: :count',
+            'all_good' => 'كل شيء سليم',
+            'open_nodes' => 'فتح العُقد',
+            'release_notes' => 'ملاحظات الإصدار',
+            'not_run' => 'لم تُشغَّل الفحوصات بعد. استخدم زر التحديث لتشغيلها.',
+            'status' => [
+                'ok' => 'سليم',
+                'warning' => 'تحذير',
+                'failed' => 'فشل',
+                'crashed' => 'تعطّل',
+                'skipped' => 'تم التخطي',
+            ],
         ],
     ],
 ];

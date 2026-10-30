@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Сва обавештења',
+        'customize_notifications' => 'Прилагоди обавештења',
         'phone_navigation' => 'Навигација на телефону',
         'servers' => 'Сервери',
         'new' => 'Ново',
@@ -46,6 +48,8 @@ return [
         'host_menu' => 'Мени домаћина',
         'close_menu' => 'Затвори мени',
         'admin_sections' => 'Админ одељци',
+        'expand_all' => 'Прошири све',
+        'collapse_all' => 'Скупи све',
         'server_count' => ':count сервер|:count сервера|:count сервера',
         'no_servers_yet' => 'Још нема сервера.',
         'health' => 'Стање',
@@ -159,8 +163,9 @@ return [
         'server_groups_button' => 'Дугме Групе сервера',
         'a_button_in_the_top_bar' => 'Дугме на горњој траци за прављење сопствених група и избор редоследа сервера',
         'more' => 'Више',
-        'halloween_theme' => 'Halloween тема',
-        'a_few_small_halloween_touches_until' => 'Неколико малих Halloween детаља до 2. новембра',
+        'seasonal_touches' => 'Сезонски детаљи',
+        'a_few_small_touches_for' => 'Неколико малих детаља: :name',
+        'easter_egg' => 'Ускршње јаје',
         'server_colors' => 'Боје сервера',
         'one_color_for_every_server_or' => 'Једна боја за све сервере или боја по серверу, за све на панелу. Боја по групи је под Групе сервера.',
         'open_settings' => 'Отвори подешавања',
@@ -224,6 +229,21 @@ return [
             'http' => 'Wings је одговорио са HTTP :status',
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count чвор није пријавио|:count чвора нису пријавила|:count чворова није пријавило',
+        ],
+        'page' => [
+            'attention' => ':count захтева пажњу|:count захтевају пажњу|:count захтева пажњу',
+            'ok' => ':count у реду',
+            'all_good' => 'Све је у реду',
+            'open_nodes' => 'Отвори чворове',
+            'release_notes' => 'Белешке о издању',
+            'not_run' => 'Провере још нису покренуте. Покрените их дугметом за освежавање.',
+            'status' => [
+                'ok' => 'У реду',
+                'warning' => 'Упозорење',
+                'failed' => 'Неуспешно',
+                'crashed' => 'Пало',
+                'skipped' => 'Прескочено',
+            ],
         ],
     ],
 ];

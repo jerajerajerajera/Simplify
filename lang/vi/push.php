@@ -32,4 +32,8 @@ return [
     'panel_update_body' => 'Panel này đang chạy :current.',
     'wings_update' => 'Đã có Wings :version',
     'wings_update_body' => 'Wings cũ trên: :nodes.',
+    'plugin_update' => ':name :version đã có',
+    'plugin_update_unknown' => ':name có bản cập nhật',
+    'plugin_update_body' => 'Cập nhật trong Admin → Plugins; Pelican sẽ cài đặt.',
+    'open_plugins' => 'Mở plugin',
 ];

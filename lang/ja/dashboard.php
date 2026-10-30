@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'すべての通知',
+        'customize_notifications' => '通知をカスタマイズ',
         'phone_navigation' => 'スマートフォン用ナビゲーション',
         'servers' => 'サーバー',
         'new' => '新規',
@@ -46,6 +48,8 @@ return [
         'host_menu' => 'ホストメニュー',
         'close_menu' => 'メニューを閉じる',
         'admin_sections' => '管理セクション',
+        'expand_all' => 'すべて展開',
+        'collapse_all' => 'すべて折りたたむ',
         'server_count' => ':count 台のサーバー',
         'no_servers_yet' => 'まだサーバーはありません。',
         'health' => '状態',
@@ -159,8 +163,9 @@ return [
         'server_groups_button' => 'サーバーグループのボタン',
         'a_button_in_the_top_bar' => '上部バーのボタンで、自分のグループを作り、サーバーの並び順を選べます',
         'more' => 'その他',
-        'halloween_theme' => 'ハロウィンテーマ',
-        'a_few_small_halloween_touches_until' => '11月2日までのちょっとしたハロウィンの飾り',
+        'seasonal_touches' => '季節の演出',
+        'a_few_small_touches_for' => ':name のささやかな演出',
+        'easter_egg' => 'イースターエッグ',
         'server_colors' => 'サーバーの色',
         'one_color_for_every_server_or' => '全サーバー共通の1色か、サーバーごとの色を、パネルの全員に適用します。グループごとの色は「サーバーグループ」にあります。',
         'open_settings' => '設定を開く',
@@ -224,6 +229,21 @@ return [
             'http' => 'Wings が HTTP :status を返しました',
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count 台のノードが報告しませんでした',
+        ],
+        'page' => [
+            'attention' => ':count 件の要対応',
+            'ok' => ':count 件 正常',
+            'all_good' => 'すべて正常',
+            'open_nodes' => 'ノードを開く',
+            'release_notes' => 'リリースノート',
+            'not_run' => 'チェックはまだ実行されていません。更新ボタンで実行してください。',
+            'status' => [
+                'ok' => '正常',
+                'warning' => '警告',
+                'failed' => '失敗',
+                'crashed' => 'クラッシュ',
+                'skipped' => 'スキップ',
+            ],
         ],
     ],
 ];

@@ -32,4 +32,8 @@ return [
     'panel_update_body' => 'Tento panel beží na :current.',
     'wings_update' => 'Je k dispozícii Wings :version',
     'wings_update_body' => 'Starší Wings na: :nodes.',
+    'plugin_update' => ':name :version je k dispozícii',
+    'plugin_update_unknown' => ':name má aktualizáciu',
+    'plugin_update_body' => 'Aktualizujte v Admin → Plugins; Pelican ju nainštaluje.',
+    'open_plugins' => 'Otvoriť pluginy',
 ];

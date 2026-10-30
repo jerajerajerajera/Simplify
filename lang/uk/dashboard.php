@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Усі сповіщення',
+        'customize_notifications' => 'Налаштувати сповіщення',
         'phone_navigation' => 'Навігація на телефоні',
         'servers' => 'Сервери',
         'new' => 'Нове',
@@ -46,6 +48,8 @@ return [
         'host_menu' => 'Меню хоста',
         'close_menu' => 'Закрити меню',
         'admin_sections' => 'Розділи адміністратора',
+        'expand_all' => 'Розгорнути все',
+        'collapse_all' => 'Згорнути все',
         'server_count' => ':count сервер|:count сервери|:count серверів',
         'no_servers_yet' => 'Серверів поки немає.',
         'health' => 'Стан',
@@ -159,8 +163,9 @@ return [
         'server_groups_button' => 'Кнопка груп серверів',
         'a_button_in_the_top_bar' => 'Кнопка у верхній панелі для створення власних груп і вибору порядку серверів',
         'more' => 'Ще',
-        'halloween_theme' => 'Тема Гелловіну',
-        'a_few_small_halloween_touches_until' => 'Трохи гелловінських деталей до 2 листопада',
+        'seasonal_touches' => 'Святкові дрібниці',
+        'a_few_small_touches_for' => 'Кілька дрібниць: :name',
+        'easter_egg' => 'Писанка',
         'server_colors' => 'Кольори серверів',
         'one_color_for_every_server_or' => 'Один колір для всіх серверів або власний колір для кожного, для всіх на панелі. Колір групи задається в Групах серверів.',
         'open_settings' => 'Відкрити налаштування',
@@ -224,6 +229,21 @@ return [
             'http' => 'Wings відповів HTTP :status',
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count node не надіслав даних|:count nodes не надіслали даних|:count nodes не надіслали даних',
+        ],
+        'page' => [
+            'attention' => ':count потребує уваги|:count потребують уваги|:count потребують уваги',
+            'ok' => ':count в порядку',
+            'all_good' => 'Усе в порядку',
+            'open_nodes' => 'Відкрити вузли',
+            'release_notes' => 'Примітки до випуску',
+            'not_run' => 'Перевірки ще не запускались. Запустіть їх кнопкою оновлення.',
+            'status' => [
+                'ok' => 'Гаразд',
+                'warning' => 'Попередження',
+                'failed' => 'Помилка',
+                'crashed' => 'Збій',
+                'skipped' => 'Пропущено',
+            ],
         ],
     ],
 ];

@@ -133,7 +133,8 @@
   };
   const showTip = (target) => {
     const text = target.getAttribute('data-tip');
-    if (!text || !target.isConnected) return;
+    // A button whose menu is open needs no tooltip: it would cover the menu's arrow.
+    if (!text || !target.isConnected || target.getAttribute('aria-expanded') === 'true') return;
     if (!ui.tooltip) {
       ui.tooltip = document.createElement('div');
       ui.tooltip.className = 'ps-tooltip';

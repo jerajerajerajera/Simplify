@@ -8,7 +8,7 @@ return [
     'saved' => 'Impostazioni salvate',
     'page_title' => 'Impostazioni di Simplify',
     'pelican_frame_title' => 'Impostazioni di Pelican: :label',
-    'pelican_frame' => 'Impostazioni :label di Pelican. Salvale con il pulsante di salvataggio di Pelican in alto a destra in questo riquadro.',
+    'pelican_frame' => 'Impostazioni :label di Pelican.',
     'version_line' => 'Versione :version · Le modifiche valgono per tutti su questo pannello dopo il salvataggio.',
     'profile' => [
         'support' => 'Link di assistenza',
@@ -46,8 +46,16 @@ return [
         'app_icon_help' => 'Un PNG, JPEG o WebP quadrato di almeno 512 pixel, fino a 1 MB. Vuoto usa l\'icona di Simplify.',
         'app_badge' => 'Icona della barra di stato',
         'app_badge_help' => 'Un PNG con sfondo trasparente, mostrato in bianco nella barra di stato di Android. Vuoto usa l’icona dell’app se ha lo sfondo trasparente, altrimenti il pellicano.',
+        'preview' => [
+            'logo' => 'Nella barra in alto',
+            'icon' => 'Nella schermata Home di un telefono',
+            'badge' => 'Nella barra di stato e nelle notifiche di Android',
+            'note' => 'Nuovo messaggio',
+        ],
         'server_colours' => 'Colore proprio per server',
         'server_colours_help' => 'Ogni server ha il proprio colore, quello del suo gruppo o scelto per lui. Disattivato: ogni server usa il colore principale.',
+        'seasonal' => 'Tocchi stagionali',
+        'seasonal_help' => 'Piccoli tocchi nelle feste dell\'anno. Ognuno può disattivarli per sé in Customize.',
         'pelican_suffix' => 'Mostra "× Pelican" dopo il nome',
     ],
     'addons' => [

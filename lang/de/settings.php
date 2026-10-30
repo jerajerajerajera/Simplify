@@ -8,7 +8,7 @@ return [
     'saved' => 'Einstellungen gespeichert',
     'page_title' => 'Simplify-Einstellungen',
     'pelican_frame_title' => 'Pelican-Einstellungen: :label',
-    'pelican_frame' => 'Pelicans eigene Einstellungen für :label. Speichere sie mit Pelicans Speichern-Button oben rechts in diesem Bereich.',
+    'pelican_frame' => 'Pelicans eigene Einstellungen für :label.',
     'version_line' => 'Version :version · Änderungen gelten nach dem Speichern für alle auf diesem Panel.',
     'profile' => [
         'support' => 'Hilfelink',
@@ -46,8 +46,16 @@ return [
         'app_icon_help' => 'Ein quadratisches PNG, JPEG oder WebP mit mindestens 512 Pixeln, bis 1 MB. Leer nutzt das Simplify-Symbol.',
         'app_badge' => 'Statusleisten-Symbol',
         'app_badge_help' => 'Ein PNG mit transparentem Hintergrund, in Androids Statusleiste weiß dargestellt. Leer nutzt das App-Symbol, wenn es einen transparenten Hintergrund hat, sonst den Pelikan.',
+        'preview' => [
+            'logo' => 'In der oberen Leiste',
+            'icon' => 'Auf dem Startbildschirm eines Handys',
+            'badge' => 'In der Statusleiste und den Benachrichtigungen von Android',
+            'note' => 'Neue Nachricht',
+        ],
         'server_colours' => 'Eigene Farbe pro Server',
         'server_colours_help' => 'Jeder Server bekommt eine eigene Farbe, von seiner Gruppe oder für ihn gewählt. Aus: Jeder Server nutzt die Akzentfarbe.',
+        'seasonal' => 'Saisonale Details',
+        'seasonal_help' => 'Kleine Details an Feiertagen über das Jahr. Jeder kann sie unter Customize für sich ausschalten.',
         'pelican_suffix' => '"× Pelican" nach dem Namen zeigen',
     ],
     'addons' => [

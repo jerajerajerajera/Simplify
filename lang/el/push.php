@@ -32,4 +32,8 @@ return [
     'panel_update_body' => 'Αυτό το πάνελ τρέχει :current.',
     'wings_update' => 'Διαθέσιμο το Wings :version',
     'wings_update_body' => 'Παλαιότερο Wings σε: :nodes.',
+    'plugin_update' => 'Το :name :version είναι διαθέσιμο',
+    'plugin_update_unknown' => 'Το :name έχει ενημέρωση',
+    'plugin_update_body' => 'Ενημερώστε το στο Admin → Plugins· το Pelican το εγκαθιστά.',
+    'open_plugins' => 'Άνοιγμα πρόσθετων',
 ];

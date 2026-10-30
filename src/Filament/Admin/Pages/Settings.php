@@ -83,8 +83,8 @@ final class Settings extends Page implements HasForms
 
     public function mount(): void
     {
-        // The first visit walks through the setup; the settings page is for changes afterwards.
-        if (! PanelSettings::get('setup_done')) {
+        // The first visit on a new panel walks through the setup; the settings page is for changes afterwards.
+        if (! PanelSettings::get('setup_done') && ! PanelSettings::configured()) {
             $this->redirect(Setup::getUrl(panel: 'admin'));
 
             return;
@@ -97,6 +97,9 @@ final class Settings extends Page implements HasForms
         return [
             Action::make('setup')->label(__('simplify::setup.again'))->icon('tabler-wand')->color('gray')->button()
                 ->url(fn () => Setup::getUrl(panel: 'admin')),
+            // Save in the head of the page; it presses the form's own button, which also saves a Pelican tab (settings.blade.php).
+            Action::make('save')->label(__('simplify::settings.save'))->icon('tabler-device-floppy')
+                ->alpineClickHandler("document.querySelector('.s-settings > .s-bar button[type=submit]')?.click()"),
         ];
     }
 
@@ -147,7 +150,8 @@ final class Settings extends Page implements HasForms
         // The menu draws from Simplify's own icon sprite, not Filament's Tabler names.
         $sprite = ['pelican-general' => 'home', 'pelican-captcha' => 'shield', 'pelican-mail' => 'mail', 'pelican-backup' => 'backups', 'pelican-oauth' => 'key', 'pelican-misc' => 'tool'];
         foreach (self::pelicanTabs() as $pelican) {
-            $items[] = [...$tab($pelican['key'], 'pelican', $pelican['label'], $sprite[$pelican['key']] ?? 'gear'), 'url' => $pelican['url']];
+            // From the admin menu Pelican's tab opens inside Simplify's settings; host mode frames Pelican's page itself.
+            $items[] = [...$tab($pelican['key'], 'pelican', $pelican['label'], $sprite[$pelican['key']] ?? 'gear'), 'frame' => $pelican['url']];
         }
 
         return $items;

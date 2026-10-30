@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Simplify\Core\Embed\Services;
 
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Simplify\Core\Support\SafeCache;
 
 /**
  * How the list looks on other websites. Websites can still change each option with data-* attributes or the query.
@@ -43,7 +43,7 @@ final class EmbedOptions
         foreach (self::normalize($input) as $key => $value) {
             DB::table(self::TABLE)->updateOrInsert(['key' => $key], ['value' => json_encode($value)]);
         }
-        Cache::forget(ServerList::CACHE);
+        SafeCache::forget(ServerList::CACHE);
     }
 
     /**

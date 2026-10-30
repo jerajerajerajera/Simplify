@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Alle varsler',
+        'customize_notifications' => 'Tilpass varsler',
         'phone_navigation' => 'Telefonnavigasjon',
         'servers' => 'Servere',
         'new' => 'Ny',
@@ -46,6 +48,8 @@ return [
         'host_menu' => 'Vertsmeny',
         'close_menu' => 'Lukk meny',
         'admin_sections' => 'Admindeler',
+        'expand_all' => 'Utvid alle',
+        'collapse_all' => 'Skjul alle',
         'server_count' => ':count server|:count servere',
         'no_servers_yet' => 'Ingen servere ennå.',
         'health' => 'Helse',
@@ -159,8 +163,9 @@ return [
         'server_groups_button' => 'Knapp for servergrupper',
         'a_button_in_the_top_bar' => 'En knapp i topplinjen for å lage dine egne grupper og velge rekkefølgen på serverne dine',
         'more' => 'Mer',
-        'halloween_theme' => 'Halloween-tema',
-        'a_few_small_halloween_touches_until' => 'Noen små halloween-detaljer frem til 2. november',
+        'seasonal_touches' => 'Sesongpreg',
+        'a_few_small_touches_for' => 'Noen små detaljer for :name',
+        'easter_egg' => 'Påskeegg',
         'server_colors' => 'Serverfarger',
         'one_color_for_every_server_or' => 'Én farge for alle servere, eller en farge per server, for alle på panelet. En farge per gruppe finnes under Servergrupper.',
         'open_settings' => 'Åpne innstillinger',
@@ -224,6 +229,21 @@ return [
             'http' => 'Wings svarte med HTTP :status',
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count node rapporterte ikke|:count noder rapporterte ikke',
+        ],
+        'page' => [
+            'attention' => ':count trenger oppmerksomhet|:count trenger oppmerksomhet',
+            'ok' => ':count ok',
+            'all_good' => 'Alt er i orden',
+            'open_nodes' => 'Åpne noder',
+            'release_notes' => 'Versjonsmerknader',
+            'not_run' => 'Kontrollene har ikke kjørt ennå. Bruk oppdateringsknappen for å kjøre dem.',
+            'status' => [
+                'ok' => 'OK',
+                'warning' => 'Advarsel',
+                'failed' => 'Mislyktes',
+                'crashed' => 'Krasjet',
+                'skipped' => 'Hoppet over',
+            ],
         ],
     ],
 ];

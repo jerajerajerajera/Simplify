@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Alle meldingen',
+        'customize_notifications' => 'Meldingen aanpassen',
         'phone_navigation' => 'Telefoonnavigatie',
         'servers' => 'Servers',
         'new' => 'Nieuw',
@@ -46,6 +48,8 @@ return [
         'host_menu' => 'Hostmenu',
         'close_menu' => 'Menu sluiten',
         'admin_sections' => 'Beheeronderdelen',
+        'expand_all' => 'Alles uitklappen',
+        'collapse_all' => 'Alles inklappen',
         'server_count' => ':count server|:count servers',
         'no_servers_yet' => 'Nog geen servers.',
         'health' => 'Gezondheid',
@@ -159,8 +163,9 @@ return [
         'server_groups_button' => 'Knop Servergroepen',
         'a_button_in_the_top_bar' => 'Een knop in de bovenbalk om je eigen groepen te maken en de volgorde van je servers te kiezen',
         'more' => 'Meer',
-        'halloween_theme' => 'Halloweenthema',
-        'a_few_small_halloween_touches_until' => 'Een paar kleine Halloween-details tot 2 november',
+        'seasonal_touches' => 'Seizoensaccenten',
+        'a_few_small_touches_for' => 'Een paar kleine accenten voor :name',
+        'easter_egg' => 'Paasei',
         'server_colors' => 'Serverkleuren',
         'one_color_for_every_server_or' => 'Eén kleur voor elke server, of een kleur per server, voor iedereen op het paneel. Een kleur per groep staat onder Servergroepen.',
         'open_settings' => 'Instellingen openen',
@@ -224,6 +229,21 @@ return [
             'http' => 'Wings antwoordde met HTTP :status',
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count node meldde zich niet|:count nodes meldden zich niet',
+        ],
+        'page' => [
+            'attention' => ':count vraagt aandacht|:count vragen aandacht',
+            'ok' => ':count in orde',
+            'all_good' => 'Alles in orde',
+            'open_nodes' => 'Nodes openen',
+            'release_notes' => 'Release notes',
+            'not_run' => 'De controles zijn nog niet uitgevoerd. Gebruik de verversknop om ze te starten.',
+            'status' => [
+                'ok' => 'In orde',
+                'warning' => 'Waarschuwing',
+                'failed' => 'Mislukt',
+                'crashed' => 'Gecrasht',
+                'skipped' => 'Overgeslagen',
+            ],
         ],
     ],
 ];

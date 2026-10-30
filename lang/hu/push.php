@@ -32,4 +32,8 @@ return [
     'panel_update_body' => 'Ez a panel verziója: :current.',
     'wings_update' => 'Elérhető: Wings :version',
     'wings_update_body' => 'Régebbi Wings itt: :nodes.',
+    'plugin_update' => ':name :version elérhető',
+    'plugin_update_unknown' => ':name frissíthető',
+    'plugin_update_body' => 'Frissítsd az Admin → Plugins oldalon; a Pelican telepíti.',
+    'open_plugins' => 'Bővítmények megnyitása',
 ];

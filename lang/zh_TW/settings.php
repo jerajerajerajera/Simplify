@@ -8,7 +8,7 @@ return [
     'saved' => '設定已儲存',
     'page_title' => 'Simplify 設定',
     'pelican_frame_title' => 'Pelican 設定：:label',
-    'pelican_frame' => 'Pelican 自己的 :label 設定。請使用此面板右上角 Pelican 的儲存按鈕儲存。',
+    'pelican_frame' => 'Pelican 自己的 :label 設定。',
     'version_line' => '版本 :version · 儲存後，變更將對此面板上的所有人生效。',
     'profile' => [
         'support' => '支援連結',
@@ -46,8 +46,16 @@ return [
         'app_icon_help' => '正方形 PNG、JPEG 或 WebP，至少 512 像素，最大 1 MB。留空則使用 Simplify 圖示。',
         'app_badge' => '狀態列圖示',
         'app_badge_help' => '背景透明的 PNG，在 Android 狀態列中顯示為白色。留空時，若應用程式圖示背景透明則使用該圖示，否則使用鵜鶘。',
+        'preview' => [
+            'logo' => '頂部列',
+            'icon' => '手機主畫面',
+            'badge' => 'Android 狀態列和通知',
+            'note' => '新訊息',
+        ],
         'server_colours' => '每台伺服器各自配色',
         'server_colours_help' => '每台伺服器使用自己的顏色：所屬群組的顏色或為它選擇的顏色。關閉後，所有伺服器都使用強調色。',
+        'seasonal' => '節日點綴',
+        'seasonal_help' => '一年中各個節日的小點綴。每個人仍可在 Customize 中為自己關閉。',
         'pelican_suffix' => '在名稱後顯示「× Pelican」',
     ],
     'addons' => [

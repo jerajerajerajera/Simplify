@@ -8,7 +8,7 @@ return [
     'saved' => 'Settings saved',
     'page_title' => 'Simplify settings',
     'pelican_frame_title' => 'Pelican settings: :label',
-    'pelican_frame' => 'Pelican\'s own :label settings. Save them with Pelican\'s save button at the top right of this panel.',
+    'pelican_frame' => 'Pelican\'s own :label settings.',
     'version_line' => 'Version :version · Changes apply to everyone on this panel after saving.',
     'profile' => [
         'support' => 'Support link',
@@ -46,8 +46,16 @@ return [
         'app_icon_help' => 'A square PNG, JPEG or WebP of at least 512 pixels, up to 1 MB. Empty uses the Simplify icon.',
         'app_badge' => 'Status bar icon',
         'app_badge_help' => 'A PNG with a transparent background, shown in white in Android\'s status bar. Empty uses the app icon if it has a transparent background, otherwise the pelican.',
+        'preview' => [
+            'logo' => 'In the top bar',
+            'icon' => 'On a phone\'s home screen',
+            'badge' => 'In Android\'s status bar and notifications',
+            'note' => 'New message',
+        ],
         'server_colours' => 'Individual colours per server',
         'server_colours_help' => 'Each server gets its own colour, from its group or chosen for it. Off: every server uses the accent colour.',
+        'seasonal' => 'Seasonal touches',
+        'seasonal_help' => 'Small touches on holidays through the year. Everyone can still turn them off for themselves under Customize.',
         'pelican_suffix' => 'Show "× Pelican" after the name',
     ],
     'addons' => [

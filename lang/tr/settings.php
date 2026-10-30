@@ -8,7 +8,7 @@ return [
     'saved' => 'Ayarlar kaydedildi',
     'page_title' => 'Simplify ayarları',
     'pelican_frame_title' => 'Pelican ayarları: :label',
-    'pelican_frame' => 'Pelican\'ın kendi ayarları: :label. Onları bu panelin sağ üstündeki Pelican kaydet düğmesiyle kaydet.',
+    'pelican_frame' => 'Pelican\'ın kendi ayarları: :label.',
     'version_line' => 'Sürüm :version · Değişiklikler kaydettikten sonra bu paneldeki herkes için geçerli olur.',
     'profile' => [
         'support' => 'Destek bağlantısı',
@@ -46,8 +46,16 @@ return [
         'app_icon_help' => 'En az 512 piksel, en fazla 1 MB kare PNG, JPEG veya WebP. Boş bırakılırsa Simplify simgesi kullanılır.',
         'app_badge' => 'Durum çubuğu simgesi',
         'app_badge_help' => 'Şeffaf arka planlı bir PNG; Android durum çubuğunda beyaz gösterilir. Boşsa, arka planı şeffafsa uygulama simgesi, değilse pelikan kullanılır.',
+        'preview' => [
+            'logo' => 'Üst çubukta',
+            'icon' => 'Bir telefonun ana ekranında',
+            'badge' => 'Android\'in durum çubuğunda ve bildirimlerinde',
+            'note' => 'Yeni mesaj',
+        ],
         'server_colours' => 'Her sunucuya ayrı renk',
         'server_colours_help' => 'Her sunucu kendi rengini alır: grubunun rengi ya da onun için seçilen renk. Kapalı: tüm sunucular vurgu rengini kullanır.',
+        'seasonal' => 'Mevsimsel dokunuşlar',
+        'seasonal_help' => 'Yıl boyunca bayramlarda küçük dokunuşlar. Herkes Customize altında kendisi için kapatabilir.',
         'pelican_suffix' => 'Adın ardından "× Pelican" göster',
     ],
     'addons' => [

@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => '모든 알림',
+        'customize_notifications' => '알림 사용자 지정',
         'phone_navigation' => '휴대폰 탐색',
         'servers' => '서버',
         'new' => '새로 만들기',
@@ -46,6 +48,8 @@ return [
         'host_menu' => '호스트 메뉴',
         'close_menu' => '메뉴 닫기',
         'admin_sections' => '관리 섹션',
+        'expand_all' => '모두 펼치기',
+        'collapse_all' => '모두 접기',
         'server_count' => '서버 :count대',
         'no_servers_yet' => '아직 서버가 없습니다.',
         'health' => '상태',
@@ -159,8 +163,9 @@ return [
         'server_groups_button' => '서버 그룹 버튼',
         'a_button_in_the_top_bar' => '상단 바의 버튼으로 나만의 그룹을 만들고 서버 순서를 정합니다',
         'more' => '더 보기',
-        'halloween_theme' => '할로윈 테마',
-        'a_few_small_halloween_touches_until' => '11월 2일까지 작은 할로윈 장식 몇 가지',
+        'seasonal_touches' => '계절 장식',
+        'a_few_small_touches_for' => ':name 기념 작은 장식',
+        'easter_egg' => '부활절 달걀',
         'server_colors' => '서버 색',
         'one_color_for_every_server_or' => '모든 서버에 한 가지 색 또는 서버마다 다른 색을 패널의 모두에게 적용합니다. 그룹별 색은 서버 그룹에 있습니다.',
         'open_settings' => '설정 열기',
@@ -224,6 +229,21 @@ return [
             'http' => 'Wings가 HTTP :status 로 응답했습니다',
             'node_problem' => ':node: :problem',
             'nodes_silent' => '노드 :count개가 보고하지 않았습니다',
+        ],
+        'page' => [
+            'attention' => ':count개 확인 필요',
+            'ok' => ':count개 정상',
+            'all_good' => '모두 정상',
+            'open_nodes' => '노드 열기',
+            'release_notes' => '릴리스 노트',
+            'not_run' => '검사가 아직 실행되지 않았습니다. 새로고침 버튼으로 실행하세요.',
+            'status' => [
+                'ok' => '정상',
+                'warning' => '경고',
+                'failed' => '실패',
+                'crashed' => '충돌',
+                'skipped' => '건너뜀',
+            ],
         ],
     ],
 ];

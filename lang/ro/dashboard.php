@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Toate notificările',
+        'customize_notifications' => 'Personalizează notificările',
         'phone_navigation' => 'Navigare pe telefon',
         'servers' => 'Servere',
         'new' => 'Nou',
@@ -46,6 +48,8 @@ return [
         'host_menu' => 'Meniul gazdei',
         'close_menu' => 'Închideți meniul',
         'admin_sections' => 'Secțiuni de administrare',
+        'expand_all' => 'Extinde tot',
+        'collapse_all' => 'Restrânge tot',
         'server_count' => ':count server|:count servere|:count de servere',
         'no_servers_yet' => 'Încă nu există servere.',
         'health' => 'Stare',
@@ -159,8 +163,9 @@ return [
         'server_groups_button' => 'Butonul Grupuri de servere',
         'a_button_in_the_top_bar' => 'Un buton în bara de sus pentru a vă crea propriile grupuri și a alege ordinea serverelor',
         'more' => 'Mai mult',
-        'halloween_theme' => 'Temă de Halloween',
-        'a_few_small_halloween_touches_until' => 'Câteva mici detalii de Halloween până la 2 noiembrie',
+        'seasonal_touches' => 'Accente sezoniere',
+        'a_few_small_touches_for' => 'Câteva mici accente pentru :name',
+        'easter_egg' => 'Ou de Paște',
         'server_colors' => 'Culorile serverelor',
         'one_color_for_every_server_or' => 'O culoare pentru toate serverele sau o culoare pentru fiecare server, pentru toți cei de pe panou. O culoare pe grup se găsește la Grupuri de servere.',
         'open_settings' => 'Deschideți setările',
@@ -224,6 +229,21 @@ return [
             'http' => 'Wings a răspuns cu HTTP :status',
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count nod nu a raportat|:count noduri nu au raportat|:count de noduri nu au raportat',
+        ],
+        'page' => [
+            'attention' => ':count necesită atenție|:count necesită atenție',
+            'ok' => ':count în regulă',
+            'all_good' => 'Totul este în regulă',
+            'open_nodes' => 'Deschide nodurile',
+            'release_notes' => 'Note de lansare',
+            'not_run' => 'Verificările nu au rulat încă. Folosește butonul de reîmprospătare pentru a le porni.',
+            'status' => [
+                'ok' => 'OK',
+                'warning' => 'Avertisment',
+                'failed' => 'Eșuat',
+                'crashed' => 'Blocat',
+                'skipped' => 'Omis',
+            ],
         ],
     ],
 ];

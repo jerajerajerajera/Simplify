@@ -8,7 +8,7 @@ return [
     'saved' => 'Ustawienia zapisane',
     'page_title' => 'Ustawienia Simplify',
     'pelican_frame_title' => 'Ustawienia Pelican: :label',
-    'pelican_frame' => 'Własne ustawienia :label w Pelican. Zapisz je przyciskiem zapisu Pelican w prawym górnym rogu tego panelu.',
+    'pelican_frame' => 'Własne ustawienia :label w Pelican.',
     'version_line' => 'Wersja :version · Zmiany obowiązują wszystkich w tym panelu po zapisaniu.',
     'profile' => [
         'support' => 'Link do pomocy',
@@ -46,8 +46,16 @@ return [
         'app_icon_help' => 'Kwadratowy PNG, JPEG lub WebP o boku co najmniej 512 pikseli, do 1 MB. Puste używa ikony Simplify.',
         'app_badge' => 'Ikona paska stanu',
         'app_badge_help' => 'PNG z przezroczystym tłem, wyświetlany na biało na pasku stanu Androida. Puste: ikona aplikacji, jeśli ma przezroczyste tło, w przeciwnym razie pelikan.',
+        'preview' => [
+            'logo' => 'Na górnym pasku',
+            'icon' => 'Na ekranie głównym telefonu',
+            'badge' => 'Na pasku stanu i w powiadomieniach Androida',
+            'note' => 'Nowa wiadomość',
+        ],
         'server_colours' => 'Osobny kolor dla każdego serwera',
         'server_colours_help' => 'Każdy serwer ma własny kolor, z grupy lub wybrany dla niego. Wyłączone: wszystkie serwery używają koloru akcentu.',
+        'seasonal' => 'Akcenty sezonowe',
+        'seasonal_help' => 'Drobne akcenty w święta w ciągu roku. Każdy może je wyłączyć dla siebie w Customize.',
         'pelican_suffix' => 'Pokazuj "× Pelican" po nazwie',
     ],
     'addons' => [

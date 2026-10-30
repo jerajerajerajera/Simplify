@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Všetky upozornenia',
+        'customize_notifications' => 'Prispôsobiť upozornenia',
         'phone_navigation' => 'Navigácia na telefóne',
         'servers' => 'Servery',
         'new' => 'Nové',
@@ -46,6 +48,8 @@ return [
         'host_menu' => 'Ponuka hostiteľa',
         'close_menu' => 'Zavrieť ponuku',
         'admin_sections' => 'Sekcie správcu',
+        'expand_all' => 'Rozbaliť všetko',
+        'collapse_all' => 'Zbaliť všetko',
         'server_count' => ':count server|:count servery|:count serverov',
         'no_servers_yet' => 'Zatiaľ žiadne servery.',
         'health' => 'Stav',
@@ -159,8 +163,9 @@ return [
         'server_groups_button' => 'Tlačidlo skupín serverov',
         'a_button_in_the_top_bar' => 'Tlačidlo v hornej lište pre vlastné skupiny a poradie serverov',
         'more' => 'Viac',
-        'halloween_theme' => 'Halloweenský motív',
-        'a_few_small_halloween_touches_until' => 'Pár drobných halloweenských detailov do 2. novembra',
+        'seasonal_touches' => 'Sezónne detaily',
+        'a_few_small_touches_for' => 'Pár drobných detailov: :name',
+        'easter_egg' => 'Veľkonočné vajíčko',
         'server_colors' => 'Farby serverov',
         'one_color_for_every_server_or' => 'Jedna farba pre všetky servery, alebo vlastná farba pre každý, pre všetkých na paneli. Farba skupiny sa nastavuje v Skupinách serverov.',
         'open_settings' => 'Otvoriť nastavenia',
@@ -224,6 +229,21 @@ return [
             'http' => 'Wings odpovedal HTTP :status',
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count node neposlal údaje|:count nodes neposlali údaje|:count nodes neposlalo údaje',
+        ],
+        'page' => [
+            'attention' => ':count vyžaduje pozornosť|:count vyžadujú pozornosť|:count vyžaduje pozornosť',
+            'ok' => ':count v poriadku',
+            'all_good' => 'Všetko v poriadku',
+            'open_nodes' => 'Otvoriť uzly',
+            'release_notes' => 'Poznámky k vydaniu',
+            'not_run' => 'Kontroly ešte neprebehli. Spustite ich tlačidlom obnovenia.',
+            'status' => [
+                'ok' => 'OK',
+                'warning' => 'Upozornenie',
+                'failed' => 'Zlyhalo',
+                'crashed' => 'Spadlo',
+                'skipped' => 'Preskočené',
+            ],
         ],
     ],
 ];

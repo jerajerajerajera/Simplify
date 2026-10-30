@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Всички известия',
+        'customize_notifications' => 'Персонализиране на известията',
         'phone_navigation' => 'Навигация на телефон',
         'servers' => 'Сървъри',
         'new' => 'Ново',
@@ -46,6 +48,8 @@ return [
         'host_menu' => 'Меню на хоста',
         'close_menu' => 'Затвори менюто',
         'admin_sections' => 'Админ раздели',
+        'expand_all' => 'Разгъни всички',
+        'collapse_all' => 'Свий всички',
         'server_count' => ':count сървър|:count сървъра',
         'no_servers_yet' => 'Още няма сървъри.',
         'health' => 'Състояние',
@@ -159,8 +163,9 @@ return [
         'server_groups_button' => 'Бутон Групи сървъри',
         'a_button_in_the_top_bar' => 'Бутон в горната лента за създаване на собствени групи и избор на реда на сървърите',
         'more' => 'Още',
-        'halloween_theme' => 'Тема за Halloween',
-        'a_few_small_halloween_touches_until' => 'Няколко малки детайла за Halloween до 2 ноември',
+        'seasonal_touches' => 'Сезонни детайли',
+        'a_few_small_touches_for' => 'Няколко малки детайла: :name',
+        'easter_egg' => 'Великденско яйце',
         'server_colors' => 'Цветове на сървърите',
         'one_color_for_every_server_or' => 'Един цвят за всички сървъри или цвят за всеки сървър, за всички в панела. Цвят по група има в Групи сървъри.',
         'open_settings' => 'Отвори настройките',
@@ -224,6 +229,21 @@ return [
             'http' => 'Wings отговори с HTTP :status',
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count възел не отчете|:count възела не отчетоха',
+        ],
+        'page' => [
+            'attention' => ':count изисква внимание|:count изискват внимание',
+            'ok' => ':count наред',
+            'all_good' => 'Всичко е наред',
+            'open_nodes' => 'Отвори нодовете',
+            'release_notes' => 'Бележки по версията',
+            'not_run' => 'Проверките още не са изпълнени. Използвайте бутона за опресняване, за да ги стартирате.',
+            'status' => [
+                'ok' => 'Наред',
+                'warning' => 'Предупреждение',
+                'failed' => 'Неуспешно',
+                'crashed' => 'Сринато',
+                'skipped' => 'Пропуснато',
+            ],
         ],
     ],
 ];

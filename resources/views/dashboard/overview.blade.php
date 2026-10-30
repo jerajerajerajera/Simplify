@@ -91,6 +91,7 @@
                                 <div class="ps-card-badges ps-identity-badges">
                                     <span class="ps-badge is-strong ps-list-game"><svg aria-hidden="true"><use :href="s.game==='minecraft' ? '#ps-cube' : '#ps-gamepad'"/></svg><span x-text="s.game_label"></span></span>
                                     <span class="ps-badge ps-status" :class="s.status"><i></i><span x-text="Simplify.status(s.status)"></span></span>
+                                    <span class="ps-badge ps-season-cake" x-show="serverBirthday(s)" :data-tip="serverBirthdayTip(s)" :aria-label="serverBirthdayTip(s)"><svg aria-hidden="true"><use href="#ps-cake"/></svg></span>
                                     <template x-for="badge in (s.badges || []).slice(0, overviewView==='grid' ? 1 : 0)" :key="badge"><span class="ps-badge" x-text="badge"></span></template>
                                 </div>
                                 <div class="ps-card-bottom" x-show="overviewView!=='list'">
@@ -104,6 +105,9 @@
                                     <svg aria-hidden="true"><use href="#ps-chevron"/></svg>
                                 </button>
                             </div>
+                            <template x-if="easterEgg(s)">
+                                <button type="button" class="ps-season-egg" aria-label="{{ $u('easter_egg') }}" x-on:click="findEasterEgg($event)"><svg aria-hidden="true"><use href="#ps-egg"/></svg></button>
+                            </template>
                             <div class="ps-overview-power-wrap" x-show="quickActionsMode()!=='off'">
                                 <div class="ps-overview-power" :class="{'is-confirming': powerConfirmation?.uuid===s.uuid}" role="group" :aria-label="Simplify.fill(@js($u('power_controls_for')), { name: s.name })">
                                     <template x-for="action in [{key:'start',label:@js($u('start')),icon:'play'},{key:'stop',label:@js($u('stop')),icon:'stop'},{key:'restart',label:@js($u('restart')),icon:'restart'},{key:'kill',label:@js($u('force_stop')),icon:'kill'}]" :key="action.key">
@@ -136,7 +140,7 @@
                     <span class="ps-host-server-badge"><svg aria-hidden="true"><use href="#ps-host"/></svg></span>
                 </span>
                 <div>
-                    <div class="ps-host-heading"><h3>{{ $u('host_health') }}</h3><button type="button" class="ps-health-refresh" :class="{'is-busy': healthRefreshing}" :disabled="healthRefreshing" x-on:click.stop="refreshHostHealth()" x-on:keydown.stop aria-label="{{ $u('refresh_host_health') }}" data-tip="{{ $u('refresh_now') }}"><svg aria-hidden="true"><use href="#ps-restart"/></svg></button><svg class="ps-health-expand" :class="{'expanded': healthExpanded}" aria-hidden="true"><use href="#ps-chevron"/></svg></div>
+                    <div class="ps-host-heading"><h3>{{ $u('host_health') }}</h3><button type="button" class="ps-health-refresh" :class="{'is-busy': healthRefreshing}" :disabled="healthRefreshing" x-on:click.stop="refreshHostHealth()" x-on:keydown.stop aria-label="{{ $u('refresh_host_health') }}" data-tip="{{ $u('refresh_now') }}"><svg aria-hidden="true"><use href="#ps-restart"/></svg></button></div>
                     <span class="ps-health-status" :class="boot.host_health?.state || 'unavailable'"><strong x-text="boot.host_health?.label || @js($u('unavailable'))"></strong><small x-text="Simplify.tc('dashboard.hosts_reporting', boot.host_health?.hosts ?? 0, { available: boot.host_health?.available ?? 0 })"></small></span>
                     <small class="ps-health-problem" x-show="boot.host_health?.problem" x-text="boot.host_health?.problem"></small>
                     <small class="ps-health-phone-summary" x-text="Simplify.fill(@js($u('cpu_ram')), { cpu: hostValue('cpu'), ram: hostValue('memory') })"></small>
@@ -206,6 +210,8 @@
                 </div>
             </div>
         </div>
+        {{-- A tab under the card's bottom edge: the card folds open to show every node. --}}
+        <button type="button" class="ps-health-tab" :class="{'expanded': healthExpanded}" x-show="boot.features?.host_health" x-on:click="openHostHealth()" :aria-expanded="healthExpanded" aria-controls="ps-health-details" aria-label="{{ $u('view_health_by_node') }}" data-tip="{{ $u('view_health_by_node') }}"><svg aria-hidden="true"><use href="#ps-chevron"/></svg></button>
     </section>
 </section>
 

@@ -13,6 +13,8 @@
             document.documentElement.dataset.psFrame = window.frameElement.dataset.psFrame;
             // Host mode lists the settings tabs in its tree, so the page leaves out its own tab menu.
             if (window.frameElement.dataset.psTree) document.documentElement.dataset.psTree = '1';
+            // A page's search and buttons (Save on the settings too) go into host mode's title bar (frame.js).
+            if (window.frameElement.dataset.psFrame === 'native') document.head.append(Object.assign(document.createElement('script'), { src: @js(\Simplify\Core\Support\Assets::url('frame.js')), defer: true }));
             // A Pelican settings tab inside Simplify's settings grows with its form: one scrollbar for the whole page.
             if (window.frameElement.dataset.psTab) {
                 addEventListener('DOMContentLoaded', () => new ResizeObserver(() => (window.frameElement.style.height = Math.ceil(document.body.getBoundingClientRect().height) + 'px')).observe(document.body));

@@ -6,9 +6,9 @@ namespace Simplify\Core\Health;
 
 use App\Models\Node;
 use Illuminate\Http\Client\ConnectionException;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Simplify\Core\Overview\NodeUsage;
+use Simplify\Core\Support\SafeCache;
 use Spatie\Health\ResultStores\ResultStore;
 use Throwable;
 
@@ -28,7 +28,7 @@ final class HostHealth
     /** @return array<string, mixed> labels and problems in the viewer's language */
     public static function snapshot(): array
     {
-        return self::present(Cache::remember(self::CACHE_KEY, self::CACHE_SECONDS, fn () => self::collect()));
+        return self::present(SafeCache::remember(self::CACHE_KEY, self::CACHE_SECONDS, fn () => self::collect()));
     }
 
     /**
@@ -54,7 +54,7 @@ final class HostHealth
     /** @return array<string, mixed> the shared snapshot when one is kept, else nothing: the page asks for it after first paint */
     public static function cached(): array
     {
-        $stored = Cache::get(self::CACHE_KEY);
+        $stored = SafeCache::get(self::CACHE_KEY);
 
         return is_array($stored) ? self::present($stored) : [];
     }
@@ -62,9 +62,9 @@ final class HostHealth
     /** @return array<string, mixed> */
     public static function refresh(): array
     {
-        $stored = Cache::get(self::CACHE_KEY);
+        $stored = SafeCache::get(self::CACHE_KEY);
         if (is_array($stored) && time() - (int) ($stored['checked_at'] ?? 0) >= self::REFRESH_GAP) {
-            Cache::forget(self::CACHE_KEY);
+            SafeCache::forget(self::CACHE_KEY);
         }
 
         return self::snapshot();
