@@ -113,6 +113,8 @@ jobs:
             rm -rf "plugins/$id/.git"
             php artisan p:plugin:install "$id"
           done
+          # A plugin that is not Simplify, so Admin tools has an Other plugins group, as on a real panel.
+          cp -r ../simplify/tests/audit/fake-plugin plugins/audit-directory && php artisan p:plugin:install audit-directory || echo "audit-directory did not install"
           php artisan p:plugin:list
       - name: Seed and start the panel and the fake Wings
         working-directory: panel
@@ -132,7 +134,7 @@ jobs:
           npm install --silent playwright@1.48.2
           npx playwright install --with-deps chromium > /dev/null
           if [ "${{ inputs.section }}" = compare ]; then node compare.cjs --base http://127.0.0.1:8001 --out ../../../result --only ${{ matrix.stand }}; exit 0; fi
-          node audit.cjs --base http://127.0.0.1:8001 --urls ../../../panel/urls.json --out ../../../result --only ${{ matrix.stand }} --section "${{ inputs.section }}"
+          node audit.cjs --base http://127.0.0.1:8001 --urls ../../../panel/urls.json --out ../../../result --only ${{ matrix.stand }} --section "${{ inputs.section }}" --servermaker "${{ inputs.servermaker }}"
       - if: always()
         name: Logs
         run: |

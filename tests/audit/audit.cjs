@@ -11,6 +11,8 @@ const base = arg('base', 'http://127.0.0.1:8001'), out = arg('out', 'result'), u
 const only = arg('only', '') ? arg('only').split(',') : null;
 const section = arg('section', ''); // 'seasons', 'extras', 'layers' or 'first' runs only that part (quick diagnosis)
 const panelDir = path.resolve(arg('panel', '../../../panel'));
+const servermaker = arg('servermaker', 'main') !== 'none';
+const uuidOf = (name) => { try { return (JSON.parse(fs.readFileSync(path.join(panelDir, 'servers.json'), 'utf8')).find((x) => x.name === name) || {}).uuid; } catch { return null; } };
 fs.mkdirSync(out, { recursive: true });
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const rel = (u) => u.replace(/^https?:\/\/[^/]+/, '');
@@ -269,26 +271,41 @@ async function round(theme) {
 async function createFlow() {
   const overview = urls.app.find((p) => /App\\Pages\\Overview$/.test(p.class))?.url || '/';
   const onPhone = phone();
+  // Create server opens Simplify's popup with Server Maker (or Pelican's form without it) on every page, with only the
+  // form inside: no second top bar or side menu.
   const check = async (id, label) => {
-    await page.waitForLoadState('domcontentloaded').catch(() => {}); await page.waitForSelector('.ps-host-frame iframe', { timeout: 6000 }).catch(() => {}); await sleep(2500);
-    const st = await alpine('return { adminView: d.adminView, page: d.hostPage && d.hostPage.key, label: d.hostPage && d.hostPage.label, head: (document.querySelector(".ps-host-head.is-page") || {}).innerText }');
-    const frame = page.frames().find((f) => f !== page.mainFrame() && /\/admin\//.test(f.url()));
-    // Inside the frame only the page itself: no second top bar or side menu of Filament's.
-    const chrome = frame ? await frame.evaluate(() => ({ topbar: !![...document.querySelectorAll('.fi-topbar, .fi-sidebar')].some((e) => e.getClientRects().length && getComputedStyle(e).display !== 'none' && e.getBoundingClientRect().height > 10), framed: document.documentElement.classList.contains('ps-frame'), title: (document.querySelector('h1') || {}).innerText || null })).catch(() => null) : null;
-    await record(id, label, { create: { st, url: rel(page.url()), frame: frame ? rel(frame.url()) : null, chrome } });
-    const maker = frame ? /maker/i.test(frame.url()) : /maker/i.test(page.url());
-    const inSimplify = st && st.adminView && st.page === 'serverresource-create' && !!frame;
-    problems.push(`${stand} ${id}: ${inSimplify ? (maker ? 'Server Maker inside Simplify' : 'Pelican create form inside Simplify') : maker ? 'Server Maker as its own page' : 'NEITHER'}${inSimplify && chrome && chrome.topbar ? ' WRONG double chrome' : ''} (url ${rel(page.url())}, frame ${frame ? rel(frame.url()) : '-'}, head "${(st && st.head || '').replace(/\s+/g, ' ').trim()}", ${JSON.stringify(chrome)})`);
-    if (inSimplify && await click('.ps-host-close', 800)) { const after = await alpine('return { adminView: d.adminView, hostPage: !!d.hostPage }'); if (after && (after.adminView || after.hostPage)) problems.push(`${stand} ${id}: still open after close`); }
+    await page.waitForSelector('.ps-create-popup .ps-create-frame', { timeout: 8000 }).catch(() => {}); await sleep(3000);
+    const pop = await page.evaluate(() => { const l = document.querySelector('.ps-create-popup'); const f = l && l.querySelector('iframe'); return { open: !!l && !!l.getClientRects().length && getComputedStyle(l).display !== 'none', title: (l && l.querySelector('h2') || {}).innerText || null, src: f ? f.getAttribute('src') : null }; }).catch(() => null);
+    const frame = page.frames().find((f) => f !== page.mainFrame() && pop && pop.src && f.url().includes(pop.src.replace(/^https?:\/\/[^/]+/, '').split('?')[0]));
+    const chrome = frame ? await frame.evaluate(() => ({ bars: [...document.querySelectorAll('.fi-topbar, .fi-sidebar, .ps-topbar, .ps-top')].filter((e) => e.getClientRects().length && getComputedStyle(e).display !== 'none' && e.getBoundingClientRect().height > 10).map((e) => String(e.className).split(' ')[0]), title: ((document.querySelector('h1') || {}).innerText || '').trim().slice(0, 40) })).catch(() => null) : null;
+    await record(id, label, { create: { pop, url: rel(page.url()), frame: frame ? rel(frame.url()) : null, chrome } });
+    const maker = !!frame && /maker/i.test(frame.url());
+    const ok = pop && pop.open && !!frame && chrome && !chrome.bars.length && (servermaker ? maker : true);
+    problems.push(`${stand} ${id}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify({ pop, frame: frame ? rel(frame.url()) : null, maker, chrome, page: rel(page.url()) })}`);
+    if (pop && pop.open) { await page.keyboard.press('Escape'); await sleep(500); }
+  };
+  const press = async (where) => {
+    const btn = page.locator(':is(a, button):has-text("Create server") >> visible=true').first();
+    if (!(await btn.count())) return false;
+    await btn.click().catch(() => {}); await sleep(800);
+    const choice = page.locator('a.ps-create-button >> visible=true').first(); // a menu of choices when there is more than one
+    if (await choice.count()) { await record(`create-menu-${where}`, `Create server · keuzemenu (${where})`); await choice.click().catch(() => {}); }
+    return true;
   };
   if (!onPhone) {
     await goto(overview); await sleep(600);
-    const btn = page.locator('.ps-top-overview :is(a, button):has-text("Create server") >> visible=true').first();
-    if (!(await btn.count())) { problems.push(`${stand} create: no Create server button`); return; }
-    await btn.click().catch(() => {}); await sleep(800);
-    const choice = page.locator('a.ps-create-button >> visible=true').first(); // a menu of choices when there is more than one
-    if (await choice.count()) { await record('create-menu', 'Create server · keuzemenu'); await choice.click().catch(() => {}); }
-    await check('create-desktop', 'Create server (desktop)');
+    if (await press('overview')) await check('create-desktop', 'Create server (overzicht)'); else problems.push(`${stand} create-desktop: WRONG no Create server button on the overview`);
+    await goto(urls.servers['Survival SMP'], 3000);
+    if (await press('server')) await check('create-server-page', 'Create server (serverpagina)'); else problems.push(`${stand} create-server-page: WRONG no Create server button on a server page`);
+    // Host mode: Admin → Servers → Create, inside the frame.
+    await goto(overview); await alpine('d.setHostMode(true)'); await sleep(1200);
+    await alpine(`const sec = d.hostSections().find((x) => x.key === 'servers'); const it = sec && sec.pages.find((p) => p.key === 'serverresource'); if (it) d.openHostLeaf(sec, it); return !!it;`);
+    await page.waitForSelector('.ps-host-frame iframe', { timeout: 8000 }).catch(() => {}); await sleep(2500);
+    const list = page.frames().find((x) => x !== page.mainFrame() && /\/admin\/servers/.test(x.url()));
+    const link = list && list.locator('a[href*="/servers/create"] >> visible=true').first();
+    if (link && (await link.count())) { await link.click().catch(() => {}); await sleep(800); await check('create-host-admin', 'Create server (hostmodus, Admin → Servers → Create)'); }
+    else problems.push(`${stand} create-host-admin: WRONG no Create in Admin → Servers (${list ? rel(list.url()) : 'no frame'})`);
+    await alpine('d.setHostMode(false)'); await sleep(500);
   } else {
     await goto(overview); await sleep(600);
     const tab = page.locator('.ps-tabbar .ps-tab[aria-haspopup="dialog"] >> visible=true').first();
@@ -315,8 +332,8 @@ async function layersFlow() {
   say('layers-server-more', more && more.length && more.every((h) => h.ok), { bad: more && more.filter((h) => !h.ok), items: more && more.map((h) => h.item) });
   await escape(); await page.mouse.move(5, 5);
   // Tooltips over the card and the console.
-  for (const sel of ['.ps-statusbar-address', '.ps-info-power .ps-btn[data-tip]']) {
-    const el = page.locator(`${sel} >> visible=true`).first(); if (!(await el.count())) continue;
+  for (const sel of ['.ps-info-address[data-tip]', '.ps-info-meta-item[data-tip]']) {
+    const el = page.locator(`${sel} >> visible=true`).first(); if (!(await el.count())) { say(`layers-tip-${slug(sel)}`, false, { note: 'nothing to hover' }); continue; }
     await el.hover().catch(() => {});
     // The tooltip shows after a short delay and fades in; it lets the pointer through, so the hit test turns that off.
     await page.waitForSelector('.ps-tooltip.is-visible', { timeout: 2500 }).catch(() => {}); await sleep(400);
@@ -326,7 +343,7 @@ async function layersFlow() {
   }
   // The top bar's menus over the server card.
   const openNav = async () => { if (onPhone) await page.locator('.ps-tabbar button[aria-controls="ps-navigation-items"]').first().click().catch(() => {}); await sleep(500); };
-  for (const [btn, menu, id] of [['[x-ref="notifyButton"]', '#ps-notify-menu', 'bell'], ['[x-ref="adminButton"]', '#ps-admin-menu', 'admin'], ['.ps-account-button', '#ps-account-actions', 'account']]) {
+  if (!onPhone) for (const [btn, menu, id] of [['[x-ref="notifyButton"]', '#ps-notify-menu', 'bell'], ['[x-ref="adminButton"]', '#ps-admin-menu', 'admin'], ['.ps-account-button', '#ps-account-actions', 'account']]) {
     await goto(serverUrl, 2500); await openNav();
     if (!(await click(btn, 800))) continue;
     const h = await hits(menu); await record(`layers-${id}`, `Lagen · ${id}-menu boven de serverkaart`);
@@ -359,6 +376,8 @@ async function firstFlow(theme) {
   for (const name of ['Fresh Start', 'No EULA']) {
     if (!urls.servers[name]) { say(`first-eula-${slug(name)}`, false, { note: 'server not seeded' }); continue; }
     const st = await open(name); await record(`first-eula-${slug(name)}`, `First start · EULA open · ${name}`);
+    const wlog = path.join(panelDir, 'wings.log'); const asked = fs.existsSync(wlog) ? fs.readFileSync(wlog, 'utf8').split('\n').filter((l) => l.includes(uuidOf(name) || '~') && /eula|contents/.test(l)).slice(-3).map((l) => l.slice(25, 140)) : [];
+    st.wings = asked;
     say(`first-eula-${slug(name)}`, st.badge === 'Ready for its first start' && st.box && st.link && st.before && st.main === 'First start' && st.mainOff && !st.restart && !st.oldBanner, st);
     // Start from the keyboard or the console goes through power('start'): the box lights up, nothing starts.
     await page.evaluate(() => { const root = [...document.querySelectorAll('[x-data]')].find((e) => window.Alpine && typeof window.Alpine.$data(e).power === 'function'); if (root) window.Alpine.$data(root).power('start'); });
@@ -390,6 +409,64 @@ async function firstFlow(theme) {
   }
 }
 
+// Server menu without reloads (1.5.2, wire:navigate + @persist): Console → Files → Backups & tasks → Schedules → Console →
+// Advanced › Settings → Console. Each step: no full page load, the server top and the menu are the same elements and never
+// gone for a frame, aria-current on the right item, on the console "Connected to Wings", live numbers and exactly one open
+// websocket; elsewhere the log strip when it is on and no menu height left over; the page never scrolls.
+async function navFlow() {
+  const serverUrl = urls.servers['Survival SMP'];
+  const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
+  const sockets = new Set();
+  const onWs = (w) => { sockets.add(w); w.on('close', () => sockets.delete(w)); };
+  page.on('websocket', onWs);
+  await goto(serverUrl, 4000);
+  await page.evaluate(() => {
+    window.__psMark = 1; window.__psFlash = 0;
+    const keep = () => { const c = document.querySelector('.ps-server-info'), m = document.querySelector('.ps-server-menu'); if (c) c.__psKeep = 1; if (m) m.__psKeep = 1; };
+    keep();
+    const tick = () => { const c = document.querySelector('.ps-server-info'), m = document.querySelector('.ps-server-menu'); if (!c || !c.getClientRects().length || c.getBoundingClientRect().height < 20 || !m || !m.getClientRects().length || c.querySelector(':scope > [x-cloak]') || c.hasAttribute('x-cloak')) window.__psFlash++; requestAnimationFrame(tick); };
+    requestAnimationFrame(tick);
+  });
+  const state = () => page.evaluate(() => {
+    const v = (e) => !!e && !!e.getClientRects().length && getComputedStyle(e).display !== 'none';
+    const c = document.querySelector('.ps-server-info'), m = document.querySelector('.ps-server-menu'), more = document.querySelector('.ps-server-menu-more');
+    const root = [...document.querySelectorAll('[x-data]')].map((e) => window.Alpine && window.Alpine.$data(e)).find((d) => d && 'onConsole' in d);
+    const strip = document.querySelector('.ps-log-strip');
+    return { reloaded: window.__psMark !== 1, cardKept: !!c && c.__psKeep === 1, menuKept: !!m && m.__psKeep === 1, flashes: window.__psFlash,
+      current: [...document.querySelectorAll('.ps-server-menu [aria-current="page"]')].map((a) => a.textContent.trim().replace(/\s+/g, ' ')), advancedOpen: !!more && more.open,
+      tab: [...document.querySelectorAll('a[aria-current="page"]')].filter((a) => !a.closest('.ps-server-menu, .ps-phone-sections')).map((a) => a.textContent.trim()).slice(0, 2),
+      onConsole: root ? root.onConsole : null, wings: (document.querySelector('.ps-console-state') || {}).textContent || null,
+      stats: (document.querySelector('.ps-server-stats') || {}).innerText || '', logPref: root ? !!(root.overviewPreferences || {}).serverConsoleLog : null, logLines: root ? (root.logLines || []).length : null, strip: v(strip),
+      menuStyle: m ? [m.style.height, m.style.maxHeight, m.style.minHeight].filter(Boolean).join(' ') : null, menuH: m ? Math.round(m.getBoundingClientRect().height) : null,
+      scroll: document.documentElement.scrollHeight - innerHeight, url: location.pathname };
+  });
+  const clickIn = async (text, scope) => page.evaluate(([t, sc]) => { const box = sc ? document.querySelector(sc) : document; const a = [...box.querySelectorAll('a, summary')].find((e) => e.textContent.trim().replace(/\s+/g, ' ') === t && e.getClientRects().length && !(sc ? false : e.closest('.ps-server-menu, .ps-phone-sections'))); if (!a) return false; a.click(); return true; }, [text, scope]);
+  const steps = [
+    ['Files', () => clickIn('Files', '.ps-server-menu'), 'Files'],
+    ['Backups & tasks', () => clickIn('Backups & tasks', '.ps-server-menu'), 'Backups & tasks'],
+    ['Schedules', () => clickIn('Schedules', null), 'Backups & tasks'],
+    ['Console', () => clickIn('Console', '.ps-server-menu'), 'Console'],
+    ['Settings', async () => { await page.evaluate(() => { const d = document.querySelector('.ps-server-menu-more'); if (d && !d.open) d.querySelector('summary').click(); }); await sleep(300); return clickIn('Settings', '.ps-server-menu-more'); }, 'Settings'],
+    ['Console', () => clickIn('Console', '.ps-server-menu'), 'Console'],
+  ];
+  let i = 0;
+  for (const [label, act, want] of steps) {
+    i++;
+    await page.evaluate(() => { window.__psFlash = 0; });
+    const clicked = await act();
+    await page.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {}); await sleep(2500);
+    const st = await state();
+    const consoleStep = want === 'Console';
+    let live = null;
+    if (consoleStep) { await sleep(2500); const again = await state(); live = again.stats !== st.stats; }
+    await record(`nav-${i}-${slug(label)}`, `Navigatie · ${i}. ${label}`);
+    const ok = clicked && !st.reloaded && st.cardKept && st.menuKept && st.flashes === 0 && st.current.includes(want) && (want !== 'Settings' || st.advancedOpen) && st.scroll <= 1
+      && (consoleStep ? st.onConsole === true && /Connected to Wings/.test(st.wings || '') && live && sockets.size === 1 : st.onConsole === false && (!st.logPref || !st.logLines || st.strip) && !st.menuStyle);
+    say(`nav-${i}-${slug(label)}`, ok, { clicked, sockets: sockets.size, live, ...st, stats: undefined });
+  }
+  page.off('websocket', onWs);
+}
+
 // Scrollbars (1.5.2): 11px wide with a 4px thumb, 14px short of both ends, in a tint of the background: white 16% in
 // dark, black 16% in light, and white on the console in both. Checked where something scrolls: the overview, the
 // settings, a page in the frame and the console.
@@ -402,7 +479,7 @@ async function scrollbars(serverUrl) {
   const look = (doc, console) => doc.evaluate((onlyConsole) => {
     const rule = [...document.styleSheets].flatMap((sh) => { try { return [...sh.cssRules]; } catch { return []; } }).map((r) => r.cssText);
     const bar = rule.find((t) => /^html ::-webkit-scrollbar \{/.test(t)) || null, thumb = rule.find((t) => /^html ::-webkit-scrollbar-thumb \{/.test(t)) || null, track = rule.find((t) => /^html ::-webkit-scrollbar-track/.test(t)) || null;
-    const els = onlyConsole ? [...document.querySelectorAll('.ps-console .xterm-scrollable-element > .scrollbar.vertical > .slider')] : [document.scrollingElement, ...document.querySelectorAll('*')].filter((e) => { if (!e || !e.getClientRects().length) return false; const cs = getComputedStyle(e); return (e === document.scrollingElement || /(auto|scroll)/.test(cs.overflowY)) && e.scrollHeight > e.clientHeight + 4 && e.clientHeight > 60; });
+    const els = onlyConsole ? [document.querySelector('.ps-console')].filter(Boolean) : [document.scrollingElement, ...document.querySelectorAll('*')].filter((e) => { if (!e || !e.getClientRects().length) return false; const cs = getComputedStyle(e); return (e === document.scrollingElement || /(auto|scroll)/.test(cs.overflowY)) && e.scrollHeight > e.clientHeight + 4 && e.clientHeight > 60; });
     const out = els.slice(0, 4).map((e) => { if (!onlyConsole) e.scrollTop = (e.scrollHeight - e.clientHeight) / 2; const cs = getComputedStyle(e); const r = e.getBoundingClientRect(); return { el: (e.className && String(e.className).trim().split(/\s+/).slice(0, 2).join('.')) || e.tagName.toLowerCase(), color: getComputedStyle(e).getPropertyValue('--s-scroll').trim(), bg: onlyConsole ? cs.backgroundColor : null, width: onlyConsole ? Math.round(r.width) : null, h: Math.round(r.height) }; });
     return { bar, thumb, track, boxes: out };
   }, !!console).catch((e) => ({ error: e.message.slice(0, 100) }));
@@ -410,7 +487,7 @@ async function scrollbars(serverUrl) {
   const judge = (where, info, place) => {
     const css = info && info.bar && /width: 11px/.test(info.bar) && info.thumb && /border-inline-end-width: 4px/.test(info.thumb) && info.track && /margin: 14px/.test(info.track);
     const boxes = (info && info.boxes) || [];
-    const colors = where === 'console' ? boxes.map((b) => norm(b.bg)) : boxes.map((b) => norm(b.color));
+    const colors = boxes.map((b) => norm(b.color));
     say(`scroll-${where}`, css && boxes.length && colors.every((c) => c === want(where)), { want: want(where), got: colors, boxes: boxes.map((b) => b.el + ' ' + b.h + (b.width ? ' w' + b.width : '')), css: !!css, place });
   };
   await goto(overview, 1500); let info = await look(page); await sleep(300); await record('scroll-overview', 'Scrollbalk · overzicht'); judge('overview', info);
@@ -697,10 +774,13 @@ const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(
       stand = `${name}-${theme}`;
       console.log(`[${new Date().toISOString().slice(11, 19)}] ${stand} (${screens.length} screens, ${problems.length} problems so far)`);
       await page.setViewportSize(size);
-      if (section === 'first') { if (!['d1440', 'phone390'].includes(name)) continue; try { await setTheme(theme); await firstFlow(theme); } catch (e) { problems.push(`${stand} first: ${e.message.slice(0, 200)}`); } continue; }
-      if (section === 'layers') { if (!['d1440', 'laag1366', 'laag1100', 'phone390'].includes(name)) continue; try { await setTheme(theme); await layersFlow(); } catch (e) { problems.push(`${stand} layers: ${e.message.slice(0, 200)}`); } continue; }
-      if (section === 'extras') { if (!['d1440', 'laag1366', 'laag1100', 'phone390'].includes(name)) continue; try { await setTheme(theme); await extrasFlow(theme); } catch (e) { problems.push(`${stand} extras: ${e.message.slice(0, 200)}`); } continue; }
-      if (section === 'seasons') { if (!['d1440', 'tablet768', 'phone390'].includes(name)) continue; try { await setTheme(theme); await seasons(theme); } catch (e) { problems.push(`${stand} seasons: ${e.message.slice(0, 200)}`); } continue; }
+      if (section) {
+        // One or more sections (comma separated), each on its own stands.
+        const parts = { first: [['d1440', 'phone390'], () => firstFlow(theme)], layers: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => layersFlow()], nav: [['d1440', 'laag1366'], () => navFlow()], create: [['d1440', 'laag1366', 'phone390'], () => createFlow()],
+          extras: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => extrasFlow(theme)], seasons: [['d1440', 'tablet768', 'phone390'], () => seasons(theme)] };
+        for (const part of section.split(',')) { const [where, run] = parts[part] || [[], null]; if (!run || !where.includes(name)) continue; try { await setTheme(theme); await run(); } catch (e) { problems.push(`${stand} ${part}: ${e.message.slice(0, 200)}`); } }
+        continue;
+      }
       try { await round(theme); } catch (e) { problems.push(`${stand} ${screen}: round stopped: ${e.message.slice(0, 200)}`); console.log('  ! ' + e.message.slice(0, 200)); if (page.isClosed()) { page = await context.newPage(); await login('demo@example.com', 'DemoPassword123!'); } }
     }
   }
