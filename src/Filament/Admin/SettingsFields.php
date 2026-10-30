@@ -214,7 +214,8 @@ final class SettingsFields
     /** The image in an upload field: a fresh upload before saving, or the saved file. */
     private static function previewUrl(mixed $state): ?string
     {
-        foreach ((array) $state as $file) {
+        // Filament hands a single upload over as the file itself; (array) would turn that object into its properties.
+        foreach (is_array($state) ? $state : [$state] as $file) {
             // A fresh upload can arrive as Livewire's "livewire-file:" reference instead of the file itself.
             if (is_string($file) && TemporaryUploadedFile::canUnserialize($file)) {
                 $file = TemporaryUploadedFile::unserializeFromLivewireRequest($file);
