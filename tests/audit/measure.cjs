@@ -105,7 +105,7 @@ const measure = (opts = {}) => {
   const alpha = (c) => { const m = c && c.match(/rgba?\(([^)]+)\)/); if (!m) return 0; const p = m[1].split(',').map(parseFloat); return p.length > 3 ? p[3] : 1; };
   // A box: a sizeable block with its own visible border, shadow or outline; fields, buttons, tables and media are not boxes.
   const isBox = (el) => {
-    if (el.matches('button, a, input, select, textarea, table, thead, tbody, tr, td, th, pre, code, img, canvas, iframe, svg, svg *, label, legend, nav, .fi-input-wrp, .fi-fo-field-wrp *, .fi-ta-table, .fi-tabs, .fi-sc-tabs-tab, .ps-server-card, .ps-server-card *, .xterm, .xterm *, .ps-console, .ps-console *, .fi-btn, .fi-ac, .ps-btn, [role=tablist], [role=tab], .fi-badge, .ps-stat, .ps-stat *, .fi-fo-rich-editor, .fi-fo-rich-editor *, .fi-fo-markdown-editor *, .fi-fo-code-editor *, .fi-fo-color-picker *, .fi-fo-file-upload *, .fi-fo-repeater *, .fi-fo-builder *, .fi-fo-key-value *, .fi-fo-checkbox-list *, .fi-fo-radio *, .fi-fo-toggle-buttons *, .fi-fo-select *, .fi-ta-cell *, .ps-health-tab, .ps-health-nodes, .ps-health-nodes *, .ps-motd-preview, .ps-motd-preview *, .ps-embed-preview, .ps-embed-preview *, .ps-code, .ps-code *, .fi-fo-placeholder *, .fi-section-header, .fi-section-footer, .fi-sc-fieldset, .fi-fieldset, .fi-fieldset *')) return false;
+    if (el.matches('button, a, input, select, textarea, table, thead, tbody, tr, td, th, pre, code, img, canvas, iframe, svg, svg *, label, legend, nav, .fi-input-wrp, .fi-fo-field-wrp *, .fi-ta-table, .fi-tabs, .fi-sc-tabs-tab, .ps-server-card, .ps-server-card *, .xterm, .xterm *, .ps-console, .ps-console *, .fi-btn, .fi-ac, .ps-btn, [role=tablist], [role=tab], .fi-badge, .ps-stat, .ps-stat *, .fi-fo-rich-editor, .fi-fo-rich-editor *, .fi-fo-markdown-editor *, .fi-fo-code-editor *, .fi-fo-color-picker *, .fi-fo-file-upload *, .fi-fo-repeater *, .fi-fo-builder *, .fi-fo-key-value *, .fi-fo-checkbox-list *, .fi-fo-radio *, .fi-fo-toggle-buttons *, .fi-fo-select *, .fi-ta-cell *, .ps-health-tab, .ps-health-nodes, .ps-health-nodes *, .ps-motd-preview, .ps-motd-preview *, .ps-embed-preview, .ps-embed-preview *, .ps-code, .ps-code *, .fi-fo-placeholder *, .fi-section-header, .fi-section-footer, .fi-sc-fieldset, .fi-fieldset, .fi-fieldset *, [class*="preview"], [class*="preview"] *')) return false;
     const b = el.getBoundingClientRect(); if (b.width < 220 || b.height < 72) return false;
     const cs = getComputedStyle(el);
     if (/(fixed|absolute|sticky)/.test(cs.position)) return false;
@@ -139,7 +139,8 @@ const measure = (opts = {}) => {
     // Action buttons that belong in the title bar: a page header's actions, a table's toolbar buttons, a form's save.
     const actionSel = '.fi-header-actions-ctn .fi-ac > :is(button, a), .fi-ta-header-toolbar > .fi-ta-actions > :is(button, a), .s-bar button, .fi-form-actions button, form > .fi-ac > button, .fi-fo-actions button, button[type=submit]:not(.fi-modal *)';
     const actions = [...document.querySelectorAll(actionSel + ', .s-toolbar :is(button, a), .s-btn-primary')].filter((el) => visible(el) && !layer(el) && !el.closest('.fi-ta-ctn .fi-ta-ctn, .fi-section .fi-ta-ctn, .fi-resource-relation-managers, .fi-sc-tabs .fi-ta-ctn, .fi-ta-cell, .fi-ta-row, .fi-global-search, li, tr, .s-row, .s-person, .s-item, [class*="-row"], [class*="-item"]'));
-    const fiButtons = all.filter((el) => el.matches('.fi-btn') && !layer(el) && !el.closest('.fi-ta-ctn, .fi-ac-btn-group, .fi-fo-repeater, .fi-fo-builder, .fi-fo-file-upload, .fi-pagination, .fi-fo-actions-ctn.is-ps'));
+    // Filament's toggle buttons and radio groups are form fields, not buttons.
+    const fiButtons = all.filter((el) => el.matches('.fi-btn') && !layer(el) && !el.closest('.fi-ta-ctn, .fi-ac-btn-group, .fi-fo-repeater, .fi-fo-builder, .fi-fo-file-upload, .fi-pagination, .fi-fo-actions-ctn.is-ps, .fi-fo-toggle-buttons, .fi-fo-radio, .fi-fo-checkbox-list, .fi-btn-group'));
     if (isFrame && native) {
       let head = null; try { head = window.frameElement?.closest('.ps-host-main')?.querySelector(':scope > .ps-host-head.is-page') || null; } catch {}
       const headShown = head ? parent.getComputedStyle(head).display !== 'none' : null;
@@ -177,8 +178,9 @@ const measure = (opts = {}) => {
     const scrolls = dd.scrollHeight > dd.clientHeight + 2;
     r.info.dropdown = r.info.dropdown || []; r.info.dropdown.push(`${name(dd)} ${Math.round(b.height)}px of ${limit} max${scrolls ? ', scrolls' : ''}`);
     if (b.height > limit + 2) push('dropdowntall', `dropdown higher than two thirds of the window: ${name(dd)} ${Math.round(b.height)}px > ${limit}px`);
-    const floor = Math.min(H, ...[...document.querySelectorAll('.ps-tabbar, .ps-statusbar')].filter(visible).map((el) => el.getBoundingClientRect().top));
-    if (scrolls && b.height < limit - 24 && (b.bottom < floor - 24)) push('dropdownscroll', `dropdown scrolls although it could be taller: ${name(dd)} ${Math.round(b.height)}px of ${limit}px allowed`);
+    // A fixed bar under the dropdown (a phone's tab bar) is the floor; otherwise the window's edge with a 64px margin.
+    const floor = Math.min(H, ...all.filter((el) => getComputedStyle(el).position === 'fixed' && el.getBoundingClientRect().top >= b.bottom - 4 && el.getBoundingClientRect().width > W / 2).map((el) => el.getBoundingClientRect().top));
+    if (scrolls && b.height < limit - 24 && (b.bottom < floor - 64)) push('dropdownscroll', `dropdown scrolls although it could be taller: ${name(dd)} ${Math.round(b.height)}px of ${limit}px allowed`);
     const wrap = dd.parentElement, btn = wrap?.querySelector(':scope > button, :scope > a, :scope > [role=button]');
     if (wrap && btn) {
       const pa = getComputedStyle(wrap, '::after');
