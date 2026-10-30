@@ -1,0 +1,119 @@
+name: Demo
+# The clickable demo of the whole panel: a real panel with Simplify (main) and the add-ons (main), example data, and
+# every screen saved as a static page. The result goes to the branch demo-results; plannen/demo-paneel/build.py makes
+# the Artifact from it. To refresh after a UI change: re-run this workflow (it always takes the latest main of every repo).
+on:
+  workflow_dispatch: {}
+  pull_request:
+    paths: ['tests/demo/**', '.github/workflows/demo.yml']
+permissions:
+  contents: write
+jobs:
+  # One recording of the latest main of every repo, plus one per proposal in tests/demo/voorstel.json: the same panel
+  # with that proposal's branches, so Jeroen can approve a UI change in the demo before it is released.
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      variants: ${{ steps.list.outputs.variants }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: list
+        run: echo "variants=$(python3 -c "import json,os;p='tests/demo/voorstel.json';print(json.dumps(['main']+[v['name'] for v in (json.load(open(p)) if os.path.exists(p) else [])]))")" >> "$GITHUB_OUTPUT"
+  demo:
+    needs: plan
+    strategy:
+      fail-fast: false
+      matrix:
+        variant: ${{ fromJson(needs.plan.outputs.variants) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      PELICAN: '1.0.0-rc.2'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: demo
+      - name: Anything to record?
+        id: plan
+        run: echo "skip=0" >> "$GITHUB_OUTPUT"
+      - if: steps.plan.outputs.skip == '0'
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: bcmath, gd, intl, mbstring, pdo_sqlite, sqlite3, zip
+          tools: composer
+      - if: steps.plan.outputs.skip == '0'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - if: steps.plan.outputs.skip == '0'
+        run: npm install -g yarn
+      - if: steps.plan.outputs.skip == '0'
+        name: Install Pelican
+        run: |
+          git clone --quiet --depth 1 --branch "v$PELICAN" https://github.com/pelican-dev/panel.git panel
+          cd panel
+          composer install --no-interaction --no-progress --prefer-dist
+          sed -i "s/'version' => 'canary'/'version' => '$PELICAN'/" config/app.php
+          cp .env.example .env
+          sed -i 's/^APP_INSTALLED=.*/APP_INSTALLED=true/; s/^APP_DEBUG=.*/APP_DEBUG=false/; s#^APP_URL=.*#APP_URL=http://127.0.0.1:8001#' .env
+          printf 'DB_CONNECTION=sqlite\nQUEUE_CONNECTION=sync\nCACHE_STORE=file\nSESSION_DRIVER=file\nMAIL_MAILER=log\n' >> .env
+          touch database/database.sqlite
+          php artisan key:generate --force
+          php artisan migrate --force --seed
+          yarn install --silent
+          yarn build
+      - if: steps.plan.outputs.skip == '0'
+        name: Install Simplify and the add-ons
+        working-directory: panel
+        run: |
+          echo '{' > versions.json
+          for pair in Simplify:pelican-simplify Simplify-Toolkit:simplify-toolkit Simplify-EggUpdates:simplify-egg-updates Simplify-Explain:simplify-explain Simplify-ServerMaker:simplify-server-maker Simplify-Hosting:simplify-hosting; do
+            repo=${pair%%:*}; id=${pair##*:}
+            # Always main: Toolkit's default branch still points at the old Mods code. The folder must carry the id from plugin.json.
+            branch=main
+            if [ "${{ matrix.variant }}" != main ]; then branch=$(php -r 'foreach (json_decode(file_get_contents("../demo/tests/demo/voorstel.json"), true) as $v) { if ($v["name"] === $argv[1]) { echo $v["branches"][$argv[2]] ?? "main"; exit; } } echo "main";' "${{ matrix.variant }}" "$repo"); fi
+            git clone --quiet --depth 1 --branch "$branch" "https://github.com/jerajerajerajera/$repo.git" "plugins/$id"
+            real=$(php -r "echo json_decode(file_get_contents('plugins/$id/plugin.json'), true)['id'];")
+            if [ "$real" != "$id" ]; then mv "plugins/$id" "plugins/$real"; id=$real; fi
+            version=$(php -r "echo json_decode(file_get_contents('plugins/$id/plugin.json'), true)['version'];")
+            echo "\"$id\": {\"repo\": \"$repo\", \"branch\": \"$branch\", \"version\": \"$version\", \"commit\": \"$(git -C plugins/$id rev-parse --short HEAD)\"}," >> versions.json
+            rm -rf "plugins/$id/.git"
+            php artisan p:plugin:install "$id"
+          done
+          echo "\"pelican\": {\"version\": \"$PELICAN\"}}" >> versions.json
+          cat versions.json
+          php artisan p:plugin:list
+      - if: steps.plan.outputs.skip == '0'
+        name: Seed and start the panel and the fake Wings
+        working-directory: panel
+        run: |
+          php ../demo/tests/demo/seed.php 8090 > servers.json
+          php ../demo/tests/demo/urls.php > urls.json
+          cat urls.json
+          nohup node ../demo/tests/demo/fake-minecraft.cjs --servers servers.json > minecraft.out 2>&1 &
+          nohup node ../demo/tests/demo/fake-wings.cjs --port 8090 --servers servers.json --log wings.log > wings.out 2>&1 &
+          PHP_CLI_SERVER_WORKERS=8 nohup php artisan serve --host 127.0.0.1 --port 8001 > serve.log 2>&1 &
+          for i in $(seq 1 30); do curl -sf -o /dev/null http://127.0.0.1:8001/login && break; sleep 1; done
+          curl -sS http://127.0.0.1:8090/api/system
+      - if: steps.plan.outputs.skip == '0'
+        name: Record every screen
+        working-directory: panel
+        run: |
+          cd ../demo/tests/demo
+          npm init -y > /dev/null
+          npm install --silent playwright@1.48.2
+          npx playwright install --with-deps chromium > /dev/null
+          node capture.cjs --base http://127.0.0.1:8001 --urls ../../../panel/urls.json --versions ../../../panel/versions.json --out ../../../result --crawl ${{ matrix.variant == 'main' && '300' || '0' }}
+      - if: always() && steps.plan.outputs.skip == '0'
+        name: Laravel log
+        run: grep -h -E '^\[[0-9-]+ [0-9:]+\]' panel/storage/logs/*.log | cut -c1-600 | tail -n 30 || true
+      # On a branch of its own, so build.py can fetch it with plain git.
+      - if: steps.plan.outputs.skip == '0'
+        name: Result to the demo-results branch
+        run: |
+          cd result
+          git init -q -b results
+          git add -A
+          git -c user.name=demo -c user.email=demo@users.noreply.github.com commit -qm "Demo ${{ github.sha }}"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "results:refs/heads/demo-results$([ "${{ matrix.variant }}" != main ] && echo "-${{ matrix.variant }}")"

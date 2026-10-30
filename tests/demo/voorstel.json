@@ -1,0 +1,40 @@
+[
+ {
+  "name": "hostmodus-titelbalk",
+  "title": "Hostmodus-titelbalk zoals in 0.7.0",
+  "text": "In hostmodus staan het zoekveld en de knoppen van de Pelican-pagina rechts in de titelbalk naast het pad (bijv. Servers > Eggs). New Egg, New Server en New User zijn daar een knop met naam, Import is een icoonknop. De tabel staat zonder kader en zonder lege band erboven direct op de pagina. Kern PR #72.",
+  "branches": {
+   "Simplify": "claude/host-head-tools"
+  },
+  "screens": [
+   "host-eggs",
+   "host-servers",
+   "host-nodes",
+   "host-users",
+   "host-people",
+   "host-roles",
+   "host-api-keys",
+   "host-database-hosts",
+   "host-mounts",
+   "host-webhooks",
+   "host-backup-hosts"
+  ]
+ },
+ {
+  "name": "contentvak-kaart",
+  "title": "Contentvak als kaart (1.3.11)",
+  "text": "Op serverpagina's behalve de console is het contentvak een kaart met ronde hoeken boven en onder; alleen de inhoud scrolt, sectiekop en opslaanknop blijven staan. Website-preview groeit mee met de lijst.",
+  "branches": {
+   "Simplify": "claude/embed-preview-fit"
+  },
+  "screens": [
+   "server",
+   "server-website",
+   "server-plugins",
+   "server-minecraft",
+   "server-files",
+   "server-backups",
+   "server-schedules"
+  ]
+ }
+]
