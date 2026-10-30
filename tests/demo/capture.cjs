@@ -363,6 +363,30 @@ async function login(browser, email) {
   // replaced by #) is recorded at most a few times, except server pages, which are recorded for every server.
   await crawl(page, Number(arg('crawl', 300)));
 
+  // Server Maker's Minecraft step and Review step, last because walking the steps saves a draft. Picking a Minecraft
+  // type moves on by itself; Next walks on to Review, with a name filled in where the Server step asks for one.
+  const maker = urls.app.find((p) => /App\\Pages\\ServerMaker$/.test(p.class))?.url;
+  const makerType = async (p) => {
+    await p.waitForSelector('.smk-minecraft-type', { timeout: 15000 }).catch(() => {});
+    const type = p.locator('.smk-minecraft-type >> visible=true').nth(1);
+    if (await type.count()) { await type.click(); await settle(p, 2500); }
+  };
+  const makerReview = async (p) => {
+    await makerType(p);
+    for (let i = 0; i < 6; i++) {
+      if (/Review/.test(await p.locator('.smk-step.is-current').first().innerText().catch(() => ''))) break;
+      const name = p.locator('input[id$="data.name"] >> visible=true').first();
+      if (await name.count() && !(await name.inputValue())) { await name.fill('Northwind Survival'); await name.blur(); await settle(p, 800); }
+      const next = p.locator('.fi-sc-wizard-footer button >> visible=true').filter({ hasText: /Next/ }).first();
+      if (!(await next.count())) break;
+      await next.click(); await settle(p, 1500);
+    }
+  };
+  if (maker) {
+    await walk(page, { id: 'app-server-maker-minecraft', title: 'Server maker · Minecraft-stap', group: 'Klantkant', phone: true }, open(page, maker, makerType));
+    await walk(page, { id: 'app-server-maker-review', title: 'Server maker · Review-stap', group: 'Klantkant', phone: true }, open(page, maker, makerReview));
+  } else problems.push('no Server maker page');
+
   // The customer's own view: only their servers, with the hosting links.
   const customer = await login(browser, 'sam@example.com');
   await walk(customer, { id: 'customer', title: 'Overzicht als klant (sam)', group: 'Klantkant', phone: true, root: false, children: [
