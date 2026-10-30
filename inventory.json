@@ -1,0 +1,127 @@
+{
+ "overview": {
+  "title": "PelicanSimplify settings - Pelican",
+  "h1": "PelicanSimplify settings",
+  "items": [
+   {
+    "kind": "link",
+    "label": "Pelican",
+    "where": "Topbar",
+    "href": "http://127.0.0.1:8001/simplify"
+   },
+   {
+    "kind": "button",
+    "label": "Notifications, 14 unread notifications",
+    "where": "Topbar"
+   },
+   {
+    "kind": "button",
+    "label": "User menu",
+    "where": "Topbar"
+   },
+   {
+    "kind": "button",
+    "label": "View checks",
+    "where": "article"
+   },
+   {
+    "kind": "button",
+    "label": "View checks",
+    "where": "article"
+   },
+   {
+    "kind": "button",
+    "label": "View checks",
+    "where": "article"
+   },
+   {
+    "kind": "button",
+    "label": "View checks",
+    "where": "article"
+   },
+   {
+    "kind": "button",
+    "label": "View checks",
+    "where": "article"
+   },
+   {
+    "kind": "button",
+    "label": "View checks",
+    "where": "article"
+   },
+   {
+    "kind": "button",
+    "label": "Check again",
+    "where": "section"
+   },
+   {
+    "kind": "button",
+    "label": "Go to first setup",
+    "where": "section"
+   },
+   {
+    "kind": "link",
+    "label": "© 2026 Pelican",
+    "where": "page",
+    "href": "https://pelican.dev/docs/#core-team"
+   },
+   {
+    "kind": "menu",
+    "label": "Profile",
+    "where": "menu",
+    "href": "http://127.0.0.1:8001/profile",
+    "opener": "User menu"
+   },
+   {
+    "kind": "button",
+    "label": "Enable light theme",
+    "where": "menu",
+    "opener": "User menu"
+   },
+   {
+    "kind": "button",
+    "label": "Enable dark theme",
+    "where": "menu",
+    "opener": "User menu"
+   },
+   {
+    "kind": "button",
+    "label": "Enable system theme",
+    "where": "menu",
+    "opener": "User menu"
+   },
+   {
+    "kind": "menu",
+    "label": "Admin",
+    "where": "menu",
+    "href": "http://127.0.0.1:8001/admin",
+    "opener": "User menu"
+   },
+   {
+    "kind": "menu",
+    "label": "Simplify settings",
+    "where": "menu",
+    "href": "http://127.0.0.1:8001/pelican-simplify-settings",
+    "opener": "User menu"
+   },
+   {
+    "kind": "menu",
+    "label": "Sign out",
+    "where": "form",
+    "opener": "User menu"
+   }
+  ]
+ },
+ "server console": {
+  "title": "Pelican",
+  "h1": "404 | Not found",
+  "items": [
+   {
+    "kind": "link",
+    "label": "© 2026 Pelican",
+    "where": "page",
+    "href": "https://pelican.dev/docs/#core-team"
+   }
+  ]
+ }
+}
