@@ -45,6 +45,10 @@ const measure = (opts = {}) => {
     if ((right || bottom || left || top) && off.length < 8) off.push(`${name(el)} "${text(el)}" (${Math.round(b.left)},${Math.round(b.top)} ${Math.round(b.width)}x${Math.round(b.height)})`);
   }
   if (off.length) push('offscreen', 'control off the screen: ' + off.join(' | '));
+  // 3b. A picture that did not load must not show as a broken image (server icons fall back to the next one).
+  const broken = [...document.querySelectorAll('img')].filter((i) => visible(i) && i.complete && i.naturalWidth === 0 && i.getBoundingClientRect().width > 4)
+    .map((i) => `${name(i.parentElement || i)} ${String(i.getAttribute('src') || '').slice(0, 60)}`);
+  if (broken.length) push('brokenimg', 'image that did not load is shown: ' + broken.slice(0, 4).join(' | '));
   // 4. Popups, menus and dialogs must sit inside the window.
   for (const el of document.querySelectorAll('[role=dialog], [role=menu], .fi-dropdown-panel, .fi-modal-window, .ps-dropdown, .ps-modal, .ps-sheet, .ps-account-menu, .ps-nav-items, .fi-global-search-results-ctn, .ps-phone-more-menu, .ps-tooltip.is-visible')) {
     if (!visible(el) || el.closest('.fi-sidebar')) continue;

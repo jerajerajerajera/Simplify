@@ -10,8 +10,8 @@ import json, sys, re, collections
 STYLE = {'boxinbox': 'vak in het vak', 'savebelow': 'knop in de pagina in plaats van in de titelbalk', 'toolslost': 'knoppen van de pagina ontbreken in de titelbalk',
          'filamentlook': 'kale Filament-stijl in hostmodus', 'boxoff': 'contentvak valt onder het venster', 'cardoff': 'contentkaart valt onder het venster',
          'dropdowntall': 'dropdown hoger dan 2/3 venster', 'dropdownscroll': 'dropdown scrolt terwijl hij hoger mag', 'arrowoff': 'dropdown-pijltje niet gecentreerd',
-         'pagescroll': 'pagina scrolt (mag niet op server-, host- en Simplify-beheerpagina\'s)', 'hscroll': 'pagina breder dan het venster', 'overlap': 'kop: naam, seizoensicoontjes en knoppen overlappen', 'popupoff': 'pop-up/tooltip deels buiten beeld'}
-NOSCROLL = re.compile(r'^(server2?-(?!open-in-admin)|host|klant.*server)')  # screens whose page must never scroll
+         'pagescroll': 'pagina scrolt (mag niet op server-, host- en Simplify-beheerpagina\'s)', 'hscroll': 'pagina breder dan het venster', 'overlap': 'kop: naam, seizoensicoontjes en knoppen overlappen', 'popupoff': 'pop-up/tooltip deels buiten beeld', 'brokenimg': 'kapot plaatje zichtbaar (icoon laadt niet)'}
+NOSCROLL = re.compile(r'^(server\d?-(?!open-in-admin)|host|klant.*server)')  # screens whose page must never scroll
 
 rows, heights = [], collections.defaultdict(list)
 for f in sys.argv[1:]:
