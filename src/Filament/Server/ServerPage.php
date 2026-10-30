@@ -7,6 +7,7 @@ namespace Simplify\Core\Filament\Server;
 use App\Enums\SubuserPermission;
 use App\Facades\Activity;
 use App\Models\Server;
+use App\Repositories\Daemon\DaemonServerRepository;
 use App\Services\Servers\ServerDeletionService;
 use Filament\Facades\Filament;
 use Filament\Navigation\NavigationItem;
@@ -22,6 +23,7 @@ use Simplify\Core\Overview\Listing;
 use Simplify\Core\Overview\Power;
 use Simplify\Core\Overview\Shell;
 use Simplify\Core\Server\Looks;
+use Throwable;
 
 /**
  * The top of every page of a server: Simplify's header, the server card with its power buttons and the live numbers.
@@ -56,6 +58,26 @@ final class ServerPage extends Component
     public function refresh(): array
     {
         return Listing::one($this->user(), $this->server);
+    }
+
+    /**
+     * The last console lines from Wings, for the strip under the server card on pages other than the console.
+     *
+     * @return list<string>
+     */
+    #[Renderless]
+    public function logLines(): array
+    {
+        abort_unless($this->user()->can(SubuserPermission::ControlConsole, $this->server), 403);
+        try {
+            $lines = app(DaemonServerRepository::class)->setServer($this->server)->getHttpClient()
+                ->timeout(5)->get('/api/servers/'.$this->server->uuid.'/logs', ['size' => 6])->throw()->json('data');
+        } catch (Throwable) {
+            return [];
+        }
+
+        // Without colour codes: the strip is plain text.
+        return array_values(array_map(fn (string $line) => (string) preg_replace('/\e\[[0-9;?]*[A-Za-z]/', '', $line), array_filter((array) $lines, 'is_string')));
     }
 
     #[Renderless]

@@ -62,6 +62,7 @@ final class Listing
             'can_edit' => Looks::canEdit($user, $server),
             'can_delete' => $user->isRootAdmin() || $server->owner_id === $user->id,
             'sftp' => self::sftp($user, $server),
+            'can_console' => $user->can(SubuserPermission::ControlConsole, $server),
             'links' => array_map(fn (Button $link) => $link->toArray(), app(AddonRegistry::class)->collect(fn (Addon $addon) => $addon->serverLinks($server))),
         ];
     }

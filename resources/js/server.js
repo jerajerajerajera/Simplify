@@ -45,6 +45,7 @@
       socketState: null,
       colorDraft: null,
       statusBarVisible: false,
+      logLines: [],
       sample: null,
 
       init() {
@@ -53,6 +54,12 @@
         this.$watch('themeDark', () => this.paintAccent());
         // Pelican's console page already streams the numbers from Wings; every other page asks Simplify now and then.
         this.refreshTimer = setInterval(() => this.refresh(), this.refreshSeconds);
+        // Elsewhere than the console, the last console lines can show under the server card (Customize).
+        if (!boot.console) {
+          this.$watch('overviewPreferences.serverConsoleLog', (on) => (on ? this.readLog() : (this.logLines = [])));
+          this.logTimer = setInterval(() => this.readLog(), 4000);
+          this.$nextTick(() => this.readLog());
+        }
         if (boot.console) {
           if (new URLSearchParams(location.search).has('simplify_console')) document.documentElement.classList.add('ps-console-window');
           // Every Pelican version passes Wings' "status" on as this Livewire event, the first one right after connecting.
@@ -76,6 +83,15 @@
       destroy() {
         base.destroy.call(this);
         clearInterval(this.liveTimer);
+        clearInterval(this.logTimer);
+      },
+      async readLog() {
+        if (this.destroyed || document.hidden || !this.overviewPreferences.serverConsoleLog || !this.server.can_console || this.status === 'offline') return;
+        try {
+          this.logLines = await wire.logLines();
+        } catch {
+          this.logLines = [];
+        }
       },
       get status() {
         return this.server?.status || 'missing';
@@ -136,12 +152,19 @@
           bar = this.$refs.consoleBar.content.firstElementChild.cloneNode(true);
           terminal.prepend(bar);
           const grow = bar.querySelector('.ps-console-grow');
-          grow.addEventListener('click', () => {
-            const big = document.documentElement.classList.toggle('ps-console-big');
+          const size = (big) => {
+            document.documentElement.classList.toggle('ps-console-big', big);
             grow.setAttribute('aria-pressed', String(big));
             grow.setAttribute('aria-label', big ? grow.dataset.normal : grow.dataset.bigger);
             window.dispatchEvent(new Event('resize'));
+          };
+          // The bigger console is remembered on this device (Customize), so server pages open with it.
+          grow.addEventListener('click', () => {
+            const big = !document.documentElement.classList.contains('ps-console-big');
+            this.setOverviewPreference('serverBiggerConsole', big);
+            size(big);
           });
+          if (this.overviewPreferences.serverBiggerConsole) size(true);
           bar.querySelector('.ps-console-window').addEventListener('click', () => {
             const url = new URL(location.href);
             url.searchParams.set('simplify_console', '1');

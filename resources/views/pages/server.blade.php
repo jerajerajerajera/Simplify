@@ -113,6 +113,10 @@
                 </article>
             </template>
         </section>
+        {{-- The last console lines while another page is open (Customize → Server pages). --}}
+        <section class="ps-card ps-log-strip" x-show="!@js($console) && overviewPreferences.serverConsoleLog && logLines.length" x-cloak aria-label="{{ $u('log_in_the_mini_console') }}">
+            <template x-for="(line, index) in logLines" :key="index"><div x-text="line"></div></template>
+        </section>
     </div>
     {{-- Pelican's server menu, add-on pages included, next to Pelican's page. --}}
     <nav class="ps-server-menu" aria-label="{{ $u('server_sections') }}" wire:ignore>

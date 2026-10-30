@@ -578,6 +578,8 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 .ps-custom-color { justify-content: space-between; width: 100%; }
 
 /* Live numbers in one row under the header: players (with the first heads) and the resource metrics. */
+.ps-log-strip { margin-bottom: 14px; padding: 10px 14px; overflow: hidden; border-color: var(--ps-console-line); background: var(--ps-console-bg); color: var(--ps-console-ink); font: 12px/1.55 var(--ps-mono); }
+.ps-log-strip > div { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .ps-server-stats { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; margin-bottom: 14px; }
 .ps-server-stats .ps-stat { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px 12px; }
 .ps-server-stats .ps-stat > strong { font-size: 20px; line-height: 1.2; overflow-wrap: normal; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
