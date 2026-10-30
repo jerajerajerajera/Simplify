@@ -45,6 +45,6 @@ http.createServer(async (req, res) => {
   if (rest === '/files/delete') { const b = json(); for (const f of b.files || []) delete files[norm(b.root + '/' + f)]; return send(204, ''); }
   if (rest === '/files/pull') { const b = json(); files[norm(b.root + '/' + b.file_name)] = Buffer.from('jar from ' + b.url); fs.appendFileSync(logFile, '  pull ' + b.url + '\n'); return send(204, ''); }
   if (rest === '/power') return send(204, '');
-  if (rest === '/logs') return send(200, { data: ['[lab] hello'] });
+  if (rest === '/logs') return send(200, { data: s.console || ['[lab] hello'] });
   return send(200, {});
 }).listen(port, '127.0.0.1', () => console.log('fake wings on ' + port));

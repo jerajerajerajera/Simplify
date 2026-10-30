@@ -1,0 +1,15 @@
+[
+  "[11:58:02 INFO]: Starting minecraft server version 1.21.1",
+  "[11:58:02 INFO]: Loading properties",
+  "[11:58:02 INFO]: This server is running Paper version 1.21.1-130-master@b48403b (MC: 1.21.1)",
+  "[11:58:03 INFO]: Using 4 threads for Netty based IO",
+  "[11:58:04 INFO]: Default game type: SURVIVAL",
+  "[11:58:04 INFO]: Generating keypair",
+  "[11:58:04 INFO]: Starting Minecraft server on 0.0.0.0:25565",
+  "[11:58:04 WARN]: **** FAILED TO BIND TO PORT!",
+  "[11:58:04 WARN]: The exception was: io.netty.channel.unix.Errors$NativeIoException: bind(..) failed: Address already in use",
+  "[11:58:04 WARN]: Perhaps a server is already running on that port?",
+  "[11:58:05 INFO]: Stopping server",
+  "[11:58:05 INFO]: Saving players",
+  "[11:58:05 INFO]: Flushing Chunk IO"
+]

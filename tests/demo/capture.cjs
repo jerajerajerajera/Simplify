@@ -277,6 +277,28 @@ async function login(browser, email) {
     { id: 'server-menu', title: 'Server ⋯-menu', click: '.ps-info-more-button', toggle: true },
   ], // Every item of the server menu (Files, Backups, Schedules, Settings...) as its own screen, linked to each other.
   expand: { css: '.ps-server-menu a', title: 'Server · ', child: { wait: 1500, root: true } } }, open(page, serverUrl, async () => sleep(1500)));
+  // The console with a port error and Explain's answer open. Pelican's console draws on a WebGL canvas that is not
+  // saved and gets its lines over a websocket the fake Wings does not have, so the lines are laid over it as text.
+  const consoleLines = JSON.parse(fs.readFileSync(path.join(__dirname, 'console.json'), 'utf8'));
+  const showConsole = (p) => p.evaluate((lines) => {
+    const t = document.getElementById('terminal');
+    if (!t || t.querySelector('.demo-console')) return;
+    const box = document.createElement('div');
+    box.className = 'demo-console';
+    box.style.cssText = `position:absolute;inset:${innerWidth < 640 ? '60px 10px 10px' : '68px 17px 14px'};overflow:hidden;font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-word;color:#d7dde3;pointer-events:none`;
+    for (const line of lines) { const d = document.createElement('div'); d.textContent = line; if (/WARN|ERROR/.test(line)) d.style.color = /FAILED|exception/i.test(line) ? '#ff7b72' : '#e3b341'; box.append(d); }
+    t.querySelector('.xterm-screen')?.style.setProperty('visibility', 'hidden');
+    t.append(box);
+  }, consoleLines);
+  const explainOpen = async (p) => {
+    await sleep(1500); await showConsole(p);
+    const button = locate(p, { css: 'button, a', text: 'Explain' });
+    if (await button.count()) await button.click();
+    else await p.evaluate(() => { const el = document.querySelector('.fi-page')?.closest('[wire\\:id]'); window.Livewire.find(el.getAttribute('wire:id')).mountAction('simplify-explain'); });
+    await p.waitForSelector('text=/Checked by/', { timeout: 15000 }).catch(() => {});
+    await sleep(800); await showConsole(p);
+  };
+  await walk(page, { id: 'server-explain', title: `Explain bij een consolefout (${mainServer})`, group: 'Server', phone: true }, open(page, serverUrl, explainOpen));
   // Pelican's Edit schedule page with three tasks: the content must scroll inside its box so Tasks stays reachable.
   if (urls.schedules?.[mainServer]) await walk(page, { id: 'server-schedule-edit', title: `Schedule bewerken (${mainServer})`, group: 'Server', phone: true }, open(page, urls.schedules[mainServer], async () => sleep(1500)));
   else problems.push('no schedule to record');

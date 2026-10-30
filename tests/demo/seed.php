@@ -14,6 +14,7 @@ use App\Models\Server;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Contracts\Console\Kernel;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Simplify\Core\Server\Looks;
 use Simplify\Core\Subdomains\Models\Subdomain;
@@ -69,6 +70,8 @@ $about = [
 $eggs = [];
 // A 64x64 grass block as server-icon.png (base64; the fake Wings decodes .png files).
 $icon = 'iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAABhElEQVR42u2ZPWrDQBCFdScXDiadCoNRoUZNqlSGBFy5ygVSBnKD1Gl8AF8u3fAC+eBJ06R48KrRzs8nGM3uaphuc+nh47E0fh1Ly/dT6Xx/Lf0H3yEAAWgC6AN1oECajOzkq3bNSzVoTIofgAB0AdSBRA3nrNfi1JcAtDgV5Q1AALoA5KBFkN0ZTLSGgEnU6AEIQBfAaSxqVho0znpqXF1DAL8GWQAC0AR4Ww6lz5dT6TLtStd5X1K7+r4/j39KY6poDeWivAEIQBdAHxCAU7T66hpH9LJUlDcAAegCkAOJmpI+BmSnmGp3PgwBCEAXgBY5og+A8yIoJjUu2QMQgC7A2uFFRVACp3GdgUjDLgAB6AJQcU4C5+DibMicDR+9rAAEoAtAzUEFOU1G9rWbP4LHQ30AArABwCnaOdQ7l180KMnX2SAGIABdABpGGogKJTkXVRSfIK1DfQACsAFgbbM6l7vOTw0aUlQ0Xu4GIABNAOfA7vwEcYaaU9zajV0AAtAE+AEjkzL/ywwRRQAAAABJRU5ErkJggg==';
+// The console of Survival SMP ends in a port error, for the Explain screen (capture.cjs shows the same lines).
+$console = json_decode(file_get_contents(__DIR__.'/console.json'), true);
 $out = [];
 $servers = [];
 foreach ($list as $i => [$name, $eggName, $state, $memory, $cpu, $owner, $color]) {
@@ -97,7 +100,8 @@ foreach ($list as $i => [$name, $eggName, $state, $memory, $cpu, $owner, $color]
             $files['/mods/'.$jar.'.jar'] = 'jar';
         }
     }
-    $out[] = ['uuid' => $server->uuid, 'name' => $name, 'port' => $allocation->port, 'state' => $state, 'memory' => $memory, 'cpu' => $cpu, 'files' => $files];
+    $out[] = ['uuid' => $server->uuid, 'name' => $name, 'port' => $allocation->port, 'state' => $state, 'memory' => $memory, 'cpu' => $cpu, 'files' => $files]
+        + ($name === 'Survival SMP' ? ['console' => $console] : []);
 }
 echo json_encode($out, JSON_UNESCAPED_SLASHES), "\n";
 $uuid = fn (string $name) => $servers[$name]->uuid;
@@ -149,6 +153,25 @@ $part('egg updates', function () use ($eggs) {
         ['egg_id' => $eggs['Forge']->id, 'found_hash' => md5('forge-new'), 'found_at' => now()->subDay(), 'held' => false, 'created_at' => now(), 'updated_at' => now()],
     ]);
     DB::table('simplify_egg_update_backups')->insert(['egg_id' => $eggs['Valheim']->id, 'definition' => '{}', 'created_at' => now()->subDays(2)]);
+});
+// Explain with a placeholder key and its answer for Survival SMP's console already in the cache, as LogCheck::run
+// keeps it, so the answer window opens without asking an AI service.
+$part('explain', function () use ($console) {
+    Simplify\Explain\Services\Settings::save(['provider' => 'anthropic', 'key' => 'demo-not-a-real-key', 'audience' => 'everyone']);
+    $settings = Simplify\Explain\Services\Settings::current();
+    $lines = Simplify\Explain\Services\LogCheck::sanitize($console);
+    Cache::forever('simplify-explain.answer.'.sha1($settings['provider'].$settings['model'].'en'.'Game or software: Paper'.implode("\n", $lines)), [
+        'found' => true,
+        'summary' => 'The server could not start because port 25565 is already in use, most likely by a copy of this server that is still running.',
+        'issues' => [[
+            'title' => 'Port 25565 is already in use',
+            'cause' => 'Paper tried to listen on port 25565, but another program on the node already holds that port. This usually happens when an earlier copy of the server did not shut down, or when two servers were given the same port.',
+            'steps' => ['Stop the server, wait a minute and start it again, so an old copy can let go of the port.', 'Open Network and check that no other server on this node uses port 25565.',
+                'Still stuck? Ask your host to check which program on the node uses port 25565.'],
+        ]],
+        'lines' => count($lines),
+        'model' => Simplify\Explain\Ai\Providers::get($settings['provider'])::modelName($settings['model']),
+    ]);
 });
 $part('toolkit software', function () use ($servers) {
     foreach (['Survival SMP' => 'paper', 'Creative Builds' => 'paper', 'Skyblock' => 'paper', 'All the Mods 10' => 'forge'] as $name => $loader) {
