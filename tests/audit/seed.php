@@ -89,6 +89,8 @@ foreach ($list as $i => [$name, $eggName, $state, $memory, $cpu, $owner, $color]
     $out[] = ['uuid' => $server->uuid, 'name' => $name, 'port' => $allocation->port, 'state' => $state, 'memory' => $memory, 'cpu' => $cpu, 'files' => $files];
 }
 echo json_encode($out, JSON_UNESCAPED_SLASHES), "\n";
+// One server with its own icon set in Pelican (the servers.icon column), so the egg badge must sit small in the corner.
+try { \Illuminate\Support\Facades\Schema::hasColumn('servers', 'icon') && \Illuminate\Support\Facades\DB::table('servers')->where('id', $servers['Skyblock']->id)->update(['icon' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABSElEQVR4nO2bwQ3CQAwECaIb6IVGoBoagV7oBx7oPpEQxLf2nHQ7bxKvJ75wEWE5Xu6v3cTs6QA0FkAHoLEAOgCNBdABaCyADkBjAXQAmkN1weft/PMzp+ujIMmHpeJh6J+mv5EtI1VAT+NrskSkCFA2vkYtQn4TzGw+4/xSAdnNZ9SRCahqXl1PIqC6eWXdbgFU86r6XQLo5hs9OabfCocFjHL1G9E8noDIQaNd/UYkV9nTYGQLWyHaS2DrAaOOf2NrPk8AHYDGAugANBZAB6CxADoAzWYBlT9aRNiab/oJKHsYGnULHZqAUZdBJNf0SyAsYLQpiObxBPQcPMoU9OTongBaQm99yRKgJCjqyu4B1RJU9aQ3wSoJyjryb4FsCerz+x0hvyVW/J+hKd8THBlvhekANBZAB6CxADoAjQXQAWgsgA5A8waE/mJlGzhiUQAAAABJRU5ErkJggg==']); } catch (\Throwable $e) { fwrite(STDERR, 'no server icon: '.$e->getMessage()."\n"); }
 $uuid = fn (string $name) => $servers[$name]->uuid;
 
 $part('people and roles', function () {
