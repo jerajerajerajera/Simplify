@@ -1,0 +1,756 @@
+{
+ "base": "http://127.0.0.1:8001",
+ "screens": [
+  {
+   "id": "first-eula-fresh-start",
+   "title": "First start · EULA open · Fresh Start",
+   "stand": "d1440-dark",
+   "url": "/server/fp1eexnf/console",
+   "docTitle": "Fresh Start - Simplify",
+   "main": {
+    "url": "/server/fp1eexnf/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Mounts\" (67,876 198x40) | ps-widget \"Webhooks\" (67,916 198x40) | ps-widget \"Activity\" (67,956 198x40) | ps-widget.is-danger \"Delete server\" (67,996 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "card": "329..839 of 900 fit=510px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,398 1040x361; terminal 291,330 1092x445; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x103",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,329 1094x510"
+     ],
+     "box": "329..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/first-eula-fresh-start.png"
+  },
+  {
+   "id": "first-eula-fresh-start-pulse",
+   "title": "First start · Start terwijl de EULA open is · Fresh Start",
+   "stand": "d1440-dark",
+   "url": "/server/fp1eexnf/console",
+   "docTitle": "Fresh Start - Simplify",
+   "main": {
+    "url": "/server/fp1eexnf/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Mounts\" (67,876 198x40) | ps-widget \"Webhooks\" (67,916 198x40) | ps-widget \"Activity\" (67,956 198x40) | ps-widget.is-danger \"Delete server\" (67,996 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "card": "329..839 of 900 fit=510px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,398 1040x361; terminal 291,330 1092x445; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x103",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,329 1094x510"
+     ],
+     "box": "329..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/first-eula-fresh-start-pulse.png"
+  },
+  {
+   "id": "first-eula-no-eula",
+   "title": "First start · EULA open · No EULA",
+   "stand": "d1440-dark",
+   "url": "/server/udzrrode/console",
+   "docTitle": "No EULA - Simplify",
+   "main": {
+    "url": "/server/udzrrode/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Mounts\" (67,869 198x40) | ps-widget \"Webhooks\" (67,909 198x40) | ps-widget \"Activity\" (67,949 198x40) | ps-widget.is-danger \"Delete server\" (67,989 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/first-eula-no-eula.png"
+  },
+  {
+   "id": "first-eula-no-eula-pulse",
+   "title": "First start · Start terwijl de EULA open is · No EULA",
+   "stand": "d1440-dark",
+   "url": "/server/udzrrode/console",
+   "docTitle": "No EULA - Simplify",
+   "main": {
+    "url": "/server/udzrrode/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Mounts\" (67,869 198x40) | ps-widget \"Webhooks\" (67,909 198x40) | ps-widget \"Activity\" (67,949 198x40) | ps-widget.is-danger \"Delete server\" (67,989 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/first-eula-no-eula-pulse.png"
+  },
+  {
+   "id": "first-installed",
+   "title": "First start · net geïnstalleerd, EULA al geaccepteerd (New World)",
+   "stand": "d1440-dark",
+   "url": "/server/hcidnoro/console",
+   "docTitle": "New World - Simplify",
+   "main": {
+    "url": "/server/hcidnoro/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "boxinbox",
+      "text": "box inside a box: fi-callout.fi-color.fi-color-warning (1094x78) in the content box"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,481 1040x266; terminal 291,413 1092x362; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-callout.fi-color.fi-color-warning 290,334 1094x78",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,412 1094x427"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/first-installed.png"
+  },
+  {
+   "id": "first-eula-fresh-start",
+   "title": "First start · EULA open · Fresh Start",
+   "stand": "d1440-light",
+   "url": "/server/fp1eexnf/console",
+   "docTitle": "Fresh Start - Simplify",
+   "main": {
+    "url": "/server/fp1eexnf/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Mounts\" (67,876 198x40) | ps-widget \"Webhooks\" (67,916 198x40) | ps-widget \"Activity\" (67,956 198x40) | ps-widget.is-danger \"Delete server\" (67,996 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "card": "329..839 of 900 fit=510px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,398 1040x361; terminal 291,330 1092x445; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x103",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,329 1094x510"
+     ],
+     "box": "329..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/first-eula-fresh-start.png"
+  },
+  {
+   "id": "first-eula-fresh-start-pulse",
+   "title": "First start · Start terwijl de EULA open is · Fresh Start",
+   "stand": "d1440-light",
+   "url": "/server/fp1eexnf/console",
+   "docTitle": "Fresh Start - Simplify",
+   "main": {
+    "url": "/server/fp1eexnf/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Mounts\" (67,876 198x40) | ps-widget \"Webhooks\" (67,916 198x40) | ps-widget \"Activity\" (67,956 198x40) | ps-widget.is-danger \"Delete server\" (67,996 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "card": "329..839 of 900 fit=510px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,398 1040x361; terminal 291,330 1092x445; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x103",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,329 1094x510"
+     ],
+     "box": "329..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/first-eula-fresh-start-pulse.png"
+  },
+  {
+   "id": "first-eula-no-eula",
+   "title": "First start · EULA open · No EULA",
+   "stand": "d1440-light",
+   "url": "/server/udzrrode/console",
+   "docTitle": "No EULA - Simplify",
+   "main": {
+    "url": "/server/udzrrode/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Mounts\" (67,869 198x40) | ps-widget \"Webhooks\" (67,909 198x40) | ps-widget \"Activity\" (67,949 198x40) | ps-widget.is-danger \"Delete server\" (67,989 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/first-eula-no-eula.png"
+  },
+  {
+   "id": "first-eula-no-eula-pulse",
+   "title": "First start · Start terwijl de EULA open is · No EULA",
+   "stand": "d1440-light",
+   "url": "/server/udzrrode/console",
+   "docTitle": "No EULA - Simplify",
+   "main": {
+    "url": "/server/udzrrode/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Mounts\" (67,869 198x40) | ps-widget \"Webhooks\" (67,909 198x40) | ps-widget \"Activity\" (67,949 198x40) | ps-widget.is-danger \"Delete server\" (67,989 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/first-eula-no-eula-pulse.png"
+  },
+  {
+   "id": "first-eula-ticked",
+   "title": "First start · vinkje aan · Fresh Start",
+   "stand": "d1440-light",
+   "url": "/server/fp1eexnf/console",
+   "docTitle": "Fresh Start - Simplify",
+   "main": {
+    "url": "/server/fp1eexnf/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Mounts\" (67,876 198x40) | ps-widget \"Webhooks\" (67,916 198x40) | ps-widget \"Activity\" (67,956 198x40) | ps-widget.is-danger \"Delete server\" (67,996 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "card": "329..839 of 900 fit=510px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,398 1040x361; terminal 291,330 1092x445; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x103",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,329 1094x510"
+     ],
+     "box": "329..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/first-eula-ticked.png"
+  },
+  {
+   "id": "first-eula-started",
+   "title": "First start · na First start · Fresh Start",
+   "stand": "d1440-light",
+   "url": "/server/fp1eexnf/console",
+   "docTitle": "Fresh Start - Simplify",
+   "main": {
+    "url": "/server/fp1eexnf/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Mounts\" (67,869 198x40) | ps-widget \"Webhooks\" (67,909 198x40) | ps-widget \"Activity\" (67,949 198x40) | ps-widget.is-danger \"Delete server\" (67,989 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/first-eula-started.png"
+  },
+  {
+   "id": "first-installed",
+   "title": "First start · net geïnstalleerd, EULA al geaccepteerd (New World)",
+   "stand": "d1440-light",
+   "url": "/server/hcidnoro/console",
+   "docTitle": "New World - Simplify",
+   "main": {
+    "url": "/server/hcidnoro/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "boxinbox",
+      "text": "box inside a box: fi-callout.fi-color.fi-color-warning (1094x78) in the content box"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,481 1040x266; terminal 291,413 1092x362; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-callout.fi-color.fi-color-warning 290,334 1094x78",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,412 1094x427"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/first-installed.png"
+  },
+  {
+   "id": "overview",
+   "title": "Klant · overzicht",
+   "stand": "klant-d1440-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1190,212 214x38"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..398, actions 1190..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-d1440-dark/overview.png"
+  },
+  {
+   "id": "account",
+   "title": "Klant · accountmenu",
+   "stand": "klant-d1440-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 960,212 444x38",
+      "ps-account-actions 1092,212 222x38"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..398, actions 960..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-d1440-dark/account.png"
+  },
+  {
+   "id": "server-console",
+   "title": "Klant · console",
+   "stand": "klant-d1440-dark",
+   "url": "/server/3napavcg/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/3napavcg/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Mounts\" (67,869 198x40) | ps-widget \"Activity\" (67,909 198x40) | ps-widget.is-danger \"Delete server\" (67,949 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1214,32 170x38"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1214..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "klant-d1440-dark/server-console.png"
+  },
+  {
+   "id": "server-more",
+   "title": "Klant · ⋯-menu",
+   "stand": "klant-d1440-dark",
+   "url": "/server/3napavcg/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/3napavcg/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Mounts\" (67,869 198x40) | ps-widget \"Activity\" (67,909 198x40) | ps-widget.is-danger \"Delete server\" (67,949 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1214,32 170x38",
+      "ps-info-menu 1131,179 230x428"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1214..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900",
+     "dropdown": [
+      "ps-info-menu 428px of 600 max"
+     ],
+     "arrow": [
+      "ps-info-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-d1440-dark/server-more.png"
+  }
+ ],
+ "problems": [
+  "d1440-dark first-eula-fresh-start: ok {\"badge\":\"Ready for its first start\",\"box\":true,\"boxPulse\":false,\"link\":true,\"ticked\":false,\"before\":true,\"main\":\"First start\",\"mainOff\":true,\"restart\":false,\"oldBanner\":false}",
+  "d1440-dark first-eula-fresh-start-pulse: ok {\"boxPulse\":true}",
+  "d1440-dark first-eula-no-eula: WRONG {\"badge\":null,\"box\":false,\"boxPulse\":false,\"link\":true,\"ticked\":false,\"before\":null,\"main\":\"Start\",\"mainOff\":false,\"restart\":true,\"oldBanner\":false}",
+  "d1440-dark first-eula-no-eula-pulse: WRONG {\"boxPulse\":false}",
+  "d1440-dark first-installed: ok {\"badge\":\"Ready for its first start\",\"box\":false,\"boxPulse\":false,\"link\":true,\"ticked\":false,\"before\":null,\"main\":\"First start\",\"mainOff\":false,\"restart\":false,\"oldBanner\":false,\"tinker\":\"done\"}",
+  "d1440-light first-eula-fresh-start: ok {\"badge\":\"Ready for its first start\",\"box\":true,\"boxPulse\":false,\"link\":true,\"ticked\":false,\"before\":true,\"main\":\"First start\",\"mainOff\":true,\"restart\":false,\"oldBanner\":false}",
+  "d1440-light first-eula-fresh-start-pulse: ok {\"boxPulse\":true}",
+  "d1440-light first-eula-no-eula: WRONG {\"badge\":null,\"box\":false,\"boxPulse\":false,\"link\":true,\"ticked\":false,\"before\":null,\"main\":\"Start\",\"mainOff\":false,\"restart\":true,\"oldBanner\":false}",
+  "d1440-light first-eula-no-eula-pulse: WRONG {\"boxPulse\":false}",
+  "d1440-light first-eula-start: ok {\"mainOnAfterTick\":true,\"wrote\":true,\"started\":true,\"after\":{\"badge\":null,\"box\":false,\"boxPulse\":false,\"link\":true,\"ticked\":true,\"before\":null,\"main\":\"Start\",\"mainOff\":false,\"restart\":true,\"oldBanner\":false},\"calls\":[\"POST /api/servers/3b209425-0fef-4973-b9ed-07574a320877/files/write?file=eula.txt\",\"POST /api/servers/3b209425-0fef-4973-b9ed-07574a320877/power\"]}",
+  "d1440-light first-installed: ok {\"badge\":\"Ready for its first start\",\"box\":false,\"boxPulse\":false,\"link\":true,\"ticked\":false,\"before\":null,\"main\":\"First start\",\"mainOff\":false,\"restart\":false,\"oldBanner\":false,\"tinker\":\"done\"}"
+ ]
+}
