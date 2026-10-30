@@ -13,6 +13,7 @@ use Filament\Notifications\Notification;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Components\View;
 use Filament\Schemas\Schema;
 use Simplify\Core\Embed\Services\EmbedOptions;
@@ -86,7 +87,7 @@ final class EmbedSettings extends FormPage
                 ]),
             ]),
             Section::make($t('code'))->description($t('code_help'))->columns(2)->schema([
-                Select::make('code.show')->label($t('show'))->live()->selectablePlaceholder(false)->options([
+                Select::make('code.show')->label($t('show'))->live()->selectablePlaceholder(false)->afterStateUpdated(fn (Set $set, Get $get) => $this->pickFirst($set, $get))->options([
                     'all' => $t('show_all'),
                     'server' => $t('show_server'),
                     'game' => $t('show_game'),
@@ -96,7 +97,7 @@ final class EmbedSettings extends FormPage
                     ->live()
                     ->placeholder($t('pick_server'))
                     ->helperText($t('server_help'))
-                    ->options(fn () => Server::query()->whereIn('id', EmbedServers::ids())->orderBy('name')->pluck('name', 'uuid_short')->all())
+                    ->options(fn () => self::servers())
                     ->visible(fn (Get $get) => $get('code.show') === 'server'),
                 Select::make('code.game')
                     ->label($t('game'))
@@ -107,6 +108,23 @@ final class EmbedSettings extends FormPage
                 View::make('simplify::embed.code')->columnSpanFull()->viewData(fn (Get $get) => $this->codeFor($get)),
             ]),
         ]);
+    }
+
+    /** @return array<string, string> the servers on the website by short id, as saved */
+    private static function servers(): array
+    {
+        return Server::query()->whereIn('id', EmbedServers::ids())->orderBy('name')->pluck('name', 'uuid_short')->all();
+    }
+
+    /** One server or one game shows the code at once: the first on the list is picked until another is chosen. */
+    private function pickFirst(callable $set, callable $get): void
+    {
+        if ($get('code.show') === 'server' && ! array_key_exists((string) $get('code.server'), self::servers())) {
+            $set('code.server', array_key_first(self::servers()));
+        }
+        if ($get('code.show') === 'game' && ! in_array($get('code.game'), ServerList::games(), true)) {
+            $set('code.game', ServerList::games()[0] ?? null);
+        }
     }
 
     /** @return array{show: array<string, string>|null} */
@@ -125,6 +143,8 @@ final class EmbedSettings extends FormPage
         $state = $this->form->getState();
         EmbedOptions::save((array) ($state['options'] ?? []));
         EmbedServers::replace(array_map('intval', (array) ($state['servers'] ?? [])));
+        // The code below follows the new list straight away.
+        $this->pickFirst(fn (string $key, mixed $value) => data_set($this->data, $key, $value), fn (string $key) => data_get($this->data, $key));
         Notification::make()->title(__('simplify::embed.saved'))->success()->send();
     }
 }

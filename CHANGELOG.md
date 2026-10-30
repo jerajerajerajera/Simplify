@@ -7,6 +7,8 @@
 - Admin tools: on a wide window the groups sit in three columns, so the menu is about a third lower. It ends above the footer, so its last groups are no longer cut off on the overview.
 - Server page: the console is one box in one colour. Pelican's terminal painted a half see-through background of its own, which showed as a lighter box inside the card.
 - Server page: no empty grey badge next to the server's picture when its egg has no icon.
+- Admin tools → Pelican settings opens Pelican's tab inside Simplify's settings again, instead of Pelican's bare page.
+- Website embed: after saving, "One server" and "One game" pick the first on the list, so the code and the preview show straight away.
 
 ## 1.4.3
 

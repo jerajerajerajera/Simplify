@@ -147,7 +147,8 @@ final class Settings extends Page implements HasForms
         // The menu draws from Simplify's own icon sprite, not Filament's Tabler names.
         $sprite = ['pelican-general' => 'home', 'pelican-captcha' => 'shield', 'pelican-mail' => 'mail', 'pelican-backup' => 'backups', 'pelican-oauth' => 'key', 'pelican-misc' => 'tool'];
         foreach (self::pelicanTabs() as $pelican) {
-            $items[] = [...$tab($pelican['key'], 'pelican', $pelican['label'], $sprite[$pelican['key']] ?? 'gear'), 'url' => $pelican['url']];
+            // From the admin menu Pelican's tab opens inside Simplify's settings; host mode frames Pelican's page itself.
+            $items[] = [...$tab($pelican['key'], 'pelican', $pelican['label'], $sprite[$pelican['key']] ?? 'gear'), 'frame' => $pelican['url']];
         }
 
         return $items;
