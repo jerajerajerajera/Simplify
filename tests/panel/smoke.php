@@ -6,6 +6,7 @@ use App\Filament\Admin\Pages\Health;
 use App\Models\Role;
 use App\Models\Server;
 use App\Models\User;
+use Filament\Notifications\Notification;
 use Filament\Support\Colors\Color;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Application;
@@ -635,7 +636,7 @@ step('notifications: mark read, mark as unread, Clear read and ✕ move them to 
     $player->notifications()->delete();
     Preferences::set($player, 'notifications.archive', null);
     foreach (['Smoke backup done', 'Smoke install done', 'Smoke subuser added'] as $title) {
-        $player->notifyNow(\Filament\Notifications\Notification::make()->title($title)->toDatabase());
+        $player->notifyNow(Notification::make()->title($title)->toDatabase());
     }
     $keys = fn (array $page) => array_column($page['items'], 'title', 'key');
     $find = fn (string $title) => (string) $player->notifications()->where('data->title', $title)->value('id');
