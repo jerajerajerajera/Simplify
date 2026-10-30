@@ -47,7 +47,7 @@ final class SetupDone extends Page
         return [
             Action::make('again')->label(__('simplify::setup.again'))->icon('tabler-wand')->color('gray')->button()
                 ->url(fn () => Setup::getUrl(panel: 'admin')),
-            Action::make('panel')->label(__('simplify::setup.open_panel'))->icon('tabler-arrow-right')->iconPosition(IconPosition::After)
+            Action::make('panel')->label(__('simplify::setup.open_panel'))->icon('tabler-arrow-right')->iconPosition(IconPosition::After)->button()
                 ->url(fn () => Overview::getUrl(panel: 'app')),
         ];
     }

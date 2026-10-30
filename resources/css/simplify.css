@@ -1484,6 +1484,9 @@ html.ps-frame[data-ps-frame="native"] .s-health { border: 0; border-radius: 0; b
 .s-tile-plus { height: 22px; width: 22px; }
 .s-tile-field :is(.filepond--file-info, .filepond--file-status) { display: none !important; }
 .s-tile-field .filepond--item { margin: 0 !important; }
+/* FilePond's hidden file input is wider than the tile; keep it inside, so nothing sticks out of the page. */
+.s-tile-field .filepond--browser { inset: 0 !important; width: 100% !important; }
+.s-tile-field .fi-fo-field-content { overflow: hidden; border-radius: 14px; }
 
 .s-tile-field:not(:has(.filepond--item)) .s-tile-default,
 .s-tile-field .filepond--root:has(.filepond--item) {

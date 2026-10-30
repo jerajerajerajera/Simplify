@@ -252,6 +252,22 @@ async function round(theme) {
     if (/AnnouncementResource$|Announcements$/.test(p.class)) { if (await click('main a:has-text("New announcement"), main button:has-text("New announcement")', 1200)) await record('admin-announcements-new', 'Beheer · nieuwe aankondiging'); await escape(); }
   }
 
+  // The setup, step by step (the loop above skips it): on the Look step also the own-colour window, a pastel with the
+  // name in another font and style (the preview follows), and the logo tile; nothing is saved.
+  const setup = admin.find((p) => /Pages\\Setup$/.test(p.class));
+  if (setup) {
+    await goto(setup.url, 1200);
+    const steps = page.locator('.fi-sc-wizard-header-step > button'); const sn = await steps.count();
+    for (let i = 0; i < sn; i++) {
+      await steps.nth(i).click().catch(() => {}); await sleep(900); await record('setup-step' + (i + 1), `Beheer · Setup, stap ${i + 1}`);
+      if (!(await page.locator('.s-swatch-own').first().isVisible().catch(() => false))) continue;
+      if (await click('.s-swatch-own', 500)) await record('setup-colour-own', 'Beheer · Setup, eigen kleur open'); await escape();
+      await click('.s-swatch:not(.s-swatch-own)', 300); await click('.s-chip:has-text("Rounded")', 300); await click('.s-chip:has-text("Glow")', 300);
+      await page.locator('.s-chips').first().scrollIntoViewIfNeeded().catch(() => {}); await sleep(500); await record('setup-name', 'Beheer · Setup, naam en logo (pastel, Rounded, Glow)');
+      await page.locator('.s-tile-field').first().scrollIntoViewIfNeeded().catch(() => {}); await sleep(400); await record('setup-logo', 'Beheer · Setup, logotegel');
+    }
+  }
+
   // Host mode: the tree with every section and page, the server list and a server in the frame.
   await goto(overview); await ready();
   await alpine('d.setHostMode(true)'); await sleep(2500);
