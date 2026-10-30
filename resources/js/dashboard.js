@@ -477,6 +477,17 @@
         const section = this.hostSections().find((x) => x.key === 'health');
         if (section?.pages[0]) this.openAdminPage(event, section, section.pages[0]);
       },
+      /** Pelican's own "Create server" form (no Server Maker) opens like an Admin tools page, inside Simplify. True when it did. */
+      openCreate(event, choice) {
+        if (!choice?.native || event?.ctrlKey || event?.metaKey || event?.shiftKey || this.server) return false;
+        const section = this.hostSections().find((x) => x.pages.some((item) => item.key === 'serverresource'));
+        const page = section?.pages.find((item) => item.key === 'serverresource');
+        if (!page) return false;
+        event?.preventDefault();
+        this.createMenu = false;
+        this.openAdminPage(null, section, { ...page, key: 'serverresource-create', label: t('dashboard.create_server'), frame: choice.url });
+        return true;
+      },
       closeAdminView() {
         this.adminView = false;
         if (!this.hostMode) this.hostPage = null;
