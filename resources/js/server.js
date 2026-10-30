@@ -46,6 +46,11 @@
       colorDraft: null,
       statusBarVisible: false,
       sample: null,
+      // The installation view (as in 0.7.0): the banner after it finished here, a browser notification on request.
+      installReady: false,
+      installNotify: false,
+      installNow: Date.now(),
+      installTicks: 0,
 
       init() {
         this.initShell();
@@ -53,6 +58,12 @@
         this.$watch('themeDark', () => this.paintAccent());
         // Pelican's console page already streams the numbers from Wings; every other page asks Simplify now and then.
         this.refreshTimer = setInterval(() => this.refresh(), this.refreshSeconds);
+        // While installing: the clock ticks every second, and Pelican is asked every 5 seconds whether it is done.
+        this.installTimer = setInterval(() => {
+          if (this.server?.setup !== 'installing') return;
+          this.installNow = Date.now();
+          if (++this.installTicks % 5 === 0) this.refresh();
+        }, 1000);
         if (boot.console) {
           if (new URLSearchParams(location.search).has('simplify_console')) document.documentElement.classList.add('ps-console-window');
           // Every Pelican version passes Wings' "status" on as this Livewire event, the first one right after connecting.
@@ -76,6 +87,7 @@
       destroy() {
         base.destroy.call(this);
         clearInterval(this.liveTimer);
+        clearInterval(this.installTimer);
       },
       get status() {
         return this.server?.status || 'missing';
@@ -85,6 +97,11 @@
         for (const [key, value] of Object.entries(this.accentStyle(this.server.uuid))) document.documentElement.style.setProperty(key, value);
       },
       take(server) {
+        // An installation that finished while the page was open: the banner above the card offers Start.
+        if (this.server?.setup === 'installing' && !server.setup) {
+          this.installReady = true;
+          if (this.installNotify) this.notifyInstalled();
+        }
         this.server = server;
         const u = server.usage || {};
         this.record({ cpu: u.cpu_percent, memory: u.memory_bytes, disk: u.disk_bytes, rx: u.network_rx_bytes, tx: u.network_tx_bytes }, Date.now() / 1000);
@@ -115,14 +132,80 @@
         this.liveAt = latest.t;
         this.record({ cpu: latest.cpu, memory: latest.memory, disk: latest.disk, rx: latest.rx, tx: latest.tx }, latest.t / 1000);
       },
+      /** True while a new or reinstalled server is not usable yet: Pelican's own setup state. */
+      installView() {
+        return ['installing', 'install_failed', 'reinstall_failed', 'restoring_backup'].includes(this.server?.setup);
+      },
+      installFailed() {
+        return ['install_failed', 'reinstall_failed'].includes(this.server?.setup);
+      },
+      installTitle() {
+        if (this.server?.setup === 'restoring_backup') return t('dashboard.restoring_a_backup');
+        if (this.installFailed()) return t('dashboard.the_installation_did_not_finish');
+        return t('dashboard.setting_up', { server: this.server?.name });
+      },
+      installText() {
+        if (this.server?.setup === 'restoring_backup') return t('dashboard.everything_opens_again_when_the_restore');
+        if (this.installFailed()) return t('dashboard.the_last_lines_of_the_installation');
+        return t('dashboard.this_takes_a_few_minutes_longer');
+      },
+      /** The server exists, the install script runs, then it is ready to start. */
+      installSteps() {
+        const software = this.server?.software || t('dashboard.the_game');
+        const reached = 1;
+        const steps = [
+          { key: 'created', label: t('dashboard.server_created'), detail: t('dashboard.resources_reserved') },
+          { key: 'install', label: t('dashboard.installing_software', { software }), detail: this.installFailed() ? t('dashboard.stopped_with_error') : t('dashboard.downloading_game_files') },
+          { key: 'ready', label: t('dashboard.ready_to_start'), detail: t('dashboard.everything_opens') },
+        ];
+        return steps.map((step, index) => ({ ...step, state: index < reached ? 'done' : index > reached ? 'todo' : this.installFailed() ? 'failed' : 'active' }));
+      },
+      /** Time since Pelican started the installation, such as "2:14". */
+      installElapsed() {
+        const since = this.server?.install_since;
+        if (!since || this.server?.setup !== 'installing') return '';
+        const seconds = Math.max(0, Math.floor(this.installNow / 1000 - since));
+        return Math.floor(seconds / 60) + ':' + String(seconds % 60).padStart(2, '0');
+      },
+      /** How long this egg usually takes on this panel, such as "usually about 2 min". */
+      installTypical() {
+        const seconds = this.server?.install_typical;
+        return seconds ? t('dashboard.usually_about', { count: Math.max(1, Math.round(seconds / 60)) }) : '';
+      },
+      async toggleInstallNotify() {
+        if (!this.installNotify && typeof Notification === 'function' && Notification.permission === 'default') {
+          try { await Notification.requestPermission(); } catch {}
+        }
+        this.installNotify = !this.installNotify;
+      },
+      notifyInstalled() {
+        const name = this.server?.name;
+        try {
+          if (typeof Notification === 'function' && Notification.permission === 'granted' && document.hidden) new Notification(t('dashboard.is_ready', { server: name }), { body: t('dashboard.can_start_now') });
+        } catch {}
+        this.toast(t('dashboard.ready_toast', { server: name }), 'ok');
+      },
+      async reinstall() {
+        if (this.busy) return;
+        this.busy = true;
+        try {
+          this.take(await wire.reinstall());
+          this.toast(t('dashboard.installation_started'), 'ok');
+        } catch {
+          this.toast(t('dashboard.the_action_could_not_be_completed'), 'danger');
+        } finally {
+          this.busy = false;
+        }
+      },
       async refresh() {
-        if (this.destroyed || document.hidden) return;
+        // A hidden tab still hears when an installation finishes, for the notification.
+        if (this.destroyed || (document.hidden && this.server?.setup !== 'installing')) return;
         try {
           this.pollNotifications();
           const server = await wire.refresh();
           if (this.destroyed) return;
           // On the console page the live numbers win; the rest of the card follows the refresh.
-          if (boot.console && this.liveAt) this.server = { ...server, status: this.server.status };
+          if (boot.console && this.liveAt && !server.setup && !this.server.setup) this.server = { ...server, status: this.server.status };
           else this.take(server);
         } catch {}
       },

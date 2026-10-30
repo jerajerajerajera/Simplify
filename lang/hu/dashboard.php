@@ -2,6 +2,14 @@
 
 return [
     'ui' => [
+        'your_server_is_ready' => 'A szervered készen áll',
+        'you_can_now_start_your_server' => 'Most már elindíthatod a szerveredet. Az első indítás kicsit tovább tart, amíg a világ létrejön.',
+        'you_can_now_start_your_server_2' => 'Most már elindíthatod a szerveredet.',
+        'notify_me' => 'Értesíts',
+        'when_ready' => 'ha kész',
+        'you_get_a_notification' => 'Értesítést kapsz',
+        'try_again' => 'Újra',
+        'installation_progress' => 'Telepítés állapota',
         'all_notifications' => 'Összes értesítés',
         'customize_notifications' => 'Értesítések testreszabása',
         'phone_navigation' => 'Telefonos navigáció',

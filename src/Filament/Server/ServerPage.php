@@ -7,6 +7,7 @@ namespace Simplify\Core\Filament\Server;
 use App\Enums\SubuserPermission;
 use App\Facades\Activity;
 use App\Models\Server;
+use App\Services\Servers\ReinstallServerService;
 use Filament\Facades\Filament;
 use Filament\Navigation\NavigationItem;
 use Illuminate\Contracts\View\View;
@@ -19,6 +20,7 @@ use Livewire\WithFileUploads;
 use Simplify\Core\Overview\Listing;
 use Simplify\Core\Overview\Power;
 use Simplify\Core\Overview\Shell;
+use Simplify\Core\Server\Installation;
 use Simplify\Core\Server\Looks;
 
 /**
@@ -61,6 +63,17 @@ final class ServerPage extends Component
     {
         abort_unless(in_array($action, Power::ACTIONS, true) && Power::allowed($this->user(), $this->server, $action), 403);
         Power::send($this->server, $action);
+    }
+
+    /** Try again after a failed installation: Pelican runs the install script again. */
+    #[Renderless]
+    public function reinstall(): array
+    {
+        abort_unless($this->user()->can(SubuserPermission::SettingsReinstall, $this->server), 403);
+        abort_unless(in_array($this->server->status?->value, Installation::FAILED, true), 409);
+        app(ReinstallServerService::class)->handle($this->server);
+
+        return Listing::one($this->user(), $this->server->refresh());
     }
 
     #[Renderless]

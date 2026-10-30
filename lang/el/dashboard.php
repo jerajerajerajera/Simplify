@@ -2,6 +2,14 @@
 
 return [
     'ui' => [
+        'your_server_is_ready' => 'Ο διακομιστής σας είναι έτοιμος',
+        'you_can_now_start_your_server' => 'Μπορείτε τώρα να ξεκινήσετε τον διακομιστή σας. Η πρώτη εκκίνηση διαρκεί λίγο περισσότερο όσο δημιουργείται ο κόσμος.',
+        'you_can_now_start_your_server_2' => 'Μπορείτε τώρα να ξεκινήσετε τον διακομιστή σας.',
+        'notify_me' => 'Ειδοποίησέ με',
+        'when_ready' => 'όταν είναι έτοιμος',
+        'you_get_a_notification' => 'Θα λάβετε ειδοποίηση',
+        'try_again' => 'Δοκιμάστε ξανά',
+        'installation_progress' => 'Πρόοδος εγκατάστασης',
         'all_notifications' => 'Όλες οι ειδοποιήσεις',
         'customize_notifications' => 'Προσαρμογή ειδοποιήσεων',
         'phone_navigation' => 'Πλοήγηση κινητού',

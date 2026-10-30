@@ -2,6 +2,7 @@
 
 ## 1.5.0
 
+- The installation view from 0.7.0 is back on the server page. While Pelican installs a new or reinstalled server, a card under the server card shows the steps, the time so far and how long this game usually takes on this panel, with Notify me (a browser notification when it is done). When the installation finishes while the page is open, a banner above the card says the server is ready and offers Start server. After a failed installation the card says so and offers Try again.
 - A Minecraft server without an icon of its own (no server icon from the game, none set in Pelican, none on its egg) shows a grass block instead of the plain cube, on its card and on its page. An icon from the game, Pelican or the egg still comes first.
 - The browser tab on a server's pages reads "<server name> - Simplify", on the console and on every tab under it.
 - Server cards and the server page: when an icon does not load (for example an egg icon behind a wrong APP_URL, or a deleted file), the next one is used: the game's icon, then the icon set in Pelican, then the egg's icon, then the cube. Before, the spot stayed empty.

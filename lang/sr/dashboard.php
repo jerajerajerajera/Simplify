@@ -2,6 +2,14 @@
 
 return [
     'ui' => [
+        'your_server_is_ready' => 'Ваш сервер је спреман',
+        'you_can_now_start_your_server' => 'Сада можете покренути сервер. Прво покретање траје мало дуже док се прави свет.',
+        'you_can_now_start_your_server_2' => 'Сада можете покренути сервер.',
+        'notify_me' => 'Обавести ме',
+        'when_ready' => 'кад буде спремно',
+        'you_get_a_notification' => 'Добићете обавештење',
+        'try_again' => 'Покушај поново',
+        'installation_progress' => 'Напредак инсталације',
         'all_notifications' => 'Сва обавештења',
         'customize_notifications' => 'Прилагоди обавештења',
         'phone_navigation' => 'Навигација на телефону',

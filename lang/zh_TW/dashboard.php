@@ -2,6 +2,14 @@
 
 return [
     'ui' => [
+        'your_server_is_ready' => '你的伺服器已就緒',
+        'you_can_now_start_your_server' => '你現在可以啟動伺服器了。首次啟動需要建立世界，會稍慢一些。',
+        'you_can_now_start_your_server_2' => '你現在可以啟動伺服器了。',
+        'notify_me' => '通知我',
+        'when_ready' => '（就緒時）',
+        'you_get_a_notification' => '你會收到通知',
+        'try_again' => '重試',
+        'installation_progress' => '安裝進度',
         'all_notifications' => '所有通知',
         'customize_notifications' => '自訂通知',
         'phone_navigation' => '手機導覽',

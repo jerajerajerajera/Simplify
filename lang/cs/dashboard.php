@@ -2,6 +2,14 @@
 
 return [
     'ui' => [
+        'your_server_is_ready' => 'Váš server je připraven',
+        'you_can_now_start_your_server' => 'Teď můžete server spustit. První spuštění trvá o něco déle, protože se vytváří svět.',
+        'you_can_now_start_your_server_2' => 'Teď můžete server spustit.',
+        'notify_me' => 'Upozornit mě',
+        'when_ready' => 'až bude připraveno',
+        'you_get_a_notification' => 'Dostanete upozornění',
+        'try_again' => 'Zkusit znovu',
+        'installation_progress' => 'Průběh instalace',
         'all_notifications' => 'Všechna oznámení',
         'customize_notifications' => 'Upravit oznámení',
         'phone_navigation' => 'Navigace na telefonu',

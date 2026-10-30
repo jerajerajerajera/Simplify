@@ -24,6 +24,16 @@
     </div>
     <div class="ps-main">
         @include('simplify::dashboard.header', ['notes' => true])
+        {{-- Shown once after an installation finished on this page (as in 0.7.0): one clear next step. --}}
+        <div class="ps-ready" x-show="installReady && !installView() && !['running', 'starting'].includes(status)" x-cloak x-transition.opacity role="status">
+            <span class="ps-ready-mark" aria-hidden="true"><svg><use href="#ps-check"/></svg></span>
+            <div>
+                <strong>{{ $u('your_server_is_ready') }}</strong>
+                <small x-text="server.minecraft ? @js($u('you_can_now_start_your_server')) : @js($u('you_can_now_start_your_server_2'))"></small>
+            </div>
+            <button type="button" class="ps-btn is-primary ps-ready-start" x-show="server.permissions['control.start']" x-on:click="installReady = false; power('start')" :disabled="busy"><svg aria-hidden="true"><use href="#ps-play"/></svg><span>{{ $u('start_server') }}</span></button>
+            <button type="button" class="ps-btn is-icon is-subtle" x-on:click="installReady = false" aria-label="{{ $u('dismiss') }}" data-tip="{{ $u('dismiss') }}"><svg aria-hidden="true"><use href="#ps-close"/></svg></button>
+        </div>
         <article class="ps-server-info" aria-label="{{ $u('server_information') }}" x-init="watchServerInfo($el)">
             {{-- Artwork has its own clipping layer, so it stays inside the card while the ⋯ menu lets the card overflow. --}}
             <span class="ps-info-decor">
@@ -90,8 +100,40 @@
             </div>
         </article>
 
+        {{-- A new or reinstalled server (as in 0.7.0): the steps and the time so far, until Pelican has finished. --}}
+        <section class="ps-install" x-show="installView()" x-cloak role="status" aria-live="polite" :class="'is-' + server.setup" aria-label="{{ $u('installation_progress') }}">
+            <div class="ps-install-head">
+                <span class="ps-install-icon" aria-hidden="true">
+                    <img x-show="server.egg_icon" :src="safeImage(server.egg_icon)" alt="" x-on:error="$el.style.visibility='hidden'">
+                    <svg x-show="!server.egg_icon"><use :href="server.minecraft ? '#ps-cube' : '#ps-gamepad'"/></svg>
+                </span>
+                <div class="ps-install-title">
+                    <h2 x-text="installTitle()"></h2>
+                    <p x-text="installText()"></p>
+                </div>
+                <span class="ps-install-time" x-show="installElapsed()"><strong x-text="installElapsed()"></strong><small x-show="installTypical()" x-text="installTypical()"></small></span>
+                <div class="ps-install-actions">
+                    <button type="button" class="ps-btn" x-show="server.setup === 'installing'" :class="{'is-on': installNotify}" :aria-pressed="installNotify" x-on:click="toggleInstallNotify()"><svg aria-hidden="true"><use :href="installNotify ? '#ps-check' : '#ps-bell'"/></svg><span x-show="!installNotify">{{ $u('notify_me') }}<span class="ps-install-long"> {{ $u('when_ready') }}</span></span><span x-show="installNotify">{{ $u('you_get_a_notification') }}</span></button>
+                    <button type="button" class="ps-btn is-primary" x-show="installFailed() && server.permissions['settings.reinstall']" x-on:click="reinstall()" :disabled="busy"><svg aria-hidden="true"><use href="#ps-restart"/></svg><span>{{ $u('try_again') }}</span></button>
+                </div>
+            </div>
+            <ol class="ps-install-steps" x-show="server.setup !== 'restoring_backup'">
+                <template x-for="(step, index) in installSteps()" :key="step.key">
+                    <li class="ps-install-step" :class="'is-' + step.state" :aria-current="step.state === 'active' ? 'step' : null">
+                        <span class="ps-install-mark" aria-hidden="true">
+                            <svg x-show="step.state === 'done'"><use href="#ps-check"/></svg>
+                            <svg x-show="step.state === 'failed'"><use href="#ps-close"/></svg>
+                            <i x-show="step.state === 'active'"></i>
+                            <b x-show="step.state === 'todo'" x-text="index + 1"></b>
+                        </span>
+                        <span class="ps-install-step-text"><strong x-text="step.label"></strong><small x-text="step.detail"></small></span>
+                    </li>
+                </template>
+            </ol>
+        </section>
+
         {{-- Live numbers in one row: players and the resource metrics. --}}
-        <section class="ps-server-stats" aria-label="{{ $u('server_status') }}">
+        <section class="ps-server-stats" x-show="!installView()" aria-label="{{ $u('server_status') }}">
             <article class="ps-card ps-stat ps-players-stat" x-show="server.players != null || server.minecraft">
                 <div class="ps-stat-top"><span>{{ $u('players') }}</span><svg aria-hidden="true"><use href="#ps-players"/></svg></div>
                 <strong><span x-text="server.players ?? '—'"></span><span class="ps-stat-total" x-text="server.max_players ? ' / '+server.max_players : ''"></span></strong>

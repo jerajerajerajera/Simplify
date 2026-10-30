@@ -2,6 +2,14 @@
 
 return [
     'ui' => [
+        'your_server_is_ready' => 'Palvelimesi on valmis',
+        'you_can_now_start_your_server' => 'Voit nyt käynnistää palvelimesi. Ensimmäinen käynnistys kestää hieman kauemmin, kun maailmaa luodaan.',
+        'you_can_now_start_your_server_2' => 'Voit nyt käynnistää palvelimesi.',
+        'notify_me' => 'Ilmoita minulle',
+        'when_ready' => 'kun se on valmis',
+        'you_get_a_notification' => 'Saat ilmoituksen',
+        'try_again' => 'Yritä uudelleen',
+        'installation_progress' => 'Asennuksen eteneminen',
         'all_notifications' => 'Kaikki ilmoitukset',
         'customize_notifications' => 'Mukauta ilmoituksia',
         'phone_navigation' => 'Puhelimen navigointi',

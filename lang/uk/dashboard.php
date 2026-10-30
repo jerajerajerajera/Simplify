@@ -2,6 +2,14 @@
 
 return [
     'ui' => [
+        'your_server_is_ready' => 'Ваш сервер готовий',
+        'you_can_now_start_your_server' => 'Тепер можна запустити сервер. Перший запуск триває трохи довше, поки створюється світ.',
+        'you_can_now_start_your_server_2' => 'Тепер можна запустити сервер.',
+        'notify_me' => 'Сповістити мене',
+        'when_ready' => 'коли буде готовий',
+        'you_get_a_notification' => 'Ви отримаєте сповіщення',
+        'try_again' => 'Спробувати знову',
+        'installation_progress' => 'Перебіг встановлення',
         'all_notifications' => 'Усі сповіщення',
         'customize_notifications' => 'Налаштувати сповіщення',
         'phone_navigation' => 'Навігація на телефоні',

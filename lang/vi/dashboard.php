@@ -2,6 +2,14 @@
 
 return [
     'ui' => [
+        'your_server_is_ready' => 'Máy chủ của bạn đã sẵn sàng',
+        'you_can_now_start_your_server' => 'Giờ bạn có thể khởi động máy chủ. Lần khởi động đầu tiên lâu hơn một chút vì thế giới đang được tạo.',
+        'you_can_now_start_your_server_2' => 'Giờ bạn có thể khởi động máy chủ.',
+        'notify_me' => 'Báo cho tôi',
+        'when_ready' => 'khi xong',
+        'you_get_a_notification' => 'Bạn sẽ nhận thông báo',
+        'try_again' => 'Thử lại',
+        'installation_progress' => 'Tiến trình cài đặt',
         'all_notifications' => 'Tất cả thông báo',
         'customize_notifications' => 'Tùy chỉnh thông báo',
         'phone_navigation' => 'Điều hướng trên điện thoại',

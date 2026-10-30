@@ -2,6 +2,14 @@
 
 return [
     'ui' => [
+        'your_server_is_ready' => 'Je server is klaar',
+        'you_can_now_start_your_server' => 'Je kunt je server nu starten. De eerste start duurt iets langer omdat de wereld wordt gemaakt.',
+        'you_can_now_start_your_server_2' => 'Je kunt je server nu starten.',
+        'notify_me' => 'Laat het me weten',
+        'when_ready' => 'als hij klaar is',
+        'you_get_a_notification' => 'Je krijgt een melding',
+        'try_again' => 'Opnieuw proberen',
+        'installation_progress' => 'Voortgang installatie',
         'all_notifications' => 'Alle meldingen',
         'customize_notifications' => 'Meldingen aanpassen',
         'phone_navigation' => 'Telefoonnavigatie',

@@ -2,6 +2,14 @@
 
 return [
     'ui' => [
+        'your_server_is_ready' => '서버가 준비되었습니다',
+        'you_can_now_start_your_server' => '이제 서버를 시작할 수 있습니다. 첫 시작은 월드를 만드는 동안 조금 더 걸립니다.',
+        'you_can_now_start_your_server_2' => '이제 서버를 시작할 수 있습니다.',
+        'notify_me' => '알림 받기',
+        'when_ready' => '(준비되면)',
+        'you_get_a_notification' => '알림을 받게 됩니다',
+        'try_again' => '다시 시도',
+        'installation_progress' => '설치 진행 상황',
         'all_notifications' => '모든 알림',
         'customize_notifications' => '알림 사용자 지정',
         'phone_navigation' => '휴대폰 탐색',

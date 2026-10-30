@@ -2,6 +2,14 @@
 
 return [
     'ui' => [
+        'your_server_is_ready' => 'Server Anda siap',
+        'you_can_now_start_your_server' => 'Anda sekarang dapat menjalankan server. Start pertama sedikit lebih lama karena dunia sedang dibuat.',
+        'you_can_now_start_your_server_2' => 'Anda sekarang dapat menjalankan server.',
+        'notify_me' => 'Beri tahu saya',
+        'when_ready' => 'saat siap',
+        'you_get_a_notification' => 'Anda akan mendapat notifikasi',
+        'try_again' => 'Coba lagi',
+        'installation_progress' => 'Progres instalasi',
         'all_notifications' => 'Semua notifikasi',
         'customize_notifications' => 'Sesuaikan notifikasi',
         'phone_navigation' => 'Navigasi ponsel',

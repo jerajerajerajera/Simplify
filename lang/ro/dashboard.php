@@ -2,6 +2,14 @@
 
 return [
     'ui' => [
+        'your_server_is_ready' => 'Serverul este pregătit',
+        'you_can_now_start_your_server' => 'Acum vă puteți porni serverul. Prima pornire durează puțin mai mult, cât timp se creează lumea.',
+        'you_can_now_start_your_server_2' => 'Acum vă puteți porni serverul.',
+        'notify_me' => 'Anunțați-mă',
+        'when_ready' => 'când este gata',
+        'you_get_a_notification' => 'Primiți o notificare',
+        'try_again' => 'Încercați din nou',
+        'installation_progress' => 'Progresul instalării',
         'all_notifications' => 'Toate notificările',
         'customize_notifications' => 'Personalizează notificările',
         'phone_navigation' => 'Navigare pe telefon',

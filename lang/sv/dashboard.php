@@ -2,6 +2,14 @@
 
 return [
     'ui' => [
+        'your_server_is_ready' => 'Din server är redo',
+        'you_can_now_start_your_server' => 'Du kan nu starta din server. Första starten tar lite längre tid medan världen skapas.',
+        'you_can_now_start_your_server_2' => 'Du kan nu starta din server.',
+        'notify_me' => 'Meddela mig',
+        'when_ready' => 'när den är redo',
+        'you_get_a_notification' => 'Du får en avisering',
+        'try_again' => 'Försök igen',
+        'installation_progress' => 'Installationsförlopp',
         'all_notifications' => 'Alla aviseringar',
         'customize_notifications' => 'Anpassa aviseringar',
         'phone_navigation' => 'Telefonnavigering',

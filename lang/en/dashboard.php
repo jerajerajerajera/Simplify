@@ -2,6 +2,14 @@
 
 return [
     'ui' => [
+        'your_server_is_ready' => 'Your server is ready',
+        'you_can_now_start_your_server' => 'You can now start your server. The first start takes a little longer while the world is created.',
+        'you_can_now_start_your_server_2' => 'You can now start your server.',
+        'notify_me' => 'Notify me',
+        'when_ready' => 'when ready',
+        'you_get_a_notification' => 'You get a notification',
+        'try_again' => 'Try again',
+        'installation_progress' => 'Installation progress',
         'all_notifications' => 'All notifications',
         'customize_notifications' => 'Customize notifications',
         'phone_navigation' => 'Phone navigation',

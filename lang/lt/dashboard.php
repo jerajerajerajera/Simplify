@@ -2,6 +2,14 @@
 
 return [
     'ui' => [
+        'your_server_is_ready' => 'Jūsų serveris paruoštas',
+        'you_can_now_start_your_server' => 'Dabar galite paleisti serverį. Pirmasis paleidimas trunka šiek tiek ilgiau, nes kuriamas pasaulis.',
+        'you_can_now_start_your_server_2' => 'Dabar galite paleisti serverį.',
+        'notify_me' => 'Pranešti man',
+        'when_ready' => 'kai bus paruošta',
+        'you_get_a_notification' => 'Gausite pranešimą',
+        'try_again' => 'Bandyti dar kartą',
+        'installation_progress' => 'Diegimo eiga',
         'all_notifications' => 'Visi pranešimai',
         'customize_notifications' => 'Tinkinti pranešimus',
         'phone_navigation' => 'Naršymas telefone',

@@ -2,6 +2,14 @@
 
 return [
     'ui' => [
+        'your_server_is_ready' => 'サーバーの準備ができました',
+        'you_can_now_start_your_server' => 'サーバーを起動できるようになりました。初回はワールドを作成するため、少し時間がかかります。',
+        'you_can_now_start_your_server_2' => 'サーバーを起動できるようになりました。',
+        'notify_me' => '通知を受け取る',
+        'when_ready' => '(準備ができたら)',
+        'you_get_a_notification' => '通知が届きます',
+        'try_again' => 'もう一度試す',
+        'installation_progress' => 'インストールの進行状況',
         'all_notifications' => 'すべての通知',
         'customize_notifications' => '通知をカスタマイズ',
         'phone_navigation' => 'スマートフォン用ナビゲーション',

@@ -2,6 +2,14 @@
 
 return [
     'ui' => [
+        'your_server_is_ready' => 'Dein Server ist bereit',
+        'you_can_now_start_your_server' => 'Du kannst deinen Server jetzt starten. Der erste Start dauert etwas länger, weil die Welt erstellt wird.',
+        'you_can_now_start_your_server_2' => 'Du kannst deinen Server jetzt starten.',
+        'notify_me' => 'Benachrichtige mich',
+        'when_ready' => 'wenn er bereit ist',
+        'you_get_a_notification' => 'Du bekommst eine Benachrichtigung',
+        'try_again' => 'Erneut versuchen',
+        'installation_progress' => 'Installationsfortschritt',
         'all_notifications' => 'Alle Benachrichtigungen',
         'customize_notifications' => 'Benachrichtigungen anpassen',
         'phone_navigation' => 'Handy-Navigation',

@@ -2,6 +2,14 @@
 
 return [
     'ui' => [
+        'your_server_is_ready' => 'Сървърът ви е готов',
+        'you_can_now_start_your_server' => 'Сега можете да стартирате сървъра си. Първото стартиране отнема малко повече време, докато се създава светът.',
+        'you_can_now_start_your_server_2' => 'Сега можете да стартирате сървъра си.',
+        'notify_me' => 'Уведоми ме',
+        'when_ready' => 'когато е готово',
+        'you_get_a_notification' => 'Ще получите известие',
+        'try_again' => 'Опитай отново',
+        'installation_progress' => 'Напредък на инсталирането',
         'all_notifications' => 'Всички известия',
         'customize_notifications' => 'Персонализиране на известията',
         'phone_navigation' => 'Навигация на телефон',

@@ -2,6 +2,14 @@
 
 return [
     'ui' => [
+        'your_server_is_ready' => 'Tu servidor está listo',
+        'you_can_now_start_your_server' => 'Ya puedes arrancar tu servidor. El primer arranque tarda un poco más mientras se crea el mundo.',
+        'you_can_now_start_your_server_2' => 'Ya puedes arrancar tu servidor.',
+        'notify_me' => 'Avisarme',
+        'when_ready' => 'cuando esté listo',
+        'you_get_a_notification' => 'Recibirás una notificación',
+        'try_again' => 'Reintentar',
+        'installation_progress' => 'Progreso de la instalación',
         'all_notifications' => 'Todas las notificaciones',
         'customize_notifications' => 'Personalizar notificaciones',
         'phone_navigation' => 'Navegación del móvil',
