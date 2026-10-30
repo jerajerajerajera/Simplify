@@ -9,7 +9,7 @@ return [
     'steps' => [
         'panel' => '你的面板',
         'look' => '外观',
-        'app' => '应用',
+        'app' => '你的手机应用',
         'addons' => '附加组件',
         'finish' => '设置附加组件',
     ],
@@ -50,6 +50,9 @@ return [
     'recommended' => '推荐',
     'set_up_later' => '在最后一步设置',
     'free_on_hub' => '从 Pelican Hub 安装',
-    'addon_pages' => '附加组件设置',
-    'addon_pages_help' => '每个附加组件还有自己的设置页面，用于设置向导未询问的内容。',
+    'addon_pages' => '每个附加组件都有自己的设置页面',
+    'addon_pages_help' => '用于设置向导未询问的所有内容。之后也可以在 Simplify 设置的“附加组件”中找到它们。',
+    'done_intro' => '你的所有选择均已保存。你可以随时在 Simplify 设置中更改。',
+    'open_panel' => '前往面板',
+    'no_questions' => '你的附加组件在这里没有任何问题。按“完成设置”保存你的选择。',
 ];

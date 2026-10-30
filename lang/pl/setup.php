@@ -9,7 +9,7 @@ return [
     'steps' => [
         'panel' => 'Twój panel',
         'look' => 'Wygląd',
-        'app' => 'Aplikacja',
+        'app' => 'Twoja aplikacja na telefon',
         'addons' => 'Dodatki',
         'finish' => 'Skonfiguruj dodatki',
     ],
@@ -50,6 +50,9 @@ return [
     'recommended' => 'Polecane',
     'set_up_later' => 'Konfiguracja w ostatnim kroku',
     'free_on_hub' => 'Zainstaluj z Pelican Hub',
-    'addon_pages' => 'Ustawienia dodatków',
-    'addon_pages_help' => 'Każdy dodatek ma też własną stronę ustawień na wszystko, o co konfiguracja nie pyta.',
+    'addon_pages' => 'Każdy dodatek ma własną stronę z ustawieniami',
+    'addon_pages_help' => 'Na wszystko, o co konfiguracja nie pyta. Znajdziesz je też później w ustawieniach Simplify w sekcji Dodatki.',
+    'done_intro' => 'Wszystko, co wybrałeś, jest zapisane. Możesz to zmienić w każdej chwili w ustawieniach Simplify.',
+    'open_panel' => 'Przejdź do panelu',
+    'no_questions' => 'Żaden z Twoich dodatków o nic tu nie pyta. Naciśnij Zakończ konfigurację, aby zapisać wybory.',
 ];

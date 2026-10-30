@@ -9,7 +9,7 @@ return [
     'steps' => [
         'panel' => 'Paneelisi',
         'look' => 'Ulkoasu',
-        'app' => 'Sovellus',
+        'app' => 'Puhelinsovelluksesi',
         'addons' => 'Lisätoiminnot',
         'finish' => 'Lisäosien asetukset',
     ],
@@ -50,6 +50,9 @@ return [
     'recommended' => 'Suositeltu',
     'set_up_later' => 'Asetetaan viimeisessä vaiheessa',
     'free_on_hub' => 'Asenna Pelican Hubista',
-    'addon_pages' => 'Lisäosien asetukset',
-    'addon_pages_help' => 'Jokaisella lisäosalla on myös oma asetussivunsa kaikelle, mitä käyttöönotto ei kysy.',
+    'addon_pages' => 'Jokaisella lisäosalla on oma asetussivunsa',
+    'addon_pages_help' => 'Kaikkeen, mitä käyttöönotto ei kysy. Löydät ne myöhemmin myös Simplifyn asetuksista kohdasta Lisäosat.',
+    'done_intro' => 'Kaikki valintasi on tallennettu. Voit muuttaa niitä milloin tahansa Simplifyn asetuksissa.',
+    'open_panel' => 'Siirry paneeliin',
+    'no_questions' => 'Mikään lisäosistasi ei kysy täällä mitään. Paina Viimeistele käyttöönotto tallentaaksesi valintasi.',
 ];

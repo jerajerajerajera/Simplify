@@ -34,6 +34,8 @@ final class PanelSettings
         'overview_seconds' => [15, ['required', 'integer', 'min:5', 'max:300']],
         'brand_name' => [null, ['nullable', 'string', 'max:40']],
         'pelican_suffix' => [true, ['required', 'boolean']],
+        'brand_font' => ['default', ['required', 'in:'.Brand::FONTS]],
+        'brand_style' => ['plain', ['required', 'in:'.Brand::STYLES]],
         'seasonal' => [true, ['required', 'boolean']],
         'brand_logo' => [null, ['nullable', 'string', 'regex:#^'.Brand::DIRECTORY.'/'.Brand::FILE_PATTERN.'$#']],
         'app_icon' => [null, ['nullable', 'string', 'regex:#^'.Brand::DIRECTORY.'/'.Brand::FILE_PATTERN.'$#']],

@@ -9,7 +9,7 @@ return [
     'steps' => [
         'panel' => 'Your panel',
         'look' => 'Look',
-        'app' => 'App',
+        'app' => 'Your phone app',
         'addons' => 'Add-ons',
         'finish' => 'Set up add-ons',
     ],
@@ -50,6 +50,9 @@ return [
     'recommended' => 'Recommended',
     'set_up_later' => 'Set up in the last step',
     'free_on_hub' => 'Install it from the Pelican Hub',
-    'addon_pages' => 'Add-on settings',
-    'addon_pages_help' => 'Every add-on also has its own settings page, for everything the setup does not ask.',
+    'addon_pages' => 'Each add-on has its own page with settings',
+    'addon_pages_help' => 'For everything the setup does not ask. You also find them later in Simplify\'s settings under Add-ons.',
+    'done_intro' => 'Everything you chose is saved. You can change it any time in Simplify\'s settings.',
+    'open_panel' => 'Go to the panel',
+    'no_questions' => 'None of your add-ons asks anything here. Press Finish setup to save your choices.',
 ];

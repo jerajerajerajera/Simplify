@@ -37,6 +37,10 @@ final class Assets
         'bg-survival.jpg' => ['img/bg-survival.jpg', 'image/jpeg'],
         'bg-town.jpg' => ['img/bg-town.jpg', 'image/jpeg'],
         'bg-gaming.svg' => ['img/bg-gaming.svg', 'image/svg+xml'],
+        'brand-rounded.woff2' => ['fonts/brand-rounded.woff2', 'font/woff2'],
+        'brand-serif.woff2' => ['fonts/brand-serif.woff2', 'font/woff2'],
+        'brand-mono.woff2' => ['fonts/brand-mono.woff2', 'font/woff2'],
+        'brand-pixel.woff2' => ['fonts/brand-pixel.woff2', 'font/woff2'],
     ];
 
     /** @var array<string, string> */

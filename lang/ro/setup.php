@@ -9,7 +9,7 @@ return [
     'steps' => [
         'panel' => 'Panoul dumneavoastră',
         'look' => 'Aspect',
-        'app' => 'Aplicație',
+        'app' => 'Aplicația ta pe telefon',
         'addons' => 'Extensii',
         'finish' => 'Configurează add-on-urile',
     ],
@@ -50,6 +50,9 @@ return [
     'recommended' => 'Recomandat',
     'set_up_later' => 'Se configurează la ultimul pas',
     'free_on_hub' => 'Instalează-l din Pelican Hub',
-    'addon_pages' => 'Setările add-on-urilor',
-    'addon_pages_help' => 'Fiecare add-on are și propria pagină de setări, pentru tot ce nu întreabă configurarea.',
+    'addon_pages' => 'Fiecare add-on are propria pagină de setări',
+    'addon_pages_help' => 'Pentru tot ce nu întreabă configurarea. Le găsești și mai târziu în setările Simplify, la Add-ons.',
+    'done_intro' => 'Tot ce ai ales este salvat. Poți schimba oricând în setările Simplify.',
+    'open_panel' => 'Mergi la panou',
+    'no_questions' => 'Niciunul dintre add-on-urile tale nu întreabă nimic aici. Apasă Finalizați configurarea pentru a salva alegerile.',
 ];

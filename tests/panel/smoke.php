@@ -33,6 +33,7 @@ use Simplify\Core\Embed\Filament\Website as EmbedWebsite;
 use Simplify\Core\Embed\Services\EmbedServers;
 use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\Admin\Pages\Setup;
+use Simplify\Core\Filament\Admin\Pages\SetupDone;
 use Simplify\Core\Filament\App\Pages\Notifications;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Filament\Server\ServerPage;
@@ -201,11 +202,22 @@ step('a panel with settings opens them, a new panel opens the setup, and finishi
     }
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('admin'));
     $setup = Livewire\Livewire::actingAs($admin)->test(Setup::class)
-        ->set('data.support_url', 'mailto:help@example.com')->call('finish');
+        ->set('data.support_url', 'mailto:help@example.com')->set('data.accent', '#a9b4f2')
+        ->set('data.brand_font', 'pixel')->set('data.brand_style', 'glow')->call('finish');
     noErrors($setup);
-    if (! PanelSettings::get('setup_done') || PanelSettings::get('support_url') !== 'mailto:help@example.com') {
+    if (! PanelSettings::get('setup_done') || PanelSettings::get('support_url') !== 'mailto:help@example.com'
+        || PanelSettings::get('brand_font') !== 'pixel' || PanelSettings::get('brand_style') !== 'glow' || PanelSettings::get('accent') !== '#a9b4f2') {
         throw new RuntimeException('the setup was not saved: '.json_encode(PanelSettings::all()));
     }
+    // The page after the setup, with each add-on's own settings. The top bar shows the new font and style from the
+    // next request on, and this script is a single request.
+    $url = SetupDone::getUrl(panel: 'admin');
+    $page = visit($admin, $url);
+    expectOk($page, $url);
+    if (! str_contains($page->getContent(), 's-done')) {
+        throw new RuntimeException('the page after the setup misses its add-on list');
+    }
+    PanelSettings::save(['brand_font' => 'default', 'brand_style' => 'plain']);
 });
 step('opening the panel shows the overview, unless Pelican is the start page', function () use ($admin) {
     $home = visit($admin, url('/'));

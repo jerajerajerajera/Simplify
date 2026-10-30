@@ -9,7 +9,7 @@ return [
     'steps' => [
         'panel' => '내 패널',
         'look' => '모양',
-        'app' => '앱',
+        'app' => '내 휴대폰 앱',
         'addons' => '애드온',
         'finish' => '애드온 설정',
     ],
@@ -50,6 +50,9 @@ return [
     'recommended' => '추천',
     'set_up_later' => '마지막 단계에서 설정',
     'free_on_hub' => 'Pelican Hub에서 설치',
-    'addon_pages' => '애드온 설정',
-    'addon_pages_help' => '각 애드온에는 설정 마법사가 묻지 않는 항목을 위한 자체 설정 페이지도 있습니다.',
+    'addon_pages' => '애드온마다 자체 설정 페이지가 있습니다',
+    'addon_pages_help' => '설정 마법사가 묻지 않는 모든 항목을 위한 페이지입니다. 나중에 Simplify 설정의 애드온에서도 찾을 수 있습니다.',
+    'done_intro' => '선택한 내용이 모두 저장되었습니다. Simplify 설정에서 언제든 바꿀 수 있습니다.',
+    'open_panel' => '패널로 이동',
+    'no_questions' => '여기서 묻는 애드온이 없습니다. 설정 완료을(를) 눌러 선택을 저장하세요.',
 ];

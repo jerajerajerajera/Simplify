@@ -6,7 +6,6 @@ namespace Simplify\Core\Filament\Admin\Pages;
 
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\View;
@@ -24,9 +23,9 @@ use Simplify\Core\Support\PanelSettings;
 use Throwable;
 
 /**
- * The first setup: which add-ons to install first, where people start, how it looks, the app, and the installed
- * add-ons. Every answer can be changed later on the settings page; nothing outside these settings and the add-ons'
- * own setup answers is touched.
+ * The first setup: which add-ons to install first, where people start, how it looks, the phone app, and what the
+ * installed add-ons ask; then SetupDone points to each add-on's own settings page. Every answer can be changed later
+ * on the settings page; nothing outside these settings and the add-ons' own setup answers is touched.
  */
 final class Setup extends Page implements HasForms
 {
@@ -81,11 +80,8 @@ final class Setup extends Page implements HasForms
                 $step('panel', 'tabler-users-group', [SettingsFields::startPage(), SettingsFields::support()]),
                 $step('look', 'tabler-palette', [SettingsFields::colours(), SettingsFields::brand()]),
                 $step('app', 'tabler-device-mobile', [View::make('simplify::partials.setup-checks'), SettingsFields::app()]),
-                $step('finish', 'tabler-checklist', [
-                    ...$this->addonSections(),
-                    Section::make(__('simplify::setup.addon_pages'))->description(__('simplify::setup.addon_pages_help'))
-                        ->schema([View::make('simplify::partials.addon-list')]),
-                ]),
+                // Only what the add-ons ask; their own settings pages follow on the page after the setup.
+                $step('finish', 'tabler-checklist', $this->addonSections() ?: [View::make('simplify::partials.setup-no-questions')]),
             ])->skippable()->columnSpanFull()->extraAttributes(['class' => 's-setup'])
                 ->submitAction(new HtmlString(view('simplify::partials.setup-submit')->render())),
         ]);
@@ -106,8 +102,7 @@ final class Setup extends Page implements HasForms
 
             return [];
         });
-        Notification::make()->title(__('simplify::setup.done'))->success()->send();
-        $this->redirect(Settings::getUrl(panel: 'admin'));
+        $this->redirect(SetupDone::getUrl(panel: 'admin'));
     }
 
     /**

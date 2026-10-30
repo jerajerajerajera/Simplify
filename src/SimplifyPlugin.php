@@ -17,6 +17,7 @@ use Simplify\Core\Embed\Filament\Website;
 use Simplify\Core\Filament\Admin\Pages\People;
 use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\Admin\Pages\Setup;
+use Simplify\Core\Filament\Admin\Pages\SetupDone;
 use Simplify\Core\Filament\App\Pages\Notifications;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Filament\Server\ServerPage;
@@ -65,7 +66,7 @@ final class SimplifyPlugin implements Plugin
             $panel->renderHook(PanelsRenderHook::CONTENT_BEFORE, fn () => self::serverTop());
         }
         if ($panel->getId() === 'admin') {
-            $panel->pages([Settings::class, Setup::class, People::class]);
+            $panel->pages([Settings::class, Setup::class, SetupDone::class, People::class]);
         }
         if ($panel->getId() === 'admin') {
             $panel->resources([AnnouncementResource::class]);

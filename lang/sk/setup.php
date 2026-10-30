@@ -9,7 +9,7 @@ return [
     'steps' => [
         'panel' => 'Váš panel',
         'look' => 'Vzhľad',
-        'app' => 'Aplikácia',
+        'app' => 'Vaša aplikácia v telefóne',
         'addons' => 'Doplnky',
         'finish' => 'Nastaviť doplnky',
     ],
@@ -50,6 +50,9 @@ return [
     'recommended' => 'Odporúčané',
     'set_up_later' => 'Nastaví sa v poslednom kroku',
     'free_on_hub' => 'Nainštaluj z Pelican Hubu',
-    'addon_pages' => 'Nastavenia doplnkov',
-    'addon_pages_help' => 'Každý doplnok má aj vlastnú stránku nastavení pre všetko, na čo sa sprievodca nepýta.',
+    'addon_pages' => 'Každý doplnok má vlastnú stránku s nastaveniami',
+    'addon_pages_help' => 'Pre všetko, na čo sa nastavenie nepýta. Nájdete ich aj neskôr v nastaveniach Simplify v časti Doplnky.',
+    'done_intro' => 'Všetko, čo ste vybrali, je uložené. Kedykoľvek to môžete zmeniť v nastaveniach Simplify.',
+    'open_panel' => 'Prejsť do panela',
+    'no_questions' => 'Žiadny z vašich doplnkov sa tu na nič nepýta. Stlačte Dokončiť nastavenie na uloženie volieb.',
 ];
