@@ -60,6 +60,8 @@ final class SettingsFields
                 ->hex()->regex('/^#[0-9a-fA-F]{6}$/'),
             Toggle::make('server_colours')->label(__(self::T.'appearance.server_colours'))
                 ->helperText(__(self::T.'appearance.server_colours_help')),
+            Toggle::make('seasonal')->label(__(self::T.'appearance.seasonal'))
+                ->helperText(__(self::T.'appearance.seasonal_help')),
         ]);
     }
 

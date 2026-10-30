@@ -54,6 +54,8 @@ return [
         ],
         'server_colours' => 'Culoare proprie pentru fiecare server',
         'server_colours_help' => 'Fiecare server primește propria culoare, de la grupul său sau aleasă pentru el. Oprit: toate serverele folosesc culoarea de accent.',
+        'seasonal' => 'Accente sezoniere',
+        'seasonal_help' => 'Mici accente de sărbători de-a lungul anului. Oricine le poate dezactiva pentru sine din Customize.',
         'pelican_suffix' => 'Afișați „× Pelican” după nume',
     ],
     'addons' => [

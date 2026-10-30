@@ -54,6 +54,8 @@ return [
         ],
         'server_colours' => 'Saját szín szerverenként',
         'server_colours_help' => 'Minden szerver saját színt kap, a csoportjáét vagy a neki választottat. Kikapcsolva: minden szerver a kiemelőszínt használja.',
+        'seasonal' => 'Szezonális díszek',
+        'seasonal_help' => 'Apró díszek az év ünnepein. Mindenki kikapcsolhatja magának a Customize alatt.',
         'pelican_suffix' => '„× Pelican” megjelenítése a név után',
     ],
     'addons' => [

@@ -54,6 +54,8 @@ return [
         ],
         'server_colours' => 'Color propio por servidor',
         'server_colours_help' => 'Cada servidor tiene su propio color, el de su grupo o el elegido para él. Desactivado: todos los servidores usan el color de acento.',
+        'seasonal' => 'Detalles de temporada',
+        'seasonal_help' => 'Pequeños detalles en las fiestas del año. Cada persona puede desactivarlos para sí misma en Customize.',
         'pelican_suffix' => 'Mostrar "× Pelican" tras el nombre',
     ],
     'addons' => [

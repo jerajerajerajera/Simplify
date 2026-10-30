@@ -18,6 +18,7 @@ use Simplify\Core\Support\Assets;
 use Simplify\Core\Support\Brand;
 use Simplify\Core\Support\PanelSettings;
 use Simplify\Core\Support\Preferences;
+use Simplify\Core\Support\SafeCache;
 
 /**
  * What the overview and the server page share: the header with its menus, the notifications and the account. The
@@ -39,8 +40,10 @@ trait Shell
                 'accent_color' => $settings['accent'],
                 'server_colours' => (bool) $settings['server_colours'],
                 'pelican_suffix' => (bool) $settings['pelican_suffix'],
+                'seasonal' => (bool) $settings['seasonal'],
                 'brand' => ['mode' => $logo ? 'logo' : 'text', 'logo_url' => $logo ? url('/simplify/brand/'.$logo) : null, 'logo_height' => $settings['logo_height']],
             ],
+            'panel_born' => self::panelBorn(),
             'build_version' => Assets::version(),
             'favicon_url' => Assets::url('favicon.svg'),
             'list_url' => Overview::getUrl(panel: 'app'),
@@ -58,6 +61,14 @@ trait Shell
             'overview_groups' => ServerGroups::clean(Preferences::get($user, 'overview.groups')),
             'notifications' => Bell::page($user),
         ];
+    }
+
+    /** When the panel was set up (its first account), for its birthday among the seasonal touches; null when unknown. */
+    private static function panelBorn(): ?int
+    {
+        $first = (string) SafeCache::rememberForever('simplify.panel_born', fn () => (string) User::query()->min('created_at'));
+
+        return $first !== '' ? (strtotime($first) ?: null) : null;
     }
 
     /** Own server groups and the server order, kept with the account so every device shows the same. */

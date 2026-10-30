@@ -54,6 +54,8 @@ return [
         ],
         'server_colours' => 'Egen farge per server',
         'server_colours_help' => 'Hver server får sin egen farge, fra gruppen sin eller valgt for den. Av: alle servere bruker aksentfargen.',
+        'seasonal' => 'Sesongpreg',
+        'seasonal_help' => 'Små detaljer på høytidsdager gjennom året. Alle kan slå dem av for seg selv under Customize.',
         'pelican_suffix' => 'Vis "× Pelican" etter navnet',
     ],
     'addons' => [

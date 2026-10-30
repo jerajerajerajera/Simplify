@@ -54,6 +54,8 @@ return [
         ],
         'server_colours' => 'Warna sendiri per server',
         'server_colours_help' => 'Setiap server mendapat warnanya sendiri, dari grupnya atau yang dipilih untuknya. Mati: semua server memakai warna aksen.',
+        'seasonal' => 'Sentuhan musiman',
+        'seasonal_help' => 'Sentuhan kecil pada hari raya sepanjang tahun. Setiap orang tetap bisa mematikannya untuk dirinya di Customize.',
         'pelican_suffix' => 'Tampilkan "× Pelican" setelah nama',
     ],
     'addons' => [

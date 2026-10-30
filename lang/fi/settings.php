@@ -54,6 +54,8 @@ return [
         ],
         'server_colours' => 'Oma väri jokaiselle palvelimelle',
         'server_colours_help' => 'Jokainen palvelin saa oman värinsä, ryhmästään tai sille valittuna. Pois: kaikki palvelimet käyttävät korostusväriä.',
+        'seasonal' => 'Vuodenaikojen yksityiskohdat',
+        'seasonal_help' => 'Pieniä yksityiskohtia juhlapäivinä ympäri vuoden. Jokainen voi poistaa ne itseltään käytöstä kohdassa Customize.',
         'pelican_suffix' => 'Näytä "× Pelican" nimen jälkeen',
     ],
     'addons' => [

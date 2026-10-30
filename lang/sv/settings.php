@@ -54,6 +54,8 @@ return [
         ],
         'server_colours' => 'Egen färg per server',
         'server_colours_help' => 'Varje server får en egen färg, från sin grupp eller vald för den. Av: alla servrar använder accentfärgen.',
+        'seasonal' => 'Säsongsdetaljer',
+        'seasonal_help' => 'Små detaljer på högtider under året. Alla kan stänga av dem för sig själva under Customize.',
         'pelican_suffix' => 'Visa "× Pelican" efter namnet',
     ],
     'addons' => [

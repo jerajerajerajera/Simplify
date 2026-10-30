@@ -54,6 +54,8 @@ return [
         ],
         'server_colours' => 'Atskira spalva kiekvienam serveriui',
         'server_colours_help' => 'Kiekvienas serveris gauna savo spalvą – savo grupės arba jam pasirinktą. Išjungta: visi serveriai naudoja akcento spalvą.',
+        'seasonal' => 'Sezoniniai akcentai',
+        'seasonal_help' => 'Maži akcentai per metų šventes. Kiekvienas gali juos išjungti sau skiltyje Customize.',
         'pelican_suffix' => 'Rodyti "× Pelican" po pavadinimu',
     ],
     'addons' => [

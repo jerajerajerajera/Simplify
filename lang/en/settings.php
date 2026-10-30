@@ -54,6 +54,8 @@ return [
         ],
         'server_colours' => 'Individual colours per server',
         'server_colours_help' => 'Each server gets its own colour, from its group or chosen for it. Off: every server uses the accent colour.',
+        'seasonal' => 'Seasonal touches',
+        'seasonal_help' => 'Small touches on holidays through the year. Everyone can still turn them off for themselves under Customize.',
         'pelican_suffix' => 'Show "× Pelican" after the name',
     ],
     'addons' => [

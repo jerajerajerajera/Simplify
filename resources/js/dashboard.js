@@ -33,6 +33,8 @@
   // core.js (loaded with the page) owns the contrast calculation.
   const accentInk = (color) => window.SimplifyTheme.accentInk(color);
 
+  // Today's holidays (seasonsToday), kept outside Alpine's state so working them out never triggers a redraw.
+  let seasonCache = null;
   window.pelicanSimplify = function (wire, boot) {
     return {
       boot,
@@ -98,13 +100,15 @@
       installable: '',
       uiScale: 1,
       destroyed: false,
+      seasonClock: 0,
+      easterFound: false,
 
       init() {
         this.initShell();
         this.restoreOverviewView();
         this.restoreHostMode();
         this.$nextTick(() => this.initOverviewDock());
-        setTimeout(() => this.releaseBats(), 600);
+        setTimeout(() => { this.releaseBats(); this.playSeason(); this.startSeasonClock(); }, 600);
         this.recordOverview(this.boot.servers);
         this.refreshTimer = setInterval(() => this.refreshOverview(), this.refreshSeconds);
         // Host health is asked right after first paint when no snapshot was ready, so Wings never holds up the page.
@@ -136,6 +140,7 @@
         this.overviewDockObserver?.disconnect();
         this.restoreFavicon();
         clearInterval(this.refreshTimer);
+        clearInterval(this.seasonTimer);
         window.removeEventListener('simplify:theme', this.themeListener);
         window.removeEventListener('simplify:notice', this.noticeListener);
         window.removeEventListener('simplify:installable', this.installListener);
@@ -504,14 +509,109 @@
         return main ? [{ ...main, primary: true, label: t('dashboard.create_server') }, ...rest] : rest;
       },
 
-      /** 25 October to 2 November, every year. */
-      halloweenSeason(date = new Date()) {
-        const month = date.getMonth(), day = date.getDate();
-        return (month === 9 && day >= 25) || (month === 10 && day <= 2);
+      /** The holidays on today (seasons.js), for this panel, whether or not they are turned off. Worked out once a day. */
+      seasonsToday() {
+        const today = new Date(), stamp = today.toDateString();
+        if (seasonCache?.stamp !== stamp) {
+          const born = this.boot.panel_born ? new Date(this.boot.panel_born * 1000) : null;
+          const list = window.SimplifySeasons?.active(today, { dutch: /^nl\b/i.test(document.documentElement.lang || ''), born }) || [];
+          seasonCache = { stamp, list };
+        }
+        return seasonCache.list;
       },
-      /** The Halloween touches show in season, unless the panel or this person turned them off. */
-      halloween(date = new Date()) {
-        return this.overviewPreferences.halloween !== false && this.halloweenSeason(date);
+      /** The seasonal touches show unless the panel (Settings, Appearance) or this person (Customize) turned them off. */
+      seasons() {
+        // The personal switch keeps its first name, halloween, so a choice made for Halloween still counts.
+        if (this.boot.appearance?.seasonal === false || this.overviewPreferences.halloween === false) return [];
+        return this.seasonsToday();
+      },
+      season(key) {
+        return this.seasons().some((s) => s.key === key);
+      },
+      /** The space-separated keys for data-season on the page, which the stylesheet (seasons.css) follows. */
+      seasonKeys() {
+        return this.seasons().map((s) => s.key).join(' ');
+      },
+      /** For the Customize switch: "Halloween", or "Hanukkah and Christmas". */
+      seasonNames() {
+        return this.seasonsToday().map((s) => t(`seasons.${s.key}.name`)).join(' · ');
+      },
+      /** The icons next to the panel name (two at most), each with a tooltip saying what the day is. */
+      seasonBadges() {
+        return this.seasons().filter((s) => !['valentine', 'easter'].includes(s.key)).slice(0, 2).map((s) => ({
+          key: s.key, icon: s.icon, color: s.color, day: s.day,
+          label: s.key === 'lunar' ? t('seasons.lunar.name_year', { animal: t('seasons.zodiac.' + ((s.start.getFullYear() - 2020) % 12 + 12) % 12) })
+            : s.key === 'hanukkah' ? t('seasons.hanukkah.name_night', { night: s.day }) : t(`seasons.${s.key}.name`),
+          text: s.key === 'birthday' ? t('seasons.birthday.text', { count: s.years, date: this.seasonDate(this.boot.panel_born) }) : t(`seasons.${s.key}.text`),
+        }));
+      },
+      seasonDate(timestamp) {
+        const date = new Date(timestamp * 1000), options = { day: 'numeric', month: 'long', year: 'numeric' };
+        try { return date.toLocaleDateString((document.documentElement.lang || 'en').replace('_', '-'), options); } catch { return date.toLocaleDateString('en', options); }
+      },
+      /** On 31 December from 23:00: the time left until the new year, as 0:42:10. */
+      newYearCountdown() {
+        const now = new Date(this.seasonClock || Date.now());
+        if (now.getMonth() !== 11 || now.getDate() !== 31 || now.getHours() < 23 || !this.season('newyear')) return '';
+        const left = Math.max(0, Math.ceil((new Date(now.getFullYear() + 1, 0, 1) - now) / 1000));
+        return `0:${String(Math.floor(left / 60)).padStart(2, '0')}:${String(left % 60).padStart(2, '0')}`;
+      },
+      /** The countdown ticks only on New Year's Eve; at midnight the fireworks go off once. */
+      startSeasonClock() {
+        const now = new Date();
+        if (this.seasonTimer || !(now.getMonth() === 11 && now.getDate() === 31 && this.season('newyear'))) return;
+        this.seasonTimer = setInterval(() => {
+          this.seasonClock = Date.now();
+          if (new Date().getMonth() === 0) {
+            clearInterval(this.seasonTimer);
+            seasonCache = null;
+            this.playSeason(true);
+          }
+        }, 1000);
+      },
+      /** A server's birthday: created on this day, at least a year ago (the number of years, or 0). */
+      serverBirthday(s) {
+        return this.seasons().length ? window.SimplifySeasons?.birthday(s.created) || 0 : 0;
+      },
+      serverBirthdayTip(s) {
+        return t('seasons.server_birthday', { name: s.name, count: this.serverBirthday(s) });
+      },
+      /** Easter: one server card a day hides a small egg, until this person finds it (once a year, on this device). */
+      easterEgg(s) {
+        if (this.server || !this.season('easter') || this.easterFound) return false;
+        try {
+          if (localStorage.getItem('simplify.easter') === String(new Date().getFullYear())) return false;
+        } catch {}
+        const cards = (this.boot.servers || []).map((server) => server.uuid).sort();
+        return cards.length > 0 && cards[new Date().getDate() % cards.length] === s.uuid;
+      },
+      findEasterEgg(event) {
+        const box = event.currentTarget.getBoundingClientRect();
+        window.SimplifySeasons?.confetti(box.left, box.top);
+        this.easterFound = true;
+        try { localStorage.setItem('simplify.easter', String(new Date().getFullYear())); } catch {}
+        window.Simplify?.toast(t('seasons.easter.found'), 'ok');
+      },
+      /** The holiday that leads today plays its small animation once per visit, on the overview only. */
+      playSeason(force = false) {
+        const lead = this.seasons()[0];
+        if (this.server || !lead || !window.SimplifySeasons) return;
+        try {
+          const key = 'simplify.season.' + lead.key;
+          if (!force && sessionStorage.getItem(key)) return;
+          sessionStorage.setItem(key, '1');
+        } catch {}
+        const brand = this.$root.querySelector('.ps-identity')?.getBoundingClientRect();
+        if (!brand) return;
+        const S = window.SimplifySeasons, top = brand.top + brand.height / 2;
+        if (lead.key === 'newyear') S.fireworks([[brand.right + 80, top], [innerWidth * .45, top - 6], [innerWidth * .62, top + 8]], ['#7c5cd6', '#e2a41a', '#d6456e', '#3a9bd9']);
+        if (lead.key === 'lunar') S.fireworks([[brand.right + 60, top], [innerWidth * .5, top + 4]], ['#d23b2f', '#e8b923']);
+        if (lead.key === 'holi') S.powder(brand);
+        if (lead.key === 'birthday') S.confetti(brand.right, top);
+      },
+      /** Halloween keeps its own name for what was built for it first: the web, the lantern and the bats. */
+      halloween() {
+        return this.season('halloween');
       },
       /** A few bats leave one server card when the overview opens, once per visit. */
       releaseBats() {
@@ -548,9 +648,10 @@
         if (String(id).startsWith('group-')) return {};
         const appearance = this.boot.appearance || {};
         const common = appearance.accent_color;
-        // Halloween turns the overview's neutral accent orange; a panel accent of your own stays.
-        if (id === 'overview' && this.halloween() && (common || '#878787').toLowerCase() === '#878787')
-          return { '--ps-accent': this.themeDark ? '#f0a35a' : '#c2621a', '--ps-on-accent': this.themeDark ? '#111118' : '#ffffff' };
+        // Some holidays (Halloween, King's Day, Christmas, Lunar New Year) tint the overview's neutral accent; a panel accent of your own stays.
+        const tint = this.seasons()[0]?.accent || this.seasons().find((s) => s.accent)?.accent;
+        if (id === 'overview' && tint && (common || '#878787').toLowerCase() === '#878787')
+          return { '--ps-accent': tint[this.themeDark ? 1 : 0], '--ps-on-accent': this.themeDark ? '#111118' : '#ffffff' };
         if (id === 'overview' && /^#[0-9a-f]{6}$/i.test(common || ''))
           return { '--ps-accent': common, '--ps-on-accent': accentInk(common) };
         if (id === 'overview') return { '--ps-accent': this.themeDark ? '#c0c0c5' : '#55555f', '--ps-on-accent': this.themeDark ? '#111118' : '#ffffff' };

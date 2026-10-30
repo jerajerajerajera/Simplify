@@ -54,6 +54,8 @@ return [
         ],
         'server_colours' => 'Màu riêng cho từng máy chủ',
         'server_colours_help' => 'Mỗi máy chủ có màu riêng, theo nhóm của nó hoặc màu được chọn cho nó. Tắt: mọi máy chủ dùng màu nhấn.',
+        'seasonal' => 'Điểm xuyết theo mùa',
+        'seasonal_help' => 'Những điểm xuyết nhỏ vào các ngày lễ trong năm. Mỗi người vẫn có thể tự tắt trong Customize.',
         'pelican_suffix' => 'Hiện "× Pelican" sau tên',
     ],
     'addons' => [

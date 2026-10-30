@@ -54,6 +54,8 @@ return [
         ],
         'server_colours' => '서버별 색상',
         'server_colours_help' => '각 서버는 그룹 색상 또는 따로 고른 색상을 사용합니다. 끄면 모든 서버가 강조 색상을 사용합니다.',
+        'seasonal' => '계절 장식',
+        'seasonal_help' => '일 년 내내 기념일에 작은 장식을 보여 줍니다. 누구나 Customize에서 자신에게만 끌 수 있습니다.',
         'pelican_suffix' => '이름 뒤에 "× Pelican" 표시',
     ],
     'addons' => [

@@ -3,10 +3,12 @@
      x-data="simplifyServer($wire, @js($this->initial()))"
      x-on:resize.window.debounce.150ms="applyScale()"
      :class="{'dark': themeDark, 'is-server-full-width': overviewPreferences.fullWidth, 'ps-halloween': halloween()}"
+     :data-season="seasonKeys()"
      :style="accentStyle(server.uuid)">
     @include('simplify::dashboard.assets')
     @include('simplify::dashboard.icons')
     @include('simplify::dashboard.halloween')
+    @include('simplify::dashboard.seasons')
     {{-- Status bar: slides in once the server card scrolls out of view, so status and power stay in reach. --}}
     <div class="ps-statusbar" :class="{'is-visible': statusBarVisible}" :inert="!statusBarVisible" role="region" aria-label="{{ $u('server_status') }}">
         <span class="ps-statusbar-name" x-text="server.name"></span>

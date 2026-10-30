@@ -54,6 +54,8 @@ return [
         ],
         'server_colours' => 'Eigene Farbe pro Server',
         'server_colours_help' => 'Jeder Server bekommt eine eigene Farbe, von seiner Gruppe oder für ihn gewählt. Aus: Jeder Server nutzt die Akzentfarbe.',
+        'seasonal' => 'Saisonale Details',
+        'seasonal_help' => 'Kleine Details an Feiertagen über das Jahr. Jeder kann sie unter Customize für sich ausschalten.',
         'pelican_suffix' => '"× Pelican" nach dem Namen zeigen',
     ],
     'addons' => [

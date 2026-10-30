@@ -54,6 +54,8 @@ return [
         ],
         'server_colours' => 'Her sunucuya ayrı renk',
         'server_colours_help' => 'Her sunucu kendi rengini alır: grubunun rengi ya da onun için seçilen renk. Kapalı: tüm sunucular vurgu rengini kullanır.',
+        'seasonal' => 'Mevsimsel dokunuşlar',
+        'seasonal_help' => 'Yıl boyunca bayramlarda küçük dokunuşlar. Herkes Customize altında kendisi için kapatabilir.',
         'pelican_suffix' => 'Adın ardından "× Pelican" göster',
     ],
     'addons' => [

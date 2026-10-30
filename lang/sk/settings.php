@@ -54,6 +54,8 @@ return [
         ],
         'server_colours' => 'Vlastná farba pre každý server',
         'server_colours_help' => 'Každý server má vlastnú farbu, zo svojej skupiny alebo vybranú preň. Vypnuté: všetky servery používajú farbu zvýraznenia.',
+        'seasonal' => 'Sezónne detaily',
+        'seasonal_help' => 'Drobné detaily počas sviatkov v roku. Každý si ich môže vypnúť v Customize.',
         'pelican_suffix' => 'Zobraziť "× Pelican" za názvom',
     ],
     'addons' => [

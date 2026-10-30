@@ -54,6 +54,8 @@ return [
         ],
         'server_colours' => 'Colore proprio per server',
         'server_colours_help' => 'Ogni server ha il proprio colore, quello del suo gruppo o scelto per lui. Disattivato: ogni server usa il colore principale.',
+        'seasonal' => 'Tocchi stagionali',
+        'seasonal_help' => 'Piccoli tocchi nelle feste dell\'anno. Ognuno può disattivarli per sé in Customize.',
         'pelican_suffix' => 'Mostra "× Pelican" dopo il nome',
     ],
     'addons' => [

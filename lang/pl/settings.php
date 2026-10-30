@@ -54,6 +54,8 @@ return [
         ],
         'server_colours' => 'Osobny kolor dla każdego serwera',
         'server_colours_help' => 'Każdy serwer ma własny kolor, z grupy lub wybrany dla niego. Wyłączone: wszystkie serwery używają koloru akcentu.',
+        'seasonal' => 'Akcenty sezonowe',
+        'seasonal_help' => 'Drobne akcenty w święta w ciągu roku. Każdy może je wyłączyć dla siebie w Customize.',
         'pelican_suffix' => 'Pokazuj "× Pelican" po nazwie',
     ],
     'addons' => [

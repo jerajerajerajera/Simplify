@@ -54,6 +54,8 @@ return [
         ],
         'server_colours' => 'Eigen kleur per server',
         'server_colours_help' => 'Elke server krijgt een eigen kleur, van zijn groep of voor hem gekozen. Uit: elke server gebruikt de accentkleur.',
+        'seasonal' => 'Seizoensaccenten',
+        'seasonal_help' => 'Kleine accenten op feestdagen door het jaar heen. Iedereen kan ze voor zichzelf uitzetten onder Customize.',
         'pelican_suffix' => '"× Pelican" achter de naam tonen',
     ],
     'addons' => [

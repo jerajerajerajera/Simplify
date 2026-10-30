@@ -54,6 +54,8 @@ return [
         ],
         'server_colours' => 'サーバーごとの色',
         'server_colours_help' => '各サーバーはグループの色、または個別に選んだ色を使います。オフにすると、すべてのサーバーがアクセントカラーを使います。',
+        'seasonal' => '季節の演出',
+        'seasonal_help' => '一年を通して祝日にささやかな演出を表示します。各ユーザーは Customize で自分だけオフにできます。',
         'pelican_suffix' => '名前の後に「× Pelican」を表示',
     ],
     'addons' => [

@@ -91,6 +91,7 @@
                                 <div class="ps-card-badges ps-identity-badges">
                                     <span class="ps-badge is-strong ps-list-game"><svg aria-hidden="true"><use :href="s.game==='minecraft' ? '#ps-cube' : '#ps-gamepad'"/></svg><span x-text="s.game_label"></span></span>
                                     <span class="ps-badge ps-status" :class="s.status"><i></i><span x-text="Simplify.status(s.status)"></span></span>
+                                    <span class="ps-badge ps-season-cake" x-show="serverBirthday(s)" :data-tip="serverBirthdayTip(s)" :aria-label="serverBirthdayTip(s)"><svg aria-hidden="true"><use href="#ps-cake"/></svg></span>
                                     <template x-for="badge in (s.badges || []).slice(0, overviewView==='grid' ? 1 : 0)" :key="badge"><span class="ps-badge" x-text="badge"></span></template>
                                 </div>
                                 <div class="ps-card-bottom" x-show="overviewView!=='list'">
@@ -104,6 +105,9 @@
                                     <svg aria-hidden="true"><use href="#ps-chevron"/></svg>
                                 </button>
                             </div>
+                            <template x-if="easterEgg(s)">
+                                <button type="button" class="ps-season-egg" aria-label="{{ $u('easter_egg') }}" x-on:click="findEasterEgg($event)"><svg aria-hidden="true"><use href="#ps-egg"/></svg></button>
+                            </template>
                             <div class="ps-overview-power-wrap" x-show="quickActionsMode()!=='off'">
                                 <div class="ps-overview-power" :class="{'is-confirming': powerConfirmation?.uuid===s.uuid}" role="group" :aria-label="Simplify.fill(@js($u('power_controls_for')), { name: s.name })">
                                     <template x-for="action in [{key:'start',label:@js($u('start')),icon:'play'},{key:'stop',label:@js($u('stop')),icon:'stop'},{key:'restart',label:@js($u('restart')),icon:'restart'},{key:'kill',label:@js($u('force_stop')),icon:'kill'}]" :key="action.key">

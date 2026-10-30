@@ -54,6 +54,8 @@ return [
         ],
         'server_colours' => '每台伺服器各自配色',
         'server_colours_help' => '每台伺服器使用自己的顏色：所屬群組的顏色或為它選擇的顏色。關閉後，所有伺服器都使用強調色。',
+        'seasonal' => '節日點綴',
+        'seasonal_help' => '一年中各個節日的小點綴。每個人仍可在 Customize 中為自己關閉。',
         'pelican_suffix' => '在名稱後顯示「× Pelican」',
     ],
     'addons' => [
