@@ -75,6 +75,14 @@ jobs:
             echo '{"accent_color":"#e11d48","brand":{"mode":"text","text":"Old panel","font":"rounded","weight":800,"color_style":"gradient","color1":"#ff0000","color2":"","spacing":2,"uppercase":false,"suffix":false,"logo":null,"logo_height":32,"logo_text":true}}' > $d/simplify/appearance.json
             echo '{"style":"dark","corners":"square","players":false}' > $d/simplify/website-embed.json
           done
+      # The way most panels update: 1.4.4 first, with PelicanSimplify's files still there, then this version over it.
+      - name: Install Simplify 1.4.4
+        run: |
+          git clone --quiet --depth 1 --branch v1.4.4 "https://github.com/${{ github.repository }}.git" panel/plugins/simplify
+          rm -rf panel/plugins/simplify/.git
+          cd panel
+          php artisan p:plugin:install simplify
+          rm -rf plugins/simplify
       - name: Install Simplify
         run: |
           mkdir -p panel/plugins/simplify
