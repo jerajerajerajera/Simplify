@@ -819,12 +819,15 @@ async function seasons(theme) {
   await page.close().catch(() => {});
   page = main;
 }
+// Screenshots never show the seasonal touches (they stay quiet); only seasons() looks at them, on pages of its own.
+const quiet = (p) => p.addInitScript(() => { let s; Object.defineProperty(window, 'SimplifySeasons', { configurable: true, get: () => s, set: (v) => { s = v && { ...v, active: () => [] }; } }); });
 const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) || 'x';
 
 (async () => {
   browser = await chromium.launch({ headless: true });
   const context = await browser.newContext({ viewport: VIEWPORTS.d1440, baseURL: base, deviceScaleFactor: 1 });
   page = await context.newPage(); page.setDefaultTimeout(8000);
+  await quiet(page);
   page.on('pageerror', (e) => problems.push(`${stand} ${screen} page error: ${e.message.slice(0, 160)}`));
   page.on('console', (m) => { if (m.type() === 'error' && !/favicon|net::ERR|status of 4|WebSocket/.test(m.text())) problems.push(`${stand} ${screen} console: ${m.text().slice(0, 160)}`); });
   page.on('response', (r) => { if (r.status() >= 500) problems.push(`${stand} ${screen} HTTP ${r.status()} ${rel(r.url())}`); });
@@ -845,12 +848,12 @@ const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(
         for (const part of section.split(',')) { const [where, run] = parts[part] || [[], null]; if (!run || !where.includes(name)) continue; try { await setTheme(theme); await run(); } catch (e) { problems.push(`${stand} ${part}: ${e.message.slice(0, 200)}`); } }
         continue;
       }
-      try { await round(theme); } catch (e) { problems.push(`${stand} ${screen}: round stopped: ${e.message.slice(0, 200)}`); console.log('  ! ' + e.message.slice(0, 200)); if (page.isClosed()) { page = await context.newPage(); await login('demo@example.com', 'DemoPassword123!'); } }
+      try { await round(theme); } catch (e) { problems.push(`${stand} ${screen}: round stopped: ${e.message.slice(0, 200)}`); console.log('  ! ' + e.message.slice(0, 200)); if (page.isClosed()) { page = await context.newPage(); await quiet(page); await login('demo@example.com', 'DemoPassword123!'); } }
     }
   }
   // The customer's view, two stands.
   const customer = await browser.newContext({ viewport: VIEWPORTS.d1440, baseURL: base });
-  const cp = await customer.newPage(); const admin = page; page = cp; page.setDefaultTimeout(8000);
+  const cp = await customer.newPage(); const admin = page; page = cp; page.setDefaultTimeout(8000); await quiet(page);
   await login('sam@example.com', 'DemoPassword123!');
   for (const name of ['d1440', 'phone390']) {
     if (only && !only.includes(name)) continue;
