@@ -85,7 +85,7 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-overview-appearance-menu { width: 300px; }
 .ps-notify-menu { width: 340px; }
 /* Menus under the top bar use the height left on the screen before they scroll. */
-.ps-top .ps-dropdown { max-height: calc(100dvh - 96px); }
+.ps-top .ps-dropdown { max-height: min(calc(100dvh - 96px), 66.667dvh); }
 .ps-account { position: relative; display: flex; align-items: center; flex: none; }
 .ps-account-button { max-width: 200px; padding: 0 10px 0 4px; gap: 8px; }
 .ps-account-avatar { display: grid; place-items: center; flex: none; width: 30px; height: 30px; overflow: hidden; border-radius: 50%; background: var(--ps-raised); }
