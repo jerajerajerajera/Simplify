@@ -34,7 +34,7 @@ const mopts = () => ({ simplifyAdmin: (urls.admin || []).filter((p) => /^Simplif
 async function record(id, title, extra = {}) {
   screen = id;
   const dir = path.join(out, stand); fs.mkdirSync(dir, { recursive: true });
-  const entry = { id, title, stand, url: rel(page.url()), ...extra };
+  const entry = { id, title, stand, url: rel(page.url()), docTitle: await page.title().catch(() => null), ...extra };
   try {
     entry.main = await page.evaluate(measure, mopts());
     entry.frames = [];
@@ -192,7 +192,12 @@ async function round(theme) {
   if (other) { await goto(other[1], 3000); await record('server2-console', `Server · Console (${other[0]})`); }
   // And the server with its own icon set in Pelican (seed): its header must show that icon with the egg badge small in the corner.
   if (urls.servers['Skyblock']) { await goto(urls.servers['Skyblock'], 3000); await record('server3-console', 'Server · Console (Skyblock, eigen icoon)'); }
-  if (urls.servers['Creative Builds']) { await goto(urls.servers['Creative Builds'], 3000); await record('server4-console', 'Server · Console (Creative Builds, icoon laadt niet)'); }
+  if (urls.servers['Creative Builds']) { await goto(urls.servers['Creative Builds'], 3000); await record('server4-console', 'Server · Console (Creative Builds, icoon laadt niet)');
+    // The browser tab is "<server name> - Simplify" on every server page (1.4.5), here and on a tab below it.
+    const files = page.locator('a[href*="/files"] >> visible=true').first();
+    if (await files.count()) { await files.click().catch(() => {}); await settle(page, 2500); await record('server4-files', 'Server · Files (Creative Builds)'); }
+    for (const sid of ['server4-console', 'server4-files']) { const e = screens.filter((x) => x.id === sid && x.stand === stand).pop(); if (e) problems.push(`${stand} ${sid}: tab title ${/^Creative Builds - Simplify$/.test(e.docTitle || '') ? 'ok' : 'WRONG'}: "${e.docTitle}"`); }
+  }
 
   // The admin side as Pelican shows it (sidebar, topbar, notifications, user menu, search) and Simplify's admin pages.
   const admin = urls.admin;
