@@ -17,7 +17,10 @@ const measure = (opts = {}) => {
   const bodyScroll = document.body.scrollHeight;
   if (root.scrollWidth > W + 2 || bodyScroll > H + 2 && root.scrollWidth > W + 2) push('hscroll', `page is wider than the window (${root.scrollWidth} > ${W})`);
   if (root.scrollHeight > H + 2) {
-    const before = scrollY; scrollTo(0, 50); const moved = scrollY !== before; scrollTo(0, before);
+    // Whether the page itself scrolls, read from the styles: a test scroll would fire a scroll event, and Simplify
+    // closes its tooltips on scroll, so the screenshot taken next would lose them.
+    const ov = (el) => getComputedStyle(el).overflowY;
+    const moved = !['hidden', 'clip'].includes(ov(root)) && !['hidden', 'clip'].includes(ov(document.body)) && getComputedStyle(root).position !== 'fixed' && getComputedStyle(document.body).position !== 'fixed';
     push(moved ? 'pagescroll' : 'tallnoscroll', `page is taller than the window (${root.scrollHeight} > ${H})${moved ? ', the page scrolls' : ', nothing scrolls'}`);
   }
   // 2. Text cut off: single-line text hidden without an ellipsis, and text shortened with an ellipsis (info).
