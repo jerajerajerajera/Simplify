@@ -1,0 +1,1625 @@
+{
+ "base": "http://127.0.0.1:8001",
+ "screens": [
+  {
+   "id": "setup-done",
+   "title": "Setup klaar (gewone beheerpagina)",
+   "stand": "d1440-dark",
+   "url": "/admin/simplify-setup-done",
+   "docTitle": "Simplify is set up - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-setup-done",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "panes": [
+      "Sidebar navigation 648/1448"
+     ],
+     "card": "0..844 of 900",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"Run setup again\" at y=58",
+      "\"Go to the panel\" at y=58"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\"",
+      "\"Go to the panel\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/setup-done.png"
+  },
+  {
+   "id": "setup-done-host",
+   "title": "Setup klaar (hostmodus, in het frame)",
+   "stand": "d1440-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1219,32 185x38"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..398, actions 1219..1404",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "112..850 of 900"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,160 1116x690",
+     "url": "/admin/simplify-setup-done?simplify_embed=1",
+     "w": 1116,
+     "h": 690,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 690,
+      "pageScrollW": 1116,
+      "card": "0..690 of 690",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 2
+     }
+    }
+   ],
+   "shot": "d1440-dark/setup-done-host.png"
+  },
+  {
+   "id": "wizard-look",
+   "title": "Setup · Look-stap",
+   "stand": "d1440-dark",
+   "url": "/admin/simplify-setup",
+   "docTitle": "Set up Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-setup",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1335 > 900), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"Northwind Games\" sticks 4px out of s-preset | span \"Northwind Games\" sticks 6px out of s-preset | span \"Northwind Games\" sticks 11px out of s-preset | span \"Northwind Games\" sticks 26px out of s-preset | span \"Northwind Games\" sticks 42px out of s-preset"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1335,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "span: \"Northwind Games\"",
+      "small: \"play.example.com · 7/20\""
+     ],
+     "panes": [
+      "Sidebar navigation 648/1450"
+     ],
+     "card": "0..1279 of 900",
+     "scope": "simplify",
+     "boxes": [],
+     "filamentButtons": [
+      "\"Back\"",
+      "\"Next\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/wizard-look.png"
+  },
+  {
+   "id": "wizard-look-logo",
+   "title": "Setup · Look, logo geüpload",
+   "stand": "d1440-dark",
+   "url": "/admin/simplify-setup",
+   "docTitle": "Set up Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-setup",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1205 > 900), the page scrolls"
+     },
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: legend: \"logo.png\" (67>1) | span: \"Remove\" (63>1) | filepond--assistant-admnbbcxv: \"logo.png Upload complete\" (201>1)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1205,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"play.example.com · 7/20\""
+     ],
+     "panes": [
+      "Sidebar navigation 648/1450"
+     ],
+     "card": "0..1149 of 900",
+     "scope": "simplify",
+     "boxes": [],
+     "filamentButtons": [
+      "\"Back\"",
+      "\"Next\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/wizard-look-logo.png"
+  },
+  {
+   "id": "wizard-look-show-logo",
+   "title": "Setup · Look, toont logo",
+   "stand": "d1440-dark",
+   "url": "/admin/simplify-setup",
+   "docTitle": "Set up Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-setup",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1205 > 900), the page scrolls"
+     },
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: legend: \"logo.png\" (67>1) | span: \"Remove\" (63>1) | filepond--assistant-admnbbcxv: \"logo.png Upload complete\" (201>1)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1205,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"play.example.com · 7/20\""
+     ],
+     "panes": [
+      "Sidebar navigation 648/1450"
+     ],
+     "card": "-305..844 of 900",
+     "scope": "simplify",
+     "boxes": [],
+     "filamentButtons": [
+      "\"Back\"",
+      "\"Next\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/wizard-look-show-logo.png"
+  },
+  {
+   "id": "wizard-look-show-text",
+   "title": "Setup · Look, toont text",
+   "stand": "d1440-dark",
+   "url": "/admin/simplify-setup",
+   "docTitle": "Set up Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-setup",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1451 > 900), the page scrolls"
+     },
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: legend: \"logo.png\" (67>1) | span: \"Remove\" (63>1) | filepond--assistant-admnbbcxv: \"logo.png Upload complete\" (201>1)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"Northwind Games\" sticks 4px out of s-preset | span \"Northwind Games\" sticks 6px out of s-preset | span \"Northwind Games\" sticks 11px out of s-preset | span \"Northwind Games\" sticks 26px out of s-preset | span \"Northwind Games\" sticks 42px out of s-preset"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1451,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "span: \"Northwind Games\"",
+      "small: \"play.example.com · 7/20\""
+     ],
+     "panes": [
+      "Sidebar navigation 648/1450"
+     ],
+     "card": "-305..1090 of 900",
+     "scope": "simplify",
+     "boxes": [],
+     "filamentButtons": [
+      "\"Back\"",
+      "\"Next\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/wizard-look-show-text.png"
+  },
+  {
+   "id": "wizard-look-show-both",
+   "title": "Setup · Look, toont both",
+   "stand": "d1440-dark",
+   "url": "/admin/simplify-setup",
+   "docTitle": "Set up Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-setup",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1451 > 900), the page scrolls"
+     },
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: legend: \"logo.png\" (67>1) | span: \"Remove\" (63>1) | filepond--assistant-admnbbcxv: \"logo.png Upload complete\" (201>1)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"Northwind Games\" sticks 4px out of s-preset | span \"Northwind Games\" sticks 6px out of s-preset | span \"Northwind Games\" sticks 11px out of s-preset | span \"Northwind Games\" sticks 26px out of s-preset | span \"Northwind Games\" sticks 42px out of s-preset"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1451,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "span: \"Northwind Games\"",
+      "small: \"play.example.com · 7/20\""
+     ],
+     "panes": [
+      "Sidebar navigation 648/1450"
+     ],
+     "card": "-305..1090 of 900",
+     "scope": "simplify",
+     "boxes": [],
+     "filamentButtons": [
+      "\"Back\"",
+      "\"Next\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/wizard-look-show-both.png"
+  },
+  {
+   "id": "wizard-look-effect-glow",
+   "title": "Setup · Look, effect Glow",
+   "stand": "d1440-dark",
+   "url": "/admin/simplify-setup",
+   "docTitle": "Set up Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-setup",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1766 > 900), the page scrolls"
+     },
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: legend: \"logo.png\" (67>1) | span: \"Remove\" (63>1) | filepond--assistant-admnbbcxv: \"logo.png Upload complete\" (201>1)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"Northwind Games\" sticks 4px out of s-preset | span \"Northwind Games\" sticks 6px out of s-preset | span \"Northwind Games\" sticks 11px out of s-preset | span \"Northwind Games\" sticks 26px out of s-preset | span \"Northwind Games\" sticks 42px out of s-preset"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1766,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "span: \"Northwind Games\"",
+      "small: \"play.example.com · 7/20\""
+     ],
+     "panes": [
+      "Sidebar navigation 648/1450"
+     ],
+     "card": "-578..1132 of 900",
+     "scope": "simplify",
+     "boxes": [],
+     "filamentButtons": [
+      "\"Back\"",
+      "\"Next\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/wizard-look-effect-glow.png"
+  },
+  {
+   "id": "wizard-look-effect-shadow",
+   "title": "Setup · Look, effect Shadow",
+   "stand": "d1440-dark",
+   "url": "/admin/simplify-setup",
+   "docTitle": "Set up Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-setup",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1766 > 900), the page scrolls"
+     },
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: legend: \"logo.png\" (67>1) | span: \"Remove\" (63>1) | filepond--assistant-admnbbcxv: \"logo.png Upload complete\" (201>1)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"Northwind Games\" sticks 4px out of s-preset | span \"Northwind Games\" sticks 6px out of s-preset | span \"Northwind Games\" sticks 11px out of s-preset | span \"Northwind Games\" sticks 26px out of s-preset | span \"Northwind Games\" sticks 42px out of s-preset"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1766,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "span: \"Northwind Games\"",
+      "small: \"play.example.com · 7/20\""
+     ],
+     "panes": [
+      "Sidebar navigation 648/1450"
+     ],
+     "card": "-578..1132 of 900",
+     "scope": "simplify",
+     "boxes": [],
+     "filamentButtons": [
+      "\"Back\"",
+      "\"Next\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/wizard-look-effect-shadow.png"
+  },
+  {
+   "id": "wizard-look-colour-accent",
+   "title": "Setup · Look, kleur = accentkleur",
+   "stand": "d1440-dark",
+   "url": "/admin/simplify-setup",
+   "docTitle": "Set up Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-setup",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1766 > 900), the page scrolls"
+     },
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: legend: \"logo.png\" (67>1) | span: \"Remove\" (63>1) | filepond--assistant-admnbbcxv: \"logo.png Upload complete\" (201>1)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"Northwind Games\" sticks 4px out of s-preset | span \"Northwind Games\" sticks 6px out of s-preset | span \"Northwind Games\" sticks 11px out of s-preset | span \"Northwind Games\" sticks 26px out of s-preset | span \"Northwind Games\" sticks 42px out of s-preset"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1766,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "span: \"Northwind Games\"",
+      "small: \"play.example.com · 7/20\""
+     ],
+     "panes": [
+      "Sidebar navigation 648/1450"
+     ],
+     "card": "-578..1132 of 900",
+     "scope": "simplify",
+     "boxes": [],
+     "filamentButtons": [
+      "\"Back\"",
+      "\"Next\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/wizard-look-colour-accent.png"
+  },
+  {
+   "id": "server-installing",
+   "title": "Server · New World (installeert)",
+   "stand": "d1440-dark",
+   "url": "/server/j7sgpjn3/console",
+   "docTitle": "New World - Simplify",
+   "main": {
+    "url": "/server/j7sgpjn3/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "boxinbox",
+      "text": "box inside a box: fi-callout.fi-color.fi-color-warning (1094x78) in the content box"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "card": "407..840 of 900 fit=433px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,566 1040x190; terminal 291,498 1092x278; bar top 776",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "Installation progress 56,214 1328x179",
+      "fi-callout.fi-color.fi-color-warning 290,419 1094x78",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,497 1094x343"
+     ],
+     "box": "407..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/server-installing.png"
+  },
+  {
+   "id": "server-install-failed",
+   "title": "Server · Broken Install (installatie mislukt)",
+   "stand": "d1440-dark",
+   "url": "/server/gqfzu8it/console",
+   "docTitle": "Broken Install - Simplify",
+   "main": {
+    "url": "/server/gqfzu8it/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "boxinbox",
+      "text": "box inside a box: fi-callout.fi-color.fi-color-warning (1094x78) in the content box"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "card": "407..840 of 900 fit=433px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,566 1040x190; terminal 291,498 1092x278; bar top 776",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "Installation progress 56,214 1328x179",
+      "fi-callout.fi-color.fi-color-warning 290,419 1094x78",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,497 1094x343"
+     ],
+     "box": "407..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/server-install-failed.png"
+  },
+  {
+   "id": "server-eula",
+   "title": "Server · Fresh Start (EULA nog open)",
+   "stand": "d1440-dark",
+   "url": "/server/connpyiy/console",
+   "docTitle": "Fresh Start - Simplify",
+   "main": {
+    "url": "/server/connpyiy/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Startup\" (67,898 198x40) | ps-widget \"Settings\" (67,938 198x40) | ps-widget \"Mounts\" (67,978 198x40) | ps-widget \"Webhooks\" (67,1018 198x40) | ps-widget \"Activity\" (67,1058 198x40) | ps-widget.is-danger \"Delete server\" (67,1098 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "card": "431..839 of 900 fit=408px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,500 1040x247; terminal 291,432 1092x343; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,213 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,431 1094x408"
+     ],
+     "box": "431..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/server-eula.png"
+  },
+  {
+   "id": "notify-pinned",
+   "title": "Meldingen · vastgezette aankondiging bovenaan",
+   "stand": "d1440-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38 scrolls",
+      "ps-notify-menu 961,258 340x584 scrolls"
+     ],
+     "panes": [
+      "ps-notify-menu 582/2097",
+      "Servers 576/1572"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..398, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ],
+     "dropdown": [
+      "ps-notify-menu 584px of 600 max, scrolls"
+     ],
+     "arrow": [
+      "ps-notify-menu arrow 1282 button 1282"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/notify-pinned.png"
+  },
+  {
+   "id": "setup-done",
+   "title": "Setup klaar (gewone beheerpagina)",
+   "stand": "d1440-light",
+   "url": "/admin/simplify-setup-done",
+   "docTitle": "Simplify is set up - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-setup-done",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "panes": [
+      "Sidebar navigation 648/1450"
+     ],
+     "card": "0..844 of 900",
+     "scope": "simplify",
+     "boxes": [
+      "s-done 352,152 1056x437"
+     ],
+     "actionsBelow": [
+      "\"Run setup again\" at y=58",
+      "\"Go to the panel\" at y=58"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\"",
+      "\"Go to the panel\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/setup-done.png"
+  },
+  {
+   "id": "setup-done-host",
+   "title": "Setup klaar (hostmodus, in het frame)",
+   "stand": "d1440-light",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1219,32 185x38"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..398, actions 1219..1404",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "112..850 of 900"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,160 1116x690",
+     "url": "/admin/simplify-setup-done?simplify_embed=1",
+     "w": 1116,
+     "h": 690,
+     "dark": false,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "boxinbox",
+       "text": "box inside a box: s-done (1116x419) in the content box"
+      }
+     ],
+     "info": {
+      "pageScrollH": 690,
+      "pageScrollW": 1116,
+      "card": "0..690 of 690",
+      "scope": "frame-tree",
+      "boxes": [
+       "s-done 0,12 1116x419"
+      ],
+      "hostHead": "shown",
+      "frameTools": 2
+     }
+    }
+   ],
+   "shot": "d1440-light/setup-done-host.png"
+  },
+  {
+   "id": "wizard-look",
+   "title": "Setup · Look-stap",
+   "stand": "d1440-light",
+   "url": "/admin/simplify-setup",
+   "docTitle": "Set up Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-setup",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1335 > 900), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"Northwind Games\" sticks 4px out of s-preset | span \"Northwind Games\" sticks 6px out of s-preset | span \"Northwind Games\" sticks 11px out of s-preset | span \"Northwind Games\" sticks 26px out of s-preset | span \"Northwind Games\" sticks 42px out of s-preset"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1335,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "span: \"Northwind Games\"",
+      "small: \"play.example.com · 7/20\""
+     ],
+     "panes": [
+      "Sidebar navigation 648/1450"
+     ],
+     "card": "0..1279 of 900",
+     "scope": "simplify",
+     "boxes": [
+      "form.data::wizard 352,152 1056x1095"
+     ],
+     "filamentButtons": [
+      "\"Back\"",
+      "\"Next\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/wizard-look.png"
+  },
+  {
+   "id": "wizard-look-logo",
+   "title": "Setup · Look, logo geüpload",
+   "stand": "d1440-light",
+   "url": "/admin/simplify-setup",
+   "docTitle": "Set up Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-setup",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1205 > 900), the page scrolls"
+     },
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: legend: \"logo.png\" (67>1) | span: \"Remove\" (63>1) | filepond--assistant-quhsu49w7: \"logo.png Upload complete\" (201>1)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1205,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"play.example.com · 7/20\""
+     ],
+     "panes": [
+      "Sidebar navigation 648/1450"
+     ],
+     "card": "0..1149 of 900",
+     "scope": "simplify",
+     "boxes": [
+      "form.data::wizard 352,152 1056x965"
+     ],
+     "filamentButtons": [
+      "\"Back\"",
+      "\"Next\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/wizard-look-logo.png"
+  },
+  {
+   "id": "wizard-look-show-logo",
+   "title": "Setup · Look, toont logo",
+   "stand": "d1440-light",
+   "url": "/admin/simplify-setup",
+   "docTitle": "Set up Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-setup",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1205 > 900), the page scrolls"
+     },
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: legend: \"logo.png\" (67>1) | span: \"Remove\" (63>1) | filepond--assistant-quhsu49w7: \"logo.png Upload complete\" (201>1)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1205,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"play.example.com · 7/20\""
+     ],
+     "panes": [
+      "Sidebar navigation 648/1450"
+     ],
+     "card": "-305..844 of 900",
+     "scope": "simplify",
+     "boxes": [
+      "form.data::wizard 352,-153 1056x965"
+     ],
+     "filamentButtons": [
+      "\"Back\"",
+      "\"Next\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/wizard-look-show-logo.png"
+  },
+  {
+   "id": "wizard-look-show-text",
+   "title": "Setup · Look, toont text",
+   "stand": "d1440-light",
+   "url": "/admin/simplify-setup",
+   "docTitle": "Set up Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-setup",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1451 > 900), the page scrolls"
+     },
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: legend: \"logo.png\" (67>1) | span: \"Remove\" (63>1) | filepond--assistant-quhsu49w7: \"logo.png Upload complete\" (201>1)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"Northwind Games\" sticks 4px out of s-preset | span \"Northwind Games\" sticks 6px out of s-preset | span \"Northwind Games\" sticks 11px out of s-preset | span \"Northwind Games\" sticks 26px out of s-preset | span \"Northwind Games\" sticks 42px out of s-preset"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1451,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "span: \"Northwind Games\"",
+      "small: \"play.example.com · 7/20\""
+     ],
+     "panes": [
+      "Sidebar navigation 648/1450"
+     ],
+     "card": "-305..1090 of 900",
+     "scope": "simplify",
+     "boxes": [
+      "form.data::wizard 352,-153 1056x1211"
+     ],
+     "filamentButtons": [
+      "\"Back\"",
+      "\"Next\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/wizard-look-show-text.png"
+  },
+  {
+   "id": "wizard-look-show-both",
+   "title": "Setup · Look, toont both",
+   "stand": "d1440-light",
+   "url": "/admin/simplify-setup",
+   "docTitle": "Set up Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-setup",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1451 > 900), the page scrolls"
+     },
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: legend: \"logo.png\" (67>1) | span: \"Remove\" (63>1) | filepond--assistant-quhsu49w7: \"logo.png Upload complete\" (201>1)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"Northwind Games\" sticks 4px out of s-preset | span \"Northwind Games\" sticks 6px out of s-preset | span \"Northwind Games\" sticks 11px out of s-preset | span \"Northwind Games\" sticks 26px out of s-preset | span \"Northwind Games\" sticks 42px out of s-preset"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1451,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "span: \"Northwind Games\"",
+      "small: \"play.example.com · 7/20\""
+     ],
+     "panes": [
+      "Sidebar navigation 648/1450"
+     ],
+     "card": "-305..1090 of 900",
+     "scope": "simplify",
+     "boxes": [
+      "form.data::wizard 352,-153 1056x1211"
+     ],
+     "filamentButtons": [
+      "\"Back\"",
+      "\"Next\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/wizard-look-show-both.png"
+  },
+  {
+   "id": "wizard-look-effect-glow",
+   "title": "Setup · Look, effect Glow",
+   "stand": "d1440-light",
+   "url": "/admin/simplify-setup",
+   "docTitle": "Set up Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-setup",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1766 > 900), the page scrolls"
+     },
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: legend: \"logo.png\" (67>1) | span: \"Remove\" (63>1) | filepond--assistant-quhsu49w7: \"logo.png Upload complete\" (201>1)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"Northwind Games\" sticks 4px out of s-preset | span \"Northwind Games\" sticks 6px out of s-preset | span \"Northwind Games\" sticks 11px out of s-preset | span \"Northwind Games\" sticks 26px out of s-preset | span \"Northwind Games\" sticks 42px out of s-preset"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1766,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "span: \"Northwind Games\"",
+      "small: \"play.example.com · 7/20\""
+     ],
+     "panes": [
+      "Sidebar navigation 648/1450"
+     ],
+     "card": "-578..1132 of 900",
+     "scope": "simplify",
+     "boxes": [
+      "form.data::wizard 352,-426 1056x1526"
+     ],
+     "filamentButtons": [
+      "\"Back\"",
+      "\"Next\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/wizard-look-effect-glow.png"
+  },
+  {
+   "id": "wizard-look-effect-shadow",
+   "title": "Setup · Look, effect Shadow",
+   "stand": "d1440-light",
+   "url": "/admin/simplify-setup",
+   "docTitle": "Set up Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-setup",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1766 > 900), the page scrolls"
+     },
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: legend: \"logo.png\" (67>1) | span: \"Remove\" (63>1) | filepond--assistant-quhsu49w7: \"logo.png Upload complete\" (201>1)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"Northwind Games\" sticks 4px out of s-preset | span \"Northwind Games\" sticks 6px out of s-preset | span \"Northwind Games\" sticks 11px out of s-preset | span \"Northwind Games\" sticks 26px out of s-preset | span \"Northwind Games\" sticks 42px out of s-preset"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1766,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "span: \"Northwind Games\"",
+      "small: \"play.example.com · 7/20\""
+     ],
+     "panes": [
+      "Sidebar navigation 648/1450"
+     ],
+     "card": "-578..1132 of 900",
+     "scope": "simplify",
+     "boxes": [
+      "form.data::wizard 352,-426 1056x1526"
+     ],
+     "filamentButtons": [
+      "\"Back\"",
+      "\"Next\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/wizard-look-effect-shadow.png"
+  },
+  {
+   "id": "wizard-look-colour-accent",
+   "title": "Setup · Look, kleur = accentkleur",
+   "stand": "d1440-light",
+   "url": "/admin/simplify-setup",
+   "docTitle": "Set up Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-setup",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1766 > 900), the page scrolls"
+     },
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: legend: \"logo.png\" (67>1) | span: \"Remove\" (63>1) | filepond--assistant-quhsu49w7: \"logo.png Upload complete\" (201>1)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"Northwind Games\" sticks 4px out of s-preset | span \"Northwind Games\" sticks 6px out of s-preset | span \"Northwind Games\" sticks 11px out of s-preset | span \"Northwind Games\" sticks 26px out of s-preset | span \"Northwind Games\" sticks 42px out of s-preset"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1766,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "span: \"Northwind Games\"",
+      "small: \"play.example.com · 7/20\""
+     ],
+     "panes": [
+      "Sidebar navigation 648/1450"
+     ],
+     "card": "-578..1132 of 900",
+     "scope": "simplify",
+     "boxes": [
+      "form.data::wizard 352,-426 1056x1526"
+     ],
+     "filamentButtons": [
+      "\"Back\"",
+      "\"Next\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/wizard-look-colour-accent.png"
+  },
+  {
+   "id": "server-installing",
+   "title": "Server · New World (installeert)",
+   "stand": "d1440-light",
+   "url": "/server/j7sgpjn3/console",
+   "docTitle": "New World - Simplify",
+   "main": {
+    "url": "/server/j7sgpjn3/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "boxinbox",
+      "text": "box inside a box: fi-callout.fi-color.fi-color-warning (1094x78) in the content box"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "card": "407..840 of 900 fit=433px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,566 1040x190; terminal 291,498 1092x278; bar top 776",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "Installation progress 56,214 1328x179",
+      "fi-callout.fi-color.fi-color-warning 290,419 1094x78",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,497 1094x343"
+     ],
+     "box": "407..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-installing.png"
+  },
+  {
+   "id": "server-install-failed",
+   "title": "Server · Broken Install (installatie mislukt)",
+   "stand": "d1440-light",
+   "url": "/server/gqfzu8it/console",
+   "docTitle": "Broken Install - Simplify",
+   "main": {
+    "url": "/server/gqfzu8it/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "boxinbox",
+      "text": "box inside a box: fi-callout.fi-color.fi-color-warning (1094x78) in the content box"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "card": "407..840 of 900 fit=433px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,566 1040x190; terminal 291,498 1092x278; bar top 776",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "Installation progress 56,214 1328x179",
+      "fi-callout.fi-color.fi-color-warning 290,419 1094x78",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,497 1094x343"
+     ],
+     "box": "407..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-install-failed.png"
+  },
+  {
+   "id": "server-eula",
+   "title": "Server · Fresh Start (EULA nog open)",
+   "stand": "d1440-light",
+   "url": "/server/connpyiy/console",
+   "docTitle": "Fresh Start - Simplify",
+   "main": {
+    "url": "/server/connpyiy/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Startup\" (67,898 198x40) | ps-widget \"Settings\" (67,938 198x40) | ps-widget \"Mounts\" (67,978 198x40) | ps-widget \"Webhooks\" (67,1018 198x40) | ps-widget \"Activity\" (67,1058 198x40) | ps-widget.is-danger \"Delete server\" (67,1098 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "card": "431..839 of 900 fit=408px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,500 1040x247; terminal 291,432 1092x343; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,213 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,431 1094x408"
+     ],
+     "box": "431..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-eula.png"
+  },
+  {
+   "id": "server-eula-accepted",
+   "title": "Server · EULA geaccepteerd en gestart",
+   "stand": "d1440-light",
+   "url": "/server/connpyiy/console",
+   "docTitle": "Fresh Start - Simplify",
+   "main": {
+    "url": "/server/connpyiy/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Mounts\" (67,869 198x40) | ps-widget \"Webhooks\" (67,909 198x40) | ps-widget \"Activity\" (67,949 198x40) | ps-widget.is-danger \"Delete server\" (67,989 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-eula-accepted.png"
+  },
+  {
+   "id": "notify-pinned",
+   "title": "Meldingen · vastgezette aankondiging bovenaan",
+   "stand": "d1440-light",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38 scrolls",
+      "ps-notify-menu 961,258 340x584 scrolls"
+     ],
+     "panes": [
+      "ps-notify-menu 582/2097",
+      "Servers 576/1572"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..398, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ],
+     "dropdown": [
+      "ps-notify-menu 584px of 600 max, scrolls"
+     ],
+     "arrow": [
+      "ps-notify-menu arrow 1282 button 1282"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/notify-pinned.png"
+  },
+  {
+   "id": "overview",
+   "title": "Klant · overzicht",
+   "stand": "klant-d1440-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1190,212 214x38"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..398, actions 1190..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-d1440-dark/overview.png"
+  },
+  {
+   "id": "account",
+   "title": "Klant · accountmenu",
+   "stand": "klant-d1440-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 960,212 444x38",
+      "ps-account-actions 1092,212 222x38"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..398, actions 960..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-d1440-dark/account.png"
+  },
+  {
+   "id": "server-console",
+   "title": "Klant · console",
+   "stand": "klant-d1440-dark",
+   "url": "/server/i3scjth4/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/i3scjth4/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Mounts\" (67,869 198x40) | ps-widget \"Activity\" (67,909 198x40) | ps-widget.is-danger \"Delete server\" (67,949 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1214,32 170x38"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1214..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "klant-d1440-dark/server-console.png"
+  },
+  {
+   "id": "server-more",
+   "title": "Klant · ⋯-menu",
+   "stand": "klant-d1440-dark",
+   "url": "/server/i3scjth4/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/i3scjth4/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Mounts\" (67,869 198x40) | ps-widget \"Activity\" (67,909 198x40) | ps-widget.is-danger \"Delete server\" (67,949 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1214,32 170x38",
+      "ps-info-menu 1131,179 230x428"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1214..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900",
+     "dropdown": [
+      "ps-info-menu 428px of 600 max"
+     ],
+     "arrow": [
+      "ps-info-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-d1440-dark/server-more.png"
+  }
+ ],
+ "problems": [
+  "d1440-dark setup-done: ok {\"scroll\":900,\"window\":900}",
+  "d1440-dark setup-done-host: ok {\"frame\":{\"scroll\":690,\"window\":690},\"page\":{\"scroll\":900,\"window\":900}}",
+  "d1440-dark wizard-look-upload: held {\"logo\":\"{\\\"b032d0f2-e418-4ee0-8d5e-0fa32e85e712\\\":\\\"livewire-file:589def6f:ADjoNsbdW5lHYeHDYxWsiqfuOOftW5NBEqgPwhtm.png\\\"}\",\"show\":\"logo\"}, uploads [\"200 /livewire-b48cfdc5/update\",\"200 /livewire-b48cfdc5/upload-file\",\"200 /livewire-b48cfdc5/update\",\"200 /livewire-b48cfdc5/preview-file/ADjoNsbdW5lHYeHDYxWsiqfuOOftW5NBEqgPwhtm.png\"]",
+  "d1440-dark wizard-look-show-logo: ok {\"img\":true,\"text\":false,\"shadow\":\"none\",\"color\":\"rgb(250, 250, 250)\",\"fill\":\"rgb(250, 250, 250)\",\"background\":\"none\"}",
+  "d1440-dark wizard-look-show-text: ok {\"img\":false,\"text\":true,\"shadow\":\"none\",\"color\":\"rgb(250, 250, 250)\",\"fill\":\"rgb(250, 250, 250)\",\"background\":\"none\"}",
+  "d1440-dark wizard-look-show-both: ok {\"img\":true,\"text\":true,\"shadow\":\"none\",\"color\":\"rgb(250, 250, 250)\",\"fill\":\"rgb(250, 250, 250)\",\"background\":\"none\"}",
+  "d1440-dark wizard-look-effect-glow: ok {\"shadow\":\"color(srgb 0.169209 0.498104 1.0229 / 0.8) 0px 0px 10px, oklch(0.623 0.214 259.815) 0px 0px 2px\"}",
+  "d1440-dark wizard-look-effect-shadow: ok {\"shadow\":\"rgba(0, 0, 0, 0.35) 0px 2px 0px, rgba(0, 0, 0, 0.35) 0px 3px 8px\"}",
+  "d1440-dark wizard-look-colour-accent: ok {\"before\":{\"color\":\"rgb(250, 250, 250)\",\"fill\":\"rgb(250, 250, 250)\",\"background\":\"none\"},\"after\":{\"color\":\"oklch(0.623 0.214 259.815)\",\"fill\":\"oklch(0.623 0.214 259.815)\",\"background\":\"none\"}}",
+  "d1440-dark server-installing: ok {\"shown\":true,\"text\":\"Setting up New World This takes a few minutes, longer for big games. You can leave this page; the server keeps installing. 1:17 Notify me when ready Server created Resources reserved Installing Paper Downloading the game\",\"eulaLink\":false,\"start\":false}",
+  "d1440-dark server-install-failed: ok {\"shown\":true,\"text\":\"The installation did not finish The last lines of the installation log are below. Nothing was started. Try again Server created Resources reserved Installing Paper Stopped with an error 3 Ready to start Everything opens\",\"eulaLink\":false,\"start\":true}",
+  "d1440-dark server-eula: ok {\"shown\":true,\"text\":\"Accept the Minecraft EULA Minecraft needs this once before the server can run. By clicking Accept and start, you agree to the Minecraft End User License Agreement (EULA). Read the Minecraft EULA Accept and start\",\"eulaLink\":true,\"start\":true}",
+  "d1440-dark notify-pinned: ok {\"shown\":true,\"items\":[\"Maintenance on Saturday\"],\"close\":false,\"first\":false}",
+  "d1440-light setup-done: ok {\"scroll\":900,\"window\":900}",
+  "d1440-light setup-done-host: ok {\"frame\":{\"scroll\":690,\"window\":690},\"page\":{\"scroll\":900,\"window\":900}}",
+  "d1440-light wizard-look-upload: held {\"logo\":\"{\\\"308136b5-c831-43dc-943e-0457a627caf6\\\":\\\"livewire-file:c180dddb:XsovG1y0FMZPW9c5iPhst5zrtwBB92dF9CeHxz8P.png\\\"}\",\"show\":\"logo\"}, uploads [\"200 /livewire-b48cfdc5/update\",\"200 /livewire-b48cfdc5/upload-file\",\"200 /livewire-b48cfdc5/update\",\"200 /livewire-b48cfdc5/preview-file/XsovG1y0FMZPW9c5iPhst5zrtwBB92dF9CeHxz8P.png\"]",
+  "d1440-light wizard-look-show-logo: ok {\"img\":true,\"text\":false,\"shadow\":\"none\",\"color\":\"rgb(24, 24, 27)\",\"fill\":\"rgb(24, 24, 27)\",\"background\":\"none\"}",
+  "d1440-light wizard-look-show-text: ok {\"img\":false,\"text\":true,\"shadow\":\"none\",\"color\":\"rgb(24, 24, 27)\",\"fill\":\"rgb(24, 24, 27)\",\"background\":\"none\"}",
+  "d1440-light wizard-look-show-both: ok {\"img\":true,\"text\":true,\"shadow\":\"none\",\"color\":\"rgb(24, 24, 27)\",\"fill\":\"rgb(24, 24, 27)\",\"background\":\"none\"}",
+  "d1440-light wizard-look-effect-glow: ok {\"shadow\":\"color(srgb 0.169209 0.498104 1.0229 / 0.8) 0px 0px 10px, oklch(0.623 0.214 259.815) 0px 0px 2px\"}",
+  "d1440-light wizard-look-effect-shadow: ok {\"shadow\":\"rgba(0, 0, 0, 0.35) 0px 2px 0px, rgba(0, 0, 0, 0.35) 0px 3px 8px\"}",
+  "d1440-light wizard-look-colour-accent: ok {\"before\":{\"color\":\"rgb(24, 24, 27)\",\"fill\":\"rgb(24, 24, 27)\",\"background\":\"none\"},\"after\":{\"color\":\"oklch(0.623 0.214 259.815)\",\"fill\":\"oklch(0.623 0.214 259.815)\",\"background\":\"none\"}}",
+  "d1440-light server-installing: ok {\"shown\":true,\"text\":\"Setting up New World This takes a few minutes, longer for big games. You can leave this page; the server keeps installing. 2:26 Notify me when ready Server created Resources reserved Installing Paper Downloading the game\",\"eulaLink\":false,\"start\":false}",
+  "d1440-light server-install-failed: ok {\"shown\":true,\"text\":\"The installation did not finish The last lines of the installation log are below. Nothing was started. Try again Server created Resources reserved Installing Paper Stopped with an error 3 Ready to start Everything opens\",\"eulaLink\":false,\"start\":true}",
+  "d1440-light server-eula: ok {\"shown\":true,\"text\":\"Accept the Minecraft EULA Minecraft needs this once before the server can run. By clicking Accept and start, you agree to the Minecraft End User License Agreement (EULA). Read the Minecraft EULA Accept and start\",\"eulaLink\":true,\"start\":true}",
+  "d1440-light server-eula-accept: ok {\"bar\":false,\"status\":\"offline\"}",
+  "d1440-light notify-pinned: ok {\"shown\":true,\"items\":[\"Maintenance on Saturday\"],\"close\":false,\"first\":false}"
+ ]
+}
