@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.2
+
+- Server page: the bottom of the server's ⋯ menu (Force stop, Delete server) can be clicked again where it hangs over the console. The console took the mouse there and showed a text cursor.
+
 ## 1.5.1
 
 - Updating from 1.4.4 on a panel that came from PelicanSimplify 0.7.0 stopped with "Undefined array key logo_text" and left Simplify not installed. 0.7.0's "text beside the logo" now becomes Simplify's "Logo + text".

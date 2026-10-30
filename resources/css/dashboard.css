@@ -493,7 +493,8 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
    rest (colour, background, alias, website, force stop) sits under the ⋯ button. */
 .ps-server-info {
   position: relative;
-  z-index: 2;
+  /* Above the console under it: xterm's own layers go up to z-index 10 and would take the ⋯ menu's clicks. */
+  z-index: 20;
   isolation: isolate;
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto auto;
