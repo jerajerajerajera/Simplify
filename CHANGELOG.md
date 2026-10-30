@@ -6,6 +6,7 @@
 - A request that fails on the server shows a short message in the panel's own style, instead of Livewire's white "500 | Server Error" page over the whole panel.
 - Admin tools: the groups start folded, with how many pages each holds; a click opens one group at a time, so the menu stays short. It ends above the footer, so nothing is cut off on the overview. Every menu under the top bar (notifications, admin tools, customize, groups) is at most two thirds of the window high and scrolls inside when its content needs more.
 - The small arrow above a top-bar menu points at the middle of its button.
+- Host mode: every group in the menu on the left folds open and shut, and "Expand all" / "Collapse all" above it opens or closes them all. The group of the open page stays open. 32 languages.
 - Host mode: a Pelican page's search field and buttons sit in the title bar again (as in PelicanSimplify 0.7.0), and its table or sections have no card of their own inside Simplify's box. Create is the named button, the others are icon buttons; selecting rows brings back the bulk actions.
 - Server page: the console is one box in one colour. Pelican's terminal painted a half see-through background of its own, which showed as a lighter box inside the card.
 - Server page: no empty grey badge next to the server's picture when its egg has no icon.

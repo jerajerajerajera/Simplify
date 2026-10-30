@@ -46,6 +46,8 @@ return [
         'host_menu' => 'Värdmeny',
         'close_menu' => 'Stäng menyn',
         'admin_sections' => 'Adminavsnitt',
+        'expand_all' => 'Expandera alla',
+        'collapse_all' => 'Fäll ihop alla',
         'server_count' => ':count server|:count servrar',
         'no_servers_yet' => 'Inga servrar ännu.',
         'health' => 'Hälsa',

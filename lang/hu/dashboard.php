@@ -46,6 +46,8 @@ return [
         'host_menu' => 'Gazdamenü',
         'close_menu' => 'Menü bezárása',
         'admin_sections' => 'Admin részek',
+        'expand_all' => 'Összes kibontása',
+        'collapse_all' => 'Összes összecsukása',
         'server_count' => ':count szerver|:count szerver',
         'no_servers_yet' => 'Még nincsenek szerverek.',
         'health' => 'Állapot',

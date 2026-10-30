@@ -46,6 +46,8 @@ return [
         'host_menu' => 'قائمة المضيف',
         'close_menu' => 'إغلاق القائمة',
         'admin_sections' => 'أقسام الإدارة',
+        'expand_all' => 'توسيع الكل',
+        'collapse_all' => 'طي الكل',
         'server_count' => ':count خادم|خادم واحد|خادمان|:count خوادم|:count خادمًا|:count خادم',
         'no_servers_yet' => 'لا توجد خوادم بعد.',
         'health' => 'الصحة',

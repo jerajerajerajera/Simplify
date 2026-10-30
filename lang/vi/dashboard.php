@@ -46,6 +46,8 @@ return [
         'host_menu' => 'Menu host',
         'close_menu' => 'Đóng menu',
         'admin_sections' => 'Mục quản trị',
+        'expand_all' => 'Mở rộng tất cả',
+        'collapse_all' => 'Thu gọn tất cả',
         'server_count' => ':count máy chủ',
         'no_servers_yet' => 'Chưa có máy chủ.',
         'health' => 'Tình trạng',

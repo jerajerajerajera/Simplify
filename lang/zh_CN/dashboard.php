@@ -46,6 +46,8 @@ return [
         'host_menu' => '主机菜单',
         'close_menu' => '关闭菜单',
         'admin_sections' => '管理部分',
+        'expand_all' => '全部展开',
+        'collapse_all' => '全部收起',
         'server_count' => ':count 个服务器',
         'no_servers_yet' => '还没有服务器。',
         'health' => '健康',

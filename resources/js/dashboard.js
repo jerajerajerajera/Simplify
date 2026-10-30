@@ -44,6 +44,7 @@
       hostMenuOpen: false,
       hostSection: null,
       hostPage: null,
+      hostOpen: [],
       hostServer: null,
       refreshSeconds: Math.max(5, Number(boot.performance?.overview_seconds) || 15) * 1000,
       overviewDockObserver: null,
@@ -349,6 +350,7 @@
         if (section) this.openHostLeaf(section, section.pages[0]);
       },
       openHostLeaf(section, item) {
+        if (section && !this.hostOpen.includes(section.key)) this.hostOpen = [...this.hostOpen, section.key];
         this.hostSection = section;
         this.hostPage = item || null;
         this.hostServer = null;
@@ -357,9 +359,18 @@
           sessionStorage.setItem(this.hostModeKey() + '.place', JSON.stringify({ section: section?.key || null, page: item?.key || null }));
         } catch {}
       },
-      /** While a settings page is open the tree shows the settings groups open and folds the others to their heads. */
+      /** A group with more than one page folds open and shut; the open page's group opens with it. */
       hostBranchOpen(section) {
-        return section.pages.length > 1 && !!section.tabs === !!(this.hostSection?.tabs && !this.hostServer);
+        return section.pages.length > 1 && this.hostOpen.includes(section.key);
+      },
+      toggleHostBranch(section) {
+        this.hostOpen = this.hostOpen.includes(section.key) ? this.hostOpen.filter((key) => key !== section.key) : [...this.hostOpen, section.key];
+      },
+      hostAllOpen() {
+        return this.hostSections().every((section) => section.pages.length < 2 || this.hostOpen.includes(section.key));
+      },
+      toggleHostBranches() {
+        this.hostOpen = this.hostAllOpen() ? [] : this.hostSections().filter((section) => section.pages.length > 1).map((section) => section.key);
       },
       openHostServer(s) {
         this.hostServer = s;

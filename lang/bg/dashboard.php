@@ -46,6 +46,8 @@ return [
         'host_menu' => 'Меню на хоста',
         'close_menu' => 'Затвори менюто',
         'admin_sections' => 'Админ раздели',
+        'expand_all' => 'Разгъни всички',
+        'collapse_all' => 'Свий всички',
         'server_count' => ':count сървър|:count сървъра',
         'no_servers_yet' => 'Още няма сървъри.',
         'health' => 'Състояние',

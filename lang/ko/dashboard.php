@@ -46,6 +46,8 @@ return [
         'host_menu' => '호스트 메뉴',
         'close_menu' => '메뉴 닫기',
         'admin_sections' => '관리 섹션',
+        'expand_all' => '모두 펼치기',
+        'collapse_all' => '모두 접기',
         'server_count' => '서버 :count대',
         'no_servers_yet' => '아직 서버가 없습니다.',
         'health' => '상태',

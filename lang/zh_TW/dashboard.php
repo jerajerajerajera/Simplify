@@ -46,6 +46,8 @@ return [
         'host_menu' => '主機選單',
         'close_menu' => '關閉選單',
         'admin_sections' => '管理部分',
+        'expand_all' => '全部展開',
+        'collapse_all' => '全部收合',
         'server_count' => ':count 個伺服器',
         'no_servers_yet' => '還沒有伺服器。',
         'health' => '健康',

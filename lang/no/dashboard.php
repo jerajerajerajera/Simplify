@@ -46,6 +46,8 @@ return [
         'host_menu' => 'Vertsmeny',
         'close_menu' => 'Lukk meny',
         'admin_sections' => 'Admindeler',
+        'expand_all' => 'Utvid alle',
+        'collapse_all' => 'Skjul alle',
         'server_count' => ':count server|:count servere',
         'no_servers_yet' => 'Ingen servere ennå.',
         'health' => 'Helse',

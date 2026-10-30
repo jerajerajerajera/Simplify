@@ -46,6 +46,8 @@ return [
         'host_menu' => 'Μενού host',
         'close_menu' => 'Κλείσιμο μενού',
         'admin_sections' => 'Ενότητες διαχείρισης',
+        'expand_all' => 'Ανάπτυξη όλων',
+        'collapse_all' => 'Σύμπτυξη όλων',
         'server_count' => ':count διακομιστής|:count διακομιστές',
         'no_servers_yet' => 'Δεν υπάρχουν ακόμη διακομιστές.',
         'health' => 'Υγεία',

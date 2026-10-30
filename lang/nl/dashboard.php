@@ -46,6 +46,8 @@ return [
         'host_menu' => 'Hostmenu',
         'close_menu' => 'Menu sluiten',
         'admin_sections' => 'Beheeronderdelen',
+        'expand_all' => 'Alles uitklappen',
+        'collapse_all' => 'Alles inklappen',
         'server_count' => ':count server|:count servers',
         'no_servers_yet' => 'Nog geen servers.',
         'health' => 'Gezondheid',

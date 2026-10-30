@@ -46,6 +46,8 @@ return [
         'host_menu' => 'Barındırma menüsü',
         'close_menu' => 'Menüyü kapat',
         'admin_sections' => 'Yönetim bölümleri',
+        'expand_all' => 'Tümünü genişlet',
+        'collapse_all' => 'Tümünü daralt',
         'server_count' => ':count sunucu',
         'no_servers_yet' => 'Henüz sunucu yok.',
         'health' => 'Durum',

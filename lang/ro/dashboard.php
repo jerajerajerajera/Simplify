@@ -46,6 +46,8 @@ return [
         'host_menu' => 'Meniul gazdei',
         'close_menu' => 'Închideți meniul',
         'admin_sections' => 'Secțiuni de administrare',
+        'expand_all' => 'Extinde tot',
+        'collapse_all' => 'Restrânge tot',
         'server_count' => ':count server|:count servere|:count de servere',
         'no_servers_yet' => 'Încă nu există servere.',
         'health' => 'Stare',

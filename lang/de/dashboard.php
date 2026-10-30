@@ -46,6 +46,8 @@ return [
         'host_menu' => 'Host-Menü',
         'close_menu' => 'Menü schließen',
         'admin_sections' => 'Admin-Bereiche',
+        'expand_all' => 'Alle ausklappen',
+        'collapse_all' => 'Alle einklappen',
         'server_count' => ':count Server|:count Server',
         'no_servers_yet' => 'Noch keine Server.',
         'health' => 'Zustand',

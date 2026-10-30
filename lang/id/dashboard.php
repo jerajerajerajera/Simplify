@@ -46,6 +46,8 @@ return [
         'host_menu' => 'Menu host',
         'close_menu' => 'Tutup menu',
         'admin_sections' => 'Bagian admin',
+        'expand_all' => 'Bentangkan semua',
+        'collapse_all' => 'Ciutkan semua',
         'server_count' => ':count server',
         'no_servers_yet' => 'Belum ada server.',
         'health' => 'Kesehatan',

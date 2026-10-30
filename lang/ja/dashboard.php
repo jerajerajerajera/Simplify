@@ -46,6 +46,8 @@ return [
         'host_menu' => 'ホストメニュー',
         'close_menu' => 'メニューを閉じる',
         'admin_sections' => '管理セクション',
+        'expand_all' => 'すべて展開',
+        'collapse_all' => 'すべて折りたたむ',
         'server_count' => ':count 台のサーバー',
         'no_servers_yet' => 'まだサーバーはありません。',
         'health' => '状態',

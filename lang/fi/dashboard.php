@@ -46,6 +46,8 @@ return [
         'host_menu' => 'Isäntävalikko',
         'close_menu' => 'Sulje valikko',
         'admin_sections' => 'Ylläpidon osiot',
+        'expand_all' => 'Laajenna kaikki',
+        'collapse_all' => 'Supista kaikki',
         'server_count' => ':count palvelin|:count palvelinta',
         'no_servers_yet' => 'Ei vielä palvelimia.',
         'health' => 'Kunto',

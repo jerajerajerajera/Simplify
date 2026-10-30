@@ -14,10 +14,13 @@
         <div class="ps-host-side-scroll">
             {{-- Admin pages as a tree: every section with its pages hung underneath; a section with one page opens it directly. --}}
             <nav class="ps-host-tree" x-show="hostTab==='admin'" aria-label="{{ $u('admin_sections') }}">
+                {{-- Groups fold open and shut; one button opens or closes them all. --}}
+                <button type="button" class="ps-host-expand" x-on:click="toggleHostBranches()" x-text="hostAllOpen() ? @js($u('collapse_all')) : @js($u('expand_all'))"></button>
                 <template x-for="section in hostSections().filter((x) => x.key !== 'health')" :key="section.key">
-                    <div class="ps-host-group" :style="{'--ps-tone': section.color}">
-                        <button type="button" class="ps-host-group-head" :aria-current="hostSection?.key===section.key && !hostServer && section.pages.length === 1 ? 'page' : null" x-on:click="openHostSection(section)">
+                    <div class="ps-host-group" :class="{'is-open': hostBranchOpen(section)}" :style="{'--ps-tone': section.color}">
+                        <button type="button" class="ps-host-group-head" :aria-expanded="section.pages.length > 1 ? hostBranchOpen(section) : null" :aria-current="hostSection?.key===section.key && !hostServer && section.pages.length === 1 ? 'page' : null" x-on:click="section.pages.length > 1 ? toggleHostBranch(section) : openHostSection(section)">
                             <svg aria-hidden="true"><use :href="'#ps-'+section.icon"/></svg><span x-text="section.label"></span>
+                            <svg class="ps-host-group-chevron" x-show="section.pages.length > 1" aria-hidden="true"><use href="#ps-chevron"/></svg>
                         </button>
                         <div class="ps-host-branch" x-show="hostBranchOpen(section)">
                             <template x-for="item in section.pages" :key="item.key">

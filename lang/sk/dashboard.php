@@ -46,6 +46,8 @@ return [
         'host_menu' => 'Ponuka hostiteľa',
         'close_menu' => 'Zavrieť ponuku',
         'admin_sections' => 'Sekcie správcu',
+        'expand_all' => 'Rozbaliť všetko',
+        'collapse_all' => 'Zbaliť všetko',
         'server_count' => ':count server|:count servery|:count serverov',
         'no_servers_yet' => 'Zatiaľ žiadne servery.',
         'health' => 'Stav',

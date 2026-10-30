@@ -46,6 +46,8 @@ return [
         'host_menu' => 'Hosto meniu',
         'close_menu' => 'Uždaryti meniu',
         'admin_sections' => 'Administravimo skiltys',
+        'expand_all' => 'Išskleisti viską',
+        'collapse_all' => 'Suskleisti viską',
         'server_count' => ':count serveris|:count serveriai|:count serverių',
         'no_servers_yet' => 'Serverių dar nėra.',
         'health' => 'Būsena',

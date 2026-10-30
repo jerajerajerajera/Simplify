@@ -696,6 +696,10 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 .ps-host-group-head { min-height: 32px; padding: 0 8px; font: 600 13px/1.2 var(--ps-font); }
 .ps-host-leaf { min-height: 28px; padding: 0 9px; font: 550 12.5px/1.2 var(--ps-font); }
 .ps-host-group-head svg { width: 17px; height: 17px; color: var(--ps-tone); }
+.ps-host-group-head .ps-host-group-chevron { width: 14px; height: 14px; margin-inline-start: auto; color: var(--ps-muted); fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform var(--ps-fast, .15s); }
+.ps-host-group.is-open .ps-host-group-chevron { transform: rotate(90deg); }
+.ps-host-expand { display: block; width: fit-content; margin: 0 4px 4px auto; padding: 2px 8px; border: 0; border-radius: var(--ps-radius-sm); background: none; color: var(--ps-muted); font: 600 11.5px/1.6 var(--ps-font); cursor: pointer; }
+.ps-host-expand:hover, .ps-host-expand:focus-visible { background: var(--ps-raised); color: var(--ps-ink); }
 .ps-host-leaf svg { width: 15px; height: 15px; color: var(--ps-tone); }
 .ps-host-group-head svg, .ps-host-leaf svg { flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .ps-host-group-head span, .ps-host-leaf span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

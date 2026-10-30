@@ -46,6 +46,8 @@ return [
         'host_menu' => 'Мени домаћина',
         'close_menu' => 'Затвори мени',
         'admin_sections' => 'Админ одељци',
+        'expand_all' => 'Прошири све',
+        'collapse_all' => 'Скупи све',
         'server_count' => ':count сервер|:count сервера|:count сервера',
         'no_servers_yet' => 'Још нема сервера.',
         'health' => 'Стање',
