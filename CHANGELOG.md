@@ -2,6 +2,7 @@
 
 ## 1.5.2
 
+- First start in the server card: a server that just installed, or whose Minecraft EULA is still open, says "Ready for its first start" next to its status, and the Start button reads First start (Restart waits until then). With the EULA open, a box before the button asks you to accept it yourself, with the EULA a click away; First start then writes eula.txt and starts. Start or Restart with the EULA open points to that box. The separate banner above the card is gone.
 - Server menu: Simplify Toolkit's Automatic backups joins Backups & tasks as a tab between Backups and Schedules, instead of an item of its own.
 - Create server with Server Maker opens Server Maker inside Simplify, in the same frame as Admin tools, instead of on its own page. Ctrl/cmd-click still opens it in a new tab.
 - Host mode and Admin tools: Other plugins folds open like the other groups, with each plugin's page by its own name, also when there is only one. Before, a single plugin page opened straight away under the name Other plugins.

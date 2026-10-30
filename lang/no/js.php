@@ -79,6 +79,8 @@ return [
         'oldest_first' => 'Eldste først',
         'port_lowest_first' => 'Port (laveste først)',
         'start' => 'Start',
+        'first_start' => 'Første start',
+        'ready_first_start' => 'Klar for første start',
         'stop' => 'Stopp',
         'restart' => 'Start på nytt',
         'force_stop' => 'Tving stopp',

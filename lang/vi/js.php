@@ -79,6 +79,8 @@ return [
         'oldest_first' => 'Cũ nhất trước',
         'port_lowest_first' => 'Cổng (thấp nhất trước)',
         'start' => 'Khởi động',
+        'first_start' => 'Khởi động lần đầu',
+        'ready_first_start' => 'Sẵn sàng khởi động lần đầu',
         'stop' => 'Dừng',
         'restart' => 'Khởi động lại',
         'force_stop' => 'Buộc dừng',

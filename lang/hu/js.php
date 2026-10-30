@@ -79,6 +79,8 @@ return [
         'oldest_first' => 'Legrégebbi elöl',
         'port_lowest_first' => 'Port (legkisebb elöl)',
         'start' => 'Indítás',
+        'first_start' => 'Első indítás',
+        'ready_first_start' => 'Készen áll az első indításra',
         'stop' => 'Leállítás',
         'restart' => 'Újraindítás',
         'force_stop' => 'Kényszerített leállítás',

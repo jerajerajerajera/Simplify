@@ -79,6 +79,8 @@ return [
         'oldest_first' => 'Mais antigos primeiro',
         'port_lowest_first' => 'Porta (menor primeiro)',
         'start' => 'Iniciar',
+        'first_start' => 'Primeira inicialização',
+        'ready_first_start' => 'Pronto para a primeira inicialização',
         'stop' => 'Parar',
         'restart' => 'Reiniciar',
         'force_stop' => 'Forçar parada',

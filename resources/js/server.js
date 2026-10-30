@@ -53,6 +53,10 @@
       installReady: false,
       // A Minecraft server that still waits for its EULA: the same banner asks for it (as in 0.7.0), once per page view.
       eulaNeeded: false,
+      // The EULA box in the server card, ticked by the person themselves.
+      eulaAccepted: false,
+      // Set for a moment when Start is pressed while the EULA is still open, so the box stands out.
+      eulaPulse: false,
       eulaChecked: false,
       installNotify: false,
       installNow: Date.now(),
@@ -139,13 +143,20 @@
           this.eulaNeeded = false;
         }
       },
-      /** The banner's main button: accepts the EULA first when it is still open, otherwise just starts. */
-      async readyStart() {
+      /** A server that just installed, or whose Minecraft EULA is still open, has not run yet: its card offers First start. */
+      firstStart() {
+        return (this.installReady || this.eulaNeeded) && this.status === 'offline' && !this.installView();
+      },
+      firstStartNote() {
+        return t('dashboard.ready_first_start');
+      },
+      /** First start: writes eula.txt when the person ticked the EULA box, and starts. */
+      async firstStartServer() {
         if (!this.eulaNeeded) {
           this.installReady = false;
           return this.power('start');
         }
-        if (this.busy) return;
+        if (!this.eulaAccepted) return this.flashEula();
         this.busy = true;
         try {
           this.take(await wire.acceptEula());
@@ -157,6 +168,11 @@
         } finally {
           this.busy = false;
         }
+      },
+      flashEula() {
+        this.eulaPulse = false;
+        this.$nextTick(() => (this.eulaPulse = true));
+        setTimeout(() => (this.eulaPulse = false), 1600);
       },
       record(sample, at) {
         const previous = this.sample;
@@ -358,6 +374,7 @@
       mainPower() {
         if (this.status === 'running') return { action: 'stop', label: t('dashboard.stop'), icon: 'stop', permission: 'control.stop' };
         if (['starting', 'stopping', 'restarting'].includes(this.status)) return { action: 'kill', label: t('dashboard.force_stop'), icon: 'kill', permission: 'control.stop' };
+        if (this.firstStart()) return { action: 'first', label: t('dashboard.first_start'), icon: 'play', permission: 'control.start' };
         return { action: 'start', label: t('dashboard.start'), icon: 'play', permission: 'control.start' };
       },
       /** Restart works in every state but these, as in Pelican. */
@@ -366,6 +383,9 @@
       },
       async power(action) {
         if (this.busy) return;
+        if (action === 'first') return this.firstStartServer();
+        // Minecraft stops on an open EULA: the box in the card asks for it first.
+        if (['start', 'restart'].includes(action) && this.eulaNeeded) return this.flashEula();
         if (action === 'kill' && !(await window.Simplify.confirm({ title: t('dashboard.force_stop_title'), message: t('dashboard.force_stop_message'), confirmLabel: t('dashboard.force_stop'), tone: 'danger' }))) return;
         this.busy = true;
         try {

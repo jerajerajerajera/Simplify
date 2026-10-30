@@ -79,6 +79,8 @@ return [
         'oldest_first' => 'Nejstarší první',
         'port_lowest_first' => 'Port (vzestupně)',
         'start' => 'Spustit',
+        'first_start' => 'První spuštění',
+        'ready_first_start' => 'Připraven k prvnímu spuštění',
         'stop' => 'Zastavit',
         'restart' => 'Restartovat',
         'force_stop' => 'Vynutit zastavení',

@@ -2,14 +2,8 @@
 
 return [
     'ui' => [
-        'eula_agree' => '「:button」をクリックすると、Minecraft の使用許諾契約（EULA）に同意したことになります。',
-        'accept_the_minecraft_eula' => 'Minecraft EULA に同意',
-        'minecraft_needs_this_once_before_the' => 'サーバーを動かす前に、Minecraft で一度だけ必要です。',
+        'eula_check' => 'Minecraft エンドユーザー使用許諾契約（EULA）に同意します',
         'read_the_minecraft_eula' => 'Minecraft EULA を読む',
-        'accept_and_start' => '同意して起動',
-        'your_server_is_ready' => 'サーバーの準備ができました',
-        'you_can_now_start_your_server' => 'サーバーを起動できるようになりました。初回はワールドを作成するため、少し時間がかかります。',
-        'you_can_now_start_your_server_2' => 'サーバーを起動できるようになりました。',
         'notify_me' => '通知を受け取る',
         'when_ready' => '(準備ができたら)',
         'you_get_a_notification' => '通知が届きます',

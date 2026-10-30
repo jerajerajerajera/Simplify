@@ -24,18 +24,6 @@
     </div>
     <div class="ps-main">
         @include('simplify::dashboard.header', ['notes' => true])
-        {{-- Shown once after an installation finished on this page (as in 0.7.0): one clear next step. The same banner asks
-             for the Minecraft EULA while it is still open, so starting never stops on it. --}}
-        <div class="ps-ready" :class="{ 'is-eula': eulaNeeded }" x-show="(installReady || eulaNeeded) && !installView() && !['running', 'starting'].includes(status)" x-cloak x-transition.opacity role="status">
-            <span class="ps-ready-mark" aria-hidden="true"><svg><use :href="eulaNeeded ? '#ps-file' : '#ps-check'"/></svg></span>
-            <div>
-                <strong x-text="eulaNeeded ? @js($u('accept_the_minecraft_eula')) : @js($u('your_server_is_ready'))"></strong>
-                <small x-show="!eulaNeeded" x-text="server.minecraft ? @js($u('you_can_now_start_your_server')) : @js($u('you_can_now_start_your_server_2'))"></small>
-                <small x-show="eulaNeeded">{{ $u('minecraft_needs_this_once_before_the') }} {{ $u('eula_agree', ['button' => $u('accept_and_start')]) }} <a href="https://www.minecraft.net/eula" target="_blank" rel="noopener noreferrer">{{ $u('read_the_minecraft_eula') }}</a></small>
-            </div>
-            <button type="button" class="ps-btn is-primary ps-ready-start" x-show="server.permissions['control.start']" x-on:click="readyStart()" :disabled="busy"><svg aria-hidden="true"><use href="#ps-play"/></svg><span x-text="eulaNeeded ? @js($u('accept_and_start')) : @js($u('start_server'))"></span></button>
-            <button type="button" class="ps-btn is-icon is-subtle" x-on:click="installReady = false; eulaNeeded = false" aria-label="{{ $u('dismiss') }}" data-tip="{{ $u('dismiss') }}"><svg aria-hidden="true"><use href="#ps-close"/></svg></button>
-        </div>
         <article class="ps-server-info" aria-label="{{ $u('server_information') }}" x-init="watchServerInfo($el)">
             {{-- Artwork has its own clipping layer, so it stays inside the card while the ⋯ menu lets the card overflow. --}}
             <span class="ps-info-decor">
@@ -59,6 +47,7 @@
                 {{-- One line: status, software and version, what add-ons add, the address. --}}
                 <div class="ps-info-meta">
                     <span class="ps-badge ps-status" :class="status"><i></i><span x-text="Simplify.status(status)"></span></span>
+                    <span class="ps-badge ps-first-ready" x-show="firstStart()" x-cloak><svg aria-hidden="true"><use href="#ps-check"/></svg><span x-text="firstStartNote()"></span></span>
                     <span class="ps-info-meta-item" :data-tip="server.software || @js($u('not_reported'))"><svg aria-hidden="true"><use :href="server.minecraft ? '#ps-cube' : '#ps-gamepad'"/></svg><span x-text="softwareLabel()"></span></span>
                     <template x-for="badge in metaBadges()" :key="badge"><span class="ps-info-meta-item" x-text="badge"></span></template>
                     <button type="button" class="ps-address ps-info-address" x-on:click="copyText(server.address)" :disabled="!server.address" data-tip="{{ $u('copy_server_address') }}">
@@ -69,8 +58,10 @@
             <div class="ps-motd-preview ps-motd-display ps-info-motd" x-show="server.motd" x-effect="server.motd; $nextTick(() => fitMotd($el))" aria-label="{{ $u('message_of_the_day') }}"><template x-for="(part, index) in motdPreview(server.motd || '')" :key="index"><span :style="part.style" x-text="part.text"></span></template></div>
             {{-- Power: one button that follows the state (Start, Stop, or Force stop while starting or stopping), Restart, and the rest under ⋯. --}}
             <div class="ps-info-power" x-on:click.outside="colorMenu=false; bannerMenu=false; infoMenu=false" x-on:keydown.escape.stop="colorMenu=false; bannerMenu=false; infoMenu=false">
-                <button type="button" class="ps-btn ps-power-main" :class="{'is-primary': mainPower().action==='start', 'is-danger': mainPower().action==='kill'}" x-on:click="power(mainPower().action)" :disabled="busy || !server.permissions[mainPower().permission] || (mainPower().action==='start' && !canRestart())" :aria-label="Simplify.fill(@js($u('action_server')), { action: mainPower().label })"><svg aria-hidden="true"><use :href="'#ps-'+mainPower().icon"/></svg><span x-text="mainPower().label"></span></button>
-                <button type="button" class="ps-btn ps-power-restart" x-on:click="power('restart')" :disabled="busy || !server.permissions['control.restart'] || !canRestart()" aria-label="{{ $u('restart_server') }}"><svg aria-hidden="true"><use href="#ps-restart"/></svg><span>{{ $u('restart') }}</span></button>
+                {{-- First start of a Minecraft server with its EULA still open: the person ticks the box themselves (with the EULA a click away), then First start writes eula.txt and starts. --}}
+                <label class="ps-eula-check" :class="{ 'is-pulse': eulaPulse }" x-show="firstStart() && eulaNeeded" x-cloak><input type="checkbox" x-model="eulaAccepted" :disabled="busy"><span>{{ $u('eula_check') }} · <a href="https://www.minecraft.net/eula" target="_blank" rel="noopener noreferrer">{{ $u('read_the_minecraft_eula') }}</a></span></label>
+                <button type="button" class="ps-btn ps-power-main" :class="{'is-primary': ['start', 'first'].includes(mainPower().action), 'is-danger': mainPower().action==='kill'}" x-on:click="power(mainPower().action)" :disabled="busy || !server.permissions[mainPower().permission] || (mainPower().action==='start' && !canRestart()) || (mainPower().action==='first' && eulaNeeded && !eulaAccepted)" :aria-label="Simplify.fill(@js($u('action_server')), { action: mainPower().label })"><svg aria-hidden="true"><use :href="'#ps-'+mainPower().icon"/></svg><span x-text="mainPower().label"></span></button>
+                <button type="button" class="ps-btn ps-power-restart" x-show="!firstStart()" x-on:click="power('restart')" :disabled="busy || !server.permissions['control.restart'] || !canRestart()" aria-label="{{ $u('restart_server') }}"><svg aria-hidden="true"><use href="#ps-restart"/></svg><span>{{ $u('restart') }}</span></button>
                 <button type="button" class="ps-btn is-icon ps-info-more-button" aria-label="{{ $u('more_server_options') }}" aria-controls="ps-info-menu" :aria-expanded="infoMenu" x-on:click="infoMenu=!infoMenu; colorMenu=false; bannerMenu=false"><svg aria-hidden="true"><use href="#ps-dots"/></svg></button>
                 <div id="ps-info-menu" class="ps-dropdown is-end ps-info-menu" x-show="infoMenu" x-cloak x-transition.opacity role="menu">
                     <span class="ps-label ps-menu-heading" x-show="server.can_edit">{{ $u('look') }}</span>

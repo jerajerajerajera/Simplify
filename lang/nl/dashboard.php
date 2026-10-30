@@ -2,14 +2,8 @@
 
 return [
     'ui' => [
-        'eula_agree' => 'Door op ‘:button’ te klikken ga je akkoord met de licentieovereenkomst voor eindgebruikers (EULA) van Minecraft.',
-        'accept_the_minecraft_eula' => 'Accepteer de Minecraft-EULA',
-        'minecraft_needs_this_once_before_the' => 'Minecraft heeft dit één keer nodig voordat de server kan draaien.',
+        'eula_check' => 'Ik ga akkoord met de Minecraft-eindgebruikersovereenkomst (EULA)',
         'read_the_minecraft_eula' => 'Lees de Minecraft-EULA',
-        'accept_and_start' => 'Accepteren en starten',
-        'your_server_is_ready' => 'Je server is klaar',
-        'you_can_now_start_your_server' => 'Je kunt je server nu starten. De eerste start duurt iets langer omdat de wereld wordt gemaakt.',
-        'you_can_now_start_your_server_2' => 'Je kunt je server nu starten.',
         'notify_me' => 'Laat het me weten',
         'when_ready' => 'als hij klaar is',
         'you_get_a_notification' => 'Je krijgt een melding',

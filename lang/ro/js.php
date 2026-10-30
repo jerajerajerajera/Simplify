@@ -79,6 +79,8 @@ return [
         'oldest_first' => 'Cele mai vechi primele',
         'port_lowest_first' => 'Port (cel mai mic primul)',
         'start' => 'Porniți',
+        'first_start' => 'Prima pornire',
+        'ready_first_start' => 'Gata pentru prima pornire',
         'stop' => 'Opriți',
         'restart' => 'Reporniți',
         'force_stop' => 'Opriți forțat',

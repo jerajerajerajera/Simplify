@@ -79,6 +79,8 @@ return [
         'oldest_first' => 'Спачатку старыя',
         'port_lowest_first' => 'Порт (па ўзрастанні)',
         'start' => 'Запусціць',
+        'first_start' => 'Першы запуск',
+        'ready_first_start' => 'Гатовы да першага запуску',
         'stop' => 'Спыніць',
         'restart' => 'Перазапусціць',
         'force_stop' => 'Прымусова спыніць',

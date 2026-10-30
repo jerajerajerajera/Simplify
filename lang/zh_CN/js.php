@@ -79,6 +79,8 @@ return [
         'oldest_first' => '最早的在前',
         'port_lowest_first' => '端口（从小到大）',
         'start' => '启动',
+        'first_start' => '首次启动',
+        'ready_first_start' => '已准备好首次启动',
         'stop' => '停止',
         'restart' => '重启',
         'force_stop' => '强制停止',

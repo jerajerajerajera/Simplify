@@ -1397,20 +1397,16 @@ html.ps-low .ps-server-stats .ps-stat-top span { overflow: hidden; text-overflow
 }
 @media (max-width: 420px) { .ps-install-long { display: none; } }
 
-/* After an installation finished on this page: the one next step. */
-.ps-ready { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; padding: 14px 16px 14px 18px; border: 1px solid color-mix(in srgb, var(--ps-ok) 40%, var(--ps-line)); border-radius: var(--ps-radius-lg); background: color-mix(in srgb, var(--ps-ok) 8%, var(--ps-surface)); }
-.ps-ready > div { display: grid; flex: 1; gap: 3px; min-width: 0; }
-.ps-ready strong { font-size: 16px; font-weight: 650; }
-.ps-ready small { color: var(--ps-muted); font-size: 13px; line-height: 1.45; }
-.ps-ready-mark { display: grid; flex: none; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--ps-ok); color: #fff; }
-.ps-ready-mark svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
-.ps-ready-start { min-height: 42px; padding-inline: 18px; font-size: 15px; }
-.ps-ready.is-eula { border-color: color-mix(in srgb, var(--ps-accent) 40%, var(--ps-line)); background: color-mix(in srgb, var(--ps-accent) 8%, var(--ps-surface)); }
-.ps-ready.is-eula .ps-ready-mark { background: var(--ps-accent); color: var(--ps-on-accent); }
-.ps-ready small a { color: inherit; text-decoration: underline; }
+/* First start in the server card: a note beside the status and, while a Minecraft EULA is open, the box before First start. */
+.ps-first-ready { gap: 5px; background: color-mix(in srgb, var(--ps-ok) 15%, transparent); color: var(--ps-ok); }
+.ps-first-ready svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.ps-eula-check { display: inline-flex; flex: 0 1 auto; align-items: center; gap: 9px; min-width: 0; max-width: 300px; min-height: var(--ps-h); padding: 6px 12px; border: 1px solid color-mix(in srgb, var(--ps-accent) 45%, var(--ps-line)); border-radius: var(--ps-radius); font-size: 13px; font-weight: 600; line-height: 1.3; cursor: pointer; }
+.ps-eula-check input { flex: none; width: 17px; height: 17px; margin: 0; accent-color: var(--ps-accent); cursor: pointer; }
+.ps-eula-check a { color: var(--ps-muted); font-weight: 500; text-decoration: underline; }
+.ps-eula-check.is-pulse { animation: ps-eula-pulse .5s ease-in-out 3; }
+@keyframes ps-eula-pulse { 50% { box-shadow: 0 0 0 4px color-mix(in srgb, var(--ps-accent) 35%, transparent); } }
+@media (prefers-reduced-motion: reduce) { .ps-eula-check.is-pulse { animation: none; outline: 2px solid var(--ps-accent); } }
 @media (max-width: 720px) {
-  .ps-ready { position: relative; flex-wrap: wrap; padding-inline-end: 48px; }
-  .ps-ready > div { flex-basis: calc(100% - 50px); }
-  .ps-ready > .ps-btn:not(.is-icon) { order: 3; flex: 1 1 auto; min-width: 0; justify-content: center; padding-inline: 10px; font-size: 14px; }
-  .ps-ready > .ps-btn.is-icon { position: absolute; top: 8px; inset-inline-end: 8px; }
+  .ps-info-power:has(.ps-eula-check:not([style*="display: none"])) { flex-wrap: wrap; }
+  .ps-eula-check { flex-basis: 100%; max-width: none; }
 }

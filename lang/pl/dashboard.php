@@ -2,14 +2,8 @@
 
 return [
     'ui' => [
-        'eula_agree' => 'Klikając „:button”, akceptujesz Umowę licencyjną użytkownika końcowego (EULA) Minecrafta.',
-        'accept_the_minecraft_eula' => 'Zaakceptuj EULA Minecraft',
-        'minecraft_needs_this_once_before_the' => 'Minecraft potrzebuje tego raz, zanim serwer będzie mógł działać.',
+        'eula_check' => 'Akceptuję Umowę licencyjną użytkownika końcowego Minecrafta (EULA)',
         'read_the_minecraft_eula' => 'Przeczytaj EULA Minecraft',
-        'accept_and_start' => 'Zaakceptuj i uruchom',
-        'your_server_is_ready' => 'Twój serwer jest gotowy',
-        'you_can_now_start_your_server' => 'Możesz teraz uruchomić serwer. Pierwsze uruchomienie trwa trochę dłużej, bo tworzony jest świat.',
-        'you_can_now_start_your_server_2' => 'Możesz teraz uruchomić serwer.',
         'notify_me' => 'Powiadom mnie',
         'when_ready' => 'gdy będzie gotowy',
         'you_get_a_notification' => 'Dostaniesz powiadomienie',
