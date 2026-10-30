@@ -127,6 +127,12 @@ async function round(theme) {
   // Overview and its menus.
   await goto(overview); await setTheme(theme); await goto(overview); await ready(); await alpine('d.setHostMode(false)'); await sleep(500);
   for (const view of ['grid', 'compact', 'list']) { await alpine(`d.setOverviewView('${view}')`); await sleep(700); await record('overview-' + view, 'Overzicht, ' + view); }
+  // Full width (an overview preference): the scroller as wide as the grid, its scrollbar beside the cards (1.5.0).
+  if (!phone() && await alpine('return typeof d.setOverviewPreference === "function"')) {
+    await alpine(`d.setOverviewPreference('fullWidth', true)`); await sleep(700);
+    for (const view of ['grid', 'list']) { await alpine(`d.setOverviewView('${view}')`); await sleep(700); await record('overview-full-' + view, 'Overzicht, volle breedte, ' + view); }
+    await alpine(`d.setOverviewPreference('fullWidth', false)`); await sleep(500);
+  }
   await alpine(`d.setOverviewView('grid')`); await sleep(500);
   // Phones: the panel menu opens from the tab bar at the bottom (the account button sits inside it).
   const openNav = async () => { if (!onPhone) return; if (!(await click('.ps-tabbar button[aria-controls="ps-navigation-items"]', 500))) await click('.ps-mobile-menu'); };
