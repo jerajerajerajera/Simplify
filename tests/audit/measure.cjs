@@ -171,7 +171,8 @@ const measure = (opts = {}) => {
   // Dropdowns under the top bar: at most two thirds of the window, scrolling only when the content needs it,
   // and the arrow (the ::after of the button's wrapper) centred under the button.
   for (const dd of document.querySelectorAll('.ps-dropdown')) {
-    if (!visible(dd) || dd.closest('.ps-nav-items')) continue;
+    // Inside a phone's menu a dropdown is a static block of the menu, not a floating panel.
+    if (!visible(dd) || (dd.closest('.ps-nav-items') && getComputedStyle(dd).position === 'static')) continue;
     const b = dd.getBoundingClientRect(), limit = Math.round(H * 2 / 3);
     const scrolls = dd.scrollHeight > dd.clientHeight + 2;
     r.info.dropdown = r.info.dropdown || []; r.info.dropdown.push(`${name(dd)} ${Math.round(b.height)}px of ${limit} max${scrolls ? ', scrolls' : ''}`);
