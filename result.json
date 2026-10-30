@@ -1,0 +1,2439 @@
+{
+ "base": "http://127.0.0.1:8001",
+ "screens": [
+  {
+   "id": "nav-1-files",
+   "title": "Navigatie · 1. Files",
+   "stand": "d1440-dark",
+   "url": "/server/sy5uhexg/files",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/sy5uhexg/files",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,12 273x38"
+     ],
+     "panes": [
+      "Server sections 250/356",
+      "fi-page-main 250/294"
+     ],
+     "card": "490..742 of 900 fit=252px",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,84 1328x80",
+      "fi-main-content 290,490 1094x252"
+     ],
+     "box": "490..742 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/nav-1-files.png"
+  },
+  {
+   "id": "nav-2-backups-tasks",
+   "title": "Navigatie · 2. Backups & tasks",
+   "stand": "d1440-dark",
+   "url": "/server/sy5uhexg/backups",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/sy5uhexg/backups",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1010 > 900), the page scrolls"
+     },
+     {
+      "kind": "cardoff",
+      "text": "content card ends below the window (954 > 900)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1010,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,12 273x38"
+     ],
+     "panes": [
+      "fi-page-main 308/318"
+     ],
+     "card": "596..954 of 900 fit=358px",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,84 1328x80",
+      "fi-main-content 290,596 1094x358"
+     ],
+     "box": "596..954 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/nav-2-backups-tasks.png"
+  },
+  {
+   "id": "nav-3-schedules",
+   "title": "Navigatie · 3. Schedules",
+   "stand": "d1440-dark",
+   "url": "/server/sy5uhexg/schedules",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/sy5uhexg/schedules",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1010 > 900), the page scrolls"
+     },
+     {
+      "kind": "cardoff",
+      "text": "content card ends below the window (954 > 900)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1010,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,12 273x38"
+     ],
+     "card": "596..954 of 900 fit=358px",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,84 1328x80",
+      "fi-main-content 290,596 1094x358"
+     ],
+     "box": "596..954 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/nav-3-schedules.png"
+  },
+  {
+   "id": "nav-4-console",
+   "title": "Navigatie · 4. Console",
+   "stand": "d1440-dark",
+   "url": "/server/sy5uhexg/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/sy5uhexg/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1008 > 900), the page scrolls"
+     },
+     {
+      "kind": "cardoff",
+      "text": "content card ends below the window (952 > 900)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1008,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,12 273x38"
+     ],
+     "card": "595..952 of 900 fit=357px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,664 1040x209; terminal 291,596 1092x292; bar top 888",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,84 1328x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,595 1094x357"
+     ],
+     "box": "595..952 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/nav-4-console.png"
+  },
+  {
+   "id": "nav-5-settings",
+   "title": "Navigatie · 5. Settings",
+   "stand": "d1440-dark",
+   "url": "/server/sy5uhexg/settings",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/sy5uhexg/settings",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1008 > 900), the page scrolls"
+     },
+     {
+      "kind": "cardoff",
+      "text": "content card ends below the window (952 > 900)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1008,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,12 273x38"
+     ],
+     "panes": [
+      "Server sections 355/716",
+      "fi-page-main 355/1158"
+     ],
+     "card": "595..952 of 900 fit=357px",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,84 1328x80",
+      "fi-main-content 290,595 1094x357"
+     ],
+     "box": "595..952 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/nav-5-settings.png"
+  },
+  {
+   "id": "nav-6-console",
+   "title": "Navigatie · 6. Console",
+   "stand": "d1440-dark",
+   "url": "/server/sy5uhexg/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/sy5uhexg/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1088 > 900), the page scrolls"
+     },
+     {
+      "kind": "cardoff",
+      "text": "content card ends below the window (1032 > 900)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1088,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,12 273x38"
+     ],
+     "panes": [
+      "Server sections 395/716"
+     ],
+     "card": "635..1032 of 900 fit=397px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,704 1040x247; terminal 291,636 1092x332; bar top 968",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,84 1328x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,635 1094x397"
+     ],
+     "box": "635..1032 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/nav-6-console.png"
+  },
+  {
+   "id": "layers-server-more",
+   "title": "Lagen · ⋯-menu boven de console",
+   "stand": "d1440-dark",
+   "url": "/server/sy5uhexg/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/sy5uhexg/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1000 > 900), the page scrolls"
+     },
+     {
+      "kind": "cardoff",
+      "text": "content card ends below the window (954 > 900)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1000,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,12 273x38"
+     ],
+     "card": "596..954 of 900 fit=358px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,665 1040x95; terminal 291,597 1092x293; bar top 890",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,84 1328x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,596 1094x358"
+     ],
+     "box": "596..954 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/layers-server-more.png"
+  },
+  {
+   "id": "layers-tip-ps-info-address-data-tip",
+   "title": "Lagen · tooltip .ps-info-address[data-tip]",
+   "stand": "d1440-dark",
+   "url": "/server/sy5uhexg/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/sy5uhexg/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1000 > 900), the page scrolls"
+     },
+     {
+      "kind": "cardoff",
+      "text": "content card ends below the window (954 > 900)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1000,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,12 273x38",
+      "ps-tooltip 390,160 145x33"
+     ],
+     "card": "596..954 of 900 fit=358px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,665 1040x95; terminal 291,597 1092x293; bar top 890",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,84 1328x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,596 1094x358"
+     ],
+     "box": "596..954 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/layers-tip-ps-info-address-data-tip.png"
+  },
+  {
+   "id": "layers-tip-ps-info-meta-item-data-tip",
+   "title": "Lagen · tooltip .ps-info-meta-item[data-tip]",
+   "stand": "d1440-dark",
+   "url": "/server/sy5uhexg/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/sy5uhexg/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1000 > 900), the page scrolls"
+     },
+     {
+      "kind": "cardoff",
+      "text": "content card ends below the window (954 > 900)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1000,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,12 273x38",
+      "ps-tooltip 269,160 56x33"
+     ],
+     "card": "596..954 of 900 fit=358px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,665 1040x95; terminal 291,597 1092x293; bar top 890",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,84 1328x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,596 1094x358"
+     ],
+     "box": "596..954 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/layers-tip-ps-info-meta-item-data-tip.png"
+  },
+  {
+   "id": "layers-bell",
+   "title": "Lagen · bell-menu boven de serverkaart",
+   "stand": "d1440-dark",
+   "url": "/server/sy5uhexg/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/sy5uhexg/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1076 > 900), the page scrolls"
+     },
+     {
+      "kind": "cardoff",
+      "text": "content card ends below the window (1030 > 900)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1076,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,12 273x38"
+     ],
+     "card": "634..1030 of 900 fit=396px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,703 1040x57; terminal 291,635 1092x331; bar top 966",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,84 1328x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,634 1094x396"
+     ],
+     "box": "634..1030 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/layers-bell.png"
+  },
+  {
+   "id": "scroll-overview",
+   "title": "Scrollbalk · overzicht",
+   "stand": "d1440-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38"
+     ],
+     "panes": [
+      "Servers 576/1572"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..398, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/scroll-overview.png"
+  },
+  {
+   "id": "scroll-settings",
+   "title": "Scrollbalk · instellingen",
+   "stand": "d1440-dark",
+   "url": "/admin/simplify",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "panes": [
+      "Sidebar navigation 648/1444",
+      "fi-tabs.fi-contained.fi-vertical 318/374",
+      "form.general 318/858"
+     ],
+     "card": "0..844 of 900",
+     "scope": "simplify",
+     "boxes": [
+      "s-settings-tabs.fi-sc-tabs.fi-contained 352,152 1056x320"
+     ],
+     "actionsBelow": [
+      "\"Run setup again\" at y=58",
+      "\"\" at y=58"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/scroll-settings.png"
+  },
+  {
+   "id": "scroll-frame",
+   "title": "Scrollbalk · pagina in het frame (hostmodus)",
+   "stand": "d1440-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1219,32 185x38"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..398, actions 1219..1404",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "112..850 of 900"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,160 1116x690",
+     "url": "/admin/servers?simplify_embed=1",
+     "w": 1116,
+     "h": 690,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (836 > 690), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 836,
+      "pageScrollW": 1116,
+      "card": "-73..763 of 690",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 2
+     }
+    }
+   ],
+   "shot": "d1440-dark/scroll-frame.png"
+  },
+  {
+   "id": "scroll-console",
+   "title": "Scrollbalk · console",
+   "stand": "d1440-dark",
+   "url": "/server/sy5uhexg/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/sy5uhexg/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1076 > 900), the page scrolls"
+     },
+     {
+      "kind": "cardoff",
+      "text": "content card ends below the window (1030 > 900)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1076,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,12 273x38"
+     ],
+     "card": "634..1030 of 900 fit=396px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,703 1040x57; terminal 291,635 1092x331; bar top 966",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,84 1328x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,634 1094x396"
+     ],
+     "box": "634..1030 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/scroll-console.png"
+  },
+  {
+   "id": "other-plugins-open",
+   "title": "Other plugins · uitgeklapt",
+   "stand": "d1440-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1219,32 185x38"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..398, actions 1219..1404",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "112..850 of 900"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,160 1116x690",
+     "url": "/admin/health?simplify_embed=1",
+     "w": 1116,
+     "h": 690,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 690,
+      "pageScrollW": 1116,
+      "card": "0..690 of 690",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "d1440-dark/other-plugins-open.png"
+  },
+  {
+   "id": "other-plugins-page",
+   "title": "Other plugins · pagina van een plugin",
+   "stand": "d1440-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1219,32 185x38"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..398, actions 1219..1404",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "112..850 of 900"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,160 1116x690",
+     "url": "/admin/site-directory?simplify_embed=1",
+     "w": 1116,
+     "h": 690,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 690,
+      "pageScrollW": 1116,
+      "card": "0..690 of 690",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 0
+     }
+    }
+   ],
+   "shot": "d1440-dark/other-plugins-page.png"
+  },
+  {
+   "id": "create-menu-overview",
+   "title": "Create server · keuzemenu (overview)",
+   "stand": "d1440-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38",
+      "ps-modal 180,24 1080x852"
+     ],
+     "panes": [
+      "Servers 576/1572"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..398, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [
+    {
+     "box": "181,85 1078x790",
+     "url": "/admin/servers/create?simplify_embed=1",
+     "w": 1078,
+     "h": 790,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 790,
+      "pageScrollW": 1078,
+      "card": "0..790 of 790",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "unreachable"
+     }
+    }
+   ],
+   "shot": "d1440-dark/create-menu-overview.png"
+  },
+  {
+   "id": "create-desktop",
+   "title": "Create server (overzicht)",
+   "stand": "d1440-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "create": {
+    "pop": {
+     "open": true,
+     "title": "Create server",
+     "src": "http://127.0.0.1:8001/admin/servers/create?simplify_embed=1"
+    },
+    "url": "/simplify",
+    "frame": "/admin/servers/create?simplify_embed=1",
+    "chrome": {
+     "bars": [],
+     "title": "Create Server"
+    }
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38",
+      "ps-modal 180,24 1080x852"
+     ],
+     "panes": [
+      "Servers 576/1572"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..398, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [
+    {
+     "box": "181,85 1078x790",
+     "url": "/admin/servers/create?simplify_embed=1",
+     "w": 1078,
+     "h": 790,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 790,
+      "pageScrollW": 1078,
+      "card": "0..790 of 790",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "unreachable"
+     }
+    }
+   ],
+   "shot": "d1440-dark/create-desktop.png"
+  },
+  {
+   "id": "nav-1-files",
+   "title": "Navigatie · 1. Files",
+   "stand": "d1440-light",
+   "url": "/server/sy5uhexg/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/sy5uhexg/files",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1086 > 900), the page scrolls"
+     },
+     {
+      "kind": "cardoff",
+      "text": "content card ends below the window (1030 > 900)"
+     },
+     {
+      "kind": "boxinbox",
+      "text": "box inside a box: fi-callout.fi-color.fi-color-danger (1092x78) in fi-main-content"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1086,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,12 273x38"
+     ],
+     "card": "634..1030 of 900 fit=396px",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,84 1328x80",
+      "fi-main-content 290,634 1094x396",
+      "fi-callout.fi-color.fi-color-danger 291,647 1092x78"
+     ],
+     "actionsBelow": [
+      "\"\" at y=737 (card 634..1030)",
+      "\"\" at y=737 (card 634..1030)",
+      "\"\" at y=737 (card 634..1030)",
+      "\"\" at y=737 (card 634..1030)"
+     ],
+     "box": "634..1030 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/nav-1-files.png"
+  },
+  {
+   "id": "nav-2-backups-tasks",
+   "title": "Navigatie · 2. Backups & tasks",
+   "stand": "d1440-light",
+   "url": "/server/sy5uhexg/backups",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/sy5uhexg/backups",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1010 > 900), the page scrolls"
+     },
+     {
+      "kind": "cardoff",
+      "text": "content card ends below the window (954 > 900)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1010,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,12 273x38"
+     ],
+     "panes": [
+      "fi-page-main 308/318"
+     ],
+     "card": "596..954 of 900 fit=358px",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,84 1328x80",
+      "fi-main-content 290,596 1094x358"
+     ],
+     "box": "596..954 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/nav-2-backups-tasks.png"
+  },
+  {
+   "id": "nav-3-schedules",
+   "title": "Navigatie · 3. Schedules",
+   "stand": "d1440-light",
+   "url": "/server/sy5uhexg/schedules",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/sy5uhexg/schedules",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1010 > 900), the page scrolls"
+     },
+     {
+      "kind": "cardoff",
+      "text": "content card ends below the window (954 > 900)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1010,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,12 273x38"
+     ],
+     "card": "596..954 of 900 fit=358px",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,84 1328x80",
+      "fi-main-content 290,596 1094x358"
+     ],
+     "box": "596..954 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/nav-3-schedules.png"
+  },
+  {
+   "id": "nav-4-console",
+   "title": "Navigatie · 4. Console",
+   "stand": "d1440-light",
+   "url": "/server/sy5uhexg/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/sy5uhexg/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1008 > 900), the page scrolls"
+     },
+     {
+      "kind": "cardoff",
+      "text": "content card ends below the window (952 > 900)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1008,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,12 273x38"
+     ],
+     "card": "595..952 of 900 fit=357px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,664 1040x209; terminal 291,596 1092x292; bar top 888",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,84 1328x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,595 1094x357"
+     ],
+     "box": "595..952 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/nav-4-console.png"
+  },
+  {
+   "id": "nav-5-settings",
+   "title": "Navigatie · 5. Settings",
+   "stand": "d1440-light",
+   "url": "/server/sy5uhexg/settings",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/sy5uhexg/settings",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1008 > 900), the page scrolls"
+     },
+     {
+      "kind": "cardoff",
+      "text": "content card ends below the window (952 > 900)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1008,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,12 273x38"
+     ],
+     "panes": [
+      "Server sections 355/716",
+      "fi-page-main 355/1158"
+     ],
+     "card": "595..952 of 900 fit=357px",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,84 1328x80",
+      "fi-main-content 290,595 1094x357"
+     ],
+     "box": "595..952 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/nav-5-settings.png"
+  },
+  {
+   "id": "nav-6-console",
+   "title": "Navigatie · 6. Console",
+   "stand": "d1440-light",
+   "url": "/server/sy5uhexg/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/sy5uhexg/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1088 > 900), the page scrolls"
+     },
+     {
+      "kind": "cardoff",
+      "text": "content card ends below the window (1032 > 900)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1088,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,12 273x38"
+     ],
+     "panes": [
+      "Server sections 395/716"
+     ],
+     "card": "635..1032 of 900 fit=397px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,704 1040x247; terminal 291,636 1092x332; bar top 968",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,84 1328x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,635 1094x397"
+     ],
+     "box": "635..1032 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/nav-6-console.png"
+  },
+  {
+   "id": "layers-server-more",
+   "title": "Lagen · ⋯-menu boven de console",
+   "stand": "d1440-light",
+   "url": "/server/sy5uhexg/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/sy5uhexg/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1076 > 900), the page scrolls"
+     },
+     {
+      "kind": "cardoff",
+      "text": "content card ends below the window (1030 > 900)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1076,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,12 273x38"
+     ],
+     "card": "634..1030 of 900 fit=396px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,703 1040x57; terminal 291,635 1092x331; bar top 966",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,84 1328x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,634 1094x396"
+     ],
+     "box": "634..1030 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/layers-server-more.png"
+  },
+  {
+   "id": "layers-tip-ps-info-address-data-tip",
+   "title": "Lagen · tooltip .ps-info-address[data-tip]",
+   "stand": "d1440-light",
+   "url": "/server/sy5uhexg/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/sy5uhexg/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1076 > 900), the page scrolls"
+     },
+     {
+      "kind": "cardoff",
+      "text": "content card ends below the window (1030 > 900)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1076,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,12 273x38",
+      "ps-tooltip 390,160 145x33"
+     ],
+     "card": "634..1030 of 900 fit=396px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,703 1040x57; terminal 291,635 1092x331; bar top 966",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,84 1328x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,634 1094x396"
+     ],
+     "box": "634..1030 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/layers-tip-ps-info-address-data-tip.png"
+  },
+  {
+   "id": "layers-tip-ps-info-meta-item-data-tip",
+   "title": "Lagen · tooltip .ps-info-meta-item[data-tip]",
+   "stand": "d1440-light",
+   "url": "/server/sy5uhexg/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/sy5uhexg/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1076 > 900), the page scrolls"
+     },
+     {
+      "kind": "cardoff",
+      "text": "content card ends below the window (1030 > 900)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1076,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,12 273x38",
+      "ps-tooltip 269,160 56x33"
+     ],
+     "card": "634..1030 of 900 fit=396px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,703 1040x57; terminal 291,635 1092x331; bar top 966",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,84 1328x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,634 1094x396"
+     ],
+     "box": "634..1030 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/layers-tip-ps-info-meta-item-data-tip.png"
+  },
+  {
+   "id": "layers-bell",
+   "title": "Lagen · bell-menu boven de serverkaart",
+   "stand": "d1440-light",
+   "url": "/server/sy5uhexg/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/sy5uhexg/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1076 > 900), the page scrolls"
+     },
+     {
+      "kind": "cardoff",
+      "text": "content card ends below the window (1030 > 900)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1076,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,12 273x38"
+     ],
+     "card": "634..1030 of 900 fit=396px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,703 1040x57; terminal 291,635 1092x331; bar top 966",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,84 1328x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,634 1094x396"
+     ],
+     "box": "634..1030 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/layers-bell.png"
+  },
+  {
+   "id": "layers-admin",
+   "title": "Lagen · admin-menu boven de serverkaart",
+   "stand": "d1440-light",
+   "url": "/server/sy5uhexg/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/sy5uhexg/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1076 > 900), the page scrolls"
+     },
+     {
+      "kind": "cardoff",
+      "text": "content card ends below the window (1030 > 900)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1076,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,12 273x38"
+     ],
+     "card": "634..1030 of 900 fit=396px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,703 1040x57; terminal 291,635 1092x331; bar top 966",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,84 1328x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,634 1094x396"
+     ],
+     "box": "634..1030 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/layers-admin.png"
+  },
+  {
+   "id": "layers-account",
+   "title": "Lagen · account-menu boven de serverkaart",
+   "stand": "d1440-light",
+   "url": "/server/sy5uhexg/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/sy5uhexg/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1076 > 900), the page scrolls"
+     },
+     {
+      "kind": "cardoff",
+      "text": "content card ends below the window (1030 > 900)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1076,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,12 273x38"
+     ],
+     "card": "634..1030 of 900 fit=396px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,703 1040x57; terminal 291,635 1092x331; bar top 966",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,84 1328x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,634 1094x396"
+     ],
+     "box": "634..1030 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/layers-account.png"
+  },
+  {
+   "id": "scroll-overview",
+   "title": "Scrollbalk · overzicht",
+   "stand": "d1440-light",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38"
+     ],
+     "panes": [
+      "Servers 576/1572"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..398, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/scroll-overview.png"
+  },
+  {
+   "id": "scroll-settings",
+   "title": "Scrollbalk · instellingen",
+   "stand": "d1440-light",
+   "url": "/admin/simplify",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "panes": [
+      "Sidebar navigation 648/1446",
+      "fi-tabs.fi-contained.fi-vertical 318/374",
+      "form.general 318/858"
+     ],
+     "card": "0..844 of 900",
+     "scope": "simplify",
+     "boxes": [
+      "s-settings-tabs.fi-sc-tabs.fi-contained 352,152 1056x320"
+     ],
+     "actionsBelow": [
+      "\"Run setup again\" at y=58",
+      "\"\" at y=58"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/scroll-settings.png"
+  },
+  {
+   "id": "scroll-frame",
+   "title": "Scrollbalk · pagina in het frame (hostmodus)",
+   "stand": "d1440-light",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1219,32 185x38"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..398, actions 1219..1404",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "112..850 of 900"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,160 1116x690",
+     "url": "/admin/servers?simplify_embed=1",
+     "w": 1116,
+     "h": 690,
+     "dark": false,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (836 > 690), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 836,
+      "pageScrollW": 1116,
+      "card": "-73..763 of 690",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 2
+     }
+    }
+   ],
+   "shot": "d1440-light/scroll-frame.png"
+  },
+  {
+   "id": "scroll-console",
+   "title": "Scrollbalk · console",
+   "stand": "d1440-light",
+   "url": "/server/sy5uhexg/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/sy5uhexg/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1076 > 900), the page scrolls"
+     },
+     {
+      "kind": "cardoff",
+      "text": "content card ends below the window (1030 > 900)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1076,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,12 273x38"
+     ],
+     "card": "634..1030 of 900 fit=396px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,703 1040x57; terminal 291,635 1092x331; bar top 966",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,84 1328x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,634 1094x396"
+     ],
+     "box": "634..1030 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/scroll-console.png"
+  },
+  {
+   "id": "other-plugins-open",
+   "title": "Other plugins · uitgeklapt",
+   "stand": "d1440-light",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1219,32 185x38"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..398, actions 1219..1404",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "112..850 of 900"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,160 1116x690",
+     "url": "/admin/health?simplify_embed=1",
+     "w": 1116,
+     "h": 690,
+     "dark": false,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 690,
+      "pageScrollW": 1116,
+      "card": "0..690 of 690",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "d1440-light/other-plugins-open.png"
+  },
+  {
+   "id": "other-plugins-page",
+   "title": "Other plugins · pagina van een plugin",
+   "stand": "d1440-light",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1219,32 185x38"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..398, actions 1219..1404",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "112..850 of 900"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,160 1116x690",
+     "url": "/admin/site-directory?simplify_embed=1",
+     "w": 1116,
+     "h": 690,
+     "dark": false,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 690,
+      "pageScrollW": 1116,
+      "card": "0..690 of 690",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 0
+     }
+    }
+   ],
+   "shot": "d1440-light/other-plugins-page.png"
+  },
+  {
+   "id": "create-menu-overview",
+   "title": "Create server · keuzemenu (overview)",
+   "stand": "d1440-light",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38",
+      "ps-modal 180,24 1080x852"
+     ],
+     "panes": [
+      "Servers 576/1572"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..398, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [
+    {
+     "box": "181,85 1078x790",
+     "url": "/admin/servers/create?simplify_embed=1",
+     "w": 1078,
+     "h": 790,
+     "dark": false,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 790,
+      "pageScrollW": 1078,
+      "card": "0..790 of 790",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "unreachable"
+     }
+    }
+   ],
+   "shot": "d1440-light/create-menu-overview.png"
+  },
+  {
+   "id": "create-desktop",
+   "title": "Create server (overzicht)",
+   "stand": "d1440-light",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "create": {
+    "pop": {
+     "open": true,
+     "title": "Create server",
+     "src": "http://127.0.0.1:8001/admin/servers/create?simplify_embed=1"
+    },
+    "url": "/simplify",
+    "frame": "/admin/servers/create?simplify_embed=1",
+    "chrome": {
+     "bars": [],
+     "title": "Create Server"
+    }
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38",
+      "ps-modal 180,24 1080x852"
+     ],
+     "panes": [
+      "Servers 576/1572"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..398, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [
+    {
+     "box": "181,85 1078x790",
+     "url": "/admin/servers/create?simplify_embed=1",
+     "w": 1078,
+     "h": 790,
+     "dark": false,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 790,
+      "pageScrollW": 1078,
+      "card": "0..790 of 790",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "unreachable"
+     }
+    }
+   ],
+   "shot": "d1440-light/create-desktop.png"
+  },
+  {
+   "id": "overview",
+   "title": "Klant · overzicht",
+   "stand": "klant-d1440-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1190,212 214x38"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..398, actions 1190..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-d1440-dark/overview.png"
+  },
+  {
+   "id": "account",
+   "title": "Klant · accountmenu",
+   "stand": "klant-d1440-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 960,212 444x38",
+      "ps-account-actions 1092,212 222x38"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..398, actions 960..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-d1440-dark/account.png"
+  },
+  {
+   "id": "server-console",
+   "title": "Klant · console",
+   "stand": "klant-d1440-dark",
+   "url": "/server/sy5uhexg/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/sy5uhexg/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1076 > 900), the page scrolls"
+     },
+     {
+      "kind": "cardoff",
+      "text": "content card ends below the window (1030 > 900)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1076,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1214,12 170x38"
+     ],
+     "card": "634..1030 of 900 fit=396px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,703 1040x57; terminal 291,635 1092x331; bar top 966",
+     "topbar": "brand 56..381, badges 386..418, actions 1214..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,84 1328x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,634 1094x396"
+     ],
+     "box": "634..1030 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "klant-d1440-dark/server-console.png"
+  },
+  {
+   "id": "server-more",
+   "title": "Klant · ⋯-menu",
+   "stand": "klant-d1440-dark",
+   "url": "/server/sy5uhexg/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/sy5uhexg/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1076 > 900), the page scrolls"
+     },
+     {
+      "kind": "cardoff",
+      "text": "content card ends below the window (1030 > 900)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1076,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1214,12 170x38",
+      "ps-info-menu 1131,151 230x428"
+     ],
+     "card": "634..1030 of 900 fit=396px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,703 1040x57; terminal 291,635 1092x331; bar top 966",
+     "topbar": "brand 56..381, badges 386..418, actions 1214..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,84 1328x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,634 1094x396"
+     ],
+     "box": "634..1030 of 900",
+     "dropdown": [
+      "ps-info-menu 428px of 600 max"
+     ],
+     "arrow": [
+      "ps-info-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-d1440-dark/server-more.png"
+  }
+ ],
+ "problems": [
+  "d1440-dark  page error: Maximum call stack size exceeded.",
+  "d1440-dark  page error: Maximum call stack size exceeded.",
+  "d1440-dark  page error: Maximum call stack size exceeded.",
+  "d1440-dark  page error: Maximum call stack size exceeded.",
+  "d1440-dark  page error: Maximum call stack size exceeded.",
+  "d1440-dark  page error: Maximum call stack size exceeded.",
+  "d1440-dark  page error: Maximum call stack size exceeded.",
+  "d1440-dark  page error: Maximum call stack size exceeded.",
+  "d1440-dark  page error: Maximum call stack size exceeded.",
+  "d1440-dark  page error: Maximum call stack size exceeded.",
+  "d1440-dark  page error: Maximum call stack size exceeded.",
+  "d1440-dark  page error: Maximum call stack size exceeded.",
+  "d1440-dark  page error: Maximum call stack size exceeded.",
+  "d1440-dark  page error: Maximum call stack size exceeded.",
+  "d1440-dark  page error: Maximum call stack size exceeded.",
+  "d1440-dark  page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-1-files: WRONG {\"clicked\":true,\"sockets\":0,\"live\":null,\"reloaded\":false,\"cardKept\":true,\"menuKept\":true,\"flashes\":0,\"current\":[\"Files\"],\"advancedOpen\":false,\"tab\":[\"Files\",\"\"],\"onConsole\":false,\"wings\":null,\"logPref\":false,\"logLines\":0,\"strip\":false,\"menuStyle\":\"\",\"menuH\":396,\"scroll\":186,\"url\":\"/server/sy5uhexg/files\"}",
+  "d1440-dark nav-2-backups-tasks: WRONG {\"clicked\":true,\"sockets\":0,\"live\":null,\"reloaded\":false,\"cardKept\":true,\"menuKept\":true,\"flashes\":0,\"current\":[\"Backups & tasks\"],\"advancedOpen\":false,\"tab\":[\"Backups\\n        \\n\\n                    \\n                \\n            \\n            \\n    \\n        \\n            0\",\"Backups\"],\"onConsole\":false,\"wings\":null,\"logPref\":false,\"logLines\":0,\"strip\":false,\"menuStyle\":\"\",\"menuH\":358,\"scroll\":110,\"url\":\"/server/sy5uhexg/backups\"}",
+  "d1440-dark nav-3-schedules: WRONG {\"clicked\":true,\"sockets\":0,\"live\":null,\"reloaded\":false,\"cardKept\":true,\"menuKept\":true,\"flashes\":0,\"current\":[\"Backups & tasks\"],\"advancedOpen\":false,\"tab\":[\"Schedules\",\"Schedules\"],\"onConsole\":false,\"wings\":null,\"logPref\":false,\"logLines\":0,\"strip\":false,\"menuStyle\":\"\",\"menuH\":358,\"scroll\":110,\"url\":\"/server/sy5uhexg/schedules\"}",
+  "d1440-dark nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-4-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-4-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-4-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-4-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-4-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-4-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-4-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-4-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-4-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-4-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-4-console: WRONG {\"clicked\":true,\"sockets\":1,\"live\":true,\"reloaded\":false,\"cardKept\":true,\"menuKept\":true,\"flashes\":0,\"current\":[\"Console\"],\"advancedOpen\":false,\"tab\":[\"Console\"],\"onConsole\":true,\"wings\":\"Connected to Wings\",\"logPref\":false,\"logLines\":0,\"strip\":false,\"menuStyle\":\"206px\",\"menuH\":206,\"scroll\":42,\"url\":\"/server/sy5uhexg/console\"}",
+  "d1440-dark nav-5-settings: WRONG {\"clicked\":true,\"sockets\":0,\"live\":null,\"reloaded\":false,\"cardKept\":true,\"menuKept\":true,\"flashes\":0,\"current\":[\"Settings\"],\"advancedOpen\":true,\"tab\":[\"Settings\"],\"onConsole\":false,\"wings\":null,\"logPref\":false,\"logLines\":0,\"strip\":false,\"menuStyle\":\"\",\"menuH\":357,\"scroll\":108,\"url\":\"/server/sy5uhexg/settings\"}",
+  "d1440-dark nav-5-settings page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-5-settings page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-5-settings page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-5-settings page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-5-settings page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-5-settings page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-5-settings page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-5-settings page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-5-settings page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-5-settings page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-5-settings page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-5-settings page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-6-console: WRONG {\"clicked\":true,\"sockets\":1,\"live\":false,\"reloaded\":false,\"cardKept\":true,\"menuKept\":true,\"flashes\":0,\"current\":[\"Console\"],\"advancedOpen\":true,\"tab\":[\"Console\"],\"onConsole\":true,\"wings\":\"Connected to Wings\",\"logPref\":false,\"logLines\":0,\"strip\":false,\"menuStyle\":\"251px\",\"menuH\":251,\"scroll\":48,\"url\":\"/server/sy5uhexg/console\"}",
+  "d1440-dark nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-6-console: click .ps-info-more-button: locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator('.ps-i",
+  "d1440-dark nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-dark nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-server-more: WRONG {\"bad\":null,\"items\":null}",
+  "d1440-dark layers-tip-ps-info-address-data-tip: ok {\"text\":\"Copy server address\",\"ok\":true,\"on\":\"ps-tooltip is-visible\",\"opacity\":\"1\",\"rect\":\"390 160 145 33\"}",
+  "d1440-dark layers-tip-ps-info-meta-item-data-tip: ok {\"text\":\"Paper\",\"ok\":true,\"on\":\"ps-tooltip is-visible\",\"opacity\":\"1\",\"rect\":\"269 160 56 33\"}",
+  "d1440-dark layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-tip-ps-info-meta-item-data-tip: click [x-ref=\"notifyButton\"]: locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator('[x-re",
+  "d1440-dark layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell: WRONG {\"bad\":null,\"n\":null}",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell: nothing to click for [x-ref=\"adminButton\"]",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell: nothing to click for .ps-account-button",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-dark scroll-overview: ok {\"want\":\"rgba(255, 255, 255, 0.16)\",\"got\":[\"rgba(255, 255, 255, 0.16)\"],\"boxes\":[\"ps-server-scroll 576\"],\"css\":true}",
+  "d1440-dark scroll-settings: ok {\"want\":\"rgba(255, 255, 255, 0.16)\",\"got\":[\"rgba(255, 255, 255, 0.16)\",\"rgba(255, 255, 255, 0.16)\",\"rgba(255, 255, 255, 0.16)\"],\"boxes\":[\"fi-sidebar-nav 648\",\"fi-tabs.fi-contained 318\",\"fi-sc-tabs-tab.fi-active 318\"],\"css\":true,\"place\":\"/admin/simplify\"}",
+  "d1440-dark scroll-frame: ok {\"want\":\"rgba(255, 255, 255, 0.16)\",\"got\":[\"rgba(255, 255, 255, 0.16)\",\"rgba(255, 255, 255, 0.16)\"],\"boxes\":[\"fi.dark 836\",\"fi.dark 836\"],\"css\":true,\"place\":\"/admin/servers?simplify_embed=1\"}",
+  "d1440-dark scroll-frame page error: Maximum call stack size exceeded.",
+  "d1440-dark scroll-frame page error: Maximum call stack size exceeded.",
+  "d1440-dark scroll-frame page error: Maximum call stack size exceeded.",
+  "d1440-dark scroll-frame page error: Maximum call stack size exceeded.",
+  "d1440-dark scroll-frame page error: Maximum call stack size exceeded.",
+  "d1440-dark scroll-frame page error: Maximum call stack size exceeded.",
+  "d1440-dark scroll-frame page error: Maximum call stack size exceeded.",
+  "d1440-dark scroll-frame page error: Maximum call stack size exceeded.",
+  "d1440-dark scroll-console page error: Maximum call stack size exceeded.",
+  "d1440-dark scroll-console page error: Maximum call stack size exceeded.",
+  "d1440-dark scroll-console page error: Maximum call stack size exceeded.",
+  "d1440-dark scroll-console page error: Maximum call stack size exceeded.",
+  "d1440-dark scroll-console page error: Maximum call stack size exceeded.",
+  "d1440-dark scroll-console page error: Maximum call stack size exceeded.",
+  "d1440-dark scroll-console page error: Maximum call stack size exceeded.",
+  "d1440-dark scroll-console page error: Maximum call stack size exceeded.",
+  "d1440-dark scroll-console: WRONG {\"want\":\"rgba(255, 255, 255, 0.16)\",\"got\":[],\"boxes\":[],\"css\":true}",
+  "d1440-dark other-plugins: ok {\"real\":true,\"before\":\"false\",\"after\":\"true\",\"leafs\":1,\"head\":\"Other plugins Site directory\",\"toggle\":\"Other plugins · Site directory\"}",
+  "d1440-dark create-desktop: ok {\"pop\":{\"open\":true,\"title\":\"Create server\",\"src\":\"http://127.0.0.1:8001/admin/servers/create?simplify_embed=1\"},\"frame\":\"/admin/servers/create?simplify_embed=1\",\"maker\":false,\"chrome\":{\"bars\":[],\"title\":\"Create Server\"},\"page\":\"/simplify\"}",
+  "d1440-dark create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-dark create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-dark create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-dark create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-dark create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-dark create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-dark create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-dark create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-dark create-server-page: WRONG no Create server button on a server page",
+  "d1440-dark create-host-admin: WRONG no Create in Admin → Servers (/admin/servers?simplify_embed=1)",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light nav-1-files: WRONG {\"clicked\":true,\"sockets\":0,\"live\":null,\"reloaded\":false,\"cardKept\":true,\"menuKept\":true,\"flashes\":0,\"current\":[\"Console\"],\"advancedOpen\":false,\"tab\":[\"Console\"],\"onConsole\":true,\"wings\":\"Connected to Wings\",\"logPref\":false,\"logLines\":0,\"strip\":false,\"menuStyle\":\"396px\",\"menuH\":396,\"scroll\":176,\"url\":\"/server/sy5uhexg/console\"}",
+  "d1440-light nav-2-backups-tasks: WRONG {\"clicked\":true,\"sockets\":0,\"live\":null,\"reloaded\":false,\"cardKept\":true,\"menuKept\":true,\"flashes\":0,\"current\":[\"Backups & tasks\"],\"advancedOpen\":false,\"tab\":[\"Backups\\n        \\n\\n                    \\n                \\n            \\n            \\n    \\n        \\n            0\",\"Backups\"],\"onConsole\":false,\"wings\":null,\"logPref\":false,\"logLines\":0,\"strip\":false,\"menuStyle\":\"\",\"menuH\":358,\"scroll\":110,\"url\":\"/server/sy5uhexg/backups\"}",
+  "d1440-light nav-3-schedules: WRONG {\"clicked\":true,\"sockets\":0,\"live\":null,\"reloaded\":false,\"cardKept\":true,\"menuKept\":true,\"flashes\":0,\"current\":[\"Backups & tasks\"],\"advancedOpen\":false,\"tab\":[\"Schedules\",\"Schedules\"],\"onConsole\":false,\"wings\":null,\"logPref\":false,\"logLines\":0,\"strip\":false,\"menuStyle\":\"\",\"menuH\":358,\"scroll\":110,\"url\":\"/server/sy5uhexg/schedules\"}",
+  "d1440-light nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-light nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-light nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-light nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-light nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-light nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-light nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-light nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-light nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-light nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-light nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-light nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-light nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-light nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-light nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-light nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-light nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-light nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-light nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-light nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-light nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-light nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-light nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-light nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-light nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-light nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-light nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-light nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-light nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-light nav-3-schedules page error: Maximum call stack size exceeded.",
+  "d1440-light nav-4-console: WRONG {\"clicked\":true,\"sockets\":1,\"live\":true,\"reloaded\":false,\"cardKept\":true,\"menuKept\":true,\"flashes\":0,\"current\":[\"Console\"],\"advancedOpen\":false,\"tab\":[\"Console\"],\"onConsole\":true,\"wings\":\"Connected to Wings\",\"logPref\":false,\"logLines\":0,\"strip\":false,\"menuStyle\":\"206px\",\"menuH\":206,\"scroll\":42,\"url\":\"/server/sy5uhexg/console\"}",
+  "d1440-light nav-5-settings: WRONG {\"clicked\":true,\"sockets\":0,\"live\":null,\"reloaded\":false,\"cardKept\":true,\"menuKept\":true,\"flashes\":0,\"current\":[\"Settings\"],\"advancedOpen\":true,\"tab\":[\"Settings\"],\"onConsole\":false,\"wings\":null,\"logPref\":false,\"logLines\":0,\"strip\":false,\"menuStyle\":\"\",\"menuH\":357,\"scroll\":108,\"url\":\"/server/sy5uhexg/settings\"}",
+  "d1440-light nav-5-settings page error: Maximum call stack size exceeded.",
+  "d1440-light nav-5-settings page error: Maximum call stack size exceeded.",
+  "d1440-light nav-5-settings page error: Maximum call stack size exceeded.",
+  "d1440-light nav-5-settings page error: Maximum call stack size exceeded.",
+  "d1440-light nav-5-settings page error: Maximum call stack size exceeded.",
+  "d1440-light nav-5-settings page error: Maximum call stack size exceeded.",
+  "d1440-light nav-5-settings page error: Maximum call stack size exceeded.",
+  "d1440-light nav-5-settings page error: Maximum call stack size exceeded.",
+  "d1440-light nav-5-settings page error: Maximum call stack size exceeded.",
+  "d1440-light nav-5-settings page error: Maximum call stack size exceeded.",
+  "d1440-light nav-5-settings page error: Maximum call stack size exceeded.",
+  "d1440-light nav-5-settings page error: Maximum call stack size exceeded.",
+  "d1440-light nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-light nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-light nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-light nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-light nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-light nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-light nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-light nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-light nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-light nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-light nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-light nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-light nav-6-console: WRONG {\"clicked\":true,\"sockets\":1,\"live\":false,\"reloaded\":false,\"cardKept\":true,\"menuKept\":true,\"flashes\":0,\"current\":[\"Console\"],\"advancedOpen\":true,\"tab\":[\"Console\"],\"onConsole\":true,\"wings\":\"Connected to Wings\",\"logPref\":false,\"logLines\":0,\"strip\":false,\"menuStyle\":\"251px\",\"menuH\":251,\"scroll\":48,\"url\":\"/server/sy5uhexg/console\"}",
+  "d1440-light nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-light nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-light nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-light nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-light nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-light nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-light nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-light nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-light nav-6-console: click .ps-info-more-button: locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator('.ps-i",
+  "d1440-light nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-light nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-light nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-light nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-light nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-light nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-light nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-light nav-6-console page error: Maximum call stack size exceeded.",
+  "d1440-light layers-server-more: WRONG {\"bad\":null,\"items\":null}",
+  "d1440-light layers-tip-ps-info-address-data-tip: ok {\"text\":\"Copy server address\",\"ok\":true,\"on\":\"ps-tooltip is-visible\",\"opacity\":\"1\",\"rect\":\"390 160 145 33\"}",
+  "d1440-light layers-tip-ps-info-meta-item-data-tip: ok {\"text\":\"Paper\",\"ok\":true,\"on\":\"ps-tooltip is-visible\",\"opacity\":\"1\",\"rect\":\"269 160 56 33\"}",
+  "d1440-light layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-light layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-light layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-light layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-light layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-light layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-light layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-light layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-light layers-tip-ps-info-meta-item-data-tip: click [x-ref=\"notifyButton\"]: locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator('[x-re",
+  "d1440-light layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-light layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-light layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-light layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-light layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-light layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-light layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-light layers-tip-ps-info-meta-item-data-tip page error: Maximum call stack size exceeded.",
+  "d1440-light layers-bell: WRONG {\"bad\":null,\"n\":null}",
+  "d1440-light layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-light layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-light layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-light layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-light layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-light layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-light layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-light layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-light layers-bell: click [x-ref=\"adminButton\"]: locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator('[x-re",
+  "d1440-light layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-light layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-light layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-light layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-light layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-light layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-light layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-light layers-bell page error: Maximum call stack size exceeded.",
+  "d1440-light layers-admin: WRONG {\"bad\":null,\"n\":null}",
+  "d1440-light layers-admin page error: Maximum call stack size exceeded.",
+  "d1440-light layers-admin page error: Maximum call stack size exceeded.",
+  "d1440-light layers-admin page error: Maximum call stack size exceeded.",
+  "d1440-light layers-admin page error: Maximum call stack size exceeded.",
+  "d1440-light layers-admin page error: Maximum call stack size exceeded.",
+  "d1440-light layers-admin page error: Maximum call stack size exceeded.",
+  "d1440-light layers-admin page error: Maximum call stack size exceeded.",
+  "d1440-light layers-admin page error: Maximum call stack size exceeded.",
+  "d1440-light layers-admin: click .ps-account-button: locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator('.ps-a",
+  "d1440-light layers-admin page error: Maximum call stack size exceeded.",
+  "d1440-light layers-admin page error: Maximum call stack size exceeded.",
+  "d1440-light layers-admin page error: Maximum call stack size exceeded.",
+  "d1440-light layers-admin page error: Maximum call stack size exceeded.",
+  "d1440-light layers-admin page error: Maximum call stack size exceeded.",
+  "d1440-light layers-admin page error: Maximum call stack size exceeded.",
+  "d1440-light layers-admin page error: Maximum call stack size exceeded.",
+  "d1440-light layers-admin page error: Maximum call stack size exceeded.",
+  "d1440-light layers-account: WRONG {\"bad\":[],\"n\":0}",
+  "d1440-light scroll-overview: ok {\"want\":\"rgba(0, 0, 0, 0.16)\",\"got\":[\"rgba(0, 0, 0, 0.16)\"],\"boxes\":[\"ps-server-scroll 576\"],\"css\":true}",
+  "d1440-light scroll-settings: ok {\"want\":\"rgba(0, 0, 0, 0.16)\",\"got\":[\"rgba(0, 0, 0, 0.16)\",\"rgba(0, 0, 0, 0.16)\",\"rgba(0, 0, 0, 0.16)\"],\"boxes\":[\"fi-sidebar-nav 648\",\"fi-tabs.fi-contained 318\",\"fi-sc-tabs-tab.fi-active 318\"],\"css\":true,\"place\":\"/admin/simplify\"}",
+  "d1440-light scroll-frame: ok {\"want\":\"rgba(0, 0, 0, 0.16)\",\"got\":[\"rgba(0, 0, 0, 0.16)\",\"rgba(0, 0, 0, 0.16)\"],\"boxes\":[\"fi.ps-frame 836\",\"fi.ps-frame 836\"],\"css\":true,\"place\":\"/admin/servers?simplify_embed=1\"}",
+  "d1440-light scroll-frame page error: Maximum call stack size exceeded.",
+  "d1440-light scroll-frame page error: Maximum call stack size exceeded.",
+  "d1440-light scroll-frame page error: Maximum call stack size exceeded.",
+  "d1440-light scroll-frame page error: Maximum call stack size exceeded.",
+  "d1440-light scroll-frame page error: Maximum call stack size exceeded.",
+  "d1440-light scroll-frame page error: Maximum call stack size exceeded.",
+  "d1440-light scroll-frame page error: Maximum call stack size exceeded.",
+  "d1440-light scroll-frame page error: Maximum call stack size exceeded.",
+  "d1440-light scroll-console page error: Maximum call stack size exceeded.",
+  "d1440-light scroll-console page error: Maximum call stack size exceeded.",
+  "d1440-light scroll-console page error: Maximum call stack size exceeded.",
+  "d1440-light scroll-console page error: Maximum call stack size exceeded.",
+  "d1440-light scroll-console page error: Maximum call stack size exceeded.",
+  "d1440-light scroll-console page error: Maximum call stack size exceeded.",
+  "d1440-light scroll-console page error: Maximum call stack size exceeded.",
+  "d1440-light scroll-console page error: Maximum call stack size exceeded.",
+  "d1440-light scroll-console: WRONG {\"want\":\"rgba(255, 255, 255, 0.16)\",\"got\":[],\"boxes\":[],\"css\":true}",
+  "d1440-light other-plugins: ok {\"real\":true,\"before\":\"false\",\"after\":\"true\",\"leafs\":1,\"head\":\"Other plugins Site directory\",\"toggle\":\"Other plugins · Site directory\"}",
+  "d1440-light create-desktop: ok {\"pop\":{\"open\":true,\"title\":\"Create server\",\"src\":\"http://127.0.0.1:8001/admin/servers/create?simplify_embed=1\"},\"frame\":\"/admin/servers/create?simplify_embed=1\",\"maker\":false,\"chrome\":{\"bars\":[],\"title\":\"Create Server\"},\"page\":\"/simplify\"}",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light create-server-page: WRONG no Create server button on a server page",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light create-desktop page error: Maximum call stack size exceeded.",
+  "d1440-light create-host-admin: WRONG no Create in Admin → Servers (/admin/servers?simplify_embed=1)"
+ ]
+}
