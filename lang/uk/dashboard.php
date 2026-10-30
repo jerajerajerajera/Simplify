@@ -49,6 +49,7 @@ return [
         'clear' => 'Очистити',
         'archived' => 'Архів',
         'nothing_archived' => 'В архіві порожньо.',
+        'pinned' => 'Закріплено',
         'you_are_all_caught_up' => 'Усе прочитано.',
         'get_announcements_as_notifications_on_this' => 'Отримуйте оголошення як сповіщення на цьому пристрої.',
         'turn_on' => 'Увімкнути',

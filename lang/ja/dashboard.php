@@ -49,6 +49,7 @@ return [
         'clear' => '消去',
         'archived' => 'アーカイブ',
         'nothing_archived' => 'アーカイブはありません。',
+        'pinned' => 'ピン留め済み',
         'you_are_all_caught_up' => '新しいものはありません。',
         'get_announcements_as_notifications_on_this' => 'このデバイスでお知らせを通知として受け取ります。',
         'turn_on' => 'オンにする',

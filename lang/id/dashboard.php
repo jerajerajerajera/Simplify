@@ -49,6 +49,7 @@ return [
         'clear' => 'Hapus',
         'archived' => 'Diarsipkan',
         'nothing_archived' => 'Tidak ada yang diarsipkan.',
+        'pinned' => 'Disematkan',
         'you_are_all_caught_up' => 'Semua sudah dibaca.',
         'get_announcements_as_notifications_on_this' => 'Terima pengumuman sebagai notifikasi di perangkat ini.',
         'turn_on' => 'Aktifkan',

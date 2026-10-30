@@ -49,6 +49,7 @@ return [
         'clear' => 'Entfernen',
         'archived' => 'Archiviert',
         'nothing_archived' => 'Nichts archiviert.',
+        'pinned' => 'Angeheftet',
         'you_are_all_caught_up' => 'Du bist auf dem neuesten Stand.',
         'get_announcements_as_notifications_on_this' => 'Ankündigungen als Benachrichtigung auf diesem Gerät erhalten.',
         'turn_on' => 'Einschalten',

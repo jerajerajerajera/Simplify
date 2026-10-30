@@ -49,6 +49,7 @@ return [
         'clear' => 'Xóa',
         'archived' => 'Đã lưu trữ',
         'nothing_archived' => 'Không có gì được lưu trữ.',
+        'pinned' => 'Đã ghim',
         'you_are_all_caught_up' => 'Bạn đã xem hết.',
         'get_announcements_as_notifications_on_this' => 'Nhận thông cáo dưới dạng thông báo trên thiết bị này.',
         'turn_on' => 'Bật',

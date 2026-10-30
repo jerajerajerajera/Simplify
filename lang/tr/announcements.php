@@ -18,6 +18,7 @@ return [
         'button_label' => 'Düğme metni',
         'in_bell' => 'Herkesin bildirimlerine de ekle',
         'in_bell_help' => 'Onu gören herkes başlangıcından bitişine kadar zilde de bulur.',
+        'bell_pinned' => 'Herkesin bildirimlerine sabitle',
         'push' => 'Uygulama bildirimi olarak da gönder',
         'push_help' => 'Simplify onu, gören ve uygulama bildirimlerini açmış herkesin telefonlarına ve bilgisayarlarına gönderir. Başlangıçtan sonraki bir gün içinde çevrimiçi olan cihazlar da alır.',
         'in_game' => 'Oyun içine de gönder',

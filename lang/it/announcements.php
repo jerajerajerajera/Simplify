@@ -18,6 +18,7 @@ return [
         'button_label' => 'Testo del pulsante',
         'in_bell' => 'Metti anche nelle notifiche di tutti',
         'in_bell_help' => 'Chi lo vede lo trova anche nella campanella, dall\'inizio alla fine.',
+        'bell_pinned' => 'Fissa nelle notifiche di tutti',
         'push' => 'Invia anche come notifica dell\'app',
         'push_help' => 'Simplify lo invia a telefoni e computer di chi lo vede e ha attivato le notifiche dell\'app. Anche i dispositivi che si collegano entro un giorno dall\'inizio lo ricevono.',
         'in_game' => 'Invia anche nel gioco',

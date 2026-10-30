@@ -49,6 +49,7 @@ return [
         'clear' => 'Išvalyti',
         'archived' => 'Archyvas',
         'nothing_archived' => 'Archyvas tuščias.',
+        'pinned' => 'Prisegta',
         'you_are_all_caught_up' => 'Viskas perskaityta.',
         'get_announcements_as_notifications_on_this' => 'Gaukite skelbimus kaip pranešimus šiame įrenginyje.',
         'turn_on' => 'Įjungti',

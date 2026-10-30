@@ -18,6 +18,7 @@ return [
         'button_label' => 'Texte du bouton',
         'in_bell' => 'Ajouter aussi aux notifications de chacun',
         'in_bell_help' => 'Toutes les personnes qui la voient la trouvent aussi dans la cloche, du début à la fin.',
+        'bell_pinned' => 'Épingler dans les notifications de tous',
         'push' => 'Envoyer aussi en notification d\'app',
         'push_help' => 'Simplify l\'envoie aux téléphones et ordinateurs de toutes les personnes qui la voient et ont activé les notifications d\'app. Les appareils qui se connectent dans la journée suivant le début la reçoivent aussi.',
         'in_game' => 'Envoyer aussi en jeu',

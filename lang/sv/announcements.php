@@ -18,6 +18,7 @@ return [
         'button_label' => 'Knapptext',
         'in_bell' => 'Lägg också i allas aviseringar',
         'in_bell_help' => 'Alla som ser det hittar det också i klockan, från start till slut.',
+        'bell_pinned' => 'Fäst i allas aviseringar',
         'push' => 'Skicka också som appavisering',
         'push_help' => 'Simplify skickar det till telefoner och datorer hos alla som ser det och har slagit på appaviseringar. Enheter som kommer online inom en dag efter start får det också.',
         'in_game' => 'Skicka också i spelet',

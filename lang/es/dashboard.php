@@ -49,6 +49,7 @@ return [
         'clear' => 'Quitar',
         'archived' => 'Archivado',
         'nothing_archived' => 'Nada archivado.',
+        'pinned' => 'Fijado',
         'you_are_all_caught_up' => 'Estás al día.',
         'get_announcements_as_notifications_on_this' => 'Recibe los anuncios como notificaciones en este dispositivo.',
         'turn_on' => 'Activar',

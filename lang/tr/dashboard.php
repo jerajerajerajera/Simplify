@@ -49,6 +49,7 @@ return [
         'clear' => 'Temizle',
         'archived' => 'Arşivlendi',
         'nothing_archived' => 'Arşivde bir şey yok.',
+        'pinned' => 'Sabitlendi',
         'you_are_all_caught_up' => 'Her şeyi okudun.',
         'get_announcements_as_notifications_on_this' => 'Duyuruları bu cihazda bildirim olarak al.',
         'turn_on' => 'Aç',

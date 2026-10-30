@@ -49,6 +49,7 @@ return [
         'clear' => 'Rimuovi',
         'archived' => 'Archiviati',
         'nothing_archived' => 'Niente in archivio.',
+        'pinned' => 'Fissato',
         'you_are_all_caught_up' => 'Sei in pari.',
         'get_announcements_as_notifications_on_this' => 'Ricevi gli annunci come notifiche su questo dispositivo.',
         'turn_on' => 'Attiva',

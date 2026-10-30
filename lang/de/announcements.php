@@ -18,6 +18,7 @@ return [
         'button_label' => 'Button-Text',
         'in_bell' => 'Auch in die Benachrichtigungen aller legen',
         'in_bell_help' => 'Alle, die sie sehen, finden sie auch in der Glocke, vom Start bis zum Ende.',
+        'bell_pinned' => 'In allen Benachrichtigungen anheften',
         'push' => 'Auch als App-Benachrichtigung senden',
         'push_help' => 'Simplify sendet sie an die Handys und Computer aller, die sie sehen und App-Benachrichtigungen eingeschaltet haben. Geräte, die innerhalb eines Tages nach dem Start online kommen, bekommen sie auch.',
         'in_game' => 'Auch im Spiel senden',

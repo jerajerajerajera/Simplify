@@ -49,6 +49,7 @@ return [
         'clear' => '清除',
         'archived' => '已归档',
         'nothing_archived' => '没有已归档的内容。',
+        'pinned' => '已置顶',
         'you_are_all_caught_up' => '没有新消息。',
         'get_announcements_as_notifications_on_this' => '在此设备上以通知形式接收公告。',
         'turn_on' => '开启',

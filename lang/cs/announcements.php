@@ -18,6 +18,7 @@ return [
         'button_label' => 'Text tlačítka',
         'in_bell' => 'Dát také do oznámení všech',
         'in_bell_help' => 'Každý, kdo ho vidí, ho najde i ve zvonečku, od začátku do konce.',
+        'bell_pinned' => 'Připnout do upozornění všech',
         'push' => 'Poslat také jako upozornění aplikace',
         'push_help' => 'Simplify ho pošle na telefony a počítače všech, kdo ho vidí a mají zapnutá upozornění aplikace. Dostanou ho i zařízení, která se připojí do jednoho dne od začátku.',
         'in_game' => 'Poslat také do hry',

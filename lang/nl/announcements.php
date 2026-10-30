@@ -18,6 +18,7 @@ return [
         'button_label' => 'Knoptekst',
         'in_bell' => 'Ook in ieders meldingen zetten',
         'in_bell_help' => 'Iedereen die hem ziet vindt hem ook in de bel, vanaf de start tot het einde.',
+        'bell_pinned' => 'Vastzetten in ieders meldingen',
         'push' => 'Ook als app-melding sturen',
         'push_help' => 'Simplify stuurt hem naar de telefoons en computers van iedereen die hem ziet en app-meldingen aan heeft. Apparaten die binnen een dag na de start online komen, krijgen hem ook.',
         'in_game' => 'Ook in de game sturen',

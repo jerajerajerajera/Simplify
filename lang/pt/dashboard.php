@@ -49,6 +49,7 @@ return [
         'clear' => 'Remover',
         'archived' => 'Arquivadas',
         'nothing_archived' => 'Nada arquivado.',
+        'pinned' => 'Fixada',
         'you_are_all_caught_up' => 'Está em dia.',
         'get_announcements_as_notifications_on_this' => 'Receba anúncios como notificações neste dispositivo.',
         'turn_on' => 'Ativar',

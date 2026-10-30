@@ -49,6 +49,7 @@ return [
         'clear' => '지우기',
         'archived' => '보관됨',
         'nothing_archived' => '보관된 항목이 없습니다.',
+        'pinned' => '고정됨',
         'you_are_all_caught_up' => '새 알림이 없습니다.',
         'get_announcements_as_notifications_on_this' => '이 기기에서 공지를 알림으로 받습니다.',
         'turn_on' => '켜기',

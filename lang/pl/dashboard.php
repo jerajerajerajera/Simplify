@@ -49,6 +49,7 @@ return [
         'clear' => 'Wyczyść',
         'archived' => 'Zarchiwizowane',
         'nothing_archived' => 'Nic nie zarchiwizowano.',
+        'pinned' => 'Przypięte',
         'you_are_all_caught_up' => 'Wszystko przeczytane.',
         'get_announcements_as_notifications_on_this' => 'Otrzymuj ogłoszenia jako powiadomienia na tym urządzeniu.',
         'turn_on' => 'Włącz',

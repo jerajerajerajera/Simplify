@@ -49,6 +49,7 @@ return [
         'clear' => '清除',
         'archived' => '已歸檔',
         'nothing_archived' => '沒有已歸檔的內容。',
+        'pinned' => '已置頂',
         'you_are_all_caught_up' => '沒有新訊息。',
         'get_announcements_as_notifications_on_this' => '在此裝置上以通知形式接收公告。',
         'turn_on' => '開啟',

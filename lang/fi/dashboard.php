@@ -49,6 +49,7 @@ return [
         'clear' => 'Poista',
         'archived' => 'Arkistoitu',
         'nothing_archived' => 'Ei mitään arkistossa.',
+        'pinned' => 'Kiinnitetty',
         'you_are_all_caught_up' => 'Olet lukenut kaiken.',
         'get_announcements_as_notifications_on_this' => 'Saat tiedotteet ilmoituksina tälle laitteelle.',
         'turn_on' => 'Ota käyttöön',

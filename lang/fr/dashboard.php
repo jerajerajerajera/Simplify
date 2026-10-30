@@ -49,6 +49,7 @@ return [
         'clear' => 'Effacer',
         'archived' => 'Archivées',
         'nothing_archived' => 'Rien d’archivé.',
+        'pinned' => 'Épinglé',
         'you_are_all_caught_up' => 'Vous êtes à jour.',
         'get_announcements_as_notifications_on_this' => 'Recevez les annonces en notification sur cet appareil.',
         'turn_on' => 'Activer',
