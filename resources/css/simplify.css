@@ -1658,8 +1658,9 @@ html.ps-frame[data-ps-frame="native"] .s-health { border: 0; border-radius: 0; b
 .s-look-screen .s-preview-server { margin: 0 var(--s-space-3); }
 
 @media (max-width: 1023px) {
-  .s-look .fi-section-content > .s-look-preview, .s-look .s-look-preview { order: -1; }
-  .s-look-preview { background: var(--s-surface); padding-bottom: var(--s-space-2); top: 0; z-index: 5; }
+  /* The preview's own grid cell is as tall as the preview here, so the cell is what stays at the top. */
+  .s-look :has(> .s-look-preview) { background: var(--s-surface); order: -1; padding-bottom: var(--s-space-2); position: sticky; top: 0; z-index: 5; }
+  .s-look-preview { position: static; }
   .s-look-screen .s-preview-server { display: none; }
   .s-look-screen { padding: 0; }
 }
