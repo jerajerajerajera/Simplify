@@ -319,10 +319,10 @@ async function layersFlow() {
   }
   // The top bar's menus over the server card.
   const openNav = async () => { if (onPhone) await page.locator('.ps-tabbar button[aria-controls="ps-navigation-items"]').first().click().catch(() => {}); await sleep(500); };
-  for (const [btn, menu, id] of [['[x-ref="notifyButton"]', '#ps-notify-menu', 'bell'], ['[x-ref="adminButton"]', '#ps-admin-menu', 'admin'], ['.ps-account-button', '#ps-account-menu, .ps-account-menu', 'account']]) {
+  for (const [btn, menu, id] of [['[x-ref="notifyButton"]', '#ps-notify-menu', 'bell'], ['[x-ref="adminButton"]', '#ps-admin-menu', 'admin'], ['.ps-account-button', '#ps-account-actions', 'account']]) {
     await goto(serverUrl, 2500); await openNav();
     if (!(await click(btn, 800))) continue;
-    const h = await hits(menu.split(',')[0]) || await hits(menu.split(',')[1] || menu); await record(`layers-${id}`, `Lagen · ${id}-menu boven de serverkaart`);
+    const h = await hits(menu); await record(`layers-${id}`, `Lagen · ${id}-menu boven de serverkaart`);
     const seen = h && h.filter((x) => x.inWin);
     say(`layers-${id}`, seen && seen.length && seen.every((x) => x.ok), { bad: seen && seen.filter((x) => !x.ok).slice(0, 5), n: seen && seen.length });
     await escape();
