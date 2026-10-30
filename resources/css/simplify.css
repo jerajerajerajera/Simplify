@@ -1759,3 +1759,6 @@ html.ps-frame[data-ps-frame="native"] .s-health { border: 0; border-radius: 0; b
 .s-size img { flex: none; object-fit: contain; width: auto; }
 .s-size-small { height: 14px; }
 .s-size-large { height: 26px; }
+.dark .s-preset-bar { background: #09090b; }
+.s-look-screen .s-preview-bar-nav { display: none; }
+.s-look-screen .s-preview-bar-me { margin-left: auto; }
