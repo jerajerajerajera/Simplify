@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Összes értesítés',
+        'customize_notifications' => 'Értesítések testreszabása',
         'phone_navigation' => 'Telefonos navigáció',
         'servers' => 'Szerverek',
         'new' => 'Új',

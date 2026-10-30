@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Semua notifikasi',
+        'customize_notifications' => 'Sesuaikan notifikasi',
         'phone_navigation' => 'Navigasi ponsel',
         'servers' => 'Server',
         'new' => 'Baru',

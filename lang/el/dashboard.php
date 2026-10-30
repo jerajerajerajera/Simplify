@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Όλες οι ειδοποιήσεις',
+        'customize_notifications' => 'Προσαρμογή ειδοποιήσεων',
         'phone_navigation' => 'Πλοήγηση κινητού',
         'servers' => 'Διακομιστές',
         'new' => 'Νέο',

@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Alle varsler',
+        'customize_notifications' => 'Tilpass varsler',
         'phone_navigation' => 'Telefonnavigasjon',
         'servers' => 'Servere',
         'new' => 'Ny',

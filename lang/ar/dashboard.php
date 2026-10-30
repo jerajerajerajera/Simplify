@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'كل الإشعارات',
+        'customize_notifications' => 'تخصيص الإشعارات',
         'phone_navigation' => 'التنقل على الهاتف',
         'servers' => 'الخوادم',
         'new' => 'جديد',

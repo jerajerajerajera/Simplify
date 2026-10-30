@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Kaikki ilmoitukset',
+        'customize_notifications' => 'Mukauta ilmoituksia',
         'phone_navigation' => 'Puhelimen navigointi',
         'servers' => 'Palvelimet',
         'new' => 'Uusi',

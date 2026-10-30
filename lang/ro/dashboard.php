@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Toate notificările',
+        'customize_notifications' => 'Personalizează notificările',
         'phone_navigation' => 'Navigare pe telefon',
         'servers' => 'Servere',
         'new' => 'Nou',

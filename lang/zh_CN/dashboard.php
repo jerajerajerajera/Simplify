@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => '所有通知',
+        'customize_notifications' => '自定义通知',
         'phone_navigation' => '手机导航',
         'servers' => '服务器',
         'new' => '新',

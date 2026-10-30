@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Усе апавяшчэнні',
+        'customize_notifications' => 'Наладзіць апавяшчэнні',
         'phone_navigation' => 'Навігацыя на тэлефоне',
         'servers' => 'Серверы',
         'new' => 'Новае',

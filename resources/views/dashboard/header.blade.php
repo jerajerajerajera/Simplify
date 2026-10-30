@@ -54,23 +54,11 @@
                     <div class="ps-notify-head">
                         <strong class="ps-dropdown-title">{{ $u('notifications') }}</strong>
                         <button type="button" class="ps-btn is-sm is-subtle" x-show="unreadNotifications()" x-on:click="markNotifications([], true)">{{ $u('mark_all_read') }}</button>
-                        <a class="ps-btn is-sm is-icon is-subtle" x-show="boot.notifications_url" :href="boot.notifications_url" data-tip="{{ $u('notifications_on_this_device') }}" aria-label="{{ $u('notifications_on_this_device') }}"><svg aria-hidden="true"><use href="#ps-settings"/></svg></a>
+                        <button type="button" class="ps-btn is-sm is-icon is-subtle" x-on:click="openAllNotifications()" data-tip="{{ $u('all_notifications') }}" aria-label="{{ $u('all_notifications') }}"><svg aria-hidden="true"><use href="#ps-expand"/></svg></button>
                     </div>
                     <div class="ps-notify-list">
                         <template x-for="item in notifications()" :key="item.id">
-                            <div class="ps-notify-item" :class="['is-'+item.tone, item.unread === false ? 'is-read' : '']">
-                                <svg aria-hidden="true"><use :href="'#ps-'+(item.tone==='ok'?'check':item.tone==='info'?'info':'alert')"/></svg>
-                                <strong x-text="item.title"></strong>
-                                <small x-text="item.text" x-show="item.text"></small>
-                                <code class="ps-notify-command" x-show="item.command" x-text="item.command"></code>
-                                <small class="ps-notify-time" x-show="item.time" x-text="item.time"></small>
-                                <span class="ps-notify-actions" x-show="item.action || item.pelican">
-                                    <template x-if="item.action">
-                                        <a class="ps-btn is-sm" :href="item.action.url" x-on:click="item.pelican && item.unread && markNotifications([item.key], true)" x-text="item.action.label"></a>
-                                    </template>
-                                    <button type="button" class="ps-btn is-sm is-subtle" x-show="item.pelican" x-on:click="markNotifications([item.key], !item.unread)" x-text="item.unread ? @js($u('mark_read')) : @js($u('mark_as_unread'))"></button>
-                                </span>
-                            </div>
+                            @include('simplify::dashboard.notify-item')
                         </template>
                         <p class="ps-empty" x-show="!notifications().length">{{ $u('you_are_all_caught_up') }}</p>
                     </div>
@@ -78,7 +66,7 @@
                         <div class="ps-push-offer">
                             <svg aria-hidden="true"><use href="#ps-bell"/></svg>
                             <span>{{ $u('get_announcements_as_notifications_on_this') }}</span>
-                            <a class="ps-btn is-sm" :href="boot.notifications_url">{{ $u('turn_on') }}</a>
+                            <button type="button" class="ps-btn is-sm" x-on:click="openAllNotifications()">{{ $u('turn_on') }}</button>
                             <button type="button" class="ps-btn is-sm is-icon is-subtle" data-tip="{{ $u('not_now') }}" aria-label="{{ $u('not_now') }}" x-on:click="hidePushOffer()"><svg aria-hidden="true"><use href="#ps-close"/></svg></button>
                         </div>
                     </div>
@@ -156,4 +144,49 @@
             @include('simplify::dashboard.account')
         </div>
     </nav>
+    {{-- Every notification in one window, with what this account gets on its devices above the list. --}}
+    <template x-teleport="body">
+        <div class="ps-modal-layer ps-ui ps-notify-all" :class="{'dark': themeDark}" x-show="notifyAll" x-cloak :data-open="notifyAll" x-on:click.self="notifyAll=false" x-on:keydown.escape.window="notifyAll && (notifyAll=false)" :style="accentStyle('overview')">
+            <section class="ps-modal" role="dialog" aria-modal="true" aria-labelledby="ps-notify-all-title">
+                <header class="ps-modal-head">
+                    <h2 id="ps-notify-all-title">{{ $u('all_notifications') }}</h2>
+                    <button type="button" class="ps-btn is-sm is-subtle" x-show="unreadNotifications()" x-on:click="markNotifications([], true)">{{ $u('mark_all_read') }}</button>
+                    <button type="button" class="ps-btn is-icon is-subtle" x-on:click="notifyAll=false" aria-label="{{ $u('close') }}" data-tip="{{ $u('close') }}"><svg aria-hidden="true"><use href="#ps-close"/></svg></button>
+                </header>
+                <div class="ps-modal-body">
+                    <div class="ps-notify-settings" x-show="push.enabled">
+                        <span class="ps-label">{{ $u('customize_notifications') }}</span>
+                        <div class="ps-notify-setting">
+                            <svg aria-hidden="true"><use href="#ps-monitor"/></svg>
+                            <span><strong>{{ __('simplify::push.this_device') }}</strong>
+                                <small x-text="{ on: @js(__('simplify::push.this_on')), off: @js(__('simplify::push.this_off')), blocked: @js(__('simplify::push.blocked')), install: @js(__('simplify::push.install')), unsupported: @js(__('simplify::push.unsupported')) }[push.state]"></small></span>
+                            <span class="ps-notify-setting-actions">
+                                <button type="button" class="ps-btn is-sm" x-show="push.state === 'on'" :disabled="push.busy" x-on:click="pushTest()">{{ __('simplify::push.test') }}</button>
+                                <button type="button" class="ps-btn is-sm" x-show="push.state === 'on'" :disabled="push.busy" x-on:click="pushOff()">{{ __('simplify::push.turn_off') }}</button>
+                                <button type="button" class="ps-btn is-sm is-primary" x-show="push.state === 'off' || push.state === 'blocked'" :disabled="push.busy" x-on:click="pushOn()">{{ __('simplify::push.turn_on') }}</button>
+                            </span>
+                        </div>
+                        <label class="ps-notify-setting">
+                            <svg aria-hidden="true"><use href="#ps-bell"/></svg>
+                            <span><strong>{{ __('simplify::push.messages') }}</strong><small>{{ __('simplify::push.messages_help') }}</small></span>
+                            <input type="checkbox" class="ps-switch" :checked="push.messages" x-on:change="pushChoose('messages', $event.target.checked)">
+                        </label>
+                        <label class="ps-notify-setting" x-show="push.updates !== null">
+                            <svg aria-hidden="true"><use href="#ps-download"/></svg>
+                            <span><strong>{{ __('simplify::push.updates') }}</strong><small>{{ __('simplify::push.updates_help') }}</small></span>
+                            <input type="checkbox" class="ps-switch" :checked="push.updates" x-on:change="pushChoose('updates', $event.target.checked)">
+                        </label>
+                    </div>
+                    <span class="ps-label">{{ $u('notifications') }}</span>
+                    <div class="ps-notify-list">
+                        <template x-for="item in notifications()" :key="item.id">
+                            @include('simplify::dashboard.notify-item')
+                        </template>
+                        <p class="ps-empty" x-show="!notifications().length">{{ $u('you_are_all_caught_up') }}</p>
+                    </div>
+                    <button type="button" class="ps-btn is-sm is-subtle ps-notify-more" x-show="feed.more" x-on:click="loadNotificationPage()" :disabled="feed.loading" x-text="feed.loading ? @js($u('loading')) : @js($u('show_more'))"></button>
+                </div>
+            </section>
+        </div>
+    </template>
 </header>

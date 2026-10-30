@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'すべての通知',
+        'customize_notifications' => '通知をカスタマイズ',
         'phone_navigation' => 'スマートフォン用ナビゲーション',
         'servers' => 'サーバー',
         'new' => '新規',

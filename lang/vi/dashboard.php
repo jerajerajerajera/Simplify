@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Tất cả thông báo',
+        'customize_notifications' => 'Tùy chỉnh thông báo',
         'phone_navigation' => 'Điều hướng trên điện thoại',
         'servers' => 'Máy chủ',
         'new' => 'Mới',

@@ -7,11 +7,13 @@ namespace Simplify\Core\Overview;
 use App\Filament\Pages\Auth\EditProfile;
 use App\Models\User;
 use Filament\Facades\Filament;
+use InvalidArgumentException;
 use Livewire\Attributes\Renderless;
 use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\App\Pages\Notifications;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Health\HostHealth;
+use Simplify\Core\Push\Push;
 use Simplify\Core\Support\Assets;
 use Simplify\Core\Support\Brand;
 use Simplify\Core\Support\PanelSettings;
@@ -81,6 +83,69 @@ trait Shell
         Bell::mark($this->user(), $ids, $read);
 
         return Bell::page($this->user());
+    }
+
+    /**
+     * What this account gets on its devices, for the window with every notification; null while app notifications
+     * are off for the panel.
+     *
+     * @return array{key: string, current: bool, messages: bool, updates: ?bool}|null
+     */
+    #[Renderless]
+    public function pushSettings(?string $endpoint): ?array
+    {
+        if (! Push::enabled()) {
+            return null;
+        }
+        $user = $this->user();
+
+        return [
+            'key' => Push::publicKey(),
+            'current' => Push::current($user, $endpoint) !== null,
+            'messages' => Push::wants($user, 'messages'),
+            'updates' => $user->isRootAdmin() ? Push::wants($user, 'updates') : null,
+        ];
+    }
+
+    #[Renderless]
+    public function pushChoose(string $kind, bool $on): void
+    {
+        $user = $this->user();
+        abort_unless(Push::enabled() && ($kind === 'messages' || ($kind === 'updates' && $user->isRootAdmin())), 403);
+        Push::choose($user, $kind, $on);
+    }
+
+    /**
+     * @param  array<string, mixed>  $subscription
+     * @return array{ok: bool, message: string}
+     */
+    #[Renderless]
+    public function pushOn(array $subscription, string $label): array
+    {
+        abort_unless(Push::enabled(), 403);
+        try {
+            Push::subscribe($this->user(), $subscription, $label);
+        } catch (InvalidArgumentException) {
+            return ['ok' => false, 'message' => __('simplify::push.unsupported')];
+        }
+
+        return ['ok' => true, 'message' => __('simplify::push.on')];
+    }
+
+    #[Renderless]
+    public function pushOff(string $endpoint): void
+    {
+        Push::remove($this->user(), $endpoint);
+    }
+
+    /** @return array{ok: bool, gone: bool, message: string} */
+    #[Renderless]
+    public function pushTest(?string $endpoint): array
+    {
+        $device = Push::current($this->user(), $endpoint);
+        $result = $device ? Push::test($device, __('simplify::push.test_title'), __('simplify::push.test_body')) : 'gone';
+
+        return ['ok' => $result === 'sent', 'gone' => $result === 'gone', 'message' => __('simplify::push.test_'.$result)];
     }
 
     private function user(): User

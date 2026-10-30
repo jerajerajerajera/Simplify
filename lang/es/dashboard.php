@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Todas las notificaciones',
+        'customize_notifications' => 'Personalizar notificaciones',
         'phone_navigation' => 'Navegación del móvil',
         'servers' => 'Servidores',
         'new' => 'Nuevo',

@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Visi pranešimai',
+        'customize_notifications' => 'Tinkinti pranešimus',
         'phone_navigation' => 'Naršymas telefone',
         'servers' => 'Serveriai',
         'new' => 'Nauja',

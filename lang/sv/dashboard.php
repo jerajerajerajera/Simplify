@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Alla aviseringar',
+        'customize_notifications' => 'Anpassa aviseringar',
         'phone_navigation' => 'Telefonnavigering',
         'servers' => 'Servrar',
         'new' => 'Ny',

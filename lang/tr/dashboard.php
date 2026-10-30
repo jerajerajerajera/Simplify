@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Tüm bildirimler',
+        'customize_notifications' => 'Bildirimleri özelleştir',
         'phone_navigation' => 'Telefon gezintisi',
         'servers' => 'Sunucular',
         'new' => 'Yeni',

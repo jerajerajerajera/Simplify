@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'Všetky upozornenia',
+        'customize_notifications' => 'Prispôsobiť upozornenia',
         'phone_navigation' => 'Navigácia na telefóne',
         'servers' => 'Servery',
         'new' => 'Nové',

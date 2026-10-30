@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => '모든 알림',
+        'customize_notifications' => '알림 사용자 지정',
         'phone_navigation' => '휴대폰 탐색',
         'servers' => '서버',
         'new' => '새로 만들기',

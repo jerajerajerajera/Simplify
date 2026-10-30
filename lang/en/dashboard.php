@@ -2,6 +2,8 @@
 
 return [
     'ui' => [
+        'all_notifications' => 'All notifications',
+        'customize_notifications' => 'Customize notifications',
         'phone_navigation' => 'Phone navigation',
         'servers' => 'Servers',
         'new' => 'New',

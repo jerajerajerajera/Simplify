@@ -460,3 +460,18 @@ html.ps-standalone { -webkit-tap-highlight-color: transparent; }
 
 /* A command to copy, in a notification (the cache warning for root admins). */
 .ps-notify-command { display: block; grid-column: 2; margin-top: 4px; padding: 6px 8px; border: 1px solid var(--ps-line); border-radius: var(--ps-radius-sm); background: var(--ps-raised); color: var(--ps-ink); font: 11.5px/1.45 var(--ps-mono); overflow-wrap: anywhere; user-select: all; }
+
+/* The window with every notification: what this account gets on its devices first, then the whole list. */
+.ps-notify-all .ps-modal { --ps-modal-w: 680px; --ps-modal-h: 760px; }
+.ps-notify-all .ps-modal-body { display: grid; align-content: start; gap: 8px; }
+.ps-notify-all .ps-notify-list { margin: 0 -4px 8px; }
+.ps-notify-settings { display: grid; gap: 6px; margin-bottom: 14px; }
+.ps-notify-setting { display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 8px 12px; border: 1px solid var(--ps-line); border-radius: var(--ps-radius); background: var(--ps-surface); cursor: default; }
+label.ps-notify-setting { cursor: pointer; }
+.ps-notify-setting > svg { flex: none; width: 18px; height: 18px; fill: none; stroke: var(--ps-accent); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.ps-notify-setting > span:not(.ps-notify-setting-actions) { display: grid; flex: 1; gap: 1px; min-width: 0; }
+.ps-notify-setting strong { font-size: 13.5px; font-weight: 650; }
+.ps-notify-setting small { color: var(--ps-muted); font-size: 12px; }
+.ps-notify-setting .ps-switch { flex: none; margin-inline-start: auto; }
+.ps-notify-setting-actions { display: flex; flex: none; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
+@media (max-width: 600px) { .ps-notify-setting:has(.ps-notify-setting-actions) { flex-wrap: wrap; } .ps-notify-setting-actions { flex-basis: 100%; justify-content: flex-start; padding-inline-start: 30px; } }

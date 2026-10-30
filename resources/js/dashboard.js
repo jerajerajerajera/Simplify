@@ -56,6 +56,8 @@
       incomingShown: false,
       incomingQueue: [],
       pushOffer: false,
+      notifyAll: false,
+      push: { enabled: false, state: 'unsupported', busy: false, endpoint: null, key: null, messages: true, updates: null },
       adminMenu: false,
       adminOpen: null,
       overviewCompact: false,
@@ -231,6 +233,85 @@
         try {
           localStorage.setItem('pelicanSimplify.pushOffer', 'hidden');
         } catch {}
+      },
+      /** The window with every notification; above the list, what this account gets on its devices. */
+      async openAllNotifications() {
+        this.notifyMenu = false;
+        this.notifyAll = true;
+        if (!this.feed.items.length) this.loadNotificationPage(true);
+        try {
+          const registration = 'serviceWorker' in navigator && window.isSecureContext ? await navigator.serviceWorker.getRegistration() : null;
+          const subscription = 'PushManager' in window ? await registration?.pushManager.getSubscription() : null;
+          const settings = await wire.pushSettings(subscription?.endpoint || null);
+          if (!settings) return (this.push.enabled = false);
+          const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+          const state = !registration || !('PushManager' in window)
+            ? (/iPhone|iPad/.test(navigator.userAgent) && !standalone ? 'install' : 'unsupported')
+            : Notification.permission === 'denied' ? 'blocked' : settings.current ? 'on' : 'off';
+          this.push = { ...this.push, ...settings, enabled: true, state, endpoint: subscription?.endpoint || null };
+        } catch {
+          this.push.enabled = false;
+        }
+      },
+      pushLabel() {
+        const agent = navigator.userAgent;
+        const browser = /Edg\//.test(agent) ? 'Edge' : /Firefox\//.test(agent) ? 'Firefox' : /SamsungBrowser/.test(agent) ? 'Samsung Internet'
+          : /Chrome\//.test(agent) ? 'Chrome' : /Safari\//.test(agent) ? 'Safari' : 'Browser';
+        const system = /iPhone/.test(agent) ? 'iPhone' : /iPad/.test(agent) ? 'iPad' : /Android/.test(agent) ? 'Android'
+          : /Windows/.test(agent) ? 'Windows' : /Mac OS X/.test(agent) ? 'Mac' : /Linux/.test(agent) ? 'Linux' : '';
+        return browser + (system ? ' · ' + system : '');
+      },
+      async pushOn() {
+        this.push.busy = true;
+        try {
+          if (await Notification.requestPermission() !== 'granted') return (this.push.state = 'blocked');
+          const registration = await navigator.serviceWorker.getRegistration();
+          const bytes = Uint8Array.from(atob(this.push.key.replace(/-/g, '+').replace(/_/g, '/')), (c) => c.charCodeAt(0));
+          let subscription = await registration.pushManager.getSubscription();
+          // A subscription made with an older panel key cannot be used anymore.
+          const old = subscription?.options?.applicationServerKey;
+          if (subscription && old && !new Uint8Array(old).every((value, index) => value === bytes[index])) {
+            await subscription.unsubscribe();
+            subscription = null;
+          }
+          subscription ||= await registration.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: bytes });
+          const result = await wire.pushOn(subscription.toJSON(), this.pushLabel());
+          this.toast(result.message, result.ok ? 'ok' : 'warn');
+          if (result.ok) {
+            this.push.endpoint = subscription.endpoint;
+            this.push.state = 'on';
+            this.pushOffer = false;
+          } else {
+            await subscription.unsubscribe().catch(() => {});
+          }
+        } catch {
+          this.push.state = 'unsupported';
+        } finally {
+          this.push.busy = false;
+        }
+      },
+      async pushOff() {
+        this.push.busy = true;
+        try {
+          await (await (await navigator.serviceWorker.getRegistration())?.pushManager.getSubscription())?.unsubscribe();
+        } catch {}
+        await wire.pushOff(this.push.endpoint || '').catch(() => {});
+        this.push.state = 'off';
+        this.push.busy = false;
+      },
+      async pushTest() {
+        this.push.busy = true;
+        try {
+          const result = await wire.pushTest(this.push.endpoint);
+          if (result.gone) this.push.state = 'off';
+          this.toast(result.message, result.ok ? 'ok' : 'warn');
+        } catch {} finally {
+          this.push.busy = false;
+        }
+      },
+      async pushChoose(kind, on) {
+        this.push[kind] = on;
+        await wire.pushChoose(kind, on).catch(() => (this.push[kind] = !on));
       },
       /** The first (reset) or next page of Pelican's notifications, read ones included. */
       async loadNotificationPage(reset = false) {
