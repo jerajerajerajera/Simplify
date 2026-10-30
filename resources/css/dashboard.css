@@ -816,6 +816,9 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   .ps-host-head.is-page { display: none !important; }
   /* One page from Admin tools has no menu button: its title bar stays, with the page's buttons and the close button. */
   .ps-host.is-single .ps-host-head.is-page { display: flex !important; padding: 0 12px; }
+  /* Too narrow for the page name and a labelled button: the section name stays, the add button shows its icon only, as in host mode. */
+  .ps-host.is-single .ps-host-head.is-page:has(.ps-frame-tools) > small { display: none; }
+  .ps-host.is-single .ps-frame-tools .ps-btn.is-primary { flex: none; width: var(--ps-h-sm); padding: 0; gap: 0; font-size: 0; }
     }
 /* Low screens (a phone on its side) scroll the page as a whole, so the host block sizes itself instead of sharing what is left of the screen (nothing). */
 @media (max-height: 500px) { .ps-host { flex: none; } }
