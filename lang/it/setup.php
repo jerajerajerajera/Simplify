@@ -9,7 +9,7 @@ return [
     'steps' => [
         'panel' => 'Il tuo pannello',
         'look' => 'Aspetto',
-        'app' => 'App',
+        'app' => 'La tua app per telefono',
         'addons' => 'Add-on',
         'finish' => 'Configura gli add-on',
     ],
@@ -63,6 +63,9 @@ return [
     'recommended' => 'Consigliato',
     'set_up_later' => 'Si imposta nell\'ultimo passaggio',
     'free_on_hub' => 'Installalo dal Pelican Hub',
-    'addon_pages' => 'Impostazioni degli add-on',
-    'addon_pages_help' => 'Ogni add-on ha anche una propria pagina di impostazioni, per tutto ciò che la configurazione non chiede.',
+    'addon_pages' => 'Ogni add-on ha la sua pagina di impostazioni',
+    'addon_pages_help' => 'Per tutto ciò che la configurazione non chiede. Le trovi anche più tardi nelle impostazioni di Simplify, sotto Add-on.',
+    'done_intro' => 'Tutto ciò che hai scelto è salvato. Puoi cambiarlo quando vuoi nelle impostazioni di Simplify.',
+    'open_panel' => 'Vai al pannello',
+    'no_questions' => 'Nessuno dei tuoi add-on chiede qualcosa qui. Premi Termina la configurazione per salvare le tue scelte.',
 ];

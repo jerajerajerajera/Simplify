@@ -9,7 +9,7 @@ return [
     'steps' => [
         'panel' => 'A paneled',
         'look' => 'Megjelenés',
-        'app' => 'Alkalmazás',
+        'app' => 'A telefonos alkalmazásod',
         'addons' => 'Kiegészítők',
         'finish' => 'Bővítmények beállítása',
     ],
@@ -63,6 +63,9 @@ return [
     'recommended' => 'Ajánlott',
     'set_up_later' => 'Az utolsó lépésben állítható be',
     'free_on_hub' => 'Telepítsd a Pelican Hubról',
-    'addon_pages' => 'Bővítmények beállításai',
-    'addon_pages_help' => 'Minden bővítménynek saját beállítási oldala is van mindarra, amit a beállítás nem kérdez.',
+    'addon_pages' => 'Minden bővítménynek saját beállítási oldala van',
+    'addon_pages_help' => 'Mindenhez, amit a beállítás nem kérdez. Később is megtalálod őket a Simplify beállításaiban, a Bővítmények alatt.',
+    'done_intro' => 'Minden választásod mentve van. Bármikor módosíthatod a Simplify beállításaiban.',
+    'open_panel' => 'Ugrás a panelre',
+    'no_questions' => 'Egyik bővítményed sem kérdez itt semmit. Nyomd meg a(z) Beállítás befejezése gombot a választások mentéséhez.',
 ];

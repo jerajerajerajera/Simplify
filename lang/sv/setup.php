@@ -9,7 +9,7 @@ return [
     'steps' => [
         'panel' => 'Din panel',
         'look' => 'Utseende',
-        'app' => 'App',
+        'app' => 'Din mobilapp',
         'addons' => 'Tillägg',
         'finish' => 'Ställ in add-ons',
     ],
@@ -63,6 +63,9 @@ return [
     'recommended' => 'Rekommenderas',
     'set_up_later' => 'Ställs in i sista steget',
     'free_on_hub' => 'Installera den från Pelican Hub',
-    'addon_pages' => 'Inställningar för add-ons',
-    'addon_pages_help' => 'Varje add-on har också en egen inställningssida, för allt som installationen inte frågar om.',
+    'addon_pages' => 'Varje tillägg har en egen sida med inställningar',
+    'addon_pages_help' => 'För allt som installationen inte frågar. Du hittar dem också senare i Simplifys inställningar under Tillägg.',
+    'done_intro' => 'Allt du valde är sparat. Du kan ändra det när som helst i Simplifys inställningar.',
+    'open_panel' => 'Till panelen',
+    'no_questions' => 'Inget av dina tillägg frågar något här. Tryck på Slutför konfigurationen för att spara dina val.',
 ];

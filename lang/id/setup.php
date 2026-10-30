@@ -9,7 +9,7 @@ return [
     'steps' => [
         'panel' => 'Panel Anda',
         'look' => 'Tampilan',
-        'app' => 'Aplikasi',
+        'app' => 'Aplikasi ponselmu',
         'addons' => 'Add-on',
         'finish' => 'Atur add-on',
     ],
@@ -63,6 +63,9 @@ return [
     'recommended' => 'Disarankan',
     'set_up_later' => 'Diatur di langkah terakhir',
     'free_on_hub' => 'Pasang dari Pelican Hub',
-    'addon_pages' => 'Pengaturan add-on',
-    'addon_pages_help' => 'Setiap add-on juga punya halaman pengaturan sendiri untuk semua yang tidak ditanyakan penyiapan.',
+    'addon_pages' => 'Setiap add-on punya halaman pengaturannya sendiri',
+    'addon_pages_help' => 'Untuk semua hal yang tidak ditanyakan penyiapan. Nanti kamu juga bisa menemukannya di pengaturan Simplify, di bagian Add-on.',
+    'done_intro' => 'Semua pilihanmu sudah disimpan. Kamu bisa mengubahnya kapan saja di pengaturan Simplify.',
+    'open_panel' => 'Ke panel',
+    'no_questions' => 'Tidak ada add-on yang menanyakan apa pun di sini. Tekan Selesaikan penyiapan untuk menyimpan pilihanmu.',
 ];

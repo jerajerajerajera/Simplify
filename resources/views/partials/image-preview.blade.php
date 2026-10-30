@@ -1,19 +1,8 @@
-{{-- Where an uploaded image ends up, drawn small under its upload field: the top bar, a phone's home screen or Android's status bar. --}}
+{{-- Where an uploaded app image ends up, drawn small: a phone's home screen or Android's status bar. --}}
 @php($t = 'simplify::settings.appearance.preview.')
 <div class="s-preview">
     <span class="s-preview-label"><x-filament::icon icon="tabler-eye" /> {{ __($t.$kind) }}</span>
-    @if ($kind === 'logo')
-        <div class="s-preview-bar">
-            @if ($image)
-                <img src="{{ $image }}" alt="" style="height: {{ round($height * .75) }}px">
-            @endif
-            @if (! $image || $text)
-                <strong style="{{ $style }}">{{ $name }}</strong>
-            @endif
-            <span class="s-preview-bar-nav"><i></i><i></i><i></i></span>
-            <span class="s-preview-bar-me"></span>
-        </div>
-    @elseif ($kind === 'icon')
+    @if ($kind === 'icon')
         <div class="s-preview-home">
             @foreach ([1, 2, 3] as $other)
                 <span class="s-preview-app"><i></i><b></b></span>

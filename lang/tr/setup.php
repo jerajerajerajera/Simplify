@@ -9,7 +9,7 @@ return [
     'steps' => [
         'panel' => 'Panelin',
         'look' => 'Görünüm',
-        'app' => 'Uygulama',
+        'app' => 'Telefon uygulaman',
         'addons' => 'Ek özellikler',
         'finish' => 'Eklentileri ayarla',
     ],
@@ -63,6 +63,9 @@ return [
     'recommended' => 'Önerilen',
     'set_up_later' => 'Son adımda ayarlanır',
     'free_on_hub' => 'Pelican Hub\'dan kur',
-    'addon_pages' => 'Eklenti ayarları',
-    'addon_pages_help' => 'Her eklentinin, kurulumun sormadığı her şey için kendi ayar sayfası da vardır.',
+    'addon_pages' => 'Her eklentinin kendi ayar sayfası var',
+    'addon_pages_help' => 'Kurulumun sormadığı her şey için. Bunları daha sonra Simplify ayarlarında Eklentiler altında da bulursun.',
+    'done_intro' => 'Seçtiğin her şey kaydedildi. Simplify ayarlarından istediğin zaman değiştirebilirsin.',
+    'open_panel' => 'Panele git',
+    'no_questions' => 'Eklentilerinden hiçbiri burada bir şey sormuyor. Seçimlerini kaydetmek için Kurulumu bitir düğmesine bas.',
 ];

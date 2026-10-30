@@ -9,7 +9,7 @@ return [
     'steps' => [
         'panel' => 'パネル',
         'look' => '外観',
-        'app' => 'アプリ',
+        'app' => 'スマホアプリ',
         'addons' => 'アドオン',
         'finish' => 'アドオンの設定',
     ],
@@ -63,6 +63,9 @@ return [
     'recommended' => 'おすすめ',
     'set_up_later' => '最後のステップで設定',
     'free_on_hub' => 'Pelican Hub からインストール',
-    'addon_pages' => 'アドオンの設定',
-    'addon_pages_help' => 'セットアップで聞かれない項目は、各アドオンの設定ページで変更できます。',
+    'addon_pages' => '各アドオンには専用の設定ページがあります',
+    'addon_pages_help' => 'セットアップで聞かれない項目のためのページです。あとから Simplify の設定の「アドオン」でも見つかります。',
+    'done_intro' => '選んだ内容はすべて保存されました。Simplify の設定でいつでも変更できます。',
+    'open_panel' => 'パネルへ',
+    'no_questions' => 'ここで質問するアドオンはありません。セットアップを完了 を押して選択を保存してください。',
 ];

@@ -42,8 +42,8 @@ trait Shell
                 'pelican_suffix' => (bool) $settings['pelican_suffix'],
                 'seasonal' => (bool) $settings['seasonal'],
                 'brand' => [
-                    'mode' => $logo ? 'logo' : 'text', 'logo_url' => $logo ? url('/simplify/brand/'.$logo) : null, 'logo_height' => $settings['logo_height'],
-                    'logo_text' => (bool) $settings['logo_text'], 'text_style' => Brand::textStyle($settings),
+                    'mode' => Brand::show($settings), 'logo_url' => $logo && Brand::show($settings) !== 'text' ? url('/simplify/brand/'.$logo) : null, 'logo_height' => $settings['logo_height'],
+                    'logo_text' => Brand::show($settings) === 'both', 'text_style' => Brand::textStyle($settings),
                 ],
             ],
             'panel_born' => self::panelBorn(),

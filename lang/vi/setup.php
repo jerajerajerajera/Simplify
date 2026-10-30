@@ -9,7 +9,7 @@ return [
     'steps' => [
         'panel' => 'Panel của bạn',
         'look' => 'Giao diện',
-        'app' => 'Ứng dụng',
+        'app' => 'Ứng dụng điện thoại của bạn',
         'addons' => 'Tiện ích bổ sung',
         'finish' => 'Thiết lập tiện ích',
     ],
@@ -63,6 +63,9 @@ return [
     'recommended' => 'Khuyên dùng',
     'set_up_later' => 'Thiết lập ở bước cuối',
     'free_on_hub' => 'Cài từ Pelican Hub',
-    'addon_pages' => 'Cài đặt tiện ích',
-    'addon_pages_help' => 'Mỗi tiện ích còn có trang cài đặt riêng cho những gì phần thiết lập không hỏi.',
+    'addon_pages' => 'Mỗi tiện ích bổ sung có trang cài đặt riêng',
+    'addon_pages_help' => 'Cho mọi thứ mà phần thiết lập không hỏi. Sau này bạn cũng tìm thấy chúng trong cài đặt của Simplify, mục Tiện ích bổ sung.',
+    'done_intro' => 'Mọi lựa chọn của bạn đã được lưu. Bạn có thể đổi bất cứ lúc nào trong cài đặt của Simplify.',
+    'open_panel' => 'Đến bảng điều khiển',
+    'no_questions' => 'Không có tiện ích bổ sung nào hỏi gì ở đây. Nhấn Hoàn tất thiết lập để lưu lựa chọn.',
 ];

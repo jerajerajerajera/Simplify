@@ -9,7 +9,7 @@ return [
     'steps' => [
         'panel' => 'Je paneel',
         'look' => 'Uiterlijk',
-        'app' => 'App',
+        'app' => 'Je telefoon-app',
         'addons' => 'Add-ons',
         'finish' => 'Add-ons instellen',
     ],
@@ -63,6 +63,9 @@ return [
     'recommended' => 'Aanbevolen',
     'set_up_later' => 'Instellen in de laatste stap',
     'free_on_hub' => 'Installeer via de Pelican Hub',
-    'addon_pages' => 'Instellingen van add-ons',
-    'addon_pages_help' => 'Elke add-on heeft ook een eigen instellingenpagina, voor alles wat de setup niet vraagt.',
+    'addon_pages' => 'Elke add-on heeft een eigen pagina met instellingen',
+    'addon_pages_help' => 'Voor alles wat de setup niet vraagt. Je vindt ze later ook in de instellingen van Simplify onder Add-ons.',
+    'done_intro' => 'Alles wat je koos is opgeslagen. Je kunt het altijd wijzigen in de instellingen van Simplify.',
+    'open_panel' => 'Naar het paneel',
+    'no_questions' => 'Geen van je add-ons vraagt hier iets. Druk op Instellen afronden om je keuzes op te slaan.',
 ];

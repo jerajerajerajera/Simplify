@@ -119,8 +119,7 @@ final class Settings extends Page implements HasForms
                     SettingsFields::refresh(),
                 ]),
                 Tab::make(__('simplify::settings.appearance.tab'))->key('appearance')->icon('tabler-palette')->schema([
-                    SettingsFields::colours(),
-                    SettingsFields::brand(),
+                    SettingsFields::look(),
                     SettingsFields::app(),
                     SettingsFields::banners(),
                 ]),

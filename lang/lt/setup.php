@@ -9,7 +9,7 @@ return [
     'steps' => [
         'panel' => 'Jūsų skydelis',
         'look' => 'Išvaizda',
-        'app' => 'Programėlė',
+        'app' => 'Jūsų telefono programėlė',
         'addons' => 'Priedai',
         'finish' => 'Nustatyti priedus',
     ],
@@ -63,6 +63,9 @@ return [
     'recommended' => 'Rekomenduojama',
     'set_up_later' => 'Nustatoma paskutiniame žingsnyje',
     'free_on_hub' => 'Įdiek iš Pelican Hub',
-    'addon_pages' => 'Priedų nustatymai',
-    'addon_pages_help' => 'Kiekvienas priedas turi ir savo nustatymų puslapį viskam, ko sąranka neklausia.',
+    'addon_pages' => 'Kiekvienas priedas turi savo nustatymų puslapį',
+    'addon_pages_help' => 'Viskam, ko sąranka neklausia. Vėliau juos rasite ir Simplify nustatymuose, skiltyje Priedai.',
+    'done_intro' => 'Viskas, ką pasirinkote, išsaugota. Bet kada galite pakeisti Simplify nustatymuose.',
+    'open_panel' => 'Eiti į skydelį',
+    'no_questions' => 'Nė vienas jūsų priedas čia nieko neklausia. Spauskite Baigti sąranką, kad išsaugotumėte pasirinkimus.',
 ];

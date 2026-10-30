@@ -9,7 +9,7 @@ return [
     'steps' => [
         'panel' => '你的面板',
         'look' => '外觀',
-        'app' => '應用程式',
+        'app' => '你的手機 App',
         'addons' => '附加元件',
         'finish' => '設定附加元件',
     ],
@@ -63,6 +63,9 @@ return [
     'recommended' => '推薦',
     'set_up_later' => '在最後一步設定',
     'free_on_hub' => '從 Pelican Hub 安裝',
-    'addon_pages' => '附加元件設定',
-    'addon_pages_help' => '每個附加元件也有自己的設定頁面，用於設定精靈未詢問的內容。',
+    'addon_pages' => '每個附加元件都有自己的設定頁面',
+    'addon_pages_help' => '用於設定精靈未詢問的所有項目。之後也能在 Simplify 設定的「附加元件」中找到。',
+    'done_intro' => '你的所有選擇都已儲存。你可以隨時在 Simplify 設定中變更。',
+    'open_panel' => '前往面板',
+    'no_questions' => '你的附加元件在這裡沒有任何問題。按「完成設定」儲存你的選擇。',
 ];
