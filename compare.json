@@ -1,0 +1,61 @@
+{
+ "base": "http://127.0.0.1:8001",
+ "product": null,
+ "stands": {
+  "laag1366": {
+   "url": "http://127.0.0.1:8001/pelican-simplify-settings",
+   "tried": [
+    "/simplify http://127.0.0.1:8001/pelican-simplify-settings PelicanSimplify settings - Pelican",
+    "/ http://127.0.0.1:8001/pelican-simplify-settings PelicanSimplify settings - Pelican"
+   ],
+   "grid": {
+    "window": "1366x650",
+    "servers": 0,
+    "fitWithoutScrolling": 0,
+    "columns": 0,
+    "rowPitch": null,
+    "card": null,
+    "cardInner": null,
+    "grid": null,
+    "scrollArea": {
+     "h": 1403,
+     "w": 1366,
+     "top": 0,
+     "pad": "0 0 0 0",
+     "gap": null
+    },
+    "firstServerTop": null,
+    "scrolls": 753,
+    "pageScroll": 753,
+    "above": [],
+    "parts": [],
+    "badges": [],
+    "overviewView": null
+   },
+   "list": {
+    "window": "1366x650",
+    "servers": 0,
+    "fitWithoutScrolling": 0,
+    "columns": 0,
+    "rowPitch": null,
+    "card": null,
+    "cardInner": null,
+    "grid": null,
+    "scrollArea": {
+     "h": 1403,
+     "w": 1366,
+     "top": 0,
+     "pad": "0 0 0 0",
+     "gap": null
+    },
+    "firstServerTop": null,
+    "scrolls": 753,
+    "pageScroll": 753,
+    "above": [],
+    "parts": [],
+    "badges": [],
+    "overviewView": null
+   }
+  }
+ }
+}
