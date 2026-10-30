@@ -69,11 +69,20 @@
                         <button type="button" class="ps-btn is-sm is-subtle" x-show="canClearRead()" x-on:click="archiveNotifications([])">{{ $u('clear_read') }}</button>
                         <button type="button" class="ps-btn is-sm is-icon is-subtle" x-on:click="openAllNotifications()" data-tip="{{ $u('all_notifications') }}" aria-label="{{ $u('all_notifications') }}"><svg aria-hidden="true"><use href="#ps-expand"/></svg></button>
                     </div>
+                    {{-- What an admin pinned to everyone's notifications stays on top until the announcement ends. --}}
+                    <div class="ps-notify-pinned" x-show="feed.pinned?.length">
+                        <span class="ps-label"><svg aria-hidden="true"><use href="#ps-pin"/></svg>{{ $u('pinned') }}</span>
+                        <div class="ps-notify-list">
+                            <template x-for="item in feed.pinned" :key="'pinned-'+item.id">
+                                @include('simplify::dashboard.notify-item')
+                            </template>
+                        </div>
+                    </div>
                     <div class="ps-notify-list">
                         <template x-for="item in notifications()" :key="item.id">
                             @include('simplify::dashboard.notify-item')
                         </template>
-                        <p class="ps-empty" x-show="!notifications().length">{{ $u('you_are_all_caught_up') }}</p>
+                        <p class="ps-empty" x-show="!notifications().length && !feed.pinned?.length">{{ $u('you_are_all_caught_up') }}</p>
                     </div>
                     <div class="ps-notify-list" x-show="pushOffer">
                         <div class="ps-push-offer">
@@ -192,11 +201,20 @@
                         </label>
                     </div>
                     <span class="ps-label">{{ $u('notifications') }}</span>
+                    {{-- What an admin pinned to everyone's notifications stays on top until the announcement ends. --}}
+                    <div class="ps-notify-pinned" x-show="feed.pinned?.length">
+                        <span class="ps-label"><svg aria-hidden="true"><use href="#ps-pin"/></svg>{{ $u('pinned') }}</span>
+                        <div class="ps-notify-list">
+                            <template x-for="item in feed.pinned" :key="'pinned-'+item.id">
+                                @include('simplify::dashboard.notify-item')
+                            </template>
+                        </div>
+                    </div>
                     <div class="ps-notify-list">
                         <template x-for="item in notifications()" :key="item.id">
                             @include('simplify::dashboard.notify-item')
                         </template>
-                        <p class="ps-empty" x-show="!notifications().length">{{ $u('you_are_all_caught_up') }}</p>
+                        <p class="ps-empty" x-show="!notifications().length && !feed.pinned?.length">{{ $u('you_are_all_caught_up') }}</p>
                     </div>
                     <button type="button" class="ps-btn is-sm is-subtle ps-notify-more" x-show="feed.more" x-on:click="loadNotificationPage()" :disabled="feed.loading" x-text="feed.loading ? @js($u('loading')) : @js($u('show_more'))"></button>
                     {{-- Archived: what "Clear read" and ✕ moved away, closed until opened (as in 0.7.0). --}}

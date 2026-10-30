@@ -36,6 +36,7 @@ return [
         'clear' => 'Ryd',
         'archived' => 'Arkiveret',
         'nothing_archived' => 'Intet arkiveret.',
+        'pinned' => 'Fastgjort',
         'you_are_all_caught_up' => 'Du er helt opdateret.',
         'get_announcements_as_notifications_on_this' => 'Få meddelelser som notifikationer på denne enhed.',
         'turn_on' => 'Slå til',

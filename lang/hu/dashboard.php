@@ -36,6 +36,7 @@ return [
         'clear' => 'Törlés',
         'archived' => 'Archivált',
         'nothing_archived' => 'Nincs semmi archiválva.',
+        'pinned' => 'Kitűzve',
         'you_are_all_caught_up' => 'Mindent elolvastál.',
         'get_announcements_as_notifications_on_this' => 'Kapd meg a közleményeket értesítésként ezen az eszközön.',
         'turn_on' => 'Bekapcsolás',

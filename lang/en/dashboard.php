@@ -36,6 +36,7 @@ return [
         'clear' => 'Clear',
         'archived' => 'Archived',
         'nothing_archived' => 'Nothing archived.',
+        'pinned' => 'Pinned',
         'you_are_all_caught_up' => 'You are all caught up.',
         'get_announcements_as_notifications_on_this' => 'Get announcements as notifications on this device.',
         'turn_on' => 'Turn on',

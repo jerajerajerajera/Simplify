@@ -18,6 +18,7 @@ return [
         'button_label' => 'Button text',
         'in_bell' => 'Also put in everyone\'s notifications',
         'in_bell_help' => 'Everyone who sees it also finds it in the bell, from when it starts until it ends.',
+        'bell_pinned' => 'Pin to everyone\'s notifications',
         'push' => 'Also send as app notification',
         'push_help' => 'Simplify sends it to the phones and computers of everyone who sees it and turned on app notifications. Devices that come online within a day after the start still get it.',
         'in_game' => 'Also send in game',

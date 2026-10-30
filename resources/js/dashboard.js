@@ -57,7 +57,7 @@
       appearanceMenu: false,
       notifyMenu: false,
       noticeHistory: [],
-      feed: { items: [], page: 1, more: false, loading: false, unread: 0 },
+      feed: { items: [], pinned: [], page: 1, more: false, loading: false, unread: 0 },
       // What "Clear read" and ✕ moved away: a closed section of the window with every notification, loaded when it opens.
       archive: { open: false, items: [], page: 0, more: false, loading: false, loaded: false },
       incomingNotice: null,
@@ -206,9 +206,12 @@
         if (document.hidden || this.destroyed || this.notifyMenu || this.feed.loading) return;
         try {
           const result = await wire.notificationPage(1);
-          const known = new Set(this.feed.items.map((n) => n.key));
+          const known = new Set([...this.feed.pinned || [], ...this.feed.items].map((n) => n.key));
           const fresh = result.items.filter((n) => n.unread && !known.has(n.key));
-          this.feed = { ...this.feed, items: [...fresh, ...this.feed.items], unread: result.unread, storage: result.storage };
+          const freshPinned = (result.pinned || []).filter((n) => n.unread && !known.has(n.key));
+          const pinned = result.pinned || [], top = new Set(pinned.map((n) => n.key));
+          this.feed = { ...this.feed, items: [...fresh, ...this.feed.items].filter((n) => !top.has(n.key)), pinned, unread: result.unread, storage: result.storage };
+          fresh.unshift(...freshPinned);
           this.incomingQueue.push(...fresh.reverse());
           this.showIncomingNotice();
         } catch {}
@@ -334,7 +337,7 @@
         try {
           const result = await wire.notificationPage(page);
           const known = new Set(reset ? [] : this.feed.items.map((n) => n.key));
-          this.feed = { items: reset ? result.items : [...this.feed.items, ...result.items.filter((n) => !known.has(n.key))], page, more: !!result.more, unread: result.unread, archived: !!result.archived, storage: result.storage, loading: false };
+          this.feed = { items: reset ? result.items : [...this.feed.items, ...result.items.filter((n) => !known.has(n.key))], pinned: result.pinned || [], page, more: !!result.more, unread: result.unread, archived: !!result.archived, storage: result.storage, loading: false };
         } catch {
           this.feed.loading = false;
           if (!reset) this.toast(t('dashboard.older_notifications_could_not_be_loaded'), 'warn');

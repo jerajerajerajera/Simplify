@@ -36,6 +36,7 @@ return [
         'clear' => 'Wissen',
         'archived' => 'Gearchiveerd',
         'nothing_archived' => 'Niets gearchiveerd.',
+        'pinned' => 'Vastgezet',
         'you_are_all_caught_up' => 'Je bent helemaal bij.',
         'get_announcements_as_notifications_on_this' => 'Krijg aankondigingen als melding op dit apparaat.',
         'turn_on' => 'Aanzetten',

@@ -36,6 +36,7 @@ return [
         'clear' => 'Vymazať',
         'archived' => 'Archív',
         'nothing_archived' => 'Archív je prázdny.',
+        'pinned' => 'Pripnuté',
         'you_are_all_caught_up' => 'Všetko prečítané.',
         'get_announcements_as_notifications_on_this' => 'Dostávajte oznámenia ako upozornenia na tomto zariadení.',
         'turn_on' => 'Zapnúť',

@@ -36,6 +36,7 @@ return [
         'clear' => 'Обриши',
         'archived' => 'Архивирано',
         'nothing_archived' => 'Ништа није архивирано.',
+        'pinned' => 'Закачено',
         'you_are_all_caught_up' => 'Све сте прочитали.',
         'get_announcements_as_notifications_on_this' => 'Примајте објаве као обавештења на овом уређају.',
         'turn_on' => 'Укључи',

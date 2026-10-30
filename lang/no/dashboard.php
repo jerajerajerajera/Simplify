@@ -36,6 +36,7 @@ return [
         'clear' => 'Fjern',
         'archived' => 'Arkivert',
         'nothing_archived' => 'Ingenting arkivert.',
+        'pinned' => 'Festet',
         'you_are_all_caught_up' => 'Du har lest alt.',
         'get_announcements_as_notifications_on_this' => 'Få kunngjøringer som varsler på denne enheten.',
         'turn_on' => 'Slå på',

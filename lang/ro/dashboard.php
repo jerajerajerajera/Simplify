@@ -36,6 +36,7 @@ return [
         'clear' => 'Ștergeți',
         'archived' => 'Arhivat',
         'nothing_archived' => 'Nimic arhivat.',
+        'pinned' => 'Fixat',
         'you_are_all_caught_up' => 'Sunteți la zi.',
         'get_announcements_as_notifications_on_this' => 'Primiți anunțurile ca notificări pe acest dispozitiv.',
         'turn_on' => 'Activați',

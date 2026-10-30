@@ -36,6 +36,7 @@ return [
         'clear' => 'مسح',
         'archived' => 'المؤرشفة',
         'nothing_archived' => 'لا يوجد شيء مؤرشف.',
+        'pinned' => 'مثبّت',
         'you_are_all_caught_up' => 'لا جديد لديك.',
         'get_announcements_as_notifications_on_this' => 'احصل على الإعلانات كإشعارات على هذا الجهاز.',
         'turn_on' => 'تفعيل',

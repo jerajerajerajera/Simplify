@@ -36,6 +36,7 @@ return [
         'clear' => 'Rensa',
         'archived' => 'Arkiverat',
         'nothing_archived' => 'Inget arkiverat.',
+        'pinned' => 'Fäst',
         'you_are_all_caught_up' => 'Du har inget mer att läsa.',
         'get_announcements_as_notifications_on_this' => 'Få meddelanden som aviseringar på den här enheten.',
         'turn_on' => 'Slå på',

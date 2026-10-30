@@ -36,6 +36,7 @@ return [
         'clear' => 'Изчисти',
         'archived' => 'Архивирани',
         'nothing_archived' => 'Няма нищо архивирано.',
+        'pinned' => 'Закачено',
         'you_are_all_caught_up' => 'Прочели сте всичко.',
         'get_announcements_as_notifications_on_this' => 'Получавайте съобщенията като известия на това устройство.',
         'turn_on' => 'Включи',

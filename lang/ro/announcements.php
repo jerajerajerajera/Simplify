@@ -18,6 +18,7 @@ return [
         'button_label' => 'Text buton',
         'in_bell' => 'Pune și în notificările tuturor',
         'in_bell_help' => 'Oricine îl vede îl găsește și la clopoțel, de la început până la sfârșit.',
+        'bell_pinned' => 'Fixați în notificările tuturor',
         'push' => 'Trimite și ca notificare în aplicație',
         'push_help' => 'Simplify îl trimite pe telefoanele și calculatoarele celor care îl văd și au pornit notificările aplicației. Dispozitivele care intră online într-o zi de la început îl primesc și ele.',
         'in_game' => 'Trimite și în joc',

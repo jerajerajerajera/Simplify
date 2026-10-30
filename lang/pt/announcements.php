@@ -18,6 +18,7 @@ return [
         'button_label' => 'Texto do botão',
         'in_bell' => 'Colocar também nas notificações de todos',
         'in_bell_help' => 'Quem o vê também o encontra no sino, desde o início até ao fim.',
+        'bell_pinned' => 'Fixar nas notificações de todos',
         'push' => 'Enviar também como notificação da app',
         'push_help' => 'O Simplify envia-o para os telemóveis e computadores de quem o vê e ativou as notificações da app. Dispositivos que fiquem online até um dia após o início também o recebem.',
         'in_game' => 'Enviar também no jogo',

@@ -6,7 +6,10 @@ namespace Simplify\Core\Overview;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Notifications\DatabaseNotification;
+use Simplify\Core\Announcements\Models\Announcement;
+use Simplify\Core\Announcements\Services\Bell as AnnouncementBell;
 use Simplify\Core\Support\Preferences;
 use Simplify\Core\Support\SafeCache;
 
@@ -16,6 +19,9 @@ use Simplify\Core\Support\SafeCache;
  *
  * Archived (as in 0.7.0): "Clear read" moves every read notification there, ✕ moves one. Nothing is deleted; the
  * account keeps when it last cleared (read before then is archived) and the ids closed one by one.
+ *
+ * Pinned (as in 0.7.0): an announcement an admin pinned to everyone's notifications stays on top, read or not, until
+ * it ends; Clear read and ✕ leave it there.
  */
 final class Bell
 {
@@ -30,16 +36,23 @@ final class Bell
 
     private const ID = '/^[0-9a-f-]{36}$/i';
 
-    /** @return array{items: list<array<string, mixed>>, more: bool, unread: int, archived: bool} newest first; $archived: the ones under Archived */
+    /**
+     * @return array{items: list<array<string, mixed>>, pinned: list<array<string, mixed>>, more: bool, unread: int, archived: bool}
+     *         newest first; $archived: the ones under Archived
+     */
     public static function page(User $user, int $page = 1, bool $archived = false): array
     {
         $page = max(1, min($page, 500));
         $archive = self::archive($user);
+        $pinned = self::pinnedAnnouncements();
         // One row more than asked tells whether there is another page, without counting them all.
-        $rows = self::archived($user->notifications(), $archive, $archived)->latest()->skip(($page - 1) * self::PAGE)->limit(self::PAGE + 1)->get();
+        $rows = self::archived(self::withoutPinned($user->notifications(), $pinned), $archive, $archived)
+            ->latest()->skip(($page - 1) * self::PAGE)->limit(self::PAGE + 1)->get();
+        $top = $pinned === [] || $archived ? collect() : self::pinned($user->notifications(), $pinned)->latest()->limit(self::PAGE)->get();
 
         return [
             'items' => $rows->take(self::PAGE)->map(fn (DatabaseNotification $row) => self::present($row, $archived))->filter()->values()->all(),
+            'pinned' => $top->map(fn (DatabaseNotification $row) => [...(self::present($row) ?? []), 'pinned' => true])->filter(fn (array $item) => isset($item['key']))->values()->all(),
             'more' => $rows->count() > self::PAGE,
             'unread' => $user->unreadNotifications()->count(),
             'archived' => $archive['at'] > 0 || $archive['ids'] !== [],
@@ -78,6 +91,28 @@ final class Bell
                 Preferences::set($user, self::ARCHIVE, $archive);
             }
         }
+    }
+
+    /** @return list<int> the live announcements an admin pinned to everyone's notifications */
+    private static function pinnedAnnouncements(): array
+    {
+        return Announcement::query()->live()->where('in_bell', true)->where('bell_pinned', true)->pluck('id')->map(fn ($id) => (int) $id)->all();
+    }
+
+    /**
+     * The bell items of those announcements that went to everyone (not the ones an account got by unpinning a bar).
+     *
+     * @param  list<int>  $announcements
+     */
+    private static function pinned(MorphMany|Builder $query, array $announcements): MorphMany|Builder
+    {
+        return $query->whereIn('data->viewData->simplify_announcement', $announcements)->where('data->viewData->simplify_kind', AnnouncementBell::EVERYONE);
+    }
+
+    /** @param  list<int>  $announcements */
+    private static function withoutPinned(MorphMany $query, array $announcements): MorphMany
+    {
+        return $announcements === [] ? $query : $query->whereNotIn('id', fn ($q) => self::pinned($q->select('id')->from('notifications'), $announcements));
     }
 
     /** @return array{at: int, ids: list<string>} */

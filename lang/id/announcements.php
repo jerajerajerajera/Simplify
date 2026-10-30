@@ -18,6 +18,7 @@ return [
         'button_label' => 'Teks tombol',
         'in_bell' => 'Masukkan juga ke notifikasi semua orang',
         'in_bell_help' => 'Semua yang melihatnya juga menemukannya di lonceng, dari mulai sampai berakhir.',
+        'bell_pinned' => 'Sematkan di notifikasi semua orang',
         'push' => 'Kirim juga sebagai notifikasi aplikasi',
         'push_help' => 'Simplify mengirimnya ke ponsel dan komputer semua orang yang melihatnya dan menyalakan notifikasi aplikasi. Perangkat yang online dalam sehari setelah mulai juga menerimanya.',
         'in_game' => 'Kirim juga di dalam game',

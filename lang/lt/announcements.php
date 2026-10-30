@@ -18,6 +18,7 @@ return [
         'button_label' => 'Mygtuko tekstas',
         'in_bell' => 'Įdėti ir į visų pranešimus',
         'in_bell_help' => 'Visi, kurie jį mato, ras jį ir varpelyje nuo pradžios iki pabaigos.',
+        'bell_pinned' => 'Prisegti visų pranešimuose',
         'push' => 'Siųsti ir kaip programėlės pranešimą',
         'push_help' => 'Simplify išsiunčia jį į visų, kurie jį mato ir įsijungė programėlės pranešimus, telefonus ir kompiuterius. Jį gauna ir įrenginiai, prisijungę per parą nuo pradžios.',
         'in_game' => 'Siųsti ir į žaidimą',

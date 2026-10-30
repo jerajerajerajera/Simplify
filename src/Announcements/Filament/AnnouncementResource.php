@@ -17,6 +17,7 @@ use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
 use Filament\Support\Enums\FontWeight;
 use Filament\Tables\Columns\Layout\Split;
@@ -119,7 +120,11 @@ final class AnnouncementResource extends Resource
             ]),
             Toggle::make('in_bell')
                 ->label(self::text('form.in_bell'))
-                ->helperText(self::text('form.in_bell_help')),
+                ->helperText(self::text('form.in_bell_help'))
+                ->live(),
+            Toggle::make('bell_pinned')
+                ->label(self::text('form.bell_pinned'))
+                ->visible(fn (Get $get): bool => (bool) $get('in_bell')),
             Toggle::make('push')
                 ->label(self::text('form.push'))
                 ->helperText(self::text('form.push_help'))

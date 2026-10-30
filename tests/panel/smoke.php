@@ -665,6 +665,33 @@ step('notifications: mark read, mark as unread, Clear read and ✕ move them to 
     $player->notifications()->delete();
     Preferences::set($player, 'notifications.archive', []);
 });
+step('notifications: an announcement pinned to everyone\'s notifications stays on top, also after Clear read', function () {
+    $player = User::where('email', 'smoke-player@example.com')->firstOrFail();
+    $player->notifications()->delete();
+    $pinned = Announcement::create(['title' => 'Smoke pinned in the bell', 'in_bell' => true, 'bell_pinned' => true]);
+    try {
+        Artisan::call('simplify:announcements');
+        $player->notifyNow(Notification::make()->title('Smoke ordinary notification')->toDatabase());
+        $page = OverviewBell::page($player);
+        if (array_column($page['pinned'], 'title') !== ['Smoke pinned in the bell'] || in_array('Smoke pinned in the bell', array_column($page['items'], 'title'), true)) {
+            throw new RuntimeException('the pinned announcement is not on top of the bell');
+        }
+        OverviewBell::mark($player, [], true);
+        OverviewBell::archiveNotifications($player);
+        $page = OverviewBell::page($player);
+        if (count($page['pinned']) !== 1 || $page['items'] !== [] || $page['pinned'][0]['unread']) {
+            throw new RuntimeException('Clear read moved the pinned announcement away');
+        }
+        $pinned->update(['bell_pinned' => false]);
+        if (OverviewBell::page($player)['pinned'] !== []) {
+            throw new RuntimeException('an unpinned announcement stays on top');
+        }
+    } finally {
+        $pinned->delete();
+        $player->notifications()->delete();
+        Preferences::set($player, 'notifications.archive', []);
+    }
+});
 step('embed: the server owner opens Website, and the settings page shows the code for a website', function () use ($admin, $server) {
     $url = EmbedWebsite::getUrl(panel: 'server', tenant: $server);
     expectOk(visit($admin, $url), $url);

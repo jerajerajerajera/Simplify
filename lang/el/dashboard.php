@@ -36,6 +36,7 @@ return [
         'clear' => 'Διαγραφή',
         'archived' => 'Αρχειοθετημένα',
         'nothing_archived' => 'Δεν υπάρχει τίποτα αρχειοθετημένο.',
+        'pinned' => 'Καρφιτσωμένο',
         'you_are_all_caught_up' => 'Είστε πλήρως ενημερωμένοι.',
         'get_announcements_as_notifications_on_this' => 'Λάβετε τις ανακοινώσεις ως ειδοποιήσεις σε αυτή τη συσκευή.',
         'turn_on' => 'Ενεργοποίηση',
