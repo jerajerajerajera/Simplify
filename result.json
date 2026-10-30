@@ -1,0 +1,709 @@
+{
+ "base": "http://127.0.0.1:8001",
+ "screens": [
+  {
+   "id": "layers-server-more",
+   "title": "Lagen · ⋯-menu boven de console",
+   "stand": "d1440-dark",
+   "url": "/server/yrukyvr5/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/yrukyvr5/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Mounts\" (67,869 198x40) | ps-widget \"Webhooks\" (67,909 198x40) | ps-widget \"Activity\" (67,949 198x40) | ps-widget.is-danger \"Delete server\" (67,989 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38",
+      "ps-info-menu 1131,179 230x428"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900",
+     "dropdown": [
+      "ps-info-menu 428px of 600 max"
+     ],
+     "arrow": [
+      "ps-info-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/layers-server-more.png"
+  },
+  {
+   "id": "layers-tip-ps-statusbar-address",
+   "title": "Lagen · tooltip .ps-statusbar-address",
+   "stand": "d1440-dark",
+   "url": "/server/yrukyvr5/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/yrukyvr5/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Mounts\" (67,869 198x40) | ps-widget \"Webhooks\" (67,909 198x40) | ps-widget \"Activity\" (67,949 198x40) | ps-widget.is-danger \"Delete server\" (67,989 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/layers-tip-ps-statusbar-address.png"
+  },
+  {
+   "id": "layers-bell",
+   "title": "Lagen · bell-menu boven de serverkaart",
+   "stand": "d1440-dark",
+   "url": "/server/yrukyvr5/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/yrukyvr5/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Mounts\" (67,869 198x40) | ps-widget \"Webhooks\" (67,909 198x40) | ps-widget \"Activity\" (67,949 198x40) | ps-widget.is-danger \"Delete server\" (67,989 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38 scrolls",
+      "ps-notify-menu 941,78 340x600 scrolls"
+     ],
+     "panes": [
+      "ps-notify-menu 598/2097"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900",
+     "dropdown": [
+      "ps-notify-menu 600px of 600 max, scrolls"
+     ],
+     "arrow": [
+      "ps-notify-menu arrow 1262 button 1262"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/layers-bell.png"
+  },
+  {
+   "id": "layers-admin",
+   "title": "Lagen · admin-menu boven de serverkaart",
+   "stand": "d1440-dark",
+   "url": "/server/yrukyvr5/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/yrukyvr5/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Mounts\" (67,869 198x40) | ps-widget \"Webhooks\" (67,909 198x40) | ps-widget \"Activity\" (67,949 198x40) | ps-widget.is-danger \"Delete server\" (67,989 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38 scrolls",
+      "ps-admin-menu 549,78 600x407"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900",
+     "dropdown": [
+      "ps-admin-menu 407px of 600 max"
+     ],
+     "arrow": [
+      "ps-admin-menu arrow 1130 button 1130"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/layers-admin.png"
+  },
+  {
+   "id": "layers-account",
+   "title": "Lagen · account-menu boven de serverkaart",
+   "stand": "d1440-dark",
+   "url": "/server/yrukyvr5/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/yrukyvr5/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Mounts\" (67,869 198x40) | ps-widget \"Webhooks\" (67,909 198x40) | ps-widget \"Activity\" (67,949 198x40) | ps-widget.is-danger \"Delete server\" (67,989 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 881,32 503x38",
+      "ps-account-actions 1057,32 222x38"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 881..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/layers-account.png"
+  },
+  {
+   "id": "layers-server-more",
+   "title": "Lagen · ⋯-menu boven de console",
+   "stand": "d1440-light",
+   "url": "/server/yrukyvr5/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/yrukyvr5/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Mounts\" (67,869 198x40) | ps-widget \"Webhooks\" (67,909 198x40) | ps-widget \"Activity\" (67,949 198x40) | ps-widget.is-danger \"Delete server\" (67,989 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38",
+      "ps-info-menu 1131,179 230x428"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900",
+     "dropdown": [
+      "ps-info-menu 428px of 600 max"
+     ],
+     "arrow": [
+      "ps-info-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/layers-server-more.png"
+  },
+  {
+   "id": "layers-tip-ps-statusbar-address",
+   "title": "Lagen · tooltip .ps-statusbar-address",
+   "stand": "d1440-light",
+   "url": "/server/yrukyvr5/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/yrukyvr5/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Mounts\" (67,869 198x40) | ps-widget \"Webhooks\" (67,909 198x40) | ps-widget \"Activity\" (67,949 198x40) | ps-widget.is-danger \"Delete server\" (67,989 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/layers-tip-ps-statusbar-address.png"
+  },
+  {
+   "id": "layers-bell",
+   "title": "Lagen · bell-menu boven de serverkaart",
+   "stand": "d1440-light",
+   "url": "/server/yrukyvr5/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/yrukyvr5/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Mounts\" (67,869 198x40) | ps-widget \"Webhooks\" (67,909 198x40) | ps-widget \"Activity\" (67,949 198x40) | ps-widget.is-danger \"Delete server\" (67,989 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38 scrolls",
+      "ps-notify-menu 941,78 340x600 scrolls"
+     ],
+     "panes": [
+      "ps-notify-menu 598/2097"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900",
+     "dropdown": [
+      "ps-notify-menu 600px of 600 max, scrolls"
+     ],
+     "arrow": [
+      "ps-notify-menu arrow 1262 button 1262"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/layers-bell.png"
+  },
+  {
+   "id": "layers-admin",
+   "title": "Lagen · admin-menu boven de serverkaart",
+   "stand": "d1440-light",
+   "url": "/server/yrukyvr5/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/yrukyvr5/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Mounts\" (67,869 198x40) | ps-widget \"Webhooks\" (67,909 198x40) | ps-widget \"Activity\" (67,949 198x40) | ps-widget.is-danger \"Delete server\" (67,989 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38 scrolls",
+      "ps-admin-menu 549,78 600x407"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900",
+     "dropdown": [
+      "ps-admin-menu 407px of 600 max"
+     ],
+     "arrow": [
+      "ps-admin-menu arrow 1130 button 1130"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/layers-admin.png"
+  },
+  {
+   "id": "layers-account",
+   "title": "Lagen · account-menu boven de serverkaart",
+   "stand": "d1440-light",
+   "url": "/server/yrukyvr5/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/yrukyvr5/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Mounts\" (67,869 198x40) | ps-widget \"Webhooks\" (67,909 198x40) | ps-widget \"Activity\" (67,949 198x40) | ps-widget.is-danger \"Delete server\" (67,989 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 881,32 503x38",
+      "ps-account-actions 1057,32 222x38"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 881..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/layers-account.png"
+  },
+  {
+   "id": "overview",
+   "title": "Klant · overzicht",
+   "stand": "klant-d1440-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1190,212 214x38"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..398, actions 1190..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-d1440-dark/overview.png"
+  },
+  {
+   "id": "account",
+   "title": "Klant · accountmenu",
+   "stand": "klant-d1440-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 960,212 444x38",
+      "ps-account-actions 1092,212 222x38"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..398, actions 960..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-d1440-dark/account.png"
+  },
+  {
+   "id": "server-console",
+   "title": "Klant · console",
+   "stand": "klant-d1440-dark",
+   "url": "/server/yrukyvr5/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/yrukyvr5/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Mounts\" (67,869 198x40) | ps-widget \"Activity\" (67,909 198x40) | ps-widget.is-danger \"Delete server\" (67,949 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1214,32 170x38"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1214..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "klant-d1440-dark/server-console.png"
+  },
+  {
+   "id": "server-more",
+   "title": "Klant · ⋯-menu",
+   "stand": "klant-d1440-dark",
+   "url": "/server/yrukyvr5/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/yrukyvr5/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Mounts\" (67,869 198x40) | ps-widget \"Activity\" (67,909 198x40) | ps-widget.is-danger \"Delete server\" (67,949 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1214,32 170x38",
+      "ps-info-menu 1131,179 230x428"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1214..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900",
+     "dropdown": [
+      "ps-info-menu 428px of 600 max"
+     ],
+     "arrow": [
+      "ps-info-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-d1440-dark/server-more.png"
+  }
+ ],
+ "problems": [
+  "d1440-dark layers-server-more: WRONG {\"bad\":[{\"item\":\"Open SFTP connection\",\"ok\":false,\"on\":\"xterm-link-layer\",\"inWin\":true},{\"item\":\"Upgrade this server\",\"ok\":false,\"on\":\"xterm-link-layer\",\"inWin\":true},{\"item\":\"Force stop\",\"ok\":false,\"on\":\"xterm-link-layer\",\"inWin\":true},{\"item\":\"Delete server\",\"ok\":false,\"on\":\"xterm-link-layer\",\"inWin\":true}],\"items\":[\"Server color\",\"Server background\",\"Rename\",\"Copy SFTP username\",\"Open SFTP connection\",\"Upgrade this server\",\"Force stop\",\"Delete server\"]}",
+  "d1440-dark layers-tip-ps-statusbar-address: WRONG null",
+  "d1440-dark layers-bell: WRONG {\"bad\":[{\"item\":\"Open plugins\",\"ok\":false,\"on\":\"xterm-link-layer\",\"inWin\":true},{\"item\":\"Mark read\",\"ok\":false,\"on\":\"xterm-link-layer\",\"inWin\":true},{\"item\":\"\",\"ok\":false,\"on\":\"xterm-link-layer\",\"inWin\":true},{\"item\":\"Open plugins\",\"ok\":false,\"on\":\"w-full focus:outline-none focus:ring-0 b\",\"inWin\":true},{\"item\":\"Mark read\",\"ok\":false,\"on\":\"w-full focus:outline-none focus:ring-0 b\",\"inWin\":true}],\"n\":16}",
+  "d1440-dark layers-admin: ok {\"bad\":[],\"n\":11}",
+  "d1440-dark layers-account: ok {\"bad\":[],\"n\":5}",
+  "d1440-light layers-server-more: WRONG {\"bad\":[{\"item\":\"Open SFTP connection\",\"ok\":false,\"on\":\"xterm-link-layer\",\"inWin\":true},{\"item\":\"Upgrade this server\",\"ok\":false,\"on\":\"xterm-link-layer\",\"inWin\":true},{\"item\":\"Force stop\",\"ok\":false,\"on\":\"xterm-link-layer\",\"inWin\":true},{\"item\":\"Delete server\",\"ok\":false,\"on\":\"xterm-link-layer\",\"inWin\":true}],\"items\":[\"Server color\",\"Server background\",\"Rename\",\"Copy SFTP username\",\"Open SFTP connection\",\"Upgrade this server\",\"Force stop\",\"Delete server\"]}",
+  "d1440-light layers-tip-ps-statusbar-address: WRONG null",
+  "d1440-light layers-bell: WRONG {\"bad\":[{\"item\":\"Open plugins\",\"ok\":false,\"on\":\"xterm-link-layer\",\"inWin\":true},{\"item\":\"Mark read\",\"ok\":false,\"on\":\"xterm-link-layer\",\"inWin\":true},{\"item\":\"\",\"ok\":false,\"on\":\"xterm-link-layer\",\"inWin\":true},{\"item\":\"Open plugins\",\"ok\":false,\"on\":\"w-full focus:outline-none focus:ring-0 b\",\"inWin\":true},{\"item\":\"Mark read\",\"ok\":false,\"on\":\"w-full focus:outline-none focus:ring-0 b\",\"inWin\":true}],\"n\":16}",
+  "d1440-light layers-admin: ok {\"bad\":[],\"n\":11}",
+  "d1440-light layers-account: ok {\"bad\":[],\"n\":5}"
+ ]
+}
