@@ -66,6 +66,11 @@
                     <label class="ps-menu-item" role="menuitem" x-show="server.can_edit"><svg aria-hidden="true"><use href="#ps-image"/></svg><span>{{ $u('server_background') }}</span><input type="file" accept="image/png,image/jpeg,image/webp" hidden x-on:change="infoMenu=false; $event.target.files[0] && saveLook(server.color, $event.target.files[0]); $event.target.value=''"></label>
                     <button type="button" class="ps-menu-item" role="menuitem" x-show="server.can_edit && server.background_id==='upload'" :disabled="busy" x-on:click="infoMenu=false; saveLook(server.color, null, true)"><svg aria-hidden="true"><use href="#ps-close"/></svg><span>{{ $u('no_background') }}</span></button>
                     <button type="button" class="ps-menu-item" role="menuitem" x-show="server.can_edit" x-on:click="infoMenu=false; saveName(@js($u('server_name')), @js($u('rename')))"><svg aria-hidden="true"><use href="#ps-edit"/></svg><span>{{ $u('rename') }}</span></button>
+                    <template x-if="server.sftp"><hr></template>
+                    <span class="ps-label ps-menu-heading" x-show="server.sftp">{{ $u('sftp') }}</span>
+                    <button type="button" class="ps-menu-item" role="menuitem" x-show="server.sftp" x-on:click="infoMenu=false; copyText(server.sftp.username, @js($u('username_copied')))"><svg aria-hidden="true"><use href="#ps-copy"/></svg><span>{{ $u('copy_sftp_username') }}</span></button>
+                    <a class="ps-menu-item" role="menuitem" x-show="server.sftp?.url" :href="server.sftp?.url" x-on:click="infoMenu=false"><svg aria-hidden="true"><use href="#ps-link"/></svg><span>{{ $u('open_sftp_connection') }}</span></a>
+                    <p class="ps-menu-note" x-show="server.sftp">{{ $u('password_your_panel_password') }}</p>
                     <template x-if="server.links?.length"><hr></template>
                     <template x-for="link in server.links || []" :key="link.url">
                         <a class="ps-menu-item" role="menuitem" :href="safeLink(link.url)" target="_blank" rel="noopener noreferrer" x-on:click="infoMenu=false"><svg aria-hidden="true"><use href="#ps-arrow-right"/></svg><span x-text="link.label"></span><svg class="ps-menu-item-out" aria-hidden="true"><use href="#ps-external"/></svg></a>

@@ -58,8 +58,25 @@ final class Listing
             'minecraft' => Games::minecraft($server),
             'can_edit' => Looks::canEdit($user, $server),
             'can_delete' => $user->isRootAdmin() || $server->owner_id === $user->id,
+            'sftp' => self::sftp($user, $server),
             'links' => array_map(fn (Button $link) => $link->toArray(), app(AddonRegistry::class)->collect(fn (Addon $addon) => $addon->serverLinks($server))),
         ];
+    }
+
+    /**
+     * Where to connect with an SFTP program, for people who may use SFTP on this server.
+     *
+     * @return array{username: string, url: string}|null
+     */
+    private static function sftp(User $user, Server $server): ?array
+    {
+        if (! $user->can(SubuserPermission::FileSftp, $server)) {
+            return null;
+        }
+        $username = $user->username.'.'.$server->uuid_short;
+        $url = (string) $server->getSftpUrl();
+
+        return ['username' => $username, 'url' => str_starts_with($url, 'sftp://') ? 'sftp://'.rawurlencode($username).'@'.substr($url, 7) : ''];
     }
 
     /**

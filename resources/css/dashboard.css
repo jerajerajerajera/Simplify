@@ -566,6 +566,7 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 .ps-info-menu hr { margin: 4px 0; border: 0; border-top: 1px solid var(--ps-line); }
 .ps-menu-heading { display: block; margin: 6px 10px 2px; }
 .ps-menu-item + .ps-menu-heading { margin-top: 10px; }
+.ps-menu-note { margin: 0 10px 6px; color: var(--ps-muted); font: 400 12px/1.5 var(--ps-font); }
 .ps-info-menu .ps-menu-item.is-danger { color: var(--ps-danger); }
 .ps-info-menu .ps-menu-item.is-danger svg { color: var(--ps-danger); }
 .ps-info-menu .ps-menu-item:disabled { opacity: .45; cursor: not-allowed; }
