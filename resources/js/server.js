@@ -293,6 +293,10 @@
           this.busy = false;
         }
       },
+      /** Stopped, or unable to run (unknown to Wings, failed install, suspended): the same list as ServerPage::deleteServer(). */
+      canDelete() {
+        return ['offline', 'missing', 'install failed', 'suspended'].includes(this.status);
+      },
       /** Owners delete their own stopped server after typing its name; the page then goes back to the overview. */
       async deleteServer() {
         if (this.busy) return;

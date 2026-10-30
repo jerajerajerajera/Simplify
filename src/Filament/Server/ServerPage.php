@@ -106,7 +106,8 @@ final class ServerPage extends Component
         $user = $this->user();
         abort_unless($user->isRootAdmin() || $this->server->owner_id === $user->id, 403);
         abort_unless(hash_equals($this->server->name, $confirmation), 422);
-        abort_unless(Listing::one($user, $this->server)['status'] === 'offline', 409);
+        // A stopped server, and one that cannot run: Wings does not know it, or its install failed.
+        abort_unless(in_array(Listing::one($user, $this->server)['status'], ['offline', 'missing', 'install failed', 'suspended'], true), 409);
         app(ServerDeletionService::class)->handle($this->server);
         $this->redirect(Overview::getUrl(panel: 'app'));
     }
@@ -160,16 +161,18 @@ final class ServerPage extends Component
     }
 
     /**
-     * Pelican's server menu (and the pages add-ons add to it), for the menu next to the page.
+     * Pelican's server menu (and the pages add-ons add to it), for the menu next to the page. Pelican's "Open in Admin"
+     * is left out: it leads to the legacy admin page, and the server page has its own settings.
      *
      * @return list<NavigationItem>
      */
     public static function sections(): array
     {
         $items = [];
+        $admin = trans('server/console.open_in_admin');
         foreach (Filament::getCurrentPanel()?->getNavigation() ?? [] as $group) {
             foreach ($group->getItems() as $item) {
-                if ($item->isVisible()) {
+                if ($item->isVisible() && (string) $item->getLabel() !== $admin) {
                     $items[] = $item;
                 }
             }

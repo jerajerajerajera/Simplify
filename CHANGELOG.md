@@ -2,7 +2,8 @@
 
 ## 1.5.0
 
-- Back from PelicanSimplify 0.7.0: an owner deletes their own stopped server from its ⋯ menu after typing its name.
+- Back from PelicanSimplify 0.7.0: an owner deletes their own server from its ⋯ menu after typing its name. It has to be stopped, or unable to run (Wings does not know it, its install failed, or it is suspended).
+- Server pages: Pelican's "Open in Admin" is no longer in the server menu. It led to the legacy admin page; renaming, the look and deleting are in the server's ⋯ menu.
 - Back from 0.7.0: the server's ⋯ menu shows the SFTP username and a link that opens the SFTP connection; the password is your panel password.
 - Back from 0.7.0: friends mode (Settings → General). Everyone signed in sees every server's card; opening one still needs Pelican's access. A panel that had it on in 0.7.0 keeps it on.
 - Back from 0.7.0: the setup asks who the panel is for (me and my friends, or a hosting company), which sets friends mode, and starts with a system check: PHP extensions, writable folders, cache, storage, the queue, Pelican's scheduler, https and the keys for app notifications. Only what fails is listed, with how to fix it.

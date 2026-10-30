@@ -76,7 +76,7 @@
                     </template>
                     <hr>
                     <button type="button" class="ps-menu-item is-danger" role="menuitem" :disabled="busy || !server.permissions['control.stop'] || status==='offline'" x-on:click="infoMenu=false; power('kill')"><svg aria-hidden="true"><use href="#ps-kill"/></svg><span>{{ $u('force_stop') }}</span></button>
-                    <button type="button" class="ps-menu-item is-danger" role="menuitem" x-show="server.can_delete" :disabled="busy || status!=='offline'" :data-tip="status!=='offline' ? @js($u('stop_to_delete')) : null" x-on:click="infoMenu=false; deleteServer()"><svg aria-hidden="true"><use href="#ps-trash"/></svg><span>{{ $u('delete_server') }}</span></button>
+                    <button type="button" class="ps-menu-item is-danger" role="menuitem" x-show="server.can_delete" :disabled="busy || !canDelete()" :data-tip="canDelete() ? null : @js($u('stop_to_delete'))" x-on:click="infoMenu=false; deleteServer()"><svg aria-hidden="true"><use href="#ps-trash"/></svg><span>{{ $u('delete_server') }}</span></button>
                 </div>
                 {{-- Background: automatic, one of Simplify's scenes, a banner uploaded for another server of theirs, or a new upload. --}}
                 <div class="ps-dropdown is-end ps-banner-dropdown" x-show="bannerMenu" x-cloak x-on:click.stop>
