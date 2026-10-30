@@ -8,6 +8,7 @@ use Illuminate\Console\Command;
 use Simplify\Core\Announcements\Services\Bell;
 use Simplify\Core\Announcements\Services\InGame;
 use Simplify\Core\Announcements\Services\Push;
+use Simplify\Core\Support\Scheduler;
 
 /** Runs every minute from Pelican's scheduler, so an announcement with a later start reaches the bell, devices and game chats when it starts. */
 final class DeliverAnnouncements extends Command
@@ -18,6 +19,7 @@ final class DeliverAnnouncements extends Command
 
     public function handle(): int
     {
+        Scheduler::beat();
         $reached = Bell::deliverDue();
         if ($reached > 0) {
             $this->info("Put announcements in the notifications of $reached accounts.");

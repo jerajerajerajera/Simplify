@@ -178,6 +178,19 @@
   font-size: var(--s-text-sm);
 }
 
+.s-code {
+  background: var(--s-raised);
+  border: 1px solid var(--s-line);
+  border-radius: var(--s-radius-sm);
+  display: block;
+  font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  margin-top: var(--s-space-2);
+  overflow-x: auto;
+  padding: 6px 8px;
+  user-select: all;
+  white-space: nowrap;
+}
+
 .s-heading {
   align-items: center;
   display: inline-flex;
