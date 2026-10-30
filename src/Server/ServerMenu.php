@@ -48,10 +48,10 @@ final class ServerMenu
                     continue;
                 }
                 $url = (string) $item->getUrl();
-                $entry = ['label' => (string) $item->getLabel(), 'url' => $url, 'icon' => $item->getIcon(), 'active' => $item->isActive(), 'new_tab' => $item->shouldOpenUrlInNewTab()];
+                $entry = ['label' => (string) $item->getLabel(), 'url' => $url, 'icon' => $item->getIcon(), 'active' => $item->isActive(), 'new_tab' => $item->shouldOpenUrlInNewTab(), 'match' => [$url]];
                 if (count($tabs) > 1 && in_array($url, array_column($tabs, 'url'), true)) {
                     if (! $combined) {
-                        $main[] = [...$entry, 'label' => __('simplify::dashboard.ui.backups_and_tasks'), 'url' => $tabs[0]['url'], 'active' => self::onTabs($tabs)];
+                        $main[] = [...$entry, 'label' => __('simplify::dashboard.ui.backups_and_tasks'), 'url' => $tabs[0]['url'], 'active' => self::onTabs($tabs), 'match' => array_column($tabs, 'url')];
                         $combined = true;
                     }
 
@@ -68,6 +68,17 @@ final class ServerMenu
         usort($advanced, fn (array $a, array $b) => array_search($a['url'], array_keys($advancedUrls), true) <=> array_search($b['url'], array_keys($advancedUrls), true));
 
         return ['main' => $main, 'advanced' => $advanced];
+    }
+
+    /**
+     * Whether the menu changes only the page next to it (Livewire's wire:navigate) instead of loading the whole page. Only
+     * where Pelican's console closes its socket when Livewire leaves it (rc.1 and later); older versions load the page.
+     */
+    public static function navigates(): bool
+    {
+        static $navigates = null;
+
+        return $navigates ??= str_contains((string) @file_get_contents(resource_path('views/filament/components/server-console.blade.php')), 'livewire:navigating');
     }
 
     /**
