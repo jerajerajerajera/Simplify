@@ -177,7 +177,15 @@ $admin = User::where('email', 'smoke-simplify@example.com')->first()
     ?? User::withoutEvents(fn () => User::factory()->create(['email' => 'smoke-simplify@example.com']));
 $admin->syncRoles(Role::getRootAdmin());
 
-step('the first visit to the settings opens the setup, and finishing it saves the answers', function () use ($admin) {
+step('a panel with settings opens them, a new panel opens the setup, and finishing it saves the answers', function () use ($admin) {
+    // CI took this panel over from PelicanSimplify: it has settings but never finished the setup.
+    $response = visit($admin, Settings::getUrl(panel: 'admin'));
+    if ($response->isRedirect()) {
+        throw new RuntimeException('a panel with settings was sent to the setup: '.$response->headers->get('Location'));
+    }
+    // A new panel: nothing saved yet.
+    Simplify\Core\Models\Setting::query()->delete();
+    PanelSettings::save([]);
     $response = visit($admin, Settings::getUrl(panel: 'admin'));
     if (! $response->isRedirect() || ! str_contains((string) $response->headers->get('Location'), 'simplify-setup')) {
         throw new RuntimeException('the settings did not open the setup first (HTTP '.$response->getStatusCode().')');
