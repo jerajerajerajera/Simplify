@@ -71,6 +71,7 @@ const adminTiles = async (overview, serverUrl, openNav) => {
   // The real path once: the shield menu, a tile, then the close button.
   await goto(overview); await sleep(600); await openNav();
   if (await click('[x-ref="adminButton"]')) {
+    if (!(await page.locator('.ps-admin-tile >> visible=true').count())) { await page.locator('.ps-admin-group-head >> visible=true').first().click().catch(() => {}); await sleep(600); } // phones: tiles fold out under a group
     const tile = page.locator('.ps-admin-tile >> visible=true').first();
     if (await tile.count()) { await tile.click().catch(() => {}); await frameReady(); await record('tile-click', 'Admin tools-tegel aangeklikt'); if (await click('.ps-host-close', 800)) { await record('tile-closed', 'Admin tools-pagina gesloten, terug op het overzicht'); const st = await alpine('return { adminView: d.adminView, hostPage: !!d.hostPage }'); if (st && (st.adminView || st.hostPage)) problems.push(`${stand} tile-closed: still open after close (${JSON.stringify(st)})`); } }
     else problems.push(`${stand} tile-click: no visible admin tile in the shield menu`);
@@ -78,6 +79,7 @@ const adminTiles = async (overview, serverUrl, openNav) => {
   // From a server page: the tile goes through the overview.
   await goto(serverUrl, 2500); await openNav();
   if (await click('[x-ref="adminButton"]')) {
+    if (!(await page.locator('.ps-admin-tile >> visible=true').count())) { await page.locator('.ps-admin-group-head >> visible=true').first().click().catch(() => {}); await sleep(600); }
     const tile = page.locator('.ps-admin-tile >> visible=true').first();
     if (await tile.count()) { await tile.click().catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await frameReady(); await record('tile-from-server', 'Admin tools-tegel vanaf een serverpagina'); const st = await alpine('return { adminView: d.adminView, hash: location.hash }'); if (!st || !st.adminView) problems.push(`${stand} tile-from-server: did not open inside Simplify (${JSON.stringify(st)}, url ${rel(page.url())})`); }
   }
