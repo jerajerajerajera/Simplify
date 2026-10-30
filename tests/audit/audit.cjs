@@ -271,11 +271,13 @@ async function createFlow() {
   const check = async (id, label) => {
     await page.waitForLoadState('domcontentloaded').catch(() => {}); await page.waitForSelector('.ps-host-frame iframe', { timeout: 6000 }).catch(() => {}); await sleep(2500);
     const st = await alpine('return { adminView: d.adminView, page: d.hostPage && d.hostPage.key, label: d.hostPage && d.hostPage.label, head: (document.querySelector(".ps-host-head.is-page") || {}).innerText }');
-    const frame = page.frames().find((f) => f !== page.mainFrame() && /\/create/.test(f.url()));
-    await record(id, label, { create: { st, url: rel(page.url()), frame: frame ? rel(frame.url()) : null } });
-    const maker = /server-?maker|maker/i.test(page.url()) || !!(await page.locator('[class*="sm-"], [class*="maker"] >> visible=true').count().catch(() => 0));
+    const frame = page.frames().find((f) => f !== page.mainFrame() && /\/admin\//.test(f.url()));
+    // Inside the frame only the page itself: no second top bar or side menu of Filament's.
+    const chrome = frame ? await frame.evaluate(() => ({ topbar: !![...document.querySelectorAll('.fi-topbar, .fi-sidebar')].some((e) => e.getClientRects().length && getComputedStyle(e).display !== 'none' && e.getBoundingClientRect().height > 10), framed: document.documentElement.classList.contains('ps-frame'), title: (document.querySelector('h1') || {}).innerText || null })).catch(() => null) : null;
+    await record(id, label, { create: { st, url: rel(page.url()), frame: frame ? rel(frame.url()) : null, chrome } });
+    const maker = frame ? /maker/i.test(frame.url()) : /maker/i.test(page.url());
     const inSimplify = st && st.adminView && st.page === 'serverresource-create' && !!frame;
-    problems.push(`${stand} ${id}: ${inSimplify ? 'Pelican create form inside Simplify' : maker ? 'Server Maker' : 'NEITHER'} (url ${rel(page.url())}, frame ${frame ? rel(frame.url()) : '-'}, head "${(st && st.head || '').replace(/\s+/g, ' ').trim()}")`);
+    problems.push(`${stand} ${id}: ${inSimplify ? (maker ? 'Server Maker inside Simplify' : 'Pelican create form inside Simplify') : maker ? 'Server Maker as its own page' : 'NEITHER'}${inSimplify && chrome && chrome.topbar ? ' WRONG double chrome' : ''} (url ${rel(page.url())}, frame ${frame ? rel(frame.url()) : '-'}, head "${(st && st.head || '').replace(/\s+/g, ' ').trim()}", ${JSON.stringify(chrome)})`);
     if (inSimplify && await click('.ps-host-close', 800)) { const after = await alpine('return { adminView: d.adminView, hostPage: !!d.hostPage }'); if (after && (after.adminView || after.hostPage)) problems.push(`${stand} ${id}: still open after close`); }
   };
   if (!onPhone) {
@@ -303,7 +305,9 @@ async function createFlow() {
 async function layersFlow() {
   const serverUrl = urls.servers['Survival SMP'], onPhone = phone();
   const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
-  const hits = (menu) => page.evaluate((sel) => { const box = document.querySelector(sel); if (!box || !box.getClientRects().length) return null; return [...box.querySelectorAll('button, a')].filter((e) => e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden').map((e) => { const r = e.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2; const top = document.elementFromPoint(x, y); const inWin = y >= 0 && y < innerHeight; return { item: e.textContent.trim().replace(/\s+/g, ' ').slice(0, 30), ok: !!top && (top === e || e.contains(top)), on: top ? (top.className && String(top.className).slice(0, 40)) || top.tagName : null, inWin }; }); }, menu);
+  // Only points the user can see count: inside the window and inside every scrolling box around the item (a long
+  // menu scrolls, and what is scrolled out of view is not covered, just hidden).
+  const hits = (menu) => page.evaluate((sel) => { const box = document.querySelector(sel); if (!box || !box.getClientRects().length) return null; const clip = (e) => { let r = { l: 0, t: 0, r: innerWidth, b: innerHeight }; for (let p = e.parentElement; p; p = p.parentElement) { const cs = getComputedStyle(p); if (/(auto|scroll|hidden|clip)/.test(cs.overflowX + cs.overflowY)) { const q = p.getBoundingClientRect(); r = { l: Math.max(r.l, q.left), t: Math.max(r.t, q.top), r: Math.min(r.r, q.right), b: Math.min(r.b, q.bottom) }; } } return r; }; return [...box.querySelectorAll('button, a')].filter((e) => e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden').map((e) => { const r = e.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2, c = clip(e); const top = document.elementFromPoint(x, y); const inWin = x > c.l && x < c.r && y > c.t && y < c.b; return { item: e.textContent.trim().replace(/\s+/g, ' ').slice(0, 30), ok: !!top && (top === e || e.contains(top)), on: top ? (top.className && String(top.className).slice(0, 40)) || top.tagName : null, inWin }; }); }, menu);
   await goto(serverUrl, 3500);
   await click('.ps-info-more-button', 700);
   const more = await hits('#ps-info-menu'); await record('layers-server-more', 'Lagen · ⋯-menu boven de console');
@@ -312,8 +316,10 @@ async function layersFlow() {
   // Tooltips over the card and the console.
   for (const sel of ['.ps-statusbar-address', '.ps-info-power .ps-btn[data-tip]']) {
     const el = page.locator(`${sel} >> visible=true`).first(); if (!(await el.count())) continue;
-    await el.hover().catch(() => {}); await sleep(700);
-    const tip = await page.evaluate(() => { const t = document.getElementById('ps-tooltip'); if (!t || !t.getClientRects().length || getComputedStyle(t).opacity === '0') return null; const r = t.getBoundingClientRect(); const top = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2); return { text: t.textContent.trim(), ok: !!top && (top === t || t.contains(top)), on: top && String(top.className).slice(0, 40) }; });
+    await el.hover().catch(() => {});
+    // The tooltip shows after a short delay and fades in; it lets the pointer through, so the hit test turns that off.
+    await page.waitForSelector('.ps-tooltip.is-visible', { timeout: 2500 }).catch(() => {}); await sleep(400);
+    const tip = await page.evaluate(() => { const t = document.querySelector('.ps-tooltip.is-visible'); if (!t || !t.getClientRects().length) return null; const r = t.getBoundingClientRect(); t.style.pointerEvents = 'auto'; const top = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2); t.style.pointerEvents = ''; return { text: t.textContent.trim(), ok: !!top && (top === t || t.contains(top)), on: top && String(top.className).slice(0, 40), opacity: getComputedStyle(t).opacity, rect: [r.left, r.top, r.width, r.height].map(Math.round).join(' ') }; });
     await record(`layers-tip-${slug(sel)}`, `Lagen · tooltip ${sel}`);
     say(`layers-tip-${slug(sel)}`, !!tip && tip.ok, tip); await page.mouse.move(5, 5); await sleep(300);
   }
@@ -327,6 +333,74 @@ async function layersFlow() {
     say(`layers-${id}`, seen && seen.length && seen.every((x) => x.ok), { bad: seen && seen.filter((x) => !x.ok).slice(0, 5), n: seen && seen.length });
     await escape();
   }
+  await scrollbars(serverUrl);
+  await otherPlugins();
+  await createFlow();
+}
+
+// Scrollbars (1.5.2): 11px wide with a 4px thumb, 14px short of both ends, in a tint of the background: white 16% in
+// dark, black 16% in light, and white on the console in both. Checked where something scrolls: the overview, the
+// settings, a page in the frame and the console.
+async function scrollbars(serverUrl) {
+  const overview = urls.app.find((p) => /App\\Pages\\Overview$/.test(p.class))?.url || '/';
+  const theme = stand.endsWith('light') ? 'light' : 'dark';
+  const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
+  const want = (where) => (where === 'console' || theme === 'dark') ? 'rgba(255, 255, 255, 0.16)' : 'rgba(0, 0, 0, 0.16)';
+  // The scrolling boxes of a document, scrolled to their middle so the thumb is in view, with what their bar is.
+  const look = (doc, console) => doc.evaluate((onlyConsole) => {
+    const rule = [...document.styleSheets].flatMap((sh) => { try { return [...sh.cssRules]; } catch { return []; } }).map((r) => r.cssText);
+    const bar = rule.find((t) => /^html ::-webkit-scrollbar \{/.test(t)) || null, thumb = rule.find((t) => /^html ::-webkit-scrollbar-thumb \{/.test(t)) || null, track = rule.find((t) => /^html ::-webkit-scrollbar-track/.test(t)) || null;
+    const els = onlyConsole ? [...document.querySelectorAll('.ps-console .xterm-scrollable-element > .scrollbar.vertical > .slider')] : [document.scrollingElement, ...document.querySelectorAll('*')].filter((e) => { if (!e || !e.getClientRects().length) return false; const cs = getComputedStyle(e); return (e === document.scrollingElement || /(auto|scroll)/.test(cs.overflowY)) && e.scrollHeight > e.clientHeight + 4 && e.clientHeight > 60; });
+    const out = els.slice(0, 4).map((e) => { if (!onlyConsole) e.scrollTop = (e.scrollHeight - e.clientHeight) / 2; const cs = getComputedStyle(e); const r = e.getBoundingClientRect(); return { el: (e.className && String(e.className).trim().split(/\s+/).slice(0, 2).join('.')) || e.tagName.toLowerCase(), color: getComputedStyle(e).getPropertyValue('--s-scroll').trim(), bg: onlyConsole ? cs.backgroundColor : null, width: onlyConsole ? Math.round(r.width) : null, h: Math.round(r.height) }; });
+    return { bar, thumb, track, boxes: out };
+  }, !!console).catch((e) => ({ error: e.message.slice(0, 100) }));
+  const norm = (c) => (c || '').replace(/\s+/g, ' ').replace(/^rgb\((\d+) (\d+) (\d+) \/ \.?(\d+)\)$/, (m, a, b, c2, d) => `rgba(${a}, ${b}, ${c2}, 0.${d})`);
+  const judge = (where, info, place) => {
+    const css = info && info.bar && /width: 11px/.test(info.bar) && info.thumb && /border-inline-end-width: 4px/.test(info.thumb) && info.track && /margin: 14px/.test(info.track);
+    const boxes = (info && info.boxes) || [];
+    const colors = where === 'console' ? boxes.map((b) => norm(b.bg)) : boxes.map((b) => norm(b.color));
+    say(`scroll-${where}`, css && boxes.length && colors.every((c) => c === want(where)), { want: want(where), got: colors, boxes: boxes.map((b) => b.el + ' ' + b.h + (b.width ? ' w' + b.width : '')), css: !!css, place });
+  };
+  await goto(overview, 1500); let info = await look(page); await sleep(300); await record('scroll-overview', 'Scrollbalk · overzicht'); judge('overview', info);
+  await goto('/admin/simplify', 2000); info = await look(page); await sleep(300); await record('scroll-settings', 'Scrollbalk · instellingen'); judge('settings', info, rel(page.url()));
+  await goto(overview); await alpine('d.setHostMode(true)'); await sleep(1200);
+  await alpine(`const sec = d.hostSections().find((x) => x.key === 'servers'); const it = sec && sec.pages[0]; if (it) d.openHostLeaf(sec, it); return !!it;`);
+  await page.waitForSelector('.ps-host-frame iframe', { timeout: 8000 }).catch(() => {}); await sleep(2500);
+  const frame = page.frames().find((x) => x !== page.mainFrame() && /\/admin/.test(x.url()));
+  info = frame ? await look(frame) : null; await sleep(300); await record('scroll-frame', 'Scrollbalk · pagina in het frame (hostmodus)'); judge('frame', info, frame ? rel(frame.url()) : 'no frame');
+  await alpine('d.setHostMode(false)'); await sleep(500);
+  await goto(serverUrl, 3500);
+  await page.evaluate(() => { const t = document.querySelector('.ps-console .xterm-scrollable-element'); if (t) t.dispatchEvent(new WheelEvent('wheel', { deltaY: -400, bubbles: true })); }).catch(() => {});
+  await sleep(400); info = await look(page, true); await record('scroll-console', 'Scrollbalk · console'); judge('console', info);
+}
+
+// Other plugins (1.5.2): always a group that folds open, and a plugin's page shows "Other plugins · <page>" in the
+// head. CI has no plugin outside Simplify, so when the group is empty the check puts a page of Pelican's in it.
+async function otherPlugins() {
+  const overview = urls.app.find((p) => /App\\Pages\\Overview$/.test(p.class))?.url || '/';
+  const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
+  await goto(overview, 1200); await alpine('d.setHostMode(true)'); await sleep(1200);
+  const real = await alpine(`const s = d.hostSections().find((x) => x.key === 'extensions'); return s ? s.pages.map((p) => p.label) : null;`);
+  if (!real) {
+    // A stand-in: the first Admin tools page that is not in a group, or the server list, as one plugin's page.
+    await alpine(`const orig = d.hostSections.bind(d); const any = orig().flatMap((s) => s.pages).find((p) => p.url && !p.settings); d.hostSections = () => { const list = orig(); const at = list.findIndex((s) => s.key === 'health'); const ext = { key: 'extensions', label: 'Other plugins', icon: 'plugins', color: '#2dd4bf', pages: [{ ...any, key: 'test-plugin', label: 'Server directory' }] }; list.splice(at < 0 ? list.length : at, 0, ext); return list; };`);
+    await sleep(300);
+  }
+  if (phone()) { await alpine('d.hostMenuOpen = true'); await sleep(500); }
+  const head = page.locator('.ps-host-group:has(.ps-host-group-head:has-text("Other plugins")) .ps-host-group-head').first();
+  if (!(await head.count())) { say('other-plugins', false, { note: 'no Other plugins group in the tree', real }); await alpine('d.setHostMode(false)'); return; }
+  const before = await head.getAttribute('aria-expanded');
+  await head.click().catch(() => {}); await sleep(600);
+  const after = await head.getAttribute('aria-expanded');
+  const leafs = await page.locator('.ps-host-group:has(.ps-host-group-head:has-text("Other plugins")) .ps-host-branch :is(a, button) >> visible=true').count();
+  await record('other-plugins-open', 'Other plugins · uitgeklapt' + (real ? '' : ' (stand-in)'));
+  await page.locator('.ps-host-group:has(.ps-host-group-head:has-text("Other plugins")) .ps-host-branch :is(a, button) >> visible=true').first().click().catch(() => {}); await sleep(2500);
+  const top = await page.evaluate(() => { const h = document.querySelector('.ps-host-head.is-page'); const t = document.querySelector('.ps-host-menu-toggle'); return { head: h ? h.innerText.replace(/\s+/g, ' ').trim() : null, toggle: t ? t.innerText.replace(/\s+/g, ' ').trim() : null }; });
+  await record('other-plugins-page', 'Other plugins · pagina van een plugin' + (real ? '' : ' (stand-in)'));
+  const name = real ? real[0] : 'Server directory';
+  say('other-plugins', before === 'false' && after === 'true' && leafs >= 1 && top.head && top.head.includes('Other plugins') && top.head.includes(name), { real: !!real, before, after, leafs, ...top });
+  if (phone()) say('other-plugins-toggle', top.toggle && top.toggle.includes('Other plugins · ' + name), top);
+  await alpine('d.setHostMode(false)'); await sleep(500);
 }
 
 // 1.5.0 extras: the end of the setup in low windows (in and outside host mode), the setup's Look step (#86), the
