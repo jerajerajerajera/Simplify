@@ -26,6 +26,7 @@
 - Outside host mode, Simplify's admin pages no longer scroll as a whole page: Settings and Pelican's Health page keep their card as high as the window leaves it and scroll inside it (the settings menu stays in place), People & roles keeps its tabs and search on top and scrolls the list, and Website, Automatic subdomains and Announcements scroll their form under the page title.
 - Notifications: "Mark read" on one notification works again. Before, it marked an unread notification unread, so nothing changed.
 - Notifications: Archived is back, as in PelicanSimplify 0.7.0. "Clear read" in the bell and in the window with every notification moves the read ones there, and ✕ on a notification moves that one. Archived sits closed at the bottom of the window with every notification; "Mark as unread" brings a notification back. Nothing is deleted.
+- Scrollbars stop a little short of the top and bottom and sit a little further from the edge, so they fit inside the rounded corners of menus, cards and windows.
 
 ## 1.4.4
 
