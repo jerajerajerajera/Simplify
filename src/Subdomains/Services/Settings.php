@@ -45,6 +45,18 @@ final class Settings
         ];
     }
 
+    /**
+     * The shared game address with the port, such as play.example.com:25566, when the port is forwarded there.
+     *
+     * @param  array{target: string, port_min: int, port_max: int}|null  $settings  all() when null
+     */
+    public static function gameAddress(int $port, ?array $settings = null): ?string
+    {
+        $settings ??= self::all();
+
+        return $settings['target'] !== '' && $port >= $settings['port_min'] && $port <= $settings['port_max'] ? $settings['target'].':'.$port : null;
+    }
+
     public static function domain(): string
     {
         return self::all()['domain'];

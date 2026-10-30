@@ -74,6 +74,14 @@ final class Subdomains
         return self::addresses([$server])[$server->uuid] ?? null;
     }
 
+    /** Where players join: the working subdomain, otherwise the shared game address (play.example.com:25566) for a forwarded port. */
+    public static function gameAddress(Server $server): ?string
+    {
+        $port = $server->allocation?->port;
+
+        return self::address($server) ?? ($port === null ? null : Settings::gameAddress((int) $port));
+    }
+
     /**
      * The join addresses of the servers whose subdomain works, by server uuid, in one query.
      *

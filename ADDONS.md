@@ -121,7 +121,8 @@ Pages on a server (such as Subdomain or Website) stay in the server's own menu.
 
 Announcements, embed and subdomains are core features of Simplify since 1.2. Plugins that used Simplify Subdomains
 can call `Simplify\Core\Subdomains\Subdomains` with the same methods; its `ready()` is false until a root admin has
-set subdomains up.
+set subdomains up. `gameAddress($server)` gives where players join: the working subdomain, otherwise the shared
+game address with the port (`play.example.com:25566`) when the port is in the forwarded range, otherwise null.
 
 ## Events
 
