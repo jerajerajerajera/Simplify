@@ -708,6 +708,11 @@ html.ps-frame[data-ps-head-tools] .fi-page:not(:has(.fi-sc-tabs, .fi-fo-field)) 
   padding: 12px 22px !important;
 }
 
+/* Save of Simplify's settings sits in host mode's title bar (frame.js). */
+html.ps-frame[data-ps-head-tools] .s-settings > .s-bar {
+  display: none !important;
+}
+
 /* A settings page opened from host mode's tree: the tree lists the tabs, so the page shows only the settings. */
 html.ps-frame[data-ps-tree] .fi-sc-tabs > .fi-tabs {
   display: none !important;

@@ -8,6 +8,7 @@
 - The small arrow above a top-bar menu points at the middle of its button.
 - Host mode: every group in the menu on the left folds open and shut, and "Expand all" / "Collapse all" above it opens or closes them all. The group of the open page stays open. 32 languages.
 - Host mode: a Pelican page's search field and buttons sit in the title bar again (as in PelicanSimplify 0.7.0), and its table or sections have no card of their own inside Simplify's box. Create is the named button, the others are icon buttons; selecting rows brings back the bulk actions.
+- Host mode: the settings in the tree (General, Appearance, Add-ons and Pelican's tabs) save with the button in the title bar too, like Announcements, Automatic subdomains and Website, instead of a separate button under the form.
 - Server page: the console is one box in one colour. Pelican's terminal painted a half see-through background of its own, which showed as a lighter box inside the card.
 - Server page: no empty grey badge next to the server's picture when its egg has no icon.
 - Settings → General, Appearance and the other settings open the settings again on a panel taken over from PelicanSimplify. They sent you to the first-time setup every time, because that panel had settings but no finished setup.

@@ -13,7 +13,7 @@
   const label = (el) => el.getAttribute('aria-label') || el.getAttribute('title') || tooltip(el) || el.textContent.trim();
   // The page's own table, not one inside a form, tab or relation manager: those keep their toolbar.
   const mainTable = () => [...document.querySelectorAll('.fi-ta-ctn')].find((el) => !el.parentElement.closest('.fi-resource-relation-managers, .fi-resource-relation-manager, .fi-sc-tabs, .fi-section, .fi-modal, .fi-ta-ctn'));
-  const button = (source, text, primary) => {
+  const button = (source, text, primary, fallback) => {
     const btn = parent.createElement('button');
     btn.type = 'button';
     btn.className = 'ps-btn is-sm' + (primary ? ' is-primary' : ' is-icon') + (source.classList.contains('fi-color-danger') ? ' is-danger' : '');
@@ -22,6 +22,7 @@
     btn.disabled = source.disabled || source.getAttribute('aria-disabled') === 'true';
     const icon = source.querySelector('svg');
     if (icon) btn.append(parent.importNode(icon, true));
+    else if (fallback) btn.insertAdjacentHTML('beforeend', `<svg aria-hidden="true"><use href="#ps-${fallback}"/></svg>`);
     if (primary) btn.append(parent.createTextNode(text));
     btn.addEventListener('click', () => source.click());
     return btn;
@@ -32,7 +33,10 @@
   const build = () => {
     const visible = parent.defaultView.getComputedStyle(head).display !== 'none';
     const table = visible ? mainTable() : null;
-    const sources = visible ? [...document.querySelectorAll('.fi-header-actions-ctn .fi-ac > :is(button, a)'), ...(table?.querySelectorAll('.fi-ta-header-toolbar > .fi-ta-actions > :is(button, a)') || [])].filter((el) => !el.closest('.fi-dropdown')) : [];
+    // Simplify's settings save with the button under the form; in the tree their header (Run setup again) stays hidden.
+    const settings = document.querySelector('.s-settings > .s-bar button[type="submit"]');
+    const header = settings && root.dataset.psTree ? [] : [...document.querySelectorAll('.fi-header-actions-ctn .fi-ac > :is(button, a)')];
+    const sources = visible ? [...header, ...(table?.querySelectorAll('.fi-ta-header-toolbar > .fi-ta-actions > :is(button, a)') || []), ...(settings ? [settings] : [])].filter((el) => !el.closest('.fi-dropdown')) : [];
     const search = table?.querySelector('.fi-ta-search-field input') || null;
     const filters = table?.querySelector('.fi-ta-filters-dropdown .fi-dropdown-trigger > :is(button, a)') || null;
     const next = JSON.stringify([!!search, !!filters, sources.map((el) => [label(el), el.disabled || el.getAttribute('aria-disabled')])]);
@@ -64,7 +68,7 @@
       if (seen.has(text)) continue;
       seen.add(text);
       if (/\/create(\?|$)/.test(source.getAttribute('href') || '')) primaries.push(button(source, text, true));
-      else bar.append(button(source, text, false));
+      else bar.append(button(source, text, false, source === settings ? 'save' : null));
     }
     if (filters) {
       const btn = button(filters, label(filters), false);
