@@ -5,6 +5,7 @@ return [
     'save' => 'Išsaugoti',
     'overview' => 'Apžvalga',
     'support' => 'Pagalba',
+    'return' => 'Eiti į Simplify skydelį',
     'saved' => 'Nustatymai išsaugoti',
     'page_title' => 'Simplify nustatymai',
     'pelican_frame_title' => 'Pelican nustatymai: :label',

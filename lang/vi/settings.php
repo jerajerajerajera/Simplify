@@ -5,6 +5,7 @@ return [
     'save' => 'Lưu',
     'overview' => 'Tổng quan',
     'support' => 'Hỗ trợ',
+    'return' => 'Đến Simplify Panel',
     'saved' => 'Đã lưu cài đặt',
     'page_title' => 'Cài đặt Simplify',
     'pelican_frame_title' => 'Cài đặt Pelican: :label',

@@ -5,6 +5,7 @@ return [
     'save' => 'Salvar',
     'overview' => 'Visão geral',
     'support' => 'Suporte',
+    'return' => 'Ir para o painel do Simplify',
     'saved' => 'Configurações salvas',
     'page_title' => 'Configurações do Simplify',
     'pelican_frame_title' => 'Configurações do Pelican: :label',

@@ -5,6 +5,7 @@ return [
     'save' => 'Uložiť',
     'overview' => 'Prehľad',
     'support' => 'Podpora',
+    'return' => 'Prejsť do panela Simplify',
     'saved' => 'Nastavenia uložené',
     'page_title' => 'Nastavenia Simplify',
     'pelican_frame_title' => 'Nastavenia Pelican: :label',

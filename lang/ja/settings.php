@@ -5,6 +5,7 @@ return [
     'save' => '保存',
     'overview' => '概要',
     'support' => 'サポート',
+    'return' => 'Simplify Panel へ移動',
     'saved' => '設定を保存しました',
     'page_title' => 'Simplify 設定',
     'pelican_frame_title' => 'Pelican 設定: :label',

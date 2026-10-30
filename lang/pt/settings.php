@@ -5,6 +5,7 @@ return [
     'save' => 'Guardar',
     'overview' => 'Visão geral',
     'support' => 'Suporte',
+    'return' => 'Ir para o painel do Simplify',
     'saved' => 'Definições guardadas',
     'page_title' => 'Definições do Simplify',
     'pelican_frame_title' => 'Definições do Pelican: :label',

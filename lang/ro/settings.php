@@ -5,6 +5,7 @@ return [
     'save' => 'Salvați',
     'overview' => 'Prezentare generală',
     'support' => 'Asistență',
+    'return' => 'Mergeți la panoul Simplify',
     'saved' => 'Setări salvate',
     'page_title' => 'Setări Simplify',
     'pelican_frame_title' => 'Setări Pelican: :label',

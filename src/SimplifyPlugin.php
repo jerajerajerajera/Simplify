@@ -61,6 +61,9 @@ final class SimplifyPlugin implements Plugin
                 $panel->homeUrl(fn () => Overview::getUrl(panel: 'app'));
             }
         }
+        if (in_array($panel->getId(), ['app', 'admin'], true)) {
+            $panel->renderHook(PanelsRenderHook::GLOBAL_SEARCH_AFTER, fn () => self::returnButton());
+        }
         if ($panel->getId() === 'server') {
             // Simplify's header, server card and menu around every page of a server.
             $panel->renderHook(PanelsRenderHook::CONTENT_BEFORE, fn () => self::serverTop());
@@ -96,6 +99,16 @@ final class SimplifyPlugin implements Plugin
             'component' => ServerPage::class,
             'data' => ['server' => $server, 'console' => request()->routeIs('filament.server.pages.console')],
         ]);
+    }
+
+    /** Back to Simplify from Pelican's own pages; Simplify's own pages have their own header, a frame has host mode's. */
+    private static function returnButton(): string
+    {
+        if (user() === null || request()->routeIs(Overview::getRouteName(Filament::getPanel('app')), Notifications::getRouteName(Filament::getPanel('app')))) {
+            return '';
+        }
+
+        return view('simplify::partials.return')->render();
     }
 
     /** The browser tab of a server's pages: "<server name> - Simplify", also after Livewire changes the page. */

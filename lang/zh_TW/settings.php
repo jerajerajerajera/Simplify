@@ -5,6 +5,7 @@ return [
     'save' => '儲存',
     'overview' => '總覽',
     'support' => '支援',
+    'return' => '前往 Simplify 面板',
     'saved' => '設定已儲存',
     'page_title' => 'Simplify 設定',
     'pelican_frame_title' => 'Pelican 設定：:label',

@@ -5,6 +5,7 @@ return [
     'save' => 'Save',
     'overview' => 'Overview',
     'support' => 'Support',
+    'return' => 'Go to Simplify Panel',
     'saved' => 'Settings saved',
     'page_title' => 'Simplify settings',
     'pelican_frame_title' => 'Pelican settings: :label',

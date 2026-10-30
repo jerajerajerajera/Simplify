@@ -1137,3 +1137,14 @@ html.ps-frame[data-ps-frame="native"] .s-health { border: 0; border-radius: 0; b
 .s-preview-note img { width: 22px; height: 22px; border-radius: 6px; object-fit: cover; flex: none; }
 .s-preview-note span { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .s-preview-note strong { color: #fff; font-weight: 500; }
+
+/* The button back to Simplify on Pelican's own pages: not inside host mode's frame, which has its own way back. */
+.ps-frame .s-return {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .s-return .fi-btn-label {
+    display: none;
+  }
+}

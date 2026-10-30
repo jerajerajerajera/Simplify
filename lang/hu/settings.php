@@ -5,6 +5,7 @@ return [
     'save' => 'Mentés',
     'overview' => 'Áttekintés',
     'support' => 'Támogatás',
+    'return' => 'Ugrás a Simplify-panelre',
     'saved' => 'Beállítások mentve',
     'page_title' => 'Simplify-beállítások',
     'pelican_frame_title' => 'Pelican-beállítások: :label',

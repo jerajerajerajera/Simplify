@@ -5,6 +5,7 @@ return [
     'save' => 'Αποθήκευση',
     'overview' => 'Επισκόπηση',
     'support' => 'Υποστήριξη',
+    'return' => 'Μετάβαση στο πάνελ Simplify',
     'saved' => 'Οι ρυθμίσεις αποθηκεύτηκαν',
     'page_title' => 'Ρυθμίσεις Simplify',
     'pelican_frame_title' => 'Ρυθμίσεις Pelican: :label',

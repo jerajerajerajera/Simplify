@@ -5,6 +5,7 @@ return [
     'save' => 'Сачувај',
     'overview' => 'Преглед',
     'support' => 'Подршка',
+    'return' => 'Иди на Simplify панел',
     'saved' => 'Подешавања сачувана',
     'page_title' => 'Simplify подешавања',
     'pelican_frame_title' => 'Pelican подешавања: :label',

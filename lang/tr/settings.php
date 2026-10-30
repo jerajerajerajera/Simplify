@@ -5,6 +5,7 @@ return [
     'save' => 'Kaydet',
     'overview' => 'Genel bakış',
     'support' => 'Destek',
+    'return' => 'Simplify Paneline git',
     'saved' => 'Ayarlar kaydedildi',
     'page_title' => 'Simplify ayarları',
     'pelican_frame_title' => 'Pelican ayarları: :label',

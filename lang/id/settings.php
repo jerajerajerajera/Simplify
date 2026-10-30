@@ -5,6 +5,7 @@ return [
     'save' => 'Simpan',
     'overview' => 'Ringkasan',
     'support' => 'Bantuan',
+    'return' => 'Ke Panel Simplify',
     'saved' => 'Pengaturan disimpan',
     'page_title' => 'Pengaturan Simplify',
     'pelican_frame_title' => 'Pengaturan Pelican: :label',

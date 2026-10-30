@@ -5,6 +5,7 @@ return [
     'save' => 'Enregistrer',
     'overview' => 'Vue d\'ensemble',
     'support' => 'Aide',
+    'return' => 'Aller au panel Simplify',
     'saved' => 'Paramètres enregistrés',
     'page_title' => 'Paramètres de Simplify',
     'pelican_frame_title' => 'Paramètres de Pelican : :label',

@@ -5,6 +5,7 @@ return [
     'save' => 'Tallenna',
     'overview' => 'Yleiskatsaus',
     'support' => 'Tuki',
+    'return' => 'Siirry Simplify-paneeliin',
     'saved' => 'Asetukset tallennettu',
     'page_title' => 'Simplifyn asetukset',
     'pelican_frame_title' => 'Pelicanin asetukset: :label',

@@ -5,6 +5,7 @@ return [
     'save' => 'Opslaan',
     'overview' => 'Overzicht',
     'support' => 'Hulp',
+    'return' => 'Naar het Simplify-paneel',
     'saved' => 'Instellingen opgeslagen',
     'page_title' => 'Simplify-instellingen',
     'pelican_frame_title' => 'Pelican-instellingen: :label',

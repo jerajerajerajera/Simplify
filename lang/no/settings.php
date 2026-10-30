@@ -5,6 +5,7 @@ return [
     'save' => 'Lagre',
     'overview' => 'Oversikt',
     'support' => 'Støtte',
+    'return' => 'Gå til Simplify-panelet',
     'saved' => 'Innstillinger lagret',
     'page_title' => 'Simplify-innstillinger',
     'pelican_frame_title' => 'Pelican-innstillinger: :label',
