@@ -1,6 +1,6 @@
 {{-- Host mode (admins, large hosts): one frame with a menu on the left (admin pages as a tree, or the servers per node)
      and the page or server on the right; each side scrolls on its own. Phones open the menu as a sheet. --}}
-<section class="ps-host" :class="{'menu-open': hostMenuOpen}" x-show="hostMode" x-cloak :style="accentStyle('overview')" x-on:keydown.escape="hostMenuOpen=false">
+<section class="ps-host" :class="{'menu-open': hostMenuOpen, 'is-single': adminView && !hostMode}" x-show="hostMode || adminView" x-cloak :style="accentStyle('overview')" x-on:keydown.escape="hostMenuOpen=false">
     <button type="button" class="ps-btn ps-host-menu-toggle" x-on:click="hostMenuOpen=true" aria-controls="ps-host-side" :aria-expanded="hostMenuOpen">
         <svg aria-hidden="true"><use href="#ps-list"/></svg><span x-text="hostServer ? hostServer.name : (hostPage && hostSection?.pages.length > 1 ? hostSection.label+' · '+hostPage.label : hostSection?.label || @js($u('admin')))"></span><svg class="ps-host-menu-chevron" aria-hidden="true"><use href="#ps-chevron"/></svg>
     </button>
@@ -80,6 +80,8 @@
             <svg class="ps-host-head-icon" aria-hidden="true"><use :href="'#ps-'+(hostSection?.icon||'host')"/></svg>
             <h2 x-text="hostSection?.label"></h2>
             <small x-show="hostSection?.pages.length > 1" x-text="hostPage?.label"></small>
+            {{-- Opened from Admin tools outside host mode: back to the overview. --}}
+            <button type="button" class="ps-btn is-sm is-icon ps-host-close" x-show="adminView && !hostMode" x-on:click="closeAdminView()" data-tip="{{ $u('close') }}" aria-label="{{ $u('close') }}"><svg aria-hidden="true"><use href="#ps-close"/></svg></button>
         </header>
         <div class="ps-host-frame is-server" x-show="hostServer" :style="accentStyle(hostServer?.uuid || 'overview')">
             <template x-for="s in hostServer ? [hostServer] : []" :key="s.uuid">
@@ -87,7 +89,7 @@
             </template>
         </div>
         <div class="ps-host-frame" x-show="!hostServer">
-            <template x-if="hostMode && hostPage">
+            <template x-if="(hostMode || adminView) && hostPage">
                 <iframe data-ps-frame="native" :data-ps-tree="hostPage.settings ? '1' : null" :src="frameUrl(hostPage.frame || hostPage.url)" :title="hostPage.label"></iframe>
             </template>
         </div>

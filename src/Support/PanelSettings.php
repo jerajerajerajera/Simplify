@@ -28,14 +28,22 @@ final class PanelSettings
         'accent' => [null, ['nullable', 'regex:/^#[0-9a-fA-F]{6}$/']],
         'server_colours' => [true, ['required', 'boolean']],
         'setup_done' => [false, ['required', 'boolean']],
+        'friends_mode' => [false, ['required', 'boolean']],
         'start_page' => ['overview', ['required', 'in:overview,pelican']],
         'support_url' => [null, ['nullable', 'max:255', 'regex:'.self::SUPPORT_URL]],
         'push' => [true, ['required', 'boolean']],
         'overview_seconds' => [15, ['required', 'integer', 'min:5', 'max:300']],
         'brand_name' => [null, ['nullable', 'string', 'max:40']],
         'pelican_suffix' => [true, ['required', 'boolean']],
-        'brand_font' => ['default', ['required', 'in:'.Brand::FONTS]],
-        'brand_style' => ['plain', ['required', 'in:'.Brand::STYLES]],
+        'brand_font' => ['inter', ['required', 'in:inter,system,rounded,serif,mono,monocraft,condensed,display']],
+        'brand_weight' => [700, ['required', 'integer', 'in:400,500,600,700,800,900']],
+        'brand_colour' => ['solid', ['required', 'in:solid,accent,gradient']],
+        'brand_colour1' => [null, ['nullable', 'regex:/^#[0-9a-fA-F]{6}$/']],
+        'brand_colour2' => [null, ['nullable', 'regex:/^#[0-9a-fA-F]{6}$/']],
+        'brand_spacing' => [0, ['required', 'integer', 'min:-5', 'max:30']],
+        'brand_uppercase' => [false, ['required', 'boolean']],
+        'brand_effect' => ['plain', ['required', 'in:plain,glow,shadow']],
+        'brand_show' => ['logo', ['required', 'in:logo,text,both']],
         'seasonal' => [true, ['required', 'boolean']],
         'brand_logo' => [null, ['nullable', 'string', 'regex:#^'.Brand::DIRECTORY.'/'.Brand::FILE_PATTERN.'$#']],
         'app_icon' => [null, ['nullable', 'string', 'regex:#^'.Brand::DIRECTORY.'/'.Brand::FILE_PATTERN.'$#']],
@@ -55,12 +63,25 @@ final class PanelSettings
             // Before the migration has run, for example while the plugin installs.
             $saved = [];
         }
+        $settings = self::check($saved);
+        app()->instance(self::MEMO, $settings);
+
+        return $settings;
+    }
+
+    /**
+     * Every setting from these values; a missing or bad one gets its default.
+     *
+     * @param  array<string, mixed>  $values
+     * @return array<string, mixed>
+     */
+    public static function check(array $values): array
+    {
         $settings = [];
         foreach (self::FIELDS as $key => [$default, $rules]) {
-            $value = $saved[$key] ?? $default;
+            $value = $values[$key] ?? $default;
             $settings[$key] = Validator::make(['value' => $value], ['value' => $rules])->passes() ? $value : $default;
         }
-        app()->instance(self::MEMO, $settings);
 
         return $settings;
     }

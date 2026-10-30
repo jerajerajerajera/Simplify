@@ -7,6 +7,7 @@ namespace Simplify\Core\Providers;
 use App\Models\Server;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Container\Container;
+use Illuminate\Notifications\Events\NotificationSent;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,7 @@ use Simplify\Core\Http\Controllers\AssetController;
 use Simplify\Core\Http\Controllers\BannerController;
 use Simplify\Core\Http\Controllers\BrandController;
 use Simplify\Core\Http\Controllers\WebAppController;
+use Simplify\Core\Push\PelicanNotices;
 use Simplify\Core\Push\Push;
 use Simplify\Core\Server\Looks;
 use Simplify\Core\Subdomains\Console\SyncSubdomains;
@@ -69,6 +71,7 @@ final class SimplifyServiceProvider extends ServiceProvider
         // Add-ons check Event::hasListeners('simplify.push'), so there is no listener while an admin turned push off.
         if (Push::enabled()) {
             Event::listen('simplify.push', fn (array $message) => Push::fromEvent($message));
+            Event::listen(NotificationSent::class, [PelicanNotices::class, 'handle']);
         }
         // Pelican's Health page in Simplify's look: this folder only holds views that replace one of Pelican's.
         $this->app['view']->getFinder()->prependLocation(dirname(__DIR__, 2).'/resources/overrides');

@@ -1,5 +1,21 @@
 <x-filament-panels::page>
     <div class="s-push" x-data="simplifyPush(@js(__('simplify::push.browser')))" x-init="start()">
+        @if (\Simplify\Core\Support\Scheduler::stalled())
+            <div class="s-card" role="alert">
+                <div class="s-row">
+                    <x-filament::icon icon="tabler-alert-triangle" class="s-row-icon s-warn" />
+                    <div class="s-row-text">
+                        <div>{{ __('simplify::push.scheduler') }}</div>
+                        @if (user()?->isRootAdmin())
+                            <div class="s-muted">{{ __('simplify::push.scheduler_admin') }}</div>
+                            <code class="s-code">{{ \Simplify\Core\Support\Scheduler::cron() }}</code>
+                        @else
+                            <div class="s-muted">{{ __('simplify::push.scheduler_user') }}</div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        @endif
         <div class="s-card">
             <div class="s-row">
                 <x-filament::icon icon="tabler-device-mobile" class="s-row-icon" />
@@ -33,6 +49,14 @@
                     <span class="s-muted s-block">{{ __('simplify::push.messages_help') }}</span>
                 </span>
                 <input type="checkbox" class="s-switch" wire:model.live="messages">
+            </label>
+            <label class="s-row">
+                <x-filament::icon icon="tabler-bell" class="s-row-icon" />
+                <span class="s-row-text">
+                    <span>{{ __('simplify::push.pelican') }}</span>
+                    <span class="s-muted s-block">{{ __('simplify::push.pelican_help') }}</span>
+                </span>
+                <input type="checkbox" class="s-switch" wire:model.live="pelican">
             </label>
             @if (user()?->isRootAdmin())
                 <label class="s-row">

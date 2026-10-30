@@ -18,9 +18,8 @@ use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Addons\Catalog;
 use Simplify\Core\Filament\Admin\SettingsFields;
-use Simplify\Core\Push\WebPush;
 use Simplify\Core\Support\PanelSettings;
-use Throwable;
+use Simplify\Core\Support\SystemCheck;
 
 /**
  * The first setup: which add-ons to install first, where people start, how it looks, the phone app, and what the
@@ -66,7 +65,10 @@ final class Setup extends Page implements HasForms
         foreach (app(AddonRegistry::class)->collect(fn (Addon $addon) => [[$addon->id(), $addon->setupState()]]) as [$id, $state]) {
             $addons[$id] = $state;
         }
-        $this->form->fill([...PanelSettings::all(), 'addons' => $addons]);
+        $settings = PanelSettings::all();
+        // A first setup starts as a panel for friends, like most panels are; a repeated one shows what is set now.
+        $friends = $settings['setup_done'] ? (bool) $settings['friends_mode'] : true;
+        $this->form->fill([...$settings, 'friends_mode' => $friends, 'panel_type' => $friends ? 'friends' : 'hosting', 'addons' => $addons]);
     }
 
     public function form(Schema $schema): Schema
@@ -76,10 +78,15 @@ final class Setup extends Page implements HasForms
 
         return $schema->statePath('data')->components([
             Wizard::make([
-                $step('addons', 'tabler-puzzle', [View::make('simplify::partials.setup-addons')]),
-                $step('panel', 'tabler-users-group', [SettingsFields::startPage(), SettingsFields::support()]),
-                $step('look', 'tabler-palette', [SettingsFields::colours(), SettingsFields::brand()]),
-                $step('app', 'tabler-device-mobile', [View::make('simplify::partials.setup-checks'), SettingsFields::app()]),
+                $step('addons', 'tabler-puzzle', [
+                    Section::make(__('simplify::setup.checks.title'))->schema([View::make('simplify::partials.setup-checks')]),
+                    View::make('simplify::partials.setup-addons'),
+                ]),
+                $step('panel', 'tabler-users-group', [
+                    SettingsFields::panelType(), SettingsFields::startPage(), SettingsFields::visibility(), SettingsFields::support(),
+                ]),
+                $step('look', 'tabler-palette', [SettingsFields::look()]),
+                $step('app', 'tabler-device-mobile', [SettingsFields::app()]),
                 // Only what the add-ons ask; their own settings pages follow on the page after the setup.
                 $step('finish', 'tabler-checklist', $this->addonSections() ?: [View::make('simplify::partials.setup-no-questions')]),
             ])->skippable()->columnSpanFull()->extraAttributes(['class' => 's-setup'])
@@ -123,23 +130,9 @@ final class Setup extends Page implements HasForms
         return Catalog::all(app(AddonRegistry::class));
     }
 
-    /**
-     * What the app and its notifications need from this panel. None of it blocks the setup.
-     *
-     * @return list<array{ok: bool, text: string}>
-     */
+    /** @return list<array{ok: bool, text: string, fix: string, code?: string}> */
     public function checks(): array
     {
-        try {
-            WebPush::createKeys();
-            $keys = true;
-        } catch (Throwable) {
-            $keys = false;
-        }
-
-        return [
-            ['ok' => str_starts_with(url('/'), 'https://'), 'text' => __('simplify::setup.checks.https')],
-            ['ok' => $keys, 'text' => __('simplify::setup.checks.openssl')],
-        ];
+        return SystemCheck::all();
     }
 }

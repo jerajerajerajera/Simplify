@@ -20,6 +20,8 @@ use Simplify\Core\Embed\Services\EmbedOptions;
 use Simplify\Core\Embed\Services\EmbedServers;
 use Simplify\Core\Embed\Services\ServerList;
 use Simplify\Core\Filament\FormPage;
+use Simplify\Core\Overview\ServerGroups;
+use Simplify\Core\Support\Preferences;
 
 /**
  * Where a root admin picks the servers on the website, how the list looks, and copies the code for a website.
@@ -91,6 +93,7 @@ final class EmbedSettings extends FormPage
                     'all' => $t('show_all'),
                     'server' => $t('show_server'),
                     'game' => $t('show_game'),
+                    ...self::groups() === [] ? [] : ['group' => $t('show_group')],
                 ]),
                 Select::make('code.server')
                     ->label($t('server'))
@@ -105,6 +108,13 @@ final class EmbedSettings extends FormPage
                     ->placeholder($t('pick_game'))
                     ->options(fn () => array_combine(ServerList::games(), ServerList::games()))
                     ->visible(fn (Get $get) => $get('code.show') === 'game'),
+                Select::make('code.group')
+                    ->label($t('group'))
+                    ->live()
+                    ->placeholder($t('pick_group'))
+                    ->helperText($t('group_help'))
+                    ->options(fn () => array_map(fn (array $group) => $group['name'], self::groups()))
+                    ->visible(fn (Get $get) => $get('code.show') === 'group'),
                 View::make('simplify::embed.code')->columnSpanFull()->viewData(fn (Get $get) => $this->codeFor($get)),
             ]),
         ]);
@@ -116,6 +126,22 @@ final class EmbedSettings extends FormPage
         return Server::query()->whereIn('id', EmbedServers::ids())->orderBy('name')->pluck('name', 'uuid_short')->all();
     }
 
+    /**
+     * The admin's own server groups from the overview, by id, with the short ids of their servers on the website.
+     *
+     * @return array<string, array{name: string, servers: list<string>}>
+     */
+    private static function groups(): array
+    {
+        $shown = Server::query()->whereIn('id', EmbedServers::ids())->pluck('uuid_short', 'uuid')->all();
+        $groups = [];
+        foreach (ServerGroups::clean(Preferences::get(user(), 'overview.groups'))['groups'] as $group) {
+            $groups[$group['id']] = ['name' => $group['name'], 'servers' => array_values(array_intersect_key($shown, array_flip($group['servers'])))];
+        }
+
+        return $groups;
+    }
+
     /** One server or one game shows the code at once: the first on the list is picked until another is chosen. */
     private function pickFirst(callable $set, callable $get): void
     {
@@ -125,6 +151,9 @@ final class EmbedSettings extends FormPage
         if ($get('code.show') === 'game' && ! in_array($get('code.game'), ServerList::games(), true)) {
             $set('code.game', ServerList::games()[0] ?? null);
         }
+        if ($get('code.show') === 'group' && ! array_key_exists((string) $get('code.group'), self::groups())) {
+            $set('code.group', array_key_first(self::groups()));
+        }
     }
 
     /** @return array{show: array<string, string>|null} */
@@ -133,6 +162,7 @@ final class EmbedSettings extends FormPage
         return ['show' => match ($get('code.show')) {
             'server' => filled($get('code.server')) ? ['server' => (string) $get('code.server')] : null,
             'game' => filled($get('code.game')) ? ['game' => (string) $get('code.game')] : null,
+            'group' => (self::groups()[(string) $get('code.group')]['servers'] ?? []) !== [] ? ['servers' => self::groups()[(string) $get('code.group')]['servers']] : null,
             default => [],
         }];
     }

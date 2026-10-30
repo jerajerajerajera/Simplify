@@ -3,9 +3,7 @@
 @php($t = 'simplify::settings.appearance.')
 <button type="button" class="s-tile s-tile-default" title="{{ __($t.'default_'.$kind) }}" aria-label="{{ __($t.'default_'.$kind) }}"
     x-on:click="$el.closest('.s-tile-field')?.querySelector('.filepond--action-remove-item')?.click()">
-    @if ($kind === 'name')
-        <x-filament::icon icon="tabler-typography" />
-    @elseif ($kind === 'badge')
+    @if ($kind === 'badge')
         <img src="{{ \Simplify\Core\Support\Assets::url('app-badge-96.png') }}" alt="" class="s-tile-badge">
     @else
         <img src="{{ \Simplify\Core\Support\Assets::url('app-icon-192.png') }}" alt="">

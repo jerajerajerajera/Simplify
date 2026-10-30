@@ -1,5 +1,5 @@
 {{-- Overview -------------------------------------------------------------------------------- --}}
-<section class="ps-overview" x-show="!hostMode" :class="{'is-list': overviewView==='list'}" :style="{'--grid-columns': overviewColumns(), ...overviewGridStyle()}">
+<section class="ps-overview" x-show="!hostMode && !adminView" :class="{'is-list': overviewView==='list'}" :style="{'--grid-columns': overviewColumns(), ...overviewGridStyle()}">
     <div class="ps-server-scroll" tabindex="0" role="region" aria-label="{{ $u('servers') }}">
         <div class="ps-server-stage" :class="{'is-list': overviewView==='list'}">
             {{-- Customers: a greeting with the links add-ons give them (such as a hoster's client area) and support. --}}
@@ -51,13 +51,13 @@
                         <article class="ps-server-card">
                             <span class="ps-offline-artwork" x-show="s.status==='offline'" aria-label="{{ $u('server_offline') }}"><svg aria-hidden="true"><use href="#ps-offline"/></svg></span>
                             <img class="ps-card-background" x-show="s.background && s.status!=='offline'" :src="safeImage(s.background)" alt="" loading="lazy" x-on:error="$el.style.visibility='hidden'">
-                            <button class="ps-server-open" x-on:click="location.href=s.url" :aria-label="Simplify.fill(@js($u('open_name')), { name: s.name })">
+                            <button class="ps-server-open" x-on:click="s.url && (location.href=s.url)" :aria-disabled="!s.url" :data-tip="s.url ? null : Simplify.fill(@js($u('not_assigned')), { name: s.name })" :aria-label="Simplify.fill(@js($u('open_name')), { name: s.name })">
                                 <div class="ps-card-head">
                                     {{-- Without an icon of its own the server shows its egg's icon large, and not again as the small one. --}}
                                     <span class="ps-card-icons" :class="{'egg-primary': overviewPreferences.largeIcon==='egg' && !!s.egg_icon && !!(s.server_icon || s.icon)}">
                                         <span class="ps-card-icon">
-                                            <img x-show="s.server_icon || s.icon || s.egg_icon" :src="safeImage(s.server_icon || s.icon || s.egg_icon)" alt="{{ $u('server_icon') }}" loading="lazy" x-on:load="$el.style.visibility=''" x-on:error="$el.style.visibility='hidden'">
-                                            <svg x-show="!s.server_icon && !s.icon && !s.egg_icon" aria-hidden="true"><use href="#ps-cube"/></svg>
+                                            <img x-show="serverIcon(s)" :src="serverIcon(s)" alt="{{ $u('server_icon') }}" loading="lazy" x-on:error="imageFailed($el.getAttribute('src'))">
+                                            <svg x-show="!serverIcon(s)" aria-hidden="true"><use href="#ps-cube"/></svg>
                                         </span>
                                         <span class="ps-card-egg-icon" x-show="s.egg_icon && (s.server_icon || s.icon)" data-tip-label="Server software" :data-tip="softwareTooltip(s)" :aria-label="softwareTooltip(s)">
                                             <img :src="safeImage(s.egg_icon)" alt="" loading="lazy" x-on:load="$el.style.visibility=''" x-on:error="$el.style.visibility='hidden'">
@@ -96,11 +96,11 @@
                                 </div>
                                 <div class="ps-card-bottom" x-show="overviewView!=='list'">
                                     <span x-text="playerCount(s)"></span>
-                                    <svg aria-hidden="true"><use href="#ps-chevron"/></svg>
+                                    <svg x-show="s.url" aria-hidden="true"><use href="#ps-chevron"/></svg>
                                 </div>
                             </button>
                             <div class="ps-card-footer" x-show="overviewView==='list'">
-                                <button type="button" class="ps-list-player-count" x-show="overviewView==='list'" x-on:click="location.href=s.url" :aria-label="Simplify.fill(@js($u('open_name')), { name: s.name })">
+                                <button type="button" class="ps-list-player-count" x-show="overviewView==='list'" x-on:click="s.url && (location.href=s.url)" :aria-disabled="!s.url" :aria-label="Simplify.fill(@js($u('open_name')), { name: s.name })">
                                     <span x-text="playerCount(s)"></span>
                                     <svg aria-hidden="true"><use href="#ps-chevron"/></svg>
                                 </button>
@@ -211,7 +211,7 @@
             </div>
         </div>
         {{-- A tab under the card's bottom edge: the card folds open to show every node. --}}
-        <button type="button" class="ps-health-tab" :class="{'expanded': healthExpanded}" x-show="boot.features?.host_health" x-on:click="openHostHealth()" :aria-expanded="healthExpanded" aria-controls="ps-health-details" aria-label="{{ $u('view_health_by_node') }}" data-tip="{{ $u('view_health_by_node') }}"><svg aria-hidden="true"><use href="#ps-chevron"/></svg></button>
+        <button type="button" class="ps-health-tab" :class="{'expanded': healthExpanded}" x-show="boot.features?.host_health" x-on:click="openHostHealth()" :aria-expanded="healthExpanded" aria-controls="ps-health-details" aria-label="{{ $u('view_health_by_node') }}"><svg aria-hidden="true"><use href="#ps-chevron"/></svg></button>
     </section>
 </section>
 

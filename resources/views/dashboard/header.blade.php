@@ -2,7 +2,7 @@
 <header class="ps-top" @if (($notes ?? null) === 'host') data-ps-notes="host" @endif>
     <div class="ps-heading">
         <div class="ps-identity">
-            <a :href="boot.list_url"><h1 class="ps-brand" :style="brandStyle()"><template x-if="brand().logo_url"><img class="ps-brand-logo" :src="brand().logo_url" alt="" :style="{ height: (Number(brand().logo_height) || 32) + 'px' }"></template><span class="ps-panel-name" :class="brand().name_class" x-show="!brand().logo_url" x-text="boot.panel_name"></span><span class="ps-title-pelican" x-show="boot.appearance?.pelican_suffix !== false">{{ $u('pelican') }}</span><span class="ps-visually-hidden" x-show="brand().logo_url" x-text="boot.panel_name"></span></h1></a>
+            <a :href="boot.list_url"><h1 class="ps-brand" :style="brandStyle()"><template x-if="brand().logo_url"><img class="ps-brand-logo" :src="brand().logo_url" alt="" :style="{ height: (Number(brand().logo_height) || 32) + 'px' }"></template><span class="ps-panel-name" x-show="!brand().logo_url || brand().logo_text" :style="brand().text_style" x-text="boot.panel_name"></span><span class="ps-title-pelican" x-show="boot.appearance?.pelican_suffix !== false">{{ $u('pelican') }}</span><span class="ps-visually-hidden" x-show="brand().logo_url && !brand().logo_text" x-text="boot.panel_name"></span></h1></a>
             {{-- Seasonal touches: an icon for the holiday of the day (resources/js/seasons.js). Pointing at it, or tapping it, tells what the day is. --}}
             <span class="ps-season-badges" x-show="seasonBadges().length" x-cloak>
                 <template x-for="badge in seasonBadges()" :key="badge.key">
@@ -27,7 +27,7 @@
     <nav class="ps-top-actions" aria-label="{{ $u('panel_navigation') }}" :class="{'nav-open': navMenu}"
          x-on:click.outside="navMenu=false; accountMenu=false" x-on:keydown.escape.stop="navMenu=false; accountMenu=false">
         {{-- Health in the top bar: the button opens the details below it; the create buttons sit next to it. --}}
-        <div class="ps-top-overview" x-show="!server && !hostMode && healthPlace()==='top-bar'" x-cloak>
+        <div class="ps-top-overview" x-show="!server && !hostMode && !adminView && healthPlace()==='top-bar'" x-cloak>
             <button type="button" class="ps-btn ps-health-pill" :class="boot.host_health?.state || 'unavailable'" x-on:click="healthPopover=!healthPopover; healthExpanded=false; healthOpenNodes=[]; placeHealthPopover()" :aria-expanded="healthPopover" aria-controls="ps-health-panel" :aria-label="Simplify.fill(@js($u('host_health_label')), { state: boot.host_health?.label || @js($u('unavailable')) })">
                 <svg aria-hidden="true"><use href="#ps-heart"/></svg><span x-text="boot.host_health?.label || @js($u('unavailable'))"></span>
             </button>
@@ -66,6 +66,7 @@
                     <div class="ps-notify-head">
                         <strong class="ps-dropdown-title">{{ $u('notifications') }}</strong>
                         <button type="button" class="ps-btn is-sm is-subtle" x-show="unreadNotifications()" x-on:click="markNotifications([], true)">{{ $u('mark_all_read') }}</button>
+                        <button type="button" class="ps-btn is-sm is-subtle" x-show="canClearRead()" x-on:click="archiveNotifications([])">{{ $u('clear_read') }}</button>
                         <button type="button" class="ps-btn is-sm is-icon is-subtle" x-on:click="openAllNotifications()" data-tip="{{ $u('all_notifications') }}" aria-label="{{ $u('all_notifications') }}"><svg aria-hidden="true"><use href="#ps-expand"/></svg></button>
                     </div>
                     <div class="ps-notify-list">
@@ -121,7 +122,7 @@
                                     </button>
                                     <div class="ps-admin-tiles is-inline" x-show="adminGroup() === section.key">
                                         <template x-for="item in section.pages" :key="item.key">
-                                            <a class="ps-admin-tile" :href="item.url"><span class="ps-host-rail-icon"><svg aria-hidden="true"><use :href="'#ps-'+item.icon"/></svg></span><span x-text="item.label"></span></a>
+                                            <a class="ps-admin-tile" :href="adminLink(section, item)" x-on:click="openAdminPage($event, section, item)"><span class="ps-host-rail-icon"><svg aria-hidden="true"><use :href="'#ps-'+item.icon"/></svg></span><span x-text="item.label"></span></a>
                                         </template>
                                     </div>
                                 </div>
@@ -133,7 +134,7 @@
                                     <div class="ps-admin-pane-head"><span x-text="adminSection().label"></span><small x-text="adminSection().pages.length"></small></div>
                                     <div class="ps-admin-tiles">
                                         <template x-for="item in adminSection().pages" :key="item.key">
-                                            <a class="ps-admin-tile" :href="item.url"><span class="ps-host-rail-icon"><svg aria-hidden="true"><use :href="'#ps-'+item.icon"/></svg></span><span x-text="item.label"></span></a>
+                                            <a class="ps-admin-tile" :href="adminLink(adminSection(), item)" x-on:click="openAdminPage($event, adminSection(), item)"><span class="ps-host-rail-icon"><svg aria-hidden="true"><use :href="'#ps-'+item.icon"/></svg></span><span x-text="item.label"></span></a>
                                         </template>
                                     </div>
                                 </div>
@@ -142,9 +143,9 @@
                     </div>
                     <template x-if="adminHealthPage()">
                         <div class="ps-admin-health">
-                            <a class="ps-admin-health-title" :href="adminHealthPage().url"><svg aria-hidden="true"><use href="#ps-heart"/></svg><span>{{ $u('host_health_checks') }}</span></a>
+                            <a class="ps-admin-health-title" :href="adminLink({ key: 'health' }, { key: 'health' })" x-on:click="openAdminHealth($event)"><svg aria-hidden="true"><use href="#ps-heart"/></svg><span>{{ $u('host_health_checks') }}</span></a>
                             <div class="ps-health-grid">
-                                @include('simplify::dashboard.health-checks', ['open' => 'location.href = adminHealthPage().url'])
+                                @include('simplify::dashboard.health-checks', ['open' => 'server ? (location.href = adminLink({ key: \'health\' }, { key: \'health\' })) : openAdminHealth(null)'])
                             </div>
                         </div>
                     </template>
@@ -163,6 +164,7 @@
                 <header class="ps-modal-head">
                     <h2 id="ps-notify-all-title">{{ $u('all_notifications') }}</h2>
                     <button type="button" class="ps-btn is-sm is-subtle" x-show="unreadNotifications()" x-on:click="markNotifications([], true)">{{ $u('mark_all_read') }}</button>
+                    <button type="button" class="ps-btn is-sm is-subtle" x-show="canClearRead()" x-on:click="archiveNotifications([])">{{ $u('clear_read') }}</button>
                     <button type="button" class="ps-btn is-icon is-subtle" x-on:click="notifyAll=false" aria-label="{{ $u('close') }}" data-tip="{{ $u('close') }}"><svg aria-hidden="true"><use href="#ps-close"/></svg></button>
                 </header>
                 <div class="ps-modal-body">
@@ -197,6 +199,21 @@
                         <p class="ps-empty" x-show="!notifications().length">{{ $u('you_are_all_caught_up') }}</p>
                     </div>
                     <button type="button" class="ps-btn is-sm is-subtle ps-notify-more" x-show="feed.more" x-on:click="loadNotificationPage()" :disabled="feed.loading" x-text="feed.loading ? @js($u('loading')) : @js($u('show_more'))"></button>
+                    {{-- Archived: what "Clear read" and ✕ moved away, closed until opened (as in 0.7.0). --}}
+                    <div class="ps-notify-archive" x-show="feed.archived">
+                        <button type="button" class="ps-notify-archive-toggle" x-on:click="toggleArchive()" :aria-expanded="archive.open" aria-controls="ps-notify-archived">
+                            <svg aria-hidden="true"><use href="#ps-chevron"/></svg><span>{{ $u('archived') }}</span>
+                        </button>
+                        <div id="ps-notify-archived" x-show="archive.open" x-cloak>
+                            <div class="ps-notify-list">
+                                <template x-for="item in archive.items" :key="'archived-'+item.id">
+                                    @include('simplify::dashboard.notify-item')
+                                </template>
+                                <p class="ps-empty" x-show="archive.loaded && !archive.items.length">{{ $u('nothing_archived') }}</p>
+                            </div>
+                            <button type="button" class="ps-btn is-sm is-subtle ps-notify-more" x-show="archive.more || archive.loading" x-on:click="loadArchivePage()" :disabled="archive.loading" x-text="archive.loading ? @js($u('loading')) : @js($u('show_more'))"></button>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>

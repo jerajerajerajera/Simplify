@@ -1,5 +1,8 @@
 /* Simplify's look: tokens first, then the shared components. Colours come from Filament's own variables, so a
    Pelican theme plugin restyles Simplify too. Light values on :root, dark values on html.dark (Filament's switch). */
+@font-face { font-family: Monocraft; src: url("monocraft-regular.woff2") format("woff2"); font-weight: 400 600; font-display: swap; }
+@font-face { font-family: Monocraft; src: url("monocraft-bold.woff2") format("woff2"); font-weight: 700 900; font-display: swap; }
+
 :root {
   --s-bg: var(--gray-50);
   --s-surface: #fff;
@@ -173,9 +176,32 @@
   min-width: 0;
 }
 
+.s-checks .s-row:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.s-row-fix {
+  display: block;
+  margin-top: 2px;
+}
+
 .s-muted {
   color: var(--s-muted);
   font-size: var(--s-text-sm);
+}
+
+.s-code {
+  background: var(--s-raised);
+  border: 1px solid var(--s-line);
+  border-radius: var(--s-radius-sm);
+  display: block;
+  font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  margin-top: var(--s-space-2);
+  overflow-x: auto;
+  padding: 6px 8px;
+  user-select: all;
+  white-space: nowrap;
 }
 
 .s-heading {
@@ -769,6 +795,46 @@ html.ps-frame[data-ps-tree] .fi-grid-col:not(:first-child) > .fi-sc-component > 
   border-top: 1px solid var(--s-line);
 }
 
+/* Settings and Health outside host mode: the card is as high as the window leaves it (--s-fit, head.blade.php) and
+   scrolls inside, so the page never does. The menu on the left stays where it is. */
+html:not(.ps-frame) .s-settings-tabs.fi-vertical[style*="--s-fit"] {
+  height: var(--s-fit);
+}
+
+html:not(.ps-frame) .s-settings-tabs.fi-vertical[style*="--s-fit"] > .fi-tabs {
+  overflow-y: auto;
+}
+
+html:not(.ps-frame) .s-settings-tabs.fi-vertical[style*="--s-fit"] > .fi-sc-tabs-tab.fi-active {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+html:not(.ps-frame) :is(.s-health, .s-fit)[style*="--s-fit"] {
+  max-height: var(--s-fit);
+  overflow-y: auto;
+}
+
+/* A form page scrolls inside with a little room, so focus rings and section shadows are not cut off. */
+html:not(.ps-frame) .s-fit[style*="--s-fit"] {
+  margin: -4px;
+  padding: 4px;
+}
+
+/* People & roles: the tabs, search and add button stay on top, the list scrolls in its card. */
+html:not(.ps-frame) .s-people[style*="--s-fit"] {
+  display: flex;
+  flex-direction: column;
+  height: var(--s-fit);
+}
+
+html:not(.ps-frame) .s-people[style*="--s-fit"] > .s-card {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+}
+
 /* Settings: one card with the menu on the left, in the style of host mode's tree, and the settings beside it.
    The menu has three groups (Panel, Add-ons, Pelican); their titles come from the page (settings.blade.php). */
 .s-settings-tabs.fi-vertical {
@@ -1010,11 +1076,12 @@ html.ps-frame[data-ps-frame="settings"] :is(body, .fi-layout, .fi-main-ctn, .fi-
   border-color: transparent !important;
 }
 
-/* Scrollbars, everywhere in the panel: one dark rounded bar without a track or outline, with room above and below.
+/* Scrollbars, everywhere in the panel: one dark rounded bar without a track or outline. It stops 14px short of both
+   ends and keeps 4px from the edge, so it sits inside the rounded corners of cards, menus and windows.
    "html" before each part outranks Pelican's console stylesheet, which draws an outlined bar of its own. */
-html ::-webkit-scrollbar { width: 10px; height: 10px; background: transparent; }
-html ::-webkit-scrollbar-track, html ::-webkit-scrollbar-track-piece { margin: 6px; border: 0; background: transparent; box-shadow: none; }
-html ::-webkit-scrollbar-thumb { min-height: 32px; border: 2px solid transparent; border-radius: 999px; background: var(--s-scroll) padding-box; box-shadow: none; }
+html ::-webkit-scrollbar { width: 12px; height: 12px; background: transparent; }
+html ::-webkit-scrollbar-track, html ::-webkit-scrollbar-track-piece { margin: 14px; border: 0; background: transparent; box-shadow: none; }
+html ::-webkit-scrollbar-thumb { min-height: 32px; border: 3px solid transparent; border-inline-end-width: 4px; border-bottom-width: 4px; border-radius: 999px; background: var(--s-scroll) padding-box; box-shadow: none; }
 html ::-webkit-scrollbar-thumb:hover { background-color: var(--s-scroll-hover); }
 html ::-webkit-scrollbar-button, html ::-webkit-scrollbar-corner { display: none; background: transparent; }
 /* Firefox has no ::-webkit-scrollbar: the thin bar in the same colour. Chrome would drop the rules above for these. */
@@ -1085,39 +1152,14 @@ html.ps-frame[data-ps-frame="native"] .s-health { border: 0; border-radius: 0; b
 .s-preview-note span { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .s-preview-note strong { color: #fff; font-weight: 500; }
 
-/* The panel name's own font and style (Settings → Appearance, Brand::classes). The fonts ship with Simplify
-   (resources/fonts, OFL) and only load when the name uses them. */
-@font-face { font-display: swap; font-family: "Simplify Rounded"; font-weight: 800; src: url("brand-rounded.woff2") format("woff2"); }
-@font-face { font-display: swap; font-family: "Simplify Serif"; font-weight: 700; src: url("brand-serif.woff2") format("woff2"); }
-@font-face { font-display: swap; font-family: "Simplify Mono"; font-weight: 700; src: url("brand-mono.woff2") format("woff2"); }
-@font-face { font-display: swap; font-family: "Simplify Pixel"; font-weight: 400; src: url("brand-pixel.woff2") format("woff2"); }
+/* Fonts for the panel name (Brand::FONTS). They ship with Simplify (resources/fonts, OFL) and only load when the name uses them. */
+@font-face { font-display: swap; font-family: "Simplify Rounded"; font-weight: 400 900; src: url("brand-rounded.woff2") format("woff2"); }
+@font-face { font-display: swap; font-family: "Simplify Serif"; font-weight: 400 900; src: url("brand-serif.woff2") format("woff2"); }
+@font-face { font-display: swap; font-family: "Simplify Mono"; font-weight: 400 900; src: url("brand-mono.woff2") format("woff2"); }
 
-.s-brand {
-  --s-brand-colour: var(--s-brand-tint, var(--ps-brand, var(--primary-500)));
-  font-size: 1.125rem;
-  font-weight: 700;
-  line-height: 1.2;
-  white-space: nowrap;
-}
-
-.ps-panel-name.s-brand {
-  font-size: inherit;
-}
-
-.s-brand-font-rounded { font-family: "Simplify Rounded", ui-rounded, sans-serif; font-weight: 800; }
-.s-brand-font-serif { font-family: "Simplify Serif", Georgia, serif; font-weight: 700; }
-.s-brand-font-mono { font-family: "Simplify Mono", ui-monospace, monospace; font-weight: 700; }
-.s-brand-font-pixel { font-family: "Simplify Pixel", ui-monospace, monospace; font-size: .92em; font-weight: 400; }
-.s-brand-style-accent { color: var(--s-brand-colour); }
-.s-brand-style-gradient {
-  -webkit-background-clip: text;
-  background-clip: text;
-  background-image: linear-gradient(90deg, var(--s-brand-colour), color-mix(in oklab, var(--s-brand-colour) 40%, var(--s-ink, currentColor)));
-  -webkit-text-fill-color: transparent;
-}
-.s-brand-style-glow { text-shadow: 0 0 10px color-mix(in srgb, var(--s-brand-colour) 80%, transparent), 0 0 2px var(--s-brand-colour); }
-.s-brand-style-shadow { text-shadow: 2px 2px 0 var(--s-brand-colour); }
-.s-brand-style-caps { font-size: .82em; letter-spacing: .14em; text-transform: uppercase; }
+/* The name in its own style in Filament's top bar (Brand::apply), after the logo when both show. */
+.fi-logo:has(.s-brand) { align-items: center; display: inline-flex; gap: 10px; }
+.s-brand { font-size: 1.125rem; font-weight: 700; line-height: 1.2; white-space: nowrap; }
 
 /* Appearance: the fields in a narrow column, with the preview beside them that follows every choice. */
 :is(.s-settings-tabs, .s-setup) .fi-section-content:has(> .s-look-preview, > * > .s-look-preview) {
@@ -1145,12 +1187,13 @@ html.ps-frame[data-ps-frame="native"] .s-health { border: 0; border-radius: 0; b
   overflow: hidden;
 }
 
-.s-preview-name .s-brand {
-  color: var(--s-ink);
+.s-preview-name > span:first-child {
   font-size: 16px;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-
-.s-preview-name .s-brand.s-brand-style-accent { color: var(--s-brand-colour); }
 
 .s-preview-suffix {
   color: var(--s-muted);
@@ -1426,10 +1469,8 @@ html.ps-frame[data-ps-frame="native"] .s-health { border: 0; border-radius: 0; b
 }
 
 .s-chip:hover { background: var(--s-raised); }
-.s-chip-sample { font-size: 15px; }
-.s-chip-sample + span { color: var(--s-muted); font-size: 10.5px; }
 
-.s-chip:has(input:checked) {
+.s-chip:has(input:checked), .s-chip[aria-pressed="true"] {
   background: color-mix(in srgb, var(--s-accent) 12%, var(--s-surface));
   border-color: var(--s-accent);
   box-shadow: 0 0 0 1px var(--s-accent);
@@ -1540,6 +1581,179 @@ html.ps-frame[data-ps-frame="native"] .s-health { border: 0; border-radius: 0; b
 .s-done-check svg { height: 22px; width: 22px; }
 
 @media (max-width: 900px) {
-  .s-look-preview { position: static; }
   .s-done { padding: 16px 14px; }
+/* The button back to Simplify on Pelican's own pages: not inside host mode's frame, which has its own way back. */
+.ps-frame .s-return {
+  display: none;
 }
+
+@media (max-width: 640px) {
+  .s-return .fi-btn-label {
+    display: none;
+  }
+}
+
+/* Simplify settings → Appearance → Server banners: one row per upload. */
+.s-banners {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-space-2);
+}
+
+.s-banner {
+  align-items: center;
+  display: flex;
+  gap: var(--s-space-3);
+}
+
+.s-banner img {
+  aspect-ratio: 16 / 9;
+  border-radius: var(--s-radius-sm);
+  flex: none;
+  object-fit: cover;
+  width: 96px;
+}
+
+/* The Look (SettingsFields::look): the fields, with one preview beside them that stays in view while they scroll.
+   On a narrow screen the preview comes first and only its top bar stays at the top. */
+.s-look-heading {
+  color: var(--s-muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  margin: var(--s-space-2) 0 calc(var(--s-space-1) * -1);
+  text-transform: uppercase;
+}
+
+.s-look-logo .fi-sc {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-space-3);
+}
+
+.s-look-logo .fi-sc > * { flex: none; }
+.s-look-logo .fi-sc > :last-child:not(:first-child) { flex: 1; min-width: 150px; }
+
+.s-look-preview-head { align-items: center; display: flex; justify-content: space-between; }
+.s-look-mode { border: 1px solid var(--s-line); border-radius: 8px; display: inline-flex; overflow: hidden; }
+.s-look-mode button { background: none; border: 0; color: var(--s-muted); cursor: pointer; display: grid; height: 26px; place-items: center; width: 30px; }
+.s-look-mode button svg { height: 15px; width: 15px; }
+.s-look-mode button[aria-pressed="true"] { background: var(--s-raised); color: var(--s-ink); }
+
+.s-look-screen {
+  border: 1px solid var(--s-line);
+  border-radius: 14px;
+  display: grid;
+  gap: var(--s-space-3);
+  overflow: hidden;
+  padding: 0 0 var(--s-space-3);
+}
+
+.s-look-dark .s-look-screen { --s-bg: #09090b; --s-surface: #18181b; --s-raised: #27272a; --s-ink: #fafafa; --s-muted: #a1a1aa; --s-line: #2e2e33; background: #09090b; color: #fafafa; }
+.s-look-light .s-look-screen { --s-bg: #f4f4f5; --s-surface: #fff; --s-raised: #f4f4f5; --s-ink: #18181b; --s-muted: #71717a; --s-line: #e4e4e7; background: #f4f4f5; color: #18181b; }
+.s-look-screen .s-preview-bar { border-radius: 0; border-width: 0 0 1px; }
+.s-look-screen .s-preview-server { margin: 0 var(--s-space-3); }
+
+@media (max-width: 1023px) {
+  .s-look .fi-section-content > .s-look-preview, .s-look .s-look-preview { order: -1; }
+  .s-look-preview { background: var(--s-surface); padding-bottom: var(--s-space-2); top: 0; z-index: 5; }
+  .s-look-screen .s-preview-server { display: none; }
+  .s-look-screen { padding: 0; }
+}
+
+/* The name's style: ready-made styles, each with the name itself, and "Fine-tune" with a row per setting. */
+.s-style { display: grid; gap: var(--s-space-2); }
+.s-presets { display: grid; gap: 8px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 560px) { .s-presets { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+.s-preset {
+  background: var(--s-surface);
+  border: 1px solid var(--s-line);
+  border-radius: 12px;
+  cursor: pointer;
+  display: grid;
+  overflow: hidden;
+  padding: 0;
+  text-align: start;
+}
+
+.s-preset-bar { background: #18181b; color: #fafafa; font-size: 16px; line-height: 1.25; overflow: hidden; padding: 14px 12px; text-overflow: ellipsis; white-space: nowrap; }
+.s-preset-label { color: var(--s-muted); font-size: 12px; font-weight: 600; padding: 6px 12px; }
+.s-preset[aria-checked="true"] { border-color: var(--s-accent); box-shadow: 0 0 0 2px var(--s-accent); }
+.s-preset:focus-visible { outline: 2px solid var(--s-accent); outline-offset: 2px; }
+
+.s-fine-toggle { align-items: center; display: inline-flex; gap: 6px; width: max-content; }
+.s-fine-toggle svg { height: 16px; width: 16px; }
+.s-fine { border-top: 1px solid var(--s-line); }
+.s-fine-row { border-bottom: 1px solid var(--s-line); }
+
+.s-fine-head {
+  align-items: center;
+  background: none;
+  border: 0;
+  color: var(--s-ink);
+  cursor: pointer;
+  display: flex;
+  font-size: 13.5px;
+  gap: 10px;
+  padding: 11px 2px;
+  text-align: start;
+  width: 100%;
+}
+
+.s-fine-key { flex: 1; font-weight: 600; }
+.s-fine-value { color: var(--s-muted); }
+.s-fine-chevron { color: var(--s-muted); height: 16px; transition: transform .15s; width: 16px; }
+.s-fine-head[aria-expanded="true"] .s-fine-chevron { transform: rotate(90deg); }
+.s-fine-pane { display: grid; gap: var(--s-space-2); padding: 2px 2px 14px; }
+.s-fine-pane .s-chip { flex-direction: row; gap: 6px; }
+
+.s-font-tiles { display: grid; gap: 6px; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+.s-font-tile {
+  background: var(--s-surface);
+  border: 1px solid var(--s-line);
+  border-radius: 10px;
+  color: var(--s-ink);
+  cursor: pointer;
+  display: grid;
+  gap: 2px;
+  justify-items: center;
+  min-width: 0;
+  padding: 8px 4px 6px;
+}
+
+.s-font-tile b { font-size: 20px; line-height: 1.15; }
+.s-font-tile span { color: var(--s-muted); font-size: 11px; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.s-font-tile[aria-pressed="true"] { background: color-mix(in srgb, var(--s-accent) 12%, var(--s-surface)); border-color: var(--s-accent); }
+
+.s-switch {
+  appearance: none;
+  background: var(--s-line);
+  border-radius: 99px;
+  cursor: pointer;
+  flex: none;
+  height: 20px;
+  position: relative;
+  transition: background .15s;
+  width: 34px;
+}
+
+.s-switch::after { background: #fff; border-radius: 50%; box-shadow: 0 1px 2px rgb(0 0 0 / .3); content: ""; height: 16px; left: 2px; position: absolute; top: 2px; transition: left .15s; width: 16px; }
+.s-switch:checked { background: var(--s-accent); }
+.s-switch:checked::after { left: 16px; }
+
+/* A colour swatch that opens the small colour window. */
+.s-pop { display: inline-block; position: relative; }
+.s-pop .s-accent-pop { top: calc(100% + 6px); }
+.s-pop .s-accent-field, .s-pop .s-accent-hue { display: block; }
+.s-pop-swatch { flex-direction: row; gap: 6px; }
+.s-pop-swatch i { border-radius: 50%; box-shadow: inset 0 0 0 1px rgb(0 0 0 / .25); height: 14px; width: 14px; }
+
+/* The logo's size: a slider between a small and a large logo. */
+.s-size { align-items: center; display: flex; gap: 10px; max-width: 280px; min-height: 64px; }
+.s-size input { accent-color: var(--s-accent); flex: 1; min-width: 0; }
+.s-size img { flex: none; object-fit: contain; width: auto; }
+.s-size-small { height: 14px; }
+.s-size-large { height: 26px; }

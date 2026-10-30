@@ -24,6 +24,18 @@
     </div>
     <div class="ps-main">
         @include('simplify::dashboard.header', ['notes' => true])
+        {{-- Shown once after an installation finished on this page (as in 0.7.0): one clear next step. The same banner asks
+             for the Minecraft EULA while it is still open, so starting never stops on it. --}}
+        <div class="ps-ready" :class="{ 'is-eula': eulaNeeded }" x-show="(installReady || eulaNeeded) && !installView() && !['running', 'starting'].includes(status)" x-cloak x-transition.opacity role="status">
+            <span class="ps-ready-mark" aria-hidden="true"><svg><use :href="eulaNeeded ? '#ps-file' : '#ps-check'"/></svg></span>
+            <div>
+                <strong x-text="eulaNeeded ? @js($u('accept_the_minecraft_eula')) : @js($u('your_server_is_ready'))"></strong>
+                <small x-show="!eulaNeeded" x-text="server.minecraft ? @js($u('you_can_now_start_your_server')) : @js($u('you_can_now_start_your_server_2'))"></small>
+                <small x-show="eulaNeeded">{{ $u('minecraft_needs_this_once_before_the') }} {{ $u('eula_agree', ['button' => $u('accept_and_start')]) }} <a href="https://www.minecraft.net/eula" target="_blank" rel="noopener noreferrer">{{ $u('read_the_minecraft_eula') }}</a></small>
+            </div>
+            <button type="button" class="ps-btn is-primary ps-ready-start" x-show="server.permissions['control.start']" x-on:click="readyStart()" :disabled="busy"><svg aria-hidden="true"><use href="#ps-play"/></svg><span x-text="eulaNeeded ? @js($u('accept_and_start')) : @js($u('start_server'))"></span></button>
+            <button type="button" class="ps-btn is-icon is-subtle" x-on:click="installReady = false; eulaNeeded = false" aria-label="{{ $u('dismiss') }}" data-tip="{{ $u('dismiss') }}"><svg aria-hidden="true"><use href="#ps-close"/></svg></button>
+        </div>
         <article class="ps-server-info" aria-label="{{ $u('server_information') }}" x-init="watchServerInfo($el)">
             {{-- Artwork has its own clipping layer, so it stays inside the card while the ⋯ menu lets the card overflow. --}}
             <span class="ps-info-decor">
@@ -33,9 +45,10 @@
             <span class="ps-info-icons">
                 {{-- The same order as the server's card on the overview: the game's own icon, then the icon set in Pelican. --}}
                 <span class="ps-info-icon ps-custom-server-icon" x-show="server.server_icon || server.icon"><img :src="safeImage(server.server_icon || server.icon)" alt="" x-on:error="$el.style.visibility='hidden'"></span>
-                <span class="ps-info-icon ps-software-icon" x-show="server.egg_icon || !(server.server_icon || server.icon)" :class="{'is-badge': server.server_icon || server.icon}" :data-tip="server.software || @js($u('server_software'))">
-                    <img x-show="server.egg_icon" :src="safeImage(server.egg_icon)" alt="" x-on:error="$el.style.visibility='hidden'">
-                    <svg x-show="!server.egg_icon" aria-hidden="true"><use :href="server.minecraft ? '#ps-cube' : '#ps-gamepad'"/></svg>
+                <span class="ps-info-icon ps-software-icon" x-show="softwareIcon() || !(server.server_icon || server.icon)" :class="{'is-badge': server.server_icon || server.icon}" :data-tip="server.software || @js($u('server_software'))">
+                    {{-- The egg's icon, else Simplify's picture of the game (a Minecraft block), else the cube or gamepad. --}}
+                    <img x-show="softwareIcon()" :src="softwareIcon()" alt="" x-on:error="imageFailed($el.getAttribute('src'))">
+                    <svg x-show="!softwareIcon()" aria-hidden="true"><use :href="server.minecraft ? '#ps-cube' : '#ps-gamepad'"/></svg>
                 </span>
             </span>
             <div class="ps-info-content">
@@ -55,22 +68,41 @@
             </div>
             <div class="ps-motd-preview ps-motd-display ps-info-motd" x-show="server.motd" x-effect="server.motd; $nextTick(() => fitMotd($el))" aria-label="{{ $u('message_of_the_day') }}"><template x-for="(part, index) in motdPreview(server.motd || '')" :key="index"><span :style="part.style" x-text="part.text"></span></template></div>
             {{-- Power: one button that follows the state (Start, Stop, or Force stop while starting or stopping), Restart, and the rest under ⋯. --}}
-            <div class="ps-info-power" x-on:click.outside="colorMenu=false; infoMenu=false" x-on:keydown.escape.stop="colorMenu=false; infoMenu=false">
+            <div class="ps-info-power" x-on:click.outside="colorMenu=false; bannerMenu=false; infoMenu=false" x-on:keydown.escape.stop="colorMenu=false; bannerMenu=false; infoMenu=false">
                 <button type="button" class="ps-btn ps-power-main" :class="{'is-primary': mainPower().action==='start', 'is-danger': mainPower().action==='kill'}" x-on:click="power(mainPower().action)" :disabled="busy || !server.permissions[mainPower().permission] || (mainPower().action==='start' && !canRestart())" :aria-label="Simplify.fill(@js($u('action_server')), { action: mainPower().label })"><svg aria-hidden="true"><use :href="'#ps-'+mainPower().icon"/></svg><span x-text="mainPower().label"></span></button>
                 <button type="button" class="ps-btn ps-power-restart" x-on:click="power('restart')" :disabled="busy || !server.permissions['control.restart'] || !canRestart()" aria-label="{{ $u('restart_server') }}"><svg aria-hidden="true"><use href="#ps-restart"/></svg><span>{{ $u('restart') }}</span></button>
-                <button type="button" class="ps-btn is-icon ps-info-more-button" aria-label="{{ $u('more_server_options') }}" aria-controls="ps-info-menu" :aria-expanded="infoMenu" x-on:click="infoMenu=!infoMenu; colorMenu=false"><svg aria-hidden="true"><use href="#ps-dots"/></svg></button>
+                <button type="button" class="ps-btn is-icon ps-info-more-button" aria-label="{{ $u('more_server_options') }}" aria-controls="ps-info-menu" :aria-expanded="infoMenu" x-on:click="infoMenu=!infoMenu; colorMenu=false; bannerMenu=false"><svg aria-hidden="true"><use href="#ps-dots"/></svg></button>
                 <div id="ps-info-menu" class="ps-dropdown is-end ps-info-menu" x-show="infoMenu" x-cloak x-transition.opacity role="menu">
                     <span class="ps-label ps-menu-heading" x-show="server.can_edit">{{ $u('look') }}</span>
                     <button type="button" class="ps-menu-item" role="menuitem" x-show="server.can_edit" :disabled="busy" x-on:click="openColorMenu()"><span class="ps-color-dot" aria-hidden="true"></span><span>{{ $u('server_color') }}</span></button>
-                    <label class="ps-menu-item" role="menuitem" x-show="server.can_edit"><svg aria-hidden="true"><use href="#ps-image"/></svg><span>{{ $u('server_background') }}</span><input type="file" accept="image/png,image/jpeg,image/webp" hidden x-on:change="infoMenu=false; $event.target.files[0] && saveLook(server.color, $event.target.files[0]); $event.target.value=''"></label>
-                    <button type="button" class="ps-menu-item" role="menuitem" x-show="server.can_edit && server.background_id==='upload'" :disabled="busy" x-on:click="infoMenu=false; saveLook(server.color, null, true)"><svg aria-hidden="true"><use href="#ps-close"/></svg><span>{{ $u('no_background') }}</span></button>
+                    <button type="button" class="ps-menu-item" role="menuitem" x-show="server.can_edit" :disabled="busy" x-on:click="openBannerMenu()"><svg aria-hidden="true"><use href="#ps-image"/></svg><span>{{ $u('server_background') }}</span></button>
                     <button type="button" class="ps-menu-item" role="menuitem" x-show="server.can_edit" x-on:click="infoMenu=false; saveName(@js($u('server_name')), @js($u('rename')))"><svg aria-hidden="true"><use href="#ps-edit"/></svg><span>{{ $u('rename') }}</span></button>
+                    <template x-if="server.sftp"><hr></template>
+                    <span class="ps-label ps-menu-heading" x-show="server.sftp">{{ $u('sftp') }}</span>
+                    <button type="button" class="ps-menu-item" role="menuitem" x-show="server.sftp" x-on:click="infoMenu=false; copyText(server.sftp.username, @js($u('username_copied')))"><svg aria-hidden="true"><use href="#ps-copy"/></svg><span>{{ $u('copy_sftp_username') }}</span></button>
+                    <a class="ps-menu-item" role="menuitem" x-show="server.sftp?.url" :href="server.sftp?.url" x-on:click="infoMenu=false"><svg aria-hidden="true"><use href="#ps-link"/></svg><span>{{ $u('open_sftp_connection') }}</span></a>
+                    <p class="ps-menu-note" x-show="server.sftp">{{ $u('password_your_panel_password') }}</p>
                     <template x-if="server.links?.length"><hr></template>
                     <template x-for="link in server.links || []" :key="link.url">
                         <a class="ps-menu-item" role="menuitem" :href="safeLink(link.url)" target="_blank" rel="noopener noreferrer" x-on:click="infoMenu=false"><svg aria-hidden="true"><use href="#ps-arrow-right"/></svg><span x-text="link.label"></span><svg class="ps-menu-item-out" aria-hidden="true"><use href="#ps-external"/></svg></a>
                     </template>
                     <hr>
                     <button type="button" class="ps-menu-item is-danger" role="menuitem" :disabled="busy || !server.permissions['control.stop'] || status==='offline'" x-on:click="infoMenu=false; power('kill')"><svg aria-hidden="true"><use href="#ps-kill"/></svg><span>{{ $u('force_stop') }}</span></button>
+                    <button type="button" class="ps-menu-item is-danger" role="menuitem" x-show="server.can_delete" :disabled="busy || !canDelete()" :data-tip="canDelete() ? null : @js($u('stop_to_delete'))" x-on:click="infoMenu=false; deleteServer()"><svg aria-hidden="true"><use href="#ps-trash"/></svg><span>{{ $u('delete_server') }}</span></button>
+                </div>
+                {{-- Background: automatic, one of Simplify's scenes, a banner uploaded for another server of theirs, or a new upload. --}}
+                <div class="ps-dropdown is-end ps-banner-dropdown" x-show="bannerMenu" x-cloak x-on:click.stop>
+                    <span class="ps-label">{{ $u('server_background') }}</span>
+                    <div class="ps-banner-choices">
+                        <button type="button" class="ps-banner-choice is-auto" :aria-pressed="server.background_id==='auto'" :disabled="busy" x-on:click="chooseBanner('auto')"><svg aria-hidden="true"><use href="#ps-sparkles"/></svg><span>{{ $u('automatic') }}</span></button>
+                        <template x-for="choice in bannerChoices" :key="choice.id">
+                            <button type="button" class="ps-banner-choice" :aria-pressed="server.background_id===choice.id" :aria-label="choice.upload ? @js($u('your_uploaded_banners')) : @js($u('standard_banners'))" :disabled="busy" x-on:click="chooseBanner(choice.id)"><img :src="safeImage(choice.url)" alt="" loading="lazy"></button>
+                        </template>
+                    </div>
+                    <div class="ps-dropdown-actions">
+                        <label class="ps-btn is-sm"><svg aria-hidden="true"><use href="#ps-plus"/></svg><span>{{ $u('upload_a_banner') }}</span><input type="file" accept="image/png,image/jpeg,image/webp" hidden x-on:change="$event.target.files[0] && saveLook(server.color, $event.target.files[0]); $event.target.value=''"></label>
+                        <button type="button" class="ps-btn is-sm" x-on:click="bannerMenu=false">{{ $u('close') }}</button>
+                    </div>
                 </div>
                 <div class="ps-dropdown is-end ps-color-dropdown" x-show="colorMenu" x-cloak x-on:click.stop>
                     <span class="ps-label">{{ $u('server_color') }}</span>
@@ -89,8 +121,40 @@
             </div>
         </article>
 
+        {{-- A new or reinstalled server (as in 0.7.0): the steps and the time so far, until Pelican has finished. --}}
+        <section class="ps-install" x-show="installView()" x-cloak role="status" aria-live="polite" :class="'is-' + server.setup" aria-label="{{ $u('installation_progress') }}">
+            <div class="ps-install-head">
+                <span class="ps-install-icon" aria-hidden="true">
+                    <img x-show="server.egg_icon" :src="safeImage(server.egg_icon)" alt="" x-on:error="$el.style.visibility='hidden'">
+                    <svg x-show="!server.egg_icon"><use :href="server.minecraft ? '#ps-cube' : '#ps-gamepad'"/></svg>
+                </span>
+                <div class="ps-install-title">
+                    <h2 x-text="installTitle()"></h2>
+                    <p x-text="installText()"></p>
+                </div>
+                <span class="ps-install-time" x-show="installElapsed()"><strong x-text="installElapsed()"></strong><small x-show="installTypical()" x-text="installTypical()"></small></span>
+                <div class="ps-install-actions">
+                    <button type="button" class="ps-btn" x-show="server.setup === 'installing'" :class="{'is-on': installNotify}" :aria-pressed="installNotify" x-on:click="toggleInstallNotify()"><svg aria-hidden="true"><use :href="installNotify ? '#ps-check' : '#ps-bell'"/></svg><span x-show="!installNotify">{{ $u('notify_me') }}<span class="ps-install-long"> {{ $u('when_ready') }}</span></span><span x-show="installNotify">{{ $u('you_get_a_notification') }}</span></button>
+                    <button type="button" class="ps-btn is-primary" x-show="installFailed() && server.permissions['settings.reinstall']" x-on:click="reinstall()" :disabled="busy"><svg aria-hidden="true"><use href="#ps-restart"/></svg><span>{{ $u('try_again') }}</span></button>
+                </div>
+            </div>
+            <ol class="ps-install-steps" x-show="server.setup !== 'restoring_backup'">
+                <template x-for="(step, index) in installSteps()" :key="step.key">
+                    <li class="ps-install-step" :class="'is-' + step.state" :aria-current="step.state === 'active' ? 'step' : null">
+                        <span class="ps-install-mark" aria-hidden="true">
+                            <svg x-show="step.state === 'done'"><use href="#ps-check"/></svg>
+                            <svg x-show="step.state === 'failed'"><use href="#ps-close"/></svg>
+                            <i x-show="step.state === 'active'"></i>
+                            <b x-show="step.state === 'todo'" x-text="index + 1"></b>
+                        </span>
+                        <span class="ps-install-step-text"><strong x-text="step.label"></strong><small x-text="step.detail"></small></span>
+                    </li>
+                </template>
+            </ol>
+        </section>
+
         {{-- Live numbers in one row: players and the resource metrics. --}}
-        <section class="ps-server-stats" aria-label="{{ $u('server_status') }}">
+        <section class="ps-server-stats" x-show="!installView()" aria-label="{{ $u('server_status') }}">
             <article class="ps-card ps-stat ps-players-stat" x-show="server.players != null || server.minecraft">
                 <div class="ps-stat-top"><span>{{ $u('players') }}</span><svg aria-hidden="true"><use href="#ps-players"/></svg></div>
                 <strong><span x-text="server.players ?? '—'"></span><span class="ps-stat-total" x-text="server.max_players ? ' / '+server.max_players : ''"></span></strong>
@@ -105,6 +169,10 @@
                     <svg class="ps-spark" viewBox="0 0 200 36" preserveAspectRatio="none" aria-hidden="true"><path :d="spark(metric.key)"/></svg>
                 </article>
             </template>
+        </section>
+        {{-- The last console lines while another page is open (Customize → Server pages). --}}
+        <section class="ps-card ps-log-strip" x-show="!@js($console) && overviewPreferences.serverConsoleLog && logLines.length" x-cloak aria-label="{{ $u('log_in_the_mini_console') }}">
+            <template x-for="(line, index) in logLines" :key="index"><div x-text="line"></div></template>
         </section>
     </div>
     {{-- Pelican's server menu, add-on pages included, next to Pelican's page. --}}

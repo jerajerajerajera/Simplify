@@ -25,6 +25,8 @@ return [
         'in_game_servers' => 'Servere',
         'in_game_servers_all' => 'Toate serverele',
         'in_game_servers_help' => 'Gol: toate serverele, cel mult 200.',
+        'in_game_groups' => 'Grupuri de servere',
+        'in_game_groups_help' => 'Grupurile dumneavoastră din Grupuri de servere. Serverele adăugate ulterior într-un grup îl primesc și ele.',
         'in_game_repeat' => 'Repetă',
     ],
     'category' => [
