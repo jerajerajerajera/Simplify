@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       only:
-        description: 'Stands, comma separated (empty = all): d1920,d1440,laag1366,d1100,hoog1280,tablet768,phone390,phone360'
+        description: 'Stands, comma separated (empty = all): d1920,d1440,laag1366,laag1100,d1100,hoog1280,tablet768,phone390,phone360'
         default: ''
       toolkit:
         description: 'Branch of Simplify-Toolkit'
@@ -32,7 +32,7 @@ jobs:
       stands: ${{ steps.list.outputs.stands }}
     steps:
       - id: list
-        run: echo "stands=$(python3 -c "import json;s='${{ inputs.only }}'.strip();print(json.dumps(s.split(',') if s else ['d1920','d1440','laag1366','d1100','hoog1280','tablet768','phone390','phone360']))")" >> "$GITHUB_OUTPUT"
+        run: echo "stands=$(python3 -c "import json;s='${{ inputs.only }}'.strip();print(json.dumps(s.split(',') if s else ['d1920','d1440','laag1366','laag1100','d1100','hoog1280','tablet768','phone390','phone360']))")" >> "$GITHUB_OUTPUT"
   # One job per stand, side by side; each pushes its screens to the branch audit-results-<branch>-<stand>.
   audit:
     needs: plan

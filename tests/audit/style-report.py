@@ -10,7 +10,7 @@ import json, sys, re, collections
 STYLE = {'boxinbox': 'vak in het vak', 'savebelow': 'knop in de pagina in plaats van in de titelbalk', 'toolslost': 'knoppen van de pagina ontbreken in de titelbalk',
          'filamentlook': 'kale Filament-stijl in hostmodus', 'boxoff': 'contentvak valt onder het venster', 'cardoff': 'contentkaart valt onder het venster',
          'dropdowntall': 'dropdown hoger dan 2/3 venster', 'dropdownscroll': 'dropdown scrolt terwijl hij hoger mag', 'arrowoff': 'dropdown-pijltje niet gecentreerd',
-         'pagescroll': 'pagina scrolt (mag niet op server-/hostpagina\'s)', 'hscroll': 'pagina breder dan het venster', 'overlap': 'kop: naam, seizoensicoontjes en knoppen overlappen', 'popupoff': 'pop-up/tooltip deels buiten beeld'}
+         'pagescroll': 'pagina scrolt (mag niet op server-, host- en Simplify-beheerpagina\'s)', 'hscroll': 'pagina breder dan het venster', 'overlap': 'kop: naam, seizoensicoontjes en knoppen overlappen', 'popupoff': 'pop-up/tooltip deels buiten beeld'}
 NOSCROLL = re.compile(r'^(server2?-(?!open-in-admin)|host|klant.*server)')  # screens whose page must never scroll
 
 rows, heights = [], collections.defaultdict(list)
@@ -23,7 +23,9 @@ for f in sys.argv[1:]:
                 k = p['kind']
                 if k not in STYLE: continue
                 # A phone scrolls its server page by design (the fit applies from 601 px); frames scroll inside the box.
-                if k in ('pagescroll', 'hscroll') and (tag or not NOSCROLL.match(s['id']) or (m.get('w') or 9999) <= 600): continue
+                # Simplify's own admin pages in the normal mode (Settings, Health, People, add-ons) must not scroll either.
+                noscroll = NOSCROLL.match(s['id']) or (s['id'].startswith('admin-') and (m.get('info') or {}).get('scope') == 'simplify')
+                if k in ('pagescroll', 'hscroll') and (tag or not noscroll or (m.get('w') or 9999) <= 600): continue
                 if k == 'cardoff' and tag: continue
                 rows.append((s['stand'], s['id'], s.get('title', ''), k + tag, p['text'], s.get('shot', '')))
             box = (m.get('info') or {}).get('box')

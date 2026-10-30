@@ -14,7 +14,7 @@ fs.mkdirSync(out, { recursive: true });
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const rel = (u) => u.replace(/^https?:\/\/[^/]+/, '');
 const VIEWPORTS = {
-  d1920: { width: 1920, height: 1080 }, d1440: { width: 1440, height: 900 }, laag1366: { width: 1366, height: 650 }, d1100: { width: 1100, height: 800 },
+  d1920: { width: 1920, height: 1080 }, d1440: { width: 1440, height: 900 }, laag1366: { width: 1366, height: 650 }, laag1100: { width: 1100, height: 700 }, d1100: { width: 1100, height: 800 },
   hoog1280: { width: 1280, height: 1500 }, tablet768: { width: 768, height: 1024 }, phone390: { width: 390, height: 844 }, phone360: { width: 360, height: 780 },
 };
 const LIGHT = ['d1440', 'phone390'];
