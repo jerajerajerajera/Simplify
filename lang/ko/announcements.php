@@ -26,6 +26,8 @@ return [
         'in_game_servers' => '서버',
         'in_game_servers_all' => '모든 서버',
         'in_game_servers_help' => '비워 두면 모든 서버, 최대 200개.',
+        'in_game_groups' => '서버 그룹',
+        'in_game_groups_help' => '서버 그룹에서 만든 내 그룹입니다. 나중에 그룹에 추가한 서버도 받습니다.',
         'in_game_repeat' => '반복',
     ],
     'category' => [

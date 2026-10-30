@@ -26,6 +26,8 @@ return [
         'in_game_servers' => 'Servers',
         'in_game_servers_all' => 'Alle servers',
         'in_game_servers_help' => 'Leeg: alle servers, maximaal 200.',
+        'in_game_groups' => 'Servergroepen',
+        'in_game_groups_help' => 'Je groepen uit Servergroepen. Servers die je later aan een groep toevoegt krijgen het ook.',
         'in_game_repeat' => 'Herhalen',
     ],
     'category' => [

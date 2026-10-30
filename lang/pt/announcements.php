@@ -26,6 +26,8 @@ return [
         'in_game_servers' => 'Servidores',
         'in_game_servers_all' => 'Todos os servidores',
         'in_game_servers_help' => 'Vazio: todos os servidores, no máximo 200.',
+        'in_game_groups' => 'Grupos de servidores',
+        'in_game_groups_help' => 'Os seus grupos de Grupos de servidores. Servidores que adicionar depois a um grupo também recebem.',
         'in_game_repeat' => 'Repetir',
     ],
     'category' => [

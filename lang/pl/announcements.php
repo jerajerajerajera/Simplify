@@ -26,6 +26,8 @@ return [
         'in_game_servers' => 'Serwery',
         'in_game_servers_all' => 'Wszystkie serwery',
         'in_game_servers_help' => 'Puste: wszystkie serwery, najwyżej 200.',
+        'in_game_groups' => 'Grupy serwerów',
+        'in_game_groups_help' => 'Twoje grupy z Grup serwerów. Serwery, które później dodasz do grupy, też je dostaną.',
         'in_game_repeat' => 'Powtarzaj',
     ],
     'category' => [

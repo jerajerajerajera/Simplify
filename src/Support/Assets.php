@@ -38,6 +38,9 @@ final class Assets
         'bg-survival.jpg' => ['img/bg-survival.jpg', 'image/jpeg'],
         'bg-town.jpg' => ['img/bg-town.jpg', 'image/jpeg'],
         'bg-gaming.svg' => ['img/bg-gaming.svg', 'image/svg+xml'],
+        // Monocraft, a choice for the panel name (SIL Open Font License, resources/fonts/Monocraft-OFL.txt).
+        'monocraft-regular.woff2' => ['fonts/monocraft-regular.woff2', 'font/woff2'],
+        'monocraft-bold.woff2' => ['fonts/monocraft-bold.woff2', 'font/woff2'],
     ];
 
     /** @var array<string, string> */

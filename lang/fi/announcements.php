@@ -26,6 +26,8 @@ return [
         'in_game_servers' => 'Palvelimet',
         'in_game_servers_all' => 'Kaikki palvelimet',
         'in_game_servers_help' => 'Tyhjä: kaikki palvelimet, enintään 200.',
+        'in_game_groups' => 'Palvelinryhmät',
+        'in_game_groups_help' => 'Ryhmäsi Palvelinryhmät-kohdasta. Myöhemmin ryhmään lisättävät palvelimet saavat sen myös.',
         'in_game_repeat' => 'Toista',
     ],
     'category' => [

@@ -26,6 +26,8 @@ return [
         'in_game_servers' => 'Serveriai',
         'in_game_servers_all' => 'Visi serveriai',
         'in_game_servers_help' => 'Tuščia: visi serveriai, daugiausia 200.',
+        'in_game_groups' => 'Serverių grupės',
+        'in_game_groups_help' => 'Jūsų grupės iš Serverių grupių. Gaus ir serveriai, kuriuos į grupę pridėsite vėliau.',
         'in_game_repeat' => 'Kartoti',
     ],
     'category' => [

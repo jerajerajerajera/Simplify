@@ -26,6 +26,8 @@ return [
         'in_game_servers' => 'Sunucular',
         'in_game_servers_all' => 'Tüm sunucular',
         'in_game_servers_help' => 'Boş: tüm sunucular, en fazla 200.',
+        'in_game_groups' => 'Sunucu grupları',
+        'in_game_groups_help' => 'Sunucu gruplarındaki grupların. Bir gruba sonradan eklediğin sunucular da alır.',
         'in_game_repeat' => 'Tekrarla',
     ],
     'category' => [

@@ -26,6 +26,8 @@ return [
         'in_game_servers' => 'Servrar',
         'in_game_servers_all' => 'Alla servrar',
         'in_game_servers_help' => 'Tomt: alla servrar, högst 200.',
+        'in_game_groups' => 'Servergrupper',
+        'in_game_groups_help' => 'Dina grupper från Servergrupper. Servrar som du senare lägger till i en grupp får det också.',
         'in_game_repeat' => 'Upprepa',
     ],
     'category' => [

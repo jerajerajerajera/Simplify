@@ -26,6 +26,8 @@ return [
         'in_game_servers' => 'Server',
         'in_game_servers_all' => 'Tất cả server',
         'in_game_servers_help' => 'Để trống: tất cả server, tối đa 200.',
+        'in_game_groups' => 'Nhóm máy chủ',
+        'in_game_groups_help' => 'Các nhóm của bạn trong Nhóm máy chủ. Máy chủ bạn thêm vào nhóm sau này cũng sẽ nhận.',
         'in_game_repeat' => 'Lặp lại',
     ],
     'category' => [

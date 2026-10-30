@@ -26,6 +26,8 @@ return [
         'in_game_servers' => 'サーバー',
         'in_game_servers_all' => 'すべてのサーバー',
         'in_game_servers_help' => '空欄: すべてのサーバー(最大 200)。',
+        'in_game_groups' => 'サーバーグループ',
+        'in_game_groups_help' => '「サーバーグループ」のあなたのグループです。後でグループに追加したサーバーにも届きます。',
         'in_game_repeat' => '繰り返し',
     ],
     'category' => [

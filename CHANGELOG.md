@@ -2,15 +2,35 @@
 
 ## 1.5.0
 
+- Back from PelicanSimplify 0.7.0: an owner deletes their own server from its ⋯ menu after typing its name. It has to be stopped, or unable to run (Wings does not know it, its install failed, or it is suspended).
+- Server pages: Pelican's "Open in Admin" is no longer in the server menu. It led to the legacy admin page; renaming, the look and deleting are in the server's ⋯ menu.
+- Back from 0.7.0: the server's ⋯ menu shows the SFTP username and a link that opens the SFTP connection; the password is your panel password.
+- Back from 0.7.0: friends mode (Settings → General). Everyone signed in sees every server's card; opening one still needs Pelican's access. A panel that had it on in 0.7.0 keeps it on.
+- Back from 0.7.0: the setup asks who the panel is for (me and my friends, or a hosting company), which sets friends mode, and starts with a system check: PHP extensions, writable folders, cache, storage, the queue, Pelican's scheduler, https and the keys for app notifications. Only what fails is listed, with how to fix it.
+- Back from 0.7.0: the notifications page warns when Pelican's scheduler is not running, and shows root admins the cron line to add.
+- Back from 0.7.0: Pelican's own messages in the bell (such as a finished backup) reach your devices as app notifications too, with their own switch.
+- Back from 0.7.0: the website embed can show one of your server groups.
+- Back from 0.7.0: on Pelican's own pages a button in the top bar leads back to Simplify.
+- Back from 0.7.0: an announcement can also be sent in game to the servers of your server groups.
+- Back from 0.7.0: Customize → server pages: open with the bigger console, show the last console lines on the other server pages, and use the whole width.
+- Back from 0.7.0: a server's background can be one of the standard scenes or an earlier upload, from the server's ⋯ menu. Settings → Appearance lists the uploads, and admins remove the ones no server uses.
+- Back from 0.7.0: the panel name's font (with the Monocraft pixel font), weight, one colour or a fade between two, letter spacing, capitals, and the name beside the logo. A 0.7.0 panel keeps its style.
+- The installation view from 0.7.0 is back on the server page. While Pelican installs a new or reinstalled server, a card under the server card shows the steps, the time so far and how long this game usually takes on this panel, with Notify me (a browser notification when it is done). When the installation finishes while the page is open, a banner above the card says the server is ready and offers Start server. After a failed installation the card says so and offers Try again.
+- Back from 0.7.0: a Minecraft server that still needs its EULA says so in the same banner above the server card, with Accept and start. It writes eula.txt and starts the server, so the first start no longer stops on the EULA.
 - A Minecraft server without an icon of its own (no server icon from the game, none set in Pelican, none on its egg) shows a grass block instead of the plain cube, on its card and on its page. An icon from the game, Pelican or the egg still comes first.
 - The browser tab on a server's pages reads "<server name> - Simplify", on the console and on every tab under it.
 - Server cards and the server page: when an icon does not load (for example an egg icon behind a wrong APP_URL, or a deleted file), the next one is used: the game's icon, then the icon set in Pelican, then the egg's icon, then the cube. Before, the spot stayed empty.
 - Admin tools: every page opens inside Simplify, in the same frame and title bar as host mode, with a close button back to the overview. Before, outside host mode the links went to Pelican's own admin pages with Pelican's menus. From a server page the link goes through the overview. Ctrl/cmd-click still opens a page in a new tab.
+- Create server: without Server Maker, the button on the overview opens Pelican's create form inside Simplify, in the same frame as Admin tools, instead of on Pelican's own admin page. With Server Maker it still opens Server Maker.
 - Overview: the Host health card and the tab under it are one hover zone. Hovering either lights up both in the same colour, as both open the same list of nodes.
 - Outside host mode, Simplify's admin pages no longer scroll as a whole page: Settings and Pelican's Health page keep their card as high as the window leaves it and scroll inside it (the settings menu stays in place), People & roles keeps its tabs and search on top and scrolls the list, and Website, Automatic subdomains and Announcements scroll their form under the page title.
 - Notifications: "Mark read" on one notification works again. Before, it marked an unread notification unread, so nothing changed.
 - Notifications: Archived is back, as in PelicanSimplify 0.7.0. "Clear read" in the bell and in the window with every notification moves the read ones there, and ✕ on a notification moves that one. Archived sits closed at the bottom of the window with every notification; "Mark as unread" brings a notification back. Nothing is deleted.
 - Announcements: "Pin to everyone's notifications" is back, as in PelicanSimplify 0.7.0. With "Also put in everyone's notifications" on, an admin can pin the announcement: it stays under Pinned at the top of the bell and of the window with every notification until it ends, read or not, and Clear read leaves it there.
+- Scrollbars stop a little short of the top and bottom and sit a little further from the edge, so they fit inside the rounded corners of menus, cards and windows.
+- Overview: the scrollbar of the server list sits right next to the cards instead of at the far edge of the window.
+- Overview, list view: the server icon sits in the middle of its row again instead of sticking out over the top edge. A hidden badge counted as a third one and pushed it up; in the card view it added empty room under the icon.
+- Server menu: shorter. On top the everyday pages (Console, Files, Backups & tasks, the add-ons' pages such as Minecraft and Website); Pelican's rarely used pages (Users, Databases, Network, Startup, Settings, Mounts, Webhooks, Activity) fold under Advanced, with Delete server at the bottom. Backups and Schedules are one item, "Backups & tasks", with a tab for each on top of their pages. On a phone they are under More.
 
 ## 1.4.4
 

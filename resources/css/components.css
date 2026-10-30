@@ -438,7 +438,7 @@ html:has(.ps-modal-layer[data-open="true"]), html.ps-ui-locked { overflow: hidde
 .ps-health-check.is-ok { --ps-tone: var(--ps-ok); }
 .ps-health-check.is-warning { --ps-tone: var(--ps-warn); }
 .ps-health-check.is-failed, .ps-health-check.is-crashed { --ps-tone: var(--ps-danger); }
-.ps-notify-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.ps-notify-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 8px; }
 .ps-notify-actions { display: flex; flex-wrap: wrap; grid-column: 2; gap: 6px; margin-top: 6px; }
 .ps-notify-item .ps-notify-time { grid-column: 2; font-size: 11px; opacity: .8; }
 .ps-notify-item.is-ok { --ps-tone: var(--ps-ok); }
@@ -471,7 +471,8 @@ html.ps-standalone body { padding-inline-start: env(safe-area-inset-left); paddi
 html.ps-standalone { -webkit-tap-highlight-color: transparent; }
 
 /* Notifications: read ones step back, an admin's pinned ones sit on top, older ones load with Show more. */
-.ps-notify-head .ps-dropdown-title { margin-inline-end: auto; }
+/* A narrow bell keeps some room after the title and moves the buttons to a second line before they touch it. */
+.ps-notify-head .ps-dropdown-title { margin-inline-end: auto; padding-inline-end: 12px; }
 .ps-notify-item.is-read strong { font-weight: 500; }
 .ps-notify-item.is-read > svg { color: var(--ps-muted); }
 .ps-notify-more { justify-content: center; width: 100%; margin-top: 6px; }

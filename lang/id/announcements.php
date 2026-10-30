@@ -26,6 +26,8 @@ return [
         'in_game_servers' => 'Server',
         'in_game_servers_all' => 'Semua server',
         'in_game_servers_help' => 'Kosong: semua server, paling banyak 200.',
+        'in_game_groups' => 'Grup server',
+        'in_game_groups_help' => 'Grup Anda dari Grup server. Server yang nanti Anda tambahkan ke grup juga menerimanya.',
         'in_game_repeat' => 'Ulangi',
     ],
     'category' => [

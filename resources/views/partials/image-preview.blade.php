@@ -6,8 +6,9 @@
         <div class="s-preview-bar">
             @if ($image)
                 <img src="{{ $image }}" alt="" style="height: {{ round($height * .75) }}px">
-            @else
-                <strong>{{ $name }}</strong>
+            @endif
+            @if (! $image || $text)
+                <strong style="{{ $style }}">{{ $name }}</strong>
             @endif
             <span class="s-preview-bar-nav"><i></i><i></i><i></i></span>
             <span class="s-preview-bar-me"></span>

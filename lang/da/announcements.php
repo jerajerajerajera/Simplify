@@ -26,6 +26,8 @@ return [
         'in_game_servers' => 'Servere',
         'in_game_servers_all' => 'Alle servere',
         'in_game_servers_help' => 'Tom: alle servere, højst 200.',
+        'in_game_groups' => 'Servergrupper',
+        'in_game_groups_help' => 'Dine grupper fra Servergrupper. Servere, du senere tilføjer til en gruppe, får den også.',
         'in_game_repeat' => 'Gentag',
     ],
     'category' => [

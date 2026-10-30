@@ -26,6 +26,8 @@ return [
         'in_game_servers' => 'Servery',
         'in_game_servers_all' => 'Všechny servery',
         'in_game_servers_help' => 'Prázdné: všechny servery, nejvýš 200.',
+        'in_game_groups' => 'Skupiny serverů',
+        'in_game_groups_help' => 'Vaše skupiny ze Skupin serverů. Dostanou ho i servery, které do skupiny přidáte později.',
         'in_game_repeat' => 'Opakovat',
     ],
     'category' => [

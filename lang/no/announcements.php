@@ -26,6 +26,8 @@ return [
         'in_game_servers' => 'Servere',
         'in_game_servers_all' => 'Alle servere',
         'in_game_servers_help' => 'Tomt: alle servere, høyst 200.',
+        'in_game_groups' => 'Servergrupper',
+        'in_game_groups_help' => 'Gruppene dine fra Servergrupper. Servere du legger til i en gruppe senere, får den også.',
         'in_game_repeat' => 'Gjenta',
     ],
     'category' => [

@@ -26,6 +26,8 @@ return [
         'in_game_servers' => 'Servers',
         'in_game_servers_all' => 'All servers',
         'in_game_servers_help' => 'Empty: all servers, at most 200.',
+        'in_game_groups' => 'Server groups',
+        'in_game_groups_help' => 'Your groups from Server groups. Servers you add to a group later get it too.',
         'in_game_repeat' => 'Repeat',
     ],
     'category' => [

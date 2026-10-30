@@ -39,13 +39,24 @@
       ],
       infoMenu: false,
       colorMenu: false,
+      bannerMenu: false,
+      bannerChoices: [],
       // Set while a power action, rename or look change is on its way; Alpine treats an undefined name as an error.
       busy: false,
       // The last state Wings reported over the console socket, for Pelican versions without window.ServerStats.
       socketState: null,
       colorDraft: null,
       statusBarVisible: false,
+      logLines: [],
       sample: null,
+      // The installation view (as in 0.7.0): the banner after it finished here, a browser notification on request.
+      installReady: false,
+      // A Minecraft server that still waits for its EULA: the same banner asks for it (as in 0.7.0), once per page view.
+      eulaNeeded: false,
+      eulaChecked: false,
+      installNotify: false,
+      installNow: Date.now(),
+      installTicks: 0,
 
       init() {
         this.initShell();
@@ -53,6 +64,18 @@
         this.$watch('themeDark', () => this.paintAccent());
         // Pelican's console page already streams the numbers from Wings; every other page asks Simplify now and then.
         this.refreshTimer = setInterval(() => this.refresh(), this.refreshSeconds);
+        // While installing: the clock ticks every second, and Pelican is asked every 5 seconds whether it is done.
+        this.installTimer = setInterval(() => {
+          if (this.server?.setup !== 'installing') return;
+          this.installNow = Date.now();
+          if (++this.installTicks % 5 === 0) this.refresh();
+        }, 1000);
+        // Elsewhere than the console, the last console lines can show under the server card (Customize).
+        if (!boot.console) {
+          this.$watch('overviewPreferences.serverConsoleLog', (on) => (on ? this.readLog() : (this.logLines = [])));
+          this.logTimer = setInterval(() => this.readLog(), 4000);
+          this.$nextTick(() => this.readLog());
+        }
         if (boot.console) {
           if (new URLSearchParams(location.search).has('simplify_console')) document.documentElement.classList.add('ps-console-window');
           // Every Pelican version passes Wings' "status" on as this Livewire event, the first one right after connecting.
@@ -76,6 +99,16 @@
       destroy() {
         base.destroy.call(this);
         clearInterval(this.liveTimer);
+        clearInterval(this.installTimer);
+        clearInterval(this.logTimer);
+      },
+      async readLog() {
+        if (this.destroyed || document.hidden || !this.overviewPreferences.serverConsoleLog || !this.server.can_console || this.status === 'offline') return;
+        try {
+          this.logLines = await wire.logLines();
+        } catch {
+          this.logLines = [];
+        }
       },
       get status() {
         return this.server?.status || 'missing';
@@ -85,10 +118,45 @@
         for (const [key, value] of Object.entries(this.accentStyle(this.server.uuid))) document.documentElement.style.setProperty(key, value);
       },
       take(server) {
+        // An installation that finished while the page was open: the banner above the card offers Start.
+        if (this.server?.setup === 'installing' && !server.setup) {
+          this.installReady = true;
+          if (this.installNotify) this.notifyInstalled();
+        }
         this.server = server;
         const u = server.usage || {};
         this.record({ cpu: u.cpu_percent, memory: u.memory_bytes, disk: u.disk_bytes, rx: u.network_rx_bytes, tx: u.network_tx_bytes }, Date.now() / 1000);
         this.paintAccent();
+        this.checkEula();
+      },
+      /** Once the server is installed and stopped, asks whether its Minecraft EULA is still open. */
+      async checkEula() {
+        if (this.eulaChecked || !this.server?.minecraft || this.server.setup || this.status !== 'offline' || !this.server.permissions?.['control.start']) return;
+        this.eulaChecked = true;
+        try {
+          this.eulaNeeded = await wire.eulaNeeded();
+        } catch {
+          this.eulaNeeded = false;
+        }
+      },
+      /** The banner's main button: accepts the EULA first when it is still open, otherwise just starts. */
+      async readyStart() {
+        if (!this.eulaNeeded) {
+          this.installReady = false;
+          return this.power('start');
+        }
+        if (this.busy) return;
+        this.busy = true;
+        try {
+          this.take(await wire.acceptEula());
+          this.eulaNeeded = false;
+          this.installReady = false;
+          this.toast(t('dashboard.eula_accepted_start_sent'), 'ok');
+        } catch {
+          this.toast(t('dashboard.the_action_could_not_be_completed'), 'danger');
+        } finally {
+          this.busy = false;
+        }
       },
       record(sample, at) {
         const previous = this.sample;
@@ -115,14 +183,80 @@
         this.liveAt = latest.t;
         this.record({ cpu: latest.cpu, memory: latest.memory, disk: latest.disk, rx: latest.rx, tx: latest.tx }, latest.t / 1000);
       },
+      /** True while a new or reinstalled server is not usable yet: Pelican's own setup state. */
+      installView() {
+        return ['installing', 'install_failed', 'reinstall_failed', 'restoring_backup'].includes(this.server?.setup);
+      },
+      installFailed() {
+        return ['install_failed', 'reinstall_failed'].includes(this.server?.setup);
+      },
+      installTitle() {
+        if (this.server?.setup === 'restoring_backup') return t('dashboard.restoring_a_backup');
+        if (this.installFailed()) return t('dashboard.the_installation_did_not_finish');
+        return t('dashboard.setting_up', { server: this.server?.name });
+      },
+      installText() {
+        if (this.server?.setup === 'restoring_backup') return t('dashboard.everything_opens_again_when_the_restore');
+        if (this.installFailed()) return t('dashboard.the_last_lines_of_the_installation');
+        return t('dashboard.this_takes_a_few_minutes_longer');
+      },
+      /** The server exists, the install script runs, then it is ready to start. */
+      installSteps() {
+        const software = this.server?.software || t('dashboard.the_game');
+        const reached = 1;
+        const steps = [
+          { key: 'created', label: t('dashboard.server_created'), detail: t('dashboard.resources_reserved') },
+          { key: 'install', label: t('dashboard.installing_software', { software }), detail: this.installFailed() ? t('dashboard.stopped_with_error') : t('dashboard.downloading_game_files') },
+          { key: 'ready', label: t('dashboard.ready_to_start'), detail: t('dashboard.everything_opens') },
+        ];
+        return steps.map((step, index) => ({ ...step, state: index < reached ? 'done' : index > reached ? 'todo' : this.installFailed() ? 'failed' : 'active' }));
+      },
+      /** Time since Pelican started the installation, such as "2:14". */
+      installElapsed() {
+        const since = this.server?.install_since;
+        if (!since || this.server?.setup !== 'installing') return '';
+        const seconds = Math.max(0, Math.floor(this.installNow / 1000 - since));
+        return Math.floor(seconds / 60) + ':' + String(seconds % 60).padStart(2, '0');
+      },
+      /** How long this egg usually takes on this panel, such as "usually about 2 min". */
+      installTypical() {
+        const seconds = this.server?.install_typical;
+        return seconds ? t('dashboard.usually_about', { count: Math.max(1, Math.round(seconds / 60)) }) : '';
+      },
+      async toggleInstallNotify() {
+        if (!this.installNotify && typeof Notification === 'function' && Notification.permission === 'default') {
+          try { await Notification.requestPermission(); } catch {}
+        }
+        this.installNotify = !this.installNotify;
+      },
+      notifyInstalled() {
+        const name = this.server?.name;
+        try {
+          if (typeof Notification === 'function' && Notification.permission === 'granted' && document.hidden) new Notification(t('dashboard.is_ready', { server: name }), { body: t('dashboard.can_start_now') });
+        } catch {}
+        this.toast(t('dashboard.ready_toast', { server: name }), 'ok');
+      },
+      async reinstall() {
+        if (this.busy) return;
+        this.busy = true;
+        try {
+          this.take(await wire.reinstall());
+          this.toast(t('dashboard.installation_started'), 'ok');
+        } catch {
+          this.toast(t('dashboard.the_action_could_not_be_completed'), 'danger');
+        } finally {
+          this.busy = false;
+        }
+      },
       async refresh() {
-        if (this.destroyed || document.hidden) return;
+        // A hidden tab still hears when an installation finishes, for the notification.
+        if (this.destroyed || (document.hidden && this.server?.setup !== 'installing')) return;
         try {
           this.pollNotifications();
           const server = await wire.refresh();
           if (this.destroyed) return;
           // On the console page the live numbers win; the rest of the card follows the refresh.
-          if (boot.console && this.liveAt) this.server = { ...server, status: this.server.status };
+          if (boot.console && this.liveAt && !server.setup && !this.server.setup) this.server = { ...server, status: this.server.status };
           else this.take(server);
         } catch {}
       },
@@ -136,12 +270,19 @@
           bar = this.$refs.consoleBar.content.firstElementChild.cloneNode(true);
           terminal.prepend(bar);
           const grow = bar.querySelector('.ps-console-grow');
-          grow.addEventListener('click', () => {
-            const big = document.documentElement.classList.toggle('ps-console-big');
+          const size = (big) => {
+            document.documentElement.classList.toggle('ps-console-big', big);
             grow.setAttribute('aria-pressed', String(big));
             grow.setAttribute('aria-label', big ? grow.dataset.normal : grow.dataset.bigger);
             window.dispatchEvent(new Event('resize'));
+          };
+          // The bigger console is remembered on this device (Customize), so server pages open with it.
+          grow.addEventListener('click', () => {
+            const big = !document.documentElement.classList.contains('ps-console-big');
+            this.setOverviewPreference('serverBiggerConsole', big);
+            size(big);
           });
+          if (this.overviewPreferences.serverBiggerConsole) size(true);
           bar.querySelector('.ps-console-window').addEventListener('click', () => {
             const url = new URL(location.href);
             url.searchParams.set('simplify_console', '1');
@@ -268,6 +409,44 @@
           this.busy = false;
         }
       },
+      /** Stopped, or unable to run (unknown to Wings, failed install, suspended): the same list as ServerPage::deleteServer(). */
+      canDelete() {
+        return ['offline', 'missing', 'install failed', 'suspended'].includes(this.status);
+      },
+      /** Owners delete their own stopped server after typing its name; the page then goes back to the overview. */
+      async deleteServer() {
+        if (this.busy) return;
+        const name = await window.Simplify.confirm({ title: t('dashboard.delete_server_title', { name: this.server.name }), message: t('dashboard.delete_server_message'), confirmLabel: t('dashboard.delete_server'), tone: 'danger', input: true, requireText: this.server.name });
+        if (name !== this.server.name) return;
+        this.busy = true;
+        try {
+          await wire.deleteServer(name);
+          this.toast(t('dashboard.server_deleted'), 'ok');
+        } catch {
+          this.toast(t('dashboard.the_action_could_not_be_completed'), 'danger');
+          this.busy = false;
+        }
+      },
+      async openBannerMenu() {
+        this.infoMenu = false;
+        this.colorMenu = false;
+        this.bannerMenu = true;
+        try {
+          this.bannerChoices = await wire.banners();
+        } catch {}
+      },
+      async chooseBanner(id) {
+        if (this.busy) return;
+        this.busy = true;
+        try {
+          this.take(await wire.chooseBanner(id));
+          this.toast(t('dashboard.server_background_saved'), 'ok');
+        } catch {
+          this.toast(t('dashboard.the_action_could_not_be_completed'), 'danger');
+        } finally {
+          this.busy = false;
+        }
+      },
       openColorMenu() {
         this.infoMenu = false;
         this.colorDraft = this.server.color || '#3b82f6';
@@ -281,6 +460,7 @@
           if (file) await new Promise((resolve, reject) => wire.upload('banner', file, resolve, reject));
           this.take(await wire.saveLook(color, remove));
           this.colorMenu = false;
+          if (file) this.bannerChoices = await wire.banners();
           this.toast(file || remove ? t('dashboard.server_background_saved') : t('dashboard.server_color_saved'), 'ok');
         } catch {
           this.toast(t('dashboard.the_action_could_not_be_completed'), 'danger');

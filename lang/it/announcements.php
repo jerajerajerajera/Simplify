@@ -26,6 +26,8 @@ return [
         'in_game_servers' => 'Server',
         'in_game_servers_all' => 'Tutti i server',
         'in_game_servers_help' => 'Vuoto: tutti i server, al massimo 200.',
+        'in_game_groups' => 'Gruppi di server',
+        'in_game_groups_help' => 'I tuoi gruppi da Gruppi di server. Anche i server che aggiungi dopo a un gruppo lo ricevono.',
         'in_game_repeat' => 'Ripeti',
     ],
     'category' => [
