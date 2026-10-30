@@ -13,8 +13,13 @@ use App\Models\Schedule;
 use App\Models\Server;
 use App\Models\Task;
 use App\Models\User;
+use Filament\Actions\Action;
+use Filament\Notifications\Notification;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Storage;
+use Simplify\Core\Announcements\Services\Bell;
 use Simplify\Core\Server\Looks;
 use Simplify\Core\Subdomains\Models\Subdomain;
 use Simplify\Core\Support\PanelSettings;
@@ -105,11 +110,23 @@ foreach ($list as $i => [$name, $eggName, $state, $memory, $cpu, $owner, $color]
 }
 echo json_encode($out, JSON_UNESCAPED_SLASHES), "\n";
 // One server with its own icon set in Pelican (the servers.icon column), so the egg badge must sit small in the corner.
-try { \Illuminate\Support\Facades\Schema::hasColumn('servers', 'icon') && \Illuminate\Support\Facades\DB::table('servers')->where('id', $servers['Skyblock']->id)->update(['icon' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABSElEQVR4nO2bwQ3CQAwECaIb6IVGoBoagV7oBx7oPpEQxLf2nHQ7bxKvJ75wEWE5Xu6v3cTs6QA0FkAHoLEAOgCNBdABaCyADkBjAXQAmkN1weft/PMzp+ujIMmHpeJh6J+mv5EtI1VAT+NrskSkCFA2vkYtQn4TzGw+4/xSAdnNZ9SRCahqXl1PIqC6eWXdbgFU86r6XQLo5hs9OabfCocFjHL1G9E8noDIQaNd/UYkV9nTYGQLWyHaS2DrAaOOf2NrPk8AHYDGAugANBZAB6CxADoAzWYBlT9aRNiab/oJKHsYGnULHZqAUZdBJNf0SyAsYLQpiObxBPQcPMoU9OTongBaQm99yRKgJCjqyu4B1RJU9aQ3wSoJyjryb4FsCerz+x0hvyVW/J+hKd8THBlvhekANBZAB6CxADoAjQXQAWgsgA5A8waE/mJlGzhiUQAAAABJRU5ErkJggg==']); } catch (\Throwable $e) { fprintf(STDERR, '%s', 'no server icon: '.$e->getMessage()."\n"); }
+try {
+    Schema::hasColumn('servers', 'icon') && DB::table('servers')->where('id', $servers['Skyblock']->id)->update(['icon' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABSElEQVR4nO2bwQ3CQAwECaIb6IVGoBoagV7oBx7oPpEQxLf2nHQ7bxKvJ75wEWE5Xu6v3cTs6QA0FkAHoLEAOgCNBdABaCyADkBjAXQAmkN1weft/PMzp+ujIMmHpeJh6J+mv5EtI1VAT+NrskSkCFA2vkYtQn4TzGw+4/xSAdnNZ9SRCahqXl1PIqC6eWXdbgFU86r6XQLo5hs9OabfCocFjHL1G9E8noDIQaNd/UYkV9nTYGQLWyHaS2DrAaOOf2NrPk8AHYDGAugANBZAB6CxADoAzWYBlT9aRNiab/oJKHsYGnULHZqAUZdBJNf0SyAsYLQpiObxBPQcPMoU9OTongBaQm99yRKgJCjqyu4B1RJU9aQ3wSoJyjryb4FsCerz+x0hvyVW/J+hKd8THBlvhekANBZAB6CxADoAjQXQAWgsgA5A8waE/mJlGzhiUQAAAABJRU5ErkJggg==']);
+} catch (Throwable $e) {
+    fprintf(STDERR, '%s', 'no server icon: '.$e->getMessage()."\n");
+}
 // One server whose icon does not load (a host that never resolves): Simplify must fall back to the next icon.
-try { \Illuminate\Support\Facades\Schema::hasColumn('servers', 'icon') && \Illuminate\Support\Facades\DB::table('servers')->where('id', $servers['Creative Builds']->id)->update(['icon' => 'https://icons.invalid/creative-builds.png']); } catch (\Throwable $e) { fprintf(STDERR, '%s', 'no broken icon: '.$e->getMessage()."\n"); }
+try {
+    Schema::hasColumn('servers', 'icon') && DB::table('servers')->where('id', $servers['Creative Builds']->id)->update(['icon' => 'https://icons.invalid/creative-builds.png']);
+} catch (Throwable $e) {
+    fprintf(STDERR, '%s', 'no broken icon: '.$e->getMessage()."\n");
+}
 // Pelican reads a server's own icon from the public disk, icons/server/<uuid>.png (HasIcon), not from the database.
-try { \Illuminate\Support\Facades\Storage::disk('public')->put('icons/server/'.$servers['Skyblock']->uuid.'.png', base64_decode('iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABSElEQVR4nO2bwQ3CQAwECaIb6IVGoBoagV7oBx7oPpEQxLf2nHQ7bxKvJ75wEWE5Xu6v3cTs6QA0FkAHoLEAOgCNBdABaCyADkBjAXQAmkN1weft/PMzp+ujIMmHpeJh6J+mv5EtI1VAT+NrskSkCFA2vkYtQn4TzGw+4/xSAdnNZ9SRCahqXl1PIqC6eWXdbgFU86r6XQLo5hs9OabfCocFjHL1G9E8noDIQaNd/UYkV9nTYGQLWyHaS2DrAaOOf2NrPk8AHYDGAugANBZAB6CxADoAzWYBlT9aRNiab/oJKHsYGnULHZqAUZdBJNf0SyAsYLQpiObxBPQcPMoU9OTongBaQm99yRKgJCjqyu4B1RJU9aQ3wSoJyjryb4FsCerz+x0hvyVW/J+hKd8THBlvhekANBZAB6CxADoAjQXQAWgsgA5A8waE/mJlGzhiUQAAAABJRU5ErkJggg==')); } catch (\Throwable $e) { fprintf(STDERR, '%s', 'no server icon file: '.$e->getMessage()."\n"); }
+try {
+    Storage::disk('public')->put('icons/server/'.$servers['Skyblock']->uuid.'.png', base64_decode('iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABSElEQVR4nO2bwQ3CQAwECaIb6IVGoBoagV7oBx7oPpEQxLf2nHQ7bxKvJ75wEWE5Xu6v3cTs6QA0FkAHoLEAOgCNBdABaCyADkBjAXQAmkN1weft/PMzp+ujIMmHpeJh6J+mv5EtI1VAT+NrskSkCFA2vkYtQn4TzGw+4/xSAdnNZ9SRCahqXl1PIqC6eWXdbgFU86r6XQLo5hs9OabfCocFjHL1G9E8noDIQaNd/UYkV9nTYGQLWyHaS2DrAaOOf2NrPk8AHYDGAugANBZAB6CxADoAzWYBlT9aRNiab/oJKHsYGnULHZqAUZdBJNf0SyAsYLQpiObxBPQcPMoU9OTongBaQm99yRKgJCjqyu4B1RJU9aQ3wSoJyjryb4FsCerz+x0hvyVW/J+hKd8THBlvhekANBZAB6CxADoAjQXQAWgsgA5A8waE/mJlGzhiUQAAAABJRU5ErkJggg=='));
+} catch (Throwable $e) {
+    fprintf(STDERR, '%s', 'no server icon file: '.$e->getMessage()."\n");
+}
 $uuid = fn (string $name) => $servers[$name]->uuid;
 
 $part('people and roles', function () {
@@ -143,7 +160,7 @@ $part('announcements', function () use ($admin) {
 // 1.5.0 (#92): the maintenance announcement pinned to everyone's bell, delivered as the scheduler would.
 $part('pinned announcement', function () {
     DB::table('simplify_core_announcements')->where('title', 'Maintenance on Saturday')->update(['bell_pinned' => true]);
-    Simplify\Core\Announcements\Services\Bell::deliverDue();
+    Bell::deliverDue();
 });
 $part('subdomains', function () use ($uuid) {
     Simplify\Core\Subdomains\Services\Settings::save(['domain' => 'play.example.com', 'target' => 'node.example.com', 'port_min' => 25565, 'port_max' => 25600, 'zone_id' => str_repeat('a1', 16)]);
@@ -183,11 +200,11 @@ $part('schedule', function () use ($servers) {
 $part('database notifications', function () use ($admin) {
     for ($i = 1; $i <= 14; $i++) {
         $update = $i % 2 === 0;
-        Filament\Notifications\Notification::make()
+        Notification::make()
             ->title($update ? 'Plugin updated' : 'Simplify 1.4.'.$i.' is available')
             ->body($update ? 'Simplify updated from 1.4.'.($i - 1).' to 1.4.'.$i.'.' : 'Installing it now with a backup and automatic rollback. You get another notification when it is done.')
             ->icon($update ? 'tabler-check' : 'tabler-info-circle')
-            ->actions([Filament\Actions\Action::make('open')->label('Open plugins')->url('/admin/plugins')->markAsRead()])
+            ->actions([Action::make('open')->label('Open plugins')->url('/admin/plugins')->markAsRead()])
             ->sendToDatabase($admin, isEventDispatched: false);
     }
     DB::table('notifications')->update(['created_at' => now()->subDay(), 'updated_at' => now()->subDay()]);
