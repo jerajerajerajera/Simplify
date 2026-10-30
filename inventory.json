@@ -1,0 +1,3087 @@
+{
+ "overview": {
+  "title": "Pelican - Enhanced by Simplify - Northwind Games",
+  "h1": "\n                Pelican - Enhanced by Simplify\n            ",
+  "items": [
+   {
+    "kind": "button",
+    "label": "Unpin",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "Unpin",
+    "where": "page"
+   },
+   {
+    "kind": "link",
+    "label": "Northwind Games × Pelican",
+    "where": "header",
+    "href": "http://127.0.0.1:8001/simplify"
+   },
+   {
+    "kind": "button",
+    "label": "Halloween",
+    "where": "header"
+   },
+   {
+    "kind": "button",
+    "label": "Host health: Healthy",
+    "where": "Panel navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Create server",
+    "where": "Panel navigation",
+    "href": "http://127.0.0.1:8001/server-maker"
+   },
+   {
+    "kind": "button",
+    "label": "Notifications",
+    "where": "Panel navigation"
+   },
+   {
+    "kind": "button",
+    "label": "Server groups",
+    "where": "Panel navigation"
+   },
+   {
+    "kind": "button",
+    "label": "Customize overview",
+    "where": "Panel navigation"
+   },
+   {
+    "kind": "button",
+    "label": "Admin tools",
+    "where": "Panel navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Legacy panel",
+    "where": "Panel navigation",
+    "href": "http://127.0.0.1:8001/admin"
+   },
+   {
+    "kind": "button",
+    "label": "Profile options",
+    "where": "Panel navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Profile settings",
+    "where": "Panel navigation",
+    "href": "http://127.0.0.1:8001/profile"
+   },
+   {
+    "kind": "button",
+    "label": "Choose theme",
+    "where": "Panel navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Notifications on this device",
+    "where": "Panel navigation",
+    "href": "http://127.0.0.1:8001/simplify-notifications"
+   },
+   {
+    "kind": "button",
+    "label": "Switch to host mode",
+    "where": "Panel navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Support, opens in a new tab",
+    "where": "Panel navigation",
+    "href": "https://discord.gg/example"
+   },
+   {
+    "kind": "button",
+    "label": "Sign out",
+    "where": "form"
+   },
+   {
+    "kind": "button",
+    "label": "All",
+    "where": "section"
+   },
+   {
+    "kind": "button",
+    "label": "Counter-Strike 2",
+    "where": "section"
+   },
+   {
+    "kind": "button",
+    "label": "Minecraft",
+    "where": "section"
+   },
+   {
+    "kind": "button",
+    "label": "Node.js",
+    "where": "section"
+   },
+   {
+    "kind": "button",
+    "label": "Palworld",
+    "where": "section"
+   },
+   {
+    "kind": "button",
+    "label": "Rust",
+    "where": "section"
+   },
+   {
+    "kind": "button",
+    "label": "Terraria",
+    "where": "section"
+   },
+   {
+    "kind": "button",
+    "label": "Valheim",
+    "where": "section"
+   },
+   {
+    "kind": "button",
+    "label": "All servers",
+    "where": "section"
+   },
+   {
+    "kind": "button",
+    "label": "My servers",
+    "where": "section"
+   },
+   {
+    "kind": "button",
+    "label": "Others",
+    "where": "section"
+   },
+   {
+    "kind": "button",
+    "label": "Open All the Mods 10",
+    "where": "article"
+   },
+   {
+    "kind": "button",
+    "label": "Open Creative Builds",
+    "where": "article"
+   },
+   {
+    "kind": "button",
+    "label": "Open Skyblock",
+    "where": "article"
+   },
+   {
+    "kind": "button",
+    "label": "Open Survival SMP",
+    "where": "article"
+   },
+   {
+    "kind": "button",
+    "label": "Open Palworld Island",
+    "where": "article"
+   },
+   {
+    "kind": "button",
+    "label": "Open Terraria Co-op",
+    "where": "article"
+   },
+   {
+    "kind": "button",
+    "label": "Open Valheim Vikings",
+    "where": "article"
+   },
+   {
+    "kind": "button",
+    "label": "Open Arena",
+    "where": "article"
+   },
+   {
+    "kind": "button",
+    "label": "Open Broken Install",
+    "where": "article"
+   },
+   {
+    "kind": "button",
+    "label": "Open Discord bot",
+    "where": "article"
+   },
+   {
+    "kind": "button",
+    "label": "Open Fresh Start",
+    "where": "article"
+   },
+   {
+    "kind": "button",
+    "label": "Open New World",
+    "where": "article"
+   },
+   {
+    "kind": "button",
+    "label": "Open No EULA",
+    "where": "article"
+   },
+   {
+    "kind": "button",
+    "label": "Open Rust Weekend",
+    "where": "article"
+   },
+   {
+    "kind": "link",
+    "label": "© 2026 Pelican",
+    "where": "page",
+    "href": "https://pelican.dev/docs/#core-team"
+   },
+   {
+    "kind": "link",
+    "label": "Simplify",
+    "where": "page",
+    "href": "https://github.com/jerajerajerajera/Simplify"
+   },
+   {
+    "kind": "button",
+    "label": "Refresh host health",
+    "where": "View health by node",
+    "opener": "Panel navigation"
+   },
+   {
+    "kind": "button",
+    "label": "Amsterdam Healthy",
+    "where": "header",
+    "opener": "Panel navigation"
+   },
+   {
+    "kind": "link",
+    "label": "All the Mods 10",
+    "where": "article",
+    "href": "http://127.0.0.1:8001/server/drjlyeld",
+    "opener": "Panel navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Arena",
+    "where": "article",
+    "href": "http://127.0.0.1:8001/server/phzj6wng",
+    "opener": "Panel navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Broken Install",
+    "where": "article",
+    "href": "http://127.0.0.1:8001/server/6imgsrku",
+    "opener": "Panel navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Creative Builds",
+    "where": "article",
+    "href": "http://127.0.0.1:8001/server/k3f19pyo",
+    "opener": "Panel navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Discord bot",
+    "where": "article",
+    "href": "http://127.0.0.1:8001/server/bnrl8wi4",
+    "opener": "Panel navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Fresh Start",
+    "where": "article",
+    "href": "http://127.0.0.1:8001/server/vztmig8c",
+    "opener": "Panel navigation"
+   },
+   {
+    "kind": "link",
+    "label": "New World",
+    "where": "article",
+    "href": "http://127.0.0.1:8001/server/htqtge7q",
+    "opener": "Panel navigation"
+   },
+   {
+    "kind": "link",
+    "label": "No EULA",
+    "where": "article",
+    "href": "http://127.0.0.1:8001/server/9zqeo61u",
+    "opener": "Panel navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Palworld Island",
+    "where": "article",
+    "href": "http://127.0.0.1:8001/server/kdekkxva",
+    "opener": "Panel navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Rust Weekend",
+    "where": "article",
+    "href": "http://127.0.0.1:8001/server/pdcqpioq",
+    "opener": "Panel navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Skyblock",
+    "where": "article",
+    "href": "http://127.0.0.1:8001/server/bzxqo7ez",
+    "opener": "Panel navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Survival SMP",
+    "where": "article",
+    "href": "http://127.0.0.1:8001/server/pq8ukp8l",
+    "opener": "Panel navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Terraria Co-op",
+    "where": "article",
+    "href": "http://127.0.0.1:8001/server/7w1nu957",
+    "opener": "Panel navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Valheim Vikings",
+    "where": "article",
+    "href": "http://127.0.0.1:8001/server/owmr1vif",
+    "opener": "Panel navigation"
+   },
+   {
+    "kind": "button",
+    "label": "View health by node",
+    "where": "section",
+    "opener": "Panel navigation"
+   },
+   {
+    "kind": "button",
+    "label": "Mark all read",
+    "where": "Panel navigation",
+    "opener": "Server groups"
+   },
+   {
+    "kind": "button",
+    "label": "All notifications",
+    "where": "Panel navigation",
+    "opener": "Server groups"
+   },
+   {
+    "kind": "button",
+    "label": "Mark read",
+    "where": "Panel navigation",
+    "opener": "Server groups"
+   },
+   {
+    "kind": "button",
+    "label": "Clear: Simplify 1.4.1 is available",
+    "where": "Panel navigation",
+    "opener": "Server groups"
+   },
+   {
+    "kind": "link",
+    "label": "Open plugins",
+    "where": "Panel navigation",
+    "href": "/admin/plugins",
+    "opener": "Server groups"
+   },
+   {
+    "kind": "button",
+    "label": "Clear: Plugin updated",
+    "where": "Panel navigation",
+    "opener": "Server groups"
+   },
+   {
+    "kind": "button",
+    "label": "Clear: Simplify 1.4.3 is available",
+    "where": "Panel navigation",
+    "opener": "Server groups"
+   },
+   {
+    "kind": "button",
+    "label": "Clear: Simplify 1.4.5 is available",
+    "where": "Panel navigation",
+    "opener": "Server groups"
+   },
+   {
+    "kind": "button",
+    "label": "Clear: Simplify 1.4.7 is available",
+    "where": "Panel navigation",
+    "opener": "Server groups"
+   },
+   {
+    "kind": "button",
+    "label": "Clear: Simplify 1.4.9 is available",
+    "where": "Panel navigation",
+    "opener": "Server groups"
+   },
+   {
+    "kind": "button",
+    "label": "Clear: Simplify 1.4.11 is available",
+    "where": "Panel navigation",
+    "opener": "Server groups"
+   },
+   {
+    "kind": "button",
+    "label": "Clear: Simplify 1.4.13 is available",
+    "where": "Panel navigation",
+    "opener": "Server groups"
+   }
+  ]
+ },
+ "server console": {
+  "title": "Northwind Games",
+  "h1": "404 | Not found",
+  "items": [
+   {
+    "kind": "link",
+    "label": "© 2026 Pelican",
+    "where": "page",
+    "href": "https://pelican.dev/docs/#core-team"
+   }
+  ]
+ },
+ "admin /admin/simplify": {
+  "title": "Simplify - Northwind Games",
+  "h1": "Simplify settings",
+  "items": [
+   {
+    "kind": "button",
+    "label": "Collapse sidebar",
+    "where": "header"
+   },
+   {
+    "kind": "link",
+    "label": "Northwind Games",
+    "where": "header",
+    "href": "/"
+   },
+   {
+    "kind": "field",
+    "label": "Global search",
+    "where": "page"
+   },
+   {
+    "kind": "link",
+    "label": "Dashboard",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin"
+   },
+   {
+    "kind": "link",
+    "label": "Settings",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/settings"
+   },
+   {
+    "kind": "link",
+    "label": "Site directory",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/site-directory"
+   },
+   {
+    "kind": "link",
+    "label": "Plugins 7",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/plugins"
+   },
+   {
+    "kind": "link",
+    "label": "Eggs 8",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/eggs"
+   },
+   {
+    "kind": "link",
+    "label": "Nodes 1",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/nodes"
+   },
+   {
+    "kind": "link",
+    "label": "Servers 14",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/servers"
+   },
+   {
+    "kind": "button",
+    "label": "Simplify",
+    "where": "Sidebar navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Simplify",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify"
+   },
+   {
+    "kind": "link",
+    "label": "People & roles",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-people"
+   },
+   {
+    "kind": "link",
+    "label": "Announcements",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-announcements"
+   },
+   {
+    "kind": "link",
+    "label": "Egg Updates 2",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/egg-updates"
+   },
+   {
+    "kind": "link",
+    "label": "Website embed",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-embed"
+   },
+   {
+    "kind": "link",
+    "label": "Explain",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-explain"
+   },
+   {
+    "kind": "link",
+    "label": "Hosting",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-hosting"
+   },
+   {
+    "kind": "link",
+    "label": "Server Maker",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/server-maker"
+   },
+   {
+    "kind": "link",
+    "label": "Automatic subdomains",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-subdomains"
+   },
+   {
+    "kind": "link",
+    "label": "Toolkit",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-toolkit"
+   },
+   {
+    "kind": "link",
+    "label": "Roles 3",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/roles"
+   },
+   {
+    "kind": "link",
+    "label": "Users 6",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/users"
+   },
+   {
+    "kind": "button",
+    "label": "Advanced",
+    "where": "Sidebar navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Health",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/health"
+   },
+   {
+    "kind": "link",
+    "label": "API Keys",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/api-keys"
+   },
+   {
+    "kind": "link",
+    "label": "Backup Hosts 1",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/backup-hosts"
+   },
+   {
+    "kind": "link",
+    "label": "Database Hosts",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/database-hosts"
+   },
+   {
+    "kind": "link",
+    "label": "Mounts",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/mounts"
+   },
+   {
+    "kind": "link",
+    "label": "Webhooks",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/webhooks"
+   },
+   {
+    "kind": "link",
+    "label": "Panel Logs",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/logs"
+   },
+   {
+    "kind": "button",
+    "label": "Notifications 15",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "jeroen",
+    "where": "page"
+   },
+   {
+    "kind": "link",
+    "label": "Run setup again",
+    "where": "header",
+    "href": "http://127.0.0.1:8001/admin/simplify-setup"
+   },
+   {
+    "kind": "button",
+    "label": "Save",
+    "where": "header"
+   },
+   {
+    "kind": "tab",
+    "label": "General",
+    "where": "div"
+   },
+   {
+    "kind": "tab",
+    "label": "Appearance",
+    "where": "div"
+   },
+   {
+    "kind": "tab",
+    "label": "Add-ons",
+    "where": "div"
+   },
+   {
+    "kind": "tab",
+    "label": "General",
+    "where": "div"
+   },
+   {
+    "kind": "tab",
+    "label": "Captcha",
+    "where": "div"
+   },
+   {
+    "kind": "tab",
+    "label": "Mail",
+    "where": "div"
+   },
+   {
+    "kind": "tab",
+    "label": "Backup",
+    "where": "div"
+   },
+   {
+    "kind": "tab",
+    "label": "OAuth",
+    "where": "div"
+   },
+   {
+    "kind": "tab",
+    "label": "Misc",
+    "where": "div"
+   },
+   {
+    "kind": "field",
+    "label": "Support url",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "Simplify overview People land on the overview with all their",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "Pelican's server list Pelican's own list stays the start pag",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "Friends mode",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "Overview refresh*",
+    "where": "section"
+   },
+   {
+    "kind": "link",
+    "label": "© 2026 Pelican",
+    "where": "page",
+    "href": "https://pelican.dev/docs/#core-team"
+   },
+   {
+    "kind": "menu",
+    "label": "Profile",
+    "where": "menu",
+    "href": "http://127.0.0.1:8001/profile",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "button",
+    "label": "Enable light theme",
+    "where": "menu",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "button",
+    "label": "Enable dark theme",
+    "where": "menu",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "button",
+    "label": "Enable system theme",
+    "where": "menu",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "menu",
+    "label": "Exit Admin",
+    "where": "menu",
+    "href": "http://127.0.0.1:8001",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "menu",
+    "label": "Sign out",
+    "where": "form",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "button",
+    "label": "Rose",
+    "where": "section",
+    "tab": 1
+   },
+   {
+    "kind": "button",
+    "label": "Coral",
+    "where": "section",
+    "tab": 1
+   },
+   {
+    "kind": "button",
+    "label": "Peach",
+    "where": "section",
+    "tab": 1
+   },
+   {
+    "kind": "button",
+    "label": "Butter",
+    "where": "section",
+    "tab": 1
+   },
+   {
+    "kind": "button",
+    "label": "Sage",
+    "where": "section",
+    "tab": 1
+   },
+   {
+    "kind": "button",
+    "label": "Mint",
+    "where": "section",
+    "tab": 1
+   },
+   {
+    "kind": "button",
+    "label": "Aqua",
+    "where": "section",
+    "tab": 1
+   },
+   {
+    "kind": "button",
+    "label": "Sky",
+    "where": "section",
+    "tab": 1
+   },
+   {
+    "kind": "button",
+    "label": "Periwinkle",
+    "where": "section",
+    "tab": 1
+   },
+   {
+    "kind": "button",
+    "label": "Lavender",
+    "where": "section",
+    "tab": 1
+   },
+   {
+    "kind": "button",
+    "label": "Lilac",
+    "where": "section",
+    "tab": 1
+   },
+   {
+    "kind": "button",
+    "label": "Your own colour",
+    "where": "section",
+    "tab": 1
+   },
+   {
+    "kind": "field",
+    "label": "Individual colours per server",
+    "where": "section",
+    "tab": 1
+   },
+   {
+    "kind": "field",
+    "label": "Seasonal touches",
+    "where": "section",
+    "tab": 1
+   },
+   {
+    "kind": "field",
+    "label": "Panel name",
+    "where": "section",
+    "tab": 1
+   },
+   {
+    "kind": "field",
+    "label": "Show \"× Pelican\" after the name",
+    "where": "section",
+    "tab": 1
+   },
+   {
+    "kind": "field",
+    "label": "",
+    "where": "section",
+    "tab": 1
+   },
+   {
+    "kind": "button",
+    "label": "Northwind Games Clean",
+    "where": "section",
+    "tab": 1
+   },
+   {
+    "kind": "button",
+    "label": "Northwind Games Soft",
+    "where": "section",
+    "tab": 1
+   },
+   {
+    "kind": "button",
+    "label": "Northwind Games Classic",
+    "where": "section",
+    "tab": 1
+   },
+   {
+    "kind": "button",
+    "label": "Northwind Games Code",
+    "where": "section",
+    "tab": 1
+   },
+   {
+    "kind": "button",
+    "label": "Northwind Games Pixel",
+    "where": "section",
+    "tab": 1
+   },
+   {
+    "kind": "button",
+    "label": "NORTHWIND GAMES Neon",
+    "where": "section",
+    "tab": 1
+   },
+   {
+    "kind": "button",
+    "label": "Fine-tune",
+    "where": "section",
+    "tab": 1
+   },
+   {
+    "kind": "button",
+    "label": "Dark",
+    "where": "section",
+    "tab": 1
+   },
+   {
+    "kind": "button",
+    "label": "Light",
+    "where": "section",
+    "tab": 1
+   },
+   {
+    "kind": "button",
+    "label": "Use the Simplify icon",
+    "where": "section",
+    "tab": 1
+   },
+   {
+    "kind": "field",
+    "label": "",
+    "where": "section",
+    "tab": 1
+   },
+   {
+    "kind": "button",
+    "label": "Use the Simplify icon",
+    "where": "section",
+    "tab": 1
+   },
+   {
+    "kind": "field",
+    "label": "",
+    "where": "section",
+    "tab": 1
+   },
+   {
+    "kind": "field",
+    "label": "Allow app notifications",
+    "where": "section",
+    "tab": 1
+   }
+  ]
+ },
+ "admin /admin/simplify-people": {
+  "title": "People & roles - Northwind Games",
+  "h1": "People & roles",
+  "items": [
+   {
+    "kind": "button",
+    "label": "Collapse sidebar",
+    "where": "header"
+   },
+   {
+    "kind": "link",
+    "label": "Northwind Games",
+    "where": "header",
+    "href": "/"
+   },
+   {
+    "kind": "field",
+    "label": "Global search",
+    "where": "page"
+   },
+   {
+    "kind": "link",
+    "label": "Dashboard",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin"
+   },
+   {
+    "kind": "link",
+    "label": "Settings",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/settings"
+   },
+   {
+    "kind": "link",
+    "label": "Site directory",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/site-directory"
+   },
+   {
+    "kind": "link",
+    "label": "Plugins 7",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/plugins"
+   },
+   {
+    "kind": "link",
+    "label": "Eggs 8",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/eggs"
+   },
+   {
+    "kind": "link",
+    "label": "Nodes 1",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/nodes"
+   },
+   {
+    "kind": "link",
+    "label": "Servers 14",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/servers"
+   },
+   {
+    "kind": "button",
+    "label": "Simplify",
+    "where": "Sidebar navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Simplify",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify"
+   },
+   {
+    "kind": "link",
+    "label": "People & roles",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-people"
+   },
+   {
+    "kind": "link",
+    "label": "Announcements",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-announcements"
+   },
+   {
+    "kind": "link",
+    "label": "Egg Updates 2",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/egg-updates"
+   },
+   {
+    "kind": "link",
+    "label": "Website embed",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-embed"
+   },
+   {
+    "kind": "link",
+    "label": "Explain",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-explain"
+   },
+   {
+    "kind": "link",
+    "label": "Hosting",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-hosting"
+   },
+   {
+    "kind": "link",
+    "label": "Server Maker",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/server-maker"
+   },
+   {
+    "kind": "link",
+    "label": "Automatic subdomains",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-subdomains"
+   },
+   {
+    "kind": "link",
+    "label": "Toolkit",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-toolkit"
+   },
+   {
+    "kind": "link",
+    "label": "Roles 3",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/roles"
+   },
+   {
+    "kind": "link",
+    "label": "Users 6",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/users"
+   },
+   {
+    "kind": "button",
+    "label": "Advanced",
+    "where": "Sidebar navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Health",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/health"
+   },
+   {
+    "kind": "link",
+    "label": "API Keys",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/api-keys"
+   },
+   {
+    "kind": "link",
+    "label": "Backup Hosts 1",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/backup-hosts"
+   },
+   {
+    "kind": "link",
+    "label": "Database Hosts",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/database-hosts"
+   },
+   {
+    "kind": "link",
+    "label": "Mounts",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/mounts"
+   },
+   {
+    "kind": "link",
+    "label": "Webhooks",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/webhooks"
+   },
+   {
+    "kind": "link",
+    "label": "Panel Logs",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/logs"
+   },
+   {
+    "kind": "button",
+    "label": "Notifications 15",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "jeroen",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "People",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "Roles",
+    "where": "page"
+   },
+   {
+    "kind": "field",
+    "label": "Search by name or email",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "Add person",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "Edit",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "Send a password reset link",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "Delete this person",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "Edit",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "Send a password reset link",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "Delete this person",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "Edit",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "Send a password reset link",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "Delete this person",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "Edit",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "Send a password reset link",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "Delete this person",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "Edit",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "Send a password reset link",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "Delete this person",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "Edit",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "Send a password reset link",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "Delete this person",
+    "where": "page"
+   },
+   {
+    "kind": "link",
+    "label": "© 2026 Pelican",
+    "where": "page",
+    "href": "https://pelican.dev/docs/#core-team"
+   },
+   {
+    "kind": "menu",
+    "label": "Profile",
+    "where": "menu",
+    "href": "http://127.0.0.1:8001/profile",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "button",
+    "label": "Enable light theme",
+    "where": "menu",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "button",
+    "label": "Enable dark theme",
+    "where": "menu",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "button",
+    "label": "Enable system theme",
+    "where": "menu",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "menu",
+    "label": "Exit Admin",
+    "where": "menu",
+    "href": "http://127.0.0.1:8001",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "menu",
+    "label": "Sign out",
+    "where": "form",
+    "opener": "jeroen"
+   }
+  ]
+ },
+ "admin /admin/simplify-announcements": {
+  "title": "Announcements - Northwind Games",
+  "h1": "Announcements",
+  "items": [
+   {
+    "kind": "button",
+    "label": "Collapse sidebar",
+    "where": "header"
+   },
+   {
+    "kind": "link",
+    "label": "Northwind Games",
+    "where": "header",
+    "href": "/"
+   },
+   {
+    "kind": "field",
+    "label": "Global search",
+    "where": "page"
+   },
+   {
+    "kind": "link",
+    "label": "Dashboard",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin"
+   },
+   {
+    "kind": "link",
+    "label": "Settings",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/settings"
+   },
+   {
+    "kind": "link",
+    "label": "Site directory",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/site-directory"
+   },
+   {
+    "kind": "link",
+    "label": "Plugins 7",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/plugins"
+   },
+   {
+    "kind": "link",
+    "label": "Eggs 8",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/eggs"
+   },
+   {
+    "kind": "link",
+    "label": "Nodes 1",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/nodes"
+   },
+   {
+    "kind": "link",
+    "label": "Servers 14",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/servers"
+   },
+   {
+    "kind": "button",
+    "label": "Simplify",
+    "where": "Sidebar navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Simplify",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify"
+   },
+   {
+    "kind": "link",
+    "label": "People & roles",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-people"
+   },
+   {
+    "kind": "link",
+    "label": "Announcements",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-announcements"
+   },
+   {
+    "kind": "link",
+    "label": "Egg Updates 2",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/egg-updates"
+   },
+   {
+    "kind": "link",
+    "label": "Website embed",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-embed"
+   },
+   {
+    "kind": "link",
+    "label": "Explain",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-explain"
+   },
+   {
+    "kind": "link",
+    "label": "Hosting",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-hosting"
+   },
+   {
+    "kind": "link",
+    "label": "Server Maker",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/server-maker"
+   },
+   {
+    "kind": "link",
+    "label": "Automatic subdomains",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-subdomains"
+   },
+   {
+    "kind": "link",
+    "label": "Toolkit",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-toolkit"
+   },
+   {
+    "kind": "link",
+    "label": "Roles 3",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/roles"
+   },
+   {
+    "kind": "link",
+    "label": "Users 6",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/users"
+   },
+   {
+    "kind": "button",
+    "label": "Advanced",
+    "where": "Sidebar navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Health",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/health"
+   },
+   {
+    "kind": "link",
+    "label": "API Keys",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/api-keys"
+   },
+   {
+    "kind": "link",
+    "label": "Backup Hosts 1",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/backup-hosts"
+   },
+   {
+    "kind": "link",
+    "label": "Database Hosts",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/database-hosts"
+   },
+   {
+    "kind": "link",
+    "label": "Mounts",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/mounts"
+   },
+   {
+    "kind": "link",
+    "label": "Webhooks",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/webhooks"
+   },
+   {
+    "kind": "link",
+    "label": "Panel Logs",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/logs"
+   },
+   {
+    "kind": "button",
+    "label": "Notifications 15",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "jeroen",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "In-game commands",
+    "where": "header"
+   },
+   {
+    "kind": "button",
+    "label": "New announcement",
+    "where": "header"
+   },
+   {
+    "kind": "field",
+    "label": "Search",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "Maintenance on Saturday The servers restart between 07:00 an",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "Edit",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "End now",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "Delete",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "New node in Amsterdam New servers start faster from today. L",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "Edit",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "End now",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "Delete",
+    "where": "page"
+   },
+   {
+    "kind": "field",
+    "label": "Per page 5 10 25 50",
+    "where": "Pagination navigation"
+   },
+   {
+    "kind": "link",
+    "label": "© 2026 Pelican",
+    "where": "page",
+    "href": "https://pelican.dev/docs/#core-team"
+   },
+   {
+    "kind": "menu",
+    "label": "Profile",
+    "where": "menu",
+    "href": "http://127.0.0.1:8001/profile",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "button",
+    "label": "Enable light theme",
+    "where": "menu",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "button",
+    "label": "Enable dark theme",
+    "where": "menu",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "button",
+    "label": "Enable system theme",
+    "where": "menu",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "menu",
+    "label": "Exit Admin",
+    "where": "menu",
+    "href": "http://127.0.0.1:8001",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "menu",
+    "label": "Sign out",
+    "where": "form",
+    "opener": "jeroen"
+   }
+  ]
+ },
+ "admin /admin/simplify-embed": {
+  "title": "Website embed - Northwind Games",
+  "h1": "Website embed",
+  "items": [
+   {
+    "kind": "button",
+    "label": "Collapse sidebar",
+    "where": "header"
+   },
+   {
+    "kind": "link",
+    "label": "Northwind Games",
+    "where": "header",
+    "href": "/"
+   },
+   {
+    "kind": "field",
+    "label": "Global search",
+    "where": "page"
+   },
+   {
+    "kind": "link",
+    "label": "Dashboard",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin"
+   },
+   {
+    "kind": "link",
+    "label": "Settings",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/settings"
+   },
+   {
+    "kind": "link",
+    "label": "Site directory",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/site-directory"
+   },
+   {
+    "kind": "link",
+    "label": "Plugins 7",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/plugins"
+   },
+   {
+    "kind": "link",
+    "label": "Eggs 8",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/eggs"
+   },
+   {
+    "kind": "link",
+    "label": "Nodes 1",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/nodes"
+   },
+   {
+    "kind": "link",
+    "label": "Servers 14",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/servers"
+   },
+   {
+    "kind": "button",
+    "label": "Simplify",
+    "where": "Sidebar navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Simplify",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify"
+   },
+   {
+    "kind": "link",
+    "label": "People & roles",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-people"
+   },
+   {
+    "kind": "link",
+    "label": "Announcements",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-announcements"
+   },
+   {
+    "kind": "link",
+    "label": "Egg Updates 2",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/egg-updates"
+   },
+   {
+    "kind": "link",
+    "label": "Website embed",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-embed"
+   },
+   {
+    "kind": "link",
+    "label": "Explain",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-explain"
+   },
+   {
+    "kind": "link",
+    "label": "Hosting",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-hosting"
+   },
+   {
+    "kind": "link",
+    "label": "Server Maker",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/server-maker"
+   },
+   {
+    "kind": "link",
+    "label": "Automatic subdomains",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-subdomains"
+   },
+   {
+    "kind": "link",
+    "label": "Toolkit",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-toolkit"
+   },
+   {
+    "kind": "link",
+    "label": "Roles 3",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/roles"
+   },
+   {
+    "kind": "link",
+    "label": "Users 6",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/users"
+   },
+   {
+    "kind": "button",
+    "label": "Advanced",
+    "where": "Sidebar navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Health",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/health"
+   },
+   {
+    "kind": "link",
+    "label": "API Keys",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/api-keys"
+   },
+   {
+    "kind": "link",
+    "label": "Backup Hosts 1",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/backup-hosts"
+   },
+   {
+    "kind": "link",
+    "label": "Database Hosts",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/database-hosts"
+   },
+   {
+    "kind": "link",
+    "label": "Mounts",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/mounts"
+   },
+   {
+    "kind": "link",
+    "label": "Webhooks",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/webhooks"
+   },
+   {
+    "kind": "link",
+    "label": "Panel Logs",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/logs"
+   },
+   {
+    "kind": "button",
+    "label": "Notifications 15",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "jeroen",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "Save",
+    "where": "header"
+   },
+   {
+    "kind": "field",
+    "label": "Start typing to search",
+    "where": "section"
+   },
+   {
+    "kind": "button",
+    "label": "Select all",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "All the Mods 10",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "Arena",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "Broken Install",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "Creative Builds",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "Discord bot",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "Fresh Start",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "New World",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "No EULA",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "Palworld Island",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "Rust Weekend",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "Skyblock",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "Survival SMP",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "Terraria Co-op",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "Valheim Vikings",
+    "where": "section"
+   },
+   {
+    "kind": "button",
+    "label": "Follow the visitor",
+    "where": "section"
+   },
+   {
+    "kind": "button",
+    "label": "Round",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "Accent colour",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "Show players",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "Show modpack and version",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "Show the join address with a copy button",
+    "where": "section"
+   },
+   {
+    "kind": "button",
+    "label": "All servers on the website",
+    "where": "section"
+   },
+   {
+    "kind": "button",
+    "label": "Copy code",
+    "where": "section"
+   },
+   {
+    "kind": "button",
+    "label": "Copy code",
+    "where": "section"
+   },
+   {
+    "kind": "button",
+    "label": "Copy link",
+    "where": "section"
+   },
+   {
+    "kind": "link",
+    "label": "Open",
+    "where": "section",
+    "href": "http://127.0.0.1:8001/simplify/embed?page=1"
+   },
+   {
+    "kind": "link",
+    "label": "© 2026 Pelican",
+    "where": "page",
+    "href": "https://pelican.dev/docs/#core-team"
+   },
+   {
+    "kind": "menu",
+    "label": "Profile",
+    "where": "menu",
+    "href": "http://127.0.0.1:8001/profile",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "button",
+    "label": "Enable light theme",
+    "where": "menu",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "button",
+    "label": "Enable dark theme",
+    "where": "menu",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "button",
+    "label": "Enable system theme",
+    "where": "menu",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "menu",
+    "label": "Exit Admin",
+    "where": "menu",
+    "href": "http://127.0.0.1:8001",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "menu",
+    "label": "Sign out",
+    "where": "form",
+    "opener": "jeroen"
+   }
+  ]
+ },
+ "admin /admin/simplify-explain": {
+  "title": "Explain - Northwind Games",
+  "h1": "Explain",
+  "items": [
+   {
+    "kind": "button",
+    "label": "Collapse sidebar",
+    "where": "header"
+   },
+   {
+    "kind": "link",
+    "label": "Northwind Games",
+    "where": "header",
+    "href": "/"
+   },
+   {
+    "kind": "field",
+    "label": "Global search",
+    "where": "page"
+   },
+   {
+    "kind": "link",
+    "label": "Dashboard",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin"
+   },
+   {
+    "kind": "link",
+    "label": "Settings",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/settings"
+   },
+   {
+    "kind": "link",
+    "label": "Site directory",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/site-directory"
+   },
+   {
+    "kind": "link",
+    "label": "Plugins 7",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/plugins"
+   },
+   {
+    "kind": "link",
+    "label": "Eggs 8",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/eggs"
+   },
+   {
+    "kind": "link",
+    "label": "Nodes 1",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/nodes"
+   },
+   {
+    "kind": "link",
+    "label": "Servers 14",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/servers"
+   },
+   {
+    "kind": "button",
+    "label": "Simplify",
+    "where": "Sidebar navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Simplify",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify"
+   },
+   {
+    "kind": "link",
+    "label": "People & roles",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-people"
+   },
+   {
+    "kind": "link",
+    "label": "Announcements",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-announcements"
+   },
+   {
+    "kind": "link",
+    "label": "Egg Updates 2",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/egg-updates"
+   },
+   {
+    "kind": "link",
+    "label": "Website embed",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-embed"
+   },
+   {
+    "kind": "link",
+    "label": "Explain",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-explain"
+   },
+   {
+    "kind": "link",
+    "label": "Hosting",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-hosting"
+   },
+   {
+    "kind": "link",
+    "label": "Server Maker",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/server-maker"
+   },
+   {
+    "kind": "link",
+    "label": "Automatic subdomains",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-subdomains"
+   },
+   {
+    "kind": "link",
+    "label": "Toolkit",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-toolkit"
+   },
+   {
+    "kind": "link",
+    "label": "Roles 3",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/roles"
+   },
+   {
+    "kind": "link",
+    "label": "Users 6",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/users"
+   },
+   {
+    "kind": "button",
+    "label": "Advanced",
+    "where": "Sidebar navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Health",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/health"
+   },
+   {
+    "kind": "link",
+    "label": "API Keys",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/api-keys"
+   },
+   {
+    "kind": "link",
+    "label": "Backup Hosts 1",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/backup-hosts"
+   },
+   {
+    "kind": "link",
+    "label": "Database Hosts",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/database-hosts"
+   },
+   {
+    "kind": "link",
+    "label": "Mounts",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/mounts"
+   },
+   {
+    "kind": "link",
+    "label": "Webhooks",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/webhooks"
+   },
+   {
+    "kind": "link",
+    "label": "Panel Logs",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/logs"
+   },
+   {
+    "kind": "button",
+    "label": "Notifications 15",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "jeroen",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "Test",
+    "where": "header"
+   },
+   {
+    "kind": "button",
+    "label": "Save",
+    "where": "header"
+   },
+   {
+    "kind": "button",
+    "label": "Claude by Anthropic",
+    "where": "section"
+   },
+   {
+    "kind": "button",
+    "label": "Claude Opus 5.5 (best answers, a few cents)",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "API key",
+    "where": "section"
+   },
+   {
+    "kind": "button",
+    "label": "Everyone who can see the console",
+    "where": "section"
+   },
+   {
+    "kind": "link",
+    "label": "© 2026 Pelican",
+    "where": "page",
+    "href": "https://pelican.dev/docs/#core-team"
+   },
+   {
+    "kind": "menu",
+    "label": "Profile",
+    "where": "menu",
+    "href": "http://127.0.0.1:8001/profile",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "button",
+    "label": "Enable light theme",
+    "where": "menu",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "button",
+    "label": "Enable dark theme",
+    "where": "menu",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "button",
+    "label": "Enable system theme",
+    "where": "menu",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "menu",
+    "label": "Exit Admin",
+    "where": "menu",
+    "href": "http://127.0.0.1:8001",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "menu",
+    "label": "Sign out",
+    "where": "form",
+    "opener": "jeroen"
+   }
+  ]
+ },
+ "admin /admin/simplify-hosting": {
+  "title": "Hosting - Northwind Games",
+  "h1": "Hosting",
+  "items": [
+   {
+    "kind": "button",
+    "label": "Collapse sidebar",
+    "where": "header"
+   },
+   {
+    "kind": "link",
+    "label": "Northwind Games",
+    "where": "header",
+    "href": "/"
+   },
+   {
+    "kind": "field",
+    "label": "Global search",
+    "where": "page"
+   },
+   {
+    "kind": "link",
+    "label": "Dashboard",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin"
+   },
+   {
+    "kind": "link",
+    "label": "Settings",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/settings"
+   },
+   {
+    "kind": "link",
+    "label": "Site directory",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/site-directory"
+   },
+   {
+    "kind": "link",
+    "label": "Plugins 7",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/plugins"
+   },
+   {
+    "kind": "link",
+    "label": "Eggs 8",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/eggs"
+   },
+   {
+    "kind": "link",
+    "label": "Nodes 1",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/nodes"
+   },
+   {
+    "kind": "link",
+    "label": "Servers 14",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/servers"
+   },
+   {
+    "kind": "button",
+    "label": "Simplify",
+    "where": "Sidebar navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Simplify",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify"
+   },
+   {
+    "kind": "link",
+    "label": "People & roles",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-people"
+   },
+   {
+    "kind": "link",
+    "label": "Announcements",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-announcements"
+   },
+   {
+    "kind": "link",
+    "label": "Egg Updates 2",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/egg-updates"
+   },
+   {
+    "kind": "link",
+    "label": "Website embed",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-embed"
+   },
+   {
+    "kind": "link",
+    "label": "Explain",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-explain"
+   },
+   {
+    "kind": "link",
+    "label": "Hosting",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-hosting"
+   },
+   {
+    "kind": "link",
+    "label": "Server Maker",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/server-maker"
+   },
+   {
+    "kind": "link",
+    "label": "Automatic subdomains",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-subdomains"
+   },
+   {
+    "kind": "link",
+    "label": "Toolkit",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-toolkit"
+   },
+   {
+    "kind": "link",
+    "label": "Roles 3",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/roles"
+   },
+   {
+    "kind": "link",
+    "label": "Users 6",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/users"
+   },
+   {
+    "kind": "button",
+    "label": "Advanced",
+    "where": "Sidebar navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Health",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/health"
+   },
+   {
+    "kind": "link",
+    "label": "API Keys",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/api-keys"
+   },
+   {
+    "kind": "link",
+    "label": "Backup Hosts 1",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/backup-hosts"
+   },
+   {
+    "kind": "link",
+    "label": "Database Hosts",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/database-hosts"
+   },
+   {
+    "kind": "link",
+    "label": "Mounts",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/mounts"
+   },
+   {
+    "kind": "link",
+    "label": "Webhooks",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/webhooks"
+   },
+   {
+    "kind": "link",
+    "label": "Panel Logs",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/logs"
+   },
+   {
+    "kind": "button",
+    "label": "Notifications 15",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "jeroen",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "Save",
+    "where": "header"
+   },
+   {
+    "kind": "field",
+    "label": "Billing link",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "Client area link",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "Order link",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "Open in host mode",
+    "where": "section"
+   },
+   {
+    "kind": "link",
+    "label": "© 2026 Pelican",
+    "where": "page",
+    "href": "https://pelican.dev/docs/#core-team"
+   },
+   {
+    "kind": "menu",
+    "label": "Profile",
+    "where": "menu",
+    "href": "http://127.0.0.1:8001/profile",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "button",
+    "label": "Enable light theme",
+    "where": "menu",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "button",
+    "label": "Enable dark theme",
+    "where": "menu",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "button",
+    "label": "Enable system theme",
+    "where": "menu",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "menu",
+    "label": "Exit Admin",
+    "where": "menu",
+    "href": "http://127.0.0.1:8001",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "menu",
+    "label": "Sign out",
+    "where": "form",
+    "opener": "jeroen"
+   }
+  ]
+ },
+ "admin /admin/simplify-subdomains": {
+  "title": "Automatic subdomains - Northwind Games",
+  "h1": "Automatic subdomains",
+  "items": [
+   {
+    "kind": "button",
+    "label": "Collapse sidebar",
+    "where": "header"
+   },
+   {
+    "kind": "link",
+    "label": "Northwind Games",
+    "where": "header",
+    "href": "/"
+   },
+   {
+    "kind": "field",
+    "label": "Global search",
+    "where": "page"
+   },
+   {
+    "kind": "link",
+    "label": "Dashboard",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin"
+   },
+   {
+    "kind": "link",
+    "label": "Settings",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/settings"
+   },
+   {
+    "kind": "link",
+    "label": "Site directory",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/site-directory"
+   },
+   {
+    "kind": "link",
+    "label": "Plugins 7",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/plugins"
+   },
+   {
+    "kind": "link",
+    "label": "Eggs 8",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/eggs"
+   },
+   {
+    "kind": "link",
+    "label": "Nodes 1",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/nodes"
+   },
+   {
+    "kind": "link",
+    "label": "Servers 14",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/servers"
+   },
+   {
+    "kind": "button",
+    "label": "Simplify",
+    "where": "Sidebar navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Simplify",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify"
+   },
+   {
+    "kind": "link",
+    "label": "People & roles",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-people"
+   },
+   {
+    "kind": "link",
+    "label": "Announcements",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-announcements"
+   },
+   {
+    "kind": "link",
+    "label": "Egg Updates 2",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/egg-updates"
+   },
+   {
+    "kind": "link",
+    "label": "Website embed",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-embed"
+   },
+   {
+    "kind": "link",
+    "label": "Explain",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-explain"
+   },
+   {
+    "kind": "link",
+    "label": "Hosting",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-hosting"
+   },
+   {
+    "kind": "link",
+    "label": "Server Maker",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/server-maker"
+   },
+   {
+    "kind": "link",
+    "label": "Automatic subdomains",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-subdomains"
+   },
+   {
+    "kind": "link",
+    "label": "Toolkit",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-toolkit"
+   },
+   {
+    "kind": "link",
+    "label": "Roles 3",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/roles"
+   },
+   {
+    "kind": "link",
+    "label": "Users 6",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/users"
+   },
+   {
+    "kind": "button",
+    "label": "Advanced",
+    "where": "Sidebar navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Health",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/health"
+   },
+   {
+    "kind": "link",
+    "label": "API Keys",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/api-keys"
+   },
+   {
+    "kind": "link",
+    "label": "Backup Hosts 1",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/backup-hosts"
+   },
+   {
+    "kind": "link",
+    "label": "Database Hosts",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/database-hosts"
+   },
+   {
+    "kind": "link",
+    "label": "Mounts",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/mounts"
+   },
+   {
+    "kind": "link",
+    "label": "Webhooks",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/webhooks"
+   },
+   {
+    "kind": "link",
+    "label": "Panel Logs",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/logs"
+   },
+   {
+    "kind": "button",
+    "label": "Notifications 15",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "jeroen",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "Save",
+    "where": "header"
+   },
+   {
+    "kind": "field",
+    "label": "Domain",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "Game address",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "First forwarded port*",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "Last forwarded port*",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "API token",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "Zone ID",
+    "where": "section"
+   },
+   {
+    "kind": "button",
+    "label": "Test",
+    "where": "section"
+   },
+   {
+    "kind": "link",
+    "label": "© 2026 Pelican",
+    "where": "page",
+    "href": "https://pelican.dev/docs/#core-team"
+   },
+   {
+    "kind": "menu",
+    "label": "Profile",
+    "where": "menu",
+    "href": "http://127.0.0.1:8001/profile",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "button",
+    "label": "Enable light theme",
+    "where": "menu",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "button",
+    "label": "Enable dark theme",
+    "where": "menu",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "button",
+    "label": "Enable system theme",
+    "where": "menu",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "menu",
+    "label": "Exit Admin",
+    "where": "menu",
+    "href": "http://127.0.0.1:8001",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "menu",
+    "label": "Sign out",
+    "where": "form",
+    "opener": "jeroen"
+   }
+  ]
+ },
+ "admin /admin/simplify-toolkit": {
+  "title": "Toolkit - Northwind Games",
+  "h1": "Toolkit",
+  "items": [
+   {
+    "kind": "button",
+    "label": "Collapse sidebar",
+    "where": "header"
+   },
+   {
+    "kind": "link",
+    "label": "Northwind Games",
+    "where": "header",
+    "href": "/"
+   },
+   {
+    "kind": "field",
+    "label": "Global search",
+    "where": "page"
+   },
+   {
+    "kind": "link",
+    "label": "Dashboard",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin"
+   },
+   {
+    "kind": "link",
+    "label": "Settings",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/settings"
+   },
+   {
+    "kind": "link",
+    "label": "Site directory",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/site-directory"
+   },
+   {
+    "kind": "link",
+    "label": "Plugins 7",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/plugins"
+   },
+   {
+    "kind": "link",
+    "label": "Eggs 8",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/eggs"
+   },
+   {
+    "kind": "link",
+    "label": "Nodes 1",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/nodes"
+   },
+   {
+    "kind": "link",
+    "label": "Servers 14",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/servers"
+   },
+   {
+    "kind": "button",
+    "label": "Simplify",
+    "where": "Sidebar navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Simplify",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify"
+   },
+   {
+    "kind": "link",
+    "label": "People & roles",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-people"
+   },
+   {
+    "kind": "link",
+    "label": "Announcements",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-announcements"
+   },
+   {
+    "kind": "link",
+    "label": "Egg Updates 2",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/egg-updates"
+   },
+   {
+    "kind": "link",
+    "label": "Website embed",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-embed"
+   },
+   {
+    "kind": "link",
+    "label": "Explain",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-explain"
+   },
+   {
+    "kind": "link",
+    "label": "Hosting",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-hosting"
+   },
+   {
+    "kind": "link",
+    "label": "Server Maker",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/server-maker"
+   },
+   {
+    "kind": "link",
+    "label": "Automatic subdomains",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-subdomains"
+   },
+   {
+    "kind": "link",
+    "label": "Toolkit",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/simplify-toolkit"
+   },
+   {
+    "kind": "link",
+    "label": "Roles 3",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/roles"
+   },
+   {
+    "kind": "link",
+    "label": "Users 6",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/users"
+   },
+   {
+    "kind": "button",
+    "label": "Advanced",
+    "where": "Sidebar navigation"
+   },
+   {
+    "kind": "link",
+    "label": "Health",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/health"
+   },
+   {
+    "kind": "link",
+    "label": "API Keys",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/api-keys"
+   },
+   {
+    "kind": "link",
+    "label": "Backup Hosts 1",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/backup-hosts"
+   },
+   {
+    "kind": "link",
+    "label": "Database Hosts",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/database-hosts"
+   },
+   {
+    "kind": "link",
+    "label": "Mounts",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/mounts"
+   },
+   {
+    "kind": "link",
+    "label": "Webhooks",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/webhooks"
+   },
+   {
+    "kind": "link",
+    "label": "Panel Logs",
+    "where": "Sidebar navigation",
+    "href": "http://127.0.0.1:8001/admin/logs"
+   },
+   {
+    "kind": "button",
+    "label": "Notifications 15",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "jeroen",
+    "where": "page"
+   },
+   {
+    "kind": "button",
+    "label": "Save key",
+    "where": "header"
+   },
+   {
+    "kind": "link",
+    "label": "console.curseforge.com",
+    "where": "header",
+    "href": "https://console.curseforge.com/"
+   },
+   {
+    "kind": "field",
+    "label": "API key",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "Automatic backups",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "Backup interval for new servers (minutes)*",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "Recovery points for new servers*",
+    "where": "section"
+   },
+   {
+    "kind": "field",
+    "label": "Skip while the server has not run",
+    "where": "section"
+   },
+   {
+    "kind": "link",
+    "label": "© 2026 Pelican",
+    "where": "page",
+    "href": "https://pelican.dev/docs/#core-team"
+   },
+   {
+    "kind": "menu",
+    "label": "Profile",
+    "where": "menu",
+    "href": "http://127.0.0.1:8001/profile",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "button",
+    "label": "Enable light theme",
+    "where": "menu",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "button",
+    "label": "Enable dark theme",
+    "where": "menu",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "button",
+    "label": "Enable system theme",
+    "where": "menu",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "menu",
+    "label": "Exit Admin",
+    "where": "menu",
+    "href": "http://127.0.0.1:8001",
+    "opener": "jeroen"
+   },
+   {
+    "kind": "menu",
+    "label": "Sign out",
+    "where": "form",
+    "opener": "jeroen"
+   }
+  ]
+ }
+}
