@@ -239,8 +239,44 @@ async function round(theme) {
   if (await click('.ps-host-tabs button:nth-child(2)', 1200)) { await record('host-servers', 'Hostmodus · serverlijst'); if (await click('.ps-host-server strong, .ps-host-server', 3000)) { await record('host-server', 'Hostmodus · server open (console in frame)'); await click('.ps-host-server-head .ps-info-more-button, .ps-info-more-button', 500) && await record('host-server-more', 'Hostmodus · server ⋯-menu'); await escape(); } }
   await alpine('d.setHostMode(false)'); await sleep(800);
   if (['d1440', 'tablet768', 'phone390'].includes(stand.split('-')[0])) await seasons(theme);
+  if (['d1440', 'phone390'].includes(stand.split('-')[0])) await createFlow();
   // Last, because it changes what the account has read and archived.
   if (theme === 'dark' && ['d1440', 'phone390'].includes(stand.split('-')[0])) await notifyFlow();
+}
+
+// Create server (1.5.0): without Server Maker, Pelican's create form opens inside Simplify like an Admin tools page
+// (title "Servers › Create server", close button); with Server Maker, Server Maker opens. Desktop button, phone tab bar.
+async function createFlow() {
+  const overview = urls.app.find((p) => /App\\Pages\\Overview$/.test(p.class))?.url || '/';
+  const onPhone = phone();
+  const check = async (id, label) => {
+    await page.waitForLoadState('domcontentloaded').catch(() => {}); await page.waitForSelector('.ps-host-frame iframe', { timeout: 6000 }).catch(() => {}); await sleep(2500);
+    const st = await alpine('return { adminView: d.adminView, page: d.hostPage && d.hostPage.key, label: d.hostPage && d.hostPage.label, head: (document.querySelector(".ps-host-head.is-page") || {}).innerText }');
+    const frame = page.frames().find((f) => f !== page.mainFrame() && /\/create/.test(f.url()));
+    await record(id, label, { create: { st, url: rel(page.url()), frame: frame ? rel(frame.url()) : null } });
+    const maker = /server-?maker|maker/i.test(page.url()) || !!(await page.locator('[class*="sm-"], [class*="maker"] >> visible=true').count().catch(() => 0));
+    const inSimplify = st && st.adminView && st.page === 'serverresource-create' && !!frame;
+    problems.push(`${stand} ${id}: ${inSimplify ? 'Pelican create form inside Simplify' : maker ? 'Server Maker' : 'NEITHER'} (url ${rel(page.url())}, frame ${frame ? rel(frame.url()) : '-'}, head "${(st && st.head || '').replace(/\s+/g, ' ').trim()}")`);
+    if (inSimplify && await click('.ps-host-close', 800)) { const after = await alpine('return { adminView: d.adminView, hostPage: !!d.hostPage }'); if (after && (after.adminView || after.hostPage)) problems.push(`${stand} ${id}: still open after close`); }
+  };
+  if (!onPhone) {
+    await goto(overview); await sleep(600);
+    const btn = page.locator('.ps-top-overview :is(a, button):has-text("Create server") >> visible=true').first();
+    if (!(await btn.count())) { problems.push(`${stand} create: no Create server button`); return; }
+    await btn.click().catch(() => {}); await sleep(800);
+    const choice = page.locator('a.ps-create-button >> visible=true').first(); // a menu of choices when there is more than one
+    if (await choice.count()) { await record('create-menu', 'Create server · keuzemenu'); await choice.click().catch(() => {}); }
+    await check('create-desktop', 'Create server (desktop)');
+  } else {
+    await goto(overview); await sleep(600);
+    const tab = page.locator('.ps-tabbar .ps-tab[aria-haspopup="dialog"] >> visible=true').first();
+    if (!(await tab.count())) { problems.push(`${stand} create: no + in the tab bar`); return; }
+    await tab.click().catch(() => {}); await sleep(900);
+    const item = page.locator('.ps-menu-item[role="menuitem"] >> visible=true').first();
+    if (await item.count()) { await record('create-tab-menu', 'Create server · tabbalk-menu'); await item.click().catch(() => {}); await check('create-phone-menu', 'Create server via tabbalk-menu'); }
+    else await check('create-phone-tab', 'Create server via tabbalk (+)');
+  }
+  await goto(overview);
 }
 
 // Notifications (1.5.0, #90): Mark read on one, Clear read, ✕ to Archived, and Archived at the bottom of the window with
