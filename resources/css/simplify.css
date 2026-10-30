@@ -1444,8 +1444,13 @@ html.ps-frame[data-ps-frame="native"] .s-health { border: 0; border-radius: 0; b
   gap: 10px;
 }
 
-.s-tile-field .fi-fo-field-content {
-  flex: none;
+.s-tile-field .fi-fo-field-content-ctn > * {
+  flex: 0 0 auto;
+  width: auto;
+}
+
+.s-tile-field .fi-fo-field-content-ctn > .fi-fo-field-content {
+  flex: 0 0 64px;
   width: 64px;
 }
 

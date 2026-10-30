@@ -66,7 +66,7 @@
                 <b x-bind:style="{ left: (h / 3.6) + '%', background: `hsl(${h} 100% 50%)` }"></b>
             </div>
             <div class="s-accent-hex">
-                <span x-bind:style="{ background: state }"></span>
+                <span x-bind:style="{ backgroundColor: /^#[0-9a-f]{6}$/i.test(hex) ? hex : state }"></span>
                 <input type="text" maxlength="7" spellcheck="false" aria-label="{{ __($t.'hex') }}" x-model="hex" x-on:input="typed()">
             </div>
         </div>
