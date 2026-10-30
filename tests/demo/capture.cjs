@@ -321,7 +321,10 @@ async function login(browser, email) {
   // Every section and page of the admin tree once, as siblings; the server list with the first three servers.
   await walk(page, { id: 'host', title: 'Hostmodus', group: 'Hostmodus', phone: true,
     expand: { css: '.ps-host-group-head, .ps-host-leaf', title: 'Hostmodus · ', child: { wait: 2500 } },
-    children: [{ id: 'host-serverlist', title: 'Hostmodus · serverlijst', click: { css: '.ps-host-tabs button', nth: 1 }, links: [{ click: { css: '.ps-host-tabs button', nth: 0 }, to: 'host' }], expand: { css: '.ps-host-server strong', title: 'Hostmodus · server ', limit: 3, child: { wait: 2000 } } }],
+    children: [
+      // Settings, Add-ons and Pelican settings fold open together once one of them is open, so their pages need a second pass.
+      { id: 'host-tabs', title: 'Hostmodus · Settings', click: { css: '.ps-host-group-head', text: /^\s*Settings\s*$/ }, wait: 2500, expand: { css: '.ps-host-branch .ps-host-leaf', title: 'Hostmodus · ', child: { wait: 2500 } } },
+      { id: 'host-serverlist', title: 'Hostmodus · serverlijst', click: { css: '.ps-host-tabs button', nth: 1 }, links: [{ click: { css: '.ps-host-tabs button', nth: 0 }, to: 'host' }], expand: { css: '.ps-host-server strong', title: 'Hostmodus · server ', limit: 3, child: { wait: 2000 } } }],
   }, open(page, overview, hostOn));
   await alpine(page, 'd.setHostMode(false)').catch(() => {});
 
