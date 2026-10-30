@@ -26,6 +26,8 @@ return [
     'messages_help' => 'Anuncios y otros mensajes de los add-ons.',
     'updates' => 'Actualizaciones',
     'updates_help' => 'Nuevas versiones de Pelican y Wings. Solo para root admins.',
+    'pelican' => 'Notificaciones de Pelican',
+    'pelican_help' => 'Los mensajes propios de Pelican en la campana, como una copia de seguridad terminada.',
     'devices' => 'Tus dispositivos',
     'this_badge' => 'Este dispositivo',
     'added' => 'Añadido :time',

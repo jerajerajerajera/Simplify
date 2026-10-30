@@ -26,6 +26,8 @@ return [
     'messages_help' => 'アドオンからのお知らせやその他のメッセージ。',
     'updates' => 'アップデート',
     'updates_help' => 'Pelican と Wings の新しいバージョン。root admin のみ。',
+    'pelican' => 'Pelican の通知',
+    'pelican_help' => 'ベルに届く Pelican 自身のメッセージ（バックアップ完了など）。',
     'devices' => 'あなたのデバイス',
     'this_badge' => 'このデバイス',
     'added' => '追加: :time',

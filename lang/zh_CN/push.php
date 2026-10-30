@@ -26,6 +26,8 @@ return [
     'messages_help' => '来自附加组件的公告和其他消息。',
     'updates' => '更新',
     'updates_help' => 'Pelican 和 Wings 的新版本。仅限 root admin。',
+    'pelican' => 'Pelican 通知',
+    'pelican_help' => '铃铛里的 Pelican 自身消息，例如备份已完成。',
     'devices' => '你的设备',
     'this_badge' => '此设备',
     'added' => '添加于 :time',

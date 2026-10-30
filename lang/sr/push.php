@@ -26,6 +26,8 @@ return [
     'messages_help' => 'Објаве и друге поруке од проширења.',
     'updates' => 'Ажурирања',
     'updates_help' => 'Нове верзије Pelican и Wings. Само за root admin-е.',
+    'pelican' => 'Обавештења Pelican-а',
+    'pelican_help' => 'Pelican-ове поруке у звонцету, на пример о завршеној резервној копији.',
     'devices' => 'Ваши уређаји',
     'this_badge' => 'Овај уређај',
     'added' => 'Додато: :time',

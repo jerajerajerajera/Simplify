@@ -26,6 +26,8 @@ return [
     'messages_help' => 'الإعلانات والرسائل الأخرى من الملحقات.',
     'updates' => 'التحديثات',
     'updates_help' => 'إصدارات جديدة من Pelican وWings. لمسؤولي root فقط.',
+    'pelican' => 'إشعارات Pelican',
+    'pelican_help' => 'رسائل Pelican نفسها في الجرس، مثل اكتمال نسخة احتياطية.',
     'devices' => 'أجهزتك',
     'this_badge' => 'هذا الجهاز',
     'added' => 'أُضيف :time',

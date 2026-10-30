@@ -26,6 +26,8 @@ return [
     'messages_help' => 'Meddelelser og andre beskeder fra tilføjelser.',
     'updates' => 'Opdateringer',
     'updates_help' => 'Nye versioner af Pelican og Wings. Kun for root admins.',
+    'pelican' => 'Pelicans notifikationer',
+    'pelican_help' => 'Pelicans egne beskeder i klokken, for eksempel en færdig backup.',
     'devices' => 'Dine enheder',
     'this_badge' => 'Denne enhed',
     'added' => 'Tilføjet :time',

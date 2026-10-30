@@ -26,6 +26,8 @@ return [
     'messages_help' => 'Közlemények és más üzenetek a kiegészítőktől.',
     'updates' => 'Frissítések',
     'updates_help' => 'A Pelican és a Wings új verziói. Csak root adminoknak.',
+    'pelican' => 'A Pelican értesítései',
+    'pelican_help' => 'A Pelican saját üzenetei a csengőben, például egy elkészült biztonsági mentés.',
     'devices' => 'Eszközeid',
     'this_badge' => 'Ez az eszköz',
     'added' => 'Hozzáadva: :time',

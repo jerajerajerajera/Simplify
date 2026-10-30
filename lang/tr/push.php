@@ -26,6 +26,8 @@ return [
     'messages_help' => 'Duyurular ve ek özelliklerden gelen diğer mesajlar.',
     'updates' => 'Güncellemeler',
     'updates_help' => 'Pelican ve Wings\'in yeni sürümleri. Yalnızca root adminler için.',
+    'pelican' => 'Pelican bildirimleri',
+    'pelican_help' => 'Zildeki Pelican\'ın kendi mesajları, örneğin biten bir yedekleme.',
     'devices' => 'Cihazların',
     'this_badge' => 'Bu cihaz',
     'added' => 'Eklenme: :time',

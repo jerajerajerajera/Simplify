@@ -26,6 +26,8 @@ return [
     'messages_help' => 'Tiedotteet ja muut viestit lisätoiminnoilta.',
     'updates' => 'Päivitykset',
     'updates_help' => 'Pelicanin ja Wingsin uudet versiot. Vain root admineille.',
+    'pelican' => 'Pelicanin ilmoitukset',
+    'pelican_help' => 'Pelicanin omat viestit kellossa, kuten valmis varmuuskopio.',
     'devices' => 'Laitteesi',
     'this_badge' => 'Tämä laite',
     'added' => 'Lisätty :time',

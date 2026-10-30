@@ -26,6 +26,8 @@ return [
     'messages_help' => 'Pengumuman dan pesan lain dari add-on.',
     'updates' => 'Pembaruan',
     'updates_help' => 'Versi baru Pelican dan Wings. Hanya untuk root admin.',
+    'pelican' => 'Notifikasi Pelican',
+    'pelican_help' => 'Pesan Pelican sendiri di lonceng, seperti cadangan yang selesai.',
     'devices' => 'Perangkat Anda',
     'this_badge' => 'Perangkat ini',
     'added' => 'Ditambahkan :time',

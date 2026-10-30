@@ -26,6 +26,8 @@ return [
     'messages_help' => 'Anunțuri și alte mesaje de la extensii.',
     'updates' => 'Actualizări',
     'updates_help' => 'Versiuni noi de Pelican și Wings. Doar pentru root admini.',
+    'pelican' => 'Notificările Pelican',
+    'pelican_help' => 'Mesajele proprii ale Pelican din clopoțel, de exemplu o copie de rezervă terminată.',
     'devices' => 'Dispozitivele dumneavoastră',
     'this_badge' => 'Acest dispozitiv',
     'added' => 'Adăugat: :time',

@@ -26,6 +26,8 @@ return [
     'messages_help' => 'Oznamy a ďalšie správy z doplnkov.',
     'updates' => 'Aktualizácie',
     'updates_help' => 'Nové verzie Pelican a Wings. Len pre root adminov.',
+    'pelican' => 'Upozornenia Pelicanu',
+    'pelican_help' => 'Vlastné správy Pelicanu v zvončeku, napríklad dokončená záloha.',
     'devices' => 'Vaše zariadenia',
     'this_badge' => 'Toto zariadenie',
     'added' => 'Pridané: :time',

@@ -26,6 +26,8 @@ return [
     'messages_help' => 'Skelbimai ir kitos priedų žinutės.',
     'updates' => 'Atnaujinimai',
     'updates_help' => 'Naujos Pelican ir Wings versijos. Tik root adminams.',
+    'pelican' => 'Pelican pranešimai',
+    'pelican_help' => 'Paties Pelican žinutės varpelyje, pavyzdžiui, apie baigtą atsarginę kopiją.',
     'devices' => 'Jūsų įrenginiai',
     'this_badge' => 'Šis įrenginys',
     'added' => 'Pridėta: :time',

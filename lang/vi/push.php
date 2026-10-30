@@ -26,6 +26,8 @@ return [
     'messages_help' => 'Thông cáo và các tin nhắn khác từ tiện ích bổ sung.',
     'updates' => 'Cập nhật',
     'updates_help' => 'Phiên bản mới của Pelican và Wings. Chỉ dành cho root admin.',
+    'pelican' => 'Thông báo của Pelican',
+    'pelican_help' => 'Tin nhắn riêng của Pelican trong chuông, ví dụ một bản sao lưu đã xong.',
     'devices' => 'Thiết bị của bạn',
     'this_badge' => 'Thiết bị này',
     'added' => 'Đã thêm :time',

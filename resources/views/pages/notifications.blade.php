@@ -50,6 +50,14 @@
                 </span>
                 <input type="checkbox" class="s-switch" wire:model.live="messages">
             </label>
+            <label class="s-row">
+                <x-filament::icon icon="tabler-bell" class="s-row-icon" />
+                <span class="s-row-text">
+                    <span>{{ __('simplify::push.pelican') }}</span>
+                    <span class="s-muted s-block">{{ __('simplify::push.pelican_help') }}</span>
+                </span>
+                <input type="checkbox" class="s-switch" wire:model.live="pelican">
+            </label>
             @if (user()?->isRootAdmin())
                 <label class="s-row">
                     <x-filament::icon icon="tabler-refresh-alert" class="s-row-icon" />

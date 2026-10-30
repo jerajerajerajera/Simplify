@@ -26,6 +26,8 @@ return [
     'messages_help' => 'Kunngjøringer og andre meldinger fra tillegg.',
     'updates' => 'Oppdateringer',
     'updates_help' => 'Nye versjoner av Pelican og Wings. Bare for root admins.',
+    'pelican' => 'Pelicans varsler',
+    'pelican_help' => 'Pelicans egne meldinger i bjella, for eksempel en ferdig sikkerhetskopi.',
     'devices' => 'Enhetene dine',
     'this_badge' => 'Denne enheten',
     'added' => 'Lagt til :time',
