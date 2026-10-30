@@ -9,7 +9,7 @@ const { chromium } = require('playwright');
 const arg = (n, d) => { const i = process.argv.indexOf('--' + n); return i > 0 ? process.argv[i + 1] : d; };
 const base = arg('base', 'http://127.0.0.1:8001'), out = arg('out', 'result'), urls = JSON.parse(fs.readFileSync(arg('urls'), 'utf8'));
 const only = arg('only', '') ? arg('only').split(',') : null;
-const section = arg('section', ''); // 'seasons' or 'extras' runs only that part (quick diagnosis)
+const section = arg('section', ''); // 'seasons', 'extras' or 'layers' runs only that part (quick diagnosis)
 fs.mkdirSync(out, { recursive: true });
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const rel = (u) => u.replace(/^https?:\/\/[^/]+/, '');
@@ -298,6 +298,37 @@ async function createFlow() {
   await goto(overview);
 }
 
+// Layers (1.5.2): on the console page the server card's menus, the top bar's menus and the tooltips lie on top of the
+// console (xterm has its own layers); what the pointer hits at the middle of each item must be that item.
+async function layersFlow() {
+  const serverUrl = urls.servers['Survival SMP'], onPhone = phone();
+  const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
+  const hits = (menu) => page.evaluate((sel) => { const box = document.querySelector(sel); if (!box || !box.getClientRects().length) return null; return [...box.querySelectorAll('button, a')].filter((e) => e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden').map((e) => { const r = e.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2; const top = document.elementFromPoint(x, y); const inWin = y >= 0 && y < innerHeight; return { item: e.textContent.trim().replace(/\s+/g, ' ').slice(0, 30), ok: !!top && (top === e || e.contains(top)), on: top ? (top.className && String(top.className).slice(0, 40)) || top.tagName : null, inWin }; }); }, menu);
+  await goto(serverUrl, 3500);
+  await click('.ps-info-more-button', 700);
+  const more = await hits('#ps-info-menu'); await record('layers-server-more', 'Lagen · ⋯-menu boven de console');
+  say('layers-server-more', more && more.length && more.every((h) => h.ok), { bad: more && more.filter((h) => !h.ok), items: more && more.map((h) => h.item) });
+  await escape(); await page.mouse.move(5, 5);
+  // Tooltips over the card and the console.
+  for (const sel of ['.ps-statusbar-address', '.ps-info-power .ps-btn[data-tip]']) {
+    const el = page.locator(`${sel} >> visible=true`).first(); if (!(await el.count())) continue;
+    await el.hover().catch(() => {}); await sleep(700);
+    const tip = await page.evaluate(() => { const t = document.getElementById('ps-tooltip'); if (!t || !t.getClientRects().length || getComputedStyle(t).opacity === '0') return null; const r = t.getBoundingClientRect(); const top = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2); return { text: t.textContent.trim(), ok: !!top && (top === t || t.contains(top)), on: top && String(top.className).slice(0, 40) }; });
+    await record(`layers-tip-${slug(sel)}`, `Lagen · tooltip ${sel}`);
+    say(`layers-tip-${slug(sel)}`, !!tip && tip.ok, tip); await page.mouse.move(5, 5); await sleep(300);
+  }
+  // The top bar's menus over the server card.
+  const openNav = async () => { if (onPhone) await page.locator('.ps-tabbar button[aria-controls="ps-navigation-items"]').first().click().catch(() => {}); await sleep(500); };
+  for (const [btn, menu, id] of [['[x-ref="notifyButton"]', '#ps-notify-menu', 'bell'], ['[x-ref="adminButton"]', '#ps-admin-menu', 'admin'], ['.ps-account-button', '#ps-account-menu, .ps-account-menu', 'account']]) {
+    await goto(serverUrl, 2500); await openNav();
+    if (!(await click(btn, 800))) continue;
+    const h = await hits(menu.split(',')[0]) || await hits(menu.split(',')[1] || menu); await record(`layers-${id}`, `Lagen · ${id}-menu boven de serverkaart`);
+    const seen = h && h.filter((x) => x.inWin);
+    say(`layers-${id}`, seen && seen.length && seen.every((x) => x.ok), { bad: seen && seen.filter((x) => !x.ok).slice(0, 5), n: seen && seen.length });
+    await escape();
+  }
+}
+
 // 1.5.0 extras: the end of the setup in low windows (in and outside host mode), the setup's Look step (#86), the
 // install screen and the EULA bar (#89) and an announcement pinned in the bell (#92). Each check writes ok or WRONG.
 async function extrasFlow(theme) {
@@ -540,6 +571,7 @@ const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(
       stand = `${name}-${theme}`;
       console.log(`[${new Date().toISOString().slice(11, 19)}] ${stand} (${screens.length} screens, ${problems.length} problems so far)`);
       await page.setViewportSize(size);
+      if (section === 'layers') { if (!['d1440', 'laag1366', 'laag1100', 'phone390'].includes(name)) continue; try { await setTheme(theme); await layersFlow(); } catch (e) { problems.push(`${stand} layers: ${e.message.slice(0, 200)}`); } continue; }
       if (section === 'extras') { if (!['d1440', 'laag1366', 'laag1100', 'phone390'].includes(name)) continue; try { await setTheme(theme); await extrasFlow(theme); } catch (e) { problems.push(`${stand} extras: ${e.message.slice(0, 200)}`); } continue; }
       if (section === 'seasons') { if (!['d1440', 'tablet768', 'phone390'].includes(name)) continue; try { await setTheme(theme); await seasons(theme); } catch (e) { problems.push(`${stand} seasons: ${e.message.slice(0, 200)}`); } continue; }
       try { await round(theme); } catch (e) { problems.push(`${stand} ${screen}: round stopped: ${e.message.slice(0, 200)}`); console.log('  ! ' + e.message.slice(0, 200)); if (page.isClosed()) { page = await context.newPage(); await login('demo@example.com', 'DemoPassword123!'); } }

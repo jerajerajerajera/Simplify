@@ -18,7 +18,7 @@ on:
         description: 'Branch of Simplify to audit (empty = this checkout); the audit itself always comes from this checkout'
         default: ''
       section:
-        description: 'Only one section (empty = everything): seasons or extras'
+        description: 'Only one section (empty = everything): seasons, extras or layers'
         default: ''
       legacy_brand:
         description: 'yes = a PelicanSimplify 0.7.0 appearance.json with a brand block before Simplify installs (its import migration)'
