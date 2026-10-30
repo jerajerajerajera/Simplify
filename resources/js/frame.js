@@ -24,9 +24,23 @@
     if (icon) btn.append(parent.importNode(icon, true));
     else if (fallback) btn.insertAdjacentHTML('beforeend', `<svg aria-hidden="true"><use href="#ps-${fallback}"/></svg>`);
     if (primary) btn.append(parent.createTextNode(text));
-    btn.addEventListener('click', () => source.click());
+    btn.addEventListener('click', () => createServer(source) || source.click());
     return btn;
   };
+  // Admin → Servers → Create opens Simplify's Create server popup (Server Maker), as everywhere else.
+  const createServer = (source) => {
+    if (!/\/servers\/create(\?|$)/.test(new URL(source.getAttribute('href') || '', location.href).pathname)) return false;
+    const shell = parent.querySelector('[data-simplify-root]');
+    const data = shell && parent.defaultView.Alpine?.$data(shell);
+    return !!data?.openCreate?.(null, data.createButtons()[0]);
+  };
+  document.addEventListener('click', (event) => {
+    const link = event.target.closest?.('a[href]');
+    if (link && !event.ctrlKey && !event.metaKey && !event.shiftKey && createServer(link)) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  }, true);
   const bar = parent.createElement('div');
   bar.className = 'ps-frame-tools';
   let signature = null;

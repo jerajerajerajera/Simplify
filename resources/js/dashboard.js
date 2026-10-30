@@ -98,6 +98,7 @@
       overviewView: typeof innerWidth !== 'undefined' && innerWidth <= 600 ? 'list' : 'grid',
       accountMenu: false,
       createMenu: false,
+      createFrame: null,
       navMenu: false,
       SERVER_ORDERS,
       GROUP_ORDERS,
@@ -482,16 +483,13 @@
         const section = this.hostSections().find((x) => x.key === 'health');
         if (section?.pages[0]) this.openAdminPage(event, section, section.pages[0]);
       },
-      /** Pelican's own "Create server" form (no Server Maker) opens like an Admin tools page, inside Simplify. True when it did. */
+      /** "Create server" (Server Maker, or Pelican's own form) opens in a Simplify popup, on every page. True when it did. */
       openCreate(event, choice) {
-        // Pelican's create form and Server Maker both open in Simplify's frame, like Admin tools.
-        if (!choice?.url || event?.ctrlKey || event?.metaKey || event?.shiftKey || this.server) return false;
-        const section = this.hostSections().find((x) => x.pages.some((item) => item.key === 'serverresource'));
-        const page = section?.pages.find((item) => item.key === 'serverresource');
-        if (!page) return false;
+        if (!choice?.url || event?.ctrlKey || event?.metaKey || event?.shiftKey || !this.frameUrl(choice.url)) return false;
         event?.preventDefault();
         this.createMenu = false;
-        this.openAdminPage(null, section, { ...page, key: 'serverresource-create', label: choice.label || t('dashboard.create_server'), frame: choice.url });
+        this.navMenu = false;
+        this.createFrame = { url: this.frameUrl(choice.url), label: choice.label || t('dashboard.create_server') };
         return true;
       },
       closeAdminView() {
