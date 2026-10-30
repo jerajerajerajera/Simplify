@@ -20,6 +20,9 @@ on:
       section:
         description: 'Only one section (empty = everything): seasons, extras, layers, first, or compare (the overview measured, 8 servers)'
         default: ''
+      from:
+        description: 'A Simplify tag (e.g. v1.5.1) installed and seeded first; then the Simplify branch updates it, as on a real panel'
+        default: ''
       legacy:
         description: 'A branch of PelicanSimplify to install instead of Simplify and the add-ons (with section compare)'
         default: ''
@@ -90,7 +93,13 @@ jobs:
             exit 0
           fi
           mkdir -p plugins/simplify
-          if [ -n "${{ inputs.simplify }}" ]; then
+          if [ -n "${{ inputs.from }}" ]; then
+            # The update test: the old version now, the branch after the seed (next step).
+            if [ -n "${{ inputs.simplify }}" ]; then git clone --quiet --depth 1 --branch "${{ inputs.simplify }}" https://github.com/jerajerajerajera/Simplify.git ../simplify-next; else tar -C ../simplify --exclude=.git -cf - . | (mkdir -p ../simplify-next && tar -C ../simplify-next -xf -); fi
+            git clone --quiet --depth 1 --branch "${{ inputs.from }}" https://github.com/jerajerajerajera/Simplify.git simplify-src
+            echo "Simplify ${{ inputs.from }} first, then $(git -C ../simplify-next rev-parse --short HEAD 2>/dev/null || echo this checkout)"
+            tar -C simplify-src --exclude=.git --exclude=tests --exclude=.github -cf - . | tar -C plugins/simplify -xf - && rm -rf simplify-src
+          elif [ -n "${{ inputs.simplify }}" ]; then
             git clone --quiet --depth 1 --branch "${{ inputs.simplify }}" https://github.com/jerajerajerajera/Simplify.git simplify-src
             echo "Simplify from branch ${{ inputs.simplify }} at $(git -C simplify-src rev-parse --short HEAD)"
             tar -C simplify-src --exclude=.git --exclude=tests --exclude=.github -cf - . | tar -C plugins/simplify -xf - && rm -rf simplify-src
@@ -122,6 +131,17 @@ jobs:
           php ../simplify/tests/audit/seed.php 8090 ${{ inputs.section == 'compare' && '8' || '' }} > servers.json
           php ../simplify/tests/audit/urls.php > urls.json || echo "{}" > urls.json
           cat urls.json
+          if [ -n "${{ inputs.from }}" ]; then
+            # As Admin → Plugins and the Hub update it: the new files over the old, the install in a queue job.
+            rm -rf plugins/simplify && mkdir -p plugins/simplify
+            tar -C ../simplify-next --exclude=.git --exclude=tests --exclude=.github -cf - . | tar -C plugins/simplify -xf -
+            php artisan tinker --execute="App\Jobs\Plugin\InstallPlugin::dispatch(App\Models\User::first(), 'simplify');"
+            php artisan queue:work --max-jobs=1 --stop-when-empty
+            php artisan p:plugin:list | tee plugins.txt
+            grep -E 'Simplify .*\| enabled' plugins.txt || { echo '::error::Simplify did not update'; tail -n 40 storage/logs/*.log || true; exit 1; }
+            php artisan migrate:status | grep -i simplify | grep -iv ran && { echo '::error::Simplify migrations left'; exit 1; } || true
+            php ../simplify/tests/audit/urls.php > urls.json || true
+          fi
           nohup node ../simplify/tests/audit/fake-minecraft.cjs --servers servers.json > minecraft.out 2>&1 &
           nohup node ../simplify/tests/audit/fake-wings.cjs --port 8090 --servers servers.json --log wings.log > wings.out 2>&1 &
           PHP_CLI_SERVER_WORKERS=8 nohup php artisan serve --host 127.0.0.1 --port 8001 > serve.log 2>&1 &
@@ -152,7 +172,7 @@ jobs:
           git init -q -b results
           git add -A
           git -c user.name=audit -c user.email=audit@users.noreply.github.com commit -qm "Audit ${{ github.sha }} ${{ matrix.stand }}"
-          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "results:refs/heads/audit-results-$(echo "${{ inputs.legacy && format('legacy-{0}', inputs.legacy) || inputs.simplify || github.ref_name }}" | tr "/" "-")${{ inputs.section == 'compare' && '-compare' || '' }}${{ inputs.servermaker == 'none' && '-nosm' || '' }}-${{ matrix.stand }}"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "results:refs/heads/audit-results-$(echo "${{ inputs.legacy && format('legacy-{0}', inputs.legacy) || inputs.simplify || github.ref_name }}" | tr "/" "-")${{ inputs.from && format('-from-{0}', inputs.from) || '' }}${{ inputs.section == 'compare' && '-compare' || '' }}${{ inputs.servermaker == 'none' && '-nosm' || '' }}-${{ matrix.stand }}"
       - name: Fail when the style verdict is red
         if: steps.style.outcome == 'failure'
         run: |
