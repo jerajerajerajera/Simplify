@@ -57,6 +57,8 @@ $list = [
     ['New World', 'Paper', 'offline', 0, 0, $admin, null],
     ['Broken Install', 'Paper', 'offline', 0, 0, $admin, null],
     ['Fresh Start', 'Paper', 'offline', 0, 0, $admin, null],
+    // First start: a new Minecraft server without an eula.txt at all.
+    ['No EULA', 'Paper', 'offline', 0, 0, $admin, null],
 ];
 // The overview comparison with PelicanSimplify 0.7.0 (seed.php <port> <count>): the same first servers, no groups.
 $limit = (int) ($argv[2] ?? 0);
@@ -92,6 +94,9 @@ foreach ($list as $i => [$name, $eggName, $state, $memory, $cpu, $owner, $color]
     if (in_array($eggName, $minecraft, true)) {
         $files += ['/server.properties' => "motd=\\u00a7a$name \\u00a77- welcome!\nmax-players=20\ndifficulty=normal\ngamemode=survival\npvp=true\nwhite-list=false\nview-distance=10\n",
             '/eula.txt' => $name === 'Fresh Start' ? "eula=false\n" : "eula=true\n"];
+        if ($name === 'No EULA') {
+            unset($files['/eula.txt']);
+        }
         $files += $eggName === 'Paper'
             ? ['/plugins/EssentialsX-2.21.0.jar' => 'jar', '/plugins/LuckPerms-Bukkit-5.4.141.jar' => 'jar', '/plugins/WorldEdit-7.3.9.jar' => 'jar']
             : ['/mods/jei-1.21.1-forge-19.21.0.jar' => 'jar', '/mods/create-1.21.1-6.0.4.jar' => 'jar'];

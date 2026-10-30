@@ -9,7 +9,8 @@ const { chromium } = require('playwright');
 const arg = (n, d) => { const i = process.argv.indexOf('--' + n); return i > 0 ? process.argv[i + 1] : d; };
 const base = arg('base', 'http://127.0.0.1:8001'), out = arg('out', 'result'), urls = JSON.parse(fs.readFileSync(arg('urls'), 'utf8'));
 const only = arg('only', '') ? arg('only').split(',') : null;
-const section = arg('section', ''); // 'seasons', 'extras' or 'layers' runs only that part (quick diagnosis)
+const section = arg('section', ''); // 'seasons', 'extras', 'layers' or 'first' runs only that part (quick diagnosis)
+const panelDir = path.resolve(arg('panel', '../../../panel'));
 fs.mkdirSync(out, { recursive: true });
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const rel = (u) => u.replace(/^https?:\/\/[^/]+/, '');
@@ -338,6 +339,57 @@ async function layersFlow() {
   await createFlow();
 }
 
+// First start (claude/first-start): a server that has not run yet says "Ready for its first start" in its card and has
+// First start instead of Start, without Restart. A Minecraft server with its EULA still open has the EULA box (with the
+// link) before First start, which stays off until the box is ticked; Start from elsewhere makes the box light up.
+// Ticking it and First start writes eula.txt and starts (in the last theme, on a server of its own per stand).
+async function firstFlow(theme) {
+  const { execFileSync } = require('child_process');
+  const last = theme === 'light';
+  const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
+  const card = () => page.evaluate(() => {
+    const v = (e) => !!e && !!e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden';
+    const badge = document.querySelector('.ps-first-ready'), box = document.querySelector('.ps-eula-check'), main = document.querySelector('.ps-power-main'), restart = document.querySelector('.ps-power-restart'), old = document.querySelector('.ps-ready');
+    const link = box && box.querySelector('a[href*="minecraft.net/eula"]');
+    const before = v(box) && v(main) ? !!(box.compareDocumentPosition(main) & Node.DOCUMENT_POSITION_FOLLOWING) && (box.getBoundingClientRect().right <= main.getBoundingClientRect().left + 1 || box.getBoundingClientRect().bottom <= main.getBoundingClientRect().top + 1) : null;
+    return { badge: v(badge) ? badge.innerText.trim() : null, box: v(box), boxPulse: !!box && box.classList.contains('is-pulse'), link: !!link, ticked: !!box && !!box.querySelector('input:checked'), before, main: v(main) ? main.innerText.trim() : null, mainOff: !!main && main.disabled, restart: v(restart), oldBanner: v(old) };
+  });
+  const open = async (name) => { await goto(urls.servers[name], 4000); await sleep(1500); return card(); };
+  // (1) The EULA still open: eula=false (Fresh Start) and no eula.txt at all (No EULA).
+  for (const name of ['Fresh Start', 'No EULA']) {
+    if (!urls.servers[name]) { say(`first-eula-${slug(name)}`, false, { note: 'server not seeded' }); continue; }
+    const st = await open(name); await record(`first-eula-${slug(name)}`, `First start · EULA open · ${name}`);
+    say(`first-eula-${slug(name)}`, st.badge === 'Ready for its first start' && st.box && st.link && st.before && st.main === 'First start' && st.mainOff && !st.restart && !st.oldBanner, st);
+    // Start from the keyboard or the console goes through power('start'): the box lights up, nothing starts.
+    await page.evaluate(() => { const root = [...document.querySelectorAll('[x-data]')].find((e) => window.Alpine && typeof window.Alpine.$data(e).power === 'function'); if (root) window.Alpine.$data(root).power('start'); });
+    await sleep(250); const pulse = await card(); await record(`first-eula-${slug(name)}-pulse`, `First start · Start terwijl de EULA open is · ${name}`);
+    say(`first-eula-${slug(name)}-pulse`, pulse.boxPulse, { boxPulse: pulse.boxPulse });
+  }
+  // (2) Tick and First start: eula.txt is written, the server starts, the note and the box go away.
+  const mine = stand.startsWith('d1440') ? 'Fresh Start' : 'No EULA';
+  if (last && urls.servers[mine]) {
+    await open(mine);
+    const log = path.join(panelDir, 'wings.log'), size = fs.existsSync(log) ? fs.statSync(log).size : 0;
+    await page.locator('.ps-eula-check input >> visible=true').first().check().catch(() => {}); await sleep(300);
+    const ticked = await card(); await record('first-eula-ticked', `First start · vinkje aan · ${mine}`);
+    await page.locator('.ps-power-main >> visible=true').first().click().catch(() => {}); await sleep(3000);
+    const after = await card(); await record('first-eula-started', `First start · na First start · ${mine}`);
+    const calls = fs.existsSync(log) ? fs.readFileSync(log, 'utf8').slice(size) : '';
+    const wrote = /files\/write\?file=%2F?eula\.txt|files\/write\?file=\/?eula\.txt/.test(calls), started = /\/power/.test(calls);
+    say('first-eula-start', !ticked.mainOff && wrote && started && !after.badge && !after.box, { mainOnAfterTick: !ticked.mainOff, wrote, started, after, calls: calls.split('\n').filter((l) => /write|power/.test(l)).map((l) => l.slice(25, 120)) });
+  }
+  // (3) Just installed (EULA already accepted): New World goes from installing to installed while its page is open.
+  if (urls.servers['New World']) {
+    const tinker = (code) => { try { return execFileSync('php', ['artisan', 'tinker', '--execute', code], { cwd: panelDir, encoding: 'utf8', timeout: 60000 }); } catch (e) { return 'tinker failed: ' + e.message.slice(0, 120); } };
+    await open('New World');
+    const t = tinker("\\App\\Models\\Server::where('name', 'New World')->update(['status' => null, 'installed_at' => now()]); echo 'done';");
+    let st = null; for (let i = 0; i < 12; i++) { await sleep(2000); st = await card(); if (st.badge || st.main === 'First start') break; }
+    await record('first-installed', 'First start · net geïnstalleerd, EULA al geaccepteerd (New World)');
+    say('first-installed', st.badge === 'Ready for its first start' && st.main === 'First start' && !st.mainOff && !st.box && !st.restart && !st.oldBanner, { ...st, tinker: t.trim().slice(-40) });
+    tinker("\\App\\Models\\Server::where('name', 'New World')->update(['status' => 'installing', 'installed_at' => null]); echo 'back';");
+  }
+}
+
 // Scrollbars (1.5.2): 11px wide with a 4px thumb, 14px short of both ends, in a tint of the background: white 16% in
 // dark, black 16% in light, and white on the console in both. Checked where something scrolls: the overview, the
 // settings, a page in the frame and the console.
@@ -645,6 +697,7 @@ const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(
       stand = `${name}-${theme}`;
       console.log(`[${new Date().toISOString().slice(11, 19)}] ${stand} (${screens.length} screens, ${problems.length} problems so far)`);
       await page.setViewportSize(size);
+      if (section === 'first') { if (!['d1440', 'phone390'].includes(name)) continue; try { await setTheme(theme); await firstFlow(theme); } catch (e) { problems.push(`${stand} first: ${e.message.slice(0, 200)}`); } continue; }
       if (section === 'layers') { if (!['d1440', 'laag1366', 'laag1100', 'phone390'].includes(name)) continue; try { await setTheme(theme); await layersFlow(); } catch (e) { problems.push(`${stand} layers: ${e.message.slice(0, 200)}`); } continue; }
       if (section === 'extras') { if (!['d1440', 'laag1366', 'laag1100', 'phone390'].includes(name)) continue; try { await setTheme(theme); await extrasFlow(theme); } catch (e) { problems.push(`${stand} extras: ${e.message.slice(0, 200)}`); } continue; }
       if (section === 'seasons') { if (!['d1440', 'tablet768', 'phone390'].includes(name)) continue; try { await setTheme(theme); await seasons(theme); } catch (e) { problems.push(`${stand} seasons: ${e.message.slice(0, 200)}`); } continue; }

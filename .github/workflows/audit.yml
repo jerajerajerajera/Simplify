@@ -18,7 +18,7 @@ on:
         description: 'Branch of Simplify to audit (empty = this checkout); the audit itself always comes from this checkout'
         default: ''
       section:
-        description: 'Only one section (empty = everything): seasons, extras, layers, or compare (the overview measured, 8 servers)'
+        description: 'Only one section (empty = everything): seasons, extras, layers, first, or compare (the overview measured, 8 servers)'
         default: ''
       legacy:
         description: 'A branch of PelicanSimplify to install instead of Simplify and the add-ons (with section compare)'
