@@ -1,0 +1,160 @@
+name: Lab
+# A browser round through a real panel: every Simplify page and button on desktop and phone, light and dark.
+# Run by hand, or on a pull request that changes the lab. The screenshots and result.json come out as an artifact.
+on:
+  workflow_dispatch: {}
+  pull_request:
+    paths: ['tests/lab/**', '.github/workflows/lab.yml']
+permissions:
+  contents: write
+jobs:
+  lab:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - pelican: '1.0.0-beta38'
+            php: '8.3'
+          - pelican: '1.0.0-rc.2'
+            php: '8.4'
+    name: lab (Pelican ${{ matrix.pelican }})
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: plugin
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: bcmath, gd, intl, mbstring, pdo_sqlite, sqlite3, zip
+          tools: composer
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install -g yarn
+      - name: Install Pelican ${{ matrix.pelican }}
+        run: |
+          git clone --quiet --depth 1 --branch "v${{ matrix.pelican }}" https://github.com/pelican-dev/panel.git panel
+          cd panel
+          composer install --no-interaction --no-progress --prefer-dist
+          sed -i "s/'version' => 'canary'/'version' => '${{ matrix.pelican }}'/" config/app.php
+          cp .env.example .env
+          sed -i 's/^APP_INSTALLED=.*/APP_INSTALLED=true/; s/^APP_DEBUG=.*/APP_DEBUG=false/; s#^APP_URL=.*#APP_URL=http://127.0.0.1:8001#' .env
+          printf 'DB_CONNECTION=sqlite\nQUEUE_CONNECTION=sync\nCACHE_STORE=file\nSESSION_DRIVER=file\nMAIL_MAILER=log\n' >> .env
+          touch database/database.sqlite
+          php artisan key:generate --force
+          php artisan migrate --force --seed
+          yarn install --silent
+          yarn build
+      - name: Install Simplify
+        run: |
+          mkdir -p panel/plugins/pelican-simplify
+          tar -C plugin --exclude=.git --exclude=dist -cf - . | tar -C panel/plugins/pelican-simplify -xf -
+          cd panel
+          php artisan p:plugin:install pelican-simplify
+          php artisan p:plugin:list | grep -E 'Simplify .*\| enabled'
+      - name: Seed and start the panel and the fake Wings
+        working-directory: panel
+        run: |
+          php plugins/pelican-simplify/tests/lab/seed.php 8090 > servers.json
+          php plugins/pelican-simplify/tests/lab/urls.php > urls.json
+          cat urls.json
+          nohup node plugins/pelican-simplify/tests/lab/fake-wings.cjs --port 8090 --servers servers.json --log wings.log > wings.out 2>&1 &
+          PHP_CLI_SERVER_WORKERS=8 nohup php artisan serve --host 127.0.0.1 --port 8001 > serve.log 2>&1 &
+          for i in $(seq 1 30); do curl -sf -o /dev/null http://127.0.0.1:8001/login && break; sleep 1; done
+          sleep 1
+          cat wings.out
+          curl -sS http://127.0.0.1:8090/api/system || { echo 'the fake Wings does not answer'; exit 1; }
+          php artisan tinker --execute 'echo App\Models\Node::first()->getConnectionAddress(), PHP_EOL;'
+      - name: Browser round
+        working-directory: panel
+        run: |
+          cd plugins/pelican-simplify/tests/lab
+          npm init -y > /dev/null
+          npm install --silent playwright@1.48.2
+          npx playwright install --with-deps chromium > /dev/null
+          node lab.cjs --base http://127.0.0.1:8001 --urls ../../../../urls.json --out ../../../../shots
+      - name: Laravel log
+        if: always()
+        run: grep -h -E '^\[[0-9-]+ [0-9:]+\]' panel/storage/logs/*.log | cut -c1-600 | tail -n 20 || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lab-${{ matrix.pelican }}
+          path: |
+            panel/shots
+            panel/wings.log
+            panel/wings.out
+      # Also on a branch of its own, so the screenshots can be fetched with plain git.
+      - name: Results to the lab-results branch
+        if: always()
+        run: |
+          mkdir results && cp -r panel/shots/. results/ 2>/dev/null || true
+          cp panel/wings.log panel/wings.out results/ 2>/dev/null || true
+          cd results
+          git init -q -b results
+          git add -A
+          git -c user.name=lab -c user.email=lab@users.noreply.github.com commit -qm "Lab ${{ matrix.pelican }} ${{ github.sha }}"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "results:refs/heads/lab-results/${{ matrix.pelican }}"
+
+  # PelicanSimplify 0.7.0 in the same lab panel: the screens Simplify copies.
+  reference:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: plugin
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: bcmath, gd, intl, mbstring, pdo_sqlite, sqlite3, zip
+          tools: composer
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install -g yarn
+      - name: Install Pelican and PelicanSimplify 0.7.0
+        run: |
+          git clone --quiet --depth 1 --branch v1.0.0-beta38 https://github.com/pelican-dev/panel.git panel
+          git clone --quiet --depth 1 --branch snapshot https://github.com/jerajerajerajera/PelicanSimplify.git panel/plugins/pelican-simplify
+          cd panel
+          composer install --no-interaction --no-progress --prefer-dist
+          cp .env.example .env
+          sed -i 's/^APP_INSTALLED=.*/APP_INSTALLED=true/; s/^APP_DEBUG=.*/APP_DEBUG=false/; s#^APP_URL=.*#APP_URL=http://127.0.0.1:8001#' .env
+          printf 'DB_CONNECTION=sqlite\nQUEUE_CONNECTION=database\nCACHE_STORE=file\nSESSION_DRIVER=file\nMAIL_MAILER=log\n' >> .env
+          touch database/database.sqlite
+          php artisan key:generate --force
+          php artisan migrate --force --seed
+          yarn install --silent && yarn build
+          php artisan p:plugin:install pelican-simplify
+          php artisan p:plugin:list | grep -E 'Simplify .*\| enabled'
+          mkdir -p storage/app/private/simplify storage/app/simplify
+          echo '{"setup_completed":true}' > storage/app/private/simplify/features.json
+          cp storage/app/private/simplify/features.json storage/app/simplify/features.json
+      - name: Seed and start
+        working-directory: panel
+        run: |
+          php ../plugin/tests/lab/seed.php 8090 > servers.json
+          nohup node ../plugin/tests/lab/fake-wings.cjs --port 8090 --servers servers.json --log wings.log > wings.out 2>&1 &
+          PHP_CLI_SERVER_WORKERS=8 nohup php artisan serve --host 127.0.0.1 --port 8001 > serve.log 2>&1 &
+          for i in $(seq 1 30); do curl -sf -o /dev/null http://127.0.0.1:8001/login && break; sleep 1; done
+      - name: Screenshots
+        run: |
+          cd plugin/tests/lab
+          npm init -y > /dev/null
+          npm install --silent playwright@1.48.2
+          npx playwright install --with-deps chromium > /dev/null
+          mkdir -p ../../../shots
+          node reference.cjs --base http://127.0.0.1:8001 --servers ../../../panel/servers.json --out ../../../shots
+      - name: Results to the lab-results branch
+        if: always()
+        run: |
+          mkdir results && cp -r shots/. results/ 2>/dev/null || true
+          cp panel/serve.log results/ 2>/dev/null || true
+          cd results
+          git init -q -b results
+          git add -A
+          git -c user.name=lab -c user.email=lab@users.noreply.github.com commit -qm "Reference 0.7.0 ${{ github.sha }}"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "results:refs/heads/lab-results/reference"
