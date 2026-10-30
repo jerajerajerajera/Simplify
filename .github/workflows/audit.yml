@@ -18,7 +18,7 @@ on:
         description: 'Branch of Simplify to audit (empty = this checkout); the audit itself always comes from this checkout'
         default: ''
       section:
-        description: 'Only one section (empty = everything): seasons'
+        description: 'Only one section (empty = everything): seasons or extras'
         default: ''
   push:
     branches: ['claude/project-thread-k01bn2']

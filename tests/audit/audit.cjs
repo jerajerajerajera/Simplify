@@ -9,7 +9,7 @@ const { chromium } = require('playwright');
 const arg = (n, d) => { const i = process.argv.indexOf('--' + n); return i > 0 ? process.argv[i + 1] : d; };
 const base = arg('base', 'http://127.0.0.1:8001'), out = arg('out', 'result'), urls = JSON.parse(fs.readFileSync(arg('urls'), 'utf8'));
 const only = arg('only', '') ? arg('only').split(',') : null;
-const section = arg('section', ''); // 'seasons' runs only the seasonal round (quick diagnosis)
+const section = arg('section', ''); // 'seasons' or 'extras' runs only that part (quick diagnosis)
 fs.mkdirSync(out, { recursive: true });
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const rel = (u) => u.replace(/^https?:\/\/[^/]+/, '');
@@ -526,6 +526,7 @@ const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(
       stand = `${name}-${theme}`;
       console.log(`[${new Date().toISOString().slice(11, 19)}] ${stand} (${screens.length} screens, ${problems.length} problems so far)`);
       await page.setViewportSize(size);
+      if (section === 'extras') { if (!['d1440', 'laag1366', 'laag1100', 'phone390'].includes(name)) continue; try { await setTheme(theme); await extrasFlow(theme); } catch (e) { problems.push(`${stand} extras: ${e.message.slice(0, 200)}`); } continue; }
       if (section === 'seasons') { if (!['d1440', 'tablet768', 'phone390'].includes(name)) continue; try { await setTheme(theme); await seasons(theme); } catch (e) { problems.push(`${stand} seasons: ${e.message.slice(0, 200)}`); } continue; }
       try { await round(theme); } catch (e) { problems.push(`${stand} ${screen}: round stopped: ${e.message.slice(0, 200)}`); console.log('  ! ' + e.message.slice(0, 200)); if (page.isClosed()) { page = await context.newPage(); await login('demo@example.com', 'DemoPassword123!'); } }
     }
