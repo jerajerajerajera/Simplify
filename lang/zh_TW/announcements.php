@@ -25,6 +25,8 @@ return [
         'in_game_servers' => '伺服器',
         'in_game_servers_all' => '所有伺服器',
         'in_game_servers_help' => '留空：所有伺服器,最多 200 台。',
+        'in_game_groups' => '伺服器分組',
+        'in_game_groups_help' => '你在「伺服器分組」中建立的分組。之後加入分組的伺服器也會收到。',
         'in_game_repeat' => '重複',
     ],
     'category' => [

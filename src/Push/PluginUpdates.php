@@ -85,6 +85,7 @@ final class PluginUpdates
                 ->title($title)
                 ->body($body)
                 ->info()
+                ->viewData(['simplify_push' => true])
                 ->actions($url ? [Action::make('open')->label(__('simplify::push.open_plugins', [], $locale))->url($url)] : [])
                 ->toDatabase());
             Push::send([$admin], 'updates', ['title' => $title, 'body' => $body, 'url' => $url, 'tag' => 'plugin-'.$name.'-'.$version]);

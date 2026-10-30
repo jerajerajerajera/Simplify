@@ -25,6 +25,8 @@ return [
         'in_game_servers' => 'Сървъри',
         'in_game_servers_all' => 'Всички сървъри',
         'in_game_servers_help' => 'Празно: всички сървъри, най-много 200.',
+        'in_game_groups' => 'Групи сървъри',
+        'in_game_groups_help' => 'Вашите групи от Групи сървъри. Получават го и сървърите, които добавите в група по-късно.',
         'in_game_repeat' => 'Повтаряй',
     ],
     'category' => [

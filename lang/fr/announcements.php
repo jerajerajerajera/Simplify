@@ -25,6 +25,8 @@ return [
         'in_game_servers' => 'Serveurs',
         'in_game_servers_all' => 'Tous les serveurs',
         'in_game_servers_help' => 'Vide : tous les serveurs, 200 au maximum.',
+        'in_game_groups' => 'Groupes de serveurs',
+        'in_game_groups_help' => 'Vos groupes de Groupes de serveurs. Les serveurs ajoutés plus tard à un groupe la reçoivent aussi.',
         'in_game_repeat' => 'Répéter',
     ],
     'category' => [

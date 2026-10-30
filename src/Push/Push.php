@@ -23,7 +23,7 @@ use Throwable;
 final class Push
 {
     /** Kinds a user can turn off. Updates only ever reach root admins. */
-    public const KINDS = ['messages', 'updates'];
+    public const KINDS = ['messages', 'updates', 'pelican'];
 
     public const DEVICE_LIMIT = 10;
 
