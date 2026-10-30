@@ -67,12 +67,12 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-heading { display: flex; align-items: center; gap: 13px; min-width: 0; }
 .ps.server-active .ps-heading { gap: 18px; }
 @media (max-width: 600px) { .ps.server-active .ps-heading { flex-direction: column; align-items: flex-start; gap: 8px; } }
-.ps-identity { min-width: 0; }
+.ps-identity { min-width: auto; }
 .ps h1 { font-size: 25px; font-weight: 750; line-height: 1.25; letter-spacing: -.8px; overflow-wrap: break-word; }
-.ps-panel-name { min-width: 0; color: var(--ps-ink); }
+.ps-panel-name { max-width: calc(100vw - 32px); color: var(--ps-ink); }
 /* "× Pelican" stays one word; on a narrow screen the panel name wraps instead. */
 .ps-title-pelican { flex: none; white-space: nowrap; color: var(--ps-muted); }
-.ps-brand { display: flex; align-items: center; gap: .3em; }
+.ps-brand { display: flex; flex-wrap: wrap; align-items: center; gap: 0 .3em; }
 .ps-brand .ps-brand-logo { max-width: 240px; width: auto; object-fit: contain; }
 .ps-top-actions { position: relative; display: flex; align-items: center; gap: 6px; }
 .ps-nav-items { display: flex; align-items: center; gap: 6px; flex-wrap: nowrap; }
