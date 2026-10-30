@@ -46,6 +46,12 @@ return [
         'app_icon_help' => 'Čtvercový PNG, JPEG nebo WebP alespoň 512 pixelů, do 1 MB. Prázdné použije ikonu Simplify.',
         'app_badge' => 'Ikona stavového řádku',
         'app_badge_help' => 'PNG s průhledným pozadím, ve stavovém řádku Androidu zobrazené bíle. Prázdné použije ikonu aplikace, pokud má průhledné pozadí, jinak pelikána.',
+        'preview' => [
+            'logo' => 'V horní liště',
+            'icon' => 'Na domovské obrazovce telefonu',
+            'badge' => 'Ve stavovém řádku a oznámeních Androidu',
+            'note' => 'Nová zpráva',
+        ],
         'server_colours' => 'Vlastní barva pro každý server',
         'server_colours_help' => 'Každý server má vlastní barvu, ze své skupiny nebo vybranou pro něj. Vypnuto: všechny servery používají barvu zvýraznění.',
         'pelican_suffix' => 'Zobrazit "× Pelican" za názvem',

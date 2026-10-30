@@ -46,6 +46,12 @@ return [
         'app_icon_help' => 'Kvadratinis PNG, JPEG arba WebP, ne mažesnis nei 512 pikselių, iki 1 MB. Tuščias naudoja Simplify piktogramą.',
         'app_badge' => 'Būsenos juostos piktograma',
         'app_badge_help' => 'PNG su permatomu fonu, rodoma balta Android būsenos juostoje. Tuščia – programos piktograma, jei jos fonas permatomas, kitaip pelikanas.',
+        'preview' => [
+            'logo' => 'Viršutinėje juostoje',
+            'icon' => 'Telefono pradžios ekrane',
+            'badge' => 'Android būsenos juostoje ir pranešimuose',
+            'note' => 'Nauja žinutė',
+        ],
         'server_colours' => 'Atskira spalva kiekvienam serveriui',
         'server_colours_help' => 'Kiekvienas serveris gauna savo spalvą – savo grupės arba jam pasirinktą. Išjungta: visi serveriai naudoja akcento spalvą.',
         'pelican_suffix' => 'Rodyti "× Pelican" po pavadinimu',

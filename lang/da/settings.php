@@ -46,6 +46,12 @@ return [
         'app_icon_help' => 'En kvadratisk PNG, JPEG eller WebP på mindst 512 pixels, op til 1 MB. Tom bruger Simplify-ikonet.',
         'app_badge' => 'Statuslinjeikon',
         'app_badge_help' => 'En PNG med gennemsigtig baggrund, vist hvid i Androids statuslinje. Tom bruger app-ikonet, hvis det har gennemsigtig baggrund, ellers pelikanen.',
+        'preview' => [
+            'logo' => 'I topbjælken',
+            'icon' => 'På en telefons startskærm',
+            'badge' => 'I Androids statuslinje og notifikationer',
+            'note' => 'Ny besked',
+        ],
         'server_colours' => 'Egen farve pr. server',
         'server_colours_help' => 'Hver server får sin egen farve, fra sin gruppe eller valgt til den. Fra: alle servere bruger accentfarven.',
         'pelican_suffix' => 'Vis "× Pelican" efter navnet',

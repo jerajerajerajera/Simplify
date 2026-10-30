@@ -46,6 +46,12 @@ return [
         'app_icon_help' => '512픽셀 이상, 1 MB 이하의 정사각형 PNG, JPEG 또는 WebP. 비워 두면 Simplify 아이콘을 사용합니다.',
         'app_badge' => '상태 표시줄 아이콘',
         'app_badge_help' => '배경이 투명한 PNG로, Android 상태 표시줄에 흰색으로 표시됩니다. 비워 두면 배경이 투명한 경우 앱 아이콘을, 아니면 펠리컨을 사용합니다.',
+        'preview' => [
+            'logo' => '상단 바',
+            'icon' => '휴대폰 홈 화면',
+            'badge' => 'Android 상태 표시줄과 알림',
+            'note' => '새 메시지',
+        ],
         'server_colours' => '서버별 색상',
         'server_colours_help' => '각 서버는 그룹 색상 또는 따로 고른 색상을 사용합니다. 끄면 모든 서버가 강조 색상을 사용합니다.',
         'pelican_suffix' => '이름 뒤에 "× Pelican" 표시',

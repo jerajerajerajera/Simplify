@@ -46,6 +46,12 @@ return [
         'app_icon_help' => '正方形 PNG、JPEG 或 WebP，至少 512 像素，最大 1 MB。留空则使用 Simplify 图标。',
         'app_badge' => '状态栏图标',
         'app_badge_help' => '背景透明的 PNG，在 Android 状态栏中显示为白色。留空时，如果应用图标背景透明则使用应用图标，否则使用鹈鹕。',
+        'preview' => [
+            'logo' => '顶部栏',
+            'icon' => '手机主屏幕',
+            'badge' => 'Android 状态栏和通知',
+            'note' => '新消息',
+        ],
         'server_colours' => '每台服务器单独配色',
         'server_colours_help' => '每台服务器使用自己的颜色：所在分组的颜色或为它选择的颜色。关闭后，所有服务器都使用强调色。',
         'pelican_suffix' => '在名称后显示“× Pelican”',

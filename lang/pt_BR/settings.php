@@ -46,6 +46,12 @@ return [
         'app_icon_help' => 'Um PNG, JPEG ou WebP quadrado de pelo menos 512 pixels, até 1 MB. Vazio usa o ícone do Simplify.',
         'app_badge' => 'Ícone da barra de status',
         'app_badge_help' => 'Um PNG com fundo transparente, mostrado em branco na barra de status do Android. Vazio usa o ícone do app se tiver fundo transparente; senão, o pelicano.',
+        'preview' => [
+            'logo' => 'Na barra superior',
+            'icon' => 'Na tela inicial de um celular',
+            'badge' => 'Na barra de status e nas notificações do Android',
+            'note' => 'Nova mensagem',
+        ],
         'server_colours' => 'Cor própria por servidor',
         'server_colours_help' => 'Cada servidor recebe sua própria cor, do seu grupo ou escolhida para ele. Desligado: todos os servidores usam a cor de destaque.',
         'pelican_suffix' => 'Mostrar "× Pelican" depois do nome',

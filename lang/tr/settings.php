@@ -46,6 +46,12 @@ return [
         'app_icon_help' => 'En az 512 piksel, en fazla 1 MB kare PNG, JPEG veya WebP. Boş bırakılırsa Simplify simgesi kullanılır.',
         'app_badge' => 'Durum çubuğu simgesi',
         'app_badge_help' => 'Şeffaf arka planlı bir PNG; Android durum çubuğunda beyaz gösterilir. Boşsa, arka planı şeffafsa uygulama simgesi, değilse pelikan kullanılır.',
+        'preview' => [
+            'logo' => 'Üst çubukta',
+            'icon' => 'Bir telefonun ana ekranında',
+            'badge' => 'Android\'in durum çubuğunda ve bildirimlerinde',
+            'note' => 'Yeni mesaj',
+        ],
         'server_colours' => 'Her sunucuya ayrı renk',
         'server_colours_help' => 'Her sunucu kendi rengini alır: grubunun rengi ya da onun için seçilen renk. Kapalı: tüm sunucular vurgu rengini kullanır.',
         'pelican_suffix' => 'Adın ardından "× Pelican" göster',

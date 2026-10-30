@@ -46,6 +46,12 @@ return [
         'app_icon_help' => 'Ảnh PNG, JPEG hoặc WebP vuông tối thiểu 512 pixel, tối đa 1 MB. Để trống dùng biểu tượng Simplify.',
         'app_badge' => 'Biểu tượng thanh trạng thái',
         'app_badge_help' => 'Ảnh PNG nền trong suốt, hiển thị màu trắng trên thanh trạng thái Android. Để trống sẽ dùng biểu tượng ứng dụng nếu nền trong suốt, nếu không thì dùng chú bồ nông.',
+        'preview' => [
+            'logo' => 'Trên thanh trên cùng',
+            'icon' => 'Trên màn hình chính của điện thoại',
+            'badge' => 'Trên thanh trạng thái và thông báo của Android',
+            'note' => 'Tin nhắn mới',
+        ],
         'server_colours' => 'Màu riêng cho từng máy chủ',
         'server_colours_help' => 'Mỗi máy chủ có màu riêng, theo nhóm của nó hoặc màu được chọn cho nó. Tắt: mọi máy chủ dùng màu nhấn.',
         'pelican_suffix' => 'Hiện "× Pelican" sau tên',

@@ -46,6 +46,12 @@ return [
         'app_icon_help' => 'Un PNG, JPEG sau WebP pătrat de cel puțin 512 pixeli, de până la 1 MB. Gol folosește pictograma Simplify.',
         'app_badge' => 'Pictograma barei de stare',
         'app_badge_help' => 'Un PNG cu fundal transparent, afișat alb în bara de stare Android. Gol folosește pictograma aplicației dacă are fundal transparent, altfel pelicanul.',
+        'preview' => [
+            'logo' => 'În bara de sus',
+            'icon' => 'Pe ecranul de pornire al unui telefon',
+            'badge' => 'În bara de stare și notificările Android',
+            'note' => 'Mesaj nou',
+        ],
         'server_colours' => 'Culoare proprie pentru fiecare server',
         'server_colours_help' => 'Fiecare server primește propria culoare, de la grupul său sau aleasă pentru el. Oprit: toate serverele folosesc culoarea de accent.',
         'pelican_suffix' => 'Afișați „× Pelican” după nume',

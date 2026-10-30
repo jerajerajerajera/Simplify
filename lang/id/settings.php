@@ -46,6 +46,12 @@ return [
         'app_icon_help' => 'PNG, JPEG, atau WebP persegi minimal 512 piksel, hingga 1 MB. Kosong memakai ikon Simplify.',
         'app_badge' => 'Ikon bilah status',
         'app_badge_help' => 'PNG berlatar transparan, ditampilkan putih di bilah status Android. Kosong memakai ikon aplikasi jika latarnya transparan, jika tidak memakai pelikan.',
+        'preview' => [
+            'logo' => 'Di bilah atas',
+            'icon' => 'Di layar utama ponsel',
+            'badge' => 'Di bilah status dan notifikasi Android',
+            'note' => 'Pesan baru',
+        ],
         'server_colours' => 'Warna sendiri per server',
         'server_colours_help' => 'Setiap server mendapat warnanya sendiri, dari grupnya atau yang dipilih untuknya. Mati: semua server memakai warna aksen.',
         'pelican_suffix' => 'Tampilkan "× Pelican" setelah nama',

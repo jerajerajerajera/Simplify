@@ -46,6 +46,12 @@ return [
         'app_icon_help' => 'Négyzetes PNG, JPEG vagy WebP, legalább 512 pixel, legfeljebb 1 MB. Üresen a Simplify ikonja.',
         'app_badge' => 'Állapotsor ikonja',
         'app_badge_help' => 'Átlátszó hátterű PNG, fehéren jelenik meg az Android állapotsorában. Üresen az alkalmazásikont használja, ha átlátszó a háttere, különben a pelikánt.',
+        'preview' => [
+            'logo' => 'A felső sávban',
+            'icon' => 'Egy telefon kezdőképernyőjén',
+            'badge' => 'Az Android állapotsorában és értesítéseiben',
+            'note' => 'Új üzenet',
+        ],
         'server_colours' => 'Saját szín szerverenként',
         'server_colours_help' => 'Minden szerver saját színt kap, a csoportjáét vagy a neki választottat. Kikapcsolva: minden szerver a kiemelőszínt használja.',
         'pelican_suffix' => '„× Pelican” megjelenítése a név után',

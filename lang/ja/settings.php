@@ -46,6 +46,12 @@ return [
         'app_icon_help' => '512 ピクセル以上の正方形の PNG、JPEG、WebP (1 MB まで)。空欄なら Simplify のアイコンを使います。',
         'app_badge' => 'ステータスバーのアイコン',
         'app_badge_help' => '背景が透明なPNG。Androidのステータスバーに白で表示されます。空の場合、背景が透明ならアプリアイコン、そうでなければペリカンを使います。',
+        'preview' => [
+            'logo' => '上部バー',
+            'icon' => 'スマートフォンのホーム画面',
+            'badge' => 'Android のステータスバーと通知',
+            'note' => '新着メッセージ',
+        ],
         'server_colours' => 'サーバーごとの色',
         'server_colours_help' => '各サーバーはグループの色、または個別に選んだ色を使います。オフにすると、すべてのサーバーがアクセントカラーを使います。',
         'pelican_suffix' => '名前の後に「× Pelican」を表示',

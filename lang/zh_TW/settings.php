@@ -46,6 +46,12 @@ return [
         'app_icon_help' => '正方形 PNG、JPEG 或 WebP，至少 512 像素，最大 1 MB。留空則使用 Simplify 圖示。',
         'app_badge' => '狀態列圖示',
         'app_badge_help' => '背景透明的 PNG，在 Android 狀態列中顯示為白色。留空時，若應用程式圖示背景透明則使用該圖示，否則使用鵜鶘。',
+        'preview' => [
+            'logo' => '頂部列',
+            'icon' => '手機主畫面',
+            'badge' => 'Android 狀態列和通知',
+            'note' => '新訊息',
+        ],
         'server_colours' => '每台伺服器各自配色',
         'server_colours_help' => '每台伺服器使用自己的顏色：所屬群組的顏色或為它選擇的顏色。關閉後，所有伺服器都使用強調色。',
         'pelican_suffix' => '在名稱後顯示「× Pelican」',

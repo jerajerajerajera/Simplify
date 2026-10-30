@@ -46,6 +46,12 @@ return [
         'app_icon_help' => 'Un PNG, JPEG o WebP cuadrado de al menos 512 píxeles, hasta 1 MB. Vacío usa el icono de Simplify.',
         'app_badge' => 'Icono de la barra de estado',
         'app_badge_help' => 'Un PNG con fondo transparente, mostrado en blanco en la barra de estado de Android. Vacío usa el icono de la app si tiene fondo transparente; si no, el pelícano.',
+        'preview' => [
+            'logo' => 'En la barra superior',
+            'icon' => 'En la pantalla de inicio de un teléfono',
+            'badge' => 'En la barra de estado y las notificaciones de Android',
+            'note' => 'Mensaje nuevo',
+        ],
         'server_colours' => 'Color propio por servidor',
         'server_colours_help' => 'Cada servidor tiene su propio color, el de su grupo o el elegido para él. Desactivado: todos los servidores usan el color de acento.',
         'pelican_suffix' => 'Mostrar "× Pelican" tras el nombre',
