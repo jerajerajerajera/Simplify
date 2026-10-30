@@ -349,10 +349,10 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 
 /* Host health dock: compact summary row that expands upward into node details. and can sit above the servers instead,
    or open as details under the health button in the top bar. */
-.ps-health-panel { position: relative; z-index: 1; flex: none; width: var(--ps-health-width, calc(100% - 8px)); margin: 0 var(--ps-health-left, auto) 0 var(--ps-health-left, auto); overflow: hidden; border: 1px solid var(--ps-line); border-radius: var(--ps-radius-lg); background: var(--ps-surface); box-shadow: 0 -4px 12px rgb(0 0 0 / .1); }
+.ps-health-panel { position: relative; z-index: 1; flex: none; width: var(--ps-health-width, calc(100% - 8px)); margin: 0 var(--ps-health-left, auto) 14px var(--ps-health-left, auto); border: 1px solid var(--ps-line); border-radius: var(--ps-radius-lg); background: var(--ps-surface); box-shadow: 0 -4px 12px rgb(0 0 0 / .1); }
 .ps.dark .ps-health-panel { box-shadow: none; }
 .ps-overview { position: relative; }
-.ps-overview > .ps-health-panel.is-above { order: -1; margin-bottom: 4px; box-shadow: none; }
+.ps-overview > .ps-health-panel.is-above { order: -1; margin-bottom: 18px; box-shadow: none; }
 /* Opens like a dropdown: right under the Healthy button, left edges in line, moved left only as far as the screen needs. */
 .ps-health-panel.is-popover { position: fixed; top: var(--ps-pop-top, 72px); left: var(--ps-pop-left, 8px); z-index: var(--ps-z-dropdown); width: var(--ps-pop-width, 560px); margin: 0; box-shadow: 0 16px 40px rgb(0 0 0 / .28); }
 .ps-health-panel.is-popover .ps-host-health { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 18px; padding: 14px 16px; }
@@ -369,6 +369,15 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-health-pill svg { width: 16px; height: 16px; fill: color-mix(in srgb, currentColor 18%, transparent); }
 .ps-health-pill[aria-expanded="true"] { border-color: var(--ps-tone); }
 .ps-health-place button { white-space: nowrap; }
+.ps-host-health { border-radius: calc(var(--ps-radius-lg) - 1px); }
+.ps-health-panel.expanded .ps-host-health { border-end-start-radius: 0; border-end-end-radius: 0; }
+/* The fold-open tab sticks out under the card's bottom edge, in the middle, so it reads as "pull this open". */
+.ps-health-tab { position: absolute; bottom: -14px; left: 50%; z-index: 1; display: grid; place-items: center; width: 52px; height: 14px; padding: 0; border: 1px solid var(--ps-line); border-top: 0; border-radius: 0 0 10px 10px; background: var(--ps-surface); color: var(--ps-muted); cursor: pointer; transform: translateX(-50%); transition: color var(--ps-fast), background-color var(--ps-fast); }
+.ps-health-tab::before { content: ""; position: absolute; inset: -1px 0 auto; height: 2px; background: var(--ps-surface); }
+.ps-health-tab:hover, .ps-health-tab:focus-visible { background: var(--ps-raised); color: var(--ps-ink); outline: none; }
+.ps-health-tab:hover::before, .ps-health-tab:focus-visible::before { background: var(--ps-raised); }
+.ps-health-tab svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; transform: rotate(90deg); transition: transform var(--ps-slow); }
+.ps-health-tab.expanded svg { transform: rotate(-90deg); }
 .ps-host-health { display: grid; grid-template-columns: minmax(200px, 1.2fr) repeat(4, minmax(0, 1fr)); align-items: center; gap: 18px; padding: 10px 16px; cursor: pointer; transition: background-color var(--ps-fast); }
 .ps-host-health:hover { background: color-mix(in srgb, var(--ps-raised) 40%, var(--ps-surface)); }
 .ps-host-health:focus-visible { outline: 2px solid var(--ps-accent); outline-offset: -2px; border-radius: var(--ps-radius-lg); }
@@ -378,12 +387,10 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-host-heading { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; color: var(--ps-muted); font-size: 12px; }
 .ps-host-state .ps-host-heading { margin: 0; }
 .ps-host-heading h3 { color: var(--ps-ink); font-size: 12px; font-weight: 650; line-height: 1.25; }
-.ps-host-heading > svg:not(.ps-health-expand) { width: 19px; height: 19px; }
+.ps-host-heading > svg { width: 19px; height: 19px; }
 .ps-host-heading > .ps-health-heart { margin-inline-start: auto; }
 /* A metric only shows its heart when something needs attention. */
 .ps-host-heading > .ps-health-heart.healthy { display: none; }
-.ps-health-expand { width: 16px; height: 16px; margin-inline-start: auto; transform: rotate(-90deg); transition: transform var(--ps-slow); }
-.ps-health-expand.expanded { transform: rotate(90deg); }
 .ps-health-status { --ps-tone: var(--ps-muted); display: flex; align-items: baseline; gap: 8px; min-width: 0; color: var(--ps-tone); font-size: 15px; line-height: 20px; }
 .ps-host-state .ps-health-status small { margin: 0; white-space: nowrap; }
 .ps-health-status strong { overflow-wrap: anywhere; }
@@ -413,7 +420,7 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-host-health > .ps-host-metric > .ps-host-heading > .ps-health-heart { margin-inline-start: 0; }
 .ps-meter { display: block; height: 3px; margin-top: 4px; overflow: hidden; border-radius: 4px; background: color-mix(in srgb, var(--ps-accent) 13%, transparent); }
 .ps-meter > span { display: block; height: 100%; border-radius: inherit; background: var(--ps-accent); opacity: .65; transition: width .65s ease; }
-.ps-health-drawer { --ps-health-details-height: clamp(100px, calc(100dvh - 420px), 320px); max-height: 0; opacity: 0; transition: max-height .3s ease, opacity var(--ps-slow); }
+.ps-health-drawer { --ps-health-details-height: clamp(100px, calc(100dvh - 420px), 320px); max-height: 0; overflow: hidden; border-end-start-radius: inherit; border-end-end-radius: inherit; opacity: 0; transition: max-height .3s ease, opacity var(--ps-slow); }
 .ps-health-panel.expanded .ps-health-drawer { max-height: var(--ps-health-details-height); opacity: 1; }
 .ps-health-drawer > div { display: flex; flex-direction: column; max-height: var(--ps-health-details-height); overflow: hidden; }
 .ps-health-detail-toolbar { display: flex; flex: none; align-items: center; min-height: 42px; padding: 8px 16px; color: var(--ps-muted); font-size: 12px; }
@@ -953,17 +960,15 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   .ps .ps-overview-toolbar .ps-chip { min-height: 40px; padding-inline: 14px; white-space: nowrap; }
 
   /* Host health: one summary line above the servers; tapping still opens the node details. */
-  .ps .ps-overview > .ps-health-panel { order: -1; margin: 0 0 14px; box-shadow: none; }
+  .ps .ps-overview > .ps-health-panel { order: -1; margin: 0 0 22px; box-shadow: none; }
   /* At the bottom: after the servers, at the end of the page. In the top bar: a dropdown over the filter row. */
-  .ps .ps-overview > .ps-health-panel:not(.is-above, .is-popover) { order: 1; margin: 14px 0 0; }
+  .ps .ps-overview > .ps-health-panel:not(.is-above, .is-popover) { order: 1; margin: 14px 0 16px; }
   .ps .ps-overview > .ps-health-panel.is-popover { margin: 0; box-shadow: 0 16px 40px rgb(0 0 0 / .28); }
   .ps .ps-host-health { display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 8px 14px; }
   .ps .ps-host-health > .ps-host-metric, .ps .ps-host-state small:not(.ps-health-phone-summary), .ps .ps-host-server-badge, .ps .ps-host-state .ps-host-heading h3 { display: none; }
   .ps .ps-host-state { flex: 1; }
   .ps .ps-host-state > div { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 10px; }
   .ps .ps-host-state .ps-host-heading { order: 3; margin-inline-start: auto; }
-  .ps .ps-health-expand { transform: rotate(90deg); }
-  .ps .ps-health-expand.expanded { transform: rotate(-90deg); }
   .ps .ps-host-emblem { width: 26px; height: 26px; }
   .ps .ps-host-emblem .ps-host-heart { width: 24px; height: 24px; }
   .ps .ps-health-status { font-size: 14px; line-height: 20px; }

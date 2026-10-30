@@ -13,6 +13,7 @@
 - Settings → General, Appearance and the other settings open the settings again on a panel taken over from PelicanSimplify. They sent you to the first-time setup every time, because that panel had settings but no finished setup.
 - Admin tools → Pelican settings opens Pelican's tab inside Simplify's settings again, instead of Pelican's bare page.
 - Pelican's Health page in Simplify's look: a summary line with when the checks last ran, then what needs attention with a button to where you fix it (Nodes for outdated Wings, the release notes for an outdated panel), then the checks that are fine as short rows with their own icon. Pelican's refresh button stays; in host mode it sits in the title bar. 32 languages.
+- Overview: the Host health card folds open with a tab that sticks out under the middle of its bottom edge, instead of a small arrow in its title, so it is clearer that the card opens to show every node.
 - Website embed: after saving, "One server" and "One game" pick the first on the list, so the code and the preview show straight away.
 
 ## 1.4.3

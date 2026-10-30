@@ -136,7 +136,7 @@
                     <span class="ps-host-server-badge"><svg aria-hidden="true"><use href="#ps-host"/></svg></span>
                 </span>
                 <div>
-                    <div class="ps-host-heading"><h3>{{ $u('host_health') }}</h3><button type="button" class="ps-health-refresh" :class="{'is-busy': healthRefreshing}" :disabled="healthRefreshing" x-on:click.stop="refreshHostHealth()" x-on:keydown.stop aria-label="{{ $u('refresh_host_health') }}" data-tip="{{ $u('refresh_now') }}"><svg aria-hidden="true"><use href="#ps-restart"/></svg></button><svg class="ps-health-expand" :class="{'expanded': healthExpanded}" aria-hidden="true"><use href="#ps-chevron"/></svg></div>
+                    <div class="ps-host-heading"><h3>{{ $u('host_health') }}</h3><button type="button" class="ps-health-refresh" :class="{'is-busy': healthRefreshing}" :disabled="healthRefreshing" x-on:click.stop="refreshHostHealth()" x-on:keydown.stop aria-label="{{ $u('refresh_host_health') }}" data-tip="{{ $u('refresh_now') }}"><svg aria-hidden="true"><use href="#ps-restart"/></svg></button></div>
                     <span class="ps-health-status" :class="boot.host_health?.state || 'unavailable'"><strong x-text="boot.host_health?.label || @js($u('unavailable'))"></strong><small x-text="Simplify.tc('dashboard.hosts_reporting', boot.host_health?.hosts ?? 0, { available: boot.host_health?.available ?? 0 })"></small></span>
                     <small class="ps-health-problem" x-show="boot.host_health?.problem" x-text="boot.host_health?.problem"></small>
                     <small class="ps-health-phone-summary" x-text="Simplify.fill(@js($u('cpu_ram')), { cpu: hostValue('cpu'), ram: hostValue('memory') })"></small>
@@ -206,6 +206,8 @@
                 </div>
             </div>
         </div>
+        {{-- A tab under the card's bottom edge: the card folds open to show every node. --}}
+        <button type="button" class="ps-health-tab" :class="{'expanded': healthExpanded}" x-show="boot.features?.host_health" x-on:click="openHostHealth()" :aria-expanded="healthExpanded" aria-controls="ps-health-details" aria-label="{{ $u('view_health_by_node') }}" data-tip="{{ $u('view_health_by_node') }}"><svg aria-hidden="true"><use href="#ps-chevron"/></svg></button>
     </section>
 </section>
 
