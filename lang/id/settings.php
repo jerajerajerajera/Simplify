@@ -48,6 +48,7 @@ return [
         'app_badge_help' => 'PNG berlatar transparan, ditampilkan putih di bilah status Android. Kosong memakai ikon aplikasi jika latarnya transparan, jika tidak memakai pelikan.',
         'server_colours' => 'Warna sendiri per server',
         'server_colours_help' => 'Setiap server mendapat warnanya sendiri, dari grupnya atau yang dipilih untuknya. Mati: semua server memakai warna aksen.',
+        'pelican_suffix' => 'Tampilkan "× Pelican" setelah nama',
     ],
     'addons' => [
         'heading' => 'Add-on',

@@ -15,7 +15,7 @@
         <span class="ps-statusbar-item" x-show="server.players != null" data-tip="{{ $u('players_online') }}"><svg aria-hidden="true"><use href="#ps-players"/></svg><span x-text="playerCount(server)"></span></span>
         <div class="ps-statusbar-power">
             <button type="button" class="ps-btn is-sm is-primary" x-on:click="power('start')" :disabled="busy || !server.permissions['control.start'] || status==='running'" aria-label="{{ $u('start_server') }}" data-tip="{{ $u('start') }}"><svg aria-hidden="true"><use href="#ps-play"/></svg></button>
-            <button type="button" class="ps-btn is-sm" x-on:click="power('restart')" :disabled="busy || !server.permissions['control.restart']" aria-label="{{ $u('restart_server') }}" data-tip="{{ $u('restart') }}"><svg aria-hidden="true"><use href="#ps-restart"/></svg></button>
+            <button type="button" class="ps-btn is-sm" x-on:click="power('restart')" :disabled="busy || !server.permissions['control.restart'] || !canRestart()" aria-label="{{ $u('restart_server') }}" data-tip="{{ $u('restart') }}"><svg aria-hidden="true"><use href="#ps-restart"/></svg></button>
             <button type="button" class="ps-btn is-sm" x-on:click="power('stop')" :disabled="busy || !server.permissions['control.stop'] || status==='offline'" aria-label="{{ $u('stop_server') }}" data-tip="{{ $u('stop') }}"><svg aria-hidden="true"><use href="#ps-stop"/></svg></button>
             <button type="button" class="ps-btn is-sm is-danger" x-on:click="power('kill')" :disabled="busy || !server.permissions['control.stop'] || status==='offline'" aria-label="{{ $u('force_stop_server') }}" data-tip="{{ $u('kill') }}"><svg aria-hidden="true"><use href="#ps-kill"/></svg></button>
         </div>
@@ -51,10 +51,10 @@
                 </div>
             </div>
             <div class="ps-motd-preview ps-motd-display ps-info-motd" x-show="server.motd" x-effect="server.motd; $nextTick(() => fitMotd($el))" aria-label="{{ $u('message_of_the_day') }}"><template x-for="(part, index) in motdPreview(server.motd || '')" :key="index"><span :style="part.style" x-text="part.text"></span></template></div>
-            {{-- Power: one button that follows the state (Start or Stop), Restart, and the rest under ⋯. --}}
+            {{-- Power: one button that follows the state (Start, Stop, or Force stop while starting or stopping), Restart, and the rest under ⋯. --}}
             <div class="ps-info-power" x-on:click.outside="colorMenu=false; infoMenu=false" x-on:keydown.escape.stop="colorMenu=false; infoMenu=false">
-                <button type="button" class="ps-btn ps-power-main" :class="{'is-primary': mainPower().action==='start'}" x-on:click="power(mainPower().action)" :disabled="busy || !server.permissions['control.'+mainPower().action] || ['starting','stopping'].includes(status)" :aria-label="Simplify.fill(@js($u('action_server')), { action: mainPower().label })"><svg aria-hidden="true"><use :href="'#ps-'+mainPower().icon"/></svg><span x-text="mainPower().label"></span></button>
-                <button type="button" class="ps-btn ps-power-restart" x-on:click="power('restart')" :disabled="busy || !server.permissions['control.restart'] || status!=='running'" aria-label="{{ $u('restart_server') }}"><svg aria-hidden="true"><use href="#ps-restart"/></svg><span>{{ $u('restart') }}</span></button>
+                <button type="button" class="ps-btn ps-power-main" :class="{'is-primary': mainPower().action==='start', 'is-danger': mainPower().action==='kill'}" x-on:click="power(mainPower().action)" :disabled="busy || !server.permissions[mainPower().permission] || (mainPower().action==='start' && !canRestart())" :aria-label="Simplify.fill(@js($u('action_server')), { action: mainPower().label })"><svg aria-hidden="true"><use :href="'#ps-'+mainPower().icon"/></svg><span x-text="mainPower().label"></span></button>
+                <button type="button" class="ps-btn ps-power-restart" x-on:click="power('restart')" :disabled="busy || !server.permissions['control.restart'] || !canRestart()" aria-label="{{ $u('restart_server') }}"><svg aria-hidden="true"><use href="#ps-restart"/></svg><span>{{ $u('restart') }}</span></button>
                 <button type="button" class="ps-btn is-icon ps-info-more-button" aria-label="{{ $u('more_server_options') }}" aria-controls="ps-info-menu" :aria-expanded="infoMenu" x-on:click="infoMenu=!infoMenu; colorMenu=false"><svg aria-hidden="true"><use href="#ps-dots"/></svg></button>
                 <div id="ps-info-menu" class="ps-dropdown is-end ps-info-menu" x-show="infoMenu" x-cloak x-transition.opacity role="menu">
                     <span class="ps-label ps-menu-heading" x-show="server.can_edit">{{ $u('look') }}</span>
@@ -97,7 +97,8 @@
                 <article class="ps-card ps-stat">
                     <div class="ps-stat-top"><span x-text="metric.label"></span><svg aria-hidden="true"><use :href="'#ps-'+metric.icon"/></svg></div>
                     <strong x-text="metricValue(metric.key)"></strong>
-                    <small x-text="metricLimit(metric.key)"></small>
+                    {{-- A long line (traffic "since server start") keeps its first part; the whole line is the tooltip. --}}
+                    <small x-text="metricLimit(metric.key).split(' · ')[0]" :data-tip="metricLimit(metric.key).includes(' · ') ? metricLimit(metric.key) : null"></small>
                     <svg class="ps-spark" viewBox="0 0 200 36" preserveAspectRatio="none" aria-hidden="true"><path :d="spark(metric.key)"/></svg>
                 </article>
             </template>

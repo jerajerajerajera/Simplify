@@ -1,5 +1,29 @@
 # Changelog
 
+## 1.4.3
+
+- The notifications menu always ends inside the window, so its last item and "Show more" are no longer cut off when the top bar has a second row (announcements on a narrower window) or the panel is zoomed.
+- Server page: Stop, Restart and Start work again. Since 1.3.1 they stayed greyed out on every server, because a value the buttons check was no longer set.
+- Server page: the console title shows "Connected" again on Pelican versions that do not report the server's state to plugins themselves (before 1.0.0-rc.2), instead of "Connecting to Wings..." while the log already runs. The server card's status follows Wings there too.
+- Server page: while a server is starting or stopping, the main power button is Force stop, and Restart works in every state but installing and restoring, as in Pelican's own console.
+- Appearance → Panel name and logo has the switch "Show “× Pelican” after the name" again, as in PelicanSimplify 0.7.0. It is on by default; a 0.7.0 panel that had it off keeps it off.
+- Host mode: Roles and Pelican's own settings tabs (General, Captcha, Mail, Backup, OAuth, Misc) have their icons again; Announcements, Automatic subdomains and Website get their own icons.
+- Phone: the account menu's buttons get a row of their own and wrap, instead of the last ones being cut off.
+- Server page: the Network usage card shows the traffic used without the cut-off "· since server start"; the whole line is its tooltip.
+- Scrollbars everywhere in the panel (menus, content boxes, dropdowns, the console, host mode) are one dark rounded bar without a track or outline, with room above and below, instead of the browser's own bar. Firefox gets the thin bar in the same colour.
+- Server page: the ⋯ menu and the colour menu open below the server card again. Before, the card cut them off, so only their top edge showed inside the card.
+- App: a panel with its own app icon can be installed as an app again. Chrome only offers Install with a square PNG of the size the manifest names, so Simplify now serves the uploaded icon (also a JPEG or a non-square image) as a square PNG of 192 and 512 pixels.
+- Overview list: when the quick power buttons slide in, the player count moves along smoothly with the rest of the row instead of jumping.
+- App: the splash screen of the installed app is dark, like the panel, instead of white. Android picks this up when Chrome next updates the app, or on a new install.
+- The browser tab icon is the Simplify logo at full size on a transparent background, instead of a small logo in a dark circle.
+- Every menu under the top bar (admin tools, customize, groups, notifications) ends inside the window, also when announcements give the bar a second row.
+- Tablets and narrow windows (up to 900 pixels): the top bar's buttons sit in the menu, as on a phone, so the panel name, the account button and the admin tools no longer fall off the screen or break up letter by letter.
+- Server page: the five numbers fill their rows on a tablet (three over two) and sit two by two on a phone, so values and labels are no longer cut off. On a phone "× Pelican" stays on one line. A long panel name breaks between words, never inside one.
+- Host mode: a server in a low frame folds its numbers into one slim row, so its box keeps a usable console instead of the frame scrolling. The traffic figure gets double width there, so it is not cut off.
+- The admin tools list each add-on once, and "People & roles" has its own icon.
+- Fixed a script error on server pages ("brandTextStyle is not a function").
+- Known: in host mode, Pelican's own list pages (Eggs, Servers, Users and so on) still scroll as a whole page inside the frame, title included. This follows in 1.4.4.
+
 ## 1.4.2
 
 - Console: the output fits its box again. Lines no longer run past the right edge or end half hidden behind the command bar, and the whole console card, the command bar included, has one background colour.

@@ -55,6 +55,7 @@ final class SimplifyServiceProvider extends ServiceProvider
             ->where('file', Looks::FILE_PATTERN)
             ->name('simplify.banner');
         Route::get('/simplify/manifest.webmanifest', [WebAppController::class, 'manifest'])->name('simplify.manifest');
+        Route::get('/simplify/app-icon-{size}.png', [WebAppController::class, 'icon'])->whereIn('size', ['192', '512'])->name('simplify.app-icon');
         // At the root, so the worker's scope can be the whole panel.
         Route::get('/simplify-worker.js', [WebAppController::class, 'worker'])->name('simplify.worker');
 

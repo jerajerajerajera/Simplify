@@ -48,6 +48,7 @@ return [
         'app_badge_help' => 'Ảnh PNG nền trong suốt, hiển thị màu trắng trên thanh trạng thái Android. Để trống sẽ dùng biểu tượng ứng dụng nếu nền trong suốt, nếu không thì dùng chú bồ nông.',
         'server_colours' => 'Màu riêng cho từng máy chủ',
         'server_colours_help' => 'Mỗi máy chủ có màu riêng, theo nhóm của nó hoặc màu được chọn cho nó. Tắt: mọi máy chủ dùng màu nhấn.',
+        'pelican_suffix' => 'Hiện "× Pelican" sau tên',
     ],
     'addons' => [
         'heading' => 'Tiện ích bổ sung',

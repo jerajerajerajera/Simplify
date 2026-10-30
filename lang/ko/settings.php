@@ -48,6 +48,7 @@ return [
         'app_badge_help' => '배경이 투명한 PNG로, Android 상태 표시줄에 흰색으로 표시됩니다. 비워 두면 배경이 투명한 경우 앱 아이콘을, 아니면 펠리컨을 사용합니다.',
         'server_colours' => '서버별 색상',
         'server_colours_help' => '각 서버는 그룹 색상 또는 따로 고른 색상을 사용합니다. 끄면 모든 서버가 강조 색상을 사용합니다.',
+        'pelican_suffix' => '이름 뒤에 "× Pelican" 표시',
     ],
     'addons' => [
         'heading' => '애드온',

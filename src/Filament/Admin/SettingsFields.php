@@ -65,6 +65,7 @@ final class SettingsFields
                 ->helperText(__(self::T.'appearance.brand_name_help')),
             TextInput::make('logo_height')->label(__(self::T.'appearance.logo_height'))
                 ->integer()->minValue(16)->maxValue(64)->suffix('px')->required(),
+            Toggle::make('pelican_suffix')->label(__(self::T.'appearance.pelican_suffix'))->columnSpanFull(),
             self::image('brand_logo', 'appearance.logo', 'appearance.logo_help')->columnSpanFull(),
         ]);
     }

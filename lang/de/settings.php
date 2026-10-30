@@ -48,6 +48,7 @@ return [
         'app_badge_help' => 'Ein PNG mit transparentem Hintergrund, in Androids Statusleiste weiß dargestellt. Leer nutzt das App-Symbol, wenn es einen transparenten Hintergrund hat, sonst den Pelikan.',
         'server_colours' => 'Eigene Farbe pro Server',
         'server_colours_help' => 'Jeder Server bekommt eine eigene Farbe, von seiner Gruppe oder für ihn gewählt. Aus: Jeder Server nutzt die Akzentfarbe.',
+        'pelican_suffix' => '"× Pelican" nach dem Namen zeigen',
     ],
     'addons' => [
         'heading' => 'Add-ons',

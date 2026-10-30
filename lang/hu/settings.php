@@ -48,6 +48,7 @@ return [
         'app_badge_help' => 'Átlátszó hátterű PNG, fehéren jelenik meg az Android állapotsorában. Üresen az alkalmazásikont használja, ha átlátszó a háttere, különben a pelikánt.',
         'server_colours' => 'Saját szín szerverenként',
         'server_colours_help' => 'Minden szerver saját színt kap, a csoportjáét vagy a neki választottat. Kikapcsolva: minden szerver a kiemelőszínt használja.',
+        'pelican_suffix' => '„× Pelican” megjelenítése a név után',
     ],
     'addons' => [
         'heading' => 'Kiegészítők',

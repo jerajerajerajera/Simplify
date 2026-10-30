@@ -48,6 +48,7 @@ return [
         'app_badge_help' => 'PNG su permatomu fonu, rodoma balta Android būsenos juostoje. Tuščia – programos piktograma, jei jos fonas permatomas, kitaip pelikanas.',
         'server_colours' => 'Atskira spalva kiekvienam serveriui',
         'server_colours_help' => 'Kiekvienas serveris gauna savo spalvą – savo grupės arba jam pasirinktą. Išjungta: visi serveriai naudoja akcento spalvą.',
+        'pelican_suffix' => 'Rodyti "× Pelican" po pavadinimu',
     ],
     'addons' => [
         'heading' => 'Priedai',

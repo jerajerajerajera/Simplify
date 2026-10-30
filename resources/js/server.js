@@ -22,6 +22,10 @@
       ],
       infoMenu: false,
       colorMenu: false,
+      // Set while a power action, rename or look change is on its way; Alpine treats an undefined name as an error.
+      busy: false,
+      // The last state Wings reported over the console socket, for Pelican versions without window.ServerStats.
+      socketState: null,
       colorDraft: null,
       statusBarVisible: false,
       sample: null,
@@ -34,6 +38,11 @@
         this.refreshTimer = setInterval(() => this.refresh(), this.refreshSeconds);
         if (boot.console) {
           if (new URLSearchParams(location.search).has('simplify_console')) document.documentElement.classList.add('ps-console-window');
+          // Every Pelican version passes Wings' "status" on as this Livewire event, the first one right after connecting.
+          window.Livewire?.on?.('console-status', (event) => {
+            const state = (Array.isArray(event) ? event[0] : event)?.state;
+            if (typeof state === 'string') this.socketState = state;
+          });
           this.liveTimer = setInterval(() => this.live(), 1000);
           this.$nextTick(() => this.live());
         }
@@ -82,7 +91,7 @@
       /** The newest numbers from Pelican's console (window.ServerStats), once per new frame. */
       live() {
         const stats = window.ServerStats, latest = stats?.latest?.();
-        const state = stats?.state?.();
+        const state = stats?.state?.() || this.socketState;
         this.consoleBar(!!state);
         if (state && state !== this.server.status) this.server = { ...this.server, status: state };
         if (!latest || latest.t === this.liveAt) return;
@@ -143,7 +152,11 @@
           return this.fitConsole(0, main);
         }
         const footer = document.querySelector('.fi-footer, [data-ps-footer]')?.offsetHeight || 0;
-        const height = Math.max(160, Math.floor(innerHeight - (main.getBoundingClientRect().top + scrollY) - footer - 14));
+        const room = () => Math.floor(innerHeight - (main.getBoundingClientRect().top + scrollY) - footer - 14);
+        // A low window (a server in host mode's frame) folds the numbers into one slim row, so the box keeps a usable height.
+        root.classList.remove('ps-low');
+        if (room() < 320) root.classList.add('ps-low');
+        const height = Math.max(160, room());
         root.style.setProperty('--ps-fit', height + 'px');
         this.fitConsole(height, main);
       },
@@ -183,9 +196,15 @@
       },
 
       /* Card ------------------------------------------------------------------------------------- */
-      /** The power button that fits the state: Stop while the server runs, Start otherwise. */
+      /** Like Pelican's own buttons: Stop while running, Force stop while it starts or stops (Wings refuses a stop then). */
       mainPower() {
-        return ['running', 'starting'].includes(this.status) ? { action: 'stop', label: t('dashboard.stop'), icon: 'stop' } : { action: 'start', label: t('dashboard.start'), icon: 'play' };
+        if (this.status === 'running') return { action: 'stop', label: t('dashboard.stop'), icon: 'stop', permission: 'control.stop' };
+        if (['starting', 'stopping', 'restarting'].includes(this.status)) return { action: 'kill', label: t('dashboard.force_stop'), icon: 'kill', permission: 'control.stop' };
+        return { action: 'start', label: t('dashboard.start'), icon: 'play', permission: 'control.start' };
+      },
+      /** Restart works in every state but these, as in Pelican. */
+      canRestart() {
+        return !['missing', 'installing', 'install failed', 'restoring'].includes(this.status);
       },
       async power(action) {
         if (this.busy) return;

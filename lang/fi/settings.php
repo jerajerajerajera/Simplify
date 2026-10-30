@@ -48,6 +48,7 @@ return [
         'app_badge_help' => 'PNG-kuva läpinäkyvällä taustalla, näytetään valkoisena Androidin tilarivillä. Tyhjänä käytetään sovelluksen kuvaketta, jos sen tausta on läpinäkyvä, muuten pelikaania.',
         'server_colours' => 'Oma väri jokaiselle palvelimelle',
         'server_colours_help' => 'Jokainen palvelin saa oman värinsä, ryhmästään tai sille valittuna. Pois: kaikki palvelimet käyttävät korostusväriä.',
+        'pelican_suffix' => 'Näytä "× Pelican" nimen jälkeen',
     ],
     'addons' => [
         'heading' => 'Lisätoiminnot',

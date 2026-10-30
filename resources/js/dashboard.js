@@ -98,6 +98,10 @@
         this.applyScale();
         // Measure again once the page has its content.
         this.$nextTick(() => this.applyScale());
+        // Every menu under the top bar ends inside the window when it opens, and again when the window changes.
+        const menus = { notifyMenu: 'ps-notify-menu', adminMenu: 'ps-admin-menu', appearanceMenu: 'ps-overview-appearance-menu', groupsMenu: 'ps-overview-groups-menu' };
+        for (const [key, id] of Object.entries(menus)) this.$watch(key, (open) => open && this.$nextTick(() => this.fitDropdown(document.getElementById(id))));
+        addEventListener('resize', () => Object.entries(menus).forEach(([key, id]) => this[key] && this.fitDropdown(document.getElementById(id))));
         this.restoreOverviewPreferences();
         this.overviewGroups = this.cleanOverviewGroups(this.boot.overview_groups?.groups);
         this.overviewServerOrder = SERVER_ORDERS.some((o) => o.key === this.boot.overview_groups?.order) ? this.boot.overview_groups.order : 'name';
@@ -149,6 +153,15 @@
         this.notifyMenu = !this.notifyMenu;
         this.appearanceMenu = this.groupsMenu = this.accountMenu = false;
         if (this.notifyMenu) await this.loadNotificationPage(true);
+      },
+      /** A menu under the top bar ends inside the window, wherever the bar ends (announcements can give it a second row). */
+      fitDropdown(menu) {
+        if (!menu || typeof window === 'undefined') return;
+        // In the phone menu it is part of that menu, which scrolls itself.
+        menu.style.maxHeight = '';
+        if (getComputedStyle(menu).position !== 'absolute') return;
+        const scale = this.uiScale || 1, top = menu.getBoundingClientRect().top / scale;
+        menu.style.maxHeight = Math.max(160, Math.floor(window.innerHeight / scale - top - 12)) + 'px';
       },
       /** New unread notifications since the last look drop down from the bell, one after another (as in 0.7.0). */
       async pollNotifications() {
@@ -258,9 +271,18 @@
         const known = new Set([...plan.flatMap((section) => section.pages), 'settings']);
         // An add-on's settings page that is also in Pelican's menu (Hosting) shows once, under Add-ons.
         const tabUrls = new Set(menu.map((tab) => tab.url));
+        // Simplify's own pages (Announcements, Automatic subdomains, Website) join its settings, the add-ons' other pages
+        // join Add-ons: Other plugins is only for plugins that are not Simplify.
+        // An add-on page with the same name as the add-on's settings (Server Maker's own page) shows once.
+        const tabLabels = new Set(menu.map((tab) => tab.label));
+        const own = (origin) => items.filter((item) => item.origin === origin && !known.has(item.key) && !tabUrls.has(item.url) && !tabLabels.has(item.label));
+        const extra = { panel: own('core'), addons: own('addon') };
+        if (!menu.length) extra.panel = [];
         return plan.map((section) => ({
           ...section,
-          pages: section.key === 'extensions' ? items.filter((item) => !known.has(item.key) && !tabUrls.has(item.url)) : [...(section.tabs || []), ...section.pages.map((key) => items.find((item) => item.key === key)).filter(Boolean)],
+          pages: section.key === 'extensions'
+            ? items.filter((item) => !known.has(item.key) && !tabUrls.has(item.url) && !(menu.length && item.origin))
+            : [...(section.tabs || []), ...(extra[section.key] || []), ...section.pages.map((key) => items.find((item) => item.key === key)).filter(Boolean)],
         })).filter((section) => section.pages.length);
       },
       adminHealthPage() {

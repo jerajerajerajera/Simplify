@@ -144,8 +144,10 @@ final class Settings extends Page implements HasForms
                 $items[] = ['key' => 'addon:'.$addon['id'], 'group' => 'addons', 'label' => $addon['name'], 'icon' => 'plugins', 'url' => $addon['url']];
             }
         }
+        // The menu draws from Simplify's own icon sprite, not Filament's Tabler names.
+        $sprite = ['pelican-general' => 'home', 'pelican-captcha' => 'shield', 'pelican-mail' => 'mail', 'pelican-backup' => 'backups', 'pelican-oauth' => 'key', 'pelican-misc' => 'tool'];
         foreach (self::pelicanTabs() as $pelican) {
-            $items[] = [...$tab($pelican['key'], 'pelican', $pelican['label'], 'gear'), 'url' => $pelican['url']];
+            $items[] = [...$tab($pelican['key'], 'pelican', $pelican['label'], $sprite[$pelican['key']] ?? 'gear'), 'url' => $pelican['url']];
         }
 
         return $items;

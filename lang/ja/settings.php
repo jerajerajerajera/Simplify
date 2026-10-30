@@ -48,6 +48,7 @@ return [
         'app_badge_help' => '背景が透明なPNG。Androidのステータスバーに白で表示されます。空の場合、背景が透明ならアプリアイコン、そうでなければペリカンを使います。',
         'server_colours' => 'サーバーごとの色',
         'server_colours_help' => '各サーバーはグループの色、または個別に選んだ色を使います。オフにすると、すべてのサーバーがアクセントカラーを使います。',
+        'pelican_suffix' => '名前の後に「× Pelican」を表示',
     ],
     'addons' => [
         'heading' => 'アドオン',
