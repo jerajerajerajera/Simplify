@@ -1,0 +1,6972 @@
+{
+ "base": "http://127.0.0.1:8001",
+ "screens": [
+  {
+   "id": "overview-grid",
+   "title": "Overzicht, grid",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "ellipsis": [
+      "span: \"Counter-Strike 2\""
+     ],
+     "popups": [
+      "ps-navigation-items 747,212 317x38"
+     ],
+     "panes": [
+      "Servers 376/1230"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 461..1064",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1100x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1100x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/overview-grid.png"
+  },
+  {
+   "id": "overview-compact",
+   "title": "Overzicht, compact",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 747,212 317x38"
+     ],
+     "panes": [
+      "Servers 376/718"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 461..1064",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1100x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1100x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/overview-compact.png"
+  },
+  {
+   "id": "overview-list",
+   "title": "Overzicht, list",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 747,212 317x38"
+     ],
+     "panes": [
+      "Servers 376/1008"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 461..1064",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1100x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1100x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/overview-list.png"
+  },
+  {
+   "id": "overview-full-grid",
+   "title": "Overzicht, volle breedte, grid",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "ellipsis": [
+      "span: \"Counter-Strike 2\""
+     ],
+     "popups": [
+      "ps-navigation-items 747,212 317x38"
+     ],
+     "panes": [
+      "Servers 376/1230"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 461..1064",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1100x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1100x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/overview-full-grid.png"
+  },
+  {
+   "id": "overview-full-list",
+   "title": "Overzicht, volle breedte, list",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: ps-card-title \"All the Mods 10 All the Mods 10 - welcome! Forge 1\" sticks 16px out of ps-server-card | ps-card-title \"Creative Builds Creative Builds - welcome! Paper 1\" sticks 16px out of ps-server-card | ps-card-title \"Survival SMP Survival SMP - welcome! Paper 1.21.1\" sticks 16px out of ps-server-card | ps-card-usage \"CPU 22.0% RAM 4.8 GB\" sticks 26px out of ps-server-card | ps-card-usage \"CPU 0.0% RAM 0 MB\" sticks 26px out of ps-server-card | ps-card-usage \"CPU 41.0% RAM 3.1 GB\" sticks 26px out of ps-server-card | ps-card-usage \"CPU 0.0% RAM 0 MB\" sticks 26px out of ps-server-card | ps-card-usage \"CPU 2.0% RAM 172 MB\" sticks 26px out of ps-server-card"
+     }
+    ],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 747,212 317x38"
+     ],
+     "panes": [
+      "Servers 376/1036"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 461..1064",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1100x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1100x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/overview-full-list.png"
+  },
+  {
+   "id": "overview-account",
+   "title": "Accountmenu open",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "ellipsis": [
+      "span: \"Counter-Strike 2\""
+     ],
+     "popups": [
+      "ps-navigation-items 471,212 593x38",
+      "ps-account-actions 691,212 268x38"
+     ],
+     "panes": [
+      "Servers 320/1230"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..133, badges 137..169, actions 185..1064",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1100x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1100x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/overview-account.png"
+  },
+  {
+   "id": "overview-account-theme",
+   "title": "Accountmenu, themakeuze open",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "ellipsis": [
+      "span: \"Counter-Strike 2\""
+     ],
+     "popups": [
+      "ps-navigation-items 379,212 685x38",
+      "ps-account-actions 599,212 360x38",
+      "ps-tooltip 723,258 67x33"
+     ],
+     "panes": [
+      "Servers 320/1230"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..41, badges 45..77, actions 93..1064",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1100x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1100x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/overview-account-theme.png"
+  },
+  {
+   "id": "overview-bell",
+   "title": "Bel (aankondigingen) open",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "ellipsis": [
+      "span: \"Counter-Strike 2\""
+     ],
+     "popups": [
+      "ps-navigation-items 747,212 317x38 scrolls",
+      "ps-notify-menu 621,258 340x384 scrolls"
+     ],
+     "panes": [
+      "ps-notify-menu 382/1930",
+      "Servers 376/1230"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 461..1064",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1100x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1100x78"
+     ],
+     "dropdown": [
+      "ps-notify-menu 384px of 467 max, scrolls"
+     ],
+     "arrow": [
+      "ps-notify-menu arrow 942 button 942"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/overview-bell.png"
+  },
+  {
+   "id": "overview-admin",
+   "title": "Beheermenu (schild) open",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "ellipsis": [
+      "span: \"Counter-Strike 2\""
+     ],
+     "popups": [
+      "ps-navigation-items 747,212 317x38 scrolls",
+      "ps-admin-menu 185,258 600x384 scrolls"
+     ],
+     "panes": [
+      "ps-admin-menu 382/431",
+      "Servers 376/1230"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 461..1064",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1100x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1100x78"
+     ],
+     "dropdown": [
+      "ps-admin-menu 384px of 467 max, scrolls"
+     ],
+     "arrow": [
+      "ps-admin-menu arrow 766 button 766"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/overview-admin.png"
+  },
+  {
+   "id": "overview-admin-group2",
+   "title": "Beheermenu, tweede groep open",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "ellipsis": [
+      "span: \"Counter-Strike 2\""
+     ],
+     "popups": [
+      "ps-navigation-items 747,212 317x38 scrolls",
+      "ps-admin-menu 185,258 600x384 scrolls"
+     ],
+     "panes": [
+      "ps-admin-menu 382/431",
+      "Servers 376/1230"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 461..1064",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1100x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1100x78"
+     ],
+     "dropdown": [
+      "ps-admin-menu 384px of 467 max, scrolls"
+     ],
+     "arrow": [
+      "ps-admin-menu arrow 766 button 766"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/overview-admin-group2.png"
+  },
+  {
+   "id": "overview-bell-all",
+   "title": "Meldingenvenster (alle meldingen) open",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "ellipsis": [
+      "span: \"Counter-Strike 2\""
+     ],
+     "popups": [
+      "ps-navigation-items 747,212 317x38",
+      "ps-modal 210,24 680x652"
+     ],
+     "panes": [
+      "Servers 376/1230",
+      "ps-modal-body 590/2074"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 461..1064",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1100x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1100x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/overview-bell-all.png"
+  },
+  {
+   "id": "overview-customize",
+   "title": "Weergave aanpassen open",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "ellipsis": [
+      "span: \"Counter-Strike 2\""
+     ],
+     "popups": [
+      "ps-navigation-items 747,212 317x38 scrolls",
+      "ps-overview-appearance-menu 517,258 400x384 scrolls"
+     ],
+     "panes": [
+      "ps-overview-appearance-menu 382/562",
+      "Servers 376/1230"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 461..1064",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1100x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1100x78"
+     ],
+     "dropdown": [
+      "ps-overview-appearance-menu 384px of 467 max, scrolls"
+     ],
+     "arrow": [
+      "ps-overview-appearance-menu arrow 898 button 898"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/overview-customize.png"
+  },
+  {
+   "id": "overview-groups",
+   "title": "Servergroepen open",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "ellipsis": [
+      "span: \"Counter-Strike 2\""
+     ],
+     "popups": [
+      "ps-navigation-items 747,212 317x38 scrolls",
+      "ps-overview-groups-menu 473,258 400x352"
+     ],
+     "panes": [
+      "Servers 376/1230"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 461..1064",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1100x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1100x78"
+     ],
+     "dropdown": [
+      "ps-overview-groups-menu 352px of 467 max"
+     ],
+     "arrow": [
+      "ps-overview-groups-menu arrow 854 button 854"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/overview-groups.png"
+  },
+  {
+   "id": "overview-health",
+   "title": "Gezondheid van de host open",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "ellipsis": [
+      "span: \"Counter-Strike 2\""
+     ],
+     "popups": [
+      "ps-navigation-items 747,212 317x38"
+     ],
+     "panes": [
+      "Servers 376/1230"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 461..1064",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1100x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1100x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/overview-health.png"
+  },
+  {
+   "id": "overview-health-nodes",
+   "title": "Host health, nodes uitgeklapt",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "ellipsis": [
+      "span: \"Counter-Strike 2\""
+     ],
+     "popups": [
+      "ps-navigation-items 747,212 317x38"
+     ],
+     "panes": [
+      "Servers 376/1230"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 461..1064",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1100x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1100x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/overview-health-nodes.png"
+  },
+  {
+   "id": "overview-health-hover-card",
+   "title": "Host health, wijzen naar de kaart",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "colours": {
+    "card": "color(srgb 0.119216 0.119216 0.141961)",
+    "tab": "rgb(26, 26, 31)",
+    "tabTop": "rgb(26, 26, 31)",
+    "tabInk": "rgb(176, 176, 187)"
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "ellipsis": [
+      "span: \"Counter-Strike 2\""
+     ],
+     "popups": [
+      "ps-navigation-items 747,212 317x38"
+     ],
+     "panes": [
+      "Servers 376/1230"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 461..1064",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1100x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1100x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/overview-health-hover-card.png"
+  },
+  {
+   "id": "overview-health-hover-tab",
+   "title": "Host health, wijzen naar het lipje",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "colours": {
+    "card": "rgba(0, 0, 0, 0)",
+    "tab": "rgb(37, 37, 44)",
+    "tabTop": "rgb(37, 37, 44)",
+    "tabInk": "rgb(237, 237, 242)"
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "ellipsis": [
+      "span: \"Counter-Strike 2\""
+     ],
+     "popups": [
+      "ps-navigation-items 747,212 317x38"
+     ],
+     "panes": [
+      "Servers 376/1230"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 461..1064",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1100x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1100x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/overview-health-hover-tab.png"
+  },
+  {
+   "id": "overview-bell-1bar",
+   "title": "Bel open, één aankondigingsbalk",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "ellipsis": [
+      "span: \"Counter-Strike 2\""
+     ],
+     "popups": [
+      "ps-navigation-items 747,122 317x38 scrolls",
+      "ps-notify-menu 621,168 340x466 scrolls"
+     ],
+     "panes": [
+      "ps-notify-menu 464/2063",
+      "Servers 466/1230"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 461..1064",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-info 0,12 1100x78"
+     ],
+     "dropdown": [
+      "ps-notify-menu 466px of 467 max, scrolls"
+     ],
+     "arrow": [
+      "ps-notify-menu arrow 942 button 942"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/overview-bell-1bar.png"
+  },
+  {
+   "id": "overview-admin-1bar",
+   "title": "Beheermenu open, één aankondigingsbalk",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "ellipsis": [
+      "span: \"Counter-Strike 2\""
+     ],
+     "popups": [
+      "ps-navigation-items 747,122 317x38 scrolls",
+      "ps-admin-menu 185,168 600x433"
+     ],
+     "panes": [
+      "Servers 466/1230"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 461..1064",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-info 0,12 1100x78"
+     ],
+     "dropdown": [
+      "ps-admin-menu 433px of 467 max"
+     ],
+     "arrow": [
+      "ps-admin-menu arrow 766 button 766"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/overview-admin-1bar.png"
+  },
+  {
+   "id": "overview-customize-1bar",
+   "title": "Weergave aanpassen open, één aankondigingsbalk",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "ellipsis": [
+      "span: \"Counter-Strike 2\""
+     ],
+     "popups": [
+      "ps-navigation-items 747,122 317x38 scrolls",
+      "ps-overview-appearance-menu 517,168 400x466 scrolls"
+     ],
+     "panes": [
+      "ps-overview-appearance-menu 464/562",
+      "Servers 466/1230"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 461..1064",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-info 0,12 1100x78"
+     ],
+     "dropdown": [
+      "ps-overview-appearance-menu 466px of 467 max, scrolls"
+     ],
+     "arrow": [
+      "ps-overview-appearance-menu arrow 898 button 898"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/overview-customize-1bar.png"
+  },
+  {
+   "id": "overview-bell-0bar",
+   "title": "Bel open, geen aankondigingsbalk",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "ellipsis": [
+      "span: \"Counter-Strike 2\""
+     ],
+     "popups": [
+      "ps-navigation-items 747,32 317x38 scrolls",
+      "ps-notify-menu 621,78 340x466 scrolls"
+     ],
+     "panes": [
+      "ps-notify-menu 464/2180",
+      "Servers 556/1230"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 461..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "dropdown": [
+      "ps-notify-menu 466px of 467 max, scrolls"
+     ],
+     "arrow": [
+      "ps-notify-menu arrow 942 button 942"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/overview-bell-0bar.png"
+  },
+  {
+   "id": "overview-admin-0bar",
+   "title": "Beheermenu open, geen aankondigingsbalk",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "ellipsis": [
+      "span: \"Counter-Strike 2\""
+     ],
+     "popups": [
+      "ps-navigation-items 747,32 317x38 scrolls",
+      "ps-admin-menu 185,78 600x433"
+     ],
+     "panes": [
+      "Servers 556/1230"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 461..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "dropdown": [
+      "ps-admin-menu 433px of 467 max"
+     ],
+     "arrow": [
+      "ps-admin-menu arrow 766 button 766"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/overview-admin-0bar.png"
+  },
+  {
+   "id": "overview-customize-0bar",
+   "title": "Weergave aanpassen open, geen aankondigingsbalk",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "ellipsis": [
+      "span: \"Counter-Strike 2\""
+     ],
+     "popups": [
+      "ps-navigation-items 747,32 317x38 scrolls",
+      "ps-overview-appearance-menu 517,78 400x466 scrolls"
+     ],
+     "panes": [
+      "ps-overview-appearance-menu 464/562",
+      "Servers 556/1230"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 461..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "dropdown": [
+      "ps-overview-appearance-menu 466px of 467 max, scrolls"
+     ],
+     "arrow": [
+      "ps-overview-appearance-menu arrow 898 button 898"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/overview-customize-0bar.png"
+  },
+  {
+   "id": "app-notifications",
+   "title": "Notifications",
+   "stand": "laag1100-dark",
+   "url": "/simplify-notifications",
+   "docTitle": "App notifications - Northwind Games",
+   "main": {
+    "url": "/simplify-notifications",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "card": "64..644 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/app-notifications.png"
+  },
+  {
+   "id": "app-server-maker",
+   "title": "Server Maker",
+   "stand": "laag1100-dark",
+   "url": "/server-maker",
+   "docTitle": "Server Maker - Northwind Games",
+   "main": {
+    "url": "/server-maker",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "ellipsis": [
+      "strong: \"Counter-Strike 2\"",
+      "strong: \"ARK: Survival Ascended\"",
+      "strong: \"Project Zomboid\"",
+      "strong: \"American Truck Simulator Dedicated Server\"",
+      "strong: \"Among Us - Impostor Server\"",
+      "strong: \"Ark: Survival Evolved\"",
+      "strong: \"Arma Reforger\"",
+      "strong: \"Assetto Corsa\"",
+      "strong: \"Assetto Corsa (Freeroam + AI)\"",
+      "strong: \"Astroneer Dedicated Server\""
+     ],
+     "panes": [
+      "form.game::data::wizard-step 384/942"
+     ],
+     "card": "64..644 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/app-server-maker.png"
+  },
+  {
+   "id": "profile",
+   "title": "Profiel",
+   "stand": "laag1100-dark",
+   "url": "/profile",
+   "docTitle": "Profile - Northwind Games",
+   "main": {
+    "url": "/profile",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "card": "64..644 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/profile.png"
+  },
+  {
+   "id": "server-console",
+   "title": "Server · Console (Survival SMP)",
+   "stand": "laag1100-dark",
+   "url": "/server/pi9xbdwq/console",
+   "docTitle": "Console - Northwind Games",
+   "main": {
+    "url": "/server/pi9xbdwq/console",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 392/716"
+     ],
+     "card": "246..640 of 700 fit=394px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,315 744x247; terminal 271,247 792x329; bar top 576",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,66 1028x106",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,246 794x394"
+     ],
+     "box": "246..640 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server-console.png"
+  },
+  {
+   "id": "server-console-typed",
+   "title": "Server · Console na een commando",
+   "stand": "laag1100-dark",
+   "url": "/server/pi9xbdwq/console",
+   "docTitle": "Console - Northwind Games",
+   "main": {
+    "url": "/server/pi9xbdwq/console",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 392/716"
+     ],
+     "card": "246..640 of 700 fit=394px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,315 744x247; terminal 271,247 792x329; bar top 576",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,66 1028x106",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,246 794x394"
+     ],
+     "box": "246..640 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server-console-typed.png"
+  },
+  {
+   "id": "server-console-big",
+   "title": "Server · Console vergroot",
+   "stand": "laag1100-dark",
+   "url": "/server/pi9xbdwq/console",
+   "docTitle": "Console - Northwind Games",
+   "main": {
+    "url": "/server/pi9xbdwq/console",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 392/716"
+     ],
+     "card": "246..640 of 700 fit=394px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,315 744x247; terminal 271,247 792x329; bar top 576",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,66 1028x106",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,246 794x394"
+     ],
+     "box": "246..640 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server-console-big.png"
+  },
+  {
+   "id": "server-more",
+   "title": "Server · ⋯-menu open",
+   "stand": "laag1100-dark",
+   "url": "/server/pi9xbdwq/console",
+   "docTitle": "Console - Northwind Games",
+   "main": {
+    "url": "/server/pi9xbdwq/console",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38",
+      "ps-info-menu 811,146 230x256"
+     ],
+     "panes": [
+      "Server sections 392/716"
+     ],
+     "card": "246..640 of 700 fit=394px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,315 744x247; terminal 271,247 792x329; bar top 576",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,66 1028x106",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,246 794x394"
+     ],
+     "box": "246..640 of 700",
+     "dropdown": [
+      "ps-info-menu 256px of 467 max"
+     ],
+     "arrow": [
+      "ps-info-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server-more.png"
+  },
+  {
+   "id": "server-colour",
+   "title": "Server · kleurkiezer open",
+   "stand": "laag1100-dark",
+   "url": "/server/pi9xbdwq/console",
+   "docTitle": "Console - Northwind Games",
+   "main": {
+    "url": "/server/pi9xbdwq/console",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38",
+      "ps-dropdown.is-end.ps-color-dropdown 793,146 248x205"
+     ],
+     "panes": [
+      "Server sections 392/716"
+     ],
+     "card": "246..640 of 700 fit=394px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,315 744x247; terminal 271,247 792x329; bar top 576",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,66 1028x106",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,246 794x394"
+     ],
+     "box": "246..640 of 700",
+     "dropdown": [
+      "ps-dropdown.is-end.ps-color-dropdown 205px of 467 max"
+     ],
+     "arrow": [
+      "ps-dropdown.is-end.ps-color-dropdown no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server-colour.png"
+  },
+  {
+   "id": "server-motd",
+   "title": "Server · MOTD-editor open",
+   "stand": "laag1100-dark",
+   "url": "/server/pi9xbdwq/console",
+   "docTitle": "Console - Northwind Games",
+   "main": {
+    "url": "/server/pi9xbdwq/console",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 392/716"
+     ],
+     "card": "246..640 of 700 fit=394px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,315 744x247; terminal 271,247 792x329; bar top 576",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,66 1028x106",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,246 794x394"
+     ],
+     "box": "246..640 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server-motd.png"
+  },
+  {
+   "id": "server-console",
+   "title": "Server · Console",
+   "stand": "laag1100-dark",
+   "url": "/server/pi9xbdwq/console",
+   "docTitle": "Console - Northwind Games",
+   "main": {
+    "url": "/server/pi9xbdwq/console",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 392/716"
+     ],
+     "card": "246..640 of 700 fit=394px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,315 744x247; terminal 271,247 792x329; bar top 576",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,66 1028x106",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,246 794x394"
+     ],
+     "box": "246..640 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server-console.png"
+  },
+  {
+   "id": "server-files",
+   "title": "Server · Files",
+   "stand": "laag1100-dark",
+   "url": "/server/pi9xbdwq/files",
+   "docTitle": "Files - Northwind Games",
+   "main": {
+    "url": "/server/pi9xbdwq/files",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 392/716"
+     ],
+     "card": "246..640 of 700 fit=394px",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,66 1028x106",
+      "fi-main-content 270,246 794x394"
+     ],
+     "box": "246..640 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server-files.png"
+  },
+  {
+   "id": "server-backups",
+   "title": "Server · Backups",
+   "stand": "laag1100-dark",
+   "url": "/server/pi9xbdwq/backups",
+   "docTitle": "Backups - Northwind Games",
+   "main": {
+    "url": "/server/pi9xbdwq/backups",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 392/716"
+     ],
+     "card": "246..640 of 700 fit=394px",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,66 1028x106",
+      "fi-main-content 270,246 794x394"
+     ],
+     "box": "246..640 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server-backups.png"
+  },
+  {
+   "id": "server-backups-new",
+   "title": "Server · Backups, nieuw-dialoog open",
+   "stand": "laag1100-dark",
+   "url": "/server/pi9xbdwq/backups",
+   "docTitle": "Backups - Northwind Games",
+   "main": {
+    "url": "/server/pi9xbdwq/backups",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 392/716"
+     ],
+     "card": "246..640 of 700 fit=394px",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,66 1028x106",
+      "fi-main-content 270,246 794x394"
+     ],
+     "box": "246..640 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server-backups-new.png"
+  },
+  {
+   "id": "server-schedules",
+   "title": "Server · Schedules",
+   "stand": "laag1100-dark",
+   "url": "/server/pi9xbdwq/schedules",
+   "docTitle": "Schedules - Northwind Games",
+   "main": {
+    "url": "/server/pi9xbdwq/schedules",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 392/716"
+     ],
+     "card": "246..640 of 700 fit=394px",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,66 1028x106",
+      "fi-main-content 270,246 794x394"
+     ],
+     "box": "246..640 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server-schedules.png"
+  },
+  {
+   "id": "server-schedule-edit",
+   "title": "Server · Schedule bewerken (3 taken)",
+   "stand": "laag1100-dark",
+   "url": "/server/pi9xbdwq/schedules/1/edit",
+   "docTitle": "Edit Schedule - Northwind Games",
+   "main": {
+    "url": "/server/pi9xbdwq/schedules/1/edit",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 392/716",
+      "fi-page-main 392/664"
+     ],
+     "card": "246..640 of 700 fit=394px",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,66 1028x106",
+      "fi-main-content 270,246 794x394"
+     ],
+     "box": "246..640 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server-schedule-edit.png"
+  },
+  {
+   "id": "server-schedules-new",
+   "title": "Server · Schedules, nieuw-dialoog open",
+   "stand": "laag1100-dark",
+   "url": "/server/pi9xbdwq/schedules/1/edit",
+   "docTitle": "Edit Schedule - Northwind Games",
+   "main": {
+    "url": "/server/pi9xbdwq/schedules/1/edit",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 392/716",
+      "fi-page-main 392/664"
+     ],
+     "card": "246..640 of 700 fit=394px",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,66 1028x106",
+      "fi-main-content 270,246 794x394"
+     ],
+     "box": "246..640 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server-schedules-new.png"
+  },
+  {
+   "id": "server-users",
+   "title": "Server · Users",
+   "stand": "laag1100-dark",
+   "url": "/server/pi9xbdwq/subusers",
+   "docTitle": "Users - Northwind Games",
+   "main": {
+    "url": "/server/pi9xbdwq/subusers",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 392/716"
+     ],
+     "card": "246..640 of 700 fit=394px",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,66 1028x106",
+      "fi-main-content 270,246 794x394"
+     ],
+     "box": "246..640 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server-users.png"
+  },
+  {
+   "id": "server-users-new",
+   "title": "Server · Users, nieuw-dialoog open",
+   "stand": "laag1100-dark",
+   "url": "/server/pi9xbdwq/subusers",
+   "docTitle": "Users - Northwind Games",
+   "main": {
+    "url": "/server/pi9xbdwq/subusers",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 392/716"
+     ],
+     "card": "246..640 of 700 fit=394px",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,66 1028x106",
+      "fi-main-content 270,246 794x394"
+     ],
+     "box": "246..640 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server-users-new.png"
+  },
+  {
+   "id": "server-databases",
+   "title": "Server · Databases",
+   "stand": "laag1100-dark",
+   "url": "/server/pi9xbdwq/databases",
+   "docTitle": "Databases - Northwind Games",
+   "main": {
+    "url": "/server/pi9xbdwq/databases",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 392/716"
+     ],
+     "card": "246..640 of 700 fit=394px",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,66 1028x106",
+      "fi-main-content 270,246 794x394"
+     ],
+     "box": "246..640 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server-databases.png"
+  },
+  {
+   "id": "server-databases-new",
+   "title": "Server · Databases, nieuw-dialoog open",
+   "stand": "laag1100-dark",
+   "url": "/server/pi9xbdwq/databases",
+   "docTitle": "Databases - Northwind Games",
+   "main": {
+    "url": "/server/pi9xbdwq/databases",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 392/716"
+     ],
+     "card": "246..640 of 700 fit=394px",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,66 1028x106",
+      "fi-main-content 270,246 794x394"
+     ],
+     "box": "246..640 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server-databases-new.png"
+  },
+  {
+   "id": "server-network",
+   "title": "Server · Network",
+   "stand": "laag1100-dark",
+   "url": "/server/pi9xbdwq/allocations",
+   "docTitle": "Network - Northwind Games",
+   "main": {
+    "url": "/server/pi9xbdwq/allocations",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 392/716"
+     ],
+     "card": "246..640 of 700 fit=394px",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,66 1028x106",
+      "fi-main-content 270,246 794x394"
+     ],
+     "box": "246..640 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server-network.png"
+  },
+  {
+   "id": "server-activity",
+   "title": "Server · Activity",
+   "stand": "laag1100-dark",
+   "url": "/server/pi9xbdwq/activities",
+   "docTitle": "Activity - Northwind Games",
+   "main": {
+    "url": "/server/pi9xbdwq/activities",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 392/716"
+     ],
+     "card": "246..640 of 700 fit=394px",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,66 1028x106",
+      "fi-main-content 270,246 794x394"
+     ],
+     "box": "246..640 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server-activity.png"
+  },
+  {
+   "id": "server-mounts",
+   "title": "Server · Mounts",
+   "stand": "laag1100-dark",
+   "url": "/server/pi9xbdwq/mounts",
+   "docTitle": "Mounts - Northwind Games",
+   "main": {
+    "url": "/server/pi9xbdwq/mounts",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 392/716"
+     ],
+     "card": "246..640 of 700 fit=394px",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,66 1028x106",
+      "fi-main-content 270,246 794x394"
+     ],
+     "box": "246..640 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server-mounts.png"
+  },
+  {
+   "id": "server-minecraft",
+   "title": "Server · Minecraft",
+   "stand": "laag1100-dark",
+   "url": "/server/pi9xbdwq/minecraft",
+   "docTitle": "Minecraft - Northwind Games",
+   "main": {
+    "url": "/server/pi9xbdwq/minecraft",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 392/716",
+      "fi-page-main 392/1110"
+     ],
+     "card": "246..640 of 700 fit=394px",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,66 1028x106",
+      "fi-main-content 270,246 794x394"
+     ],
+     "box": "246..640 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server-minecraft.png"
+  },
+  {
+   "id": "server-startup",
+   "title": "Server · Startup",
+   "stand": "laag1100-dark",
+   "url": "/server/pi9xbdwq/startup",
+   "docTitle": "Startup - Northwind Games",
+   "main": {
+    "url": "/server/pi9xbdwq/startup",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 392/716"
+     ],
+     "card": "246..640 of 700 fit=394px",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,66 1028x106",
+      "fi-main-content 270,246 794x394"
+     ],
+     "box": "246..640 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server-startup.png"
+  },
+  {
+   "id": "server-plugins",
+   "title": "Server · Plugins",
+   "stand": "laag1100-dark",
+   "url": "/server/pi9xbdwq/plugins",
+   "docTitle": "Plugins - Northwind Games",
+   "main": {
+    "url": "/server/pi9xbdwq/plugins",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 392/716",
+      "fi-section-content-ctn 287/1281",
+      "fi-section-content-ctn 0/227"
+     ],
+     "card": "246..640 of 700 fit=394px",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,66 1028x106",
+      "fi-main-content 270,246 794x394"
+     ],
+     "box": "246..640 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server-plugins.png"
+  },
+  {
+   "id": "server-settings",
+   "title": "Server · Settings",
+   "stand": "laag1100-dark",
+   "url": "/server/pi9xbdwq/settings",
+   "docTitle": "Settings - Northwind Games",
+   "main": {
+    "url": "/server/pi9xbdwq/settings",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 392/716",
+      "fi-page-main 392/1202"
+     ],
+     "card": "246..640 of 700 fit=394px",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,66 1028x106",
+      "fi-main-content 270,246 794x394"
+     ],
+     "box": "246..640 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server-settings.png"
+  },
+  {
+   "id": "server-players",
+   "title": "Server · Players",
+   "stand": "laag1100-dark",
+   "url": "/server/pi9xbdwq/players",
+   "docTitle": "Players - Northwind Games",
+   "main": {
+    "url": "/server/pi9xbdwq/players",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 392/716",
+      "fi-section-content-ctn 242/300",
+      "fi-section-content-ctn 62/101",
+      "fi-section-content-ctn 62/101",
+      "fi-section-content-ctn 62/101"
+     ],
+     "card": "246..640 of 700 fit=394px",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,66 1028x106",
+      "fi-main-content 270,246 794x394"
+     ],
+     "box": "246..640 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server-players.png"
+  },
+  {
+   "id": "server-webhooks",
+   "title": "Server · Webhooks",
+   "stand": "laag1100-dark",
+   "url": "/server/pi9xbdwq/webhook",
+   "docTitle": "Webhooks - Northwind Games",
+   "main": {
+    "url": "/server/pi9xbdwq/webhook",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 392/716"
+     ],
+     "card": "246..640 of 700 fit=394px",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,66 1028x106",
+      "fi-main-content 270,246 794x394"
+     ],
+     "box": "246..640 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server-webhooks.png"
+  },
+  {
+   "id": "server-website",
+   "title": "Server · Website",
+   "stand": "laag1100-dark",
+   "url": "/server/pi9xbdwq/website",
+   "docTitle": "Website - Northwind Games",
+   "main": {
+    "url": "/server/pi9xbdwq/website",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 392/716",
+      "fi-page-main 392/1038"
+     ],
+     "card": "246..640 of 700 fit=394px",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,66 1028x106",
+      "fi-main-content 270,246 794x394"
+     ],
+     "box": "246..640 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "295,841 744x420",
+     "url": "blank",
+     "w": 742,
+     "h": 418,
+     "dark": false,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 418,
+      "pageScrollW": 742,
+      "scope": "pelican"
+     }
+    }
+   ],
+   "shot": "laag1100-dark/server-website.png"
+  },
+  {
+   "id": "server-open-in-admin",
+   "title": "Server · Open in Admin",
+   "stand": "laag1100-dark",
+   "url": "/admin/servers/1/edit",
+   "docTitle": "Edit Survival SMP - Northwind Games",
+   "main": {
+    "url": "/admin/servers/1/edit",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (961 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 961,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 448/1450"
+     ],
+     "card": "0..905 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server-open-in-admin.png"
+  },
+  {
+   "id": "server2-console",
+   "title": "Server · Console (Valheim Vikings)",
+   "stand": "laag1100-dark",
+   "url": "/server/es92wwcb/console",
+   "docTitle": "Console - Northwind Games",
+   "main": {
+    "url": "/server/es92wwcb/console",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "ellipsis": [
+      "small: \"Used ↓ 29.7 MB / ↑ 953.7 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 791,32 273x38"
+     ],
+     "panes": [
+      "Server sections 333/593"
+     ],
+     "card": "304..639 of 700 fit=335px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,373 744x171; terminal 271,305 792x270; bar top 575",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 1028x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,304 794x335"
+     ],
+     "box": "304..639 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server2-console.png"
+  },
+  {
+   "id": "server3-console",
+   "title": "Server · Console (Skyblock, eigen icoon)",
+   "stand": "laag1100-dark",
+   "url": "/server/8skcuwf3/console",
+   "docTitle": "Console - Northwind Games",
+   "main": {
+    "url": "/server/8skcuwf3/console",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 392/716"
+     ],
+     "card": "246..640 of 700 fit=394px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,315 744x247; terminal 271,247 792x329; bar top 576",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,66 1028x106",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,246 794x394"
+     ],
+     "box": "246..640 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server3-console.png"
+  },
+  {
+   "id": "server4-console",
+   "title": "Server · Console (Creative Builds, icoon laadt niet)",
+   "stand": "laag1100-dark",
+   "url": "/server/omtnzywa/console",
+   "docTitle": "Console - Northwind Games",
+   "main": {
+    "url": "/server/omtnzywa/console",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 392/716"
+     ],
+     "card": "246..640 of 700 fit=394px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,315 744x247; terminal 271,247 792x329; bar top 576",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,66 1028x106",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,246 794x394"
+     ],
+     "box": "246..640 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server4-console.png"
+  },
+  {
+   "id": "server4-files",
+   "title": "Server · Files (Creative Builds)",
+   "stand": "laag1100-dark",
+   "url": "/server/omtnzywa/files",
+   "docTitle": "Files - Northwind Games",
+   "main": {
+    "url": "/server/omtnzywa/files",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 791,12 273x38"
+     ],
+     "panes": [
+      "Server sections 392/716"
+     ],
+     "card": "246..640 of 700 fit=394px",
+     "topbar": "brand 36..361, badges 366..398, actions 791..1064",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,66 1028x106",
+      "fi-main-content 270,246 794x394"
+     ],
+     "box": "246..640 of 700"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/server4-files.png"
+  },
+  {
+   "id": "admin-dashboard",
+   "title": "Beheer · Dashboard",
+   "stand": "laag1100-dark",
+   "url": "/admin",
+   "docTitle": "Dashboard - Northwind Games",
+   "main": {
+    "url": "/admin",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (719 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 719,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 448/1450"
+     ],
+     "card": "0..663 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-dashboard.png"
+  },
+  {
+   "id": "admin-usermenu",
+   "title": "Beheer · gebruikersmenu open",
+   "stand": "laag1100-dark",
+   "url": "/admin",
+   "docTitle": "Dashboard - Northwind Games",
+   "main": {
+    "url": "/admin",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (719 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 719,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 448/1450"
+     ],
+     "card": "0..663 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-usermenu.png"
+  },
+  {
+   "id": "admin-search",
+   "title": "Beheer · zoeken, resultaten open",
+   "stand": "laag1100-dark",
+   "url": "/admin",
+   "docTitle": "Dashboard - Northwind Games",
+   "main": {
+    "url": "/admin",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "tallnoscroll",
+      "text": "page is taller than the window (719 > 700), nothing scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 719,
+     "pageScrollW": 1100,
+     "popups": [
+      "fi-modal-window.fi-modal-window-has-content.fi-modal-window- 214,117 672x247"
+     ],
+     "panes": [
+      "Sidebar navigation 448/1450"
+     ],
+     "card": "0..663 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-search.png"
+  },
+  {
+   "id": "admin-sidebar-collapsed",
+   "title": "Beheer · zijbalk ingeklapt",
+   "stand": "laag1100-dark",
+   "url": "/admin",
+   "docTitle": "Dashboard - Northwind Games",
+   "main": {
+    "url": "/admin",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..644 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-sidebar-collapsed.png"
+  },
+  {
+   "id": "admin-health",
+   "title": "Beheer · Health",
+   "stand": "laag1100-dark",
+   "url": "/admin/health",
+   "docTitle": "Health - Northwind Games",
+   "main": {
+    "url": "/admin/health",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..644 of 700",
+     "scope": "simplify",
+     "boxes": [
+      "s-card.s-health 104,100 964x445"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-health.png"
+  },
+  {
+   "id": "admin-panel-logs",
+   "title": "Beheer · Panel Logs",
+   "stand": "laag1100-dark",
+   "url": "/admin/logs",
+   "docTitle": "Log Viewer - Northwind Games",
+   "main": {
+    "url": "/admin/logs",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..644 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-panel-logs.png"
+  },
+  {
+   "id": "admin-settings",
+   "title": "Beheer · Settings",
+   "stand": "laag1100-dark",
+   "url": "/admin/settings",
+   "docTitle": "Settings - Northwind Games",
+   "main": {
+    "url": "/admin/settings",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (769 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 769,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..713 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-settings.png"
+  },
+  {
+   "id": "admin-settings-tab1",
+   "title": "Beheer · Settings, tabblad 2",
+   "stand": "laag1100-dark",
+   "url": "/admin/settings?tab=captcha%3A%3Adata%3A%3Atab",
+   "docTitle": "Settings - Northwind Games",
+   "main": {
+    "url": "/admin/settings?tab=captcha%3A%3Adata%3A%3Atab",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..644 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-settings-tab1.png"
+  },
+  {
+   "id": "admin-settings-tab2",
+   "title": "Beheer · Settings, tabblad 3",
+   "stand": "laag1100-dark",
+   "url": "/admin/settings?tab=mail%3A%3Adata%3A%3Atab",
+   "docTitle": "Settings - Northwind Games",
+   "main": {
+    "url": "/admin/settings?tab=mail%3A%3Adata%3A%3Atab",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..644 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-settings-tab2.png"
+  },
+  {
+   "id": "admin-settings-tab3",
+   "title": "Beheer · Settings, tabblad 4",
+   "stand": "laag1100-dark",
+   "url": "/admin/settings?tab=backup%3A%3Adata%3A%3Atab",
+   "docTitle": "Settings - Northwind Games",
+   "main": {
+    "url": "/admin/settings?tab=backup%3A%3Adata%3A%3Atab",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..644 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-settings-tab3.png"
+  },
+  {
+   "id": "admin-settings-tab4",
+   "title": "Beheer · Settings, tabblad 5",
+   "stand": "laag1100-dark",
+   "url": "/admin/settings?tab=oauth%3A%3Adata%3A%3Atab",
+   "docTitle": "Settings - Northwind Games",
+   "main": {
+    "url": "/admin/settings?tab=oauth%3A%3Adata%3A%3Atab",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1149 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1149,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..1093 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-settings-tab4.png"
+  },
+  {
+   "id": "admin-settings-tab5",
+   "title": "Beheer · Settings, tabblad 6",
+   "stand": "laag1100-dark",
+   "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+   "docTitle": "Settings - Northwind Games",
+   "main": {
+    "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (765 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 765,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..709 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-settings-tab5.png"
+  },
+  {
+   "id": "admin-settings-tab6",
+   "title": "Beheer · Settings, tabblad 7",
+   "stand": "laag1100-dark",
+   "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+   "docTitle": "Settings - Northwind Games",
+   "main": {
+    "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (765 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 765,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..709 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-settings-tab6.png"
+  },
+  {
+   "id": "admin-settings-tab7",
+   "title": "Beheer · Settings, tabblad 8",
+   "stand": "laag1100-dark",
+   "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+   "docTitle": "Settings - Northwind Games",
+   "main": {
+    "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (765 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 765,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..709 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-settings-tab7.png"
+  },
+  {
+   "id": "admin-settings-tab8",
+   "title": "Beheer · Settings, tabblad 9",
+   "stand": "laag1100-dark",
+   "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+   "docTitle": "Settings - Northwind Games",
+   "main": {
+    "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (765 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 765,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..709 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-settings-tab8.png"
+  },
+  {
+   "id": "admin-simplify",
+   "title": "Beheer · Simplify",
+   "stand": "laag1100-dark",
+   "url": "/admin/simplify",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (951 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 951,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..895 of 700",
+     "scope": "simplify",
+     "boxes": [
+      "s-settings-tabs.fi-sc-tabs.fi-contained 104,152 964x711"
+     ],
+     "actionsBelow": [
+      "\"Run setup again\" at y=58",
+      "\"\" at y=58"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-simplify.png"
+  },
+  {
+   "id": "admin-simplify-tab1",
+   "title": "Beheer · Simplify, tabblad 2",
+   "stand": "laag1100-dark",
+   "url": "/admin/simplify?tab=appearance",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify?tab=appearance",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2077 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2077,
+     "pageScrollW": 1100,
+     "ellipsis": [
+      "b: \"Northwind Games\""
+     ],
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..2021 of 700",
+     "scope": "simplify",
+     "boxes": [
+      "s-settings-tabs.fi-sc-tabs.fi-contained 104,152 964x1837"
+     ],
+     "actionsBelow": [
+      "\"Run setup again\" at y=58",
+      "\"\" at y=58"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-simplify-tab1.png"
+  },
+  {
+   "id": "admin-simplify-tab2",
+   "title": "Beheer · Simplify, tabblad 3",
+   "stand": "laag1100-dark",
+   "url": "/admin/simplify?tab=addons",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify?tab=addons",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..644 of 700",
+     "scope": "simplify",
+     "boxes": [
+      "s-settings-tabs.fi-sc-tabs.fi-contained 104,152 964x376"
+     ],
+     "actionsBelow": [
+      "\"Run setup again\" at y=58",
+      "\"\" at y=58"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-simplify-tab2.png"
+  },
+  {
+   "id": "admin-simplify-tab3",
+   "title": "Beheer · Simplify, tabblad 4",
+   "stand": "laag1100-dark",
+   "url": "/admin/simplify?tab=pelican-general",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify?tab=pelican-general",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..644 of 700",
+     "scope": "simplify",
+     "boxes": [
+      "s-settings-tabs.fi-sc-tabs.fi-contained 104,152 964x379"
+     ],
+     "actionsBelow": [
+      "\"Run setup again\" at y=58",
+      "\"\" at y=58"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ]
+    }
+   },
+   "frames": [
+    {
+     "box": "391,202 650x1036",
+     "url": "/admin/settings?tab=general%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 650,
+     "h": 1036,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 1036,
+      "pageScrollW": 650,
+      "card": "0..1036 of 1036",
+      "scope": "frame",
+      "boxes": []
+     }
+    }
+   ],
+   "shot": "laag1100-dark/admin-simplify-tab3.png"
+  },
+  {
+   "id": "admin-simplify-tab4",
+   "title": "Beheer · Simplify, tabblad 5",
+   "stand": "laag1100-dark",
+   "url": "/admin/simplify?tab=pelican-captcha",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify?tab=pelican-captcha",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..644 of 700",
+     "scope": "simplify",
+     "boxes": [
+      "s-settings-tabs.fi-sc-tabs.fi-contained 104,152 964x379"
+     ],
+     "actionsBelow": [
+      "\"Run setup again\" at y=58",
+      "\"\" at y=58"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ]
+    }
+   },
+   "frames": [
+    {
+     "box": "391,202 650x320",
+     "url": "/admin/settings?tab=captcha%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 650,
+     "h": 320,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "offscreen",
+       "text": "control off the screen: Expand section \"\" (622,54 36x36)"
+      },
+      {
+       "kind": "clipped",
+       "text": "content clipped by its box: Expand section \"\" sticks 8px out of fi-layout"
+      }
+     ],
+     "info": {
+      "pageScrollH": 320,
+      "pageScrollW": 650,
+      "card": "0..320 of 320",
+      "scope": "frame",
+      "boxes": []
+     }
+    }
+   ],
+   "shot": "laag1100-dark/admin-simplify-tab4.png"
+  },
+  {
+   "id": "admin-simplify-tab5",
+   "title": "Beheer · Simplify, tabblad 6",
+   "stand": "laag1100-dark",
+   "url": "/admin/simplify?tab=pelican-mail",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify?tab=pelican-mail",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..644 of 700",
+     "scope": "simplify",
+     "boxes": [
+      "s-settings-tabs.fi-sc-tabs.fi-contained 104,152 964x379"
+     ],
+     "actionsBelow": [
+      "\"Run setup again\" at y=58",
+      "\"\" at y=58"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ]
+    }
+   },
+   "frames": [
+    {
+     "box": "391,202 650x483",
+     "url": "/admin/settings?tab=mail%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 650,
+     "h": 483,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 483,
+      "pageScrollW": 650,
+      "card": "0..483 of 483",
+      "scope": "frame",
+      "boxes": []
+     }
+    }
+   ],
+   "shot": "laag1100-dark/admin-simplify-tab5.png"
+  },
+  {
+   "id": "admin-simplify-tab6",
+   "title": "Beheer · Simplify, tabblad 7",
+   "stand": "laag1100-dark",
+   "url": "/admin/simplify?tab=pelican-backup",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify?tab=pelican-backup",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..644 of 700",
+     "scope": "simplify",
+     "boxes": [
+      "s-settings-tabs.fi-sc-tabs.fi-contained 104,152 964x405"
+     ],
+     "actionsBelow": [
+      "\"Run setup again\" at y=58",
+      "\"\" at y=58"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ]
+    }
+   },
+   "frames": [
+    {
+     "box": "391,202 650x346",
+     "url": "/admin/settings?tab=backup%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 650,
+     "h": 346,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 346,
+      "pageScrollW": 650,
+      "card": "0..346 of 346",
+      "scope": "frame",
+      "boxes": []
+     }
+    }
+   ],
+   "shot": "laag1100-dark/admin-simplify-tab6.png"
+  },
+  {
+   "id": "admin-simplify-tab7",
+   "title": "Beheer · Simplify, tabblad 8",
+   "stand": "laag1100-dark",
+   "url": "/admin/simplify?tab=pelican-oauth",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify?tab=pelican-oauth",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1079 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1079,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..1023 of 700",
+     "scope": "simplify",
+     "boxes": [
+      "s-settings-tabs.fi-sc-tabs.fi-contained 104,152 964x839"
+     ],
+     "actionsBelow": [
+      "\"Run setup again\" at y=58",
+      "\"\" at y=58"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ]
+    }
+   },
+   "frames": [
+    {
+     "box": "391,202 650x780",
+     "url": "/admin/settings?tab=oauth%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 650,
+     "h": 780,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "offscreen",
+       "text": "control off the screen: Expand section \"\" (622,54 36x36) | Expand section \"\" (622,117 36x36) | Expand section \"\" (622,180 36x36) | Expand section \"\" (622,243 36x36) | Expand section \"\" (622,306 36x36) | Expand section \"\" (622,369 36x36) | Expand section \"\" (622,432 36x36) | Expand section \"\" (622,495 36x36)"
+      },
+      {
+       "kind": "clipped",
+       "text": "content clipped by its box: Expand section \"\" sticks 8px out of fi-layout"
+      }
+     ],
+     "info": {
+      "pageScrollH": 780,
+      "pageScrollW": 650,
+      "card": "0..780 of 780",
+      "scope": "frame",
+      "boxes": []
+     }
+    }
+   ],
+   "shot": "laag1100-dark/admin-simplify-tab7.png"
+  },
+  {
+   "id": "admin-simplify-tab8",
+   "title": "Beheer · Simplify, tabblad 9",
+   "stand": "laag1100-dark",
+   "url": "/admin/simplify?tab=pelican-misc",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify?tab=pelican-misc",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..644 of 700",
+     "scope": "simplify",
+     "boxes": [
+      "s-settings-tabs.fi-sc-tabs.fi-contained 104,152 964x379"
+     ],
+     "actionsBelow": [
+      "\"Run setup again\" at y=58",
+      "\"\" at y=58"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ]
+    }
+   },
+   "frames": [
+    {
+     "box": "391,202 650x736",
+     "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 650,
+     "h": 736,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "offscreen",
+       "text": "control off the screen: Expand section \"\" (622,54 36x36) | Expand section \"\" (622,161 36x36) | Expand section \"\" (622,248 36x36) | Expand section \"\" (622,335 36x36) | Expand section \"\" (622,442 36x36) | Expand section \"\" (622,529 36x36) | Expand section \"\" (622,616 36x36)"
+      },
+      {
+       "kind": "clipped",
+       "text": "content clipped by its box: Expand section \"\" sticks 8px out of fi-layout"
+      }
+     ],
+     "info": {
+      "pageScrollH": 736,
+      "pageScrollW": 650,
+      "card": "0..736 of 736",
+      "scope": "frame",
+      "boxes": []
+     }
+    }
+   ],
+   "shot": "laag1100-dark/admin-simplify-tab8.png"
+  },
+  {
+   "id": "admin-people-roles",
+   "title": "Beheer · People & roles",
+   "stand": "laag1100-dark",
+   "url": "/admin/simplify-people",
+   "docTitle": "People & roles - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-people",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (795 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 795,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..739 of 700",
+     "scope": "simplify",
+     "boxes": [
+      "s-card 104,152 964x555"
+     ],
+     "actionsBelow": [
+      "\"People\" at y=102",
+      "\"Roles\" at y=102",
+      "\"Add person\" at y=100"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-people-roles.png"
+  },
+  {
+   "id": "admin-people-roles-tab1",
+   "title": "Beheer · People & roles, tabblad 2",
+   "stand": "laag1100-dark",
+   "url": "/admin/simplify-people",
+   "docTitle": "People & roles - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-people",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..644 of 700",
+     "scope": "simplify",
+     "boxes": [
+      "s-card 104,152 964x210"
+     ],
+     "actionsBelow": [
+      "\"People\" at y=102",
+      "\"Roles\" at y=102",
+      "\"Add role\" at y=100"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-people-roles-tab1.png"
+  },
+  {
+   "id": "admin-people-add",
+   "title": "Beheer · People, persoon toevoegen",
+   "stand": "laag1100-dark",
+   "url": "/admin/simplify-people",
+   "docTitle": "People & roles - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-people",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "fi-modal-window.fi-modal-window-has-close-btn.fi-modal-windo 204,0 896x700 scrolls"
+     ],
+     "panes": [
+      "Sidebar navigation 511/1256",
+      "fi-modal-window.fi-modal-window-has-close-btn.fi-modal-windo 700/2748"
+     ],
+     "card": "0..644 of 700",
+     "scope": "simplify",
+     "boxes": [
+      "s-card 104,152 964x210"
+     ],
+     "actionsBelow": [
+      "\"People\" at y=102",
+      "\"Roles\" at y=102",
+      "\"Add role\" at y=100"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-people-add.png"
+  },
+  {
+   "id": "admin-website-embed",
+   "title": "Beheer · Website embed",
+   "stand": "laag1100-dark",
+   "url": "/admin/simplify-embed",
+   "docTitle": "Website embed - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-embed",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2048 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2048,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..1992 of 700",
+     "scope": "simplify",
+     "boxes": [
+      "fi-section.fi-section-has-header 104,100 964x395",
+      "fi-section.fi-section-has-header 104,519 964x373",
+      "fi-section.fi-section-has-header 104,916 964x1044"
+     ],
+     "actionsBelow": [
+      "\"\" at y=32"
+     ]
+    }
+   },
+   "frames": [
+    {
+     "box": "128,1516 916x420",
+     "url": "blank",
+     "w": 914,
+     "h": 418,
+     "dark": false,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 418,
+      "pageScrollW": 914,
+      "scope": "pelican"
+     }
+    }
+   ],
+   "shot": "laag1100-dark/admin-website-embed.png"
+  },
+  {
+   "id": "admin-automatic-subdomains",
+   "title": "Beheer · Automatic subdomains",
+   "stand": "laag1100-dark",
+   "url": "/admin/simplify-subdomains",
+   "docTitle": "Automatic subdomains - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-subdomains",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1046 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1046,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..990 of 700",
+     "scope": "simplify",
+     "boxes": [
+      "fi-section.fi-section-has-header 104,100 964x397",
+      "fi-section.fi-section-has-header 104,521 964x437"
+     ],
+     "actionsBelow": [
+      "\"\" at y=32"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-automatic-subdomains.png"
+  },
+  {
+   "id": "admin-egg-updates",
+   "title": "Beheer · Egg Updates",
+   "stand": "laag1100-dark",
+   "url": "/admin/egg-updates",
+   "docTitle": "Egg Updates - Northwind Games",
+   "main": {
+    "url": "/admin/egg-updates",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..644 of 700",
+     "scope": "simplify",
+     "boxes": [
+      "fi-ta-ctn.fi-ta-ctn-with-header 104,136 964x352"
+     ],
+     "actionsBelow": [
+      "\"\" at y=50",
+      "\"\" at y=50",
+      "\"\" at y=50"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-egg-updates.png"
+  },
+  {
+   "id": "admin-explain",
+   "title": "Beheer · Explain",
+   "stand": "laag1100-dark",
+   "url": "/admin/simplify-explain",
+   "docTitle": "Explain - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-explain",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (758 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 758,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..702 of 700",
+     "scope": "simplify",
+     "boxes": [
+      "fi-section.fi-section-has-header 104,100 964x349",
+      "fi-section.fi-section-has-header 104,473 964x197"
+     ],
+     "actionsBelow": [
+      "\"\" at y=32",
+      "\"\" at y=32"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-explain.png"
+  },
+  {
+   "id": "admin-hosting",
+   "title": "Beheer · Hosting",
+   "stand": "laag1100-dark",
+   "url": "/admin/simplify-hosting",
+   "docTitle": "Hosting - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-hosting",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (814 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 814,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..758 of 700",
+     "scope": "simplify",
+     "boxes": [
+      "fi-section.fi-section-has-header 104,100 964x449",
+      "fi-section.fi-section-has-header 104,573 964x153"
+     ],
+     "actionsBelow": [
+      "\"\" at y=32"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-hosting.png"
+  },
+  {
+   "id": "admin-server-maker",
+   "title": "Beheer · Server Maker",
+   "stand": "laag1100-dark",
+   "url": "/admin/server-maker",
+   "docTitle": "Server Maker - Northwind Games",
+   "main": {
+    "url": "/admin/server-maker",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "ellipsis": [
+      "strong: \"ARK: Survival Ascended\"",
+      "strong: \"American Truck Simulator Dedicated Server\"",
+      "strong: \"Among Us - Impostor Server\"",
+      "strong: \"Assetto Corsa (Freeroam + AI)\"",
+      "strong: \"Astroneer Dedicated Server\""
+     ],
+     "panes": [
+      "Sidebar navigation 511/1256",
+      "form.game::data::wizard-step 448/1121"
+     ],
+     "card": "0..644 of 700",
+     "scope": "simplify",
+     "boxes": [
+      "form.data::wizard 104,100 964x512"
+     ],
+     "actionsBelow": [
+      "\"\" at y=32"
+     ],
+     "filamentButtons": [
+      "\"Next\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-server-maker.png"
+  },
+  {
+   "id": "admin-maker-settings",
+   "title": "Beheer · Maker Settings",
+   "stand": "laag1100-dark",
+   "url": "/admin/server-maker/settings",
+   "docTitle": "Server Maker settings - Northwind Games",
+   "main": {
+    "url": "/admin/server-maker/settings",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..644 of 700",
+     "scope": "simplify",
+     "boxes": [
+      "fi-section.fi-section-has-header 104,100 964x149",
+      "fi-section.fi-section-has-header 104,273 964x197"
+     ],
+     "actionsBelow": [
+      "\"\" at y=32"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-maker-settings.png"
+  },
+  {
+   "id": "admin-toolkit",
+   "title": "Beheer · Toolkit",
+   "stand": "laag1100-dark",
+   "url": "/admin/simplify-toolkit",
+   "docTitle": "Toolkit - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-toolkit",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (814 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 814,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..758 of 700",
+     "scope": "simplify",
+     "boxes": [
+      "fi-section.fi-section-has-header 104,100 964x237",
+      "fi-section.fi-section-has-header 104,361 964x365"
+     ],
+     "actionsBelow": [
+      "\"\" at y=32"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-toolkit.png"
+  },
+  {
+   "id": "admin-api-keys",
+   "title": "Beheer · API Keys",
+   "stand": "laag1100-dark",
+   "url": "/admin/api-keys",
+   "docTitle": "Application API Keys - Northwind Games",
+   "main": {
+    "url": "/admin/api-keys",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..644 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-api-keys.png"
+  },
+  {
+   "id": "admin-backup-hosts",
+   "title": "Beheer · Backup Hosts",
+   "stand": "laag1100-dark",
+   "url": "/admin/backup-hosts",
+   "docTitle": "Backup Hosts - Northwind Games",
+   "main": {
+    "url": "/admin/backup-hosts",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..644 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-backup-hosts.png"
+  },
+  {
+   "id": "admin-database-hosts",
+   "title": "Beheer · Database Hosts",
+   "stand": "laag1100-dark",
+   "url": "/admin/database-hosts",
+   "docTitle": "Database Hosts - Northwind Games",
+   "main": {
+    "url": "/admin/database-hosts",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..644 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-database-hosts.png"
+  },
+  {
+   "id": "admin-eggs",
+   "title": "Beheer · Eggs",
+   "stand": "laag1100-dark",
+   "url": "/admin/eggs",
+   "docTitle": "Eggs - Northwind Games",
+   "main": {
+    "url": "/admin/eggs",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1130 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1130,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..1074 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-eggs.png"
+  },
+  {
+   "id": "admin-eggs-edit",
+   "title": "Beheer · Eggs, bewerken",
+   "stand": "laag1100-dark",
+   "url": "/admin/eggs/1/edit",
+   "docTitle": "Edit Paper - Northwind Games",
+   "main": {
+    "url": "/admin/eggs/1/edit",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1682 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1682,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..1626 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-eggs-edit.png"
+  },
+  {
+   "id": "admin-eggs-edit-tab1",
+   "title": "Beheer · Eggs, bewerken, tabblad 2",
+   "stand": "laag1100-dark",
+   "url": "/admin/eggs/1/edit?tab=process-management%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Paper - Northwind Games",
+   "main": {
+    "url": "/admin/eggs/1/edit?tab=process-management%3A%3Adata%3A%3Atab",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1589 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1589,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..1533 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-eggs-edit-tab1.png"
+  },
+  {
+   "id": "admin-eggs-edit-tab2",
+   "title": "Beheer · Eggs, bewerken, tabblad 3",
+   "stand": "laag1100-dark",
+   "url": "/admin/eggs/1/edit?tab=egg-variables%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Paper - Northwind Games",
+   "main": {
+    "url": "/admin/eggs/1/edit?tab=egg-variables%3A%3Adata%3A%3Atab",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (765 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 765,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..709 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-eggs-edit-tab2.png"
+  },
+  {
+   "id": "admin-eggs-edit-tab3",
+   "title": "Beheer · Eggs, bewerken, tabblad 4",
+   "stand": "laag1100-dark",
+   "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Paper - Northwind Games",
+   "main": {
+    "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1471 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1471,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..1415 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-eggs-edit-tab3.png"
+  },
+  {
+   "id": "admin-eggs-edit-tab4",
+   "title": "Beheer · Eggs, bewerken, tabblad 5",
+   "stand": "laag1100-dark",
+   "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Paper - Northwind Games",
+   "main": {
+    "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1471 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1471,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..1415 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-eggs-edit-tab4.png"
+  },
+  {
+   "id": "admin-eggs-edit-tab5",
+   "title": "Beheer · Eggs, bewerken, tabblad 6",
+   "stand": "laag1100-dark",
+   "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Paper - Northwind Games",
+   "main": {
+    "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1471 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1471,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..1415 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-eggs-edit-tab5.png"
+  },
+  {
+   "id": "admin-eggs-edit-tab6",
+   "title": "Beheer · Eggs, bewerken, tabblad 7",
+   "stand": "laag1100-dark",
+   "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Paper - Northwind Games",
+   "main": {
+    "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1471 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1471,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..1415 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-eggs-edit-tab6.png"
+  },
+  {
+   "id": "admin-mounts",
+   "title": "Beheer · Mounts",
+   "stand": "laag1100-dark",
+   "url": "/admin/mounts",
+   "docTitle": "Mounts - Northwind Games",
+   "main": {
+    "url": "/admin/mounts",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..644 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-mounts.png"
+  },
+  {
+   "id": "admin-nodes",
+   "title": "Beheer · Nodes",
+   "stand": "laag1100-dark",
+   "url": "/admin/nodes",
+   "docTitle": "Nodes - Northwind Games",
+   "main": {
+    "url": "/admin/nodes",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..644 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-nodes.png"
+  },
+  {
+   "id": "admin-nodes-edit",
+   "title": "Beheer · Nodes, bewerken",
+   "stand": "laag1100-dark",
+   "url": "/admin/nodes/1/edit",
+   "docTitle": "Edit Amsterdam - Northwind Games",
+   "main": {
+    "url": "/admin/nodes/1/edit",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1299 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1299,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..1243 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-nodes-edit.png"
+  },
+  {
+   "id": "admin-nodes-edit-tab1",
+   "title": "Beheer · Nodes, bewerken, tabblad 2",
+   "stand": "laag1100-dark",
+   "url": "/admin/nodes/1/edit?tab=basic-settings%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Amsterdam - Northwind Games",
+   "main": {
+    "url": "/admin/nodes/1/edit?tab=basic-settings%3A%3Adata%3A%3Atab",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1565 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1565,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..1509 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-nodes-edit-tab1.png"
+  },
+  {
+   "id": "admin-nodes-edit-tab2",
+   "title": "Beheer · Nodes, bewerken, tabblad 3",
+   "stand": "laag1100-dark",
+   "url": "/admin/nodes/1/edit?tab=advanced-settings%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Amsterdam - Northwind Games",
+   "main": {
+    "url": "/admin/nodes/1/edit?tab=advanced-settings%3A%3Adata%3A%3Atab",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1733 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1733,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..1677 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-nodes-edit-tab2.png"
+  },
+  {
+   "id": "admin-nodes-edit-tab3",
+   "title": "Beheer · Nodes, bewerken, tabblad 4",
+   "stand": "laag1100-dark",
+   "url": "/admin/nodes/1/edit?tab=configuration-file%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Amsterdam - Northwind Games",
+   "main": {
+    "url": "/admin/nodes/1/edit?tab=configuration-file%3A%3Adata%3A%3Atab",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1825 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1825,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..1769 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-nodes-edit-tab3.png"
+  },
+  {
+   "id": "admin-nodes-edit-tab4",
+   "title": "Beheer · Nodes, bewerken, tabblad 5",
+   "stand": "laag1100-dark",
+   "url": "/admin/nodes/1/edit?tab=diagnostics%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Amsterdam - Northwind Games",
+   "main": {
+    "url": "/admin/nodes/1/edit?tab=diagnostics%3A%3Adata%3A%3Atab",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1452 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1452,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..1396 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-nodes-edit-tab4.png"
+  },
+  {
+   "id": "admin-nodes-edit-tab5",
+   "title": "Beheer · Nodes, bewerken, tabblad 6",
+   "stand": "laag1100-dark",
+   "url": "/admin/nodes/1/edit?tab=diagnostics%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Amsterdam - Northwind Games",
+   "main": {
+    "url": "/admin/nodes/1/edit?tab=diagnostics%3A%3Adata%3A%3Atab",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1452 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1452,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..1396 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-nodes-edit-tab5.png"
+  },
+  {
+   "id": "admin-nodes-edit-tab6",
+   "title": "Beheer · Nodes, bewerken, tabblad 7",
+   "stand": "laag1100-dark",
+   "url": "/admin/nodes/1/edit?tab=diagnostics%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Amsterdam - Northwind Games",
+   "main": {
+    "url": "/admin/nodes/1/edit?tab=diagnostics%3A%3Adata%3A%3Atab",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1452 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1452,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..1396 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-nodes-edit-tab6.png"
+  },
+  {
+   "id": "admin-plugins",
+   "title": "Beheer · Plugins",
+   "stand": "laag1100-dark",
+   "url": "/admin/plugins",
+   "docTitle": "Plugins - Northwind Games",
+   "main": {
+    "url": "/admin/plugins",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (989 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 989,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..933 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-plugins.png"
+  },
+  {
+   "id": "admin-roles",
+   "title": "Beheer · Roles",
+   "stand": "laag1100-dark",
+   "url": "/admin/roles",
+   "docTitle": "Roles - Northwind Games",
+   "main": {
+    "url": "/admin/roles",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..644 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-roles.png"
+  },
+  {
+   "id": "admin-roles-edit",
+   "title": "Beheer · Roles, bewerken",
+   "stand": "laag1100-dark",
+   "url": "/admin/roles/1/edit",
+   "docTitle": "Edit Root Admin - Northwind Games",
+   "main": {
+    "url": "/admin/roles/1/edit",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..644 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-roles-edit.png"
+  },
+  {
+   "id": "admin-servers",
+   "title": "Beheer · Servers",
+   "stand": "laag1100-dark",
+   "url": "/admin/servers",
+   "docTitle": "Servers - Northwind Games",
+   "main": {
+    "url": "/admin/servers",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1085 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1085,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..1029 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-servers.png"
+  },
+  {
+   "id": "admin-servers-edit",
+   "title": "Beheer · Servers, bewerken",
+   "stand": "laag1100-dark",
+   "url": "/admin/servers/1/edit",
+   "docTitle": "Edit Survival SMP - Northwind Games",
+   "main": {
+    "url": "/admin/servers/1/edit",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (961 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 961,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..905 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-servers-edit.png"
+  },
+  {
+   "id": "admin-servers-edit-tab1",
+   "title": "Beheer · Servers, bewerken, tabblad 2",
+   "stand": "laag1100-dark",
+   "url": "/admin/servers/1/edit?tab=environment-configuration%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Survival SMP - Northwind Games",
+   "main": {
+    "url": "/admin/servers/1/edit?tab=environment-configuration%3A%3Adata%3A%3Atab",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1467 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1467,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..1411 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-servers-edit-tab1.png"
+  },
+  {
+   "id": "admin-servers-edit-tab2",
+   "title": "Beheer · Servers, bewerken, tabblad 3",
+   "stand": "laag1100-dark",
+   "url": "/admin/servers/1/edit?tab=egg%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Survival SMP - Northwind Games",
+   "main": {
+    "url": "/admin/servers/1/edit?tab=egg%3A%3Adata%3A%3Atab",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (896 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 896,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..840 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-servers-edit-tab2.png"
+  },
+  {
+   "id": "admin-servers-edit-tab3",
+   "title": "Beheer · Servers, bewerken, tabblad 4",
+   "stand": "laag1100-dark",
+   "url": "/admin/servers/1/edit?tab=mounts%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Survival SMP - Northwind Games",
+   "main": {
+    "url": "/admin/servers/1/edit?tab=mounts%3A%3Adata%3A%3Atab",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..644 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-servers-edit-tab3.png"
+  },
+  {
+   "id": "admin-servers-edit-tab4",
+   "title": "Beheer · Servers, bewerken, tabblad 5",
+   "stand": "laag1100-dark",
+   "url": "/admin/servers/1/edit?tab=actions%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Survival SMP - Northwind Games",
+   "main": {
+    "url": "/admin/servers/1/edit?tab=actions%3A%3Adata%3A%3Atab",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1029 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1029,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..973 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-servers-edit-tab4.png"
+  },
+  {
+   "id": "admin-servers-edit-tab5",
+   "title": "Beheer · Servers, bewerken, tabblad 6",
+   "stand": "laag1100-dark",
+   "url": "/admin/servers/1/edit?tab=actions%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Survival SMP - Northwind Games",
+   "main": {
+    "url": "/admin/servers/1/edit?tab=actions%3A%3Adata%3A%3Atab",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1029 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1029,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..973 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-servers-edit-tab5.png"
+  },
+  {
+   "id": "admin-servers-edit-tab6",
+   "title": "Beheer · Servers, bewerken, tabblad 7",
+   "stand": "laag1100-dark",
+   "url": "/admin/servers/1/edit?tab=actions%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Survival SMP - Northwind Games",
+   "main": {
+    "url": "/admin/servers/1/edit?tab=actions%3A%3Adata%3A%3Atab",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1029 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1029,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..973 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-servers-edit-tab6.png"
+  },
+  {
+   "id": "admin-users",
+   "title": "Beheer · Users",
+   "stand": "laag1100-dark",
+   "url": "/admin/users",
+   "docTitle": "Users - Northwind Games",
+   "main": {
+    "url": "/admin/users",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (800 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 800,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..744 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-users.png"
+  },
+  {
+   "id": "admin-users-edit",
+   "title": "Beheer · Users, bewerken",
+   "stand": "laag1100-dark",
+   "url": "/admin/users/1/edit",
+   "docTitle": "Edit jeroen - Northwind Games",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1602 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1602,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..1546 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-users-edit.png"
+  },
+  {
+   "id": "admin-users-edit-tab1",
+   "title": "Beheer · Users, bewerken, tabblad 2",
+   "stand": "laag1100-dark",
+   "url": "/admin/users/1/edit",
+   "docTitle": "Edit jeroen - Northwind Games",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1184 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1184,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..1128 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-users-edit-tab1.png"
+  },
+  {
+   "id": "admin-users-edit-tab2",
+   "title": "Beheer · Users, bewerken, tabblad 3",
+   "stand": "laag1100-dark",
+   "url": "/admin/users/1/edit",
+   "docTitle": "Edit jeroen - Northwind Games",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1382 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1382,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..1326 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-users-edit-tab2.png"
+  },
+  {
+   "id": "admin-users-edit-tab3",
+   "title": "Beheer · Users, bewerken, tabblad 4",
+   "stand": "laag1100-dark",
+   "url": "/admin/users/1/edit",
+   "docTitle": "Edit jeroen - Northwind Games",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1200 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1200,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..1144 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-users-edit-tab3.png"
+  },
+  {
+   "id": "admin-users-edit-tab4",
+   "title": "Beheer · Users, bewerken, tabblad 5",
+   "stand": "laag1100-dark",
+   "url": "/admin/users/1/edit",
+   "docTitle": "Edit jeroen - Northwind Games",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1200 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1200,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..1144 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-users-edit-tab4.png"
+  },
+  {
+   "id": "admin-users-edit-tab5",
+   "title": "Beheer · Users, bewerken, tabblad 6",
+   "stand": "laag1100-dark",
+   "url": "/admin/users/1/edit",
+   "docTitle": "Edit jeroen - Northwind Games",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1200 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1200,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..1144 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-users-edit-tab5.png"
+  },
+  {
+   "id": "admin-users-edit-tab6",
+   "title": "Beheer · Users, bewerken, tabblad 7",
+   "stand": "laag1100-dark",
+   "url": "/admin/users/1/edit",
+   "docTitle": "Edit jeroen - Northwind Games",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1200 > 700), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1200,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..1144 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-users-edit-tab6.png"
+  },
+  {
+   "id": "admin-webhooks",
+   "title": "Beheer · Webhooks",
+   "stand": "laag1100-dark",
+   "url": "/admin/webhooks",
+   "docTitle": "Webhooks - Northwind Games",
+   "main": {
+    "url": "/admin/webhooks",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..644 of 700",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-webhooks.png"
+  },
+  {
+   "id": "admin-announcements",
+   "title": "Beheer · Announcements",
+   "stand": "laag1100-dark",
+   "url": "/admin/simplify-announcements",
+   "docTitle": "Announcements - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-announcements",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "panes": [
+      "Sidebar navigation 511/1256"
+     ],
+     "card": "0..644 of 700",
+     "scope": "simplify",
+     "boxes": [
+      "fi-ta-ctn.fi-ta-ctn-with-content-layout.fi-ta-ctn-with-foote 104,100 964x347"
+     ],
+     "actionsBelow": [
+      "\"\" at y=32",
+      "\"\" at y=32"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1100-dark/admin-announcements.png"
+  },
+  {
+   "id": "host",
+   "title": "Hostmodus",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/health?simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (514 > 508), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 514,
+      "pageScrollW": 776,
+      "card": "0..514 of 508",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host.png"
+  },
+  {
+   "id": "host-servers",
+   "title": "Hostmodus · Servers",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/health?simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (514 > 508), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 514,
+      "pageScrollW": 776,
+      "card": "0..514 of 508",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-servers.png"
+  },
+  {
+   "id": "host-servers-servers",
+   "title": "Hostmodus · Servers · Servers",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/servers?simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (1076 > 508), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 1076,
+      "pageScrollW": 776,
+      "card": "0..1076 of 508",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 2
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-servers-servers.png"
+  },
+  {
+   "id": "host-servers-eggs",
+   "title": "Hostmodus · Servers · Eggs",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/eggs?simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (961 > 508), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 961,
+      "pageScrollW": 776,
+      "card": "0..961 of 508",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 3
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-servers-eggs.png"
+  },
+  {
+   "id": "host-servers-mounts",
+   "title": "Hostmodus · Servers · Mounts",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/mounts?simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 508,
+      "pageScrollW": 776,
+      "card": "0..508 of 508",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-servers-mounts.png"
+  },
+  {
+   "id": "host-nodes",
+   "title": "Hostmodus · Nodes",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/458"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/mounts?simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 508,
+      "pageScrollW": 776,
+      "card": "0..508 of 508",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-nodes.png"
+  },
+  {
+   "id": "host-nodes-nodes",
+   "title": "Hostmodus · Nodes · Nodes",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/458"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/nodes?simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 508,
+      "pageScrollW": 776,
+      "card": "0..508 of 508",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 2
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-nodes-nodes.png"
+  },
+  {
+   "id": "host-nodes-database-hosts",
+   "title": "Hostmodus · Nodes · Database Hosts",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/458"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/database-hosts?simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 508,
+      "pageScrollW": 776,
+      "card": "0..508 of 508",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-nodes-database-hosts.png"
+  },
+  {
+   "id": "host-nodes-backup-hosts",
+   "title": "Hostmodus · Nodes · Backup Hosts",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/458"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/backup-hosts?simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 508,
+      "pageScrollW": 776,
+      "card": "0..508 of 508",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-nodes-backup-hosts.png"
+  },
+  {
+   "id": "host-people",
+   "title": "Hostmodus · People",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/548"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/backup-hosts?simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 508,
+      "pageScrollW": 776,
+      "card": "0..508 of 508",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-people.png"
+  },
+  {
+   "id": "host-people-users",
+   "title": "Hostmodus · People · Users",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/548"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/users?simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 508,
+      "pageScrollW": 776,
+      "card": "0..508 of 508",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 2
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-people-users.png"
+  },
+  {
+   "id": "host-people-roles",
+   "title": "Hostmodus · People · Roles",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/548"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/roles?simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 508,
+      "pageScrollW": 776,
+      "card": "0..508 of 508",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-people-roles.png"
+  },
+  {
+   "id": "host-people-people-roles",
+   "title": "Hostmodus · People · People & roles",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/548"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/simplify-people?simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (553 > 508), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 553,
+      "pageScrollW": 776,
+      "card": "0..553 of 508",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 4
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-people-people-roles.png"
+  },
+  {
+   "id": "host-integrations",
+   "title": "Hostmodus · Integrations",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/609"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/simplify-people?simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (553 > 508), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 553,
+      "pageScrollW": 776,
+      "card": "0..553 of 508",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 4
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-integrations.png"
+  },
+  {
+   "id": "host-integrations-api-keys",
+   "title": "Hostmodus · Integrations · API Keys",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/609"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/api-keys?simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 508,
+      "pageScrollW": 776,
+      "card": "0..508 of 508",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-integrations-api-keys.png"
+  },
+  {
+   "id": "host-integrations-webhooks",
+   "title": "Hostmodus · Integrations · Webhooks",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/609"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/webhooks?simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 508,
+      "pageScrollW": 776,
+      "card": "0..508 of 508",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 2
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-integrations-webhooks.png"
+  },
+  {
+   "id": "host-settings",
+   "title": "Hostmodus · Settings",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/771"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/webhooks?simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 508,
+      "pageScrollW": 776,
+      "card": "0..508 of 508",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 2
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-settings.png"
+  },
+  {
+   "id": "host-settings-general",
+   "title": "Hostmodus · Settings · General",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/771"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/simplify?tab=general&simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (568 > 508), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 568,
+      "pageScrollW": 776,
+      "card": "0..568 of 508",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-settings-general.png"
+  },
+  {
+   "id": "host-settings-appearance",
+   "title": "Hostmodus · Settings · Appearance",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/771"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/simplify?tab=appearance&simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (1690 > 508), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 1690,
+      "pageScrollW": 776,
+      "ellipsis": [
+       "b: \"Northwind Games\""
+      ],
+      "card": "0..1690 of 508",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-settings-appearance.png"
+  },
+  {
+   "id": "host-settings-announcements",
+   "title": "Hostmodus · Settings · Announcements",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/771"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/simplify-announcements?simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 508,
+      "pageScrollW": 776,
+      "card": "0..508 of 508",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 3
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-settings-announcements.png"
+  },
+  {
+   "id": "host-settings-automatic-subdomains",
+   "title": "Hostmodus · Settings · Automatic subdomains",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/771"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/simplify-subdomains?simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (1088 > 508), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 1088,
+      "pageScrollW": 776,
+      "card": "0..1088 of 508",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-settings-automatic-subdomains.png"
+  },
+  {
+   "id": "host-settings-website-embed",
+   "title": "Hostmodus · Settings · Website embed",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/771"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/simplify-embed?simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (2288 > 508), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 2288,
+      "pageScrollW": 776,
+      "card": "0..2288 of 508",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    },
+    {
+     "box": "334,1964 684x420",
+     "url": "blank",
+     "w": 682,
+     "h": 418,
+     "dark": false,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 418,
+      "pageScrollW": 682,
+      "scope": "pelican"
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-settings-website-embed.png"
+  },
+  {
+   "id": "host-add-ons",
+   "title": "Hostmodus · Add-ons",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/977"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/simplify-embed?simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (2288 > 508), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 2288,
+      "pageScrollW": 776,
+      "card": "0..2288 of 508",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    },
+    {
+     "box": "334,1964 684x420",
+     "url": "blank",
+     "w": 682,
+     "h": 418,
+     "dark": false,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 418,
+      "pageScrollW": 682,
+      "scope": "pelican"
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-add-ons.png"
+  },
+  {
+   "id": "host-add-ons-add-ons",
+   "title": "Hostmodus · Add-ons · Add-ons",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/977"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/simplify?tab=addons&simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 508,
+      "pageScrollW": 776,
+      "card": "0..508 of 508",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-add-ons-add-ons.png"
+  },
+  {
+   "id": "host-add-ons-egg-updates",
+   "title": "Hostmodus · Add-ons · Egg Updates",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/977"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/egg-updates?simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 508,
+      "pageScrollW": 776,
+      "card": "0..508 of 508",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 4
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-add-ons-egg-updates.png"
+  },
+  {
+   "id": "host-add-ons-explain",
+   "title": "Hostmodus · Add-ons · Explain",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/977"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/simplify-explain?simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (639 > 508), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 639,
+      "pageScrollW": 776,
+      "card": "0..639 of 508",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 2
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-add-ons-explain.png"
+  },
+  {
+   "id": "host-add-ons-hosting",
+   "title": "Hostmodus · Add-ons · Hosting",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/977"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/simplify-hosting?simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (607 > 508), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 607,
+      "pageScrollW": 776,
+      "card": "0..607 of 508",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-add-ons-hosting.png"
+  },
+  {
+   "id": "host-add-ons-server-maker",
+   "title": "Hostmodus · Add-ons · Server Maker",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/977"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/server-maker/settings?simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 508,
+      "pageScrollW": 776,
+      "card": "0..508 of 508",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-add-ons-server-maker.png"
+  },
+  {
+   "id": "host-add-ons-toolkit",
+   "title": "Hostmodus · Add-ons · Toolkit",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/977"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/simplify-toolkit?simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (723 > 508), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 723,
+      "pageScrollW": 776,
+      "card": "0..723 of 508",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-add-ons-toolkit.png"
+  },
+  {
+   "id": "host-add-ons-plugins",
+   "title": "Hostmodus · Add-ons · Plugins",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/977"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/plugins?simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (671 > 508), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 671,
+      "pageScrollW": 776,
+      "card": "0..671 of 508",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 2
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-add-ons-plugins.png"
+  },
+  {
+   "id": "host-pelican-settings",
+   "title": "Hostmodus · Pelican settings",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/1154"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/plugins?simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (671 > 508), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 671,
+      "pageScrollW": 776,
+      "card": "0..671 of 508",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 2
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-pelican-settings.png"
+  },
+  {
+   "id": "host-pelican-settings-general",
+   "title": "Hostmodus · Pelican settings · General",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/1154"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/settings?tab=general%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (998 > 508), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 998,
+      "pageScrollW": 776,
+      "card": "0..998 of 508",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-pelican-settings-general.png"
+  },
+  {
+   "id": "host-pelican-settings-captcha",
+   "title": "Hostmodus · Pelican settings · Captcha",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/1154"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/settings?tab=captcha%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 508,
+      "pageScrollW": 776,
+      "card": "0..508 of 508",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-pelican-settings-captcha.png"
+  },
+  {
+   "id": "host-pelican-settings-mail",
+   "title": "Hostmodus · Pelican settings · Mail",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/1154"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/settings?tab=mail%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 508,
+      "pageScrollW": 776,
+      "card": "0..508 of 508",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-pelican-settings-mail.png"
+  },
+  {
+   "id": "host-pelican-settings-backup",
+   "title": "Hostmodus · Pelican settings · Backup",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/1154"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/settings?tab=backup%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 508,
+      "pageScrollW": 776,
+      "card": "0..508 of 508",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-pelican-settings-backup.png"
+  },
+  {
+   "id": "host-pelican-settings-oauth",
+   "title": "Hostmodus · Pelican settings · OAuth",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/1154"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/settings?tab=oauth%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (896 > 508), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 896,
+      "pageScrollW": 776,
+      "card": "0..896 of 508",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-pelican-settings-oauth.png"
+  },
+  {
+   "id": "host-pelican-settings-misc",
+   "title": "Hostmodus · Pelican settings · Misc",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/1154"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (776 > 508), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 776,
+      "pageScrollW": 776,
+      "card": "0..776 of 508",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-pelican-settings-misc.png"
+  },
+  {
+   "id": "host-servers",
+   "title": "Hostmodus · serverlijst",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/568"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 776x508",
+     "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 776,
+     "h": 508,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (776 > 508), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 776,
+      "pageScrollW": 776,
+      "card": "0..776 of 508",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-servers.png"
+  },
+  {
+   "id": "host-server",
+   "title": "Hostmodus · server open (console in frame)",
+   "stand": "laag1100-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1100,
+    "h": 700,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 700,
+     "pageScrollW": 1100,
+     "popups": [
+      "ps-navigation-items 879,32 185x38"
+     ],
+     "panes": [
+      "ps-host-side-scroll 403/568"
+     ],
+     "card": "0..654 of 700",
+     "topbar": "brand 36..361, badges 366..398, actions 879..1064",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..650 of 700"
+    }
+   },
+   "frames": [
+    {
+     "box": "300,154 764x496",
+     "url": "/server/reybiu4l/console",
+     "w": 764,
+     "h": 496,
+     "dark": true,
+     "fit": true,
+     "problems": [],
+     "info": {
+      "pageScrollH": 496,
+      "pageScrollW": 764,
+      "panes": [
+       "Server sections 373/716"
+      ],
+      "card": "106..481 of 496 fit=375px",
+      "console": {
+       "card": "rgb(19, 26, 32)",
+       "terminal": "rgba(0, 0, 0, 0)",
+       "xterm": "rgba(0, 0, 0, 0)",
+       "viewport": "rgba(0, 0, 0, 0)",
+       "bar": "rgba(0, 0, 0, 0)"
+      },
+      "consoleBox": "screen 288,175 408x228; terminal 271,107 456x310; bar top 417",
+      "scope": "frame",
+      "boxes": [
+       "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,106 458x375"
+      ],
+      "hostHead": "hidden",
+      "box": "106..481 of 496"
+     }
+    }
+   ],
+   "shot": "laag1100-dark/host-server.png"
+  }
+ ],
+ "problems": [
+  "laag1100-dark overview-health-hover: card and tab DIFFERENT on hover, hover does NOT colour both: rest {\"card\":\"rgba(0, 0, 0, 0)\",\"tab\":\"rgb(26, 26, 31)\",\"tabTop\":\"rgb(26, 26, 31)\",\"tabInk\":\"rgb(176, 176, 187)\"} card {\"card\":\"color(srgb 0.119216 0.119216 0.141961)\",\"tab\":\"rgb(26, 26, 31)\",\"tabTop\":\"rgb(26, 26, 31)\",\"tabInk\":\"rgb(176, 176, 187)\"} tab {\"card\":\"rgba(0, 0, 0, 0)\",\"tab\":\"rgb(37, 37, 44)\",\"tabTop\":\"rgb(37, 37, 44)\",\"tabInk\":\"rgb(237, 237, 242)\"}",
+  "laag1100-dark overview-customize-0bar: nothing to click for .ps-server-card .ps-card-menu-button, .ps-server-card button[aria-label*=\"options\" i], .ps-server-card button[aria-label*=\"menu\" i]",
+  "laag1100-dark server-console-typed: click .ps-console-grow: locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator('.ps-c",
+  "laag1100-dark server-console-big: click .ps-console-grow: locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator('.ps-c",
+  "laag1100-dark server-menu: \"Open in Admin\" is still in the menu",
+  "laag1100-dark server-files: nothing to click for .fi-ta-row .fi-ta-actions button, .fi-ta-row .fi-dropdown-trigger button",
+  "laag1100-dark server-files: nothing to click for .fi-ta-row a:has-text(\"plugins\"), .fi-ta-row a:has-text(\"mods\")",
+  "laag1100-dark server-databases: click .fi-header-actions button, .fi-ac-btn-action, .fi-page-header-main-ctn button: locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator('.fi-h",
+  "laag1100-dark server-webhooks: nothing to click for .fi-header-actions button, .fi-ac-btn-action, .fi-page-header-main-ctn button",
+  "laag1100-dark server4-console: tab title WRONG: \"Console - Northwind Games\"",
+  "laag1100-dark server4-files: tab title WRONG: \"Files - Northwind Games\"",
+  "laag1100-dark admin-dashboard: nothing to click for .fi-topbar-database-notifications-btn, button[aria-label*=\"notification\" i], .fi-topbar button:has(.fi-topbar-database-notifications-badge)",
+  "laag1100-dark: no Pelican notifications button found",
+  "laag1100-dark admin-sidebar-collapsed: nothing to click for .fi-topbar-expand-sidebar-btn, .fi-sidebar-expand-btn, button[aria-label*=\"expand\" i], .fi-topbar-open-sidebar-btn",
+  "laag1100-dark admin-mounts console: http://127.0.0.1:8090/api/system does not match node token_id !",
+  "laag1100-dark admin-announcements: nothing to click for main a:has-text(\"New announcement\"), main button:has-text(\"New announcement\")",
+  "laag1100-dark host: nothing to click for .ps-health-tab",
+  "laag1100-dark host-nodes console: http://127.0.0.1:8090/api/system does not match node token_id !",
+  "laag1100-dark host-server: nothing to click for .ps-host-server-head .ps-info-more-button, .ps-info-more-button"
+ ]
+}
