@@ -53,6 +53,22 @@ async function record(id, title, extra = {}) {
   screens.push(entry);
   fs.writeFileSync(path.join(out, 'result.json'), JSON.stringify({ base, screens, problems }, null, 1));
 }
+// Host health card and its fold-open tab are one hover zone (1.4.5): pointing at either gives the same colours.
+const healthHover = async (where) => {
+  const card = page.locator('.ps-host-health >> visible=true').first(), tab = page.locator('.ps-health-tab >> visible=true').first();
+  if (!(await card.count()) || !(await tab.count())) return;
+  const look = () => page.evaluate(() => { const c = document.querySelector('.ps-host-health'), t = document.querySelector('.ps-health-tab'); const bg = (el) => getComputedStyle(el).backgroundColor; return { card: bg(c), tab: bg(t), tabTop: getComputedStyle(t, '::before').backgroundColor, tabInk: getComputedStyle(t).color }; });
+  await page.mouse.move(5, 5); await sleep(300); const rest = await look();
+  await card.hover({ position: { x: 40, y: 10 } }).catch(() => {}); await sleep(400); const onCard = await look();
+  await record(`${where}-health-hover-card`, `Host health, wijzen naar de kaart`, { colours: onCard });
+  await tab.hover().catch(() => {}); await sleep(400); const onTab = await look();
+  await record(`${where}-health-hover-tab`, `Host health, wijzen naar het lipje`, { colours: onTab });
+  await page.mouse.move(5, 5);
+  const same = JSON.stringify(onCard) === JSON.stringify(onTab);
+  const lit = onCard.card !== rest.card && onCard.tab !== rest.tab;
+  if (!same || !lit) problems.push(`${stand} ${where}-health-hover: card and tab ${same ? 'same' : 'DIFFERENT'} on hover${lit ? '' : ', hover does NOT colour both'}: rest ${JSON.stringify(rest)} card ${JSON.stringify(onCard)} tab ${JSON.stringify(onTab)}`);
+  else problems.push(`${stand} ${where}-health-hover: ok, card and tab light up together (${onCard.card})`);
+};
 const goto = async (url, ms = 900) => { for (let i = 0; i < 3; i++) { try { await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 }); break; } catch (e) { if (i === 2) throw e; await sleep(1500); } } await settle(page, ms); };
 const click = async (sel, ms = 600) => { const l = page.locator(sel).first(); if (!(await l.count()) || !(await l.isVisible().catch(() => false))) { problems.push(`${stand} ${screen}: nothing to click for ${sel}`); return false; } await l.click({ timeout: 5000 }).catch((e) => problems.push(`${stand} ${screen}: click ${sel}: ${e.message.slice(0, 80)}`)); await sleep(ms); return true; };
 const escape = async () => { await page.keyboard.press('Escape'); await sleep(300); };
@@ -102,6 +118,7 @@ async function round(theme) {
   if (await click('.ps-health-pill')) await record('overview-health', 'Gezondheid van de host open'); await escape();
   // Host health card's tab under its bottom edge (1.4.4): the nodes fold open.
   if (await click('.ps-health-tab', 900)) { await record('overview-health-nodes', 'Host health, nodes uitgeklapt'); await click('.ps-health-tab', 600); }
+  await healthHover('overview');
   // The menus under the top bar once more with one announcement bar and with none: their height must follow the bars.
   const unpinBar = async () => { const b = page.locator('button[aria-label="Unpin"], .ps-announcement-unpin, [wire\\:click^="unpin"]').first(); if (!(await b.count())) return false; await b.click().catch(() => {}); await sleep(1500); return true; };
   for (const [tag, label] of [['1bar', 'één aankondigingsbalk'], ['0bar', 'geen aankondigingsbalk']]) {
@@ -173,6 +190,7 @@ async function round(theme) {
   await alpine('d.setHostMode(true)'); await sleep(2500);
   await record('host', 'Hostmodus');
   if (await click('.ps-health-tab', 900)) { await record('host-health-nodes', 'Hostmodus · host health, nodes uitgeklapt'); await click('.ps-health-tab', 600); }
+  await healthHover('host');
   if (onPhone) { if (await click('.ps-host-menu-open, button[aria-controls="ps-host-menu"], .ps-mobile-menu', 600)) await record('host-phone-menu', 'Hostmodus · telefoonmenu open'); await escape(); }
   const heads = page.locator('.ps-host-group-head'); const hn = await heads.count();
   for (let i = 0; i < hn; i++) { const h = heads.nth(i); const label = (await h.innerText().catch(() => 'sectie ' + i)).trim().split('\n')[0]; await h.click().catch(() => {}); await sleep(2500); await record('host-' + slug(label), 'Hostmodus · ' + label);
