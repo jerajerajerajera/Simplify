@@ -103,6 +103,10 @@ foreach ($list as $i => [$name, $eggName, $state, $memory, $cpu, $owner, $color]
     $out[] = ['uuid' => $server->uuid, 'name' => $name, 'port' => $allocation->port, 'state' => $state, 'memory' => $memory, 'cpu' => $cpu, 'files' => $files]
         + ($name === 'Survival SMP' ? ['console' => $console] : []);
 }
+// A few free ports, so Server Maker finds one for a new server.
+foreach (range(25580, 25584) as $free) {
+    Allocation::factory()->create(['node_id' => $node->id, 'ip' => '127.0.0.1', 'ip_alias' => 'play.example.com', 'port' => $free, 'server_id' => null]);
+}
 echo json_encode($out, JSON_UNESCAPED_SLASHES), "\n";
 $uuid = fn (string $name) => $servers[$name]->uuid;
 

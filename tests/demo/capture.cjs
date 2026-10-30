@@ -375,7 +375,7 @@ async function login(browser, email) {
     await makerType(p);
     for (let i = 0; i < 6; i++) {
       if (/Review/.test(await p.locator('.smk-step.is-current').first().innerText().catch(() => ''))) break;
-      const name = p.locator('input[id$="data.name"] >> visible=true').first();
+      const name = p.locator('input[id$=".name"] >> visible=true').first();
       if (await name.count() && !(await name.inputValue())) { await name.fill('Northwind Survival'); await name.blur(); await settle(p, 800); }
       const next = p.locator('.fi-sc-wizard-footer button >> visible=true').filter({ hasText: /Next/ }).first();
       if (!(await next.count())) break;
