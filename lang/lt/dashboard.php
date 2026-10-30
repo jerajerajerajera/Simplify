@@ -186,6 +186,8 @@ return [
         'server_groups_button' => 'Serverių grupių mygtukas',
         'a_button_in_the_top_bar' => 'Mygtukas viršutinėje juostoje savoms grupėms kurti ir serverių tvarkai pasirinkti',
         'more' => 'Daugiau',
+        'advanced' => 'Išplėstiniai',
+        'backups_and_tasks' => 'Atsarginės kopijos ir užduotys',
         'seasonal_touches' => 'Sezoniniai akcentai',
         'a_few_small_touches_for' => 'Keli maži akcentai: :name',
         'easter_egg' => 'Velykinis margutis',

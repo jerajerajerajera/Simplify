@@ -186,6 +186,8 @@ return [
         'server_groups_button' => 'Botón de grupos de servidores',
         'a_button_in_the_top_bar' => 'Un botón en la barra superior para crear tus propios grupos y elegir el orden de tus servidores',
         'more' => 'Más',
+        'advanced' => 'Avanzado',
+        'backups_and_tasks' => 'Copias de seguridad y tareas',
         'seasonal_touches' => 'Detalles de temporada',
         'a_few_small_touches_for' => 'Algunos pequeños detalles por :name',
         'easter_egg' => 'Huevo de Pascua',

@@ -186,6 +186,8 @@ return [
         'server_groups_button' => 'Дугме Групе сервера',
         'a_button_in_the_top_bar' => 'Дугме на горњој траци за прављење сопствених група и избор редоследа сервера',
         'more' => 'Више',
+        'advanced' => 'Напредно',
+        'backups_and_tasks' => 'Резервне копије и задаци',
         'seasonal_touches' => 'Сезонски детаљи',
         'a_few_small_touches_for' => 'Неколико малих детаља: :name',
         'easter_egg' => 'Ускршње јаје',

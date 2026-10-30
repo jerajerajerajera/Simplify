@@ -186,6 +186,8 @@ return [
         'server_groups_button' => 'Кнопка груп серверів',
         'a_button_in_the_top_bar' => 'Кнопка у верхній панелі для створення власних груп і вибору порядку серверів',
         'more' => 'Ще',
+        'advanced' => 'Додатково',
+        'backups_and_tasks' => 'Резервні копії та завдання',
         'seasonal_touches' => 'Святкові дрібниці',
         'a_few_small_touches_for' => 'Кілька дрібниць: :name',
         'easter_egg' => 'Писанка',

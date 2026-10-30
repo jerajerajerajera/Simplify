@@ -186,6 +186,8 @@ return [
         'server_groups_button' => 'Бутон Групи сървъри',
         'a_button_in_the_top_bar' => 'Бутон в горната лента за създаване на собствени групи и избор на реда на сървърите',
         'more' => 'Още',
+        'advanced' => 'Разширени',
+        'backups_and_tasks' => 'Резервни копия и задачи',
         'seasonal_touches' => 'Сезонни детайли',
         'a_few_small_touches_for' => 'Няколко малки детайла: :name',
         'easter_egg' => 'Великденско яйце',

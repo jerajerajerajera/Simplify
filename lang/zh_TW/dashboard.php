@@ -186,6 +186,8 @@ return [
         'server_groups_button' => '伺服器分組按鈕',
         'a_button_in_the_top_bar' => '頂端列中的一個按鈕，用於建立你自己的分組並選擇伺服器順序',
         'more' => '更多',
+        'advanced' => '進階',
+        'backups_and_tasks' => '備份與任務',
         'seasonal_touches' => '節日點綴',
         'a_few_small_touches_for' => ':name 的一些小點綴',
         'easter_egg' => '復活節彩蛋',

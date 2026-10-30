@@ -186,6 +186,8 @@ return [
         'server_groups_button' => 'زر مجموعات الخوادم',
         'a_button_in_the_top_bar' => 'زر في الشريط العلوي لإنشاء مجموعاتك واختيار ترتيب خوادمك',
         'more' => 'المزيد',
+        'advanced' => 'متقدم',
+        'backups_and_tasks' => 'النسخ الاحتياطية والمهام',
         'seasonal_touches' => 'لمسات موسمية',
         'a_few_small_touches_for' => 'بعض اللمسات الصغيرة بمناسبة :name',
         'easter_egg' => 'بيضة عيد الفصح',

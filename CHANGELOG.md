@@ -29,6 +29,7 @@
 - Scrollbars stop a little short of the top and bottom and sit a little further from the edge, so they fit inside the rounded corners of menus, cards and windows.
 - Overview: the scrollbar of the server list sits right next to the cards instead of at the far edge of the window.
 - Overview, list view: the server icon sits in the middle of its row again instead of sticking out over the top edge. A hidden badge counted as a third one and pushed it up; in the card view it added empty room under the icon.
+- Server menu: shorter. On top the everyday pages (Console, Files, Backups & tasks, the add-ons' pages such as Minecraft and Website); Pelican's rarely used pages (Users, Databases, Network, Startup, Settings, Mounts, Webhooks, Activity) fold under Advanced, with Delete server at the bottom. Backups and Schedules are one item, "Backups & tasks", with a tab for each on top of their pages. On a phone they are under More.
 
 ## 1.4.4
 

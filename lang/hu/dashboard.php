@@ -186,6 +186,8 @@ return [
         'server_groups_button' => 'Szervercsoportok gomb',
         'a_button_in_the_top_bar' => 'Egy gomb a felső sávban saját csoportok létrehozásához és a szerverek sorrendjének megadásához',
         'more' => 'Több',
+        'advanced' => 'Speciális',
+        'backups_and_tasks' => 'Biztonsági mentések és feladatok',
         'seasonal_touches' => 'Szezonális díszek',
         'a_few_small_touches_for' => 'Néhány apró dísz: :name',
         'easter_egg' => 'Húsvéti tojás',

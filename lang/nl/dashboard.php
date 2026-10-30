@@ -186,6 +186,8 @@ return [
         'server_groups_button' => 'Knop Servergroepen',
         'a_button_in_the_top_bar' => 'Een knop in de bovenbalk om je eigen groepen te maken en de volgorde van je servers te kiezen',
         'more' => 'Meer',
+        'advanced' => 'Geavanceerd',
+        'backups_and_tasks' => 'Back-ups & taken',
         'seasonal_touches' => 'Seizoensaccenten',
         'a_few_small_touches_for' => 'Een paar kleine accenten voor :name',
         'easter_egg' => 'Paasei',

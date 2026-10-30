@@ -186,6 +186,8 @@ return [
         'server_groups_button' => 'Knapp for servergrupper',
         'a_button_in_the_top_bar' => 'En knapp i topplinjen for å lage dine egne grupper og velge rekkefølgen på serverne dine',
         'more' => 'Mer',
+        'advanced' => 'Avansert',
+        'backups_and_tasks' => 'Sikkerhetskopier og oppgaver',
         'seasonal_touches' => 'Sesongpreg',
         'a_few_small_touches_for' => 'Noen små detaljer for :name',
         'easter_egg' => 'Påskeegg',

@@ -186,6 +186,8 @@ return [
         'server_groups_button' => 'Palvelinryhmät-painike',
         'a_button_in_the_top_bar' => 'Yläpalkin painike omien ryhmien tekemiseen ja palvelinten järjestyksen valitsemiseen',
         'more' => 'Lisää',
+        'advanced' => 'Lisäasetukset',
+        'backups_and_tasks' => 'Varmuuskopiot ja tehtävät',
         'seasonal_touches' => 'Vuodenaikojen yksityiskohdat',
         'a_few_small_touches_for' => 'Muutama pieni yksityiskohta: :name',
         'easter_egg' => 'Pääsiäismuna',

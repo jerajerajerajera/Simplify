@@ -186,6 +186,8 @@ return [
         'server_groups_button' => 'Pulsante Gruppi di server',
         'a_button_in_the_top_bar' => 'Un pulsante nella barra in alto per creare i tuoi gruppi e scegliere l\'ordine dei server',
         'more' => 'Altro',
+        'advanced' => 'Avanzate',
+        'backups_and_tasks' => 'Backup e attività',
         'seasonal_touches' => 'Tocchi stagionali',
         'a_few_small_touches_for' => 'Qualche piccolo tocco per :name',
         'easter_egg' => 'Uovo di Pasqua',

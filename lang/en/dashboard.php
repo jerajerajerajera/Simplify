@@ -186,6 +186,8 @@ return [
         'server_groups_button' => 'Server groups button',
         'a_button_in_the_top_bar' => 'A button in the top bar to make your own groups and choose the order of your servers',
         'more' => 'More',
+        'advanced' => 'Advanced',
+        'backups_and_tasks' => 'Backups & tasks',
         'seasonal_touches' => 'Seasonal touches',
         'a_few_small_touches_for' => 'A few small touches for :name',
         'easter_egg' => 'Easter egg',

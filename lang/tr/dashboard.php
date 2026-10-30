@@ -186,6 +186,8 @@ return [
         'server_groups_button' => 'Sunucu grupları düğmesi',
         'a_button_in_the_top_bar' => 'Kendi gruplarını oluşturmak ve sunucularının sırasını seçmek için üst çubukta bir düğme',
         'more' => 'Daha fazla',
+        'advanced' => 'Gelişmiş',
+        'backups_and_tasks' => 'Yedekler ve görevler',
         'seasonal_touches' => 'Mevsimsel dokunuşlar',
         'a_few_small_touches_for' => ':name için birkaç küçük dokunuş',
         'easter_egg' => 'Paskalya yumurtası',

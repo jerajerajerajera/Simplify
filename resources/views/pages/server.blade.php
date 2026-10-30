@@ -175,30 +175,50 @@
             <template x-for="(line, index) in logLines" :key="index"><div x-text="line"></div></template>
         </section>
     </div>
-    {{-- Pelican's server menu, add-on pages included, next to Pelican's page. --}}
+    {{-- The server menu next to Pelican's page (ServerMenu): everyday pages and the add-ons' pages on top, Pelican's
+         rarely used pages and deleting the server under Advanced. --}}
+    @php($onAdvanced = in_array(true, array_column($menu['advanced'], 'active'), true))
     <nav class="ps-server-menu" aria-label="{{ $u('server_sections') }}" wire:ignore>
-        @foreach ($sections as $item)
-            <a class="ps-widget" href="{{ $item->getUrl() }}" @if ($item->isActive()) aria-current="page" @endif @if ($item->shouldOpenUrlInNewTab()) target="_blank" rel="noopener" @endif>
-                <span class="ps-widget-icon">@if ($item->getIcon())<x-filament::icon :icon="$item->getIcon()" />@endif</span>
-                <span><strong>{{ $item->getLabel() }}</strong></span>
+        @foreach ($menu['main'] as $item)
+            <a class="ps-widget" href="{{ $item['url'] }}" @if ($item['active']) aria-current="page" @endif @if ($item['new_tab']) target="_blank" rel="noopener" @endif>
+                <span class="ps-widget-icon">@if ($item['icon'])<x-filament::icon :icon="$item['icon']" />@endif</span>
+                <span><strong>{{ $item['label'] }}</strong></span>
             </a>
         @endforeach
+        <details class="ps-server-menu-more" @if ($onAdvanced) open @endif>
+            <summary class="ps-widget"><span class="ps-widget-icon"><svg aria-hidden="true"><use href="#ps-advanced"/></svg></span><span><strong>{{ $u('advanced') }}</strong></span><svg class="ps-server-menu-chevron" aria-hidden="true"><use href="#ps-chevron"/></svg></summary>
+            @foreach ($menu['advanced'] as $item)
+                <a class="ps-widget" href="{{ $item['url'] }}" @if ($item['active']) aria-current="page" @endif @if ($item['new_tab']) target="_blank" rel="noopener" @endif>
+                    <span class="ps-widget-icon">@if ($item['icon'])<x-filament::icon :icon="$item['icon']" />@endif</span>
+                    <span><strong>{{ $item['label'] }}</strong></span>
+                </a>
+            @endforeach
+            <button type="button" class="ps-widget is-danger" x-show="server.can_delete" :disabled="busy || !canDelete()" :data-tip="canDelete() ? null : @js($u('stop_to_delete'))" x-on:click="deleteServer()">
+                <span class="ps-widget-icon"><svg aria-hidden="true"><use href="#ps-trash"/></svg></span>
+                <span><strong>{{ $u('delete_server') }}</strong></span>
+            </button>
+        </details>
     </nav>
-    {{-- Phones: four tabs that always fit. The first three sections, the rest under More. --}}
+    {{-- Phones: four tabs that always fit. The first three sections, the rest and Advanced under More. --}}
+    @php($phoneMore = array_slice($menu['main'], 3))
     <nav class="ps-phone-sections" aria-label="{{ $u('server_sections') }}" x-data="{ more: false }" x-on:click.outside="more=false" x-on:keydown.escape.stop="more=false" wire:ignore>
-        @foreach (array_slice($sections, 0, 3) as $item)
-            <a class="ps-phone-section" href="{{ $item->getUrl() }}" @if ($item->isActive()) aria-current="page" @endif>@if ($item->getIcon())<x-filament::icon class="ps-phone-section-icon" :icon="$item->getIcon()" />@endif<span>{{ $item->getLabel() }}</span></a>
+        @foreach (array_slice($menu['main'], 0, 3) as $item)
+            <a class="ps-phone-section" href="{{ $item['url'] }}" @if ($item['active']) aria-current="page" @endif>@if ($item['icon'])<x-filament::icon class="ps-phone-section-icon" :icon="$item['icon']" />@endif<span>{{ $item['label'] }}</span></a>
         @endforeach
-        @if (count($sections) > 3)
-            <div class="ps-phone-more">
-                <button type="button" class="ps-phone-section" aria-controls="ps-phone-more-menu" :aria-expanded="more" x-on:click="more=!more"><svg class="ps-phone-section-icon" aria-hidden="true"><use href="#ps-dots"/></svg><span>{{ $u('more') }}</span></button>
-                <div id="ps-phone-more-menu" class="ps-dropdown is-end ps-phone-more-menu" x-show="more" x-cloak x-transition.opacity>
-                    @foreach (array_slice($sections, 3) as $item)
-                        <a class="ps-menu-item" href="{{ $item->getUrl() }}" @if ($item->isActive()) aria-current="page" @endif>@if ($item->getIcon())<x-filament::icon :icon="$item->getIcon()" />@endif<span>{{ $item->getLabel() }}</span></a>
-                    @endforeach
-                </div>
+        <div class="ps-phone-more">
+            <button type="button" class="ps-phone-section" aria-controls="ps-phone-more-menu" :aria-expanded="more" @if ($onAdvanced || in_array(true, array_column($phoneMore, 'active'), true)) aria-current="page" @endif x-on:click="more=!more"><svg class="ps-phone-section-icon" aria-hidden="true"><use href="#ps-dots"/></svg><span>{{ $u('more') }}</span></button>
+            <div id="ps-phone-more-menu" class="ps-dropdown is-end ps-phone-more-menu" x-show="more" x-cloak x-transition.opacity>
+                @foreach ($phoneMore as $item)
+                    <a class="ps-menu-item" href="{{ $item['url'] }}" @if ($item['active']) aria-current="page" @endif>@if ($item['icon'])<x-filament::icon :icon="$item['icon']" />@endif<span>{{ $item['label'] }}</span></a>
+                @endforeach
+                @if ($phoneMore !== [])<hr>@endif
+                <span class="ps-label ps-menu-heading">{{ $u('advanced') }}</span>
+                @foreach ($menu['advanced'] as $item)
+                    <a class="ps-menu-item" href="{{ $item['url'] }}" @if ($item['active']) aria-current="page" @endif>@if ($item['icon'])<x-filament::icon :icon="$item['icon']" />@endif<span>{{ $item['label'] }}</span></a>
+                @endforeach
+                <button type="button" class="ps-menu-item is-danger" x-show="server.can_delete" :disabled="busy || !canDelete()" x-on:click="more=false; deleteServer()"><svg aria-hidden="true"><use href="#ps-trash"/></svg><span>{{ $u('delete_server') }}</span></button>
             </div>
-        @endif
+        </div>
     </nav>
     {{-- The title row of Pelican's console, put above its output by server.js. --}}
     <template x-ref="consoleBar">

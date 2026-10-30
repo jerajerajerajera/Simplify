@@ -186,6 +186,8 @@ return [
         'server_groups_button' => 'Butonul Grupuri de servere',
         'a_button_in_the_top_bar' => 'Un buton în bara de sus pentru a vă crea propriile grupuri și a alege ordinea serverelor',
         'more' => 'Mai mult',
+        'advanced' => 'Avansat',
+        'backups_and_tasks' => 'Copii de rezervă și sarcini',
         'seasonal_touches' => 'Accente sezoniere',
         'a_few_small_touches_for' => 'Câteva mici accente pentru :name',
         'easter_egg' => 'Ou de Paște',

@@ -186,6 +186,8 @@ return [
         'server_groups_button' => 'Knapp för servergrupper',
         'a_button_in_the_top_bar' => 'En knapp i toppfältet för att skapa egna grupper och välja ordningen på dina servrar',
         'more' => 'Mer',
+        'advanced' => 'Avancerat',
+        'backups_and_tasks' => 'Säkerhetskopior och uppgifter',
         'seasonal_touches' => 'Säsongsdetaljer',
         'a_few_small_touches_for' => 'Några små detaljer för :name',
         'easter_egg' => 'Påskägg',

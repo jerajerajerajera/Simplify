@@ -186,6 +186,8 @@ return [
         'server_groups_button' => '서버 그룹 버튼',
         'a_button_in_the_top_bar' => '상단 바의 버튼으로 나만의 그룹을 만들고 서버 순서를 정합니다',
         'more' => '더 보기',
+        'advanced' => '고급',
+        'backups_and_tasks' => '백업 및 작업',
         'seasonal_touches' => '계절 장식',
         'a_few_small_touches_for' => ':name 기념 작은 장식',
         'easter_egg' => '부활절 달걀',

@@ -186,6 +186,8 @@ return [
         'server_groups_button' => 'Tlačidlo skupín serverov',
         'a_button_in_the_top_bar' => 'Tlačidlo v hornej lište pre vlastné skupiny a poradie serverov',
         'more' => 'Viac',
+        'advanced' => 'Pokročilé',
+        'backups_and_tasks' => 'Zálohy a úlohy',
         'seasonal_touches' => 'Sezónne detaily',
         'a_few_small_touches_for' => 'Pár drobných detailov: :name',
         'easter_egg' => 'Veľkonočné vajíčko',

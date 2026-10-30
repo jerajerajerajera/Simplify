@@ -186,6 +186,8 @@ return [
         'server_groups_button' => 'サーバーグループのボタン',
         'a_button_in_the_top_bar' => '上部バーのボタンで、自分のグループを作り、サーバーの並び順を選べます',
         'more' => 'その他',
+        'advanced' => '詳細設定',
+        'backups_and_tasks' => 'バックアップとタスク',
         'seasonal_touches' => '季節の演出',
         'a_few_small_touches_for' => ':name のささやかな演出',
         'easter_egg' => 'イースターエッグ',

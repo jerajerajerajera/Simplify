@@ -186,6 +186,8 @@ return [
         'server_groups_button' => 'Tombol grup server',
         'a_button_in_the_top_bar' => 'Tombol di bilah atas untuk membuat grup sendiri dan memilih urutan server Anda',
         'more' => 'Lainnya',
+        'advanced' => 'Lanjutan',
+        'backups_and_tasks' => 'Cadangan & tugas',
         'seasonal_touches' => 'Sentuhan musiman',
         'a_few_small_touches_for' => 'Beberapa sentuhan kecil untuk :name',
         'easter_egg' => 'Telur Paskah',

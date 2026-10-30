@@ -186,6 +186,8 @@ return [
         'server_groups_button' => '服务器分组按钮',
         'a_button_in_the_top_bar' => '顶栏中的一个按钮，用于创建你自己的分组并选择服务器顺序',
         'more' => '更多',
+        'advanced' => '高级',
+        'backups_and_tasks' => '备份与任务',
         'seasonal_touches' => '节日点缀',
         'a_few_small_touches_for' => ':name 的一些小点缀',
         'easter_egg' => '复活节彩蛋',

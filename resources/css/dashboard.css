@@ -1240,6 +1240,21 @@ body:has(.ps-server-top) .fi-page-header-main-ctn { padding-top: 0 !important; }
 .ps-server-menu .ps-widget-icon svg { width: 17px; height: 17px; }
 .ps-server-menu .ps-widget strong { font-size: 14px; font-weight: 600; -webkit-line-clamp: 1; }
 .ps-phone-sections .ps-menu-item svg { width: 18px; height: 18px; }
+/* Advanced: Pelican's rarely used pages and deleting the server, folded under one item at the bottom of the menu. */
+.ps-server-menu-more { margin-top: 4px; padding-top: 4px; border-top: 1px solid var(--ps-line); }
+.ps-server-menu-more > summary { list-style: none; cursor: pointer; }
+.ps-server-menu-more > summary::-webkit-details-marker { display: none; }
+.ps-server-menu-chevron { flex: none; width: 14px; height: 14px; margin-inline-start: auto; color: var(--ps-muted); transition: transform var(--ps-fast); }
+.ps-server-menu-more[open] .ps-server-menu-chevron { transform: rotate(90deg); }
+.ps-server-menu button.ps-widget { width: 100%; font: inherit; text-align: start; cursor: pointer; }
+.ps-server-menu .ps-widget.is-danger :is(strong, .ps-widget-icon) { color: var(--ps-danger); }
+.ps-server-menu .ps-widget:disabled { opacity: .5; cursor: not-allowed; }
+.ps-phone-more-menu .ps-menu-item.is-danger, .ps-phone-more-menu .ps-menu-item.is-danger svg { color: var(--ps-danger); }
+/* Backups & tasks: Backups and Schedules are one menu item, with these two tabs on top of their pages. */
+.ps-page-tabs { display: inline-flex; margin-bottom: 12px; }
+.ps-page-tabs > a { display: inline-flex; align-items: center; min-height: var(--ps-h-sm); padding: 0 14px; border-radius: var(--ps-radius-sm); color: var(--ps-muted); font: 600 13px/1.2 var(--ps-font); text-decoration: none; }
+.ps-page-tabs > a:hover { color: var(--ps-ink); }
+.ps-page-tabs > a[aria-current="page"] { background: var(--ps-surface); color: var(--ps-ink); box-shadow: var(--ps-shadow-sm); }
 /* Pelican's page title repeats the menu, so it goes, as in 0.7.0. An icon action (such as Save) sits in the top corner
    of the page's own card; buttons with a label, and a page with a table (its tools sit in that corner), keep a row. */
 body:has(.ps-server-top) .fi-header :is(.fi-header-heading, .fi-header-subheading, .fi-breadcrumbs:has(.fi-breadcrumbs-item:only-child)) { display: none !important; }

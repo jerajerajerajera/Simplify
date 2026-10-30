@@ -186,6 +186,8 @@ return [
         'server_groups_button' => 'Button Servergruppen',
         'a_button_in_the_top_bar' => 'Ein Button in der oberen Leiste, um eigene Gruppen zu erstellen und die Reihenfolge deiner Server zu wählen',
         'more' => 'Mehr',
+        'advanced' => 'Erweitert',
+        'backups_and_tasks' => 'Backups & Aufgaben',
         'seasonal_touches' => 'Saisonale Details',
         'a_few_small_touches_for' => 'Ein paar kleine Details für :name',
         'easter_egg' => 'Osterei',

@@ -186,6 +186,8 @@ return [
         'server_groups_button' => 'Przycisk grup serwerów',
         'a_button_in_the_top_bar' => 'Przycisk na górnym pasku do tworzenia własnych grup i wyboru kolejności serwerów',
         'more' => 'Więcej',
+        'advanced' => 'Zaawansowane',
+        'backups_and_tasks' => 'Kopie zapasowe i zadania',
         'seasonal_touches' => 'Akcenty sezonowe',
         'a_few_small_touches_for' => 'Kilka drobnych akcentów: :name',
         'easter_egg' => 'Pisanka',

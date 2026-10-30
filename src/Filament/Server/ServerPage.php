@@ -11,8 +11,6 @@ use App\Repositories\Daemon\DaemonFileRepository;
 use App\Repositories\Daemon\DaemonServerRepository;
 use App\Services\Servers\ReinstallServerService;
 use App\Services\Servers\ServerDeletionService;
-use Filament\Facades\Filament;
-use Filament\Navigation\NavigationItem;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Str;
@@ -27,6 +25,7 @@ use Simplify\Core\Overview\Power;
 use Simplify\Core\Overview\Shell;
 use Simplify\Core\Server\Installation;
 use Simplify\Core\Server\Looks;
+use Simplify\Core\Server\ServerMenu;
 use Simplify\Core\Subdomains\Services\Games;
 use Throwable;
 
@@ -50,7 +49,7 @@ final class ServerPage extends Component
 
     public function render(): View
     {
-        return view('simplify::pages.server', ['sections' => self::sections()]);
+        return view('simplify::pages.server', ['menu' => ServerMenu::build()]);
     }
 
     /** @return array<string, mixed> */
@@ -217,26 +216,5 @@ final class ServerPage extends Component
         Looks::save($this->server, $color, $banner);
 
         return $this->refresh();
-    }
-
-    /**
-     * Pelican's server menu (and the pages add-ons add to it), for the menu next to the page. Pelican's "Open in Admin"
-     * is left out: it leads to the legacy admin page, and the server page has its own settings.
-     *
-     * @return list<NavigationItem>
-     */
-    public static function sections(): array
-    {
-        $items = [];
-        $admin = trans('server/console.open_in_admin');
-        foreach (Filament::getCurrentPanel()?->getNavigation() ?? [] as $group) {
-            foreach ($group->getItems() as $item) {
-                if ($item->isVisible() && (string) $item->getLabel() !== $admin) {
-                    $items[] = $item;
-                }
-            }
-        }
-
-        return $items;
     }
 }

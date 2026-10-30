@@ -186,6 +186,8 @@ return [
         'server_groups_button' => 'Nút nhóm máy chủ',
         'a_button_in_the_top_bar' => 'Nút trên thanh trên cùng để tạo nhóm riêng và chọn thứ tự máy chủ',
         'more' => 'Thêm',
+        'advanced' => 'Nâng cao',
+        'backups_and_tasks' => 'Sao lưu & tác vụ',
         'seasonal_touches' => 'Điểm xuyết theo mùa',
         'a_few_small_touches_for' => 'Vài điểm xuyết nhỏ cho :name',
         'easter_egg' => 'Trứng Phục Sinh',
