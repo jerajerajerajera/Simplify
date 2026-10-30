@@ -268,6 +268,42 @@ async function round(theme) {
 
 // Create server (1.5.0): without Server Maker, Pelican's create form opens inside Simplify like an Admin tools page
 // (title "Servers › Create server", close button); with Server Maker, Server Maker opens. Desktop button, phone tab bar.
+// Server Maker (section=maker, with servermaker): every wizard step on a real screen, for its own docs/screenshots:
+// Minecraft › Plugins, another game's Server step, Resources and Review. Each step must move on and show its own form.
+async function makerFlow() {
+  if (!servermaker) return;
+  const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
+  const state = () => page.evaluate(() => {
+    const v = (e) => !!e && !!e.getClientRects().length && getComputedStyle(e).display !== 'none';
+    const step = document.querySelector('.fi-sc-wizard-step.fi-active');
+    return { step: step ? step.id || step.getAttribute('x-ref') || null : null, types: v(document.querySelector('.smk-types')), games: v(document.querySelector('.smk-games-grid')),
+      errors: [...document.querySelectorAll('.fi-fo-field-wrp-error-message')].filter(v).map((e) => e.textContent.trim()).slice(0, 3), url: location.pathname };
+  });
+  const click = async (selector) => { const el = page.locator(`${selector} >> visible=true`).first(); if (!(await el.count())) return false; await el.click().catch(() => {}); await page.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {}); await sleep(1500); return true; };
+  await goto('/server-maker', 3000);
+  const picked = await click('button.smk-minecraft-type:has-text("Plugins")');
+  await sleep(1500);
+  let st = await state();
+  await record('maker-minecraft', 'Server Maker · Minecraft (Plugins)');
+  say('maker-minecraft', picked && st.types && !st.games, { picked, ...st });
+  await click('.smk-back');
+  const other = await click('button.smk-game:has-text("Valheim")');
+  await click('.smk-next');
+  st = await state();
+  await record('maker-server-other', 'Server Maker · Server (Valheim)');
+  say('maker-server-other', other && !st.games && !st.types && !st.errors.length, { other, ...st });
+  const before = st.step;
+  await click('.smk-next');
+  st = await state();
+  await record('maker-resources', 'Server Maker · Resources');
+  say('maker-resources', st.step !== before && !st.errors.length, st);
+  const resources = st.step;
+  await click('.smk-next');
+  st = await state();
+  await record('maker-review', 'Server Maker · Review');
+  say('maker-review', st.step !== resources && !st.errors.length, st);
+}
+
 async function createFlow() {
   const overview = urls.app.find((p) => /App\\Pages\\Overview$/.test(p.class))?.url || '/';
   const onPhone = phone();
@@ -777,6 +813,7 @@ const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(
       if (section) {
         // One or more sections (comma separated), each on its own stands.
         const parts = { first: [['d1440', 'phone390'], () => firstFlow(theme)], layers: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => layersFlow()], nav: [['d1440', 'laag1366'], () => navFlow()], create: [['d1440', 'laag1366', 'phone390'], () => createFlow()],
+          maker: [['d1440', 'phone390'], () => makerFlow()],
           extras: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => extrasFlow(theme)], seasons: [['d1440', 'tablet768', 'phone390'], () => seasons(theme)] };
         for (const part of section.split(',')) { const [where, run] = parts[part] || [[], null]; if (!run || !where.includes(name)) continue; try { await setTheme(theme); await run(); } catch (e) { problems.push(`${stand} ${part}: ${e.message.slice(0, 200)}`); } }
         continue;
