@@ -215,11 +215,20 @@ final class SettingsFields
     private static function previewUrl(mixed $state): ?string
     {
         foreach ((array) $state as $file) {
+            // A fresh upload can arrive as Livewire's "livewire-file:" reference instead of the file itself.
+            if (is_string($file) && TemporaryUploadedFile::canUnserialize($file)) {
+                $file = TemporaryUploadedFile::unserializeFromLivewireRequest($file);
+            }
             if ($file instanceof TemporaryUploadedFile) {
                 try {
                     return $file->temporaryUrl();
                 } catch (Throwable) {
-                    return null;
+                    // A disk without temporary addresses: the small image itself (the field takes at most 1 MB).
+                    try {
+                        return 'data:'.$file->getMimeType().';base64,'.base64_encode((string) $file->get());
+                    } catch (Throwable) {
+                        return null;
+                    }
                 }
             }
             if (is_string($file) && ($name = Brand::logoFile($file)) !== null) {
