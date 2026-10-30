@@ -553,18 +553,22 @@
           sessionStorage.setItem(this.hostModeKey() + '.place', JSON.stringify({ section: section?.key || null, page: item?.key || null }));
         } catch {}
       },
-      /** A group with more than one page folds open and shut; the open page's group opens with it. */
+      /** A group with more than one page folds open and shut, and so does Other plugins, so a plugin's page shows its own name. */
+      hostBranch(section) {
+        return !!section && (section.pages.length > 1 || section.key === 'extensions');
+      },
+      /** The open page's group opens with it. */
       hostBranchOpen(section) {
-        return section.pages.length > 1 && this.hostOpen.includes(section.key);
+        return this.hostBranch(section) && this.hostOpen.includes(section.key);
       },
       toggleHostBranch(section) {
         this.hostOpen = this.hostOpen.includes(section.key) ? this.hostOpen.filter((key) => key !== section.key) : [...this.hostOpen, section.key];
       },
       hostAllOpen() {
-        return this.hostSections().every((section) => section.pages.length < 2 || this.hostOpen.includes(section.key));
+        return this.hostSections().every((section) => !this.hostBranch(section) || this.hostOpen.includes(section.key));
       },
       toggleHostBranches() {
-        this.hostOpen = this.hostAllOpen() ? [] : this.hostSections().filter((section) => section.pages.length > 1).map((section) => section.key);
+        this.hostOpen = this.hostAllOpen() ? [] : this.hostSections().filter((section) => this.hostBranch(section)).map((section) => section.key);
       },
       openHostServer(s) {
         this.hostServer = s;
