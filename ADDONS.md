@@ -121,7 +121,17 @@ Pages on a server (such as Subdomain or Website) stay in the server's own menu.
 
 Announcements, embed and subdomains are core features of Simplify since 1.2. Plugins that used Simplify Subdomains
 can call `Simplify\Core\Subdomains\Subdomains` with the same methods; its `ready()` is false until a root admin has
-set subdomains up.
+set subdomains up. `gameAddress($server)` gives where players join: the working subdomain, otherwise the shared
+game address with the port (`play.example.com:25566`) when the port is in the forwarded range, otherwise null.
+
+`Simplify\Core\Server\Looks` sets a server's colour and banner, for example right after a server is made:
+`Looks::for($server)` gives `color` and `banner`; `Looks::save($server, $color, $banner)` sets both, where `$banner`
+is `false` to keep the current one, `null` for none, or a file the add-on stored on the local disk as
+`Looks::DIRECTORY.'/<name>.(png|jpg|jpeg|webp)'` (name `[A-Za-z0-9_-]`, at most 80). Uploads no server shows any more are
+deleted by Simplify.
+
+`Simplify\Core\Embed\Services\EmbedServers::visible($server)` and `setVisible($server, $on)` read and set a server's
+"Show on the website" choice (the same as its Website page). They check no permissions: the caller does that.
 
 ## Events
 

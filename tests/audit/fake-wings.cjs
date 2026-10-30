@@ -54,7 +54,7 @@ const wsServer = (server) => server.on('upgrade', (req, socket) => {
 wsServer(http.createServer(async (req, res) => {
   const u = url.parse(req.url, true), path = u.pathname;
   fs.appendFileSync(logFile, new Date().toISOString() + ' ' + req.method + ' ' + path + (u.search || '') + '\n');
-  const send = (code, data, type = 'application/json') => { res.writeHead(code, { 'Content-Type': type }); res.end(Buffer.isBuffer(data) || typeof data === 'string' ? data : JSON.stringify(data)); };
+  const send = (code, data, type = 'application/json') => { res.writeHead(code, { 'Content-Type': type, 'User-Agent': 'fake-wings' }); res.end(Buffer.isBuffer(data) || typeof data === 'string' ? data : JSON.stringify(data)); };
   const list = servers();
   if (path === '/api/system') return send(200, { architecture: 'amd64', cpu_count: 4, kernel_version: '6.8', os: 'linux', version: '1.0.0-lab' });
   if (path === '/api/system/utilization') return send(200, { memory_total: 16e9, memory_used: 6e9, swap_total: 0, swap_used: 0, load_average1: 0.5, load_average5: 0.4, load_average15: 0.3, cpu_percent: 23.5, disk_total: 500e9, disk_used: 120e9 });

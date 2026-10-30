@@ -22,6 +22,7 @@ namespace {
     use Simplify\Core\Subdomains\Services\CloudflareDns;
     use Simplify\Core\Subdomains\Services\Games;
     use Simplify\Core\Subdomains\Services\Names;
+    use Simplify\Core\Subdomains\Services\Settings;
 
     /** Returns the translation key with its placeholders, so tests can see which message was chosen. */
     function __(string $key, array $replace = []): string
@@ -131,6 +132,9 @@ namespace {
     $names = new Names('example.com', 'play.example.com', fn (string $name, ?string $uuid) => isset($used[$name]) && $used[$name] !== $uuid);
     check($names->check('birch') === null && $names->check('') === null, 'a valid or empty name passes');
     check($names->check('Oak') !== null && $names->check('-oak') !== null && $names->check(str_repeat('a', 64)) !== null, 'badly formed names are refused');
+    $game = ['target' => 'play.example.com', 'port_min' => 25565, 'port_max' => 25600];
+    check(Settings::gameAddress(25566, $game) === 'play.example.com:25566', 'a forwarded port joins on the game address');
+    check(Settings::gameAddress(25601, $game) === null && Settings::gameAddress(25566, ['target' => ''] + $game) === null, 'no game address outside the range or without a target');
     check(str_contains((string) $names->check('www'), 'reserved') && str_contains((string) $names->check('play'), 'reserved'), 'reserved names and the game address are refused');
     check(str_contains((string) $names->check('oak'), 'taken') && $names->check('oak', $used['oak']) === null, 'a name of another server is taken, its own is not');
     check($names->suggest('Oak') === 'oak-2' && $names->suggest('Oak', $used['oak']) === 'oak', 'a suggestion skips taken names');

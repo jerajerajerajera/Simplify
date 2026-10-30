@@ -6,17 +6,29 @@ on:
   workflow_dispatch:
     inputs:
       only:
-        description: 'Stands, comma separated (empty = all): d1920,d1440,laag1366,d1100,hoog1280,tablet768,phone390,phone360'
+        description: 'Stands, comma separated (empty = all): d1920,d1440,laag1366,laag1100,d1100,hoog1280,tablet768,phone390,phone360'
         default: ''
       toolkit:
         description: 'Branch of Simplify-Toolkit'
         default: 'main'
       servermaker:
-        description: 'Branch of Simplify-ServerMaker'
+        description: 'Branch of Simplify-ServerMaker (none = without Server Maker)'
         default: 'main'
-  push:
-    branches: ['claude/project-thread-k01bn2']
-    paths: ['tests/audit/**', '.github/workflows/audit.yml']
+      simplify:
+        description: 'Branch of Simplify to audit (empty = this checkout); the audit itself always comes from this checkout'
+        default: ''
+      section:
+        description: 'Only one section (empty = everything): seasons, extras, layers, first, nav, create, inventory (every function, for the 0.7.0 diff), or compare (the overview measured, 8 servers)'
+        default: ''
+      from:
+        description: 'A Simplify tag (e.g. v1.5.1) installed and seeded first; then the Simplify branch updates it, as on a real panel'
+        default: ''
+      legacy:
+        description: 'A branch of PelicanSimplify to install instead of Simplify and the add-ons (with section compare)'
+        default: ''
+      legacy_brand:
+        description: 'yes = a PelicanSimplify 0.7.0 appearance.json with a brand block before Simplify installs (its import migration)'
+        default: ''
 permissions:
   contents: write
 jobs:
@@ -26,7 +38,7 @@ jobs:
       stands: ${{ steps.list.outputs.stands }}
     steps:
       - id: list
-        run: echo "stands=$(python3 -c "import json;s='${{ inputs.only }}'.strip();print(json.dumps(s.split(',') if s else ['d1920','d1440','laag1366','d1100','hoog1280','tablet768','phone390','phone360']))")" >> "$GITHUB_OUTPUT"
+        run: echo "stands=$(python3 -c "import json;s='${{ inputs.only }}'.strip();print(json.dumps(s.split(',') if s else ['d1920','d1440','laag1366','laag1100','d1100','hoog1280','tablet768','phone390','phone360']))")" >> "$GITHUB_OUTPUT"
   # One job per stand, side by side; each pushes its screens to the branch audit-results-<branch>-<stand>.
   audit:
     needs: plan
@@ -63,16 +75,45 @@ jobs:
           touch database/database.sqlite
           php artisan key:generate --force
           php artisan migrate --force --seed
+          php artisan storage:link || true
           yarn install --silent
           yarn build
       - name: Install Simplify (this checkout) and the add-ons (main)
         working-directory: panel
         run: |
+          if [ -n "${{ inputs.legacy }}" ]; then
+            git clone --quiet --depth 1 --branch "${{ inputs.legacy }}" https://github.com/jerajerajerajera/PelicanSimplify.git plugins/pelican-simplify
+            echo "PelicanSimplify from branch ${{ inputs.legacy }} at $(git -C plugins/pelican-simplify rev-parse --short HEAD)"
+            rm -rf plugins/pelican-simplify/.git
+            # 0.7.0 wants a queue that persists and a worker (started with the panel).
+            sed -i 's/^QUEUE_CONNECTION=.*/QUEUE_CONNECTION=database/' .env && php artisan config:clear
+            php artisan p:plugin:install pelican-simplify
+            php artisan p:plugin:list
+            exit 0
+          fi
           mkdir -p plugins/simplify
-          tar -C ../simplify --exclude=.git --exclude=tests --exclude=.github -cf - . | tar -C plugins/simplify -xf -
+          if [ -n "${{ inputs.from }}" ]; then
+            # The update test: the old version now, the branch after the seed (next step).
+            if [ -n "${{ inputs.simplify }}" ]; then git clone --quiet --depth 1 --branch "${{ inputs.simplify }}" https://github.com/jerajerajerajera/Simplify.git ../simplify-next; else tar -C ../simplify --exclude=.git -cf - . | (mkdir -p ../simplify-next && tar -C ../simplify-next -xf -); fi
+            git clone --quiet --depth 1 --branch "${{ inputs.from }}" https://github.com/jerajerajerajera/Simplify.git simplify-src
+            echo "Simplify ${{ inputs.from }} first, then $(git -C ../simplify-next rev-parse --short HEAD 2>/dev/null || echo this checkout)"
+            tar -C simplify-src --exclude=.git --exclude=tests --exclude=.github -cf - . | tar -C plugins/simplify -xf - && rm -rf simplify-src
+          elif [ -n "${{ inputs.simplify }}" ]; then
+            git clone --quiet --depth 1 --branch "${{ inputs.simplify }}" https://github.com/jerajerajerajera/Simplify.git simplify-src
+            echo "Simplify from branch ${{ inputs.simplify }} at $(git -C simplify-src rev-parse --short HEAD)"
+            tar -C simplify-src --exclude=.git --exclude=tests --exclude=.github -cf - . | tar -C plugins/simplify -xf - && rm -rf simplify-src
+          else
+            tar -C ../simplify --exclude=.git --exclude=tests --exclude=.github -cf - . | tar -C plugins/simplify -xf -
+          fi
+          if [ "${{ inputs.legacy_brand }}" = yes ]; then
+            for dir in storage/app/private/simplify storage/app/simplify; do mkdir -p "$dir"; echo '{"brand":{"font":"serif","weight":800,"color_style":"gradient","color1":"#ff7a59","color2":"#8e6bd8","spacing":8,"uppercase":true,"logo_text":true}}' > "$dir/appearance.json"; done
+            echo "PelicanSimplify 0.7.0 appearance.json written"
+          fi
           php artisan p:plugin:install simplify
+          if [ "${{ inputs.legacy_brand }}" = yes ]; then php artisan tinker --execute="echo json_encode(\\DB::table('simplify_settings')->where('key', 'like', 'brand_%')->pluck('value', 'key'));" || true; fi
           for pair in Simplify-Toolkit:simplify-toolkit Simplify-EggUpdates:simplify-eggupdates Simplify-Explain:simplify-explain Simplify-ServerMaker:simplify-servermaker Simplify-Hosting:simplify-hosting; do
             repo=${pair%%:*}; id=${pair##*:}
+            if [ "$repo" = Simplify-ServerMaker ] && [ "${{ inputs.servermaker }}" = none ]; then echo "Server Maker left out"; continue; fi
             branch=main; [ "$repo" = Simplify-Toolkit ] && branch="${{ inputs.toolkit || 'main' }}"; [ "$repo" = Simplify-ServerMaker ] && branch="${{ inputs.servermaker || 'main' }}"
             git clone --quiet --depth 1 --branch "$branch" "https://github.com/jerajerajerajera/$repo.git" "plugins/$id"
             real=$(php -r "echo json_decode(file_get_contents('plugins/$id/plugin.json'), true)['id'];")
@@ -80,15 +121,29 @@ jobs:
             rm -rf "plugins/$id/.git"
             php artisan p:plugin:install "$id"
           done
+          # A plugin that is not Simplify, so Admin tools has an Other plugins group, as on a real panel.
+          cp -r ../simplify/tests/audit/fake-plugin plugins/audit-directory && php artisan p:plugin:install audit-directory || echo "audit-directory did not install"
           php artisan p:plugin:list
       - name: Seed and start the panel and the fake Wings
         working-directory: panel
         run: |
-          php ../simplify/tests/audit/seed.php 8090 > servers.json
-          php ../simplify/tests/audit/urls.php > urls.json
+          php ../simplify/tests/audit/seed.php 8090 ${{ inputs.section == 'compare' && '8' || '' }} > servers.json
+          php ../simplify/tests/audit/urls.php > urls.json || echo "{}" > urls.json
           cat urls.json
+          if [ -n "${{ inputs.from }}" ]; then
+            # As Admin → Plugins and the Hub update it: the new files over the old, the install in a queue job.
+            rm -rf plugins/simplify && mkdir -p plugins/simplify
+            tar -C ../simplify-next --exclude=.git --exclude=tests --exclude=.github -cf - . | tar -C plugins/simplify -xf -
+            php artisan tinker --execute="App\Jobs\Plugin\InstallPlugin::dispatch(App\Models\User::first(), 'simplify');"
+            php artisan queue:work --max-jobs=1 --stop-when-empty
+            php artisan p:plugin:list | tee plugins.txt
+            grep -E 'Simplify .*\| enabled' plugins.txt || { echo '::error::Simplify did not update'; tail -n 40 storage/logs/*.log || true; exit 1; }
+            php artisan migrate:status | grep -i simplify | grep -iv ran && { echo '::error::Simplify migrations left'; exit 1; } || true
+            php ../simplify/tests/audit/urls.php > urls.json || true
+          fi
           nohup node ../simplify/tests/audit/fake-minecraft.cjs --servers servers.json > minecraft.out 2>&1 &
           nohup node ../simplify/tests/audit/fake-wings.cjs --port 8090 --servers servers.json --log wings.log > wings.out 2>&1 &
+          if [ -n "${{ inputs.legacy }}" ]; then nohup php artisan queue:work --sleep=1 > queue.log 2>&1 & fi
           PHP_CLI_SERVER_WORKERS=8 nohup php artisan serve --host 127.0.0.1 --port 8001 > serve.log 2>&1 &
           for i in $(seq 1 30); do curl -sf -o /dev/null http://127.0.0.1:8001/login && break; sleep 1; done
           curl -sS http://127.0.0.1:8090/api/system
@@ -98,12 +153,19 @@ jobs:
           npm init -y > /dev/null
           npm install --silent playwright@1.48.2
           npx playwright install --with-deps chromium > /dev/null
-          node audit.cjs --base http://127.0.0.1:8001 --urls ../../../panel/urls.json --out ../../../result --only ${{ matrix.stand }}
+          if [ "${{ inputs.section }}" = inventory ]; then node inventory.cjs --base http://127.0.0.1:8001 --out ../../../result; exit 0; fi
+          if [ "${{ inputs.section }}" = compare ]; then node compare.cjs --base http://127.0.0.1:8001 --out ../../../result --only ${{ matrix.stand }}; exit 0; fi
+          node audit.cjs --base http://127.0.0.1:8001 --urls ../../../panel/urls.json --out ../../../result --only ${{ matrix.stand }} --section "${{ inputs.section }}" --servermaker "${{ inputs.servermaker }}"
       - if: always()
         name: Logs
         run: |
           tail -n 40 panel/wings.log || true
           grep -h -E '^\[[0-9-]+ [0-9:]+\]' panel/storage/logs/*.log | cut -c1-600 | tail -n 30 || true
+      - name: Style verdict (fails the job when a UI rule is broken)
+        if: inputs.section != 'compare' && inputs.section != 'inventory'
+        id: style
+        continue-on-error: true
+        run: set -o pipefail; python3 simplify/tests/audit/style-report.py result/result.json | tee result/style.md
       - if: always()
         name: Result to the audit-results branch
         run: |
@@ -111,4 +173,9 @@ jobs:
           git init -q -b results
           git add -A
           git -c user.name=audit -c user.email=audit@users.noreply.github.com commit -qm "Audit ${{ github.sha }} ${{ matrix.stand }}"
-          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "results:refs/heads/audit-results-$(echo "${{ github.ref_name }}" | tr "/" "-")-${{ matrix.stand }}"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "results:refs/heads/audit-results-$(echo "${{ inputs.legacy && format('legacy-{0}', inputs.legacy) || inputs.simplify || github.ref_name }}" | tr "/" "-")${{ inputs.from && format('-from-{0}', inputs.from) || '' }}${{ (inputs.section == 'compare' || inputs.section == 'inventory') && format('-{0}', inputs.section) || '' }}${{ inputs.servermaker == 'none' && '-nosm' || '' }}-${{ matrix.stand }}"
+      - name: Fail when the style verdict is red
+        if: steps.style.outcome == 'failure'
+        run: |
+          echo "::error::UI rules broken, see style.md on the results branch"
+          exit 1
