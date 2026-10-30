@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- For other plugins: `Subdomains::gameAddress()` gives a server's join address, falling back to the shared game address with the port when the server has no working subdomain.
+
 ## 1.5.1
 
 - Updating from 1.4.4 on a panel that came from PelicanSimplify 0.7.0 stopped with "Undefined array key logo_text" and left Simplify not installed. 0.7.0's "text beside the logo" now becomes Simplify's "Logo + text".
