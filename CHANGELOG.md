@@ -2,6 +2,7 @@
 
 ## 1.4.5
 
+- Overview: the Host health card and the tab under it are one hover zone. Hovering either lights up both in the same colour, as both open the same list of nodes.
 - Outside host mode, Simplify's admin pages no longer scroll as a whole page: Settings and Pelican's Health page keep their card as high as the window leaves it and scroll inside it (the settings menu stays in place), People & roles keeps its tabs and search on top and scrolls the list, and Website, Automatic subdomains and Announcements scroll their form under the page title.
 
 ## 1.4.4

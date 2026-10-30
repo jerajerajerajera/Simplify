@@ -211,7 +211,7 @@
             </div>
         </div>
         {{-- A tab under the card's bottom edge: the card folds open to show every node. --}}
-        <button type="button" class="ps-health-tab" :class="{'expanded': healthExpanded}" x-show="boot.features?.host_health" x-on:click="openHostHealth()" :aria-expanded="healthExpanded" aria-controls="ps-health-details" aria-label="{{ $u('view_health_by_node') }}" data-tip="{{ $u('view_health_by_node') }}"><svg aria-hidden="true"><use href="#ps-chevron"/></svg></button>
+        <button type="button" class="ps-health-tab" :class="{'expanded': healthExpanded}" x-show="boot.features?.host_health" x-on:click="openHostHealth()" :aria-expanded="healthExpanded" aria-controls="ps-health-details" aria-label="{{ $u('view_health_by_node') }}"><svg aria-hidden="true"><use href="#ps-chevron"/></svg></button>
     </section>
 </section>
 
