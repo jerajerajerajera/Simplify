@@ -61,6 +61,12 @@ return [
         'seasonal' => 'Sezoniniai akcentai',
         'seasonal_help' => 'Maži akcentai per metų šventes. Kiekvienas gali juos išjungti sau skiltyje Customize.',
         'pelican_suffix' => 'Rodyti "× Pelican" po pavadinimu',
+        'banners' => 'Serverių reklamjuostės',
+        'banners_none' => 'Įkeltų reklamjuosčių dar nėra.',
+        'banner_remove' => 'Pašalinti įkeltą',
+        'banner_remove_confirm' => 'Pašalinti šią įkeltą reklamjuostę?',
+        'banner_remove_help' => 'Ją naudojantys serveriai grįš prie automatinio fono.',
+        'banner_removed' => 'Reklamjuostė pašalinta',
     ],
     'addons' => [
         'heading' => 'Priedai',

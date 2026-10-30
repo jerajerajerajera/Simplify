@@ -61,6 +61,12 @@ return [
         'seasonal' => 'Toques sazonais',
         'seasonal_help' => 'Pequenos toques nos feriados ao longo do ano. Cada pessoa pode desativá-los para si em Customize.',
         'pelican_suffix' => 'Mostrar "× Pelican" depois do nome',
+        'banners' => 'Banners do servidor',
+        'banners_none' => 'Nenhum banner enviado ainda.',
+        'banner_remove' => 'Remover envio',
+        'banner_remove_confirm' => 'Remover este banner enviado?',
+        'banner_remove_help' => 'Servidores que o usam voltam ao fundo automático.',
+        'banner_removed' => 'Banner removido',
     ],
     'addons' => [
         'heading' => 'Add-ons',

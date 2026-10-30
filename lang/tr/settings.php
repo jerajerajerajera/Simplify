@@ -61,6 +61,12 @@ return [
         'seasonal' => 'Mevsimsel dokunuşlar',
         'seasonal_help' => 'Yıl boyunca bayramlarda küçük dokunuşlar. Herkes Customize altında kendisi için kapatabilir.',
         'pelican_suffix' => 'Adın ardından "× Pelican" göster',
+        'banners' => 'Sunucu banner\'ları',
+        'banners_none' => 'Henüz yüklenmiş banner yok.',
+        'banner_remove' => 'Yüklemeyi kaldır',
+        'banner_remove_confirm' => 'Yüklenen bu banner kaldırılsın mı?',
+        'banner_remove_help' => 'Onu kullanan sunucular otomatik arka planlarına döner.',
+        'banner_removed' => 'Banner kaldırıldı',
     ],
     'addons' => [
         'heading' => 'Ek özellikler',

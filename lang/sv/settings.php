@@ -61,6 +61,12 @@ return [
         'seasonal' => 'Säsongsdetaljer',
         'seasonal_help' => 'Små detaljer på högtider under året. Alla kan stänga av dem för sig själva under Customize.',
         'pelican_suffix' => 'Visa "× Pelican" efter namnet',
+        'banners' => 'Serverbanners',
+        'banners_none' => 'Inga uppladdade banners ännu.',
+        'banner_remove' => 'Ta bort uppladdning',
+        'banner_remove_confirm' => 'Ta bort den här uppladdade bannern?',
+        'banner_remove_help' => 'Servrar som använder den går tillbaka till sin automatiska bakgrund.',
+        'banner_removed' => 'Banner borttagen',
     ],
     'addons' => [
         'heading' => 'Tillägg',

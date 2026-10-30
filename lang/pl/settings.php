@@ -61,6 +61,12 @@ return [
         'seasonal' => 'Akcenty sezonowe',
         'seasonal_help' => 'Drobne akcenty w święta w ciągu roku. Każdy może je wyłączyć dla siebie w Customize.',
         'pelican_suffix' => 'Pokazuj "× Pelican" po nazwie',
+        'banners' => 'Banery serwerów',
+        'banners_none' => 'Brak przesłanych banerów.',
+        'banner_remove' => 'Usuń przesłany',
+        'banner_remove_confirm' => 'Usunąć ten przesłany baner?',
+        'banner_remove_help' => 'Serwery, które go używają, wracają do automatycznego tła.',
+        'banner_removed' => 'Baner usunięty',
     ],
     'addons' => [
         'heading' => 'Dodatki',

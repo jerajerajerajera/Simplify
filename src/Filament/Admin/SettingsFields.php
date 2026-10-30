@@ -107,6 +107,14 @@ final class SettingsFields
         ]);
     }
 
+    /** The banners people uploaded for their servers, to remove one that should not be there. Settings page only. */
+    public static function banners(): Section
+    {
+        return Section::make(__(self::T.'appearance.banners'))->schema([
+            View::make('simplify::partials.server-banners'),
+        ]);
+    }
+
     private static function image(string $name, string $label, string $help): FileUpload
     {
         return FileUpload::make($name)->live()->label(__(self::T.$label))->helperText(__(self::T.$help))

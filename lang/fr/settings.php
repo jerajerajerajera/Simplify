@@ -61,6 +61,12 @@ return [
         'seasonal' => 'Touches saisonnières',
         'seasonal_help' => 'De petites touches pour les fêtes de l\'année. Chacun peut les désactiver pour lui-même dans Customize.',
         'pelican_suffix' => 'Afficher « × Pelican » après le nom',
+        'banners' => 'Bannières de serveur',
+        'banners_none' => 'Pas encore de bannières envoyées.',
+        'banner_remove' => 'Retirer l’envoi',
+        'banner_remove_confirm' => 'Retirer cette bannière envoyée ?',
+        'banner_remove_help' => 'Les serveurs qui l’utilisent reviennent à leur arrière-plan automatique.',
+        'banner_removed' => 'Bannière retirée',
     ],
     'addons' => [
         'heading' => 'Add-ons',

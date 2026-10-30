@@ -61,6 +61,12 @@ return [
         'seasonal' => '节日点缀',
         'seasonal_help' => '一年中各个节日的小点缀。每个人仍可在 Customize 中为自己关闭。',
         'pelican_suffix' => '在名称后显示“× Pelican”',
+        'banners' => '服务器横幅',
+        'banners_none' => '还没有上传的横幅。',
+        'banner_remove' => '移除上传',
+        'banner_remove_confirm' => '移除此已上传的横幅？',
+        'banner_remove_help' => '使用它的服务器将恢复为自动背景。',
+        'banner_removed' => '横幅已移除',
     ],
     'addons' => [
         'heading' => '附加组件',

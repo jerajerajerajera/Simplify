@@ -61,6 +61,12 @@ return [
         'seasonal' => 'Detalles de temporada',
         'seasonal_help' => 'Pequeños detalles en las fiestas del año. Cada persona puede desactivarlos para sí misma en Customize.',
         'pelican_suffix' => 'Mostrar "× Pelican" tras el nombre',
+        'banners' => 'Banners de servidor',
+        'banners_none' => 'Aún no hay banners subidos.',
+        'banner_remove' => 'Quitar subida',
+        'banner_remove_confirm' => '¿Quitar este banner subido?',
+        'banner_remove_help' => 'Los servidores que lo usan vuelven a su fondo automático.',
+        'banner_removed' => 'Banner quitado',
     ],
     'addons' => [
         'heading' => 'Add-ons',

@@ -39,6 +39,8 @@
       ],
       infoMenu: false,
       colorMenu: false,
+      bannerMenu: false,
+      bannerChoices: [],
       // Set while a power action, rename or look change is on its way; Alpine treats an undefined name as an error.
       busy: false,
       // The last state Wings reported over the console socket, for Pelican versions without window.ServerStats.
@@ -305,6 +307,26 @@
           this.busy = false;
         }
       },
+      async openBannerMenu() {
+        this.infoMenu = false;
+        this.colorMenu = false;
+        this.bannerMenu = true;
+        try {
+          this.bannerChoices = await wire.banners();
+        } catch {}
+      },
+      async chooseBanner(id) {
+        if (this.busy) return;
+        this.busy = true;
+        try {
+          this.take(await wire.chooseBanner(id));
+          this.toast(t('dashboard.server_background_saved'), 'ok');
+        } catch {
+          this.toast(t('dashboard.the_action_could_not_be_completed'), 'danger');
+        } finally {
+          this.busy = false;
+        }
+      },
       openColorMenu() {
         this.infoMenu = false;
         this.colorDraft = this.server.color || '#3b82f6';
@@ -318,6 +340,7 @@
           if (file) await new Promise((resolve, reject) => wire.upload('banner', file, resolve, reject));
           this.take(await wire.saveLook(color, remove));
           this.colorMenu = false;
+          if (file) this.bannerChoices = await wire.banners();
           this.toast(file || remove ? t('dashboard.server_background_saved') : t('dashboard.server_color_saved'), 'ok');
         } catch {
           this.toast(t('dashboard.the_action_could_not_be_completed'), 'danger');

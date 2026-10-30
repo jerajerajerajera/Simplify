@@ -111,6 +111,31 @@ final class ServerPage extends Component
         $this->redirect(Overview::getUrl(panel: 'app'));
     }
 
+    /**
+     * The backgrounds to pick from: Simplify's scenes and the uploads on servers this person may change.
+     *
+     * @return list<array{id: string, url: string, upload: bool}>
+     */
+    #[Renderless]
+    public function banners(): array
+    {
+        abort_unless(Looks::canEdit($this->user(), $this->server), 403);
+
+        return Looks::choices($this->user());
+    }
+
+    /** A picked background: 'auto', a scene, or an upload that is already on another server of theirs. */
+    #[Renderless]
+    public function chooseBanner(string $id): array
+    {
+        abort_unless(Looks::canEdit($this->user(), $this->server), 403);
+        $banner = Looks::stored($this->user(), $id);
+        abort_if($banner === false, 422);
+        Looks::save($this->server, Looks::for($this->server)['color'], $banner);
+
+        return $this->refresh();
+    }
+
     /** The uploaded file waits for saveLook(); the page itself is drawn in the browser, so nothing re-renders. */
     public function updatedBanner(): void
     {

@@ -61,6 +61,12 @@ return [
         'seasonal' => 'لمسات موسمية',
         'seasonal_help' => 'لمسات صغيرة في المناسبات على مدار السنة. يمكن لكل شخص إيقافها لنفسه من Customize.',
         'pelican_suffix' => 'عرض "× Pelican" بعد الاسم',
+        'banners' => 'لافتات الخوادم',
+        'banners_none' => 'لا توجد لافتات مرفوعة بعد.',
+        'banner_remove' => 'إزالة المرفوع',
+        'banner_remove_confirm' => 'إزالة هذه اللافتة المرفوعة؟',
+        'banner_remove_help' => 'تعود الخوادم التي تستخدمها إلى خلفيتها التلقائية.',
+        'banner_removed' => 'أُزيلت اللافتة',
     ],
     'addons' => [
         'heading' => 'الملحقات',

@@ -61,6 +61,12 @@ return [
         'seasonal' => '계절 장식',
         'seasonal_help' => '일 년 내내 기념일에 작은 장식을 보여 줍니다. 누구나 Customize에서 자신에게만 끌 수 있습니다.',
         'pelican_suffix' => '이름 뒤에 "× Pelican" 표시',
+        'banners' => '서버 배너',
+        'banners_none' => '아직 업로드한 배너가 없습니다.',
+        'banner_remove' => '업로드 제거',
+        'banner_remove_confirm' => '업로드한 이 배너를 제거할까요?',
+        'banner_remove_help' => '이 배너를 쓰는 서버는 자동 배경으로 돌아갑니다.',
+        'banner_removed' => '배너를 제거했습니다',
     ],
     'addons' => [
         'heading' => '애드온',

@@ -61,6 +61,12 @@ return [
         'seasonal' => '季節の演出',
         'seasonal_help' => '一年を通して祝日にささやかな演出を表示します。各ユーザーは Customize で自分だけオフにできます。',
         'pelican_suffix' => '名前の後に「× Pelican」を表示',
+        'banners' => 'サーバーバナー',
+        'banners_none' => 'まだアップロードしたバナーはありません。',
+        'banner_remove' => 'アップロードを削除',
+        'banner_remove_confirm' => 'アップロードしたこのバナーを削除しますか?',
+        'banner_remove_help' => '使用しているサーバーは自動の背景に戻ります。',
+        'banner_removed' => 'バナーを削除しました',
     ],
     'addons' => [
         'heading' => 'アドオン',

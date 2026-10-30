@@ -61,6 +61,12 @@ return [
         'seasonal' => 'Accente sezoniere',
         'seasonal_help' => 'Mici accente de sărbători de-a lungul anului. Oricine le poate dezactiva pentru sine din Customize.',
         'pelican_suffix' => 'Afișați „× Pelican” după nume',
+        'banners' => 'Bannerele serverelor',
+        'banners_none' => 'Încă nu există bannere încărcate.',
+        'banner_remove' => 'Eliminați încărcarea',
+        'banner_remove_confirm' => 'Eliminați acest banner încărcat?',
+        'banner_remove_help' => 'Serverele care îl folosesc revin la fundalul lor automat.',
+        'banner_removed' => 'Banner eliminat',
     ],
     'addons' => [
         'heading' => 'Extensii',

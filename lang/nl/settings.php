@@ -61,6 +61,12 @@ return [
         'seasonal' => 'Seizoensaccenten',
         'seasonal_help' => 'Kleine accenten op feestdagen door het jaar heen. Iedereen kan ze voor zichzelf uitzetten onder Customize.',
         'pelican_suffix' => '"× Pelican" achter de naam tonen',
+        'banners' => 'Serverbanners',
+        'banners_none' => 'Nog geen geüploade banners.',
+        'banner_remove' => 'Upload weghalen',
+        'banner_remove_confirm' => 'Deze geüploade banner weghalen?',
+        'banner_remove_help' => 'Servers die hem gebruiken krijgen weer hun automatische achtergrond.',
+        'banner_removed' => 'Banner weggehaald',
     ],
     'addons' => [
         'heading' => 'Add-ons',

@@ -61,6 +61,12 @@ return [
         'seasonal' => 'Saisonale Details',
         'seasonal_help' => 'Kleine Details an Feiertagen über das Jahr. Jeder kann sie unter Customize für sich ausschalten.',
         'pelican_suffix' => '"× Pelican" nach dem Namen zeigen',
+        'banners' => 'Server-Banner',
+        'banners_none' => 'Noch keine hochgeladenen Banner.',
+        'banner_remove' => 'Upload entfernen',
+        'banner_remove_confirm' => 'Dieses hochgeladene Banner entfernen?',
+        'banner_remove_help' => 'Server, die es nutzen, bekommen wieder ihren automatischen Hintergrund.',
+        'banner_removed' => 'Banner entfernt',
     ],
     'addons' => [
         'heading' => 'Add-ons',

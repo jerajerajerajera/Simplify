@@ -61,6 +61,12 @@ return [
         'seasonal' => 'Điểm xuyết theo mùa',
         'seasonal_help' => 'Những điểm xuyết nhỏ vào các ngày lễ trong năm. Mỗi người vẫn có thể tự tắt trong Customize.',
         'pelican_suffix' => 'Hiện "× Pelican" sau tên',
+        'banners' => 'Banner máy chủ',
+        'banners_none' => 'Chưa có banner nào được tải lên.',
+        'banner_remove' => 'Xóa bản tải lên',
+        'banner_remove_confirm' => 'Xóa banner đã tải lên này?',
+        'banner_remove_help' => 'Các máy chủ đang dùng nó sẽ quay về hình nền tự động.',
+        'banner_removed' => 'Đã xóa banner',
     ],
     'addons' => [
         'heading' => 'Tiện ích bổ sung',

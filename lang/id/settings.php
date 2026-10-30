@@ -61,6 +61,12 @@ return [
         'seasonal' => 'Sentuhan musiman',
         'seasonal_help' => 'Sentuhan kecil pada hari raya sepanjang tahun. Setiap orang tetap bisa mematikannya untuk dirinya di Customize.',
         'pelican_suffix' => 'Tampilkan "× Pelican" setelah nama',
+        'banners' => 'Banner server',
+        'banners_none' => 'Belum ada banner yang diunggah.',
+        'banner_remove' => 'Hapus unggahan',
+        'banner_remove_confirm' => 'Hapus banner unggahan ini?',
+        'banner_remove_help' => 'Server yang memakainya kembali ke latar belakang otomatis.',
+        'banner_removed' => 'Banner dihapus',
     ],
     'addons' => [
         'heading' => 'Add-on',

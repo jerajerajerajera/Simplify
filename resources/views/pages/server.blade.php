@@ -56,15 +56,14 @@
             </div>
             <div class="ps-motd-preview ps-motd-display ps-info-motd" x-show="server.motd" x-effect="server.motd; $nextTick(() => fitMotd($el))" aria-label="{{ $u('message_of_the_day') }}"><template x-for="(part, index) in motdPreview(server.motd || '')" :key="index"><span :style="part.style" x-text="part.text"></span></template></div>
             {{-- Power: one button that follows the state (Start, Stop, or Force stop while starting or stopping), Restart, and the rest under ⋯. --}}
-            <div class="ps-info-power" x-on:click.outside="colorMenu=false; infoMenu=false" x-on:keydown.escape.stop="colorMenu=false; infoMenu=false">
+            <div class="ps-info-power" x-on:click.outside="colorMenu=false; bannerMenu=false; infoMenu=false" x-on:keydown.escape.stop="colorMenu=false; bannerMenu=false; infoMenu=false">
                 <button type="button" class="ps-btn ps-power-main" :class="{'is-primary': mainPower().action==='start', 'is-danger': mainPower().action==='kill'}" x-on:click="power(mainPower().action)" :disabled="busy || !server.permissions[mainPower().permission] || (mainPower().action==='start' && !canRestart())" :aria-label="Simplify.fill(@js($u('action_server')), { action: mainPower().label })"><svg aria-hidden="true"><use :href="'#ps-'+mainPower().icon"/></svg><span x-text="mainPower().label"></span></button>
                 <button type="button" class="ps-btn ps-power-restart" x-on:click="power('restart')" :disabled="busy || !server.permissions['control.restart'] || !canRestart()" aria-label="{{ $u('restart_server') }}"><svg aria-hidden="true"><use href="#ps-restart"/></svg><span>{{ $u('restart') }}</span></button>
-                <button type="button" class="ps-btn is-icon ps-info-more-button" aria-label="{{ $u('more_server_options') }}" aria-controls="ps-info-menu" :aria-expanded="infoMenu" x-on:click="infoMenu=!infoMenu; colorMenu=false"><svg aria-hidden="true"><use href="#ps-dots"/></svg></button>
+                <button type="button" class="ps-btn is-icon ps-info-more-button" aria-label="{{ $u('more_server_options') }}" aria-controls="ps-info-menu" :aria-expanded="infoMenu" x-on:click="infoMenu=!infoMenu; colorMenu=false; bannerMenu=false"><svg aria-hidden="true"><use href="#ps-dots"/></svg></button>
                 <div id="ps-info-menu" class="ps-dropdown is-end ps-info-menu" x-show="infoMenu" x-cloak x-transition.opacity role="menu">
                     <span class="ps-label ps-menu-heading" x-show="server.can_edit">{{ $u('look') }}</span>
                     <button type="button" class="ps-menu-item" role="menuitem" x-show="server.can_edit" :disabled="busy" x-on:click="openColorMenu()"><span class="ps-color-dot" aria-hidden="true"></span><span>{{ $u('server_color') }}</span></button>
-                    <label class="ps-menu-item" role="menuitem" x-show="server.can_edit"><svg aria-hidden="true"><use href="#ps-image"/></svg><span>{{ $u('server_background') }}</span><input type="file" accept="image/png,image/jpeg,image/webp" hidden x-on:change="infoMenu=false; $event.target.files[0] && saveLook(server.color, $event.target.files[0]); $event.target.value=''"></label>
-                    <button type="button" class="ps-menu-item" role="menuitem" x-show="server.can_edit && server.background_id==='upload'" :disabled="busy" x-on:click="infoMenu=false; saveLook(server.color, null, true)"><svg aria-hidden="true"><use href="#ps-close"/></svg><span>{{ $u('no_background') }}</span></button>
+                    <button type="button" class="ps-menu-item" role="menuitem" x-show="server.can_edit" :disabled="busy" x-on:click="openBannerMenu()"><svg aria-hidden="true"><use href="#ps-image"/></svg><span>{{ $u('server_background') }}</span></button>
                     <button type="button" class="ps-menu-item" role="menuitem" x-show="server.can_edit" x-on:click="infoMenu=false; saveName(@js($u('server_name')), @js($u('rename')))"><svg aria-hidden="true"><use href="#ps-edit"/></svg><span>{{ $u('rename') }}</span></button>
                     <template x-if="server.sftp"><hr></template>
                     <span class="ps-label ps-menu-heading" x-show="server.sftp">{{ $u('sftp') }}</span>
@@ -78,6 +77,20 @@
                     <hr>
                     <button type="button" class="ps-menu-item is-danger" role="menuitem" :disabled="busy || !server.permissions['control.stop'] || status==='offline'" x-on:click="infoMenu=false; power('kill')"><svg aria-hidden="true"><use href="#ps-kill"/></svg><span>{{ $u('force_stop') }}</span></button>
                     <button type="button" class="ps-menu-item is-danger" role="menuitem" x-show="server.can_delete" :disabled="busy || status!=='offline'" :data-tip="status!=='offline' ? @js($u('stop_to_delete')) : null" x-on:click="infoMenu=false; deleteServer()"><svg aria-hidden="true"><use href="#ps-trash"/></svg><span>{{ $u('delete_server') }}</span></button>
+                </div>
+                {{-- Background: automatic, one of Simplify's scenes, a banner uploaded for another server of theirs, or a new upload. --}}
+                <div class="ps-dropdown is-end ps-banner-dropdown" x-show="bannerMenu" x-cloak x-on:click.stop>
+                    <span class="ps-label">{{ $u('server_background') }}</span>
+                    <div class="ps-banner-choices">
+                        <button type="button" class="ps-banner-choice is-auto" :aria-pressed="server.background_id==='auto'" :disabled="busy" x-on:click="chooseBanner('auto')"><svg aria-hidden="true"><use href="#ps-sparkles"/></svg><span>{{ $u('automatic') }}</span></button>
+                        <template x-for="choice in bannerChoices" :key="choice.id">
+                            <button type="button" class="ps-banner-choice" :aria-pressed="server.background_id===choice.id" :aria-label="choice.upload ? @js($u('your_uploaded_banners')) : @js($u('standard_banners'))" :disabled="busy" x-on:click="chooseBanner(choice.id)"><img :src="safeImage(choice.url)" alt="" loading="lazy"></button>
+                        </template>
+                    </div>
+                    <div class="ps-dropdown-actions">
+                        <label class="ps-btn is-sm"><svg aria-hidden="true"><use href="#ps-plus"/></svg><span>{{ $u('upload_a_banner') }}</span><input type="file" accept="image/png,image/jpeg,image/webp" hidden x-on:change="$event.target.files[0] && saveLook(server.color, $event.target.files[0]); $event.target.value=''"></label>
+                        <button type="button" class="ps-btn is-sm" x-on:click="bannerMenu=false">{{ $u('close') }}</button>
+                    </div>
                 </div>
                 <div class="ps-dropdown is-end ps-color-dropdown" x-show="colorMenu" x-cloak x-on:click.stop>
                     <span class="ps-label">{{ $u('server_color') }}</span>

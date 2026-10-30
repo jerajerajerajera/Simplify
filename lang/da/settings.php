@@ -61,6 +61,12 @@ return [
         'seasonal' => 'Sæsonpræg',
         'seasonal_help' => 'Små detaljer på helligdage året rundt. Alle kan selv slå dem fra under Customize.',
         'pelican_suffix' => 'Vis "× Pelican" efter navnet',
+        'banners' => 'Serverbannere',
+        'banners_none' => 'Ingen uploadede bannere endnu.',
+        'banner_remove' => 'Fjern upload',
+        'banner_remove_confirm' => 'Fjern dette uploadede banner?',
+        'banner_remove_help' => 'Servere, der bruger det, går tilbage til deres automatiske baggrund.',
+        'banner_removed' => 'Banner fjernet',
     ],
     'addons' => [
         'heading' => 'Tilføjelser',

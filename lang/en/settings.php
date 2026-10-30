@@ -61,6 +61,12 @@ return [
         'seasonal' => 'Seasonal touches',
         'seasonal_help' => 'Small touches on holidays through the year. Everyone can still turn them off for themselves under Customize.',
         'pelican_suffix' => 'Show "× Pelican" after the name',
+        'banners' => 'Server banners',
+        'banners_none' => 'No uploaded banners yet.',
+        'banner_remove' => 'Remove upload',
+        'banner_remove_confirm' => 'Remove this uploaded banner?',
+        'banner_remove_help' => 'Servers using it return to their automatic background.',
+        'banner_removed' => 'Banner removed',
     ],
     'addons' => [
         'heading' => 'Add-ons',

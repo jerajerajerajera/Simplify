@@ -19,6 +19,7 @@ use Illuminate\Support\HtmlString;
 use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Filament\Admin\SettingsFields;
+use Simplify\Core\Server\Looks;
 use Simplify\Core\Support\Assets;
 use Simplify\Core\Support\PanelSettings;
 
@@ -121,6 +122,7 @@ final class Settings extends Page implements HasForms
                     SettingsFields::colours(),
                     SettingsFields::brand(),
                     SettingsFields::app(),
+                    SettingsFields::banners(),
                 ]),
                 Tab::make(__('simplify::settings.addons.heading'))->key('addons')->icon('tabler-puzzle')->schema([
                     View::make('simplify::partials.addon-list'),
@@ -176,6 +178,14 @@ final class Settings extends Page implements HasForms
             'icon' => 'tabler-'.$icon,
             'url' => PelicanSettings::getUrl(['tab' => $key.'::data::tab', 'simplify_embed' => 1], panel: 'admin'),
         ], array_keys($icons), $icons);
+    }
+
+    /** Removes an uploaded server banner; its servers go back to their automatic scene. */
+    public function deleteBanner(string $file): void
+    {
+        abort_unless(self::canAccess(), 403);
+        Looks::forget($file);
+        Notification::make()->title(__('simplify::settings.appearance.banner_removed'))->success()->send();
     }
 
     public function save(): void

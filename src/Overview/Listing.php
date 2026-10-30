@@ -117,6 +117,7 @@ final class Listing
             'name' => $server->name,
             'color' => $look['color'] ?? null,
             'background' => Artwork::background($server, $look['banner'] ?? null),
+            'background_id' => $look['banner_id'] ?? 'auto',
             'software' => $server->egg?->name,
             'game' => $minecraft ? 'minecraft' : 'other',
             'game_label' => $minecraft ? 'Minecraft' : ($server->egg?->name ?: __('simplify::dashboard.page.other_game')),

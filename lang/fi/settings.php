@@ -61,6 +61,12 @@ return [
         'seasonal' => 'Vuodenaikojen yksityiskohdat',
         'seasonal_help' => 'Pieniä yksityiskohtia juhlapäivinä ympäri vuoden. Jokainen voi poistaa ne itseltään käytöstä kohdassa Customize.',
         'pelican_suffix' => 'Näytä "× Pelican" nimen jälkeen',
+        'banners' => 'Palvelinbannerit',
+        'banners_none' => 'Ei vielä lähetettyjä bannereita.',
+        'banner_remove' => 'Poista lähetys',
+        'banner_remove_confirm' => 'Poistetaanko tämä lähetetty banneri?',
+        'banner_remove_help' => 'Sitä käyttävät palvelimet palaavat automaattiseen taustaansa.',
+        'banner_removed' => 'Banneri poistettu',
     ],
     'addons' => [
         'heading' => 'Lisätoiminnot',

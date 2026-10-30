@@ -61,6 +61,12 @@ return [
         'seasonal' => 'Szezonális díszek',
         'seasonal_help' => 'Apró díszek az év ünnepein. Mindenki kikapcsolhatja magának a Customize alatt.',
         'pelican_suffix' => '„× Pelican” megjelenítése a név után',
+        'banners' => 'Szerverbannerek',
+        'banners_none' => 'Még nincs feltöltött banner.',
+        'banner_remove' => 'Feltöltés eltávolítása',
+        'banner_remove_confirm' => 'Eltávolítod ezt a feltöltött bannert?',
+        'banner_remove_help' => 'Az ezt használó szerverek visszakapják az automatikus hátterüket.',
+        'banner_removed' => 'Banner eltávolítva',
     ],
     'addons' => [
         'heading' => 'Kiegészítők',

@@ -61,6 +61,12 @@ return [
         'seasonal' => 'Sezónní detaily',
         'seasonal_help' => 'Drobné detaily o svátcích během roku. Každý si je může vypnout v Customize.',
         'pelican_suffix' => 'Zobrazit "× Pelican" za názvem',
+        'banners' => 'Bannery serverů',
+        'banners_none' => 'Zatím žádné nahrané bannery.',
+        'banner_remove' => 'Odebrat nahraný',
+        'banner_remove_confirm' => 'Odebrat tento nahraný banner?',
+        'banner_remove_help' => 'Servery, které ho používají, se vrátí k automatickému pozadí.',
+        'banner_removed' => 'Banner odebrán',
     ],
     'addons' => [
         'heading' => 'Doplňky',

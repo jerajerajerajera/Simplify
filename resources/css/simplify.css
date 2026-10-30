@@ -1148,3 +1148,24 @@ html.ps-frame[data-ps-frame="native"] .s-health { border: 0; border-radius: 0; b
     display: none;
   }
 }
+
+/* Simplify settings → Appearance → Server banners: one row per upload. */
+.s-banners {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-space-2);
+}
+
+.s-banner {
+  align-items: center;
+  display: flex;
+  gap: var(--s-space-3);
+}
+
+.s-banner img {
+  aspect-ratio: 16 / 9;
+  border-radius: var(--s-radius-sm);
+  flex: none;
+  object-fit: cover;
+  width: 96px;
+}
