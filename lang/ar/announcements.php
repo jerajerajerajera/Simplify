@@ -25,6 +25,8 @@ return [
         'in_game_servers' => 'الخوادم',
         'in_game_servers_all' => 'كل الخوادم',
         'in_game_servers_help' => 'فارغ: كل الخوادم، 200 كحد أقصى.',
+        'in_game_groups' => 'مجموعات الخوادم',
+        'in_game_groups_help' => 'مجموعاتك من "مجموعات الخوادم". الخوادم التي تضيفها إلى مجموعة لاحقًا تتلقاه أيضًا.',
         'in_game_repeat' => 'التكرار',
     ],
     'category' => [
