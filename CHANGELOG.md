@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.1
+
+- Updating from 1.4.4 on a panel that came from PelicanSimplify 0.7.0 stopped with "Undefined array key logo_text" and left Simplify not installed. 0.7.0's "text beside the logo" now becomes Simplify's "Logo + text".
+
 ## 1.5.0
 
 - Back from PelicanSimplify 0.7.0: an owner deletes their own server from its ⋯ menu after typing its name. It has to be stopped, or unable to run (Wings does not know it, its install failed, or it is suspended).
