@@ -268,6 +268,32 @@ async function round(theme) {
 
 // Create server (1.5.0): without Server Maker, Pelican's create form opens inside Simplify like an Admin tools page
 // (title "Servers › Create server", close button); with Server Maker, Server Maker opens. Desktop button, phone tab bar.
+// Edit schedule (section=schedule, old plugin issue #236): the Tasks block under the form must be reachable. The content
+// box scrolls to its end, and the last task's actions are clickable there (not covered, not cut off).
+async function scheduleFlow() {
+  const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
+  await goto(urls.servers['Survival SMP'].replace(/\/console$/, '') + '/schedules', 3000);
+  const row = page.locator('.fi-ta-row:has-text("Nightly restart") >> visible=true').first();
+  if (!(await row.count())) return say('schedule-edit', false, { note: 'no Nightly restart row', url: rel(page.url()) });
+  await row.click().catch(() => {}); await page.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {}); await sleep(2000);
+  const reach = () => page.evaluate(() => {
+    const box = document.querySelector('.fi-page-main') || document.scrollingElement;
+    box.scrollTop = box.scrollHeight;
+    const rows = [...document.querySelectorAll('.fi-ta-row')].filter((r) => r.getClientRects().length);
+    const last = rows[rows.length - 1];
+    const action = last && [...last.querySelectorAll('button, a')].filter((b) => b.getClientRects().length).pop();
+    const r = action && action.getBoundingClientRect();
+    const hit = r && document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
+    return { url: location.pathname, tasks: rows.length, scrollable: box.scrollHeight > box.clientHeight + 2, scrolled: Math.round(box.scrollTop),
+      pageScroll: document.documentElement.scrollHeight - innerHeight, action: action ? (action.getAttribute('aria-label') || action.textContent.trim()).slice(0, 40) : null,
+      inView: !!r && r.top >= 0 && r.bottom <= innerHeight, clickable: !!hit && (hit === action || action.contains(hit)) };
+  });
+  await sleep(500);
+  const st = await reach();
+  await record('schedule-edit', 'Schedules · taak bewerken (onderaan)');
+  say('schedule-edit', st.tasks >= 3 && st.inView && st.clickable && st.pageScroll <= 1, st);
+}
+
 // Server Maker (section=maker, with servermaker): every wizard step on a real screen, for its own docs/screenshots:
 // Minecraft › Plugins, another game's Server step, Resources and Review. Each step must move on and show its own form.
 async function makerFlow() {
@@ -814,6 +840,7 @@ const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(
         // One or more sections (comma separated), each on its own stands.
         const parts = { first: [['d1440', 'phone390'], () => firstFlow(theme)], layers: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => layersFlow()], nav: [['d1440', 'laag1366'], () => navFlow()], create: [['d1440', 'laag1366', 'phone390'], () => createFlow()],
           maker: [['d1440', 'phone390'], () => makerFlow()],
+          schedule: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => scheduleFlow()],
           extras: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => extrasFlow(theme)], seasons: [['d1440', 'tablet768', 'phone390'], () => seasons(theme)] };
         for (const part of section.split(',')) { const [where, run] = parts[part] || [[], null]; if (!run || !where.includes(name)) continue; try { await setTheme(theme); await run(); } catch (e) { problems.push(`${stand} ${part}: ${e.message.slice(0, 200)}`); } }
         continue;

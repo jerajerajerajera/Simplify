@@ -18,7 +18,7 @@ on:
         description: 'Branch of Simplify to audit (empty = this checkout); the audit itself always comes from this checkout'
         default: ''
       section:
-        description: 'Only one section (empty = everything): seasons, extras, layers, first, nav, create, maker (Server Maker steps), inventory (every function, for the 0.7.0 diff), or compare (the overview measured, 8 servers)'
+        description: 'Only one section (empty = everything): seasons, extras, layers, first, nav, create, maker (Server Maker steps), schedule (Edit schedule reachable, #236), inventory (every function, for the 0.7.0 diff), or compare (the overview measured, 8 servers)'
         default: ''
       from:
         description: 'A Simplify tag (e.g. v1.5.1) installed and seeded first; then the Simplify branch updates it, as on a real panel'
