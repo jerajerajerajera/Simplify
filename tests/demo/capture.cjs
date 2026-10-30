@@ -72,8 +72,13 @@ async function download(request, url) {
     if (ext === '.css' || type === 'text/css') return await stylesheet(request, url, body.toString());
     fs.writeFileSync(path.join(out, 'assets', name), body);
     return '../assets/' + name;
-  } catch (e) { problems.push('asset ' + url + ': ' + e.message); return null; }
+  } catch (e) {
+    // mc-heads.net refuses the recording machine; a plain 8x8 head stands in for each player's face.
+    if (/^https:\/\/mc-heads\.net\//.test(url)) { const name = hash(url) + '.png'; fs.writeFileSync(path.join(out, 'assets', name), Buffer.from(HEAD, 'base64')); return '../assets/' + name; }
+    problems.push('asset ' + url + ': ' + e.message); return null;
+  }
 }
+const HEAD = 'iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAIAAABLbSncAAAAPElEQVR42mPQluPFihjwSRyb1oCGQBKYohAEkvj//7+X1QIIH8gAcqESEJTlZQBEKDqAqMvHFo7QJdAYAIQRVcHqJR4wAAAAAElFTkSuQmCC';
 async function replaceAsync(text, re, fn) {
   const found = [...text.matchAll(re)];
   const values = await Promise.all(found.map((m) => fn(...m)));
