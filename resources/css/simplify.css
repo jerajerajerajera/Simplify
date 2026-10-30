@@ -811,7 +811,8 @@ html:not(.ps-frame) .s-settings-tabs.fi-vertical[style*="--s-fit"] > .fi-sc-tabs
   overflow-y: auto;
 }
 
-html:not(.ps-frame) :is(.s-health, .s-fit, .s-done)[style*="--s-fit"] {
+html:not(.ps-frame) :is(.s-health, .s-fit)[style*="--s-fit"],
+.s-done[style*="--s-fit"] {
   max-height: var(--s-fit);
   overflow-y: auto;
 }

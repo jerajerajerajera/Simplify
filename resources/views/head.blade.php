@@ -26,8 +26,9 @@
     }
     // Simplify's own admin pages (settings, Health, People & roles, the form pages, the end of the setup) get the height the window leaves them, so the page never scrolls:
     // the card scrolls inside (simplify.css). In host mode's frame the frame itself already has the window's height.
-    if (!document.documentElement.classList.contains('ps-frame')) {
-        const fitCards = '.s-settings-tabs.fi-vertical, .s-health, .s-people, .s-fit, .s-done';
+    // The end of the setup is one card in host mode too, so it fits there as well.
+    {
+        const fitCards = document.documentElement.classList.contains('ps-frame') ? '.s-done' : '.s-settings-tabs.fi-vertical, .s-health, .s-people, .s-fit, .s-done';
         let queued = 0;
         const fit = () => {
             queued = 0;

@@ -127,9 +127,11 @@
         // Measure again once the page has its content.
         this.$nextTick(() => this.applyScale());
         // Every menu under the top bar ends inside the window when it opens, and again when the window changes.
-        const menus = { notifyMenu: 'ps-notify-menu', adminMenu: 'ps-admin-menu', appearanceMenu: 'ps-overview-appearance-menu', groupsMenu: 'ps-overview-groups-menu', infoMenu: 'ps-info-menu' };
-        for (const [key, id] of Object.entries(menus)) this.$watch(key, (open) => open && this.$nextTick(() => this.fitDropdown(document.getElementById(id))));
-        addEventListener('resize', () => Object.entries(menus).forEach(([key, id]) => this[key] && this.fitDropdown(document.getElementById(id))));
+        // The server's ⋯ menu exists only on the server page (server.js).
+        const menus = Object.entries({ notifyMenu: 'ps-notify-menu', adminMenu: 'ps-admin-menu', appearanceMenu: 'ps-overview-appearance-menu', groupsMenu: 'ps-overview-groups-menu', infoMenu: 'ps-info-menu' })
+          .filter(([key]) => key in this);
+        for (const [key, id] of menus) this.$watch(key, (open) => open && this.$nextTick(() => this.fitDropdown(document.getElementById(id))));
+        addEventListener('resize', () => menus.forEach(([key, id]) => this[key] && this.fitDropdown(document.getElementById(id))));
         this.restoreOverviewPreferences();
         this.overviewGroups = this.cleanOverviewGroups(this.boot.overview_groups?.groups);
         this.overviewServerOrder = SERVER_ORDERS.some((o) => o.key === this.boot.overview_groups?.order) ? this.boot.overview_groups.order : 'name';
