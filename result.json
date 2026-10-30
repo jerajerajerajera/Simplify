@@ -1,0 +1,2609 @@
+{
+ "base": "http://127.0.0.1:8001",
+ "screens": [
+  {
+   "id": "season-halloween",
+   "title": "Seizoen · Halloween (30 okt) · overzicht",
+   "stand": "d1440-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38"
+     ],
+     "panes": [
+      "Servers 576/1234"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..398, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/season-halloween.png"
+  },
+  {
+   "id": "season-halloween-overzicht-tip",
+   "title": "Seizoen · Halloween (30 okt) · overzicht, tooltip (hover)",
+   "stand": "d1440-dark",
+   "url": "/simplify",
+   "tip": {
+    "visible": true,
+    "rect": "242 253 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 242, 253)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui.dark < body.fi-body.fi-panel-app.fi-body-has-topbar < html.fi.dark",
+    "innerH": 900,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38",
+      "ps-tooltip 242,253 280x66"
+     ],
+     "panes": [
+      "Servers 576/1234"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..398, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/season-halloween-overzicht-tip.png"
+  },
+  {
+   "id": "season-halloween-server",
+   "title": "Seizoen · Halloween (30 okt) · serverpagina",
+   "stand": "d1440-dark",
+   "url": "/server/xzzulyco/console",
+   "main": {
+    "url": "/server/xzzulyco/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "panes": [
+      "Server sections 515/675"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/season-halloween-server.png"
+  },
+  {
+   "id": "season-halloween-server-tip",
+   "title": "Seizoen · Halloween (30 okt) · server, tooltip (hover)",
+   "stand": "d1440-dark",
+   "url": "/server/xzzulyco/console",
+   "tip": {
+    "visible": true,
+    "rect": "262 75 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 262, 75)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui.dark < body.fi-body.fi-panel-server.fi-body-has-navigation < html.fi.dark.ps-fit",
+    "innerH": 900,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/server/xzzulyco/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38",
+      "ps-tooltip 262,75 280x66"
+     ],
+     "panes": [
+      "Server sections 515/675"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/season-halloween-server-tip.png"
+  },
+  {
+   "id": "season-december",
+   "title": "Seizoen · Chanoeka + Kerst (7 dec) · overzicht",
+   "stand": "d1440-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38"
+     ],
+     "panes": [
+      "Servers 576/1234"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..433, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/season-december.png"
+  },
+  {
+   "id": "season-december-overzicht-tip",
+   "title": "Seizoen · Chanoeka + Kerst (7 dec) · overzicht, tooltip (hover)",
+   "stand": "d1440-dark",
+   "url": "/simplify",
+   "tip": {
+    "visible": true,
+    "rect": "242 253 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 242, 253)",
+    "text": "Hanukkah · night 3The Jewish festival of lights: one more ca",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui.dark < body.fi-body.fi-panel-app.fi-body-has-topbar < html.fi.dark",
+    "innerH": 900,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38",
+      "ps-tooltip 242,253 280x66"
+     ],
+     "panes": [
+      "Servers 576/1234"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..433, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/season-december-overzicht-tip.png"
+  },
+  {
+   "id": "season-december-server",
+   "title": "Seizoen · Chanoeka + Kerst (7 dec) · serverpagina",
+   "stand": "d1440-dark",
+   "url": "/server/xzzulyco/console",
+   "main": {
+    "url": "/server/xzzulyco/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "panes": [
+      "Server sections 515/675"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..453, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/season-december-server.png"
+  },
+  {
+   "id": "season-december-server-tip",
+   "title": "Seizoen · Chanoeka + Kerst (7 dec) · server, tooltip (hover)",
+   "stand": "d1440-dark",
+   "url": "/server/xzzulyco/console",
+   "tip": {
+    "visible": true,
+    "rect": "262 75 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 262, 75)",
+    "text": "Hanukkah · night 3The Jewish festival of lights: one more ca",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui.dark < body.fi-body.fi-panel-server.fi-body-has-navigation < html.fi.dark.ps-fit",
+    "innerH": 900,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/server/xzzulyco/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38",
+      "ps-tooltip 262,75 280x66"
+     ],
+     "panes": [
+      "Server sections 515/675"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..453, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/season-december-server-tip.png"
+  },
+  {
+   "id": "season-valentine",
+   "title": "Seizoen · Valentijn (14 feb) · overzicht",
+   "stand": "d1440-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38"
+     ],
+     "panes": [
+      "Servers 576/1234"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/season-valentine.png"
+  },
+  {
+   "id": "season-valentine-server",
+   "title": "Seizoen · Valentijn (14 feb) · serverpagina",
+   "stand": "d1440-dark",
+   "url": "/server/xzzulyco/console",
+   "main": {
+    "url": "/server/xzzulyco/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "panes": [
+      "Server sections 515/675"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/season-valentine-server.png"
+  },
+  {
+   "id": "season-easter",
+   "title": "Seizoen · Pasen (5 apr) · overzicht",
+   "stand": "d1440-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38"
+     ],
+     "panes": [
+      "Servers 576/1234"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, actions 772..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/season-easter.png"
+  },
+  {
+   "id": "season-easter-server",
+   "title": "Seizoen · Pasen (5 apr) · serverpagina",
+   "stand": "d1440-dark",
+   "url": "/server/xzzulyco/console",
+   "main": {
+    "url": "/server/xzzulyco/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "panes": [
+      "Server sections 515/675"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/season-easter-server.png"
+  },
+  {
+   "id": "season-newyear",
+   "title": "Seizoen · Oudjaar 23:20 · overzicht",
+   "stand": "d1440-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38"
+     ],
+     "panes": [
+      "Servers 576/1234"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..469, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/season-newyear.png"
+  },
+  {
+   "id": "season-newyear-overzicht-tip",
+   "title": "Seizoen · Oudjaar 23:20 · overzicht, tooltip (hover)",
+   "stand": "d1440-dark",
+   "url": "/simplify",
+   "tip": {
+    "visible": true,
+    "rect": "242 253 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 242, 253)",
+    "text": "New YearThe last night of the year and the first day of the ",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui.dark < body.fi-body.fi-panel-app.fi-body-has-topbar < html.fi.dark",
+    "innerH": 900,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38",
+      "ps-tooltip 242,253 280x66"
+     ],
+     "panes": [
+      "Servers 576/1234"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..469, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/season-newyear-overzicht-tip.png"
+  },
+  {
+   "id": "season-newyear-server",
+   "title": "Seizoen · Oudjaar 23:20 · serverpagina",
+   "stand": "d1440-dark",
+   "url": "/server/xzzulyco/console",
+   "main": {
+    "url": "/server/xzzulyco/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "panes": [
+      "Server sections 515/675"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..489, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/season-newyear-server.png"
+  },
+  {
+   "id": "season-newyear-server-tip",
+   "title": "Seizoen · Oudjaar 23:20 · server, tooltip (hover)",
+   "stand": "d1440-dark",
+   "url": "/server/xzzulyco/console",
+   "tip": {
+    "visible": true,
+    "rect": "262 75 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 262, 75)",
+    "text": "New YearThe last night of the year and the first day of the ",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui.dark < body.fi-body.fi-panel-server.fi-body-has-navigation < html.fi.dark.ps-fit",
+    "innerH": 900,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/server/xzzulyco/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38",
+      "ps-tooltip 262,75 280x66"
+     ],
+     "panes": [
+      "Server sections 515/675"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..489, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/season-newyear-server-tip.png"
+  },
+  {
+   "id": "season-nosuffix",
+   "title": "Seizoen · Halloween zonder \"× Pelican\" · overzicht",
+   "stand": "d1440-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38"
+     ],
+     "panes": [
+      "Servers 576/1234"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..247, badges 251..284, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/season-nosuffix.png"
+  },
+  {
+   "id": "season-nosuffix-overzicht-tip",
+   "title": "Seizoen · Halloween zonder \"× Pelican\" · overzicht, tooltip (hover)",
+   "stand": "d1440-dark",
+   "url": "/simplify",
+   "tip": {
+    "visible": true,
+    "rect": "127 253 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 127, 253)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui.dark < body.fi-body.fi-panel-app.fi-body-has-topbar < html.fi.dark",
+    "innerH": 900,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38",
+      "ps-tooltip 127,253 280x66"
+     ],
+     "panes": [
+      "Servers 576/1234"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..247, badges 251..284, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/season-nosuffix-overzicht-tip.png"
+  },
+  {
+   "id": "season-nosuffix-server",
+   "title": "Seizoen · Halloween zonder \"× Pelican\" · serverpagina",
+   "stand": "d1440-dark",
+   "url": "/server/xzzulyco/console",
+   "main": {
+    "url": "/server/xzzulyco/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "panes": [
+      "Server sections 515/675"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..267, badges 271..304, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/season-nosuffix-server.png"
+  },
+  {
+   "id": "season-nosuffix-server-tip",
+   "title": "Seizoen · Halloween zonder \"× Pelican\" · server, tooltip (hover)",
+   "stand": "d1440-dark",
+   "url": "/server/xzzulyco/console",
+   "tip": {
+    "visible": true,
+    "rect": "147 75 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 147, 75)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui.dark < body.fi-body.fi-panel-server.fi-body-has-navigation < html.fi.dark.ps-fit",
+    "innerH": 900,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/server/xzzulyco/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1111,32 273x38",
+      "ps-tooltip 147,75 280x66"
+     ],
+     "panes": [
+      "Server sections 515/675"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..267, badges 271..304, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/season-nosuffix-server-tip.png"
+  },
+  {
+   "id": "season-logo",
+   "title": "Seizoen · Halloween met logo · overzicht",
+   "stand": "d1440-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: ps-visually-hidden: \"Northwind Games\" (211>1)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38"
+     ],
+     "panes": [
+      "Servers 576/1234"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..294, badges 299..331, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/season-logo.png"
+  },
+  {
+   "id": "season-logo-overzicht-tip",
+   "title": "Seizoen · Halloween met logo · overzicht, tooltip (hover)",
+   "stand": "d1440-dark",
+   "url": "/simplify",
+   "tip": {
+    "visible": true,
+    "rect": "175 253 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 175, 253)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui.dark < body.fi-body.fi-panel-app.fi-body-has-topbar < html.fi.dark",
+    "innerH": 900,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: ps-visually-hidden: \"Northwind Games\" (211>1)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38",
+      "ps-tooltip 175,253 280x66"
+     ],
+     "panes": [
+      "Servers 576/1234"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..294, badges 299..331, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/season-logo-overzicht-tip.png"
+  },
+  {
+   "id": "season-logo-server",
+   "title": "Seizoen · Halloween met logo · serverpagina",
+   "stand": "d1440-dark",
+   "url": "/server/xzzulyco/console",
+   "main": {
+    "url": "/server/xzzulyco/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: ps-visually-hidden: \"Northwind Games\" (211>1)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "panes": [
+      "Server sections 515/675"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..314, badges 319..351, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/season-logo-server.png"
+  },
+  {
+   "id": "season-logo-server-tip",
+   "title": "Seizoen · Halloween met logo · server, tooltip (hover)",
+   "stand": "d1440-dark",
+   "url": "/server/xzzulyco/console",
+   "tip": {
+    "visible": true,
+    "rect": "195 75 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 195, 75)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui.dark < body.fi-body.fi-panel-server.fi-body-has-navigation < html.fi.dark.ps-fit",
+    "innerH": 900,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/server/xzzulyco/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: ps-visually-hidden: \"Northwind Games\" (211>1)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1111,32 273x38",
+      "ps-tooltip 195,75 280x66"
+     ],
+     "panes": [
+      "Server sections 515/675"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..314, badges 319..351, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/season-logo-server-tip.png"
+  },
+  {
+   "id": "season-off-settings",
+   "title": "Seizoen · schakelaar uit, instellingen opgeslagen",
+   "stand": "d1440-dark",
+   "url": "/admin/simplify?tab=appearance",
+   "main": {
+    "url": "/admin/simplify?tab=appearance",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1997 > 900), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1997,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "b: \"Northwind Games\""
+     ],
+     "panes": [
+      "Sidebar navigation 648/1448"
+     ],
+     "card": "0..1941 of 900",
+     "scope": "simplify",
+     "boxes": [
+      "s-settings-tabs.fi-sc-tabs.fi-contained 352,152 1056x1757"
+     ],
+     "actionsBelow": [
+      "\"Run setup again\" at y=58",
+      "\"\" at y=58"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/season-off-settings.png"
+  },
+  {
+   "id": "season-off",
+   "title": "Seizoen · Seizoensverrassingen uit · overzicht",
+   "stand": "d1440-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38"
+     ],
+     "panes": [
+      "Servers 576/1234"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/season-off.png"
+  },
+  {
+   "id": "season-off-server",
+   "title": "Seizoen · Seizoensverrassingen uit · serverpagina",
+   "stand": "d1440-dark",
+   "url": "/server/xzzulyco/console",
+   "main": {
+    "url": "/server/xzzulyco/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "panes": [
+      "Server sections 515/675"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/season-off-server.png"
+  },
+  {
+   "id": "season-halloween",
+   "title": "Seizoen · Halloween (30 okt) · overzicht",
+   "stand": "d1440-light",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38"
+     ],
+     "panes": [
+      "Servers 576/1234"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..398, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/season-halloween.png"
+  },
+  {
+   "id": "season-halloween-overzicht-tip",
+   "title": "Seizoen · Halloween (30 okt) · overzicht, tooltip (hover)",
+   "stand": "d1440-light",
+   "url": "/simplify",
+   "tip": {
+    "visible": true,
+    "rect": "242 253 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 242, 253)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui < body.fi-body.fi-panel-app.fi-body-has-topbar < html.fi",
+    "innerH": 900,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38",
+      "ps-tooltip 242,253 280x66"
+     ],
+     "panes": [
+      "Servers 576/1234"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..398, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/season-halloween-overzicht-tip.png"
+  },
+  {
+   "id": "season-halloween-server",
+   "title": "Seizoen · Halloween (30 okt) · serverpagina",
+   "stand": "d1440-light",
+   "url": "/server/xzzulyco/console",
+   "main": {
+    "url": "/server/xzzulyco/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "panes": [
+      "Server sections 515/675"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/season-halloween-server.png"
+  },
+  {
+   "id": "season-halloween-server-tip",
+   "title": "Seizoen · Halloween (30 okt) · server, tooltip (hover)",
+   "stand": "d1440-light",
+   "url": "/server/xzzulyco/console",
+   "tip": {
+    "visible": true,
+    "rect": "262 75 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 262, 75)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui < body.fi-body.fi-panel-server.fi-body-has-navigation < html.fi.ps-fit",
+    "innerH": 900,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/server/xzzulyco/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38",
+      "ps-tooltip 262,75 280x66"
+     ],
+     "panes": [
+      "Server sections 515/675"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/season-halloween-server-tip.png"
+  },
+  {
+   "id": "season-december",
+   "title": "Seizoen · Chanoeka + Kerst (7 dec) · overzicht",
+   "stand": "d1440-light",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38"
+     ],
+     "panes": [
+      "Servers 576/1234"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..433, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/season-december.png"
+  },
+  {
+   "id": "season-december-overzicht-tip",
+   "title": "Seizoen · Chanoeka + Kerst (7 dec) · overzicht, tooltip (hover)",
+   "stand": "d1440-light",
+   "url": "/simplify",
+   "tip": {
+    "visible": true,
+    "rect": "242 253 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 242, 253)",
+    "text": "Hanukkah · night 3The Jewish festival of lights: one more ca",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui < body.fi-body.fi-panel-app.fi-body-has-topbar < html.fi",
+    "innerH": 900,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38",
+      "ps-tooltip 242,253 280x66"
+     ],
+     "panes": [
+      "Servers 576/1234"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..433, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/season-december-overzicht-tip.png"
+  },
+  {
+   "id": "season-december-server",
+   "title": "Seizoen · Chanoeka + Kerst (7 dec) · serverpagina",
+   "stand": "d1440-light",
+   "url": "/server/xzzulyco/console",
+   "main": {
+    "url": "/server/xzzulyco/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "panes": [
+      "Server sections 515/675"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..453, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/season-december-server.png"
+  },
+  {
+   "id": "season-december-server-tip",
+   "title": "Seizoen · Chanoeka + Kerst (7 dec) · server, tooltip (hover)",
+   "stand": "d1440-light",
+   "url": "/server/xzzulyco/console",
+   "tip": {
+    "visible": true,
+    "rect": "262 75 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 262, 75)",
+    "text": "Hanukkah · night 3The Jewish festival of lights: one more ca",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui < body.fi-body.fi-panel-server.fi-body-has-navigation < html.fi.ps-fit",
+    "innerH": 900,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/server/xzzulyco/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38",
+      "ps-tooltip 262,75 280x66"
+     ],
+     "panes": [
+      "Server sections 515/675"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..453, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/season-december-server-tip.png"
+  },
+  {
+   "id": "season-valentine",
+   "title": "Seizoen · Valentijn (14 feb) · overzicht",
+   "stand": "d1440-light",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38"
+     ],
+     "panes": [
+      "Servers 576/1234"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/season-valentine.png"
+  },
+  {
+   "id": "season-valentine-server",
+   "title": "Seizoen · Valentijn (14 feb) · serverpagina",
+   "stand": "d1440-light",
+   "url": "/server/xzzulyco/console",
+   "main": {
+    "url": "/server/xzzulyco/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "panes": [
+      "Server sections 515/675"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/season-valentine-server.png"
+  },
+  {
+   "id": "season-easter",
+   "title": "Seizoen · Pasen (5 apr) · overzicht",
+   "stand": "d1440-light",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38"
+     ],
+     "panes": [
+      "Servers 576/1234"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/season-easter.png"
+  },
+  {
+   "id": "season-easter-server",
+   "title": "Seizoen · Pasen (5 apr) · serverpagina",
+   "stand": "d1440-light",
+   "url": "/server/xzzulyco/console",
+   "main": {
+    "url": "/server/xzzulyco/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "panes": [
+      "Server sections 515/675"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/season-easter-server.png"
+  },
+  {
+   "id": "season-newyear",
+   "title": "Seizoen · Oudjaar 23:20 · overzicht",
+   "stand": "d1440-light",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38"
+     ],
+     "panes": [
+      "Servers 576/1234"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..469, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/season-newyear.png"
+  },
+  {
+   "id": "season-newyear-overzicht-tip",
+   "title": "Seizoen · Oudjaar 23:20 · overzicht, tooltip (hover)",
+   "stand": "d1440-light",
+   "url": "/simplify",
+   "tip": {
+    "visible": true,
+    "rect": "242 253 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 242, 253)",
+    "text": "New YearThe last night of the year and the first day of the ",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui < body.fi-body.fi-panel-app.fi-body-has-topbar < html.fi",
+    "innerH": 900,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38",
+      "ps-tooltip 242,253 280x66"
+     ],
+     "panes": [
+      "Servers 576/1234"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..469, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/season-newyear-overzicht-tip.png"
+  },
+  {
+   "id": "season-newyear-server",
+   "title": "Seizoen · Oudjaar 23:20 · serverpagina",
+   "stand": "d1440-light",
+   "url": "/server/xzzulyco/console",
+   "main": {
+    "url": "/server/xzzulyco/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "panes": [
+      "Server sections 515/675"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..489, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/season-newyear-server.png"
+  },
+  {
+   "id": "season-newyear-server-tip",
+   "title": "Seizoen · Oudjaar 23:20 · server, tooltip (hover)",
+   "stand": "d1440-light",
+   "url": "/server/xzzulyco/console",
+   "tip": {
+    "visible": true,
+    "rect": "262 75 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 262, 75)",
+    "text": "New YearThe last night of the year and the first day of the ",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui < body.fi-body.fi-panel-server.fi-body-has-navigation < html.fi.ps-fit",
+    "innerH": 900,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/server/xzzulyco/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 1111,32 273x38",
+      "ps-tooltip 262,75 280x66"
+     ],
+     "panes": [
+      "Server sections 515/675"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..489, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/season-newyear-server-tip.png"
+  },
+  {
+   "id": "season-nosuffix",
+   "title": "Seizoen · Halloween zonder \"× Pelican\" · overzicht",
+   "stand": "d1440-light",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38"
+     ],
+     "panes": [
+      "Servers 576/1234"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..247, badges 251..284, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/season-nosuffix.png"
+  },
+  {
+   "id": "season-nosuffix-overzicht-tip",
+   "title": "Seizoen · Halloween zonder \"× Pelican\" · overzicht, tooltip (hover)",
+   "stand": "d1440-light",
+   "url": "/simplify",
+   "tip": {
+    "visible": true,
+    "rect": "127 253 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 127, 253)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui < body.fi-body.fi-panel-app.fi-body-has-topbar < html.fi",
+    "innerH": 900,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38",
+      "ps-tooltip 127,253 280x66"
+     ],
+     "panes": [
+      "Servers 576/1234"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..247, badges 251..284, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/season-nosuffix-overzicht-tip.png"
+  },
+  {
+   "id": "season-nosuffix-server",
+   "title": "Seizoen · Halloween zonder \"× Pelican\" · serverpagina",
+   "stand": "d1440-light",
+   "url": "/server/xzzulyco/console",
+   "main": {
+    "url": "/server/xzzulyco/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "panes": [
+      "Server sections 515/675"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..267, badges 271..304, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/season-nosuffix-server.png"
+  },
+  {
+   "id": "season-nosuffix-server-tip",
+   "title": "Seizoen · Halloween zonder \"× Pelican\" · server, tooltip (hover)",
+   "stand": "d1440-light",
+   "url": "/server/xzzulyco/console",
+   "tip": {
+    "visible": true,
+    "rect": "147 75 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 147, 75)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui < body.fi-body.fi-panel-server.fi-body-has-navigation < html.fi.ps-fit",
+    "innerH": 900,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/server/xzzulyco/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1111,32 273x38",
+      "ps-tooltip 147,75 280x66"
+     ],
+     "panes": [
+      "Server sections 515/675"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..267, badges 271..304, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/season-nosuffix-server-tip.png"
+  },
+  {
+   "id": "season-logo",
+   "title": "Seizoen · Halloween met logo · overzicht",
+   "stand": "d1440-light",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: ps-visually-hidden: \"Northwind Games\" (211>1)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38"
+     ],
+     "panes": [
+      "Servers 576/1234"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..294, badges 299..331, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/season-logo.png"
+  },
+  {
+   "id": "season-logo-overzicht-tip",
+   "title": "Seizoen · Halloween met logo · overzicht, tooltip (hover)",
+   "stand": "d1440-light",
+   "url": "/simplify",
+   "tip": {
+    "visible": true,
+    "rect": "175 253 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 175, 253)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui < body.fi-body.fi-panel-app.fi-body-has-topbar < html.fi",
+    "innerH": 900,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: ps-visually-hidden: \"Northwind Games\" (211>1)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38",
+      "ps-tooltip 175,253 280x66"
+     ],
+     "panes": [
+      "Servers 576/1234"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..294, badges 299..331, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/season-logo-overzicht-tip.png"
+  },
+  {
+   "id": "season-logo-server",
+   "title": "Seizoen · Halloween met logo · serverpagina",
+   "stand": "d1440-light",
+   "url": "/server/xzzulyco/console",
+   "main": {
+    "url": "/server/xzzulyco/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: ps-visually-hidden: \"Northwind Games\" (211>1)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "panes": [
+      "Server sections 515/675"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..314, badges 319..351, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/season-logo-server.png"
+  },
+  {
+   "id": "season-logo-server-tip",
+   "title": "Seizoen · Halloween met logo · server, tooltip (hover)",
+   "stand": "d1440-light",
+   "url": "/server/xzzulyco/console",
+   "tip": {
+    "visible": true,
+    "rect": "195 75 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 195, 75)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui < body.fi-body.fi-panel-server.fi-body-has-navigation < html.fi.ps-fit",
+    "innerH": 900,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/server/xzzulyco/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: ps-visually-hidden: \"Northwind Games\" (211>1)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1111,32 273x38",
+      "ps-tooltip 195,75 280x66"
+     ],
+     "panes": [
+      "Server sections 515/675"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..314, badges 319..351, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/season-logo-server-tip.png"
+  },
+  {
+   "id": "season-off-settings",
+   "title": "Seizoen · schakelaar uit, instellingen opgeslagen",
+   "stand": "d1440-light",
+   "url": "/admin/simplify?tab=appearance",
+   "main": {
+    "url": "/admin/simplify?tab=appearance",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1997 > 900), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1997,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "b: \"Northwind Games\""
+     ],
+     "panes": [
+      "Sidebar navigation 648/1448"
+     ],
+     "card": "0..1941 of 900",
+     "scope": "simplify",
+     "boxes": [
+      "s-settings-tabs.fi-sc-tabs.fi-contained 352,152 1056x1757"
+     ],
+     "actionsBelow": [
+      "\"Run setup again\" at y=58",
+      "\"\" at y=58"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/season-off-settings.png"
+  },
+  {
+   "id": "season-off",
+   "title": "Seizoen · Seizoensverrassingen uit · overzicht",
+   "stand": "d1440-light",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1087,212 317x38"
+     ],
+     "panes": [
+      "Servers 576/1234"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, actions 801..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/season-off.png"
+  },
+  {
+   "id": "season-off-server",
+   "title": "Seizoen · Seizoensverrassingen uit · serverpagina",
+   "stand": "d1440-light",
+   "url": "/server/xzzulyco/console",
+   "main": {
+    "url": "/server/xzzulyco/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1111,32 273x38"
+     ],
+     "panes": [
+      "Server sections 515/675"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, actions 1111..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/season-off-server.png"
+  },
+  {
+   "id": "overview",
+   "title": "Klant · overzicht",
+   "stand": "klant-d1440-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1190,212 214x38"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..398, actions 1190..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-d1440-dark/overview.png"
+  },
+  {
+   "id": "account",
+   "title": "Klant · accountmenu",
+   "stand": "klant-d1440-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 960,212 444x38",
+      "ps-account-actions 1092,212 222x38"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, badges 366..398, actions 960..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 1440x78",
+      "fi-callout.fi-color.fi-color-info 0,102 1440x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-d1440-dark/account.png"
+  },
+  {
+   "id": "server-console",
+   "title": "Klant · console",
+   "stand": "klant-d1440-dark",
+   "url": "/server/xzzulyco/console",
+   "main": {
+    "url": "/server/xzzulyco/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1214,32 170x38"
+     ],
+     "panes": [
+      "Server sections 515/593"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1214..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "klant-d1440-dark/server-console.png"
+  },
+  {
+   "id": "server-more",
+   "title": "Klant · ⋯-menu",
+   "stand": "klant-d1440-dark",
+   "url": "/server/xzzulyco/console",
+   "main": {
+    "url": "/server/xzzulyco/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1214,32 170x38",
+      "ps-info-menu 1131,179 230x256"
+     ],
+     "panes": [
+      "Server sections 515/593"
+     ],
+     "card": "322..839 of 900 fit=517px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,391 1040x361; terminal 291,323 1092x452; bar top 775",
+     "topbar": "brand 56..381, badges 386..418, actions 1214..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,322 1094x517"
+     ],
+     "box": "322..839 of 900",
+     "dropdown": [
+      "ps-info-menu 256px of 600 max"
+     ],
+     "arrow": [
+      "ps-info-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-d1440-dark/server-more.png"
+  }
+ ],
+ "problems": [
+  "d1440-dark season-valentine: no seasonal badge on overzicht",
+  "d1440-dark season-valentine: no seasonal badge on server",
+  "d1440-dark season-easter: no seasonal badge on overzicht",
+  "d1440-dark season-easter: no seasonal badge on server",
+  "d1440-dark season-off: no seasonal badge on overzicht",
+  "d1440-dark season-off: no seasonal badge on server",
+  "d1440-dark SEASON OFF: ok, nothing seasonal left on overview and server page",
+  "d1440-light season-valentine: no seasonal badge on overzicht",
+  "d1440-light season-valentine: no seasonal badge on server",
+  "d1440-light season-easter: no seasonal badge on overzicht",
+  "d1440-light season-easter: no seasonal badge on server",
+  "d1440-light season-off: no seasonal badge on overzicht",
+  "d1440-light season-off: no seasonal badge on server",
+  "d1440-light SEASON OFF: ok, nothing seasonal left on overview and server page"
+ ]
+}
