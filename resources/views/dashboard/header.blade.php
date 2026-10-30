@@ -66,6 +66,7 @@
                     <div class="ps-notify-head">
                         <strong class="ps-dropdown-title">{{ $u('notifications') }}</strong>
                         <button type="button" class="ps-btn is-sm is-subtle" x-show="unreadNotifications()" x-on:click="markNotifications([], true)">{{ $u('mark_all_read') }}</button>
+                        <button type="button" class="ps-btn is-sm is-subtle" x-show="canClearRead()" x-on:click="archiveNotifications([])">{{ $u('clear_read') }}</button>
                         <button type="button" class="ps-btn is-sm is-icon is-subtle" x-on:click="openAllNotifications()" data-tip="{{ $u('all_notifications') }}" aria-label="{{ $u('all_notifications') }}"><svg aria-hidden="true"><use href="#ps-expand"/></svg></button>
                     </div>
                     <div class="ps-notify-list">
@@ -163,6 +164,7 @@
                 <header class="ps-modal-head">
                     <h2 id="ps-notify-all-title">{{ $u('all_notifications') }}</h2>
                     <button type="button" class="ps-btn is-sm is-subtle" x-show="unreadNotifications()" x-on:click="markNotifications([], true)">{{ $u('mark_all_read') }}</button>
+                    <button type="button" class="ps-btn is-sm is-subtle" x-show="canClearRead()" x-on:click="archiveNotifications([])">{{ $u('clear_read') }}</button>
                     <button type="button" class="ps-btn is-icon is-subtle" x-on:click="notifyAll=false" aria-label="{{ $u('close') }}" data-tip="{{ $u('close') }}"><svg aria-hidden="true"><use href="#ps-close"/></svg></button>
                 </header>
                 <div class="ps-modal-body">
@@ -197,6 +199,21 @@
                         <p class="ps-empty" x-show="!notifications().length">{{ $u('you_are_all_caught_up') }}</p>
                     </div>
                     <button type="button" class="ps-btn is-sm is-subtle ps-notify-more" x-show="feed.more" x-on:click="loadNotificationPage()" :disabled="feed.loading" x-text="feed.loading ? @js($u('loading')) : @js($u('show_more'))"></button>
+                    {{-- Archived: what "Clear read" and ✕ moved away, closed until opened (as in 0.7.0). --}}
+                    <div class="ps-notify-archive" x-show="feed.archived">
+                        <button type="button" class="ps-notify-archive-toggle" x-on:click="toggleArchive()" :aria-expanded="archive.open" aria-controls="ps-notify-archived">
+                            <svg aria-hidden="true"><use href="#ps-chevron"/></svg><span>{{ $u('archived') }}</span>
+                        </button>
+                        <div id="ps-notify-archived" x-show="archive.open" x-cloak>
+                            <div class="ps-notify-list">
+                                <template x-for="item in archive.items" :key="'archived-'+item.id">
+                                    @include('simplify::dashboard.notify-item')
+                                </template>
+                                <p class="ps-empty" x-show="archive.loaded && !archive.items.length">{{ $u('nothing_archived') }}</p>
+                            </div>
+                            <button type="button" class="ps-btn is-sm is-subtle ps-notify-more" x-show="archive.more || archive.loading" x-on:click="loadArchivePage()" :disabled="archive.loading" x-text="archive.loading ? @js($u('loading')) : @js($u('show_more'))"></button>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>

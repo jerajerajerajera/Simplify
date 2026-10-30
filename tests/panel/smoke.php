@@ -37,6 +37,7 @@ use Simplify\Core\Filament\App\Pages\Notifications;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Filament\Server\ServerPage;
 use Simplify\Core\Models\Setting;
+use Simplify\Core\Overview\Bell as OverviewBell;
 use Simplify\Core\Overview\Listing;
 use Simplify\Core\People\People;
 use Simplify\Core\Push\PluginUpdates;
@@ -628,6 +629,40 @@ step('announcements: unpin moves a bar to the bell, pin brings it back, and the 
     if ($player->notifications()->where('data->viewData->simplify_announcement', $bell->id)->count() !== 1) {
         throw new RuntimeException('the bell item did not arrive exactly once');
     }
+});
+step('notifications: mark read, mark as unread, Clear read and ✕ move them to Archived and back', function () {
+    $player = User::where('email', 'smoke-player@example.com')->firstOrFail();
+    $player->notifications()->delete();
+    Preferences::set($player, 'notifications.archive', null);
+    foreach (['Smoke backup done', 'Smoke install done', 'Smoke subuser added'] as $title) {
+        $player->notifyNow(\Filament\Notifications\Notification::make()->title($title)->toDatabase());
+    }
+    $keys = fn (array $page) => array_column($page['items'], 'title', 'key');
+    $find = fn (string $title) => (string) $player->notifications()->where('data->title', $title)->value('id');
+    [$backup, $install, $subuser] = [$find('Smoke backup done'), $find('Smoke install done'), $find('Smoke subuser added')];
+    OverviewBell::mark($player, [$backup], true);
+    if ($player->unreadNotifications()->count() !== 2) {
+        throw new RuntimeException('Mark read did not mark one notification read');
+    }
+    OverviewBell::mark($player, [$backup], false);
+    OverviewBell::mark($player, [$backup], true);
+    OverviewBell::archiveNotifications($player);
+    $page = OverviewBell::page($player);
+    if (isset($keys($page)[$backup]) || count($page['items']) !== 2 || ! $page['archived'] || ! isset($keys(OverviewBell::page($player, 1, true))[$backup])) {
+        throw new RuntimeException('Clear read did not move the read notification to Archived');
+    }
+    OverviewBell::archiveNotifications($player, [$install]);
+    $archived = $keys(OverviewBell::page($player, 1, true));
+    if (! isset($archived[$install]) || $player->unreadNotifications()->count() !== 1 || isset($keys(OverviewBell::page($player))[$install])) {
+        throw new RuntimeException('✕ did not move one notification to Archived, read');
+    }
+    OverviewBell::mark($player, [$install, $backup], false);
+    $page = OverviewBell::page($player);
+    if (count($page['items']) !== 3 || OverviewBell::page($player, 1, true)['items'] !== [] || ! isset($keys($page)[$subuser])) {
+        throw new RuntimeException('Mark as unread did not bring notifications back from Archived');
+    }
+    $player->notifications()->delete();
+    Preferences::set($player, 'notifications.archive', null);
 });
 step('embed: the server owner opens Website, and the settings page shows the code for a website', function () use ($admin, $server) {
     $url = EmbedWebsite::getUrl(panel: 'server', tenant: $server);

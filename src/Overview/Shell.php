@@ -82,9 +82,9 @@ trait Shell
     }
 
     #[Renderless]
-    public function notificationPage(int $page = 1): array
+    public function notificationPage(int $page = 1, bool $archived = false): array
     {
-        return Bell::page($this->user(), $page);
+        return Bell::page($this->user(), $page, $archived);
     }
 
     /** @param list<string> $ids empty for every notification */
@@ -92,6 +92,15 @@ trait Shell
     public function markNotifications(array $ids, bool $read = true): array
     {
         Bell::mark($this->user(), $ids, $read);
+
+        return Bell::page($this->user());
+    }
+
+    /** @param list<string> $ids empty for "Clear read": every read notification moves to Archived */
+    #[Renderless]
+    public function archiveNotifications(array $ids = []): array
+    {
+        Bell::archiveNotifications($this->user(), $ids);
 
         return Bell::page($this->user());
     }

@@ -70,6 +70,8 @@ return [
         'hosts_reporting' => ':available/:count isäntä raportoi.|:available/:count isäntää raportoi.',
         'older_notifications_could_not_be_loaded' => 'Vanhempia ilmoituksia ei voitu ladata.',
         'the_notification_could_not_be_marked' => 'Ilmoitusta ei voitu merkitä lukemattomaksi.',
+        'the_notification_could_not_be_cleared' => 'Ilmoitusta ei voitu poistaa.',
+        'archived_notifications_could_not_be_loaded' => 'Arkistoituja ilmoituksia ei voitu ladata.',
         'storage_not_writable' => 'Paneeli ei voi kirjoittaa välimuistiaan',
         'storage_not_writable_text' => 'Artisan ajettiin luultavasti rootina, joten tiedostot kuuluvat rootille. Aja tämä palvelimella:',
         'server_error' => 'Palvelimella tapahtui virhe. Yritä uudelleen; jos se toistuu, ylläpitäjä löytää syyn Pelicanin lokista.',

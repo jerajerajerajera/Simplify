@@ -70,6 +70,8 @@ return [
         'hosts_reporting' => 'Hostitelé s údaji: :available z :count.|Hostitelé s údaji: :available z :count.|Hostitelé s údaji: :available z :count.',
         'older_notifications_could_not_be_loaded' => 'Starší upozornění se nepodařilo načíst.',
         'the_notification_could_not_be_marked' => 'Upozornění se nepodařilo označit jako nepřečtené.',
+        'the_notification_could_not_be_cleared' => 'Upozornění se nepodařilo vymazat.',
+        'archived_notifications_could_not_be_loaded' => 'Archivovaná upozornění se nepodařilo načíst.',
         'storage_not_writable' => 'Panel nemůže zapisovat do své mezipaměti',
         'storage_not_writable_text' => 'Artisan nejspíš běžel jako root, takže tyto soubory patří rootovi. Spusť na serveru:',
         'server_error' => 'Na serveru došlo k chybě. Zkus to znovu; pokud se to opakuje, admin najde příčinu v logu Pelicanu.',

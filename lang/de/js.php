@@ -70,6 +70,8 @@ return [
         'hosts_reporting' => ':available von :count Host meldet sich.|:available von :count Hosts melden sich.',
         'older_notifications_could_not_be_loaded' => 'Ältere Benachrichtigungen konnten nicht geladen werden.',
         'the_notification_could_not_be_marked' => 'Die Benachrichtigung konnte nicht als ungelesen markiert werden.',
+        'the_notification_could_not_be_cleared' => 'Die Benachrichtigung konnte nicht entfernt werden.',
+        'archived_notifications_could_not_be_loaded' => 'Archivierte Benachrichtigungen konnten nicht geladen werden.',
         'storage_not_writable' => 'Das Panel kann seinen Cache nicht schreiben',
         'storage_not_writable_text' => 'Artisan lief wahrscheinlich als root, daher gehören diese Dateien root. Führe dies auf dem Server aus:',
         'server_error' => 'Auf dem Server ist ein Fehler aufgetreten. Versuche es erneut; passiert es weiter, findet ein Admin die Ursache im Pelican-Log.',

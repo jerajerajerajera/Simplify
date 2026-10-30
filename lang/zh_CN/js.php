@@ -70,6 +70,8 @@ return [
         'hosts_reporting' => ':available / :count 台主机正在报告。',
         'older_notifications_could_not_be_loaded' => '无法加载更早的通知。',
         'the_notification_could_not_be_marked' => '无法将该通知标记为未读。',
+        'the_notification_could_not_be_cleared' => '无法清除该通知。',
+        'archived_notifications_could_not_be_loaded' => '无法加载已归档的通知。',
         'storage_not_writable' => '面板无法写入缓存',
         'storage_not_writable_text' => 'artisan 可能以 root 身份运行，因此这些文件属于 root。请在服务器上运行：',
         'server_error' => '服务器出错了。请重试；如果持续出现，管理员可以在 Pelican 日志中找到原因。',

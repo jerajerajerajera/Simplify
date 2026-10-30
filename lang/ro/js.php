@@ -70,6 +70,8 @@ return [
         'hosts_reporting' => ':available din :count gazdă raportează.|:available din :count gazde raportează.|:available din :count de gazde raportează.',
         'older_notifications_could_not_be_loaded' => 'Notificările mai vechi nu au putut fi încărcate.',
         'the_notification_could_not_be_marked' => 'Notificarea nu a putut fi marcată ca necitită.',
+        'the_notification_could_not_be_cleared' => 'Notificarea nu a putut fi ștearsă.',
+        'archived_notifications_could_not_be_loaded' => 'Notificările arhivate nu au putut fi încărcate.',
         'storage_not_writable' => 'Panoul nu își poate scrie memoria cache',
         'storage_not_writable_text' => 'Probabil artisan a rulat ca root, așa că aceste fișiere aparțin lui root. Rulează asta pe server:',
         'server_error' => 'Serverul a întâmpinat o eroare. Încearcă din nou; dacă se repetă, un admin găsește cauza în jurnalul Pelican.',

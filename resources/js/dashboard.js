@@ -58,6 +58,8 @@
       notifyMenu: false,
       noticeHistory: [],
       feed: { items: [], page: 1, more: false, loading: false, unread: 0 },
+      // What "Clear read" and ✕ moved away: a closed section of the window with every notification, loaded when it opens.
+      archive: { open: false, items: [], page: 0, more: false, loading: false, loaded: false },
       incomingNotice: null,
       incomingShown: false,
       incomingQueue: [],
@@ -248,6 +250,7 @@
       async openAllNotifications() {
         this.notifyMenu = false;
         this.notifyAll = true;
+        this.archive = { ...this.archive, open: false, items: [], page: 0, more: false, loaded: false };
         if (!this.feed.items.length) this.loadNotificationPage(true);
         try {
           const registration = 'serviceWorker' in navigator && window.isSecureContext ? await navigator.serviceWorker.getRegistration() : null;
@@ -331,19 +334,56 @@
         try {
           const result = await wire.notificationPage(page);
           const known = new Set(reset ? [] : this.feed.items.map((n) => n.key));
-          this.feed = { items: reset ? result.items : [...this.feed.items, ...result.items.filter((n) => !known.has(n.key))], page, more: !!result.more, unread: result.unread, storage: result.storage, loading: false };
+          this.feed = { items: reset ? result.items : [...this.feed.items, ...result.items.filter((n) => !known.has(n.key))], page, more: !!result.more, unread: result.unread, archived: !!result.archived, storage: result.storage, loading: false };
         } catch {
           this.feed.loading = false;
           if (!reset) this.toast(t('dashboard.older_notifications_could_not_be_loaded'), 'warn');
         }
       },
-      /** Marks the given notifications (all of them for []) read or unread again. */
+      /** Marks the given notifications (all of them for []) read or unread again; unread takes one out of Archived. */
       async markNotifications(keys, read) {
         try {
           const result = await wire.markNotifications(keys, read);
           this.feed = { ...result, page: 1, loading: false };
+          if (!read && this.archive.items.some((n) => keys.includes(n.key))) this.reloadArchive();
         } catch {
           this.toast(t('dashboard.the_notification_could_not_be_marked'), 'warn');
+        }
+      },
+      /** "Clear read" shows while the list has read notifications. */
+      canClearRead() {
+        return this.feed.items.some((item) => item.unread === false);
+      },
+      /** "Clear read" ([]) moves every read notification to Archived, ✕ moves one (read). Nothing is deleted. */
+      async archiveNotifications(keys = []) {
+        try {
+          const result = await wire.archiveNotifications(keys);
+          this.feed = { ...result, page: 1, loading: false };
+          this.reloadArchive();
+        } catch {
+          this.toast(t('dashboard.the_notification_could_not_be_cleared'), 'warn');
+        }
+      },
+      async toggleArchive() {
+        this.archive.open = !this.archive.open;
+        if (this.archive.open && !this.archive.loaded) await this.loadArchivePage(true);
+      },
+      /** Archived as it is now: loaded again while open, otherwise the next time it opens. */
+      reloadArchive() {
+        this.archive = { ...this.archive, items: [], page: 0, more: false, loaded: false };
+        if (this.archive.open) this.loadArchivePage(true);
+      },
+      async loadArchivePage(reset = false) {
+        if (this.archive.loading) return;
+        const page = reset ? 1 : this.archive.page + 1;
+        this.archive.loading = true;
+        try {
+          const result = await wire.notificationPage(page, true);
+          const known = new Set(reset ? [] : this.archive.items.map((n) => n.key));
+          this.archive = { ...this.archive, items: reset ? result.items : [...this.archive.items, ...result.items.filter((n) => !known.has(n.key))], page, more: !!result.more, loaded: true, loading: false };
+        } catch {
+          this.archive.loading = false;
+          this.toast(t('dashboard.archived_notifications_could_not_be_loaded'), 'warn');
         }
       },
 

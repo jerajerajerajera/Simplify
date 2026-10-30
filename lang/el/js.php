@@ -70,6 +70,8 @@ return [
         'hosts_reporting' => ':available από :count host αναφέρει.|:available από :count hosts αναφέρουν.',
         'older_notifications_could_not_be_loaded' => 'Δεν ήταν δυνατή η φόρτωση παλαιότερων ειδοποιήσεων.',
         'the_notification_could_not_be_marked' => 'Δεν ήταν δυνατή η σήμανση της ειδοποίησης ως μη αναγνωσμένης.',
+        'the_notification_could_not_be_cleared' => 'Δεν ήταν δυνατή η διαγραφή της ειδοποίησης.',
+        'archived_notifications_could_not_be_loaded' => 'Δεν ήταν δυνατή η φόρτωση των αρχειοθετημένων ειδοποιήσεων.',
         'storage_not_writable' => 'Ο πίνακας δεν μπορεί να γράψει την προσωρινή μνήμη του',
         'storage_not_writable_text' => 'Το artisan μάλλον έτρεξε ως root, οπότε αυτά τα αρχεία ανήκουν στον root. Εκτέλεσε αυτό στον διακομιστή:',
         'server_error' => 'Ο διακομιστής αντιμετώπισε σφάλμα. Δοκίμασε ξανά· αν συνεχίζει, ένας διαχειριστής θα βρει την αιτία στο αρχείο καταγραφής του Pelican.',

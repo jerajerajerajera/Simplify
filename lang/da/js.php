@@ -70,6 +70,8 @@ return [
         'hosts_reporting' => ':available af :count vært rapporterer.|:available af :count værter rapporterer.',
         'older_notifications_could_not_be_loaded' => 'Ældre notifikationer kunne ikke indlæses.',
         'the_notification_could_not_be_marked' => 'Notifikationen kunne ikke markeres som ulæst.',
+        'the_notification_could_not_be_cleared' => 'Notifikationen kunne ikke ryddes.',
+        'archived_notifications_could_not_be_loaded' => 'Arkiverede notifikationer kunne ikke indlæses.',
         'storage_not_writable' => 'Panelet kan ikke skrive sin cache',
         'storage_not_writable_text' => 'Artisan kørte sandsynligvis som root, så disse filer tilhører root. Kør dette på serveren:',
         'server_error' => 'Serveren stødte på en fejl. Prøv igen; sker det fortsat, kan en admin finde årsagen i Pelicans log.',
