@@ -696,7 +696,7 @@ html.ps-frame[data-ps-frame="native"] .fi-header-heading {
 /* A Pelican page in host mode sits straight on host mode's page, as in 0.7.0: no card around its table or form
    and no band above it. Its search and buttons are in host mode's title bar (frame.js, data-ps-head-tools), so its
    own header and table toolbar hide; the toolbar comes back for bulk actions once rows are selected. */
-html.ps-frame[data-ps-frame="native"] :is(.fi-section:not(.fi-section .fi-section), .fi-ta-ctn:not(.fi-section .fi-ta-ctn)) {
+html.ps-frame[data-ps-frame="native"] :is(.fi-section:not(.fi-section .fi-section), .fi-ta-ctn:not(.fi-section .fi-ta-ctn), :is(.fi-sc-wizard, .fi-fo-wizard):not(.fi-section *)) {
   border: 0 !important;
   border-radius: 0 !important;
   background: transparent !important;

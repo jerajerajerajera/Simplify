@@ -719,6 +719,8 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 .ps-host.is-single { grid-template-columns: minmax(0, 1fr); }
 .ps-host.is-single :is(.ps-host-side, .ps-host-menu-toggle, .ps-host-backdrop) { display: none !important; }
 .ps-host-close { flex: none; margin-inline-start: 6px; order: 99; }
+/* A page without buttons in the title bar (Pelican's create form): the close button still goes to the right end. */
+.ps-host-head:not(:has(.ps-frame-tools)) > .ps-host-close { margin-inline-start: auto; }
 .ps-host-side { display: flex; flex-direction: column; min-width: 0; min-height: 0; border-inline-end: 1px solid var(--ps-line); }
 /* The menu tabs and the page header form one row: same height, same bottom line. */
 .ps-host { --ps-host-row: 48px; }
