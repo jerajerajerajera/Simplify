@@ -70,6 +70,8 @@ return [
         'hosts_reporting' => ':count ana makineden :available tanesi bildiriyor.',
         'older_notifications_could_not_be_loaded' => 'Eski bildirimler yüklenemedi.',
         'the_notification_could_not_be_marked' => 'Bildirim okunmadı olarak işaretlenemedi.',
+        'the_notification_could_not_be_cleared' => 'Bildirim temizlenemedi.',
+        'archived_notifications_could_not_be_loaded' => 'Arşivlenmiş bildirimler yüklenemedi.',
         'storage_not_writable' => 'Panel önbelleğine yazamıyor',
         'storage_not_writable_text' => 'Artisan büyük olasılıkla root olarak çalıştı, bu yüzden bu dosyalar root\'a ait. Sunucuda şunu çalıştır:',
         'server_error' => 'Sunucuda bir hata oluştu. Tekrar dene; devam ederse bir yönetici nedenini Pelican günlüğünde bulur.',

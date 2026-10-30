@@ -70,6 +70,8 @@ return [
         'hosts_reporting' => ':available di :count host segnalano.|:available di :count host segnalano.',
         'older_notifications_could_not_be_loaded' => 'Impossibile caricare le notifiche più vecchie.',
         'the_notification_could_not_be_marked' => 'Impossibile segnare la notifica come non letta.',
+        'the_notification_could_not_be_cleared' => 'Impossibile rimuovere la notifica.',
+        'archived_notifications_could_not_be_loaded' => 'Impossibile caricare le notifiche archiviate.',
         'storage_not_writable' => 'Il pannello non riesce a scrivere la sua cache',
         'storage_not_writable_text' => 'Probabilmente artisan è stato eseguito come root, quindi questi file appartengono a root. Esegui questo sul server:',
         'server_error' => 'Il server ha riscontrato un errore. Riprova; se continua, un admin troverà la causa nel log di Pelican.',

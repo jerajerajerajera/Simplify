@@ -70,6 +70,8 @@ return [
         'hosts_reporting' => 'Хостов с данными: :available из :count.|Хостов с данными: :available из :count.|Хостов с данными: :available из :count.',
         'older_notifications_could_not_be_loaded' => 'Не удалось загрузить старые уведомления.',
         'the_notification_could_not_be_marked' => 'Не удалось отметить уведомление непрочитанным.',
+        'the_notification_could_not_be_cleared' => 'Не удалось очистить уведомление.',
+        'archived_notifications_could_not_be_loaded' => 'Не удалось загрузить архивные уведомления.',
         'storage_not_writable' => 'Панель не может записать свой кэш',
         'storage_not_writable_text' => 'Вероятно, artisan запускали от root, поэтому эти файлы принадлежат root. Выполни на сервере:',
         'server_error' => 'На сервере произошла ошибка. Попробуй ещё раз; если повторяется, админ найдёт причину в журнале Pelican.',

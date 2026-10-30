@@ -70,6 +70,8 @@ return [
         'hosts_reporting' => ':count gazdagépből :available jelent.|:count gazdagépből :available jelent.',
         'older_notifications_could_not_be_loaded' => 'A régebbi értesítések nem tölthetők be.',
         'the_notification_could_not_be_marked' => 'Az értesítés nem jelölhető olvasatlannak.',
+        'the_notification_could_not_be_cleared' => 'Az értesítés nem törölhető.',
+        'archived_notifications_could_not_be_loaded' => 'Az archivált értesítések nem tölthetők be.',
         'storage_not_writable' => 'A panel nem tudja írni a gyorsítótárát',
         'storage_not_writable_text' => 'Az artisan valószínűleg rootként futott, ezért ezek a fájlok a rooté. Futtasd ezt a szerveren:',
         'server_error' => 'Hiba történt a szerveren. Próbáld újra; ha ismétlődik, egy admin a Pelican naplójában találja meg az okát.',

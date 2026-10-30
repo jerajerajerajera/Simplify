@@ -70,6 +70,8 @@ return [
         'hosts_reporting' => 'Hostai su duomenimis: :available iš :count.|Hostai su duomenimis: :available iš :count.|Hostai su duomenimis: :available iš :count.',
         'older_notifications_could_not_be_loaded' => 'Nepavyko įkelti senesnių pranešimų.',
         'the_notification_could_not_be_marked' => 'Nepavyko pažymėti pranešimo kaip neskaityto.',
+        'the_notification_could_not_be_cleared' => 'Nepavyko išvalyti pranešimo.',
+        'archived_notifications_could_not_be_loaded' => 'Nepavyko įkelti archyvuotų pranešimų.',
         'storage_not_writable' => 'Skydelis negali įrašyti savo talpyklos',
         'storage_not_writable_text' => 'Artisan tikriausiai veikė kaip root, todėl šie failai priklauso root. Paleisk tai serveryje:',
         'server_error' => 'Serveryje įvyko klaida. Bandyk dar kartą; jei kartojasi, administratorius ras priežastį Pelican žurnale.',

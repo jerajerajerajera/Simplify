@@ -70,6 +70,8 @@ return [
         'hosts_reporting' => ':available от :count хост отчита.|:available от :count хоста отчитат.',
         'older_notifications_could_not_be_loaded' => 'По-старите известия не можаха да бъдат заредени.',
         'the_notification_could_not_be_marked' => 'Известието не можа да бъде маркирано като непрочетено.',
+        'the_notification_could_not_be_cleared' => 'Известието не можа да бъде изчистено.',
+        'archived_notifications_could_not_be_loaded' => 'Архивираните известия не можаха да бъдат заредени.',
         'storage_not_writable' => 'Панелът не може да записва своя кеш',
         'storage_not_writable_text' => 'Вероятно artisan е стартиран като root, затова тези файлове са на root. Изпълни това на сървъра:',
         'server_error' => 'Сървърът срещна грешка. Опитай отново; ако продължава, админ ще намери причината в лога на Pelican.',

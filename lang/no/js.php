@@ -70,6 +70,8 @@ return [
         'hosts_reporting' => ':available av :count vert rapporterer.|:available av :count verter rapporterer.',
         'older_notifications_could_not_be_loaded' => 'Eldre varsler kunne ikke lastes inn.',
         'the_notification_could_not_be_marked' => 'Varselet kunne ikke merkes som ulest.',
+        'the_notification_could_not_be_cleared' => 'Varselet kunne ikke fjernes.',
+        'archived_notifications_could_not_be_loaded' => 'Arkiverte varsler kunne ikke lastes inn.',
         'storage_not_writable' => 'Panelet kan ikke skrive cachen sin',
         'storage_not_writable_text' => 'Artisan kjørte sannsynligvis som root, så disse filene tilhører root. Kjør dette på serveren:',
         'server_error' => 'Serveren støtte på en feil. Prøv igjen; skjer det fortsatt, finner en admin årsaken i Pelicans logg.',
