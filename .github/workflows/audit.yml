@@ -88,6 +88,8 @@ jobs:
             git clone --quiet --depth 1 --branch "${{ inputs.legacy }}" https://github.com/jerajerajerajera/PelicanSimplify.git plugins/pelican-simplify
             echo "PelicanSimplify from branch ${{ inputs.legacy }} at $(git -C plugins/pelican-simplify rev-parse --short HEAD)"
             rm -rf plugins/pelican-simplify/.git
+            # 0.7.0 wants a queue that persists and a worker (started with the panel).
+            sed -i 's/^QUEUE_CONNECTION=.*/QUEUE_CONNECTION=database/' .env && php artisan config:clear
             php artisan p:plugin:install pelican-simplify
             php artisan p:plugin:list
             exit 0
@@ -144,6 +146,7 @@ jobs:
           fi
           nohup node ../simplify/tests/audit/fake-minecraft.cjs --servers servers.json > minecraft.out 2>&1 &
           nohup node ../simplify/tests/audit/fake-wings.cjs --port 8090 --servers servers.json --log wings.log > wings.out 2>&1 &
+          if [ -n "${{ inputs.legacy }}" ]; then nohup php artisan queue:work --sleep=1 > queue.log 2>&1 & fi
           PHP_CLI_SERVER_WORKERS=8 nohup php artisan serve --host 127.0.0.1 --port 8001 > serve.log 2>&1 &
           for i in $(seq 1 30); do curl -sf -o /dev/null http://127.0.0.1:8001/login && break; sleep 1; done
           curl -sS http://127.0.0.1:8090/api/system
