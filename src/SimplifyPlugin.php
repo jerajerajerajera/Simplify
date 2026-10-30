@@ -11,17 +11,20 @@ use Filament\Facades\Filament;
 use Filament\Panel;
 use Filament\View\PanelsRenderHook;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Js;
 use Simplify\Core\Announcements\Filament\AnnouncementResource;
 use Simplify\Core\Embed\Filament\EmbedSettings;
 use Simplify\Core\Embed\Filament\Website;
 use Simplify\Core\Filament\Admin\Pages\People;
 use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\Admin\Pages\Setup;
+use Simplify\Core\Filament\Admin\Pages\SetupDone;
 use Simplify\Core\Filament\App\Pages\Notifications;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Filament\Server\ServerPage;
 use Simplify\Core\Http\Middleware\FramePolicy;
 use Simplify\Core\Http\Middleware\StartPage;
+use Simplify\Core\Server\ServerMenu;
 use Simplify\Core\Subdomains\Filament\AutomaticSubdomains;
 use Simplify\Core\Subdomains\Filament\ServerSubdomain;
 use Simplify\Core\Support\Brand;
@@ -60,12 +63,17 @@ final class SimplifyPlugin implements Plugin
                 $panel->homeUrl(fn () => Overview::getUrl(panel: 'app'));
             }
         }
+        if (in_array($panel->getId(), ['app', 'admin'], true)) {
+            $panel->renderHook(PanelsRenderHook::GLOBAL_SEARCH_AFTER, fn () => self::returnButton());
+        }
         if ($panel->getId() === 'server') {
             // Simplify's header, server card and menu around every page of a server.
             $panel->renderHook(PanelsRenderHook::CONTENT_BEFORE, fn () => self::serverTop());
+            $panel->renderHook('panels::head.end', fn () => self::serverTitle());
+            $panel->renderHook(PanelsRenderHook::PAGE_START, fn (array $scopes = []) => self::pageTabs($scopes));
         }
         if ($panel->getId() === 'admin') {
-            $panel->pages([Settings::class, Setup::class, People::class]);
+            $panel->pages([Settings::class, Setup::class, SetupDone::class, People::class]);
         }
         if ($panel->getId() === 'admin') {
             $panel->resources([AnnouncementResource::class]);
@@ -94,5 +102,43 @@ final class SimplifyPlugin implements Plugin
             'component' => ServerPage::class,
             'data' => ['server' => $server, 'console' => request()->routeIs('filament.server.pages.console')],
         ]);
+    }
+
+    /** Backups and Schedules share one menu item (ServerMenu); their pages get a tab for each. */
+    /** @param  list<string>  $scopes  the page being drawn (Filament passes it, also on Livewire updates) */
+    private static function pageTabs(array $scopes): string
+    {
+        $tabs = ServerMenu::tabs($scopes);
+
+        return count($tabs) > 1 && ServerMenu::onTabs($tabs) ? view('simplify::partials.page-tabs', ['tabs' => $tabs])->render() : '';
+    }
+
+    /** Back to Simplify from Pelican's own pages; Simplify's own pages have their own header, a frame has host mode's. */
+    private static function returnButton(): string
+    {
+        if (user() === null || request()->routeIs(Overview::getRouteName(Filament::getPanel('app')), Notifications::getRouteName(Filament::getPanel('app')))) {
+            return '';
+        }
+
+        return view('simplify::partials.return')->render();
+    }
+
+    /** The browser tab of a server's pages: "<server name> - Simplify", also after Livewire changes the page. */
+    private static function serverTitle(): string
+    {
+        $server = Filament::getTenant();
+        if (! $server instanceof Server) {
+            return '';
+        }
+        $title = Js::from($server->name.' - Simplify');
+        // The path up to the server's key in it (/server/<key>), whichever of its pages the panel's URL names.
+        $path = (string) parse_url(Filament::getPanel('server')->getUrl($server), PHP_URL_PATH);
+        $key = (string) $server->getRouteKey();
+        $at = $key !== '' ? strpos($path, $key) : false;
+        $path = Js::from($at !== false ? substr($path, 0, $at + strlen($key)) : rtrim($path, '/'));
+
+        // Only on this server's pages: after Livewire moved on to another page the listener leaves the title alone.
+        return "<script>(() => { const title = () => location.pathname.startsWith({$path}) && (document.title = {$title}); title(); "
+            ."document.addEventListener('livewire:navigated', title); })();</script>";
     }
 }

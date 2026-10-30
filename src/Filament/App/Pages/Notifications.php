@@ -27,6 +27,8 @@ final class Notifications extends Page
 
     public bool $updates = true;
 
+    public bool $pelican = true;
+
     /** The device id of this browser, once the page knows its subscription. */
     public ?string $current = null;
 
@@ -44,6 +46,7 @@ final class Notifications extends Page
     {
         $this->messages = Push::wants(user(), 'messages');
         $this->updates = Push::wants(user(), 'updates');
+        $this->pelican = Push::wants(user(), 'pelican');
     }
 
     public function updatedMessages(): void
@@ -54,6 +57,11 @@ final class Notifications extends Page
     public function updatedUpdates(): void
     {
         Push::choose(user(), 'updates', $this->updates);
+    }
+
+    public function updatedPelican(): void
+    {
+        Push::choose(user(), 'pelican', $this->pelican);
     }
 
     /** The panel's public key for the browser, and whether this browser's subscription is already known. */

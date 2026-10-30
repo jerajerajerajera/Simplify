@@ -381,6 +381,25 @@ html:has(.ps-modal-layer[data-open="true"]), html.ps-ui-locked { overflow: hidde
 /* ✕ top right: clears one notification to Archived. */
 .ps-notify-item { position: relative; }
 .ps-notify-item > strong { padding-inline-end: 22px; }
+.ps-notify-close { position: absolute; top: 8px; inset-inline-end: 6px; display: grid; place-items: center; width: 22px; height: 22px; padding: 0; border: 0; border-radius: var(--ps-radius-sm); background: none; color: var(--ps-muted); cursor: pointer; opacity: .7; }
+.ps-notify-close svg { width: 12px; height: 12px; }
+@media (pointer: coarse) { .ps-notify-close { top: 4px; inset-inline-end: 2px; width: 32px; height: 32px; } }
+.ps-notify-close:is(:hover, :focus-visible) { background: var(--ps-raised); color: var(--ps-ink); opacity: 1; }
+/* Pinned by an admin: on top until the announcement ends. */
+.ps-notify-pinned { margin-top: 8px; padding-bottom: 8px; border-bottom: 1px solid var(--ps-line); }
+.ps-notify-pinned > .ps-label { display: flex; align-items: center; gap: 6px; }
+.ps-notify-pinned > .ps-label svg { width: 13px; height: 13px; }
+.ps-notify-pinned .ps-notify-list { margin-top: 4px; }
+.ps-notify-all .ps-notify-pinned { margin-top: 0; }
+.ps-notify-all .ps-notify-pinned .ps-notify-list { margin-bottom: 0; }
+/* Archived (window with every notification only): closed until opened. */
+.ps-notify-archive { margin-top: 4px; padding-top: 8px; border-top: 1px solid var(--ps-line); }
+.ps-notify-archive-toggle { display: flex; align-items: center; gap: 6px; width: 100%; min-height: 36px; padding: 0 6px; border: 0; border-radius: var(--ps-radius-sm); background: none; color: var(--ps-muted); font: 600 12.5px/1.3 var(--ps-font); cursor: pointer; text-align: start; }
+.ps-notify-archive-toggle:is(:hover, :focus-visible) { background: var(--ps-raised); color: var(--ps-ink); }
+.ps-notify-archive-toggle > svg { width: 14px; height: 14px; transition: transform .15s ease; }
+.ps-notify-archive-toggle[aria-expanded="true"] > svg { transform: rotate(90deg); }
+@media (prefers-reduced-motion: reduce) { .ps-notify-archive-toggle > svg { transition: none; } }
+[dir="rtl"] .ps-notify-archive-toggle[aria-expanded="true"] > svg { transform: rotate(-90deg); }
 .ps-notify-item strong { font-size: 13px; font-weight: 650; }
 .ps-notify-item small { color: var(--ps-muted); font-size: 12px; line-height: 1.45; }
 .ps-admin-menu { width: min(600px, calc(100vw - 24px)); max-height: 66.667dvh; overflow-y: auto; }
@@ -419,7 +438,7 @@ html:has(.ps-modal-layer[data-open="true"]), html.ps-ui-locked { overflow: hidde
 .ps-health-check.is-ok { --ps-tone: var(--ps-ok); }
 .ps-health-check.is-warning { --ps-tone: var(--ps-warn); }
 .ps-health-check.is-failed, .ps-health-check.is-crashed { --ps-tone: var(--ps-danger); }
-.ps-notify-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.ps-notify-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 8px; }
 .ps-notify-actions { display: flex; flex-wrap: wrap; grid-column: 2; gap: 6px; margin-top: 6px; }
 .ps-notify-item .ps-notify-time { grid-column: 2; font-size: 11px; opacity: .8; }
 .ps-notify-item.is-ok { --ps-tone: var(--ps-ok); }
@@ -452,7 +471,8 @@ html.ps-standalone body { padding-inline-start: env(safe-area-inset-left); paddi
 html.ps-standalone { -webkit-tap-highlight-color: transparent; }
 
 /* Notifications: read ones step back, an admin's pinned ones sit on top, older ones load with Show more. */
-.ps-notify-head .ps-dropdown-title { margin-inline-end: auto; }
+/* A narrow bell keeps some room after the title and moves the buttons to a second line before they touch it. */
+.ps-notify-head .ps-dropdown-title { margin-inline-end: auto; padding-inline-end: 12px; }
 .ps-notify-item.is-read strong { font-weight: 500; }
 .ps-notify-item.is-read > svg { color: var(--ps-muted); }
 .ps-notify-more { justify-content: center; width: 100%; margin-top: 6px; }

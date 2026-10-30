@@ -18,6 +18,7 @@ return [
         'button_label' => '按钮文字',
         'in_bell' => '同时放入所有人的通知',
         'in_bell_help' => '能看到它的人从开始到结束都能在铃铛里找到它。',
+        'bell_pinned' => '在所有人的通知中置顶',
         'push' => '同时作为应用通知发送',
         'push_help' => 'Simplify 会把它发送到能看到它并开启了应用通知的人的手机和电脑。开始后一天内上线的设备也会收到。',
         'in_game' => '同时发送到游戏内',
@@ -25,6 +26,8 @@ return [
         'in_game_servers' => '服务器',
         'in_game_servers_all' => '所有服务器',
         'in_game_servers_help' => '留空：所有服务器,最多 200 台。',
+        'in_game_groups' => '服务器分组',
+        'in_game_groups_help' => '你在“服务器分组”中创建的分组。之后加入分组的服务器也会收到。',
         'in_game_repeat' => '重复',
     ],
     'category' => [

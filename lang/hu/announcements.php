@@ -18,6 +18,7 @@ return [
         'button_label' => 'Gomb szövege',
         'in_bell' => 'Mindenki értesítései közé is',
         'in_bell_help' => 'Aki látja, a csengőben is megtalálja, a kezdéstől a végéig.',
+        'bell_pinned' => 'Kitűzés mindenki értesítéseihez',
         'push' => 'Küldés alkalmazásértesítésként is',
         'push_help' => 'A Simplify elküldi mindenki telefonjára és számítógépére, aki látja és bekapcsolta az alkalmazásértesítéseket. Azok az eszközök is megkapják, amelyek a kezdés után egy napon belül online lesznek.',
         'in_game' => 'Küldés a játékba is',
@@ -25,6 +26,8 @@ return [
         'in_game_servers' => 'Szerverek',
         'in_game_servers_all' => 'Minden szerver',
         'in_game_servers_help' => 'Üres: minden szerver, legfeljebb 200.',
+        'in_game_groups' => 'Szervercsoportok',
+        'in_game_groups_help' => 'A csoportjaid a Szervercsoportokból. A később csoportba tett szerverek is megkapják.',
         'in_game_repeat' => 'Ismétlés',
     ],
     'category' => [

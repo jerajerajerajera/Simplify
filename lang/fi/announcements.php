@@ -18,6 +18,7 @@ return [
         'button_label' => 'Painikkeen teksti',
         'in_bell' => 'Lisää myös kaikkien ilmoituksiin',
         'in_bell_help' => 'Jokainen, joka näkee sen, löytää sen myös kellosta alusta loppuun.',
+        'bell_pinned' => 'Kiinnitä kaikkien ilmoituksiin',
         'push' => 'Lähetä myös sovellusilmoituksena',
         'push_help' => 'Simplify lähettää sen kaikkien niiden puhelimiin ja tietokoneisiin, jotka näkevät sen ja ovat ottaneet sovellusilmoitukset käyttöön. Myös laitteet, jotka tulevat verkkoon vuorokauden sisällä alusta, saavat sen.',
         'in_game' => 'Lähetä myös peliin',
@@ -25,6 +26,8 @@ return [
         'in_game_servers' => 'Palvelimet',
         'in_game_servers_all' => 'Kaikki palvelimet',
         'in_game_servers_help' => 'Tyhjä: kaikki palvelimet, enintään 200.',
+        'in_game_groups' => 'Palvelinryhmät',
+        'in_game_groups_help' => 'Ryhmäsi Palvelinryhmät-kohdasta. Myöhemmin ryhmään lisättävät palvelimet saavat sen myös.',
         'in_game_repeat' => 'Toista',
     ],
     'category' => [

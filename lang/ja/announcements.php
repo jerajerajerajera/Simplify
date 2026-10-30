@@ -18,6 +18,7 @@ return [
         'button_label' => 'ボタンのテキスト',
         'in_bell' => '全員の通知にも追加',
         'in_bell_help' => '表示対象の人は、開始から終了までベルにも表示されます。',
+        'bell_pinned' => '全員の通知にピン留め',
         'push' => 'アプリ通知としても送信',
         'push_help' => 'Simplify が、表示対象でアプリ通知をオンにしている人のスマートフォンとパソコンに送ります。開始から1日以内にオンラインになった端末にも届きます。',
         'in_game' => 'ゲーム内にも送信',
@@ -25,6 +26,8 @@ return [
         'in_game_servers' => 'サーバー',
         'in_game_servers_all' => 'すべてのサーバー',
         'in_game_servers_help' => '空欄: すべてのサーバー(最大 200)。',
+        'in_game_groups' => 'サーバーグループ',
+        'in_game_groups_help' => '「サーバーグループ」のあなたのグループです。後でグループに追加したサーバーにも届きます。',
         'in_game_repeat' => '繰り返し',
     ],
     'category' => [

@@ -6,9 +6,12 @@ namespace Simplify\Core\Announcements\Services;
 
 use App\Enums\ContainerStatus;
 use App\Models\Server;
+use App\Models\User;
 use Simplify\Core\Announcements\Models\Announcement;
 use Simplify\Core\Announcements\Models\GameCommand;
 use Simplify\Core\Announcements\Support\GameChat;
+use Simplify\Core\Overview\ServerGroups;
+use Simplify\Core\Support\Preferences;
 use Simplify\Core\Support\SafeCache;
 use Throwable;
 
@@ -86,10 +89,37 @@ final class InGame
         return $result;
     }
 
+    /**
+     * The server groups someone made on the overview, by id: the groups an announcement of theirs can be sent to.
+     *
+     * @return array<string, string>
+     */
+    public static function groups(?User $author): array
+    {
+        $groups = [];
+        foreach ($author === null ? [] : ServerGroups::clean(Preferences::get($author, 'overview.groups'))['groups'] as $group) {
+            $groups[$group['id']] = $group['name'];
+        }
+
+        return $groups;
+    }
+
     /** @return iterable<Server> */
     private static function targets(Announcement $announcement): iterable
     {
         $picked = $announcement->in_game_servers ?? [];
+        // Groups are read now, so servers added to a group later get it too. Emptied groups send nowhere (id 0), not to all.
+        $chosen = $announcement->in_game_groups ?? [];
+        $author = $chosen === [] ? null : $announcement->author;
+        if ($author instanceof User) {
+            $uuids = [];
+            foreach (ServerGroups::clean(Preferences::get($author, 'overview.groups'))['groups'] as $group) {
+                if (in_array($group['id'], $chosen, true)) {
+                    array_push($uuids, ...$group['servers']);
+                }
+            }
+            $picked = [...$picked, ...($uuids === [] ? [0] : Server::query()->whereIn('uuid', $uuids)->pluck('id')->all())];
+        }
 
         return Server::query()
             ->with(['egg', 'node'])

@@ -16,6 +16,7 @@ final class Assets
         'simplify.css' => ['css/simplify.css', 'text/css; charset=utf-8'],
         'logo.svg' => ['img/logo.svg', 'image/svg+xml'],
         'favicon.svg' => ['img/favicon.svg', 'image/svg+xml'],
+        'game-minecraft.svg' => ['img/game-minecraft.svg', 'image/svg+xml'],
         'app-icon-180.png' => ['img/app-icon-180.png', 'image/png'],
         'app-icon-192.png' => ['img/app-icon-192.png', 'image/png'],
         'app-icon-512.png' => ['img/app-icon-512.png', 'image/png'],
@@ -37,6 +38,12 @@ final class Assets
         'bg-survival.jpg' => ['img/bg-survival.jpg', 'image/jpeg'],
         'bg-town.jpg' => ['img/bg-town.jpg', 'image/jpeg'],
         'bg-gaming.svg' => ['img/bg-gaming.svg', 'image/svg+xml'],
+        'brand-rounded.woff2' => ['fonts/brand-rounded.woff2', 'font/woff2'],
+        'brand-serif.woff2' => ['fonts/brand-serif.woff2', 'font/woff2'],
+        'brand-mono.woff2' => ['fonts/brand-mono.woff2', 'font/woff2'],
+        // Monocraft, a choice for the panel name (SIL Open Font License, resources/fonts/Monocraft-OFL.txt).
+        'monocraft-regular.woff2' => ['fonts/monocraft-regular.woff2', 'font/woff2'],
+        'monocraft-bold.woff2' => ['fonts/monocraft-bold.woff2', 'font/woff2'],
     ];
 
     /** @var array<string, string> */

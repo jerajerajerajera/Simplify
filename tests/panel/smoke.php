@@ -6,6 +6,7 @@ use App\Filament\Admin\Pages\Health;
 use App\Models\Role;
 use App\Models\Server;
 use App\Models\User;
+use Filament\Notifications\Notification;
 use Filament\Support\Colors\Color;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Application;
@@ -33,10 +34,12 @@ use Simplify\Core\Embed\Filament\Website as EmbedWebsite;
 use Simplify\Core\Embed\Services\EmbedServers;
 use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\Admin\Pages\Setup;
+use Simplify\Core\Filament\Admin\Pages\SetupDone;
 use Simplify\Core\Filament\App\Pages\Notifications;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Filament\Server\ServerPage;
 use Simplify\Core\Models\Setting;
+use Simplify\Core\Overview\Bell as OverviewBell;
 use Simplify\Core\Overview\Listing;
 use Simplify\Core\People\People;
 use Simplify\Core\Push\PluginUpdates;
@@ -201,11 +204,22 @@ step('a panel with settings opens them, a new panel opens the setup, and finishi
     }
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('admin'));
     $setup = Livewire\Livewire::actingAs($admin)->test(Setup::class)
-        ->set('data.support_url', 'mailto:help@example.com')->call('finish');
+        ->set('data.support_url', 'mailto:help@example.com')->set('data.accent', '#a9b4f2')
+        ->set('data.brand_font', 'monocraft')->set('data.brand_effect', 'glow')->set('data.brand_colour', 'accent')->call('finish');
     noErrors($setup);
-    if (! PanelSettings::get('setup_done') || PanelSettings::get('support_url') !== 'mailto:help@example.com') {
+    if (! PanelSettings::get('setup_done') || PanelSettings::get('support_url') !== 'mailto:help@example.com'
+        || PanelSettings::get('brand_font') !== 'monocraft' || PanelSettings::get('brand_effect') !== 'glow' || PanelSettings::get('brand_colour') !== 'accent' || PanelSettings::get('accent') !== '#a9b4f2') {
         throw new RuntimeException('the setup was not saved: '.json_encode(PanelSettings::all()));
     }
+    // The page after the setup, with each add-on's own settings. The top bar shows the new font and style from the
+    // next request on, and this script is a single request.
+    $url = SetupDone::getUrl(panel: 'admin');
+    $page = visit($admin, $url);
+    expectOk($page, $url);
+    if (! str_contains($page->getContent(), 's-done')) {
+        throw new RuntimeException('the page after the setup misses its add-on list');
+    }
+    PanelSettings::save(['brand_font' => 'inter', 'brand_effect' => 'plain', 'brand_colour' => 'solid']);
 });
 step('opening the panel shows the overview, unless Pelican is the start page', function () use ($admin) {
     $home = visit($admin, url('/'));
@@ -627,6 +641,67 @@ step('announcements: unpin moves a bar to the bell, pin brings it back, and the 
     Artisan::call('simplify:announcements');
     if ($player->notifications()->where('data->viewData->simplify_announcement', $bell->id)->count() !== 1) {
         throw new RuntimeException('the bell item did not arrive exactly once');
+    }
+});
+step('notifications: mark read, mark as unread, Clear read and ✕ move them to Archived and back', function () {
+    $player = User::where('email', 'smoke-player@example.com')->firstOrFail();
+    $player->notifications()->delete();
+    Preferences::set($player, 'notifications.archive', []);
+    foreach (['Smoke backup done', 'Smoke install done', 'Smoke subuser added'] as $title) {
+        $player->notifyNow(Notification::make()->title($title)->toDatabase());
+    }
+    $keys = fn (array $page) => array_column($page['items'], 'title', 'key');
+    $find = fn (string $title) => (string) $player->notifications()->where('data->title', $title)->value('id');
+    [$backup, $install, $subuser] = [$find('Smoke backup done'), $find('Smoke install done'), $find('Smoke subuser added')];
+    OverviewBell::mark($player, [$backup], true);
+    if ($player->unreadNotifications()->count() !== 2) {
+        throw new RuntimeException('Mark read did not mark one notification read');
+    }
+    OverviewBell::mark($player, [$backup], false);
+    OverviewBell::mark($player, [$backup], true);
+    OverviewBell::archiveNotifications($player);
+    $page = OverviewBell::page($player);
+    if (isset($keys($page)[$backup]) || count($page['items']) !== 2 || ! $page['archived'] || ! isset($keys(OverviewBell::page($player, 1, true))[$backup])) {
+        throw new RuntimeException('Clear read did not move the read notification to Archived');
+    }
+    OverviewBell::archiveNotifications($player, [$install]);
+    $archived = $keys(OverviewBell::page($player, 1, true));
+    if (! isset($archived[$install]) || $player->unreadNotifications()->count() !== 1 || isset($keys(OverviewBell::page($player))[$install])) {
+        throw new RuntimeException('✕ did not move one notification to Archived, read');
+    }
+    OverviewBell::mark($player, [$install, $backup], false);
+    $page = OverviewBell::page($player);
+    if (count($page['items']) !== 3 || OverviewBell::page($player, 1, true)['items'] !== [] || ! isset($keys($page)[$subuser])) {
+        throw new RuntimeException('Mark as unread did not bring notifications back from Archived');
+    }
+    $player->notifications()->delete();
+    Preferences::set($player, 'notifications.archive', []);
+});
+step('notifications: an announcement pinned to everyone\'s notifications stays on top, also after Clear read', function () {
+    $player = User::where('email', 'smoke-player@example.com')->firstOrFail();
+    $player->notifications()->delete();
+    $pinned = Announcement::create(['title' => 'Smoke pinned in the bell', 'in_bell' => true, 'bell_pinned' => true]);
+    try {
+        Artisan::call('simplify:announcements');
+        $player->notifyNow(Notification::make()->title('Smoke ordinary notification')->toDatabase());
+        $page = OverviewBell::page($player);
+        if (array_column($page['pinned'], 'title') !== ['Smoke pinned in the bell'] || in_array('Smoke pinned in the bell', array_column($page['items'], 'title'), true)) {
+            throw new RuntimeException('the pinned announcement is not on top of the bell');
+        }
+        OverviewBell::mark($player, [], true);
+        OverviewBell::archiveNotifications($player);
+        $page = OverviewBell::page($player);
+        if (count($page['pinned']) !== 1 || $page['items'] !== [] || $page['pinned'][0]['unread']) {
+            throw new RuntimeException('Clear read moved the pinned announcement away');
+        }
+        $pinned->update(['bell_pinned' => false]);
+        if (OverviewBell::page($player)['pinned'] !== []) {
+            throw new RuntimeException('an unpinned announcement stays on top');
+        }
+    } finally {
+        $pinned->delete();
+        $player->notifications()->delete();
+        Preferences::set($player, 'notifications.archive', []);
     }
 });
 step('embed: the server owner opens Website, and the settings page shows the code for a website', function () use ($admin, $server) {

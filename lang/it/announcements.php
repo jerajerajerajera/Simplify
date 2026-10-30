@@ -18,6 +18,7 @@ return [
         'button_label' => 'Testo del pulsante',
         'in_bell' => 'Metti anche nelle notifiche di tutti',
         'in_bell_help' => 'Chi lo vede lo trova anche nella campanella, dall\'inizio alla fine.',
+        'bell_pinned' => 'Fissa nelle notifiche di tutti',
         'push' => 'Invia anche come notifica dell\'app',
         'push_help' => 'Simplify lo invia a telefoni e computer di chi lo vede e ha attivato le notifiche dell\'app. Anche i dispositivi che si collegano entro un giorno dall\'inizio lo ricevono.',
         'in_game' => 'Invia anche nel gioco',
@@ -25,6 +26,8 @@ return [
         'in_game_servers' => 'Server',
         'in_game_servers_all' => 'Tutti i server',
         'in_game_servers_help' => 'Vuoto: tutti i server, al massimo 200.',
+        'in_game_groups' => 'Gruppi di server',
+        'in_game_groups_help' => 'I tuoi gruppi da Gruppi di server. Anche i server che aggiungi dopo a un gruppo lo ricevono.',
         'in_game_repeat' => 'Ripeti',
     ],
     'category' => [

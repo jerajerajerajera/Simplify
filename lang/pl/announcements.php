@@ -18,6 +18,7 @@ return [
         'button_label' => 'Tekst przycisku',
         'in_bell' => 'Dodaj też do powiadomień wszystkich',
         'in_bell_help' => 'Każdy, kto je widzi, znajdzie je też pod dzwonkiem, od startu do końca.',
+        'bell_pinned' => 'Przypnij w powiadomieniach wszystkich',
         'push' => 'Wyślij też jako powiadomienie w aplikacji',
         'push_help' => 'Simplify wysyła je na telefony i komputery wszystkich, którzy je widzą i mają włączone powiadomienia aplikacji. Urządzenia, które połączą się w ciągu doby od startu, też je dostaną.',
         'in_game' => 'Wyślij też w grze',
@@ -25,6 +26,8 @@ return [
         'in_game_servers' => 'Serwery',
         'in_game_servers_all' => 'Wszystkie serwery',
         'in_game_servers_help' => 'Puste: wszystkie serwery, najwyżej 200.',
+        'in_game_groups' => 'Grupy serwerów',
+        'in_game_groups_help' => 'Twoje grupy z Grup serwerów. Serwery, które później dodasz do grupy, też je dostaną.',
         'in_game_repeat' => 'Powtarzaj',
     ],
     'category' => [

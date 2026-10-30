@@ -24,4 +24,32 @@
     if ('serviceWorker' in navigator && window.isSecureContext) {
         addEventListener('load', () => navigator.serviceWorker.register(@js(route('simplify.worker')), { scope: @js(\Simplify\Core\WebApp\WebApp::scope()) }).catch(() => {}));
     }
+    // Simplify's own admin pages (settings, Health, People & roles, the form pages, the end of the setup) get the height the window leaves them, so the page never scrolls:
+    // the card scrolls inside (simplify.css). In host mode's frame the frame itself already has the window's height.
+    // The end of the setup is one card in host mode too, so it fits there as well.
+    {
+        const fitCards = document.documentElement.classList.contains('ps-frame') ? '.s-done' : '.s-settings-tabs.fi-vertical, .s-health, .s-people, .s-fit, .s-done';
+        let queued = 0;
+        const fit = () => {
+            queued = 0;
+            for (const card of document.querySelectorAll(fitCards)) {
+                card.style.removeProperty('--s-fit');
+                const box = card.getBoundingClientRect();
+                const below = document.documentElement.scrollHeight - (box.bottom + scrollY);
+                card.style.setProperty('--s-fit', Math.max(320, Math.floor(innerHeight - (box.top + scrollY) - below)) + 'px');
+            }
+        };
+        const queue = () => (queued ||= requestAnimationFrame(fit));
+        addEventListener('resize', queue);
+        document.addEventListener('livewire:navigated', queue);
+        addEventListener('DOMContentLoaded', () => {
+            queue();
+            // A new card, or Livewire redrawing one without its height, measures again.
+            const lost = (change) => change.type === 'attributes'
+                ? change.target.matches(fitCards) && !change.target.style.getPropertyValue('--s-fit')
+                : [...change.addedNodes].some((node) => node.nodeType === 1 && (node.matches(fitCards) || node.querySelector(fitCards)));
+            new MutationObserver((changes) => changes.some(lost) && queue())
+                .observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style'] });
+        });
+    }
 </script>

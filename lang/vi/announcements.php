@@ -18,6 +18,7 @@ return [
         'button_label' => 'Chữ trên nút',
         'in_bell' => 'Đưa cả vào thông báo của mọi người',
         'in_bell_help' => 'Ai thấy nó cũng sẽ thấy trong chuông, từ lúc bắt đầu đến khi kết thúc.',
+        'bell_pinned' => 'Ghim vào thông báo của mọi người',
         'push' => 'Gửi cả dưới dạng thông báo ứng dụng',
         'push_help' => 'Simplify gửi nó tới điện thoại và máy tính của những người thấy nó và đã bật thông báo ứng dụng. Thiết bị online trong vòng một ngày sau khi bắt đầu cũng nhận được.',
         'in_game' => 'Gửi cả vào trong game',
@@ -25,6 +26,8 @@ return [
         'in_game_servers' => 'Server',
         'in_game_servers_all' => 'Tất cả server',
         'in_game_servers_help' => 'Để trống: tất cả server, tối đa 200.',
+        'in_game_groups' => 'Nhóm máy chủ',
+        'in_game_groups_help' => 'Các nhóm của bạn trong Nhóm máy chủ. Máy chủ bạn thêm vào nhóm sau này cũng sẽ nhận.',
         'in_game_repeat' => 'Lặp lại',
     ],
     'category' => [

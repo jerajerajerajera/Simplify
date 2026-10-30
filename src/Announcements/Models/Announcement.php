@@ -25,10 +25,12 @@ use Simplify\Core\Announcements\Support\Rules;
  * @property ?string $button_url https://… or /path on this panel
  * @property bool $in_bell also in everyone's notifications
  * @property ?CarbonInterface $in_bell_at when it was put there
+ * @property bool $bell_pinned on top of everyone's notifications until it ends
  * @property bool $push also as app notification through Simplify
  * @property int $pushed_to devices reached, added up
  * @property bool $in_game also posted in the chat of game servers
- * @property ?list<int> $in_game_servers empty: all servers
+ * @property ?list<int> $in_game_servers with the groups empty: all servers
+ * @property ?list<string> $in_game_groups ids of the author's server groups, read when it is sent
  * @property int $in_game_repeat minutes between posts, 0: once
  * @property ?CarbonInterface $in_game_at last post
  * @property ?array{sent: int, offline: int, unsupported: int, failed: int} $in_game_result
@@ -38,7 +40,7 @@ final class Announcement extends Model
 {
     protected $table = 'simplify_core_announcements';
 
-    protected $fillable = ['category', 'title', 'body', 'starts_at', 'ends_at', 'audience', 'button_label', 'button_url', 'in_bell', 'push', 'in_game', 'in_game_servers', 'in_game_repeat', 'created_by'];
+    protected $fillable = ['category', 'title', 'body', 'starts_at', 'ends_at', 'audience', 'button_label', 'button_url', 'in_bell', 'bell_pinned', 'push', 'in_game', 'in_game_servers', 'in_game_groups', 'in_game_repeat', 'created_by'];
 
     protected $attributes = ['category' => 'info', 'audience' => 'everyone'];
 
@@ -49,10 +51,12 @@ final class Announcement extends Model
             'ends_at' => 'datetime',
             'in_bell' => 'boolean',
             'in_bell_at' => 'datetime',
+            'bell_pinned' => 'boolean',
             'push' => 'boolean',
             'pushed_to' => 'integer',
             'in_game' => 'boolean',
             'in_game_servers' => 'array',
+            'in_game_groups' => 'array',
             'in_game_repeat' => 'integer',
             'in_game_at' => 'datetime',
             'in_game_result' => 'array',

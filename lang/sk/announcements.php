@@ -18,6 +18,7 @@ return [
         'button_label' => 'Text tlačidla',
         'in_bell' => 'Dať aj do upozornení všetkých',
         'in_bell_help' => 'Každý, kto ho vidí, ho nájde aj v zvončeku, od začiatku do konca.',
+        'bell_pinned' => 'Pripnúť do upozornení všetkých',
         'push' => 'Poslať aj ako upozornenie aplikácie',
         'push_help' => 'Simplify ho pošle na telefóny a počítače všetkých, ktorí ho vidia a majú zapnuté upozornenia aplikácie. Dostanú ho aj zariadenia, ktoré sa pripoja do jedného dňa od začiatku.',
         'in_game' => 'Poslať aj do hry',
@@ -25,6 +26,8 @@ return [
         'in_game_servers' => 'Servery',
         'in_game_servers_all' => 'Všetky servery',
         'in_game_servers_help' => 'Prázdne: všetky servery, najviac 200.',
+        'in_game_groups' => 'Skupiny serverov',
+        'in_game_groups_help' => 'Vaše skupiny zo Skupín serverov. Dostanú ho aj servery, ktoré do skupiny pridáte neskôr.',
         'in_game_repeat' => 'Opakovať',
     ],
     'category' => [

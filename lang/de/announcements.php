@@ -18,6 +18,7 @@ return [
         'button_label' => 'Button-Text',
         'in_bell' => 'Auch in die Benachrichtigungen aller legen',
         'in_bell_help' => 'Alle, die sie sehen, finden sie auch in der Glocke, vom Start bis zum Ende.',
+        'bell_pinned' => 'In allen Benachrichtigungen anheften',
         'push' => 'Auch als App-Benachrichtigung senden',
         'push_help' => 'Simplify sendet sie an die Handys und Computer aller, die sie sehen und App-Benachrichtigungen eingeschaltet haben. Geräte, die innerhalb eines Tages nach dem Start online kommen, bekommen sie auch.',
         'in_game' => 'Auch im Spiel senden',
@@ -25,6 +26,8 @@ return [
         'in_game_servers' => 'Server',
         'in_game_servers_all' => 'Alle Server',
         'in_game_servers_help' => 'Leer: alle Server, höchstens 200.',
+        'in_game_groups' => 'Servergruppen',
+        'in_game_groups_help' => 'Deine Gruppen aus Servergruppen. Server, die du später einer Gruppe hinzufügst, bekommen sie auch.',
         'in_game_repeat' => 'Wiederholen',
     ],
     'category' => [

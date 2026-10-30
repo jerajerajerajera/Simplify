@@ -18,6 +18,7 @@ return [
         'button_label' => '버튼 텍스트',
         'in_bell' => '모든 사람의 알림에도 넣기',
         'in_bell_help' => '보는 사람은 시작부터 끝날 때까지 종 아이콘에서도 볼 수 있습니다.',
+        'bell_pinned' => '모두의 알림에 고정',
         'push' => '앱 알림으로도 보내기',
         'push_help' => 'Simplify가 이 공지를 보고 앱 알림을 켠 모든 사람의 휴대폰과 컴퓨터로 보냅니다. 시작 후 하루 안에 온라인이 된 기기도 받습니다.',
         'in_game' => '게임 안에도 보내기',
@@ -25,6 +26,8 @@ return [
         'in_game_servers' => '서버',
         'in_game_servers_all' => '모든 서버',
         'in_game_servers_help' => '비워 두면 모든 서버, 최대 200개.',
+        'in_game_groups' => '서버 그룹',
+        'in_game_groups_help' => '서버 그룹에서 만든 내 그룹입니다. 나중에 그룹에 추가한 서버도 받습니다.',
         'in_game_repeat' => '반복',
     ],
     'category' => [

@@ -1,5 +1,5 @@
 {{-- Personal appearance preferences. --}}
-<div class="ps-overview-appearance ps-nav-view" x-show="!hostMode" x-on:click.outside="appearanceMenu=false" x-on:keydown.escape.stop="appearanceMenu=false; $refs.overviewAppearance.focus()">
+<div class="ps-overview-appearance ps-nav-view" x-show="!hostMode && !adminView" x-on:click.outside="appearanceMenu=false" x-on:keydown.escape.stop="appearanceMenu=false; $refs.overviewAppearance.focus()">
     <button type="button" x-ref="overviewAppearance" class="ps-btn is-icon is-subtle" data-tip="{{ $u('customize_overview') }}" aria-label="{{ $u('customize_overview') }}" aria-controls="ps-overview-appearance-menu" :aria-expanded="appearanceMenu"
             x-on:click="appearanceMenu=!appearanceMenu; groupsMenu=false; accountMenu=false; notifyMenu=false">
         <svg aria-hidden="true"><use href="#ps-wand"/></svg><span class="ps-mobile-label">{{ $u('customize_overview') }}</span>
@@ -100,6 +100,23 @@
                     <a class="ps-btn is-sm" :href="boot.settings_url">{{ $u('open_settings') }}</a>
                 </div>
                 </div>
+            </div>
+        </template>
+        <template x-if="server">
+            <div class="ps-customize">
+                <span class="ps-customize-sub">{{ $u('server_pages') }}</span>
+                <button type="button" class="ps-customize-switch" role="switch" :aria-checked="overviewPreferences.serverBiggerConsole" x-on:click="setOverviewPreference('serverBiggerConsole', !overviewPreferences.serverBiggerConsole)">
+                    <span><strong>{{ $u('bigger_console') }}</strong><small>{{ $u('open_server_pages_with_the_large') }}</small></span>
+                    <span class="ps-switch" :class="{'is-on': overviewPreferences.serverBiggerConsole}" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="ps-customize-switch" role="switch" :aria-checked="overviewPreferences.serverConsoleLog" x-on:click="setOverviewPreference('serverConsoleLog', !overviewPreferences.serverConsoleLog)">
+                    <span><strong>{{ $u('log_in_the_mini_console') }}</strong><small>{{ $u('last_lines_on_other_pages') }}</small></span>
+                    <span class="ps-switch" :class="{'is-on': overviewPreferences.serverConsoleLog}" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="ps-customize-switch" role="switch" :aria-checked="overviewPreferences.fullWidth" x-on:click="setOverviewPreference('fullWidth', !overviewPreferences.fullWidth)">
+                    <span><strong>{{ $u('full_screen_width') }}</strong><small>{{ $u('use_the_whole_width_of_the') }}</small></span>
+                    <span class="ps-switch" :class="{'is-on': overviewPreferences.fullWidth}" aria-hidden="true"></span>
+                </button>
             </div>
         </template>
     </div>

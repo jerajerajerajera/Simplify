@@ -18,6 +18,7 @@ return [
         'button_label' => 'Text tlačítka',
         'in_bell' => 'Dát také do oznámení všech',
         'in_bell_help' => 'Každý, kdo ho vidí, ho najde i ve zvonečku, od začátku do konce.',
+        'bell_pinned' => 'Připnout do upozornění všech',
         'push' => 'Poslat také jako upozornění aplikace',
         'push_help' => 'Simplify ho pošle na telefony a počítače všech, kdo ho vidí a mají zapnutá upozornění aplikace. Dostanou ho i zařízení, která se připojí do jednoho dne od začátku.',
         'in_game' => 'Poslat také do hry',
@@ -25,6 +26,8 @@ return [
         'in_game_servers' => 'Servery',
         'in_game_servers_all' => 'Všechny servery',
         'in_game_servers_help' => 'Prázdné: všechny servery, nejvýš 200.',
+        'in_game_groups' => 'Skupiny serverů',
+        'in_game_groups_help' => 'Vaše skupiny ze Skupin serverů. Dostanou ho i servery, které do skupiny přidáte později.',
         'in_game_repeat' => 'Opakovat',
     ],
     'category' => [

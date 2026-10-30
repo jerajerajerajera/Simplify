@@ -18,6 +18,7 @@ return [
         'button_label' => '按鈕文字',
         'in_bell' => '同時放入所有人的通知',
         'in_bell_help' => '能看到它的人從開始到結束都能在鈴鐺裡找到它。',
+        'bell_pinned' => '在所有人的通知中置頂',
         'push' => '同時以應用程式通知傳送',
         'push_help' => 'Simplify 會把它傳送到能看到它並開啟應用程式通知的人的手機和電腦。開始後一天內上線的裝置也會收到。',
         'in_game' => '同時傳送到遊戲內',
@@ -25,6 +26,8 @@ return [
         'in_game_servers' => '伺服器',
         'in_game_servers_all' => '所有伺服器',
         'in_game_servers_help' => '留空：所有伺服器,最多 200 台。',
+        'in_game_groups' => '伺服器分組',
+        'in_game_groups_help' => '你在「伺服器分組」中建立的分組。之後加入分組的伺服器也會收到。',
         'in_game_repeat' => '重複',
     ],
     'category' => [

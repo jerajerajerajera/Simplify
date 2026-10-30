@@ -1,5 +1,8 @@
 /* Simplify's look: tokens first, then the shared components. Colours come from Filament's own variables, so a
    Pelican theme plugin restyles Simplify too. Light values on :root, dark values on html.dark (Filament's switch). */
+@font-face { font-family: Monocraft; src: url("monocraft-regular.woff2") format("woff2"); font-weight: 400 600; font-display: swap; }
+@font-face { font-family: Monocraft; src: url("monocraft-bold.woff2") format("woff2"); font-weight: 700 900; font-display: swap; }
+
 :root {
   --s-bg: var(--gray-50);
   --s-surface: #fff;
@@ -173,9 +176,32 @@
   min-width: 0;
 }
 
+.s-checks .s-row:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.s-row-fix {
+  display: block;
+  margin-top: 2px;
+}
+
 .s-muted {
   color: var(--s-muted);
   font-size: var(--s-text-sm);
+}
+
+.s-code {
+  background: var(--s-raised);
+  border: 1px solid var(--s-line);
+  border-radius: var(--s-radius-sm);
+  display: block;
+  font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  margin-top: var(--s-space-2);
+  overflow-x: auto;
+  padding: 6px 8px;
+  user-select: all;
+  white-space: nowrap;
 }
 
 .s-heading {
@@ -670,7 +696,7 @@ html.ps-frame[data-ps-frame="native"] .fi-header-heading {
 /* A Pelican page in host mode sits straight on host mode's page, as in 0.7.0: no card around its table or form
    and no band above it. Its search and buttons are in host mode's title bar (frame.js, data-ps-head-tools), so its
    own header and table toolbar hide; the toolbar comes back for bulk actions once rows are selected. */
-html.ps-frame[data-ps-frame="native"] :is(.fi-section:not(.fi-section .fi-section), .fi-ta-ctn:not(.fi-section .fi-ta-ctn)) {
+html.ps-frame[data-ps-frame="native"] :is(.fi-section:not(.fi-section .fi-section), .fi-ta-ctn:not(.fi-section .fi-ta-ctn), :is(.fi-sc-wizard, .fi-fo-wizard):not(.fi-section *)) {
   border: 0 !important;
   border-radius: 0 !important;
   background: transparent !important;
@@ -767,6 +793,47 @@ html.ps-frame[data-ps-tree] .fi-section-content {
 
 html.ps-frame[data-ps-tree] .fi-grid-col:not(:first-child) > .fi-sc-component > .fi-sc-section {
   border-top: 1px solid var(--s-line);
+}
+
+/* Settings and Health outside host mode: the card is as high as the window leaves it (--s-fit, head.blade.php) and
+   scrolls inside, so the page never does. The menu on the left stays where it is. */
+html:not(.ps-frame) .s-settings-tabs.fi-vertical[style*="--s-fit"] {
+  height: var(--s-fit);
+}
+
+html:not(.ps-frame) .s-settings-tabs.fi-vertical[style*="--s-fit"] > .fi-tabs {
+  overflow-y: auto;
+}
+
+html:not(.ps-frame) .s-settings-tabs.fi-vertical[style*="--s-fit"] > .fi-sc-tabs-tab.fi-active {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+html:not(.ps-frame) :is(.s-health, .s-fit)[style*="--s-fit"],
+.s-done[style*="--s-fit"] {
+  max-height: var(--s-fit);
+  overflow-y: auto;
+}
+
+/* A form page scrolls inside with a little room, so focus rings and section shadows are not cut off. */
+html:not(.ps-frame) .s-fit[style*="--s-fit"] {
+  margin: -4px;
+  padding: 4px;
+}
+
+/* People & roles: the tabs, search and add button stay on top, the list scrolls in its card. */
+html:not(.ps-frame) .s-people[style*="--s-fit"] {
+  display: flex;
+  flex-direction: column;
+  height: var(--s-fit);
+}
+
+html:not(.ps-frame) .s-people[style*="--s-fit"] > .s-card {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
 }
 
 /* Settings: one card with the menu on the left, in the style of host mode's tree, and the settings beside it.
@@ -1010,11 +1077,12 @@ html.ps-frame[data-ps-frame="settings"] :is(body, .fi-layout, .fi-main-ctn, .fi-
   border-color: transparent !important;
 }
 
-/* Scrollbars, everywhere in the panel: one dark rounded bar without a track or outline, with room above and below.
+/* Scrollbars, everywhere in the panel: one dark rounded bar without a track or outline. It stops 14px short of both
+   ends and keeps 4px from the edge, so it sits inside the rounded corners of cards, menus and windows.
    "html" before each part outranks Pelican's console stylesheet, which draws an outlined bar of its own. */
-html ::-webkit-scrollbar { width: 10px; height: 10px; background: transparent; }
-html ::-webkit-scrollbar-track, html ::-webkit-scrollbar-track-piece { margin: 6px; border: 0; background: transparent; box-shadow: none; }
-html ::-webkit-scrollbar-thumb { min-height: 32px; border: 2px solid transparent; border-radius: 999px; background: var(--s-scroll) padding-box; box-shadow: none; }
+html ::-webkit-scrollbar { width: 12px; height: 12px; background: transparent; }
+html ::-webkit-scrollbar-track, html ::-webkit-scrollbar-track-piece { margin: 14px; border: 0; background: transparent; box-shadow: none; }
+html ::-webkit-scrollbar-thumb { min-height: 32px; border: 3px solid transparent; border-inline-end-width: 4px; border-bottom-width: 4px; border-radius: 999px; background: var(--s-scroll) padding-box; box-shadow: none; }
 html ::-webkit-scrollbar-thumb:hover { background-color: var(--s-scroll-hover); }
 html ::-webkit-scrollbar-button, html ::-webkit-scrollbar-corner { display: none; background: transparent; }
 /* Firefox has no ::-webkit-scrollbar: the thin bar in the same colour. Chrome would drop the rules above for these. */
@@ -1084,3 +1152,615 @@ html.ps-frame[data-ps-frame="native"] .s-health { border: 0; border-radius: 0; b
 .s-preview-note img { width: 22px; height: 22px; border-radius: 6px; object-fit: cover; flex: none; }
 .s-preview-note span { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .s-preview-note strong { color: #fff; font-weight: 500; }
+
+/* Fonts for the panel name (Brand::FONTS). They ship with Simplify (resources/fonts, OFL) and only load when the name uses them. */
+@font-face { font-display: swap; font-family: "Simplify Rounded"; font-weight: 400 900; src: url("brand-rounded.woff2") format("woff2"); }
+@font-face { font-display: swap; font-family: "Simplify Serif"; font-weight: 400 900; src: url("brand-serif.woff2") format("woff2"); }
+@font-face { font-display: swap; font-family: "Simplify Mono"; font-weight: 400 900; src: url("brand-mono.woff2") format("woff2"); }
+
+/* The name in its own style in Filament's top bar (Brand::apply), after the logo when both show. */
+.fi-logo:has(.s-brand) { align-items: center; display: inline-flex; gap: 10px; }
+.s-brand { font-size: 1.125rem; font-weight: 700; line-height: 1.2; white-space: nowrap; }
+
+/* Appearance: the fields in a narrow column, with the preview beside them that follows every choice. */
+:is(.s-settings-tabs, .s-setup) .fi-section-content:has(> .s-look-preview, > * > .s-look-preview) {
+  align-items: start;
+}
+
+.s-look-fields .fi-input-wrp {
+  max-width: 320px;
+}
+
+.s-look-preview {
+  display: grid;
+  gap: var(--s-space-2);
+  max-width: 420px;
+  position: sticky;
+  top: 12px;
+  --s-preview-accent-or: var(--s-preview-accent, var(--s-accent));
+}
+
+.s-preview-name {
+  align-items: baseline;
+  display: flex;
+  gap: .3em;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.s-preview-name > span:first-child {
+  font-size: 16px;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.s-preview-suffix {
+  color: var(--s-muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.s-preview-bar-nav i.is-on {
+  background: color-mix(in srgb, var(--s-preview-accent-or) 45%, transparent);
+}
+
+.s-look-preview .s-preview-bar-me {
+  background: var(--s-preview-accent-or);
+}
+
+.s-preview-server {
+  background: var(--s-surface);
+  border: 1px solid var(--s-line);
+  border-radius: 14px;
+  display: grid;
+  gap: var(--s-space-3);
+  padding: 14px;
+}
+
+.s-preview-server-top {
+  align-items: center;
+  display: flex;
+  gap: var(--s-space-3);
+  min-width: 0;
+}
+
+.s-preview-server-icon {
+  background: color-mix(in srgb, var(--s-preview-accent-or) 22%, var(--s-raised));
+  border-radius: 11px;
+  color: var(--s-ink);
+  display: grid;
+  flex: none;
+  height: 40px;
+  place-items: center;
+  width: 40px;
+}
+
+.s-preview-server-icon svg { height: 22px; width: 22px; }
+
+.s-preview-server-name {
+  display: grid;
+  min-width: 0;
+}
+
+.s-preview-server-name strong { color: var(--s-ink); font-size: 14px; }
+.s-preview-server-name small { color: var(--s-muted); font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* The state keeps its own colour; the accent never stands for a state. */
+.s-preview-server-state {
+  align-items: center;
+  color: var(--s-ok);
+  display: inline-flex;
+  flex: none;
+  font-size: 12px;
+  font-weight: 600;
+  gap: 6px;
+  margin-inline-start: auto;
+}
+
+.s-preview-server-state::before {
+  background: currentColor;
+  border-radius: 50%;
+  content: "";
+  height: 8px;
+  width: 8px;
+}
+
+.s-preview-server-meters {
+  display: grid;
+  gap: var(--s-space-3);
+  grid-template-columns: 1fr 1fr;
+}
+
+.s-preview-server-meters span {
+  color: var(--s-muted);
+  display: grid;
+  font-size: 11.5px;
+  gap: 4px;
+}
+
+.s-preview-server-meters i {
+  background: linear-gradient(90deg, var(--s-preview-accent-or) var(--s-fill), var(--s-raised) var(--s-fill));
+  border-radius: var(--s-radius-pill);
+  height: 6px;
+}
+
+.s-preview-server-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-space-2);
+}
+
+.s-preview-button {
+  align-items: center;
+  border: 1px solid var(--s-line);
+  border-radius: var(--s-radius-sm);
+  color: var(--s-ink);
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 600;
+  gap: 6px;
+  height: 30px;
+  padding: 0 10px;
+}
+
+.s-preview-button svg { height: 15px; width: 15px; }
+
+.s-preview-button.is-primary {
+  background: var(--s-preview-accent-or);
+  border-color: var(--s-preview-accent-or);
+  color: var(--s-preview-on-accent, var(--s-on-accent));
+}
+
+/* The accent colour: pastels and "+" for your own, which opens a small window. */
+.s-accent {
+  display: grid;
+  gap: var(--s-space-2);
+  justify-items: start;
+  position: relative;
+}
+
+.s-accent-swatches {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(6, 34px);
+}
+
+.s-swatch {
+  background: var(--s-swatch);
+  border: 0;
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / .08);
+  cursor: pointer;
+  height: 34px;
+  position: relative;
+  width: 34px;
+}
+
+.s-swatch[aria-checked="true"] {
+  box-shadow: 0 0 0 2px var(--s-surface), 0 0 0 4px var(--s-swatch);
+}
+
+.s-swatch[aria-checked="true"]::after {
+  background: center / 18px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2318181b' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5l10 -10'/%3E%3C/svg%3E");
+  content: "";
+  inset: 0;
+  position: absolute;
+}
+
+.s-swatch-own {
+  background: conic-gradient(#f9a8a8, #fde68a, #a7f3d0, #93c5fd, #c4b5fd, #f9a8d4, #f9a8a8);
+  color: #18181b;
+  display: grid;
+  place-items: center;
+}
+
+.s-swatch-own[aria-checked="true"] { background: var(--s-swatch); }
+.s-swatch-own[aria-checked="true"] .s-swatch-plus { display: none; }
+.s-swatch-plus { height: 18px; width: 18px; }
+
+.s-accent-pop {
+  background: var(--s-surface);
+  border: 1px solid var(--s-line);
+  border-radius: 14px;
+  box-shadow: 0 12px 32px rgb(0 0 0 / .25);
+  display: grid;
+  gap: 10px;
+  left: 0;
+  padding: 12px;
+  position: absolute;
+  top: 88px;
+  width: 240px;
+  z-index: 30;
+}
+
+.s-accent-field {
+  background: linear-gradient(to top, #000, transparent), linear-gradient(to right, #fff, hsl(var(--s-hue) 100% 50%));
+  border-radius: var(--s-radius);
+  cursor: crosshair;
+  height: 140px;
+  position: relative;
+  touch-action: none;
+}
+
+.s-accent-hue {
+  background: linear-gradient(to right, red, #ff0, lime, cyan, blue, #f0f, red);
+  border-radius: var(--s-radius-pill);
+  cursor: pointer;
+  height: 12px;
+  position: relative;
+  touch-action: none;
+}
+
+.s-accent-field b, .s-accent-hue b {
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / .4);
+  height: 16px;
+  pointer-events: none;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 16px;
+}
+
+.s-accent-hue b { top: 50%; }
+
+.s-accent-hex {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+}
+
+.s-accent-hex span {
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / .15);
+  flex: none;
+  height: 28px;
+  width: 28px;
+}
+
+.s-accent-hex input {
+  background: var(--s-bg);
+  border: 1px solid var(--s-line);
+  border-radius: 8px;
+  color: var(--s-ink);
+  flex: 1;
+  font: 600 13px ui-monospace, monospace;
+  height: 30px;
+  min-width: 0;
+  padding: 0 8px;
+  text-transform: uppercase;
+}
+
+.s-link {
+  background: none;
+  border: 0;
+  color: var(--s-muted);
+  cursor: pointer;
+  font-size: 12px;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.s-link:hover { color: var(--s-ink); }
+
+/* A few values as small buttons: font, style, logo height. */
+.s-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.s-chip {
+  align-items: center;
+  background: var(--s-surface);
+  border: 1px solid var(--s-line);
+  border-radius: 8px;
+  color: var(--s-ink);
+  cursor: pointer;
+  display: inline-flex;
+  flex-direction: column;
+  font-size: 13px;
+  justify-content: center;
+  line-height: 1.25;
+  min-height: 32px;
+  min-width: 44px;
+  padding: 4px 10px;
+}
+
+.s-chip:hover { background: var(--s-raised); }
+
+.s-chip:has(input:checked), .s-chip[aria-pressed="true"] {
+  background: color-mix(in srgb, var(--s-accent) 12%, var(--s-surface));
+  border-color: var(--s-accent);
+  box-shadow: 0 0 0 1px var(--s-accent);
+}
+
+.s-chip:has(input:focus-visible) { outline: 2px solid var(--s-accent); outline-offset: 2px; }
+
+/* A small square upload with "+", after the tile for what is used without one; the one in use is marked. */
+.s-tile-field .fi-fo-field-content-ctn {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+}
+
+.s-tile-field .fi-fo-field-content-ctn > * {
+  flex: 0 0 auto;
+  width: auto;
+}
+
+.s-tile-field .fi-fo-field-content-ctn > .fi-fo-field-content {
+  flex: 0 0 64px;
+  width: 64px;
+}
+
+.s-tile, .s-tile-field .filepond--root {
+  border-radius: 14px;
+  height: 64px;
+  width: 64px;
+}
+
+.s-tile {
+  align-items: center;
+  background: var(--s-surface);
+  border: 1px solid var(--s-line);
+  color: var(--s-ink);
+  cursor: pointer;
+  display: grid;
+  flex: none;
+  justify-items: center;
+  overflow: hidden;
+  padding: 0;
+}
+
+.s-tile img { height: 100%; object-fit: cover; width: 100%; }
+.s-tile img.s-tile-badge { filter: brightness(0); height: 28px; object-fit: contain; width: 28px; }
+.dark .s-tile img.s-tile-badge { filter: brightness(0) invert(1); }
+.s-tile > svg { height: 24px; width: 24px; }
+
+.s-tile-field .filepond--root {
+  margin: 0 !important;
+  overflow: hidden;
+}
+
+.s-tile-field .filepond--panel-root { background: var(--s-surface) !important; border: 1px dashed var(--s-line); border-radius: 14px !important; }
+.s-tile-field .filepond--drop-label { color: var(--s-muted); min-height: 64px !important; }
+.s-tile-field .filepond--drop-label label { cursor: pointer; display: grid; padding: 0 !important; place-items: center; }
+.s-tile-plus { height: 22px; width: 22px; }
+.s-tile-field :is(.filepond--file-info, .filepond--file-status) { display: none !important; }
+.s-tile-field .filepond--item { margin: 0 !important; }
+/* FilePond's hidden file input is wider than the tile; keep it inside, so nothing sticks out of the page. */
+.s-tile-field input[type="file"] { left: 0 !important; max-width: 64px !important; right: auto !important; top: 0 !important; }
+.s-tile-field .fi-fo-field-content { overflow: hidden; border-radius: 14px; }
+
+.s-tile-field:not(:has(.filepond--item)) .s-tile-default,
+.s-tile-field .filepond--root:has(.filepond--item) {
+  border-color: var(--s-accent);
+  box-shadow: 0 0 0 2px var(--s-accent);
+}
+
+.s-tile-field:has(.filepond--item) .s-tile-default { opacity: .7; }
+
+.s-preview-row {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: var(--s-space-4);
+}
+
+/* After the setup: each add-on's own settings, in Simplify's card. */
+.s-done {
+  background: var(--s-surface);
+  border: 1px solid var(--s-line);
+  border-radius: 20px;
+  display: grid;
+  gap: var(--s-space-4);
+  padding: 22px 26px;
+}
+
+.s-done-head {
+  align-items: center;
+  display: flex;
+  gap: 14px;
+}
+
+.s-done-head h2 { color: var(--s-ink); font-size: var(--s-text-lg); font-weight: 650; margin: 0; }
+.s-done-head p { margin: 2px 0 0; }
+
+.s-done-check {
+  background: color-mix(in srgb, var(--s-ok) 18%, transparent);
+  border-radius: 50%;
+  color: var(--s-ok);
+  display: grid;
+  flex: none;
+  height: 44px;
+  place-items: center;
+  width: 44px;
+}
+
+.s-done-check svg { height: 22px; width: 22px; }
+
+@media (max-width: 900px) {
+  .s-done { padding: 16px 14px; }
+}
+
+/* The button back to Simplify on Pelican's own pages: not inside host mode's frame, which has its own way back. */
+.ps-frame .s-return {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .s-return .fi-btn-label {
+    display: none;
+  }
+}
+
+/* Simplify settings → Appearance → Server banners: one row per upload. */
+.s-banners {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-space-2);
+}
+
+.s-banner {
+  align-items: center;
+  display: flex;
+  gap: var(--s-space-3);
+}
+
+.s-banner img {
+  aspect-ratio: 16 / 9;
+  border-radius: var(--s-radius-sm);
+  flex: none;
+  object-fit: cover;
+  width: 96px;
+}
+
+/* The Look (SettingsFields::look): the fields, with one preview beside them that stays in view while they scroll.
+   On a narrow screen the preview comes first and only its top bar stays at the top. */
+.s-look-heading {
+  color: var(--s-muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  margin: var(--s-space-2) 0 calc(var(--s-space-1) * -1);
+  text-transform: uppercase;
+}
+
+.s-look-logo .fi-sc {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-space-3);
+}
+
+.s-look-logo .fi-sc > * { flex: none; }
+.s-look-logo .fi-sc > :last-child:not(:first-child) { flex: 1; min-width: 150px; }
+
+.s-look-preview-head { align-items: center; display: flex; justify-content: space-between; }
+.s-look-mode { border: 1px solid var(--s-line); border-radius: 8px; display: inline-flex; overflow: hidden; }
+.s-look-mode button { background: none; border: 0; color: var(--s-muted); cursor: pointer; display: grid; height: 26px; place-items: center; width: 30px; }
+.s-look-mode button svg { height: 15px; width: 15px; }
+.s-look-mode button[aria-pressed="true"] { background: var(--s-raised); color: var(--s-ink); }
+
+.s-look-screen {
+  border: 1px solid var(--s-line);
+  border-radius: 14px;
+  display: grid;
+  gap: var(--s-space-3);
+  overflow: hidden;
+  padding: 0 0 var(--s-space-3);
+}
+
+.s-look-dark .s-look-screen { --s-bg: #09090b; --s-surface: #18181b; --s-raised: #27272a; --s-ink: #fafafa; --s-muted: #a1a1aa; --s-line: #2e2e33; background: #09090b; color: #fafafa; }
+.s-look-light .s-look-screen { --s-bg: #f4f4f5; --s-surface: #fff; --s-raised: #f4f4f5; --s-ink: #18181b; --s-muted: #71717a; --s-line: #e4e4e7; background: #f4f4f5; color: #18181b; }
+.s-look-screen .s-preview-bar { border-radius: 0; border-width: 0 0 1px; }
+.s-look-screen .s-preview-server { margin: 0 var(--s-space-3); }
+
+@media (max-width: 1023px) {
+  /* The preview's own grid cell is as tall as the preview here, so the cell is what stays at the top. */
+  .s-look .fi-grid-col:has(.s-look-preview):not(:has(.fi-grid-col)) { background: var(--s-surface); order: -1; padding-bottom: var(--s-space-2); position: sticky; top: 0; z-index: 5; }
+  .s-look-preview { position: static; }
+  .s-look-screen .s-preview-server { display: none; }
+  .s-look-screen { padding: 0; }
+}
+
+/* The name's style: ready-made styles, each with the name itself, and "Fine-tune" with a row per setting. */
+.s-style { display: grid; gap: var(--s-space-2); }
+.s-presets { display: grid; gap: 8px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 560px) { .s-presets { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+.s-preset {
+  background: var(--s-surface);
+  border: 1px solid var(--s-line);
+  border-radius: 12px;
+  cursor: pointer;
+  display: grid;
+  overflow: hidden;
+  padding: 0;
+  text-align: start;
+}
+
+.s-preset-bar { background: #18181b; color: #fafafa; font-size: 16px; line-height: 1.25; overflow: hidden; padding: 14px 12px; text-overflow: ellipsis; white-space: nowrap; }
+.s-preset-label { color: var(--s-muted); font-size: 12px; font-weight: 600; padding: 6px 12px; }
+.s-preset[aria-checked="true"] { border-color: var(--s-accent); box-shadow: 0 0 0 2px var(--s-accent); }
+.s-preset:focus-visible { outline: 2px solid var(--s-accent); outline-offset: 2px; }
+
+.s-fine-toggle { align-items: center; display: inline-flex; gap: 6px; width: max-content; }
+.s-fine-toggle svg { height: 16px; width: 16px; }
+.s-fine { border-top: 1px solid var(--s-line); }
+.s-fine-row { border-bottom: 1px solid var(--s-line); }
+
+.s-fine-head {
+  align-items: center;
+  background: none;
+  border: 0;
+  color: var(--s-ink);
+  cursor: pointer;
+  display: flex;
+  font-size: 13.5px;
+  gap: 10px;
+  padding: 11px 2px;
+  text-align: start;
+  width: 100%;
+}
+
+.s-fine-key { flex: 1; font-weight: 600; }
+.s-fine-value { color: var(--s-muted); }
+.s-fine-chevron { color: var(--s-muted); height: 16px; transition: transform .15s; width: 16px; }
+.s-fine-head[aria-expanded="true"] .s-fine-chevron { transform: rotate(90deg); }
+.s-fine-pane { display: grid; gap: var(--s-space-2); padding: 2px 2px 14px; }
+.s-fine-pane .s-chip { flex-direction: row; gap: 6px; }
+
+.s-font-tiles { display: grid; gap: 6px; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+.s-font-tile {
+  background: var(--s-surface);
+  border: 1px solid var(--s-line);
+  border-radius: 10px;
+  color: var(--s-ink);
+  cursor: pointer;
+  display: grid;
+  gap: 2px;
+  justify-items: center;
+  min-width: 0;
+  padding: 8px 4px 6px;
+}
+
+.s-font-tile b { font-size: 20px; line-height: 1.15; }
+.s-font-tile span { color: var(--s-muted); font-size: 11px; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.s-font-tile[aria-pressed="true"] { background: color-mix(in srgb, var(--s-accent) 12%, var(--s-surface)); border-color: var(--s-accent); }
+
+.s-switch {
+  appearance: none;
+  background: var(--s-line);
+  border-radius: 99px;
+  cursor: pointer;
+  flex: none;
+  height: 20px;
+  position: relative;
+  transition: background .15s;
+  width: 34px;
+}
+
+.s-switch::after { background: #fff; border-radius: 50%; box-shadow: 0 1px 2px rgb(0 0 0 / .3); content: ""; height: 16px; left: 2px; position: absolute; top: 2px; transition: left .15s; width: 16px; }
+.s-switch:checked { background: var(--s-accent); }
+.s-switch:checked::after { left: 16px; }
+
+/* A colour swatch that opens the small colour window. */
+.s-pop { display: inline-block; position: relative; }
+.s-pop .s-accent-pop { top: calc(100% + 6px); }
+.s-pop .s-accent-field, .s-pop .s-accent-hue { display: block; }
+.s-pop-swatch { flex-direction: row; gap: 6px; }
+.s-pop-swatch i { border-radius: 50%; box-shadow: inset 0 0 0 1px rgb(0 0 0 / .25); height: 14px; width: 14px; }
+
+/* The logo's size: a slider between a small and a large logo. */
+.s-size { align-items: center; display: flex; gap: 10px; max-width: 280px; min-height: 64px; }
+.s-size input { accent-color: var(--s-accent); flex: 1; min-width: 0; }
+.s-size img { flex: none; object-fit: contain; width: auto; }
+.s-size-small { height: 14px; }
+.s-size-large { height: 26px; }
+.dark .s-preset-bar { background: #09090b; }
+.s-look-screen .s-preview-bar-nav { display: none; }
+.s-look-screen .s-preview-bar-me { margin-left: auto; }

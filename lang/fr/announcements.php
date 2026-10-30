@@ -18,6 +18,7 @@ return [
         'button_label' => 'Texte du bouton',
         'in_bell' => 'Ajouter aussi aux notifications de chacun',
         'in_bell_help' => 'Toutes les personnes qui la voient la trouvent aussi dans la cloche, du début à la fin.',
+        'bell_pinned' => 'Épingler dans les notifications de tous',
         'push' => 'Envoyer aussi en notification d\'app',
         'push_help' => 'Simplify l\'envoie aux téléphones et ordinateurs de toutes les personnes qui la voient et ont activé les notifications d\'app. Les appareils qui se connectent dans la journée suivant le début la reçoivent aussi.',
         'in_game' => 'Envoyer aussi en jeu',
@@ -25,6 +26,8 @@ return [
         'in_game_servers' => 'Serveurs',
         'in_game_servers_all' => 'Tous les serveurs',
         'in_game_servers_help' => 'Vide : tous les serveurs, 200 au maximum.',
+        'in_game_groups' => 'Groupes de serveurs',
+        'in_game_groups_help' => 'Vos groupes de Groupes de serveurs. Les serveurs ajoutés plus tard à un groupe la reçoivent aussi.',
         'in_game_repeat' => 'Répéter',
     ],
     'category' => [

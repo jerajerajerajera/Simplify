@@ -18,6 +18,7 @@ return [
         'button_label' => 'Knaptekst',
         'in_bell' => 'Læg også i alles notifikationer',
         'in_bell_help' => 'Alle, der ser den, finder den også i klokken, fra start til slut.',
+        'bell_pinned' => 'Fastgør i alles notifikationer',
         'push' => 'Send også som app-notifikation',
         'push_help' => 'Simplify sender den til telefoner og computere hos alle, der ser den og har slået app-notifikationer til. Enheder, der kommer online inden for en dag efter start, får den også.',
         'in_game' => 'Send også i spillet',
@@ -25,6 +26,8 @@ return [
         'in_game_servers' => 'Servere',
         'in_game_servers_all' => 'Alle servere',
         'in_game_servers_help' => 'Tom: alle servere, højst 200.',
+        'in_game_groups' => 'Servergrupper',
+        'in_game_groups_help' => 'Dine grupper fra Servergrupper. Servere, du senere tilføjer til en gruppe, får den også.',
         'in_game_repeat' => 'Gentag',
     ],
     'category' => [
