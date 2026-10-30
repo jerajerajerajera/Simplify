@@ -1,0 +1,266 @@
+{
+ "base": "http://127.0.0.1:8001",
+ "screens": [
+  {
+   "id": "layers-server-more",
+   "title": "Lagen · ⋯-menu boven de console",
+   "stand": "laag1366-dark",
+   "url": "/server/x7wtgik0/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/x7wtgik0/console",
+    "w": 1366,
+    "h": 650,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 650,
+     "pageScrollW": 1366,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1057,12 273x38",
+      "ps-info-menu 1077,151 230x428"
+     ],
+     "panes": [
+      "Server sections 350/356"
+     ],
+     "card": "238..590 of 650 fit=352px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,307 1008x190; terminal 271,239 1058x287; bar top 526",
+     "topbar": "brand 36..361, badges 366..398, actions 1057..1330",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,84 1294x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,238 1060x352"
+     ],
+     "box": "238..590 of 650",
+     "dropdown": [
+      "ps-info-menu 428px of 433 max"
+     ],
+     "arrow": [
+      "ps-info-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1366-dark/layers-server-more.png"
+  },
+  {
+   "id": "layers-tip-ps-statusbar-address",
+   "title": "Lagen · tooltip .ps-statusbar-address",
+   "stand": "laag1366-dark",
+   "url": "/server/x7wtgik0/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/x7wtgik0/console",
+    "w": 1366,
+    "h": 650,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 650,
+     "pageScrollW": 1366,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1057,12 273x38"
+     ],
+     "panes": [
+      "Server sections 350/356"
+     ],
+     "card": "238..590 of 650 fit=352px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,307 1008x190; terminal 271,239 1058x287; bar top 526",
+     "topbar": "brand 36..361, badges 366..398, actions 1057..1330",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,84 1294x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,238 1060x352"
+     ],
+     "box": "238..590 of 650"
+    }
+   },
+   "frames": [],
+   "shot": "laag1366-dark/layers-tip-ps-statusbar-address.png"
+  },
+  {
+   "id": "layers-bell",
+   "title": "Lagen · bell-menu boven de serverkaart",
+   "stand": "laag1366-dark",
+   "url": "/server/x7wtgik0/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/x7wtgik0/console",
+    "w": 1366,
+    "h": 650,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 650,
+     "pageScrollW": 1366,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1057,12 273x38 scrolls",
+      "ps-notify-menu 887,58 340x433 scrolls"
+     ],
+     "panes": [
+      "ps-notify-menu 431/2097",
+      "Server sections 350/356"
+     ],
+     "card": "238..590 of 650 fit=352px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,307 1008x190; terminal 271,239 1058x287; bar top 526",
+     "topbar": "brand 36..361, badges 366..398, actions 1057..1330",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,84 1294x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,238 1060x352"
+     ],
+     "box": "238..590 of 650",
+     "dropdown": [
+      "ps-notify-menu 433px of 433 max, scrolls"
+     ],
+     "arrow": [
+      "ps-notify-menu arrow 1208 button 1208"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1366-dark/layers-bell.png"
+  },
+  {
+   "id": "layers-admin",
+   "title": "Lagen · admin-menu boven de serverkaart",
+   "stand": "laag1366-dark",
+   "url": "/server/x7wtgik0/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/x7wtgik0/console",
+    "w": 1366,
+    "h": 650,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 650,
+     "pageScrollW": 1366,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\""
+     ],
+     "popups": [
+      "ps-navigation-items 1057,12 273x38 scrolls",
+      "ps-admin-menu 495,58 600x407"
+     ],
+     "panes": [
+      "Server sections 350/356"
+     ],
+     "card": "238..590 of 650 fit=352px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,307 1008x190; terminal 271,239 1058x287; bar top 526",
+     "topbar": "brand 36..361, badges 366..398, actions 1057..1330",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,84 1294x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,238 1060x352"
+     ],
+     "box": "238..590 of 650",
+     "dropdown": [
+      "ps-admin-menu 407px of 433 max"
+     ],
+     "arrow": [
+      "ps-admin-menu arrow 1076 button 1076"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "laag1366-dark/layers-admin.png"
+  },
+  {
+   "id": "layers-account",
+   "title": "Lagen · account-menu boven de serverkaart",
+   "stand": "laag1366-dark",
+   "url": "/server/x7wtgik0/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/x7wtgik0/console",
+    "w": 1366,
+    "h": 650,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 650,
+     "pageScrollW": 1366,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 827,12 503x38",
+      "ps-account-actions 1003,12 222x38"
+     ],
+     "panes": [
+      "Server sections 350/356"
+     ],
+     "card": "238..590 of 650 fit=352px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,307 1008x190; terminal 271,239 1058x287; bar top 526",
+     "topbar": "brand 36..361, badges 366..398, actions 827..1330",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,84 1294x80",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,238 1060x352"
+     ],
+     "box": "238..590 of 650"
+    }
+   },
+   "frames": [],
+   "shot": "laag1366-dark/layers-account.png"
+  }
+ ],
+ "problems": [
+  "laag1366-dark layers-server-more: WRONG {\"bad\":[{\"item\":\"Copy SFTP username\",\"ok\":false,\"on\":\"xterm-link-layer\",\"inWin\":true},{\"item\":\"Open SFTP connection\",\"ok\":false,\"on\":\"xterm-link-layer\",\"inWin\":true},{\"item\":\"Upgrade this server\",\"ok\":false,\"on\":\"xterm-link-layer\",\"inWin\":true}],\"items\":[\"Server color\",\"Server background\",\"Rename\",\"Copy SFTP username\",\"Open SFTP connection\",\"Upgrade this server\",\"Force stop\",\"Delete server\"]}",
+  "laag1366-dark layers-tip-ps-statusbar-address: WRONG null",
+  "laag1366-dark layers-bell: WRONG {\"bad\":[{\"item\":\"Open plugins\",\"ok\":false,\"on\":\"DIV\",\"inWin\":true},{\"item\":\"Mark read\",\"ok\":false,\"on\":\"DIV\",\"inWin\":true},{\"item\":\"\",\"ok\":false,\"on\":\"w-full focus:outline-none focus:ring-0 b\",\"inWin\":true}],\"n\":10}",
+  "laag1366-dark layers-admin: ok {\"bad\":[],\"n\":11}",
+  "laag1366-dark layers-account: ok {\"bad\":[],\"n\":5}"
+ ]
+}
