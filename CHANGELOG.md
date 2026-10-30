@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Back from 0.7.0: an add-on's customer link with an icon, such as Simplify Hosting's Client area, is also in the account menu, before Support.
+
 ## 1.5.1
 
 - Updating from 1.4.4 on a panel that came from PelicanSimplify 0.7.0 stopped with "Undefined array key logo_text" and left Simplify not installed. 0.7.0's "text beside the logo" now becomes Simplify's "Logo + text".

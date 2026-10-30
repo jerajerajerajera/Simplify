@@ -147,7 +147,7 @@ final class HostingAddon extends Addon
 
     public function customerLinks(User $user): array
     {
-        return [new Button('Client area', 'https://billing.example.com/clientarea')];
+        return [new Button('Client area', 'https://billing.example.com/clientarea', 'tabler-receipt'), new Button('Order a server', 'https://billing.example.com/order')];
     }
 
     public function hostModeDefault(): bool
@@ -386,10 +386,15 @@ step('add-ons give server links, customer links and host mode', function ($app) 
     if ($own['customer'] !== [] || $own['host_mode_auto'] !== true) {
         throw new RuntimeException('admins get customer links or no host mode default: '.json_encode([$own['customer'], $own['host_mode_auto']]));
     }
+    // A customer link with an icon is also in the account menu, for admins too (as in 0.7.0); one without stays in the greeting.
+    $account = $own['account_links'];
+    if (count($account) !== 1 || $account[0]['url'] !== 'https://billing.example.com/clientarea' || ! str_contains($account[0]['icon'], '<svg')) {
+        throw new RuntimeException('the account menu links are wrong: '.json_encode($account));
+    }
     $customer = User::query()->where('email', 'smoke-customer@example.com')->first()
         ?? User::withoutEvents(fn () => User::factory()->create(['username' => 'smoke-customer', 'email' => 'smoke-customer@example.com']));
     $links = collect(Livewire\Livewire::actingAs($customer)->test(Overview::class)->instance()->initial()['customer'])->pluck('url')->all();
-    if ($links !== ['https://billing.example.com/clientarea', 'mailto:help@example.com']) {
+    if ($links !== ['https://billing.example.com/clientarea', 'https://billing.example.com/order', 'mailto:help@example.com']) {
         throw new RuntimeException('the customer links are wrong: '.json_encode($links));
     }
 });
