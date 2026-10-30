@@ -133,7 +133,7 @@
                                     <div class="ps-admin-pane-head"><span x-text="adminSection().label"></span><small x-text="adminSection().pages.length"></small></div>
                                     <div class="ps-admin-tiles">
                                         <template x-for="item in adminSection().pages" :key="item.key">
-                                            <a class="ps-admin-tile" :href="adminLink(section, item)" x-on:click="openAdminPage($event, section, item)"><span class="ps-host-rail-icon"><svg aria-hidden="true"><use :href="'#ps-'+item.icon"/></svg></span><span x-text="item.label"></span></a>
+                                            <a class="ps-admin-tile" :href="adminLink(adminSection(), item)" x-on:click="openAdminPage($event, adminSection(), item)"><span class="ps-host-rail-icon"><svg aria-hidden="true"><use :href="'#ps-'+item.icon"/></svg></span><span x-text="item.label"></span></a>
                                         </template>
                                     </div>
                                 </div>

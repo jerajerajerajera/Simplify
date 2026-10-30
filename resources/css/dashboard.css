@@ -814,6 +814,8 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   .ps-host-head { padding: 0; }
   /* The menu button already names the open page. */
   .ps-host-head.is-page { display: none !important; }
+  /* One page from Admin tools has no menu button: its title bar stays, with the page's buttons and the close button. */
+  .ps-host.is-single .ps-host-head.is-page { display: flex !important; padding: 0 12px; }
     }
 /* Low screens (a phone on its side) scroll the page as a whole, so the host block sizes itself instead of sharing what is left of the screen (nothing). */
 @media (max-height: 500px) { .ps-host { flex: none; } }
