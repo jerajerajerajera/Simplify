@@ -253,7 +253,7 @@ async function round(theme) {
   }
 
   // The setup, step by step (the loop above skips it): on the Look step also the own-colour window, a pastel with the
-  // name in another font and style (the preview follows), and the logo tile; nothing is saved.
+  // name in a ready-made style (the preview follows), Fine-tune with the colour row open, and the logo tile; nothing is saved.
   const setup = admin.find((p) => /Pages\\Setup$/.test(p.class));
   if (setup) {
     await goto(setup.url, 1200);
@@ -262,8 +262,12 @@ async function round(theme) {
       await steps.nth(i).click().catch(() => {}); await sleep(900); await record('setup-step' + (i + 1), `Beheer · Setup, stap ${i + 1}`);
       if (!(await page.locator('.s-swatch-own').first().isVisible().catch(() => false))) continue;
       if (await click('.s-swatch-own', 500)) await record('setup-colour-own', 'Beheer · Setup, eigen kleur open'); await escape();
-      await click('.s-swatch:not(.s-swatch-own)', 300); await click('.s-chip:has-text("Rounded")', 300); await click('.s-chip:has-text("Glow")', 300);
-      await page.locator('.s-chips').first().scrollIntoViewIfNeeded().catch(() => {}); await sleep(500); await record('setup-name', 'Beheer · Setup, naam en logo (pastel, Rounded, Glow)');
+      await click('.s-swatch:not(.s-swatch-own)', 300); await page.locator('.s-preset').nth(4).click().catch(() => {}); await sleep(300);
+      await page.locator('.s-presets').first().scrollIntoViewIfNeeded().catch(() => {}); await sleep(500); await record('setup-name', 'Beheer · Setup, naam en stijl (pastel, Pixel)');
+      if (await click('.s-fine-toggle', 300)) {
+        await page.locator('.s-fine-head').nth(2).click().catch(() => {}); await sleep(300);
+        await page.locator('.s-fine').first().scrollIntoViewIfNeeded().catch(() => {}); await sleep(400); await record('setup-fine', 'Beheer · Setup, verfijnen (kleur open)');
+      }
       await page.locator('.s-tile-field').first().scrollIntoViewIfNeeded().catch(() => {}); await sleep(400); await record('setup-logo', 'Beheer · Setup, logotegel');
     }
   }
