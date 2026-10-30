@@ -1,0 +1,1181 @@
+{
+ "base": "http://127.0.0.1:8001",
+ "screens": [
+  {
+   "id": "layers-server-more",
+   "title": "Lagen · ⋯-menu boven de console",
+   "stand": "phone390-dark",
+   "url": "/server/nr1a0rgg/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/nr1a0rgg/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1494 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1494,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "span: \"Backups & tasks\""
+     ],
+     "popups": [
+      "ps-info-menu 131,356 230x428"
+     ],
+     "card": "547..1448 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1240",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x757"
+     ],
+     "dropdown": [
+      "ps-info-menu 428px of 563 max"
+     ],
+     "arrow": [
+      "ps-info-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/layers-server-more.png"
+  },
+  {
+   "id": "layers-tip-ps-info-address-data-tip",
+   "title": "Lagen · tooltip .ps-info-address[data-tip]",
+   "stand": "phone390-dark",
+   "url": "/server/nr1a0rgg/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/nr1a0rgg/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1494 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1494,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "span: \"Backups & tasks\""
+     ],
+     "popups": [
+      "ps-tooltip 118,300 145x33"
+     ],
+     "card": "547..1448 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1240",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/layers-tip-ps-info-address-data-tip.png"
+  },
+  {
+   "id": "scroll-overview",
+   "title": "Scrollbalk · overzicht",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2162 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2162,
+     "pageScrollW": 390,
+     "card": "-659..1387 of 844",
+     "topbar": "brand 14..214, badges 219..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,-647 390x98",
+      "fi-callout.fi-color.fi-color-info 0,-537 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/scroll-overview.png"
+  },
+  {
+   "id": "scroll-settings",
+   "title": "Scrollbalk · instellingen",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (888 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 888,
+     "pageScrollW": 390,
+     "panes": [
+      "form.general 143/1064"
+     ],
+     "card": "22..810 of 844",
+     "scope": "simplify",
+     "boxes": [
+      "s-settings-tabs.fi-sc-tabs.fi-contained 16,254 358x320"
+     ],
+     "actionsBelow": [
+      "\"Run setup again\" at y=186",
+      "\"\" at y=186"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/scroll-settings.png"
+  },
+  {
+   "id": "scroll-frame",
+   "title": "Scrollbalk · pagina in het frame (hostmodus)",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     },
+     {
+      "kind": "boxoff",
+      "text": "host mode's content box ends below the window (863 > 844)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "0..798 of 844",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "209..863 of 844"
+    }
+   },
+   "frames": [
+    {
+     "box": "14,209 362x654",
+     "url": "/admin/servers?simplify_embed=1",
+     "w": 362,
+     "h": 654,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (1285 > 654), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 1285,
+      "pageScrollW": 362,
+      "card": "-315..970 of 654",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "hidden"
+     }
+    }
+   ],
+   "shot": "phone390-dark/scroll-frame.png"
+  },
+  {
+   "id": "scroll-console",
+   "title": "Scrollbalk · console",
+   "stand": "phone390-dark",
+   "url": "/server/nr1a0rgg/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/nr1a0rgg/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1494 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1494,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "span: \"Backups & tasks\""
+     ],
+     "card": "547..1448 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1240",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/scroll-console.png"
+  },
+  {
+   "id": "other-plugins-open",
+   "title": "Other plugins · uitgeklapt",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     },
+     {
+      "kind": "boxoff",
+      "text": "host mode's content box ends below the window (863 > 844)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "0..798 of 844",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "209..863 of 844"
+    }
+   },
+   "frames": [
+    {
+     "box": "14,209 362x654",
+     "url": "/admin/health?simplify_embed=1",
+     "w": 362,
+     "h": 654,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (978 > 654), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 978,
+      "pageScrollW": 362,
+      "card": "0..978 of 654",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "hidden"
+     }
+    }
+   ],
+   "shot": "phone390-dark/other-plugins-open.png"
+  },
+  {
+   "id": "other-plugins-page",
+   "title": "Other plugins · pagina van een plugin",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     },
+     {
+      "kind": "boxoff",
+      "text": "host mode's content box ends below the window (863 > 844)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "0..798 of 844",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "209..863 of 844"
+    }
+   },
+   "frames": [
+    {
+     "box": "14,209 362x654",
+     "url": "/admin/site-directory?simplify_embed=1",
+     "w": 362,
+     "h": 654,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 654,
+      "pageScrollW": 362,
+      "card": "0..654 of 654",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "hidden"
+     }
+    }
+   ],
+   "shot": "phone390-dark/other-plugins-page.png"
+  },
+  {
+   "id": "create-phone-tab",
+   "title": "Create server via tabbalk (+)",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "create": {
+    "pop": {
+     "open": true,
+     "title": "Create server",
+     "src": "http://127.0.0.1:8001/admin/servers/create?simplify_embed=1"
+    },
+    "url": "/simplify",
+    "frame": "/admin/servers/create?simplify_embed=1",
+    "chrome": {
+     "bars": [],
+     "title": "Create Server"
+    }
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "tallnoscroll",
+      "text": "page is taller than the window (2162 > 844), nothing scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2162,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-modal 0,12 390x832"
+     ],
+     "card": "0..2046 of 844",
+     "topbar": "brand 14..214, badges 219..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [
+    {
+     "box": "1,85 388x759",
+     "url": "/admin/servers/create?simplify_embed=1",
+     "w": 388,
+     "h": 759,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (925 > 759), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 925,
+      "pageScrollW": 388,
+      "card": "0..925 of 759",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "unreachable"
+     }
+    }
+   ],
+   "shot": "phone390-dark/create-phone-tab.png"
+  },
+  {
+   "id": "layers-server-more",
+   "title": "Lagen · ⋯-menu boven de console",
+   "stand": "phone390-light",
+   "url": "/server/nr1a0rgg/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/nr1a0rgg/console",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1494 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1494,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "span: \"Backups & tasks\""
+     ],
+     "popups": [
+      "ps-info-menu 131,356 230x428"
+     ],
+     "card": "547..1448 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1240",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x757"
+     ],
+     "dropdown": [
+      "ps-info-menu 428px of 563 max"
+     ],
+     "arrow": [
+      "ps-info-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/layers-server-more.png"
+  },
+  {
+   "id": "layers-tip-ps-info-address-data-tip",
+   "title": "Lagen · tooltip .ps-info-address[data-tip]",
+   "stand": "phone390-light",
+   "url": "/server/nr1a0rgg/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/nr1a0rgg/console",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1494 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1494,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "span: \"Backups & tasks\""
+     ],
+     "popups": [
+      "ps-tooltip 118,300 145x33"
+     ],
+     "card": "547..1448 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1240",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/layers-tip-ps-info-address-data-tip.png"
+  },
+  {
+   "id": "scroll-overview",
+   "title": "Scrollbalk · overzicht",
+   "stand": "phone390-light",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2162 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2162,
+     "pageScrollW": 390,
+     "card": "-645..1401 of 844",
+     "topbar": "brand 14..214, badges 219..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,-633 390x98",
+      "fi-callout.fi-color.fi-color-info 0,-523 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/scroll-overview.png"
+  },
+  {
+   "id": "scroll-settings",
+   "title": "Scrollbalk · instellingen",
+   "stand": "phone390-light",
+   "url": "/admin/simplify",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (888 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 888,
+     "pageScrollW": 390,
+     "panes": [
+      "form.general 143/1064"
+     ],
+     "card": "22..810 of 844",
+     "scope": "simplify",
+     "boxes": [
+      "s-settings-tabs.fi-sc-tabs.fi-contained 16,254 358x320"
+     ],
+     "actionsBelow": [
+      "\"Run setup again\" at y=186",
+      "\"\" at y=186"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/scroll-settings.png"
+  },
+  {
+   "id": "scroll-frame",
+   "title": "Scrollbalk · pagina in het frame (hostmodus)",
+   "stand": "phone390-light",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     },
+     {
+      "kind": "boxoff",
+      "text": "host mode's content box ends below the window (863 > 844)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "0..798 of 844",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "209..863 of 844"
+    }
+   },
+   "frames": [
+    {
+     "box": "14,209 362x654",
+     "url": "/admin/servers?simplify_embed=1",
+     "w": 362,
+     "h": 654,
+     "dark": false,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (1285 > 654), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 1285,
+      "pageScrollW": 362,
+      "card": "-315..970 of 654",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "hidden"
+     }
+    }
+   ],
+   "shot": "phone390-light/scroll-frame.png"
+  },
+  {
+   "id": "scroll-console",
+   "title": "Scrollbalk · console",
+   "stand": "phone390-light",
+   "url": "/server/nr1a0rgg/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/nr1a0rgg/console",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1494 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1494,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "span: \"Backups & tasks\""
+     ],
+     "card": "547..1448 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1240",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/scroll-console.png"
+  },
+  {
+   "id": "other-plugins-open",
+   "title": "Other plugins · uitgeklapt",
+   "stand": "phone390-light",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     },
+     {
+      "kind": "boxoff",
+      "text": "host mode's content box ends below the window (863 > 844)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "0..798 of 844",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "209..863 of 844"
+    }
+   },
+   "frames": [
+    {
+     "box": "14,209 362x654",
+     "url": "/admin/health?simplify_embed=1",
+     "w": 362,
+     "h": 654,
+     "dark": false,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (978 > 654), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 978,
+      "pageScrollW": 362,
+      "card": "0..978 of 654",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "hidden"
+     }
+    }
+   ],
+   "shot": "phone390-light/other-plugins-open.png"
+  },
+  {
+   "id": "other-plugins-page",
+   "title": "Other plugins · pagina van een plugin",
+   "stand": "phone390-light",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     },
+     {
+      "kind": "boxoff",
+      "text": "host mode's content box ends below the window (863 > 844)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "0..798 of 844",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "209..863 of 844"
+    }
+   },
+   "frames": [
+    {
+     "box": "14,209 362x654",
+     "url": "/admin/site-directory?simplify_embed=1",
+     "w": 362,
+     "h": 654,
+     "dark": false,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 654,
+      "pageScrollW": 362,
+      "card": "0..654 of 654",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "hidden"
+     }
+    }
+   ],
+   "shot": "phone390-light/other-plugins-page.png"
+  },
+  {
+   "id": "create-phone-tab",
+   "title": "Create server via tabbalk (+)",
+   "stand": "phone390-light",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "create": {
+    "pop": {
+     "open": true,
+     "title": "Create server",
+     "src": "http://127.0.0.1:8001/admin/servers/create?simplify_embed=1"
+    },
+    "url": "/simplify",
+    "frame": "/admin/servers/create?simplify_embed=1",
+    "chrome": {
+     "bars": [],
+     "title": "Create Server"
+    }
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "tallnoscroll",
+      "text": "page is taller than the window (2162 > 844), nothing scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2162,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-modal 0,12 390x832"
+     ],
+     "card": "0..2046 of 844",
+     "topbar": "brand 14..214, badges 219..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [
+    {
+     "box": "1,85 388x759",
+     "url": "/admin/servers/create?simplify_embed=1",
+     "w": 388,
+     "h": 759,
+     "dark": false,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (925 > 759), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 925,
+      "pageScrollW": 388,
+      "card": "0..925 of 759",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "unreachable"
+     }
+    }
+   ],
+   "shot": "phone390-light/create-phone-tab.png"
+  },
+  {
+   "id": "overview",
+   "title": "Klant · overzicht",
+   "stand": "klant-phone390-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (879 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 879,
+     "pageScrollW": 390,
+     "card": "0..763 of 844",
+     "topbar": "brand 14..291, badges 296..328",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-phone390-dark/overview.png"
+  },
+  {
+   "id": "account",
+   "title": "Klant · accountmenu",
+   "stand": "klant-phone390-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (879 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 879,
+     "pageScrollW": 390,
+     "card": "0..763 of 844",
+     "topbar": "brand 14..291, badges 296..328",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-phone390-dark/account.png"
+  },
+  {
+   "id": "server-console",
+   "title": "Klant · console",
+   "stand": "klant-phone390-dark",
+   "url": "/server/nr1a0rgg/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/nr1a0rgg/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1494 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1494,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "span: \"Backups & tasks\""
+     ],
+     "card": "547..1448 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1240",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-phone390-dark/server-console.png"
+  },
+  {
+   "id": "server-more",
+   "title": "Klant · ⋯-menu",
+   "stand": "klant-phone390-dark",
+   "url": "/server/nr1a0rgg/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/nr1a0rgg/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1494 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1494,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "span: \"Backups & tasks\""
+     ],
+     "popups": [
+      "ps-info-menu 131,356 230x428"
+     ],
+     "card": "547..1448 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1240",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x757"
+     ],
+     "dropdown": [
+      "ps-info-menu 428px of 563 max"
+     ],
+     "arrow": [
+      "ps-info-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-phone390-dark/server-more.png"
+  }
+ ],
+ "problems": [
+  "phone390-dark layers-server-more: ok {\"bad\":[],\"items\":[\"Server color\",\"Server background\",\"Rename\",\"Copy SFTP username\",\"Open SFTP connection\",\"Upgrade this server\",\"Force stop\",\"Delete server\"]}",
+  "phone390-dark layers-tip-ps-info-address-data-tip: ok {\"text\":\"Copy server address\",\"ok\":true,\"on\":\"ps-tooltip is-visible\",\"opacity\":\"1\",\"rect\":\"118 300 145 33\"}",
+  "phone390-dark layers-tip-ps-info-meta-item-data-tip: WRONG {\"note\":\"nothing to hover\"}",
+  "phone390-dark scroll-overview: ok {\"want\":\"rgba(255, 255, 255, 0.16)\",\"got\":[\"rgba(255, 255, 255, 0.16)\",\"rgba(255, 255, 255, 0.16)\"],\"boxes\":[\"fi.dark 2162\",\"fi.dark 2162\"],\"css\":true}",
+  "phone390-dark scroll-settings: ok {\"want\":\"rgba(255, 255, 255, 0.16)\",\"got\":[\"rgba(255, 255, 255, 0.16)\",\"rgba(255, 255, 255, 0.16)\",\"rgba(255, 255, 255, 0.16)\",\"rgba(255, 255, 255, 0.16)\"],\"boxes\":[\"fi.dark 888\",\"fi.dark 888\",\"fi-sidebar-nav 655\",\"fi-sc-tabs-tab.fi-active 143\"],\"css\":true,\"place\":\"/admin/simplify\"}",
+  "phone390-dark scroll-frame: ok {\"want\":\"rgba(255, 255, 255, 0.16)\",\"got\":[\"rgba(255, 255, 255, 0.16)\",\"rgba(255, 255, 255, 0.16)\"],\"boxes\":[\"fi.dark 1285\",\"fi.dark 1285\"],\"css\":true,\"place\":\"/admin/servers?simplify_embed=1\"}",
+  "phone390-dark scroll-console: WRONG {\"want\":\"rgba(255, 255, 255, 0.16)\",\"got\":[],\"boxes\":[],\"css\":true}",
+  "phone390-dark other-plugins: ok {\"real\":true,\"before\":\"false\",\"after\":\"true\",\"leafs\":1,\"head\":\"Other plugins Site directory\",\"toggle\":\"Other plugins · Site directory\"}",
+  "phone390-dark other-plugins-toggle: ok {\"head\":\"Other plugins Site directory\",\"toggle\":\"Other plugins · Site directory\"}",
+  "phone390-dark create-phone-tab: ok {\"pop\":{\"open\":true,\"title\":\"Create server\",\"src\":\"http://127.0.0.1:8001/admin/servers/create?simplify_embed=1\"},\"frame\":\"/admin/servers/create?simplify_embed=1\",\"maker\":false,\"chrome\":{\"bars\":[],\"title\":\"Create Server\"},\"page\":\"/simplify\"}",
+  "phone390-light layers-server-more: ok {\"bad\":[],\"items\":[\"Server color\",\"Server background\",\"Rename\",\"Copy SFTP username\",\"Open SFTP connection\",\"Upgrade this server\",\"Force stop\",\"Delete server\"]}",
+  "phone390-light layers-tip-ps-info-address-data-tip: ok {\"text\":\"Copy server address\",\"ok\":true,\"on\":\"ps-tooltip is-visible\",\"opacity\":\"1\",\"rect\":\"118 300 145 33\"}",
+  "phone390-light layers-tip-ps-info-meta-item-data-tip: WRONG {\"note\":\"nothing to hover\"}",
+  "phone390-light scroll-overview: ok {\"want\":\"rgba(0, 0, 0, 0.16)\",\"got\":[\"rgba(0, 0, 0, 0.16)\",\"rgba(0, 0, 0, 0.16)\"],\"boxes\":[\"fi 2189\",\"fi 2189\"],\"css\":true}",
+  "phone390-light scroll-settings: ok {\"want\":\"rgba(0, 0, 0, 0.16)\",\"got\":[\"rgba(0, 0, 0, 0.16)\",\"rgba(0, 0, 0, 0.16)\",\"rgba(0, 0, 0, 0.16)\",\"rgba(0, 0, 0, 0.16)\"],\"boxes\":[\"fi 888\",\"fi 888\",\"fi-sidebar-nav 655\",\"fi-sc-tabs-tab.fi-active 143\"],\"css\":true,\"place\":\"/admin/simplify\"}",
+  "phone390-light scroll-frame: ok {\"want\":\"rgba(0, 0, 0, 0.16)\",\"got\":[\"rgba(0, 0, 0, 0.16)\",\"rgba(0, 0, 0, 0.16)\"],\"boxes\":[\"fi.ps-frame 1285\",\"fi.ps-frame 1285\"],\"css\":true,\"place\":\"/admin/servers?simplify_embed=1\"}",
+  "phone390-light scroll-console: WRONG {\"want\":\"rgba(255, 255, 255, 0.16)\",\"got\":[],\"boxes\":[],\"css\":true}",
+  "phone390-light other-plugins: ok {\"real\":true,\"before\":\"false\",\"after\":\"true\",\"leafs\":1,\"head\":\"Other plugins Site directory\",\"toggle\":\"Other plugins · Site directory\"}",
+  "phone390-light other-plugins-toggle: ok {\"head\":\"Other plugins Site directory\",\"toggle\":\"Other plugins · Site directory\"}",
+  "phone390-light create-phone-tab: ok {\"pop\":{\"open\":true,\"title\":\"Create server\",\"src\":\"http://127.0.0.1:8001/admin/servers/create?simplify_embed=1\"},\"frame\":\"/admin/servers/create?simplify_embed=1\",\"maker\":false,\"chrome\":{\"bars\":[],\"title\":\"Create Server\"},\"page\":\"/simplify\"}",
+  "klant-phone390-dark overview: nothing to click for .ps-account-button"
+ ]
+}
