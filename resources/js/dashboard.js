@@ -1300,9 +1300,13 @@
       healthPlace() {
         return this.boot.features?.host_health ? this.overviewPreferences.healthPlace : null;
       },
-      /** A server's own picture: the game's icon, the icon set in Pelican, then its egg's icon; the first one that loads. */
+      /** A server's picture: the game's own icon, the icon set in Pelican, its egg's icon, then Simplify's picture of the game; the first that loads. */
       serverIcon(s) {
-        return [s?.server_icon, s?.icon, s?.egg_icon].map((url) => this.safeImage(url)).find((url) => url && !this.brokenImages[url]) || '';
+        return [s?.server_icon, s?.icon, s?.egg_icon, s?.game_icon].map((url) => this.safeImage(url)).find((url) => url && !this.brokenImages[url]) || '';
+      },
+      /** The server page's software badge: the egg's icon, else Simplify's picture of the game. */
+      softwareIcon() {
+        return [this.server?.egg_icon, this.server?.game_icon].map((url) => this.safeImage(url)).find((url) => url && !this.brokenImages[url]) || '';
       },
       imageFailed(url) {
         if (url) this.brokenImages = { ...this.brokenImages, [url]: true };

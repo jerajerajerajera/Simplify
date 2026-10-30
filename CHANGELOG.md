@@ -2,6 +2,7 @@
 
 ## 1.4.5
 
+- A Minecraft server without an icon of its own (no server icon from the game, none set in Pelican, none on its egg) shows a grass block instead of the plain cube, on its card and on its page. An icon from the game, Pelican or the egg still comes first.
 - The browser tab on a server's pages reads "<server name> - Simplify", on the console and on every tab under it.
 - Server cards and the server page: when an icon does not load (for example an egg icon behind a wrong APP_URL, or a deleted file), the next one is used: the game's icon, then the icon set in Pelican, then the egg's icon, then the cube. Before, the spot stayed empty.
 - Admin tools: every page opens inside Simplify, in the same frame and title bar as host mode, with a close button back to the overview. Before, outside host mode the links went to Pelican's own admin pages with Pelican's menus. From a server page the link goes through the overview. Ctrl/cmd-click still opens a page in a new tab.

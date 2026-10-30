@@ -16,6 +16,7 @@ final class Assets
         'simplify.css' => ['css/simplify.css', 'text/css; charset=utf-8'],
         'logo.svg' => ['img/logo.svg', 'image/svg+xml'],
         'favicon.svg' => ['img/favicon.svg', 'image/svg+xml'],
+        'game-minecraft.svg' => ['img/game-minecraft.svg', 'image/svg+xml'],
         'app-icon-180.png' => ['img/app-icon-180.png', 'image/png'],
         'app-icon-192.png' => ['img/app-icon-192.png', 'image/png'],
         'app-icon-512.png' => ['img/app-icon-512.png', 'image/png'],

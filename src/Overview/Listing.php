@@ -14,6 +14,7 @@ use Simplify\Core\Addons\Button;
 use Simplify\Core\Server\Looks;
 use Simplify\Core\Subdomains\Services\Games;
 use Simplify\Core\Subdomains\Subdomains;
+use Simplify\Core\Support\Assets;
 use Throwable;
 
 /**
@@ -113,6 +114,8 @@ final class Listing
             // The icon uploaded for the server in Pelican, used when the game itself reports none.
             'icon' => $server->icon ?: null,
             'egg_icon' => is_string($egg) && $egg !== '' ? $egg : null,
+            // The game's own picture when nothing else has one: the server, Pelican and the egg come first.
+            'game_icon' => $minecraft ? Assets::url('game-minecraft.svg') : null,
             'players' => $info['players'] ?? null,
             'max_players' => $info['max_players'] ?? null,
             'motd' => $info['motd'] ?? '',

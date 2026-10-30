@@ -33,9 +33,10 @@
             <span class="ps-info-icons">
                 {{-- The same order as the server's card on the overview: the game's own icon, then the icon set in Pelican. --}}
                 <span class="ps-info-icon ps-custom-server-icon" x-show="server.server_icon || server.icon"><img :src="safeImage(server.server_icon || server.icon)" alt="" x-on:error="$el.style.visibility='hidden'"></span>
-                <span class="ps-info-icon ps-software-icon" x-show="server.egg_icon || !(server.server_icon || server.icon)" :class="{'is-badge': server.server_icon || server.icon}" :data-tip="server.software || @js($u('server_software'))">
-                    <img x-show="server.egg_icon && !brokenImages[safeImage(server.egg_icon)]" :src="safeImage(server.egg_icon)" alt="" x-on:error="imageFailed($el.getAttribute('src'))">
-                    <svg x-show="!server.egg_icon || brokenImages[safeImage(server.egg_icon)]" aria-hidden="true"><use :href="server.minecraft ? '#ps-cube' : '#ps-gamepad'"/></svg>
+                <span class="ps-info-icon ps-software-icon" x-show="softwareIcon() || !(server.server_icon || server.icon)" :class="{'is-badge': server.server_icon || server.icon}" :data-tip="server.software || @js($u('server_software'))">
+                    {{-- The egg's icon, else Simplify's picture of the game (a Minecraft block), else the cube or gamepad. --}}
+                    <img x-show="softwareIcon()" :src="softwareIcon()" alt="" x-on:error="imageFailed($el.getAttribute('src'))">
+                    <svg x-show="!softwareIcon()" aria-hidden="true"><use :href="server.minecraft ? '#ps-cube' : '#ps-gamepad'"/></svg>
                 </span>
             </span>
             <div class="ps-info-content">

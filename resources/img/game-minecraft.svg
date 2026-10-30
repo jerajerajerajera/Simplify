@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Simplify's own block for Minecraft servers without an icon: a grass block drawn in three faces. -->
+  <path d="M32 6 58 19 32 32 6 19z" fill="#6aa84f"/>
+  <path d="M32 11 50 20 32 29 14 20z" fill="#7dbb5c" opacity=".55"/>
+  <path d="M6 19 32 32v26L6 45z" fill="#8b5a3c"/>
+  <path d="M58 19 32 32v26l26-13z" fill="#6e4630"/>
+  <path d="M6 19 32 32v7L6 26z" fill="#5c9a43"/>
+  <path d="M58 19 32 32v7l26-13z" fill="#4e8638"/>
+  <path d="M6 26l4 2v5l-4-2zM14 30l4 2v4l-4-2zM22 34l4 2v6l-4-2z" fill="#5c9a43"/>
+  <path d="M42 34l4-2v5l-4 2zM50 30l4-2v4l-4 2z" fill="#4e8638"/>
+  <path d="M12 38l4 2v4l-4-2zM20 46l4 2v4l-4-2zM40 46l4-2v4l-4 2zM48 40l4-2v4l-4 2z" fill="#000" opacity=".14"/>
+  <path d="M32 6 58 19v26L32 58 6 45V19z" fill="none" stroke="#000" stroke-opacity=".25" stroke-width="1.5" stroke-linejoin="round"/>
+</svg>
