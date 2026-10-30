@@ -1582,6 +1582,8 @@ html.ps-frame[data-ps-frame="native"] .s-health { border: 0; border-radius: 0; b
 
 @media (max-width: 900px) {
   .s-done { padding: 16px 14px; }
+}
+
 /* The button back to Simplify on Pelican's own pages: not inside host mode's frame, which has its own way back. */
 .ps-frame .s-return {
   display: none;
