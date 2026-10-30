@@ -120,7 +120,7 @@ $part('announcements', function () use ($admin) {
     ]);
 });
 $part('subdomains', function () use ($uuid) {
-    Simplify\Core\Subdomains\Services\Settings::save(['domain' => 'play.example.com', 'target' => 'node.example.com', 'port_min' => 25565, 'port_max' => 25600, 'zone_id' => str_repeat('a1', 16)]);
+    Simplify\Core\Subdomains\Services\Settings::save(['domain' => 'play.example.com', 'target' => 'node.example.com', 'port_min' => 25565, 'port_max' => 25600, 'zone_id' => str_repeat('a1', 16), 'token' => 'demo-not-a-real-token']);
     foreach (['Survival SMP' => 'survival', 'Creative Builds' => 'creative', 'All the Mods 10' => 'atm10', 'Skyblock' => 'skyblock'] as $name => $sub) {
         DB::table('simplify_core_subdomains')->insert(['server_uuid' => $uuid($name), 'name' => $sub, 'status' => Subdomain::ACTIVE, 'message' => '', 'created_at' => now(), 'updated_at' => now()]);
     }

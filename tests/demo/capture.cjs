@@ -307,7 +307,7 @@ async function login(browser, email) {
     expand: { css: 'main [role=tab]', title: 'Instellingen · ', child: { wait: 1500 } } }, open(page, settings));
   for (const p of urls.admin.filter((x) => x.url !== settings && !/Setup$/.test(x.class))) {
     const extra = /People$/.test(p.class) ? { expand: { css: 'main .s-segment', title: 'People · ' }, children: [{ id: 'people-add', title: 'Persoon toevoegen', click: { css: 'main button', text: /Add person/i }, wait: 1200 }] }
-      : /AnnouncementResource$/.test(p.class) ? { children: [{ id: 'announcements-new', title: 'Nieuwe aankondiging', click: { css: 'main button, main a', text: /^\s*New announcement\s*$/i }, wait: 1200 }] } : {};
+      : /AnnouncementResource$/.test(p.class) ? { children: [{ id: 'announcements-new', title: 'Nieuwe aankondiging', click: { css: 'main button[aria-label="New announcement"]' }, wait: 1200 }] } : {};
     await walk(page, { id: 'admin-' + slug(p.title), title: p.title, group: 'Beheer', ...extra }, open(page, p.url));
   }
 
