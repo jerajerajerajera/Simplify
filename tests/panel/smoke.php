@@ -34,6 +34,7 @@ use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\Admin\Pages\Setup;
 use Simplify\Core\Filament\App\Pages\Notifications;
 use Simplify\Core\Filament\App\Pages\Overview;
+use Simplify\Core\Models\Setting;
 use Simplify\Core\Filament\Server\ServerPage;
 use Simplify\Core\Overview\Listing;
 use Simplify\Core\People\People;
@@ -184,7 +185,7 @@ step('a panel with settings opens them, a new panel opens the setup, and finishi
         throw new RuntimeException('a panel with settings was sent to the setup: '.$response->headers->get('Location'));
     }
     // A new panel: nothing saved yet.
-    Simplify\Core\Models\Setting::query()->delete();
+    Setting::query()->delete();
     PanelSettings::save([]);
     $response = visit($admin, Settings::getUrl(panel: 'admin'));
     if (! $response->isRedirect() || ! str_contains((string) $response->headers->get('Location'), 'simplify-setup')) {
