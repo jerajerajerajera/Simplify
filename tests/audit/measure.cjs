@@ -43,7 +43,7 @@ const measure = (opts = {}) => {
   }
   if (off.length) push('offscreen', 'control off the screen: ' + off.join(' | '));
   // 4. Popups, menus and dialogs must sit inside the window.
-  for (const el of document.querySelectorAll('[role=dialog], [role=menu], .fi-dropdown-panel, .fi-modal-window, .ps-dropdown, .ps-modal, .ps-sheet, .ps-account-menu, .ps-nav-items, .fi-global-search-results-ctn, .ps-phone-more-menu')) {
+  for (const el of document.querySelectorAll('[role=dialog], [role=menu], .fi-dropdown-panel, .fi-modal-window, .ps-dropdown, .ps-modal, .ps-sheet, .ps-account-menu, .ps-nav-items, .fi-global-search-results-ctn, .ps-phone-more-menu, .ps-tooltip.is-visible')) {
     if (!visible(el) || el.closest('.fi-sidebar')) continue;
     const b = el.getBoundingClientRect();
     const tall = el.scrollHeight > el.clientHeight + 2;
@@ -95,6 +95,17 @@ const measure = (opts = {}) => {
   }
   // 8. Elements wider than the window (any), as a hint where sideways overflow comes from.
   if (root.scrollWidth > W + 2) { const wide = all.filter((el) => el.getBoundingClientRect().right > W + 2 && !scrollAncestor(el, 'x')).slice(0, 5).map((el) => name(el)); if (wide.length) r.info.wide = wide; }
+  // 8b. The top bar: the panel name, the seasonal badges and the buttons on the right may not overlap.
+  const brandEl = document.querySelector('.ps-top .ps-brand'), badgesEl = document.querySelector('.ps-top .ps-season-badges'), actionsEl = document.querySelector('.ps-top .ps-top-actions');
+  if (brandEl && visible(brandEl)) {
+    const bb = brandEl.getBoundingClientRect(), sb = badgesEl && visible(badgesEl) ? badgesEl.getBoundingClientRect() : null, ab = actionsEl && visible(actionsEl) ? actionsEl.getBoundingClientRect() : null;
+    const over = (a, b) => a && b && a.right > b.left + 3 && b.right > a.left + 3 && a.bottom > b.top + 3 && b.bottom > a.top + 3;
+    r.info.topbar = `brand ${Math.round(bb.left)}..${Math.round(bb.right)}` + (sb ? `, badges ${Math.round(sb.left)}..${Math.round(sb.right)}` : '') + (ab ? `, actions ${Math.round(ab.left)}..${Math.round(ab.right)}` : '');
+    if (over(bb, sb)) push('overlap', `the seasonal badges overlap the panel name (${r.info.topbar})`);
+    if (over(sb, ab)) push('overlap', `the top bar buttons overlap the seasonal badges (${r.info.topbar})`);
+    if (over(bb, ab)) push('overlap', `the top bar buttons overlap the panel name (${r.info.topbar})`);
+    if (bb.right > W + 2 || (sb && sb.right > W + 2)) push('overlap', `panel name or badges run out of the window (${r.info.topbar}, window ${W})`);
+  }
   // 9. Simplify's style rules (project memory "UI-regels"): one content box, no box in a box, action buttons in the
   //    title bar of host mode and never under the form, Simplify's look instead of bare Filament, and the dropdowns.
   const isFrame = root.classList.contains('ps-frame'), native = isFrame && root.dataset.psFrame !== 'settings';

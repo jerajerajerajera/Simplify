@@ -178,6 +178,77 @@ async function round(theme) {
     for (let j = 0; j < Math.min(ln, 40); j++) { const l = leaves.nth(j); const t = (await l.innerText().catch(() => 'pagina ' + j)).trim(); if (screens.some((s) => s.stand === stand && s.id === 'host-' + slug(label) + '-' + slug(t))) continue; await l.click().catch(() => {}); await sleep(2500); await record('host-' + slug(label) + '-' + slug(t), `Hostmodus · ${label} · ${t}`); } }
   if (await click('.ps-host-tabs button:nth-child(2)', 1200)) { await record('host-servers', 'Hostmodus · serverlijst'); if (await click('.ps-host-server strong, .ps-host-server', 3000)) { await record('host-server', 'Hostmodus · server open (console in frame)'); await click('.ps-host-server-head .ps-info-more-button, .ps-info-more-button', 500) && await record('host-server-more', 'Hostmodus · server ⋯-menu'); await escape(); } }
   await alpine('d.setHostMode(false)'); await sleep(800);
+  if (['d1440', 'tablet768', 'phone390'].includes(stand.split('-')[0])) await seasons(theme);
+}
+// Seasonal touches (1.4.4): the holiday badge next to the panel name and its tooltip, on other dates through the
+// browser's clock, with "× Pelican" off and with a logo, and the panel setting that turns everything off.
+async function seasons(theme) {
+  const overview = urls.app.find((p) => /App\\Pages\\Overview$/.test(p.class))?.url || '/';
+  const serverUrl = urls.servers['Survival SMP'], onPhone = phone(), size = VIEWPORTS[stand.split('-')[0]];
+  const context = page.context(), main = page;
+  const LOGO = "data:image/svg+xml;utf8," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="180" height="40" viewBox="0 0 180 40"><rect width="180" height="40" rx="8" fill="#2b6cb0"/><text x="90" y="26" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="700" fill="#fff">Northwind</text></svg>');
+  const DATES = [['halloween', '2026-10-30T12:00:00', 'Halloween (30 okt)'], ['december', '2026-12-07T12:00:00', 'Chanoeka + Kerst (7 dec)'], ['valentine', '2026-02-14T12:00:00', 'Valentijn (14 feb)'], ['easter', '2026-04-05T12:00:00', 'Pasen (5 apr)'], ['newyear', '2026-12-31T23:20:00', 'Oudjaar 23:20']];
+  const fresh = async (time) => { const p = await context.newPage(); p.setDefaultTimeout(8000); await p.setViewportSize(size); await p.emulateMedia({ colorScheme: theme }); if (time) await p.clock.install({ time: new Date(time) }); return p; };
+  const tipRound = async (tag, label, where) => {
+    const badge = page.locator('.ps-season-badge >> visible=true').first();
+    if (!(await badge.count())) { problems.push(`${stand} season-${tag}: no seasonal badge on ${where}`); return; }
+    await badge.hover().catch(() => {}); await sleep(600); await record(`season-${tag}-${where}-tip`, `Seizoen · ${label} · ${where}, tooltip (hover)`);
+    if (onPhone) { await badge.click().catch(() => {}); await sleep(600); await record(`season-${tag}-${where}-tap`, `Seizoen · ${label} · ${where}, tooltip (tik)`); await escape(); }
+    await page.mouse.move(5, 5);
+  };
+  const look = async (tag, label, prep) => {
+    await goto(overview); await page.waitForSelector('.ps-server-card, .ps-compact-row, .ps-list-row', { timeout: 15000 }).catch(() => {}); if (prep) await prep(); await sleep(900);
+    await record(`season-${tag}`, `Seizoen · ${label} · overzicht`);
+    await tipRound(tag, label, 'overzicht');
+    if (onPhone) { await record(`season-${tag}-tabbar`, `Seizoen · ${label} · telefoon tabbalk`); }
+    await goto(serverUrl, 2500); if (prep) await prep(); await sleep(600);
+    await record(`season-${tag}-server`, `Seizoen · ${label} · serverpagina`);
+    await tipRound(tag, label, 'server');
+  };
+  for (const [tag, time, label] of DATES) {
+    page = await fresh(time);
+    try { await look(tag, label); } catch (e) { problems.push(`${stand} season-${tag}: ${e.message.slice(0, 160)}`); }
+    await page.close().catch(() => {});
+  }
+  // Halloween with "× Pelican" off, and with a logo instead of the name (the boot data, as the settings would set it).
+  page = await fresh('2026-10-30T12:00:00');
+  try {
+    await look('nosuffix', 'Halloween zonder "× Pelican"', () => alpine('d.boot.appearance.pelican_suffix=false'));
+    await look('logo', 'Halloween met logo', () => alpine(`d.boot.appearance.pelican_suffix=true; d.boot.appearance.brand={mode:'logo', logo_url:${JSON.stringify(LOGO)}, logo_height:32}`));
+  } catch (e) { problems.push(`${stand} season-logo: ${e.message.slice(0, 160)}`); }
+  await page.close().catch(() => {});
+  // The panel setting "Seasonal touches" off (Settings → Appearance, saved for real): nothing seasonal may remain.
+  page = await fresh('2026-10-30T12:00:00');
+  const settings = urls.admin.find((p) => /Simplify\\.*Settings$/.test(p.class))?.url;
+  const setSeasonal = async (on) => {
+    if (!settings) { problems.push(`${stand}: no Simplify settings page in urls`); return false; }
+    await goto(settings, 1500);
+    await click('.s-settings-tabs [role=tab]:has-text("Appearance"), .s-settings-tabs button:has-text("Appearance")', 900);
+    const sw = page.locator('.fi-fo-field:has-text("Seasonal") button[role=switch], label:has-text("Seasonal") ~ * button[role=switch], .fi-fo-toggle:has-text("Seasonal") button, button[role=switch][id*="seasonal"]').first();
+    if (!(await sw.count())) { problems.push(`${stand}: no "Seasonal touches" switch found`); return false; }
+    const state = (await sw.getAttribute('aria-checked')) === 'true';
+    if (state !== on) await sw.click().catch(() => {});
+    await sleep(300);
+    const save = page.locator('.fi-header button[aria-label*="Save" i], .fi-header button:has-text("Save"), .fi-page-header-main-ctn button[aria-label*="Save" i], .s-settings .s-bar button[type=submit]').first();
+    if (!(await save.count())) { problems.push(`${stand}: no Save button for the settings`); return false; }
+    await save.click().catch(() => {}); await sleep(2500);
+    return true;
+  };
+  try {
+    if (await setSeasonal(false)) {
+      await record('season-off-settings', 'Seizoen · schakelaar uit, instellingen opgeslagen');
+      await look('off', 'Seizoensverrassingen uit');
+      const left = await page.evaluate(() => [...document.querySelectorAll('.ps-season-badges, .ps-season-badge, .ps-season-countdown, .is-pumpkin, .ps-hw-lantern, .ps-hw-tab, .ps-season-snow, [class*="ps-season"]')].filter((el) => { const b = el.getBoundingClientRect(); const cs = getComputedStyle(el); return b.width > 0 && b.height > 0 && cs.display !== 'none' && cs.visibility !== 'hidden'; }).map((el) => el.className.toString().slice(0, 60)));
+      if (left.length) problems.push(`${stand} SEASON OFF: seasonal element(s) still shown on the server page: ${left.slice(0, 5).join(' | ')}`);
+      await goto(overview); await sleep(1200);
+      const left2 = await page.evaluate(() => [...document.querySelectorAll('.ps-season-badges, .ps-season-badge, .ps-season-countdown, .is-pumpkin, .ps-hw-lantern, .ps-hw-tab, [class*="ps-season"]')].filter((el) => { const b = el.getBoundingClientRect(); const cs = getComputedStyle(el); return b.width > 0 && b.height > 0 && cs.display !== 'none' && cs.visibility !== 'hidden'; }).map((el) => el.className.toString().slice(0, 60)));
+      if (left2.length) problems.push(`${stand} SEASON OFF: seasonal element(s) still shown on the overview: ${left2.slice(0, 5).join(' | ')}`);
+      else problems.push(`${stand} SEASON OFF: ok, nothing seasonal left on overview and server page`);
+      await setSeasonal(true);
+    }
+  } catch (e) { problems.push(`${stand} season-off: ${e.message.slice(0, 160)}`); try { await setSeasonal(true); } catch {} }
+  await page.close().catch(() => {});
+  page = main;
 }
 const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) || 'x';
 
