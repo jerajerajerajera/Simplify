@@ -227,5 +227,20 @@ return [
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count solmu ei raportoinut|:count solmua ei raportoinut',
         ],
+        'page' => [
+            'attention' => ':count vaatii huomiota|:count vaatii huomiota',
+            'ok' => ':count kunnossa',
+            'all_good' => 'Kaikki kunnossa',
+            'open_nodes' => 'Avaa nodet',
+            'release_notes' => 'Julkaisutiedot',
+            'not_run' => 'Tarkistuksia ei ole vielä ajettu. Käynnistä ne päivityspainikkeella.',
+            'status' => [
+                'ok' => 'OK',
+                'warning' => 'Varoitus',
+                'failed' => 'Epäonnistui',
+                'crashed' => 'Kaatui',
+                'skipped' => 'Ohitettu',
+            ],
+        ],
     ],
 ];

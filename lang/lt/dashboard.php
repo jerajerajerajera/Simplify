@@ -227,5 +227,20 @@ return [
             'node_problem' => ':node: :problem',
             'nodes_silent' => 'Duomenų neatsiuntė :count node|Duomenų neatsiuntė :count nodes|Duomenų neatsiuntė :count nodes',
         ],
+        'page' => [
+            'attention' => ':count reikalauja dėmesio|:count reikalauja dėmesio|:count reikalauja dėmesio',
+            'ok' => ':count tvarkoje',
+            'all_good' => 'Viskas tvarkoje',
+            'open_nodes' => 'Atidaryti mazgus',
+            'release_notes' => 'Leidimo pastabos',
+            'not_run' => 'Patikros dar nevykdytos. Paleiskite jas atnaujinimo mygtuku.',
+            'status' => [
+                'ok' => 'Gerai',
+                'warning' => 'Įspėjimas',
+                'failed' => 'Nepavyko',
+                'crashed' => 'Sutriko',
+                'skipped' => 'Praleista',
+            ],
+        ],
     ],
 ];

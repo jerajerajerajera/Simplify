@@ -70,6 +70,8 @@ final class SimplifyServiceProvider extends ServiceProvider
         if (Push::enabled()) {
             Event::listen('simplify.push', fn (array $message) => Push::fromEvent($message));
         }
+        // Pelican's Health page in Simplify's look: this folder only holds views that replace one of Pelican's.
+        $this->app['view']->getFinder()->prependLocation(dirname(__DIR__, 2).'/resources/overrides');
         Gate::policy(Announcement::class, AnnouncementPolicy::class);
         Livewire::component('simplify-core-announcement-bars', AnnouncementBars::class);
 

@@ -2,6 +2,7 @@
 
 // Loads Simplify inside a real Pelican panel and opens its pages. Run from the panel folder after
 // `php artisan p:plugin:install simplify`: php plugins/simplify/tests/panel/smoke.php
+use App\Filament\Admin\Pages\Health;
 use App\Models\Role;
 use App\Models\Server;
 use App\Models\User;
@@ -302,6 +303,14 @@ step('host mode: the overview carries the admin tree, the health page and the he
     $pages = collect($initial['admin_pages'][0]['items'] ?? [])->pluck('key');
     if (! $pages->contains('health') || ! is_array($initial['health_checks']) || ! is_bool($initial['host_mode_auto'])) {
         throw new RuntimeException('host mode is missing parts: '.json_encode([$pages, $initial['health_checks'], $initial['host_mode_auto']]));
+    }
+});
+step('Pelican\'s Health page shows in Simplify\'s look', function () use ($admin) {
+    $url = Health::getUrl(panel: 'admin');
+    $response = visit($admin, $url);
+    expectOk($response, $url);
+    if (! str_contains($response->getContent(), 's-health')) {
+        throw new RuntimeException('the Health page still uses Pelican\'s own view');
     }
 });
 step('a power action on a server the user cannot reach is refused', function () use ($admin) {

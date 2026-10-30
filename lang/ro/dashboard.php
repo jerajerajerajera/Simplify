@@ -227,5 +227,20 @@ return [
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count nod nu a raportat|:count noduri nu au raportat|:count de noduri nu au raportat',
         ],
+        'page' => [
+            'attention' => ':count necesită atenție|:count necesită atenție',
+            'ok' => ':count în regulă',
+            'all_good' => 'Totul este în regulă',
+            'open_nodes' => 'Deschide nodurile',
+            'release_notes' => 'Note de lansare',
+            'not_run' => 'Verificările nu au rulat încă. Folosește butonul de reîmprospătare pentru a le porni.',
+            'status' => [
+                'ok' => 'OK',
+                'warning' => 'Avertisment',
+                'failed' => 'Eșuat',
+                'crashed' => 'Blocat',
+                'skipped' => 'Omis',
+            ],
+        ],
     ],
 ];

@@ -227,5 +227,20 @@ return [
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count node meldde zich niet|:count nodes meldden zich niet',
         ],
+        'page' => [
+            'attention' => ':count vraagt aandacht|:count vragen aandacht',
+            'ok' => ':count in orde',
+            'all_good' => 'Alles in orde',
+            'open_nodes' => 'Nodes openen',
+            'release_notes' => 'Release notes',
+            'not_run' => 'De controles zijn nog niet uitgevoerd. Gebruik de verversknop om ze te starten.',
+            'status' => [
+                'ok' => 'In orde',
+                'warning' => 'Waarschuwing',
+                'failed' => 'Mislukt',
+                'crashed' => 'Gecrasht',
+                'skipped' => 'Overgeslagen',
+            ],
+        ],
     ],
 ];

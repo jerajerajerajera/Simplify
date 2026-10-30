@@ -227,5 +227,20 @@ return [
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count node tidak melapor',
         ],
+        'page' => [
+            'attention' => ':count perlu perhatian',
+            'ok' => ':count oke',
+            'all_good' => 'Semua baik',
+            'open_nodes' => 'Buka node',
+            'release_notes' => 'Catatan rilis',
+            'not_run' => 'Pemeriksaan belum dijalankan. Gunakan tombol muat ulang untuk menjalankannya.',
+            'status' => [
+                'ok' => 'Oke',
+                'warning' => 'Peringatan',
+                'failed' => 'Gagal',
+                'crashed' => 'Crash',
+                'skipped' => 'Dilewati',
+            ],
+        ],
     ],
 ];

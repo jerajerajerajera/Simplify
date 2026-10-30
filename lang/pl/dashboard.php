@@ -227,5 +227,20 @@ return [
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count node nie raportuje|:count nody nie raportują|:count nodów nie raportuje',
         ],
+        'page' => [
+            'attention' => ':count wymaga uwagi|:count wymagają uwagi|:count wymaga uwagi',
+            'ok' => ':count w porządku',
+            'all_good' => 'Wszystko w porządku',
+            'open_nodes' => 'Otwórz węzły',
+            'release_notes' => 'Informacje o wydaniu',
+            'not_run' => 'Testy jeszcze się nie odbyły. Użyj przycisku odświeżania, aby je uruchomić.',
+            'status' => [
+                'ok' => 'OK',
+                'warning' => 'Ostrzeżenie',
+                'failed' => 'Niepowodzenie',
+                'crashed' => 'Awaria',
+                'skipped' => 'Pominięto',
+            ],
+        ],
     ],
 ];

@@ -989,3 +989,32 @@ html ::-webkit-scrollbar-button, html ::-webkit-scrollbar-corner { display: none
 /* The console's bar is xterm's own element. */
 html .xterm .xterm-scrollable-element > .scrollbar > .slider { border-radius: 999px; background: var(--s-scroll) !important; }
 html .xterm .xterm-scrollable-element > .scrollbar.vertical > .slider { left: 2px !important; width: 6px !important; }
+
+/* Pelican's Health page (resources/overrides): what needs attention first, with a button where to fix it, then the
+   checks that are fine as short rows. In host mode it sits straight on the page like Pelican's other pages. */
+.s-health { display: grid; gap: var(--s-space-3); }
+html.ps-frame[data-ps-frame="native"] .s-health { border: 0; border-radius: 0; background: transparent; box-shadow: none; padding: var(--s-space-4) 22px; }
+.s-health-sum { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; color: var(--s-ink); font-size: 13px; font-weight: 600; }
+.s-health-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--s-ok); }
+.s-health-dot.is-bad { background: var(--s-danger); }
+.s-health-sep { width: 1px; height: 14px; margin-inline: 4px; background: var(--s-line); }
+.s-health-when { margin-inline-start: auto; color: var(--s-muted); font-size: var(--s-text-sm); font-weight: 500; }
+.s-health-when.is-stale { color: var(--s-danger); }
+.s-health-label { margin-top: var(--s-space-1); color: var(--s-muted); font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.s-health-list { display: grid; gap: var(--s-space-2); }
+.s-health-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: var(--s-space-2); }
+.s-health-row { --s-tone: var(--s-ok); display: flex; align-items: center; gap: var(--s-space-3); min-width: 0; padding: 10px 12px; border: 1px solid var(--s-line); border-radius: var(--s-radius); background: var(--s-surface); }
+.s-health-row.is-bad { --s-tone: var(--s-danger); border-color: color-mix(in oklab, var(--s-danger) 40%, var(--s-line)); background: color-mix(in oklab, var(--s-danger) 7%, var(--s-surface)); }
+.s-health-row.is-warn { --s-tone: var(--s-warn); border-color: color-mix(in oklab, var(--s-warn) 40%, var(--s-line)); background: color-mix(in oklab, var(--s-warn) 7%, var(--s-surface)); }
+.s-health-row.is-skip { --s-tone: var(--s-muted); }
+.s-health-icon { display: grid; flex: none; place-items: center; width: 32px; height: 32px; border-radius: 9px; background: color-mix(in oklab, var(--s-tone) 16%, transparent); color: var(--s-tone); }
+.s-health-icon svg { width: 17px; height: 17px; }
+.s-health-text { display: grid; flex: 1; gap: 2px; min-width: 0; }
+.s-health-text b { overflow: hidden; color: var(--s-ink); font-size: 13.5px; font-weight: 650; text-overflow: ellipsis; white-space: nowrap; }
+.s-health-text small { color: var(--s-muted); font-size: var(--s-text-sm); overflow-wrap: anywhere; }
+.s-health-fix { flex: none; height: 32px; font-size: 13px; }
+.s-health-pill { flex: none; }
+.s-health-row.is-bad .s-health-pill { color: var(--s-danger); }
+.s-health-row.is-warn .s-health-pill { color: var(--s-warn); }
+.s-health-empty { margin: 0; color: var(--s-muted); }
+@media (max-width: 640px) { .s-health-row:is(.is-bad, .is-warn) { flex-wrap: wrap; } .s-health-row:is(.is-bad, .is-warn) .s-health-text { flex-basis: calc(100% - 44px); } .s-health-fix { margin-inline-start: 44px; } }

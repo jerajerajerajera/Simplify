@@ -227,5 +227,20 @@ return [
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count node не надіслав даних|:count nodes не надіслали даних|:count nodes не надіслали даних',
         ],
+        'page' => [
+            'attention' => ':count потребує уваги|:count потребують уваги|:count потребують уваги',
+            'ok' => ':count в порядку',
+            'all_good' => 'Усе в порядку',
+            'open_nodes' => 'Відкрити вузли',
+            'release_notes' => 'Примітки до випуску',
+            'not_run' => 'Перевірки ще не запускались. Запустіть їх кнопкою оновлення.',
+            'status' => [
+                'ok' => 'Гаразд',
+                'warning' => 'Попередження',
+                'failed' => 'Помилка',
+                'crashed' => 'Збій',
+                'skipped' => 'Пропущено',
+            ],
+        ],
     ],
 ];

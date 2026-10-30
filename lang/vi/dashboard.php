@@ -227,5 +227,20 @@ return [
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count node không báo cáo',
         ],
+        'page' => [
+            'attention' => ':count cần chú ý',
+            'ok' => ':count ổn',
+            'all_good' => 'Mọi thứ đều ổn',
+            'open_nodes' => 'Mở các node',
+            'release_notes' => 'Ghi chú phát hành',
+            'not_run' => 'Các kiểm tra chưa chạy. Dùng nút làm mới để chạy chúng.',
+            'status' => [
+                'ok' => 'Ổn',
+                'warning' => 'Cảnh báo',
+                'failed' => 'Thất bại',
+                'crashed' => 'Bị lỗi',
+                'skipped' => 'Bỏ qua',
+            ],
+        ],
     ],
 ];

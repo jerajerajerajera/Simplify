@@ -227,5 +227,20 @@ return [
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count node non ha segnalato|:count node non hanno segnalato',
         ],
+        'page' => [
+            'attention' => ':count richiede attenzione|:count richiedono attenzione',
+            'ok' => ':count ok',
+            'all_good' => 'Tutto a posto',
+            'open_nodes' => 'Apri nodi',
+            'release_notes' => 'Note di rilascio',
+            'not_run' => 'I controlli non sono ancora stati eseguiti. Usa il pulsante di aggiornamento per avviarli.',
+            'status' => [
+                'ok' => 'OK',
+                'warning' => 'Avviso',
+                'failed' => 'Fallito',
+                'crashed' => 'Bloccato',
+                'skipped' => 'Saltato',
+            ],
+        ],
     ],
 ];

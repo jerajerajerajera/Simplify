@@ -227,5 +227,20 @@ return [
             'node_problem' => ':node: :problem',
             'nodes_silent' => '노드 :count개가 보고하지 않았습니다',
         ],
+        'page' => [
+            'attention' => ':count개 확인 필요',
+            'ok' => ':count개 정상',
+            'all_good' => '모두 정상',
+            'open_nodes' => '노드 열기',
+            'release_notes' => '릴리스 노트',
+            'not_run' => '검사가 아직 실행되지 않았습니다. 새로고침 버튼으로 실행하세요.',
+            'status' => [
+                'ok' => '정상',
+                'warning' => '경고',
+                'failed' => '실패',
+                'crashed' => '충돌',
+                'skipped' => '건너뜀',
+            ],
+        ],
     ],
 ];

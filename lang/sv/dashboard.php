@@ -227,5 +227,20 @@ return [
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count nod rapporterade inte|:count noder rapporterade inte',
         ],
+        'page' => [
+            'attention' => ':count behöver åtgärdas|:count behöver åtgärdas',
+            'ok' => ':count ok',
+            'all_good' => 'Allt är bra',
+            'open_nodes' => 'Öppna noder',
+            'release_notes' => 'Versionsinformation',
+            'not_run' => 'Kontrollerna har inte körts än. Använd uppdateringsknappen för att köra dem.',
+            'status' => [
+                'ok' => 'OK',
+                'warning' => 'Varning',
+                'failed' => 'Misslyckades',
+                'crashed' => 'Kraschade',
+                'skipped' => 'Hoppades över',
+            ],
+        ],
     ],
 ];

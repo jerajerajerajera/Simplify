@@ -227,5 +227,20 @@ return [
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count Node hat sich nicht gemeldet|:count Nodes haben sich nicht gemeldet',
         ],
+        'page' => [
+            'attention' => ':count braucht Aufmerksamkeit|:count brauchen Aufmerksamkeit',
+            'ok' => ':count in Ordnung',
+            'all_good' => 'Alles in Ordnung',
+            'open_nodes' => 'Nodes öffnen',
+            'release_notes' => 'Versionshinweise',
+            'not_run' => 'Die Prüfungen sind noch nicht gelaufen. Starte sie mit der Aktualisieren-Schaltfläche.',
+            'status' => [
+                'ok' => 'OK',
+                'warning' => 'Warnung',
+                'failed' => 'Fehlgeschlagen',
+                'crashed' => 'Abgestürzt',
+                'skipped' => 'Übersprungen',
+            ],
+        ],
     ],
 ];

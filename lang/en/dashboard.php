@@ -227,5 +227,20 @@ return [
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count node did not report|:count nodes did not report',
         ],
+        'page' => [
+            'attention' => ':count needs attention|:count need attention',
+            'ok' => ':count ok',
+            'all_good' => 'All good',
+            'open_nodes' => 'Open nodes',
+            'release_notes' => 'Release notes',
+            'not_run' => 'The health checks have not run yet. Use the refresh button to run them.',
+            'status' => [
+                'ok' => 'Ok',
+                'warning' => 'Warning',
+                'failed' => 'Failed',
+                'crashed' => 'Crashed',
+                'skipped' => 'Skipped',
+            ],
+        ],
     ],
 ];

@@ -227,5 +227,20 @@ return [
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count node rapporterte ikke|:count noder rapporterte ikke',
         ],
+        'page' => [
+            'attention' => ':count trenger oppmerksomhet|:count trenger oppmerksomhet',
+            'ok' => ':count ok',
+            'all_good' => 'Alt er i orden',
+            'open_nodes' => 'Åpne noder',
+            'release_notes' => 'Versjonsmerknader',
+            'not_run' => 'Kontrollene har ikke kjørt ennå. Bruk oppdateringsknappen for å kjøre dem.',
+            'status' => [
+                'ok' => 'OK',
+                'warning' => 'Advarsel',
+                'failed' => 'Mislyktes',
+                'crashed' => 'Krasjet',
+                'skipped' => 'Hoppet over',
+            ],
+        ],
     ],
 ];

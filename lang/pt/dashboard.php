@@ -227,5 +227,20 @@ return [
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count node não enviou dados|:count nodes não enviaram dados',
         ],
+        'page' => [
+            'attention' => ':count precisa de atenção|:count precisam de atenção',
+            'ok' => ':count ok',
+            'all_good' => 'Tudo bem',
+            'open_nodes' => 'Abrir nós',
+            'release_notes' => 'Notas de versão',
+            'not_run' => 'As verificações ainda não foram executadas. Use o botão de atualizar para as executar.',
+            'status' => [
+                'ok' => 'OK',
+                'warning' => 'Aviso',
+                'failed' => 'Falhou',
+                'crashed' => 'Falha grave',
+                'skipped' => 'Ignorado',
+            ],
+        ],
     ],
 ];

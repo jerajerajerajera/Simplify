@@ -227,5 +227,20 @@ return [
             'node_problem' => ':node: :problem',
             'nodes_silent' => 'Nem jelentett: :count csomópont|Nem jelentett: :count csomópont',
         ],
+        'page' => [
+            'attention' => ':count figyelmet igényel|:count figyelmet igényel',
+            'ok' => ':count rendben',
+            'all_good' => 'Minden rendben',
+            'open_nodes' => 'Node-ok megnyitása',
+            'release_notes' => 'Kiadási megjegyzések',
+            'not_run' => 'Az ellenőrzések még nem futottak le. Indítsd el őket a frissítés gombbal.',
+            'status' => [
+                'ok' => 'Rendben',
+                'warning' => 'Figyelmeztetés',
+                'failed' => 'Sikertelen',
+                'crashed' => 'Összeomlott',
+                'skipped' => 'Kihagyva',
+            ],
+        ],
     ],
 ];

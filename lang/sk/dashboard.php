@@ -227,5 +227,20 @@ return [
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count node neposlal údaje|:count nodes neposlali údaje|:count nodes neposlalo údaje',
         ],
+        'page' => [
+            'attention' => ':count vyžaduje pozornosť|:count vyžadujú pozornosť|:count vyžaduje pozornosť',
+            'ok' => ':count v poriadku',
+            'all_good' => 'Všetko v poriadku',
+            'open_nodes' => 'Otvoriť uzly',
+            'release_notes' => 'Poznámky k vydaniu',
+            'not_run' => 'Kontroly ešte neprebehli. Spustite ich tlačidlom obnovenia.',
+            'status' => [
+                'ok' => 'OK',
+                'warning' => 'Upozornenie',
+                'failed' => 'Zlyhalo',
+                'crashed' => 'Spadlo',
+                'skipped' => 'Preskočené',
+            ],
+        ],
     ],
 ];

@@ -227,5 +227,20 @@ return [
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count 個節點未報告',
         ],
+        'page' => [
+            'attention' => ':count 項需要處理',
+            'ok' => ':count 項正常',
+            'all_good' => '一切正常',
+            'open_nodes' => '開啟節點',
+            'release_notes' => '發行說明',
+            'not_run' => '檢查尚未執行。請使用重新整理按鈕執行。',
+            'status' => [
+                'ok' => '正常',
+                'warning' => '警告',
+                'failed' => '失敗',
+                'crashed' => '當機',
+                'skipped' => '已略過',
+            ],
+        ],
     ],
 ];

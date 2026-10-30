@@ -227,5 +227,20 @@ return [
             'node_problem' => ':node: :problem',
             'nodes_silent' => 'Bildirmeyen node: :count',
         ],
+        'page' => [
+            'attention' => ':count dikkat gerektiriyor|:count dikkat gerektiriyor',
+            'ok' => ':count sorunsuz',
+            'all_good' => 'Her şey yolunda',
+            'open_nodes' => 'Düğümleri aç',
+            'release_notes' => 'Sürüm notları',
+            'not_run' => 'Kontroller henüz çalıştırılmadı. Başlatmak için yenile düğmesini kullanın.',
+            'status' => [
+                'ok' => 'Tamam',
+                'warning' => 'Uyarı',
+                'failed' => 'Başarısız',
+                'crashed' => 'Çöktü',
+                'skipped' => 'Atlandı',
+            ],
+        ],
     ],
 ];

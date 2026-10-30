@@ -227,5 +227,20 @@ return [
             'node_problem' => ':node: :problem',
             'nodes_silent' => ':count 台のノードが報告しませんでした',
         ],
+        'page' => [
+            'attention' => ':count 件の要対応',
+            'ok' => ':count 件 正常',
+            'all_good' => 'すべて正常',
+            'open_nodes' => 'ノードを開く',
+            'release_notes' => 'リリースノート',
+            'not_run' => 'チェックはまだ実行されていません。更新ボタンで実行してください。',
+            'status' => [
+                'ok' => '正常',
+                'warning' => '警告',
+                'failed' => '失敗',
+                'crashed' => 'クラッシュ',
+                'skipped' => 'スキップ',
+            ],
+        ],
     ],
 ];
