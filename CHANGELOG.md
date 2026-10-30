@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.5
+
+- Outside host mode, Simplify's admin pages no longer scroll as a whole page: Settings and Pelican's Health page keep their card as high as the window leaves it and scroll inside it (the settings menu stays in place), People & roles keeps its tabs and search on top and scrolls the list, and Website, Automatic subdomains and Announcements scroll their form under the page title.
+
 ## 1.4.4
 
 - A cache that the panel cannot write no longer breaks the overview, the notifications or host health. This happens when `php artisan` ran as root, so the cache files belong to root. The page works out the numbers again instead, and root admins get a notification with the command that hands the files back to the web server.

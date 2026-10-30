@@ -769,6 +769,46 @@ html.ps-frame[data-ps-tree] .fi-grid-col:not(:first-child) > .fi-sc-component > 
   border-top: 1px solid var(--s-line);
 }
 
+/* Settings and Health outside host mode: the card is as high as the window leaves it (--s-fit, head.blade.php) and
+   scrolls inside, so the page never does. The menu on the left stays where it is. */
+html:not(.ps-frame) .s-settings-tabs.fi-vertical[style*="--s-fit"] {
+  height: var(--s-fit);
+}
+
+html:not(.ps-frame) .s-settings-tabs.fi-vertical[style*="--s-fit"] > .fi-tabs {
+  overflow-y: auto;
+}
+
+html:not(.ps-frame) .s-settings-tabs.fi-vertical[style*="--s-fit"] > .fi-sc-tabs-tab.fi-active {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+html:not(.ps-frame) :is(.s-health, .s-fit)[style*="--s-fit"] {
+  max-height: var(--s-fit);
+  overflow-y: auto;
+}
+
+/* A form page scrolls inside with a little room, so focus rings and section shadows are not cut off. */
+html:not(.ps-frame) .s-fit[style*="--s-fit"] {
+  margin: -4px;
+  padding: 4px;
+}
+
+/* People & roles: the tabs, search and add button stay on top, the list scrolls in its card. */
+html:not(.ps-frame) .s-people[style*="--s-fit"] {
+  display: flex;
+  flex-direction: column;
+  height: var(--s-fit);
+}
+
+html:not(.ps-frame) .s-people[style*="--s-fit"] > .s-card {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+}
+
 /* Settings: one card with the menu on the left, in the style of host mode's tree, and the settings beside it.
    The menu has three groups (Panel, Add-ons, Pelican); their titles come from the page (settings.blade.php). */
 .s-settings-tabs.fi-vertical {
