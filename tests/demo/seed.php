@@ -67,6 +67,8 @@ $about = [
     'Node.js' => 'A generic Node.js egg. Runs a JavaScript app such as a Discord bot from its own files.',
 ];
 $eggs = [];
+// A 64x64 grass block as server-icon.png (base64; the fake Wings decodes .png files).
+$icon = 'iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAABhElEQVR42u2ZPWrDQBCFdScXDiadCoNRoUZNqlSGBFy5ygVSBnKD1Gl8AF8u3fAC+eBJ06R48KrRzs8nGM3uaphuc+nh47E0fh1Ly/dT6Xx/Lf0H3yEAAWgC6AN1oECajOzkq3bNSzVoTIofgAB0AdSBRA3nrNfi1JcAtDgV5Q1AALoA5KBFkN0ZTLSGgEnU6AEIQBfAaSxqVho0znpqXF1DAL8GWQAC0AR4Ww6lz5dT6TLtStd5X1K7+r4/j39KY6poDeWivAEIQBdAHxCAU7T66hpH9LJUlDcAAegCkAOJmpI+BmSnmGp3PgwBCEAXgBY5og+A8yIoJjUu2QMQgC7A2uFFRVACp3GdgUjDLgAB6AJQcU4C5+DibMicDR+9rAAEoAtAzUEFOU1G9rWbP4LHQ30AArABwCnaOdQ7l180KMnX2SAGIABdABpGGogKJTkXVRSfIK1DfQACsAFgbbM6l7vOTw0aUlQ0Xu4GIABNAOfA7vwEcYaaU9zajV0AAtAE+AEjkzL/ywwRRQAAAABJRU5ErkJggg==';
 $out = [];
 $servers = [];
 foreach ($list as $i => [$name, $eggName, $state, $memory, $cpu, $owner, $color]) {
@@ -81,7 +83,7 @@ foreach ($list as $i => [$name, $eggName, $state, $memory, $cpu, $owner, $color]
     $files = ['/logs/latest.log' => "[12:00:05 INFO]: Done (4.2s)!\n"];
     if (in_array($eggName, $minecraft, true)) {
         $files += ['/server.properties' => "motd=\\u00a7a$name \\u00a77- welcome!\nmax-players=20\ndifficulty=normal\ngamemode=survival\npvp=true\nwhite-list=false\nview-distance=10\n",
-            '/eula.txt' => "eula=true\n"];
+            '/eula.txt' => "eula=true\n", '/server-icon.png' => $icon];
         $files += $eggName === 'Paper'
             ? ['/plugins/EssentialsX-2.21.0.jar' => 'jar', '/plugins/LuckPerms-Bukkit-5.4.141.jar' => 'jar', '/plugins/WorldEdit-7.3.9.jar' => 'jar']
             : ['/mods/jei-1.21.1-forge-19.21.0.jar' => 'jar', '/mods/create-1.21.1-6.0.4.jar' => 'jar'];
