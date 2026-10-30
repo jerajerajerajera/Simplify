@@ -1,0 +1,4441 @@
+{
+ "base": "http://127.0.0.1:8001",
+ "screens": [
+  {
+   "id": "season-halloween",
+   "title": "Seizoen · Halloween (30 okt) · overzicht",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1821 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1821,
+     "pageScrollW": 390,
+     "card": "0..1705 of 844",
+     "topbar": "brand 14..214, badges 219..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-halloween.png"
+  },
+  {
+   "id": "season-halloween-overzicht-tip",
+   "title": "Seizoen · Halloween (30 okt) · overzicht, tooltip (hover)",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "tip": {
+    "visible": true,
+    "rect": "95 270 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 95, 270)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui.dark < body.fi-body.fi-panel-app.fi-body-has-topbar < html.fi.dark",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1821 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1821,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-tooltip 95,270 280x66"
+     ],
+     "card": "0..1705 of 844",
+     "topbar": "brand 14..214, badges 219..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-halloween-overzicht-tip.png"
+  },
+  {
+   "id": "season-halloween-overzicht-tap",
+   "title": "Seizoen · Halloween (30 okt) · overzicht, tooltip (tik)",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "tip": {
+    "visible": true,
+    "rect": "95 270 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 95, 270)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui.dark < body.fi-body.fi-panel-app.fi-body-has-topbar < html.fi.dark",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1821 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1821,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-tooltip 95,270 280x66"
+     ],
+     "card": "0..1705 of 844",
+     "topbar": "brand 14..214, badges 219..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-halloween-overzicht-tap.png"
+  },
+  {
+   "id": "season-halloween-tabbar",
+   "title": "Seizoen · Halloween (30 okt) · telefoon tabbalk",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1821 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1821,
+     "pageScrollW": 390,
+     "card": "0..1705 of 844",
+     "topbar": "brand 14..214, badges 219..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-halloween-tabbar.png"
+  },
+  {
+   "id": "season-halloween-server",
+   "title": "Seizoen · Halloween (30 okt) · serverpagina",
+   "stand": "phone390-dark",
+   "url": "/server/0qgbke4u/console",
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1494 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1494,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "547..1448 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1240",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-halloween-server.png"
+  },
+  {
+   "id": "season-halloween-server-tip",
+   "title": "Seizoen · Halloween (30 okt) · server, tooltip (hover)",
+   "stand": "phone390-dark",
+   "url": "/server/0qgbke4u/console",
+   "tip": {
+    "visible": true,
+    "rect": "102 68 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 102, 68)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui.dark < body.fi-body.fi-panel-server.fi-body-has-navigation < html.fi.dark",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1494 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1494,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-tooltip 102,68 280x66"
+     ],
+     "card": "547..1448 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1240",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-halloween-server-tip.png"
+  },
+  {
+   "id": "season-halloween-server-tap",
+   "title": "Seizoen · Halloween (30 okt) · server, tooltip (tik)",
+   "stand": "phone390-dark",
+   "url": "/server/0qgbke4u/console",
+   "tip": {
+    "visible": true,
+    "rect": "102 68 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 102, 68)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui.dark < body.fi-body.fi-panel-server.fi-body-has-navigation < html.fi.dark",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1494 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1494,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-tooltip 102,68 280x66"
+     ],
+     "card": "547..1448 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1240",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-halloween-server-tap.png"
+  },
+  {
+   "id": "season-december",
+   "title": "Seizoen · Chanoeka + Kerst (7 dec) · overzicht",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1849 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1849,
+     "pageScrollW": 390,
+     "card": "0..1733 of 844",
+     "topbar": "brand 14..180, badges 184..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-december.png"
+  },
+  {
+   "id": "season-december-overzicht-tip",
+   "title": "Seizoen · Chanoeka + Kerst (7 dec) · overzicht, tooltip (hover)",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "tip": {
+    "visible": true,
+    "rect": "60 284 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 60, 284)",
+    "text": "Hanukkah · night 3The Jewish festival of lights: one more ca",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui.dark < body.fi-body.fi-panel-app.fi-body-has-topbar < html.fi.dark",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1849 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1849,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-tooltip 60,284 280x66"
+     ],
+     "card": "0..1733 of 844",
+     "topbar": "brand 14..180, badges 184..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-december-overzicht-tip.png"
+  },
+  {
+   "id": "season-december-overzicht-tap",
+   "title": "Seizoen · Chanoeka + Kerst (7 dec) · overzicht, tooltip (tik)",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "tip": {
+    "visible": true,
+    "rect": "60 284 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 60, 284)",
+    "text": "Hanukkah · night 3The Jewish festival of lights: one more ca",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui.dark < body.fi-body.fi-panel-app.fi-body-has-topbar < html.fi.dark",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1849 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1849,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-tooltip 60,284 280x66"
+     ],
+     "card": "0..1733 of 844",
+     "topbar": "brand 14..180, badges 184..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-december-overzicht-tap.png"
+  },
+  {
+   "id": "season-december-tabbar",
+   "title": "Seizoen · Chanoeka + Kerst (7 dec) · telefoon tabbalk",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1849 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1849,
+     "pageScrollW": 390,
+     "card": "0..1733 of 844",
+     "topbar": "brand 14..180, badges 184..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-december-tabbar.png"
+  },
+  {
+   "id": "season-december-server",
+   "title": "Seizoen · Chanoeka + Kerst (7 dec) · serverpagina",
+   "stand": "phone390-dark",
+   "url": "/server/0qgbke4u/console",
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1494 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1494,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "547..1448 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1240",
+     "topbar": "brand 14..257, badges 261..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-december-server.png"
+  },
+  {
+   "id": "season-december-server-tip",
+   "title": "Seizoen · Chanoeka + Kerst (7 dec) · server, tooltip (hover)",
+   "stand": "phone390-dark",
+   "url": "/server/0qgbke4u/console",
+   "tip": {
+    "visible": true,
+    "rect": "102 68 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 102, 68)",
+    "text": "Hanukkah · night 3The Jewish festival of lights: one more ca",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui.dark < body.fi-body.fi-panel-server.fi-body-has-navigation < html.fi.dark",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1494 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1494,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-tooltip 102,68 280x66"
+     ],
+     "card": "547..1448 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1240",
+     "topbar": "brand 14..257, badges 261..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-december-server-tip.png"
+  },
+  {
+   "id": "season-december-server-tap",
+   "title": "Seizoen · Chanoeka + Kerst (7 dec) · server, tooltip (tik)",
+   "stand": "phone390-dark",
+   "url": "/server/0qgbke4u/console",
+   "tip": {
+    "visible": true,
+    "rect": "102 68 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 102, 68)",
+    "text": "Hanukkah · night 3The Jewish festival of lights: one more ca",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui.dark < body.fi-body.fi-panel-server.fi-body-has-navigation < html.fi.dark",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1494 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1494,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-tooltip 102,68 280x66"
+     ],
+     "card": "547..1448 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1240",
+     "topbar": "brand 14..257, badges 261..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-december-server-tap.png"
+  },
+  {
+   "id": "season-valentine",
+   "title": "Seizoen · Valentijn (14 feb) · overzicht",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1821 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1821,
+     "pageScrollW": 390,
+     "card": "0..1705 of 844",
+     "topbar": "brand 14..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-valentine.png"
+  },
+  {
+   "id": "season-valentine-tabbar",
+   "title": "Seizoen · Valentijn (14 feb) · telefoon tabbalk",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1821 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1821,
+     "pageScrollW": 390,
+     "card": "0..1705 of 844",
+     "topbar": "brand 14..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-valentine-tabbar.png"
+  },
+  {
+   "id": "season-valentine-server",
+   "title": "Seizoen · Valentijn (14 feb) · serverpagina",
+   "stand": "phone390-dark",
+   "url": "/server/0qgbke4u/console",
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1467 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1467,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "520..1421 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,581 320x570; terminal 15,521 360x640; bar top 1213",
+     "topbar": "brand 14..291, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,172 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,520 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-valentine-server.png"
+  },
+  {
+   "id": "season-easter",
+   "title": "Seizoen · Pasen (5 apr) · overzicht",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1821 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1821,
+     "pageScrollW": 390,
+     "card": "0..1705 of 844",
+     "topbar": "brand 14..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-easter.png"
+  },
+  {
+   "id": "season-easter-tabbar",
+   "title": "Seizoen · Pasen (5 apr) · telefoon tabbalk",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1821 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1821,
+     "pageScrollW": 390,
+     "card": "0..1705 of 844",
+     "topbar": "brand 14..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-easter-tabbar.png"
+  },
+  {
+   "id": "season-easter-server",
+   "title": "Seizoen · Pasen (5 apr) · serverpagina",
+   "stand": "phone390-dark",
+   "url": "/server/0qgbke4u/console",
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1467 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1467,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "520..1421 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,581 320x570; terminal 15,521 360x640; bar top 1213",
+     "topbar": "brand 14..291, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,172 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,520 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-easter-server.png"
+  },
+  {
+   "id": "season-newyear",
+   "title": "Seizoen · Oudjaar 23:20 · overzicht",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1849 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1849,
+     "pageScrollW": 390,
+     "card": "0..1733 of 844",
+     "topbar": "brand 14..143, badges 147..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-newyear.png"
+  },
+  {
+   "id": "season-newyear-overzicht-tip",
+   "title": "Seizoen · Oudjaar 23:20 · overzicht, tooltip (hover)",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "tip": {
+    "visible": true,
+    "rect": "24 284 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 24, 284)",
+    "text": "New YearThe last night of the year and the first day of the ",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui.dark < body.fi-body.fi-panel-app.fi-body-has-topbar < html.fi.dark",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1849 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1849,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-tooltip 24,284 280x66"
+     ],
+     "card": "0..1733 of 844",
+     "topbar": "brand 14..143, badges 147..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-newyear-overzicht-tip.png"
+  },
+  {
+   "id": "season-newyear-overzicht-tap",
+   "title": "Seizoen · Oudjaar 23:20 · overzicht, tooltip (tik)",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "tip": {
+    "visible": true,
+    "rect": "24 284 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 24, 284)",
+    "text": "New YearThe last night of the year and the first day of the ",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui.dark < body.fi-body.fi-panel-app.fi-body-has-topbar < html.fi.dark",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1849 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1849,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-tooltip 24,284 280x66"
+     ],
+     "card": "0..1733 of 844",
+     "topbar": "brand 14..143, badges 147..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-newyear-overzicht-tap.png"
+  },
+  {
+   "id": "season-newyear-tabbar",
+   "title": "Seizoen · Oudjaar 23:20 · telefoon tabbalk",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1849 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1849,
+     "pageScrollW": 390,
+     "card": "0..1733 of 844",
+     "topbar": "brand 14..143, badges 147..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-newyear-tabbar.png"
+  },
+  {
+   "id": "season-newyear-server",
+   "title": "Seizoen · Oudjaar 23:20 · serverpagina",
+   "stand": "phone390-dark",
+   "url": "/server/0qgbke4u/console",
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1494 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1494,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "547..1448 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1240",
+     "topbar": "brand 14..220, badges 224..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-newyear-server.png"
+  },
+  {
+   "id": "season-newyear-server-tip",
+   "title": "Seizoen · Oudjaar 23:20 · server, tooltip (hover)",
+   "stand": "phone390-dark",
+   "url": "/server/0qgbke4u/console",
+   "tip": {
+    "visible": true,
+    "rect": "100 68 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 100, 68)",
+    "text": "New YearThe last night of the year and the first day of the ",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui.dark < body.fi-body.fi-panel-server.fi-body-has-navigation < html.fi.dark",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1494 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1494,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-tooltip 100,68 280x66"
+     ],
+     "card": "547..1448 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1240",
+     "topbar": "brand 14..220, badges 224..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-newyear-server-tip.png"
+  },
+  {
+   "id": "season-newyear-server-tap",
+   "title": "Seizoen · Oudjaar 23:20 · server, tooltip (tik)",
+   "stand": "phone390-dark",
+   "url": "/server/0qgbke4u/console",
+   "tip": {
+    "visible": true,
+    "rect": "100 68 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 100, 68)",
+    "text": "New YearThe last night of the year and the first day of the ",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui.dark < body.fi-body.fi-panel-server.fi-body-has-navigation < html.fi.dark",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1494 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1494,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-tooltip 100,68 280x66"
+     ],
+     "card": "547..1448 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1240",
+     "topbar": "brand 14..220, badges 224..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-newyear-server-tap.png"
+  },
+  {
+   "id": "season-nosuffix",
+   "title": "Seizoen · Halloween zonder \"× Pelican\" · overzicht",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1804 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1804,
+     "pageScrollW": 390,
+     "card": "0..1688 of 844",
+     "topbar": "brand 14..194, badges 198..231, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-nosuffix.png"
+  },
+  {
+   "id": "season-nosuffix-overzicht-tip",
+   "title": "Seizoen · Halloween zonder \"× Pelican\" · overzicht, tooltip (hover)",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "tip": {
+    "visible": true,
+    "rect": "74 259 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 74, 259)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui.dark < body.fi-body.fi-panel-app.fi-body-has-topbar < html.fi.dark",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1804 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1804,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-tooltip 74,259 280x66"
+     ],
+     "card": "0..1688 of 844",
+     "topbar": "brand 14..194, badges 198..231, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-nosuffix-overzicht-tip.png"
+  },
+  {
+   "id": "season-nosuffix-overzicht-tap",
+   "title": "Seizoen · Halloween zonder \"× Pelican\" · overzicht, tooltip (tik)",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "tip": {
+    "visible": true,
+    "rect": "74 259 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 74, 259)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui.dark < body.fi-body.fi-panel-app.fi-body-has-topbar < html.fi.dark",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1804 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1804,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-tooltip 74,259 280x66"
+     ],
+     "card": "0..1688 of 844",
+     "topbar": "brand 14..194, badges 198..231, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-nosuffix-overzicht-tap.png"
+  },
+  {
+   "id": "season-nosuffix-tabbar",
+   "title": "Seizoen · Halloween zonder \"× Pelican\" · telefoon tabbalk",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1804 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1804,
+     "pageScrollW": 390,
+     "card": "0..1688 of 844",
+     "topbar": "brand 14..194, badges 198..231, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-nosuffix-tabbar.png"
+  },
+  {
+   "id": "season-nosuffix-server",
+   "title": "Seizoen · Halloween zonder \"× Pelican\" · serverpagina",
+   "stand": "phone390-dark",
+   "url": "/server/0qgbke4u/console",
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1472 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1472,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "525..1426 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,586 320x570; terminal 15,526 360x640; bar top 1218",
+     "topbar": "brand 14..194, badges 198..231, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,177 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,525 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-nosuffix-server.png"
+  },
+  {
+   "id": "season-nosuffix-server-tip",
+   "title": "Seizoen · Halloween zonder \"× Pelican\" · server, tooltip (hover)",
+   "stand": "phone390-dark",
+   "url": "/server/0qgbke4u/console",
+   "tip": {
+    "visible": true,
+    "rect": "74 57 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 74, 57)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui.dark < body.fi-body.fi-panel-server.fi-body-has-navigation < html.fi.dark",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1472 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1472,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-tooltip 74,57 280x66"
+     ],
+     "card": "525..1426 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,586 320x570; terminal 15,526 360x640; bar top 1218",
+     "topbar": "brand 14..194, badges 198..231, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,177 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,525 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-nosuffix-server-tip.png"
+  },
+  {
+   "id": "season-nosuffix-server-tap",
+   "title": "Seizoen · Halloween zonder \"× Pelican\" · server, tooltip (tik)",
+   "stand": "phone390-dark",
+   "url": "/server/0qgbke4u/console",
+   "tip": {
+    "visible": true,
+    "rect": "74 57 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 74, 57)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui.dark < body.fi-body.fi-panel-server.fi-body-has-navigation < html.fi.dark",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1472 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1472,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-tooltip 74,57 280x66"
+     ],
+     "card": "525..1426 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,586 320x570; terminal 15,526 360x640; bar top 1218",
+     "topbar": "brand 14..194, badges 198..231, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,177 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,525 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-nosuffix-server-tap.png"
+  },
+  {
+   "id": "season-logo",
+   "title": "Seizoen · Halloween met logo · overzicht",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1826 > 844), the page scrolls"
+     },
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: ps-visually-hidden: \"Northwind Games\" (180>1)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1826,
+     "pageScrollW": 390,
+     "card": "0..1710 of 844",
+     "topbar": "brand 14..214, badges 219..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-logo.png"
+  },
+  {
+   "id": "season-logo-overzicht-tip",
+   "title": "Seizoen · Halloween met logo · overzicht, tooltip (hover)",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "tip": {
+    "visible": true,
+    "rect": "95 272 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 95, 272)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui.dark < body.fi-body.fi-panel-app.fi-body-has-topbar < html.fi.dark",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1826 > 844), the page scrolls"
+     },
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: ps-visually-hidden: \"Northwind Games\" (180>1)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1826,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-tooltip 95,272 280x66"
+     ],
+     "card": "0..1710 of 844",
+     "topbar": "brand 14..214, badges 219..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-logo-overzicht-tip.png"
+  },
+  {
+   "id": "season-logo-overzicht-tap",
+   "title": "Seizoen · Halloween met logo · overzicht, tooltip (tik)",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "tip": {
+    "visible": true,
+    "rect": "95 272 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 95, 272)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui.dark < body.fi-body.fi-panel-app.fi-body-has-topbar < html.fi.dark",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1826 > 844), the page scrolls"
+     },
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: ps-visually-hidden: \"Northwind Games\" (180>1)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1826,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-tooltip 95,272 280x66"
+     ],
+     "card": "0..1710 of 844",
+     "topbar": "brand 14..214, badges 219..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-logo-overzicht-tap.png"
+  },
+  {
+   "id": "season-logo-tabbar",
+   "title": "Seizoen · Halloween met logo · telefoon tabbalk",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1826 > 844), the page scrolls"
+     },
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: ps-visually-hidden: \"Northwind Games\" (180>1)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1826,
+     "pageScrollW": 390,
+     "card": "0..1710 of 844",
+     "topbar": "brand 14..214, badges 219..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-logo-tabbar.png"
+  },
+  {
+   "id": "season-logo-server",
+   "title": "Seizoen · Halloween met logo · serverpagina",
+   "stand": "phone390-dark",
+   "url": "/server/0qgbke4u/console",
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1472 > 844), the page scrolls"
+     },
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: ps-visually-hidden: \"Northwind Games\" (180>1)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1472,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "525..1426 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,586 320x570; terminal 15,526 360x640; bar top 1218",
+     "topbar": "brand 14..255, badges 260..292, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,177 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,525 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-logo-server.png"
+  },
+  {
+   "id": "season-logo-server-tip",
+   "title": "Seizoen · Halloween met logo · server, tooltip (hover)",
+   "stand": "phone390-dark",
+   "url": "/server/0qgbke4u/console",
+   "tip": {
+    "visible": true,
+    "rect": "102 57 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 102, 57)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui.dark < body.fi-body.fi-panel-server.fi-body-has-navigation < html.fi.dark",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1472 > 844), the page scrolls"
+     },
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: ps-visually-hidden: \"Northwind Games\" (180>1)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1472,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-tooltip 102,57 280x66"
+     ],
+     "card": "525..1426 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,586 320x570; terminal 15,526 360x640; bar top 1218",
+     "topbar": "brand 14..255, badges 260..292, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,177 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,525 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-logo-server-tip.png"
+  },
+  {
+   "id": "season-logo-server-tap",
+   "title": "Seizoen · Halloween met logo · server, tooltip (tik)",
+   "stand": "phone390-dark",
+   "url": "/server/0qgbke4u/console",
+   "tip": {
+    "visible": true,
+    "rect": "102 57 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 102, 57)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui.dark < body.fi-body.fi-panel-server.fi-body-has-navigation < html.fi.dark",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1472 > 844), the page scrolls"
+     },
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: ps-visually-hidden: \"Northwind Games\" (180>1)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1472,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-tooltip 102,57 280x66"
+     ],
+     "card": "525..1426 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,586 320x570; terminal 15,526 360x640; bar top 1218",
+     "topbar": "brand 14..255, badges 260..292, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,177 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,525 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-logo-server-tap.png"
+  },
+  {
+   "id": "season-off-settings",
+   "title": "Seizoen · schakelaar uit, instellingen opgeslagen",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify?tab=appearance",
+   "main": {
+    "url": "/admin/simplify?tab=appearance",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2774 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2774,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "strong: \"Northwind Games\"",
+      "b: \"Northwind Games\""
+     ],
+     "card": "44..2718 of 844",
+     "scope": "simplify",
+     "boxes": [
+      "s-settings-tabs.fi-sc-tabs.fi-contained 16,276 358x2410"
+     ],
+     "actionsBelow": [
+      "\"Run setup again\" at y=208",
+      "\"\" at y=208"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-off-settings.png"
+  },
+  {
+   "id": "season-off",
+   "title": "Seizoen · Seizoensverrassingen uit · overzicht",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1821 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1821,
+     "pageScrollW": 390,
+     "card": "0..1705 of 844",
+     "topbar": "brand 14..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-off.png"
+  },
+  {
+   "id": "season-off-tabbar",
+   "title": "Seizoen · Seizoensverrassingen uit · telefoon tabbalk",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1821 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1821,
+     "pageScrollW": 390,
+     "card": "0..1705 of 844",
+     "topbar": "brand 14..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-off-tabbar.png"
+  },
+  {
+   "id": "season-off-server",
+   "title": "Seizoen · Seizoensverrassingen uit · serverpagina",
+   "stand": "phone390-dark",
+   "url": "/server/0qgbke4u/console",
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1467 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1467,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "520..1421 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,581 320x570; terminal 15,521 360x640; bar top 1213",
+     "topbar": "brand 14..291, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,172 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,520 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/season-off-server.png"
+  },
+  {
+   "id": "season-halloween",
+   "title": "Seizoen · Halloween (30 okt) · overzicht",
+   "stand": "phone390-light",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1821 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1821,
+     "pageScrollW": 390,
+     "card": "0..1705 of 844",
+     "topbar": "brand 14..214, badges 219..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-halloween.png"
+  },
+  {
+   "id": "season-halloween-overzicht-tip",
+   "title": "Seizoen · Halloween (30 okt) · overzicht, tooltip (hover)",
+   "stand": "phone390-light",
+   "url": "/simplify",
+   "tip": {
+    "visible": true,
+    "rect": "95 270 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 95, 270)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui < body.fi-body.fi-panel-app.fi-body-has-topbar < html.fi",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1821 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1821,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-tooltip 95,270 280x66"
+     ],
+     "card": "0..1705 of 844",
+     "topbar": "brand 14..214, badges 219..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-halloween-overzicht-tip.png"
+  },
+  {
+   "id": "season-halloween-overzicht-tap",
+   "title": "Seizoen · Halloween (30 okt) · overzicht, tooltip (tik)",
+   "stand": "phone390-light",
+   "url": "/simplify",
+   "tip": {
+    "visible": true,
+    "rect": "95 270 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 95, 270)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui < body.fi-body.fi-panel-app.fi-body-has-topbar < html.fi",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1821 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1821,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-tooltip 95,270 280x66"
+     ],
+     "card": "0..1705 of 844",
+     "topbar": "brand 14..214, badges 219..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-halloween-overzicht-tap.png"
+  },
+  {
+   "id": "season-halloween-tabbar",
+   "title": "Seizoen · Halloween (30 okt) · telefoon tabbalk",
+   "stand": "phone390-light",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1821 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1821,
+     "pageScrollW": 390,
+     "card": "0..1705 of 844",
+     "topbar": "brand 14..214, badges 219..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-halloween-tabbar.png"
+  },
+  {
+   "id": "season-halloween-server",
+   "title": "Seizoen · Halloween (30 okt) · serverpagina",
+   "stand": "phone390-light",
+   "url": "/server/0qgbke4u/console",
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1494 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1494,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "547..1448 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1240",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-halloween-server.png"
+  },
+  {
+   "id": "season-halloween-server-tip",
+   "title": "Seizoen · Halloween (30 okt) · server, tooltip (hover)",
+   "stand": "phone390-light",
+   "url": "/server/0qgbke4u/console",
+   "tip": {
+    "visible": true,
+    "rect": "102 68 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 102, 68)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui < body.fi-body.fi-panel-server.fi-body-has-navigation < html.fi",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1494 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1494,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-tooltip 102,68 280x66"
+     ],
+     "card": "547..1448 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1240",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-halloween-server-tip.png"
+  },
+  {
+   "id": "season-halloween-server-tap",
+   "title": "Seizoen · Halloween (30 okt) · server, tooltip (tik)",
+   "stand": "phone390-light",
+   "url": "/server/0qgbke4u/console",
+   "tip": {
+    "visible": true,
+    "rect": "102 68 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 102, 68)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui < body.fi-body.fi-panel-server.fi-body-has-navigation < html.fi",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1494 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1494,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-tooltip 102,68 280x66"
+     ],
+     "card": "547..1448 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1240",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-halloween-server-tap.png"
+  },
+  {
+   "id": "season-december",
+   "title": "Seizoen · Chanoeka + Kerst (7 dec) · overzicht",
+   "stand": "phone390-light",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1849 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1849,
+     "pageScrollW": 390,
+     "card": "0..1733 of 844",
+     "topbar": "brand 14..180, badges 184..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-december.png"
+  },
+  {
+   "id": "season-december-overzicht-tip",
+   "title": "Seizoen · Chanoeka + Kerst (7 dec) · overzicht, tooltip (hover)",
+   "stand": "phone390-light",
+   "url": "/simplify",
+   "tip": {
+    "visible": true,
+    "rect": "60 284 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 60, 284)",
+    "text": "Hanukkah · night 3The Jewish festival of lights: one more ca",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui < body.fi-body.fi-panel-app.fi-body-has-topbar < html.fi",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1849 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1849,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-tooltip 60,284 280x66"
+     ],
+     "card": "0..1733 of 844",
+     "topbar": "brand 14..180, badges 184..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-december-overzicht-tip.png"
+  },
+  {
+   "id": "season-december-overzicht-tap",
+   "title": "Seizoen · Chanoeka + Kerst (7 dec) · overzicht, tooltip (tik)",
+   "stand": "phone390-light",
+   "url": "/simplify",
+   "tip": {
+    "visible": true,
+    "rect": "60 284 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 60, 284)",
+    "text": "Hanukkah · night 3The Jewish festival of lights: one more ca",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui < body.fi-body.fi-panel-app.fi-body-has-topbar < html.fi",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1849 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1849,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-tooltip 60,284 280x66"
+     ],
+     "card": "0..1733 of 844",
+     "topbar": "brand 14..180, badges 184..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-december-overzicht-tap.png"
+  },
+  {
+   "id": "season-december-tabbar",
+   "title": "Seizoen · Chanoeka + Kerst (7 dec) · telefoon tabbalk",
+   "stand": "phone390-light",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1849 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1849,
+     "pageScrollW": 390,
+     "card": "0..1733 of 844",
+     "topbar": "brand 14..180, badges 184..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-december-tabbar.png"
+  },
+  {
+   "id": "season-december-server",
+   "title": "Seizoen · Chanoeka + Kerst (7 dec) · serverpagina",
+   "stand": "phone390-light",
+   "url": "/server/0qgbke4u/console",
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1494 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1494,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "547..1448 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1240",
+     "topbar": "brand 14..257, badges 261..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-december-server.png"
+  },
+  {
+   "id": "season-december-server-tip",
+   "title": "Seizoen · Chanoeka + Kerst (7 dec) · server, tooltip (hover)",
+   "stand": "phone390-light",
+   "url": "/server/0qgbke4u/console",
+   "tip": {
+    "visible": true,
+    "rect": "102 68 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 102, 68)",
+    "text": "Hanukkah · night 3The Jewish festival of lights: one more ca",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui < body.fi-body.fi-panel-server.fi-body-has-navigation < html.fi",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1494 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1494,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-tooltip 102,68 280x66"
+     ],
+     "card": "547..1448 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1240",
+     "topbar": "brand 14..257, badges 261..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-december-server-tip.png"
+  },
+  {
+   "id": "season-december-server-tap",
+   "title": "Seizoen · Chanoeka + Kerst (7 dec) · server, tooltip (tik)",
+   "stand": "phone390-light",
+   "url": "/server/0qgbke4u/console",
+   "tip": {
+    "visible": true,
+    "rect": "102 68 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 102, 68)",
+    "text": "Hanukkah · night 3The Jewish festival of lights: one more ca",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui < body.fi-body.fi-panel-server.fi-body-has-navigation < html.fi",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1494 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1494,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-tooltip 102,68 280x66"
+     ],
+     "card": "547..1448 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1240",
+     "topbar": "brand 14..257, badges 261..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-december-server-tap.png"
+  },
+  {
+   "id": "season-valentine",
+   "title": "Seizoen · Valentijn (14 feb) · overzicht",
+   "stand": "phone390-light",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1821 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1821,
+     "pageScrollW": 390,
+     "card": "0..1705 of 844",
+     "topbar": "brand 14..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-valentine.png"
+  },
+  {
+   "id": "season-valentine-tabbar",
+   "title": "Seizoen · Valentijn (14 feb) · telefoon tabbalk",
+   "stand": "phone390-light",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1821 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1821,
+     "pageScrollW": 390,
+     "card": "0..1705 of 844",
+     "topbar": "brand 14..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-valentine-tabbar.png"
+  },
+  {
+   "id": "season-valentine-server",
+   "title": "Seizoen · Valentijn (14 feb) · serverpagina",
+   "stand": "phone390-light",
+   "url": "/server/0qgbke4u/console",
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1467 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1467,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "520..1421 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,581 320x570; terminal 15,521 360x640; bar top 1213",
+     "topbar": "brand 14..291, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,172 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,520 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-valentine-server.png"
+  },
+  {
+   "id": "season-easter",
+   "title": "Seizoen · Pasen (5 apr) · overzicht",
+   "stand": "phone390-light",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1821 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1821,
+     "pageScrollW": 390,
+     "card": "0..1705 of 844",
+     "topbar": "brand 14..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-easter.png"
+  },
+  {
+   "id": "season-easter-tabbar",
+   "title": "Seizoen · Pasen (5 apr) · telefoon tabbalk",
+   "stand": "phone390-light",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1821 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1821,
+     "pageScrollW": 390,
+     "card": "0..1705 of 844",
+     "topbar": "brand 14..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-easter-tabbar.png"
+  },
+  {
+   "id": "season-easter-server",
+   "title": "Seizoen · Pasen (5 apr) · serverpagina",
+   "stand": "phone390-light",
+   "url": "/server/0qgbke4u/console",
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1467 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1467,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "520..1421 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,581 320x570; terminal 15,521 360x640; bar top 1213",
+     "topbar": "brand 14..291, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,172 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,520 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-easter-server.png"
+  },
+  {
+   "id": "season-newyear",
+   "title": "Seizoen · Oudjaar 23:20 · overzicht",
+   "stand": "phone390-light",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1849 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1849,
+     "pageScrollW": 390,
+     "card": "0..1733 of 844",
+     "topbar": "brand 14..143, badges 147..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-newyear.png"
+  },
+  {
+   "id": "season-newyear-overzicht-tip",
+   "title": "Seizoen · Oudjaar 23:20 · overzicht, tooltip (hover)",
+   "stand": "phone390-light",
+   "url": "/simplify",
+   "tip": {
+    "visible": true,
+    "rect": "24 284 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 24, 284)",
+    "text": "New YearThe last night of the year and the first day of the ",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui < body.fi-body.fi-panel-app.fi-body-has-topbar < html.fi",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1849 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1849,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-tooltip 24,284 280x66"
+     ],
+     "card": "0..1733 of 844",
+     "topbar": "brand 14..143, badges 147..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-newyear-overzicht-tip.png"
+  },
+  {
+   "id": "season-newyear-overzicht-tap",
+   "title": "Seizoen · Oudjaar 23:20 · overzicht, tooltip (tik)",
+   "stand": "phone390-light",
+   "url": "/simplify",
+   "tip": {
+    "visible": true,
+    "rect": "24 284 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 24, 284)",
+    "text": "New YearThe last night of the year and the first day of the ",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui < body.fi-body.fi-panel-app.fi-body-has-topbar < html.fi",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1849 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1849,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-tooltip 24,284 280x66"
+     ],
+     "card": "0..1733 of 844",
+     "topbar": "brand 14..143, badges 147..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-newyear-overzicht-tap.png"
+  },
+  {
+   "id": "season-newyear-tabbar",
+   "title": "Seizoen · Oudjaar 23:20 · telefoon tabbalk",
+   "stand": "phone390-light",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1849 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1849,
+     "pageScrollW": 390,
+     "card": "0..1733 of 844",
+     "topbar": "brand 14..143, badges 147..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-newyear-tabbar.png"
+  },
+  {
+   "id": "season-newyear-server",
+   "title": "Seizoen · Oudjaar 23:20 · serverpagina",
+   "stand": "phone390-light",
+   "url": "/server/0qgbke4u/console",
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1494 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1494,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "547..1448 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1240",
+     "topbar": "brand 14..220, badges 224..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-newyear-server.png"
+  },
+  {
+   "id": "season-newyear-server-tip",
+   "title": "Seizoen · Oudjaar 23:20 · server, tooltip (hover)",
+   "stand": "phone390-light",
+   "url": "/server/0qgbke4u/console",
+   "tip": {
+    "visible": true,
+    "rect": "100 68 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 100, 68)",
+    "text": "New YearThe last night of the year and the first day of the ",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui < body.fi-body.fi-panel-server.fi-body-has-navigation < html.fi",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1494 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1494,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-tooltip 100,68 280x66"
+     ],
+     "card": "547..1448 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1240",
+     "topbar": "brand 14..220, badges 224..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-newyear-server-tip.png"
+  },
+  {
+   "id": "season-newyear-server-tap",
+   "title": "Seizoen · Oudjaar 23:20 · server, tooltip (tik)",
+   "stand": "phone390-light",
+   "url": "/server/0qgbke4u/console",
+   "tip": {
+    "visible": true,
+    "rect": "100 68 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 100, 68)",
+    "text": "New YearThe last night of the year and the first day of the ",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui < body.fi-body.fi-panel-server.fi-body-has-navigation < html.fi",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1494 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1494,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-tooltip 100,68 280x66"
+     ],
+     "card": "547..1448 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1240",
+     "topbar": "brand 14..220, badges 224..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-newyear-server-tap.png"
+  },
+  {
+   "id": "season-nosuffix",
+   "title": "Seizoen · Halloween zonder \"× Pelican\" · overzicht",
+   "stand": "phone390-light",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1804 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1804,
+     "pageScrollW": 390,
+     "card": "0..1688 of 844",
+     "topbar": "brand 14..194, badges 198..231, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-nosuffix.png"
+  },
+  {
+   "id": "season-nosuffix-overzicht-tip",
+   "title": "Seizoen · Halloween zonder \"× Pelican\" · overzicht, tooltip (hover)",
+   "stand": "phone390-light",
+   "url": "/simplify",
+   "tip": {
+    "visible": true,
+    "rect": "74 259 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 74, 259)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui < body.fi-body.fi-panel-app.fi-body-has-topbar < html.fi",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1804 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1804,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-tooltip 74,259 280x66"
+     ],
+     "card": "0..1688 of 844",
+     "topbar": "brand 14..194, badges 198..231, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-nosuffix-overzicht-tip.png"
+  },
+  {
+   "id": "season-nosuffix-overzicht-tap",
+   "title": "Seizoen · Halloween zonder \"× Pelican\" · overzicht, tooltip (tik)",
+   "stand": "phone390-light",
+   "url": "/simplify",
+   "tip": {
+    "visible": true,
+    "rect": "74 259 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 74, 259)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui < body.fi-body.fi-panel-app.fi-body-has-topbar < html.fi",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1804 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1804,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-tooltip 74,259 280x66"
+     ],
+     "card": "0..1688 of 844",
+     "topbar": "brand 14..194, badges 198..231, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-nosuffix-overzicht-tap.png"
+  },
+  {
+   "id": "season-nosuffix-tabbar",
+   "title": "Seizoen · Halloween zonder \"× Pelican\" · telefoon tabbalk",
+   "stand": "phone390-light",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1804 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1804,
+     "pageScrollW": 390,
+     "card": "0..1688 of 844",
+     "topbar": "brand 14..194, badges 198..231, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-nosuffix-tabbar.png"
+  },
+  {
+   "id": "season-nosuffix-server",
+   "title": "Seizoen · Halloween zonder \"× Pelican\" · serverpagina",
+   "stand": "phone390-light",
+   "url": "/server/0qgbke4u/console",
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1472 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1472,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "525..1426 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,586 320x570; terminal 15,526 360x640; bar top 1218",
+     "topbar": "brand 14..194, badges 198..231, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,177 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,525 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-nosuffix-server.png"
+  },
+  {
+   "id": "season-nosuffix-server-tip",
+   "title": "Seizoen · Halloween zonder \"× Pelican\" · server, tooltip (hover)",
+   "stand": "phone390-light",
+   "url": "/server/0qgbke4u/console",
+   "tip": {
+    "visible": true,
+    "rect": "74 57 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 74, 57)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui < body.fi-body.fi-panel-server.fi-body-has-navigation < html.fi",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1472 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1472,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-tooltip 74,57 280x66"
+     ],
+     "card": "525..1426 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,586 320x570; terminal 15,526 360x640; bar top 1218",
+     "topbar": "brand 14..194, badges 198..231, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,177 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,525 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-nosuffix-server-tip.png"
+  },
+  {
+   "id": "season-nosuffix-server-tap",
+   "title": "Seizoen · Halloween zonder \"× Pelican\" · server, tooltip (tik)",
+   "stand": "phone390-light",
+   "url": "/server/0qgbke4u/console",
+   "tip": {
+    "visible": true,
+    "rect": "74 57 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 74, 57)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui < body.fi-body.fi-panel-server.fi-body-has-navigation < html.fi",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1472 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1472,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-tooltip 74,57 280x66"
+     ],
+     "card": "525..1426 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,586 320x570; terminal 15,526 360x640; bar top 1218",
+     "topbar": "brand 14..194, badges 198..231, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,177 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,525 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-nosuffix-server-tap.png"
+  },
+  {
+   "id": "season-logo",
+   "title": "Seizoen · Halloween met logo · overzicht",
+   "stand": "phone390-light",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1826 > 844), the page scrolls"
+     },
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: ps-visually-hidden: \"Northwind Games\" (180>1)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1826,
+     "pageScrollW": 390,
+     "card": "0..1710 of 844",
+     "topbar": "brand 14..214, badges 219..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-logo.png"
+  },
+  {
+   "id": "season-logo-overzicht-tip",
+   "title": "Seizoen · Halloween met logo · overzicht, tooltip (hover)",
+   "stand": "phone390-light",
+   "url": "/simplify",
+   "tip": {
+    "visible": true,
+    "rect": "95 272 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 95, 272)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui < body.fi-body.fi-panel-app.fi-body-has-topbar < html.fi",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1826 > 844), the page scrolls"
+     },
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: ps-visually-hidden: \"Northwind Games\" (180>1)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1826,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-tooltip 95,272 280x66"
+     ],
+     "card": "0..1710 of 844",
+     "topbar": "brand 14..214, badges 219..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-logo-overzicht-tip.png"
+  },
+  {
+   "id": "season-logo-overzicht-tap",
+   "title": "Seizoen · Halloween met logo · overzicht, tooltip (tik)",
+   "stand": "phone390-light",
+   "url": "/simplify",
+   "tip": {
+    "visible": true,
+    "rect": "95 272 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 95, 272)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui < body.fi-body.fi-panel-app.fi-body-has-topbar < html.fi",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1826 > 844), the page scrolls"
+     },
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: ps-visually-hidden: \"Northwind Games\" (180>1)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1826,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-tooltip 95,272 280x66"
+     ],
+     "card": "0..1710 of 844",
+     "topbar": "brand 14..214, badges 219..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-logo-overzicht-tap.png"
+  },
+  {
+   "id": "season-logo-tabbar",
+   "title": "Seizoen · Halloween met logo · telefoon tabbalk",
+   "stand": "phone390-light",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1826 > 844), the page scrolls"
+     },
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: ps-visually-hidden: \"Northwind Games\" (180>1)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1826,
+     "pageScrollW": 390,
+     "card": "0..1710 of 844",
+     "topbar": "brand 14..214, badges 219..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-logo-tabbar.png"
+  },
+  {
+   "id": "season-logo-server",
+   "title": "Seizoen · Halloween met logo · serverpagina",
+   "stand": "phone390-light",
+   "url": "/server/0qgbke4u/console",
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1472 > 844), the page scrolls"
+     },
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: ps-visually-hidden: \"Northwind Games\" (180>1)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1472,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "525..1426 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,586 320x570; terminal 15,526 360x640; bar top 1218",
+     "topbar": "brand 14..255, badges 260..292, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,177 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,525 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-logo-server.png"
+  },
+  {
+   "id": "season-logo-server-tip",
+   "title": "Seizoen · Halloween met logo · server, tooltip (hover)",
+   "stand": "phone390-light",
+   "url": "/server/0qgbke4u/console",
+   "tip": {
+    "visible": true,
+    "rect": "102 57 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 102, 57)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui < body.fi-body.fi-panel-server.fi-body-has-navigation < html.fi",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1472 > 844), the page scrolls"
+     },
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: ps-visually-hidden: \"Northwind Games\" (180>1)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1472,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-tooltip 102,57 280x66"
+     ],
+     "card": "525..1426 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,586 320x570; terminal 15,526 360x640; bar top 1218",
+     "topbar": "brand 14..255, badges 260..292, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,177 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,525 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-logo-server-tip.png"
+  },
+  {
+   "id": "season-logo-server-tap",
+   "title": "Seizoen · Halloween met logo · server, tooltip (tik)",
+   "stand": "phone390-light",
+   "url": "/server/0qgbke4u/console",
+   "tip": {
+    "visible": true,
+    "rect": "102 57 280 66",
+    "opacity": "1",
+    "display": "block",
+    "visibility": "visible",
+    "zIndex": "90",
+    "position": "fixed",
+    "transform": "matrix(1, 0, 0, 1, 102, 57)",
+    "text": "HalloweenThe evening before All Saints' Day, with pumpkins a",
+    "onTop": "div.ps-tooltip.is-visible",
+    "parents": "div.ps-ui < body.fi-body.fi-panel-server.fi-body-has-navigation < html.fi",
+    "innerH": 844,
+    "scrollY": 0
+   },
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1472 > 844), the page scrolls"
+     },
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: ps-visually-hidden: \"Northwind Games\" (180>1)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1472,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-tooltip 102,57 280x66"
+     ],
+     "card": "525..1426 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,586 320x570; terminal 15,526 360x640; bar top 1218",
+     "topbar": "brand 14..255, badges 260..292, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,177 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,525 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-logo-server-tap.png"
+  },
+  {
+   "id": "season-off-settings",
+   "title": "Seizoen · schakelaar uit, instellingen opgeslagen",
+   "stand": "phone390-light",
+   "url": "/admin/simplify?tab=appearance",
+   "main": {
+    "url": "/admin/simplify?tab=appearance",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2774 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2774,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "strong: \"Northwind Games\"",
+      "b: \"Northwind Games\""
+     ],
+     "card": "44..2718 of 844",
+     "scope": "simplify",
+     "boxes": [
+      "s-settings-tabs.fi-sc-tabs.fi-contained 16,276 358x2410"
+     ],
+     "actionsBelow": [
+      "\"Run setup again\" at y=208",
+      "\"\" at y=208"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-off-settings.png"
+  },
+  {
+   "id": "season-off",
+   "title": "Seizoen · Seizoensverrassingen uit · overzicht",
+   "stand": "phone390-light",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1821 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1821,
+     "pageScrollW": 390,
+     "card": "0..1705 of 844",
+     "topbar": "brand 14..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-off.png"
+  },
+  {
+   "id": "season-off-tabbar",
+   "title": "Seizoen · Seizoensverrassingen uit · telefoon tabbalk",
+   "stand": "phone390-light",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1821 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1821,
+     "pageScrollW": 390,
+     "card": "0..1705 of 844",
+     "topbar": "brand 14..251, actions 261..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-off-tabbar.png"
+  },
+  {
+   "id": "season-off-server",
+   "title": "Seizoen · Seizoensverrassingen uit · serverpagina",
+   "stand": "phone390-light",
+   "url": "/server/0qgbke4u/console",
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1467 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1467,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "520..1421 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,581 320x570; terminal 15,521 360x640; bar top 1213",
+     "topbar": "brand 14..291, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,172 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,520 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-light/season-off-server.png"
+  },
+  {
+   "id": "overview",
+   "title": "Klant · overzicht",
+   "stand": "klant-phone390-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (896 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 896,
+     "pageScrollW": 390,
+     "card": "0..780 of 844",
+     "topbar": "brand 14..291, badges 296..328",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-phone390-dark/overview.png"
+  },
+  {
+   "id": "account",
+   "title": "Klant · accountmenu",
+   "stand": "klant-phone390-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (896 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 896,
+     "pageScrollW": 390,
+     "card": "0..780 of 844",
+     "topbar": "brand 14..291, badges 296..328",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 390x98",
+      "fi-callout.fi-color.fi-color-info 0,122 390x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-phone390-dark/account.png"
+  },
+  {
+   "id": "server-console",
+   "title": "Klant · console",
+   "stand": "klant-phone390-dark",
+   "url": "/server/0qgbke4u/console",
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1494 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1494,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "card": "547..1448 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1240",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-phone390-dark/server-console.png"
+  },
+  {
+   "id": "server-more",
+   "title": "Klant · ⋯-menu",
+   "stand": "klant-phone390-dark",
+   "url": "/server/0qgbke4u/console",
+   "main": {
+    "url": "/server/0qgbke4u/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1494 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1494,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-info-menu 131,356 230x256"
+     ],
+     "card": "547..1448 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,608 320x570; terminal 15,548 360x640; bar top 1240",
+     "topbar": "brand 14..291, badges 296..328, actions 338..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,199 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,547 362x757"
+     ],
+     "dropdown": [
+      "ps-info-menu 256px of 563 max"
+     ],
+     "arrow": [
+      "ps-info-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-phone390-dark/server-more.png"
+  }
+ ],
+ "problems": [
+  "phone390-dark season-valentine: no seasonal badge on overzicht",
+  "phone390-dark season-valentine: no seasonal badge on server",
+  "phone390-dark season-easter: no seasonal badge on overzicht",
+  "phone390-dark season-easter: no seasonal badge on server",
+  "phone390-dark season-off: no seasonal badge on overzicht",
+  "phone390-dark season-off: no seasonal badge on server",
+  "phone390-dark SEASON OFF: ok, nothing seasonal left on overview and server page",
+  "phone390-light season-valentine: no seasonal badge on overzicht",
+  "phone390-light season-valentine: no seasonal badge on server",
+  "phone390-light season-easter: no seasonal badge on overzicht",
+  "phone390-light season-easter: no seasonal badge on server",
+  "phone390-light season-off: no seasonal badge on overzicht",
+  "phone390-light season-off: no seasonal badge on server",
+  "phone390-light SEASON OFF: ok, nothing seasonal left on overview and server page",
+  "klant-phone390-dark overview: nothing to click for .ps-account-button"
+ ]
+}
