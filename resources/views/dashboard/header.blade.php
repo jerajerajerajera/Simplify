@@ -2,7 +2,7 @@
 <header class="ps-top" @if (($notes ?? null) === 'host') data-ps-notes="host" @endif>
     <div class="ps-heading">
         <div class="ps-identity">
-            <a :href="boot.list_url"><h1 class="ps-brand" :style="brandStyle()"><template x-if="brand().logo_url"><img class="ps-brand-logo" :src="brand().logo_url" alt="" :style="{ height: (Number(brand().logo_height) || 32) + 'px' }"></template><span class="ps-panel-name" x-show="!brand().logo_url" x-text="boot.panel_name"></span><span class="ps-title-pelican" x-show="boot.appearance?.pelican_suffix !== false">{{ $u('pelican') }}</span><span class="ps-visually-hidden" x-show="brand().logo_url" x-text="boot.panel_name"></span></h1></a>
+            <a :href="boot.list_url"><h1 class="ps-brand" :style="brandStyle()"><template x-if="brand().logo_url"><img class="ps-brand-logo" :src="brand().logo_url" alt="" :style="{ height: (Number(brand().logo_height) || 32) + 'px' }"></template><span class="ps-panel-name" x-show="!brand().logo_url || brand().logo_text" :style="brand().text_style" x-text="boot.panel_name"></span><span class="ps-title-pelican" x-show="boot.appearance?.pelican_suffix !== false">{{ $u('pelican') }}</span><span class="ps-visually-hidden" x-show="brand().logo_url && !brand().logo_text" x-text="boot.panel_name"></span></h1></a>
             {{-- Seasonal touches: an icon for the holiday of the day (resources/js/seasons.js). Pointing at it, or tapping it, tells what the day is. --}}
             <span class="ps-season-badges" x-show="seasonBadges().length" x-cloak>
                 <template x-for="badge in seasonBadges()" :key="badge.key">
