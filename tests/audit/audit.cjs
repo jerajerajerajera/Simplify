@@ -258,6 +258,7 @@ async function round(theme) {
   await alpine('d.setHostMode(false)'); await sleep(800);
   if (['d1440', 'tablet768', 'phone390'].includes(stand.split('-')[0])) await seasons(theme);
   if (['d1440', 'phone390'].includes(stand.split('-')[0])) await createFlow();
+  if (['d1440', 'laag1366', 'laag1100', 'phone390'].includes(stand.split('-')[0])) await extrasFlow(theme);
   // Last, because it changes what the account has read and archived.
   if (theme === 'dark' && ['d1440', 'phone390'].includes(stand.split('-')[0])) await notifyFlow();
 }
@@ -297,20 +298,109 @@ async function createFlow() {
   await goto(overview);
 }
 
+// 1.5.0 extras: the end of the setup in low windows (in and outside host mode), the setup's Look step (#86), the
+// install screen and the EULA bar (#89) and an announcement pinned in the bell (#92). Each check writes ok or WRONG.
+async function extrasFlow(theme) {
+  const overview = urls.app.find((p) => /App\\Pages\\Overview$/.test(p.class))?.url || '/';
+  const onPhone = phone(), last = !LIGHT.includes(stand.split('-')[0]) || theme === 'light';
+  const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
+  const fits = (doc) => doc.evaluate(() => ({ scroll: document.documentElement.scrollHeight, window: innerHeight })).catch(() => null);
+  // Setup done: the page itself never scrolls; the add-on list scrolls inside its card.
+  await goto('/admin/simplify-setup-done', 1500); await record('setup-done', 'Setup klaar (gewone beheerpagina)');
+  let f = await fits(page); say('setup-done', f && f.scroll <= f.window, f);
+  await goto(overview); await alpine('d.setHostMode(true)'); await sleep(1500);
+  const leaf = await alpine(`const sec = d.hostSections().find((x) => x.key === 'panel'); const it = sec && sec.pages.find((i) => i.settings); if (!it) return null; d.openHostLeaf(sec, it); return it.label;`);
+  await page.waitForSelector('.ps-host-frame iframe', { timeout: 8000 }).catch(() => {}); await sleep(2500);
+  const frame = page.frames().find((x) => x !== page.mainFrame() && /\/admin/.test(x.url()));
+  if (leaf && frame) {
+    await frame.goto(new URL('/admin/simplify-setup-done?simplify_embed=1', base).href, { waitUntil: 'load' }).catch(() => {}); await sleep(2000);
+    await record('setup-done-host', 'Setup klaar (hostmodus, in het frame)');
+    const ff = await fits(frame), pf = await fits(page);
+    say('setup-done-host', ff && pf && ff.scroll <= ff.window && pf.scroll <= pf.window, { frame: ff, page: pf });
+  } else say('setup-done-host', false, { note: 'no Simplify settings page in host mode', leaf, frames: page.frames().map((x) => rel(x.url())) });
+  await alpine('d.setHostMode(false)'); await sleep(500);
+
+  // The setup's Look step (#86): logo, text or both; effect; colour = accent. The preview follows every choice.
+  if (stand.split('-')[0] !== 'laag1100') {
+    await goto('/admin/simplify-setup', 1500);
+    const step = page.locator('.fi-sc-wizard-header :is(button, a):has-text("Look") >> visible=true').first();
+    if (await step.count()) { await step.click().catch(() => {}); await sleep(1200); }
+    else { for (let i = 0; i < 2; i++) { await page.locator('.s-setup button:has-text("Next") >> visible=true').first().click().catch(() => {}); await sleep(1200); } }
+    if (!(await page.locator('.s-look >> visible=true').count())) say('wizard-look', false, { note: 'Look step did not open', url: rel(page.url()) });
+    else {
+      await record('wizard-look', 'Setup · Look-stap');
+      const png = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABSElEQVR4nO2bwQ3CQAwECaIb6IVGoBoagV7oBx7oPpEQxLf2nHQ7bxKvJ75wEWE5Xu6v3cTs6QA0FkAHoLEAOgCNBdABaCyADkBjAXQAmkN1weft/PMzp+ujIMmHpeJh6J+mv5EtI1VAT+NrskSkCFA2vkYtQn4TzGw+4/xSAdnNZ9SRCahqXl1PIqC6eWXdbgFU86r6XQLo5hs9OabfCocFjHL1G9E8noDIQaNd/UYkV9nTYGQLWyHaS2DrAaOOf2NrPk8AHYDGAugANBZAB6CxADoAzWYBlT9aRNiab/oJKHsYGnULHZqAUZdBJNf0SyAsYLQpiObxBPQcPMoU9OTongBaQm99yRKgJCjqyu4B1RJU9aQ3wSoJyjryb4FsCerz+x0hvyVW/J+hKd8THBlvhekANBZAB6CxADoAjQXQAWgsgA5A8waE/mJlGzhiUQAAAABJRU5ErkJggg==', 'base64');
+      await page.locator('.s-look-logo input[type=file]').first().setInputFiles({ name: 'logo.png', mimeType: 'image/png', buffer: png }).catch((e) => say('wizard-look-logo', false, { note: e.message.slice(0, 120) }));
+      await page.waitForSelector('.s-look-preview .s-preview-bar img', { timeout: 15000 }).catch(() => {}); await sleep(1500);
+      await record('wizard-look-logo', 'Setup · Look, logo geüpload');
+      const preview = () => page.evaluate(() => { const bar = document.querySelector('.s-look-preview .s-preview-bar'); if (!bar) return null; const img = bar.querySelector('img'), name = bar.querySelector('.s-preview-name'), inner = name && name.firstElementChild; const vis = (e) => !!e && e.getClientRects().length > 0 && getComputedStyle(e).display !== 'none'; const cs = inner ? getComputedStyle(inner) : null; return { img: vis(img), text: vis(name), shadow: cs && cs.textShadow, color: cs && cs.color, fill: cs && cs.webkitTextFillColor, background: cs && cs.backgroundImage }; });
+      const chips = page.locator('.s-chips[role=radiogroup]:has(input[value="both"])').first();
+      if (!(await chips.count())) say('wizard-look-show', false, { note: 'no logo/text/both choice after the upload', preview: await preview() });
+      else for (const [v, img, text] of [['logo', true, false], ['text', false, true], ['both', true, true]]) {
+        await chips.locator(`label:has(input[value="${v}"])`).click().catch(() => {}); await sleep(1500);
+        await record(`wizard-look-show-${v}`, `Setup · Look, toont ${v}`);
+        const pv = await preview(); say(`wizard-look-show-${v}`, pv && pv.img === img && pv.text === text, pv);
+      }
+      // Effect and colour sit under "fine-tune" in the name style.
+      if (await page.locator('.s-fine-toggle >> visible=true').count()) {
+        const toggle = page.locator('.s-fine-toggle').first();
+        if ((await toggle.getAttribute('aria-expanded')) !== 'true') { await toggle.click().catch(() => {}); await sleep(600); }
+        const row = async (name) => { const head = page.locator(`.s-fine-head:has-text("${name}") >> visible=true`).first(); if (await head.count() && (await head.getAttribute('aria-expanded')) !== 'true') { await head.click().catch(() => {}); await sleep(600); } };
+        const before = await preview();
+        await row('Effect');
+        for (const e of ['Glow', 'Shadow']) {
+          await page.locator(`.s-chip:has-text("${e}") >> visible=true`).first().click().catch(() => {}); await sleep(900);
+          await record(`wizard-look-effect-${slug(e)}`, `Setup · Look, effect ${e}`);
+          const pv = await preview(); say(`wizard-look-effect-${slug(e)}`, pv && pv.shadow && pv.shadow !== 'none' && pv.shadow !== (before && before.shadow), { shadow: pv && pv.shadow });
+        }
+        await row('Colo');
+        const c0 = await preview();
+        await page.locator('.s-chip:has-text("Accent") >> visible=true').first().click().catch(() => {}); await sleep(900);
+        await record('wizard-look-colour-accent', 'Setup · Look, kleur = accentkleur');
+        const c1 = await preview(); say('wizard-look-colour-accent', !!c1, { before: c0 && { color: c0.color, fill: c0.fill, background: c0.background }, after: c1 && { color: c1.color, fill: c1.fill, background: c1.background } });
+      } else say('wizard-look-fine', false, { note: 'no fine-tune toggle for the name style' });
+    }
+  }
+
+  // Install screen and the EULA bar (#89): a server that installs, one whose installation failed, one with the EULA open.
+  for (const [name, id, sel, label] of [['New World', 'server-installing', '.ps-install', 'installeert'], ['Broken Install', 'server-install-failed', '.ps-install', 'installatie mislukt'], ['Fresh Start', 'server-eula', '.ps-ready.is-eula', 'EULA nog open']]) {
+    if (!urls.servers[name]) { say(id, false, { note: 'server not seeded: ' + name }); continue; }
+    await goto(urls.servers[name], 3500); await record(id, `Server · ${name} (${label})`);
+    const st = await page.evaluate((s) => { const el = document.querySelector(s); const vis = !!el && el.getClientRects().length > 0; return { shown: vis, text: vis ? el.innerText.replace(/\s+/g, ' ').slice(0, 220) : null, eulaLink: !!(el && el.querySelector('a[href="https://www.minecraft.net/eula"]')), start: !!(el && [...el.querySelectorAll('button')].some((b) => /accept and start|try again/i.test(b.textContent) && b.getClientRects().length)) }; }, sel);
+    say(id, st.shown && (id !== 'server-eula' || (st.eulaLink && st.start)) && (id !== 'server-install-failed' || st.start), st);
+    if (id === 'server-eula' && st.shown && last) {
+      await page.locator('.ps-ready-start >> visible=true').first().click().catch(() => {}); await sleep(3500);
+      await record('server-eula-accepted', 'Server · EULA geaccepteerd en gestart');
+      const after = await page.evaluate(() => { const el = document.querySelector('.ps-ready.is-eula'); return { bar: !!el && el.getClientRects().length > 0, status: window.Alpine && Alpine.$data(document.querySelector('.ps'))?.status }; }).catch(() => null);
+      say('server-eula-accept', after && !after.bar, after);
+    }
+  }
+
+  // An announcement pinned to everyone's bell (#92): on top under "Pinned", without ✕.
+  await goto(overview); await sleep(600);
+  if (onPhone) { await page.locator('.ps-tabbar button[aria-controls="ps-navigation-items"]').first().click().catch(() => {}); await sleep(500); }
+  await page.locator('[x-ref="notifyButton"]').first().click().catch(() => {}); await sleep(1200);
+  const pin = await page.evaluate(() => { const box = document.querySelector('#ps-notify-menu .ps-notify-pinned'); const vis = !!box && box.getClientRects().length > 0; const items = vis ? [...box.querySelectorAll('.ps-notify-item')].filter((e) => e.getClientRects().length) : []; return { shown: vis, items: items.map((e) => e.innerText.split('\n')[0]), close: items.some((e) => { const c = e.querySelector('.ps-notify-close'); return c && c.getClientRects().length > 0; }), first: !!box && box === box.parentElement.querySelector(':scope > :not(template)') }; }).catch(() => null);
+  await record('notify-pinned', 'Meldingen · vastgezette aankondiging bovenaan');
+  say('notify-pinned', pin && pin.shown && pin.items.some((t) => /Maintenance on Saturday/.test(t)) && !pin.close, pin);
+  await escape(); if (onPhone) await escape();
+  await goto(overview);
+}
+
 // Notifications (1.5.0, #90): Mark read on one, Clear read, ✕ to Archived, and Archived at the bottom of the window with
 // Show more and Mark as unread. Each step checks that the counts move the right way.
 async function notifyFlow() {
   const overview = urls.app.find((p) => /App\\Pages\\Overview$/.test(p.class))?.url || '/';
   const onPhone = phone();
   const openBell = async () => { await goto(overview); await sleep(600); if (onPhone) { if (!(await page.locator('.ps-tabbar button[aria-controls="ps-navigation-items"]').count())) await page.locator('.ps-mobile-menu').first().click().catch(() => {}); else await page.locator('.ps-tabbar button[aria-controls="ps-navigation-items"]').first().click().catch(() => {}); await sleep(500); } await page.locator('[x-ref="notifyButton"]').first().click().catch(() => {}); await sleep(900); };
-  const count = (scope) => page.evaluate((sc) => { const root = document.querySelector(sc); if (!root) return null; const vis = (e) => e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden'; const items = [...root.querySelectorAll('.ps-notify-item')].filter(vis); const inArchive = (e) => !!e.closest('#ps-notify-archived'); return { items: items.filter((e) => !inArchive(e)).length, unread: items.filter((e) => !inArchive(e) && !e.classList.contains('is-read')).length, archived: items.filter(inArchive).length }; }, scope).catch(() => null);
+  const count = (scope) => page.evaluate((sc) => { const root = document.querySelector(sc); if (!root) return null; const vis = (e) => e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden'; const items = [...root.querySelectorAll('.ps-notify-item')].filter((e) => vis(e) && !e.closest('.ps-notify-pinned')); const inArchive = (e) => !!e.closest('#ps-notify-archived'); return { items: items.filter((e) => !inArchive(e)).length, unread: items.filter((e) => !inArchive(e) && !e.classList.contains('is-read')).length, archived: items.filter(inArchive).length }; }, scope).catch(() => null);
   const say = (step, ok, detail) => problems.push(`${stand} notify-${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
   const bell = '#ps-notify-menu';
   await openBell();
   const c0 = await count(bell); await record('notify-bell', 'Meldingen · bel open', { counts: c0 });
   if (!c0 || !c0.items) { say('bell', false, { c0, note: 'no notifications under the bell' }); return; }
   // 1. Mark read on one unread notification.
-  const mark = page.locator(`${bell} .ps-notify-item:not(.is-read) .ps-notify-actions button.is-subtle >> visible=true`).first();
+  const mark = page.locator(`${bell} .ps-notify-item:not(.is-read):not(.ps-notify-pinned .ps-notify-item) .ps-notify-actions button.is-subtle >> visible=true`).first();
   if (await mark.count()) { await mark.click().catch(() => {}); await sleep(1500); const c1 = await count(bell); await record('notify-mark-read', 'Meldingen · één melding gelezen', { counts: c1 }); say('mark-read', c1 && c1.unread === c0.unread - 1, { before: c0, after: c1 }); }
   else say('mark-read', false, { note: 'no unread notification with a Mark read button' });
   // 2. Clear read under the bell: read notifications go to Archived.

@@ -53,7 +53,12 @@ $list = [
     ['Arena', 'Counter-Strike 2', 'offline', 0, 0, $admin, null],
     ['Terraria Co-op', 'Terraria', 'offline', 0, 0, $admin, null],
     ['Discord bot', 'Node.js', 'running', 180, 2, $admin, null],
+    // 1.5.0: the install screen (installing, failed) and the EULA bar (a new Minecraft server whose eula.txt is still false).
+    ['New World', 'Paper', 'offline', 0, 0, $admin, null],
+    ['Broken Install', 'Paper', 'offline', 0, 0, $admin, null],
+    ['Fresh Start', 'Paper', 'offline', 0, 0, $admin, null],
 ];
+$status = ['New World' => 'installing', 'Broken Install' => 'install_failed'];
 $minecraft = ['Paper', 'Forge'];
 // Egg descriptions as the pelican-eggs repository has them.
 $about = [
@@ -74,14 +79,14 @@ foreach ($list as $i => [$name, $eggName, $state, $memory, $cpu, $owner, $color]
         'docker_images' => ['ghcr.io/pelican-eggs/yolks:java_21'], 'update_url' => null]);
     $allocation = Allocation::factory()->create(['node_id' => $node->id, 'ip' => '127.0.0.1', 'ip_alias' => 'play.example.com', 'port' => 25565 + $i]);
     $server = Server::factory()->create(['name' => $name, 'owner_id' => $owner->id, 'node_id' => $node->id, 'allocation_id' => $allocation->id, 'egg_id' => $eggs[$eggName]->id,
-        'image' => 'ghcr.io/pelican-eggs/yolks:java_21', 'memory' => $memory > 4096 ? 8192 : 4096, 'disk' => 20480, 'cpu' => 200, 'installed_at' => now(), 'status' => null,
+        'image' => 'ghcr.io/pelican-eggs/yolks:java_21', 'memory' => $memory > 4096 ? 8192 : 4096, 'disk' => 20480, 'cpu' => 200, 'installed_at' => isset($status[$name]) ? null : now(), 'status' => $status[$name] ?? null,
         'created_at' => now()->subDays(20 - $i)]);
     $allocation->update(['server_id' => $server->id]);
     $servers[$name] = $server;
     $files = ['/logs/latest.log' => "[12:00:05 INFO]: Done (4.2s)!\n"];
     if (in_array($eggName, $minecraft, true)) {
         $files += ['/server.properties' => "motd=\\u00a7a$name \\u00a77- welcome!\nmax-players=20\ndifficulty=normal\ngamemode=survival\npvp=true\nwhite-list=false\nview-distance=10\n",
-            '/eula.txt' => "eula=true\n"];
+            '/eula.txt' => $name === 'Fresh Start' ? "eula=false\n" : "eula=true\n"];
         $files += $eggName === 'Paper'
             ? ['/plugins/EssentialsX-2.21.0.jar' => 'jar', '/plugins/LuckPerms-Bukkit-5.4.141.jar' => 'jar', '/plugins/WorldEdit-7.3.9.jar' => 'jar']
             : ['/mods/jei-1.21.1-forge-19.21.0.jar' => 'jar', '/mods/create-1.21.1-6.0.4.jar' => 'jar'];
@@ -124,6 +129,11 @@ $part('announcements', function () use ($admin) {
         ['category' => 'warning', 'title' => 'Maintenance on Saturday', 'body' => 'The servers restart between 07:00 and 07:30.', 'audience' => 'everyone', 'in_bell' => true, 'starts_at' => now()->subHour(), 'created_by' => $admin->id, 'created_at' => now(), 'updated_at' => now()],
         ['category' => 'info', 'title' => 'New node in Amsterdam', 'body' => 'New servers start faster from today.', 'audience' => 'everyone', 'in_bell' => false, 'starts_at' => now()->subHour(), 'created_by' => $admin->id, 'created_at' => now()->subMinute(), 'updated_at' => now()],
     ]);
+});
+// 1.5.0 (#92): the maintenance announcement pinned to everyone's bell, delivered as the scheduler would.
+$part('pinned announcement', function () {
+    DB::table('simplify_core_announcements')->where('title', 'Maintenance on Saturday')->update(['bell_pinned' => true]);
+    Simplify\Core\Announcements\Services\Bell::deliverDue();
 });
 $part('subdomains', function () use ($uuid) {
     Simplify\Core\Subdomains\Services\Settings::save(['domain' => 'play.example.com', 'target' => 'node.example.com', 'port_min' => 25565, 'port_max' => 25600, 'zone_id' => str_repeat('a1', 16)]);
