@@ -79,7 +79,7 @@ foreach ($list as $i => [$name, $eggName, $state, $memory, $cpu, $owner, $color]
         'docker_images' => ['ghcr.io/pelican-eggs/yolks:java_21'], 'update_url' => null]);
     $allocation = Allocation::factory()->create(['node_id' => $node->id, 'ip' => '127.0.0.1', 'ip_alias' => 'play.example.com', 'port' => 25565 + $i]);
     $server = Server::factory()->create(['name' => $name, 'owner_id' => $owner->id, 'node_id' => $node->id, 'allocation_id' => $allocation->id, 'egg_id' => $eggs[$eggName]->id,
-        'image' => 'ghcr.io/pelican-eggs/yolks:java_21', 'memory' => $memory > 4096 ? 8192 : 4096, 'disk' => 20480, 'cpu' => 200, 'installed_at' => now(), 'status' => null,
+        'image' => 'ghcr.io/pelican-eggs/yolks:java_21', 'memory' => $memory > 4096 ? 8192 : 4096, 'disk' => 20480, 'cpu' => 200, 'backup_limit' => 3, 'installed_at' => now(), 'status' => null,
         'created_at' => now()->subDays(20 - $i)]);
     $allocation->update(['server_id' => $server->id]);
     $servers[$name] = $server;
@@ -90,6 +90,12 @@ foreach ($list as $i => [$name, $eggName, $state, $memory, $cpu, $owner, $color]
         $files += $eggName === 'Paper'
             ? ['/plugins/EssentialsX-2.21.0.jar' => 'jar', '/plugins/LuckPerms-Bukkit-5.4.141.jar' => 'jar', '/plugins/WorldEdit-7.3.9.jar' => 'jar']
             : ['/mods/jei-1.21.1-forge-19.21.0.jar' => 'jar', '/mods/create-1.21.1-6.0.4.jar' => 'jar'];
+    }
+    // Survival SMP's whitelist, operators and bans for Toolkit's Players page (the online names come from fake-minecraft.cjs).
+    if ($name === 'Survival SMP') {
+        $player = fn (array $names) => json_encode(array_map(fn (int $n, string $who) => ['uuid' => sprintf('00000000-0000-4000-8000-%012d', $n), 'name' => $who], array_keys($names), $names));
+        $files += ['/whitelist.json' => $player(['Mira', 'Tobias', 'Sven', 'Noor', 'Lucas', 'Fenna', 'Daan', 'Isa']), '/ops.json' => $player(['Mira', 'Tobias']),
+            '/banned-players.json' => $player(['Griefer42'])];
     }
     // All the Mods 10 runs a CurseForge modpack: its manifest.json makes the Mods page fold the pack's own mods into one row.
     if ($name === 'All the Mods 10') {
@@ -181,6 +187,11 @@ $part('toolkit software', function () use ($servers) {
     foreach (['Survival SMP' => 'paper', 'Creative Builds' => 'paper', 'Skyblock' => 'paper', 'All the Mods 10' => 'forge'] as $name => $loader) {
         DB::table('simplify_toolkit_servers')->insert(['server_id' => $servers[$name]->id, 'loader' => $loader, 'minecraft' => '1.21.1', 'created_at' => now(), 'updated_at' => now()]);
     }
+});
+// Toolkit: automatic backups for Survival SMP, and Creative Builds waits for a restart after a change.
+$part('toolkit backups and restart', function () use ($servers) {
+    Simplify\Toolkit\Services\AutomaticBackups::save($servers['Survival SMP'], ['enabled' => true, 'every_minutes' => 360, 'keep' => 3, 'only_when_used' => true]);
+    Simplify\Toolkit\Services\RestartReminder::mark($servers['Creative Builds']);
 });
 // One schedule with three tasks, so the Edit schedule page shows its Tasks block (old plugin issue #236: no way to scroll to it).
 $part('schedule', function () use ($servers) {
