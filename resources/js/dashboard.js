@@ -309,6 +309,24 @@
             : [...(section.tabs || []), ...(extra[section.key] || []), ...section.pages.map((key) => items.find((item) => item.key === key)).filter(Boolean)],
         })).filter((section) => section.pages.length);
       },
+      /** The Admin tools groups, without Health (its checks have their own row under the groups). */
+      adminSections() {
+        return this.hostSections().filter((section) => section.key !== 'health');
+      },
+      /** The open group: on a wide window always one (the first by default), in the phone menu none until tapped. */
+      adminGroup() {
+        const keys = this.adminSections().map((section) => section.key);
+        if (keys.includes(this.adminOpen)) return this.adminOpen;
+        return window.matchMedia('(max-width: 900px)').matches ? null : keys[0] || null;
+      },
+      adminSection() {
+        return this.adminSections().find((section) => section.key === this.adminGroup()) || null;
+      },
+      pickAdminGroup(key) {
+        const phone = window.matchMedia('(max-width: 900px)').matches;
+        this.adminOpen = phone && this.adminGroup() === key ? null : key;
+        this.$nextTick(() => this.fitDropdown(document.getElementById('ps-admin-menu')));
+      },
       adminHealthPage() {
         return this.adminPages().flatMap((group) => group.items).find((item) => item.key === 'health') || null;
       },

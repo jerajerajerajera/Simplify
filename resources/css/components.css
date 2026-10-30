@@ -383,20 +383,31 @@ html:has(.ps-modal-layer[data-open="true"]), html.ps-ui-locked { overflow: hidde
 .ps-notify-item > strong { padding-inline-end: 22px; }
 .ps-notify-item strong { font-size: 13px; font-weight: 650; }
 .ps-notify-item small { color: var(--ps-muted); font-size: 12px; line-height: 1.45; }
-.ps-admin-menu { width: min(400px, calc(100vw - 24px)); max-height: 66.667dvh; overflow-y: auto; }
-.ps-admin-groups { display: grid; gap: 6px; margin-top: 12px; }
-.ps-admin-group { display: grid; align-content: start; gap: 1px; padding: 4px; border: 1px solid color-mix(in srgb, var(--ps-tone) 22%, var(--ps-line)); border-radius: var(--ps-radius-lg); background: color-mix(in srgb, var(--ps-tone) 5%, var(--ps-surface)); }
-.ps-admin-group-head { display: flex; align-items: center; gap: 9px; width: 100%; padding: 4px; border: 0; border-radius: var(--ps-radius); background: transparent; color: var(--ps-ink); font: 700 13px/1.2 var(--ps-font); text-align: start; cursor: pointer; }
-.ps-admin-group-head:hover, .ps-admin-group-head:focus-visible { background: color-mix(in srgb, var(--ps-tone) 10%, transparent); }
+.ps-admin-menu { width: min(600px, calc(100vw - 24px)); max-height: 66.667dvh; overflow-y: auto; }
+/* Groups on the left as straight rows: the open one has a stripe in its colour and an arrow towards its tiles. */
+.ps-admin-split { display: grid; grid-template-columns: 214px minmax(0, 1fr); margin-top: 12px; }
+.ps-admin-nav { display: grid; align-content: start; border-inline-end: 1px solid var(--ps-line); }
+.ps-admin-group { --ps-tone: var(--ps-accent); display: grid; }
+.ps-admin-group-head { display: flex; align-items: center; gap: 9px; width: 100%; min-height: 42px; padding: 6px 10px 6px 6px; border: 0; border-inline-start: 2px solid transparent; border-radius: 0; background: transparent; color: var(--ps-ink); font: 700 13px/1.2 var(--ps-font); text-align: start; cursor: pointer; }
+.ps-admin-group-head:hover, .ps-admin-group-head:focus-visible { background: color-mix(in srgb, var(--ps-tone) 7%, transparent); outline: none; }
+.ps-admin-group.is-open > .ps-admin-group-head { border-inline-start-color: var(--ps-tone); background: color-mix(in srgb, var(--ps-tone) 12%, var(--ps-surface)); }
 .ps-admin-group-head .ps-host-rail-icon { width: 28px; height: 28px; border-radius: 8px; }
-.ps-admin-group-head .ps-host-rail-icon svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.ps-admin-group-head .ps-host-rail-icon svg, .ps-admin-tile .ps-host-rail-icon svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.ps-admin-group-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .ps-admin-group-count { margin-inline-start: auto; color: var(--ps-muted); font: 600 11.5px/1 var(--ps-font); font-variant-numeric: tabular-nums; }
-.ps-admin-group-chevron { flex: none; width: 15px; height: 15px; fill: none; stroke: var(--ps-muted); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform var(--ps-fast, .15s); }
-.ps-admin-group.is-open .ps-admin-group-chevron { transform: rotate(90deg); }
-:dir(rtl) .ps-admin-group:not(.is-open) .ps-admin-group-chevron { transform: scaleX(-1); }
-.ps-admin-group-items { display: grid; gap: 1px; padding: 2px 4px 4px; }
-.ps-admin-group .ps-admin-item { min-height: 32px; padding: 4px 8px; font-size: 12.5px; }
-.ps-admin-group .ps-admin-item svg { width: 15px; height: 15px; stroke: var(--ps-tone); }
+.ps-admin-group-chevron { flex: none; width: 15px; height: 15px; fill: none; stroke: var(--ps-tone); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; opacity: 0; transform: translateX(-4px); transition: opacity var(--ps-fast, .15s), transform var(--ps-fast, .15s); }
+.ps-admin-group.is-open .ps-admin-group-chevron { opacity: 1; transform: none; }
+:dir(rtl) .ps-admin-group-chevron { scale: -1 1; }
+/* The open group's pages as tiles: icon above the name, three to a row. */
+.ps-admin-pane { min-width: 0; padding-inline-start: 12px; }
+.ps-admin-pane-head { display: flex; align-items: center; gap: 8px; padding: 2px 2px 8px; font: 700 13px/1.2 var(--ps-font); }
+.ps-admin-pane-head small { color: var(--ps-muted); font-weight: 600; }
+.ps-admin-tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 6px; }
+.ps-admin-tiles.is-inline { display: none; }
+.ps-admin-tile { display: grid; justify-items: center; align-content: center; gap: 7px; min-width: 0; min-height: 76px; padding: 10px 6px; border: 1px solid color-mix(in srgb, var(--ps-tone) 18%, var(--ps-line)); border-radius: var(--ps-radius-lg); background: color-mix(in srgb, var(--ps-tone) 5%, var(--ps-surface)); color: var(--ps-ink); font: 600 12px/1.2 var(--ps-font); text-align: center; text-decoration: none; transition: background-color var(--ps-fast, .15s), border-color var(--ps-fast, .15s); }
+.ps-admin-tile:hover, .ps-admin-tile:focus-visible { border-color: color-mix(in srgb, var(--ps-tone) 50%, var(--ps-line)); background: color-mix(in srgb, var(--ps-tone) 14%, var(--ps-surface)); outline: none; }
+.ps-admin-tile .ps-host-rail-icon { width: 32px; height: 32px; border-radius: 9px; }
+.ps-admin-tile > span:last-child { max-width: 100%; overflow-wrap: anywhere; }
 .ps-admin-health { display: grid; gap: 8px; margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--ps-line); }
 .ps-admin-health-title { display: inline-flex; align-items: center; gap: 8px; padding: 4px 6px; border: 0; border-radius: var(--ps-radius); background: none; color: var(--ps-ink); font: 600 13px/1.2 var(--ps-font); cursor: pointer; }
 .ps-admin-health-title:hover, .ps-admin-health-title:focus-visible { background: var(--ps-raised); }
@@ -408,10 +419,6 @@ html:has(.ps-modal-layer[data-open="true"]), html.ps-ui-locked { overflow: hidde
 .ps-health-check.is-ok { --ps-tone: var(--ps-ok); }
 .ps-health-check.is-warning { --ps-tone: var(--ps-warn); }
 .ps-health-check.is-failed, .ps-health-check.is-crashed { --ps-tone: var(--ps-danger); }
-.ps-admin-item { display: flex; align-items: center; gap: 10px; min-height: var(--ps-h); padding: 6px 10px; border: 1px solid transparent; border-radius: var(--ps-radius); background: transparent; color: var(--ps-ink); font: 550 13px/1.2 var(--ps-font); text-align: start; cursor: pointer; }
-.ps-admin-item:hover, .ps-admin-item:focus-visible { border-color: var(--ps-line); background: var(--ps-raised); }
-.ps-admin-item svg { flex: none; width: 18px; height: 18px; fill: none; stroke: var(--ps-accent); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.ps-admin-item span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .ps-notify-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .ps-notify-actions { display: flex; flex-wrap: wrap; grid-column: 2; gap: 6px; margin-top: 6px; }
 .ps-notify-item .ps-notify-time { grid-column: 2; font-size: 11px; opacity: .8; }

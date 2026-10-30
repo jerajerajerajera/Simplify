@@ -647,7 +647,13 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   .ps-nav-items > div { width: 100%; }
   .ps-nav-items .ps-dropdown { position: static; width: 100%; max-height: none; margin-top: 4px; overflow: visible; box-shadow: none; }
   /* Inside the phone menu only the menu itself scrolls; the admin groups stack in one column. */
-  .ps-nav-items .ps-admin-groups { grid-template-columns: minmax(0, 1fr); }
+  /* In the phone menu the groups stack and the open group's tiles fold out under it; the arrow points down. */
+  .ps-nav-items .ps-admin-split { grid-template-columns: minmax(0, 1fr); }
+  .ps-nav-items .ps-admin-nav { border: 0; }
+  .ps-nav-items .ps-admin-pane { display: none; }
+  .ps-nav-items .ps-admin-tiles.is-inline { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 8px 4px 10px 8px; border-inline-start: 2px solid var(--ps-tone); background: color-mix(in srgb, var(--ps-tone) 5%, var(--ps-surface)); }
+  .ps-nav-items .ps-admin-tile { min-height: 68px; padding: 8px 4px; font-size: 11.5px; }
+  .ps-nav-items .ps-admin-group.is-open .ps-admin-group-chevron { transform: rotate(90deg); }
   .ps-notify-count { position: static; margin-inline-start: auto; }
   .ps-account { flex-wrap: wrap; width: 100%; }
   .ps-account-button { flex: 1 1 auto; max-width: none; }
