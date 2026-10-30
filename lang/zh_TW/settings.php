@@ -93,8 +93,6 @@ return [
         'text_colour' => '文字顏色',
         'start_colour' => '起始顏色',
         'end_colour' => '結束顏色',
-        'text_colour_help' => '留空則跟隨淺色/深色主題。',
-        'end_colour_help' => '留空則使用面板強調色。',
         'letter_spacing' => '字間距',
         'uppercase' => '大寫字母',
         'banners' => '伺服器橫幅',

@@ -93,8 +93,6 @@ return [
         'text_colour' => 'Farba textu',
         'start_colour' => 'Počiatočná farba',
         'end_colour' => 'Koncová farba',
-        'text_colour_help' => 'Prázdne = podľa svetlého/tmavého motívu.',
-        'end_colour_help' => 'Prázdne = zvýraznenie panela.',
         'letter_spacing' => 'Medzery medzi písmenami',
         'uppercase' => 'Veľké písmená',
         'banners' => 'Bannery serverov',

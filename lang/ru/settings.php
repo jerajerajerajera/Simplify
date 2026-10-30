@@ -93,8 +93,6 @@ return [
         'text_colour' => 'Цвет текста',
         'start_colour' => 'Начальный цвет',
         'end_colour' => 'Конечный цвет',
-        'text_colour_help' => 'Пусто — по светлой/тёмной теме.',
-        'end_colour_help' => 'Пусто — акцент панели.',
         'letter_spacing' => 'Межбуквенный интервал',
         'uppercase' => 'Заглавные буквы',
         'banners' => 'Баннеры серверов',

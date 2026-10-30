@@ -93,8 +93,6 @@ return [
         'text_colour' => 'Tekstfarge',
         'start_colour' => 'Startfarge',
         'end_colour' => 'Sluttfarge',
-        'text_colour_help' => 'Tom følger det lyse/mørke temaet.',
-        'end_colour_help' => 'Tom bruker panelets aksent.',
         'letter_spacing' => 'Bokstavavstand',
         'uppercase' => 'Store bokstaver',
         'banners' => 'Serverbannere',

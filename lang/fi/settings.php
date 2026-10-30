@@ -93,8 +93,6 @@ return [
         'text_colour' => 'Tekstin väri',
         'start_colour' => 'Alkuväri',
         'end_colour' => 'Loppuväri',
-        'text_colour_help' => 'Tyhjä seuraa vaaleaa/tummaa teemaa.',
-        'end_colour_help' => 'Tyhjä käyttää paneelin korostusväriä.',
         'letter_spacing' => 'Merkkiväli',
         'uppercase' => 'Isot kirjaimet',
         'banners' => 'Palvelinbannerit',

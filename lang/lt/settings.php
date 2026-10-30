@@ -93,8 +93,6 @@ return [
         'text_colour' => 'Teksto spalva',
         'start_colour' => 'Pradinė spalva',
         'end_colour' => 'Galutinė spalva',
-        'text_colour_help' => 'Tuščia = pagal šviesią/tamsią temą.',
-        'end_colour_help' => 'Tuščia = skydelio akcentas.',
         'letter_spacing' => 'Tarpai tarp raidžių',
         'uppercase' => 'Didžiosios raidės',
         'banners' => 'Serverių reklamjuostės',

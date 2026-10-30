@@ -93,8 +93,6 @@ return [
         'text_colour' => 'Szövegszín',
         'start_colour' => 'Kezdőszín',
         'end_colour' => 'Végszín',
-        'text_colour_help' => 'Üresen a világos/sötét témát követi.',
-        'end_colour_help' => 'Üresen a panel kiemelőszínét használja.',
         'letter_spacing' => 'Betűköz',
         'uppercase' => 'Nagybetűk',
         'banners' => 'Szerverbannerek',

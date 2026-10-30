@@ -93,8 +93,6 @@ return [
         'text_colour' => 'Màu chữ',
         'start_colour' => 'Màu bắt đầu',
         'end_colour' => 'Màu kết thúc',
-        'text_colour_help' => 'Để trống sẽ theo giao diện sáng/tối.',
-        'end_colour_help' => 'Để trống sẽ dùng màu nhấn panel.',
         'letter_spacing' => 'Khoảng cách chữ',
         'uppercase' => 'Chữ in hoa',
         'banners' => 'Banner máy chủ',

@@ -93,8 +93,6 @@ return [
         'text_colour' => 'Tekstkleur',
         'start_colour' => 'Beginkleur',
         'end_colour' => 'Eindkleur',
-        'text_colour_help' => 'Leeg volgt het lichte/donkere thema.',
-        'end_colour_help' => 'Leeg gebruikt het paneelaccent.',
         'letter_spacing' => 'Letterafstand',
         'uppercase' => 'Hoofdletters',
         'banners' => 'Serverbanners',

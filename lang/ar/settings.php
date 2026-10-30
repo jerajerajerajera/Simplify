@@ -93,8 +93,6 @@ return [
         'text_colour' => 'لون النص',
         'start_colour' => 'لون البداية',
         'end_colour' => 'لون النهاية',
-        'text_colour_help' => 'فارغ = يتبع السمة الفاتحة/الداكنة.',
-        'end_colour_help' => 'فارغ = يستخدم لون تمييز اللوحة.',
         'letter_spacing' => 'تباعد الأحرف',
         'uppercase' => 'أحرف كبيرة',
         'banners' => 'لافتات الخوادم',

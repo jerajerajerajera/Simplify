@@ -93,8 +93,6 @@ return [
         'text_colour' => '글자 색',
         'start_colour' => '시작 색',
         'end_colour' => '끝 색',
-        'text_colour_help' => '비워 두면 라이트/다크 테마를 따릅니다.',
-        'end_colour_help' => '비워 두면 패널 강조 색을 사용합니다.',
         'letter_spacing' => '자간',
         'uppercase' => '대문자',
         'banners' => '서버 배너',

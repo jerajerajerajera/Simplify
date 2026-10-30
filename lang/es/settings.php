@@ -93,8 +93,6 @@ return [
         'text_colour' => 'Color del texto',
         'start_colour' => 'Color inicial',
         'end_colour' => 'Color final',
-        'text_colour_help' => 'Vacío sigue el tema claro/oscuro.',
-        'end_colour_help' => 'Vacío usa el acento del panel.',
         'letter_spacing' => 'Espaciado de letras',
         'uppercase' => 'Mayúsculas',
         'banners' => 'Banners de servidor',

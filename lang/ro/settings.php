@@ -93,8 +93,6 @@ return [
         'text_colour' => 'Culoarea textului',
         'start_colour' => 'Culoarea de început',
         'end_colour' => 'Culoarea finală',
-        'text_colour_help' => 'Gol urmează tema luminoasă/întunecată.',
-        'end_colour_help' => 'Gol folosește accentul panoului.',
         'letter_spacing' => 'Spațiere între litere',
         'uppercase' => 'Majuscule',
         'banners' => 'Bannerele serverelor',

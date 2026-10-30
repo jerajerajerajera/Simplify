@@ -93,8 +93,6 @@ return [
         'text_colour' => 'Kolor tekstu',
         'start_colour' => 'Kolor początkowy',
         'end_colour' => 'Kolor końcowy',
-        'text_colour_help' => 'Puste podąża za jasnym/ciemnym motywem.',
-        'end_colour_help' => 'Puste używa akcentu panelu.',
         'letter_spacing' => 'Odstęp liter',
         'uppercase' => 'Wielkie litery',
         'banners' => 'Banery serwerów',

@@ -93,8 +93,6 @@ return [
         'text_colour' => '文字色',
         'start_colour' => '開始色',
         'end_colour' => '終了色',
-        'text_colour_help' => '空欄にするとライト/ダークテーマに従います。',
-        'end_colour_help' => '空欄にするとパネルのアクセントカラーを使います。',
         'letter_spacing' => '文字間隔',
         'uppercase' => '大文字',
         'banners' => 'サーバーバナー',

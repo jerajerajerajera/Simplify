@@ -93,8 +93,6 @@ return [
         'text_colour' => 'Tekstfarve',
         'start_colour' => 'Startfarve',
         'end_colour' => 'Slutfarve',
-        'text_colour_help' => 'Tom følger det lyse/mørke tema.',
-        'end_colour_help' => 'Tom bruger panelets accent.',
         'letter_spacing' => 'Bogstavafstand',
         'uppercase' => 'Store bogstaver',
         'banners' => 'Serverbannere',

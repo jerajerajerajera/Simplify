@@ -93,8 +93,6 @@ return [
         'text_colour' => 'Couleur du texte',
         'start_colour' => 'Couleur de départ',
         'end_colour' => 'Couleur de fin',
-        'text_colour_help' => 'Vide suit le thème clair/sombre.',
-        'end_colour_help' => 'Vide utilise l’accent du panel.',
         'letter_spacing' => 'Espacement des lettres',
         'uppercase' => 'Majuscules',
         'banners' => 'Bannières de serveur',

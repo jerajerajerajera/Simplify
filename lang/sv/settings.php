@@ -93,8 +93,6 @@ return [
         'text_colour' => 'Textfärg',
         'start_colour' => 'Startfärg',
         'end_colour' => 'Slutfärg',
-        'text_colour_help' => 'Tomt följer det ljusa/mörka temat.',
-        'end_colour_help' => 'Tomt använder panelens accent.',
         'letter_spacing' => 'Teckenavstånd',
         'uppercase' => 'Versaler',
         'banners' => 'Serverbanners',

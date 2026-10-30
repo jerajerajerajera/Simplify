@@ -93,8 +93,6 @@ return [
         'text_colour' => 'Textfarbe',
         'start_colour' => 'Startfarbe',
         'end_colour' => 'Endfarbe',
-        'text_colour_help' => 'Leer folgt dem hellen/dunklen Theme.',
-        'end_colour_help' => 'Leer nutzt den Panel-Akzent.',
         'letter_spacing' => 'Buchstabenabstand',
         'uppercase' => 'Großbuchstaben',
         'banners' => 'Server-Banner',

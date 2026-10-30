@@ -93,8 +93,6 @@ return [
         'text_colour' => 'Боја текста',
         'start_colour' => 'Почетна боја',
         'end_colour' => 'Завршна боја',
-        'text_colour_help' => 'Празно прати светлу/тамну тему.',
-        'end_colour_help' => 'Празно користи акценат панела.',
         'letter_spacing' => 'Размак између слова',
         'uppercase' => 'Велика слова',
         'banners' => 'Банери сервера',

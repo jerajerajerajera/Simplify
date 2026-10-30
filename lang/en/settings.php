@@ -93,8 +93,6 @@ return [
         'text_colour' => 'Text color',
         'start_colour' => 'Start color',
         'end_colour' => 'End color',
-        'text_colour_help' => 'Empty follows the light/dark theme.',
-        'end_colour_help' => 'Empty uses the panel accent.',
         'letter_spacing' => 'Letter spacing',
         'uppercase' => 'Capital letters',
         'banners' => 'Server banners',

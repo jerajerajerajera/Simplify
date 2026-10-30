@@ -93,8 +93,6 @@ return [
         'text_colour' => 'Warna teks',
         'start_colour' => 'Warna awal',
         'end_colour' => 'Warna akhir',
-        'text_colour_help' => 'Kosong mengikuti tema terang/gelap.',
-        'end_colour_help' => 'Kosong memakai aksen panel.',
         'letter_spacing' => 'Jarak huruf',
         'uppercase' => 'Huruf kapital',
         'banners' => 'Banner server',

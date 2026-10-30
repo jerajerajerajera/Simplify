@@ -93,8 +93,6 @@ return [
         'text_colour' => 'Metin rengi',
         'start_colour' => 'Başlangıç rengi',
         'end_colour' => 'Bitiş rengi',
-        'text_colour_help' => 'Boş bırakılırsa açık/koyu temayı izler.',
-        'end_colour_help' => 'Boş bırakılırsa panel vurgusu kullanılır.',
         'letter_spacing' => 'Harf aralığı',
         'uppercase' => 'Büyük harfler',
         'banners' => 'Sunucu banner\'ları',

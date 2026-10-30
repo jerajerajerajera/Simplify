@@ -93,8 +93,6 @@ return [
         'text_colour' => 'Cor do texto',
         'start_colour' => 'Cor inicial',
         'end_colour' => 'Cor final',
-        'text_colour_help' => 'Vazio segue o tema claro/escuro.',
-        'end_colour_help' => 'Vazio usa o destaque do painel.',
         'letter_spacing' => 'Espaçamento entre letras',
         'uppercase' => 'Letras maiúsculas',
         'banners' => 'Banners do servidor',
