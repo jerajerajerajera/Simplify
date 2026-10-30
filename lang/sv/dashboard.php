@@ -55,6 +55,7 @@ return [
         'expand_all' => 'Expandera alla',
         'collapse_all' => 'Fäll ihop alla',
         'server_count' => ':count server|:count servrar',
+        'not_assigned' => ':name — inte tilldelad dig',
         'no_servers_yet' => 'Inga servrar ännu.',
         'health' => 'Hälsa',
         'hosts_available' => ':available / :count värdar',

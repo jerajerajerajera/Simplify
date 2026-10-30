@@ -55,6 +55,7 @@ return [
         'expand_all' => 'Tümünü genişlet',
         'collapse_all' => 'Tümünü daralt',
         'server_count' => ':count sunucu',
+        'not_assigned' => ':name — sana atanmadı',
         'no_servers_yet' => 'Henüz sunucu yok.',
         'health' => 'Durum',
         'hosts_available' => ':available / :count ana makine',

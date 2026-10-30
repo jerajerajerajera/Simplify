@@ -55,6 +55,7 @@ return [
         'expand_all' => 'すべて展開',
         'collapse_all' => 'すべて折りたたむ',
         'server_count' => ':count 台のサーバー',
+        'not_assigned' => ':name — あなたには割り当てられていません',
         'no_servers_yet' => 'まだサーバーはありません。',
         'health' => '状態',
         'hosts_available' => ':available / :count ホスト',

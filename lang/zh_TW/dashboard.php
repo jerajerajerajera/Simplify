@@ -55,6 +55,7 @@ return [
         'expand_all' => '全部展開',
         'collapse_all' => '全部收合',
         'server_count' => ':count 個伺服器',
+        'not_assigned' => ':name — 未分配給你',
         'no_servers_yet' => '還沒有伺服器。',
         'health' => '健康',
         'hosts_available' => ':available / :count 台主機',

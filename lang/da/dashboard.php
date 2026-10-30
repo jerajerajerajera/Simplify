@@ -55,6 +55,7 @@ return [
         'expand_all' => 'Fold alle ud',
         'collapse_all' => 'Fold alle sammen',
         'server_count' => ':count server|:count servere',
+        'not_assigned' => ':name — ikke tildelt dig',
         'no_servers_yet' => 'Ingen servere endnu.',
         'health' => 'Tilstand',
         'hosts_available' => ':available / :count værter',

@@ -55,6 +55,7 @@ return [
         'expand_all' => 'Alle ausklappen',
         'collapse_all' => 'Alle einklappen',
         'server_count' => ':count Server|:count Server',
+        'not_assigned' => ':name — dir nicht zugewiesen',
         'no_servers_yet' => 'Noch keine Server.',
         'health' => 'Zustand',
         'hosts_available' => ':available / :count Hosts',

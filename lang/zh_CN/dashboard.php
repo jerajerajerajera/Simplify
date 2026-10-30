@@ -55,6 +55,7 @@ return [
         'expand_all' => '全部展开',
         'collapse_all' => '全部收起',
         'server_count' => ':count 个服务器',
+        'not_assigned' => ':name — 未分配给你',
         'no_servers_yet' => '还没有服务器。',
         'health' => '健康',
         'hosts_available' => ':available / :count 台主机',

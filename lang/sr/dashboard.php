@@ -55,6 +55,7 @@ return [
         'expand_all' => 'Прошири све',
         'collapse_all' => 'Скупи све',
         'server_count' => ':count сервер|:count сервера|:count сервера',
+        'not_assigned' => ':name — није вам додељен',
         'no_servers_yet' => 'Још нема сервера.',
         'health' => 'Стање',
         'hosts_available' => ':available / :count домаћина',

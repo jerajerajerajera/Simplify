@@ -55,6 +55,7 @@ return [
         'expand_all' => 'Rozbalit vše',
         'collapse_all' => 'Sbalit vše',
         'server_count' => ':count server|:count servery|:count serverů',
+        'not_assigned' => ':name — není vám přidělen',
         'no_servers_yet' => 'Zatím žádné servery.',
         'health' => 'Stav',
         'hosts_available' => ':available / :count hostitelů',

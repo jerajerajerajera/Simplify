@@ -55,6 +55,7 @@ return [
         'expand_all' => 'Extinde tot',
         'collapse_all' => 'Restrânge tot',
         'server_count' => ':count server|:count servere|:count de servere',
+        'not_assigned' => ':name — nu vă este atribuit',
         'no_servers_yet' => 'Încă nu există servere.',
         'health' => 'Stare',
         'hosts_available' => ':available / :count gazde',

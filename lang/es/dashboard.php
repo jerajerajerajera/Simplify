@@ -55,6 +55,7 @@ return [
         'expand_all' => 'Expandir todo',
         'collapse_all' => 'Contraer todo',
         'server_count' => ':count servidor|:count servidores',
+        'not_assigned' => ':name — no asignado a ti',
         'no_servers_yet' => 'Aún no hay servidores.',
         'health' => 'Salud',
         'hosts_available' => ':available / :count hosts',

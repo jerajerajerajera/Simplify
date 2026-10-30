@@ -43,6 +43,15 @@ final class SettingsFields
         ]);
     }
 
+    /** Friends mode: everyone signed in sees every server's card; opening one still needs Pelican's access. */
+    public static function visibility(): Section
+    {
+        return Section::make(__(self::T.'general.visibility'))->schema([
+            Toggle::make('friends_mode')->label(__(self::T.'general.friends_mode'))
+                ->helperText(__(self::T.'general.friends_mode_help')),
+        ]);
+    }
+
     public static function refresh(): Section
     {
         return Section::make(__(self::T.'general.refresh'))->schema([

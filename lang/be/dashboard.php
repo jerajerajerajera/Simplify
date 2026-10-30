@@ -55,6 +55,7 @@ return [
         'expand_all' => 'Разгарнуць усё',
         'collapse_all' => 'Згарнуць усё',
         'server_count' => ':count сервер|:count серверы|:count сервераў',
+        'not_assigned' => ':name — не прызначаны вам',
         'no_servers_yet' => 'Сервераў пакуль няма.',
         'health' => 'Стан',
         'hosts_available' => ':available / :count хостаў',

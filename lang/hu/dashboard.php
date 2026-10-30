@@ -55,6 +55,7 @@ return [
         'expand_all' => 'Összes kibontása',
         'collapse_all' => 'Összes összecsukása',
         'server_count' => ':count szerver|:count szerver',
+        'not_assigned' => ':name – nincs hozzád rendelve',
         'no_servers_yet' => 'Még nincsenek szerverek.',
         'health' => 'Állapot',
         'hosts_available' => ':available / :count gazdagép',

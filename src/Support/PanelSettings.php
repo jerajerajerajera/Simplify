@@ -28,6 +28,7 @@ final class PanelSettings
         'accent' => [null, ['nullable', 'regex:/^#[0-9a-fA-F]{6}$/']],
         'server_colours' => [true, ['required', 'boolean']],
         'setup_done' => [false, ['required', 'boolean']],
+        'friends_mode' => [false, ['required', 'boolean']],
         'start_page' => ['overview', ['required', 'in:overview,pelican']],
         'support_url' => [null, ['nullable', 'max:255', 'regex:'.self::SUPPORT_URL]],
         'push' => [true, ['required', 'boolean']],

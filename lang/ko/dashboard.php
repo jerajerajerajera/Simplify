@@ -55,6 +55,7 @@ return [
         'expand_all' => '모두 펼치기',
         'collapse_all' => '모두 접기',
         'server_count' => '서버 :count대',
+        'not_assigned' => ':name — 나에게 할당되지 않음',
         'no_servers_yet' => '아직 서버가 없습니다.',
         'health' => '상태',
         'hosts_available' => ':available / :count 호스트',

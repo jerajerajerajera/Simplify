@@ -150,6 +150,7 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-server-open { display: flex; flex-direction: column; width: 100%; height: calc(320px + var(--ps-power-room, 0px)); padding: 18px; border: 0; background: transparent; color: var(--ps-ink); text-align: start; transition: padding var(--ps-slow); }
 .ps-server-open:disabled { cursor: default; }
 .ps-server-open:focus-visible { outline: 2px solid var(--ps-accent); outline-offset: -4px; border-radius: var(--ps-radius-lg); }
+.ps-server-open[aria-disabled="true"], .ps-list-player-count[aria-disabled="true"] { cursor: default; }
 .ps-server-grid:not(.is-list).has-motd .ps-server-open { height: calc(380px + var(--ps-power-room, 0px)); }
 .ps-server-grid:not(.is-list).no-metrics .ps-server-open { height: calc(240px + var(--ps-power-room, 0px)); }
 .ps-server-grid:not(.is-list).no-metrics.has-motd .ps-server-open { height: calc(300px + var(--ps-power-room, 0px)); }

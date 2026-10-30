@@ -55,6 +55,7 @@ return [
         'expand_all' => 'توسيع الكل',
         'collapse_all' => 'طي الكل',
         'server_count' => ':count خادم|خادم واحد|خادمان|:count خوادم|:count خادمًا|:count خادم',
+        'not_assigned' => ':name — غير معيّن لك',
         'no_servers_yet' => 'لا توجد خوادم بعد.',
         'health' => 'الصحة',
         'hosts_available' => ':available / :count مضيف',

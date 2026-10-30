@@ -55,6 +55,7 @@ return [
         'expand_all' => 'Rozwiń wszystko',
         'collapse_all' => 'Zwiń wszystko',
         'server_count' => ':count serwer|:count serwery|:count serwerów',
+        'not_assigned' => ':name — nieprzypisany do Ciebie',
         'no_servers_yet' => 'Brak serwerów.',
         'health' => 'Kondycja',
         'hosts_available' => ':available / :count hostów',

@@ -55,6 +55,7 @@ return [
         'expand_all' => 'Ανάπτυξη όλων',
         'collapse_all' => 'Σύμπτυξη όλων',
         'server_count' => ':count διακομιστής|:count διακομιστές',
+        'not_assigned' => ':name — δεν σας έχει ανατεθεί',
         'no_servers_yet' => 'Δεν υπάρχουν ακόμη διακομιστές.',
         'health' => 'Υγεία',
         'hosts_available' => ':available / :count hosts',

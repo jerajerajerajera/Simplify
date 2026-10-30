@@ -55,6 +55,7 @@ return [
         'expand_all' => 'Bentangkan semua',
         'collapse_all' => 'Ciutkan semua',
         'server_count' => ':count server',
+        'not_assigned' => ':name — tidak ditugaskan kepada Anda',
         'no_servers_yet' => 'Belum ada server.',
         'health' => 'Kesehatan',
         'hosts_available' => ':available / :count host',

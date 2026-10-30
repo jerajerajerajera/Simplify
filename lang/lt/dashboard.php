@@ -55,6 +55,7 @@ return [
         'expand_all' => 'Išskleisti viską',
         'collapse_all' => 'Suskleisti viską',
         'server_count' => ':count serveris|:count serveriai|:count serverių',
+        'not_assigned' => ':name — jums nepriskirtas',
         'no_servers_yet' => 'Serverių dar nėra.',
         'health' => 'Būsena',
         'hosts_available' => ':available / :count hostų',

@@ -78,7 +78,7 @@ final class Setup extends Page implements HasForms
         return $schema->statePath('data')->components([
             Wizard::make([
                 $step('addons', 'tabler-puzzle', [View::make('simplify::partials.setup-addons')]),
-                $step('panel', 'tabler-users-group', [SettingsFields::startPage(), SettingsFields::support()]),
+                $step('panel', 'tabler-users-group', [SettingsFields::startPage(), SettingsFields::visibility(), SettingsFields::support()]),
                 $step('look', 'tabler-palette', [SettingsFields::colours(), SettingsFields::brand()]),
                 $step('app', 'tabler-device-mobile', [View::make('simplify::partials.setup-checks'), SettingsFields::app()]),
                 $step('finish', 'tabler-checklist', [

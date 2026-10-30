@@ -51,7 +51,7 @@
                         <article class="ps-server-card">
                             <span class="ps-offline-artwork" x-show="s.status==='offline'" aria-label="{{ $u('server_offline') }}"><svg aria-hidden="true"><use href="#ps-offline"/></svg></span>
                             <img class="ps-card-background" x-show="s.background && s.status!=='offline'" :src="safeImage(s.background)" alt="" loading="lazy" x-on:error="$el.style.visibility='hidden'">
-                            <button class="ps-server-open" x-on:click="location.href=s.url" :aria-label="Simplify.fill(@js($u('open_name')), { name: s.name })">
+                            <button class="ps-server-open" x-on:click="s.url && (location.href=s.url)" :aria-disabled="!s.url" :data-tip="s.url ? null : Simplify.fill(@js($u('not_assigned')), { name: s.name })" :aria-label="Simplify.fill(@js($u('open_name')), { name: s.name })">
                                 <div class="ps-card-head">
                                     {{-- Without an icon of its own the server shows its egg's icon large, and not again as the small one. --}}
                                     <span class="ps-card-icons" :class="{'egg-primary': overviewPreferences.largeIcon==='egg' && !!s.egg_icon && !!(s.server_icon || s.icon)}">
@@ -96,11 +96,11 @@
                                 </div>
                                 <div class="ps-card-bottom" x-show="overviewView!=='list'">
                                     <span x-text="playerCount(s)"></span>
-                                    <svg aria-hidden="true"><use href="#ps-chevron"/></svg>
+                                    <svg x-show="s.url" aria-hidden="true"><use href="#ps-chevron"/></svg>
                                 </div>
                             </button>
                             <div class="ps-card-footer" x-show="overviewView==='list'">
-                                <button type="button" class="ps-list-player-count" x-show="overviewView==='list'" x-on:click="location.href=s.url" :aria-label="Simplify.fill(@js($u('open_name')), { name: s.name })">
+                                <button type="button" class="ps-list-player-count" x-show="overviewView==='list'" x-on:click="s.url && (location.href=s.url)" :aria-disabled="!s.url" :aria-label="Simplify.fill(@js($u('open_name')), { name: s.name })">
                                     <span x-text="playerCount(s)"></span>
                                     <svg aria-hidden="true"><use href="#ps-chevron"/></svg>
                                 </button>

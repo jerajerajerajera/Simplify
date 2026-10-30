@@ -55,6 +55,7 @@ return [
         'expand_all' => 'Laajenna kaikki',
         'collapse_all' => 'Supista kaikki',
         'server_count' => ':count palvelin|:count palvelinta',
+        'not_assigned' => ':name — ei osoitettu sinulle',
         'no_servers_yet' => 'Ei vielä palvelimia.',
         'health' => 'Kunto',
         'hosts_available' => ':available / :count isäntää',

@@ -55,6 +55,7 @@ return [
         'expand_all' => 'Tout déplier',
         'collapse_all' => 'Tout replier',
         'server_count' => ':count serveur|:count serveurs',
+        'not_assigned' => ':name — ne vous est pas attribué',
         'no_servers_yet' => 'Pas encore de serveurs.',
         'health' => 'Santé',
         'hosts_available' => ':available / :count hôtes',
