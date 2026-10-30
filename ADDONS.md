@@ -124,6 +124,12 @@ can call `Simplify\Core\Subdomains\Subdomains` with the same methods; its `ready
 set subdomains up. `gameAddress($server)` gives where players join: the working subdomain, otherwise the shared
 game address with the port (`play.example.com:25566`) when the port is in the forwarded range, otherwise null.
 
+`Simplify\Core\Server\Looks` sets a server's colour and banner, for example right after a server is made:
+`Looks::for($server)` gives `color` and `banner`; `Looks::save($server, $color, $banner)` sets both, where `$banner`
+is `false` to keep the current one, `null` for none, or a file the add-on stored on the local disk as
+`Looks::DIRECTORY.'/<name>.(png|jpg|jpeg|webp)'` (name `[A-Za-z0-9_-]`, at most 80). Uploads no server shows any more are
+deleted by Simplify.
+
 ## Events
 
 Some things go through Laravel events with a plain string name, so an add-on needs no Simplify class for them.
