@@ -213,7 +213,8 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-card-bottom svg { flex: none; width: 17px; height: 17px; }
 .ps-card-extras { display: flex; gap: 4px; min-width: 0; margin-top: 8px; overflow: hidden; }
 .ps-card-extras .ps-badge { display: block; flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
-.ps-server-open:has(.ps-card-badges > .ps-badge:nth-of-type(3)) .ps-card-head { margin-bottom: 26px; }
+/* A third shown badge needs room under the head. The birthday cake counts only on the server's birthday (x-show hides it otherwise). */
+.ps-server-open:has(.ps-card-badges > .ps-badge:is(:nth-of-type(3), :nth-of-type(4)):not([style*="display: none"])) .ps-card-head { margin-bottom: 26px; }
 .ps-server-grid.is-compact .ps-card-extras { display: none !important; }
 .ps-server-grid.is-list .ps-card-extras { margin-top: 4px; }
 .ps-card-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; border-top: 1px solid var(--ps-line); background: color-mix(in srgb, var(--ps-surface) 82%, transparent); transition: padding var(--ps-slow); }
@@ -292,6 +293,8 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-server-grid.is-list .ps-server-open { display: grid; grid-template-columns: 80px minmax(0, 1fr) minmax(100px, 240px) 140px; align-items: center; gap: 10px; height: 76px; padding: 10px 16px; }
 .ps-server-grid.is-list.has-motd .ps-server-open { height: 116px; }
 .ps-server-grid.is-list .ps-card-head { align-self: start; min-height: 48px; margin: 0; }
+/* Also with a third badge: the extra room under the head is for cards, and in a row it pushed the centred icon up over the edge. */
+.ps-server-grid.is-list .ps-server-open:has(.ps-card-badges) .ps-card-head { margin: 0; }
 .ps-server-grid.is-list .ps-card-icons { --ps-icon-small: 24px; --ps-icon-gap: 6px; }
 .ps-server-grid.is-list .ps-card-title { align-self: start; }
 .ps-server-grid.is-list .ps-card-title-row { flex-direction: row; align-items: center; gap: 8px; height: 30px; }

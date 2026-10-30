@@ -28,6 +28,7 @@
 - Notifications: Archived is back, as in PelicanSimplify 0.7.0. "Clear read" in the bell and in the window with every notification moves the read ones there, and ✕ on a notification moves that one. Archived sits closed at the bottom of the window with every notification; "Mark as unread" brings a notification back. Nothing is deleted.
 - Scrollbars stop a little short of the top and bottom and sit a little further from the edge, so they fit inside the rounded corners of menus, cards and windows.
 - Overview: the scrollbar of the server list sits right next to the cards instead of at the far edge of the window.
+- Overview, list view: the server icon sits in the middle of its row again instead of sticking out over the top edge. A hidden badge counted as a third one and pushed it up; in the card view it added empty room under the icon.
 
 ## 1.4.4
 
