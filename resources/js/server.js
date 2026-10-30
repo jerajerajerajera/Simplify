@@ -88,8 +88,9 @@
         // The menu changes only the page next to it (wire:navigate) and this top stays (@persist): follow the new page.
         this.navigated = () => this.setPage(document.querySelector('template[data-ps-server-page]')?.dataset.console === '1');
         document.addEventListener('livewire:navigated', this.navigated);
-        // The page fits the window: again when the window or the cards above it change size.
-        this.fitResize = () => this.fitPage();
+        // The page fits the window: again when the window or the cards above it change size. Only the browser's own
+        // resize: fitConsole sends one for Pelican's terminal, and following that one again never ends.
+        this.fitResize = (event) => event.isTrusted && this.fitPage();
         addEventListener('resize', this.fitResize);
       },
       /** The console or another page next to the menu: live numbers from the console, or the log strip; the menu marks the page. */
@@ -331,6 +332,7 @@
             document.documentElement.classList.toggle('ps-console-big', big);
             grow.setAttribute('aria-pressed', String(big));
             grow.setAttribute('aria-label', big ? grow.dataset.normal : grow.dataset.bigger);
+            this.fitPage();
             window.dispatchEvent(new Event('resize'));
           };
           // The bigger console is remembered on this device (Customize), so server pages open with it.
