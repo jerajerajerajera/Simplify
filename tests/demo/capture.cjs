@@ -318,14 +318,14 @@ async function login(browser, email) {
     await p.locator('.ps-account-button').first().click(); await sleep(400);
     await p.locator('#ps-account-actions button[aria-label="Switch to host mode"]').first().click(); await settle(p, 2500);
   };
-  // Every section and page of the admin tree once, as siblings; the server list with the first three servers.
+  // Every branch of the admin tree open, so each page is one click away (a section head with pages only folds).
+  const hostTree = async (p) => { await hostOn(p); await alpine(p, 'd.hostOpen = d.hostSections().filter((s) => s.pages.length > 1).map((s) => s.key)'); await sleep(300); };
+  // Every page of the admin tree once, as siblings; the server list with the first three servers.
   await walk(page, { id: 'host', title: 'Hostmodus', group: 'Hostmodus', phone: true,
-    expand: { css: '.ps-host-group-head, .ps-host-leaf', title: 'Hostmodus · ', child: { wait: 2500 } },
+    expand: { css: '.ps-host-group-head:not([aria-expanded]), .ps-host-leaf', title: 'Hostmodus · ', child: { wait: 2500 } },
     children: [
-      // Settings, Add-ons and Pelican settings fold open together once one of them is open, so their pages need a second pass.
-      { id: 'host-tabs', title: 'Hostmodus · Settings', click: { css: '.ps-host-group-head', text: /^\s*Settings\s*$/ }, wait: 2500, expand: { css: '.ps-host-branch .ps-host-leaf', title: 'Hostmodus · ', child: { wait: 2500 } } },
       { id: 'host-serverlist', title: 'Hostmodus · serverlijst', click: { css: '.ps-host-tabs button', nth: 1 }, links: [{ click: { css: '.ps-host-tabs button', nth: 0 }, to: 'host' }], expand: { css: '.ps-host-server strong', title: 'Hostmodus · server ', limit: 3, child: { wait: 2000 } } }],
-  }, open(page, overview, hostOn));
+  }, open(page, overview, hostTree));
   await alpine(page, 'd.setHostMode(false)').catch(() => {});
 
   // Every other page reachable by a plain link (each server's page and its menu: Files, Schedules, Settings...,
