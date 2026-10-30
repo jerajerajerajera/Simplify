@@ -88,6 +88,15 @@ foreach ($list as $i => [$name, $eggName, $state, $memory, $cpu, $owner, $color]
             ? ['/plugins/EssentialsX-2.21.0.jar' => 'jar', '/plugins/LuckPerms-Bukkit-5.4.141.jar' => 'jar', '/plugins/WorldEdit-7.3.9.jar' => 'jar']
             : ['/mods/jei-1.21.1-forge-19.21.0.jar' => 'jar', '/mods/create-1.21.1-6.0.4.jar' => 'jar'];
     }
+    // All the Mods 10 runs a CurseForge modpack: its manifest.json makes the Mods page fold the pack's own mods into one row.
+    if ($name === 'All the Mods 10') {
+        $files['/manifest.json'] = json_encode(['manifestType' => 'minecraftModpack', 'manifestVersion' => 1, 'name' => 'All the Mods 10', 'version' => '4.2', 'author' => 'ATMTeam',
+            'minecraft' => ['version' => '1.21.1', 'modLoaders' => [['id' => 'neoforge-21.1.172', 'primary' => true]]], 'files' => []]);
+        foreach (['appliedenergistics2-19.2.10', 'mekanism-1.21.1-10.7.14', 'sophisticatedbackpacks-1.21.1-3.23.18', 'botania-1.21.1-449', 'ars_nouveau-1.21.1-5.8.2',
+            'ftbquests-neoforge-2101.1.9', 'waystones-neoforge-1.21.1-21.1.13', 'allthemodium-3.0.4', 'mysticalagriculture-1.21.1-8.0.12', 'farmersdelight-1.21.1-1.2.7'] as $jar) {
+            $files['/mods/'.$jar.'.jar'] = 'jar';
+        }
+    }
     $out[] = ['uuid' => $server->uuid, 'name' => $name, 'port' => $allocation->port, 'state' => $state, 'memory' => $memory, 'cpu' => $cpu, 'files' => $files];
 }
 echo json_encode($out, JSON_UNESCAPED_SLASHES), "\n";

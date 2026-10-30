@@ -302,6 +302,13 @@ async function login(browser, email) {
     await walk(page, { id, title: `${p.title} (${use.server || mainServer})`, group: 'Server' }, open(page, use.url, async () => sleep(1200)));
   }
 
+  // The Mods page of a modpack server: the pack as one row, and opened to show its own mods.
+  const packPage = (urls.server['All the Mods 10'] || []).find((x) => /\\Packages$/.test(x.class));
+  if (packPage) await walk(page, { id: 'server-mods-modpack', title: 'Mods met modpack (All the Mods 10)', group: 'Server', children: [
+    { id: 'server-mods-modpack-open', title: 'Mods met modpack, opengeklapt', click: 'main .is-pack button[aria-expanded]', toggle: true, wait: 2000 },
+  ] }, open(page, packPage.url, async (p) => { await p.waitForSelector('main .is-pack', { timeout: 15000 }).catch(() => {}); await sleep(1000); }));
+  else problems.push('no Mods page for All the Mods 10');
+
   // Admin side: the settings with every tab, people, announcements and every add-on page.
   await walk(page, { id: 'settings', title: 'Instellingen', group: 'Beheer', phone: true,
     expand: { css: 'main [role=tab]', title: 'Instellingen · ', child: { wait: 1500 } } }, open(page, settings));
