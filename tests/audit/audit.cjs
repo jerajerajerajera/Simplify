@@ -345,7 +345,7 @@ async function extrasFlow(theme) {
         problems.push(`${stand} wizard-look-refresh: choice ${after ? 'appears only after another round trip' : 'still missing after a round trip'}; preview img ${await page.locator('.s-look-preview .s-preview-bar img').count()}; requests ${JSON.stringify(uploads)}`);
         if (after) await record('wizard-look-logo-refresh', 'Setup · Look, logo na een extra verversing');
       }
-      const preview = () => page.evaluate(() => { const bar = document.querySelector('.s-look-preview .s-preview-bar'); if (!bar) return null; const img = bar.querySelector('img'), name = bar.querySelector('.s-preview-name'), inner = name && name.firstElementChild; const vis = (e) => !!e && e.getClientRects().length > 0 && getComputedStyle(e).display !== 'none'; const cs = inner ? getComputedStyle(inner) : null; return { img: vis(img), text: vis(name), shadow: cs && cs.textShadow, color: cs && cs.color, fill: cs && cs.webkitTextFillColor, background: cs && cs.backgroundImage }; });
+      const preview = () => page.evaluate(() => { const bar = document.querySelector('.s-look-preview .s-preview-bar'); if (!bar) return null; const img = bar.querySelector('img'), name = bar.querySelector('.s-preview-name'), inner = name && name.firstElementChild; const vis = (e) => !!e && e.getClientRects().length > 0 && getComputedStyle(e).display !== 'none'; const cs = inner ? getComputedStyle(inner) : null; return { img: vis(img), text: vis(name), shadow: cs && cs.textShadow, filter: cs && cs.filter, color: cs && cs.color, fill: cs && cs.webkitTextFillColor, background: cs && cs.backgroundImage }; });
       const chips = page.locator('.s-chips[role=radiogroup]:has(input[value="both"])').first();
       if (!(await chips.count())) say('wizard-look-show', false, { note: 'no logo/text/both choice after the upload', preview: await preview() });
       else for (const [v, img, text] of [['logo', true, false], ['text', false, true], ['both', true, true]]) {
@@ -363,7 +363,9 @@ async function extrasFlow(theme) {
         for (const e of ['Glow', 'Shadow']) {
           await page.locator(`.s-chip:has-text("${e}") >> visible=true`).first().click().catch(() => {}); await sleep(900);
           await record(`wizard-look-effect-${slug(e)}`, `Setup · Look, effect ${e}`);
-          const pv = await preview(); say(`wizard-look-effect-${slug(e)}`, pv && pv.shadow && pv.shadow !== 'none' && pv.shadow !== (before && before.shadow), { shadow: pv && pv.shadow });
+          const pv = await preview(); // A gradient name gets its effect as a drop-shadow filter, a plain one as text-shadow.
+          const fx = (v) => v && [v.shadow, v.filter].filter((x) => x && x !== 'none').join(' | ');
+          say(`wizard-look-effect-${slug(e)}`, pv && fx(pv) && fx(pv) !== fx(before), { effect: pv && fx(pv) });
         }
         await row('Colo');
         const c0 = await preview();
