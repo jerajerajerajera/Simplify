@@ -10,8 +10,8 @@
   --s-ink: var(--gray-950);
   --s-muted: var(--gray-600);
   --s-line: var(--gray-200);
-  --s-scroll: color-mix(in oklab, var(--gray-400) 75%, transparent);
-  --s-scroll-hover: var(--gray-500);
+  --s-scroll: rgb(0 0 0 / .16);
+  --s-scroll-hover: rgb(0 0 0 / .3);
   --s-accent: var(--primary-600);
   --s-on-accent: #fff;
   --s-ok: var(--success-700);
@@ -44,9 +44,9 @@
   --s-ink: var(--gray-50);
   --s-muted: var(--gray-400);
   --s-line: color-mix(in oklab, var(--gray-700) 60%, var(--gray-800));
-  /* Darker than the cards and the page behind them. */
-  --s-scroll: rgb(0 0 0 / .5);
-  --s-scroll-hover: rgb(0 0 0 / .7);
+  /* A light tint of the background, so the bar does not stand out as a dark stripe. */
+  --s-scroll: rgb(255 255 255 / .16);
+  --s-scroll-hover: rgb(255 255 255 / .28);
   --s-accent: var(--primary-500);
   --s-ok: var(--success-400);
   --s-warn: var(--warning-400);
@@ -1080,7 +1080,7 @@ html.ps-frame[data-ps-frame="settings"] :is(body, .fi-layout, .fi-main-ctn, .fi-
 /* Scrollbars, everywhere in the panel: one dark rounded bar without a track or outline. It stops 14px short of both
    ends and keeps 4px from the edge, so it sits inside the rounded corners of cards, menus and windows.
    "html" before each part outranks Pelican's console stylesheet, which draws an outlined bar of its own. */
-html ::-webkit-scrollbar { width: 12px; height: 12px; background: transparent; }
+html ::-webkit-scrollbar { width: 11px; height: 11px; background: transparent; }
 html ::-webkit-scrollbar-track, html ::-webkit-scrollbar-track-piece { margin: 14px; border: 0; background: transparent; box-shadow: none; }
 html ::-webkit-scrollbar-thumb { min-height: 32px; border: 3px solid transparent; border-inline-end-width: 4px; border-bottom-width: 4px; border-radius: 999px; background: var(--s-scroll) padding-box; box-shadow: none; }
 html ::-webkit-scrollbar-thumb:hover { background-color: var(--s-scroll-hover); }
@@ -1090,6 +1090,8 @@ html ::-webkit-scrollbar-button, html ::-webkit-scrollbar-corner { display: none
   * { scrollbar-width: thin; scrollbar-color: var(--s-scroll) transparent; }
 }
 /* The console's bar is xterm's own element. */
+/* The console is dark in both themes, so its bars take the dark theme's tint. */
+html .ps-console { --s-scroll: rgb(255 255 255 / .16); --s-scroll-hover: rgb(255 255 255 / .28); }
 html .xterm .xterm-scrollable-element > .scrollbar > .slider { border-radius: 999px; background: var(--s-scroll) !important; }
 html .xterm .xterm-scrollable-element > .scrollbar.vertical > .slider { left: 2px !important; width: 6px !important; }
 

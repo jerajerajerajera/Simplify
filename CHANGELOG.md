@@ -2,6 +2,7 @@
 
 ## 1.5.2
 
+- Scrollbars are thinner and take a light tint of the background in the dark theme and a soft grey in the light theme, instead of a dark stripe.
 - Server page: the bottom of the server's ⋯ menu (Force stop, Delete server) can be clicked again where it hangs over the console. The console took the mouse there and showed a text cursor.
 
 ## 1.5.1
