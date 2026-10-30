@@ -1,0 +1,6769 @@
+{
+ "base": "http://127.0.0.1:8001",
+ "screens": [
+  {
+   "id": "overview-grid",
+   "title": "Overzicht, grid",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Servers 676/2327"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..356, badges 360..392, actions 408..732",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 768x78",
+      "fi-callout.fi-color.fi-color-info 0,102 768x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/overview-grid.png"
+  },
+  {
+   "id": "overview-compact",
+   "title": "Overzicht, compact",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Servers 676/971"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..356, badges 360..392, actions 408..732",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 768x78",
+      "fi-callout.fi-color.fi-color-info 0,102 768x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/overview-compact.png"
+  },
+  {
+   "id": "overview-list",
+   "title": "Overzicht, list",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Servers 676/2288"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..356, badges 360..392, actions 408..732",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 768x78",
+      "fi-callout.fi-color.fi-color-info 0,102 768x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/overview-list.png"
+  },
+  {
+   "id": "overview-account",
+   "title": "Accountmenu open",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Servers 676/2327"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..356, badges 360..392, actions 408..732",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 768x78",
+      "fi-callout.fi-color.fi-color-info 0,102 768x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/overview-account.png"
+  },
+  {
+   "id": "overview-account-theme",
+   "title": "Accountmenu, themakeuze open",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Servers 676/2327"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..356, badges 360..392, actions 408..732",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 768x78",
+      "fi-callout.fi-color.fi-color-info 0,102 768x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/overview-account-theme.png"
+  },
+  {
+   "id": "overview-bell",
+   "title": "Bel (aankondigingen) open",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Servers 676/2327"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..356, badges 360..392, actions 408..732",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 768x78",
+      "fi-callout.fi-color.fi-color-info 0,102 768x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/overview-bell.png"
+  },
+  {
+   "id": "overview-admin",
+   "title": "Beheermenu (schild) open",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Servers 676/2327"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..356, badges 360..392, actions 408..732",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 768x78",
+      "fi-callout.fi-color.fi-color-info 0,102 768x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/overview-admin.png"
+  },
+  {
+   "id": "overview-customize",
+   "title": "Weergave aanpassen open",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Servers 676/2327"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..356, badges 360..392, actions 408..732",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 768x78",
+      "fi-callout.fi-color.fi-color-info 0,102 768x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/overview-customize.png"
+  },
+  {
+   "id": "overview-groups",
+   "title": "Servergroepen open",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Servers 676/2327"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..356, badges 360..392, actions 408..732",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 768x78",
+      "fi-callout.fi-color.fi-color-info 0,102 768x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/overview-groups.png"
+  },
+  {
+   "id": "overview-health",
+   "title": "Gezondheid van de host open",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Servers 676/2327"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..356, badges 360..392, actions 408..732",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 768x78",
+      "fi-callout.fi-color.fi-color-info 0,102 768x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/overview-health.png"
+  },
+  {
+   "id": "overview-health-nodes",
+   "title": "Host health, nodes uitgeklapt",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Servers 676/2327"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..356, badges 360..392, actions 408..732",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 0,12 768x78",
+      "fi-callout.fi-color.fi-color-info 0,102 768x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/overview-health-nodes.png"
+  },
+  {
+   "id": "overview-bell-1bar",
+   "title": "Bel open, één aankondigingsbalk",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Servers 766/2327"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..356, badges 360..392, actions 408..732",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-info 0,12 768x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/overview-bell-1bar.png"
+  },
+  {
+   "id": "overview-admin-1bar",
+   "title": "Beheermenu open, één aankondigingsbalk",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Servers 766/2327"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..356, badges 360..392, actions 408..732",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-info 0,12 768x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/overview-admin-1bar.png"
+  },
+  {
+   "id": "overview-customize-1bar",
+   "title": "Weergave aanpassen open, één aankondigingsbalk",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Servers 766/2327"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..356, badges 360..392, actions 408..732",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-info 0,12 768x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/overview-customize-1bar.png"
+  },
+  {
+   "id": "overview-bell-0bar",
+   "title": "Bel open, geen aankondigingsbalk",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Servers 856/2327"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..356, badges 360..392, actions 408..732",
+     "scope": "simplify",
+     "boxes": []
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/overview-bell-0bar.png"
+  },
+  {
+   "id": "overview-admin-0bar",
+   "title": "Beheermenu open, geen aankondigingsbalk",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Servers 856/2327"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..356, badges 360..392, actions 408..732",
+     "scope": "simplify",
+     "boxes": []
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/overview-admin-0bar.png"
+  },
+  {
+   "id": "overview-customize-0bar",
+   "title": "Weergave aanpassen open, geen aankondigingsbalk",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Servers 856/2327"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..356, badges 360..392, actions 408..732",
+     "scope": "simplify",
+     "boxes": []
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/overview-customize-0bar.png"
+  },
+  {
+   "id": "app-notifications",
+   "title": "Notifications",
+   "stand": "tablet768-dark",
+   "url": "/simplify-notifications",
+   "main": {
+    "url": "/simplify-notifications",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "card": "64..968 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/app-notifications.png"
+  },
+  {
+   "id": "app-server-maker",
+   "title": "Server Maker",
+   "stand": "tablet768-dark",
+   "url": "/server-maker",
+   "main": {
+    "url": "/server-maker",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "form.game::data::wizard-step 638/681"
+     ],
+     "card": "64..968 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/app-server-maker.png"
+  },
+  {
+   "id": "profile",
+   "title": "Profiel",
+   "stand": "tablet768-dark",
+   "url": "/profile",
+   "main": {
+    "url": "/profile",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "card": "64..968 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/profile.png"
+  },
+  {
+   "id": "server-console",
+   "title": "Server · Console (Survival SMP)",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/console",
+   "main": {
+    "url": "/server/3ajwjdj5/console",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 523/675"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,507 408x361; terminal 271,439 460x460; bar top 899",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-console.png"
+  },
+  {
+   "id": "server-console-typed",
+   "title": "Server · Console na een commando",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/console",
+   "main": {
+    "url": "/server/3ajwjdj5/console",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 523/675"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,507 408x361; terminal 271,439 460x460; bar top 899",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-console-typed.png"
+  },
+  {
+   "id": "server-more",
+   "title": "Server · ⋯-menu open",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/console",
+   "main": {
+    "url": "/server/3ajwjdj5/console",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "popups": [
+      "ps-info-menu 479,174 230x256"
+     ],
+     "panes": [
+      "Server sections 523/675"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,507 408x361; terminal 271,439 460x460; bar top 899",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,438 462x525"
+     ],
+     "box": "438..963 of 1024",
+     "dropdown": [
+      "ps-info-menu 256px of 683 max"
+     ],
+     "arrow": [
+      "ps-info-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-more.png"
+  },
+  {
+   "id": "server-colour",
+   "title": "Server · kleurkiezer open",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/console",
+   "main": {
+    "url": "/server/3ajwjdj5/console",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "popups": [
+      "ps-dropdown.is-end.ps-color-dropdown 461,174 248x205"
+     ],
+     "panes": [
+      "Server sections 523/675"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,507 408x361; terminal 271,439 460x460; bar top 899",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,438 462x525"
+     ],
+     "box": "438..963 of 1024",
+     "dropdown": [
+      "ps-dropdown.is-end.ps-color-dropdown 205px of 683 max"
+     ],
+     "arrow": [
+      "ps-dropdown.is-end.ps-color-dropdown no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-colour.png"
+  },
+  {
+   "id": "server-console",
+   "title": "Server · Console",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/console",
+   "main": {
+    "url": "/server/3ajwjdj5/console",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 523/675"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,507 408x361; terminal 271,439 460x460; bar top 899",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-console.png"
+  },
+  {
+   "id": "server-files",
+   "title": "Server · Files",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/files",
+   "main": {
+    "url": "/server/3ajwjdj5/files",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 523/675"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-main-content 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-files.png"
+  },
+  {
+   "id": "server-backups",
+   "title": "Server · Backups",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/backups",
+   "main": {
+    "url": "/server/3ajwjdj5/backups",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 523/675"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-main-content 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-backups.png"
+  },
+  {
+   "id": "server-backups-new",
+   "title": "Server · Backups, nieuw-dialoog open",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/backups",
+   "main": {
+    "url": "/server/3ajwjdj5/backups",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 523/675"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-main-content 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-backups-new.png"
+  },
+  {
+   "id": "server-schedules",
+   "title": "Server · Schedules",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/schedules",
+   "main": {
+    "url": "/server/3ajwjdj5/schedules",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 523/675"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-main-content 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-schedules.png"
+  },
+  {
+   "id": "server-schedule-edit",
+   "title": "Server · Schedule bewerken (3 taken)",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/schedules/1/edit",
+   "main": {
+    "url": "/server/3ajwjdj5/schedules/1/edit",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 523/675",
+      "fi-page-main 523/1013"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-main-content 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-schedule-edit.png"
+  },
+  {
+   "id": "server-schedules-new",
+   "title": "Server · Schedules, nieuw-dialoog open",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/schedules/1/edit",
+   "main": {
+    "url": "/server/3ajwjdj5/schedules/1/edit",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 523/675",
+      "fi-page-main 523/1013"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-main-content 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-schedules-new.png"
+  },
+  {
+   "id": "server-users",
+   "title": "Server · Users",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/subusers",
+   "main": {
+    "url": "/server/3ajwjdj5/subusers",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 523/675"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-main-content 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-users.png"
+  },
+  {
+   "id": "server-users-new",
+   "title": "Server · Users, nieuw-dialoog open",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/subusers",
+   "main": {
+    "url": "/server/3ajwjdj5/subusers",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 523/675"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-main-content 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-users-new.png"
+  },
+  {
+   "id": "server-databases",
+   "title": "Server · Databases",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/databases",
+   "main": {
+    "url": "/server/3ajwjdj5/databases",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 523/675"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-main-content 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-databases.png"
+  },
+  {
+   "id": "server-databases-new",
+   "title": "Server · Databases, nieuw-dialoog open",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/databases",
+   "main": {
+    "url": "/server/3ajwjdj5/databases",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 523/675"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-main-content 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-databases-new.png"
+  },
+  {
+   "id": "server-network",
+   "title": "Server · Network",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/allocations",
+   "main": {
+    "url": "/server/3ajwjdj5/allocations",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 523/675"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-main-content 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-network.png"
+  },
+  {
+   "id": "server-activity",
+   "title": "Server · Activity",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/activities",
+   "main": {
+    "url": "/server/3ajwjdj5/activities",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 523/675"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-main-content 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-activity.png"
+  },
+  {
+   "id": "server-mounts",
+   "title": "Server · Mounts",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/mounts",
+   "main": {
+    "url": "/server/3ajwjdj5/mounts",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 523/675"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-main-content 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-mounts.png"
+  },
+  {
+   "id": "server-minecraft",
+   "title": "Server · Minecraft",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/minecraft",
+   "main": {
+    "url": "/server/3ajwjdj5/minecraft",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "boxinbox",
+      "text": "box inside a box: sm-motd-row (412x104) in fi-main-content"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 523/675",
+      "fi-page-main 523/1278"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-main-content 270,438 462x525",
+      "sm-motd-row 295,690 412x104"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-minecraft.png"
+  },
+  {
+   "id": "server-startup",
+   "title": "Server · Startup",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/startup",
+   "main": {
+    "url": "/server/3ajwjdj5/startup",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 523/675"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-main-content 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-startup.png"
+  },
+  {
+   "id": "server-plugins",
+   "title": "Server · Plugins",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/plugins",
+   "main": {
+    "url": "/server/3ajwjdj5/plugins",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 523/675",
+      "fi-page-main 523/1937"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-main-content 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-plugins.png"
+  },
+  {
+   "id": "server-settings",
+   "title": "Server · Settings",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/settings",
+   "main": {
+    "url": "/server/3ajwjdj5/settings",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 523/675",
+      "fi-page-main 523/1586"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-main-content 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-settings.png"
+  },
+  {
+   "id": "server-webhooks",
+   "title": "Server · Webhooks",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/webhook",
+   "main": {
+    "url": "/server/3ajwjdj5/webhook",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 523/675"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-main-content 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-webhooks.png"
+  },
+  {
+   "id": "server-website",
+   "title": "Server · Website",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/website",
+   "main": {
+    "url": "/server/3ajwjdj5/website",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 523/675",
+      "fi-page-main 523/1192"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-main-content 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "295,1187 412x420",
+     "url": "blank",
+     "w": 410,
+     "h": 418,
+     "dark": false,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 418,
+      "pageScrollW": 410,
+      "scope": "pelican"
+     }
+    }
+   ],
+   "shot": "tablet768-dark/server-website.png"
+  },
+  {
+   "id": "server-open-in-admin",
+   "title": "Server · Open in Admin",
+   "stand": "tablet768-dark",
+   "url": "/admin/servers/1/edit",
+   "main": {
+    "url": "/admin/servers/1/edit",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1208 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1208,
+     "pageScrollW": 768,
+     "card": "44..1152 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-open-in-admin.png"
+  },
+  {
+   "id": "server2-console",
+   "title": "Server · Console (Valheim Vikings)",
+   "stand": "tablet768-dark",
+   "url": "/server/4q6eb3ug/console",
+   "main": {
+    "url": "/server/4q6eb3ug/console",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 523/593"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,507 408x361; terminal 271,439 460x460; bar top 899",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server2-console.png"
+  },
+  {
+   "id": "admin-dashboard",
+   "title": "Beheer · Dashboard",
+   "stand": "tablet768-dark",
+   "url": "/admin",
+   "main": {
+    "url": "/admin",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-dashboard.png"
+  },
+  {
+   "id": "admin-notifications",
+   "title": "Beheer · Pelican-meldingen open",
+   "stand": "tablet768-dark",
+   "url": "/admin",
+   "main": {
+    "url": "/admin",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-notifications.png"
+  },
+  {
+   "id": "admin-usermenu",
+   "title": "Beheer · gebruikersmenu open",
+   "stand": "tablet768-dark",
+   "url": "/admin",
+   "main": {
+    "url": "/admin",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-usermenu.png"
+  },
+  {
+   "id": "admin-sidebar-open",
+   "title": "Beheer · zijbalk open (klein venster)",
+   "stand": "tablet768-dark",
+   "url": "/admin",
+   "main": {
+    "url": "/admin",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "panes": [
+      "Sidebar navigation 772/1450"
+     ],
+     "card": "44..1012 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-sidebar-open.png"
+  },
+  {
+   "id": "admin-health",
+   "title": "Beheer · Health",
+   "stand": "tablet768-dark",
+   "url": "/admin/health",
+   "main": {
+    "url": "/admin/health",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "simplify",
+     "boxes": [
+      "s-card.s-health 24,144 720x516"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-health.png"
+  },
+  {
+   "id": "admin-panel-logs",
+   "title": "Beheer · Panel Logs",
+   "stand": "tablet768-dark",
+   "url": "/admin/logs",
+   "main": {
+    "url": "/admin/logs",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-panel-logs.png"
+  },
+  {
+   "id": "admin-settings",
+   "title": "Beheer · Settings",
+   "stand": "tablet768-dark",
+   "url": "/admin/settings",
+   "main": {
+    "url": "/admin/settings",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1261 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1261,
+     "pageScrollW": 768,
+     "card": "44..1205 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-settings.png"
+  },
+  {
+   "id": "admin-settings-tab1",
+   "title": "Beheer · Settings, tabblad 2",
+   "stand": "tablet768-dark",
+   "url": "/admin/settings?tab=captcha%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/settings?tab=captcha%3A%3Adata%3A%3Atab",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-settings-tab1.png"
+  },
+  {
+   "id": "admin-settings-tab2",
+   "title": "Beheer · Settings, tabblad 3",
+   "stand": "tablet768-dark",
+   "url": "/admin/settings?tab=mail%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/settings?tab=mail%3A%3Adata%3A%3Atab",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-settings-tab2.png"
+  },
+  {
+   "id": "admin-settings-tab3",
+   "title": "Beheer · Settings, tabblad 4",
+   "stand": "tablet768-dark",
+   "url": "/admin/settings?tab=backup%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/settings?tab=backup%3A%3Adata%3A%3Atab",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-settings-tab3.png"
+  },
+  {
+   "id": "admin-settings-tab4",
+   "title": "Beheer · Settings, tabblad 5",
+   "stand": "tablet768-dark",
+   "url": "/admin/settings?tab=oauth%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/settings?tab=oauth%3A%3Adata%3A%3Atab",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1193 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1193,
+     "pageScrollW": 768,
+     "card": "44..1137 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-settings-tab4.png"
+  },
+  {
+   "id": "admin-settings-tab5",
+   "title": "Beheer · Settings, tabblad 6",
+   "stand": "tablet768-dark",
+   "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1101 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1101,
+     "pageScrollW": 768,
+     "card": "44..1045 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-settings-tab5.png"
+  },
+  {
+   "id": "admin-settings-tab6",
+   "title": "Beheer · Settings, tabblad 7",
+   "stand": "tablet768-dark",
+   "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1101 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1101,
+     "pageScrollW": 768,
+     "card": "44..1045 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-settings-tab6.png"
+  },
+  {
+   "id": "admin-settings-tab7",
+   "title": "Beheer · Settings, tabblad 8",
+   "stand": "tablet768-dark",
+   "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1101 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1101,
+     "pageScrollW": 768,
+     "card": "44..1045 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-settings-tab7.png"
+  },
+  {
+   "id": "admin-settings-tab8",
+   "title": "Beheer · Settings, tabblad 9",
+   "stand": "tablet768-dark",
+   "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1101 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1101,
+     "pageScrollW": 768,
+     "card": "44..1045 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-settings-tab8.png"
+  },
+  {
+   "id": "admin-simplify",
+   "title": "Beheer · Simplify",
+   "stand": "tablet768-dark",
+   "url": "/admin/simplify",
+   "main": {
+    "url": "/admin/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1212 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1212,
+     "pageScrollW": 768,
+     "card": "44..1156 of 1024",
+     "scope": "simplify",
+     "boxes": [
+      "s-settings-tabs.fi-sc-tabs.fi-contained 24,248 720x876"
+     ],
+     "actionsBelow": [
+      "\"Run setup again\" at y=180",
+      "\"\" at y=180"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-simplify.png"
+  },
+  {
+   "id": "admin-simplify-tab1",
+   "title": "Beheer · Simplify, tabblad 2",
+   "stand": "tablet768-dark",
+   "url": "/admin/simplify?tab=appearance",
+   "main": {
+    "url": "/admin/simplify?tab=appearance",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2366 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2366,
+     "pageScrollW": 768,
+     "ellipsis": [
+      "b: \"Northwind Games\""
+     ],
+     "card": "44..2310 of 1024",
+     "scope": "simplify",
+     "boxes": [
+      "s-settings-tabs.fi-sc-tabs.fi-contained 24,248 720x2030"
+     ],
+     "actionsBelow": [
+      "\"Run setup again\" at y=180",
+      "\"\" at y=180"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-simplify-tab1.png"
+  },
+  {
+   "id": "admin-simplify-tab2",
+   "title": "Beheer · Simplify, tabblad 3",
+   "stand": "tablet768-dark",
+   "url": "/admin/simplify?tab=addons",
+   "main": {
+    "url": "/admin/simplify?tab=addons",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "simplify",
+     "boxes": [
+      "s-settings-tabs.fi-sc-tabs.fi-contained 24,248 720x534"
+     ],
+     "actionsBelow": [
+      "\"Run setup again\" at y=180",
+      "\"\" at y=180"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-simplify-tab2.png"
+  },
+  {
+   "id": "admin-simplify-tab3",
+   "title": "Beheer · Simplify, tabblad 4",
+   "stand": "tablet768-dark",
+   "url": "/admin/simplify?tab=pelican-general",
+   "main": {
+    "url": "/admin/simplify?tab=pelican-general",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "simplify",
+     "boxes": [
+      "s-settings-tabs.fi-sc-tabs.fi-contained 24,248 720x544"
+     ],
+     "actionsBelow": [
+      "\"Run setup again\" at y=180",
+      "\"\" at y=180"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ]
+    }
+   },
+   "frames": [
+    {
+     "box": "63,467 666x1036",
+     "url": "/admin/settings?tab=general%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 666,
+     "h": 1036,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 1036,
+      "pageScrollW": 666,
+      "card": "0..1036 of 1036",
+      "scope": "frame",
+      "boxes": []
+     }
+    }
+   ],
+   "shot": "tablet768-dark/admin-simplify-tab3.png"
+  },
+  {
+   "id": "admin-simplify-tab4",
+   "title": "Beheer · Simplify, tabblad 5",
+   "stand": "tablet768-dark",
+   "url": "/admin/simplify?tab=pelican-captcha",
+   "main": {
+    "url": "/admin/simplify?tab=pelican-captcha",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "simplify",
+     "boxes": [
+      "s-settings-tabs.fi-sc-tabs.fi-contained 24,248 720x544"
+     ],
+     "actionsBelow": [
+      "\"Run setup again\" at y=180",
+      "\"\" at y=180"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ]
+    }
+   },
+   "frames": [
+    {
+     "box": "63,467 666x320",
+     "url": "/admin/settings?tab=captcha%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 666,
+     "h": 320,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "offscreen",
+       "text": "control off the screen: Expand section \"\" (638,54 36x36)"
+      },
+      {
+       "kind": "clipped",
+       "text": "content clipped by its box: Expand section \"\" sticks 8px out of fi-layout"
+      }
+     ],
+     "info": {
+      "pageScrollH": 320,
+      "pageScrollW": 666,
+      "card": "0..320 of 320",
+      "scope": "frame",
+      "boxes": []
+     }
+    }
+   ],
+   "shot": "tablet768-dark/admin-simplify-tab4.png"
+  },
+  {
+   "id": "admin-simplify-tab5",
+   "title": "Beheer · Simplify, tabblad 6",
+   "stand": "tablet768-dark",
+   "url": "/admin/simplify?tab=pelican-mail",
+   "main": {
+    "url": "/admin/simplify?tab=pelican-mail",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "simplify",
+     "boxes": [
+      "s-settings-tabs.fi-sc-tabs.fi-contained 24,248 720x544"
+     ],
+     "actionsBelow": [
+      "\"Run setup again\" at y=180",
+      "\"\" at y=180"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ]
+    }
+   },
+   "frames": [
+    {
+     "box": "63,467 666x483",
+     "url": "/admin/settings?tab=mail%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 666,
+     "h": 483,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 483,
+      "pageScrollW": 666,
+      "card": "0..483 of 483",
+      "scope": "frame",
+      "boxes": []
+     }
+    }
+   ],
+   "shot": "tablet768-dark/admin-simplify-tab5.png"
+  },
+  {
+   "id": "admin-simplify-tab6",
+   "title": "Beheer · Simplify, tabblad 7",
+   "stand": "tablet768-dark",
+   "url": "/admin/simplify?tab=pelican-backup",
+   "main": {
+    "url": "/admin/simplify?tab=pelican-backup",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "simplify",
+     "boxes": [
+      "s-settings-tabs.fi-sc-tabs.fi-contained 24,248 720x544"
+     ],
+     "actionsBelow": [
+      "\"Run setup again\" at y=180",
+      "\"\" at y=180"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ]
+    }
+   },
+   "frames": [
+    {
+     "box": "63,467 666x346",
+     "url": "/admin/settings?tab=backup%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 666,
+     "h": 346,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 346,
+      "pageScrollW": 666,
+      "card": "0..346 of 346",
+      "scope": "frame",
+      "boxes": []
+     }
+    }
+   ],
+   "shot": "tablet768-dark/admin-simplify-tab6.png"
+  },
+  {
+   "id": "admin-simplify-tab7",
+   "title": "Beheer · Simplify, tabblad 8",
+   "stand": "tablet768-dark",
+   "url": "/admin/simplify?tab=pelican-oauth",
+   "main": {
+    "url": "/admin/simplify?tab=pelican-oauth",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "simplify",
+     "boxes": [
+      "s-settings-tabs.fi-sc-tabs.fi-contained 24,248 720x544"
+     ],
+     "actionsBelow": [
+      "\"Run setup again\" at y=180",
+      "\"\" at y=180"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ]
+    }
+   },
+   "frames": [
+    {
+     "box": "63,467 666x780",
+     "url": "/admin/settings?tab=oauth%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 666,
+     "h": 780,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "offscreen",
+       "text": "control off the screen: Expand section \"\" (638,54 36x36) | Expand section \"\" (638,117 36x36) | Expand section \"\" (638,180 36x36) | Expand section \"\" (638,243 36x36) | Expand section \"\" (638,306 36x36) | Expand section \"\" (638,369 36x36) | Expand section \"\" (638,432 36x36) | Expand section \"\" (638,495 36x36)"
+      },
+      {
+       "kind": "clipped",
+       "text": "content clipped by its box: Expand section \"\" sticks 8px out of fi-layout"
+      }
+     ],
+     "info": {
+      "pageScrollH": 780,
+      "pageScrollW": 666,
+      "card": "0..780 of 780",
+      "scope": "frame",
+      "boxes": []
+     }
+    }
+   ],
+   "shot": "tablet768-dark/admin-simplify-tab7.png"
+  },
+  {
+   "id": "admin-simplify-tab8",
+   "title": "Beheer · Simplify, tabblad 9",
+   "stand": "tablet768-dark",
+   "url": "/admin/simplify?tab=pelican-misc",
+   "main": {
+    "url": "/admin/simplify?tab=pelican-misc",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "simplify",
+     "boxes": [
+      "s-settings-tabs.fi-sc-tabs.fi-contained 24,248 720x544"
+     ],
+     "actionsBelow": [
+      "\"Run setup again\" at y=180",
+      "\"\" at y=180"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ]
+    }
+   },
+   "frames": [
+    {
+     "box": "63,467 666x716",
+     "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 666,
+     "h": 716,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "offscreen",
+       "text": "control off the screen: Expand section \"\" (638,54 36x36) | Expand section \"\" (638,141 36x36) | Expand section \"\" (638,228 36x36) | Expand section \"\" (638,315 36x36) | Expand section \"\" (638,422 36x36) | Expand section \"\" (638,509 36x36) | Expand section \"\" (638,596 36x36)"
+      },
+      {
+       "kind": "clipped",
+       "text": "content clipped by its box: Expand section \"\" sticks 8px out of fi-layout"
+      }
+     ],
+     "info": {
+      "pageScrollH": 716,
+      "pageScrollW": 666,
+      "card": "0..716 of 716",
+      "scope": "frame",
+      "boxes": []
+     }
+    }
+   ],
+   "shot": "tablet768-dark/admin-simplify-tab8.png"
+  },
+  {
+   "id": "admin-people-roles",
+   "title": "Beheer · People & roles",
+   "stand": "tablet768-dark",
+   "url": "/admin/simplify-people",
+   "main": {
+    "url": "/admin/simplify-people",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "simplify",
+     "boxes": [
+      "s-card 24,196 720x555"
+     ],
+     "actionsBelow": [
+      "\"People\" at y=146",
+      "\"Roles\" at y=146",
+      "\"Add person\" at y=144"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-people-roles.png"
+  },
+  {
+   "id": "admin-people-roles-tab1",
+   "title": "Beheer · People & roles, tabblad 2",
+   "stand": "tablet768-dark",
+   "url": "/admin/simplify-people",
+   "main": {
+    "url": "/admin/simplify-people",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "simplify",
+     "boxes": [
+      "s-card 24,196 720x210"
+     ],
+     "actionsBelow": [
+      "\"People\" at y=146",
+      "\"Roles\" at y=146",
+      "\"Add role\" at y=144"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-people-roles-tab1.png"
+  },
+  {
+   "id": "admin-people-add",
+   "title": "Beheer · People, persoon toevoegen",
+   "stand": "tablet768-dark",
+   "url": "/admin/simplify-people",
+   "main": {
+    "url": "/admin/simplify-people",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "popups": [
+      "fi-modal-window.fi-modal-window-has-close-btn.fi-modal-windo 0,0 768x1024 scrolls"
+     ],
+     "panes": [
+      "fi-modal-window.fi-modal-window-has-close-btn.fi-modal-windo 1024/4348"
+     ],
+     "card": "44..1012 of 1024",
+     "scope": "simplify",
+     "boxes": [
+      "s-card 24,196 720x210"
+     ],
+     "actionsBelow": [
+      "\"People\" at y=146",
+      "\"Roles\" at y=146",
+      "\"Add role\" at y=144"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-people-add.png"
+  },
+  {
+   "id": "admin-website-embed",
+   "title": "Beheer · Website embed",
+   "stand": "tablet768-dark",
+   "url": "/admin/simplify-embed",
+   "main": {
+    "url": "/admin/simplify-embed",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2494 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2494,
+     "pageScrollW": 768,
+     "card": "44..2438 of 1024",
+     "scope": "simplify",
+     "boxes": [
+      "fi-section.fi-section-has-header 24,144 720x595",
+      "fi-section.fi-section-has-header 24,763 720x557",
+      "fi-section.fi-section-has-header 24,1344 720x1062"
+     ],
+     "actionsBelow": [
+      "\"\" at y=76"
+     ]
+    }
+   },
+   "frames": [
+    {
+     "box": "48,1962 672x420",
+     "url": "blank",
+     "w": 670,
+     "h": 418,
+     "dark": false,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 418,
+      "pageScrollW": 670,
+      "scope": "pelican"
+     }
+    }
+   ],
+   "shot": "tablet768-dark/admin-website-embed.png"
+  },
+  {
+   "id": "admin-automatic-subdomains",
+   "title": "Beheer · Automatic subdomains",
+   "stand": "tablet768-dark",
+   "url": "/admin/simplify-subdomains",
+   "main": {
+    "url": "/admin/simplify-subdomains",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1294 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1294,
+     "pageScrollW": 768,
+     "card": "44..1238 of 1024",
+     "scope": "simplify",
+     "boxes": [
+      "fi-section.fi-section-has-header 24,144 720x601",
+      "fi-section.fi-section-has-header 24,769 720x437"
+     ],
+     "actionsBelow": [
+      "\"\" at y=76"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-automatic-subdomains.png"
+  },
+  {
+   "id": "admin-egg-updates",
+   "title": "Beheer · Egg Updates",
+   "stand": "tablet768-dark",
+   "url": "/admin/egg-updates",
+   "main": {
+    "url": "/admin/egg-updates",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "simplify",
+     "boxes": [
+      "fi-ta-ctn.fi-ta-ctn-with-header 24,180 720x352"
+     ],
+     "actionsBelow": [
+      "\"\" at y=94",
+      "\"\" at y=94",
+      "\"\" at y=94"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-egg-updates.png"
+  },
+  {
+   "id": "admin-explain",
+   "title": "Beheer · Explain",
+   "stand": "tablet768-dark",
+   "url": "/admin/simplify-explain",
+   "main": {
+    "url": "/admin/simplify-explain",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "simplify",
+     "boxes": [
+      "fi-section.fi-section-has-header 24,144 720x525",
+      "fi-section.fi-section-has-header 24,693 720x197"
+     ],
+     "actionsBelow": [
+      "\"\" at y=76"
+     ],
+     "filamentButtons": [
+      "\"Test\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-explain.png"
+  },
+  {
+   "id": "admin-hosting",
+   "title": "Beheer · Hosting",
+   "stand": "tablet768-dark",
+   "url": "/admin/simplify-hosting",
+   "main": {
+    "url": "/admin/simplify-hosting",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "simplify",
+     "boxes": [
+      "fi-section.fi-section-has-header 24,144 720x449",
+      "fi-section.fi-section-has-header 24,617 720x173"
+     ],
+     "actionsBelow": [
+      "\"\" at y=76"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-hosting.png"
+  },
+  {
+   "id": "admin-server-maker",
+   "title": "Beheer · Server Maker",
+   "stand": "tablet768-dark",
+   "url": "/admin/server-maker",
+   "main": {
+    "url": "/admin/server-maker",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "panes": [
+      "form.game::data::wizard-step 658/681"
+     ],
+     "card": "44..1012 of 1024",
+     "scope": "simplify",
+     "boxes": [
+      "form.data::wizard 24,144 720x792"
+     ],
+     "actionsBelow": [
+      "\"\" at y=76"
+     ],
+     "filamentButtons": [
+      "\"Next\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-server-maker.png"
+  },
+  {
+   "id": "admin-maker-settings",
+   "title": "Beheer · Maker Settings",
+   "stand": "tablet768-dark",
+   "url": "/admin/server-maker/settings",
+   "main": {
+    "url": "/admin/server-maker/settings",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "simplify",
+     "boxes": [
+      "fi-section.fi-section-has-header 24,144 720x169",
+      "fi-section.fi-section-has-header 24,337 720x197"
+     ],
+     "actionsBelow": [
+      "\"\" at y=76"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-maker-settings.png"
+  },
+  {
+   "id": "admin-toolkit",
+   "title": "Beheer · Toolkit",
+   "stand": "tablet768-dark",
+   "url": "/admin/simplify-toolkit",
+   "main": {
+    "url": "/admin/simplify-toolkit",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "simplify",
+     "boxes": [
+      "fi-section.fi-section-has-header 24,144 720x325"
+     ],
+     "filamentButtons": [
+      "\"Save key\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-toolkit.png"
+  },
+  {
+   "id": "admin-api-keys",
+   "title": "Beheer · API Keys",
+   "stand": "tablet768-dark",
+   "url": "/admin/api-keys",
+   "main": {
+    "url": "/admin/api-keys",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-api-keys.png"
+  },
+  {
+   "id": "admin-backup-hosts",
+   "title": "Beheer · Backup Hosts",
+   "stand": "tablet768-dark",
+   "url": "/admin/backup-hosts",
+   "main": {
+    "url": "/admin/backup-hosts",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-backup-hosts.png"
+  },
+  {
+   "id": "admin-database-hosts",
+   "title": "Beheer · Database Hosts",
+   "stand": "tablet768-dark",
+   "url": "/admin/database-hosts",
+   "main": {
+    "url": "/admin/database-hosts",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-database-hosts.png"
+  },
+  {
+   "id": "admin-eggs",
+   "title": "Beheer · Eggs",
+   "stand": "tablet768-dark",
+   "url": "/admin/eggs",
+   "main": {
+    "url": "/admin/eggs",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1334 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1334,
+     "pageScrollW": 768,
+     "card": "44..1278 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-eggs.png"
+  },
+  {
+   "id": "admin-eggs-edit",
+   "title": "Beheer · Eggs, bewerken",
+   "stand": "tablet768-dark",
+   "url": "/admin/eggs/1/edit",
+   "main": {
+    "url": "/admin/eggs/1/edit",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1902 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1902,
+     "pageScrollW": 768,
+     "card": "44..1846 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-eggs-edit.png"
+  },
+  {
+   "id": "admin-eggs-edit-tab1",
+   "title": "Beheer · Eggs, bewerken, tabblad 2",
+   "stand": "tablet768-dark",
+   "url": "/admin/eggs/1/edit?tab=process-management%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/eggs/1/edit?tab=process-management%3A%3Adata%3A%3Atab",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2041 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2041,
+     "pageScrollW": 768,
+     "card": "44..1985 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-eggs-edit-tab1.png"
+  },
+  {
+   "id": "admin-eggs-edit-tab2",
+   "title": "Beheer · Eggs, bewerken, tabblad 3",
+   "stand": "tablet768-dark",
+   "url": "/admin/eggs/1/edit?tab=egg-variables%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/eggs/1/edit?tab=egg-variables%3A%3Adata%3A%3Atab",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-eggs-edit-tab2.png"
+  },
+  {
+   "id": "admin-eggs-edit-tab3",
+   "title": "Beheer · Eggs, bewerken, tabblad 4",
+   "stand": "tablet768-dark",
+   "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1691 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1691,
+     "pageScrollW": 768,
+     "card": "44..1635 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-eggs-edit-tab3.png"
+  },
+  {
+   "id": "admin-eggs-edit-tab4",
+   "title": "Beheer · Eggs, bewerken, tabblad 5",
+   "stand": "tablet768-dark",
+   "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1691 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1691,
+     "pageScrollW": 768,
+     "card": "44..1635 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-eggs-edit-tab4.png"
+  },
+  {
+   "id": "admin-eggs-edit-tab5",
+   "title": "Beheer · Eggs, bewerken, tabblad 6",
+   "stand": "tablet768-dark",
+   "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1691 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1691,
+     "pageScrollW": 768,
+     "card": "44..1635 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-eggs-edit-tab5.png"
+  },
+  {
+   "id": "admin-eggs-edit-tab6",
+   "title": "Beheer · Eggs, bewerken, tabblad 7",
+   "stand": "tablet768-dark",
+   "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1691 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1691,
+     "pageScrollW": 768,
+     "card": "44..1635 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-eggs-edit-tab6.png"
+  },
+  {
+   "id": "admin-mounts",
+   "title": "Beheer · Mounts",
+   "stand": "tablet768-dark",
+   "url": "/admin/mounts",
+   "main": {
+    "url": "/admin/mounts",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-mounts.png"
+  },
+  {
+   "id": "admin-nodes",
+   "title": "Beheer · Nodes",
+   "stand": "tablet768-dark",
+   "url": "/admin/nodes",
+   "main": {
+    "url": "/admin/nodes",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-nodes.png"
+  },
+  {
+   "id": "admin-nodes-edit",
+   "title": "Beheer · Nodes, bewerken",
+   "stand": "tablet768-dark",
+   "url": "/admin/nodes/1/edit",
+   "main": {
+    "url": "/admin/nodes/1/edit",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1498 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1498,
+     "pageScrollW": 768,
+     "card": "44..1442 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-nodes-edit.png"
+  },
+  {
+   "id": "admin-nodes-edit-tab1",
+   "title": "Beheer · Nodes, bewerken, tabblad 2",
+   "stand": "tablet768-dark",
+   "url": "/admin/nodes/1/edit?tab=basic-settings%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/nodes/1/edit?tab=basic-settings%3A%3Adata%3A%3Atab",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1677 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1677,
+     "pageScrollW": 768,
+     "card": "44..1621 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-nodes-edit-tab1.png"
+  },
+  {
+   "id": "admin-nodes-edit-tab2",
+   "title": "Beheer · Nodes, bewerken, tabblad 3",
+   "stand": "tablet768-dark",
+   "url": "/admin/nodes/1/edit?tab=advanced-settings%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/nodes/1/edit?tab=advanced-settings%3A%3Adata%3A%3Atab",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2097 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2097,
+     "pageScrollW": 768,
+     "card": "44..2041 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-nodes-edit-tab2.png"
+  },
+  {
+   "id": "admin-nodes-edit-tab3",
+   "title": "Beheer · Nodes, bewerken, tabblad 4",
+   "stand": "tablet768-dark",
+   "url": "/admin/nodes/1/edit?tab=configuration-file%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/nodes/1/edit?tab=configuration-file%3A%3Adata%3A%3Atab",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1929 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1929,
+     "pageScrollW": 768,
+     "card": "44..1873 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-nodes-edit-tab3.png"
+  },
+  {
+   "id": "admin-nodes-edit-tab4",
+   "title": "Beheer · Nodes, bewerken, tabblad 5",
+   "stand": "tablet768-dark",
+   "url": "/admin/nodes/1/edit?tab=diagnostics%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/nodes/1/edit?tab=diagnostics%3A%3Adata%3A%3Atab",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1672 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1672,
+     "pageScrollW": 768,
+     "card": "44..1616 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-nodes-edit-tab4.png"
+  },
+  {
+   "id": "admin-nodes-edit-tab5",
+   "title": "Beheer · Nodes, bewerken, tabblad 6",
+   "stand": "tablet768-dark",
+   "url": "/admin/nodes/1/edit?tab=diagnostics%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/nodes/1/edit?tab=diagnostics%3A%3Adata%3A%3Atab",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1672 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1672,
+     "pageScrollW": 768,
+     "card": "44..1616 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-nodes-edit-tab5.png"
+  },
+  {
+   "id": "admin-nodes-edit-tab6",
+   "title": "Beheer · Nodes, bewerken, tabblad 7",
+   "stand": "tablet768-dark",
+   "url": "/admin/nodes/1/edit?tab=diagnostics%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/nodes/1/edit?tab=diagnostics%3A%3Adata%3A%3Atab",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1672 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1672,
+     "pageScrollW": 768,
+     "card": "44..1616 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-nodes-edit-tab6.png"
+  },
+  {
+   "id": "admin-plugins",
+   "title": "Beheer · Plugins",
+   "stand": "tablet768-dark",
+   "url": "/admin/plugins",
+   "main": {
+    "url": "/admin/plugins",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-plugins.png"
+  },
+  {
+   "id": "admin-roles",
+   "title": "Beheer · Roles",
+   "stand": "tablet768-dark",
+   "url": "/admin/roles",
+   "main": {
+    "url": "/admin/roles",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-roles.png"
+  },
+  {
+   "id": "admin-roles-edit",
+   "title": "Beheer · Roles, bewerken",
+   "stand": "tablet768-dark",
+   "url": "/admin/roles/1/edit",
+   "main": {
+    "url": "/admin/roles/1/edit",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-roles-edit.png"
+  },
+  {
+   "id": "admin-servers",
+   "title": "Beheer · Servers",
+   "stand": "tablet768-dark",
+   "url": "/admin/servers",
+   "main": {
+    "url": "/admin/servers",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1421 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1421,
+     "pageScrollW": 768,
+     "card": "44..1365 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-servers.png"
+  },
+  {
+   "id": "admin-servers-edit",
+   "title": "Beheer · Servers, bewerken",
+   "stand": "tablet768-dark",
+   "url": "/admin/servers/1/edit",
+   "main": {
+    "url": "/admin/servers/1/edit",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1208 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1208,
+     "pageScrollW": 768,
+     "card": "44..1152 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-servers-edit.png"
+  },
+  {
+   "id": "admin-servers-edit-tab1",
+   "title": "Beheer · Servers, bewerken, tabblad 2",
+   "stand": "tablet768-dark",
+   "url": "/admin/servers/1/edit?tab=environment-configuration%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/servers/1/edit?tab=environment-configuration%3A%3Adata%3A%3Atab",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1890 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1890,
+     "pageScrollW": 768,
+     "card": "44..1834 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-servers-edit-tab1.png"
+  },
+  {
+   "id": "admin-servers-edit-tab2",
+   "title": "Beheer · Servers, bewerken, tabblad 3",
+   "stand": "tablet768-dark",
+   "url": "/admin/servers/1/edit?tab=egg%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/servers/1/edit?tab=egg%3A%3Adata%3A%3Atab",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-servers-edit-tab2.png"
+  },
+  {
+   "id": "admin-servers-edit-tab3",
+   "title": "Beheer · Servers, bewerken, tabblad 4",
+   "stand": "tablet768-dark",
+   "url": "/admin/servers/1/edit?tab=mounts%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/servers/1/edit?tab=mounts%3A%3Adata%3A%3Atab",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-servers-edit-tab3.png"
+  },
+  {
+   "id": "admin-servers-edit-tab4",
+   "title": "Beheer · Servers, bewerken, tabblad 5",
+   "stand": "tablet768-dark",
+   "url": "/admin/servers/1/edit?tab=actions%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/servers/1/edit?tab=actions%3A%3Adata%3A%3Atab",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1113 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1113,
+     "pageScrollW": 768,
+     "card": "44..1057 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-servers-edit-tab4.png"
+  },
+  {
+   "id": "admin-servers-edit-tab5",
+   "title": "Beheer · Servers, bewerken, tabblad 6",
+   "stand": "tablet768-dark",
+   "url": "/admin/servers/1/edit?tab=actions%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/servers/1/edit?tab=actions%3A%3Adata%3A%3Atab",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1113 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1113,
+     "pageScrollW": 768,
+     "card": "44..1057 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-servers-edit-tab5.png"
+  },
+  {
+   "id": "admin-servers-edit-tab6",
+   "title": "Beheer · Servers, bewerken, tabblad 7",
+   "stand": "tablet768-dark",
+   "url": "/admin/servers/1/edit?tab=actions%3A%3Adata%3A%3Atab",
+   "main": {
+    "url": "/admin/servers/1/edit?tab=actions%3A%3Adata%3A%3Atab",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1113 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1113,
+     "pageScrollW": 768,
+     "card": "44..1057 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-servers-edit-tab6.png"
+  },
+  {
+   "id": "admin-users",
+   "title": "Beheer · Users",
+   "stand": "tablet768-dark",
+   "url": "/admin/users",
+   "main": {
+    "url": "/admin/users",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-users.png"
+  },
+  {
+   "id": "admin-users-edit",
+   "title": "Beheer · Users, bewerken",
+   "stand": "tablet768-dark",
+   "url": "/admin/users/1/edit",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1734 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1734,
+     "pageScrollW": 768,
+     "card": "44..1678 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-users-edit.png"
+  },
+  {
+   "id": "admin-users-edit-tab1",
+   "title": "Beheer · Users, bewerken, tabblad 2",
+   "stand": "tablet768-dark",
+   "url": "/admin/users/1/edit",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1228 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1228,
+     "pageScrollW": 768,
+     "card": "44..1172 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-users-edit-tab1.png"
+  },
+  {
+   "id": "admin-users-edit-tab2",
+   "title": "Beheer · Users, bewerken, tabblad 3",
+   "stand": "tablet768-dark",
+   "url": "/admin/users/1/edit",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1426 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1426,
+     "pageScrollW": 768,
+     "card": "44..1370 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-users-edit-tab2.png"
+  },
+  {
+   "id": "admin-users-edit-tab3",
+   "title": "Beheer · Users, bewerken, tabblad 4",
+   "stand": "tablet768-dark",
+   "url": "/admin/users/1/edit",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1244 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1244,
+     "pageScrollW": 768,
+     "card": "44..1188 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-users-edit-tab3.png"
+  },
+  {
+   "id": "admin-users-edit-tab4",
+   "title": "Beheer · Users, bewerken, tabblad 5",
+   "stand": "tablet768-dark",
+   "url": "/admin/users/1/edit",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1244 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1244,
+     "pageScrollW": 768,
+     "card": "44..1188 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-users-edit-tab4.png"
+  },
+  {
+   "id": "admin-users-edit-tab5",
+   "title": "Beheer · Users, bewerken, tabblad 6",
+   "stand": "tablet768-dark",
+   "url": "/admin/users/1/edit",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1244 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1244,
+     "pageScrollW": 768,
+     "card": "44..1188 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-users-edit-tab5.png"
+  },
+  {
+   "id": "admin-users-edit-tab6",
+   "title": "Beheer · Users, bewerken, tabblad 7",
+   "stand": "tablet768-dark",
+   "url": "/admin/users/1/edit",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1244 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1244,
+     "pageScrollW": 768,
+     "card": "44..1188 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-users-edit-tab6.png"
+  },
+  {
+   "id": "admin-webhooks",
+   "title": "Beheer · Webhooks",
+   "stand": "tablet768-dark",
+   "url": "/admin/webhooks",
+   "main": {
+    "url": "/admin/webhooks",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-webhooks.png"
+  },
+  {
+   "id": "admin-announcements",
+   "title": "Beheer · Announcements",
+   "stand": "tablet768-dark",
+   "url": "/admin/simplify-announcements",
+   "main": {
+    "url": "/admin/simplify-announcements",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1068 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1068,
+     "pageScrollW": 768,
+     "card": "44..1012 of 1024",
+     "scope": "simplify",
+     "boxes": [
+      "fi-ta-ctn.fi-ta-ctn-with-content-layout.fi-ta-ctn-with-foote 24,144 720x371"
+     ],
+     "actionsBelow": [
+      "\"\" at y=76",
+      "\"\" at y=76"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/admin-announcements.png"
+  },
+  {
+   "id": "host",
+   "title": "Hostmodus",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/health?simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 832,
+      "pageScrollW": 444,
+      "card": "0..832 of 832",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host.png"
+  },
+  {
+   "id": "host-servers",
+   "title": "Hostmodus · Servers",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/health?simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 832,
+      "pageScrollW": 444,
+      "card": "0..832 of 832",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-servers.png"
+  },
+  {
+   "id": "host-servers-servers",
+   "title": "Hostmodus · Servers · Servers",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "ellipsis": [
+      "small: \"Servers\""
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/servers?simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (1076 > 832), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 1076,
+      "pageScrollW": 444,
+      "card": "0..1076 of 832",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 2
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-servers-servers.png"
+  },
+  {
+   "id": "host-servers-eggs",
+   "title": "Hostmodus · Servers · Eggs",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "ellipsis": [
+      "small: \"Eggs\""
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/eggs?simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (2125 > 832), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 2125,
+      "pageScrollW": 444,
+      "card": "0..2125 of 832",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 3
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-servers-eggs.png"
+  },
+  {
+   "id": "host-servers-mounts",
+   "title": "Hostmodus · Servers · Mounts",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/mounts?simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 832,
+      "pageScrollW": 444,
+      "card": "0..832 of 832",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-servers-mounts.png"
+  },
+  {
+   "id": "host-nodes",
+   "title": "Hostmodus · Nodes",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/mounts?simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 832,
+      "pageScrollW": 444,
+      "card": "0..832 of 832",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-nodes.png"
+  },
+  {
+   "id": "host-nodes-nodes",
+   "title": "Hostmodus · Nodes · Nodes",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "ellipsis": [
+      "small: \"Nodes\""
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/nodes?simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 832,
+      "pageScrollW": 444,
+      "card": "0..832 of 832",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 2
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-nodes-nodes.png"
+  },
+  {
+   "id": "host-nodes-database-hosts",
+   "title": "Hostmodus · Nodes · Database Hosts",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/database-hosts?simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 832,
+      "pageScrollW": 444,
+      "card": "0..832 of 832",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-nodes-database-hosts.png"
+  },
+  {
+   "id": "host-nodes-backup-hosts",
+   "title": "Hostmodus · Nodes · Backup Hosts",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/backup-hosts?simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 832,
+      "pageScrollW": 444,
+      "card": "0..832 of 832",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-nodes-backup-hosts.png"
+  },
+  {
+   "id": "host-people",
+   "title": "Hostmodus · People",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/backup-hosts?simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 832,
+      "pageScrollW": 444,
+      "card": "0..832 of 832",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-people.png"
+  },
+  {
+   "id": "host-people-users",
+   "title": "Hostmodus · People · Users",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "ellipsis": [
+      "small: \"Users\""
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/users?simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 832,
+      "pageScrollW": 444,
+      "card": "0..832 of 832",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 2
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-people-users.png"
+  },
+  {
+   "id": "host-people-roles",
+   "title": "Hostmodus · People · Roles",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/roles?simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 832,
+      "pageScrollW": 444,
+      "card": "0..832 of 832",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-people-roles.png"
+  },
+  {
+   "id": "host-people-people-roles",
+   "title": "Hostmodus · People · People & roles",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "ellipsis": [
+      "small: \"People & roles\""
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/simplify-people?simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 832,
+      "pageScrollW": 444,
+      "card": "0..832 of 832",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 4
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-people-people-roles.png"
+  },
+  {
+   "id": "host-integrations",
+   "title": "Hostmodus · Integrations",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "ellipsis": [
+      "small: \"People & roles\""
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/simplify-people?simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 832,
+      "pageScrollW": 444,
+      "card": "0..832 of 832",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 4
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-integrations.png"
+  },
+  {
+   "id": "host-integrations-api-keys",
+   "title": "Hostmodus · Integrations · API Keys",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/api-keys?simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 832,
+      "pageScrollW": 444,
+      "card": "0..832 of 832",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-integrations-api-keys.png"
+  },
+  {
+   "id": "host-integrations-webhooks",
+   "title": "Hostmodus · Integrations · Webhooks",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/webhooks?simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 832,
+      "pageScrollW": 444,
+      "card": "0..832 of 832",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 2
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-integrations-webhooks.png"
+  },
+  {
+   "id": "host-settings",
+   "title": "Hostmodus · Settings",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "ps-host-side-scroll 727/771"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/webhooks?simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 832,
+      "pageScrollW": 444,
+      "card": "0..832 of 832",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 2
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-settings.png"
+  },
+  {
+   "id": "host-settings-general",
+   "title": "Hostmodus · Settings · General",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "ps-host-side-scroll 727/771"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/simplify?tab=general&simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 832,
+      "pageScrollW": 444,
+      "card": "0..832 of 832",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-settings-general.png"
+  },
+  {
+   "id": "host-settings-appearance",
+   "title": "Hostmodus · Settings · Appearance",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "ps-host-side-scroll 727/771"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/simplify?tab=appearance&simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (1890 > 832), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 1890,
+      "pageScrollW": 444,
+      "ellipsis": [
+       "b: \"Northwind Games\""
+      ],
+      "card": "0..1890 of 832",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-settings-appearance.png"
+  },
+  {
+   "id": "host-settings-announcements",
+   "title": "Hostmodus · Settings · Announcements",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "ellipsis": [
+      "small: \"Announcements\""
+     ],
+     "panes": [
+      "ps-host-side-scroll 727/771"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/simplify-announcements?simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 832,
+      "pageScrollW": 444,
+      "card": "0..832 of 832",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 3
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-settings-announcements.png"
+  },
+  {
+   "id": "host-settings-automatic-subdomains",
+   "title": "Hostmodus · Settings · Automatic subdomains",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "ps-host-side-scroll 727/771"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/simplify-subdomains?simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (1228 > 832), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 1228,
+      "pageScrollW": 444,
+      "card": "0..1228 of 832",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-settings-automatic-subdomains.png"
+  },
+  {
+   "id": "host-settings-website-embed",
+   "title": "Hostmodus · Settings · Website embed",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "ps-host-side-scroll 727/771"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/simplify-embed?simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (2501 > 832), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 2501,
+      "pageScrollW": 444,
+      "card": "0..2501 of 832",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    },
+    {
+     "box": "334,2177 352x420",
+     "url": "blank",
+     "w": 350,
+     "h": 418,
+     "dark": false,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 418,
+      "pageScrollW": 350,
+      "scope": "pelican"
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-settings-website-embed.png"
+  },
+  {
+   "id": "host-add-ons",
+   "title": "Hostmodus · Add-ons",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "ps-host-side-scroll 727/977"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/simplify-embed?simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (2501 > 832), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 2501,
+      "pageScrollW": 444,
+      "card": "0..2501 of 832",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    },
+    {
+     "box": "334,2177 352x420",
+     "url": "blank",
+     "w": 350,
+     "h": 418,
+     "dark": false,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 418,
+      "pageScrollW": 350,
+      "scope": "pelican"
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-add-ons.png"
+  },
+  {
+   "id": "host-add-ons-add-ons",
+   "title": "Hostmodus · Add-ons · Add-ons",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "ps-host-side-scroll 727/977"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/simplify?tab=addons&simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 832,
+      "pageScrollW": 444,
+      "card": "0..832 of 832",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-add-ons-add-ons.png"
+  },
+  {
+   "id": "host-add-ons-egg-updates",
+   "title": "Hostmodus · Add-ons · Egg Updates",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "ellipsis": [
+      "small: \"Egg Updates\""
+     ],
+     "panes": [
+      "ps-host-side-scroll 727/977"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/egg-updates?simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 832,
+      "pageScrollW": 444,
+      "card": "0..832 of 832",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 4
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-add-ons-egg-updates.png"
+  },
+  {
+   "id": "host-add-ons-explain",
+   "title": "Hostmodus · Add-ons · Explain",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "ps-host-side-scroll 727/977"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/simplify-explain?simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "filamentlook",
+       "text": "bare Filament button(s) in host mode's frame: \"Test\" at y=472"
+      }
+     ],
+     "info": {
+      "pageScrollH": 832,
+      "pageScrollW": 444,
+      "card": "0..832 of 832",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-add-ons-explain.png"
+  },
+  {
+   "id": "host-add-ons-hosting",
+   "title": "Hostmodus · Add-ons · Hosting",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "ps-host-side-scroll 727/977"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/simplify-hosting?simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 832,
+      "pageScrollW": 444,
+      "card": "0..832 of 832",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-add-ons-hosting.png"
+  },
+  {
+   "id": "host-add-ons-server-maker",
+   "title": "Hostmodus · Add-ons · Server Maker",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "ps-host-side-scroll 727/977"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/server-maker/settings?simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 832,
+      "pageScrollW": 444,
+      "card": "0..832 of 832",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-add-ons-server-maker.png"
+  },
+  {
+   "id": "host-add-ons-toolkit",
+   "title": "Hostmodus · Add-ons · Toolkit",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "ps-host-side-scroll 727/977"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/simplify-toolkit?simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "filamentlook",
+       "text": "bare Filament button(s) in host mode's frame: \"Save key\" at y=264"
+      }
+     ],
+     "info": {
+      "pageScrollH": 832,
+      "pageScrollW": 444,
+      "card": "0..832 of 832",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 0
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-add-ons-toolkit.png"
+  },
+  {
+   "id": "host-add-ons-plugins",
+   "title": "Hostmodus · Add-ons · Plugins",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "ellipsis": [
+      "small: \"Plugins\""
+     ],
+     "panes": [
+      "ps-host-side-scroll 727/977"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/plugins?simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 832,
+      "pageScrollW": 444,
+      "card": "0..832 of 832",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 2
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-add-ons-plugins.png"
+  },
+  {
+   "id": "host-pelican-settings",
+   "title": "Hostmodus · Pelican settings",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "ellipsis": [
+      "small: \"Plugins\""
+     ],
+     "panes": [
+      "ps-host-side-scroll 727/1154"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/plugins?simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 832,
+      "pageScrollW": 444,
+      "card": "0..832 of 832",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 2
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-pelican-settings.png"
+  },
+  {
+   "id": "host-pelican-settings-general",
+   "title": "Hostmodus · Pelican settings · General",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "ps-host-side-scroll 727/1154"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/settings?tab=general%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (1130 > 832), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 1130,
+      "pageScrollW": 444,
+      "card": "0..1130 of 832",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-pelican-settings-general.png"
+  },
+  {
+   "id": "host-pelican-settings-captcha",
+   "title": "Hostmodus · Pelican settings · Captcha",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "ps-host-side-scroll 727/1154"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/settings?tab=captcha%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 832,
+      "pageScrollW": 444,
+      "card": "0..832 of 832",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-pelican-settings-captcha.png"
+  },
+  {
+   "id": "host-pelican-settings-mail",
+   "title": "Hostmodus · Pelican settings · Mail",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "ps-host-side-scroll 727/1154"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/settings?tab=mail%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 832,
+      "pageScrollW": 444,
+      "card": "0..832 of 832",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-pelican-settings-mail.png"
+  },
+  {
+   "id": "host-pelican-settings-backup",
+   "title": "Hostmodus · Pelican settings · Backup",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "ps-host-side-scroll 727/1154"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/settings?tab=backup%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 832,
+      "pageScrollW": 444,
+      "card": "0..832 of 832",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-pelican-settings-backup.png"
+  },
+  {
+   "id": "host-pelican-settings-oauth",
+   "title": "Hostmodus · Pelican settings · OAuth",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "ps-host-side-scroll 727/1154"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/settings?tab=oauth%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (896 > 832), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 896,
+      "pageScrollW": 444,
+      "card": "0..896 of 832",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-pelican-settings-oauth.png"
+  },
+  {
+   "id": "host-pelican-settings-misc",
+   "title": "Hostmodus · Pelican settings · Misc",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "ps-host-side-scroll 727/1154"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (896 > 832), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 896,
+      "pageScrollW": 444,
+      "card": "0..896 of 832",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-pelican-settings-misc.png"
+  },
+  {
+   "id": "host-servers",
+   "title": "Hostmodus · serverlijst",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "288,142 444x832",
+     "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab&simplify_embed=1",
+     "w": 444,
+     "h": 832,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (896 > 832), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 896,
+      "pageScrollW": 444,
+      "card": "0..896 of 832",
+      "scope": "frame-tree",
+      "boxes": [],
+      "hostHead": "shown",
+      "frameTools": 1
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-servers.png"
+  },
+  {
+   "id": "host-server",
+   "title": "Hostmodus · server open (console in frame)",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "94..974 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "300,154 432x820",
+     "url": "/server/cegboqjj/console",
+     "w": 432,
+     "h": 820,
+     "dark": true,
+     "fit": false,
+     "problems": [
+      {
+       "kind": "pagescroll",
+       "text": "page is taller than the window (1242 > 820), the page scrolls"
+      }
+     ],
+     "info": {
+      "pageScrollH": 1242,
+      "pageScrollW": 432,
+      "card": "341..1242 of 820",
+      "console": {
+       "card": "rgb(19, 26, 32)",
+       "terminal": "rgba(0, 0, 0, 0)",
+       "xterm": "rgba(0, 0, 0, 0)",
+       "viewport": "rgba(0, 0, 0, 0)",
+       "bar": "rgba(0, 0, 0, 0)"
+      },
+      "consoleBox": "screen 25,402 368x570; terminal 15,342 402x640; bar top 1034",
+      "scope": "frame",
+      "boxes": [
+       "Server information 14,16 404x140",
+       "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,341 404x757"
+      ],
+      "hostHead": "hidden"
+     }
+    }
+   ],
+   "shot": "tablet768-dark/host-server.png"
+  },
+  {
+   "id": "season-halloween",
+   "title": "Seizoen · Halloween (30 okt) · overzicht",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Servers 856/2327"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..356, badges 360..392, actions 408..732",
+     "scope": "simplify",
+     "boxes": []
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/season-halloween.png"
+  },
+  {
+   "id": "season-halloween-overzicht-tip",
+   "title": "Seizoen · Halloween (30 okt) · overzicht, tooltip (hover)",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "popups": [
+      "ps-tooltip 236,88 280x66"
+     ],
+     "panes": [
+      "Servers 856/2327"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..356, badges 360..392, actions 408..732",
+     "scope": "simplify",
+     "boxes": []
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/season-halloween-overzicht-tip.png"
+  },
+  {
+   "id": "season-halloween-server",
+   "title": "Seizoen · Halloween (30 okt) · serverpagina",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/console",
+   "main": {
+    "url": "/server/3ajwjdj5/console",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 523/675"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,507 408x361; terminal 271,439 460x460; bar top 899",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/season-halloween-server.png"
+  },
+  {
+   "id": "season-halloween-server-tip",
+   "title": "Seizoen · Halloween (30 okt) · server, tooltip (hover)",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/console",
+   "main": {
+    "url": "/server/3ajwjdj5/console",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "popups": [
+      "ps-tooltip 242,75 280x66"
+     ],
+     "panes": [
+      "Server sections 523/675"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,507 408x361; terminal 271,439 460x460; bar top 899",
+     "topbar": "brand 36..361, badges 366..398, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/season-halloween-server-tip.png"
+  },
+  {
+   "id": "season-december",
+   "title": "Seizoen · Chanoeka + Kerst (7 dec) · overzicht",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Servers 856/2327"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..321, badges 325..392, actions 408..732",
+     "scope": "simplify",
+     "boxes": []
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/season-december.png"
+  },
+  {
+   "id": "season-december-overzicht-tip",
+   "title": "Seizoen · Chanoeka + Kerst (7 dec) · overzicht, tooltip (hover)",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "popups": [
+      "ps-tooltip 202,88 280x66"
+     ],
+     "panes": [
+      "Servers 856/2327"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..321, badges 325..392, actions 408..732",
+     "scope": "simplify",
+     "boxes": []
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/season-december-overzicht-tip.png"
+  },
+  {
+   "id": "season-december-server",
+   "title": "Seizoen · Chanoeka + Kerst (7 dec) · serverpagina",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/console",
+   "main": {
+    "url": "/server/3ajwjdj5/console",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 523/675"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,507 408x361; terminal 271,439 460x460; bar top 899",
+     "topbar": "brand 36..361, badges 366..433, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/season-december-server.png"
+  },
+  {
+   "id": "season-december-server-tip",
+   "title": "Seizoen · Chanoeka + Kerst (7 dec) · server, tooltip (hover)",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/console",
+   "main": {
+    "url": "/server/3ajwjdj5/console",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "popups": [
+      "ps-tooltip 242,75 280x66"
+     ],
+     "panes": [
+      "Server sections 523/675"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,507 408x361; terminal 271,439 460x460; bar top 899",
+     "topbar": "brand 36..361, badges 366..433, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/season-december-server-tip.png"
+  },
+  {
+   "id": "season-valentine",
+   "title": "Seizoen · Valentijn (14 feb) · overzicht",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Servers 880/2327"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, actions 408..732",
+     "scope": "simplify",
+     "boxes": []
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/season-valentine.png"
+  },
+  {
+   "id": "season-valentine-server",
+   "title": "Seizoen · Valentijn (14 feb) · serverpagina",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/console",
+   "main": {
+    "url": "/server/3ajwjdj5/console",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 523/675"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,507 408x361; terminal 271,439 460x460; bar top 899",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/season-valentine-server.png"
+  },
+  {
+   "id": "season-easter",
+   "title": "Seizoen · Pasen (5 apr) · overzicht",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Servers 880/2327"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, actions 408..732",
+     "scope": "simplify",
+     "boxes": []
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/season-easter.png"
+  },
+  {
+   "id": "season-easter-server",
+   "title": "Seizoen · Pasen (5 apr) · serverpagina",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/console",
+   "main": {
+    "url": "/server/3ajwjdj5/console",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 523/675"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,507 408x361; terminal 271,439 460x460; bar top 899",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/season-easter-server.png"
+  },
+  {
+   "id": "season-newyear",
+   "title": "Seizoen · Oudjaar 23:20 · overzicht",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Servers 856/2327"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..284, badges 288..392, actions 408..732",
+     "scope": "simplify",
+     "boxes": []
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/season-newyear.png"
+  },
+  {
+   "id": "season-newyear-overzicht-tip",
+   "title": "Seizoen · Oudjaar 23:20 · overzicht, tooltip (hover)",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "popups": [
+      "ps-tooltip 165,88 280x66"
+     ],
+     "panes": [
+      "Servers 856/2327"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..284, badges 288..392, actions 408..732",
+     "scope": "simplify",
+     "boxes": []
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/season-newyear-overzicht-tip.png"
+  },
+  {
+   "id": "season-newyear-server",
+   "title": "Seizoen · Oudjaar 23:20 · serverpagina",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/console",
+   "main": {
+    "url": "/server/3ajwjdj5/console",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 523/675"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,507 408x361; terminal 271,439 460x460; bar top 899",
+     "topbar": "brand 36..361, badges 366..469, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/season-newyear-server.png"
+  },
+  {
+   "id": "season-newyear-server-tip",
+   "title": "Seizoen · Oudjaar 23:20 · server, tooltip (hover)",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/console",
+   "main": {
+    "url": "/server/3ajwjdj5/console",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "popups": [
+      "ps-tooltip 242,75 280x66"
+     ],
+     "panes": [
+      "Server sections 523/675"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,507 408x361; terminal 271,439 460x460; bar top 899",
+     "topbar": "brand 36..361, badges 366..469, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/season-newyear-server-tip.png"
+  },
+  {
+   "id": "season-nosuffix",
+   "title": "Seizoen · Halloween zonder \"× Pelican\" · overzicht",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Servers 880/2327"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..247, badges 251..284, actions 408..732",
+     "scope": "simplify",
+     "boxes": []
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/season-nosuffix.png"
+  },
+  {
+   "id": "season-nosuffix-overzicht-tip",
+   "title": "Seizoen · Halloween zonder \"× Pelican\" · overzicht, tooltip (hover)",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "popups": [
+      "ps-tooltip 127,73 280x66"
+     ],
+     "panes": [
+      "Servers 880/2327"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..247, badges 251..284, actions 408..732",
+     "scope": "simplify",
+     "boxes": []
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/season-nosuffix-overzicht-tip.png"
+  },
+  {
+   "id": "season-nosuffix-server",
+   "title": "Seizoen · Halloween zonder \"× Pelican\" · serverpagina",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/console",
+   "main": {
+    "url": "/server/3ajwjdj5/console",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 523/675"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,507 408x361; terminal 271,439 460x460; bar top 899",
+     "topbar": "brand 36..247, badges 251..284, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/season-nosuffix-server.png"
+  },
+  {
+   "id": "season-nosuffix-server-tip",
+   "title": "Seizoen · Halloween zonder \"× Pelican\" · server, tooltip (hover)",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/console",
+   "main": {
+    "url": "/server/3ajwjdj5/console",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "popups": [
+      "ps-tooltip 127,75 280x66"
+     ],
+     "panes": [
+      "Server sections 523/675"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,507 408x361; terminal 271,439 460x460; bar top 899",
+     "topbar": "brand 36..247, badges 251..284, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/season-nosuffix-server-tip.png"
+  },
+  {
+   "id": "season-logo",
+   "title": "Seizoen · Halloween met logo · overzicht",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: ps-visually-hidden: \"Northwind Games\" (211>1)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Servers 880/2327"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..294, badges 299..331, actions 408..732",
+     "scope": "simplify",
+     "boxes": []
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/season-logo.png"
+  },
+  {
+   "id": "season-logo-overzicht-tip",
+   "title": "Seizoen · Halloween met logo · overzicht, tooltip (hover)",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: ps-visually-hidden: \"Northwind Games\" (211>1)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "popups": [
+      "ps-tooltip 175,73 280x66"
+     ],
+     "panes": [
+      "Servers 880/2327"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..294, badges 299..331, actions 408..732",
+     "scope": "simplify",
+     "boxes": []
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/season-logo-overzicht-tip.png"
+  },
+  {
+   "id": "season-logo-server",
+   "title": "Seizoen · Halloween met logo · serverpagina",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/console",
+   "main": {
+    "url": "/server/3ajwjdj5/console",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: ps-visually-hidden: \"Northwind Games\" (211>1)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 523/675"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,507 408x361; terminal 271,439 460x460; bar top 899",
+     "topbar": "brand 36..294, badges 299..331, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/season-logo-server.png"
+  },
+  {
+   "id": "season-logo-server-tip",
+   "title": "Seizoen · Halloween met logo · server, tooltip (hover)",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/console",
+   "main": {
+    "url": "/server/3ajwjdj5/console",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: ps-visually-hidden: \"Northwind Games\" (211>1)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "popups": [
+      "ps-tooltip 175,75 280x66"
+     ],
+     "panes": [
+      "Server sections 523/675"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,507 408x361; terminal 271,439 460x460; bar top 899",
+     "topbar": "brand 36..294, badges 299..331, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/season-logo-server-tip.png"
+  },
+  {
+   "id": "season-off-settings",
+   "title": "Seizoen · schakelaar uit, instellingen opgeslagen",
+   "stand": "tablet768-dark",
+   "url": "/admin/simplify?tab=appearance",
+   "main": {
+    "url": "/admin/simplify?tab=appearance",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2366 > 1024), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2366,
+     "pageScrollW": 768,
+     "ellipsis": [
+      "b: \"Northwind Games\""
+     ],
+     "card": "44..2310 of 1024",
+     "scope": "simplify",
+     "boxes": [
+      "s-settings-tabs.fi-sc-tabs.fi-contained 24,248 720x2030"
+     ],
+     "actionsBelow": [
+      "\"Run setup again\" at y=180",
+      "\"\" at y=180"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/season-off-settings.png"
+  },
+  {
+   "id": "season-off",
+   "title": "Seizoen · Seizoensverrassingen uit · overzicht",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Servers 880/2327"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, actions 408..732",
+     "scope": "simplify",
+     "boxes": []
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/season-off.png"
+  },
+  {
+   "id": "season-off-server",
+   "title": "Seizoen · Seizoensverrassingen uit · serverpagina",
+   "stand": "tablet768-dark",
+   "url": "/server/3ajwjdj5/console",
+   "main": {
+    "url": "/server/3ajwjdj5/console",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 523/675"
+     ],
+     "card": "438..963 of 1024 fit=525px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,507 408x361; terminal 271,439 460x460; bar top 899",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,86 696x122",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,438 462x525"
+     ],
+     "box": "438..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/season-off-server.png"
+  }
+ ],
+ "problems": [
+  "tablet768-dark overview-list: nothing to click for .ps-account-button",
+  "tablet768-dark overview-account: nothing to click for #ps-account-actions button[aria-label]:nth-child(2)",
+  "tablet768-dark overview-account-theme: nothing to click for [x-ref=\"notifyButton\"]",
+  "tablet768-dark overview-bell: nothing to click for [x-ref=\"adminButton\"]",
+  "tablet768-dark overview-admin: nothing to click for .ps-admin-group-head:not(.is-open)",
+  "tablet768-dark overview-admin: nothing to click for [x-ref=\"notifyButton\"]",
+  "tablet768-dark overview-admin: nothing to click for .ps-notify-all, [x-ref=\"notifyButton\"] ~ .ps-dropdown button[aria-label*=\"all\" i], .ps-dropdown button[aria-label*=\"expand\" i]",
+  "tablet768-dark overview-admin: nothing to click for [x-ref=\"overviewAppearance\"]",
+  "tablet768-dark overview-customize: nothing to click for [x-ref=\"overviewGroupsButton\"]",
+  "tablet768-dark overview-health-nodes: nothing to click for [x-ref=\"notifyButton\"]",
+  "tablet768-dark overview-bell-1bar: nothing to click for [x-ref=\"adminButton\"]",
+  "tablet768-dark overview-admin-1bar: nothing to click for [x-ref=\"overviewAppearance\"]",
+  "tablet768-dark overview-customize-1bar: nothing to click for [x-ref=\"notifyButton\"]",
+  "tablet768-dark overview-bell-0bar: nothing to click for [x-ref=\"adminButton\"]",
+  "tablet768-dark overview-admin-0bar: nothing to click for [x-ref=\"overviewAppearance\"]",
+  "tablet768-dark overview-customize-0bar: nothing to click for .ps-server-card .ps-card-menu-button, .ps-server-card button[aria-label*=\"options\" i], .ps-server-card button[aria-label*=\"menu\" i]",
+  "tablet768-dark server-console-typed: nothing to click for .ps-console-grow",
+  "tablet768-dark server-colour: nothing to click for .ps-info-motd, .ps-motd-preview",
+  "tablet768-dark server-files: nothing to click for .fi-ta-row .fi-ta-actions button, .fi-ta-row .fi-dropdown-trigger button",
+  "tablet768-dark server-files: nothing to click for .fi-ta-row a:has-text(\"plugins\"), .fi-ta-row a:has-text(\"mods\")",
+  "tablet768-dark server-databases: click .fi-header-actions button, .fi-ac-btn-action, .fi-page-header-main-ctn button: locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator('.fi-h",
+  "tablet768-dark server-webhooks: nothing to click for .fi-header-actions button, .fi-ac-btn-action, .fi-page-header-main-ctn button",
+  "tablet768-dark admin-dashboard: click .fi-topbar-database-notifications-btn, button[aria-label*=\"notification\" i], .fi-topbar button:has(.fi-topbar-database-notifications-badge): locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator('.fi-t",
+  "tablet768-dark admin-notifications: nothing to click for .fi-modal-window button:has-text(\"Show more\"), .fi-dropdown-panel button:has-text(\"Show more\"), button:has-text(\"Show more\")",
+  "tablet768-dark admin-notifications: click .fi-user-menu button, .fi-user-menu .fi-dropdown-trigger, .fi-topbar .fi-avatar: locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator('.fi-u",
+  "tablet768-dark admin-usermenu: nothing to click for .fi-global-search-field input, .fi-global-search input, .fi-topbar input[type=search]",
+  "tablet768-dark admin-usermenu: nothing to click for .fi-global-search-btn, .fi-topbar button[aria-label*=\"search\" i]",
+  "tablet768-dark: no global search found",
+  "tablet768-dark admin-mounts console: http://127.0.0.1:8090/api/system does not match node token_id !",
+  "tablet768-dark admin-announcements: nothing to click for main a:has-text(\"New announcement\"), main button:has-text(\"New announcement\")",
+  "tablet768-dark host: nothing to click for .ps-health-tab",
+  "tablet768-dark host-nodes console: http://127.0.0.1:8090/api/system does not match node token_id !",
+  "tablet768-dark host-server: nothing to click for .ps-host-server-head .ps-info-more-button, .ps-info-more-button",
+  "tablet768-dark season-valentine: no seasonal badge on overzicht",
+  "tablet768-dark season-valentine: no seasonal badge on server",
+  "tablet768-dark season-easter: no seasonal badge on overzicht",
+  "tablet768-dark season-easter: no seasonal badge on server",
+  "tablet768-dark season-off: no seasonal badge on overzicht",
+  "tablet768-dark season-off: no seasonal badge on server",
+  "tablet768-dark SEASON OFF: ok, nothing seasonal left on overview and server page"
+ ]
+}
