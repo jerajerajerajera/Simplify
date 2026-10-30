@@ -329,10 +329,14 @@ async function extrasFlow(theme) {
     if (!(await page.locator('.s-look >> visible=true').count())) say('wizard-look', false, { note: 'Look step did not open', url: rel(page.url()) });
     else {
       await record('wizard-look', 'Setup · Look-stap');
+      const uploads = []; page.on('response', (r) => { if (/livewire\/(upload-file|preview-file|update)/.test(r.url())) uploads.push(`${r.status()} ${rel(r.url()).split('?')[0]}`); });
       const png = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABSElEQVR4nO2bwQ3CQAwECaIb6IVGoBoagV7oBx7oPpEQxLf2nHQ7bxKvJ75wEWE5Xu6v3cTs6QA0FkAHoLEAOgCNBdABaCyADkBjAXQAmkN1weft/PMzp+ujIMmHpeJh6J+mv5EtI1VAT+NrskSkCFA2vkYtQn4TzGw+4/xSAdnNZ9SRCahqXl1PIqC6eWXdbgFU86r6XQLo5hs9OabfCocFjHL1G9E8noDIQaNd/UYkV9nTYGQLWyHaS2DrAaOOf2NrPk8AHYDGAugANBZAB6CxADoAzWYBlT9aRNiab/oJKHsYGnULHZqAUZdBJNf0SyAsYLQpiObxBPQcPMoU9OTongBaQm99yRKgJCjqyu4B1RJU9aQ3wSoJyjryb4FsCerz+x0hvyVW/J+hKd8THBlvhekANBZAB6CxADoAjQXQAWgsgA5A8waE/mJlGzhiUQAAAABJRU5ErkJggg==', 'base64');
       await page.locator('.s-look-logo input[type=file]').first().setInputFiles({ name: 'logo.png', mimeType: 'image/png', buffer: png }).catch((e) => say('wizard-look-logo', false, { note: e.message.slice(0, 120) }));
       await page.waitForSelector('.s-look-preview .s-preview-bar img', { timeout: 15000 }).catch(() => {}); await sleep(1500);
       await record('wizard-look-logo', 'Setup · Look, logo geüpload');
+      // What Livewire holds after the upload (a temporary file, or nothing when the upload failed).
+      const held = await page.evaluate(() => { const el = document.querySelector('.s-setup')?.closest('[wire\\:id]'); const c = el && window.Livewire?.find(el.getAttribute('wire:id')); return c ? { logo: JSON.stringify(c.get('data.brand_logo')).slice(0, 160), show: c.get('data.brand_show') } : null; }).catch((e) => ({ error: e.message.slice(0, 120) }));
+      problems.push(`${stand} wizard-look-upload: held ${JSON.stringify(held)}, uploads ${JSON.stringify(uploads)}`);
       const preview = () => page.evaluate(() => { const bar = document.querySelector('.s-look-preview .s-preview-bar'); if (!bar) return null; const img = bar.querySelector('img'), name = bar.querySelector('.s-preview-name'), inner = name && name.firstElementChild; const vis = (e) => !!e && e.getClientRects().length > 0 && getComputedStyle(e).display !== 'none'; const cs = inner ? getComputedStyle(inner) : null; return { img: vis(img), text: vis(name), shadow: cs && cs.textShadow, color: cs && cs.color, fill: cs && cs.webkitTextFillColor, background: cs && cs.backgroundImage }; });
       const chips = page.locator('.s-chips[role=radiogroup]:has(input[value="both"])').first();
       if (!(await chips.count())) say('wizard-look-show', false, { note: 'no logo/text/both choice after the upload', preview: await preview() });
