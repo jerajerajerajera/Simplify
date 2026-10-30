@@ -1,0 +1,884 @@
+{
+  "made": "2026-10-30T15:13:38.859Z",
+  "versions": {
+    "pelican-simplify": {
+      "repo": "Simplify",
+      "branch": "claude/embed-preview-fit",
+      "version": "1.3.11",
+      "commit": "ac35b6a"
+    },
+    "simplify-toolkit": {
+      "repo": "Simplify-Toolkit",
+      "branch": "main",
+      "version": "1.2.1",
+      "commit": "8e854ca"
+    },
+    "simplify-eggupdates": {
+      "repo": "Simplify-EggUpdates",
+      "branch": "main",
+      "version": "1.1.1",
+      "commit": "0e3169c"
+    },
+    "simplify-explain": {
+      "repo": "Simplify-Explain",
+      "branch": "main",
+      "version": "1.0.4",
+      "commit": "6b32501"
+    },
+    "simplify-servermaker": {
+      "repo": "Simplify-ServerMaker",
+      "branch": "main",
+      "version": "1.3.2",
+      "commit": "836dc97"
+    },
+    "simplify-hosting": {
+      "repo": "Simplify-Hosting",
+      "branch": "main",
+      "version": "1.0.1",
+      "commit": "f08f5d4"
+    },
+    "pelican": {
+      "version": "1.0.0-rc.2"
+    }
+  },
+  "screens": [
+    {
+      "id": "overview",
+      "title": "Overzicht",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/simplify",
+      "file": "overview.html"
+    },
+    {
+      "id": "overview@phone",
+      "title": "Overzicht",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/simplify",
+      "file": "overview@phone.html",
+      "phoneOf": "overview"
+    },
+    {
+      "id": "overview-account",
+      "title": "Accountmenu open",
+      "group": "Klantkant",
+      "parent": "overview",
+      "url": "/simplify",
+      "file": "overview-account.html"
+    },
+    {
+      "id": "overview-bell",
+      "title": "Meldingen (bel) open",
+      "group": "Klantkant",
+      "parent": "overview",
+      "url": "/simplify",
+      "file": "overview-bell.html"
+    },
+    {
+      "id": "overview-admin",
+      "title": "Beheermenu open",
+      "group": "Klantkant",
+      "parent": "overview",
+      "url": "/simplify",
+      "file": "overview-admin.html"
+    },
+    {
+      "id": "overview-customize",
+      "title": "Weergave aanpassen",
+      "group": "Klantkant",
+      "parent": "overview",
+      "url": "/simplify",
+      "file": "overview-customize.html"
+    },
+    {
+      "id": "overview-groups",
+      "title": "Servergroepen",
+      "group": "Klantkant",
+      "parent": "overview",
+      "url": "/simplify",
+      "file": "overview-groups.html"
+    },
+    {
+      "id": "overview-health",
+      "title": "Gezondheid van de host",
+      "group": "Klantkant",
+      "parent": "overview",
+      "url": "/simplify",
+      "file": "overview-health.html"
+    },
+    {
+      "id": "overview-compact",
+      "title": "Overzicht, compact",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/simplify",
+      "file": "overview-compact.html"
+    },
+    {
+      "id": "overview-list",
+      "title": "Overzicht, lijst",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/simplify",
+      "file": "overview-list.html"
+    },
+    {
+      "id": "app-notifications",
+      "title": "Notifications",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/simplify-notifications",
+      "file": "app-notifications.html"
+    },
+    {
+      "id": "app-notifications@phone",
+      "title": "Notifications",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/simplify-notifications",
+      "file": "app-notifications@phone.html",
+      "phoneOf": "app-notifications"
+    },
+    {
+      "id": "app-server-maker",
+      "title": "Server Maker",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/server-maker",
+      "file": "app-server-maker.html"
+    },
+    {
+      "id": "app-server-maker@phone",
+      "title": "Server Maker",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/server-maker",
+      "file": "app-server-maker@phone.html",
+      "phoneOf": "app-server-maker"
+    },
+    {
+      "id": "server",
+      "title": "Serverpagina (Survival SMP)",
+      "group": "Server",
+      "parent": null,
+      "url": "/server/jtoxvz7o/console",
+      "file": "server.html"
+    },
+    {
+      "id": "server@phone",
+      "title": "Serverpagina (Survival SMP)",
+      "group": "Server",
+      "parent": null,
+      "url": "/server/jtoxvz7o/console",
+      "file": "server@phone.html",
+      "phoneOf": "server"
+    },
+    {
+      "id": "server-menu",
+      "title": "Server ⋯-menu",
+      "group": "Server",
+      "parent": "server",
+      "url": "/server/jtoxvz7o/console",
+      "file": "server-menu.html"
+    },
+    {
+      "id": "server-console",
+      "title": "Server · Console",
+      "group": "Server",
+      "parent": "server",
+      "url": "/server/jtoxvz7o/console",
+      "file": "server-console.html"
+    },
+    {
+      "id": "server-files",
+      "title": "Server · Files",
+      "group": "Server",
+      "parent": "server",
+      "url": "/server/jtoxvz7o/files",
+      "file": "server-files.html"
+    },
+    {
+      "id": "server-backups",
+      "title": "Server · Backups",
+      "group": "Server",
+      "parent": "server",
+      "url": "/server/jtoxvz7o/backups",
+      "file": "server-backups.html"
+    },
+    {
+      "id": "server-schedules",
+      "title": "Server · Schedules",
+      "group": "Server",
+      "parent": "server",
+      "url": "/server/jtoxvz7o/schedules",
+      "file": "server-schedules.html"
+    },
+    {
+      "id": "server-users",
+      "title": "Server · Users",
+      "group": "Server",
+      "parent": "server",
+      "url": "/server/jtoxvz7o/subusers",
+      "file": "server-users.html"
+    },
+    {
+      "id": "server-databases",
+      "title": "Server · Databases",
+      "group": "Server",
+      "parent": "server",
+      "url": "/server/jtoxvz7o/databases",
+      "file": "server-databases.html"
+    },
+    {
+      "id": "server-network",
+      "title": "Server · Network",
+      "group": "Server",
+      "parent": "server",
+      "url": "/server/jtoxvz7o/allocations",
+      "file": "server-network.html"
+    },
+    {
+      "id": "server-subdomain",
+      "title": "Server · Subdomain",
+      "group": "Server",
+      "parent": "server",
+      "url": "/server/jtoxvz7o/subdomain",
+      "file": "server-subdomain.html"
+    },
+    {
+      "id": "server-activity",
+      "title": "Server · Activity",
+      "group": "Server",
+      "parent": "server",
+      "url": "/server/jtoxvz7o/activities",
+      "file": "server-activity.html"
+    },
+    {
+      "id": "server-mounts",
+      "title": "Server · Mounts",
+      "group": "Server",
+      "parent": "server",
+      "url": "/server/jtoxvz7o/mounts",
+      "file": "server-mounts.html"
+    },
+    {
+      "id": "server-minecraft",
+      "title": "Server · Minecraft",
+      "group": "Server",
+      "parent": "server",
+      "url": "/server/jtoxvz7o/minecraft",
+      "file": "server-minecraft.html"
+    },
+    {
+      "id": "server-startup",
+      "title": "Server · Startup",
+      "group": "Server",
+      "parent": "server",
+      "url": "/server/jtoxvz7o/startup",
+      "file": "server-startup.html"
+    },
+    {
+      "id": "server-plugins",
+      "title": "Server · Plugins",
+      "group": "Server",
+      "parent": "server",
+      "url": "/server/jtoxvz7o/plugins",
+      "file": "server-plugins.html"
+    },
+    {
+      "id": "server-settings",
+      "title": "Server · Settings",
+      "group": "Server",
+      "parent": "server",
+      "url": "/server/jtoxvz7o/settings",
+      "file": "server-settings.html"
+    },
+    {
+      "id": "server-players",
+      "title": "Server · Players",
+      "group": "Server",
+      "parent": "server",
+      "url": "/server/jtoxvz7o/players",
+      "file": "server-players.html"
+    },
+    {
+      "id": "server-webhooks",
+      "title": "Server · Webhooks",
+      "group": "Server",
+      "parent": "server",
+      "url": "/server/jtoxvz7o/webhook",
+      "file": "server-webhooks.html"
+    },
+    {
+      "id": "server-website",
+      "title": "Server · Website",
+      "group": "Server",
+      "parent": "server",
+      "url": "/server/jtoxvz7o/website",
+      "file": "server-website.html"
+    },
+    {
+      "id": "server-automatic-backups",
+      "title": "Server · Automatic backups",
+      "group": "Server",
+      "parent": "server",
+      "url": "/server/jtoxvz7o/automatic-backups",
+      "file": "server-automatic-backups.html"
+    },
+    {
+      "id": "server-open-in-admin",
+      "title": "Server · Open in Admin",
+      "group": "Server",
+      "parent": "server",
+      "url": "/admin/servers/1/edit",
+      "file": "server-open-in-admin.html"
+    },
+    {
+      "id": "server-explain",
+      "title": "Explain bij een consolefout (Survival SMP)",
+      "group": "Server",
+      "parent": null,
+      "url": "/server/jtoxvz7o/console",
+      "file": "server-explain.html"
+    },
+    {
+      "id": "server-explain@phone",
+      "title": "Explain bij een consolefout (Survival SMP)",
+      "group": "Server",
+      "parent": null,
+      "url": "/server/jtoxvz7o/console",
+      "file": "server-explain@phone.html",
+      "phoneOf": "server-explain"
+    },
+    {
+      "id": "server-schedule-edit",
+      "title": "Schedule bewerken (Survival SMP)",
+      "group": "Server",
+      "parent": null,
+      "url": "/server/jtoxvz7o/schedules/1/edit",
+      "file": "server-schedule-edit.html"
+    },
+    {
+      "id": "server-schedule-edit@phone",
+      "title": "Schedule bewerken (Survival SMP)",
+      "group": "Server",
+      "parent": null,
+      "url": "/server/jtoxvz7o/schedules/1/edit",
+      "file": "server-schedule-edit@phone.html",
+      "phoneOf": "server-schedule-edit"
+    },
+    {
+      "id": "server-mods-modpack",
+      "title": "Mods met modpack (All the Mods 10)",
+      "group": "Server",
+      "parent": null,
+      "url": "/server/q6r5iyho/plugins",
+      "file": "server-mods-modpack.html"
+    },
+    {
+      "id": "server-mods-modpack-open",
+      "title": "Mods met modpack, opengeklapt",
+      "group": "Server",
+      "parent": "server-mods-modpack",
+      "url": "/server/q6r5iyho/plugins",
+      "file": "server-mods-modpack-open.html"
+    },
+    {
+      "id": "settings",
+      "title": "Instellingen",
+      "group": "Beheer",
+      "parent": null,
+      "url": "/admin/simplify",
+      "file": "settings.html"
+    },
+    {
+      "id": "settings@phone",
+      "title": "Instellingen",
+      "group": "Beheer",
+      "parent": null,
+      "url": "/admin/simplify",
+      "file": "settings@phone.html",
+      "phoneOf": "settings"
+    },
+    {
+      "id": "settings-general",
+      "title": "Instellingen · General",
+      "group": "Beheer",
+      "parent": "settings",
+      "url": "/admin/simplify",
+      "file": "settings-general.html"
+    },
+    {
+      "id": "settings-appearance",
+      "title": "Instellingen · Appearance",
+      "group": "Beheer",
+      "parent": "settings",
+      "url": "/admin/simplify?tab=appearance",
+      "file": "settings-appearance.html"
+    },
+    {
+      "id": "settings-add-ons",
+      "title": "Instellingen · Add-ons",
+      "group": "Beheer",
+      "parent": "settings",
+      "url": "/admin/simplify?tab=addons",
+      "file": "settings-add-ons.html"
+    },
+    {
+      "id": "settings-general-3",
+      "title": "Instellingen · General",
+      "group": "Beheer",
+      "parent": "settings",
+      "url": "/admin/simplify?tab=pelican-general",
+      "file": "settings-general-3.html"
+    },
+    {
+      "id": "settings-captcha",
+      "title": "Instellingen · Captcha",
+      "group": "Beheer",
+      "parent": "settings",
+      "url": "/admin/simplify?tab=pelican-captcha",
+      "file": "settings-captcha.html"
+    },
+    {
+      "id": "settings-mail",
+      "title": "Instellingen · Mail",
+      "group": "Beheer",
+      "parent": "settings",
+      "url": "/admin/simplify?tab=pelican-mail",
+      "file": "settings-mail.html"
+    },
+    {
+      "id": "settings-backup",
+      "title": "Instellingen · Backup",
+      "group": "Beheer",
+      "parent": "settings",
+      "url": "/admin/simplify?tab=pelican-backup",
+      "file": "settings-backup.html"
+    },
+    {
+      "id": "settings-oauth",
+      "title": "Instellingen · OAuth",
+      "group": "Beheer",
+      "parent": "settings",
+      "url": "/admin/simplify?tab=pelican-oauth",
+      "file": "settings-oauth.html"
+    },
+    {
+      "id": "settings-misc",
+      "title": "Instellingen · Misc",
+      "group": "Beheer",
+      "parent": "settings",
+      "url": "/admin/simplify?tab=pelican-misc",
+      "file": "settings-misc.html"
+    },
+    {
+      "id": "admin-people-roles",
+      "title": "People & roles",
+      "group": "Beheer",
+      "parent": null,
+      "url": "/admin/simplify-people",
+      "file": "admin-people-roles.html"
+    },
+    {
+      "id": "people-add",
+      "title": "Persoon toevoegen",
+      "group": "Beheer",
+      "parent": "admin-people-roles",
+      "url": "/admin/simplify-people",
+      "file": "people-add.html"
+    },
+    {
+      "id": "admin-people-roles-people",
+      "title": "People · People",
+      "group": "Beheer",
+      "parent": "admin-people-roles",
+      "url": "/admin/simplify-people",
+      "file": "admin-people-roles-people.html"
+    },
+    {
+      "id": "admin-people-roles-roles",
+      "title": "People · Roles",
+      "group": "Beheer",
+      "parent": "admin-people-roles",
+      "url": "/admin/simplify-people",
+      "file": "admin-people-roles-roles.html"
+    },
+    {
+      "id": "admin-website-embed",
+      "title": "Website embed",
+      "group": "Beheer",
+      "parent": null,
+      "url": "/admin/simplify-embed",
+      "file": "admin-website-embed.html"
+    },
+    {
+      "id": "admin-automatic-subdomains",
+      "title": "Automatic subdomains",
+      "group": "Beheer",
+      "parent": null,
+      "url": "/admin/simplify-subdomains",
+      "file": "admin-automatic-subdomains.html"
+    },
+    {
+      "id": "admin-egg-updates",
+      "title": "Egg Updates",
+      "group": "Beheer",
+      "parent": null,
+      "url": "/admin/egg-updates",
+      "file": "admin-egg-updates.html"
+    },
+    {
+      "id": "admin-explain",
+      "title": "Explain",
+      "group": "Beheer",
+      "parent": null,
+      "url": "/admin/simplify-explain",
+      "file": "admin-explain.html"
+    },
+    {
+      "id": "admin-hosting",
+      "title": "Hosting",
+      "group": "Beheer",
+      "parent": null,
+      "url": "/admin/simplify-hosting",
+      "file": "admin-hosting.html"
+    },
+    {
+      "id": "admin-server-maker",
+      "title": "Server Maker",
+      "group": "Beheer",
+      "parent": null,
+      "url": "/admin/server-maker",
+      "file": "admin-server-maker.html"
+    },
+    {
+      "id": "admin-maker-settings",
+      "title": "Maker Settings",
+      "group": "Beheer",
+      "parent": null,
+      "url": "/admin/server-maker/settings",
+      "file": "admin-maker-settings.html"
+    },
+    {
+      "id": "admin-toolkit",
+      "title": "Toolkit",
+      "group": "Beheer",
+      "parent": null,
+      "url": "/admin/simplify-toolkit",
+      "file": "admin-toolkit.html"
+    },
+    {
+      "id": "admin-announcements",
+      "title": "Announcements",
+      "group": "Beheer",
+      "parent": null,
+      "url": "/admin/simplify-announcements",
+      "file": "admin-announcements.html"
+    },
+    {
+      "id": "announcements-new",
+      "title": "Nieuwe aankondiging",
+      "group": "Beheer",
+      "parent": "admin-announcements",
+      "url": "/admin/simplify-announcements",
+      "file": "announcements-new.html"
+    },
+    {
+      "id": "host",
+      "title": "Hostmodus",
+      "group": "Hostmodus",
+      "parent": null,
+      "url": "/simplify",
+      "file": "host.html"
+    },
+    {
+      "id": "host@phone",
+      "title": "Hostmodus",
+      "group": "Hostmodus",
+      "parent": null,
+      "url": "/simplify",
+      "file": "host@phone.html",
+      "phoneOf": "host"
+    },
+    {
+      "id": "host-serverlist",
+      "title": "Hostmodus · serverlijst",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-serverlist.html"
+    },
+    {
+      "id": "host-serverlist-all-the-mods-10",
+      "title": "Hostmodus · server All the Mods 10",
+      "group": "Hostmodus",
+      "parent": "host-serverlist",
+      "url": "/simplify",
+      "file": "host-serverlist-all-the-mods-10.html"
+    },
+    {
+      "id": "host-serverlist-arena",
+      "title": "Hostmodus · server Arena",
+      "group": "Hostmodus",
+      "parent": "host-serverlist",
+      "url": "/simplify",
+      "file": "host-serverlist-arena.html"
+    },
+    {
+      "id": "host-serverlist-creative-builds",
+      "title": "Hostmodus · server Creative Builds",
+      "group": "Hostmodus",
+      "parent": "host-serverlist",
+      "url": "/simplify",
+      "file": "host-serverlist-creative-builds.html"
+    },
+    {
+      "id": "host-servers",
+      "title": "Hostmodus · Servers",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-servers.html"
+    },
+    {
+      "id": "host-servers-1",
+      "title": "Hostmodus · Servers",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-servers-1.html"
+    },
+    {
+      "id": "host-eggs",
+      "title": "Hostmodus · Eggs",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-eggs.html"
+    },
+    {
+      "id": "host-mounts",
+      "title": "Hostmodus · Mounts",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-mounts.html"
+    },
+    {
+      "id": "host-nodes",
+      "title": "Hostmodus · Nodes",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-nodes.html"
+    },
+    {
+      "id": "host-nodes-5",
+      "title": "Hostmodus · Nodes",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-nodes-5.html"
+    },
+    {
+      "id": "host-database-hosts",
+      "title": "Hostmodus · Database Hosts",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-database-hosts.html"
+    },
+    {
+      "id": "host-backup-hosts",
+      "title": "Hostmodus · Backup Hosts",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-backup-hosts.html"
+    },
+    {
+      "id": "host-people",
+      "title": "Hostmodus · People",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-people.html"
+    },
+    {
+      "id": "host-users",
+      "title": "Hostmodus · Users",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-users.html"
+    },
+    {
+      "id": "host-roles",
+      "title": "Hostmodus · Roles",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-roles.html"
+    },
+    {
+      "id": "host-people-roles",
+      "title": "Hostmodus · People & roles",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-people-roles.html"
+    },
+    {
+      "id": "host-integrations",
+      "title": "Hostmodus · Integrations",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-integrations.html"
+    },
+    {
+      "id": "host-api-keys",
+      "title": "Hostmodus · API Keys",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-api-keys.html"
+    },
+    {
+      "id": "host-webhooks",
+      "title": "Hostmodus · Webhooks",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-webhooks.html"
+    },
+    {
+      "id": "host-settings",
+      "title": "Hostmodus · Settings",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-settings.html"
+    },
+    {
+      "id": "host-add-ons",
+      "title": "Hostmodus · Add-ons",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-add-ons.html"
+    },
+    {
+      "id": "host-pelican-settings",
+      "title": "Hostmodus · Pelican settings",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-pelican-settings.html"
+    },
+    {
+      "id": "host-other-plugins",
+      "title": "Hostmodus · Other plugins",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-other-plugins.html"
+    },
+    {
+      "id": "host-announcements",
+      "title": "Hostmodus · Announcements",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-announcements.html"
+    },
+    {
+      "id": "host-automatic-subdomains",
+      "title": "Hostmodus · Automatic subdomains",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-automatic-subdomains.html"
+    },
+    {
+      "id": "host-server-maker",
+      "title": "Hostmodus · Server Maker",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-server-maker.html"
+    },
+    {
+      "id": "host-website-embed",
+      "title": "Hostmodus · Website embed",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-website-embed.html"
+    },
+    {
+      "id": "app-server-maker-minecraft",
+      "title": "Server maker · Minecraft-stap",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/server-maker",
+      "file": "app-server-maker-minecraft.html"
+    },
+    {
+      "id": "app-server-maker-minecraft@phone",
+      "title": "Server maker · Minecraft-stap",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/server-maker",
+      "file": "app-server-maker-minecraft@phone.html",
+      "phoneOf": "app-server-maker-minecraft"
+    },
+    {
+      "id": "app-server-maker-review",
+      "title": "Server maker · Review-stap",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/server-maker",
+      "file": "app-server-maker-review.html"
+    },
+    {
+      "id": "app-server-maker-review@phone",
+      "title": "Server maker · Review-stap",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/server-maker",
+      "file": "app-server-maker-review@phone.html",
+      "phoneOf": "app-server-maker-review"
+    },
+    {
+      "id": "customer",
+      "title": "Overzicht als klant (sam)",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/simplify",
+      "file": "customer.html"
+    },
+    {
+      "id": "customer@phone",
+      "title": "Overzicht als klant (sam)",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/simplify",
+      "file": "customer@phone.html",
+      "phoneOf": "customer"
+    },
+    {
+      "id": "customer-account",
+      "title": "Accountmenu klant",
+      "group": "Klantkant",
+      "parent": "customer",
+      "url": "/simplify",
+      "file": "customer-account.html"
+    }
+  ],
+  "problems": [
+    "crawl stopped at 0 pages; not recorded: /, /admin, /admin/settings, /admin/plugins, /admin/eggs, /admin/nodes, /admin/servers, /admin/roles, /admin/users, /admin/health, /admin/api-keys, /admin/backup-hosts, /admin/database-hosts, /admin/mounts, /admin/webhooks, /admin/logs, /profile, /simplify/embed?page=1, /admin/simplify?tab=general, /admin/simplify?tab=appearance"
+  ]
+}
