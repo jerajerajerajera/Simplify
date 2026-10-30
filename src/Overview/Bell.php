@@ -37,8 +37,9 @@ final class Bell
     private const ID = '/^[0-9a-f-]{36}$/i';
 
     /**
+     * One page, newest first; $archived: the ones under Archived.
+     *
      * @return array{items: list<array<string, mixed>>, pinned: list<array<string, mixed>>, more: bool, unread: int, archived: bool}
-     *         newest first; $archived: the ones under Archived
      */
     public static function page(User $user, int $page = 1, bool $archived = false): array
     {
