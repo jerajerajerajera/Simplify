@@ -14,7 +14,7 @@ return new class extends Migration
 {
     private const KEYS = [
         'font' => 'brand_font', 'weight' => 'brand_weight', 'color_style' => 'brand_colour', 'color1' => 'brand_colour1',
-        'color2' => 'brand_colour2', 'spacing' => 'brand_spacing', 'uppercase' => 'brand_uppercase', 'logo_text' => 'logo_text',
+        'color2' => 'brand_colour2', 'spacing' => 'brand_spacing', 'uppercase' => 'brand_uppercase', 'logo_text' => 'brand_show',
     ];
 
     public function up(): void
@@ -26,7 +26,11 @@ return new class extends Migration
         }
         foreach (self::KEYS as $old => $key) {
             $value = $brand[$old] ?? null;
-            if ($value === null || $value === '' || DB::table('simplify_settings')->where('key', $key)->exists()
+            // 0.7.0's "text beside the logo" switch: on is Simplify's logo and name, off leaves the default.
+            if ($old === 'logo_text') {
+                $value = $value === true ? 'both' : null;
+            }
+            if ($value === null || $value === '' || ! isset(PanelSettings::FIELDS[$key]) || DB::table('simplify_settings')->where('key', $key)->exists()
                 || Validator::make(['value' => $value], ['value' => PanelSettings::FIELDS[$key][1]])->fails()) {
                 continue;
             }
