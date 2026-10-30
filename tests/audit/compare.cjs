@@ -49,7 +49,7 @@ const measure = () => {
     const size = VIEWPORTS[name]; if (!size) continue;
     await page.setViewportSize(size);
     const found = [];
-    for (const url of ['/', '/simplify', '/app']) { await page.goto(url).catch(() => {}); await page.waitForLoadState('networkidle', { timeout: 12000 }).catch(() => {}); await sleep(2000); if (await page.locator('.ps-server-entry').count()) break; found.push(url + ' ' + page.url()); }
+    for (const url of ['/simplify', '/']) { await page.goto(url).catch(() => {}); await page.waitForLoadState('networkidle', { timeout: 12000 }).catch(() => {}); await page.waitForSelector('.ps-server-entry', { timeout: 15000 }).catch(() => {}); await sleep(1500); if (await page.locator('.ps-server-entry').count()) break; fs.mkdirSync(path.join(out, name), { recursive: true }); await page.screenshot({ path: path.join(out, name, `tried-${found.length}.png`) }); found.push(url + ' ' + page.url() + ' ' + (await page.title().catch(() => ''))); }
     result.product = await page.evaluate(() => document.querySelector('.ps')?.getAttribute('data-version') || document.querySelector('meta[name="generator"]')?.content || null).catch(() => null);
     result.stands[name] = { url: page.url(), tried: found };
     for (const view of ['grid', 'list']) {
