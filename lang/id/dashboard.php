@@ -2,6 +2,19 @@
 
 return [
     'ui' => [
+        'eula_agree' => 'Dengan mengeklik ":button", Anda menyetujui Perjanjian Lisensi Pengguna Akhir (EULA) Minecraft.',
+        'accept_the_minecraft_eula' => 'Setujui EULA Minecraft',
+        'minecraft_needs_this_once_before_the' => 'Minecraft memerlukan ini sekali sebelum server dapat berjalan.',
+        'read_the_minecraft_eula' => 'Baca EULA Minecraft',
+        'accept_and_start' => 'Setujui dan jalankan',
+        'your_server_is_ready' => 'Server Anda siap',
+        'you_can_now_start_your_server' => 'Anda sekarang dapat menjalankan server. Start pertama sedikit lebih lama karena dunia sedang dibuat.',
+        'you_can_now_start_your_server_2' => 'Anda sekarang dapat menjalankan server.',
+        'notify_me' => 'Beri tahu saya',
+        'when_ready' => 'saat siap',
+        'you_get_a_notification' => 'Anda akan mendapat notifikasi',
+        'try_again' => 'Coba lagi',
+        'installation_progress' => 'Progres instalasi',
         'all_notifications' => 'Semua notifikasi',
         'customize_notifications' => 'Sesuaikan notifikasi',
         'phone_navigation' => 'Navigasi ponsel',

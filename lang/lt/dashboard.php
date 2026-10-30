@@ -2,6 +2,19 @@
 
 return [
     'ui' => [
+        'eula_agree' => 'Spustelėdami „:button“ sutinkate su Minecraft galutinio vartotojo licencijos sutartimi (EULA).',
+        'accept_the_minecraft_eula' => 'Priimkite Minecraft EULA',
+        'minecraft_needs_this_once_before_the' => 'Minecraft to reikia vieną kartą, kad serveris galėtų veikti.',
+        'read_the_minecraft_eula' => 'Skaityti Minecraft EULA',
+        'accept_and_start' => 'Priimti ir paleisti',
+        'your_server_is_ready' => 'Jūsų serveris paruoštas',
+        'you_can_now_start_your_server' => 'Dabar galite paleisti serverį. Pirmasis paleidimas trunka šiek tiek ilgiau, nes kuriamas pasaulis.',
+        'you_can_now_start_your_server_2' => 'Dabar galite paleisti serverį.',
+        'notify_me' => 'Pranešti man',
+        'when_ready' => 'kai bus paruošta',
+        'you_get_a_notification' => 'Gausite pranešimą',
+        'try_again' => 'Bandyti dar kartą',
+        'installation_progress' => 'Diegimo eiga',
         'all_notifications' => 'Visi pranešimai',
         'customize_notifications' => 'Tinkinti pranešimus',
         'phone_navigation' => 'Naršymas telefone',

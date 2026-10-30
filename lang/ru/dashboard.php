@@ -2,6 +2,19 @@
 
 return [
     'ui' => [
+        'eula_agree' => 'Нажимая «:button», вы принимаете Лицензионное соглашение с конечным пользователем Minecraft (EULA).',
+        'accept_the_minecraft_eula' => 'Примите EULA Minecraft',
+        'minecraft_needs_this_once_before_the' => 'Minecraft нужно это один раз, прежде чем сервер сможет работать.',
+        'read_the_minecraft_eula' => 'Прочитать EULA Minecraft',
+        'accept_and_start' => 'Принять и запустить',
+        'your_server_is_ready' => 'Ваш сервер готов',
+        'you_can_now_start_your_server' => 'Теперь можно запустить сервер. Первый запуск занимает чуть больше времени, пока создаётся мир.',
+        'you_can_now_start_your_server_2' => 'Теперь можно запустить сервер.',
+        'notify_me' => 'Уведомить меня',
+        'when_ready' => 'когда будет готов',
+        'you_get_a_notification' => 'Вы получите уведомление',
+        'try_again' => 'Попробовать снова',
+        'installation_progress' => 'Ход установки',
         'all_notifications' => 'Все уведомления',
         'customize_notifications' => 'Настроить уведомления',
         'phone_navigation' => 'Навигация на телефоне',

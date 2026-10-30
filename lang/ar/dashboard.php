@@ -2,6 +2,19 @@
 
 return [
     'ui' => [
+        'eula_agree' => 'بالنقر على «:button» فإنك توافق على اتفاقية ترخيص المستخدم النهائي لـ Minecraft.',
+        'accept_the_minecraft_eula' => 'قبول Minecraft EULA',
+        'minecraft_needs_this_once_before_the' => 'يحتاج Minecraft إلى هذا مرة واحدة قبل أن يعمل الخادم.',
+        'read_the_minecraft_eula' => 'اقرأ Minecraft EULA',
+        'accept_and_start' => 'قبول وتشغيل',
+        'your_server_is_ready' => 'خادمك جاهز',
+        'you_can_now_start_your_server' => 'يمكنك الآن تشغيل خادمك. يستغرق التشغيل الأول وقتًا أطول قليلًا أثناء إنشاء العالم.',
+        'you_can_now_start_your_server_2' => 'يمكنك الآن تشغيل خادمك.',
+        'notify_me' => 'أعلمني',
+        'when_ready' => 'عند الجاهزية',
+        'you_get_a_notification' => 'ستتلقى إشعارًا',
+        'try_again' => 'حاول مرة أخرى',
+        'installation_progress' => 'تقدّم التثبيت',
         'all_notifications' => 'كل الإشعارات',
         'customize_notifications' => 'تخصيص الإشعارات',
         'phone_navigation' => 'التنقل على الهاتف',

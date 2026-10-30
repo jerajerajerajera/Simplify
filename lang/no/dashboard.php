@@ -2,6 +2,19 @@
 
 return [
     'ui' => [
+        'eula_agree' => 'Ved å klikke «:button» godtar du Minecrafts lisensavtale for sluttbrukere (EULA).',
+        'accept_the_minecraft_eula' => 'Godta Minecraft-EULA-en',
+        'minecraft_needs_this_once_before_the' => 'Minecraft trenger dette én gang før serveren kan kjøre.',
+        'read_the_minecraft_eula' => 'Les Minecraft-EULA-en',
+        'accept_and_start' => 'Godta og start',
+        'your_server_is_ready' => 'Serveren din er klar',
+        'you_can_now_start_your_server' => 'Du kan nå starte serveren din. Første oppstart tar litt lenger tid mens verdenen opprettes.',
+        'you_can_now_start_your_server_2' => 'Du kan nå starte serveren din.',
+        'notify_me' => 'Varsle meg',
+        'when_ready' => 'når den er klar',
+        'you_get_a_notification' => 'Du får et varsel',
+        'try_again' => 'Prøv igjen',
+        'installation_progress' => 'Installasjonsfremdrift',
         'all_notifications' => 'Alle varsler',
         'customize_notifications' => 'Tilpass varsler',
         'phone_navigation' => 'Telefonnavigasjon',

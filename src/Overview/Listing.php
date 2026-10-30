@@ -11,6 +11,7 @@ use Filament\Facades\Filament;
 use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Addons\Button;
+use Simplify\Core\Server\Installation;
 use Simplify\Core\Server\Looks;
 use Simplify\Core\Subdomains\Services\Games;
 use Simplify\Core\Subdomains\Subdomains;
@@ -60,6 +61,7 @@ final class Listing
             'address' => $allocation === null ? null : ($allocation->alias ?: $allocation->ip).':'.$allocation->port,
             'minecraft' => Games::minecraft($server),
             'can_edit' => Looks::canEdit($user, $server),
+            ...Installation::info($server),
             'can_delete' => $user->isRootAdmin() || $server->owner_id === $user->id,
             'sftp' => self::sftp($user, $server),
             'can_console' => $user->can(SubuserPermission::ControlConsole, $server),
@@ -132,6 +134,7 @@ final class Listing
                 'control.start' => $user->can(SubuserPermission::ControlStart, $server),
                 'control.stop' => $user->can(SubuserPermission::ControlStop, $server),
                 'control.restart' => $user->can(SubuserPermission::ControlRestart, $server),
+                'settings.reinstall' => $user->can(SubuserPermission::SettingsReinstall, $server),
             ],
             'server_icon' => $info['icon'] ?? null,
             // The icon uploaded for the server in Pelican, used when the game itself reports none.

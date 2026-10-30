@@ -2,6 +2,19 @@
 
 return [
     'ui' => [
+        'eula_agree' => 'Khi nhấn ":button", bạn đồng ý với Thỏa thuận cấp phép người dùng cuối (EULA) của Minecraft.',
+        'accept_the_minecraft_eula' => 'Chấp nhận EULA của Minecraft',
+        'minecraft_needs_this_once_before_the' => 'Minecraft cần việc này một lần trước khi máy chủ có thể chạy.',
+        'read_the_minecraft_eula' => 'Đọc EULA Minecraft',
+        'accept_and_start' => 'Chấp nhận và khởi động',
+        'your_server_is_ready' => 'Máy chủ của bạn đã sẵn sàng',
+        'you_can_now_start_your_server' => 'Giờ bạn có thể khởi động máy chủ. Lần khởi động đầu tiên lâu hơn một chút vì thế giới đang được tạo.',
+        'you_can_now_start_your_server_2' => 'Giờ bạn có thể khởi động máy chủ.',
+        'notify_me' => 'Báo cho tôi',
+        'when_ready' => 'khi xong',
+        'you_get_a_notification' => 'Bạn sẽ nhận thông báo',
+        'try_again' => 'Thử lại',
+        'installation_progress' => 'Tiến trình cài đặt',
         'all_notifications' => 'Tất cả thông báo',
         'customize_notifications' => 'Tùy chỉnh thông báo',
         'phone_navigation' => 'Điều hướng trên điện thoại',
