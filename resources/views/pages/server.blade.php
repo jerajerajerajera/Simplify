@@ -30,7 +30,7 @@
             </span>
             <span class="ps-info-icons">
                 <span class="ps-info-icon ps-custom-server-icon" x-show="server.server_icon"><img :src="safeImage(server.server_icon)" alt="" x-on:error="$el.style.visibility='hidden'"></span>
-                <span class="ps-info-icon ps-software-icon" :class="{'is-badge': server.server_icon}" :data-tip="server.software || @js($u('server_software'))">
+                <span class="ps-info-icon ps-software-icon" x-show="server.egg_icon || !server.server_icon" :class="{'is-badge': server.server_icon}" :data-tip="server.software || @js($u('server_software'))">
                     <img x-show="server.egg_icon" :src="safeImage(server.egg_icon)" alt="" x-on:error="$el.style.visibility='hidden'">
                     <svg x-show="!server.egg_icon" aria-hidden="true"><use :href="server.minecraft ? '#ps-cube' : '#ps-gamepad'"/></svg>
                 </span>
