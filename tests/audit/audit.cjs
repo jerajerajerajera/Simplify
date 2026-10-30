@@ -53,6 +53,36 @@ async function record(id, title, extra = {}) {
   screens.push(entry);
   fs.writeFileSync(path.join(out, 'result.json'), JSON.stringify({ base, screens, problems }, null, 1));
 }
+// Admin tools outside host mode (1.4.5): a tile opens its page inside Simplify, in host mode's frame and title bar
+// without the tree, with a close button back to the overview; from a server page through /simplify#admin:group/page.
+const adminTiles = async (overview, serverUrl, openNav) => {
+  const has = await page.locator('.ps-host-close').count().catch(() => 0);
+  if (!has) return; // a kern without this feature
+  const want = await alpine(`const s = d.hostSections(); const pick = (sk, f) => { const sec = s.find((x) => x.key === sk); const it = sec && sec.pages.find(f); return it ? [sk, it.key, it.label] : null; };
+    return [pick('servers', (i) => i.key === 'serverresource'), pick('people', (i) => i.key === 'userresource'), pick('panel', (i) => i.settings), pick('pelican', (i) => i.settings), pick('health', (i) => i.key === 'health')].filter(Boolean);`) || [];
+  const frameReady = async () => { await page.waitForSelector('.ps-host-frame iframe', { timeout: 10000 }).catch(() => {}); const f = page.frames().find((x) => x !== page.mainFrame() && /\/admin/.test(x.url())); if (f) await f.waitForLoadState('load').catch(() => {}); await sleep(1800); };
+  for (const [sk, ik, label] of want) {
+    await page.goto('about:blank').catch(() => {});
+    await goto(`${overview}#admin:${encodeURIComponent(sk)}/${encodeURIComponent(ik)}`, 600); await frameReady();
+    const st = await alpine('return { adminView: d.adminView, hostMode: d.hostMode, page: d.hostPage && d.hostPage.label }');
+    if (!st || !st.adminView || st.hostMode) problems.push(`${stand} tile-${slug(label)}: did not open inside Simplify (${JSON.stringify(st)})`);
+    await record(`tile-${sk}-${slug(label)}`, `Admin tools-tegel · ${label} (gewone modus, Simplify-frame)`);
+  }
+  // The real path once: the shield menu, a tile, then the close button.
+  await goto(overview); await sleep(600); await openNav();
+  if (await click('[x-ref="adminButton"]')) {
+    const tile = page.locator('.ps-admin-tile >> visible=true').first();
+    if (await tile.count()) { await tile.click().catch(() => {}); await frameReady(); await record('tile-click', 'Admin tools-tegel aangeklikt'); if (await click('.ps-host-close', 800)) { await record('tile-closed', 'Admin tools-pagina gesloten, terug op het overzicht'); const st = await alpine('return { adminView: d.adminView, hostPage: !!d.hostPage }'); if (st && (st.adminView || st.hostPage)) problems.push(`${stand} tile-closed: still open after close (${JSON.stringify(st)})`); } }
+    else problems.push(`${stand} tile-click: no visible admin tile in the shield menu`);
+  }
+  // From a server page: the tile goes through the overview.
+  await goto(serverUrl, 2500); await openNav();
+  if (await click('[x-ref="adminButton"]')) {
+    const tile = page.locator('.ps-admin-tile >> visible=true').first();
+    if (await tile.count()) { await tile.click().catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await frameReady(); await record('tile-from-server', 'Admin tools-tegel vanaf een serverpagina'); const st = await alpine('return { adminView: d.adminView, hash: location.hash }'); if (!st || !st.adminView) problems.push(`${stand} tile-from-server: did not open inside Simplify (${JSON.stringify(st)}, url ${rel(page.url())})`); }
+  }
+  await goto(overview); await sleep(400);
+};
 // Host health card and its fold-open tab are one hover zone (1.4.5): pointing at either gives the same colours.
 const healthHover = async (where) => {
   const card = page.locator('.ps-host-health >> visible=true').first(), tab = page.locator('.ps-health-tab >> visible=true').first();
@@ -119,6 +149,7 @@ async function round(theme) {
   // Host health card's tab under its bottom edge (1.4.4): the nodes fold open.
   if (await click('.ps-health-tab', 900)) { await record('overview-health-nodes', 'Host health, nodes uitgeklapt'); await click('.ps-health-tab', 600); }
   await healthHover('overview');
+  await adminTiles(overview, serverUrl, openNav);
   // The menus under the top bar once more with one announcement bar and with none: their height must follow the bars.
   const unpinBar = async () => { const b = page.locator('button[aria-label="Unpin"], .ps-announcement-unpin, [wire\\:click^="unpin"]').first(); if (!(await b.count())) return false; await b.click().catch(() => {}); await sleep(1500); return true; };
   for (const [tag, label] of [['1bar', 'één aankondigingsbalk'], ['0bar', 'geen aankondigingsbalk']]) {
