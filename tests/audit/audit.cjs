@@ -9,6 +9,7 @@ const { chromium } = require('playwright');
 const arg = (n, d) => { const i = process.argv.indexOf('--' + n); return i > 0 ? process.argv[i + 1] : d; };
 const base = arg('base', 'http://127.0.0.1:8001'), out = arg('out', 'result'), urls = JSON.parse(fs.readFileSync(arg('urls'), 'utf8'));
 const only = arg('only', '') ? arg('only').split(',') : null;
+const section = arg('section', ''); // 'seasons' runs only the seasonal round (quick diagnosis)
 fs.mkdirSync(out, { recursive: true });
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const rel = (u) => u.replace(/^https?:\/\/[^/]+/, '');
@@ -191,11 +192,19 @@ async function seasons(theme) {
   const LOGO = "data:image/svg+xml;utf8," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="180" height="40" viewBox="0 0 180 40"><rect width="180" height="40" rx="8" fill="#2b6cb0"/><text x="90" y="26" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="700" fill="#fff">Northwind</text></svg>');
   const DATES = [['halloween', '2026-10-30T12:00:00', 'Halloween (30 okt)'], ['december', '2026-12-07T12:00:00', 'Chanoeka + Kerst (7 dec)'], ['valentine', '2026-02-14T12:00:00', 'Valentijn (14 feb)'], ['easter', '2026-04-05T12:00:00', 'Pasen (5 apr)'], ['newyear', '2026-12-31T23:20:00', 'Oudjaar 23:20']];
   const fresh = async (time) => { const p = await context.newPage(); p.setDefaultTimeout(8000); await p.setViewportSize(size); await p.emulateMedia({ colorScheme: theme }); if (time) await p.clock.install({ time: new Date(time) }); return p; };
+  // What the tooltip looks like to the browser: where it is, what paints on top of it, and how it is styled.
+  const tipDiag = async () => page.evaluate(() => {
+    const t = document.querySelector('.ps-tooltip'); if (!t) return 'no .ps-tooltip element';
+    const r = t.getBoundingClientRect(), cs = getComputedStyle(t);
+    t.style.pointerEvents = 'auto'; const at = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2); t.style.pointerEvents = '';
+    const chain = []; for (let e = t.parentElement; e && chain.length < 6; e = e.parentElement) chain.push(e.tagName.toLowerCase() + (e.className ? '.' + String(e.className).trim().split(/\s+/).join('.') : ''));
+    return { visible: t.classList.contains('is-visible'), rect: [r.left, r.top, r.width, r.height].map(Math.round).join(' '), opacity: cs.opacity, display: cs.display, visibility: cs.visibility, zIndex: cs.zIndex, position: cs.position, transform: cs.transform, text: t.textContent.slice(0, 60), onTop: at ? at.tagName.toLowerCase() + (at.className ? '.' + String(at.className).trim().split(/\s+/).slice(0, 3).join('.') : '') : null, parents: chain.join(' < '), innerH: innerHeight, scrollY };
+  }).catch((e) => 'diag failed: ' + e.message.slice(0, 80));
   const tipRound = async (tag, label, where) => {
     const badge = page.locator('.ps-season-badge >> visible=true').first();
     if (!(await badge.count())) { problems.push(`${stand} season-${tag}: no seasonal badge on ${where}`); return; }
-    await badge.hover().catch(() => {}); await sleep(600); await record(`season-${tag}-${where}-tip`, `Seizoen · ${label} · ${where}, tooltip (hover)`);
-    if (onPhone) { await badge.click().catch(() => {}); await sleep(600); await record(`season-${tag}-${where}-tap`, `Seizoen · ${label} · ${where}, tooltip (tik)`); await escape(); }
+    await badge.hover().catch(() => {}); await sleep(600); await record(`season-${tag}-${where}-tip`, `Seizoen · ${label} · ${where}, tooltip (hover)`, { tip: await tipDiag() });
+    if (onPhone) { await badge.click().catch(() => {}); await sleep(600); await record(`season-${tag}-${where}-tap`, `Seizoen · ${label} · ${where}, tooltip (tik)`, { tip: await tipDiag() }); await escape(); }
     await page.mouse.move(5, 5);
   };
   const look = async (tag, label, prep) => {
@@ -269,6 +278,7 @@ const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(
       stand = `${name}-${theme}`;
       console.log(`[${new Date().toISOString().slice(11, 19)}] ${stand} (${screens.length} screens, ${problems.length} problems so far)`);
       await page.setViewportSize(size);
+      if (section === 'seasons') { if (!['d1440', 'tablet768', 'phone390'].includes(name)) continue; try { await setTheme(theme); await seasons(theme); } catch (e) { problems.push(`${stand} seasons: ${e.message.slice(0, 200)}`); } continue; }
       try { await round(theme); } catch (e) { problems.push(`${stand} ${screen}: round stopped: ${e.message.slice(0, 200)}`); console.log('  ! ' + e.message.slice(0, 200)); if (page.isClosed()) { page = await context.newPage(); await login('demo@example.com', 'DemoPassword123!'); } }
     }
   }

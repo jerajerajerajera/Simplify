@@ -17,6 +17,9 @@ on:
       simplify:
         description: 'Branch of Simplify to audit (empty = this checkout); the audit itself always comes from this checkout'
         default: ''
+      section:
+        description: 'Only one section (empty = everything): seasons'
+        default: ''
   push:
     branches: ['claude/project-thread-k01bn2']
     paths: ['tests/audit/**', '.github/workflows/audit.yml']
@@ -107,7 +110,7 @@ jobs:
           npm init -y > /dev/null
           npm install --silent playwright@1.48.2
           npx playwright install --with-deps chromium > /dev/null
-          node audit.cjs --base http://127.0.0.1:8001 --urls ../../../panel/urls.json --out ../../../result --only ${{ matrix.stand }}
+          node audit.cjs --base http://127.0.0.1:8001 --urls ../../../panel/urls.json --out ../../../result --only ${{ matrix.stand }} --section "${{ inputs.section }}"
       - if: always()
         name: Logs
         run: |
