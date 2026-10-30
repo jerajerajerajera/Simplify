@@ -32,4 +32,8 @@ return [
     'panel_update_body' => 'Tämän paneelin versio: :current.',
     'wings_update' => 'Wings :version on saatavilla',
     'wings_update_body' => 'Vanhempi Wings solmuissa: :nodes.',
+    'plugin_update' => ':name :version on saatavilla',
+    'plugin_update_unknown' => ':name-päivitys on saatavilla',
+    'plugin_update_body' => 'Päivitä kohdassa Admin → Plugins; Pelican asentaa sen.',
+    'open_plugins' => 'Avaa lisäosat',
 ];

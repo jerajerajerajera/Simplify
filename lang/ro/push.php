@@ -32,4 +32,8 @@ return [
     'panel_update_body' => 'Acest panou rulează :current.',
     'wings_update' => 'Este disponibil Wings :version',
     'wings_update_body' => 'Wings mai vechi pe: :nodes.',
+    'plugin_update' => ':name :version este disponibil',
+    'plugin_update_unknown' => ':name are o actualizare',
+    'plugin_update_body' => 'Actualizează din Admin → Plugins; Pelican îl instalează.',
+    'open_plugins' => 'Deschide pluginurile',
 ];

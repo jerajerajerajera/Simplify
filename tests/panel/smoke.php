@@ -39,6 +39,7 @@ use Simplify\Core\Filament\Server\ServerPage;
 use Simplify\Core\Models\Setting;
 use Simplify\Core\Overview\Listing;
 use Simplify\Core\People\People;
+use Simplify\Core\Push\PluginUpdates;
 use Simplify\Core\Push\Push;
 use Simplify\Core\Push\UpdateNotices;
 use Simplify\Core\Push\WebPush;
@@ -311,6 +312,11 @@ step('Pelican\'s Health page shows in Simplify\'s look', function () use ($admin
     expectOk($response, $url);
     if (! str_contains($response->getContent(), 's-health')) {
         throw new RuntimeException('the Health page still uses Pelican\'s own view');
+    }
+});
+step('the hourly check tells admins about plugin updates without failing', function () {
+    if (! is_int(PluginUpdates::send())) {
+        throw new RuntimeException('the plugin update check did not finish');
     }
 });
 step('a power action on a server the user cannot reach is refused', function () use ($admin) {

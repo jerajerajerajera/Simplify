@@ -32,4 +32,8 @@ return [
     'panel_update_body' => 'تعمل هذه اللوحة بالإصدار :current.',
     'wings_update' => 'يتوفر Wings :version',
     'wings_update_body' => 'إصدار Wings أقدم على: :nodes.',
+    'plugin_update' => ':name :version متاح',
+    'plugin_update_unknown' => 'يوجد تحديث لـ :name',
+    'plugin_update_body' => 'حدّثه من Admin → Plugins؛ يتولى Pelican التثبيت.',
+    'open_plugins' => 'فتح الإضافات',
 ];

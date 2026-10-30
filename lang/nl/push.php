@@ -32,4 +32,8 @@ return [
     'panel_update_body' => 'Dit paneel draait :current.',
     'wings_update' => 'Wings :version is beschikbaar',
     'wings_update_body' => 'Oudere Wings op: :nodes.',
+    'plugin_update' => ':name :version is beschikbaar',
+    'plugin_update_unknown' => ':name heeft een update',
+    'plugin_update_body' => 'Werk hem bij via Admin → Plugins; Pelican installeert hem.',
+    'open_plugins' => 'Plugins openen',
 ];

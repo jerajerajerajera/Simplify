@@ -1139,6 +1139,8 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 .ps-hw-spider { position: absolute; top: 0; inset-inline-end: 14px; display: flex; flex-direction: column; align-items: center; color: var(--ps-muted); opacity: .65; }
 .ps-hw-spider::before { content: ""; width: 1px; height: 66px; background: currentColor; opacity: .7; }
 .ps-hw-spider svg { width: 14px; height: 14px; fill: currentColor; stroke: currentColor; stroke-width: .9; }
+/* Inside "× Pelican" (which never wraps) the pumpkin stays on its line instead of wrapping to a line of its own. */
+.ps-title-pelican .ps-hw-lantern { display: inline-block; vertical-align: -.28em; }
 .ps-hw-lantern { flex: none; width: 1.3em; height: 1.3em; max-width: 32px; max-height: 32px; margin-inline-start: .2em; stroke: none; }
 .ps-hw-body { fill: var(--ps-hw-orange); stroke: none; }
 .ps-hw-ribs { fill: none; stroke: rgb(0 0 0 / .14); stroke-width: .9; }

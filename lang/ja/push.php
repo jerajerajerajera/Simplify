@@ -32,4 +32,8 @@ return [
     'panel_update_body' => 'このパネルのバージョンは :current です。',
     'wings_update' => 'Wings :version が利用可能です',
     'wings_update_body' => '古い Wings のノード: :nodes。',
+    'plugin_update' => ':name :version が利用可能です',
+    'plugin_update_unknown' => ':name に更新があります',
+    'plugin_update_body' => 'Admin → Plugins で更新してください。インストールは Pelican が行います。',
+    'open_plugins' => 'プラグインを開く',
 ];

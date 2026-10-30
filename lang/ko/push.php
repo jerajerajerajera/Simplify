@@ -32,4 +32,8 @@ return [
     'panel_update_body' => '이 패널의 버전: :current.',
     'wings_update' => 'Wings :version 사용 가능',
     'wings_update_body' => '이전 Wings 사용 노드: :nodes.',
+    'plugin_update' => ':name :version 사용 가능',
+    'plugin_update_unknown' => ':name 업데이트가 있습니다',
+    'plugin_update_body' => 'Admin → Plugins에서 업데이트하세요. 설치는 Pelican이 합니다.',
+    'open_plugins' => '플러그인 열기',
 ];

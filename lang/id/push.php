@@ -32,4 +32,8 @@ return [
     'panel_update_body' => 'Panel ini menjalankan :current.',
     'wings_update' => 'Wings :version tersedia',
     'wings_update_body' => 'Wings lama di: :nodes.',
+    'plugin_update' => ':name :version tersedia',
+    'plugin_update_unknown' => ':name punya pembaruan',
+    'plugin_update_body' => 'Perbarui di Admin → Plugins; Pelican yang memasangnya.',
+    'open_plugins' => 'Buka plugin',
 ];

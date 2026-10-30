@@ -32,4 +32,8 @@ return [
     'panel_update_body' => 'This panel runs :current.',
     'wings_update' => 'Wings :version is available',
     'wings_update_body' => 'Older Wings on: :nodes.',
+    'plugin_update' => ':name :version is available',
+    'plugin_update_unknown' => ':name has an update',
+    'plugin_update_body' => 'Update it in Admin → Plugins; Pelican installs it.',
+    'open_plugins' => 'Open plugins',
 ];

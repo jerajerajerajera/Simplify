@@ -32,4 +32,8 @@ return [
     'panel_update_body' => 'Bu panelin sürümü: :current.',
     'wings_update' => 'Yeni sürüm: Wings :version',
     'wings_update_body' => 'Eski Wings olan node\'lar: :nodes.',
+    'plugin_update' => ':name :version kullanılabilir',
+    'plugin_update_unknown' => ':name için güncelleme var',
+    'plugin_update_body' => 'Admin → Plugins üzerinden güncelleyin; Pelican kurar.',
+    'open_plugins' => 'Eklentileri aç',
 ];
