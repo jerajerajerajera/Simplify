@@ -1215,7 +1215,8 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 
 /* Server pages: Simplify's header, server card and numbers (.ps-server-top) over Pelican's own page, with Pelican's
    server menu in a card on the left. The top is display: contents, so its parts share one grid with Pelican's page. */
-.ps.ps-server-top { display: contents; }
+/* The top stays while the menu changes the page (@persist): its wrapper must not become one grid cell. */
+.ps.ps-server-top, [x-persist^="simplify-server-"] { display: contents; }
 body:has(.ps-server-top) .fi-main-ctn {
   display: grid !important;
   grid-template-columns: 220px minmax(0, 1fr);
