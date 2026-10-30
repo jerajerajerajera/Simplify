@@ -173,6 +173,16 @@
   min-width: 0;
 }
 
+.s-checks .s-row:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.s-row-fix {
+  display: block;
+  margin-top: 2px;
+}
+
 .s-muted {
   color: var(--s-muted);
   font-size: var(--s-text-sm);
