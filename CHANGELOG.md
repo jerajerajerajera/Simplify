@@ -27,6 +27,7 @@
 - Notifications: "Mark read" on one notification works again. Before, it marked an unread notification unread, so nothing changed.
 - Notifications: Archived is back, as in PelicanSimplify 0.7.0. "Clear read" in the bell and in the window with every notification moves the read ones there, and ✕ on a notification moves that one. Archived sits closed at the bottom of the window with every notification; "Mark as unread" brings a notification back. Nothing is deleted.
 - Scrollbars stop a little short of the top and bottom and sit a little further from the edge, so they fit inside the rounded corners of menus, cards and windows.
+- Overview: the scrollbar of the server list sits right next to the cards instead of at the far edge of the window.
 
 ## 1.4.4
 

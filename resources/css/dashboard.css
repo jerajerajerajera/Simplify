@@ -101,6 +101,10 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 /* Overview ----------------------------------------------------------------------------------- */
 .ps-overview { display: flex; flex: 1 1 0; flex-direction: column; min-height: 0; overflow: hidden; }
 .ps-server-scroll { display: flex; flex: 1 1 0; flex-direction: column; min-height: 0; overflow: hidden auto; padding: 12px 4px; overscroll-behavior: contain; }
+/* The scroller is as wide as the grid (plus its padding and the bar), so its scrollbar sits next to the cards, not at the window's edge. */
+.ps-server-scroll { box-sizing: border-box; width: 100%; max-width: calc(var(--ps-grid-width) + 20px); margin-inline: auto; }
+.ps-overview.is-list .ps-server-scroll { max-width: calc(1088px + 20px); }
+.ps.is-full-width:not(.server-active, .host-mode) .ps-server-scroll { max-width: none; }
 .ps-server-scroll:focus-visible { outline: 2px solid var(--ps-line); outline-offset: 2px; border-radius: var(--ps-radius); }
 .ps-server-stage { flex: none; width: 100%; max-width: var(--ps-grid-width); margin: clamp(4px, calc(4dvh - 28px), 24px) auto 0; }
 .ps-server-stage.is-list { max-width: 1088px; }
