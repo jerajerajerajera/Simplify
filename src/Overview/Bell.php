@@ -6,6 +6,7 @@ namespace Simplify\Core\Overview;
 
 use App\Models\User;
 use Illuminate\Notifications\DatabaseNotification;
+use Simplify\Core\Support\SafeCache;
 
 /**
  * Pelican's own notifications (backups, installs, subusers) under the bell in Simplify's top bar. Simplify's page
@@ -28,6 +29,7 @@ final class Bell
             'items' => $rows->take(self::PAGE)->map(fn (DatabaseNotification $row) => self::present($row))->filter()->values()->all(),
             'more' => $rows->count() > self::PAGE,
             'unread' => $user->unreadNotifications()->count(),
+            'storage' => $user->isRootAdmin() ? SafeCache::problem() : null,
         ];
     }
 

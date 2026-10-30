@@ -70,6 +70,9 @@ return [
         'hosts_reporting' => ':available af :count vært rapporterer.|:available af :count værter rapporterer.',
         'older_notifications_could_not_be_loaded' => 'Ældre notifikationer kunne ikke indlæses.',
         'the_notification_could_not_be_marked' => 'Notifikationen kunne ikke markeres som ulæst.',
+        'storage_not_writable' => 'Panelet kan ikke skrive sin cache',
+        'storage_not_writable_text' => 'Artisan kørte sandsynligvis som root, så disse filer tilhører root. Kør dette på serveren:',
+        'server_error' => 'Serveren stødte på en fejl. Prøv igen; sker det fortsat, kan en admin finde årsagen i Pelicans log.',
         'your_groups_could_not_be_saved' => 'Dine grupper kunne ikke gemmes. Prøv igen om et øjeblik.',
         'admin_groups' => [
             'servers' => 'Servere',

@@ -70,6 +70,9 @@ return [
         'hosts_reporting' => ':available de :count host informando.|:available de :count hosts informando.',
         'older_notifications_could_not_be_loaded' => 'No se pudieron cargar las notificaciones antiguas.',
         'the_notification_could_not_be_marked' => 'No se pudo marcar la notificación como no leída.',
+        'storage_not_writable' => 'El panel no puede escribir su caché',
+        'storage_not_writable_text' => 'Probablemente artisan se ejecutó como root, así que estos archivos pertenecen a root. Ejecuta esto en el servidor:',
+        'server_error' => 'El servidor tuvo un error. Inténtalo de nuevo; si sigue pasando, un admin encontrará la causa en el registro de Pelican.',
         'your_groups_could_not_be_saved' => 'No se pudieron guardar tus grupos. Inténtalo de nuevo en un momento.',
         'admin_groups' => [
             'servers' => 'Servidores',

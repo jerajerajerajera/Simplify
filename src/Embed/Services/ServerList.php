@@ -6,9 +6,9 @@ namespace Simplify\Core\Embed\Services;
 
 use App\Enums\ContainerStatus;
 use App\Models\Server;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Event;
 use Simplify\Core\Subdomains\Subdomains;
+use Simplify\Core\Support\SafeCache;
 use Throwable;
 
 /**
@@ -42,7 +42,7 @@ final class ServerList
 
         return [
             'options' => $options,
-            'servers' => Cache::remember(self::CACHE, self::TTL, fn (): array => self::collect()),
+            'servers' => SafeCache::remember(self::CACHE, self::TTL, fn (): array => self::collect()),
             'name' => (string) config('app.name', 'Pelican'),
             'texts' => self::texts(),
         ];
@@ -204,7 +204,7 @@ final class ServerList
      */
     public static function games(): array
     {
-        $games = array_unique(array_column(Cache::remember(self::CACHE, self::TTL, fn (): array => self::collect()), 'game'));
+        $games = array_unique(array_column(SafeCache::remember(self::CACHE, self::TTL, fn (): array => self::collect()), 'game'));
         sort($games);
 
         return array_values($games);

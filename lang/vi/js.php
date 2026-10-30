@@ -70,6 +70,9 @@ return [
         'hosts_reporting' => ':available / :count host đang báo cáo.',
         'older_notifications_could_not_be_loaded' => 'Không tải được thông báo cũ hơn.',
         'the_notification_could_not_be_marked' => 'Không đánh dấu chưa đọc được thông báo.',
+        'storage_not_writable' => 'Bảng điều khiển không ghi được bộ nhớ đệm',
+        'storage_not_writable_text' => 'Có lẽ artisan đã chạy bằng root nên các tệp này thuộc về root. Chạy lệnh này trên máy chủ:',
+        'server_error' => 'Máy chủ gặp lỗi. Hãy thử lại; nếu vẫn xảy ra, quản trị viên có thể tìm nguyên nhân trong nhật ký Pelican.',
         'your_groups_could_not_be_saved' => 'Không lưu được nhóm của bạn. Hãy thử lại sau giây lát.',
         'admin_groups' => [
             'servers' => 'Máy chủ',

@@ -70,6 +70,9 @@ return [
         'hosts_reporting' => ':available من :count مضيف تُبلغ.|:available من مضيف واحد يُبلغ.|:available من مضيفين يُبلغان.|:available من :count مضيفات تُبلغ.|:available من :count مضيفًا تُبلغ.|:available من :count مضيف تُبلغ.',
         'older_notifications_could_not_be_loaded' => 'تعذّر تحميل الإشعارات الأقدم.',
         'the_notification_could_not_be_marked' => 'تعذّر تحديد الإشعار كغير مقروء.',
+        'storage_not_writable' => 'لا تستطيع اللوحة الكتابة في ذاكرتها المؤقتة',
+        'storage_not_writable_text' => 'على الأرجح شُغّل artisan بصلاحيات root، لذا تعود هذه الملفات إلى root. شغّل هذا على الخادم:',
+        'server_error' => 'واجه الخادم خطأ. حاول مرة أخرى؛ وإذا تكرر، يجد المسؤول السبب في سجل Pelican.',
         'your_groups_could_not_be_saved' => 'تعذّر حفظ مجموعاتك. حاول مرة أخرى بعد قليل.',
         'admin_groups' => [
             'servers' => 'الخوادم',

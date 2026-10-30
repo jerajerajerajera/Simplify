@@ -70,6 +70,9 @@ return [
         'hosts_reporting' => 'Пријављује :available од :count домаћина.|Пријављује :available од :count домаћина.|Пријављује :available од :count домаћина.',
         'older_notifications_could_not_be_loaded' => 'Старија обавештења није могуће учитати.',
         'the_notification_could_not_be_marked' => 'Обавештење није могуће означити као непрочитано.',
+        'storage_not_writable' => 'Панел не може да упише свој кеш',
+        'storage_not_writable_text' => 'Artisan је вероватно покренут као root, па ове датотеке припадају root-у. Покрени ово на серверу:',
+        'server_error' => 'Сервер је наишао на грешку. Покушај поново; ако се понавља, админ ће наћи узрок у Pelican логу.',
         'your_groups_could_not_be_saved' => 'Ваше групе није могуће сачувати. Покушајте поново за тренутак.',
         'admin_groups' => [
             'servers' => 'Сервери',

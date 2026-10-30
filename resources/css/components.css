@@ -450,3 +450,6 @@ html.ps-standalone { -webkit-tap-highlight-color: transparent; }
 .ps-notify-item.is-read > svg { color: var(--ps-muted); }
 .ps-notify-more { justify-content: center; width: 100%; margin-top: 6px; }
 
+
+/* A command to copy, in a notification (the cache warning for root admins). */
+.ps-notify-command { display: block; grid-column: 2; margin-top: 4px; padding: 6px 8px; border: 1px solid var(--ps-line); border-radius: var(--ps-radius-sm); background: var(--ps-raised); color: var(--ps-ink); font: 11.5px/1.45 var(--ps-mono); overflow-wrap: anywhere; user-select: all; }

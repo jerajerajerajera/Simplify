@@ -6,10 +6,10 @@ namespace Simplify\Core\Announcements\Services;
 
 use App\Enums\ContainerStatus;
 use App\Models\Server;
-use Illuminate\Support\Facades\Cache;
 use Simplify\Core\Announcements\Models\Announcement;
 use Simplify\Core\Announcements\Models\GameCommand;
 use Simplify\Core\Announcements\Support\GameChat;
+use Simplify\Core\Support\SafeCache;
 use Throwable;
 
 /**
@@ -34,7 +34,7 @@ final class InGame
                 continue;
             }
             // One run per announcement and minute, even when two schedulers overlap.
-            if (! Cache::add('simplify-announcements.in-game.'.$announcement->id.'.'.intdiv(time(), 60), true, 120)) {
+            if (! SafeCache::add('simplify-announcements.in-game.'.$announcement->id.'.'.intdiv(time(), 60), true, 120)) {
                 continue;
             }
             // Marked first, so an error halfway never posts it twice in a row.

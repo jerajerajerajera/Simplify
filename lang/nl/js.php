@@ -70,6 +70,9 @@ return [
         'hosts_reporting' => ':available van :count host meldt zich.|:available van :count hosts melden zich.',
         'older_notifications_could_not_be_loaded' => 'Oudere meldingen konden niet worden geladen.',
         'the_notification_could_not_be_marked' => 'De melding kon niet als ongelezen worden gemarkeerd.',
+        'storage_not_writable' => 'Het paneel kan zijn cache niet schrijven',
+        'storage_not_writable_text' => 'Waarschijnlijk draaide artisan als root, waardoor deze bestanden van root zijn. Voer dit uit op de server:',
+        'server_error' => 'De server liep tegen een fout aan. Probeer het opnieuw; blijft het gebeuren, dan vindt een beheerder de oorzaak in het log van Pelican.',
         'your_groups_could_not_be_saved' => 'Je groepen konden niet worden opgeslagen. Probeer het zo opnieuw.',
         'admin_groups' => [
             'servers' => 'Servers',

@@ -70,6 +70,9 @@ return [
         'hosts_reporting' => ':available av :count värd rapporterar.|:available av :count värdar rapporterar.',
         'older_notifications_could_not_be_loaded' => 'Äldre aviseringar kunde inte läsas in.',
         'the_notification_could_not_be_marked' => 'Aviseringen kunde inte markeras som oläst.',
+        'storage_not_writable' => 'Panelen kan inte skriva sin cache',
+        'storage_not_writable_text' => 'Artisan kördes troligen som root, så filerna ägs av root. Kör detta på servern:',
+        'server_error' => 'Servern stötte på ett fel. Försök igen; om det fortsätter hittar en admin orsaken i Pelicans logg.',
         'your_groups_could_not_be_saved' => 'Dina grupper kunde inte sparas. Försök igen om en stund.',
         'admin_groups' => [
             'servers' => 'Servrar',

@@ -70,6 +70,9 @@ return [
         'hosts_reporting' => ':count 台中 :available 台のホストが報告中。',
         'older_notifications_could_not_be_loaded' => '以前の通知を読み込めませんでした。',
         'the_notification_could_not_be_marked' => '通知を未読にできませんでした。',
+        'storage_not_writable' => 'パネルがキャッシュを書き込めません',
+        'storage_not_writable_text' => 'artisan が root で実行されたため、これらのファイルの所有者が root になっている可能性があります。サーバーで次を実行してください:',
+        'server_error' => 'サーバーでエラーが発生しました。もう一度お試しください。繰り返す場合は、管理者が Pelican のログで原因を確認できます。',
         'your_groups_could_not_be_saved' => 'グループを保存できませんでした。少ししてからもう一度お試しください。',
         'admin_groups' => [
             'servers' => 'サーバー',

@@ -70,6 +70,9 @@ return [
         'hosts_reporting' => 'Raportujące hosty: :available z :count.|Raportujące hosty: :available z :count.|Raportujące hosty: :available z :count.',
         'older_notifications_could_not_be_loaded' => 'Nie udało się wczytać starszych powiadomień.',
         'the_notification_could_not_be_marked' => 'Nie udało się oznaczyć powiadomienia jako nieprzeczytanego.',
+        'storage_not_writable' => 'Panel nie może zapisać swojej pamięci podręcznej',
+        'storage_not_writable_text' => 'Artisan prawdopodobnie działał jako root, więc te pliki należą do roota. Uruchom to na serwerze:',
+        'server_error' => 'Na serwerze wystąpił błąd. Spróbuj ponownie; jeśli to się powtarza, admin znajdzie przyczynę w logu Pelicana.',
         'your_groups_could_not_be_saved' => 'Nie udało się zapisać Twoich grup. Spróbuj ponownie za chwilę.',
         'admin_groups' => [
             'servers' => 'Serwery',

@@ -70,6 +70,9 @@ return [
         'hosts_reporting' => ':available hôte sur :count répond.|:available hôtes sur :count répondent.',
         'older_notifications_could_not_be_loaded' => 'Les notifications plus anciennes n’ont pas pu être chargées.',
         'the_notification_could_not_be_marked' => 'La notification n’a pas pu être marquée comme non lue.',
+        'storage_not_writable' => 'Le panneau ne peut pas écrire son cache',
+        'storage_not_writable_text' => 'Artisan a probablement été lancé en root, ces fichiers appartiennent donc à root. Exécute ceci sur le serveur :',
+        'server_error' => 'Le serveur a rencontré une erreur. Réessaie ; si cela continue, un admin trouvera la cause dans le journal de Pelican.',
         'your_groups_could_not_be_saved' => 'Vos groupes n’ont pas pu être enregistrés. Réessayez dans un instant.',
         'admin_groups' => [
             'servers' => 'Serveurs',

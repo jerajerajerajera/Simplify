@@ -70,6 +70,9 @@ return [
         'hosts_reporting' => ':available dari :count host melapor.',
         'older_notifications_could_not_be_loaded' => 'Notifikasi lama tidak dapat dimuat.',
         'the_notification_could_not_be_marked' => 'Notifikasi tidak dapat ditandai belum dibaca.',
+        'storage_not_writable' => 'Panel tidak dapat menulis cache-nya',
+        'storage_not_writable_text' => 'Artisan kemungkinan dijalankan sebagai root, jadi file ini milik root. Jalankan ini di server:',
+        'server_error' => 'Server mengalami kesalahan. Coba lagi; jika terus terjadi, admin dapat menemukan penyebabnya di log Pelican.',
         'your_groups_could_not_be_saved' => 'Grup Anda tidak dapat disimpan. Coba lagi sebentar lagi.',
         'admin_groups' => [
             'servers' => 'Server',

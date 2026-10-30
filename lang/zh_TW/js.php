@@ -70,6 +70,9 @@ return [
         'hosts_reporting' => ':available / :count 台主機正在報告。',
         'older_notifications_could_not_be_loaded' => '無法載入更早的通知。',
         'the_notification_could_not_be_marked' => '無法將該通知標記為未讀。',
+        'storage_not_writable' => '面板無法寫入快取',
+        'storage_not_writable_text' => 'artisan 可能以 root 身分執行，因此這些檔案屬於 root。請在伺服器上執行：',
+        'server_error' => '伺服器發生錯誤。請重試；如果持續發生，管理員可以在 Pelican 日誌中找到原因。',
         'your_groups_could_not_be_saved' => '無法儲存你的分組。請稍後再試。',
         'admin_groups' => [
             'servers' => '伺服器',

@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.4.4
+
+- A cache that the panel cannot write no longer breaks the overview, the notifications or host health. This happens when `php artisan` ran as root, so the cache files belong to root. The page works out the numbers again instead, and root admins get a notification with the command that hands the files back to the web server.
+- A request that fails on the server shows a short message in the panel's own style, instead of Livewire's white "500 | Server Error" page over the whole panel.
+- Admin tools: on a wide window the groups sit in three columns, so the menu is about a third lower. It ends above the footer, so its last groups are no longer cut off on the overview.
+- Server page: the console is one box in one colour. Pelican's terminal painted a half see-through background of its own, which showed as a lighter box inside the card.
+- Server page: no empty grey badge next to the server's picture when its egg has no icon.
+
 ## 1.4.3
 
 - The notifications menu always ends inside the window, so its last item and "Show more" are no longer cut off when the top bar has a second row (announcements on a narrower window) or the panel is zoomed.

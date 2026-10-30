@@ -70,6 +70,9 @@ return [
         'hosts_reporting' => 'Hostitelia s údajmi: :available z :count.|Hostitelia s údajmi: :available z :count.|Hostitelia s údajmi: :available z :count.',
         'older_notifications_could_not_be_loaded' => 'Staršie upozornenia sa nepodarilo načítať.',
         'the_notification_could_not_be_marked' => 'Upozornenie sa nepodarilo označiť ako neprečítané.',
+        'storage_not_writable' => 'Panel nemôže zapisovať do svojej vyrovnávacej pamäte',
+        'storage_not_writable_text' => 'Artisan pravdepodobne bežal ako root, takže tieto súbory patria rootovi. Spusti na serveri:',
+        'server_error' => 'Na serveri nastala chyba. Skús to znova; ak sa to opakuje, admin nájde príčinu v logu Pelicanu.',
         'your_groups_could_not_be_saved' => 'Vaše skupiny sa nepodarilo uložiť. Skúste to o chvíľu znova.',
         'admin_groups' => [
             'servers' => 'Servery',

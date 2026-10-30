@@ -70,6 +70,9 @@ return [
         'hosts_reporting' => '호스트 :count개 중 :available개 보고 중.',
         'older_notifications_could_not_be_loaded' => '이전 알림을 불러올 수 없습니다.',
         'the_notification_could_not_be_marked' => '알림을 읽지 않음으로 표시할 수 없습니다.',
+        'storage_not_writable' => '패널이 캐시를 쓸 수 없습니다',
+        'storage_not_writable_text' => 'artisan이 root로 실행되어 이 파일들의 소유자가 root가 된 것 같습니다. 서버에서 다음을 실행하세요:',
+        'server_error' => '서버에서 오류가 발생했습니다. 다시 시도하세요. 계속되면 관리자가 Pelican 로그에서 원인을 찾을 수 있습니다.',
         'your_groups_could_not_be_saved' => '그룹을 저장할 수 없습니다. 잠시 후 다시 시도하세요.',
         'admin_groups' => [
             'servers' => '서버',

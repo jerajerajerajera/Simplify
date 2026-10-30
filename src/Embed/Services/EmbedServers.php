@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Simplify\Core\Embed\Services;
 
 use App\Models\Server;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Simplify\Core\Support\SafeCache;
 
 /**
  * Which servers are on the website. A server owner or a root admin chooses this; nothing is shown by default.
@@ -27,7 +27,7 @@ final class EmbedServers
         } else {
             DB::table(self::TABLE)->where('server_id', $server->id)->delete();
         }
-        Cache::forget(ServerList::CACHE);
+        SafeCache::forget(ServerList::CACHE);
     }
 
     /** @return list<int> */
@@ -51,7 +51,7 @@ final class EmbedServers
                 DB::table(self::TABLE)->insert(['server_id' => $id, 'created_at' => now(), 'updated_at' => now()]);
             }
         });
-        Cache::forget(ServerList::CACHE);
+        SafeCache::forget(ServerList::CACHE);
     }
 
     /** True for the server's owner and for root admins. */

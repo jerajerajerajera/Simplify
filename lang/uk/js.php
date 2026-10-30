@@ -70,6 +70,9 @@ return [
         'hosts_reporting' => 'Хостів із даними: :available із :count.|Хостів із даними: :available із :count.|Хостів із даними: :available із :count.',
         'older_notifications_could_not_be_loaded' => 'Не вдалося завантажити старіші сповіщення.',
         'the_notification_could_not_be_marked' => 'Не вдалося позначити сповіщення непрочитаним.',
+        'storage_not_writable' => 'Панель не може записати свій кеш',
+        'storage_not_writable_text' => 'Ймовірно, artisan запускали від root, тому ці файли належать root. Виконай на сервері:',
+        'server_error' => 'На сервері сталася помилка. Спробуй ще раз; якщо повторюється, адмін знайде причину в журналі Pelican.',
         'your_groups_could_not_be_saved' => 'Не вдалося зберегти ваші групи. Спробуйте ще раз трохи пізніше.',
         'admin_groups' => [
             'servers' => 'Сервери',

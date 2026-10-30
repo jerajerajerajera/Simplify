@@ -5,6 +5,19 @@
   const t = (key, params) => (window.Simplify?.t ? window.Simplify.t(key, params) : key);
   const tc = (key, count, params) => (window.Simplify?.tc ? window.Simplify.tc(key, count, params) : key);
   const MINECRAFT_VERSION = /(?:^|[^0-9])((?:1\.[0-9]+(?:\.[0-9]+)?|2[6-9]\.[0-9]+(?:\.[0-9]+)?))(?![0-9])/;
+  /* A request that fails on the server shows Livewire's white error page over the whole panel. On Simplify's pages
+     it becomes one short message in the panel's own style instead; the cause is in Pelican's log. */
+  const quietServerErrors = () => {
+    if (window.simplifyQuietErrors || !window.Livewire?.hook) return;
+    window.simplifyQuietErrors = true;
+    window.Livewire.hook('request', ({ fail }) => fail(({ status, preventDefault }) => {
+      if (status < 500 || !document.querySelector('[data-simplify-root]')) return;
+      preventDefault();
+      window.Simplify?.toast(t('dashboard.server_error'), 'danger');
+    }));
+  };
+  if (window.Livewire) quietServerErrors();
+  else document.addEventListener('livewire:init', quietServerErrors, { once: true });
   const OVERVIEW_DEFAULTS = { showMotd: false, largeIcon: 'server', groupByNode: 'auto', showCpu: true, showRam: true, quickActions: 'hover', minecraftAlwaysGreen: true, fullWidth: false, showGroupsButton: true, columns: 'auto', cardWidth: 'normal', serverScope: 'all', halloween: true, healthPlace: 'top-bar' };
   const OVERVIEW_SWITCHES = ['showMotd', 'showCpu', 'showRam', 'minecraftAlwaysGreen', 'fullWidth', 'showGroupsButton', 'halloween'];
   // Overview settings that pick one of a fixed set of values.
@@ -144,7 +157,10 @@
         const alert = ['warning', 'critical'].includes(health?.state)
           ? [{ id: 'health', tone: health.state === 'critical' ? 'danger' : 'warn', title: t('dashboard.host_health_title', { state: health.label || t('dashboard.attention_needed') }), text: tc('dashboard.hosts_reporting', health.hosts ?? 0, { available: health.available ?? 0 }) }]
           : [];
-        return [...alert, ...this.feed.items];
+        const storage = this.feed.storage?.command
+          ? [{ id: 'storage', tone: 'danger', title: t('dashboard.storage_not_writable'), text: t('dashboard.storage_not_writable_text'), command: this.feed.storage.command }]
+          : [];
+        return [...storage, ...alert, ...this.feed.items];
       },
       unreadNotifications() {
         return this.notifications().filter((item) => !item.pelican).length + (Number(this.feed.unread) || 0);
@@ -175,7 +191,7 @@
           const result = await wire.notificationPage(1);
           const known = new Set(this.feed.items.map((n) => n.key));
           const fresh = result.items.filter((n) => n.unread && !known.has(n.key));
-          this.feed = { ...this.feed, items: [...fresh, ...this.feed.items], unread: result.unread };
+          this.feed = { ...this.feed, items: [...fresh, ...this.feed.items], unread: result.unread, storage: result.storage };
           this.incomingQueue.push(...fresh.reverse());
           this.showIncomingNotice();
         } catch {}
@@ -221,7 +237,7 @@
         try {
           const result = await wire.notificationPage(page);
           const known = new Set(reset ? [] : this.feed.items.map((n) => n.key));
-          this.feed = { items: reset ? result.items : [...this.feed.items, ...result.items.filter((n) => !known.has(n.key))], page, more: !!result.more, unread: result.unread, loading: false };
+          this.feed = { items: reset ? result.items : [...this.feed.items, ...result.items.filter((n) => !known.has(n.key))], page, more: !!result.more, unread: result.unread, storage: result.storage, loading: false };
         } catch {
           this.feed.loading = false;
           if (!reset) this.toast(t('dashboard.older_notifications_could_not_be_loaded'), 'warn');

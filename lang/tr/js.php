@@ -70,6 +70,9 @@ return [
         'hosts_reporting' => ':count ana makineden :available tanesi bildiriyor.',
         'older_notifications_could_not_be_loaded' => 'Eski bildirimler yüklenemedi.',
         'the_notification_could_not_be_marked' => 'Bildirim okunmadı olarak işaretlenemedi.',
+        'storage_not_writable' => 'Panel önbelleğine yazamıyor',
+        'storage_not_writable_text' => 'Artisan büyük olasılıkla root olarak çalıştı, bu yüzden bu dosyalar root\'a ait. Sunucuda şunu çalıştır:',
+        'server_error' => 'Sunucuda bir hata oluştu. Tekrar dene; devam ederse bir yönetici nedenini Pelican günlüğünde bulur.',
         'your_groups_could_not_be_saved' => 'Grupların kaydedilemedi. Biraz sonra tekrar dene.',
         'admin_groups' => [
             'servers' => 'Sunucular',

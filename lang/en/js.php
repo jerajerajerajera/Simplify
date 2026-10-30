@@ -70,6 +70,9 @@ return [
         'hosts_reporting' => ':available of :count host reporting.|:available of :count hosts reporting.',
         'older_notifications_could_not_be_loaded' => 'Older notifications could not be loaded.',
         'the_notification_could_not_be_marked' => 'The notification could not be marked as unread.',
+        'storage_not_writable' => 'The panel cannot write its cache',
+        'storage_not_writable_text' => 'Artisan probably ran as root, so these files belong to root. Run this on the server:',
+        'server_error' => 'The server ran into an error. Try again; if it keeps happening, an admin can find the cause in Pelican\'s log.',
         'your_groups_could_not_be_saved' => 'Your groups could not be saved. Try again in a moment.',
         'admin_groups' => [
             'servers' => 'Servers',

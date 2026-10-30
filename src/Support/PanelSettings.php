@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Simplify\Core\Support;
 
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Simplify\Core\Models\Setting;
@@ -48,7 +47,7 @@ final class PanelSettings
             return app(self::MEMO);
         }
         try {
-            $saved = Cache::rememberForever(self::CACHE_KEY, fn () => Setting::query()->pluck('value', 'key')->all());
+            $saved = SafeCache::rememberForever(self::CACHE_KEY, fn () => Setting::query()->pluck('value', 'key')->all());
         } catch (Throwable) {
             // Before the migration has run, for example while the plugin installs.
             $saved = [];
@@ -77,7 +76,7 @@ final class PanelSettings
         foreach ($values as $key => $value) {
             Setting::query()->updateOrCreate(['key' => $key], ['value' => $value]);
         }
-        Cache::forget(self::CACHE_KEY);
+        SafeCache::forget(self::CACHE_KEY);
         app()->forgetInstance(self::MEMO);
     }
 
