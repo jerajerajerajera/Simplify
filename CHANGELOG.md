@@ -13,7 +13,6 @@
 - Notifications: the button at the top of the bell menu opens a window with every notification (as in PelicanSimplify 0.5), with "Customize notifications" above the list: turn notifications on or off for this device, send a test, and choose messages and updates. It replaces the settings button that went to a separate page. 32 languages.
 - Plugin updates: once an hour Simplify lets Pelican's own update check look for new plugin versions, and tells root admins once per version in the bell (and as an app notification when they get updates), with a button to Admin → Plugins. Pelican installs the update as before; Simplify downloads nothing. Until now Pelican only showed an update when someone opened Admin → Plugins. 32 languages.
 - The bell no longer shows PelicanSimplify's old "Plugin updated" and "… is available" notifications, whose button led to a page that no longer exists.
-- Halloween: the pumpkin stays next to "× Pelican" on a phone or tablet instead of wrapping to a line of its own.
 - The small arrow above a top-bar menu points at the middle of its button.
 - Host mode: every group in the menu on the left folds open and shut, and "Expand all" / "Collapse all" above it opens or closes them all. The group of the open page stays open. 32 languages.
 - Host mode: a Pelican page's search field and buttons sit in the title bar again (as in PelicanSimplify 0.7.0), and its table or sections have no card of their own inside Simplify's box. Create is the named button, the others are icon buttons; selecting rows brings back the bulk actions.
