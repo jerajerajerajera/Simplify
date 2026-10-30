@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.4.5
+## 1.5.0
 
 - A Minecraft server without an icon of its own (no server icon from the game, none set in Pelican, none on its egg) shows a grass block instead of the plain cube, on its card and on its page. An icon from the game, Pelican or the egg still comes first.
 - The browser tab on a server's pages reads "<server name> - Simplify", on the console and on every tab under it.
