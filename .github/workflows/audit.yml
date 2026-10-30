@@ -20,6 +20,9 @@ on:
       section:
         description: 'Only one section (empty = everything): seasons or extras'
         default: ''
+      legacy_brand:
+        description: 'yes = a PelicanSimplify 0.7.0 appearance.json with a brand block before Simplify installs (its import migration)'
+        default: ''
   push:
     branches: ['claude/project-thread-k01bn2']
     paths: ['tests/audit/**', '.github/workflows/audit.yml']
@@ -83,7 +86,12 @@ jobs:
           else
             tar -C ../simplify --exclude=.git --exclude=tests --exclude=.github -cf - . | tar -C plugins/simplify -xf -
           fi
+          if [ "${{ inputs.legacy_brand }}" = yes ]; then
+            for dir in storage/app/private/simplify storage/app/simplify; do mkdir -p "$dir"; echo '{"brand":{"font":"serif","weight":800,"color_style":"gradient","color1":"#ff7a59","color2":"#8e6bd8","spacing":8,"uppercase":true,"logo_text":true}}' > "$dir/appearance.json"; done
+            echo "PelicanSimplify 0.7.0 appearance.json written"
+          fi
           php artisan p:plugin:install simplify
+          if [ "${{ inputs.legacy_brand }}" = yes ]; then php artisan tinker --execute="echo json_encode(\\DB::table('simplify_settings')->where('key', 'like', 'brand_%')->pluck('value', 'key'));" || true; fi
           for pair in Simplify-Toolkit:simplify-toolkit Simplify-EggUpdates:simplify-eggupdates Simplify-Explain:simplify-explain Simplify-ServerMaker:simplify-servermaker Simplify-Hosting:simplify-hosting; do
             repo=${pair%%:*}; id=${pair##*:}
             if [ "$repo" = Simplify-ServerMaker ] && [ "${{ inputs.servermaker }}" = none ]; then echo "Server Maker left out"; continue; fi
