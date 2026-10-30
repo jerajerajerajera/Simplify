@@ -42,6 +42,8 @@
       // The server page (later) and host mode share this component; the overview has neither.
       server: null,
       hostMode: false,
+      // An admin page opened from Admin tools outside host mode: Simplify's frame without the tree (host.blade.php).
+      adminView: false,
       hostTab: 'admin',
       hostMenuOpen: false,
       hostSection: null,
@@ -107,6 +109,7 @@
         this.initShell();
         this.restoreOverviewView();
         this.restoreHostMode();
+        this.openAdminFromHash();
         this.$nextTick(() => this.initOverviewDock());
         setTimeout(() => { this.releaseBats(); this.playSeason(); this.startSeasonClock(); }, 600);
         this.recordOverview(this.boot.servers);
@@ -415,6 +418,35 @@
       },
       adminHealthPage() {
         return this.adminPages().flatMap((group) => group.items).find((item) => item.key === 'health') || null;
+      },
+      /** Admin tools open their pages inside Simplify: on the overview in place, from a server page via the overview. */
+      adminLink(section, item) {
+        return (this.boot.list_url || '/') + '#admin:' + encodeURIComponent(section.key) + '/' + encodeURIComponent(item.key);
+      },
+      openAdminPage(event, section, item) {
+        if (event?.ctrlKey || event?.metaKey || event?.shiftKey || this.server) return;
+        event?.preventDefault();
+        this.adminMenu = false;
+        this.navMenu = false;
+        if (!this.hostMode) this.adminView = true;
+        this.openHostLeaf(section, item);
+      },
+      openAdminHealth(event) {
+        const section = this.hostSections().find((x) => x.key === 'health');
+        if (section?.pages[0]) this.openAdminPage(event, section, section.pages[0]);
+      },
+      closeAdminView() {
+        this.adminView = false;
+        if (!this.hostMode) this.hostPage = null;
+      },
+      /** /simplify#admin:group/page (a link from Admin tools on a server page) opens that page once. */
+      openAdminFromHash() {
+        const match = /^#admin:([^/]+)\/(.+)$/.exec(location.hash);
+        if (!match) return;
+        history.replaceState(null, '', location.pathname + location.search);
+        const section = this.hostSections().find((x) => x.key === decodeURIComponent(match[1]));
+        const item = section?.pages.find((x) => x.key === decodeURIComponent(match[2]));
+        if (item) this.openAdminPage(null, section, item);
       },
       /** Latest results of Pelican's health checks (admins only); empty until the checks have run once. */
       healthChecks() {

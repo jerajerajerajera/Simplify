@@ -1,5 +1,5 @@
 {{-- Own server groups and server order, saved with the account; a server sits in one group at most. --}}
-<div class="ps-overview-appearance ps-overview-groups ps-nav-view" x-show="!server && !hostMode && overviewPreferences.showGroupsButton" x-on:click.outside="groupsMenu=false" x-on:keydown.escape.stop="groupsMenu=false; $refs.overviewGroupsButton.focus()">
+<div class="ps-overview-appearance ps-overview-groups ps-nav-view" x-show="!server && !hostMode && !adminView && overviewPreferences.showGroupsButton" x-on:click.outside="groupsMenu=false" x-on:keydown.escape.stop="groupsMenu=false; $refs.overviewGroupsButton.focus()">
     <button type="button" x-ref="overviewGroupsButton" class="ps-btn is-icon is-subtle" data-tip="{{ $u('server_groups') }}" aria-label="{{ $u('server_groups') }}" aria-controls="ps-overview-groups-menu" :aria-expanded="groupsMenu"
             x-on:click="groupsMenu=!groupsMenu; appearanceMenu=false; accountMenu=false; notifyMenu=false">
         <svg aria-hidden="true"><use href="#ps-files"/></svg><span class="ps-mobile-label">{{ $u('server_groups') }}</span>

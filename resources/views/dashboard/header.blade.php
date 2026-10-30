@@ -27,7 +27,7 @@
     <nav class="ps-top-actions" aria-label="{{ $u('panel_navigation') }}" :class="{'nav-open': navMenu}"
          x-on:click.outside="navMenu=false; accountMenu=false" x-on:keydown.escape.stop="navMenu=false; accountMenu=false">
         {{-- Health in the top bar: the button opens the details below it; the create buttons sit next to it. --}}
-        <div class="ps-top-overview" x-show="!server && !hostMode && healthPlace()==='top-bar'" x-cloak>
+        <div class="ps-top-overview" x-show="!server && !hostMode && !adminView && healthPlace()==='top-bar'" x-cloak>
             <button type="button" class="ps-btn ps-health-pill" :class="boot.host_health?.state || 'unavailable'" x-on:click="healthPopover=!healthPopover; healthExpanded=false; healthOpenNodes=[]; placeHealthPopover()" :aria-expanded="healthPopover" aria-controls="ps-health-panel" :aria-label="Simplify.fill(@js($u('host_health_label')), { state: boot.host_health?.label || @js($u('unavailable')) })">
                 <svg aria-hidden="true"><use href="#ps-heart"/></svg><span x-text="boot.host_health?.label || @js($u('unavailable'))"></span>
             </button>
@@ -121,7 +121,7 @@
                                     </button>
                                     <div class="ps-admin-tiles is-inline" x-show="adminGroup() === section.key">
                                         <template x-for="item in section.pages" :key="item.key">
-                                            <a class="ps-admin-tile" :href="item.url"><span class="ps-host-rail-icon"><svg aria-hidden="true"><use :href="'#ps-'+item.icon"/></svg></span><span x-text="item.label"></span></a>
+                                            <a class="ps-admin-tile" :href="adminLink(section, item)" x-on:click="openAdminPage($event, section, item)"><span class="ps-host-rail-icon"><svg aria-hidden="true"><use :href="'#ps-'+item.icon"/></svg></span><span x-text="item.label"></span></a>
                                         </template>
                                     </div>
                                 </div>
@@ -133,7 +133,7 @@
                                     <div class="ps-admin-pane-head"><span x-text="adminSection().label"></span><small x-text="adminSection().pages.length"></small></div>
                                     <div class="ps-admin-tiles">
                                         <template x-for="item in adminSection().pages" :key="item.key">
-                                            <a class="ps-admin-tile" :href="item.url"><span class="ps-host-rail-icon"><svg aria-hidden="true"><use :href="'#ps-'+item.icon"/></svg></span><span x-text="item.label"></span></a>
+                                            <a class="ps-admin-tile" :href="adminLink(section, item)" x-on:click="openAdminPage($event, section, item)"><span class="ps-host-rail-icon"><svg aria-hidden="true"><use :href="'#ps-'+item.icon"/></svg></span><span x-text="item.label"></span></a>
                                         </template>
                                     </div>
                                 </div>
@@ -142,9 +142,9 @@
                     </div>
                     <template x-if="adminHealthPage()">
                         <div class="ps-admin-health">
-                            <a class="ps-admin-health-title" :href="adminHealthPage().url"><svg aria-hidden="true"><use href="#ps-heart"/></svg><span>{{ $u('host_health_checks') }}</span></a>
+                            <a class="ps-admin-health-title" :href="adminLink({ key: 'health' }, { key: 'health' })" x-on:click="openAdminHealth($event)"><svg aria-hidden="true"><use href="#ps-heart"/></svg><span>{{ $u('host_health_checks') }}</span></a>
                             <div class="ps-health-grid">
-                                @include('simplify::dashboard.health-checks', ['open' => 'location.href = adminHealthPage().url'])
+                                @include('simplify::dashboard.health-checks', ['open' => 'server ? (location.href = adminLink({ key: \'health\' }, { key: \'health\' })) : openAdminHealth(null)'])
                             </div>
                         </div>
                     </template>

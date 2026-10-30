@@ -1,5 +1,5 @@
 {{-- Phone tab bar (overview only): servers, create and the panel menu within thumb reach. --}}
-<nav class="ps-tabbar" x-show="!hostMode" aria-label="{{ $u('phone_navigation') }}" x-on:click.outside="createMenu=false" x-on:keydown.escape.stop="createMenu=false">
+<nav class="ps-tabbar" x-show="!hostMode && !adminView" aria-label="{{ $u('phone_navigation') }}" x-on:click.outside="createMenu=false" x-on:keydown.escape.stop="createMenu=false">
     <button type="button" class="ps-tab is-active" aria-current="page" x-on:click="createMenu=false; navMenu=false; scrollTo({top: 0, behavior: 'smooth'})">
         <svg aria-hidden="true"><use href="#ps-host"/></svg><span>{{ $u('servers') }}</span>
     </button>

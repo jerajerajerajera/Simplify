@@ -1,5 +1,5 @@
 {{-- Personal appearance preferences. --}}
-<div class="ps-overview-appearance ps-nav-view" x-show="!hostMode" x-on:click.outside="appearanceMenu=false" x-on:keydown.escape.stop="appearanceMenu=false; $refs.overviewAppearance.focus()">
+<div class="ps-overview-appearance ps-nav-view" x-show="!hostMode && !adminView" x-on:click.outside="appearanceMenu=false" x-on:keydown.escape.stop="appearanceMenu=false; $refs.overviewAppearance.focus()">
     <button type="button" x-ref="overviewAppearance" class="ps-btn is-icon is-subtle" data-tip="{{ $u('customize_overview') }}" aria-label="{{ $u('customize_overview') }}" aria-controls="ps-overview-appearance-menu" :aria-expanded="appearanceMenu"
             x-on:click="appearanceMenu=!appearanceMenu; groupsMenu=false; accountMenu=false; notifyMenu=false">
         <svg aria-hidden="true"><use href="#ps-wand"/></svg><span class="ps-mobile-label">{{ $u('customize_overview') }}</span>
