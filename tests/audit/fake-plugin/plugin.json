@@ -1,0 +1,13 @@
+{
+    "id": "audit-directory",
+    "name": "Audit Directory",
+    "author": "audit",
+    "version": "1.0.0",
+    "description": "A plugin that is not Simplify, with one admin page, so the screen audit has an Other plugins group (like a site's server directory on a real panel).",
+    "category": "plugin",
+    "namespace": "Audit\\Directory",
+    "class": "AuditDirectoryPlugin",
+    "panels": ["admin"],
+    "panel_version": "^1.0.0-beta38",
+    "api_version": 1
+}
