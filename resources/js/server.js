@@ -394,10 +394,11 @@
         if (menu) menu.style.height = space ? card.offsetHeight + 'px' : '';
       },
 
-      /** Minecraft: a row of common commands above Pelican's command line; a click puts one in the line to finish or send. */
+      /** Minecraft: a row of common commands above Pelican's command line; a click puts one in the line to finish or send.
+          It lives in the terminal's own box (wire:ignore): next to it, each redraw of Pelican's console took it out again. */
       quickCommands(terminal, label) {
         const input = document.getElementById('send-command');
-        if (!this.server.minecraft || !input || input.readOnly || terminal.parentElement.querySelector('.ps-quick-commands')) return;
+        if (!this.server.minecraft || !input || input.readOnly || terminal.querySelector(':scope > .ps-quick-commands')) return;
         const row = document.createElement('div');
         row.className = 'ps-quick-commands ps-ui';
         row.setAttribute('role', 'group');
@@ -412,7 +413,7 @@
           });
           row.append(button);
         }
-        terminal.after(row);
+        terminal.append(row);
       },
 
       /* Card ------------------------------------------------------------------------------------- */
@@ -423,9 +424,9 @@
         if (this.firstStart()) return { action: 'first', label: t('dashboard.first_start'), icon: 'play', permission: 'control.start' };
         return { action: 'start', label: t('dashboard.start'), icon: 'play', permission: 'control.start' };
       },
-      /** Restart works in every state but these, as in Pelican. */
+      /** Restart works in every state but these, as in Pelican, and never while the server installs. */
       canRestart() {
-        return !['missing', 'installing', 'install failed', 'restoring'].includes(this.status);
+        return !this.installView() && !['missing', 'installing', 'install failed', 'restoring'].includes(this.status);
       },
       async power(action) {
         if (this.busy) return;
