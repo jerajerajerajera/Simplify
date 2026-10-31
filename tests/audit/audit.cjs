@@ -358,13 +358,16 @@ async function createFlow() {
     await goto(overview); await sleep(600);
     if (await press('overview')) await check('create-desktop', 'Create server (overzicht)'); else problems.push(`${stand} create-desktop: WRONG no Create server button on the overview`);
     await goto(urls.servers['Survival SMP'], 3000);
-    if (await press('server')) await check('create-server-page', 'Create server (serverpagina)'); else problems.push(`${stand} create-server-page: WRONG no Create server button on a server page`);
+    // 0.7.0 had no Create server on a server page (only the overview, its phone tab bar and the admin list): one there is a test of its own.
+    if (await press('server')) await check('create-server-page', 'Create server (serverpagina)'); else problems.push(`${stand} create-server-page: ok none on a server page, as in 0.7.0`);
     // Host mode: Admin → Servers → Create, inside the frame.
     await goto(overview); await alpine('d.setHostMode(true)'); await sleep(1200);
     await alpine(`const sec = d.hostSections().find((x) => x.key === 'servers'); const it = sec && sec.pages.find((p) => p.key === 'serverresource'); if (it) d.openHostLeaf(sec, it); return !!it;`);
     await page.waitForSelector('.ps-host-frame iframe', { timeout: 8000 }).catch(() => {}); await sleep(2500);
     const list = page.frames().find((x) => x !== page.mainFrame() && /\/admin\/servers/.test(x.url()));
-    const link = list && list.locator('a[href*="/servers/create"] >> visible=true').first();
+    // The list's header buttons sit in Simplify's title bar above the frame (frame.js); the link itself is hidden in the frame.
+    const bridged = page.locator('.ps-frame-tools button:has-text("Create"), .ps-frame-tools button[aria-label*="Create" i] >> visible=true').first();
+    const link = (await bridged.count()) ? bridged : list && list.locator('a[href*="/servers/create"] >> visible=true').first();
     if (link && (await link.count())) { await link.click().catch(() => {}); await sleep(800); await check('create-host-admin', 'Create server (hostmodus, Admin → Servers → Create)'); }
     else problems.push(`${stand} create-host-admin: WRONG no Create in Admin → Servers (${list ? rel(list.url()) : 'no frame'})`);
     await alpine('d.setHostMode(false)'); await sleep(500);
