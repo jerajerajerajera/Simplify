@@ -5,6 +5,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="{{ \Simplify\Core\WebApp\WebApp::name() }}">
 <link rel="apple-touch-icon" href="{{ \Simplify\Core\WebApp\WebApp::icon(180)[0] }}">
+<script src="{{ \Simplify\Core\Support\Assets::url('pull.js') }}" defer></script>
 <script>
     // A page inside host mode's frame drops Pelican's own menus; it keeps that through every link it follows.
     try {
@@ -26,7 +27,7 @@
     }
     // Simplify's own admin pages (settings, Health, People & roles, the form pages, the end of the setup) get the height the window leaves them, so the page never scrolls:
     // the card scrolls inside (simplify.css). In host mode's frame the frame itself already has the window's height.
-    // The end of the setup is one card in host mode too, so it fits there as well.
+    // The end of the setup is one card in host mode too, so it fits there as well. The settings on a phone scroll with the page.
     {
         const fitCards = document.documentElement.classList.contains('ps-frame') ? '.s-done' : '.s-settings-tabs.fi-vertical, .s-health, .s-people, .s-fit, .s-done';
         let queued = 0;
@@ -34,6 +35,8 @@
             queued = 0;
             for (const card of document.querySelectorAll(fitCards)) {
                 card.style.removeProperty('--s-fit');
+                // On a phone the settings' menu sits above the settings, so a fitted card would leave them a few lines: the page scrolls.
+                if (innerWidth <= 600 && card.matches('.s-settings-tabs')) continue;
                 const box = card.getBoundingClientRect();
                 const below = document.documentElement.scrollHeight - (box.bottom + scrollY);
                 const height = Math.max(320, Math.floor(innerHeight - (box.top + scrollY) - below));

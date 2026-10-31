@@ -701,7 +701,74 @@ async function extrasFlow(theme) {
   await record('notify-pinned', 'Meldingen · vastgezette aankondiging bovenaan');
   say('notify-pinned', pin && pin.shown && pin.items.some((t) => /Maintenance on Saturday/.test(t)) && !pin.close, pin);
   await escape(); if (onPhone) await escape();
+  await fixesFlow();
   await goto(overview);
+}
+
+// 1.5.3 fixes, each ok or WRONG: Simplify's settings on a phone (the card flows with the page, the settings pane is not
+// a small box that scrolls inside), the setup on a phone, no Start or Restart while a server installs, and the quick
+// commands above a phone's console stay put (never taken out and put back).
+async function fixesFlow() {
+  const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
+  if (phone()) {
+    await goto('/admin/simplify', 2000);
+    await click('.s-settings-tabs [role=tab]:has-text("Appearance"), .s-settings-tabs button:has-text("Appearance")', 900);
+    await record('settings-phone', 'Instellingen · telefoon');
+    const st = await page.evaluate(() => { const p = document.querySelector('.s-settings-tabs > .fi-sc-tabs-tab.fi-active'); if (!p) return null; return { pane: p.clientHeight, content: p.scrollHeight, window: innerHeight }; }).catch(() => null);
+    say('settings-phone', st && st.content <= st.pane + 4, st);
+    await goto('/admin/simplify-setup', 2000); await record('setup-phone', 'Setup · telefoon');
+    const su = await page.evaluate(() => { const w = document.querySelector('.s-setup'), s = w && w.querySelector('.fi-sc-wizard-step.fi-active'); if (!s) return null; const r = s.getBoundingClientRect(); return { step: Math.round(r.height), inner: s.scrollHeight <= s.clientHeight + 4, width: Math.round(r.width) }; }).catch(() => null);
+    say('setup-phone', su && su.step > 120 && su.inner && su.width > 250, su);
+  }
+  if (urls.servers['New World']) {
+    await goto(urls.servers['New World'], 3500); await record('server-install-buttons', 'Server · installeert, geen Start/Restart');
+    const shown = await page.evaluate(() => [...document.querySelectorAll('.ps button')].filter((b) => b.getClientRects().length && getComputedStyle(b).visibility !== 'hidden' && /^(start|restart|first start)$/i.test((b.innerText.trim() || b.getAttribute('data-tip') || '').trim())).map((b) => b.className + ' ' + (b.innerText.trim() || b.getAttribute('data-tip'))));
+    say('install-buttons', shown.length === 0, { shown });
+  } else say('install-buttons', false, { note: 'server not seeded: New World' });
+  if (phone() && urls.servers['Survival SMP']) {
+    await goto(urls.servers['Survival SMP'], 3500);
+    await page.evaluate(() => { window.__qc = { adds: 0, gone: 0 }; new MutationObserver((ms) => { for (const m of ms) { for (const n of m.addedNodes) if (n.nodeType === 1 && n.matches('.ps-quick-commands')) window.__qc.adds++; for (const n of m.removedNodes) if (n.nodeType === 1 && n.matches('.ps-quick-commands')) window.__qc.gone++; } }).observe(document.body, { childList: true, subtree: true }); }).catch(() => {});
+    // Pelican redraws its console on every status message and reconnect (token-request); do that three times here.
+    await page.evaluate(() => { const c = window.Livewire?.all().find((x) => x.el?.querySelector?.('#terminal')); if (c) for (let i = 0; i < 3; i++) setTimeout(() => c.$wire.$refresh(), 800 + i * 1500); }).catch(() => {});
+    let hidden = 0;
+    for (let i = 0; i < 60; i++) { if (!(await page.evaluate(() => { const r = document.querySelector('.ps-quick-commands'); return !!r && r.getClientRects().length > 0; }).catch(() => false))) hidden++; await sleep(100); }
+    const qc = await page.evaluate(() => window.__qc).catch(() => null);
+    await record('quick-commands', 'Server · telefoon: quick commands');
+    say('quick-commands', qc && qc.adds === 0 && qc.gone === 0 && hidden === 0, { ...qc, hidden });
+  }
+  // Host mode on a phone: a page's buttons (Health's refresh, Servers' search and Create) sit in a slim row above the
+  // page, not loose in the frame under an empty header.
+  if (phone()) {
+    const overview = urls.app.find((p) => /App\\Pages\\Overview$/.test(p.class))?.url || '/';
+    await goto(overview); await alpine('d.setHostMode(true)'); await sleep(1200);
+    for (const [want, id] of [['health', 'host-phone-health'], ['serverresource', 'host-phone-servers']]) {
+      const opened = await alpine(`for (const sec of d.hostSections()) { const it = sec.pages.find((p) => p.key === '${want}' || (p.label || '').toLowerCase() === '${want}'); if (it) { d.openHostLeaf(sec, it); return it.label; } } return null;`);
+      await page.waitForSelector('.ps-host-frame iframe', { timeout: 8000 }).catch(() => {}); await sleep(3000);
+      await record(id, `Hostmodus · telefoon, ${opened || want}`);
+      const frame = page.frames().find((x) => x !== page.mainFrame() && /\/admin/.test(x.url()));
+      const row = await page.evaluate(() => { const h = document.querySelector('.ps-host-head.is-page'); const t = h && h.querySelector('.ps-frame-tools'); return { row: !!h && h.getClientRects().length > 0, tools: t ? [...t.querySelectorAll('button, input')].filter((e) => e.getClientRects().length).length : 0 }; }).catch(() => null);
+      const loose = frame ? await frame.evaluate(() => [...document.querySelectorAll('.fi-header-actions-ctn :is(button, a), .fi-ta-header-toolbar > .fi-ta-actions :is(button, a)')].filter((e) => e.getClientRects().length).length).catch(() => -1) : -1;
+      say(id, !!opened && row && row.row && row.tools > 0 && loose === 0, { opened, ...row, loose });
+    }
+    await alpine('d.setHostMode(false)'); await sleep(500);
+  }
+  // Pull to refresh in the installed app (pull.js): a finger pulled down from the top shows the mark and reloads.
+  if (phone()) {
+    const p2 = await page.context().newPage(); await quiet(p2);
+    await p2.addInitScript(() => { const mm = window.matchMedia.bind(window); window.matchMedia = (q) => (/display-mode: *standalone/.test(q) ? { matches: true, media: q, onchange: null, addEventListener() {}, removeEventListener() {}, addListener() {}, removeListener() {} } : mm(q)); });
+    await p2.setViewportSize(VIEWPORTS.phone390);
+    await p2.goto(new URL('/admin/simplify', base).href, { waitUntil: 'load' }).catch(() => {}); await settle(p2, 1200);
+    const cdp = await p2.context().newCDPSession(p2); await cdp.send('Emulation.setTouchEmulationEnabled', { enabled: true, maxTouchPoints: 1 });
+    let loads = 0; p2.on('load', () => loads++);
+    const touch = (type, y) => cdp.send('Input.dispatchTouchEvent', { type, touchPoints: type === 'touchEnd' ? [] : [{ x: 195, y }] });
+    await touch('touchStart', 220);
+    for (let y = 230; y <= 420; y += 10) { await touch('touchMove', y); await sleep(16); }
+    const mark = await p2.evaluate(() => { const m = document.querySelector('.s-pull'); return m ? { shown: m.getClientRects().length > 0, ready: m.classList.contains('is-ready') } : null; }).catch(() => null);
+    const shot = page; page = p2; await record('pull-refresh', 'App · naar beneden vegen'); page = shot;
+    await touch('touchEnd', 420); await sleep(3500);
+    say('pull-refresh', !!(mark && mark.shown && mark.ready) && loads >= 1, { mark, loads });
+    await p2.close().catch(() => {});
+  }
 }
 
 // Notifications (1.5.0, #90): Mark read on one, Clear read, ✕ to Archived, and Archived at the bottom of the window with
@@ -851,7 +918,7 @@ const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(
         const parts = { first: [['d1440', 'phone390'], () => firstFlow(theme)], layers: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => layersFlow()], nav: [['d1440', 'laag1366'], () => navFlow()], create: [['d1440', 'laag1366', 'phone390'], () => createFlow()],
           maker: [['d1440', 'phone390'], () => makerFlow()],
           schedule: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => scheduleFlow()],
-          extras: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => extrasFlow(theme)], seasons: [['d1440', 'tablet768', 'phone390'], () => seasons(theme)] };
+          extras: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => extrasFlow(theme)], fixes: [['d1440', 'phone390'], () => fixesFlow()], seasons: [['d1440', 'tablet768', 'phone390'], () => seasons(theme)] };
         for (const part of section.split(',')) { const [where, run] = parts[part] || [[], null]; if (!run || !where.includes(name)) continue; try { await setTheme(theme); await run(); } catch (e) { problems.push(`${stand} ${part}: ${e.message.slice(0, 200)}`); } }
         continue;
       }

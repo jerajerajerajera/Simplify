@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.5.3
+
+- Simplify's settings on a phone: the settings open at full length and the page scrolls, instead of a box of a few lines under the menu with empty space below it.
+- A server that is still installing no longer shows Start or Restart, in the server card and in the status bar. They come back when the installation is done, with First start for a server that never ran.
+- Console on a phone: the quick commands stay put. Every time Pelican redrew its console (on a status change or a reconnect) the row disappeared for a moment and came back.
+- Host mode on a phone: a page's buttons, such as Health's refresh or the servers' search and Create, sit in a slim row above the page, instead of loose in the page under a wide empty space.
+- Installed app: pull down from the top of any page to reload it, also in host mode. A round refresh mark follows your finger and turns; let go once it lights up.
+
 ## 1.5.2
 
 - First start in the server card: a server that just installed, or whose Minecraft EULA is still open, says "Ready for its first start" next to its status, and the Start button reads First start (Restart waits until then). With the EULA open, a box before the button asks you to accept it yourself, with the EULA a click away; First start then writes eula.txt and starts. Start or Restart with the EULA open points to that box. The separate banner above the card is gone.
