@@ -366,7 +366,7 @@ async function createFlow() {
     await page.waitForSelector('.ps-host-frame iframe', { timeout: 8000 }).catch(() => {}); await sleep(2500);
     const list = page.frames().find((x) => x !== page.mainFrame() && /\/admin\/servers/.test(x.url()));
     // The list's header buttons sit in Simplify's title bar above the frame (frame.js); the link itself is hidden in the frame.
-    const bridged = page.locator('.ps-frame-tools button:has-text("Create"), .ps-frame-tools button[aria-label*="Create" i] >> visible=true').first();
+    const bridged = page.locator('.ps-frame-tools button:is([aria-label*="Create" i], [aria-label*="New Server" i]) >> visible=true').first();
     const link = (await bridged.count()) ? bridged : list && list.locator('a[href*="/servers/create"] >> visible=true').first();
     if (link && (await link.count())) { await link.click().catch(() => {}); await sleep(800); await check('create-host-admin', 'Create server (hostmodus, Admin → Servers → Create)'); }
     else problems.push(`${stand} create-host-admin: WRONG no Create in Admin → Servers (${list ? rel(list.url()) : 'no frame'})`);
@@ -678,8 +678,9 @@ async function extrasFlow(theme) {
     }
   }
 
-  // Install screen and the EULA bar (#89): a server that installs, one whose installation failed, one with the EULA open.
-  for (const [name, id, sel, label] of [['New World', 'server-installing', '.ps-install', 'installeert'], ['Broken Install', 'server-install-failed', '.ps-install', 'installatie mislukt'], ['Fresh Start', 'server-eula', '.ps-ready.is-eula', 'EULA nog open']]) {
+  // Install screen (#89): a server that installs, one whose installation failed. The EULA (1.5.2: in the card, before
+  // First start) is firstFlow's.
+  for (const [name, id, sel, label] of [['New World', 'server-installing', '.ps-install', 'installeert'], ['Broken Install', 'server-install-failed', '.ps-install', 'installatie mislukt']]) {
     if (!urls.servers[name]) { say(id, false, { note: 'server not seeded: ' + name }); continue; }
     await goto(urls.servers[name], 3500); await record(id, `Server · ${name} (${label})`);
     const st = await page.evaluate((s) => { const el = document.querySelector(s); const vis = !!el && el.getClientRects().length > 0; return { shown: vis, text: vis ? el.innerText.replace(/\s+/g, ' ').slice(0, 220) : null, eulaLink: !!(el && el.querySelector('a[href="https://www.minecraft.net/eula"]')), start: !!(el && [...el.querySelectorAll('button')].some((b) => /accept and start|try again/i.test(b.textContent) && b.getClientRects().length)) }; }, sel);
