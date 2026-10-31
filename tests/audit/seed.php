@@ -17,6 +17,9 @@ use Filament\Actions\Action;
 use Filament\Notifications\Notification;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Storage;
+use Simplify\Core\Announcements\Services\Bell;
 use Simplify\Core\Server\Looks;
 use Simplify\Core\Subdomains\Models\Subdomain;
 use Simplify\Core\Support\PanelSettings;
@@ -55,7 +58,19 @@ $list = [
     ['Arena', 'Counter-Strike 2', 'offline', 0, 0, $admin, null],
     ['Terraria Co-op', 'Terraria', 'offline', 0, 0, $admin, null],
     ['Discord bot', 'Node.js', 'running', 180, 2, $admin, null],
+    // 1.5.0: the install screen (installing, failed) and the EULA bar (a new Minecraft server whose eula.txt is still false).
+    ['New World', 'Paper', 'offline', 0, 0, $admin, null],
+    ['Broken Install', 'Paper', 'offline', 0, 0, $admin, null],
+    ['Fresh Start', 'Paper', 'offline', 0, 0, $admin, null],
+    // First start: a new Minecraft server without an eula.txt at all.
+    ['No EULA', 'Paper', 'offline', 0, 0, $admin, null],
 ];
+// The overview comparison with PelicanSimplify 0.7.0 (seed.php <port> <count>): the same first servers, no groups.
+$limit = (int) ($argv[2] ?? 0);
+if ($limit > 0) {
+    $list = array_slice($list, 0, $limit);
+}
+$status = ['New World' => 'installing', 'Broken Install' => 'install_failed'];
 $minecraft = ['Paper', 'Forge'];
 // Egg descriptions as the pelican-eggs repository has them.
 $about = [
@@ -76,14 +91,17 @@ foreach ($list as $i => [$name, $eggName, $state, $memory, $cpu, $owner, $color]
         'docker_images' => ['ghcr.io/pelican-eggs/yolks:java_21'], 'update_url' => null]);
     $allocation = Allocation::factory()->create(['node_id' => $node->id, 'ip' => '127.0.0.1', 'ip_alias' => 'play.example.com', 'port' => 25565 + $i]);
     $server = Server::factory()->create(['name' => $name, 'owner_id' => $owner->id, 'node_id' => $node->id, 'allocation_id' => $allocation->id, 'egg_id' => $eggs[$eggName]->id,
-        'image' => 'ghcr.io/pelican-eggs/yolks:java_21', 'memory' => $memory > 4096 ? 8192 : 4096, 'disk' => 20480, 'cpu' => 200, 'installed_at' => now(), 'status' => null,
+        'image' => 'ghcr.io/pelican-eggs/yolks:java_21', 'memory' => $memory > 4096 ? 8192 : 4096, 'disk' => 20480, 'cpu' => 200, 'installed_at' => isset($status[$name]) ? null : now(), 'status' => $status[$name] ?? null,
         'created_at' => now()->subDays(20 - $i)]);
     $allocation->update(['server_id' => $server->id]);
     $servers[$name] = $server;
     $files = ['/logs/latest.log' => "[12:00:05 INFO]: Done (4.2s)!\n"];
     if (in_array($eggName, $minecraft, true)) {
         $files += ['/server.properties' => "motd=\\u00a7a$name \\u00a77- welcome!\nmax-players=20\ndifficulty=normal\ngamemode=survival\npvp=true\nwhite-list=false\nview-distance=10\n",
-            '/eula.txt' => "eula=true\n"];
+            '/eula.txt' => $name === 'Fresh Start' ? "eula=false\n" : "eula=true\n"];
+        if ($name === 'No EULA') {
+            unset($files['/eula.txt']);
+        }
         $files += $eggName === 'Paper'
             ? ['/plugins/EssentialsX-2.21.0.jar' => 'jar', '/plugins/LuckPerms-Bukkit-5.4.141.jar' => 'jar', '/plugins/WorldEdit-7.3.9.jar' => 'jar']
             : ['/mods/jei-1.21.1-forge-19.21.0.jar' => 'jar', '/mods/create-1.21.1-6.0.4.jar' => 'jar'];
@@ -91,6 +109,24 @@ foreach ($list as $i => [$name, $eggName, $state, $memory, $cpu, $owner, $color]
     $out[] = ['uuid' => $server->uuid, 'name' => $name, 'port' => $allocation->port, 'state' => $state, 'memory' => $memory, 'cpu' => $cpu, 'files' => $files];
 }
 echo json_encode($out, JSON_UNESCAPED_SLASHES), "\n";
+// One server with its own icon set in Pelican (the servers.icon column), so the egg badge must sit small in the corner.
+try {
+    Schema::hasColumn('servers', 'icon') && DB::table('servers')->where('id', $servers['Skyblock']->id)->update(['icon' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABSElEQVR4nO2bwQ3CQAwECaIb6IVGoBoagV7oBx7oPpEQxLf2nHQ7bxKvJ75wEWE5Xu6v3cTs6QA0FkAHoLEAOgCNBdABaCyADkBjAXQAmkN1weft/PMzp+ujIMmHpeJh6J+mv5EtI1VAT+NrskSkCFA2vkYtQn4TzGw+4/xSAdnNZ9SRCahqXl1PIqC6eWXdbgFU86r6XQLo5hs9OabfCocFjHL1G9E8noDIQaNd/UYkV9nTYGQLWyHaS2DrAaOOf2NrPk8AHYDGAugANBZAB6CxADoAzWYBlT9aRNiab/oJKHsYGnULHZqAUZdBJNf0SyAsYLQpiObxBPQcPMoU9OTongBaQm99yRKgJCjqyu4B1RJU9aQ3wSoJyjryb4FsCerz+x0hvyVW/J+hKd8THBlvhekANBZAB6CxADoAjQXQAWgsgA5A8waE/mJlGzhiUQAAAABJRU5ErkJggg==']);
+} catch (Throwable $e) {
+    fprintf(STDERR, '%s', 'no server icon: '.$e->getMessage()."\n");
+}
+// One server whose icon does not load (a host that never resolves): Simplify must fall back to the next icon.
+try {
+    Schema::hasColumn('servers', 'icon') && DB::table('servers')->where('id', $servers['Creative Builds']->id)->update(['icon' => 'https://icons.invalid/creative-builds.png']);
+} catch (Throwable $e) {
+    fprintf(STDERR, '%s', 'no broken icon: '.$e->getMessage()."\n");
+}
+// Pelican reads a server's own icon from the public disk, icons/server/<uuid>.png (HasIcon), not from the database.
+try {
+    Storage::disk('public')->put('icons/server/'.$servers['Skyblock']->uuid.'.png', base64_decode('iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABSElEQVR4nO2bwQ3CQAwECaIb6IVGoBoagV7oBx7oPpEQxLf2nHQ7bxKvJ75wEWE5Xu6v3cTs6QA0FkAHoLEAOgCNBdABaCyADkBjAXQAmkN1weft/PMzp+ujIMmHpeJh6J+mv5EtI1VAT+NrskSkCFA2vkYtQn4TzGw+4/xSAdnNZ9SRCahqXl1PIqC6eWXdbgFU86r6XQLo5hs9OabfCocFjHL1G9E8noDIQaNd/UYkV9nTYGQLWyHaS2DrAaOOf2NrPk8AHYDGAugANBZAB6CxADoAzWYBlT9aRNiab/oJKHsYGnULHZqAUZdBJNf0SyAsYLQpiObxBPQcPMoU9OTongBaQm99yRKgJCjqyu4B1RJU9aQ3wSoJyjryb4FsCerz+x0hvyVW/J+hKd8THBlvhekANBZAB6CxADoAjQXQAWgsgA5A8waE/mJlGzhiUQAAAABJRU5ErkJggg=='));
+} catch (Throwable $e) {
+    fprintf(STDERR, '%s', 'no server icon file: '.$e->getMessage()."\n");
+}
 $uuid = fn (string $name) => $servers[$name]->uuid;
 
 $part('people and roles', function () {
@@ -111,7 +147,7 @@ $part('server colours', function () use ($list, $servers) {
         }
     }
 });
-$part('server groups', fn () => Preferences::set($admin, 'overview.groups', ['order' => 'name', 'groups' => [
+$part('server groups', fn () => $limit > 0 ? throw new RuntimeException('left out for the comparison') : Preferences::set($admin, 'overview.groups', ['order' => 'name', 'groups' => [
     ['id' => 'mc', 'name' => 'Minecraft', 'color' => '#4caf50', 'sort' => 'overview', 'servers' => [$uuid('Survival SMP'), $uuid('Creative Builds'), $uuid('All the Mods 10'), $uuid('Skyblock')]],
     ['id' => 'friends', 'name' => 'Friends', 'color' => '#8e6bd8', 'sort' => 'overview', 'servers' => [$uuid('Valheim Vikings'), $uuid('Palworld Island'), $uuid('Terraria Co-op')]],
 ]]));
@@ -120,6 +156,11 @@ $part('announcements', function () use ($admin) {
         ['category' => 'warning', 'title' => 'Maintenance on Saturday', 'body' => 'The servers restart between 07:00 and 07:30.', 'audience' => 'everyone', 'in_bell' => true, 'starts_at' => now()->subHour(), 'created_by' => $admin->id, 'created_at' => now(), 'updated_at' => now()],
         ['category' => 'info', 'title' => 'New node in Amsterdam', 'body' => 'New servers start faster from today.', 'audience' => 'everyone', 'in_bell' => false, 'starts_at' => now()->subHour(), 'created_by' => $admin->id, 'created_at' => now()->subMinute(), 'updated_at' => now()],
     ]);
+});
+// 1.5.0 (#92): the maintenance announcement pinned to everyone's bell, delivered as the scheduler would.
+$part('pinned announcement', function () {
+    DB::table('simplify_core_announcements')->where('title', 'Maintenance on Saturday')->update(['bell_pinned' => true]);
+    Bell::deliverDue();
 });
 $part('subdomains', function () use ($uuid) {
     Simplify\Core\Subdomains\Services\Settings::save(['domain' => 'play.example.com', 'target' => 'node.example.com', 'port_min' => 25565, 'port_max' => 25600, 'zone_id' => str_repeat('a1', 16)]);

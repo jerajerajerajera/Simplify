@@ -55,7 +55,7 @@ Only `id()` and `name()` are required. Everything else has a default.
 | `serverInfo(Server $server): array` | `[]` | players, max_players, motd, version and icon of a running game, on the server's card and page (since 1.1, API 2) |
 | `serverSections(Server $server): list<class-string>` | `[]` | No longer shown since core 1.3.9 (the console page fits the window); kept so older add-ons keep working |
 | `serverLinks(Server $server): list<Button>` | `[]` | links in the ⋯ menu of the server page, opened in a new tab (since 1.1, API 2) |
-| `customerLinks(User $user): list<Button>` | `[]` | links for customers (not admins) beside a greeting at the top of the overview; the panel's support link follows (since 1.1, API 2) |
+| `customerLinks(User $user): list<Button>` | `[]` | links for customers (not admins) beside a greeting at the top of the overview; the panel's support link follows (since 1.1, API 2). A link with an `icon` (a Tabler name such as `tabler-receipt`) is also an icon button in the account menu, before Support, for everyone it is given to |
 | `hostModeDefault(): bool` | `false` | `true` opens host mode for admins of panels with more than one node, until they pick a mode (since 1.1, API 2) |
 | `setupFields(): list<Component>` | `[]` | your most important settings as Filament fields in the last step of Simplify's setup, so a new panel is set up in one go (since 1.3, API 3) |
 | `setupState(): array` | `[]` | the current values for those fields, by field name (since 1.3, API 3) |
@@ -121,7 +121,18 @@ Pages on a server (such as Subdomain or Website) stay in the server's own menu.
 
 Announcements, embed and subdomains are core features of Simplify since 1.2. Plugins that used Simplify Subdomains
 can call `Simplify\Core\Subdomains\Subdomains` with the same methods; its `ready()` is false until a root admin has
-set subdomains up.
+set subdomains up. `gameAddress($server)` gives where players join: the working subdomain, otherwise the shared
+game address with the port (`play.example.com:25566`) when the port is in the forwarded range, otherwise null.
+
+`Simplify\Core\Server\Looks` sets a server's colour and banner, for example right after a server is made:
+`Looks::for($server)` gives `color` and `banner`; `Looks::save($server, $color, $banner)` sets both, where `$banner`
+is `false` to keep the current one, `null` for none, or a file the add-on stored on the local disk as
+`Looks::DIRECTORY.'/<name>.(png|jpg|jpeg|webp)'` (name `[A-Za-z0-9_-]`, at most 80). Uploads no server shows any more are
+deleted by Simplify. `Looks::COLORS` lists the colours a server's ⋯ menu offers (hex => name, in that order);
+it is newer than `Looks::save()`, so check `defined(Looks::class.'::COLORS')` first.
+
+`Simplify\Core\Embed\Services\EmbedServers::visible($server)` and `setVisible($server, $on)` read and set a server's
+"Show on the website" choice (the same as its Website page). They check no permissions: the caller does that.
 
 ## Events
 
