@@ -85,8 +85,12 @@
           if (typeof state === 'string' && this.onConsole) this.socketState = state;
         });
         this.setPage(!!boot.console);
-        // The menu changes only the page next to it (wire:navigate) and this top stays (@persist): follow the new page.
-        this.navigated = () => this.setPage(document.querySelector('template[data-ps-server-page]')?.dataset.console === '1');
+        // The menu changes only the page next to it (wire:navigate) and this top stays (@persist): follow the new page,
+        // and its new footer, which comes without the thin row (and the height fitPage takes off) until marked again.
+        this.navigated = () => {
+          this.enhanceCopyright();
+          this.setPage(document.querySelector('template[data-ps-server-page]')?.dataset.console === '1');
+        };
         document.addEventListener('livewire:navigated', this.navigated);
         // The page fits the window: again when the window or the cards above it change size. Only the browser's own
         // resize: fitConsole sends one for Pelican's terminal, and following that one again never ends.
