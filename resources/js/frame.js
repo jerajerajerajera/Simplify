@@ -126,10 +126,14 @@
   if (document.body) start();
   else addEventListener('DOMContentLoaded', start, { once: true });
   parent.defaultView.addEventListener('resize', queue);
+  // The title bar can show only after this page was built (host mode opening): build again when it does.
+  const shown = new MutationObserver(queue);
+  for (let el = head; el && el !== parent.body; el = el.parentElement) shown.observe(el, { attributes: true, attributeFilter: ['style', 'class'] });
   // Pelican's links (New egg, Edit) change the page without a reload: the bar follows the new page.
   document.addEventListener('livewire:navigated', start);
   addEventListener('pagehide', () => {
     parent.defaultView.removeEventListener('resize', queue);
+    shown.disconnect();
     bar.remove();
   });
 })();
