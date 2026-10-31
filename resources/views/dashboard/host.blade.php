@@ -2,7 +2,7 @@
      and the page or server on the right; each side scrolls on its own. Phones open the menu as a sheet. --}}
 <section class="ps-host" :class="{'menu-open': hostMenuOpen, 'is-single': adminView && !hostMode}" x-show="hostMode || adminView" x-cloak :style="accentStyle('overview')" x-on:keydown.escape="hostMenuOpen=false">
     <button type="button" class="ps-btn ps-host-menu-toggle" x-on:click="hostMenuOpen=true" aria-controls="ps-host-side" :aria-expanded="hostMenuOpen">
-        <svg aria-hidden="true"><use href="#ps-list"/></svg><span x-text="hostServer ? hostServer.name : (hostPage && hostSection?.pages.length > 1 ? hostSection.label+' · '+hostPage.label : hostSection?.label || @js($u('admin')))"></span><svg class="ps-host-menu-chevron" aria-hidden="true"><use href="#ps-chevron"/></svg>
+        <svg aria-hidden="true"><use href="#ps-list"/></svg><span x-text="hostServer ? hostServer.name : (hostPage && hostBranch(hostSection) ? hostSection.label+' · '+hostPage.label : hostSection?.label || @js($u('admin')))"></span><svg class="ps-host-menu-chevron" aria-hidden="true"><use href="#ps-chevron"/></svg>
     </button>
     <div class="ps-host-backdrop" x-show="hostMenuOpen" x-cloak x-on:click="hostMenuOpen=false"></div>
     <aside id="ps-host-side" class="ps-host-side" aria-label="{{ $u('host_menu') }}">
@@ -18,9 +18,9 @@
                 <button type="button" class="ps-host-expand" x-on:click="toggleHostBranches()" x-text="hostAllOpen() ? @js($u('collapse_all')) : @js($u('expand_all'))"></button>
                 <template x-for="section in hostSections().filter((x) => x.key !== 'health')" :key="section.key">
                     <div class="ps-host-group" :class="{'is-open': hostBranchOpen(section)}" :style="{'--ps-tone': section.color}">
-                        <button type="button" class="ps-host-group-head" :aria-expanded="section.pages.length > 1 ? hostBranchOpen(section) : null" :aria-current="hostSection?.key===section.key && !hostServer && section.pages.length === 1 ? 'page' : null" x-on:click="section.pages.length > 1 ? toggleHostBranch(section) : openHostSection(section)">
+                        <button type="button" class="ps-host-group-head" :aria-expanded="hostBranch(section) ? hostBranchOpen(section) : null" :aria-current="hostSection?.key===section.key && !hostServer && !hostBranch(section) ? 'page' : null" x-on:click="hostBranch(section) ? toggleHostBranch(section) : openHostSection(section)">
                             <svg aria-hidden="true"><use :href="'#ps-'+section.icon"/></svg><span x-text="section.label"></span>
-                            <svg class="ps-host-group-chevron" x-show="section.pages.length > 1" aria-hidden="true"><use href="#ps-chevron"/></svg>
+                            <svg class="ps-host-group-chevron" x-show="hostBranch(section)" aria-hidden="true"><use href="#ps-chevron"/></svg>
                         </button>
                         <div class="ps-host-branch" x-show="hostBranchOpen(section)">
                             <template x-for="item in section.pages" :key="item.key">
@@ -79,7 +79,7 @@
         <header class="ps-host-head is-page" x-show="!hostServer && hostSection" :style="{'--ps-tone': hostSection?.color}">
             <svg class="ps-host-head-icon" aria-hidden="true"><use :href="'#ps-'+(hostSection?.icon||'host')"/></svg>
             <h2 x-text="hostSection?.label"></h2>
-            <small x-show="hostSection?.pages.length > 1" x-text="hostPage?.label"></small>
+            <small x-show="hostBranch(hostSection)" x-text="hostPage?.label"></small>
             {{-- Opened from Admin tools outside host mode: back to the overview. --}}
             <button type="button" class="ps-btn is-sm is-icon ps-host-close" x-show="adminView && !hostMode" x-on:click="closeAdminView()" data-tip="{{ $u('close') }}" aria-label="{{ $u('close') }}"><svg aria-hidden="true"><use href="#ps-close"/></svg></button>
         </header>

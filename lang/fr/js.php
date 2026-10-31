@@ -79,6 +79,8 @@ return [
         'oldest_first' => 'Plus anciens d’abord',
         'port_lowest_first' => 'Port (le plus bas d’abord)',
         'start' => 'Démarrer',
+        'first_start' => 'Premier démarrage',
+        'ready_first_start' => 'Prêt pour son premier démarrage',
         'stop' => 'Arrêter',
         'restart' => 'Redémarrer',
         'force_stop' => 'Forcer l’arrêt',

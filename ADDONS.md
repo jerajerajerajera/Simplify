@@ -55,7 +55,7 @@ Only `id()` and `name()` are required. Everything else has a default.
 | `serverInfo(Server $server): array` | `[]` | players, max_players, motd, version and icon of a running game, on the server's card and page (since 1.1, API 2) |
 | `serverSections(Server $server): list<class-string>` | `[]` | No longer shown since core 1.3.9 (the console page fits the window); kept so older add-ons keep working |
 | `serverLinks(Server $server): list<Button>` | `[]` | links in the ⋯ menu of the server page, opened in a new tab (since 1.1, API 2) |
-| `customerLinks(User $user): list<Button>` | `[]` | links for customers (not admins) beside a greeting at the top of the overview; the panel's support link follows (since 1.1, API 2) |
+| `customerLinks(User $user): list<Button>` | `[]` | links for customers (not admins) beside a greeting at the top of the overview; the panel's support link follows (since 1.1, API 2). A link with an `icon` (a Tabler name such as `tabler-receipt`) is also an icon button in the account menu, before Support, for everyone it is given to |
 | `hostModeDefault(): bool` | `false` | `true` opens host mode for admins of panels with more than one node, until they pick a mode (since 1.1, API 2) |
 | `setupFields(): list<Component>` | `[]` | your most important settings as Filament fields in the last step of Simplify's setup, so a new panel is set up in one go (since 1.3, API 3) |
 | `setupState(): array` | `[]` | the current values for those fields, by field name (since 1.3, API 3) |
@@ -103,6 +103,8 @@ public static function getNavigationGroup(): ?string
 }
 ```
 
+An admin page never scrolls with the core installed: give the element that holds the page's form (or long content) the class `s-fit`. The core then makes it as tall as the window leaves and lets only that element scroll, as on Simplify's own form pages. Without the core the class does nothing.
+
 Use the number below as `$navigationSort` for your add-on's main admin page (its other admin pages get the next numbers), so the core comes first and the add-ons follow from A to Z. A new add-on takes the free number in its place.
 
 | Page | Sort |
@@ -128,7 +130,8 @@ game address with the port (`play.example.com:25566`) when the port is in the fo
 `Looks::for($server)` gives `color` and `banner`; `Looks::save($server, $color, $banner)` sets both, where `$banner`
 is `false` to keep the current one, `null` for none, or a file the add-on stored on the local disk as
 `Looks::DIRECTORY.'/<name>.(png|jpg|jpeg|webp)'` (name `[A-Za-z0-9_-]`, at most 80). Uploads no server shows any more are
-deleted by Simplify.
+deleted by Simplify. `Looks::COLORS` lists the colours a server's ⋯ menu offers (hex => name, in that order);
+it is newer than `Looks::save()`, so check `defined(Looks::class.'::COLORS')` first.
 
 `Simplify\Core\Embed\Services\EmbedServers::visible($server)` and `setVisible($server, $on)` read and set a server's
 "Show on the website" choice (the same as its Website page). They check no permissions: the caller does that.

@@ -2,7 +2,6 @@
    page. It builds on the overview component (dashboard.js) for the header, its menus and the notifications. */
 (() => {
   const t = (key, params) => window.Simplify.t(key, params);
-  const COLORS = { '#ef4444': 'Red', '#f97316': 'Orange', '#eab308': 'Gold', '#84cc16': 'Lime', '#22c55e': 'Green', '#10b981': 'Mint', '#06b6d4': 'Cyan', '#3b82f6': 'Blue', '#6366f1': 'Indigo', '#a855f7': 'Purple', '#ec4899': 'Pink', '#f43f5e': 'Rose' };
   const SERIES = 30;
 
   /* Pelican's console paints its output on a half see-through background of its own, which the card shows as a lighter
@@ -27,7 +26,7 @@
     return {
       ...base,
       server: boot.server,
-      COLORS,
+      COLORS: boot.colors || {}, // Looks::COLORS
       stats: { cpu: null, memory: null, disk: null, rx: null, tx: null },
       rates: { rx: null, tx: null },
       series: { cpu: [], ram: [], disk: [], network: [] },
@@ -53,10 +52,16 @@
       installReady: false,
       // A Minecraft server that still waits for its EULA: the same banner asks for it (as in 0.7.0), once per page view.
       eulaNeeded: false,
+      // The EULA box in the server card, ticked by the person themselves.
+      eulaAccepted: false,
+      // Set for a moment when Start is pressed while the EULA is still open, so the box stands out.
+      eulaPulse: false,
       eulaChecked: false,
       installNotify: false,
       installNow: Date.now(),
       installTicks: 0,
+      // The console is the page next to the menu (set by setPage, also after the menu changed the page).
+      onConsole: false,
 
       init() {
         this.initShell();
@@ -71,39 +76,83 @@
           if (++this.installTicks % 5 === 0) this.refresh();
         }, 1000);
         // Elsewhere than the console, the last console lines can show under the server card (Customize).
-        if (!boot.console) {
-          this.$watch('overviewPreferences.serverConsoleLog', (on) => (on ? this.readLog() : (this.logLines = [])));
+        this.$watch('overviewPreferences.serverConsoleLog', (on) => (on && !this.onConsole ? this.readLog() : (this.logLines = [])));
+        if (boot.console && new URLSearchParams(location.search).has('simplify_console')) document.documentElement.classList.add('ps-console-window');
+        // Every Pelican version passes Wings' "status" on as this Livewire event, the first one right after connecting.
+        window.Livewire?.on?.('console-status', (event) => {
+          const state = (Array.isArray(event) ? event[0] : event)?.state;
+          if (typeof state === 'string' && this.onConsole) this.socketState = state;
+        });
+        this.setPage(!!boot.console);
+        // The menu changes only the page next to it (wire:navigate) and this top stays (@persist): follow the new page,
+        // and its new footer, which comes without the thin row (and the height fitPage takes off) until marked again.
+        this.navigated = () => {
+          this.enhanceCopyright();
+          this.setPage(document.querySelector('template[data-ps-server-page]')?.dataset.console === '1');
+        };
+        document.addEventListener('livewire:navigated', this.navigated);
+        // The page fits the window: again when the window or the cards above it change size. Only the browser's own
+        // resize: fitConsole sends one for Pelican's terminal, and following that one again never ends.
+        this.fitResize = (event) => event.isTrusted && this.fitPage();
+        addEventListener('resize', this.fitResize);
+      },
+      /** The console or another page next to the menu: live numbers from the console, or the log strip; the menu marks the page. */
+      setPage(console) {
+        this.onConsole = console;
+        clearInterval(this.liveTimer);
+        clearInterval(this.logTimer);
+        this.socketState = null;
+        this.liveAt = null;
+        if (console) {
+          this.logLines = [];
+          this.liveTimer = setInterval(() => this.live(), 1000);
+          this.$nextTick(() => this.live());
+        } else {
           this.logTimer = setInterval(() => this.readLog(), 4000);
           this.$nextTick(() => this.readLog());
         }
-        if (boot.console) {
-          if (new URLSearchParams(location.search).has('simplify_console')) document.documentElement.classList.add('ps-console-window');
-          // Every Pelican version passes Wings' "status" on as this Livewire event, the first one right after connecting.
-          window.Livewire?.on?.('console-status', (event) => {
-            const state = (Array.isArray(event) ? event[0] : event)?.state;
-            if (typeof state === 'string') this.socketState = state;
-          });
-          this.liveTimer = setInterval(() => this.live(), 1000);
-          this.$nextTick(() => this.live());
-        }
-        // The page fits the window: again when the window or the cards above it change size.
-        addEventListener('resize', () => this.fitPage());
+        this.markMenu();
         this.$nextTick(() => {
+          const menu = document.querySelector('.ps-server-menu');
+          if (menu && !console) menu.style.height = '';
           this.fitPage();
           // The server card (a MOTD or status arriving later) and the page's content (Livewire filling in after load):
           // the page itself has the fixed height --ps-fit, so only its content changes size.
-          const observer = new ResizeObserver(() => this.fitPage());
-          [this.$root.querySelector('.ps-main'), document.querySelector('.fi-main-ctn > .fi-main .fi-page-content')].forEach(el => el && observer.observe(el));
+          this.fitObserver?.disconnect();
+          this.fitObserver = new ResizeObserver(() => this.fitPage());
+          [this.$root.querySelector('.ps-main'), document.querySelector('.fi-main-ctn > .fi-main .fi-page-content')].forEach(el => el && this.fitObserver.observe(el));
         });
+      },
+      /** The open page in the menus, after Livewire changed it: the longest address that the page's address starts with. */
+      markMenu() {
+        const path = location.pathname.replace(/\/+$/, '');
+        const links = [...this.$root.querySelectorAll('a[data-ps-match]')];
+        const length = (link) => Math.max(-1, ...link.dataset.psMatch.split(' ').filter(Boolean).map((match) => {
+          match = match.replace(/\/+$/, '');
+          return path === match || path.startsWith(match + '/') ? match.length : -1;
+        }));
+        const best = Math.max(-1, ...links.map(length));
+        for (const link of links) {
+          if (best >= 0 && length(link) === best) link.setAttribute('aria-current', 'page');
+          else link.removeAttribute('aria-current');
+        }
+        const more = this.$root.querySelector('.ps-server-menu-more');
+        if (more && more.querySelector('a[aria-current]')) more.open = true;
+        const phoneMore = this.$root.querySelector('.ps-phone-more > .ps-phone-section');
+        if (phoneMore) phoneMore.toggleAttribute('aria-current', !!this.$root.querySelector('.ps-phone-more-menu a[aria-current]'));
+        if (phoneMore?.hasAttribute('aria-current')) phoneMore.setAttribute('aria-current', 'page');
       },
       destroy() {
         base.destroy.call(this);
+        document.removeEventListener('livewire:navigated', this.navigated);
+        removeEventListener('resize', this.fitResize);
+        this.fitObserver?.disconnect();
         clearInterval(this.liveTimer);
         clearInterval(this.installTimer);
         clearInterval(this.logTimer);
       },
       async readLog() {
-        if (this.destroyed || document.hidden || !this.overviewPreferences.serverConsoleLog || !this.server.can_console || this.status === 'offline') return;
+        if (this.destroyed || this.onConsole || document.hidden || !this.overviewPreferences.serverConsoleLog || !this.server.can_console || this.status === 'offline') return;
         try {
           this.logLines = await wire.logLines();
         } catch {
@@ -139,13 +188,20 @@
           this.eulaNeeded = false;
         }
       },
-      /** The banner's main button: accepts the EULA first when it is still open, otherwise just starts. */
-      async readyStart() {
+      /** A server that just installed, or whose Minecraft EULA is still open, has not run yet: its card offers First start. */
+      firstStart() {
+        return (this.installReady || this.eulaNeeded) && this.status === 'offline' && !this.installView();
+      },
+      firstStartNote() {
+        return t('dashboard.ready_first_start');
+      },
+      /** First start: writes eula.txt when the person ticked the EULA box, and starts. */
+      async firstStartServer() {
         if (!this.eulaNeeded) {
           this.installReady = false;
           return this.power('start');
         }
-        if (this.busy) return;
+        if (!this.eulaAccepted) return this.flashEula();
         this.busy = true;
         try {
           this.take(await wire.acceptEula());
@@ -157,6 +213,11 @@
         } finally {
           this.busy = false;
         }
+      },
+      flashEula() {
+        this.eulaPulse = false;
+        this.$nextTick(() => (this.eulaPulse = true));
+        setTimeout(() => (this.eulaPulse = false), 1600);
       },
       record(sample, at) {
         const previous = this.sample;
@@ -256,7 +317,7 @@
           const server = await wire.refresh();
           if (this.destroyed) return;
           // On the console page the live numbers win; the rest of the card follows the refresh.
-          if (boot.console && this.liveAt && !server.setup && !this.server.setup) this.server = { ...server, status: this.server.status };
+          if (this.onConsole && this.liveAt && !server.setup && !this.server.setup) this.server = { ...server, status: this.server.status };
           else this.take(server);
         } catch {}
       },
@@ -274,6 +335,7 @@
             document.documentElement.classList.toggle('ps-console-big', big);
             grow.setAttribute('aria-pressed', String(big));
             grow.setAttribute('aria-label', big ? grow.dataset.normal : grow.dataset.bigger);
+            this.fitPage();
             window.dispatchEvent(new Event('resize'));
           };
           // The bigger console is remembered on this device (Customize), so server pages open with it.
@@ -358,6 +420,7 @@
       mainPower() {
         if (this.status === 'running') return { action: 'stop', label: t('dashboard.stop'), icon: 'stop', permission: 'control.stop' };
         if (['starting', 'stopping', 'restarting'].includes(this.status)) return { action: 'kill', label: t('dashboard.force_stop'), icon: 'kill', permission: 'control.stop' };
+        if (this.firstStart()) return { action: 'first', label: t('dashboard.first_start'), icon: 'play', permission: 'control.start' };
         return { action: 'start', label: t('dashboard.start'), icon: 'play', permission: 'control.start' };
       },
       /** Restart works in every state but these, as in Pelican. */
@@ -366,6 +429,9 @@
       },
       async power(action) {
         if (this.busy) return;
+        if (action === 'first') return this.firstStartServer();
+        // Minecraft stops on an open EULA: the box in the card asks for it first.
+        if (['start', 'restart'].includes(action) && this.eulaNeeded) return this.flashEula();
         if (action === 'kill' && !(await window.Simplify.confirm({ title: t('dashboard.force_stop_title'), message: t('dashboard.force_stop_message'), confirmLabel: t('dashboard.force_stop'), tone: 'danger' }))) return;
         this.busy = true;
         try {

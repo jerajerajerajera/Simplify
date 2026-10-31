@@ -79,6 +79,8 @@ return [
         'oldest_first' => 'الأقدم أولًا',
         'port_lowest_first' => 'المنفذ (الأصغر أولًا)',
         'start' => 'تشغيل',
+        'first_start' => 'التشغيل الأول',
+        'ready_first_start' => 'جاهز للتشغيل الأول',
         'stop' => 'إيقاف',
         'restart' => 'إعادة التشغيل',
         'force_stop' => 'إيقاف قسري',

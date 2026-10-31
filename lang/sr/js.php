@@ -79,6 +79,8 @@ return [
         'oldest_first' => 'Најстарији прво',
         'port_lowest_first' => 'Порт (најнижи прво)',
         'start' => 'Покрени',
+        'first_start' => 'Прво покретање',
+        'ready_first_start' => 'Спреман за прво покретање',
         'stop' => 'Заустави',
         'restart' => 'Рестартуј',
         'force_stop' => 'Принудно заустави',

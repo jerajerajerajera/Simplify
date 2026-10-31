@@ -9,6 +9,9 @@ use App\Models\User;
 use Filament\Facades\Filament;
 use InvalidArgumentException;
 use Livewire\Attributes\Renderless;
+use Simplify\Core\Addons\Addon;
+use Simplify\Core\Addons\AddonRegistry;
+use Simplify\Core\Addons\Button;
 use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\App\Pages\Notifications;
 use Simplify\Core\Filament\App\Pages\Overview;
@@ -57,6 +60,11 @@ trait Shell
             'settings_url' => Settings::canAccess() ? Settings::getUrl(panel: 'admin') : null,
             'settings_menu' => Settings::canAccess() ? Settings::menu() : [],
             'support_url' => $settings['support_url'],
+            // The add-ons' customer links that have an icon (such as Simplify Hosting's Client area), before Support.
+            'account_links' => app(AddonRegistry::class)->collect(fn (Addon $addon) => array_values(array_map(
+                fn (Button $link) => ['label' => $link->label, 'url' => $link->url, 'icon' => svg((string) $link->icon)->toHtml()],
+                array_filter($addon->customerLinks($user), fn (Button $link) => $link->icon !== null),
+            ))),
             'admin_pages' => AdminMenu::items(),
             'health_checks' => $user->isAdmin() ? HostHealth::checks() : [],
             'features' => ['host_health' => $user->isRootAdmin()],

@@ -79,6 +79,8 @@ return [
         'oldest_first' => 'Önce en eski',
         'port_lowest_first' => 'Port (önce en düşük)',
         'start' => 'Başlat',
+        'first_start' => 'İlk başlatma',
+        'ready_first_start' => 'İlk başlatmaya hazır',
         'stop' => 'Durdur',
         'restart' => 'Yeniden başlat',
         'force_stop' => 'Zorla durdur',

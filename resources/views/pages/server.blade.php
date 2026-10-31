@@ -2,7 +2,7 @@
 <div @class(['ps server-active ps-server-top', 'is-console' => $console]) data-simplify-root x-cloak wire:ignore.self
      x-data="simplifyServer($wire, @js($this->initial()))"
      x-on:resize.window.debounce.150ms="applyScale()"
-     :class="{'dark': themeDark, 'is-server-full-width': overviewPreferences.fullWidth, 'ps-halloween': halloween()}"
+     :class="{'dark': themeDark, 'is-console': onConsole, 'is-server-full-width': overviewPreferences.fullWidth, 'ps-halloween': halloween()}"
      :data-season="seasonKeys()"
      :style="accentStyle(server.uuid)">
     @include('simplify::dashboard.assets')
@@ -24,18 +24,6 @@
     </div>
     <div class="ps-main">
         @include('simplify::dashboard.header', ['notes' => true])
-        {{-- Shown once after an installation finished on this page (as in 0.7.0): one clear next step. The same banner asks
-             for the Minecraft EULA while it is still open, so starting never stops on it. --}}
-        <div class="ps-ready" :class="{ 'is-eula': eulaNeeded }" x-show="(installReady || eulaNeeded) && !installView() && !['running', 'starting'].includes(status)" x-cloak x-transition.opacity role="status">
-            <span class="ps-ready-mark" aria-hidden="true"><svg><use :href="eulaNeeded ? '#ps-file' : '#ps-check'"/></svg></span>
-            <div>
-                <strong x-text="eulaNeeded ? @js($u('accept_the_minecraft_eula')) : @js($u('your_server_is_ready'))"></strong>
-                <small x-show="!eulaNeeded" x-text="server.minecraft ? @js($u('you_can_now_start_your_server')) : @js($u('you_can_now_start_your_server_2'))"></small>
-                <small x-show="eulaNeeded">{{ $u('minecraft_needs_this_once_before_the') }} {{ $u('eula_agree', ['button' => $u('accept_and_start')]) }} <a href="https://www.minecraft.net/eula" target="_blank" rel="noopener noreferrer">{{ $u('read_the_minecraft_eula') }}</a></small>
-            </div>
-            <button type="button" class="ps-btn is-primary ps-ready-start" x-show="server.permissions['control.start']" x-on:click="readyStart()" :disabled="busy"><svg aria-hidden="true"><use href="#ps-play"/></svg><span x-text="eulaNeeded ? @js($u('accept_and_start')) : @js($u('start_server'))"></span></button>
-            <button type="button" class="ps-btn is-icon is-subtle" x-on:click="installReady = false; eulaNeeded = false" aria-label="{{ $u('dismiss') }}" data-tip="{{ $u('dismiss') }}"><svg aria-hidden="true"><use href="#ps-close"/></svg></button>
-        </div>
         <article class="ps-server-info" aria-label="{{ $u('server_information') }}" x-init="watchServerInfo($el)">
             {{-- Artwork has its own clipping layer, so it stays inside the card while the ⋯ menu lets the card overflow. --}}
             <span class="ps-info-decor">
@@ -59,6 +47,7 @@
                 {{-- One line: status, software and version, what add-ons add, the address. --}}
                 <div class="ps-info-meta">
                     <span class="ps-badge ps-status" :class="status"><i></i><span x-text="Simplify.status(status)"></span></span>
+                    <span class="ps-badge ps-first-ready" x-show="firstStart()" x-cloak><svg aria-hidden="true"><use href="#ps-check"/></svg><span x-text="firstStartNote()"></span></span>
                     <span class="ps-info-meta-item" :data-tip="server.software || @js($u('not_reported'))"><svg aria-hidden="true"><use :href="server.minecraft ? '#ps-cube' : '#ps-gamepad'"/></svg><span x-text="softwareLabel()"></span></span>
                     <template x-for="badge in metaBadges()" :key="badge"><span class="ps-info-meta-item" x-text="badge"></span></template>
                     <button type="button" class="ps-address ps-info-address" x-on:click="copyText(server.address)" :disabled="!server.address" data-tip="{{ $u('copy_server_address') }}">
@@ -69,8 +58,10 @@
             <div class="ps-motd-preview ps-motd-display ps-info-motd" x-show="server.motd" x-effect="server.motd; $nextTick(() => fitMotd($el))" aria-label="{{ $u('message_of_the_day') }}"><template x-for="(part, index) in motdPreview(server.motd || '')" :key="index"><span :style="part.style" x-text="part.text"></span></template></div>
             {{-- Power: one button that follows the state (Start, Stop, or Force stop while starting or stopping), Restart, and the rest under ⋯. --}}
             <div class="ps-info-power" x-on:click.outside="colorMenu=false; bannerMenu=false; infoMenu=false" x-on:keydown.escape.stop="colorMenu=false; bannerMenu=false; infoMenu=false">
-                <button type="button" class="ps-btn ps-power-main" :class="{'is-primary': mainPower().action==='start', 'is-danger': mainPower().action==='kill'}" x-on:click="power(mainPower().action)" :disabled="busy || !server.permissions[mainPower().permission] || (mainPower().action==='start' && !canRestart())" :aria-label="Simplify.fill(@js($u('action_server')), { action: mainPower().label })"><svg aria-hidden="true"><use :href="'#ps-'+mainPower().icon"/></svg><span x-text="mainPower().label"></span></button>
-                <button type="button" class="ps-btn ps-power-restart" x-on:click="power('restart')" :disabled="busy || !server.permissions['control.restart'] || !canRestart()" aria-label="{{ $u('restart_server') }}"><svg aria-hidden="true"><use href="#ps-restart"/></svg><span>{{ $u('restart') }}</span></button>
+                {{-- First start of a Minecraft server with its EULA still open: the person ticks the box themselves (with the EULA a click away), then First start writes eula.txt and starts. --}}
+                <label class="ps-eula-check" :class="{ 'is-pulse': eulaPulse }" x-show="firstStart() && eulaNeeded" x-cloak><input type="checkbox" x-model="eulaAccepted" :disabled="busy"><span>{{ $u('eula_check') }} · <a href="https://www.minecraft.net/eula" target="_blank" rel="noopener noreferrer">{{ $u('read_the_minecraft_eula') }}</a></span></label>
+                <button type="button" class="ps-btn ps-power-main" :class="{'is-primary': ['start', 'first'].includes(mainPower().action), 'is-danger': mainPower().action==='kill'}" x-on:click="power(mainPower().action)" :disabled="busy || !server.permissions[mainPower().permission] || (mainPower().action==='start' && !canRestart()) || (mainPower().action==='first' && eulaNeeded && !eulaAccepted)" :aria-label="Simplify.fill(@js($u('action_server')), { action: mainPower().label })"><svg aria-hidden="true"><use :href="'#ps-'+mainPower().icon"/></svg><span x-text="mainPower().label"></span></button>
+                <button type="button" class="ps-btn ps-power-restart" x-show="!firstStart()" x-on:click="power('restart')" :disabled="busy || !server.permissions['control.restart'] || !canRestart()" aria-label="{{ $u('restart_server') }}"><svg aria-hidden="true"><use href="#ps-restart"/></svg><span>{{ $u('restart') }}</span></button>
                 <button type="button" class="ps-btn is-icon ps-info-more-button" aria-label="{{ $u('more_server_options') }}" aria-controls="ps-info-menu" :aria-expanded="infoMenu" x-on:click="infoMenu=!infoMenu; colorMenu=false; bannerMenu=false"><svg aria-hidden="true"><use href="#ps-dots"/></svg></button>
                 <div id="ps-info-menu" class="ps-dropdown is-end ps-info-menu" x-show="infoMenu" x-cloak x-transition.opacity role="menu">
                     <span class="ps-label ps-menu-heading" x-show="server.can_edit">{{ $u('look') }}</span>
@@ -171,16 +162,17 @@
             </template>
         </section>
         {{-- The last console lines while another page is open (Customize → Server pages). --}}
-        <section class="ps-card ps-log-strip" x-show="!@js($console) && overviewPreferences.serverConsoleLog && logLines.length" x-cloak aria-label="{{ $u('log_in_the_mini_console') }}">
+        <section class="ps-card ps-log-strip" x-show="!onConsole && overviewPreferences.serverConsoleLog && logLines.length" x-cloak aria-label="{{ $u('log_in_the_mini_console') }}">
             <template x-for="(line, index) in logLines" :key="index"><div x-text="line"></div></template>
         </section>
     </div>
     {{-- The server menu next to Pelican's page (ServerMenu): everyday pages and the add-ons' pages on top, Pelican's
          rarely used pages and deleting the server under Advanced. --}}
     @php($onAdvanced = in_array(true, array_column($menu['advanced'], 'active'), true))
+    @php($navigate = \Simplify\Core\Server\ServerMenu::navigates())
     <nav class="ps-server-menu" aria-label="{{ $u('server_sections') }}" wire:ignore>
         @foreach ($menu['main'] as $item)
-            <a class="ps-widget" href="{{ $item['url'] }}" @if ($item['active']) aria-current="page" @endif @if ($item['new_tab']) target="_blank" rel="noopener" @endif>
+            <a class="ps-widget" href="{{ $item['url'] }}" @if ($navigate && ! $item['new_tab']) wire:navigate @endif data-ps-match="{{ implode(' ', array_map(fn ($url) => parse_url($url, PHP_URL_PATH), $item['match'])) }}" @if ($item['active']) aria-current="page" @endif @if ($item['new_tab']) target="_blank" rel="noopener" @endif>
                 <span class="ps-widget-icon">@if ($item['icon'])<x-filament::icon :icon="$item['icon']" />@endif</span>
                 <span><strong>{{ $item['label'] }}</strong></span>
             </a>
@@ -188,7 +180,7 @@
         <details class="ps-server-menu-more" @if ($onAdvanced) open @endif>
             <summary class="ps-widget"><span class="ps-widget-icon"><svg aria-hidden="true"><use href="#ps-advanced"/></svg></span><span><strong>{{ $u('advanced') }}</strong></span><svg class="ps-server-menu-chevron" aria-hidden="true"><use href="#ps-chevron"/></svg></summary>
             @foreach ($menu['advanced'] as $item)
-                <a class="ps-widget" href="{{ $item['url'] }}" @if ($item['active']) aria-current="page" @endif @if ($item['new_tab']) target="_blank" rel="noopener" @endif>
+                <a class="ps-widget" href="{{ $item['url'] }}" @if ($navigate && ! $item['new_tab']) wire:navigate @endif data-ps-match="{{ implode(' ', array_map(fn ($url) => parse_url($url, PHP_URL_PATH), $item['match'])) }}" @if ($item['active']) aria-current="page" @endif @if ($item['new_tab']) target="_blank" rel="noopener" @endif>
                     <span class="ps-widget-icon">@if ($item['icon'])<x-filament::icon :icon="$item['icon']" />@endif</span>
                     <span><strong>{{ $item['label'] }}</strong></span>
                 </a>
@@ -203,18 +195,18 @@
     @php($phoneMore = array_slice($menu['main'], 3))
     <nav class="ps-phone-sections" aria-label="{{ $u('server_sections') }}" x-data="{ more: false }" x-on:click.outside="more=false" x-on:keydown.escape.stop="more=false" wire:ignore>
         @foreach (array_slice($menu['main'], 0, 3) as $item)
-            <a class="ps-phone-section" href="{{ $item['url'] }}" @if ($item['active']) aria-current="page" @endif>@if ($item['icon'])<x-filament::icon class="ps-phone-section-icon" :icon="$item['icon']" />@endif<span>{{ $item['label'] }}</span></a>
+            <a class="ps-phone-section" href="{{ $item['url'] }}" @if ($navigate && ! $item['new_tab']) wire:navigate @endif data-ps-match="{{ implode(' ', array_map(fn ($url) => parse_url($url, PHP_URL_PATH), $item['match'])) }}" @if ($item['active']) aria-current="page" @endif>@if ($item['icon'])<x-filament::icon class="ps-phone-section-icon" :icon="$item['icon']" />@endif<span>{{ $item['label'] }}</span></a>
         @endforeach
         <div class="ps-phone-more">
             <button type="button" class="ps-phone-section" aria-controls="ps-phone-more-menu" :aria-expanded="more" @if ($onAdvanced || in_array(true, array_column($phoneMore, 'active'), true)) aria-current="page" @endif x-on:click="more=!more"><svg class="ps-phone-section-icon" aria-hidden="true"><use href="#ps-dots"/></svg><span>{{ $u('more') }}</span></button>
             <div id="ps-phone-more-menu" class="ps-dropdown is-end ps-phone-more-menu" x-show="more" x-cloak x-transition.opacity>
                 @foreach ($phoneMore as $item)
-                    <a class="ps-menu-item" href="{{ $item['url'] }}" @if ($item['active']) aria-current="page" @endif>@if ($item['icon'])<x-filament::icon :icon="$item['icon']" />@endif<span>{{ $item['label'] }}</span></a>
+                    <a class="ps-menu-item" href="{{ $item['url'] }}" @if ($navigate && ! $item['new_tab']) wire:navigate @endif data-ps-match="{{ implode(' ', array_map(fn ($url) => parse_url($url, PHP_URL_PATH), $item['match'])) }}" @if ($item['active']) aria-current="page" @endif>@if ($item['icon'])<x-filament::icon :icon="$item['icon']" />@endif<span>{{ $item['label'] }}</span></a>
                 @endforeach
                 @if ($phoneMore !== [])<hr>@endif
                 <span class="ps-label ps-menu-heading">{{ $u('advanced') }}</span>
                 @foreach ($menu['advanced'] as $item)
-                    <a class="ps-menu-item" href="{{ $item['url'] }}" @if ($item['active']) aria-current="page" @endif>@if ($item['icon'])<x-filament::icon :icon="$item['icon']" />@endif<span>{{ $item['label'] }}</span></a>
+                    <a class="ps-menu-item" href="{{ $item['url'] }}" @if ($navigate && ! $item['new_tab']) wire:navigate @endif data-ps-match="{{ implode(' ', array_map(fn ($url) => parse_url($url, PHP_URL_PATH), $item['match'])) }}" @if ($item['active']) aria-current="page" @endif>@if ($item['icon'])<x-filament::icon :icon="$item['icon']" />@endif<span>{{ $item['label'] }}</span></a>
                 @endforeach
                 <button type="button" class="ps-menu-item is-danger" x-show="server.can_delete" :disabled="busy || !canDelete()" x-on:click="more=false; deleteServer()"><svg aria-hidden="true"><use href="#ps-trash"/></svg><span>{{ $u('delete_server') }}</span></button>
             </div>

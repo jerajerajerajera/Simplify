@@ -79,6 +79,8 @@ return [
         'oldest_first' => '古い順',
         'port_lowest_first' => 'ポート(小さい順)',
         'start' => '起動',
+        'first_start' => '初回起動',
+        'ready_first_start' => '初回起動の準備ができました',
         'stop' => '停止',
         'restart' => '再起動',
         'force_stop' => '強制停止',

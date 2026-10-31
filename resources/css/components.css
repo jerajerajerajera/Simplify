@@ -495,3 +495,7 @@ label.ps-notify-setting { cursor: pointer; }
 .ps-notify-setting .ps-switch { flex: none; margin-inline-start: auto; }
 .ps-notify-setting-actions { display: flex; flex: none; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
 @media (max-width: 600px) { .ps-notify-setting:has(.ps-notify-setting-actions) { flex-wrap: wrap; } .ps-notify-setting-actions { flex-basis: 100%; justify-content: flex-start; padding-inline-start: 30px; } }
+
+/* Create server in a popup: Server Maker's own page fills it, and only that page scrolls. */
+.ps-create-popup .ps-modal { --ps-modal-w: 1080px; --ps-modal-h: 860px; }
+.ps-create-frame { flex: 1 1 auto; min-height: 0; width: 100%; border: 0; background: var(--ps-surface); }
