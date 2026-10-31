@@ -701,7 +701,39 @@ async function extrasFlow(theme) {
   await record('notify-pinned', 'Meldingen · vastgezette aankondiging bovenaan');
   say('notify-pinned', pin && pin.shown && pin.items.some((t) => /Maintenance on Saturday/.test(t)) && !pin.close, pin);
   await escape(); if (onPhone) await escape();
+  await fixesFlow();
   await goto(overview);
+}
+
+// 1.5.3 fixes, each ok or WRONG: Simplify's settings on a phone (the card flows with the page, the settings pane is not
+// a small box that scrolls inside), the setup on a phone, no Start or Restart while a server installs, and the quick
+// commands above a phone's console stay put (never taken out and put back).
+async function fixesFlow() {
+  const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
+  if (phone()) {
+    await goto('/admin/simplify', 2000);
+    await click('.s-settings-tabs [role=tab]:has-text("Appearance"), .s-settings-tabs button:has-text("Appearance")', 900);
+    await record('settings-phone', 'Instellingen · telefoon');
+    const st = await page.evaluate(() => { const p = document.querySelector('.s-settings-tabs > .fi-sc-tabs-tab.fi-active'); if (!p) return null; return { pane: p.clientHeight, content: p.scrollHeight, window: innerHeight }; }).catch(() => null);
+    say('settings-phone', st && st.content <= st.pane + 4, st);
+    await goto('/admin/simplify-setup', 2000); await record('setup-phone', 'Setup · telefoon');
+    const su = await page.evaluate(() => { const w = document.querySelector('.s-setup'), s = w && w.querySelector('.fi-sc-wizard-step.fi-active'); if (!s) return null; const r = s.getBoundingClientRect(); return { step: Math.round(r.height), inner: s.scrollHeight <= s.clientHeight + 4, width: Math.round(r.width) }; }).catch(() => null);
+    say('setup-phone', su && su.step > 120 && su.inner && su.width > 250, su);
+  }
+  if (urls.servers['New World']) {
+    await goto(urls.servers['New World'], 3500); await record('install-buttons', 'Server · installeert, geen Start/Restart');
+    const shown = await page.evaluate(() => [...document.querySelectorAll('.ps button')].filter((b) => b.getClientRects().length && getComputedStyle(b).visibility !== 'hidden' && /^(start|restart|first start)$/i.test((b.innerText.trim() || b.getAttribute('data-tip') || '').trim())).map((b) => b.className + ' ' + (b.innerText.trim() || b.getAttribute('data-tip'))));
+    say('install-buttons', shown.length === 0, { shown });
+  } else say('install-buttons', false, { note: 'server not seeded: New World' });
+  if (phone() && urls.servers['Survival SMP']) {
+    await goto(urls.servers['Survival SMP'], 3500);
+    await page.evaluate(() => { window.__qc = { adds: 0, gone: 0 }; new MutationObserver((ms) => { for (const m of ms) { for (const n of m.addedNodes) if (n.nodeType === 1 && n.matches('.ps-quick-commands')) window.__qc.adds++; for (const n of m.removedNodes) if (n.nodeType === 1 && n.matches('.ps-quick-commands')) window.__qc.gone++; } }).observe(document.body, { childList: true, subtree: true }); }).catch(() => {});
+    let hidden = 0;
+    for (let i = 0; i < 60; i++) { if (!(await page.evaluate(() => { const r = document.querySelector('.ps-quick-commands'); return !!r && r.getClientRects().length > 0; }).catch(() => false))) hidden++; await sleep(100); }
+    const qc = await page.evaluate(() => window.__qc).catch(() => null);
+    await record('quick-commands', 'Server · telefoon: quick commands');
+    say('quick-commands', qc && qc.adds === 0 && qc.gone === 0 && hidden === 0, { ...qc, hidden });
+  }
 }
 
 // Notifications (1.5.0, #90): Mark read on one, Clear read, ✕ to Archived, and Archived at the bottom of the window with
@@ -851,7 +883,7 @@ const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(
         const parts = { first: [['d1440', 'phone390'], () => firstFlow(theme)], layers: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => layersFlow()], nav: [['d1440', 'laag1366'], () => navFlow()], create: [['d1440', 'laag1366', 'phone390'], () => createFlow()],
           maker: [['d1440', 'phone390'], () => makerFlow()],
           schedule: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => scheduleFlow()],
-          extras: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => extrasFlow(theme)], seasons: [['d1440', 'tablet768', 'phone390'], () => seasons(theme)] };
+          extras: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => extrasFlow(theme)], fixes: [['d1440', 'phone390'], () => fixesFlow()], seasons: [['d1440', 'tablet768', 'phone390'], () => seasons(theme)] };
         for (const part of section.split(',')) { const [where, run] = parts[part] || [[], null]; if (!run || !where.includes(name)) continue; try { await setTheme(theme); await run(); } catch (e) { problems.push(`${stand} ${part}: ${e.message.slice(0, 200)}`); } }
         continue;
       }
