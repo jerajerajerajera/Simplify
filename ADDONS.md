@@ -103,6 +103,8 @@ public static function getNavigationGroup(): ?string
 }
 ```
 
+An admin page never scrolls with the core installed: give the element that holds the page's form (or long content) the class `s-fit`. The core then makes it as tall as the window leaves and lets only that element scroll, as on Simplify's own form pages. Without the core the class does nothing.
+
 Use the number below as `$navigationSort` for your add-on's main admin page (its other admin pages get the next numbers), so the core comes first and the add-ons follow from A to Z. A new add-on takes the free number in its place.
 
 | Page | Sort |
