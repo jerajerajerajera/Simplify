@@ -98,6 +98,7 @@
       overviewView: typeof innerWidth !== 'undefined' && innerWidth <= 600 ? 'list' : 'grid',
       accountMenu: false,
       createMenu: false,
+      createFrame: null,
       navMenu: false,
       SERVER_ORDERS,
       GROUP_ORDERS,
@@ -482,15 +483,13 @@
         const section = this.hostSections().find((x) => x.key === 'health');
         if (section?.pages[0]) this.openAdminPage(event, section, section.pages[0]);
       },
-      /** Pelican's own "Create server" form (no Server Maker) opens like an Admin tools page, inside Simplify. True when it did. */
+      /** "Create server" (Server Maker, or Pelican's own form) opens in a Simplify popup, on every page. True when it did. */
       openCreate(event, choice) {
-        if (!choice?.native || event?.ctrlKey || event?.metaKey || event?.shiftKey || this.server) return false;
-        const section = this.hostSections().find((x) => x.pages.some((item) => item.key === 'serverresource'));
-        const page = section?.pages.find((item) => item.key === 'serverresource');
-        if (!page) return false;
+        if (!choice?.url || event?.ctrlKey || event?.metaKey || event?.shiftKey || !this.frameUrl(choice.url)) return false;
         event?.preventDefault();
         this.createMenu = false;
-        this.openAdminPage(null, section, { ...page, key: 'serverresource-create', label: t('dashboard.create_server'), frame: choice.url });
+        this.navMenu = false;
+        this.createFrame = { url: this.frameUrl(choice.url), label: choice.label || t('dashboard.create_server') };
         return true;
       },
       closeAdminView() {
@@ -553,18 +552,22 @@
           sessionStorage.setItem(this.hostModeKey() + '.place', JSON.stringify({ section: section?.key || null, page: item?.key || null }));
         } catch {}
       },
-      /** A group with more than one page folds open and shut; the open page's group opens with it. */
+      /** A group with more than one page folds open and shut, and so does Other plugins, so a plugin's page shows its own name. */
+      hostBranch(section) {
+        return !!section && (section.pages.length > 1 || section.key === 'extensions');
+      },
+      /** The open page's group opens with it. */
       hostBranchOpen(section) {
-        return section.pages.length > 1 && this.hostOpen.includes(section.key);
+        return this.hostBranch(section) && this.hostOpen.includes(section.key);
       },
       toggleHostBranch(section) {
         this.hostOpen = this.hostOpen.includes(section.key) ? this.hostOpen.filter((key) => key !== section.key) : [...this.hostOpen, section.key];
       },
       hostAllOpen() {
-        return this.hostSections().every((section) => section.pages.length < 2 || this.hostOpen.includes(section.key));
+        return this.hostSections().every((section) => !this.hostBranch(section) || this.hostOpen.includes(section.key));
       },
       toggleHostBranches() {
-        this.hostOpen = this.hostAllOpen() ? [] : this.hostSections().filter((section) => section.pages.length > 1).map((section) => section.key);
+        this.hostOpen = this.hostAllOpen() ? [] : this.hostSections().filter((section) => this.hostBranch(section)).map((section) => section.key);
       },
       openHostServer(s) {
         this.hostServer = s;

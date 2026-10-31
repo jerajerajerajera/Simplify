@@ -79,6 +79,8 @@ return [
         'oldest_first' => '오래된 순',
         'port_lowest_first' => '포트(낮은 순)',
         'start' => '시작',
+        'first_start' => '첫 시작',
+        'ready_first_start' => '첫 시작 준비 완료',
         'stop' => '정지',
         'restart' => '재시작',
         'force_stop' => '강제 정지',

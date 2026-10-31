@@ -79,6 +79,8 @@ return [
         'oldest_first' => 'Seniausi pirmi',
         'port_lowest_first' => 'Prievadas (didėjančiai)',
         'start' => 'Paleisti',
+        'first_start' => 'Pirmas paleidimas',
+        'ready_first_start' => 'Paruoštas pirmam paleidimui',
         'stop' => 'Sustabdyti',
         'restart' => 'Paleisti iš naujo',
         'force_stop' => 'Priverstinai sustabdyti',

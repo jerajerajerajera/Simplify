@@ -79,6 +79,8 @@ return [
         'oldest_first' => 'Vanhin ensin',
         'port_lowest_first' => 'Portti (pienin ensin)',
         'start' => 'Käynnistä',
+        'first_start' => 'Ensimmäinen käynnistys',
+        'ready_first_start' => 'Valmis ensimmäiseen käynnistykseen',
         'stop' => 'Pysäytä',
         'restart' => 'Käynnistä uudelleen',
         'force_stop' => 'Pakota pysäytys',

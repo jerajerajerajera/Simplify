@@ -98,9 +98,15 @@ final class SimplifyPlugin implements Plugin
             return '';
         }
 
-        return Blade::render('@livewire($component, $data)', [
+        $console = request()->routeIs('filament.server.pages.console');
+
+        // The top stays while the menu changes the page next to it (wire:navigate, ServerMenu::navigates()); the
+        // marker after it tells the kept top which page came in.
+        return Blade::render('@persist($key)@livewire($component, $data)@endpersist<template data-ps-server-page data-console="{{ $console ? 1 : 0 }}"></template>', [
+            'key' => 'simplify-server-'.$server->uuid,
             'component' => ServerPage::class,
-            'data' => ['server' => $server, 'console' => request()->routeIs('filament.server.pages.console')],
+            'data' => ['server' => $server, 'console' => $console],
+            'console' => $console,
         ]);
     }
 

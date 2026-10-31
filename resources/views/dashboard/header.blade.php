@@ -166,6 +166,20 @@
             @include('simplify::dashboard.account')
         </div>
     </nav>
+    {{-- Create server: Server Maker (or Pelican's own form) in a Simplify popup, on every page. --}}
+    <template x-teleport="body">
+        <div class="ps-modal-layer ps-ui ps-create-popup" :class="{'dark': themeDark}" x-show="createFrame" x-cloak :data-open="!!createFrame" x-on:click.self="createFrame=null" x-on:keydown.escape.window="createFrame && (createFrame=null)" :style="accentStyle('overview')">
+            <section class="ps-modal" role="dialog" aria-modal="true" aria-labelledby="ps-create-popup-title">
+                <header class="ps-modal-head">
+                    <h2 id="ps-create-popup-title" x-text="createFrame?.label"></h2>
+                    <button type="button" class="ps-btn is-icon is-subtle" x-on:click="createFrame=null" aria-label="{{ $u('close') }}" data-tip="{{ $u('close') }}"><svg aria-hidden="true"><use href="#ps-close"/></svg></button>
+                </header>
+                <template x-if="createFrame">
+                    <iframe class="ps-create-frame" data-ps-frame="native" :src="createFrame.url" :title="createFrame.label"></iframe>
+                </template>
+            </section>
+        </div>
+    </template>
     {{-- Every notification in one window, with what this account gets on its devices above the list. --}}
     <template x-teleport="body">
         <div class="ps-modal-layer ps-ui ps-notify-all" :class="{'dark': themeDark}" x-show="notifyAll" x-cloak :data-open="notifyAll" x-on:click.self="notifyAll=false" x-on:keydown.escape.window="notifyAll && (notifyAll=false)" :style="accentStyle('overview')">

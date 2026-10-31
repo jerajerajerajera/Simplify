@@ -79,6 +79,8 @@ return [
         'oldest_first' => 'Terlama dulu',
         'port_lowest_first' => 'Port (terendah dulu)',
         'start' => 'Jalankan',
+        'first_start' => 'Mulai pertama',
+        'ready_first_start' => 'Siap untuk mulai pertama',
         'stop' => 'Hentikan',
         'restart' => 'Mulai ulang',
         'force_stop' => 'Paksa berhenti',

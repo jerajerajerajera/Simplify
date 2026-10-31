@@ -79,6 +79,8 @@ return [
         'oldest_first' => 'Oudste eerst',
         'port_lowest_first' => 'Poort (laagste eerst)',
         'start' => 'Starten',
+        'first_start' => 'Eerste start',
+        'ready_first_start' => 'Klaar voor de eerste start',
         'stop' => 'Stoppen',
         'restart' => 'Herstarten',
         'force_stop' => 'Geforceerd stoppen',
