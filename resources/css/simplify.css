@@ -750,9 +750,9 @@ html.ps-frame[data-ps-tree] .fi-sc-tabs > .fi-tabs {
   display: none !important;
 }
 
-/* It sits straight on host mode's page, as in 0.7.0: no header of its own, no card around the settings or each
-   section and no extra margin; a thin line between the sections. */
-html.ps-frame[data-ps-tree] :is(.fi-page:has(.s-settings) .fi-header, .fi-breadcrumbs) {
+/* It sits straight on host mode's page, as in 0.7.0: no header of its own (Setup done neither: its buttons are in
+   the title bar), no card around the settings or each section and no extra margin; a thin line between the sections. */
+html.ps-frame[data-ps-tree] :is(.fi-page:has(.s-settings, .s-done) .fi-header, .fi-breadcrumbs) {
   display: none !important;
 }
 

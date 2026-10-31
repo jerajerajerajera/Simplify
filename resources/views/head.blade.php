@@ -36,7 +36,11 @@
                 card.style.removeProperty('--s-fit');
                 const box = card.getBoundingClientRect();
                 const below = document.documentElement.scrollHeight - (box.bottom + scrollY);
-                card.style.setProperty('--s-fit', Math.max(320, Math.floor(innerHeight - (box.top + scrollY) - below)) + 'px');
+                const height = Math.max(320, Math.floor(innerHeight - (box.top + scrollY) - below));
+                card.style.setProperty('--s-fit', height + 'px');
+                // Whatever still grows with the page (a layout's minimum height, a footer pushed down) is taken off again.
+                const over = document.documentElement.scrollHeight - innerHeight;
+                if (over > 0) card.style.setProperty('--s-fit', Math.max(320, height - over) + 'px');
             }
         };
         const queue = () => (queued ||= requestAnimationFrame(fit));
