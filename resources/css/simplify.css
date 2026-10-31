@@ -1562,6 +1562,13 @@ html.ps-frame[data-ps-frame="native"] .s-health { border: 0; border-radius: 0; b
   padding: 22px 26px;
 }
 
+/* In host mode's frame the content box is the card already. */
+html.ps-frame .s-done {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
 .s-done-head {
   align-items: center;
   display: flex;

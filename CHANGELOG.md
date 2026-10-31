@@ -7,7 +7,7 @@
 - Server menu: after a click the server page no longer scrolls a little. The page's footer stays the thin row it is on the first load.
 - Server menu: Simplify Toolkit's Automatic backups joins Backups & tasks as a tab between Backups and Schedules, instead of an item of its own.
 - Create server opens Server Maker in a Simplify popup, from the overview, a server page and Admin → Servers alike, instead of on its own page or in Pelican's own form. Without Server Maker, Pelican's form opens in that popup. Ctrl/cmd-click still opens it in a new tab.
-- Create server and host mode: the announcement bars no longer show a second time inside the popup or the frame. A server that installs no longer shows Pelican's "not yet completed its installation" warning under Simplify's install card.
+- Create server and host mode: the announcement bars no longer show a second time inside the popup or the frame, and Setup done no longer draws a second box inside the frame. A server that installs no longer shows Pelican's "not yet completed its installation" warning under Simplify's install card.
 - Host mode and Admin tools: Other plugins folds open like the other groups, with each plugin's page by its own name, also when there is only one. Before, a single plugin page opened straight away under the name Other plugins.
 - Scrollbars are thinner and take a light tint of the background in the dark theme and a soft grey in the light theme, instead of a dark stripe.
 - Server page: the bottom of the server's ⋯ menu (Force stop, Delete server) can be clicked again where it hangs over the console. The console took the mouse there and showed a text cursor.
