@@ -816,6 +816,8 @@ html:not(.ps-frame) :is(.s-health, .s-fit)[style*="--s-fit"],
 .s-done[style*="--s-fit"] {
   max-height: var(--s-fit);
   overflow-y: auto;
+  /* Absolutely placed bits inside (hidden inputs of a checkbox list) stay in the card, not further down the page. */
+  position: relative;
 }
 
 /* A form page scrolls inside with a little room, so focus rings and section shadows are not cut off. */
