@@ -1,0 +1,533 @@
+{
+ "base": "http://127.0.0.1:8001",
+ "product": null,
+ "stands": {
+  "laag1366": {
+   "url": "http://127.0.0.1:8001/simplify",
+   "tried": [],
+   "grid": {
+    "window": "1366x650",
+    "servers": 8,
+    "fitWithoutScrolling": 0,
+    "columns": 4,
+    "rowPitch": 338,
+    "card": {
+     "h": 322,
+     "w": 260,
+     "top": 332,
+     "pad": "0 0 0 0",
+     "gap": null
+    },
+    "cardInner": {
+     "h": 322,
+     "w": 260,
+     "top": 332,
+     "pad": "0 0 0 0",
+     "gap": null
+    },
+    "grid": {
+     "h": 660,
+     "w": 1088,
+     "top": 332,
+     "pad": "0 0 0 0",
+     "gap": "16/16"
+    },
+    "scrollArea": {
+     "h": 326,
+     "w": 1108,
+     "top": 274,
+     "pad": "12 4 12 4",
+     "gap": "0/0"
+    },
+    "firstServerTop": 332,
+    "scrolls": 404,
+    "pageScroll": 0,
+    "above": [
+     {
+      "part": "ps-top",
+      "h": 38,
+      "w": 1294,
+      "top": 212,
+      "pad": "0 0 0 0",
+      "gap": "16/16"
+     },
+     {
+      "part": "ps-top-actions",
+      "h": 38,
+      "w": 603,
+      "top": 212,
+      "pad": "0 0 0 0",
+      "gap": "6/6"
+     },
+     {
+      "part": "ps-top-overview",
+      "h": 38,
+      "w": 274,
+      "top": 212,
+      "pad": "0 0 0 0",
+      "gap": "8/8"
+     },
+     {
+      "part": "ps-overview-toolbar",
+      "h": 30,
+      "w": 1088,
+      "top": 290,
+      "pad": "0 0 0 0",
+      "gap": "8/16"
+     }
+    ],
+    "parts": [
+     {
+      "part": "ps-card-background",
+      "h": 320,
+      "w": 206,
+      "top": 1,
+      "pad": "0 0 0 0",
+      "gap": null,
+      "font": "14px"
+     },
+     {
+      "part": "ps-server-open",
+      "h": 320,
+      "w": 258,
+      "top": 1,
+      "pad": "18 18 18 18",
+      "gap": "0/0",
+      "font": "14px"
+     },
+     {
+      "part": "  ps-card-head",
+      "h": 48,
+      "w": 84,
+      "top": 19,
+      "pad": "0 0 0 0",
+      "gap": "0/0",
+      "font": "14px"
+     },
+     {
+      "part": "    ps-card-icons",
+      "h": 48,
+      "w": 84,
+      "top": 19,
+      "pad": "0 0 0 0",
+      "gap": null,
+      "font": "14px"
+     },
+     {
+      "part": "  ps-card-title",
+      "h": 48,
+      "w": 164,
+      "top": 93,
+      "pad": "0 0 0 0",
+      "gap": null,
+      "font": "14px"
+     },
+     {
+      "part": "    ps-card-title-row",
+      "h": 48,
+      "w": 164,
+      "top": 93,
+      "pad": "0 0 0 0",
+      "gap": "0/0",
+      "font": "14px"
+     },
+     {
+      "part": "  ps-card-usage",
+      "h": 84,
+      "w": 222,
+      "top": 179,
+      "pad": "0 0 0 0",
+      "gap": "16/16",
+      "font": "14px"
+     },
+     {
+      "part": "    ps-card-mini-metric",
+      "h": 84,
+      "w": 103,
+      "top": 179,
+      "pad": "6 6 6 6",
+      "gap": null,
+      "font": "14px"
+     },
+     {
+      "part": "    ps-card-mini-metric",
+      "h": 84,
+      "w": 103,
+      "top": 179,
+      "pad": "6 6 6 6",
+      "gap": null,
+      "font": "14px"
+     },
+     {
+      "part": "  ps-card-badges.ps-identity-badges",
+      "h": 74,
+      "w": 97,
+      "top": 13,
+      "pad": "0 0 0 0",
+      "gap": "4/4",
+      "font": "14px"
+     },
+     {
+      "part": "    ps-badge.ps-list-game",
+      "h": 22,
+      "w": 97,
+      "top": 13,
+      "pad": "3 9 3 9",
+      "gap": "6/6",
+      "font": "11px"
+     },
+     {
+      "part": "    ps-badge.ps-status",
+      "h": 22,
+      "w": 81,
+      "top": 39,
+      "pad": "3 9 3 9",
+      "gap": "6/6",
+      "font": "11px"
+     },
+     {
+      "part": "    ps-badge",
+      "h": 22,
+      "w": 96,
+      "top": 65,
+      "pad": "3 9 3 9",
+      "gap": "6/6",
+      "font": "11px"
+     },
+     {
+      "part": "  ps-card-bottom",
+      "h": 35,
+      "w": 222,
+      "top": 269,
+      "pad": "11 0 0 0",
+      "gap": "0/0",
+      "font": "15px"
+     },
+     {
+      "part": "    span",
+      "h": 23,
+      "w": 49,
+      "top": 281,
+      "pad": "0 0 0 0",
+      "gap": null,
+      "font": "15px"
+     },
+     {
+      "part": "    [object.SVGAnimatedString]",
+      "h": 17,
+      "w": 17,
+      "top": 283,
+      "pad": "0 0 0 0",
+      "gap": null,
+      "font": "15px"
+     }
+    ],
+    "badges": [
+     {
+      "part": "ps-card-badges.ps-identity-badges",
+      "h": 74,
+      "w": 97,
+      "top": 345,
+      "pad": "0 0 0 0",
+      "gap": "4/4",
+      "text": "Minecraft\n              "
+     },
+     {
+      "part": "ps-badge.ps-list-game",
+      "h": 22,
+      "w": 97,
+      "top": 345,
+      "pad": "3 9 3 9",
+      "gap": "6/6",
+      "text": "Minecraft"
+     },
+     {
+      "part": "ps-badge.ps-status",
+      "h": 22,
+      "w": 81,
+      "top": 371,
+      "pad": "3 9 3 9",
+      "gap": "6/6",
+      "text": "Running"
+     },
+     {
+      "part": "ps-badge",
+      "h": 22,
+      "w": 96,
+      "top": 397,
+      "pad": "3 9 3 9",
+      "gap": "6/6",
+      "text": "Forge 1.21.1"
+     }
+    ],
+    "overviewView": "grid"
+   },
+   "list": {
+    "window": "1366x650",
+    "servers": 8,
+    "fitWithoutScrolling": 3,
+    "columns": 1,
+    "rowPitch": 80,
+    "card": {
+     "h": 68,
+     "w": 1088,
+     "top": 332,
+     "pad": "0 0 0 0",
+     "gap": null
+    },
+    "cardInner": {
+     "h": 68,
+     "w": 1088,
+     "top": 332,
+     "pad": "0 0 0 0",
+     "gap": null
+    },
+    "grid": {
+     "h": 628,
+     "w": 1088,
+     "top": 332,
+     "pad": "0 0 0 0",
+     "gap": "12/12"
+    },
+    "scrollArea": {
+     "h": 326,
+     "w": 1108,
+     "top": 274,
+     "pad": "12 4 12 4",
+     "gap": "0/0"
+    },
+    "firstServerTop": 332,
+    "scrolls": 372,
+    "pageScroll": 0,
+    "above": [
+     {
+      "part": "ps-top",
+      "h": 38,
+      "w": 1294,
+      "top": 212,
+      "pad": "0 0 0 0",
+      "gap": "16/16"
+     },
+     {
+      "part": "ps-top-actions",
+      "h": 38,
+      "w": 603,
+      "top": 212,
+      "pad": "0 0 0 0",
+      "gap": "6/6"
+     },
+     {
+      "part": "ps-top-overview",
+      "h": 38,
+      "w": 274,
+      "top": 212,
+      "pad": "0 0 0 0",
+      "gap": "8/8"
+     },
+     {
+      "part": "ps-overview-toolbar",
+      "h": 30,
+      "w": 1088,
+      "top": 290,
+      "pad": "0 0 0 0",
+      "gap": "8/16"
+     }
+    ],
+    "parts": [
+     {
+      "part": "ps-card-background",
+      "h": 66,
+      "w": 869,
+      "top": 1,
+      "pad": "0 0 0 0",
+      "gap": null,
+      "font": "14px"
+     },
+     {
+      "part": "ps-server-open",
+      "h": 66,
+      "w": 1086,
+      "top": 1,
+      "pad": "8 16 8 16",
+      "gap": "10/10",
+      "font": "14px"
+     },
+     {
+      "part": "  ps-card-head",
+      "h": 48,
+      "w": 84,
+      "top": 13,
+      "pad": "0 0 0 0",
+      "gap": "0/0",
+      "font": "14px"
+     },
+     {
+      "part": "    ps-card-icons",
+      "h": 48,
+      "w": 78,
+      "top": 13,
+      "pad": "0 0 0 0",
+      "gap": null,
+      "font": "14px"
+     },
+     {
+      "part": "  ps-card-title",
+      "h": 56,
+      "w": 510,
+      "top": 9,
+      "pad": "0 0 0 0",
+      "gap": null,
+      "font": "14px"
+     },
+     {
+      "part": "    ps-card-title-row",
+      "h": 30,
+      "w": 510,
+      "top": 9,
+      "pad": "0 0 0 0",
+      "gap": "8/8",
+      "font": "14px"
+     },
+     {
+      "part": "    ps-card-extras",
+      "h": 22,
+      "w": 510,
+      "top": 43,
+      "pad": "0 0 0 0",
+      "gap": "4/4",
+      "font": "14px"
+     },
+     {
+      "part": "  ps-card-usage",
+      "h": 47,
+      "w": 240,
+      "top": 14,
+      "pad": "0 0 0 0",
+      "gap": "12/12",
+      "font": "14px"
+     },
+     {
+      "part": "    ps-card-mini-metric",
+      "h": 47,
+      "w": 114,
+      "top": 14,
+      "pad": "3 6 3 6",
+      "gap": null,
+      "font": "14px"
+     },
+     {
+      "part": "    ps-card-mini-metric",
+      "h": 47,
+      "w": 114,
+      "top": 14,
+      "pad": "3 6 3 6",
+      "gap": null,
+      "font": "14px"
+     },
+     {
+      "part": "  ps-card-badges.ps-identity-badges",
+      "h": 22,
+      "w": 183,
+      "top": 10,
+      "pad": "0 0 0 0",
+      "gap": "4/4",
+      "font": "14px"
+     },
+     {
+      "part": "    ps-badge.ps-list-game",
+      "h": 22,
+      "w": 97,
+      "top": 10,
+      "pad": "3 9 3 9",
+      "gap": "6/6",
+      "font": "11px"
+     },
+     {
+      "part": "    ps-badge.ps-status",
+      "h": 22,
+      "w": 81,
+      "top": 10,
+      "pad": "3 9 3 9",
+      "gap": "6/6",
+      "font": "11px"
+     },
+     {
+      "part": "ps-card-footer",
+      "h": 25,
+      "w": 88,
+      "top": 36,
+      "pad": "0 0 0 0",
+      "gap": "12/12",
+      "font": "14px"
+     },
+     {
+      "part": "  ps-list-player-count",
+      "h": 25,
+      "w": 88,
+      "top": 36,
+      "pad": "2 8 2 8",
+      "gap": "10/10",
+      "font": "14px"
+     },
+     {
+      "part": "    span",
+      "h": 21,
+      "w": 45,
+      "top": 38,
+      "pad": "0 0 0 0",
+      "gap": null,
+      "font": "14px"
+     },
+     {
+      "part": "    [object.SVGAnimatedString]",
+      "h": 17,
+      "w": 17,
+      "top": 40,
+      "pad": "0 0 0 0",
+      "gap": null,
+      "font": "14px"
+     }
+    ],
+    "badges": [
+     {
+      "part": "ps-badge",
+      "h": 22,
+      "w": 96,
+      "top": 375,
+      "pad": "3 9 3 9",
+      "gap": null,
+      "text": "Forge 1.21.1"
+     },
+     {
+      "part": "ps-card-badges.ps-identity-badges",
+      "h": 22,
+      "w": 183,
+      "top": 342,
+      "pad": "0 0 0 0",
+      "gap": "4/4",
+      "text": "Minecraft\n              "
+     },
+     {
+      "part": "ps-badge.ps-list-game",
+      "h": 22,
+      "w": 97,
+      "top": 342,
+      "pad": "3 9 3 9",
+      "gap": "6/6",
+      "text": "Minecraft"
+     },
+     {
+      "part": "ps-badge.ps-status",
+      "h": 22,
+      "w": 81,
+      "top": 342,
+      "pad": "3 9 3 9",
+      "gap": "6/6",
+      "text": "Running"
+     }
+    ],
+    "overviewView": "list"
+   }
+  }
+ }
+}
