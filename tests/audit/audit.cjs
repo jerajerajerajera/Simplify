@@ -721,7 +721,7 @@ async function fixesFlow() {
     say('setup-phone', su && su.step > 120 && su.inner && su.width > 250, su);
   }
   if (urls.servers['New World']) {
-    await goto(urls.servers['New World'], 3500); await record('install-buttons', 'Server · installeert, geen Start/Restart');
+    await goto(urls.servers['New World'], 3500); await record('server-install-buttons', 'Server · installeert, geen Start/Restart');
     const shown = await page.evaluate(() => [...document.querySelectorAll('.ps button')].filter((b) => b.getClientRects().length && getComputedStyle(b).visibility !== 'hidden' && /^(start|restart|first start)$/i.test((b.innerText.trim() || b.getAttribute('data-tip') || '').trim())).map((b) => b.className + ' ' + (b.innerText.trim() || b.getAttribute('data-tip'))));
     say('install-buttons', shown.length === 0, { shown });
   } else say('install-buttons', false, { note: 'server not seeded: New World' });
@@ -735,6 +735,22 @@ async function fixesFlow() {
     const qc = await page.evaluate(() => window.__qc).catch(() => null);
     await record('quick-commands', 'Server · telefoon: quick commands');
     say('quick-commands', qc && qc.adds === 0 && qc.gone === 0 && hidden === 0, { ...qc, hidden });
+  }
+  // Host mode on a phone: a page's buttons (Health's refresh, Servers' search and Create) sit in a slim row above the
+  // page, not loose in the frame under an empty header.
+  if (phone()) {
+    const overview = urls.app.find((p) => /App\\Pages\\Overview$/.test(p.class))?.url || '/';
+    await goto(overview); await alpine('d.setHostMode(true)'); await sleep(1200);
+    for (const [want, id] of [['health', 'host-phone-health'], ['serverresource', 'host-phone-servers']]) {
+      const opened = await alpine(`for (const sec of d.hostSections()) { const it = sec.pages.find((p) => p.key === '${want}' || (p.label || '').toLowerCase() === '${want}'); if (it) { d.openHostLeaf(sec, it); return it.label; } } return null;`);
+      await page.waitForSelector('.ps-host-frame iframe', { timeout: 8000 }).catch(() => {}); await sleep(3000);
+      await record(id, `Hostmodus · telefoon, ${opened || want}`);
+      const frame = page.frames().find((x) => x !== page.mainFrame() && /\/admin/.test(x.url()));
+      const row = await page.evaluate(() => { const h = document.querySelector('.ps-host-head.is-page'); const t = h && h.querySelector('.ps-frame-tools'); return { row: !!h && h.getClientRects().length > 0, tools: t ? [...t.querySelectorAll('button, input')].filter((e) => e.getClientRects().length).length : 0 }; }).catch(() => null);
+      const loose = frame ? await frame.evaluate(() => [...document.querySelectorAll('.fi-header-actions-ctn :is(button, a), .fi-ta-header-toolbar > .fi-ta-actions :is(button, a)')].filter((e) => e.getClientRects().length).length).catch(() => -1) : -1;
+      say(id, !!opened && row && row.row && row.tools > 0 && loose === 0, { opened, ...row, loose });
+    }
+    await alpine('d.setHostMode(false)'); await sleep(500);
   }
   // Pull to refresh in the installed app (pull.js): a finger pulled down from the top shows the mark and reloads.
   if (phone()) {
