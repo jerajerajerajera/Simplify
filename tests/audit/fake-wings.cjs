@@ -9,7 +9,7 @@ const disks = {};
 const disk = (s) => disks[s.uuid] ??= Object.fromEntries(Object.entries(s.files || {}).map(([k, v]) => [k, Buffer.from(v, k.endsWith('.png') ? 'base64' : 'utf8')]));
 const norm = (p) => '/' + String(p || '').split('/').filter((x) => x && x !== '.').join('/');
 const entry = (s) => ({ state: s.state || 'running', is_suspended: false,
-  utilization: { memory_bytes: (s.memory || 900) * 1e6, memory_limit_bytes: 4096e6, cpu_absolute: s.cpu ?? 12, network: { rx_bytes: 1e6, tx_bytes: 2e6 }, uptime: 3600, state: s.state || 'running', disk_bytes: 900e6 },
+  utilization: { memory_bytes: (s.memory || 900) * 1e6, memory_limit_bytes: 4096e6, cpu_absolute: (s.cpu ?? 12) + Math.floor(Date.now() / 1000) % 5, network: { rx_bytes: 1e6, tx_bytes: 2e6 }, uptime: 3600, state: s.state || 'running', disk_bytes: 900e6 },
   configuration: { uuid: s.uuid, meta: { name: s.name } } });
 const body = (req) => new Promise((ok) => { const parts = []; req.on('data', (c) => parts.push(c)); req.on('end', () => ok(Buffer.concat(parts))); });
 
@@ -23,7 +23,8 @@ const logLines = (name) => ['[12:00:01 INFO]: Starting minecraft server version 
   '[12:00:03 INFO]: Preparing level "world"', '[12:00:04 INFO]: Preparing spawn area: 0%', '[12:00:04 INFO]: Preparing spawn area: 48%', '[12:00:05 INFO]: Preparing spawn area: 96%',
   '[12:00:05 INFO]: Done (4.2s)! For help, type "help"', '[12:00:06 INFO]: Timings Reset', '[12:00:09 INFO]: Steve joined the game', '[12:00:12 INFO]: <Steve> hello ' + name,
   ...Array.from({ length: 40 }, (_, i) => `[12:0${Math.floor(i / 10)}:${String(i % 10 * 6).padStart(2, '0')} INFO]: tick ${i} \u001b[32mgreen\u001b[0m \u001b[33myellow\u001b[0m ${'x'.repeat(i * 7 % 200)}`)];
-const stats = (s) => JSON.stringify({ memory_bytes: (s.memory || 900) * 1e6, memory_limit_bytes: 4096e6, cpu_absolute: s.cpu ?? 12, network: { rx_bytes: 31.1e6, tx_bytes: 1.0e9 }, uptime: 3600e3, state: s.state || 'running', disk_bytes: 900e6 });
+const started = Date.now() - 3600e3; // the uptime and the CPU move, so the live numbers really change
+const stats = (s) => JSON.stringify({ memory_bytes: (s.memory || 900) * 1e6, memory_limit_bytes: 4096e6, cpu_absolute: (s.cpu ?? 12) + Math.floor(Date.now() / 1000) % 5, network: { rx_bytes: 31.1e6, tx_bytes: 1.0e9 }, uptime: Date.now() - started, state: s.state || 'running', disk_bytes: 900e6 });
 const wsServer = (server) => server.on('upgrade', (req, socket) => {
   const m = (url.parse(req.url).pathname || '').match(/^\/api\/servers\/([^/]+)\/ws$/);
   const s = m && servers().find((x) => x.uuid === m[1]);
