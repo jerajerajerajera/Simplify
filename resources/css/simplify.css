@@ -680,8 +680,9 @@
   transform: translateX(-16px);
 }
 
-/* A page in host mode's frame (head.blade.php): only the page itself, without Pelican's menus or Simplify's header. */
-html.ps-frame :is(.fi-topbar, .fi-sidebar, .fi-sidebar-close-overlay, .fi-layout-sidebar-toggle-btn-ctn, .fi-footer, [data-ps-footer], footer:not([class*="fi-"]), .ps-top, .ps-statusbar, .ps-tabbar) {
+/* A page in host mode's frame or a Simplify popup (head.blade.php): only the page itself, without Pelican's menus or
+   Simplify's header and announcement bars, which the page around the frame already shows. */
+html.ps-frame :is(.fi-topbar, .fi-sidebar, .fi-sidebar-close-overlay, .fi-layout-sidebar-toggle-btn-ctn, .fi-footer, [data-ps-footer], footer:not([class*="fi-"]), .ps-top, .ps-statusbar, .ps-tabbar, .ps-bars) {
   display: none !important;
 }
 
