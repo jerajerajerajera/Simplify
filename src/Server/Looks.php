@@ -19,6 +19,10 @@ use Simplify\Core\Support\Assets;
  */
 final class Looks
 {
+    /** The server colours to pick from (hex => name), also for other plugins such as Server Maker. */
+    public const COLORS = ['#ef4444' => 'Red', '#f97316' => 'Orange', '#eab308' => 'Gold', '#84cc16' => 'Lime', '#22c55e' => 'Green', '#10b981' => 'Mint',
+        '#06b6d4' => 'Cyan', '#3b82f6' => 'Blue', '#6366f1' => 'Indigo', '#a855f7' => 'Purple', '#ec4899' => 'Pink', '#f43f5e' => 'Rose'];
+
     public const DIRECTORY = 'simplify/banners';
 
     public const SCENE = 'scene:';

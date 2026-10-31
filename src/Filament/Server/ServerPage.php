@@ -55,7 +55,7 @@ final class ServerPage extends Component
     /** @return array<string, mixed> */
     public function initial(): array
     {
-        return [...$this->shell($this->user()), 'server' => Listing::one($this->user(), $this->server), 'console' => $this->console];
+        return [...$this->shell($this->user()), 'server' => Listing::one($this->user(), $this->server), 'console' => $this->console, 'colors' => Looks::COLORS];
     }
 
     #[Renderless]

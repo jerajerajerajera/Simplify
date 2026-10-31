@@ -128,7 +128,8 @@ game address with the port (`play.example.com:25566`) when the port is in the fo
 `Looks::for($server)` gives `color` and `banner`; `Looks::save($server, $color, $banner)` sets both, where `$banner`
 is `false` to keep the current one, `null` for none, or a file the add-on stored on the local disk as
 `Looks::DIRECTORY.'/<name>.(png|jpg|jpeg|webp)'` (name `[A-Za-z0-9_-]`, at most 80). Uploads no server shows any more are
-deleted by Simplify.
+deleted by Simplify. `Looks::COLORS` lists the colours a server's ⋯ menu offers (hex => name, in that order);
+it is newer than `Looks::save()`, so check `defined(Looks::class.'::COLORS')` first.
 
 `Simplify\Core\Embed\Services\EmbedServers::visible($server)` and `setVisible($server, $on)` read and set a server's
 "Show on the website" choice (the same as its Website page). They check no permissions: the caller does that.
