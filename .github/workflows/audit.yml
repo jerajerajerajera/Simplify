@@ -14,11 +14,17 @@ on:
       servermaker:
         description: 'Branch of Simplify-ServerMaker (none = without Server Maker)'
         default: 'main'
+      hosting:
+        description: 'Branch of Simplify-Hosting'
+        default: 'main'
+      explain:
+        description: 'Branch of Simplify-Explain'
+        default: 'main'
       simplify:
         description: 'Branch of Simplify to audit (empty = this checkout); the audit itself always comes from this checkout'
         default: ''
       section:
-        description: 'Only one section (empty = everything): seasons, extras, layers, first, nav, create, inventory (every function, for the 0.7.0 diff), or compare (the overview measured, 8 servers)'
+        description: 'Only one section (empty = everything): seasons, extras, layers, first, nav, create, maker (Server Maker steps), schedule (Edit schedule reachable, #236), inventory (every function, for the 0.7.0 diff), or compare (the overview measured, 8 servers)'
         default: ''
       from:
         description: 'A Simplify tag (e.g. v1.5.1) installed and seeded first; then the Simplify branch updates it, as on a real panel'
@@ -80,6 +86,9 @@ jobs:
           yarn build
       - name: Install Simplify (this checkout) and the add-ons (main)
         working-directory: panel
+        env:
+          HOSTING_BRANCH: ${{ inputs.hosting }}
+          EXPLAIN_BRANCH: ${{ inputs.explain }}
         run: |
           if [ -n "${{ inputs.legacy }}" ]; then
             git clone --quiet --depth 1 --branch "${{ inputs.legacy }}" https://github.com/jerajerajerajera/PelicanSimplify.git plugins/pelican-simplify
@@ -115,6 +124,7 @@ jobs:
             repo=${pair%%:*}; id=${pair##*:}
             if [ "$repo" = Simplify-ServerMaker ] && [ "${{ inputs.servermaker }}" = none ]; then echo "Server Maker left out"; continue; fi
             branch=main; [ "$repo" = Simplify-Toolkit ] && branch="${{ inputs.toolkit || 'main' }}"; [ "$repo" = Simplify-ServerMaker ] && branch="${{ inputs.servermaker || 'main' }}"
+            [ "$repo" = Simplify-Hosting ] && branch="${HOSTING_BRANCH:-main}"; [ "$repo" = Simplify-Explain ] && branch="${EXPLAIN_BRANCH:-main}"
             git clone --quiet --depth 1 --branch "$branch" "https://github.com/jerajerajerajera/$repo.git" "plugins/$id"
             real=$(php -r "echo json_decode(file_get_contents('plugins/$id/plugin.json'), true)['id'];")
             if [ "$real" != "$id" ]; then mv "plugins/$id" "plugins/$real"; id=$real; fi

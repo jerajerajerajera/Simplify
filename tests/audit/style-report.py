@@ -29,9 +29,12 @@ for f in sys.argv[1:]:
                 if k == 'cardoff' and tag: continue
                 rows.append((s['stand'], s['id'], s.get('title', ''), k + tag, p['text'], s.get('shot', '')))
             box = (m.get('info') or {}).get('box')
-            if box and not tag:
+            # A server that installs, or waits for its EULA, has a taller card above the box (the install steps, the
+            # EULA box): its own height, not a page that jumps. Create server is a popup over whichever page was open.
+            if box and not tag and not s['id'].startswith(('server-install', 'first-eula', 'create-')):
                 top, rest = box.split('..'); bottom = rest.split(' of ')[0]
-                heights[(s['stand'], 'host' if s['id'].startswith('host') else 'admin' if s['id'].startswith(('tile-', 'create-')) else 'server')].append((int(bottom) - int(top), s['id']))
+                host = s['id'].startswith(('host', 'other-plugins', 'scroll-frame', 'setup-done-host'))
+                heights[(s['stand'], 'host' if host else 'admin' if s['id'].startswith(('tile-', 'create-')) else 'server')].append((int(bottom) - int(top), s['id']))
 # The content box must be the same height on every page of a stand (host mode pages, server pages).
 for (stand, kind), hs in heights.items():
     counts = collections.Counter(h for h, _ in hs); common = counts.most_common(1)[0][0]

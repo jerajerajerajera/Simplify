@@ -186,6 +186,10 @@ $part('toolkit software', function () use ($servers) {
     foreach (['Survival SMP' => 'paper', 'Creative Builds' => 'paper', 'Skyblock' => 'paper', 'All the Mods 10' => 'forge'] as $name => $loader) {
         DB::table('simplify_toolkit_servers')->insert(['server_id' => $servers[$name]->id, 'loader' => $loader, 'minecraft' => '1.21.1', 'created_at' => now(), 'updated_at' => now()]);
     }
+    // One plugin Toolkit installed itself (the others are added by hand), so the plugin list shows its Update button.
+    DB::table('simplify_toolkit_packages')->insert(['server_id' => $servers['Survival SMP']->id, 'key' => 'modrinth:Vebnzrzj', 'source' => 'modrinth',
+        'directory' => '/plugins', 'filename' => 'LuckPerms-Bukkit-5.4.141.jar', 'title' => 'LuckPerms', 'version' => '5.4.141', 'version_id' => 'old123',
+        'icon' => '', 'page' => 'https://modrinth.com/plugin/luckperms', 'fits' => true, 'created_at' => now(), 'updated_at' => now()]);
 });
 // One schedule with three tasks, so the Edit schedule page shows its Tasks block (old plugin issue #236: no way to scroll to it).
 $part('schedule', function () use ($servers) {

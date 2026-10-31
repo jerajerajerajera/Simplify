@@ -268,6 +268,68 @@ async function round(theme) {
 
 // Create server (1.5.0): without Server Maker, Pelican's create form opens inside Simplify like an Admin tools page
 // (title "Servers › Create server", close button); with Server Maker, Server Maker opens. Desktop button, phone tab bar.
+// Edit schedule (section=schedule, old plugin issue #236): the Tasks block under the form must be reachable. The content
+// box scrolls to its end, and the last task's actions are clickable there (not covered, not cut off).
+async function scheduleFlow() {
+  const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
+  await goto(urls.servers['Survival SMP'].replace(/\/console$/, '') + '/schedules', 3000);
+  const row = page.locator('.fi-ta-row:has-text("Nightly restart") >> visible=true').first();
+  if (!(await row.count())) return say('schedule-edit', false, { note: 'no Nightly restart row', url: rel(page.url()) });
+  await row.click().catch(() => {}); await page.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {}); await sleep(2000);
+  const reach = () => page.evaluate(() => {
+    const box = document.querySelector('.fi-page-main') || document.scrollingElement;
+    box.scrollTop = box.scrollHeight;
+    const rows = [...document.querySelectorAll('.fi-ta-row')].filter((r) => r.getClientRects().length);
+    const last = rows[rows.length - 1];
+    const action = last && [...last.querySelectorAll('button, a')].filter((b) => b.getClientRects().length).pop();
+    const r = action && action.getBoundingClientRect();
+    const hit = r && document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
+    return { url: location.pathname, tasks: rows.length, scrollable: box.scrollHeight > box.clientHeight + 2, scrolled: Math.round(box.scrollTop),
+      pageScroll: document.documentElement.scrollHeight - innerHeight, action: action ? (action.getAttribute('aria-label') || action.textContent.trim()).slice(0, 40) : null,
+      inView: !!r && r.top >= 0 && r.bottom <= innerHeight, clickable: !!hit && (hit === action || action.contains(hit)) };
+  });
+  await sleep(500);
+  const st = await reach();
+  await record('schedule-edit', 'Schedules · taak bewerken (onderaan)');
+  say('schedule-edit', st.tasks >= 3 && st.inView && st.clickable && st.pageScroll <= 1, st);
+}
+
+// Server Maker (section=maker, with servermaker): every wizard step on a real screen, for its own docs/screenshots:
+// Minecraft › Plugins, another game's Server step, Resources and Review. Each step must move on and show its own form.
+async function makerFlow() {
+  if (!servermaker) return;
+  const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
+  const state = () => page.evaluate(() => {
+    const v = (e) => !!e && !!e.getClientRects().length && getComputedStyle(e).display !== 'none';
+    const step = document.querySelector('.fi-sc-wizard-step.fi-active');
+    return { step: step ? step.id || step.getAttribute('x-ref') || null : null, types: v(document.querySelector('.smk-types')), games: v(document.querySelector('.smk-games-grid')),
+      errors: [...document.querySelectorAll('.fi-fo-field-wrp-error-message')].filter(v).map((e) => e.textContent.trim()).slice(0, 3), url: location.pathname };
+  });
+  const click = async (selector) => { const el = page.locator(`${selector} >> visible=true`).first(); if (!(await el.count())) return false; await el.click().catch(() => {}); await page.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {}); await sleep(1500); return true; };
+  await goto('/server-maker', 3000);
+  const picked = await click('button.smk-minecraft-type:has-text("Plugins")');
+  await sleep(1500);
+  let st = await state();
+  await record('maker-minecraft', 'Server Maker · Minecraft (Plugins)');
+  say('maker-minecraft', picked && st.types && !st.games, { picked, ...st });
+  await click('.smk-back');
+  const other = await click('button.smk-game:has-text("Valheim")');
+  await click('.smk-next');
+  st = await state();
+  await record('maker-server-other', 'Server Maker · Server (Valheim)');
+  say('maker-server-other', other && !st.games && !st.types && !st.errors.length, { other, ...st });
+  const before = st.step;
+  await click('.smk-next');
+  st = await state();
+  await record('maker-resources', 'Server Maker · Resources');
+  say('maker-resources', st.step !== before && !st.errors.length, st);
+  const resources = st.step;
+  await click('.smk-next');
+  st = await state();
+  await record('maker-review', 'Server Maker · Review');
+  say('maker-review', st.step !== resources && !st.errors.length, st);
+}
+
 async function createFlow() {
   const overview = urls.app.find((p) => /App\\Pages\\Overview$/.test(p.class))?.url || '/';
   const onPhone = phone();
@@ -296,13 +358,16 @@ async function createFlow() {
     await goto(overview); await sleep(600);
     if (await press('overview')) await check('create-desktop', 'Create server (overzicht)'); else problems.push(`${stand} create-desktop: WRONG no Create server button on the overview`);
     await goto(urls.servers['Survival SMP'], 3000);
-    if (await press('server')) await check('create-server-page', 'Create server (serverpagina)'); else problems.push(`${stand} create-server-page: WRONG no Create server button on a server page`);
+    // 0.7.0 had no Create server on a server page (only the overview, its phone tab bar and the admin list): one there is a test of its own.
+    if (await press('server')) await check('create-server-page', 'Create server (serverpagina)'); else problems.push(`${stand} create-server-page: ok none on a server page, as in 0.7.0`);
     // Host mode: Admin → Servers → Create, inside the frame.
     await goto(overview); await alpine('d.setHostMode(true)'); await sleep(1200);
     await alpine(`const sec = d.hostSections().find((x) => x.key === 'servers'); const it = sec && sec.pages.find((p) => p.key === 'serverresource'); if (it) d.openHostLeaf(sec, it); return !!it;`);
     await page.waitForSelector('.ps-host-frame iframe', { timeout: 8000 }).catch(() => {}); await sleep(2500);
     const list = page.frames().find((x) => x !== page.mainFrame() && /\/admin\/servers/.test(x.url()));
-    const link = list && list.locator('a[href*="/servers/create"] >> visible=true').first();
+    // The list's header buttons sit in Simplify's title bar above the frame (frame.js); the link itself is hidden in the frame.
+    const bridged = page.locator('.ps-frame-tools button:is([aria-label*="Create" i], [aria-label*="New Server" i]) >> visible=true').first();
+    const link = (await bridged.count()) ? bridged : list && list.locator('a[href*="/servers/create"] >> visible=true').first();
     if (link && (await link.count())) { await link.click().catch(() => {}); await sleep(800); await check('create-host-admin', 'Create server (hostmodus, Admin → Servers → Create)'); }
     else problems.push(`${stand} create-host-admin: WRONG no Create in Admin → Servers (${list ? rel(list.url()) : 'no frame'})`);
     await alpine('d.setHostMode(false)'); await sleep(500);
@@ -438,7 +503,10 @@ async function navFlow() {
       onConsole: root ? root.onConsole : null, wings: (document.querySelector('.ps-console-state') || {}).textContent || null,
       stats: (document.querySelector('.ps-server-stats') || {}).innerText || '', logPref: root ? !!(root.overviewPreferences || {}).serverConsoleLog : null, logLines: root ? (root.logLines || []).length : null, strip: v(strip),
       menuStyle: m ? [m.style.height, m.style.maxHeight, m.style.minHeight].filter(Boolean).join(' ') : null, menuH: m ? Math.round(m.getBoundingClientRect().height) : null,
-      scroll: document.documentElement.scrollHeight - innerHeight, url: location.pathname };
+      scroll: document.documentElement.scrollHeight - innerHeight, url: location.pathname,
+      // What sticks out below the window when the page scrolls: the outermost such boxes, for the diagnosis.
+      below: document.documentElement.scrollHeight > innerHeight + 1 ? [...document.querySelectorAll('body *')].filter((e) => { const r = e.getBoundingClientRect(); if (!e.getClientRects().length || r.bottom + scrollY <= innerHeight + 1) return false; for (let q = e.parentElement; q && q !== document.body; q = q.parentElement) { if (/(auto|scroll|hidden|clip)/.test(getComputedStyle(q).overflowY)) return false; if (q.getBoundingClientRect().bottom + scrollY > innerHeight + 1) return false; } return true; }).slice(0, 5).map((e) => e.tagName.toLowerCase() + '.' + String(e.className).trim().split(/\s+/).slice(0, 3).join('.') + ' ' + Math.round(e.getBoundingClientRect().bottom + scrollY)) : [],
+      boxes: document.documentElement.scrollHeight > innerHeight + 1 ? ['body > *', '.fi-layout > *', '.fi-main-ctn > *', '.fi-main > *', '.fi-page-header-main-ctn > *'].flatMap((q) => [...document.querySelectorAll(q)].filter((e) => e.getClientRects().length).map((e) => { const r = e.getBoundingClientRect(); return q.split(' ')[0] + '>' + e.tagName.toLowerCase() + '.' + String(e.className).trim().split(/\s+/)[0] + ' ' + Math.round(r.top + scrollY) + '+' + Math.round(r.height); })).concat('fit ' + document.documentElement.style.getPropertyValue('--ps-fit')) : [] };
   });
   const clickIn = async (text, scope) => page.evaluate(([t, sc]) => { const box = sc ? document.querySelector(sc) : document; const a = [...box.querySelectorAll('a, summary')].find((e) => e.textContent.trim().replace(/\s+/g, ' ') === t && e.getClientRects().length && !(sc ? false : e.closest('.ps-server-menu, .ps-phone-sections'))); if (!a) return false; a.click(); return true; }, [text, scope]);
   const steps = [
@@ -610,8 +678,9 @@ async function extrasFlow(theme) {
     }
   }
 
-  // Install screen and the EULA bar (#89): a server that installs, one whose installation failed, one with the EULA open.
-  for (const [name, id, sel, label] of [['New World', 'server-installing', '.ps-install', 'installeert'], ['Broken Install', 'server-install-failed', '.ps-install', 'installatie mislukt'], ['Fresh Start', 'server-eula', '.ps-ready.is-eula', 'EULA nog open']]) {
+  // Install screen (#89): a server that installs, one whose installation failed. The EULA (1.5.2: in the card, before
+  // First start) is firstFlow's.
+  for (const [name, id, sel, label] of [['New World', 'server-installing', '.ps-install', 'installeert'], ['Broken Install', 'server-install-failed', '.ps-install', 'installatie mislukt']]) {
     if (!urls.servers[name]) { say(id, false, { note: 'server not seeded: ' + name }); continue; }
     await goto(urls.servers[name], 3500); await record(id, `Server · ${name} (${label})`);
     const st = await page.evaluate((s) => { const el = document.querySelector(s); const vis = !!el && el.getClientRects().length > 0; return { shown: vis, text: vis ? el.innerText.replace(/\s+/g, ' ').slice(0, 220) : null, eulaLink: !!(el && el.querySelector('a[href="https://www.minecraft.net/eula"]')), start: !!(el && [...el.querySelectorAll('button')].some((b) => /accept and start|try again/i.test(b.textContent) && b.getClientRects().length)) }; }, sel);
@@ -757,12 +826,15 @@ async function seasons(theme) {
   await page.close().catch(() => {});
   page = main;
 }
+// Screenshots never show the seasonal touches (they stay quiet); only seasons() looks at them, on pages of its own.
+const quiet = (p) => p.addInitScript(() => { let s; Object.defineProperty(window, 'SimplifySeasons', { configurable: true, get: () => s, set: (v) => { s = v && { ...v, active: () => [] }; } }); });
 const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) || 'x';
 
 (async () => {
   browser = await chromium.launch({ headless: true });
   const context = await browser.newContext({ viewport: VIEWPORTS.d1440, baseURL: base, deviceScaleFactor: 1 });
   page = await context.newPage(); page.setDefaultTimeout(8000);
+  await quiet(page);
   page.on('pageerror', (e) => problems.push(`${stand} ${screen} page error: ${e.message.slice(0, 160)}`));
   page.on('console', (m) => { if (m.type() === 'error' && !/favicon|net::ERR|status of 4|WebSocket/.test(m.text())) problems.push(`${stand} ${screen} console: ${m.text().slice(0, 160)}`); });
   page.on('response', (r) => { if (r.status() >= 500) problems.push(`${stand} ${screen} HTTP ${r.status()} ${rel(r.url())}`); });
@@ -777,16 +849,18 @@ const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(
       if (section) {
         // One or more sections (comma separated), each on its own stands.
         const parts = { first: [['d1440', 'phone390'], () => firstFlow(theme)], layers: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => layersFlow()], nav: [['d1440', 'laag1366'], () => navFlow()], create: [['d1440', 'laag1366', 'phone390'], () => createFlow()],
+          maker: [['d1440', 'phone390'], () => makerFlow()],
+          schedule: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => scheduleFlow()],
           extras: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => extrasFlow(theme)], seasons: [['d1440', 'tablet768', 'phone390'], () => seasons(theme)] };
         for (const part of section.split(',')) { const [where, run] = parts[part] || [[], null]; if (!run || !where.includes(name)) continue; try { await setTheme(theme); await run(); } catch (e) { problems.push(`${stand} ${part}: ${e.message.slice(0, 200)}`); } }
         continue;
       }
-      try { await round(theme); } catch (e) { problems.push(`${stand} ${screen}: round stopped: ${e.message.slice(0, 200)}`); console.log('  ! ' + e.message.slice(0, 200)); if (page.isClosed()) { page = await context.newPage(); await login('demo@example.com', 'DemoPassword123!'); } }
+      try { await round(theme); } catch (e) { problems.push(`${stand} ${screen}: round stopped: ${e.message.slice(0, 200)}`); console.log('  ! ' + e.message.slice(0, 200)); if (page.isClosed()) { page = await context.newPage(); await quiet(page); await login('demo@example.com', 'DemoPassword123!'); } }
     }
   }
   // The customer's view, two stands.
   const customer = await browser.newContext({ viewport: VIEWPORTS.d1440, baseURL: base });
-  const cp = await customer.newPage(); const admin = page; page = cp; page.setDefaultTimeout(8000);
+  const cp = await customer.newPage(); const admin = page; page = cp; page.setDefaultTimeout(8000); await quiet(page);
   await login('sam@example.com', 'DemoPassword123!');
   for (const name of ['d1440', 'phone390']) {
     if (only && !only.includes(name)) continue;
