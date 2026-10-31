@@ -820,6 +820,12 @@ html:not(.ps-frame) :is(.s-health, .s-fit)[style*="--s-fit"],
   position: relative;
 }
 
+/* With Pelican's top bar (a small window or a phone) the content's own minimum of a whole window comes on top of
+   it; the fitted card already takes the window's height, so the page needs no minimum. */
+html:not(.ps-frame) body:has(:is(.s-settings-tabs, .s-health, .s-people, .s-fit, .s-done)[style*="--s-fit"]) .fi-main-ctn {
+  min-height: 0 !important;
+}
+
 /* A form page scrolls inside with a little room, so focus rings and section shadows are not cut off. */
 html:not(.ps-frame) .s-fit[style*="--s-fit"] {
   margin: -4px;
