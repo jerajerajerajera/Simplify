@@ -1349,6 +1349,8 @@ html.ps-low .ps-server-stats .ps-stat-top svg { display: none; }
 html.ps-low .ps-server-stats .ps-stat-top span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 /* The installation view on the server page, as in 0.7.0: the steps and the time while Pelican installs. */
+/* Pelican's own "has not yet completed its installation" warning says what the install card above already shows. */
+body:has(.ps-install:not([style*="none"], [x-cloak])) .fi-main .fi-page .fi-callout.fi-color-warning { display: none; }
 .ps-install { display: grid; gap: 18px; margin-bottom: 14px; padding: 20px 22px; border: 1px solid var(--ps-line); border-radius: var(--ps-radius-lg); background: var(--ps-surface); }
 .ps-install-head { display: flex; align-items: center; gap: 14px; min-width: 0; }
 .ps-install-icon { display: grid; flex: none; place-items: center; width: 44px; height: 44px; overflow: hidden; border: 1px solid var(--ps-line); border-radius: 12px; background: var(--ps-raised); color: var(--ps-muted); }
