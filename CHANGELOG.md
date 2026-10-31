@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Back from 0.7.0: an add-on's customer link with an icon, such as Simplify Hosting's Client area, is also in the account menu, before Support.
 - For other plugins: `Subdomains::gameAddress()` gives a server's join address, falling back to the shared game address with the port when the server has no working subdomain.
 
 ## 1.5.1
