@@ -1,0 +1,9 @@
+# Stijlcontrole: 2 scherm(en) met overtredingen, 3 bevinding(en)
+
+## phone390-dark · setup-done-host  Setup klaar (hostmodus, in het frame)  (phone390-dark/setup-done-host.png)
+- **filamentlook [frame]** (kale Filament-stijl in hostmodus): bare Filament button(s) in host mode's frame: "Run setup again" at y=120 | "Go to the panel" at y=168
+
+## phone390-light · setup-done-host  Setup klaar (hostmodus, in het frame)  (phone390-light/setup-done-host.png)
+- **boxinbox [frame]** (vak in het vak): box inside a box: s-done (330x424) in the content box
+- **filamentlook [frame]** (kale Filament-stijl in hostmodus): bare Filament button(s) in host mode's frame: "Run setup again" at y=120 | "Go to the panel" at y=168
+
