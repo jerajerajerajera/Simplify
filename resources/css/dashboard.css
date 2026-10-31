@@ -833,8 +833,12 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   .ps-host-frame.is-server { padding: 0; }
   .ps-host-server { min-height: 48px; }
   .ps-host-head { padding: 0; }
-  /* The menu button already names the open page. */
-  .ps-host-head.is-page { display: none !important; }
+  /* The menu button already names the open page: the title bar stays only as a slim row for the page's buttons. */
+  .ps-host-head.is-page:not(:has(.ps-frame-tools)) { display: none !important; }
+  .ps-host:not(.is-single) .ps-host-head.is-page { height: 48px; padding: 0 12px; }
+  .ps-host:not(.is-single) .ps-host-head.is-page > :not(.ps-frame-tools) { display: none; }
+  .ps-host:not(.is-single) .ps-frame-tools .ps-btn.is-primary { flex: none; width: var(--ps-h-sm); padding: 0; gap: 0; font-size: 0; }
+  .ps-host:not(.is-single) .ps-frame-search { flex: 1 1 auto; }
   /* One page from Admin tools has no menu button: its title bar stays, with the page's buttons and the close button. */
   .ps-host.is-single .ps-host-head.is-page { display: flex !important; padding: 0 12px; }
   /* Too narrow for the page name and a labelled button: the section name stays, the add button shows its icon only, as in host mode. */

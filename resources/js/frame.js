@@ -1,6 +1,6 @@
 /* A Pelican page in host mode's frame (head.blade.php): its search field, its header and table buttons move into
    host mode's title bar, next to the section and page name, as in PelicanSimplify 0.7.0. The page's own toolbar
-   hides while they are there (simplify.css, data-ps-head-tools); a phone, without that title bar, keeps it. */
+   hides while they are there (simplify.css, data-ps-head-tools); a phone shows them in a slim row above the page. */
 (() => {
   const root = document.documentElement;
   let head;
@@ -45,7 +45,8 @@
   bar.className = 'ps-frame-tools';
   let signature = null;
   const build = () => {
-    const visible = parent.defaultView.getComputedStyle(head).display !== 'none';
+    // Shown by host mode (x-show) in a visible host block; a phone shows the row only once it has tools (dashboard.css).
+    const visible = head.style.display !== 'none' && head.parentElement.getClientRects().length > 0;
     const table = visible ? mainTable() : null;
     // Simplify's settings save with the button under the form; in the tree their header (Run setup again) stays hidden.
     const settings = document.querySelector('.s-settings > .s-bar button[type="submit"]');
