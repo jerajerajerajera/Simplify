@@ -728,11 +728,30 @@ async function fixesFlow() {
   if (phone() && urls.servers['Survival SMP']) {
     await goto(urls.servers['Survival SMP'], 3500);
     await page.evaluate(() => { window.__qc = { adds: 0, gone: 0 }; new MutationObserver((ms) => { for (const m of ms) { for (const n of m.addedNodes) if (n.nodeType === 1 && n.matches('.ps-quick-commands')) window.__qc.adds++; for (const n of m.removedNodes) if (n.nodeType === 1 && n.matches('.ps-quick-commands')) window.__qc.gone++; } }).observe(document.body, { childList: true, subtree: true }); }).catch(() => {});
+    // Pelican redraws its console on every status message and reconnect (token-request); do that three times here.
+    await page.evaluate(() => { const c = window.Livewire?.all().find((x) => x.el?.querySelector?.('#terminal')); if (c) for (let i = 0; i < 3; i++) setTimeout(() => c.$wire.$refresh(), 800 + i * 1500); }).catch(() => {});
     let hidden = 0;
     for (let i = 0; i < 60; i++) { if (!(await page.evaluate(() => { const r = document.querySelector('.ps-quick-commands'); return !!r && r.getClientRects().length > 0; }).catch(() => false))) hidden++; await sleep(100); }
     const qc = await page.evaluate(() => window.__qc).catch(() => null);
     await record('quick-commands', 'Server · telefoon: quick commands');
     say('quick-commands', qc && qc.adds === 0 && qc.gone === 0 && hidden === 0, { ...qc, hidden });
+  }
+  // Pull to refresh in the installed app (pull.js): a finger pulled down from the top shows the mark and reloads.
+  if (phone()) {
+    const p2 = await page.context().newPage(); await quiet(p2);
+    await p2.addInitScript(() => { const mm = window.matchMedia.bind(window); window.matchMedia = (q) => (/display-mode: *standalone/.test(q) ? { matches: true, media: q, onchange: null, addEventListener() {}, removeEventListener() {}, addListener() {}, removeListener() {} } : mm(q)); });
+    await p2.setViewportSize(VIEWPORTS.phone390);
+    await p2.goto(new URL('/admin/simplify', base).href, { waitUntil: 'load' }).catch(() => {}); await settle(p2, 1200);
+    const cdp = await p2.context().newCDPSession(p2); await cdp.send('Emulation.setTouchEmulationEnabled', { enabled: true, maxTouchPoints: 1 });
+    let loads = 0; p2.on('load', () => loads++);
+    const touch = (type, y) => cdp.send('Input.dispatchTouchEvent', { type, touchPoints: type === 'touchEnd' ? [] : [{ x: 195, y }] });
+    await touch('touchStart', 220);
+    for (let y = 230; y <= 420; y += 10) { await touch('touchMove', y); await sleep(16); }
+    const mark = await p2.evaluate(() => { const m = document.querySelector('.s-pull'); return m ? { shown: m.getClientRects().length > 0, ready: m.classList.contains('is-ready') } : null; }).catch(() => null);
+    const shot = page; page = p2; await record('pull-refresh', 'App · naar beneden vegen'); page = shot;
+    await touch('touchEnd', 420); await sleep(3500);
+    say('pull-refresh', !!(mark && mark.shown && mark.ready) && loads >= 1, { mark, loads });
+    await p2.close().catch(() => {});
   }
 }
 
