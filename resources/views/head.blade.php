@@ -58,9 +58,12 @@
                 : [...change.addedNodes].some((node) => node.nodeType === 1 && (node.matches(fitCards) || node.querySelector(fitCards)));
             new MutationObserver((changes) => changes.some(lost) && queue())
                 .observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style'] });
-            // Whatever loads later (fonts, Livewire's first render, Pelican's footer) changes what is left under the card.
-            new ResizeObserver(queue).observe(document.body);
         });
-        addEventListener('load', queue);
+        // Whatever comes later on a first visit with nothing cached (fonts, Livewire starting, Pelican's footer) changes
+        // what is left under the card, without the page telling: measure again when they are there, and a few times
+        // after the page loaded.
+        document.addEventListener('livewire:initialized', queue);
+        document.fonts?.ready.then(queue);
+        addEventListener('load', () => [0, 300, 1000, 2500].forEach((ms) => setTimeout(queue, ms)));
     }
 </script>
