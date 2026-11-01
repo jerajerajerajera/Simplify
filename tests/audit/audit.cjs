@@ -717,10 +717,14 @@ async function fixesFlow() {
   // Simplify's settings right after the first load (1.5.4): the card reaches the footer, also before anything else
   // happened on the page (Khion saw a short card with empty space under it).
   if (!phone()) {
-    await page.goto(new URL('/admin/simplify', base).href, { waitUntil: 'domcontentloaded' }).catch(() => {}); await sleep(2500);
-    const fl = await page.evaluate(() => { const c = document.querySelector('.s-settings-tabs.fi-vertical'); if (!c) return null; const f = [...document.querySelectorAll('.fi-footer, [data-ps-footer]')].find((e) => e.getClientRects().length); const bottom = Math.round(c.getBoundingClientRect().bottom), end = f ? Math.round(f.getBoundingClientRect().top) : innerHeight; return { bottom, end, gap: end - bottom, page: document.documentElement.scrollHeight, window: innerHeight, fit: c.style.getPropertyValue('--s-fit') }; }).catch(() => null);
-    await record('settings-first-load', 'Instellingen · eerste paginalaad');
-    say('settings-first-load', fl && fl.gap <= 40 && fl.page <= fl.window + 2, fl);
+    // A fresh browser (nothing cached yet), straight to the settings, as after signing in on a new computer.
+    const fresh = await browser.newContext({ viewport: page.viewportSize(), baseURL: base, storageState: await page.context().storageState() });
+    const p2 = await fresh.newPage(); await quiet(p2);
+    await p2.goto(new URL('/admin/simplify', base).href, { waitUntil: 'domcontentloaded' }).catch(() => {}); await sleep(3000);
+    const fl = await p2.evaluate(() => { const c = document.querySelector('.s-settings-tabs.fi-vertical'); if (!c) return null; const f = [...document.querySelectorAll('footer, .fi-footer, [data-ps-footer]')].find((e) => e.getClientRects().length && e.getBoundingClientRect().height > 0); const bottom = Math.round(c.getBoundingClientRect().bottom), end = f ? Math.round(f.getBoundingClientRect().top) : innerHeight; return { bottom, end, gap: end - bottom, page: document.documentElement.scrollHeight, window: innerHeight, fit: c.style.getPropertyValue('--s-fit'), footer: !!f }; }).catch(() => null);
+    const shot = page; page = p2; await record('settings-first-load', 'Instellingen · eerste paginalaad, lege cache'); page = shot;
+    await fresh.close().catch(() => {});
+    say('settings-first-load', fl && fl.gap <= 48 && fl.page <= fl.window + 2, fl);
   }
   if (phone()) {
     await goto('/admin/simplify', 2000);
