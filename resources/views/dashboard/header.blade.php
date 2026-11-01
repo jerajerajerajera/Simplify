@@ -193,6 +193,11 @@
                 <div class="ps-modal-body">
                     <div class="ps-notify-settings" x-show="push.enabled">
                         <span class="ps-label">{{ $u('customize_notifications') }}</span>
+                        {{-- Pelican's scheduler sends them: when it stopped, say so (root admins get the cron job). --}}
+                        <div class="ps-notify-setting is-warn" x-show="push.scheduler" x-cloak role="alert">
+                            <svg aria-hidden="true"><use href="#ps-alert"/></svg>
+                            <span><strong>{{ __('simplify::push.scheduler') }}</strong><small x-text="push.scheduler?.text"></small><code x-show="push.scheduler?.cron" x-text="push.scheduler?.cron"></code></span>
+                        </div>
                         <div class="ps-notify-setting">
                             <svg aria-hidden="true"><use href="#ps-monitor"/></svg>
                             <span><strong>{{ __('simplify::push.this_device') }}</strong>
@@ -208,11 +213,30 @@
                             <span><strong>{{ __('simplify::push.messages') }}</strong><small>{{ __('simplify::push.messages_help') }}</small></span>
                             <input type="checkbox" class="ps-switch" :checked="push.messages" x-on:change="pushChoose('messages', $event.target.checked)">
                         </label>
+                        <label class="ps-notify-setting">
+                            <svg aria-hidden="true"><use href="#ps-bell"/></svg>
+                            <span><strong>{{ __('simplify::push.pelican') }}</strong><small>{{ __('simplify::push.pelican_help') }}</small></span>
+                            <input type="checkbox" class="ps-switch" :checked="push.pelican" x-on:change="pushChoose('pelican', $event.target.checked)">
+                        </label>
                         <label class="ps-notify-setting" x-show="push.updates !== null">
                             <svg aria-hidden="true"><use href="#ps-download"/></svg>
                             <span><strong>{{ __('simplify::push.updates') }}</strong><small>{{ __('simplify::push.updates_help') }}</small></span>
                             <input type="checkbox" class="ps-switch" :checked="push.updates" x-on:change="pushChoose('updates', $event.target.checked)">
                         </label>
+                        {{-- Every device of this account, folded: when it was added, its last notification, and a way to remove it. --}}
+                        <details class="ps-notify-devices" x-show="push.devices?.length">
+                            <summary class="ps-notify-setting">
+                                <svg aria-hidden="true"><use href="#ps-monitor"/></svg>
+                                <span><strong>{{ __('simplify::push.devices') }}</strong><small x-text="push.devices?.map((d) => d.label).join(' · ')"></small></span>
+                                <svg class="ps-notify-devices-chevron" aria-hidden="true"><use href="#ps-chevron"/></svg>
+                            </summary>
+                            <template x-for="d in push.devices || []" :key="d.device">
+                                <div class="ps-notify-device">
+                                    <span><strong><span x-text="d.label"></span> <span class="ps-badge is-ok" x-show="d.this">{{ __('simplify::push.this_badge') }}</span></strong><small x-text="d.last ? d.added + ' · ' + d.last : d.added"></small></span>
+                                    <button type="button" class="ps-btn is-sm is-icon" :disabled="push.busy" x-on:click="pushRemove(d)" data-tip="{{ __('simplify::push.remove') }}" aria-label="{{ __('simplify::push.remove') }}"><svg aria-hidden="true"><use href="#ps-trash"/></svg></button>
+                                </div>
+                            </template>
+                        </details>
                     </div>
                     <span class="ps-label">{{ $u('notifications') }}</span>
                     {{-- What an admin pinned to everyone's notifications stays on top until the announcement ends. --}}

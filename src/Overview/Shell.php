@@ -13,15 +13,16 @@ use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Addons\Button;
 use Simplify\Core\Filament\Admin\Pages\Settings;
-use Simplify\Core\Filament\App\Pages\Notifications;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Health\HostHealth;
+use Simplify\Core\Models\PushDevice;
 use Simplify\Core\Push\Push;
 use Simplify\Core\Support\Assets;
 use Simplify\Core\Support\Brand;
 use Simplify\Core\Support\PanelSettings;
 use Simplify\Core\Support\Preferences;
 use Simplify\Core\Support\SafeCache;
+use Simplify\Core\Support\Scheduler;
 
 /**
  * What the overview and the server page share: the header with its menus, the notifications and the account. The
@@ -54,7 +55,7 @@ trait Shell
             'favicon_url' => Assets::url('favicon.svg'),
             'list_url' => Overview::getUrl(panel: 'app'),
             'profile_url' => EditProfile::getUrl(panel: 'app'),
-            'notifications_url' => Notifications::canAccess() ? Notifications::getUrl(panel: 'app') : null,
+            'notifications_url' => Push::enabled() ? Overview::getUrl(panel: 'app').'#notifications' : null,
             'logout_url' => Filament::getPanel('app')->getLogoutUrl(),
             'admin_url' => $user->canAccessPanel(Filament::getPanel('admin')) ? Filament::getPanel('admin')->getUrl() : null,
             'settings_url' => Settings::canAccess() ? Settings::getUrl(panel: 'admin') : null,
@@ -120,7 +121,7 @@ trait Shell
      * What this account gets on its devices, for the window with every notification; null while app notifications
      * are off for the panel.
      *
-     * @return array{key: string, current: bool, messages: bool, updates: ?bool}|null
+     * @return array{key: string, current: bool, messages: bool, pelican: bool, updates: ?bool, scheduler: ?array{text: string, cron: ?string}, devices: list<array{device: string, label: string, added: string, last: ?string, this: bool}>}|null
      */
     #[Renderless]
     public function pushSettings(?string $endpoint): ?array
@@ -129,20 +130,39 @@ trait Shell
             return null;
         }
         $user = $this->user();
+        $current = Push::current($user, $endpoint)?->device;
 
         return [
             'key' => Push::publicKey(),
-            'current' => Push::current($user, $endpoint) !== null,
+            'current' => $current !== null,
             'messages' => Push::wants($user, 'messages'),
+            'pelican' => Push::wants($user, 'pelican'),
+            // Pelican's scheduler sends the notifications: when it stopped, the window says so (with the cron job for root admins).
+            'scheduler' => Scheduler::stalled() ? ($user->isRootAdmin() ? ['text' => __('simplify::push.scheduler_admin'), 'cron' => Scheduler::cron()] : ['text' => __('simplify::push.scheduler_user'), 'cron' => null]) : null,
             'updates' => $user->isRootAdmin() ? Push::wants($user, 'updates') : null,
+            'devices' => Push::devices($user)->map(fn (PushDevice $device) => [
+                'device' => $device->device,
+                'label' => $device->label,
+                'added' => __('simplify::push.added', ['time' => $device->created_at->diffForHumans()]),
+                'last' => $device->last_sent_at ? __('simplify::push.last', ['time' => $device->last_sent_at->diffForHumans()]) : null,
+                'this' => $device->device === $current,
+            ])->values()->all(),
         ];
+    }
+
+    /** Removes one of this account's devices (by its id from pushSettings). */
+    #[Renderless]
+    public function pushRemove(string $device): void
+    {
+        abort_unless(Push::enabled() && preg_match('/^[A-Za-z0-9_-]{1,128}$/', $device) === 1, 403);
+        Push::remove($this->user(), $device);
     }
 
     #[Renderless]
     public function pushChoose(string $kind, bool $on): void
     {
         $user = $this->user();
-        abort_unless(Push::enabled() && ($kind === 'messages' || ($kind === 'updates' && $user->isRootAdmin())), 403);
+        abort_unless(Push::enabled() && (in_array($kind, ['messages', 'pelican'], true) || ($kind === 'updates' && $user->isRootAdmin())), 403);
         Push::choose($user, $kind, $on);
     }
 

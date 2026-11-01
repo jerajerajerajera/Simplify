@@ -57,6 +57,9 @@
                 : [...change.addedNodes].some((node) => node.nodeType === 1 && (node.matches(fitCards) || node.querySelector(fitCards)));
             new MutationObserver((changes) => changes.some(lost) && queue())
                 .observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style'] });
+            // Whatever loads later (fonts, Livewire's first render, Pelican's footer) changes what is left under the card.
+            new ResizeObserver(queue).observe(document.body);
         });
+        addEventListener('load', queue);
     }
 </script>

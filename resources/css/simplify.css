@@ -1750,21 +1750,6 @@ html.ps-frame .s-done {
 .s-font-tile span { color: var(--s-muted); font-size: 11px; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .s-font-tile[aria-pressed="true"] { background: color-mix(in srgb, var(--s-accent) 12%, var(--s-surface)); border-color: var(--s-accent); }
 
-.s-switch {
-  appearance: none;
-  background: var(--s-line);
-  border-radius: 99px;
-  cursor: pointer;
-  flex: none;
-  height: 20px;
-  position: relative;
-  transition: background .15s;
-  width: 34px;
-}
-
-.s-switch::after { background: #fff; border-radius: 50%; box-shadow: 0 1px 2px rgb(0 0 0 / .3); content: ""; height: 16px; left: 2px; position: absolute; top: 2px; transition: left .15s; width: 16px; }
-.s-switch:checked { background: var(--s-accent); }
-.s-switch:checked::after { left: 16px; }
 
 /* A colour swatch that opens the small colour window. */
 .s-pop { display: inline-block; position: relative; }

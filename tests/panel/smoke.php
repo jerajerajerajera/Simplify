@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Testing\TestResponse;
 use Illuminate\Validation\ValidationException;
@@ -35,7 +36,6 @@ use Simplify\Core\Embed\Services\EmbedServers;
 use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\Admin\Pages\Setup;
 use Simplify\Core\Filament\Admin\Pages\SetupDone;
-use Simplify\Core\Filament\App\Pages\Notifications;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Filament\Server\ServerPage;
 use Simplify\Core\Models\Setting;
@@ -538,15 +538,25 @@ step('the panel can be installed as an app', function () use ($admin) {
         throw new RuntimeException('the page does not link the manifest and worker');
     }
 });
-step('app notifications: the page opens, a device gets a message once and a dropped device is removed', function () use ($admin) {
-    $url = Notifications::getUrl(panel: 'app');
+step('app notifications: the bell sheet has every option, a device gets a message once and a dropped device is removed', function () use ($admin) {
+    $url = Overview::getUrl(panel: 'app');
     $response = visit($admin, $url);
     expectOk($response, $url);
-    if (! str_contains($response->getContent(), 'simplifyPush')) {
-        throw new RuntimeException('the notifications page has no device switch');
+    foreach (["pushChoose('messages'", "pushChoose('pelican'", "pushChoose('updates'", 'ps-notify-devices', 'pushRemove('] as $part) {
+        if (! str_contains($response->getContent(), $part)) {
+            throw new RuntimeException("the bell sheet misses $part");
+        }
+    }
+    if (Route::has('filament.app.pages.simplify-notifications')) {
+        throw new RuntimeException('the separate notifications page is still registered');
     }
     $browser = openssl_pkey_new(['curve_name' => 'prime256v1', 'private_key_type' => OPENSSL_KEYTYPE_EC]);
     $subscription = ['endpoint' => 'https://fcm.googleapis.com/fcm/send/smoke', 'keys' => ['p256dh' => WebPush::b64(WebPush::point($browser)), 'auth' => WebPush::b64(random_bytes(16))]];
+    $removed = Push::subscribe($admin, $subscription, 'Smoke browser');
+    Push::remove($admin, $removed->device);
+    if (Push::current($admin, $subscription['endpoint']) !== null) {
+        throw new RuntimeException('removing a device by its id kept it');
+    }
     Push::subscribe($admin, $subscription, 'Smoke browser');
     // The push service takes the first message, then says the browser dropped the subscription.
     Http::fake(['fcm.googleapis.com/*' => Http::sequence()->push('', 201)->push('', 410)]);

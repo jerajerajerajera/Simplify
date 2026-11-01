@@ -65,7 +65,7 @@
       incomingQueue: [],
       pushOffer: false,
       notifyAll: false,
-      push: { enabled: false, state: 'unsupported', busy: false, endpoint: null, key: null, messages: true, updates: null },
+      push: { enabled: false, state: 'unsupported', busy: false, endpoint: null, key: null, messages: true, pelican: true, updates: null, scheduler: null, devices: [] },
       adminMenu: false,
       adminOpen: null,
       overviewCompact: false,
@@ -115,6 +115,11 @@
         this.restoreOverviewView();
         this.restoreHostMode();
         this.openAdminFromHash();
+        // /simplify#notifications (the account menu on Pelican's own pages) opens the window with every notification.
+        if (location.hash === '#notifications') {
+          history.replaceState(null, '', location.pathname + location.search);
+          this.openAllNotifications();
+        }
         this.$nextTick(() => this.initOverviewDock());
         setTimeout(() => { this.releaseBats(); this.playSeason(); this.startSeasonClock(); }, 600);
         this.recordOverview(this.boot.servers);
@@ -324,6 +329,16 @@
           const result = await wire.pushTest(this.push.endpoint);
           if (result.gone) this.push.state = 'off';
           this.toast(result.message, result.ok ? 'ok' : 'warn');
+        } catch {} finally {
+          this.push.busy = false;
+        }
+      },
+      async pushRemove(device) {
+        this.push.busy = true;
+        try {
+          await wire.pushRemove(device.device);
+          this.push.devices = this.push.devices.filter((d) => d.device !== device.device);
+          if (device.this) this.push.state = 'off';
         } catch {} finally {
           this.push.busy = false;
         }
@@ -1362,6 +1377,10 @@
       /** A server's picture: the game's own icon, the icon set in Pelican, its egg's icon, then Simplify's picture of the game; the first that loads. */
       serverIcon(s) {
         return [s?.server_icon, s?.icon, s?.egg_icon, s?.game_icon].map((url) => this.safeImage(url)).find((url) => url && !this.brokenImages[url]) || '';
+      },
+      /** Without any picture: the icon for the server's kind of egg (Overview\\EggKind), else the cube or the gamepad. */
+      kindIcon(s, fallback = '#ps-cube') {
+        return { steam: '#ps-steam', game: '#ps-gamepad', database: '#ps-database' }[s?.kind] || (s?.kind ? '#ps-kind-' + s.kind : fallback);
       },
       /** The server page's software badge: the egg's icon, else Simplify's picture of the game. */
       softwareIcon() {

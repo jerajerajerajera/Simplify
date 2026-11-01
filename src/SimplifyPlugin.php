@@ -19,11 +19,11 @@ use Simplify\Core\Filament\Admin\Pages\People;
 use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\Admin\Pages\Setup;
 use Simplify\Core\Filament\Admin\Pages\SetupDone;
-use Simplify\Core\Filament\App\Pages\Notifications;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Filament\Server\ServerPage;
 use Simplify\Core\Http\Middleware\FramePolicy;
 use Simplify\Core\Http\Middleware\StartPage;
+use Simplify\Core\Push\Push;
 use Simplify\Core\Server\ServerMenu;
 use Simplify\Core\Subdomains\Filament\AutomaticSubdomains;
 use Simplify\Core\Subdomains\Filament\ServerSubdomain;
@@ -46,7 +46,7 @@ final class SimplifyPlugin implements Plugin
         $panel->middleware([FramePolicy::class]);
 
         if ($panel->getId() === 'app') {
-            $panel->pages([Overview::class, Notifications::class]);
+            $panel->pages([Overview::class]);
             $panel->middleware([StartPage::class]);
         }
         if (in_array($panel->getId(), ['app', 'server'], true)) {
@@ -54,7 +54,7 @@ final class SimplifyPlugin implements Plugin
                 Action::make('simplify-overview')->label(fn () => __('simplify::settings.overview'))->icon('tabler-layout-grid')
                     ->url(fn () => Overview::getUrl(panel: 'app')),
                 Action::make('simplify-notifications')->label(fn () => __('simplify::push.menu'))->icon('tabler-bell')
-                    ->url(fn () => Notifications::getUrl(panel: 'app'))->visible(fn () => Notifications::canAccess()),
+                    ->url(fn () => Overview::getUrl(panel: 'app').'#notifications')->visible(fn () => user() !== null && Push::enabled()),
                 Action::make('simplify-support')->label(fn () => __('simplify::settings.support'))->icon('tabler-lifebuoy')
                     ->url(fn () => PanelSettings::get('support_url'), shouldOpenInNewTab: true)
                     ->visible(fn () => PanelSettings::get('support_url') !== null),
@@ -122,7 +122,7 @@ final class SimplifyPlugin implements Plugin
     /** Back to Simplify from Pelican's own pages; Simplify's own pages have their own header, a frame has host mode's. */
     private static function returnButton(): string
     {
-        if (user() === null || request()->routeIs(Overview::getRouteName(Filament::getPanel('app')), Notifications::getRouteName(Filament::getPanel('app')))) {
+        if (user() === null || request()->routeIs(Overview::getRouteName(Filament::getPanel('app')))) {
             return '';
         }
 
