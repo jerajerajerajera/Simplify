@@ -73,15 +73,15 @@ const adminTiles = async (overview, serverUrl, openNav) => {
   }
   // The real path once: the shield menu, a tile, then the close button.
   await goto(overview); await sleep(600); await openNav();
-  if (await click('[x-ref="adminButton"]')) {
+  if (await openRef('adminButton')) {
     if (!(await page.locator('.ps-admin-tile >> visible=true').count())) { await page.locator('.ps-admin-group-head >> visible=true').first().click().catch(() => {}); await sleep(600); } // phones: tiles fold out under a group
     const tile = page.locator('.ps-admin-tile >> visible=true').first();
     if (await tile.count()) { await tile.click().catch(() => {}); await frameReady(); await record('tile-click', 'Admin tools-tegel aangeklikt'); if (await click('.ps-host-close', 800)) { await record('tile-closed', 'Admin tools-pagina gesloten, terug op het overzicht'); const st = await alpine('return { adminView: d.adminView, hostPage: !!d.hostPage }'); if (st && (st.adminView || st.hostPage)) problems.push(`${stand} tile-closed: still open after close (${JSON.stringify(st)})`); } }
     else problems.push(`${stand} tile-click: no visible admin tile in the shield menu`);
   }
-  // From a server page: the tile goes through the overview.
-  await goto(serverUrl, 2500); await openNav();
-  if (await click('[x-ref="adminButton"]')) {
+  // From a server page: the tile goes through the overview. A phone reaches Admin tools from the overview's bar only.
+  if (!phone()) await goto(serverUrl, 2500);
+  if (!phone() && await openRef('adminButton')) {
     if (!(await page.locator('.ps-admin-tile >> visible=true').count())) { await page.locator('.ps-admin-group-head >> visible=true').first().click().catch(() => {}); await sleep(600); }
     const tile = page.locator('.ps-admin-tile >> visible=true').first();
     if (await tile.count()) { await tile.click().catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await frameReady(); await record('tile-from-server', 'Admin tools-tegel vanaf een serverpagina'); const st = await alpine('return { adminView: d.adminView, hash: location.hash }'); if (!st || !st.adminView) problems.push(`${stand} tile-from-server: did not open inside Simplify (${JSON.stringify(st)}, url ${rel(page.url())})`); }
@@ -108,6 +108,10 @@ const goto = async (url, ms = 900) => { for (let i = 0; i < 3; i++) { try { awai
 const click = async (sel, ms = 600) => { const l = page.locator(sel).first(); if (!(await l.count()) || !(await l.isVisible().catch(() => false))) { problems.push(`${stand} ${screen}: nothing to click for ${sel}`); return false; } await l.click({ timeout: 5000 }).catch((e) => problems.push(`${stand} ${screen}: click ${sel}: ${e.message.slice(0, 80)}`)); await sleep(ms); return true; };
 const escape = async () => { await page.keyboard.press('Escape'); await sleep(300); };
 const phone = () => VIEWPORTS[stand.split('-')[0]].width <= 600;
+// Phones (1.5.4) reach the overview's menus from the bottom bar: Admin tools as a tab, server groups and the
+// overview's look under Customize. Elsewhere, and on wider screens, the button in the top bar.
+const PHONE_ROUTE = { adminButton: ['.ps-tabbar button[aria-controls="ps-admin-menu"]'], overviewAppearance: ['.ps-tab-customize > .ps-tab', '#ps-tab-customize-menu button:nth-of-type(2)'], overviewGroupsButton: ['.ps-tab-customize > .ps-tab', '#ps-tab-customize-menu button:nth-of-type(1)'] };
+const openRef = async (ref, ms) => { if (phone() && PHONE_ROUTE[ref] && (await page.locator('.ps-tabbar >> visible=true').count())) { for (const sel of PHONE_ROUTE[ref]) if (!(await click(sel, ms))) return false; return true; } return click(`[x-ref="${ref}"]`, ms); };
 
 async function login(email, password) {
   await goto('/login');
@@ -138,14 +142,14 @@ async function round(theme) {
   }
   await alpine(`d.setOverviewView('grid')`); await sleep(500);
   // Phones: the panel menu opens from the tab bar at the bottom (the account button sits inside it).
-  const openNav = async () => { if (!onPhone) return; if (!(await click('.ps-tabbar button[aria-controls="ps-navigation-items"]', 500))) await click('.ps-mobile-menu'); };
-  if (onPhone) { await openNav(); await record('overview-phone-menu', 'Overzicht, telefoonmenu open'); }
+  // Phones have no panel menu any more (1.5.4): the bell and the account sit in the top bar, the rest in the bottom bar.
+  const openNav = async () => {};
   await click('.ps-account-button'); await record('overview-account', 'Accountmenu open');
   await click('#ps-account-actions button[aria-label]:nth-child(2)'); await record('overview-account-theme', 'Accountmenu, themakeuze open'); await escape();
   await openNav();
   await click('[x-ref="notifyButton"]'); await record('overview-bell', 'Bel (aankondigingen) open'); await escape();
   await openNav();
-  await click('[x-ref="adminButton"]'); await record('overview-admin', 'Beheermenu (schild) open');
+  await openRef('adminButton'); await record('overview-admin', 'Beheermenu (schild) open');
   // Admin tools (1.4.4, variant D): the second group open, its pages as tiles (on a phone they fold out under the group).
   if (await click('.ps-admin-group-head:not(.is-open)', 700)) await record('overview-admin-group2', 'Beheermenu, tweede groep open'); await escape();
   await openNav();
@@ -153,9 +157,9 @@ async function round(theme) {
   // The bell's expand button (1.4.4): a window with every notification.
   if (await click('.ps-notify-all, [x-ref="notifyButton"] ~ .ps-dropdown button[aria-label*="all" i], .ps-dropdown button[aria-label*="expand" i]', 1200)) await record('overview-bell-all', 'Meldingenvenster (alle meldingen) open'); await escape(); await escape();
   await openNav();
-  await click('[x-ref="overviewAppearance"]'); await record('overview-customize', 'Weergave aanpassen open'); await escape();
+  await openRef('overviewAppearance'); await record('overview-customize', 'Weergave aanpassen open'); await escape();
   await openNav();
-  await click('[x-ref="overviewGroupsButton"]'); await record('overview-groups', 'Servergroepen open'); await escape();
+  await openRef('overviewGroupsButton'); await record('overview-groups', 'Servergroepen open'); await escape();
   if (await click('.ps-health-pill')) await record('overview-health', 'Gezondheid van de host open'); await escape();
   // Host health card's tab under its bottom edge (1.4.4): the nodes fold open.
   if (await click('.ps-health-tab', 900)) { await record('overview-health-nodes', 'Host health, nodes uitgeklapt'); await click('.ps-health-tab', 600); }
@@ -166,8 +170,8 @@ async function round(theme) {
   for (const [tag, label] of [['1bar', 'één aankondigingsbalk'], ['0bar', 'geen aankondigingsbalk']]) {
     if (!(await unpinBar())) { problems.push(`${stand}: no announcement bar to unpin for ${tag}`); break; }
     await openNav(); await click('[x-ref="notifyButton"]'); await record('overview-bell-' + tag, `Bel open, ${label}`); await escape();
-    await openNav(); await click('[x-ref="adminButton"]'); await record('overview-admin-' + tag, `Beheermenu open, ${label}`); await escape();
-    await openNav(); await click('[x-ref="overviewAppearance"]'); await record('overview-customize-' + tag, `Weergave aanpassen open, ${label}`); await escape();
+    await openNav(); await openRef('adminButton'); await record('overview-admin-' + tag, `Beheermenu open, ${label}`); await escape();
+    await openNav(); await openRef('overviewAppearance'); await record('overview-customize-' + tag, `Weergave aanpassen open, ${label}`); await escape();
   }
   // Pin both bars again for the next stand (the Livewire component keeps the choice per user).
   await page.evaluate(() => { const c = window.Livewire?.all().find((x) => /announcement/i.test(x.name)); if (c) { c.call('pin', 1); c.call('pin', 2); } }).catch(() => {}); await sleep(1500);
@@ -251,7 +255,7 @@ async function round(theme) {
   await record('host', 'Hostmodus');
   if (await click('.ps-health-tab', 900)) { await record('host-health-nodes', 'Hostmodus · host health, nodes uitgeklapt'); await click('.ps-health-tab', 600); }
   await healthHover('host');
-  if (onPhone) { if (await click('.ps-host-menu-open, button[aria-controls="ps-host-menu"], .ps-mobile-menu', 600)) await record('host-phone-menu', 'Hostmodus · telefoonmenu open'); await escape(); }
+  if (onPhone) { if (await click('.ps-host-menu-toggle', 600)) await record('host-phone-menu', 'Hostmodus · telefoonmenu open'); await escape(); }
   const heads = page.locator('.ps-host-group-head'); const hn = await heads.count();
   for (let i = 0; i < hn; i++) { const h = heads.nth(i); const label = (await h.innerText().catch(() => 'sectie ' + i)).trim().split('\n')[0]; await h.click().catch(() => {}); await sleep(2500); await record('host-' + slug(label), 'Hostmodus · ' + label);
     // Only this group's own pages (the tree keeps other groups open), all of them.
