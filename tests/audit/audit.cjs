@@ -737,7 +737,7 @@ async function fixesFlow() {
   {
     const overview = urls.app.find((p) => /App\\Pages\\Overview$/.test(p.class))?.url || '/';
     await goto(overview, 2500);
-    const ic = await page.evaluate(() => { const card = [...document.querySelectorAll('.ps-card')].find((c) => /Discord bot/.test(c.innerText)); const box = card && card.querySelector('.ps-card-icon'); if (!box) return null; const img = box.querySelector('img'); const svg = box.querySelector('svg use'); return { picture: !!img && img.getClientRects().length > 0 && img.naturalWidth > 0, icon: svg && svg.closest('svg').getClientRects().length ? svg.getAttribute('href') : null }; }).catch(() => null);
+    const ic = await page.evaluate(() => { const card = [...document.querySelectorAll('.ps-server-card')].find((c) => /Discord bot/.test(c.innerText)); const box = card && card.querySelector('.ps-card-icon'); if (!box) return null; const img = box.querySelector('img'); const svg = box.querySelector('svg use'); return { picture: !!img && img.getClientRects().length > 0 && img.naturalWidth > 0, icon: svg && svg.closest('svg').getClientRects().length ? svg.getAttribute('href') : null }; }).catch(() => null);
     await record('egg-kind-icon', 'Overzicht · icoon per soort egg');
     say('egg-kind-icon', ic && (ic.picture || /^#ps-kind-/.test(ic.icon || '')), ic);
     // Every notification option sits in the bell sheet: this device, messages, Pelican's, and the devices.
