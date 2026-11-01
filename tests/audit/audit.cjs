@@ -775,6 +775,60 @@ async function fixesFlow() {
     }
     await alpine('d.setHostMode(false)'); await sleep(500);
   }
+  // Phones (1.5.4): one frame on every screen. No menu button on top, the bell and the account in the top bar, the
+  // overview's bar without "Servers", and every menu a sheet from the bottom over the full width; a tap beside a sheet
+  // only closes it.
+  if (phone()) {
+    const overview = urls.app.find((p) => /App\\Pages\\Overview$/.test(p.class))?.url || '/';
+    const vis = (sel) => page.evaluate((s) => [...document.querySelectorAll(s)].some((e) => e.getClientRects().length > 0 && getComputedStyle(e).visibility !== 'hidden'), sel).catch(() => null);
+    const sheet = (sel) => page.evaluate((s) => { const e = [...document.querySelectorAll(s)].find((x) => x.getClientRects().length > 0); if (!e) return null; const r = e.getBoundingClientRect(); return { width: Math.round(r.width), bottom: Math.round(r.bottom), height: Math.round(r.height), window: [innerWidth, innerHeight] }; }, sel).catch(() => null);
+    const isSheet = (r, tall = 0) => !!r && r.width >= r.window[0] - 2 && Math.abs(r.bottom - r.window[1]) <= 2 && r.height >= tall * r.window[1];
+    await goto(overview, 2500);
+    const top = { menuButton: await vis('.ps-mobile-menu'), bell: await vis('.ps-top [x-ref="notifyButton"]'), account: await vis('.ps-top .ps-account-button'), servers: await page.evaluate(() => [...document.querySelectorAll('.ps-tabbar .ps-tab')].filter((b) => b.getClientRects().length).map((b) => b.innerText.trim())).catch(() => null) };
+    await record('phone-frame-overview', 'Telefoon · overzicht: bel en account bovenin, balk onderin');
+    say('phone-frame-overview', top.menuButton === false && top.bell && top.account && Array.isArray(top.servers) && !top.servers.includes('Servers') && top.servers.length >= 2, top);
+    await page.locator('.ps-top [x-ref="notifyButton"]').first().click().catch(() => {}); await sleep(900);
+    const bell = await sheet('#ps-notify-menu'); await record('phone-sheet-bell', 'Telefoon · meldingen als blad');
+    say('phone-sheet-bell', isSheet(bell, 0.85), bell);
+    const before = page.url();
+    await page.mouse.click(195, 20); await sleep(700);
+    const closed = { open: await vis('#ps-notify-menu'), url: page.url() === before };
+    say('phone-sheet-close', closed.open === false && closed.url, closed);
+    await page.locator('.ps-tabbar .ps-tab-customize > .ps-tab').first().click().catch(() => {}); await sleep(700);
+    const custom = await sheet('#ps-tab-customize-menu'); await record('phone-sheet-customize', 'Telefoon · Customize als blad');
+    await page.locator('#ps-tab-customize-menu .ps-menu-item').first().click().catch(() => {}); await sleep(900);
+    const groups = await sheet('#ps-overview-groups-menu'); await record('phone-sheet-groups', 'Telefoon · Server groups als blad');
+    say('phone-sheet-customize', isSheet(custom) && isSheet(groups), { custom, groups });
+    await escape();
+    await page.locator('.ps-top .ps-account-button').first().click().catch(() => {}); await sleep(900);
+    const account = await sheet('.ps-account.account-open .ps-account-menu'); await record('phone-sheet-account', 'Telefoon · account als blad');
+    say('phone-sheet-account', isSheet(account), account);
+    await escape();
+    if (urls.servers['Survival SMP']) {
+      await goto(urls.servers['Survival SMP'], 3500);
+      const srv = { menuButton: await vis('.ps-mobile-menu'), back: await page.evaluate(() => { const b = [...document.querySelectorAll('.ps-back-overview')].find((e) => e.getClientRects().length); return b ? Math.round(b.getBoundingClientRect().width) : null; }).catch(() => null) };
+      await page.locator('.ps-phone-more > .ps-phone-section').first().click().catch(() => {}); await sleep(900);
+      const more = await sheet('#ps-phone-more-menu'); await record('phone-sheet-more', 'Telefoon · server More als blad');
+      say('phone-frame-server', srv.menuButton === false && srv.back && srv.back <= 48 && isSheet(more), { ...srv, more });
+      await escape();
+    }
+    await goto(overview, 1500); await alpine('d.setHostMode(true)'); await sleep(1500);
+    const toggle = await sheet('.ps-host-menu-toggle'); await record('phone-frame-host', 'Telefoon · hostmodus, paginaknop onderin');
+    say('phone-frame-host', isSheet(toggle) && toggle.height <= 100, toggle);
+    await alpine('d.setHostMode(false)'); await sleep(500);
+    // Pelican's lists as short rows: no checkboxes, no column titles and no egg descriptions.
+    await goto(new URL('/admin/eggs', base).href, 2500);
+    const eggs = await page.evaluate(() => { const rows = [...document.querySelectorAll('.fi-ta-row')].filter((r) => r.getClientRects().length); const shown = (s) => [...document.querySelectorAll(s)].filter((e) => e.getClientRects().length > 0).length; return { rows: rows.length, tallest: Math.max(0, ...rows.map((r) => Math.round(r.getBoundingClientRect().height))), checkboxes: shown('.fi-ta-table .fi-ta-record-checkbox'), head: shown('.fi-ta-table thead'), descriptions: shown('.fi-ta-table .fi-ta-cell [class*="description"]'), wide: document.documentElement.scrollWidth > innerWidth + 1 }; }).catch(() => null);
+    await record('phone-eggs', 'Telefoon · Eggs als korte rijen');
+    say('phone-eggs', eggs && eggs.rows > 0 && eggs.tallest <= 90 && !eggs.checkboxes && !eggs.head && !eggs.descriptions, eggs);
+    // Simplify's settings save themselves on a phone: no Save button, and a toast after a change.
+    await goto(new URL('/admin/simplify', base).href, 2500);
+    const save = await vis('.s-save-button, .s-settings > .s-bar button[type="submit"]');
+    const sw = page.locator('.s-settings .fi-active input[type="checkbox"]').first();
+    let toast = null;
+    if (await sw.count()) { await sw.click({ force: true }).catch(() => {}); await page.waitForSelector('.s-saved', { state: 'visible', timeout: 6000 }).catch(() => {}); toast = await vis('.s-saved'); await record('phone-autosave', 'Telefoon · instellingen slaan zelf op'); await sw.click({ force: true }).catch(() => {}); await sleep(2500); }
+    say('phone-autosave', save === false && toast === true, { save, toast });
+  }
   // Pull to refresh in the installed app (pull.js): a finger pulled down from the top shows the mark and reloads.
   if (phone()) {
     const p2 = await page.context().newPage(); await quiet(p2);
