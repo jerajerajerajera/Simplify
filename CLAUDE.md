@@ -10,7 +10,7 @@ Schrijf met de eigenaar in het Nederlands; code, README, CHANGELOG, commits en P
 - Simplify heeft een designfilosofie: snel, overzichtelijk, duidelijk en overal hetzelfde. §4 zijn die regels.
 - De werking van 0.7.0 is leidend. Bij twijfel: vragen aan de eigenaar (via de regisseur), niet raden.
 - Simplify neemt alle functies over: niemand hoeft terug naar Pelicans admin, tenzij er echt iets breekt.
-- Iconen: alleen Tabler. Servericoon: eigen server-icon.png > Pelican-servericoon > egg-icoon > grasblok (Minecraft) > kubus.
+- Iconen: alleen Tabler. Servericoon: eigen server-icon.png > Pelican-servericoon > egg-icoon > grasblok (Minecraft) > icoon per soort egg (Python, Node.js, Steam, …) > kubus.
 - Zo klein mogelijk: geen dubbele of onnodige functies, niet meer code dan nodig. Na een aantal wijzigingen een
   opschoonronde (wat kan weg, samen of korter) als eigen PR.
 - Veiligheid staat voorop: rechten server-side, invoer valideren, geen secrets, geen open routes zonder controle.
@@ -72,7 +72,7 @@ Een fix zonder test die eerst rood was, is niet af. Zo komt dezelfde fout niet t
 - Scrollbalken: dun (11px, duim 4px), binnen de ronding (14px boven/onder, 4px rand), in de kleur van de achtergrond
   (wit 16% donker, zwart 16% licht).
 - Paginatitel: `[servernaam] - Simplify`.
-- Servericoon: eigen server-icon.png > Pelican-servericoon > egg-icoon > grasblok (Minecraft) > kubus.
+- Servericoon: eigen server-icon.png > Pelican-servericoon > egg-icoon > grasblok (Minecraft) > icoon per soort egg (Python, Node.js, Steam, …) > kubus.
 - **Create server** opent vanaf elke ingang (servermenu, overzicht, admin Servers) de Server Maker als Simplify-popup,
   nooit het formulier van Pelican.
 - Groepen in het admin-menu (zoals "Simplify" en "Other plugins") klappen uit; een losse pagina draagt de pluginnaam.

@@ -142,6 +142,8 @@ final class Listing
             'egg_icon' => is_string($egg) && $egg !== '' ? $egg : null,
             // The game's own picture when nothing else has one: the server, Pelican and the egg come first.
             'game_icon' => $minecraft ? Assets::url('game-minecraft.svg') : null,
+            // Without any picture: an icon for the kind of server (Python, Node.js, a Steam game, …), else the cube.
+            'kind' => $minecraft ? null : EggKind::of($server),
             'players' => $info['players'] ?? null,
             'max_players' => $info['max_players'] ?? null,
             'motd' => $info['motd'] ?? '',

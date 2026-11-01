@@ -6,7 +6,9 @@ declare(strict_types=1);
 require __DIR__.'/../src/Overview/Usage.php';
 require __DIR__.'/../src/Overview/Power.php';
 require __DIR__.'/../src/Overview/NodeUsage.php';
+require __DIR__.'/../src/Overview/EggKind.php';
 
+use Simplify\Core\Overview\EggKind;
 use Simplify\Core\Overview\NodeUsage;
 use Simplify\Core\Overview\Power;
 use Simplify\Core\Overview\Usage;
@@ -30,6 +32,23 @@ $offline = Usage::fromWings('offline', ['disk_bytes' => 500]);
 check($offline->cpuPercent === 0.0 && $offline->memoryBytes === 0 && $offline->diskBytes === 500, 'an offline server uses no CPU or memory but keeps its disk');
 
 check(Usage::unknown()->state === 'missing', 'an unreachable server is "missing"');
+
+// A server without any picture gets an icon for its kind of egg (Khion, 1.5.3: a Python server showed the cube).
+foreach ([
+    'Python Generic ghcr.io/parkervcp/yolks:python_3.12' => 'python',
+    'Node.js Generic ghcr.io/parkervcp/yolks:nodejs_21' => 'nodejs',
+    'Red Discord Bot ghcr.io/parkervcp/yolks:python_3.11' => 'discord',
+    'Discord.js bot ghcr.io/parkervcp/yolks:nodejs_20' => 'discord',
+    'Golang generic ghcr.io/parkervcp/yolks:go_1.22' => 'golang',
+    'Java generic ghcr.io/parkervcp/yolks:java_21' => 'java',
+    'MariaDB ghcr.io/parkervcp/yolks:mariadb_11' => 'database',
+    'Redis ghcr.io/parkervcp/yolks:redis_7' => 'database',
+    'Valheim ghcr.io/parkervcp/steamcmd:debian' => 'steam',
+    'Terraria ghcr.io/parkervcp/games:terraria' => 'game',
+    'Something else ghcr.io/example/app:latest' => null,
+] as $text => $kind) {
+    check(EggKind::match($text) === $kind, "egg kind of \"$text\" is ".var_export(EggKind::match($text), true).', expected '.var_export($kind, true));
+}
 
 check(Power::actionsFor('offline') === ['start'] && Power::actionsFor('running') === ['restart', 'stop'], 'power buttons follow the state');
 check(Power::actionsFor('stopping') === ['kill'] && Power::actionsFor(null) === [] && Power::actionsFor('installing') === [], 'no buttons while loading or installing; kill only while stopping');

@@ -728,6 +728,21 @@ async function fixesFlow() {
     const su = await page.evaluate(() => { const w = document.querySelector('.s-setup'), s = w && w.querySelector('.fi-sc-wizard-step.fi-active'); if (!s) return null; const r = s.getBoundingClientRect(); return { step: Math.round(r.height), inner: s.scrollHeight <= s.clientHeight + 4, width: Math.round(r.width) }; }).catch(() => null);
     say('setup-phone', su && su.step > 120 && su.inner && su.width > 250, su);
   }
+  // A server without any picture shows the icon of its kind of egg, not the cube (Khion, 1.5.3: Python and Node.js
+  // servers all had the cube).
+  {
+    const overview = urls.app.find((p) => /App\\Pages\\Overview$/.test(p.class))?.url || '/';
+    await goto(overview, 2500);
+    const ic = await page.evaluate(() => { const card = [...document.querySelectorAll('.ps-card')].find((c) => /Discord bot/.test(c.innerText)); const box = card && card.querySelector('.ps-card-icon'); if (!box) return null; const img = box.querySelector('img'); const svg = box.querySelector('svg use'); return { picture: !!img && img.getClientRects().length > 0 && img.naturalWidth > 0, icon: svg && svg.closest('svg').getClientRects().length ? svg.getAttribute('href') : null }; }).catch(() => null);
+    await record('egg-kind-icon', 'Overzicht · icoon per soort egg');
+    say('egg-kind-icon', ic && (ic.picture || /^#ps-kind-/.test(ic.icon || '')), ic);
+    // Every notification option sits in the bell sheet: this device, messages, Pelican's, and the devices.
+    await alpine('d.openAllNotifications()'); await sleep(1500);
+    const bell = await page.evaluate(() => { const box = [...document.querySelectorAll('.ps-notify-settings')].find((e) => e.getClientRects().length); if (!box) return { shown: false }; return { shown: true, pelican: !![...box.querySelectorAll('input.ps-switch')].find((i) => /pelican/.test(i.getAttribute('x-on:change') || '') && i.getClientRects().length) }; }).catch(() => null);
+    await record('bell-customize', 'Meldingen · alle opties in het bel-blad');
+    say('bell-customize', bell && (!bell.shown || bell.pelican), bell);
+    await escape();
+  }
   if (urls.servers['New World']) {
     await goto(urls.servers['New World'], 3500); await record('server-install-buttons', 'Server · installeert, geen Start/Restart');
     const shown = await page.evaluate(() => [...document.querySelectorAll('.ps button')].filter((b) => b.getClientRects().length && getComputedStyle(b).visibility !== 'hidden' && /^(start|restart|first start)$/i.test((b.innerText.trim() || b.getAttribute('data-tip') || '').trim())).map((b) => b.className + ' ' + (b.innerText.trim() || b.getAttribute('data-tip'))));

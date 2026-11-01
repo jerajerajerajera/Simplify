@@ -57,7 +57,7 @@
                                     <span class="ps-card-icons" :class="{'egg-primary': overviewPreferences.largeIcon==='egg' && !!s.egg_icon && !!(s.server_icon || s.icon)}">
                                         <span class="ps-card-icon">
                                             <img x-show="serverIcon(s)" :src="serverIcon(s)" alt="{{ $u('server_icon') }}" loading="lazy" x-on:error="imageFailed($el.getAttribute('src'))">
-                                            <svg x-show="!serverIcon(s)" aria-hidden="true"><use href="#ps-cube"/></svg>
+                                            <svg x-show="!serverIcon(s)" aria-hidden="true"><use :href="kindIcon(s)"/></svg>
                                         </span>
                                         <span class="ps-card-egg-icon" x-show="s.egg_icon && (s.server_icon || s.icon)" data-tip-label="Server software" :data-tip="softwareTooltip(s)" :aria-label="softwareTooltip(s)">
                                             <img :src="safeImage(s.egg_icon)" alt="" loading="lazy" x-on:load="$el.style.visibility=''" x-on:error="$el.style.visibility='hidden'">
