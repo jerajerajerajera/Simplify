@@ -214,6 +214,31 @@ const measure = (opts = {}) => {
       } else { r.info.arrow = r.info.arrow || []; r.info.arrow.push(`${name(dd)} no arrow`); }
     }
   }
+  // 10. A switch's knob stays inside its track, and a control stays inside the card it belongs to (1.5.4: two style
+  // rules for one switch put the knob past the track's end, over the edge of the card).
+  const knob = [];
+  for (const el of all) {
+    if (!el.matches('input[type=checkbox], [role=switch], .ps-switch, .s-switch')) continue;
+    if (getComputedStyle(el).appearance !== 'none' && !el.matches('.ps-switch, [role=switch]')) continue;
+    for (const pseudo of ['::before', '::after']) {
+      const ps = getComputedStyle(el, pseudo);
+      if (!ps.content || ps.content === 'none' || ps.content === 'normal' || ps.position !== 'absolute') continue;
+      const left = parseFloat(ps.left) || 0, width = parseFloat(ps.width) || 0, move = ps.transform && ps.transform !== 'none' ? new DOMMatrix(ps.transform).m41 : 0;
+      if (left + move + width > el.clientWidth + 1 || left + move < -1) knob.push(`${name(el)} knob ${Math.round(left + move)}..${Math.round(left + move + width)} of ${el.clientWidth}`);
+    }
+  }
+  if (knob.length) push('switchout', 'switch knob outside its track: ' + knob.slice(0, 4).join(' | '));
+  const card = (el) => { for (let a = el.parentElement; a && a !== document.body; a = a.parentElement) { const c = getComputedStyle(a); if (parseFloat(c.borderLeftWidth) > 0 && parseFloat(c.borderRightWidth) > 0 && parseFloat(c.borderTopLeftRadius) > 0 && c.borderLeftStyle !== 'none') return a; } return null; };
+  const outside = [];
+  for (const el of all) {
+    if (!el.matches('button, input:not([type=hidden]), select, textarea, [role=switch], .ps-switch')) continue;
+    const box = card(el);
+    if (!box || between(el, box)) continue;
+    const b = el.getBoundingClientRect(), c = box.getBoundingClientRect();
+    if (b.width < 6) continue;
+    if (b.right > c.right + 1 || b.left < c.left - 1) outside.push(`${name(el)} "${text(el)}" ${Math.round(b.left)}..${Math.round(b.right)} in ${name(box)} ${Math.round(c.left)}..${Math.round(c.right)}`);
+  }
+  if (outside.length) push('controlout', 'control sticks out of its card: ' + outside.slice(0, 4).join(' | '));
   return r;
 };
 

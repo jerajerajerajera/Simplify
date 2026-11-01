@@ -710,6 +710,14 @@ async function extrasFlow(theme) {
 // commands above a phone's console stay put (never taken out and put back).
 async function fixesFlow() {
   const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
+  // Simplify's settings right after the first load (1.5.4): the card reaches the footer, also before anything else
+  // happened on the page (Khion saw a short card with empty space under it).
+  if (!phone()) {
+    await page.goto(new URL('/admin/simplify', base).href, { waitUntil: 'domcontentloaded' }).catch(() => {}); await sleep(2500);
+    const fl = await page.evaluate(() => { const c = document.querySelector('.s-settings-tabs.fi-vertical'); if (!c) return null; const f = [...document.querySelectorAll('.fi-footer, [data-ps-footer]')].find((e) => e.getClientRects().length); const bottom = Math.round(c.getBoundingClientRect().bottom), end = f ? Math.round(f.getBoundingClientRect().top) : innerHeight; return { bottom, end, gap: end - bottom, page: document.documentElement.scrollHeight, window: innerHeight, fit: c.style.getPropertyValue('--s-fit') }; }).catch(() => null);
+    await record('settings-first-load', 'Instellingen · eerste paginalaad');
+    say('settings-first-load', fl && fl.gap <= 40 && fl.page <= fl.window + 2, fl);
+  }
   if (phone()) {
     await goto('/admin/simplify', 2000);
     await click('.s-settings-tabs [role=tab]:has-text("Appearance"), .s-settings-tabs button:has-text("Appearance")', 900);
