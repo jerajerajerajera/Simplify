@@ -15,6 +15,7 @@ return [
         'servers' => 'Máy chủ',
         'new' => 'Mới',
         'menu' => 'Menu',
+        'customize' => 'Tùy chỉnh',
         'profile_options' => 'Tùy chọn hồ sơ',
         'profile_settings' => 'Cài đặt hồ sơ',
         'theme_prefix' => 'Giao diện:',

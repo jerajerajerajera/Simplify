@@ -15,6 +15,7 @@ return [
         'servers' => 'Servery',
         'new' => 'Nové',
         'menu' => 'Ponuka',
+        'customize' => 'Prispôsobiť',
         'profile_options' => 'Možnosti profilu',
         'profile_settings' => 'Nastavenia profilu',
         'theme_prefix' => 'Motív:',

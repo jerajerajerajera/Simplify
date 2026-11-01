@@ -15,6 +15,7 @@ return [
         'servers' => 'Server',
         'new' => 'Baru',
         'menu' => 'Menu',
+        'customize' => 'Sesuaikan',
         'profile_options' => 'Opsi profil',
         'profile_settings' => 'Pengaturan profil',
         'theme_prefix' => 'Tema:',

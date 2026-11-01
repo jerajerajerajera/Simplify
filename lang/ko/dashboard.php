@@ -15,6 +15,7 @@ return [
         'servers' => '서버',
         'new' => '새로 만들기',
         'menu' => '메뉴',
+        'customize' => '사용자 지정',
         'profile_options' => '프로필 옵션',
         'profile_settings' => '프로필 설정',
         'theme_prefix' => '테마:',

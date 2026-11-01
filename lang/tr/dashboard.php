@@ -15,6 +15,7 @@ return [
         'servers' => 'Sunucular',
         'new' => 'Yeni',
         'menu' => 'Menü',
+        'customize' => 'Özelleştir',
         'profile_options' => 'Profil seçenekleri',
         'profile_settings' => 'Profil ayarları',
         'theme_prefix' => 'Tema:',

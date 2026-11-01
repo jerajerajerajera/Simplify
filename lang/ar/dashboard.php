@@ -15,6 +15,7 @@ return [
         'servers' => 'الخوادم',
         'new' => 'جديد',
         'menu' => 'القائمة',
+        'customize' => 'تخصيص',
         'profile_options' => 'خيارات الملف الشخصي',
         'profile_settings' => 'إعدادات الملف الشخصي',
         'theme_prefix' => 'السمة:',

@@ -49,8 +49,10 @@
     const visible = head.style.display !== 'none' && head.parentElement.getClientRects().length > 0;
     const table = visible ? mainTable() : null;
     // Simplify's settings save with the button under the form; in the tree their header (Run setup again) stays hidden.
-    const settings = document.querySelector('.s-settings > .s-bar button[type="submit"]');
-    const header = settings && root.dataset.psTree ? [] : [...document.querySelectorAll('.fi-header-actions-ctn .fi-ac > :is(button, a)')];
+    // On a phone they save themselves (settings.blade.php), so Save stays away, except on Pelican's own tabs.
+    const autosave = matchMedia('(max-width: 600px)').matches && !document.querySelector('.s-settings .fi-active .s-pelican-frame');
+    const settings = autosave ? null : document.querySelector('.s-settings > .s-bar button[type="submit"]');
+    const header = document.querySelector('.s-settings') && root.dataset.psTree ? [] : [...document.querySelectorAll('.fi-header-actions-ctn .fi-ac > :is(button, a)')].filter((el) => !(autosave && el.matches('.s-save-button')));
     const sources = visible ? [...header, ...(table?.querySelectorAll('.fi-ta-header-toolbar > .fi-ta-actions > :is(button, a)') || []), ...(settings ? [settings] : [])].filter((el) => !el.closest('.fi-dropdown')) : [];
     // Simplify's own pages (People & roles) have one toolbar: tabs, search and the add button.
     const own = visible ? document.querySelector('.fi-main .s-toolbar') : null;

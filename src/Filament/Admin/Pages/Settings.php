@@ -99,7 +99,7 @@ final class Settings extends Page implements HasForms
             Action::make('setup')->label(__('simplify::setup.again'))->icon('tabler-wand')->color('gray')->button()
                 ->url(fn () => Setup::getUrl(panel: 'admin')),
             // Save in the head of the page; it presses the form's own button, which also saves a Pelican tab (settings.blade.php).
-            Action::make('save')->label(__('simplify::settings.save'))->icon('tabler-device-floppy')
+            Action::make('save')->label(__('simplify::settings.save'))->icon('tabler-device-floppy')->extraAttributes(['class' => 's-save-button'])
                 ->alpineClickHandler("document.querySelector('.s-settings > .s-bar button[type=submit]')?.click()"),
         ];
     }
@@ -187,11 +187,14 @@ final class Settings extends Page implements HasForms
         Notification::make()->title(__('simplify::settings.appearance.banner_removed'))->success()->send();
     }
 
-    public function save(): void
+    /** @param  bool  $auto  saved on its own on a phone, which says so in its own toast (settings.blade.php) */
+    public function save(bool $auto = false): void
     {
         abort_unless(self::canAccess(), 403);
         PanelSettings::saveForm($this->form->getState());
-        Notification::make()->title(__('simplify::settings.saved'))->success()->send();
+        if (! $auto) {
+            Notification::make()->title(__('simplify::settings.saved'))->success()->send();
+        }
     }
 
     /**

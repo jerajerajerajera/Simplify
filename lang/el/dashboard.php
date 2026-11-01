@@ -15,6 +15,7 @@ return [
         'servers' => 'Διακομιστές',
         'new' => 'Νέο',
         'menu' => 'Μενού',
+        'customize' => 'Προσαρμογή',
         'profile_options' => 'Επιλογές προφίλ',
         'profile_settings' => 'Ρυθμίσεις προφίλ',
         'theme_prefix' => 'Θέμα:',

@@ -15,6 +15,7 @@ return [
         'servers' => 'Servrar',
         'new' => 'Ny',
         'menu' => 'Meny',
+        'customize' => 'Anpassa',
         'profile_options' => 'Profilalternativ',
         'profile_settings' => 'Profilinställningar',
         'theme_prefix' => 'Tema:',

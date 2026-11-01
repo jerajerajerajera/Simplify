@@ -15,6 +15,7 @@ return [
         'servers' => 'サーバー',
         'new' => '新規',
         'menu' => 'メニュー',
+        'customize' => 'カスタマイズ',
         'profile_options' => 'プロフィールのオプション',
         'profile_settings' => 'プロフィール設定',
         'theme_prefix' => 'テーマ:',

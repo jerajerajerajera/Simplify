@@ -98,6 +98,7 @@
       overviewView: typeof innerWidth !== 'undefined' && innerWidth <= 600 ? 'list' : 'grid',
       accountMenu: false,
       createMenu: false,
+      customizeMenu: false,
       createFrame: null,
       navMenu: false,
       SERVER_ORDERS,

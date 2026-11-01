@@ -15,6 +15,7 @@ return [
         'servers' => 'Szerverek',
         'new' => 'Új',
         'menu' => 'Menü',
+        'customize' => 'Testreszabás',
         'profile_options' => 'Profilbeállítások',
         'profile_settings' => 'Profilbeállítások',
         'theme_prefix' => 'Téma:',

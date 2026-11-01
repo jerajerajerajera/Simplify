@@ -15,6 +15,7 @@ return [
         'servers' => '伺服器',
         'new' => '新',
         'menu' => '選單',
+        'customize' => '自訂',
         'profile_options' => '個人資料選項',
         'profile_settings' => '個人資料設定',
         'theme_prefix' => '主題：',

@@ -5,6 +5,10 @@
 - Switches (such as Capital letters in the settings and the notification switches) sit inside their row again; their knob no longer slides past the end of the track.
 - Simplify's settings fill the window on the first page load as well, instead of a short card with empty space under it until something else on the page changed.
 - Every notification option is in one place: the bell's window with all notifications, under Customize notifications. Next to this device, Messages and Updates it now has Pelican's notifications, a warning when Pelican's scheduler stopped, and your devices, each with when it was added, its last notification and a button to remove it. The separate App notifications page is gone; App notifications in the account menu opens the bell's window.
+- Phones: one frame on every screen. The top bar has the panel's name, the bell and your account; the menu button is gone. One bar at the bottom: on the overview Customize (server groups and the overview's look), New and Admin tools; on a server its sections; in host mode one button with the page's name that opens every admin page. A server page goes back to the overview with the arrow before the name.
+- Phones: every menu, the notifications and the account open as a sheet from the bottom over the full width, with large rows. A tap beside the sheet or a swipe down closes it.
+- Phones: Simplify's settings save themselves after every change, and a toast at the bottom says so; the Save button shows only on Pelican's own tabs.
+- Phones: Pelican's lists in the admin pages (Eggs, Servers, Nodes, Users) show short rows without checkboxes, column titles or the egg descriptions.
 - A server without a picture of its own shows an icon for its kind of server (Python, Node.js, Discord bot, Java, Go, database, Steam game or another game) instead of the cube. The cube stays for anything else.
 
 ## 1.5.3

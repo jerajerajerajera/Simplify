@@ -12,7 +12,7 @@
   // Something under the finger that scrolls and is not at its top, a console, or a field takes the gesture itself.
   const blocked = (el) => {
     for (; el && el.nodeType === 1; el = el.parentElement) {
-      if (el.matches('input, textarea, select, [contenteditable], #terminal, .xterm, [role=dialog], .fi-modal-window')) return true;
+      if (el.matches('input, textarea, select, [contenteditable], #terminal, .xterm, [role=dialog], .fi-modal-window, .ps-dropdown, .ps-account-menu')) return true;
       const style = getComputedStyle(el);
       if (/(auto|scroll)/.test(style.overflowY) && el.scrollHeight > el.clientHeight + 1 && el.scrollTop > 0) return true;
     }

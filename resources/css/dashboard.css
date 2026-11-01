@@ -1419,3 +1419,70 @@ body:has(.ps-install:not([style*="none"], [x-cloak])) .fi-main .fi-page .fi-call
   .ps-info-power:has(.ps-eula-check:not([style*="display: none"])) { flex-wrap: wrap; }
   .ps-eula-check { flex-basis: 100%; max-width: none; }
 }
+
+/* Phones: one frame on every screen (1.5.4). On top the panel's name, the bell and the account; at the bottom one
+   bar for where you go (the overview's tab bar, a server's sections, host mode's page button); every menu is a
+   sheet from the bottom with rows for a thumb (sheet.js closes it on a tap beside it or a swipe down). */
+@media (min-width: 601px) { .ps-phone-only { display: none !important; } }
+@media (max-width: 600px) {
+  .ps .ps-mobile-menu, .ps .ps-mobile-label, .ps .ps-title-pelican, .ps .ps-nav-heading { display: none !important; }
+  .ps .ps-brand { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .ps .ps-top, .ps.server-active .ps-top { align-items: center; margin-bottom: 14px; }
+  .ps.server-active .ps-heading { flex-direction: row; align-items: center; gap: 2px; }
+  .ps .ps-back-overview { order: -1; flex: none; width: var(--ps-h); padding: 0; gap: 0; justify-content: center; border-color: transparent; background: none; }
+  .ps .ps-back-overview > span { display: none; }
+
+  /* The bell and the account stay in the top bar; the other buttons are reached from the bottom bar or the account sheet. */
+  .ps .ps-nav-items, .ps:not(.server-active, .host-mode) .ps-nav-items { position: static; display: flex; flex-direction: row; align-items: center; gap: 2px; width: auto; max-width: none; max-height: none; padding: 0; overflow: visible; border: 0; background: none; box-shadow: none; }
+  .ps .ps-nav-items > div { width: auto; }
+  .ps .ps-nav-items > :is(a, button), .ps .ps-nav-items > :is(.ps-nav-admin, .ps-nav-view) > .ps-btn { display: none !important; }
+  .ps .ps-nav-items > .ps-notify > .ps-btn.is-icon { justify-content: center; width: var(--ps-h); padding: 0; }
+  .ps .ps-notify-count { position: absolute; margin: 0; }
+  .ps .ps-account { flex-wrap: nowrap; width: auto; }
+  .ps .ps-account-button { flex: none; padding: 0 4px; border-color: transparent; background: none; }
+  .ps .ps-account-username { display: none; }
+
+  /* Sheets. Whatever holds an open one comes above the bottom bars. */
+  .ps :is(.ps-top, .ps-tabbar, .ps-phone-sections, .ps-server-info):has(.ps-dropdown:not([style*="display: none"]):not([x-cloak]), .account-open) { z-index: var(--ps-z-modal); }
+  .ps .ps-tabbar, .ps .ps-phone-sections { backdrop-filter: none; background: var(--ps-surface); }
+  .ps .ps-dropdown, .ps .ps-account-menu, .ps .ps-account.account-open .ps-account-menu {
+    position: fixed; inset: auto 0 0; z-index: var(--ps-z-modal); width: auto; min-width: 0; max-width: none; height: auto; max-height: 86dvh !important; margin: 0;
+    padding: 26px 12px calc(14px + env(safe-area-inset-bottom, 0px)); overflow-y: auto; overscroll-behavior: contain;
+    border: 0; border-radius: 20px 20px 0 0; background: var(--ps-surface); box-shadow: 0 0 0 100vmax var(--ps-backdrop), var(--ps-shadow-modal); transform: none; font-size: 14px;
+  }
+  .ps .ps-dropdown::before, .ps .ps-account-menu::before { content: ""; position: absolute; top: 9px; left: 50%; width: 38px; height: 5px; margin-left: -19px; border-radius: 99px; background: var(--ps-line); }
+  .ps .ps-dropdown-title { margin-bottom: 8px; padding-inline: 4px; font-size: 16px; }
+  .ps .ps-dropdown .ps-menu-item { min-height: 48px; gap: 14px; padding-inline: 12px; font-size: 15px; }
+  .ps .ps-dropdown .ps-menu-item svg { width: 20px; height: 20px; }
+  /* Notifications nearly fill the screen. */
+  .ps .ps-notify-menu { height: 92dvh; max-height: 92dvh !important; }
+  /* Admin tools: the groups as rows, the open group's pages as tiles under it. */
+  .ps .ps-admin-menu .ps-admin-split { grid-template-columns: minmax(0, 1fr); }
+  .ps .ps-admin-menu .ps-admin-nav { border: 0; }
+  .ps .ps-admin-menu .ps-admin-pane { display: none; }
+  .ps .ps-admin-menu .ps-admin-tiles.is-inline { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .ps .ps-admin-menu .ps-admin-group-head { min-height: 48px; }
+  .ps .ps-admin-menu .ps-admin-group.is-open .ps-admin-group-chevron { transform: rotate(90deg); }
+  /* The account: one row per action, named after its tip, and the panel's build line at the end. */
+  .ps .ps-account-menu { visibility: hidden; opacity: 0; translate: 0 100%; transition: translate var(--ps-slow), opacity var(--ps-fast), visibility var(--ps-slow); }
+  .ps .ps-account.account-open .ps-account-menu { visibility: visible; opacity: 1; translate: none; }
+  .ps .ps-account-actions-inner { display: grid; width: 100%; gap: 2px; }
+  .ps .ps-account-actions-inner form { display: grid; }
+  .ps .ps-account-actions-inner .ps-btn.is-icon { justify-content: flex-start; gap: 14px; width: 100%; min-height: 48px; padding: 0 12px; border: 0; background: none; font-size: 15px; font-weight: 500; }
+  .ps .ps-account-actions-inner .ps-btn.is-icon::after { content: attr(data-tip); }
+  .ps .ps-account-actions-inner .ps-btn.is-icon[aria-pressed="true"] { color: var(--ps-accent); }
+  .ps .ps-account-foot { margin: 8px 0 0; color: var(--ps-muted); font-size: 12px; text-align: center; }
+  /* The build line sits in the account sheet; the page keeps its height for the servers. */
+  body:has(.ps) :is(.fi-footer, [data-ps-footer]) { display: none !important; }
+
+  /* Bottom bars: the overview's has as many tabs as it shows. */
+  .ps-tabbar { grid-template-columns: none; grid-auto-columns: minmax(0, 1fr); grid-auto-flow: column; }
+  .ps-tab-customize { display: grid; }
+  .ps .ps-tab-create-menu, .ps .ps-phone-more > .ps-phone-more-menu { width: auto; transform: none; }
+
+  /* Host mode: the page button sits at the bottom, under the thumb, and opens the menu sheet from there. */
+  .ps .ps-host-menu-toggle { position: fixed; inset: auto 0 0; z-index: var(--ps-z-dropdown); width: auto; min-height: 0; height: calc(64px + env(safe-area-inset-bottom, 0px)); margin: 0; padding: 8px 16px calc(8px + env(safe-area-inset-bottom, 0px)); border: 0; border-top: 1px solid var(--ps-line); border-radius: 0; background: var(--ps-surface); justify-content: center; font-weight: 650; }
+  .ps .ps-host-menu-toggle > span { flex: 0 1 auto; }
+  .ps .ps-host-menu-chevron { transform: rotate(-90deg); }
+  .ps .ps-host-main { height: calc(100dvh - 166px - env(safe-area-inset-bottom, 0px)); }
+}

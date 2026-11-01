@@ -27,9 +27,13 @@
                 <a class="ps-btn is-icon" :href="link.url" target="_blank" rel="noopener" :data-tip="link.label" :aria-label="Simplify.fill(@js($u('opens_in_new_tab')), { label: link.label })" x-html="link.icon"></a>
             </template>
             <a class="ps-btn is-icon" x-show="boot.support_url" x-cloak :href="boot.support_url" target="_blank" rel="noopener noreferrer" data-tip="{{ $u('support') }}" aria-label="{{ $u('opens_in_new_tab', ['label' => $u('support')]) }}"><svg aria-hidden="true"><use href="#ps-question"/></svg></a>
+            {{-- On a phone the top bar has room for the bell and the account only: these two move into the account sheet. --}}
+            <button type="button" class="ps-btn is-icon ps-phone-only" x-show="installable" x-cloak x-on:click="accountMenu=false; installApp()" data-tip="{{ $u('install_app') }}" aria-label="{{ $u('install_app') }}"><svg aria-hidden="true"><use href="#ps-download"/></svg></button>
+            <a class="ps-btn is-icon ps-phone-only" x-show="boot.admin_url" :href="boot.admin_url" data-tip="{{ $u('legacy_panel') }}" aria-label="{{ $u('legacy_panel') }}"><svg aria-hidden="true"><use href="#ps-legacy"/></svg></a>
             <form method="post" :action="boot.logout_url">@csrf
                 <button type="submit" class="ps-btn is-icon" data-tip="{{ $u('sign_out') }}" aria-label="{{ $u('sign_out') }}"><svg aria-hidden="true"><use href="#ps-logout"/></svg></button>
             </form>
         </div>
+        <p class="ps-account-foot ps-phone-only">{{ __('simplify::js.dashboard.enhanced_by') }} Simplify · {{ __('simplify::js.dashboard.build', ['version' => \Simplify\Core\Support\Assets::version()]) }}</p>
     </div>
 </div>

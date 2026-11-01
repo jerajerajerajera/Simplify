@@ -15,6 +15,7 @@ return [
         'servers' => 'Servere',
         'new' => 'Nou',
         'menu' => 'Meniu',
+        'customize' => 'Personalizează',
         'profile_options' => 'Opțiuni de profil',
         'profile_settings' => 'Setări de profil',
         'theme_prefix' => 'Temă:',

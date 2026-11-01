@@ -1804,3 +1804,29 @@ html.ps-frame .s-done {
 @keyframes s-pull-spin {
   to { transform: rotate(360deg); }
 }
+
+/* Phones (1.5.4): Pelican's lists in the admin pages (Eggs, Servers, Nodes, Users, …) as short rows: icon, name and
+   the columns after it on one line, without the checkboxes, the column titles and the long descriptions (an egg's
+   description shows on its own page). On a wider screen the table stays as Pelican draws it. */
+@media (max-width: 600px) {
+  .fi-panel-admin .fi-ta-table :is(thead, .fi-ta-selection-cell, .fi-ta-group-selection-cell),
+  .fi-panel-admin .fi-ta-table .fi-ta-cell [class*="description"] { display: none !important; }
+  .fi-panel-admin .fi-ta-table, .fi-panel-admin .fi-ta-table > tbody { display: block; width: 100%; }
+  .fi-panel-admin .fi-ta-table .fi-ta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 12px; padding: 10px 14px; }
+  .fi-panel-admin .fi-ta-table .fi-ta-row > .fi-ta-cell { display: block; flex: 0 1 auto; min-width: 0; width: auto !important; padding: 0 !important; }
+  .fi-panel-admin .fi-ta-table .fi-ta-row > .fi-ta-cell > * { padding: 0 !important; }
+  .fi-panel-admin .fi-ta-table .fi-ta-row > .fi-ta-cell:has(img) { flex: none; }
+  .fi-panel-admin .fi-ta-table .fi-ta-row > .fi-ta-cell:not(.fi-ta-actions-cell):not(:has(img)) { flex: 1 1 auto; font-size: 13px; }
+  .fi-panel-admin .fi-ta-table .fi-ta-row > .fi-ta-actions-cell { flex: none; margin-inline-start: auto; }
+}
+
+/* Phones (1.5.4): Simplify's settings save themselves (settings.blade.php); Save shows only on Pelican's own tabs.
+   A toast at the bottom says it was saved, with a tick that pops. */
+@media (max-width: 600px) {
+  .fi-page:has(.s-settings):not(:has(.fi-active .s-pelican-frame)) .s-save-button,
+  .s-settings:not(:has(.fi-active .s-pelican-frame)) > .s-bar { display: none !important; }
+}
+.s-saved { position: fixed; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); left: 50%; z-index: 80; display: flex; align-items: center; gap: 8px; padding: 9px 16px 9px 11px; border-radius: 999px; background: var(--s-ink, #18181b); color: var(--s-bg, #fff); font-size: 13px; font-weight: 600; white-space: nowrap; box-shadow: 0 10px 30px rgb(0 0 0 / .25); transform: translateX(-50%); }
+.s-saved svg { width: 20px; height: 20px; fill: none; stroke: #22c55e; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; animation: s-saved-pop .5s ease-out both; }
+@keyframes s-saved-pop { 0% { opacity: 0; transform: scale(.4); } 60% { transform: scale(1.2); } 100% { opacity: 1; transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) { .s-saved svg { animation: none; } }

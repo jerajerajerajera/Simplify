@@ -15,6 +15,7 @@ return [
         'servers' => 'Serwery',
         'new' => 'Nowe',
         'menu' => 'Menu',
+        'customize' => 'Dostosuj',
         'profile_options' => 'Opcje profilu',
         'profile_settings' => 'Ustawienia profilu',
         'theme_prefix' => 'Motyw:',

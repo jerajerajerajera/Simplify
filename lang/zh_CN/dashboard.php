@@ -15,6 +15,7 @@ return [
         'servers' => '服务器',
         'new' => '新',
         'menu' => '菜单',
+        'customize' => '自定义',
         'profile_options' => '个人资料选项',
         'profile_settings' => '个人资料设置',
         'theme_prefix' => '主题：',

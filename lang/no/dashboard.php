@@ -15,6 +15,7 @@ return [
         'servers' => 'Servere',
         'new' => 'Ny',
         'menu' => 'Meny',
+        'customize' => 'Tilpass',
         'profile_options' => 'Profilalternativer',
         'profile_settings' => 'Profilinnstillinger',
         'theme_prefix' => 'Tema:',

@@ -15,6 +15,7 @@ return [
         'servers' => 'Palvelimet',
         'new' => 'Uusi',
         'menu' => 'Valikko',
+        'customize' => 'Mukauta',
         'profile_options' => 'Profiilin valinnat',
         'profile_settings' => 'Profiilin asetukset',
         'theme_prefix' => 'Teema:',

@@ -15,6 +15,7 @@ return [
         'servers' => 'Сервери',
         'new' => 'Ново',
         'menu' => 'Мени',
+        'customize' => 'Прилагоди',
         'profile_options' => 'Опције профила',
         'profile_settings' => 'Подешавања профила',
         'theme_prefix' => 'Тема:',

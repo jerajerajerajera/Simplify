@@ -15,6 +15,7 @@ return [
         'servers' => 'Serveriai',
         'new' => 'Nauja',
         'menu' => 'Meniu',
+        'customize' => 'Tinkinti',
         'profile_options' => 'Profilio parinktys',
         'profile_settings' => 'Profilio nustatymai',
         'theme_prefix' => 'Tema:',
