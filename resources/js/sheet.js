@@ -17,6 +17,12 @@
     sheets.forEach(close);
   }, true);
 
+  // Escape from anywhere else (the keyboard's focus outside the sheet) closes it as well.
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    open().filter((sheet) => !sheet.contains(event.target)).forEach(close);
+  });
+
   let drag = null;
   document.addEventListener('touchstart', (event) => {
     const sheet = open().find((el) => el.contains(event.target));

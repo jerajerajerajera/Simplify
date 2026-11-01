@@ -195,7 +195,9 @@ const measure = (opts = {}) => {
   for (const dd of document.querySelectorAll('.ps-dropdown')) {
     // Inside a phone's menu a dropdown is a static block of the menu, not a floating panel.
     if (!visible(dd) || (dd.closest('.ps-nav-items') && getComputedStyle(dd).position === 'static')) continue;
-    const b = dd.getBoundingClientRect(), limit = Math.round(H * 2 / 3);
+    // A phone's sheet (1.5.4): fixed over the full width at the bottom, up to 92% of the window (notifications).
+    const sheet = getComputedStyle(dd).position === 'fixed' && dd.getBoundingClientRect().width >= W - 2 && Math.abs(dd.getBoundingClientRect().bottom - H) <= 2;
+    const b = dd.getBoundingClientRect(), limit = Math.round(H * (sheet ? 0.92 : 2 / 3));
     const scrolls = dd.scrollHeight > dd.clientHeight + 2;
     r.info.dropdown = r.info.dropdown || []; r.info.dropdown.push(`${name(dd)} ${Math.round(b.height)}px of ${limit} max${scrolls ? ', scrolls' : ''}`);
     if (b.height > limit + 2) push('dropdowntall', `dropdown higher than two thirds of the window: ${name(dd)} ${Math.round(b.height)}px > ${limit}px`);

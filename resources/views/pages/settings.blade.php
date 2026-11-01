@@ -1,7 +1,18 @@
 <x-filament-panels::page>
     {{-- On a phone every change saves itself (no Save button there), and a toast at the bottom says so. Pelican's tabs keep their Save button. --}}
-    <form wire:submit="save" class="s-settings" x-data="{ saved: false, timer: null, hide: null }"
-          x-on:change="if (matchMedia('(max-width: 600px)').matches && ! $event.target.closest('.s-pelican-frame')) { clearTimeout(timer); timer = setTimeout(async () => { await $wire.save(true); saved = true; clearTimeout(hide); hide = setTimeout(() => saved = false, 2200); }, 500); }" style="--s-group-panel: {{ json_encode(__('simplify::dashboard.ui.panel'), JSON_UNESCAPED_UNICODE) }}; --s-group-addons: {{ json_encode(__('simplify::settings.addons.heading'), JSON_UNESCAPED_UNICODE) }}">
+    <form wire:submit="save" class="s-settings" x-init="last = JSON.stringify($wire.data)" x-on:change="autosave()" x-on:input="autosave()" x-on:click="autosave()"
+          x-data="{ saved: false, timer: null, hide: null, last: null,
+              autosave() {
+                  if (! matchMedia('(max-width: 600px)').matches || this.$el.querySelector('.fi-active .s-pelican-frame')) return;
+                  clearTimeout(this.timer);
+                  this.timer = setTimeout(async () => {
+                      const now = JSON.stringify(this.$wire.data);
+                      if (now === this.last) return;
+                      this.last = now;
+                      await this.$wire.save(true);
+                      this.saved = true; clearTimeout(this.hide); this.hide = setTimeout(() => this.saved = false, 2200);
+                  }, 700);
+              } }" style="--s-group-panel: {{ json_encode(__('simplify::dashboard.ui.panel'), JSON_UNESCAPED_UNICODE) }}; --s-group-addons: {{ json_encode(__('simplify::settings.addons.heading'), JSON_UNESCAPED_UNICODE) }}">
         {{ $this->form }}
         <div class="s-bar">
             {{-- On a Pelican tab the same button saves Pelican's form in the frame, whose own button stays hidden. --}}

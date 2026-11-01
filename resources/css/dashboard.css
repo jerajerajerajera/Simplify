@@ -1427,6 +1427,9 @@ body:has(.ps-install:not([style*="none"], [x-cloak])) .fi-main .fi-page .fi-call
 @media (max-width: 600px) {
   .ps .ps-mobile-menu, .ps .ps-mobile-label, .ps .ps-title-pelican, .ps .ps-nav-heading { display: none !important; }
   .ps .ps-brand { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  /* Host health in the top bar: its heart only, the colour says the state. */
+  .ps .ps-health-pill { width: var(--ps-h); padding: 0; justify-content: center; }
+  .ps .ps-health-pill > span { display: none; }
   .ps .ps-top, .ps.server-active .ps-top { align-items: center; margin-bottom: 14px; }
   .ps.server-active .ps-heading { flex-direction: row; align-items: center; gap: 2px; }
   .ps .ps-back-overview { order: -1; flex: none; width: var(--ps-h); padding: 0; gap: 0; justify-content: center; border-color: transparent; background: none; }

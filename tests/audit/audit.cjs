@@ -822,15 +822,15 @@ async function fixesFlow() {
     await alpine('d.setHostMode(false)'); await sleep(500);
     // Pelican's lists as short rows: no checkboxes, no column titles and no egg descriptions.
     await goto(new URL('/admin/eggs', base).href, 2500);
-    const eggs = await page.evaluate(() => { const rows = [...document.querySelectorAll('.fi-ta-row')].filter((r) => r.getClientRects().length); const shown = (s) => [...document.querySelectorAll(s)].filter((e) => e.getClientRects().length > 0).length; return { rows: rows.length, tallest: Math.max(0, ...rows.map((r) => Math.round(r.getBoundingClientRect().height))), checkboxes: shown('.fi-ta-table .fi-ta-record-checkbox'), head: shown('.fi-ta-table thead'), descriptions: shown('.fi-ta-table .fi-ta-cell [class*="description"]'), wide: document.documentElement.scrollWidth > innerWidth + 1 }; }).catch(() => null);
+    const eggs = await page.evaluate(() => { const rows = [...document.querySelectorAll('.fi-ta-row')].filter((r) => r.getClientRects().length); const shown = (s) => [...document.querySelectorAll(s)].filter((e) => e.getClientRects().length > 0).length; return { rows: rows.length, tallest: Math.max(0, ...rows.map((r) => Math.round(r.getBoundingClientRect().height))), checkboxes: shown('.fi-ta-table .fi-ta-record-checkbox'), head: shown('.fi-ta-table thead'), descriptions: shown('.fi-ta-table .fi-ta-cell :is([class$="-description"], [class*="-description "])'), names: [...document.querySelectorAll('.fi-ta-row')].filter((r) => r.getClientRects().length && /[A-Za-z]{3}/.test(r.innerText)).length, wide: document.documentElement.scrollWidth > innerWidth + 1 }; }).catch(() => null);
     await record('phone-eggs', 'Telefoon · Eggs als korte rijen');
-    say('phone-eggs', eggs && eggs.rows > 0 && eggs.tallest <= 90 && !eggs.checkboxes && !eggs.head && !eggs.descriptions, eggs);
+    say('phone-eggs', eggs && eggs.rows > 0 && eggs.names === eggs.rows && eggs.tallest <= 90 && !eggs.checkboxes && !eggs.head && !eggs.descriptions, eggs);
     // Simplify's settings save themselves on a phone: no Save button, and a toast after a change.
     await goto(new URL('/admin/simplify', base).href, 2500);
     const save = await vis('.s-save-button, .s-settings > .s-bar button[type="submit"]');
-    const sw = page.locator('.s-settings .fi-active input[type="checkbox"]').first();
+    const sw = page.locator('.s-settings .fi-active :is([role="switch"], input[type="checkbox"]) >> visible=true').first();
     let toast = null;
-    if (await sw.count()) { await sw.click({ force: true }).catch(() => {}); await page.waitForSelector('.s-saved', { state: 'visible', timeout: 6000 }).catch(() => {}); toast = await vis('.s-saved'); await record('phone-autosave', 'Telefoon · instellingen slaan zelf op'); await sw.click({ force: true }).catch(() => {}); await sleep(2500); }
+    if (await sw.count()) { await sw.click().catch(() => {}); await page.waitForSelector('.s-saved', { state: 'visible', timeout: 6000 }).catch(() => {}); toast = await vis('.s-saved'); await record('phone-autosave', 'Telefoon · instellingen slaan zelf op'); await sw.click().catch(() => {}); await sleep(2500); }
     say('phone-autosave', save === false && toast === true, { save, toast });
   }
   // Pull to refresh in the installed app (pull.js): a finger pulled down from the top shows the mark and reloads.

@@ -1810,11 +1810,12 @@ html.ps-frame .s-done {
    description shows on its own page). On a wider screen the table stays as Pelican draws it. */
 @media (max-width: 600px) {
   .fi-panel-admin .fi-ta-table :is(thead, .fi-ta-selection-cell, .fi-ta-group-selection-cell),
-  .fi-panel-admin .fi-ta-table .fi-ta-cell [class*="description"] { display: none !important; }
+  .fi-panel-admin .fi-ta-table .fi-ta-cell :is([class$="-description"], [class*="-description "]) { display: none !important; }
   .fi-panel-admin .fi-ta-table, .fi-panel-admin .fi-ta-table > tbody { display: block; width: 100%; }
   .fi-panel-admin .fi-ta-table .fi-ta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 12px; padding: 10px 14px; }
   .fi-panel-admin .fi-ta-table .fi-ta-row > .fi-ta-cell { display: block; flex: 0 1 auto; min-width: 0; width: auto !important; padding: 0 !important; }
-  .fi-panel-admin .fi-ta-table .fi-ta-row > .fi-ta-cell > * { padding: 0 !important; }
+  .fi-panel-admin .fi-ta-table .fi-ta-row > .fi-ta-cell :not(button, .fi-icon-btn, .fi-icon-btn *) { padding-block: 0 !important; }
+  .fi-panel-admin .fi-ta-table .fi-ta-row > .fi-ta-cell > * { padding-inline: 0 !important; }
   .fi-panel-admin .fi-ta-table .fi-ta-row > .fi-ta-cell:has(img) { flex: none; }
   .fi-panel-admin .fi-ta-table .fi-ta-row > .fi-ta-cell:not(.fi-ta-actions-cell):not(:has(img)) { flex: 1 1 auto; font-size: 13px; }
   .fi-panel-admin .fi-ta-table .fi-ta-row > .fi-ta-actions-cell { flex: none; margin-inline-start: auto; }
