@@ -1812,12 +1812,14 @@ html.ps-frame .s-done {
   .fi-panel-admin .fi-ta-table :is(thead, .fi-ta-selection-cell, .fi-ta-group-selection-cell),
   .fi-panel-admin .fi-ta-table .fi-ta-cell :is([class$="-description"], [class*="-description "]) { display: none !important; }
   .fi-panel-admin .fi-ta-table, .fi-panel-admin .fi-ta-table > tbody { display: block; width: 100%; }
-  .fi-panel-admin .fi-ta-table .fi-ta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 12px; padding: 10px 14px; }
+  .fi-panel-admin .fi-ta-table .fi-ta-row { display: flex; flex-wrap: nowrap; align-items: center; gap: 12px; padding: 10px 14px; }
   .fi-panel-admin .fi-ta-table .fi-ta-row > .fi-ta-cell { display: block; flex: 0 1 auto; min-width: 0; width: auto !important; padding: 0 !important; }
   .fi-panel-admin .fi-ta-table .fi-ta-row > .fi-ta-cell :not(button, .fi-icon-btn, .fi-icon-btn *) { padding-block: 0 !important; }
   .fi-panel-admin .fi-ta-table .fi-ta-row > .fi-ta-cell > * { padding-inline: 0 !important; }
   .fi-panel-admin .fi-ta-table .fi-ta-row > .fi-ta-cell:has(img) { flex: none; }
-  .fi-panel-admin .fi-ta-table .fi-ta-row > .fi-ta-cell:not(.fi-ta-actions-cell):not(:has(img)) { flex: 1 1 auto; font-size: 13px; }
+  .fi-panel-admin .fi-ta-table .fi-ta-row > .fi-ta-cell:not(.fi-ta-actions-cell):not(:has(img)) { flex: none; max-width: 30%; overflow: hidden; color: var(--s-muted, inherit); font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+  /* The name: the first column after the icon (or the first column), taking what is left. */
+  .fi-panel-admin .fi-ta-table .fi-ta-row > :is(.fi-ta-cell:has(img) + .fi-ta-cell, .fi-ta-selection-cell + .fi-ta-cell:not(:has(img))):not(.fi-ta-actions-cell) { flex: 1 1 0; max-width: none; color: inherit; font-size: 14px; font-weight: 600; }
   .fi-panel-admin .fi-ta-table .fi-ta-row > .fi-ta-actions-cell { flex: none; margin-inline-start: auto; }
 }
 
