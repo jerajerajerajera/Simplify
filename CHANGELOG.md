@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.5.4
+
 - Switches (such as Capital letters in the settings and the notification switches) sit inside their row again; their knob no longer slides past the end of the track.
 - Simplify's settings fill the window on the first page load as well, instead of a short card with empty space under it until something else on the page changed.
 - Every notification option is in one place: the bell's window with all notifications, under Customize notifications. Next to this device, Messages and Updates it now has Pelican's notifications, a warning when Pelican's scheduler stopped, and your devices, each with when it was added, its last notification and a button to remove it. The separate App notifications page is gone; App notifications in the account menu opens the bell's window.
