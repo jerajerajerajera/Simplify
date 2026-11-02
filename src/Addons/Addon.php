@@ -25,9 +25,9 @@ abstract class Addon
 {
     /**
      * The contract version: 1 in Simplify 1.0, 2 since 1.1 (serverInfo, serverLinks, customerLinks, hostModeDefault),
-     * 3 since 1.3 (setupFields, setupState, saveSetup). Raised whenever a method is added.
+     * 3 since 1.3 (setupFields, setupState, saveSetup), 4 since 1.5.5 (accountPages). Raised whenever a method is added.
      */
-    public const API = 3;
+    public const API = 4;
 
     /** The add-on's plugin id, for example "simplify-servermaker". */
     abstract public function id(): string;
@@ -112,6 +112,17 @@ abstract class Addon
      * @return list<Button>
      */
     public function customerLinks(User $user): array
+    {
+        return [];
+    }
+
+    /**
+     * The add-on's own pages for every user, as buttons in Simplify's account menu, for example Server Maker's Steam
+     * account. Each opens inside Simplify, in the content area; a URL outside this panel is left out.
+     *
+     * @return list<Button>
+     */
+    public function accountPages(User $user): array
     {
         return [];
     }

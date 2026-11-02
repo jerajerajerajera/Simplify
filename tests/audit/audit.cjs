@@ -747,6 +747,29 @@ async function fixesFlow() {
     // A Steam game (Counter-Strike 2 on steamcmd, as in pelican-eggs) shows the Steam icon, not Java's cup.
     const steam = await page.evaluate(() => { const card = [...document.querySelectorAll('.ps-server-card')].find((c) => /Arena/.test(c.innerText)); return card?.querySelector('.ps-card-icon svg use')?.getAttribute('href') || null; }).catch(() => null);
     say('egg-kind-steam', steam === '#ps-steam', { steam });
+    // An add-on's account page (as Server Maker's Steam account) opens in the content area from the account menu: a
+    // real click on the button, nothing over it, no page load (Jeroen V29, 2-11).
+    const accountPage = async (from) => {
+      let loads = 0; const onLoad = () => loads++; page.on('load', onLoad);
+      await page.locator('.ps-top .ps-account-button >> visible=true').first().click().catch(() => {}); await sleep(700);
+      const sel = '#ps-account-actions a[data-tip="Directory account"]';
+      const top = await page.evaluate((s) => { const a = [...document.querySelectorAll(s)].find((e) => e.getClientRects().length); if (!a) return null; const r = a.getBoundingClientRect(); return a.contains(document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2)); }, sel).catch(() => null);
+      await page.locator(`${sel} >> visible=true`).first().click({ timeout: 4000 }).catch(() => {});
+      await page.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {}); await sleep(2000);
+      page.off('load', onLoad);
+      const frame = await page.evaluate(() => { const f = [...document.querySelectorAll('.ps-host-frame iframe[data-ps-frame="native"]')].find((e) => e.getClientRects().length); let text = null; try { text = !!f?.contentDocument?.querySelector('.audit-account-page'); } catch {} return f ? { src: new URL(f.src).pathname, text } : null; }).catch(() => null);
+      return { from, onTop: top, loads, frame };
+    };
+    const fromOverview = await accountPage('overview');
+    await record('account-page', 'Accountmenu · pagina van een add-on in het contentvak');
+    say('account-page', fromOverview.onTop === true && fromOverview.loads === 0 && fromOverview.frame?.src === '/directory-account' && fromOverview.frame.text === true, fromOverview);
+    await alpine('d.closeAdminView()'); await sleep(400);
+    if (urls.servers['Survival SMP']) {
+      await goto(urls.servers['Survival SMP'], 3000);
+      const fromServer = await accountPage('server');
+      say('account-page-server', fromServer.onTop === true && fromServer.frame?.src === '/directory-account' && fromServer.frame.text === true, fromServer);
+      await goto(overview, 2500);
+    }
     // Every notification option sits in the bell sheet: this device, messages, Pelican's, and the devices.
     await alpine('d.openAllNotifications()'); await sleep(1500);
     const bell = await page.evaluate(() => { const box = [...document.querySelectorAll('.ps-notify-settings')].find((e) => e.getClientRects().length); if (!box) return { shown: false }; return { shown: true, pelican: !![...box.querySelectorAll('input.ps-switch')].find((i) => /pelican/.test(i.getAttribute('x-on:change') || '') && i.getClientRects().length) }; }).catch(() => null);

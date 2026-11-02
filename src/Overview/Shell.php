@@ -66,6 +66,7 @@ trait Shell
                 fn (Button $link) => ['label' => $link->label, 'url' => $link->url, 'icon' => svg((string) $link->icon)->toHtml()],
                 array_filter($addon->customerLinks($user), fn (Button $link) => $link->icon !== null),
             ))),
+            'account_pages' => self::accountPages($user),
             'admin_pages' => AdminMenu::items(),
             'health_checks' => $user->isAdmin() ? HostHealth::checks() : [],
             'features' => ['host_health' => $user->isRootAdmin()],
@@ -73,6 +74,21 @@ trait Shell
             'overview_groups' => ServerGroups::clean(Preferences::get($user, 'overview.groups')),
             'notifications' => Bell::page($user),
         ];
+    }
+
+    /**
+     * The add-ons' own pages in the account menu. Only pages of this panel: they open inside Simplify.
+     *
+     * @return list<array{key: string, label: string, url: string, icon: string}>
+     */
+    private static function accountPages(User $user): array
+    {
+        $root = rtrim(url('/'), '/').'/';
+
+        // Inside collect(), so an add-on with a broken icon loses its own pages only.
+        return app(AddonRegistry::class)->collect(fn (Addon $addon) => array_values(array_map(fn (Button $page) => [
+            'key' => substr(md5($page->url), 0, 8), 'label' => $page->label, 'url' => $page->url, 'icon' => svg($page->icon ?? 'tabler-puzzle')->toHtml(),
+        ], array_filter($addon->accountPages($user), fn (Button $page) => str_starts_with($page->url, $root)))));
     }
 
     /** When the panel was set up (its first account), for its birthday among the seasonal touches; null when unknown. */

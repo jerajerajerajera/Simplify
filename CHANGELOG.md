@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Add-ons can put their own pages in the account menu, such as Server Maker's Steam account. They open inside Simplify, in the content area (add-on contract API 4).
 - Pull down to reload works on the overview only, in the app and in a browser tab. In the settings, on other pages and when you swipe a sheet down to close it, nothing reloads any more: the browser's own pull to refresh is off.
 
 ## 1.5.4

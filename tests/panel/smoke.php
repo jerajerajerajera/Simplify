@@ -178,6 +178,24 @@ final class BadgeAddon extends Addon
     }
 }
 
+final class AccountAddon extends Addon
+{
+    public function id(): string
+    {
+        return 'account-addon';
+    }
+
+    public function name(): string
+    {
+        return 'Account add-on';
+    }
+
+    public function accountPages(User $user): array
+    {
+        return [new Button('Steam', url('/steam-key'), 'tabler-brand-steam'), new Button('Elsewhere', 'https://example.com/account', 'tabler-world')];
+    }
+}
+
 // Pelican 1.0 has no users.root_admin column: root admins have the root admin role.
 $admin = User::where('email', 'smoke-simplify@example.com')->first()
     ?? User::withoutEvents(fn () => User::factory()->create(['email' => 'smoke-simplify@example.com']));
@@ -360,6 +378,14 @@ step('the console page shows the Simplify header, server card and menu', functio
         if (! str_contains($response->getContent(), $part)) {
             throw new RuntimeException("$part is missing on $url");
         }
+    }
+});
+step('an add-on adds its own page to the account menu, only on this panel', function ($app) use ($admin) {
+    $app->tag([AccountAddon::class], AddonRegistry::TAG);
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
+    $pages = Livewire\Livewire::actingAs($admin)->test(Overview::class)->instance()->initial()['account_pages'] ?? null;
+    if (! is_array($pages) || count($pages) !== 1 || $pages[0]['url'] !== url('/steam-key') || $pages[0]['label'] !== 'Steam' || ! str_contains($pages[0]['icon'], '<svg') || ($pages[0]['key'] ?? '') === '') {
+        throw new RuntimeException('the account pages are wrong: '.json_encode($pages));
     }
 });
 step('add-ons give server links, customer links and host mode', function ($app) use ($admin, $server) {

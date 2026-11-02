@@ -499,6 +499,20 @@
         const section = this.hostSections().find((x) => x.key === 'health');
         if (section?.pages[0]) this.openAdminPage(event, section, section.pages[0]);
       },
+      /** An add-on's account page: on the overview in place, from a server page via the overview, as Admin tools do. */
+      accountLink(page) {
+        return this.server ? (this.boot.list_url || '/') + '#account:' + encodeURIComponent(page.key) : page.url;
+      },
+      openAccountPage(event, page) {
+        if (event?.ctrlKey || event?.metaKey || event?.shiftKey || this.server || !page) return;
+        event?.preventDefault();
+        this.accountMenu = false;
+        this.navMenu = false;
+        if (!this.hostMode) this.adminView = true;
+        this.hostSection = { key: 'account', label: page.label, icon: 'account', pages: [page] };
+        this.hostPage = page;
+        this.hostServer = null;
+      },
       /** "Create server" (Server Maker, or Pelican's own form) opens in a Simplify popup, on every page. True when it did. */
       openCreate(event, choice) {
         if (!choice?.url || event?.ctrlKey || event?.metaKey || event?.shiftKey || !this.frameUrl(choice.url)) return false;
@@ -514,6 +528,11 @@
       },
       /** /simplify#admin:group/page (a link from Admin tools on a server page) opens that page once. */
       openAdminFromHash() {
+        const account = /^#account:(.+)$/.exec(location.hash);
+        if (account) {
+          history.replaceState(null, '', location.pathname + location.search);
+          return this.openAccountPage(null, (this.boot.account_pages || []).find((x) => x.key === decodeURIComponent(account[1])));
+        }
         const match = /^#admin:([^/]+)\/(.+)$/.exec(location.hash);
         if (!match) return;
         history.replaceState(null, '', location.pathname + location.search);

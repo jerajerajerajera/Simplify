@@ -60,6 +60,7 @@ Only `id()` and `name()` are required. Everything else has a default.
 | `setupFields(): list<Component>` | `[]` | your most important settings as Filament fields in the last step of Simplify's setup, so a new panel is set up in one go (since 1.3, API 3) |
 | `setupState(): array` | `[]` | the current values for those fields, by field name (since 1.3, API 3) |
 | `saveSetup(array $state): void` | nothing | saves what the setup asked, by field name (since 1.3, API 3) |
+| `accountPages(User $user): list<Button>` | `[]` | your own pages for every user, as icon buttons in Simplify's account menu (for example a Steam account). They open inside Simplify, in the content area, as Admin tools do; a URL that is not on this panel is left out. Without an `icon` the button shows `tabler-puzzle` (since 1.5.5, API 4) |
 
 `Button` is `new Button(string $label, string $url, ?string $icon = null, bool $primary = false)`.
 
@@ -87,7 +88,7 @@ public function saveSetup(array $state): void
 ## Rules
 
 - New methods are only ever added with a default, so an add-on keeps working when Simplify updates. A test in Simplify's CI fails when a method without a default is added.
-- `Addon::API` is the contract version: 1 in Simplify 1.0, 2 since 1.1 (`serverInfo()`, `serverLinks()`, `customerLinks()`, `hostModeDefault()`), 3 since 1.3 (`setupFields()`, `setupState()`, `saveSetup()`). It goes up by one whenever a method is added.
+- `Addon::API` is the contract version: 1 in Simplify 1.0, 2 since 1.1 (`serverInfo()`, `serverLinks()`, `customerLinks()`, `hostModeDefault()`), 3 since 1.3 (`setupFields()`, `setupState()`, `saveSetup()`), 4 since 1.5.5 (`accountPages()`). It goes up by one whenever a method is added.
 - A newer add-on on an older Simplify just works: Simplify never calls the methods it does not know yet. Check `defined(Addon::class.'::API') ? Addon::API : 1` only when your add-on wants to show something different on an older core.
 - If your add-on throws, Simplify reports the error and leaves your add-on out. It never breaks a Simplify page.
 - Install other plugins only from the Pelican Hub, and list every outside service you call in your README.
