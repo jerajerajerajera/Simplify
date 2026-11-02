@@ -6,6 +6,7 @@ namespace Simplify\Core\Overview;
 
 use App\Filament\Pages\Auth\EditProfile;
 use App\Models\User;
+use Closure;
 use Filament\Facades\Filament;
 use InvalidArgumentException;
 use Livewire\Attributes\Renderless;
@@ -23,6 +24,7 @@ use Simplify\Core\Support\PanelSettings;
 use Simplify\Core\Support\Preferences;
 use Simplify\Core\Support\SafeCache;
 use Simplify\Core\Support\Scheduler;
+use Throwable;
 
 /**
  * What the overview and the server page share: the header with its menus, the notifications and the account. The
@@ -68,6 +70,7 @@ trait Shell
             ))),
             'account_pages' => self::accountPages($user),
             'admin_pages' => AdminMenu::items(),
+            'admin_tree' => AdminTree::build(),
             'health_checks' => $user->isAdmin() ? HostHealth::checks() : [],
             'features' => ['host_health' => $user->isRootAdmin()],
             'performance' => ['overview_seconds' => $settings['overview_seconds']],
@@ -221,5 +224,22 @@ trait Shell
         abort_if($user === null, 403);
 
         return $user;
+    }
+
+    /** The first URL an add-on gives (API 5), or null. */
+    protected static function firstUrl(Closure $read): ?string
+    {
+        foreach (app(AddonRegistry::class)->all() as $addon) {
+            try {
+                $url = $read($addon);
+            } catch (Throwable) {
+                continue;
+            }
+            if (is_string($url) && $url !== '') {
+                return $url;
+            }
+        }
+
+        return null;
     }
 }

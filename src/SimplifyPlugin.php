@@ -15,6 +15,7 @@ use Illuminate\Support\Js;
 use Simplify\Core\Announcements\Filament\AnnouncementResource;
 use Simplify\Core\Embed\Filament\EmbedSettings;
 use Simplify\Core\Embed\Filament\Website;
+use Simplify\Core\Filament\Admin\AdminTop;
 use Simplify\Core\Filament\Admin\Pages\People;
 use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\Admin\Pages\Setup;
@@ -74,6 +75,8 @@ final class SimplifyPlugin implements Plugin
         }
         if ($panel->getId() === 'admin') {
             $panel->pages([Settings::class, Setup::class, SetupDone::class, People::class]);
+            // An add-on's own host mode (API 5) shows Pelican's admin pages with Simplify's header over them.
+            $panel->renderHook(PanelsRenderHook::LAYOUT_START, fn () => self::adminTop());
         }
         if ($panel->getId() === 'admin') {
             $panel->resources([AnnouncementResource::class]);
@@ -108,6 +111,16 @@ final class SimplifyPlugin implements Plugin
             'data' => ['server' => $server, 'console' => $console],
             'console' => $console,
         ]);
+    }
+
+    /** Simplify's header over an admin page, kept while wire:navigate changes the page (AdminTop). */
+    private static function adminTop(): string
+    {
+        if (! AdminTop::wanted(user())) {
+            return '';
+        }
+
+        return Blade::render("@persist('simplify-admin-top')@livewire(\$component)@endpersist", ['component' => AdminTop::class]);
     }
 
     /** Backups and Schedules share one menu item (ServerMenu); their pages get a tab for each. */

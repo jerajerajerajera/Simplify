@@ -48,6 +48,15 @@ final class AdminMenu
         if (! user()?->isAdmin()) {
             return [];
         }
+        // Once per request and user: the overview's data and the admin tree both ask (each page is a permission check).
+        static $memo = [];
+
+        return $memo[user()->id] ??= self::collect();
+    }
+
+    /** @return list<array{label: string, items: list<array<string, mixed>>}> */
+    private static function collect(): array
+    {
         $items = [];
         foreach ([...Filament::getPanel('admin')->getResources(), ...Filament::getPanel('admin')->getPages()] as $class) {
             $name = class_basename($class);

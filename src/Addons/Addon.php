@@ -27,7 +27,7 @@ abstract class Addon
      * The contract version: 1 in Simplify 1.0, 2 since 1.1 (serverInfo, serverLinks, customerLinks, hostModeDefault),
      * 3 since 1.3 (setupFields, setupState, saveSetup), 4 since 1.5.5 (accountPages). Raised whenever a method is added.
      */
-    public const API = 4;
+    public const API = 5;
 
     /** The add-on's plugin id, for example "simplify-servermaker". */
     abstract public function id(): string;
@@ -131,6 +131,15 @@ abstract class Addon
     public function hostModeDefault(): bool
     {
         return false;
+    }
+
+    /**
+     * Where this user starts instead of the overview, for example a hoster in Admin (Simplify-Hosting). Null keeps
+     * the overview. While it is set, Pelican's admin pages also get Simplify's header.
+     */
+    public function startUrl(User $user): ?string
+    {
+        return null;
     }
 
     /**

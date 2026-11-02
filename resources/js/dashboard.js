@@ -426,43 +426,9 @@
       },
 
       /* Admin menu ----------------------------------------------------------------------------- */
-      /** Pelican's admin pages in a few colour-coded sections; pages from other plugins go to Other plugins. */
+      /** The groups of host mode and Admin tools, worked out on the server (AdminTree), so add-ons share them. */
       hostSections() {
-        const plan = [
-          { key: 'servers', label: t('dashboard.admin_groups.servers'), icon: 'host', color: '#5fb87a', pages: ['serverresource', 'eggresource', 'mountresource'] },
-          { key: 'nodes', label: t('dashboard.admin_groups.nodes'), icon: 'monitor', color: '#5b9cf0', pages: ['noderesource', 'databasehostresource', 'backuphostresource'] },
-          { key: 'people', label: t('dashboard.admin_groups.people'), icon: 'players', color: '#a78bfa', pages: ['userresource', 'roleresource', 'people'] },
-          { key: 'integrations', label: t('dashboard.admin_groups.integrations'), icon: 'link', color: '#f0a35b', pages: ['apikeyresource', 'webhookresource'] },
-          { key: 'panel', label: t('dashboard.admin_groups.panel'), icon: 'gear', color: '#94a3b8', pages: ['settings', 'pluginresource', 'listlogs'] },
-          { key: 'extensions', label: t('dashboard.other_plugins'), icon: 'plugins', color: '#2dd4bf', pages: [] },
-          { key: 'health', label: t('dashboard.admin_groups.health'), icon: 'heart', color: '#f87171', pages: ['health'] },
-        ];
-        // The settings are leaves of the tree: Simplify's tabs, the add-ons' pages and Pelican's tabs, each in its group.
-        const menu = this.boot.settings_menu || [];
-        if (menu.length) {
-          const tabs = (group) => menu.filter((tab) => tab.group === group).map((tab) => ({ ...tab, settings: true }));
-          plan.splice(plan.findIndex((section) => section.key === 'panel'), 1,
-            { key: 'panel', label: t('dashboard.admin_groups.settings'), icon: 'gear', color: '#94a3b8', pages: [], tabs: tabs('panel') },
-            { key: 'addons', label: t('dashboard.admin_groups.addons'), icon: 'plugins', color: '#b48cf2', pages: ['pluginresource'], tabs: tabs('addons') },
-            { key: 'pelican', label: t('dashboard.admin_groups.pelican_settings'), icon: 'settings', color: '#5b9cf0', pages: ['listlogs'], tabs: tabs('pelican') });
-        }
-        const items = this.adminPages().flatMap((group) => group.items);
-        const known = new Set([...plan.flatMap((section) => section.pages), 'settings']);
-        // An add-on's settings page that is also in Pelican's menu (Hosting) shows once, under Add-ons.
-        const tabUrls = new Set(menu.map((tab) => tab.url));
-        // Simplify's own pages (Announcements, Automatic subdomains, Website) join its settings, the add-ons' other pages
-        // join Add-ons: Other plugins is only for plugins that are not Simplify.
-        // An add-on page with the same name as the add-on's settings (Server Maker's own page) shows once.
-        const tabLabels = new Set(menu.map((tab) => tab.label));
-        const own = (origin) => items.filter((item) => item.origin === origin && !known.has(item.key) && !tabUrls.has(item.url) && !tabLabels.has(item.label));
-        const extra = { panel: own('core'), addons: own('addon') };
-        if (!menu.length) extra.panel = [];
-        return plan.map((section) => ({
-          ...section,
-          pages: section.key === 'extensions'
-            ? items.filter((item) => !known.has(item.key) && !tabUrls.has(item.url) && !(menu.length && item.origin))
-            : [...(section.tabs || []), ...(extra[section.key] || []), ...section.pages.map((key) => items.find((item) => item.key === key)).filter(Boolean)],
-        })).filter((section) => section.pages.length);
+        return this.boot.admin_tree || [];
       },
       /** The Admin tools groups, without Health (its checks have their own row under the groups). */
       adminSections() {

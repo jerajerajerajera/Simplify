@@ -21,6 +21,18 @@
     Object.defineProperty(window, 'Xterm', { configurable: true, get: () => xterm, set: (value) => { xterm = clearTerminal(value); } });
   } catch {}
 
+  /* Pelican's admin pages while an add-on's own host mode is on (AdminTop): only the header, as in host mode. */
+  window.simplifyAdminTop = function (wire, boot) {
+    const base = window.pelicanSimplify(wire, boot);
+    return {
+      ...base,
+      hostMode: true,
+      init() {
+        this.initShell();
+      },
+    };
+  };
+
   window.simplifyServer = function (wire, boot) {
     const base = window.pelicanSimplify(wire, boot);
     return {

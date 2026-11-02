@@ -106,7 +106,7 @@ check($plain->description() === '' && $plain->icon() === 'tabler-puzzle' && $pla
 // The contract only grows with defaults: id() and name() stay the only methods an add-on must write.
 $required = array_values(array_map(fn (ReflectionMethod $m) => $m->name, array_filter((new ReflectionClass(Addon::class))->getMethods(), fn (ReflectionMethod $m) => $m->isAbstract())));
 check($required === ['id', 'name'], 'only id() and name() are abstract: '.json_encode($required));
-check(is_int(Addon::API) && Addon::API >= 4, 'Addon::API names the contract version');
+check(is_int(Addon::API) && Addon::API >= 5, 'Addon::API names the contract version');
 $plain->saveSetup(['anything' => true]);
 check($plain->setupFields() === [] && $plain->setupState() === [], 'an add-on asks nothing in the setup unless it wants to');
 
