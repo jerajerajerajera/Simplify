@@ -4,6 +4,7 @@ namespace Audit\Directory;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
+use Simplify\Core\Addons\Addon;
 
 // A plugin that is not Simplify: one admin page, so Simplify puts it under Other plugins, and one account page.
 final class AuditDirectoryPlugin implements Plugin
@@ -18,7 +19,7 @@ final class AuditDirectoryPlugin implements Plugin
         view()->addNamespace('audit-directory', dirname(__DIR__).'/resources/views');
         if ($panel->getId() === 'app') {
             $panel->pages([AccountPage::class]);
-            if (class_exists(\Simplify\Core\Addons\Addon::class)) {
+            if (class_exists(Addon::class)) {
                 app()->tag([AuditAddon::class], 'simplify.addons');
             }
 
