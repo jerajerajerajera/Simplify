@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- A suspended server's card no longer shows the tops of its CPU and RAM tiles above the note about the suspension.
 - Checks and screen audit take less time. A change to text only (docs, Markdown) skips the panel smoke; tests and pint still run. In the screen audit, dark and light are jobs of their own, side by side, so a run takes half as long; the light job writes to the results branch `…-<stand>-light`. New inputs: `theme`, `parts` (the parts of a round: overview, server, admin, host, seasons, create, extras, notify, klant) and `scope` `changed`, which runs only the parts that the files changed since main can touch (`tests/audit/parts.py`; an unknown file counts as everything). The full audit still runs before every release.
 
 ## 1.5.5
