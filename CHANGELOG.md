@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- The overview and the server page load less: the code and styles for holidays load only on a day with one.
 ## 1.5.5
 
 - The line under a server's name (status, software, address) stays one line on narrower screens: a long software name is shortened with … instead of pushing the address to a second line, so every server's page keeps the same height. Between 961 and 1200 px the message of the day box is a little narrower to make room.

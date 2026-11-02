@@ -1060,6 +1060,18 @@ async function seasons(theme) {
     try { await look(tag, label); } catch (e) { problems.push(`${stand} season-${tag}: ${e.message.slice(0, 160)}`); }
     await page.close().catch(() => {});
   }
+  // On a day without a holiday seasons.js and seasons.css do not load, once this device knows the year's days (V47);
+  // on Halloween they do.
+  for (const [time, want] of [['2026-07-10T12:00:00', false], ['2026-10-30T12:00:00', true]]) {
+    page = await fresh(time);
+    try {
+      await goto(overview); await sleep(1500);
+      const loaded = []; page.on('request', (r) => { if (/seasons\.(js|css)/.test(r.url())) loaded.push(r.url().split('?')[0].split('/').pop()); });
+      await page.reload().catch(() => {}); await page.waitForLoadState('load').catch(() => {}); await sleep(2000);
+      problems.push(`${stand} season-lazy-${time.slice(5, 10)}: ${(loaded.length > 0) === want ? 'ok' : 'WRONG'} ${JSON.stringify({ want, loaded })}`);
+    } catch (e) { problems.push(`${stand} season-lazy: ${e.message.slice(0, 160)}`); }
+    await page.close().catch(() => {});
+  }
   // Halloween with "× Pelican" off, and with a logo instead of the name (the boot data, as the settings would set it).
   page = await fresh('2026-10-30T12:00:00');
   try {

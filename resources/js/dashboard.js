@@ -109,6 +109,8 @@
       uiScale: 1,
       destroyed: false,
       seasonClock: 0,
+      // Turns true when seasons.js has loaded (only on a day with a holiday), so the seasonal parts look again.
+      seasonsLoaded: false,
       easterFound: false,
 
       init() {
@@ -122,7 +124,6 @@
           this.openAllNotifications();
         }
         this.$nextTick(() => this.initOverviewDock());
-        setTimeout(() => { this.releaseBats(); this.playSeason(); this.startSeasonClock(); }, 600);
         this.recordOverview(this.boot.servers);
         this.refreshTimer = setInterval(() => this.refreshOverview(), this.refreshSeconds);
         // Host health is asked right after first paint when no snapshot was ready, so Wings never holds up the page.
@@ -140,6 +141,7 @@
         for (const [key, id] of menus) this.$watch(key, (open) => open && this.$nextTick(() => this.fitDropdown(document.getElementById(id))));
         addEventListener('resize', () => menus.forEach(([key, id]) => this[key] && this.fitDropdown(document.getElementById(id))));
         this.restoreOverviewPreferences();
+        this.loadSeasons();
         this.overviewGroups = this.cleanOverviewGroups(this.boot.overview_groups?.groups);
         this.overviewServerOrder = SERVER_ORDERS.some((o) => o.key === this.boot.overview_groups?.order) ? this.boot.overview_groups.order : 'name';
         this.feed = { ...this.feed, ...this.boot.notifications };
@@ -639,13 +641,37 @@
 
       /** The holidays on today (seasons.js), for this panel, whether or not they are turned off. Worked out once a day. */
       seasonsToday() {
-        const today = new Date(), stamp = today.toDateString();
+        const today = new Date(), stamp = today.toDateString() + this.seasonsLoaded;
         if (seasonCache?.stamp !== stamp) {
           const born = this.boot.panel_born ? new Date(this.boot.panel_born * 1000) : null;
           const list = window.SimplifySeasons?.active(today, { dutch: /^nl\b/i.test(document.documentElement.lang || ''), born }) || [];
           seasonCache = { stamp, list };
         }
         return seasonCache.list;
+      },
+      /** seasons.js and seasons.css load only on a day with a holiday. After the first look this device remembers the
+          holiday days of the year (simplify.seasonDays), so on any other day nothing seasonal is loaded. */
+      loadSeasons() {
+        const files = window.simplifySeasonFiles;
+        if (!files || typeof document === 'undefined') return;
+        const today = new Date(), dutch = /^nl\b/i.test(document.documentElement.lang || '');
+        const ready = () => {
+          if (!document.getElementById('ps-seasons-css')) document.head.append(Object.assign(document.createElement('link'), { id: 'ps-seasons-css', rel: 'stylesheet', href: files.css }));
+          try {
+            const known = JSON.parse(localStorage.getItem('simplify.seasonDays') || 'null');
+            if (known?.year !== today.getFullYear() || known.dutch !== dutch) localStorage.setItem('simplify.seasonDays', JSON.stringify({ year: today.getFullYear(), dutch, days: window.SimplifySeasons.days(today.getFullYear(), dutch) }));
+          } catch {}
+          this.seasonsLoaded = true;
+          if (!this.server) setTimeout(() => { this.releaseBats(); this.playSeason(); this.startSeasonClock(); }, 600);
+        };
+        if (window.SimplifySeasons) return ready();
+        const born = this.boot.panel_born ? new Date(this.boot.panel_born * 1000) : null;
+        const birthday = born && born.getMonth() === today.getMonth() && born.getDate() === today.getDate();
+        let known = null;
+        try { known = JSON.parse(localStorage.getItem('simplify.seasonDays') || 'null'); } catch {}
+        const stamp = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+        if (!birthday && known?.year === today.getFullYear() && known.dutch === dutch && Array.isArray(known.days) && !known.days.includes(stamp)) return;
+        document.head.append(Object.assign(document.createElement('script'), { src: files.js, onload: ready }));
       },
       /** The seasonal touches show unless the panel (Settings, Appearance) or this person (Customize) turned them off. */
       seasons() {
