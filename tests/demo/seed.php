@@ -127,6 +127,8 @@ $part('people and roles', function () {
     }
 });
 $part('settings (setup done)', fn () => PanelSettings::save(['setup_done' => true, 'brand_name' => 'Northwind Games', 'support_url' => 'https://discord.gg/example']));
+// Seasonal decorations stay out of the demo (they never appear in screenshots or Hub material).
+$part('no seasonal decorations', fn () => PanelSettings::save(['seasonal' => false]));
 $part('server colours', function () use ($list, $servers) {
     foreach ($list as [$name, , , , , , $color]) {
         if ($color) {

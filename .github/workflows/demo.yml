@@ -26,7 +26,7 @@ jobs:
       matrix:
         variant: ${{ fromJson(needs.plan.outputs.variants) }}
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 200
     env:
       PELICAN: '1.0.0-rc.2'
     steps:
@@ -107,6 +107,24 @@ jobs:
           name: panel-kit
           path: panel-kit.tgz
           retention-days: 7
+      # The clickable static site (tests/demo/site): every page with its own scripts and every answer of the panel, so
+      # it works without a panel. On the branch demo-site, which a static host can publish as it is.
+      - if: steps.plan.outputs.skip == '0' && matrix.variant == 'main'
+        name: Record the clickable site
+        working-directory: panel
+        continue-on-error: true
+        run: |
+          cd ../demo/tests/demo
+          npm init -y > /dev/null
+          npm install --silent playwright@1.48.2
+          npx playwright install --with-deps chromium > /dev/null
+          node site/record.cjs --base http://127.0.0.1:8001 --panel ../../../panel --urls ../../../panel/urls.json --servers ../../../panel/servers.json --out ../../../site --pages 400 --minutes 50
+          cd ../../../site
+          du -sh . && find . -type f | wc -l
+          git init -q -b site
+          git add -A
+          git -c user.name=demo -c user.email=demo@users.noreply.github.com commit -qm "Demo site ${{ github.sha }}"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" site:refs/heads/demo-site
       - if: steps.plan.outputs.skip == '0'
         name: Record every screen
         working-directory: panel
