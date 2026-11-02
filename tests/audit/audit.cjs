@@ -867,7 +867,9 @@ async function fixesFlow() {
       for (let y = 230; y <= 420; y += 10) { await touch('touchMove', y); await sleep(16); }
       const mark = await p2.evaluate(() => { const m = document.querySelector('.s-pull'); return m ? { shown: m.getClientRects().length > 0, ready: m.classList.contains('is-ready') } : null; }).catch(() => null);
       const shot = page; page = p2; await record(name, label); page = shot;
-      await touch('touchEnd', 420); await sleep(3500);
+      // The reload may take longer than a few seconds on the test panel: wait for it, up to 15 s.
+      const reloaded = p2.waitForEvent('load', { timeout: 15000 }).catch(() => null);
+      await touch('touchEnd', 420); await reloaded; await sleep(500);
       const at = new URL(p2.url()).pathname;
       await p2.close().catch(() => {});
       return { mark, loads, at };
