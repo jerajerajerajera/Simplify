@@ -53,7 +53,6 @@ return [
         'changes_made' => 'Cambios realizados',
         'save' => 'Guardar',
         'discard' => 'Descartar',
-        'saved' => 'Guardado',
         'leave_title' => 'Cambios sin guardar',
         'leave_message' => 'Tus cambios en esta página aún no se han guardado. ¿Guardarlos antes de salir?',
         'failed' => 'No se guardó. Revisa los campos e inténtalo de nuevo.',

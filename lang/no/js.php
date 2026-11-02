@@ -53,7 +53,6 @@ return [
         'changes_made' => 'Endringer gjort',
         'save' => 'Lagre',
         'discard' => 'Forkast',
-        'saved' => 'Lagret',
         'leave_title' => 'Ulagrede endringer',
         'leave_message' => 'Endringene dine på denne siden er ikke lagret ennå. Lagre før du går?',
         'failed' => 'Ikke lagret. Sjekk feltene og prøv igjen.',

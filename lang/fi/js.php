@@ -53,7 +53,6 @@ return [
         'changes_made' => 'Muutoksia tehty',
         'save' => 'Tallenna',
         'discard' => 'Hylkää',
-        'saved' => 'Tallennettu',
         'leave_title' => 'Tallentamattomia muutoksia',
         'leave_message' => 'Muutoksiasi tällä sivulla ei ole vielä tallennettu. Tallennetaanko ennen poistumista?',
         'failed' => 'Ei tallennettu. Tarkista kentät ja yritä uudelleen.',

@@ -53,7 +53,6 @@ return [
         'changes_made' => 'Ändringar gjorda',
         'save' => 'Spara',
         'discard' => 'Ignorera',
-        'saved' => 'Sparat',
         'leave_title' => 'Osparade ändringar',
         'leave_message' => 'Dina ändringar på den här sidan är inte sparade än. Spara innan du lämnar?',
         'failed' => 'Inte sparat. Kontrollera fälten och försök igen.',

@@ -16,5 +16,6 @@ php tests/subdomains.php
 php tests/hub.php
 php tests/lang.php
 node tests/seasons.cjs
+node tests/unsaved.cjs
 python3 tests/hub-check.py
 python3 tests/audit/parts.py --self-test

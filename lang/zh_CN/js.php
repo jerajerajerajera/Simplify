@@ -53,7 +53,6 @@ return [
         'changes_made' => '有更改',
         'save' => '保存',
         'discard' => '放弃',
-        'saved' => '已保存',
         'leave_title' => '未保存的更改',
         'leave_message' => '此页面上的更改尚未保存。离开前要保存吗？',
         'failed' => '未保存。请检查字段后重试。',

@@ -53,7 +53,6 @@ return [
         'changes_made' => 'Wijzigingen gemaakt',
         'save' => 'Opslaan',
         'discard' => 'Verwerpen',
-        'saved' => 'Opgeslagen',
         'leave_title' => 'Niet-opgeslagen wijzigingen',
         'leave_message' => 'Je wijzigingen op deze pagina zijn nog niet opgeslagen. Opslaan voordat je weggaat?',
         'failed' => 'Niet opgeslagen. Controleer de velden en probeer het opnieuw.',

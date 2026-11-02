@@ -7,6 +7,8 @@
 <link rel="apple-touch-icon" href="{{ \Simplify\Core\WebApp\WebApp::icon(180)[0] }}">
 <script src="{{ \Simplify\Core\Support\Assets::url('pull.js') }}" defer></script>
 <script src="{{ \Simplify\Core\Support\Assets::url('sheet.js') }}" defer></script>
+<script>window.simplifyUnsavedText = @js([...__('simplify::js.unsaved'), 'cancel' => __('simplify::js.common.cancel')]);</script>
+<script src="{{ \Simplify\Core\Support\Assets::url('unsaved.js') }}" defer></script>
 <script>
     // A page inside host mode's frame drops Pelican's own menus; it keeps that through every link it follows.
     try {

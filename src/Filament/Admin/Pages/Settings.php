@@ -192,13 +192,11 @@ final class Settings extends Page implements HasForms
     }
 
     /** @param  bool  $auto  saved on its own on a phone, which says so in its own toast (settings.blade.php) */
-    public function save(bool $auto = false): void
+    public function save(): void
     {
         abort_unless(self::canAccess(), 403);
         PanelSettings::saveForm($this->form->getState());
-        if (! $auto) {
-            Notification::make()->title(__('simplify::settings.saved'))->success()->send();
-        }
+        Notification::make()->title(__('simplify::settings.saved'))->success()->send();
     }
 
     /**

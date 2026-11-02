@@ -934,13 +934,30 @@ async function fixesFlow() {
     const eggs = await page.evaluate(() => { const rows = [...document.querySelectorAll('.fi-ta-row')].filter((r) => r.getClientRects().length); const shown = (s) => [...document.querySelectorAll(s)].filter((e) => e.getClientRects().length > 0).length; return { rows: rows.length, tallest: Math.max(0, ...rows.map((r) => Math.round(r.getBoundingClientRect().height))), checkboxes: shown('.fi-ta-table .fi-ta-record-checkbox'), head: shown('.fi-ta-table thead'), descriptions: shown('.fi-ta-table .fi-ta-cell :is([class$="-description"], [class*="-description "])'), names: [...document.querySelectorAll('.fi-ta-row')].filter((r) => r.getClientRects().length && /[A-Za-z]{3}/.test(r.innerText)).length, wide: document.documentElement.scrollWidth > innerWidth + 1 }; }).catch(() => null);
     await record('phone-eggs', 'Telefoon · Eggs als korte rijen');
     say('phone-eggs', eggs && eggs.rows > 0 && eggs.names === eggs.rows && eggs.tallest <= 90 && !eggs.checkboxes && !eggs.head && !eggs.descriptions, eggs);
-    // Simplify's settings save themselves on a phone: no Save button, and a toast after a change.
+    // Nothing saves itself (P-38): Save stays, a change shows "Changes made" with Save and Discard, and leaving asks first.
     await goto(new URL('/admin/simplify', base).href, 2500);
     const save = await vis('.s-save-button, .s-settings > .s-bar button[type="submit"]');
     const sw = page.locator('.s-settings .fi-active :is([role="switch"], input[type="checkbox"]) >> visible=true').first();
-    let toast = null;
-    if (await sw.count()) { await sw.click().catch(() => {}); await page.waitForSelector('.s-saved', { state: 'visible', timeout: 6000 }).catch(() => {}); toast = await vis('.s-saved'); await record('phone-autosave', 'Telefoon · instellingen slaan zelf op'); await sw.click().catch(() => {}); await sleep(2500); }
-    say('phone-autosave', save === false && toast === true, { save, toast });
+    const unsaved = { save, bar: null, asked: null, stayed: null, gone: null };
+    if (await sw.count()) {
+      await sw.click().catch(() => {});
+      await page.waitForSelector('.s-unsaved:not([hidden])', { timeout: 6000 }).catch(() => {});
+      unsaved.bar = await vis('.s-unsaved');
+      await record('phone-unsaved', 'Telefoon · Changes made met Save');
+      // Leaving through a link of the page asks Save, Discard or Cancel; Cancel stays on the page with the change.
+      await page.evaluate(() => { const a = Object.assign(document.createElement('a'), { href: '/admin' }); a.setAttribute('wire:navigate', ''); a.id = 'ps-audit-leave'; a.textContent = '.'; document.body.append(a); a.click(); }).catch(() => {});
+      await page.waitForSelector('.s-unsaved-dialog', { timeout: 3000 }).catch(() => {});
+      unsaved.asked = await vis('.s-unsaved-dialog');
+      await record('phone-unsaved-leave', 'Telefoon · weggaan vraagt eerst');
+      await page.locator('.s-unsaved-dialog .s-unsaved-btn').first().click().catch(() => {});
+      await sleep(300);
+      unsaved.stayed = new URL(page.url()).pathname.endsWith('/admin/simplify') && !(await vis('.s-unsaved-dialog'));
+      // Setting it back is no change any more: the bar goes away.
+      await sw.click().catch(() => {});
+      await page.waitForSelector('.s-unsaved', { state: 'hidden', timeout: 3000 }).catch(() => {});
+      unsaved.gone = !(await vis('.s-unsaved'));
+    }
+    say('phone-unsaved', save === true && unsaved.bar === true && unsaved.asked === true && unsaved.stayed === true && unsaved.gone === true, unsaved);
   }
   // Pull to refresh in the installed app (pull.js): only on the overview (Jeroen 2-11). There a finger pulled down from
   // the top shows the mark and reloads; in the settings a pull must not reload (it sent you back to the overview).

@@ -53,7 +53,6 @@ return [
         'changes_made' => 'Atlikti pakeitimai',
         'save' => 'Išsaugoti',
         'discard' => 'Atmesti',
-        'saved' => 'Išsaugota',
         'leave_title' => 'Neišsaugoti pakeitimai',
         'leave_message' => 'Jūsų pakeitimai šiame puslapyje dar neišsaugoti. Išsaugoti prieš išeinant?',
         'failed' => 'Neišsaugota. Patikrinkite laukus ir bandykite dar kartą.',

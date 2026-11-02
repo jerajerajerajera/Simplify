@@ -53,7 +53,6 @@ return [
         'changes_made' => 'Değişiklikler yapıldı',
         'save' => 'Kaydet',
         'discard' => 'Vazgeç',
-        'saved' => 'Kaydedildi',
         'leave_title' => 'Kaydedilmemiş değişiklikler',
         'leave_message' => 'Bu sayfadaki değişiklikleriniz henüz kaydedilmedi. Ayrılmadan önce kaydedilsin mi?',
         'failed' => 'Kaydedilmedi. Alanları kontrol edip tekrar deneyin.',

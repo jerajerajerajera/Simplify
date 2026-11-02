@@ -53,7 +53,6 @@ return [
         'changes_made' => 'Wprowadzono zmiany',
         'save' => 'Zapisz',
         'discard' => 'Odrzuć',
-        'saved' => 'Zapisano',
         'leave_title' => 'Niezapisane zmiany',
         'leave_message' => 'Zmiany na tej stronie nie zostały jeszcze zapisane. Zapisać przed wyjściem?',
         'failed' => 'Nie zapisano. Sprawdź pola i spróbuj ponownie.',

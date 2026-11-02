@@ -53,7 +53,6 @@ return [
         'changes_made' => 'Alterações feitas',
         'save' => 'Salvar',
         'discard' => 'Descartar',
-        'saved' => 'Salvo',
         'leave_title' => 'Alterações não salvas',
         'leave_message' => 'Suas alterações nesta página ainda não foram salvas. Salvar antes de sair?',
         'failed' => 'Não salvo. Verifique os campos e tente novamente.',

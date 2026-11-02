@@ -53,7 +53,6 @@ return [
         'changes_made' => 'Đã có thay đổi',
         'save' => 'Lưu',
         'discard' => 'Hủy bỏ',
-        'saved' => 'Đã lưu',
         'leave_title' => 'Thay đổi chưa lưu',
         'leave_message' => 'Các thay đổi trên trang này chưa được lưu. Lưu trước khi rời đi?',
         'failed' => 'Chưa lưu. Hãy kiểm tra các trường và thử lại.',

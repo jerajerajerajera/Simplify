@@ -139,6 +139,29 @@ it is newer than `Looks::save()`, so check `defined(Looks::class.'::COLORS')` fi
 `Simplify\Core\Embed\Services\EmbedServers::visible($server)` and `setVisible($server, $on)` read and set a server's
 "Show on the website" choice (the same as its Website page). They check no permissions: the caller does that.
 
+## Unsaved changes
+
+Nothing in Simplify saves itself. Give your settings form the attribute `data-simplify-unsaved` and Simplify does the
+rest: as soon as what the form holds differs from what was loaded or last saved, a bar says "Changes made" with Discard
+and Save, and leaving the page (a link, a menu click with `wire:navigate`, going back, closing the tab) asks Save,
+Discard or Cancel first.
+
+```blade
+<form wire:submit="save" data-simplify-unsaved="data">
+    {{ $this->form }}
+</form>
+```
+
+- The value names the Livewire properties to compare, comma separated. Left empty, a page with a `data` property (any
+  Filament page) compares `data`, any other component all its properties, and a form outside Livewire its fields.
+- Save in the bar submits the form. When the save is not the form's own submit, name the Livewire method with
+  `data-simplify-save="method"`. A call of that method (or a Filament action of that name, like a Save button in the
+  page's header) with no validation errors counts as saved; with errors the bar says the changes were not saved.
+- Discard reloads the page. Say that it was saved in your own way (a Filament notification); the bar only goes away.
+- From a script: `window.SimplifyUnsaved.guard(go)` asks first when there are changes and then runs `go` (use it when
+  you close a sheet that holds a form); `window.SimplifyUnsaved.dirty()` tells whether there are any.
+- On an older Simplify the attributes do nothing, so the form still works as before.
+
 ## Events
 
 Some things go through Laravel events with a plain string name, so an add-on needs no Simplify class for them.

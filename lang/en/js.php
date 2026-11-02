@@ -53,7 +53,6 @@ return [
         'changes_made' => 'Changes made',
         'save' => 'Save',
         'discard' => 'Discard',
-        'saved' => 'Saved',
         'leave_title' => 'Unsaved changes',
         'leave_message' => 'Your changes on this page are not saved yet. Save them before you leave?',
         'failed' => 'Not saved. Check the fields and try again.',

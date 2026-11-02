@@ -53,7 +53,6 @@ return [
         'changes_made' => 'Ada perubahan',
         'save' => 'Simpan',
         'discard' => 'Buang',
-        'saved' => 'Tersimpan',
         'leave_title' => 'Perubahan belum disimpan',
         'leave_message' => 'Perubahan Anda di halaman ini belum disimpan. Simpan sebelum keluar?',
         'failed' => 'Tidak tersimpan. Periksa kolom lalu coba lagi.',

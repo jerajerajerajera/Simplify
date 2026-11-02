@@ -2212,13 +2212,26 @@ html.ps-frame .s-done {
   :is(.fi-panel-admin, .fi-panel-server) .fi-ta-table .fi-ta-row > .fi-ta-actions-cell { flex: none; margin-inline-start: auto; }
 }
 
-/* Phones (1.5.4): Simplify's settings save themselves (settings.blade.php); Save shows only on Pelican's own tabs.
-   A toast at the bottom says it was saved, with a tick that pops. */
-@media (max-width: 600px) {
-  .fi-page:has(.s-settings):not(:has(.fi-active .s-pelican-frame)) .s-save-button,
-  .s-settings:not(:has(.fi-active .s-pelican-frame)) > .s-bar { display: none !important; }
-}
-.s-saved { position: fixed; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); left: 50%; z-index: 80; display: flex; align-items: center; gap: 8px; padding: 9px 16px 9px 11px; border-radius: 999px; background: var(--s-ink, #18181b); color: var(--s-bg, #fff); font-size: 13px; font-weight: 600; white-space: nowrap; box-shadow: 0 10px 30px rgb(0 0 0 / .25); transform: translateX(-50%); }
-.s-saved svg { width: 20px; height: 20px; fill: none; stroke: #22c55e; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; animation: s-saved-pop .5s ease-out both; }
-@keyframes s-saved-pop { 0% { opacity: 0; transform: scale(.4); } 60% { transform: scale(1.2); } 100% { opacity: 1; transform: scale(1); } }
-@media (prefers-reduced-motion: reduce) { .s-saved svg { animation: none; } }
+/* Unsaved changes (P-38, unsaved.js): a bar at the bottom says "Changes made" with Discard and Save; leaving the
+   page with changes asks Save, Discard or Cancel. Above the console and the bottom nav. */
+.s-unsaved { position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); z-index: 90; display: flex; align-items: center; gap: 10px; max-width: calc(100vw - 24px); padding: 8px 8px 8px 14px; border: 1px solid rgb(245 158 11 / .55); border-radius: 14px; background: var(--s-ink, #18181b); color: var(--s-bg, #fff); font-size: 14px; font-weight: 600; box-shadow: 0 12px 34px rgb(0 0 0 / .3); transform: translateX(-50%); animation: s-unsaved-in .18s ease-out both; }
+.s-unsaved[data-mode="failed"] { border-color: rgb(239 68 68 / .7); }
+.s-unsaved svg { flex: none; width: 20px; height: 20px; fill: none; stroke: #f59e0b; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.s-unsaved[data-mode="failed"] svg { stroke: #ef4444; }
+.s-unsaved-text { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.s-unsaved-btn { flex: none; min-height: 36px; padding: 0 14px; border: 1px solid rgb(255 255 255 / .22); border-radius: 10px; background: transparent; color: inherit; font: inherit; font-size: 13px; cursor: pointer; }
+.s-unsaved-btn:hover { background: rgb(255 255 255 / .1); }
+.s-unsaved-btn.is-primary { border-color: transparent; background: var(--s-accent, var(--primary-600, #2563eb)); color: #fff; }
+.s-unsaved-btn.is-primary:hover { filter: brightness(1.08); }
+.s-unsaved-btn:disabled { opacity: .55; cursor: progress; }
+.s-unsaved-btn:focus-visible { outline: 2px solid var(--s-accent, #2563eb); outline-offset: 2px; }
+.s-unsaved-layer { position: fixed; inset: 0; z-index: 95; display: grid; place-items: center; padding: 16px; background: rgb(0 0 0 / .45); }
+.s-unsaved-dialog { width: min(420px, 100%); padding: 20px; border-radius: 16px; background: var(--s-bg, #fff); color: var(--s-ink, #18181b); box-shadow: 0 20px 50px rgb(0 0 0 / .35); }
+.s-unsaved-dialog h2 { margin: 0 0 6px; font-size: 16px; font-weight: 700; }
+.s-unsaved-dialog p { margin: 0 0 18px; color: var(--s-muted, inherit); font-size: 14px; line-height: 1.45; }
+.s-unsaved-dialog footer { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+.s-unsaved-dialog .s-unsaved-btn { border-color: var(--s-border, rgb(0 0 0 / .15)); }
+.s-unsaved-dialog .s-unsaved-btn:not(.is-primary):hover { background: var(--s-hover, rgb(0 0 0 / .05)); }
+@keyframes s-unsaved-in { from { opacity: 0; transform: translate(-50%, 8px); } to { opacity: 1; transform: translate(-50%, 0); } }
+@media (max-width: 600px) { .s-unsaved { left: 12px; right: 12px; bottom: calc(76px + env(safe-area-inset-bottom, 0px)); transform: none; animation: none; } .s-unsaved-text { flex: 1; } }
+@media (prefers-reduced-motion: reduce) { .s-unsaved { animation: none; } }

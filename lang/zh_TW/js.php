@@ -53,7 +53,6 @@ return [
         'changes_made' => '有變更',
         'save' => '儲存',
         'discard' => '捨棄',
-        'saved' => '已儲存',
         'leave_title' => '未儲存的變更',
         'leave_message' => '此頁面上的變更尚未儲存。離開前要儲存嗎？',
         'failed' => '未儲存。請檢查欄位後再試一次。',

@@ -53,7 +53,6 @@ return [
         'changes_made' => 'Änderungen vorgenommen',
         'save' => 'Speichern',
         'discard' => 'Verwerfen',
-        'saved' => 'Gespeichert',
         'leave_title' => 'Ungespeicherte Änderungen',
         'leave_message' => 'Deine Änderungen auf dieser Seite sind noch nicht gespeichert. Vor dem Verlassen speichern?',
         'failed' => 'Nicht gespeichert. Prüfe die Felder und versuche es erneut.',

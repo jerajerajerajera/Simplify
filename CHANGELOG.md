@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Nothing saves itself any more, on a phone too. A change in Simplify's settings or a form page shows "Changes made" with Discard and Save at the bottom, and leaving the page with changes (a link, the menu, going back, closing the tab) asks Save, Discard or Cancel first. Add-ons use the same with one attribute (`data-simplify-unsaved`, see ADDONS.md).
 - Add-ons can give a start page (add-on contract API 5): the server list and the overview open it when an add-on gives one, and Pelican's admin pages then keep Simplify's header on top. The groups of the admin menu are now built on the server.
 - A suspended server's card no longer shows the tops of its CPU and RAM tiles above the note about the suspension.
 - The overview and the server page load less: the code and styles for holidays load only on a day with one.

@@ -174,8 +174,7 @@ const measure = (opts = {}) => {
         if (actions.length) push('savebelow', 'action button in the page instead of in host mode\'s title bar: ' + actions.slice(0, 5).map((el) => `${el.tagName.toLowerCase()}.${(el.className || '').toString().trim().split(/\s+/).slice(0, 2).join('.')} "${text(el)}" at y=${Math.round(el.getBoundingClientRect().top)}`).join(' | '));
         const sources = document.querySelectorAll('.fi-header-actions-ctn .fi-ac > :is(button, a), .fi-ta-header-toolbar > .fi-ta-actions > :is(button, a), .s-settings > .s-bar button[type=submit]').length;
         // Simplify's settings on a phone save themselves (1.5.4): no Save to bring up, and in the tree no Run setup again either.
-        const autosave = innerWidth <= 600 && document.querySelector('.s-settings') && !document.querySelector('.s-settings .fi-active .s-pelican-frame');
-        if (sources && !n && !autosave) push('toolslost', `the page has ${sources} action button(s) but host mode's title bar shows none`);
+        if (sources && !n) push('toolslost', `the page has ${sources} action button(s) but host mode's title bar shows none`);
         const header = document.querySelector('.fi-header'); if (header && visible(header) && !header.closest('.fi-modal')) r.info.frameHeader = text(header);
         const crumbs = document.querySelector('.fi-breadcrumbs'); if (crumbs && visible(crumbs)) push('filamentlook', 'Filament breadcrumbs shown inside host mode\'s frame: "' + text(crumbs) + '"');
       }
