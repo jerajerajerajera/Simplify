@@ -74,8 +74,8 @@ wsServer(http.createServer(async (req, res) => {
     for (const [name, content] of Object.entries(files)) {
       if (!name.startsWith(dir === '/' ? '/' : dir + '/')) continue;
       const tail = name.slice(dir === '/' ? 1 : dir.length + 1), first = tail.split('/')[0];
-      seen[first] ??= tail.includes('/') ? { name: first, mode: 'drwxr-xr-x', mode_bits: '755', size: 4096, file: false, symlink: false, mime: 'inode/directory', created: new Date().toISOString(), modified: new Date().toISOString() }
-        : { name: first, mode: '-rw-r--r--', mode_bits: '644', size: content.length, file: true, symlink: false, mime: 'application/java-archive', created: new Date().toISOString(), modified: (s.modified || {})[name] || new Date(Date.now() - 864e5).toISOString() };
+      seen[first] ??= tail.includes('/') ? { name: first, mode: 'drwxr-xr-x', mode_bits: '755', size: 4096, directory: true, file: false, symlink: false, mime: 'inode/directory', created: new Date().toISOString(), modified: new Date().toISOString() }
+        : { name: first, mode: '-rw-r--r--', mode_bits: '644', size: content.length, directory: false, file: true, symlink: false, mime: 'application/java-archive', created: new Date().toISOString(), modified: (s.modified || {})[name] || new Date(Date.now() - 864e5).toISOString() };
     }
     return Object.keys(seen).length || dir === '/' ? send(200, Object.values(seen)) : send(404, { error: 'The requested resource does not exist on this instance.' });
   }
