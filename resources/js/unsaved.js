@@ -175,6 +175,14 @@
     const url = new URL(link.href, location.href);
     return !(url.origin === location.origin && url.pathname === location.pathname && url.search === location.search);
   };
+  // Livewire starts a wire:navigate link on mousedown (and goes on mouseup), before any click: with changes the press
+  // stops here, so the click below can ask first.
+  document.addEventListener('mousedown', (event) => {
+    const link = event.target.closest?.('a[href][wire\\:navigate], a[href][wire\\:navigate\\.hover]');
+    if (leaving || !leavesPage(link, event)) return;
+    check();
+    if (unsavedForms().length) event.stopImmediatePropagation();
+  }, true);
   document.addEventListener('click', (event) => {
     const link = event.target.closest?.('a[href]');
     if (leaving || !leavesPage(link, event)) return;

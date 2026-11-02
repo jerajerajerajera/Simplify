@@ -65,6 +65,11 @@ const page = `<!doctype html><meta charset="utf-8"><body>
     document.getElementById('lwname').dispatchEvent(new Event('input', { bubbles: true }));
     await wait(150);
     ok('a Livewire change shows Changes made', bar() === 'changes', bar());
+    // Livewire starts wire:navigate on mousedown: with changes that press must not reach the link.
+    let pressed = 0;
+    document.getElementById('away').addEventListener('mousedown', () => pressed++);
+    document.getElementById('away').dispatchEvent(new MouseEvent('mousedown', { bubbles: true, button: 0 }));
+    ok('a press on a wire:navigate link does not start Livewire', pressed === 0, pressed);
     document.getElementById('away').click();
     await wait(50);
     ok('leaving with changes asks first', dialog() && window.navigated.length === 0, { dialog: dialog(), navigated: window.navigated });

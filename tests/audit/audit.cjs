@@ -247,6 +247,7 @@ async function round(theme) {
       await page.locator('.s-unsaved-dialog .s-unsaved-btn').first().click().catch(() => {});
       await sleep(400);
       st.stayed = rel(page.url()) === rel(mc.url) && !(await shown('.s-unsaved-dialog'));
+      st.url = rel(page.url());
       const good = st.bar === true && st.asked === true && st.stayed === true;
       problems.push(`${stand} server-addon-unsaved: ${good ? 'ok' : 'WRONG'} ${JSON.stringify(st)}`);
       // Set back, so nothing is left unsaved.
