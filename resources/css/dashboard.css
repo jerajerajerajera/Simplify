@@ -537,6 +537,15 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 .ps-info-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; min-width: 0; color: var(--ps-muted); font-size: 13px; }
 .ps-info-meta-item { display: inline-flex; align-items: center; gap: 6px; min-width: 0; }
 .ps-info-meta-item > span { overflow-wrap: anywhere; }
+/* The line stays one line (server.blade.php): a long software name gets an ellipsis first, the address last, so every
+   server's title card, and the content box under it, keeps the same height. A phone shows status and address only. */
+@media (min-width: 601px) {
+  .ps-info-meta { flex-wrap: nowrap; }
+  .ps-info-meta > .ps-badge { flex: none; }
+  .ps-info-meta-item { flex: 0 100 auto; }
+  .ps-info-meta .ps-address { flex: 0 1 auto; min-width: 0; }
+  :is(.ps-info-meta-item, .ps-info-meta .ps-address) > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+}
 .ps-menu-item .ps-menu-item-out { width: 13px; height: 13px; margin-left: auto; opacity: .6; }
 .ps-info-meta svg { flex: none; width: 15px; height: 15px; }
 .ps-address { display: inline-flex; align-items: center; gap: 6px; max-width: 100%; padding: 0; border: 0; background: none; color: var(--ps-ink); font-size: 13px; font-weight: 600; text-align: start; cursor: pointer; }
@@ -875,7 +884,7 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
    dot and the command line. The chevron pulls the last log lines open; "Full console" closes the workspace. */
 @media (max-width: 1200px) {
   .ps-server-stats { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-  .ps-info-motd { width: 260px; }
+  .ps-info-motd { width: 200px; }
 }
 @media (max-width: 960px) {
   .ps-console-grow, .ps-console-window { display: none !important; }

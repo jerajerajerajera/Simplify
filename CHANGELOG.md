@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- The line under a server's name (status, software, address) stays one line on narrower screens: a long software name is shortened with … instead of pushing the address to a second line, so every server's page keeps the same height. Between 961 and 1200 px the message of the day box is a little narrower to make room.
+- Pelican's admin pages on a tablet or small window no longer scroll by the height of the menu button at the top.
 - Add-ons can put their own pages in the account menu, such as Server Maker's Steam account. They open inside Simplify, in the content area (add-on contract API 4).
 - Settings › Browse Hub: the themes, plugins and languages on the Pelican Hub, inside Simplify. Every item shows its maker first, and the makers are a filter of their own; Details shows the full description and the Hub's screenshots, and items you already have are marked Installed. Install on Hub opens the item on the Hub, which installs it on your panel through its own connection, so every download counts for its maker. The list is read from the Hub at most once an hour.
 - Edit schedule: the buttons (delete, run now, export, save) sit in a bar over the page instead of on top of the Name field. On a phone the tasks are short rows with their edit and delete buttons in view, instead of a table that ran off the screen (old plugin issue #236).
