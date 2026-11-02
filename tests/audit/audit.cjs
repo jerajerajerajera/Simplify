@@ -293,9 +293,20 @@ async function scheduleFlow() {
       inView: !!r && r.top >= 0 && r.bottom <= innerHeight, clickable: !!hit && (hit === action || action.contains(hit)) };
   });
   await sleep(500);
+  await reach(); await page.waitForSelector('.fi-ta-row >> visible=true', { timeout: 10000 }).catch(() => {});
   const st = await reach();
+  // Where the Tasks block is when there are no rows: the headings on the page, relation managers, lazy placeholders.
+  if (!st.tasks) st.page = await page.evaluate(() => ({ headings: [...document.querySelectorAll('h2, h3, .fi-section-header-heading, .fi-ta-header-heading')].filter((e) => e.getClientRects().length).map((e) => e.textContent.trim()).slice(0, 12),
+    managers: document.querySelectorAll('.fi-resource-relation-managers, .fi-resource-relation-manager').length, lazy: document.querySelectorAll('[wire\\:init], [x-intersect]').length,
+    tables: document.querySelectorAll('.fi-ta-ctn').length, hidden: [...document.querySelectorAll('.fi-ta-ctn, .fi-resource-relation-managers')].filter((e) => !e.getClientRects().length).map((e) => e.className.slice(0, 80)) })).catch(() => null);
   await record('schedule-edit', 'Schedules · taak bewerken (onderaan)');
   say('schedule-edit', st.tasks >= 3 && st.inView && st.clickable && st.pageScroll <= 1, st);
+  // The page's buttons (delete, run, export, save) never lie over a field (phone390, 2-11: they covered the Name field).
+  const over = await page.evaluate(() => { const v = (e) => e.getClientRects().length > 0; const btns = [...document.querySelectorAll('.fi-header-actions-ctn button, .fi-header-actions-ctn a, .fi-ac button')].filter(v);
+    const fields = [...document.querySelectorAll('.fi-input-wrp, input:not([type=hidden]), .fi-fo-toggle')].filter(v);
+    for (const b of btns) { const r = b.getBoundingClientRect(); for (const f of fields) { const q = f.getBoundingClientRect(); if (r.left < q.right - 1 && r.right > q.left + 1 && r.top < q.bottom - 1 && r.bottom > q.top + 1 && !f.contains(b) && !b.contains(f)) return { button: (b.getAttribute('aria-label') || b.textContent.trim()).slice(0, 30), field: (f.getAttribute('name') || f.id || f.className).slice(0, 40) }; } }
+    return null; }).catch(() => null);
+  say('schedule-buttons-free', !over, over);
 }
 
 // Server Maker (section=maker, with servermaker): every wizard step on a real screen, for its own docs/screenshots:
