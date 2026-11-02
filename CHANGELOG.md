@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Add-ons can put their own pages in the account menu, such as Server Maker's Steam account. They open inside Simplify, in the content area (add-on contract API 4).
+- Settings › Browse Hub: the themes, plugins and languages on the Pelican Hub, inside Simplify. Every item shows its maker first, and the makers are a filter of their own; Details shows the full description and the Hub's screenshots, and items you already have are marked Installed. Install on Hub opens the item on the Hub, which installs it on your panel through its own connection, so every download counts for its maker. The list is read from the Hub at most once an hour.
 - Edit schedule: the buttons (delete, run now, export, save) sit in a bar over the page instead of on top of the Name field. On a phone the tasks are short rows with their edit and delete buttons in view, instead of a table that ran off the screen (old plugin issue #236).
 - A suspended server's card tells its owner that the hosting company paused it, with the add-on's main link next to it (with Simplify-Hosting: Pay invoice). Admins see the card as before.
 - Pinned announcements on the overview sit under the top bar again, as wide as the servers, as in 0.7.0, instead of across the full width above it.

@@ -12,6 +12,7 @@ php tests/announcements-rules.php
 php tests/announcements-game-chat.php
 php tests/embed.php
 php tests/subdomains.php
+php tests/hub.php
 php tests/lang.php
 node tests/seasons.cjs
 python3 tests/hub-check.py

@@ -38,6 +38,8 @@ use Simplify\Core\Filament\Admin\Pages\Setup;
 use Simplify\Core\Filament\Admin\Pages\SetupDone;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Filament\Server\ServerPage;
+use Simplify\Core\Hub\HubCatalog;
+use Simplify\Core\Hub\Livewire\BrowseHub;
 use Simplify\Core\Models\Setting;
 use Simplify\Core\Overview\Bell as OverviewBell;
 use Simplify\Core\Overview\Listing;
@@ -56,6 +58,7 @@ use Simplify\Core\Support\Assets;
 use Simplify\Core\Support\Brand;
 use Simplify\Core\Support\PanelSettings;
 use Simplify\Core\Support\Preferences;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 define('LARAVEL_START', microtime(true));
 require getcwd().'/vendor/autoload.php';
@@ -291,6 +294,64 @@ step('every panel page loads the stylesheet', function () use ($admin) {
     $url = Settings::getUrl(panel: 'admin');
     if (! str_contains(visit($admin, $url)->getContent(), '/simplify/assets/simplify.css?v=')) {
         throw new RuntimeException('the stylesheet link is missing');
+    }
+});
+step('Browse Hub: a tab of the settings that lists the Hub with its makers and only links to the Hub', function () use ($admin) {
+    $asked = [];
+    Http::fake(['hub.pelican.dev/*' => function ($request) use (&$asked) {
+        $asked[] = $path = parse_url($request->url(), PHP_URL_PATH).'?'.parse_url($request->url(), PHP_URL_QUERY);
+        if (str_starts_with($path, '/api/plugins/nord-theme')) {
+            return Http::response(['slug' => 'nord-theme', 'screenshots' => ['https://peli.nyc3.digitaloceanspaces.com/nord.png'], 'license' => 'MIT']);
+        }
+
+        return Http::response(['last_page' => 1, 'data' => [
+            ['slug' => 'nord-theme', 'title' => 'Nord Theme', 'type' => 'theme', 'author_name' => 'smoke-maker', 'pricing_type' => 'free', 'downloads_count' => 89, 'description' => 'A light and dark arctic theme.'],
+            ['slug' => 'smoke-tickets', 'title' => 'Smoke Tickets', 'type' => 'plugin', 'author_name' => 'smoke-maker', 'pricing_type' => 'free', 'downloads_count' => 5, 'description' => 'Tickets.'],
+            ['slug' => 'paid-thing', 'title' => 'Paid', 'type' => 'plugin', 'author_name' => 'x', 'pricing_type' => 'paid'],
+        ]]);
+    }]);
+    HubCatalog::forget();
+    $url = Settings::getUrl(['tab' => 'hub'], panel: 'admin');
+    $response = visit($admin, $url);
+    expectOk($response, $url);
+    auth()->setUser($admin);
+    if (! str_contains($response->getContent(), __('simplify::settings.hub.tab')) || (collect(Settings::menu())->pluck('group', 'key')['settings:hub'] ?? null) !== 'addons') {
+        throw new RuntimeException('Browse Hub is not a tab of the settings under Add-ons');
+    }
+    if ($asked !== []) {
+        throw new RuntimeException('the settings page read the Hub before the tab was shown: '.json_encode($asked));
+    }
+    $hub = Livewire\Livewire::withoutLazyLoading()->test(BrowseHub::class);
+    $html = $hub->html();
+    foreach (['Nord Theme', 'smoke-maker', 'https://hub.pelican.dev/plugins/nord-theme', __('simplify::settings.hub.install'), 'peli.nyc3.digitaloceanspaces.com/nord.png'] as $want) {
+        if (! str_contains($html, $want)) {
+            throw new RuntimeException("the themes list misses $want");
+        }
+    }
+    $html = $hub->set('type', 'plugin')->html();
+    if (! str_contains($html, 'Smoke Tickets') || str_contains($html, 'Nord Theme') || str_contains($html, 'Paid')) {
+        throw new RuntimeException('the plugins list is wrong');
+    }
+    if (! str_contains($hub->call('show', 'smoke-tickets')->html(), 's-hub-dialog')) {
+        throw new RuntimeException('Details does not open');
+    }
+    $before = count($asked);
+    $hub->call('readAgain');
+    if (count($asked) !== $before) {
+        throw new RuntimeException('Read again read the Hub twice within five minutes');
+    }
+    $stranger = User::withoutEvents(fn () => User::factory()->create());
+    auth()->setUser($stranger);
+    try {
+        if (str_contains(Livewire\Livewire::withoutLazyLoading()->test(BrowseHub::class)->html(), 'Nord Theme')) {
+            throw new LogicException('a user who is no root admin could open Browse Hub');
+        }
+    } catch (HttpException $e) {
+        // Forbidden, as it should be.
+    } finally {
+        auth()->setUser($admin);
+        $stranger->delete();
+        HubCatalog::forget();
     }
 });
 $server = Server::query()->first() ?? Server::factory()->create(['owner_id' => $admin->id, 'name' => 'Smoke server']);
