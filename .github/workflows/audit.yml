@@ -24,7 +24,7 @@ on:
         description: 'Branch of Simplify to audit (empty = this checkout); the audit itself always comes from this checkout'
         default: ''
       section:
-        description: 'Only one section (empty = everything): seasons, extras, fixes (1.5.3: settings and setup on a phone, no Start/Restart while installing, steady quick commands), layers, first, nav, create, maker (Server Maker steps), hosting (the host mode of Simplify-Hosting, every page in its menu; pick its branch with hosting), schedule (Edit schedule reachable, #236), hub (Settings › Browse Hub: list, Install on Hub links, Details on top), inventory (every function, for the 0.7.0 diff), or compare (the overview measured, 8 servers)'
+        description: 'Only one section (empty = everything): seasons, extras, fixes (1.5.3: settings and setup on a phone, no Start/Restart while installing, steady quick commands), layers, first, nav, create, maker (Server Maker steps), schedule (Edit schedule reachable, #236), hub (Settings › Browse Hub: list, Install on Hub links, Details on top), inventory (every function, for the 0.7.0 diff), or compare (the overview measured, 8 servers)'
         default: ''
       from:
         description: 'A Simplify tag (e.g. v1.5.1) installed and seeded first; then the Simplify branch updates it, as on a real panel'
@@ -197,7 +197,7 @@ jobs:
           git init -q -b results
           git add -A
           git -c user.name=audit -c user.email=audit@users.noreply.github.com commit -qm "Audit ${{ github.sha }} ${{ matrix.stand }}"
-          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "results:refs/heads/audit-results-$(echo "${{ inputs.legacy && format('legacy-{0}', inputs.legacy) || inputs.simplify || github.ref_name }}${{ inputs.hosting && inputs.hosting != 'main' && format('-hosting-{0}', inputs.hosting) || '' }}" | tr "/" "-")${{ inputs.from && format('-from-{0}', inputs.from) || '' }}${{ (inputs.section == 'compare' || inputs.section == 'inventory') && format('-{0}', inputs.section) || '' }}${{ inputs.servermaker == 'none' && '-nosm' || '' }}-${{ matrix.stand }}"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "results:refs/heads/audit-results-$(echo "${{ inputs.legacy && format('legacy-{0}', inputs.legacy) || inputs.simplify || github.ref_name }}" | tr "/" "-")${{ inputs.from && format('-from-{0}', inputs.from) || '' }}${{ (inputs.section == 'compare' || inputs.section == 'inventory') && format('-{0}', inputs.section) || '' }}${{ inputs.servermaker == 'none' && '-nosm' || '' }}-${{ matrix.stand }}"
       - name: Fail when the compare verdict is red
         if: steps.compare.outcome == 'failure'
         run: |
