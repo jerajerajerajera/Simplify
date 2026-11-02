@@ -1,0 +1,930 @@
+/* Simplify's look: tokens first, then the shared components. Colours come from Filament's own variables, so a
+   Pelican theme plugin restyles Simplify too. Light values on :root, dark values on html.dark (Filament's switch). */
+:root {
+  --s-bg: var(--gray-50);
+  --s-surface: #fff;
+  --s-raised: var(--gray-100);
+  --s-ink: var(--gray-950);
+  --s-muted: var(--gray-600);
+  --s-line: var(--gray-200);
+  --s-accent: var(--primary-600);
+  --s-on-accent: #fff;
+  --s-ok: var(--success-700);
+  --s-warn: var(--warning-700);
+  --s-danger: var(--danger-600);
+
+  --s-text-sm: 12px;
+  --s-text: 14px;
+  --s-text-lg: 18px;
+
+  --s-radius-sm: 6px;
+  --s-radius: 10px;
+  --s-radius-pill: 999px;
+
+  --s-space-1: 4px;
+  --s-space-2: 8px;
+  --s-space-3: 12px;
+  --s-space-4: 16px;
+  --s-space-6: 24px;
+
+  --s-h: 36px;
+  --s-shadow: 0 1px 2px rgb(0 0 0 / .05);
+  --s-fast: .15s;
+}
+
+:root.dark {
+  --s-bg: var(--gray-950);
+  --s-surface: var(--gray-900);
+  --s-raised: var(--gray-800);
+  --s-ink: var(--gray-50);
+  --s-muted: var(--gray-400);
+  --s-line: color-mix(in oklab, var(--gray-700) 60%, var(--gray-800));
+  --s-accent: var(--primary-500);
+  --s-ok: var(--success-400);
+  --s-warn: var(--warning-400);
+  --s-danger: var(--danger-400);
+  --s-shadow: 0 1px 2px rgb(0 0 0 / .3);
+}
+
+/* Touch screens get 44px targets without per-component overrides. */
+@media (pointer: coarse) {
+  :root {
+    --s-h: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --s-fast: 0s;
+  }
+}
+
+/* Card: the one container. Square-ish corners, a thin line, no nested frames. */
+.s-card {
+  background: var(--s-surface);
+  border: 1px solid var(--s-line);
+  border-radius: var(--s-radius);
+  box-shadow: var(--s-shadow);
+  color: var(--s-ink);
+  padding: var(--s-space-4);
+}
+
+/* Button: one height, one shape. .s-btn-primary for the main action of a bar, at most one per bar. */
+.s-btn {
+  align-items: center;
+  background: var(--s-surface);
+  border: 1px solid var(--s-line);
+  border-radius: var(--s-radius-sm);
+  color: var(--s-ink);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: var(--s-text);
+  font-weight: 500;
+  gap: var(--s-space-2);
+  height: var(--s-h);
+  padding: 0 var(--s-space-3);
+  text-decoration: none;
+  transition: background var(--s-fast);
+  white-space: nowrap;
+}
+
+.s-btn:hover {
+  background: var(--s-raised);
+}
+
+.s-btn svg {
+  height: 18px;
+  width: 18px;
+}
+
+.s-btn-primary {
+  background: var(--s-accent);
+  border-color: transparent;
+  color: var(--s-on-accent);
+}
+
+.s-btn-primary:hover {
+  background: color-mix(in oklab, var(--s-accent) 88%, #000);
+}
+
+/* Toolbar: buttons on one line, aligned to the end on wide screens, wrapping on a phone. */
+.s-bar {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-space-2);
+  justify-content: flex-end;
+}
+
+/* Badge: a short status or fact. */
+.s-badge {
+  align-items: center;
+  background: var(--s-raised);
+  border-radius: var(--s-radius-pill);
+  color: var(--s-muted);
+  display: inline-flex;
+  font-size: var(--s-text-sm);
+  font-weight: 500;
+  gap: var(--s-space-1);
+  line-height: 1;
+  padding: var(--s-space-1) var(--s-space-2);
+}
+
+.s-badge-ok {
+  color: var(--s-ok);
+}
+
+.s-badge-warn {
+  color: var(--s-warn);
+}
+
+/* List row: icon, text, action. Used for add-ons and settings. */
+.s-row {
+  align-items: center;
+  border-top: 1px solid var(--s-line);
+  display: flex;
+  gap: var(--s-space-3);
+  padding: var(--s-space-3) 0;
+}
+
+.s-row:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.s-row:last-child {
+  padding-bottom: 0;
+}
+
+.s-row-icon {
+  color: var(--s-muted);
+  flex: none;
+  height: 20px;
+  width: 20px;
+}
+
+.s-row-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.s-muted {
+  color: var(--s-muted);
+  font-size: var(--s-text-sm);
+}
+
+.s-heading {
+  align-items: center;
+  display: inline-flex;
+  gap: var(--s-space-3);
+}
+
+.s-logo {
+  height: 28px;
+  width: auto;
+}
+
+/* Overview: a search field and the add-on buttons on one line, then the tiles. */
+.s-toolbar {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-space-2);
+  margin-bottom: var(--s-space-4);
+}
+
+.s-toolbar .s-bar {
+  margin-inline-start: auto;
+}
+
+.s-search {
+  background: var(--s-surface);
+  border: 1px solid var(--s-line);
+  border-radius: var(--s-radius-sm);
+  color: var(--s-ink);
+  flex: 1 1 240px;
+  font-size: var(--s-text);
+  height: var(--s-h);
+  max-width: 360px;
+  padding: 0 var(--s-space-3);
+}
+
+.s-btn-icon {
+  justify-content: center;
+  padding: 0;
+  width: var(--s-h);
+}
+
+.s-btn:disabled {
+  cursor: default;
+  opacity: .5;
+}
+
+.s-section-title {
+  align-items: center;
+  display: flex;
+  font-size: var(--s-text);
+  font-weight: 600;
+  gap: var(--s-space-2);
+  margin-bottom: var(--s-space-3);
+}
+
+/* Segmented choice: a few options side by side, the chosen one filled. */
+.s-segments {
+  background: var(--s-raised);
+  border-radius: var(--s-radius-sm);
+  display: inline-flex;
+  gap: 2px;
+  padding: 2px;
+}
+
+.s-segment {
+  align-items: center;
+  border-radius: calc(var(--s-radius-sm) - 2px);
+  color: var(--s-muted);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: var(--s-text);
+  height: calc(var(--s-h) - 4px);
+  justify-content: center;
+  padding: 0 var(--s-space-3);
+}
+
+.s-segment.is-active {
+  background: var(--s-surface);
+  box-shadow: var(--s-shadow);
+  color: var(--s-ink);
+}
+
+.s-segment svg {
+  height: 18px;
+  width: 18px;
+}
+
+@media (max-width: 600px) {
+
+  .s-search {
+    max-width: none;
+  }
+
+  .s-toolbar .s-bar {
+    margin-inline-start: 0;
+    width: 100%;
+  }
+}
+
+.s-btn-small {
+  --s-h: 28px;
+}
+
+/* People & roles */
+.s-avatar {
+  align-items: center;
+  background: var(--s-raised);
+  border-radius: var(--s-radius-pill);
+  display: inline-flex;
+  flex: none;
+  font-weight: 600;
+  height: 32px;
+  justify-content: center;
+  width: 32px;
+}
+
+.s-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-space-1);
+  margin-top: var(--s-space-1);
+}
+
+.s-person-meta {
+  align-items: center;
+  display: inline-flex;
+  gap: var(--s-space-1);
+}
+
+.s-person-meta svg {
+  height: 16px;
+  width: 16px;
+}
+
+.s-pages {
+  justify-content: center;
+  margin-top: var(--s-space-3);
+}
+
+@media (max-width: 600px) {
+  .s-people .s-row {
+    flex-wrap: wrap;
+  }
+}
+
+/* App notifications */
+.s-push {
+  display: grid;
+  gap: var(--s-space-4);
+  max-width: 720px;
+}
+
+.s-block {
+  display: block;
+}
+
+.s-push label.s-row {
+  cursor: pointer;
+}
+
+/* Switch: a checkbox drawn as a pill, so it stays a native, keyboard-friendly input. */
+.s-switch {
+  appearance: none;
+  background: var(--s-line);
+  border-radius: var(--s-radius-pill);
+  cursor: pointer;
+  flex: none;
+  height: 22px;
+  position: relative;
+  transition: background var(--s-fast);
+  width: 38px;
+}
+
+.s-switch::after {
+  background: #fff;
+  border-radius: var(--s-radius-pill);
+  box-shadow: var(--s-shadow);
+  content: "";
+  height: 18px;
+  inset-inline-start: 2px;
+  position: absolute;
+  top: 2px;
+  transition: transform var(--s-fast);
+  width: 18px;
+}
+
+.s-switch:checked {
+  background: var(--s-accent);
+}
+
+.s-switch:checked::after {
+  transform: translateX(16px);
+}
+
+.s-switch:focus-visible {
+  outline: 2px solid var(--s-accent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+  .s-push .s-row {
+    flex-wrap: wrap;
+  }
+}
+
+/* Setup */
+.s-ok {
+  color: var(--s-ok);
+}
+
+.s-warn {
+  color: var(--s-warn);
+}
+
+/* The setup: the same card as the settings, with the steps as the menu on the left and the step beside it. */
+.s-setup.fi-sc-wizard {
+  align-content: start;
+  background: var(--s-surface) !important;
+  border: 1px solid var(--s-line) !important;
+  border-radius: 20px !important;
+  box-shadow: none !important;
+  display: grid !important;
+  grid-template-columns: 236px minmax(0, 1fr);
+  overflow: clip;
+}
+
+.s-setup > :not(.fi-sc-wizard-header) {
+  grid-column: 2;
+  min-width: 0;
+}
+
+.s-setup > .fi-sc-wizard-header {
+  align-content: start;
+  background: none !important;
+  border: 0 !important;
+  border-inline-end: 1px solid var(--s-line) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  display: grid !important;
+  gap: 1px;
+  grid-auto-flow: row !important;
+  grid-column: 1;
+  grid-row: 1 / span 9;
+  grid-template-columns: minmax(0, 1fr) !important;
+  padding: 20px 10px 12px;
+}
+
+.s-setup .fi-sc-wizard-header-step {
+  border: 0 !important;
+  display: block !important;
+}
+
+/* Filament's arrows between the steps. */
+.s-setup .fi-sc-wizard-header-step > :not(button) {
+  display: none !important;
+}
+
+.s-setup .fi-sc-wizard-header-step > button {
+  align-items: center;
+  border-radius: var(--s-radius-sm);
+  display: flex;
+  gap: 9px;
+  min-height: 30px;
+  padding: 5px 9px !important;
+  text-align: start;
+  width: 100%;
+}
+
+.s-setup .fi-sc-wizard-header-step > button:hover {
+  background: var(--s-raised);
+}
+
+.s-setup .fi-sc-wizard-header-step.fi-active > button {
+  background: color-mix(in srgb, var(--s-tone) 14%, transparent);
+}
+
+.s-setup .fi-sc-wizard-header-step-icon-ctn {
+  background: color-mix(in srgb, var(--s-tone) 16%, transparent) !important;
+  border: 0 !important;
+  color: var(--s-tone) !important;
+  flex: none;
+  height: 22px !important;
+  width: 22px !important;
+}
+
+.s-setup .fi-sc-wizard-header-step.fi-active .fi-sc-wizard-header-step-icon-ctn {
+  background: var(--s-tone) !important;
+  color: #fff !important;
+}
+
+.s-setup :is(.fi-sc-wizard-header-step-icon-ctn .fi-icon, .fi-sc-wizard-header-step-number) {
+  color: inherit !important;
+  font-size: 11px;
+  height: 14px;
+  width: 14px;
+}
+
+.s-setup .fi-sc-wizard-header-step-label {
+  color: var(--s-ink) !important;
+  font: 550 13px/1.25 inherit !important;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.s-setup .fi-sc-wizard-header-step:nth-child(1) { --s-tone: #b48cf2; }
+.s-setup .fi-sc-wizard-header-step:nth-child(2) { --s-tone: #9a9aa6; }
+.s-setup .fi-sc-wizard-header-step:nth-child(3) { --s-tone: #e0a050; }
+.s-setup .fi-sc-wizard-header-step:nth-child(4) { --s-tone: #6ea8fe; }
+.s-setup .fi-sc-wizard-header-step:nth-child(5) { --s-tone: #4ec9a0; }
+
+.s-setup > .fi-sc-wizard-step {
+  padding: 22px 26px 8px !important;
+}
+
+.s-setup > .fi-sc-wizard-footer {
+  padding: 8px 26px 22px !important;
+}
+
+/* The first step: a card per add-on, with a small banner, to install from the Hub before the rest is set up. */
+.s-setup-addons-title {
+  color: var(--s-ink);
+  font-size: var(--s-text-lg);
+  font-weight: 650;
+}
+
+.s-setup-addons > p {
+  margin: 2px 0 var(--s-space-4);
+  max-width: 70ch;
+}
+
+.s-setup-addons-count {
+  align-items: center;
+  color: var(--s-muted);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 13px;
+  gap: var(--s-space-2);
+  justify-content: space-between;
+  margin-bottom: var(--s-space-3);
+}
+
+.s-addon-cards {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.s-addon-card {
+  background: var(--s-surface);
+  border: 1px solid var(--s-line);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Dark in both themes, like the add-ons' banners on the Hub. */
+.s-addon-card-banner {
+  align-items: center;
+  background: radial-gradient(120% 140% at 100% 0%, color-mix(in srgb, var(--s-tone) 30%, transparent), transparent 60%), #111723;
+  color: #f1f4fa;
+  display: flex;
+  gap: var(--s-space-3);
+  min-height: 86px;
+  padding: 16px;
+}
+
+.s-addon-card-icon {
+  background: color-mix(in srgb, var(--s-tone) 22%, transparent);
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--s-tone) 40%, transparent);
+  color: var(--s-tone);
+  display: grid;
+  flex: none;
+  height: 44px;
+  place-items: center;
+  width: 44px;
+}
+
+.s-addon-card-icon svg {
+  height: 24px;
+  width: 24px;
+}
+
+.s-addon-card-name {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -.3px;
+  line-height: 1.15;
+  min-width: 0;
+}
+
+.s-addon-card-name small {
+  color: var(--s-tone);
+  display: block;
+  font-size: var(--s-text-sm);
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.s-addon-card-tag {
+  align-self: flex-start;
+  background: rgb(255 255 255 / .1);
+  border-radius: var(--s-radius-pill);
+  font-size: 11px;
+  font-weight: 700;
+  margin-inline-start: auto;
+  padding: 2px 8px;
+  white-space: nowrap;
+}
+
+.s-addon-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--s-space-3);
+  padding: 12px 16px 14px;
+}
+
+.s-addon-card-foot {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: var(--s-text-sm);
+  gap: var(--s-space-2);
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.s-addon-card-foot .s-badge svg {
+  height: 14px;
+  width: 14px;
+}
+
+@media (max-width: 900px) {
+  .s-setup.fi-sc-wizard {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .s-setup > :not(.fi-sc-wizard-header) {
+    grid-column: 1;
+  }
+
+  /* Phones: the steps as two tidy columns above the step, like the settings menu. */
+  .s-setup > .fi-sc-wizard-header {
+    border-bottom: 1px solid var(--s-line) !important;
+    border-inline-end: 0 !important;
+    gap: 2px 6px;
+    grid-row: auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    padding: 8px;
+  }
+
+  .s-setup > .fi-sc-wizard-step {
+    padding: 16px 14px 4px !important;
+  }
+
+  .s-setup > .fi-sc-wizard-footer {
+    padding: 8px 14px 16px !important;
+  }
+
+  .s-addon-cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .s-addon-card-banner {
+    min-height: 0;
+    padding: 12px;
+  }
+}
+
+[dir="rtl"] .s-switch:checked::after {
+  transform: translateX(-16px);
+}
+
+/* A page in host mode's frame (head.blade.php): only the page itself, without Pelican's menus or Simplify's header. */
+html.ps-frame :is(.fi-topbar, .fi-sidebar, .fi-sidebar-close-overlay, .fi-layout-sidebar-toggle-btn-ctn, .fi-footer, [data-ps-footer], footer:not([class*="fi-"]), .ps-top, .ps-statusbar, .ps-tabbar) {
+  display: none !important;
+}
+
+html.ps-frame .fi-main-ctn {
+  padding-top: 0 !important;
+}
+
+html.ps-frame[data-ps-frame="native"] .fi-header-heading {
+  display: none !important;
+}
+
+/* A settings page opened from host mode's tree: the tree lists the tabs, so the page shows only the settings. */
+html.ps-frame[data-ps-tree] .fi-sc-tabs > .fi-tabs {
+  display: none !important;
+}
+
+/* It sits straight on host mode's page, as in 0.7.0: no header of its own, no card around the settings or each
+   section and no extra margin; a thin line between the sections. */
+html.ps-frame[data-ps-tree] :is(.fi-page:has(.s-settings) .fi-header, .fi-breadcrumbs) {
+  display: none !important;
+}
+
+html.ps-frame[data-ps-tree] .fi-main {
+  padding-top: 12px !important;
+}
+
+html.ps-frame[data-ps-tree] :is(.s-settings-tabs.fi-vertical, .fi-sc-tabs, .fi-section) {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+
+html.ps-frame[data-ps-tree] .s-settings-tabs.fi-vertical > .fi-sc-tabs-tab.fi-active {
+  margin: 0 !important;
+  padding: 0 0 8px !important;
+}
+
+html.ps-frame[data-ps-tree] :is(.fi-page-header-main-ctn, .fi-page-main) {
+  padding-top: 0 !important;
+  row-gap: 4px !important;
+}
+
+html.ps-frame[data-ps-tree] :is(.fi-section-header, .fi-section-content-ctn, .fi-section-content, .fi-section-footer) {
+  background: transparent !important;
+  border: 0 !important;
+  padding-inline: 0 !important;
+}
+
+html.ps-frame[data-ps-tree] .fi-section-header {
+  padding-block: 18px 10px !important;
+}
+
+html.ps-frame[data-ps-tree] .fi-section-content {
+  padding-block: 0 20px !important;
+}
+
+html.ps-frame[data-ps-tree] .fi-grid-col:not(:first-child) > .fi-sc-component > .fi-sc-section {
+  border-top: 1px solid var(--s-line);
+}
+
+/* Settings: one card with the menu on the left, in the style of host mode's tree, and the settings beside it.
+   The menu has three groups (Panel, Add-ons, Pelican); their titles come from the page (settings.blade.php). */
+.s-settings-tabs.fi-vertical {
+  align-items: stretch !important;
+  border: 1px solid var(--s-line);
+  border-radius: 20px;
+  gap: 0 !important;
+  overflow: clip;
+}
+
+.s-settings-tabs.fi-vertical > .fi-tabs {
+  background: none !important;
+  border: 0 !important;
+  border-inline-end: 1px solid var(--s-line) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  flex: none;
+  gap: 1px !important;
+  padding: 12px 10px;
+  width: 236px;
+}
+
+.s-settings-tabs .fi-tabs-item {
+  border-radius: var(--s-radius-sm) !important;
+  color: var(--s-ink) !important;
+  font: 550 13px/1.25 inherit !important;
+  gap: 9px !important;
+  justify-content: flex-start;
+  min-height: 30px;
+  padding: 5px 9px !important;
+  text-align: start;
+  white-space: normal;
+}
+
+.s-settings-tabs .fi-tabs-item > .fi-icon {
+  color: var(--s-tone, var(--s-accent));
+  flex: none;
+  height: 16px;
+  width: 16px;
+}
+
+.s-settings-tabs .fi-tabs-item:hover {
+  background: var(--s-raised) !important;
+}
+
+.s-settings-tabs .fi-tabs-item.fi-active {
+  background: color-mix(in srgb, var(--s-tone, var(--s-accent)) 14%, transparent) !important;
+}
+
+.s-settings-tabs .fi-tabs-item .fi-tabs-item-label {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal !important;
+}
+
+.s-settings-tabs .fi-tabs-item:nth-child(1) { --s-tone: #9a9aa6; }
+.s-settings-tabs .fi-tabs-item:nth-child(2) { --s-tone: #e0a050; }
+.s-settings-tabs .fi-tabs-item:nth-child(3) { --s-tone: #b48cf2; }
+.s-settings-tabs .fi-tabs-item:nth-child(n + 4) { --s-tone: #6ea8fe; }
+
+/* Group titles above General, Add-ons and the first Pelican tab. */
+.s-settings-tabs .fi-tabs-item:is(:nth-child(1), :nth-child(3), :nth-child(4)) {
+  margin-top: 26px;
+  position: relative;
+}
+
+.s-settings-tabs .fi-tabs-item:nth-child(1) { margin-top: 20px; }
+
+.s-settings-tabs .fi-tabs-item:is(:nth-child(1), :nth-child(3), :nth-child(4))::before {
+  color: var(--s-muted);
+  font-size: 11px;
+  font-weight: 700;
+  inset-inline-start: 9px;
+  letter-spacing: .06em;
+  position: absolute;
+  text-transform: uppercase;
+  top: -20px;
+}
+
+.s-settings-tabs .fi-tabs-item:nth-child(1)::before { content: var(--s-group-panel); }
+.s-settings-tabs .fi-tabs-item:nth-child(3)::before { content: var(--s-group-addons); }
+.s-settings-tabs .fi-tabs-item:nth-child(4)::before { content: "Pelican"; }
+
+.s-settings-tabs.fi-vertical > .fi-sc-tabs-tab.fi-active {
+  flex: 1;
+  min-width: 0;
+  padding: 22px 26px 8px;
+}
+
+:is(.s-settings-tabs, .s-setup) .fi-section {
+  border-radius: 16px !important;
+  box-shadow: none !important;
+}
+
+/* A Pelican tab: Pelican's form in a frame on the page itself, saved with Pelican's own button. */
+.s-pelican-frame > p {
+  color: var(--s-muted);
+  font-size: 13px;
+  margin: 0 0 var(--s-space-2);
+}
+
+.s-pelican-frame > iframe {
+  background: transparent;
+  border: 0;
+  display: block;
+  height: 320px;
+  width: 100%;
+}
+
+.s-settings > .s-bar {
+  margin-top: var(--s-space-3);
+}
+
+.s-settings:has(.fi-active .s-pelican-frame) .s-bar {
+  display: none;
+}
+
+/* The page inside that frame: only the form, with Pelican's save button above it. */
+html.ps-frame[data-ps-frame="settings"] :is(.fi-sc-tabs > .fi-tabs, .fi-header-heading, .fi-breadcrumbs) {
+  display: none !important;
+}
+
+html.ps-frame[data-ps-frame="settings"] :is(body, .fi-layout, .fi-main-ctn, .fi-main, .fi-page) {
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+.s-logo-tile {
+  background: color-mix(in srgb, var(--s-accent) 14%, var(--s-surface));
+  border-radius: 15px;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--s-accent) 25%, transparent);
+  display: grid;
+  height: 52px;
+  place-items: center;
+  width: 52px;
+}
+
+@media (max-width: 900px) {
+  .s-settings-tabs.fi-vertical {
+    flex-direction: column !important;
+  }
+
+  /* Phones: the menu as two tidy columns above the settings, without group titles. */
+  .s-settings-tabs.fi-vertical > .fi-tabs {
+    border-bottom: 1px solid var(--s-line) !important;
+    border-inline-end: 0 !important;
+    display: grid !important;
+    gap: 2px 6px !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 8px;
+    width: auto;
+  }
+
+  .s-settings-tabs .fi-tabs-item {
+    margin: 0 !important;
+  }
+
+  .s-settings-tabs .fi-tabs-item::before {
+    display: none;
+  }
+
+  .s-settings-tabs.fi-vertical > .fi-sc-tabs-tab.fi-active {
+    padding: 16px 14px 4px;
+  }
+}
+
+/* Pelican's icon actions on every page of the panel: Simplify icon buttons with the same Tabler icons, instead of
+   Pelican's large coloured glyphs, as in 0.7.0. In a table row they stay plain until hovered. */
+:is(.fi-ta-header-toolbar, .fi-ta-header, .fi-header-actions-ctn, .fi-ta-actions) .fi-icon-btn {
+  background: var(--s-surface) !important;
+  border: 1px solid var(--s-line) !important;
+  border-radius: var(--s-radius-sm) !important;
+  color: var(--s-ink) !important;
+  display: inline-grid;
+  height: var(--s-h) !important;
+  margin: 0 !important;
+  place-items: center;
+  transition: background var(--s-fast), border-color var(--s-fast), color var(--s-fast);
+  width: var(--s-h) !important;
+}
+
+:is(.fi-ta-header-toolbar, .fi-ta-header, .fi-header-actions-ctn, .fi-ta-actions) .fi-icon-btn .fi-icon {
+  color: inherit !important;
+  height: 18px !important;
+  width: 18px !important;
+}
+
+:is(.fi-ta-header-toolbar, .fi-ta-header, .fi-header-actions-ctn, .fi-ta-actions) .fi-icon-btn:hover:not(:disabled) {
+  background: var(--s-raised) !important;
+  border-color: var(--s-accent) !important;
+  color: var(--s-accent) !important;
+}
+
+:is(.fi-ta-header-toolbar, .fi-ta-header, .fi-header-actions-ctn, .fi-ta-actions) .fi-icon-btn.fi-color-danger {
+  color: var(--s-danger) !important;
+}
+
+:is(.fi-header-actions-ctn, .fi-ta-actions) .fi-btn .fi-icon {
+  height: 18px !important;
+  width: 18px !important;
+}
+
+.fi-ta-row .fi-ta-actions:not(:has(.fi-btn)) {
+  gap: 2px !important;
+}
+
+.fi-ta-row .fi-ta-actions .fi-icon-btn {
+  height: 30px !important;
+  width: 30px !important;
+}
+
+.fi-ta-row .fi-ta-actions .fi-icon-btn:not(:hover) {
+  background: transparent !important;
+  border-color: transparent !important;
+}
