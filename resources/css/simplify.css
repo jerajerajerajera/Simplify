@@ -1199,14 +1199,23 @@ html:not(.ps-frame) .s-people[style*="--s-fit"] > .s-card {
 
 .s-hub-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--s-space-2);
   margin-top: auto;
   padding-top: 4px;
 }
 
+/* Both buttons share the row; on a narrow card they wrap instead of sticking out. */
 .s-hub-actions .s-btn {
-  flex: 1;
+  flex: 1 1 auto;
   justify-content: center;
+  min-width: 0;
+}
+
+/* Install on Hub on a card: in the accent colour, not as a primary button (that is one per bar). */
+.s-hub-install {
+  border-color: color-mix(in srgb, var(--s-accent) 45%, var(--s-line));
+  color: var(--s-accent);
 }
 
 .s-hub-empty {

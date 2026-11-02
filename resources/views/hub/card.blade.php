@@ -21,7 +21,7 @@
         @if ($entry['updated'])<span>{{ __('simplify::settings.hub.updated', ['date' => $entry['updated']]) }}</span>@endif
     </p>
     <div class="s-hub-actions">
-        <a class="s-btn s-btn-primary s-btn-small" href="{{ $entry['url'] }}" target="_blank" rel="noopener">
+        <a class="s-btn s-btn-small s-hub-install" href="{{ $entry['url'] }}" target="_blank" rel="noopener">
             <x-filament::icon icon="tabler-external-link" />{{ __('simplify::settings.hub.'.($entry['installed'] ? 'view' : 'install')) }}
         </a>
         <button type="button" class="s-btn s-btn-small" wire:click="show(@js($entry['slug']))">{{ __('simplify::settings.hub.details') }}</button>

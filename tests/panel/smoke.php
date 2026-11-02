@@ -328,6 +328,7 @@ step('Browse Hub: a tab of the settings that lists the Hub with its makers and o
     } catch (HttpException $e) {
         // Forbidden, as it should be.
     } finally {
+        auth()->setUser($admin);
         $stranger->delete();
         HubCatalog::forget();
     }
