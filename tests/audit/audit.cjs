@@ -119,7 +119,9 @@ const phone = () => VIEWPORTS[stand.split('-')[0]].width <= 600;
 // Phones (1.5.4) reach the overview's menus from the bottom bar: Admin tools as a tab, server groups and the
 // overview's look under Customize. Elsewhere, and on wider screens, the button in the top bar.
 const PHONE_ROUTE = { adminButton: ['.ps-tabbar button[aria-controls="ps-admin-menu"]'], overviewAppearance: ['.ps-tab-customize > .ps-tab', '#ps-tab-customize-menu button:nth-of-type(2)'], overviewGroupsButton: ['.ps-tab-customize > .ps-tab', '#ps-tab-customize-menu button:nth-of-type(1)'] };
-const openRef = async (ref, ms) => { if (phone() && PHONE_ROUTE[ref] && (await page.locator('.ps-tabbar >> visible=true').count())) { for (const sel of PHONE_ROUTE[ref]) if (!(await click(sel, ms))) return false; return true; } return click(`[x-ref="${ref}"]`, ms); };
+// Server groups open from Customize on every screen size (V43).
+const DESK_ROUTE = { overviewGroupsButton: ['[x-ref="overviewAppearance"]', '#ps-overview-appearance-menu .ps-customize-go'] };
+const openRef = async (ref, ms) => { if (!phone() && DESK_ROUTE[ref]) { for (const sel of DESK_ROUTE[ref]) if (!(await click(sel, ms))) return false; return true; } if (phone() && PHONE_ROUTE[ref] && (await page.locator('.ps-tabbar >> visible=true').count())) { for (const sel of PHONE_ROUTE[ref]) if (!(await click(sel, ms))) return false; return true; } return click(`[x-ref="${ref}"]`, ms); };
 
 async function login(email, password) {
   await goto('/login');

@@ -135,6 +135,8 @@
     const text = target.getAttribute('data-tip');
     // A button whose menu is open needs no tooltip: it would cover the menu's arrow.
     if (!text || !target.isConnected || target.getAttribute('aria-expanded') === 'true') return;
+    // The account menu writes each tip out as the button's own words (dashboard.css), so it needs no tooltip.
+    if (target.closest('.ps-account-actions-inner')) return;
     if (!ui.tooltip) {
       ui.tooltip = document.createElement('div');
       ui.tooltip.className = 'ps-tooltip';

@@ -9,6 +9,11 @@
         <p class="ps-dropdown-hint">{{ $u('only_for_you_on_this_device') }}</p>
         <template x-if="!server">
             <div class="ps-customize">
+                {{-- Server groups have their own window, opened from here (as Customize › Server groups on a phone). --}}
+                <button type="button" class="ps-customize-switch is-first" x-on:click.stop="appearanceMenu=false; groupsMenu=true">
+                    <span><strong>{{ $u('server_groups') }}</strong><small>{{ $u('saved_with_your_account_so_every') }}</small></span>
+                    <svg class="ps-customize-go" aria-hidden="true"><use href="#ps-chevron"/></svg>
+                </button>
                 <button type="button" class="ps-customize-head is-toggle is-first" :aria-expanded="customizeOpen('overview.layout')" aria-controls="ps-customize-overview-layout" x-on:click="toggleCustomize('overview.layout')"><span>{{ $u('layout') }}</span><svg class="ps-customize-chevron" aria-hidden="true"><use href="#ps-chevron"/></svg></button>
                 <div class="ps-customize-section" id="ps-customize-overview-layout" x-show="customizeOpen('overview.layout')">
                 <div class="ps-customize-row">
@@ -16,14 +21,6 @@
                     <div class="ps-segmented" role="group" aria-label="{{ $u('layout') }}">
                         <template x-for="view in [{key:'grid',label:@js($u('cards')),icon:'grid'},{key:'compact',label:@js($u('compact')),icon:'grid-small'},{key:'list',label:@js($u('list')),icon:'list'}]" :key="view.key">
                             <button type="button" :aria-pressed="overviewView===view.key" x-on:click="setOverviewView(view.key)"><svg aria-hidden="true"><use :href="'#ps-'+view.icon"/></svg><span x-text="view.label"></span></button>
-                        </template>
-                    </div>
-                </div>
-                <div class="ps-customize-row" x-show="boot.features.host_health">
-                    <div><strong>{{ $u('host_health') }}</strong><small>{{ $u('where_the_health_summary_shows') }}</small></div>
-                    <div class="ps-segmented ps-health-place" role="group" aria-label="{{ $u('host_health') }}">
-                        <template x-for="place in [{key:'top-bar',label:@js($u('top_bar'))},{key:'above',label:@js($u('above'))},{key:'bottom',label:@js($u('bottom'))}]" :key="place.key">
-                            <button type="button" :aria-pressed="overviewPreferences.healthPlace===place.key" x-on:click="setOverviewPreference('healthPlace', place.key); healthPopover=false; healthExpanded=false" x-text="place.label"></button>
                         </template>
                     </div>
                 </div>
@@ -83,10 +80,6 @@
                         </template>
                     </div>
                 </div>
-                <button type="button" class="ps-customize-switch" role="switch" :aria-checked="overviewPreferences.showGroupsButton" x-on:click="setOverviewPreference('showGroupsButton', !overviewPreferences.showGroupsButton)">
-                    <span><strong>{{ $u('server_groups_button') }}</strong><small>{{ $u('a_button_in_the_top_bar') }}</small></span>
-                    <span class="ps-switch" :class="{'is-on': overviewPreferences.showGroupsButton}" aria-hidden="true"></span>
-                </button>
                 </div>
                 <button type="button" class="ps-customize-head is-toggle" x-show="(seasonsToday().length && boot.appearance?.seasonal !== false) || boot.settings_url" :aria-expanded="customizeOpen('overview.more')" aria-controls="ps-customize-overview-more" x-on:click="toggleCustomize('overview.more')"><span>{{ $u('more') }}</span><svg class="ps-customize-chevron" aria-hidden="true"><use href="#ps-chevron"/></svg></button>
                 <div class="ps-customize-section" id="ps-customize-overview-more" x-show="customizeOpen('overview.more')">

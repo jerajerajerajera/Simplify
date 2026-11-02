@@ -94,10 +94,15 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-account-avatar svg { width: 18px; height: 18px; }
 .ps-account-username { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; }
 /* Profile and sign-out slide out beside the avatar instead of opening a menu. */
-.ps-account-menu { order: -1; width: 0; height: var(--ps-h); overflow: hidden; opacity: 0; transform: translateX(8px); transition: width var(--ps-slow) ease, margin var(--ps-slow) ease, opacity var(--ps-fast), transform var(--ps-slow); }
-.ps-account.account-open .ps-account-menu { width: calc(var(--ps-h) * var(--ps-account-count, 4) + 8px * (var(--ps-account-count, 4) - 1)); margin-inline-end: 8px; opacity: 1; transform: none; }
-.ps-account-actions-inner { display: flex; align-items: center; gap: 8px; width: max-content; }
-.ps-account-actions-inner form { margin: 0; }
+/* The account menu: a list with words under the account button, as the account sheet on a phone (V43). */
+.ps-account-menu { position: absolute; top: calc(100% + 8px); inset-inline-end: 0; z-index: var(--ps-z-dropdown); min-width: 240px; padding: 6px; border: 1px solid var(--ps-line); border-radius: var(--ps-radius-lg); background: var(--ps-surface); box-shadow: var(--ps-shadow-lg); visibility: hidden; opacity: 0; transform: translateY(-4px); transition: opacity var(--ps-fast), transform var(--ps-fast), visibility var(--ps-fast); }
+.ps-account.account-open .ps-account-menu { visibility: visible; opacity: 1; transform: none; }
+.ps-account-actions-inner { display: grid; gap: 2px; }
+.ps-account-actions-inner form { display: grid; }
+.ps-account-actions-inner .ps-btn.is-icon { justify-content: flex-start; gap: 12px; width: 100%; height: auto; min-height: 38px; padding: 0 10px; border: 0; background: none; font-size: 13px; font-weight: 500; }
+.ps-account-actions-inner .ps-btn.is-icon:hover { background: var(--ps-raised); }
+.ps-account-actions-inner .ps-btn.is-icon::after { content: attr(data-tip); }
+.ps-account-actions-inner .ps-btn.is-icon[aria-pressed="true"] { color: var(--ps-accent); }
 
 /* Overview ----------------------------------------------------------------------------------- */
 .ps-overview { display: flex; flex: 1 1 0; flex-direction: column; min-height: 0; overflow: hidden; }
@@ -368,7 +373,6 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-health-panel { position: relative; z-index: 1; flex: none; width: var(--ps-health-width, calc(100% - 8px)); margin: 0 var(--ps-health-left, auto) 14px var(--ps-health-left, auto); border: 1px solid var(--ps-line); border-radius: var(--ps-radius-lg); background: var(--ps-surface); box-shadow: 0 -4px 12px rgb(0 0 0 / .1); }
 .ps.dark .ps-health-panel { box-shadow: none; }
 .ps-overview { position: relative; }
-.ps-overview > .ps-health-panel.is-above { order: -1; margin-bottom: 18px; box-shadow: none; }
 /* Opens like a dropdown: right under the Healthy button, left edges in line, moved left only as far as the screen needs. */
 .ps-health-panel.is-popover { position: fixed; top: var(--ps-pop-top, 72px); left: var(--ps-pop-left, 8px); z-index: var(--ps-z-dropdown); width: var(--ps-pop-width, 560px); margin: 0; box-shadow: 0 16px 40px rgb(0 0 0 / .28); }
 .ps-health-panel.is-popover .ps-host-health { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 18px; padding: 14px 16px; }
@@ -697,10 +701,9 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   .ps-notify-count { position: static; margin-inline-start: auto; }
   .ps-account { flex-wrap: wrap; width: 100%; }
   .ps-account-button { flex: 1 1 auto; max-width: none; }
-  .ps-account-menu { order: 0; }
-  /* The phone menu is narrower than every account button in a row: the buttons get a row of their own and wrap. */
-  .ps-account.account-open .ps-account-menu { flex: 0 0 100%; width: 100%; height: auto; margin: 8px 0 0; }
-  .ps-account-actions-inner { flex-wrap: wrap; width: 100%; }
+  /* Inside the tablet menu the account list opens in place, under the account button. */
+  .ps-account-menu { position: static; display: none; flex: 0 0 100%; min-width: 0; margin-top: 4px; box-shadow: none; transform: none; }
+  .ps-account.account-open .ps-account-menu { display: block; }
 }
 
 /* Phones -------------------------------------------------------------------------------------- */
@@ -951,6 +954,8 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 .ps-customize-head { margin: 10px 0 0; padding-top: 12px; border-top: 1px solid var(--ps-line); color: var(--ps-muted); font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
 .ps-customize-head + .ps-customize-switch { border-top: 0; }
 .ps-customize-head.is-first { margin-top: 0; padding-top: 0; border-top: 0; }
+.ps-customize-switch.is-first { padding-top: 0; border-top: 0; }
+.ps-customize-go { flex: none; width: 16px; height: 16px; color: var(--ps-muted); }
 .ps-customize-head + .ps-customize-row { border-top: 0; }
 .ps-customize-head.is-toggle { display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; padding-inline-end: 0; padding-inline-start: 0; padding-bottom: 0; border-inline-end: 0; border-bottom: 0; border-inline-start: 0; background: none; cursor: pointer; text-align: start; }
 .ps-customize-head.is-toggle:hover, .ps-customize-head.is-toggle:focus-visible { color: var(--ps-ink); outline: none; }
@@ -1026,7 +1031,6 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   /* Host health: one summary line above the servers; tapping still opens the node details. */
   .ps .ps-overview > .ps-health-panel { order: -1; margin: 0 0 22px; box-shadow: none; }
   /* At the bottom: after the servers, at the end of the page. In the top bar: a dropdown over the filter row. */
-  .ps .ps-overview > .ps-health-panel:not(.is-above, .is-popover) { order: 1; margin: 14px 0 16px; }
   .ps .ps-overview > .ps-health-panel.is-popover { margin: 0; box-shadow: 0 16px 40px rgb(0 0 0 / .28); }
   .ps .ps-host-health { display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 8px 14px; }
   .ps .ps-host-health > .ps-host-metric, .ps .ps-host-state small:not(.ps-health-phone-summary), .ps .ps-host-server-badge, .ps .ps-host-state .ps-host-heading h3 { display: none; }

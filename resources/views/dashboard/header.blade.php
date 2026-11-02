@@ -160,9 +160,6 @@
                     </template>
                 </div>
             </div>
-            <a x-show="boot.admin_url" :href="boot.admin_url" class="ps-btn is-icon is-subtle ps-nav-admin" data-tip="{{ $u('legacy_panel') }}" aria-label="{{ $u('legacy_panel') }}">
-                <svg aria-hidden="true"><use href="#ps-legacy"/></svg><span class="ps-mobile-label">{{ $u('legacy_panel') }}</span>
-            </a>
             @include('simplify::dashboard.account')
         </div>
     </nav>

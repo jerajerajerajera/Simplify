@@ -119,8 +119,8 @@
                             </div>
                             <div class="ps-overview-power-wrap" x-show="quickActionsMode()!=='off' && !(s.suspended || []).length">
                                 <div class="ps-overview-power" :class="{'is-confirming': powerConfirmation?.uuid===s.uuid}" role="group" :aria-label="Simplify.fill(@js($u('power_controls_for')), { name: s.name })">
-                                    <template x-for="action in [{key:'start',label:@js($u('start')),icon:'play'},{key:'stop',label:@js($u('stop')),icon:'stop'},{key:'restart',label:@js($u('restart')),icon:'restart'},{key:'kill',label:@js($u('force_stop')),icon:'kill'}]" :key="action.key">
-                                        <button type="button" class="ps-btn is-icon" :class="{'is-danger': action.key==='kill'}" :data-power="action.key" :data-tip="action.label" :aria-label="action.label+' '+s.name" :disabled="!!overviewPowerBusy || !canOverviewPower(s, action.key)" x-on:click.stop="overviewPower(s, action.key)">
+                                    <template x-for="action in [{key:'start',label:@js($u('start')),icon:'play'},{key:'stop',label:@js($u('stop')),icon:'stop'},{key:'restart',label:@js($u('restart')),icon:'restart'}]" :key="action.key">
+                                        <button type="button" class="ps-btn is-icon" :data-power="action.key" :data-tip="action.label" :aria-label="action.label+' '+s.name" :disabled="!!overviewPowerBusy || !canOverviewPower(s, action.key)" x-on:click.stop="overviewPower(s, action.key)">
                                             <svg aria-hidden="true"><use :href="'#ps-'+action.icon"/></svg>
                                         </button>
                                     </template>
@@ -139,8 +139,8 @@
         </div>
     </div>
 
-    {{-- Host health: a bar at the bottom (as before), a bar above the servers, or details under the top-bar button. --}}
-    <section id="ps-health-panel" class="ps-health-panel" :style="accentStyle('overview')" x-on:click.outside="if (!$event.target.closest('.ps-health-pill')) { healthExpanded=false; healthOpenNodes=[]; healthPopover=false }" x-on:keydown.escape="if (healthPopover) { healthPopover=false; $root.querySelector('.ps-health-pill')?.focus() }" x-on:resize.window="healthPopover && placeHealthPopover()" x-on:scroll.window.passive="healthPopover && placeHealthPopover()" x-show="healthPlace() && (healthPlace()!=='top-bar' || healthPopover)" :class="{'expanded': healthExpanded, 'is-popover': healthPlace()==='top-bar', 'is-above': healthPlace()==='above'}">
+    {{-- Host health: the details under the button in the top bar, its only place (V43). --}}
+    <section id="ps-health-panel" class="ps-health-panel" :style="accentStyle('overview')" x-on:click.outside="if (!$event.target.closest('.ps-health-pill')) { healthExpanded=false; healthOpenNodes=[]; healthPopover=false }" x-on:keydown.escape="if (healthPopover) { healthPopover=false; $root.querySelector('.ps-health-pill')?.focus() }" x-on:resize.window="healthPopover && placeHealthPopover()" x-on:scroll.window.passive="healthPopover && placeHealthPopover()" x-show="healthPlace() && healthPopover" :class="{'expanded': healthExpanded, 'is-popover': true}">
         <article class="ps-host-health" role="button" tabindex="0" aria-label="{{ $u('view_health_by_node') }}" :aria-expanded="healthExpanded" aria-controls="ps-health-details"
                  x-on:click="openHostHealth()" x-on:keydown.enter.prevent="openHostHealth()" x-on:keydown.space.prevent="openHostHealth()">
             <div class="ps-host-state">
