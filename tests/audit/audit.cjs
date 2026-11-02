@@ -604,6 +604,36 @@ async function otherPlugins() {
   await alpine('d.setHostMode(false)'); await sleep(500);
 }
 
+// Settings › Browse Hub: the list loads in its tab (placeholders first), the page never scrolls, Install on Hub only
+// links to the Hub, and Details opens above everything with its buttons clickable. Each check writes ok or WRONG.
+async function hubFlow() {
+  const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
+  await goto('/admin/simplify?tab=hub', 1000);
+  await page.waitForSelector('.s-hub-grid, .s-hub-empty', { timeout: 20000 }).catch(() => {});
+  await sleep(800);
+  const list = await page.evaluate(() => {
+    const links = [...document.querySelectorAll('.s-hub-card a.s-btn')].filter((a) => a.getClientRects().length);
+    return { cards: document.querySelectorAll('.s-hub-card:not(:has(.s-hub-skel))').length, empty: document.querySelector('.s-hub-empty')?.textContent.trim() || null,
+      pageScroll: document.documentElement.scrollHeight - innerHeight, links: links.length,
+      hubOnly: links.every((a) => /^https:\/\/hub\.pelican\.dev\/plugins\/[a-z0-9-]+$/.test(a.href) && a.target === '_blank') };
+  });
+  await record('settings-hub', 'Instellingen · Browse Hub');
+  say('hub-list', list.cards > 0 && list.links === list.cards && list.hubOnly && list.pageScroll <= 1, list);
+  const details = page.locator('.s-hub-card button.s-btn >> visible=true').first();
+  if (!(await details.count())) return say('hub-details', false, { note: 'no Details button' });
+  await details.click().catch(() => {}); await sleep(1500);
+  const dialog = await page.evaluate(() => {
+    const box = document.querySelector('.s-hub-dialog');
+    if (!box || !box.getClientRects().length) return { shown: false };
+    const buttons = [...box.querySelectorAll('header a, header button')].map((e) => { const r = e.getBoundingClientRect(); const top = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2); return !!top && (top === e || e.contains(top)); });
+    return { shown: true, z: getComputedStyle(box.parentElement).zIndex, clickable: buttons.length === 2 && buttons.every(Boolean), maker: !!box.querySelector('.s-hub-by b') };
+  });
+  await record('settings-hub-details', 'Instellingen · Browse Hub · details');
+  say('hub-details', dialog.shown && Number(dialog.z) >= 20 && dialog.clickable && dialog.maker, dialog);
+  await page.locator('.s-hub-dialog header button').first().click().catch(() => {}); await sleep(800);
+  say('hub-details-close', !(await page.locator('.s-hub-dialog').count()), {});
+}
+
 // 1.5.0 extras: the end of the setup in low windows (in and outside host mode), the setup's Look step (#86), the
 // install screen and the EULA bar (#89) and an announcement pinned in the bell (#92). Each check writes ok or WRONG.
 async function extrasFlow(theme) {
@@ -1011,7 +1041,7 @@ const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(
         const parts = { first: [['d1440', 'phone390'], () => firstFlow(theme)], layers: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => layersFlow()], nav: [['d1440', 'laag1366'], () => navFlow()], create: [['d1440', 'laag1366', 'phone390'], () => createFlow()],
           maker: [['d1440', 'phone390'], () => makerFlow()],
           schedule: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => scheduleFlow()],
-          extras: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => extrasFlow(theme)], fixes: [['d1440', 'phone390'], () => fixesFlow()], seasons: [['d1440', 'tablet768', 'phone390'], () => seasons(theme)] };
+          extras: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => extrasFlow(theme)], fixes: [['d1440', 'phone390'], () => fixesFlow()], hub: [['d1440', 'laag1366', 'phone390'], () => hubFlow()], seasons: [['d1440', 'tablet768', 'phone390'], () => seasons(theme)] };
         for (const part of section.split(',')) { const [where, run] = parts[part] || [[], null]; if (!run || !where.includes(name)) continue; try { await setTheme(theme); await run(); } catch (e) { problems.push(`${stand} ${part}: ${e.message.slice(0, 200)}`); } }
         continue;
       }

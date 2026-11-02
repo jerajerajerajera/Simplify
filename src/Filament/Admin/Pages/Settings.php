@@ -126,6 +126,9 @@ final class Settings extends Page implements HasForms
                 Tab::make(__('simplify::settings.addons.heading'))->key('addons')->icon('tabler-puzzle')->schema([
                     View::make('simplify::partials.addon-list'),
                 ]),
+                Tab::make(__('simplify::settings.hub.tab'))->key('hub')->icon('tabler-building-store')->schema([
+                    View::make('simplify::hub.tab'),
+                ]),
                 ...$pelican,
             ]),
         ]);
@@ -143,6 +146,7 @@ final class Settings extends Page implements HasForms
             $tab('general', 'panel', __('simplify::settings.general.tab'), 'settings'),
             $tab('appearance', 'panel', __('simplify::settings.appearance.tab'), 'palette'),
             $tab('addons', 'addons', __('simplify::settings.addons.heading'), 'puzzle'),
+            $tab('hub', 'addons', __('simplify::settings.hub.tab'), 'store'),
         ];
         foreach (self::addonRows() as $addon) {
             if ($addon['url']) {

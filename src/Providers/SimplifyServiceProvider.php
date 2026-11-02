@@ -24,6 +24,7 @@ use Simplify\Core\Http\Controllers\AssetController;
 use Simplify\Core\Http\Controllers\BannerController;
 use Simplify\Core\Http\Controllers\BrandController;
 use Simplify\Core\Http\Controllers\WebAppController;
+use Simplify\Core\Hub\Livewire\BrowseHub;
 use Simplify\Core\Push\PelicanNotices;
 use Simplify\Core\Push\Push;
 use Simplify\Core\Server\Looks;
@@ -77,6 +78,7 @@ final class SimplifyServiceProvider extends ServiceProvider
         $this->app['view']->getFinder()->prependLocation(dirname(__DIR__, 2).'/resources/overrides');
         Gate::policy(Announcement::class, AnnouncementPolicy::class);
         Livewire::component('simplify-core-announcement-bars', AnnouncementBars::class);
+        Livewire::component('simplify-core-browse-hub', BrowseHub::class);
 
         // A deleted server's records leave Cloudflare after the response, so deleting never waits for it; the sync retries.
         Server::deleted(function (Server $server) {

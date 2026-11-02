@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Settings › Browse Hub: the themes, plugins and languages on the Pelican Hub, inside Simplify. Every item shows its maker first, and the makers are a filter of their own; Details shows the full description and the Hub's screenshots, and items you already have are marked Installed. Install on Hub opens the item on the Hub, which installs it on your panel through its own connection, so every download counts for its maker. The list is read from the Hub at most once an hour.
 - Installed app: pull down to reload works on the overview only. In the settings and on other pages a pull down no longer reloads and sends you back to the overview.
 
 ## 1.5.4
