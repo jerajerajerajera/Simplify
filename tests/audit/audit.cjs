@@ -277,22 +277,25 @@ async function round(theme) {
 // the button again turns it off. Nothing happens when no add-on gives a host-mode URL.
 async function addonHostMode() {
   const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
-  await goto(overview); await ready();
-  const url = await alpine('return d.boot.host_mode_url || null');
-  if (!url) return;
-  await goto(new URL(url, base).href, 2500);
+  const overview = urls.app.find((p) => /App\\Pages\\Overview$/.test(p.class))?.url || '/';
+  const serverUrl = urls.servers['Survival SMP'];
+  // The account button points at the other state: …/on while off, …/off while on. A server page always has Simplify's
+  // shell (the start page only applies to the server list and the overview), so it is read there.
+  const hostUrl = async (at) => { await goto(at, 1500); await page.waitForSelector('.ps', { timeout: 15000 }).catch(() => {}); return alpine('return d.boot.host_mode_url || null'); };
+  const on = await hostUrl(serverUrl);
+  if (!on) return;
+  await goto(new URL(on, base).href, 2500);
   await record('addon-host', 'Hostmodus (add-on)');
   const links = await page.locator('.ps-hm a[href]').evaluateAll((as) => [...new Set(as.filter((a) => a.getClientRects().length).map((a) => a.href))]);
-  const own = links.filter((h) => h.startsWith(new URL(base).origin));
+  const own = links.filter((h) => h.startsWith(new URL(base).origin) && !/\/host-mode\//.test(h));
   for (const [i, h] of own.slice(0, 40).entries()) {
-    const label = await page.locator(`.ps-hm a[href="${h}"]`).first().innerText().catch(() => 'pagina ' + i);
-    await goto(h, 2500); await record('addon-host-' + slug(label.trim().split('\n')[0] || i), 'Hostmodus (add-on) · ' + label.trim());
+    const label = (await page.locator(`.ps-hm a[href="${h}"]`).first().innerText().catch(() => '')).trim().split('\n')[0] || 'pagina ' + i;
+    await goto(h, 2500); await record('addon-host-' + slug(label), 'Hostmodus (add-on) · ' + label);
   }
-  // With host mode on, the overview sends an admin to the add-on's start page; the same button turns it off again.
-  await goto(overview);
-  if (!(await page.locator('.ps').count())) { await goto(new URL(url, base).href, 1500); await goto(overview); }
-  await ready();
-  say('addon-host-off', !!(await page.locator('.ps').count()), { url: rel(page.url()) });
+  const off = await hostUrl(serverUrl);
+  if (off && off !== on) await goto(new URL(off, base).href, 1500);
+  await goto(overview, 1500);
+  say('addon-host-off', !!(await page.locator('.ps').count()) && off !== on, { url: rel(page.url()) });
 }
 
 // Create server (1.5.0): without Server Maker, Pelican's create form opens inside Simplify like an Admin tools page
