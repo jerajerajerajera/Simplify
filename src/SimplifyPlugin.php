@@ -79,8 +79,8 @@ final class SimplifyPlugin implements Plugin
             $panel->resources([AnnouncementResource::class]);
         } elseif ($panel->getId() !== 'server') {
             // The announcement bars sit where Pelican shows its own alert banners; a server's pages have them in the
-            // server card (pages/server.blade.php).
-            $panel->renderHook(PanelsRenderHook::PAGE_START, fn () => Blade::render("@livewire('simplify-core-announcement-bars')"));
+            // server card (pages/server.blade.php), the overview under its top bar (dashboard/overview.blade.php).
+            $panel->renderHook(PanelsRenderHook::PAGE_START, fn (array $scopes = []) => in_array(Overview::class, $scopes, true) ? '' : Blade::render("@livewire('simplify-core-announcement-bars')"));
         }
         match ($panel->getId()) {
             'admin' => $panel->pages([EmbedSettings::class, AutomaticSubdomains::class]),

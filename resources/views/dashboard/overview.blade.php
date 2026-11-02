@@ -2,6 +2,8 @@
 <section class="ps-overview" x-show="!hostMode && !adminView" :class="{'is-list': overviewView==='list'}" :style="{'--grid-columns': overviewColumns(), ...overviewGridStyle()}">
     <div class="ps-server-scroll" tabindex="0" role="region" aria-label="{{ $u('servers') }}">
         <div class="ps-server-stage" :class="{'is-list': overviewView==='list'}">
+            {{-- Pinned announcements under the top bar, as wide as the servers (as in 0.7.0). --}}
+            @livewire('simplify-core-announcement-bars', key('simplify-overview-bars'))
             {{-- Customers: a greeting with the links add-ons give them (such as a hoster's client area) and support. --}}
             <div class="ps-customer-head" x-show="boot.customer?.length" x-cloak>
                 <div>
