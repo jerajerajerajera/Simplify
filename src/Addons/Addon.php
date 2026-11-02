@@ -134,16 +134,7 @@ abstract class Addon
     }
 
     /**
-     * The add-on's own host mode (Simplify-Hosting): where the host mode button in the account menu goes for this user,
-     * or null to keep Simplify's. The add-on's page switches host mode on or off and sends the user on.
-     */
-    public function hostModeUrl(User $user): ?string
-    {
-        return null;
-    }
-
-    /**
-     * Where this user starts instead of the overview, for example an add-on's host mode the user switched on. Null keeps
+     * Where this user starts instead of the overview, for example a hoster in Admin (Simplify-Hosting). Null keeps
      * the overview. While it is set, Pelican's admin pages also get Simplify's header.
      */
     public function startUrl(User $user): ?string

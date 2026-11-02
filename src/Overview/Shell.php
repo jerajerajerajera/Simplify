@@ -71,9 +71,6 @@ trait Shell
             'account_pages' => self::accountPages($user),
             'admin_pages' => AdminMenu::items(),
             'admin_tree' => AdminTree::build(),
-            'host_mode_url' => self::firstUrl(fn (Addon $addon) => $addon->hostModeUrl($user)),
-            // An add-on's host mode is on while it gives this user a start page (API 5).
-            'host_mode_on' => self::firstUrl(fn (Addon $addon) => $addon->startUrl($user)) !== null,
             'health_checks' => $user->isAdmin() ? HostHealth::checks() : [],
             'features' => ['host_health' => $user->isRootAdmin()],
             'performance' => ['overview_seconds' => $settings['overview_seconds']],
