@@ -49,6 +49,15 @@ return [
         'ok' => 'OK',
         'close' => 'Schließen',
     ],
+    'unsaved' => [
+        'changes_made' => 'Änderungen vorgenommen',
+        'save' => 'Speichern',
+        'discard' => 'Verwerfen',
+        'saved' => 'Gespeichert',
+        'leave_title' => 'Ungespeicherte Änderungen',
+        'leave_message' => 'Deine Änderungen auf dieser Seite sind noch nicht gespeichert. Vor dem Verlassen speichern?',
+        'failed' => 'Nicht gespeichert. Prüfe die Felder und versuche es erneut.',
+    ],
     'dashboard' => [
         'eula_accepted_start_sent' => 'EULA akzeptiert, Start gesendet',
         'setting_up' => ':server wird eingerichtet',

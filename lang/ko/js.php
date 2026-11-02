@@ -49,6 +49,15 @@ return [
         'ok' => '확인',
         'close' => '닫기',
     ],
+    'unsaved' => [
+        'changes_made' => '변경 사항 있음',
+        'save' => '저장',
+        'discard' => '취소',
+        'saved' => '저장됨',
+        'leave_title' => '저장되지 않은 변경 사항',
+        'leave_message' => '이 페이지의 변경 사항이 아직 저장되지 않았습니다. 나가기 전에 저장할까요?',
+        'failed' => '저장되지 않았습니다. 항목을 확인하고 다시 시도하세요.',
+    ],
     'dashboard' => [
         'eula_accepted_start_sent' => 'EULA 동의, 시작 명령 보냄',
         'setting_up' => ':server 설정 중',

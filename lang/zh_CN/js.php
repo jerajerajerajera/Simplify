@@ -49,6 +49,15 @@ return [
         'ok' => '确定',
         'close' => '关闭',
     ],
+    'unsaved' => [
+        'changes_made' => '有更改',
+        'save' => '保存',
+        'discard' => '放弃',
+        'saved' => '已保存',
+        'leave_title' => '未保存的更改',
+        'leave_message' => '此页面上的更改尚未保存。离开前要保存吗？',
+        'failed' => '未保存。请检查字段后重试。',
+    ],
     'dashboard' => [
         'eula_accepted_start_sent' => '已接受 EULA，已发送启动命令',
         'setting_up' => '正在设置 :server',

@@ -49,6 +49,15 @@ return [
         'ok' => 'OK',
         'close' => 'Zavřít',
     ],
+    'unsaved' => [
+        'changes_made' => 'Provedené změny',
+        'save' => 'Uložit',
+        'discard' => 'Zahodit',
+        'saved' => 'Uloženo',
+        'leave_title' => 'Neuložené změny',
+        'leave_message' => 'Změny na této stránce ještě nejsou uložené. Uložit před odchodem?',
+        'failed' => 'Neuloženo. Zkontrolujte pole a zkuste to znovu.',
+    ],
     'dashboard' => [
         'eula_accepted_start_sent' => 'EULA přijata, spuštění odesláno',
         'setting_up' => 'Příprava :server',

@@ -49,6 +49,15 @@ return [
         'ok' => 'OK',
         'close' => '閉じる',
     ],
+    'unsaved' => [
+        'changes_made' => '変更があります',
+        'save' => '保存',
+        'discard' => '破棄',
+        'saved' => '保存しました',
+        'leave_title' => '未保存の変更',
+        'leave_message' => 'このページの変更はまだ保存されていません。離れる前に保存しますか？',
+        'failed' => '保存できませんでした。項目を確認してもう一度お試しください。',
+    ],
     'dashboard' => [
         'eula_accepted_start_sent' => 'EULA に同意し、起動を送信しました',
         'setting_up' => ':server をセットアップ中',

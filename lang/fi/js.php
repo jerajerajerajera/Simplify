@@ -49,6 +49,15 @@ return [
         'ok' => 'OK',
         'close' => 'Sulje',
     ],
+    'unsaved' => [
+        'changes_made' => 'Muutoksia tehty',
+        'save' => 'Tallenna',
+        'discard' => 'Hylkää',
+        'saved' => 'Tallennettu',
+        'leave_title' => 'Tallentamattomia muutoksia',
+        'leave_message' => 'Muutoksiasi tällä sivulla ei ole vielä tallennettu. Tallennetaanko ennen poistumista?',
+        'failed' => 'Ei tallennettu. Tarkista kentät ja yritä uudelleen.',
+    ],
     'dashboard' => [
         'eula_accepted_start_sent' => 'EULA hyväksytty, käynnistys lähetetty',
         'setting_up' => 'Valmistellaan: :server',

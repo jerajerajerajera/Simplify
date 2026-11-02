@@ -49,6 +49,15 @@ return [
         'ok' => 'OK',
         'close' => 'Închideți',
     ],
+    'unsaved' => [
+        'changes_made' => 'Modificări făcute',
+        'save' => 'Salvează',
+        'discard' => 'Renunță',
+        'saved' => 'Salvat',
+        'leave_title' => 'Modificări nesalvate',
+        'leave_message' => 'Modificările de pe această pagină nu sunt încă salvate. Le salvezi înainte să pleci?',
+        'failed' => 'Nesalvat. Verifică câmpurile și încearcă din nou.',
+    ],
     'dashboard' => [
         'eula_accepted_start_sent' => 'EULA acceptat, pornire trimisă',
         'setting_up' => 'Se configurează :server',

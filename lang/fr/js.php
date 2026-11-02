@@ -49,6 +49,15 @@ return [
         'ok' => 'OK',
         'close' => 'Fermer',
     ],
+    'unsaved' => [
+        'changes_made' => 'Modifications effectuées',
+        'save' => 'Enregistrer',
+        'discard' => 'Annuler les modifications',
+        'saved' => 'Enregistré',
+        'leave_title' => 'Modifications non enregistrées',
+        'leave_message' => 'Vos modifications sur cette page ne sont pas encore enregistrées. Les enregistrer avant de partir ?',
+        'failed' => 'Non enregistré. Vérifiez les champs et réessayez.',
+    ],
     'dashboard' => [
         'eula_accepted_start_sent' => 'EULA acceptée, démarrage envoyé',
         'setting_up' => 'Préparation de :server',

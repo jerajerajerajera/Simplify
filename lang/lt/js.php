@@ -49,6 +49,15 @@ return [
         'ok' => 'Gerai',
         'close' => 'Uždaryti',
     ],
+    'unsaved' => [
+        'changes_made' => 'Atlikti pakeitimai',
+        'save' => 'Išsaugoti',
+        'discard' => 'Atmesti',
+        'saved' => 'Išsaugota',
+        'leave_title' => 'Neišsaugoti pakeitimai',
+        'leave_message' => 'Jūsų pakeitimai šiame puslapyje dar neišsaugoti. Išsaugoti prieš išeinant?',
+        'failed' => 'Neišsaugota. Patikrinkite laukus ir bandykite dar kartą.',
+    ],
     'dashboard' => [
         'eula_accepted_start_sent' => 'EULA priimta, paleidimas išsiųstas',
         'setting_up' => 'Ruošiama: :server',

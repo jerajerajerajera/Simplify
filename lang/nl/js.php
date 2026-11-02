@@ -49,6 +49,15 @@ return [
         'ok' => 'OK',
         'close' => 'Sluiten',
     ],
+    'unsaved' => [
+        'changes_made' => 'Wijzigingen gemaakt',
+        'save' => 'Opslaan',
+        'discard' => 'Verwerpen',
+        'saved' => 'Opgeslagen',
+        'leave_title' => 'Niet-opgeslagen wijzigingen',
+        'leave_message' => 'Je wijzigingen op deze pagina zijn nog niet opgeslagen. Opslaan voordat je weggaat?',
+        'failed' => 'Niet opgeslagen. Controleer de velden en probeer het opnieuw.',
+    ],
     'dashboard' => [
         'eula_accepted_start_sent' => 'EULA geaccepteerd, start verstuurd',
         'setting_up' => ':server wordt klaargezet',

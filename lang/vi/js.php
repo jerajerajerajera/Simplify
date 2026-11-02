@@ -49,6 +49,15 @@ return [
         'ok' => 'OK',
         'close' => 'Đóng',
     ],
+    'unsaved' => [
+        'changes_made' => 'Đã có thay đổi',
+        'save' => 'Lưu',
+        'discard' => 'Hủy bỏ',
+        'saved' => 'Đã lưu',
+        'leave_title' => 'Thay đổi chưa lưu',
+        'leave_message' => 'Các thay đổi trên trang này chưa được lưu. Lưu trước khi rời đi?',
+        'failed' => 'Chưa lưu. Hãy kiểm tra các trường và thử lại.',
+    ],
     'dashboard' => [
         'eula_accepted_start_sent' => 'Đã chấp nhận EULA, đã gửi lệnh khởi động',
         'setting_up' => 'Đang thiết lập :server',
