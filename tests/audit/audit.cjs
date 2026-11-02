@@ -265,11 +265,34 @@ async function round(theme) {
     for (let j = 0; j < Math.min(ln, 40); j++) { const l = leaves.nth(j); const t = (await l.innerText().catch(() => 'pagina ' + j)).trim(); if (screens.some((s) => s.stand === stand && s.id === 'host-' + slug(label) + '-' + slug(t))) continue; await l.click().catch(() => {}); await sleep(2500); await record('host-' + slug(label) + '-' + slug(t), `Hostmodus · ${label} · ${t}`); } }
   if (await click('.ps-host-tabs button:nth-child(2)', 1200)) { await record('host-servers', 'Hostmodus · serverlijst'); if (await click('.ps-host-server strong, .ps-host-server', 3000)) { await record('host-server', 'Hostmodus · server open (console in frame)'); await click('.ps-host-server-head .ps-info-more-button, .ps-info-more-button', 500) && await record('host-server-more', 'Hostmodus · server ⋯-menu'); await escape(); } }
   await alpine('d.setHostMode(false)'); await sleep(800);
+  await addonHostMode();
   if (['d1440', 'tablet768', 'phone390'].includes(stand.split('-')[0])) await seasons(theme);
   if (['d1440', 'phone390'].includes(stand.split('-')[0])) await createFlow();
   if (['d1440', 'laag1366', 'laag1100', 'phone390'].includes(stand.split('-')[0])) await extrasFlow(theme);
   // Last, because it changes what the account has read and archived.
   if (theme === 'dark' && ['d1440', 'phone390'].includes(stand.split('-')[0])) await notifyFlow();
+}
+
+// An add-on's own host mode (API 5, Simplify-Hosting): the account button opens it, then every link in its menu, then
+// the button again turns it off. Nothing happens when no add-on gives a host-mode URL.
+async function addonHostMode() {
+  const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
+  await goto(overview); await ready();
+  const url = await alpine('return d.boot.host_mode_url || null');
+  if (!url) return;
+  await goto(new URL(url, base).href, 2500);
+  await record('addon-host', 'Hostmodus (add-on)');
+  const links = await page.locator('.ps-hm a[href]').evaluateAll((as) => [...new Set(as.filter((a) => a.getClientRects().length).map((a) => a.href))]);
+  const own = links.filter((h) => h.startsWith(new URL(base).origin));
+  for (const [i, h] of own.slice(0, 40).entries()) {
+    const label = await page.locator(`.ps-hm a[href="${h}"]`).first().innerText().catch(() => 'pagina ' + i);
+    await goto(h, 2500); await record('addon-host-' + slug(label.trim().split('\n')[0] || i), 'Hostmodus (add-on) · ' + label.trim());
+  }
+  // With host mode on, the overview sends an admin to the add-on's start page; the same button turns it off again.
+  await goto(overview);
+  if (!(await page.locator('.ps').count())) { await goto(new URL(url, base).href, 1500); await goto(overview); }
+  await ready();
+  say('addon-host-off', !!(await page.locator('.ps').count()), { url: rel(page.url()) });
 }
 
 // Create server (1.5.0): without Server Maker, Pelican's create form opens inside Simplify like an Admin tools page
@@ -1124,6 +1147,7 @@ const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(
         // One or more sections (comma separated), each on its own stands.
         const parts = { first: [['d1440', 'phone390'], () => firstFlow(theme)], layers: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => layersFlow()], nav: [['d1440', 'laag1366'], () => navFlow()], create: [['d1440', 'laag1366', 'phone390'], () => createFlow()],
           maker: [['d1440', 'phone390'], () => makerFlow()],
+          hosting: [['d1440', 'laag1366', 'tablet768', 'phone390'], () => addonHostMode()],
           schedule: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => scheduleFlow()],
           extras: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => extrasFlow(theme)], fixes: [['d1440', 'phone390'], () => fixesFlow()], hub: [['d1440', 'laag1366', 'phone390'], () => hubFlow()], seasons: [['d1440', 'tablet768', 'phone390'], () => seasons(theme)] };
         for (const part of section.split(',')) { const [where, run] = parts[part] || [[], null]; if (!run || !where.includes(name)) continue; try { await setTheme(theme); await run(); } catch (e) { problems.push(`${stand} ${part}: ${e.message.slice(0, 200)}`); } }
