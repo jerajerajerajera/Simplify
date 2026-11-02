@@ -2215,6 +2215,7 @@ html.ps-frame .s-done {
 /* Unsaved changes (P-38, unsaved.js): a bar at the bottom says "Changes made" with Discard and Save; leaving the
    page with changes asks Save, Discard or Cancel. Above the console and the bottom nav. */
 .s-unsaved { position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); z-index: 90; display: flex; align-items: center; gap: 10px; max-width: calc(100vw - 24px); padding: 8px 8px 8px 14px; border: 1px solid rgb(245 158 11 / .55); border-radius: 14px; background: var(--s-ink, #18181b); color: var(--s-bg, #fff); font-size: 14px; font-weight: 600; box-shadow: 0 12px 34px rgb(0 0 0 / .3); transform: translateX(-50%); animation: s-unsaved-in .18s ease-out both; }
+.s-unsaved[hidden] { display: none; }
 .s-unsaved[data-mode="failed"] { border-color: rgb(239 68 68 / .7); }
 .s-unsaved svg { flex: none; width: 20px; height: 20px; fill: none; stroke: #f59e0b; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .s-unsaved[data-mode="failed"] svg { stroke: #ef4444; }

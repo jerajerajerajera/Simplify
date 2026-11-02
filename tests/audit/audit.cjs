@@ -225,6 +225,35 @@ async function round(theme) {
   // Add-on tabs that the main server does not have (Explain, Egg Updates, Server Maker ...), on the first server that opens them.
   const seen = new Set(menu.map(([h]) => rel(h)));
   for (const [name, pages] of Object.entries(urls.server)) for (const p of pages) { if (!p.url || seen.has(rel(p.url)) || screens.some((s) => s.stand === stand && s.id === 'server-' + slug(p.title))) continue; const r = await page.request.get(rel(p.url)).catch(() => null); if (!r || r.status() !== 200) continue; seen.add(rel(p.url)); await goto(p.url, 1500); await record('server-' + slug(p.title), `Server · ${p.title} (${name})`); }
+  // An add-on's form on a server tab (Toolkit's Minecraft settings) uses the core's unsaved changes (P-38): a change
+  // shows the bar, a menu click asks first, Cancel stays. Only checked once the add-on's form opts in.
+  const mc = (urls.server[mainServer] || []).find((p) => p.url && /minecraft/i.test(p.title));
+  if (mc) {
+    await goto(mc.url, 2500);
+    const field = page.locator('[data-simplify-unsaved] input[type="number"] >> visible=true').first();
+    if (await field.count()) {
+      const shown = (sel) => page.evaluate((s) => [...document.querySelectorAll(s)].some((e) => e.getClientRects().length > 0), sel).catch(() => null);
+      const st = { bar: null, asked: null, stayed: null };
+      const before = await field.inputValue().catch(() => '');
+      await field.fill(String((Number(before) || 20) + 1)).catch(() => {});
+      await page.waitForSelector('.s-unsaved:not([hidden])', { timeout: 4000 }).catch(() => {});
+      st.bar = await shown('.s-unsaved');
+      await record('server-addon-unsaved', 'Server · add-on-formulier, Changes made');
+      const link = page.locator('a[wire\\:navigate][href*="/server/"] >> visible=true').first();
+      if (await link.count()) await link.click().catch(() => {});
+      else await page.evaluate(() => { const a = Object.assign(document.createElement('a'), { href: location.pathname.replace(/[^/]+$/, '') }); a.setAttribute('wire:navigate', ''); document.body.append(a); a.click(); }).catch(() => {});
+      await page.waitForSelector('.s-unsaved-dialog', { timeout: 3000 }).catch(() => {});
+      st.asked = await shown('.s-unsaved-dialog');
+      await page.locator('.s-unsaved-dialog .s-unsaved-btn').first().click().catch(() => {});
+      await sleep(400);
+      st.stayed = rel(page.url()) === rel(mc.url) && !(await shown('.s-unsaved-dialog'));
+      const good = st.bar === true && st.asked === true && st.stayed === true;
+      problems.push(`${stand} server-addon-unsaved: ${good ? 'ok' : 'WRONG'} ${JSON.stringify(st)}`);
+      // Set back, so nothing is left unsaved.
+      await field.fill(before).catch(() => {});
+      await sleep(300);
+    }
+  }
   // A second server with another game, console only.
   const other = Object.entries(urls.servers).find(([n]) => n === 'Valheim Vikings' || n === 'Rust Weekend');
   if (other) { await goto(other[1], 3000); await record('server2-console', `Server · Console (${other[0]})`); }
