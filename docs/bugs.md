@@ -13,6 +13,9 @@
 | B11 | 1.4.4, 1.5.1 | Na een update vanaf PelicanSimplify 0.7.0: Settings stuurde steeds naar de setup (1.4.4), of de update stopte met "Undefined array key logo_text" (1.5.1) | Updatepad niet getest met de vorm van echte 0.7.0-instellingen | 1.4.4, 1.5.1 | `checks.yml` upgradetest (1.3.11 + PelicanSimplify-bestanden → 1.4.4 → nieuw; "Install Simplify over its own tables") | 1× | P-28 |
 | B12 | 1.4.3, 1.5.3 | Powerknoppen kloppen niet met de staat: Stop/Restart grijs op elke server (1.4.3); Start/Restart zichtbaar tijdens installatie (1.5.3) | Knoppen lazen een waarde die niet (meer) gezet werd | 1.4.3, 1.5.3 | audit `install-buttons`, `first-installed` | 1× | P-16 |
 | B13 | 1.5.2 | Een klik in het servermenu laadt de hele serverpagina opnieuw (console, websocket) | Menu zonder `wire:navigate`/`@persist` | 1.5.2 | audit `nav-*` (merkteken op `window`) | 0× (wel in 0.7.0-tijd) | P-11 |
+| nr volgt | 1.1–1.5.5 | Op 961–1200 px breed is het contentvak van een Minecraft-server 26 px lager dan dat van andere servers | De regel onder de servernaam (status, software, adres) brak af naar twee regels naast het MOTD-vak | 1.5.5 | audit `boxheight` laag1100/d1100 (`server2-console`; rood op ef5839d, groen op 9195163) | 0× | P-7, P-10 |
+| nr volgt | 1.4.4–1.5.5 | Pelicans beheerpagina's (Announcements, Egg Updates, Server Maker) scrollen 44 px op een tablet | De menuknop staat boven `.fi-layout`, en die is zelf al een vol venster hoog | 1.5.5 | audit `pagescroll` tablet768 (rood op 9195163, groen op 0c20132) | 0× | P-7 |
+| nr volgt | 1.5.4 | Op de telefoon ververst een blad dat je dichttrekt de pagina | De eigen pull-to-refresh van de browser stond aan | 1.5.5 (#113) | audit `pull-sheet`, `pull-refresh` | 0× | P-22 |
 
 ## Patronen
 
