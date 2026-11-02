@@ -58,6 +58,7 @@ use Simplify\Core\Support\Assets;
 use Simplify\Core\Support\Brand;
 use Simplify\Core\Support\PanelSettings;
 use Simplify\Core\Support\Preferences;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 define('LARAVEL_START', microtime(true));
 require getcwd().'/vendor/autoload.php';
@@ -324,7 +325,7 @@ step('Browse Hub: a tab of the settings that lists the Hub with its makers and o
         if (str_contains(Livewire\Livewire::withoutLazyLoading()->test(BrowseHub::class)->html(), 'Nord Theme')) {
             throw new LogicException('a user who is no root admin could open Browse Hub');
         }
-    } catch (Symfony\Component\HttpKernel\Exception\HttpException $e) {
+    } catch (HttpException $e) {
         // Forbidden, as it should be.
     } finally {
         $stranger->delete();
