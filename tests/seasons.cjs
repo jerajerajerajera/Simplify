@@ -37,6 +37,12 @@ check("the panel's birthday from one year on", keys('2026-03-12', { born: day('2
 check('no birthday on the day it was set up', keys('2025-03-12', { born: day('2025-03-12') }), '');
 check("a server's birthday", String(S.birthday(day('2024-06-07').getTime() / 1000, day('2026-06-07'))), '2');
 
+// The days a device remembers, so seasons.js loads only then (V47).
+const days2026 = S.days(2026);
+check('the year has its holiday days', String(['2026-10-30', '2026-12-25', '2026-01-01'].every((d) => days2026.includes(d))), 'true');
+check('and not the others', String(['2026-07-10', '2026-11-03'].some((d) => days2026.includes(d))), 'false');
+check("King's Day only among the Dutch days", `${S.days(2026).includes('2026-04-27')} ${S.days(2026, true).includes('2026-04-27')}`, 'false true');
+
 if (failed) {
   console.log(`FAIL ${failed} seasonal checks`);
   process.exit(1);
