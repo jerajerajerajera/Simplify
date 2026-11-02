@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Pinned announcements on the overview sit under the top bar again, as wide as the servers, as in 0.7.0, instead of across the full width above it.
+
 - Installed app: pull down to reload works on the overview only. In the settings and on other pages a pull down no longer reloads and sends you back to the overview.
 
 ## 1.5.4
