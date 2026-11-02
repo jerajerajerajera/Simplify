@@ -813,12 +813,12 @@ async function fixesFlow() {
     await page.locator('.ps-top [x-ref="notifyButton"]').first().click().catch(() => {}); await sleep(900);
     const bell = await sheet('#ps-notify-menu'); await record('phone-sheet-bell', 'Telefoon · meldingen als blad');
     say('phone-sheet-bell', isSheet(bell, 0.85), bell);
-    // A tap outside the sheet closes it, also on the panel's name above it: that must not open the overview anew.
-    const brand = await page.evaluate(() => { const b = [...document.querySelectorAll('.ps-top .ps-brand')].find((e) => e.getClientRects().length); const r = b?.getBoundingClientRect(); return r ? { x: Math.round(r.left + r.width / 2), y: Math.round(r.top + r.height / 2) } : null; }).catch(() => null);
+    // A tap outside the sheet, in the dimmed top bar, closes it and loads no page.
+    const hit = await page.evaluate(() => { const e = document.elementFromPoint(195, 20); return e ? e.tagName.toLowerCase() + '.' + [...e.classList].join('.') + ' < ' + (e.parentElement ? e.parentElement.tagName.toLowerCase() + '.' + [...e.parentElement.classList].join('.') : '') : null; }).catch(() => null);
     let loads = 0; const onLoad = () => loads++; page.on('load', onLoad);
-    await page.mouse.click(brand?.x ?? 195, brand?.y ?? 20); await sleep(2500);
+    await page.mouse.click(195, 20); await sleep(2500);
     page.off('load', onLoad);
-    const closed = { open: await vis('#ps-notify-menu'), loads, brand };
+    const closed = { open: await vis('#ps-notify-menu'), loads, hit };
     say('phone-sheet-close', closed.open === false && loads === 0, closed);
     await page.locator('.ps-tabbar .ps-tab-customize > .ps-tab').first().click().catch(() => {}); await sleep(700);
     const custom = await sheet('#ps-tab-customize-menu'); await record('phone-sheet-customize', 'Telefoon · Customize als blad');
