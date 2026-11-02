@@ -604,12 +604,13 @@ async function otherPlugins() {
   await alpine('d.setHostMode(false)'); await sleep(500);
 }
 
-// Settings › Browse Hub: the list loads in its tab (placeholders first), the page never scrolls, Install on Hub only
+// Settings › Browse Hub: the list loads in its tab (placeholders first), the page does not scroll (except on a phone), Install on Hub only
 // links to the Hub, and Details opens above everything with its buttons clickable. Each check writes ok or WRONG.
 async function hubFlow() {
   const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
   await goto('/admin/simplify?tab=hub', 1000);
-  await page.waitForSelector('.s-hub-grid, .s-hub-empty', { timeout: 20000 }).catch(() => {});
+  // The placeholder has a grid too: wait for a real card (with its Hub link) or the empty note.
+  await page.waitForSelector('.s-hub-card a.s-btn, .s-hub-empty', { timeout: 45000 }).catch(() => {});
   await sleep(800);
   const list = await page.evaluate(() => {
     const links = [...document.querySelectorAll('.s-hub-card a.s-btn')].filter((a) => a.getClientRects().length);
@@ -618,7 +619,8 @@ async function hubFlow() {
       hubOnly: links.every((a) => /^https:\/\/hub\.pelican\.dev\/plugins\/[a-z0-9-]+$/.test(a.href) && a.target === '_blank') };
   });
   await record('settings-hub', 'Instellingen · Browse Hub');
-  say('hub-list', list.cards > 0 && list.links === list.cards && list.hubOnly && list.pageScroll <= 1, list);
+  // On a phone the settings page itself scrolls (1.5.3); elsewhere only the card does.
+  say('hub-list', list.cards > 0 && list.links === list.cards && list.hubOnly && (phone() || list.pageScroll <= 1), list);
   const details = page.locator('.s-hub-card button.s-btn >> visible=true').first();
   if (!(await details.count())) return say('hub-details', false, { note: 'no Details button' });
   await details.click().catch(() => {}); await sleep(1500);

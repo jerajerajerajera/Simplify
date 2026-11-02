@@ -73,15 +73,16 @@ final class HubCatalog
             return null;
         }
 
-        return SafeCache::remember(self::CACHE.'.'.$slug, 3600, function () use ($slug): ?array {
+        // Wrapped, so a failed or empty answer is remembered too instead of asked again on every render.
+        return SafeCache::remember(self::CACHE.'.'.$slug, 3600, function () use ($slug): array {
             try {
-                return self::normalize(HubApi::get('/api/plugins/'.$slug));
+                return ['item' => self::normalize(HubApi::get('/api/plugins/'.$slug))];
             } catch (Throwable $exception) {
                 report($exception);
 
-                return null;
+                return ['item' => null];
             }
-        });
+        })['item'] ?? null;
     }
 
     /** @return list<array<mixed>> */
