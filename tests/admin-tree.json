@@ -1,0 +1,25 @@
+{"items":[
+{"key":"serverresource","label":"Servers","url":"/admin/servers","origin":""},
+{"key":"eggresource","label":"Eggs","url":"/admin/eggs","origin":""},
+{"key":"noderesource","label":"Nodes","url":"/admin/nodes","origin":""},
+{"key":"userresource","label":"Users","url":"/admin/users","origin":""},
+{"key":"roleresource","label":"Roles","url":"/admin/roles","origin":""},
+{"key":"people","label":"People & roles","url":"/admin/people","origin":"core"},
+{"key":"apikeyresource","label":"API Keys","url":"/admin/api","origin":""},
+{"key":"settings","label":"Settings","url":"/admin/settings","origin":""},
+{"key":"pluginresource","label":"Plugins","url":"/admin/plugins","origin":""},
+{"key":"listlogs","label":"Logs","url":"/admin/logs","origin":""},
+{"key":"health","label":"Health","url":"/admin/health","origin":""},
+{"key":"announcementresource","label":"Announcements","url":"/admin/announcements","origin":"core"},
+{"key":"embedsettings","label":"Website","url":"/admin/embed","origin":"core"},
+{"key":"servermaker","label":"Server Maker","url":"/admin/maker","origin":"addon"},
+{"key":"eggupdates","label":"Egg Updates","url":"/admin/egg-updates","origin":"addon"},
+{"key":"hosting","label":"Hosting","url":"/admin/hosting","origin":"addon"},
+{"key":"sitedirectory","label":"Site directory","url":"/admin/site","origin":""}
+],
+"menu":[
+{"group":"panel","label":"General","url":"/admin/simplify?tab=general","key":"general"},
+{"group":"addons","label":"Server Maker","url":"/admin/maker-settings","key":"maker"},
+{"group":"addons","label":"Hosting","url":"/admin/hosting","key":"hosting"},
+{"group":"pelican","label":"Mail","url":"/admin/settings?tab=mail","key":"mail"}
+]}

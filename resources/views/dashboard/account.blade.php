@@ -20,7 +20,9 @@
                 </button>
             </template>
             <button type="button" class="ps-btn is-icon" x-show="boot.notifications_url" x-on:click="accountMenu=false; openAllNotifications()" data-tip="{{ $u('notifications_on_this_device') }}" aria-label="{{ $u('notifications_on_this_device') }}"><svg aria-hidden="true"><use href="#ps-bell"/></svg></button>
-            <button type="button" class="ps-btn is-icon" x-show="adminPages().length && !server" x-on:click="setHostMode(!hostMode); accountMenu=false" :data-tip="hostMode ? @js($u('switch_to_simple_mode')) : @js($u('switch_to_host_mode'))" :aria-label="hostMode ? @js($u('switch_to_simple_mode')) : @js($u('switch_to_host_mode'))">
+            {{-- An add-on's own host mode (API 5, Simplify-Hosting) switches on its own page; otherwise Simplify's. --}}
+            <a class="ps-btn is-icon" x-show="boot.host_mode_url" :href="boot.host_mode_url" :data-tip="boot.host_mode_on ? @js($u('switch_to_simple_mode')) : @js($u('switch_to_host_mode'))" :aria-label="boot.host_mode_on ? @js($u('switch_to_simple_mode')) : @js($u('switch_to_host_mode'))"><svg aria-hidden="true"><use :href="boot.host_mode_on ? '#ps-grid' : '#ps-host'"/></svg></a>
+            <button type="button" class="ps-btn is-icon" x-show="!boot.host_mode_url && adminPages().length && !server" x-on:click="setHostMode(!hostMode); accountMenu=false" :data-tip="hostMode ? @js($u('switch_to_simple_mode')) : @js($u('switch_to_host_mode'))" :aria-label="hostMode ? @js($u('switch_to_simple_mode')) : @js($u('switch_to_host_mode'))">
                 <svg aria-hidden="true"><use :href="hostMode ? '#ps-grid' : '#ps-host'"/></svg>
             </button>
             {{-- Add-on pages (such as Server Maker's Steam account) open inside Simplify, like Admin tools. --}}
