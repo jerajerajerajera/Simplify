@@ -1146,6 +1146,14 @@ const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(
       // plugin gives Pay invoice): the note sits within the card's edges, without power buttons.
       const sus = await page.evaluate(() => { const card = [...document.querySelectorAll('.ps-server-card')].find((c) => /Old Factions/.test(c.innerText)); const note = card?.querySelector('.ps-card-suspended'); if (!note || !note.getClientRects().length) return { card: !!card, note: false }; const c = card.getBoundingClientRect(), n = note.getBoundingClientRect(); return { card: true, note: true, inside: n.left >= c.left - 1 && n.right <= c.right + 1 && n.bottom <= c.bottom + 1 && n.top >= c.top - 1, power: [...card.querySelectorAll('.ps-power-wrap')].some((e) => e.getClientRects().length) }; }).catch(() => null);
       problems.push(`${stand} suspended-card: ${!!sus && sus.card && sus.note && sus.inside && !sus.power ? 'ok' : 'WRONG'} ${JSON.stringify(sus)}`);
+      // The card alone, light and dark, for Simplify-Hosting's screenshots (docs/screenshots there).
+      for (const theme of ['dark', 'light']) {
+        if (theme === 'light') { await setTheme('light'); await goto(overview); await sleep(800); }
+        const card = page.locator('.ps-server-entry', { hasText: 'Old Factions' }).first();
+        fs.mkdirSync(path.join(out, `klant-${name}`), { recursive: true });
+        await card.screenshot({ path: path.join(out, `klant-${name}`, `suspended-card-${theme}.png`) }).catch((e) => problems.push(`${stand} suspended-card-shot: WRONG ${JSON.stringify(e.message.slice(0, 120))}`));
+      }
+      await setTheme('dark'); await goto(overview); await sleep(800);
       await click('.ps-account-button'); await record('account', 'Klant · accountmenu'); await escape();
       await goto(urls.servers['Survival SMP'], 3000); await record('server-console', 'Klant · console');
       await click('.ps-info-more-button'); await record('server-more', 'Klant · ⋯-menu'); await escape();
