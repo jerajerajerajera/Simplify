@@ -14,18 +14,23 @@ Simplify 1.0 is a rebuild from the ground up. The earlier PelicanSimplify (0.6.0
   icon for its kind of server.
 - A server page that fits the window: a header card with status, address and power, number cards, a short menu and
   the live console. While a server installs, a card shows the steps and how long it usually takes; after that, First
-  start asks for the Minecraft EULA when it is still open. The menu changes only the page next to it.
+  start asks for the Minecraft EULA when it is still open. The menu changes only the page next to it. A suspended
+  server tells its owner that the hosting company paused it.
 - Create server opens in a Simplify popup from every entry point, with Server Maker when it is installed.
 - Host mode for admins: the admin pages and the servers per node on the left, the page on the right, node health at
   the bottom. Pelican's admin pages open inside Simplify.
-- Announcements at the top of every page, in the bell, as app notifications and in game chats.
+- Announcements at the top of every page, in the bell, as app notifications and in game chats. Pin one to everyone's
+  notifications.
 - Your servers on your own website, with a script, an iframe or a status page.
 - A subdomain for every server under your own domain, made in Cloudflare and removed with the server.
 - Your own name, logo, colours and app icon. Install the panel as an app with notifications per device; every
   notification option sits in the bell's window.
-- On a phone one frame with a bar at the bottom, menus that open as a sheet from the bottom, settings that save
-  themselves, and pull down to reload in the installed app.
+- On a phone one frame with a bar at the bottom, menus that open as a sheet from the bottom, and settings that save
+  themselves. Pull down on the overview to reload.
 - A setup that checks the panel, asks who it is for and sets up the installed add-ons in one go.
+- Settings › Browse Hub: the themes, plugins and languages on the Pelican Hub, by maker, with details and screenshots.
+  Install on Hub opens the item on the Hub, so every download counts for its maker.
+- Add-ons open inside Simplify, also from the account menu.
 - 32 languages.
 
 <picture>
@@ -47,10 +52,11 @@ See [ADDONS.md](ADDONS.md) for how an add-on plugs into Simplify.
 
 ## What it sends where
 
-Simplify talks to your own panel and your Wings nodes, and to nothing else, with one exception people choose for themselves:
+Simplify talks to your own panel and your Wings nodes, and to nothing else, except for the following:
 
 - **App notifications.** When someone turns them on for a device, the panel sends their notifications to the push service of that browser: Google (`fcm.googleapis.com`), Mozilla (`push.services.mozilla.com`), Apple (`push.apple.com`) or Microsoft (`notify.windows.com`). The content is encrypted for that device only. Root admins can turn app notifications off for the whole panel in Simplify's settings.
 - **Subdomains** (when a root admin sets them up): Cloudflare's API (`api.cloudflare.com`), with the token the admin pasted, to make and remove the DNS records of each server's subdomain. A sync runs every five minutes through Pelican's scheduler (`simplify:subdomains`).
+- **Browse Hub** (when an admin opens it in the settings): the Pelican Hub's public API (`hub.pelican.dev`), read at most once an hour, to list themes, plugins and languages. Simplify only reads from the Hub; it never downloads or installs anything.
 - Update notices for root admins use Pelican's own version check and Pelican's cached node information; Simplify makes no extra calls for them. They run hourly through Pelican's scheduler (`simplify:update-notices`).
 
 Open routes (no login): `/simplify/assets/{name}` serves Simplify's stylesheet and logo, and `/simplify/brand/{file}` serves the panel logo and app icon an admin uploaded in Simplify's settings. `/simplify/banners/{file}` serves server banners, only to people who are signed in. `/simplify/manifest.webmanifest`, `/simplify/app-icon-192.png`, `/simplify/app-icon-512.png` and `/simplify-worker.js` let a browser install the panel as an app; the worker caches only a small offline page. `/simplify/embed`, `/simplify/embed.js` and `/simplify/embed/servers.json` show the servers an owner or root admin put on a website: name, game, status, players and the public join address, nothing else.
