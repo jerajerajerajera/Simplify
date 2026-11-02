@@ -21,6 +21,8 @@ const measure = (opts = {}) => {
     // closes its tooltips on scroll, so the screenshot taken next would lose them.
     const ov = (el) => getComputedStyle(el).overflowY;
     const moved = !['hidden', 'clip'].includes(ov(root)) && !['hidden', 'clip'].includes(ov(document.body)) && getComputedStyle(root).position !== 'fixed' && getComputedStyle(document.body).position !== 'fixed';
+    // What makes the page taller: the body and its children with their place and minimum height.
+    r.info.tall = { body: `${document.body.className} ${getComputedStyle(document.body).display} min ${getComputedStyle(document.body).minHeight}`, ps: !!document.querySelector('.ps'), kids: [...document.body.children].filter((k) => k.getClientRects().length).map((k) => { const b = k.getBoundingClientRect(); return `${k.tagName.toLowerCase()}.${[...k.classList].slice(0, 2).join('.')} ${Math.round(b.top + scrollY)}..${Math.round(b.bottom + scrollY)} min ${getComputedStyle(k).minHeight}`; }).slice(0, 8) };
     push(moved ? 'pagescroll' : 'tallnoscroll', `page is taller than the window (${root.scrollHeight} > ${H})${moved ? ', the page scrolls' : ', nothing scrolls'}`);
   }
   // 2. Text cut off: single-line text hidden without an ellipsis, and text shortened with an ellipsis (info).
