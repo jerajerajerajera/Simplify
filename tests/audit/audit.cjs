@@ -884,9 +884,14 @@ async function fixesFlow() {
     const hit = await page.evaluate(() => { const e = document.elementFromPoint(195, 20); return e ? `${e.tagName.toLowerCase()}.${[...e.classList].slice(0, 2).join('.')}` : null; }).catch(() => null);
     // What the tap did: whether the click reached the page and was taken by the sheet handler, and the bell's state.
     await page.evaluate(() => { window.__tap = null; document.addEventListener('click', (e) => { window.__tap = { target: e.target.tagName.toLowerCase(), prevented: e.defaultPrevented }; }, { capture: true, once: true }); }).catch(() => {});
-    await page.mouse.click(195, 20); await sleep(700);
+    await page.mouse.click(195, 20);
+    // The sheet leaves with a short transition; a busy runner can take longer than a fixed wait to finish it. The check is
+    // whether it closes, so wait up to 3 s for it to be gone and keep how long that took.
+    const t0 = Date.now();
+    await page.waitForFunction(() => ![...document.querySelectorAll('#ps-notify-menu')].some((e) => e.getClientRects().length > 0 && getComputedStyle(e).visibility !== 'hidden'), null, { timeout: 3000 }).catch(() => {});
+    const gone = Date.now() - t0;
     const after = await page.evaluate(() => { const m = document.getElementById('ps-notify-menu'); const ps = document.querySelector('.ps'); return { tap: window.__tap, menu: ps && ps._x_dataStack ? ps._x_dataStack[0].notifyMenu : null, style: m ? m.getAttribute('style') : null, menus: document.querySelectorAll('#ps-notify-menu').length, roots: document.querySelectorAll('.ps').length }; }).catch(() => null);
-    const closed = { open: await vis('#ps-notify-menu'), url: page.url() === before, hit, after };
+    const closed = { open: await vis('#ps-notify-menu'), url: page.url() === before, hit, after, ms: gone };
     say('phone-sheet-close', closed.open === false && closed.url, closed);
     await page.locator('.ps-tabbar .ps-tab-customize > .ps-tab').first().click().catch(() => {}); await sleep(700);
     const custom = await sheet('#ps-tab-customize-menu'); await record('phone-sheet-customize', 'Telefoon · Customize als blad');
