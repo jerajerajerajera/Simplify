@@ -66,4 +66,7 @@ const measure = () => {
   }
   fs.writeFileSync(path.join(out, 'compare.json'), JSON.stringify(result, null, 1));
   await browser.close();
+  // A measurement without servers compares nothing (0.7.0 on its setup page measured 0): that is a failure, not a result.
+  const empty = Object.entries(result.stands).flatMap(([name, s]) => ['grid', 'list'].filter((v) => !(s[v] && s[v].servers > 0)).map((v) => `${name} ${v}`));
+  if (empty.length) { console.error(`WRONG no servers measured: ${empty.join(', ')} (${Object.values(result.stands).map((s) => s.url).join(' ')})`); process.exit(1); }
 })().catch((e) => { console.error(e); process.exit(1); });
