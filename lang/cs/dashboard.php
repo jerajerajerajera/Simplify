@@ -16,6 +16,7 @@ return [
         'new' => 'Nové',
         'menu' => 'Nabídka',
         'customize' => 'Přizpůsobit',
+        'suspended_note' => 'Váš poskytovatel hostingu tento server pozastavil. Zaplaťte otevřenou fakturu a spusťte ho znovu.',
         'profile_options' => 'Možnosti profilu',
         'profile_settings' => 'Nastavení profilu',
         'theme_prefix' => 'Motiv:',

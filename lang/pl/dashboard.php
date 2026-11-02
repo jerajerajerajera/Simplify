@@ -16,6 +16,7 @@ return [
         'new' => 'Nowe',
         'menu' => 'Menu',
         'customize' => 'Dostosuj',
+        'suspended_note' => 'Twój dostawca hostingu wstrzymał ten serwer. Opłać zaległą fakturę, aby uruchomić go ponownie.',
         'profile_options' => 'Opcje profilu',
         'profile_settings' => 'Ustawienia profilu',
         'theme_prefix' => 'Motyw:',

@@ -86,6 +86,18 @@ final class Listing
     }
 
     /**
+     * The add-ons' main links for a server (Button::$primary).
+     *
+     * @return list<array{label: string, url: string, icon: ?string, primary: bool}>
+     */
+    private static function primaryLinks(Server $server): array
+    {
+        $links = app(AddonRegistry::class)->collect(fn (Addon $addon) => $addon->serverLinks($server));
+
+        return array_values(array_map(fn (Button $link) => $link->toArray(), array_filter($links, fn (Button $link) => $link->primary)));
+    }
+
+    /**
      * The subdomain address first, then what add-ons put on the tile.
      *
      * @return list<string>
@@ -124,6 +136,8 @@ final class Listing
             'game' => $minecraft ? 'minecraft' : 'other',
             'game_label' => $minecraft ? 'Minecraft' : ($server->egg?->name ?: __('simplify::dashboard.page.other_game')),
             'status' => $status,
+            // Suspended by the hoster: its owner gets the add-ons' main links (Simplify-Hosting: Pay invoice); admins see the card as before.
+            'suspended' => $status === 'suspended' && ! $user->isAdmin() ? self::primaryLinks($server) : [],
             'mine' => $mine,
             'node_id' => (int) $server->node_id,
             'node_name' => (string) $server->node?->name,

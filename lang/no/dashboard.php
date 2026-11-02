@@ -16,6 +16,7 @@ return [
         'new' => 'Ny',
         'menu' => 'Meny',
         'customize' => 'Tilpass',
+        'suspended_note' => 'Vertsfirmaet ditt har satt denne serveren på pause. Betal den åpne fakturaen for å starte den igjen.',
         'profile_options' => 'Profilalternativer',
         'profile_settings' => 'Profilinnstillinger',
         'theme_prefix' => 'Tema:',

@@ -5,6 +5,9 @@
 - Edit schedule: the buttons (delete, run now, export, save) sit in a bar over the page instead of on top of the Name field. On a phone the tasks are short rows with their edit and delete buttons in view, instead of a table that ran off the screen (old plugin issue #236).
 
 - Installed app: pull down to reload works on the overview only. In the settings and on other pages a pull down no longer reloads and sends you back to the overview.
+- A suspended server's card tells its owner that the hosting company paused it, with the add-on's main link next to it (with Simplify-Hosting: Pay invoice). Admins see the card as before.
+- Pinned announcements on the overview sit under the top bar again, as wide as the servers, as in 0.7.0, instead of across the full width above it.
+- Pull down to reload works on the overview only, in the app and in a browser tab. In the settings, on other pages and when you swipe a sheet down to close it, nothing reloads any more: the browser's own pull to refresh is off.
 
 ## 1.5.4
 

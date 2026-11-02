@@ -142,7 +142,10 @@ final class HostingAddon extends Addon
 
     public function serverLinks(Server $server): array
     {
-        return [new Button('Upgrade this server', 'https://billing.example.com/s/'.$server->uuid)];
+        // As Simplify-Hosting: a suspended server's link is the open invoice, the card's main button.
+        return $server->status?->value === 'suspended'
+            ? [new Button('Pay invoice', 'https://billing.example.com/pay/'.$server->uuid, 'tabler-receipt', primary: true)]
+            : [new Button('Upgrade this server', 'https://billing.example.com/s/'.$server->uuid)];
     }
 
     public function customerLinks(User $user): array
@@ -396,6 +399,26 @@ step('add-ons give server links, customer links and host mode', function ($app) 
     $links = collect(Livewire\Livewire::actingAs($customer)->test(Overview::class)->instance()->initial()['customer'])->pluck('url')->all();
     if ($links !== ['https://billing.example.com/clientarea', 'https://billing.example.com/order', 'mailto:help@example.com']) {
         throw new RuntimeException('the customer links are wrong: '.json_encode($links));
+    }
+});
+step('a suspended server shows its owner why and the add-on\'s main link on the card, admins as before', function ($app) use ($admin, $server) {
+    $app->tag([HostingAddon::class], AddonRegistry::TAG);
+    $customer = User::query()->where('email', 'smoke-customer@example.com')->first()
+        ?? User::withoutEvents(fn () => User::factory()->create(['username' => 'smoke-customer', 'email' => 'smoke-customer@example.com']));
+    $owner = $server->owner_id;
+    $server->forceFill(['owner_id' => $customer->id, 'status' => 'suspended'])->saveQuietly();
+    try {
+        $card = collect(Listing::for($customer))->firstWhere('uuid', $server->uuid);
+        $links = $card['suspended'] ?? null;
+        if (($card['status'] ?? null) !== 'suspended' || ! is_array($links) || ($links[0]['url'] ?? null) !== 'https://billing.example.com/pay/'.$server->uuid) {
+            throw new RuntimeException('the owner sees no invoice link on the suspended card: '.json_encode($card));
+        }
+        $theirs = collect(Listing::for($admin))->firstWhere('uuid', $server->uuid);
+        if (($theirs['suspended'] ?? []) !== []) {
+            throw new RuntimeException('an admin gets the invoice link: '.json_encode($theirs['suspended']));
+        }
+    } finally {
+        $server->forceFill(['owner_id' => $owner, 'status' => null])->saveQuietly();
     }
 });
 step('a server gets a colour and banner from its page, shown on its card', function () use ($admin, $server) {

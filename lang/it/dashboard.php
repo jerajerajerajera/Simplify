@@ -16,6 +16,7 @@ return [
         'new' => 'Nuovo',
         'menu' => 'Menu',
         'customize' => 'Personalizza',
+        'suspended_note' => 'Il tuo provider ha messo in pausa questo server. Paga la fattura aperta per riavviarlo.',
         'profile_options' => 'Opzioni del profilo',
         'profile_settings' => 'Impostazioni del profilo',
         'theme_prefix' => 'Tema:',

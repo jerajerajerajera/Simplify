@@ -2,6 +2,9 @@
    Pelican theme plugin restyles Simplify too. Light values on :root, dark values on html.dark (Filament's switch). */
 @font-face { font-family: Monocraft; src: url("monocraft-regular.woff2") format("woff2"); font-weight: 400 600; font-display: swap; }
 @font-face { font-family: Monocraft; src: url("monocraft-bold.woff2") format("woff2"); font-weight: 700 900; font-display: swap; }
+/* The browser's own pull to refresh (Android Chrome) is off: it reloaded the settings and fired when a sheet was swiped
+   down to close. The overview has its own pull to refresh (pull.js). */
+html, body { overscroll-behavior-y: none; }
 
 :root {
   --s-bg: var(--gray-50);

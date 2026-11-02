@@ -16,6 +16,7 @@ return [
         'new' => '새로 만들기',
         'menu' => '메뉴',
         'customize' => '사용자 지정',
+        'suspended_note' => '호스팅 업체가 이 서버를 일시 중지했습니다. 미결제 청구서를 결제하면 다시 시작할 수 있습니다.',
         'profile_options' => '프로필 옵션',
         'profile_settings' => '프로필 설정',
         'theme_prefix' => '테마:',
