@@ -94,6 +94,8 @@ jobs:
             git clone --quiet --depth 1 --branch "${{ inputs.legacy }}" https://github.com/jerajerajerajera/PelicanSimplify.git plugins/pelican-simplify
             echo "PelicanSimplify from branch ${{ inputs.legacy }} at $(git -C plugins/pelican-simplify rev-parse --short HEAD)"
             rm -rf plugins/pelican-simplify/.git
+            # 0.7.0 sends a root admin to its settings until setup is done; the comparison measures the overview.
+            for dir in storage/app/private/simplify storage/app/simplify; do mkdir -p "$dir"; echo '{"setup_completed":true}' > "$dir/features.json"; done
             # 0.7.0 wants a queue that persists and a worker (started with the panel).
             sed -i 's/^QUEUE_CONNECTION=.*/QUEUE_CONNECTION=database/' .env && php artisan config:clear
             php artisan p:plugin:install pelican-simplify
