@@ -18,10 +18,10 @@
   };
   if (window.Livewire) quietServerErrors();
   else document.addEventListener('livewire:init', quietServerErrors, { once: true });
-  const OVERVIEW_DEFAULTS = { showMotd: false, largeIcon: 'server', groupByNode: 'auto', showCpu: true, showRam: true, quickActions: 'hover', minecraftAlwaysGreen: true, fullWidth: false, serverBiggerConsole: false, serverConsoleLog: false, showGroupsButton: true, columns: 'auto', cardWidth: 'normal', serverScope: 'all', halloween: true, healthPlace: 'top-bar' };
+  const OVERVIEW_DEFAULTS = { showMotd: false, largeIcon: 'server', groupByNode: 'auto', showCpu: true, showRam: true, quickActions: 'hover', minecraftAlwaysGreen: true, fullWidth: false, serverBiggerConsole: false, serverConsoleLog: false, showGroupsButton: true, columns: 'auto', cardWidth: 'normal', serverScope: 'all', halloween: true };
   const OVERVIEW_SWITCHES = ['showMotd', 'showCpu', 'showRam', 'minecraftAlwaysGreen', 'fullWidth', 'serverBiggerConsole', 'serverConsoleLog', 'showGroupsButton', 'halloween'];
   // Overview settings that pick one of a fixed set of values.
-  const OVERVIEW_CHOICES = { largeIcon: ['server', 'egg'], groupByNode: ['auto', 'always', 'off'], quickActions: ['off', 'on', 'hover'], columns: ['auto', '2', '3', '4', '5', '6'], cardWidth: ['narrow', 'normal', 'wide'], serverScope: ['all', 'mine', 'others'], healthPlace: ['top-bar', 'above', 'bottom'] };
+  const OVERVIEW_CHOICES = { largeIcon: ['server', 'egg'], groupByNode: ['auto', 'always', 'off'], quickActions: ['off', 'on', 'hover'], columns: ['auto', '2', '3', '4', '5', '6'], cardWidth: ['narrow', 'normal', 'wide'], serverScope: ['all', 'mine', 'others'] };
   const OVERVIEW_VIEWS = ['grid', 'compact', 'list'];
   // Own server groups in the overview: at most this many groups, names at most this long.
   const GROUP_LIMIT = 30;
@@ -1382,9 +1382,9 @@
         panel.style.setProperty('--ps-pop-left', Math.max(gap, Math.min(rect.left / scale, screen - width - gap)) + 'px');
         panel.style.setProperty('--ps-pop-top', rect.bottom / scale + gap + 'px');
       },
-      /** Where host health shows on the overview: a button in the top bar (default), a bar above the servers or at the bottom. */
+      /** Host health has one place: a button in the top bar (V43), for root admins. */
       healthPlace() {
-        return this.boot.features?.host_health ? this.overviewPreferences.healthPlace : null;
+        return this.boot.features?.host_health ? 'top-bar' : null;
       },
       /** A server's picture: the game's own icon, the icon set in Pelican, its egg's icon, then Simplify's picture of the game; the first that loads. */
       serverIcon(s) {

@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Nothing saves itself any more, on a phone too. A change in Simplify's settings or a form page shows "Changes made" with Discard and Save at the bottom, and leaving the page with changes (a link, the menu, going back, closing the tab) asks Save, Discard or Cancel first. Add-ons use the same with one attribute (`data-simplify-unsaved`, see ADDONS.md).
+- One place for each action. A server card's quick actions are Start, Stop and Restart; Force stop and Delete server are in the server page's ⋯ menu (and the main button still turns into Force stop while a server starts or stops); Rename is the pencil by the name. The floating status bar keeps Start, Stop and Restart. The legacy panel moved to the account menu, server groups open from Customize, and host health sits only in the top bar. The account menu is a list with words on every screen, without a second way to the notification settings that the bell already has.
 - Add-ons can give a start page (add-on contract API 5): the server list and the overview open it when an add-on gives one, and Pelican's admin pages then keep Simplify's header on top. The groups of the admin menu are now built on the server.
 - A suspended server's card no longer shows the tops of its CPU and RAM tiles above the note about the suspension.
 - The overview and the server page load less: the code and styles for holidays load only on a day with one.

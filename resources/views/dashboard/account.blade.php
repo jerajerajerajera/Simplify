@@ -7,7 +7,7 @@
         </span>
         <span class="ps-account-username" x-text="boot.user"></span>
     </button>
-    <div id="ps-account-actions" class="ps-account-menu" :style="{'--ps-account-count': (adminPages().length && !server ? 4 : 3) + (boot.notifications_url ? 1 : 0) + boot.account_links.length + (boot.account_pages || []).length + (boot.support_url ? 1 : 0) + (themeOpen ? 2 : 0)}" :inert="!accountMenu" :aria-hidden="!accountMenu">
+    <div id="ps-account-actions" class="ps-account-menu" :inert="!accountMenu" :aria-hidden="!accountMenu">
         <div class="ps-account-actions-inner">
             <a class="ps-btn is-icon" :href="boot.profile_url" data-tip="{{ $u('profile_settings') }}" aria-label="{{ $u('profile_settings') }}"><svg aria-hidden="true"><use href="#ps-account"/></svg></a>
             {{-- Theme: the current choice; clicking it unfolds Light, Dark and System. --}}
@@ -19,7 +19,6 @@
                     <svg aria-hidden="true"><use :href="t==='light' ? '#ps-sun' : t==='dark' ? '#ps-moon' : '#ps-monitor'"/></svg>
                 </button>
             </template>
-            <button type="button" class="ps-btn is-icon" x-show="boot.notifications_url" x-on:click="accountMenu=false; openAllNotifications()" data-tip="{{ $u('notifications_on_this_device') }}" aria-label="{{ $u('notifications_on_this_device') }}"><svg aria-hidden="true"><use href="#ps-bell"/></svg></button>
             <button type="button" class="ps-btn is-icon" x-show="adminPages().length && !server" x-on:click="setHostMode(!hostMode); accountMenu=false" :data-tip="hostMode ? @js($u('switch_to_simple_mode')) : @js($u('switch_to_host_mode'))" :aria-label="hostMode ? @js($u('switch_to_simple_mode')) : @js($u('switch_to_host_mode'))">
                 <svg aria-hidden="true"><use :href="hostMode ? '#ps-grid' : '#ps-host'"/></svg>
             </button>
@@ -31,9 +30,9 @@
                 <a class="ps-btn is-icon" :href="link.url" target="_blank" rel="noopener" :data-tip="link.label" :aria-label="Simplify.fill(@js($u('opens_in_new_tab')), { label: link.label })" x-html="link.icon"></a>
             </template>
             <a class="ps-btn is-icon" x-show="boot.support_url" x-cloak :href="boot.support_url" target="_blank" rel="noopener noreferrer" data-tip="{{ $u('support') }}" aria-label="{{ $u('opens_in_new_tab', ['label' => $u('support')]) }}"><svg aria-hidden="true"><use href="#ps-question"/></svg></a>
-            {{-- On a phone the top bar has room for the bell and the account only: these two move into the account sheet. --}}
+            {{-- Install app (phones; the top bar has it elsewhere) and the legacy panel. --}}
             <button type="button" class="ps-btn is-icon ps-phone-only" x-show="installable" x-cloak x-on:click="accountMenu=false; installApp()" data-tip="{{ $u('install_app') }}" aria-label="{{ $u('install_app') }}"><svg aria-hidden="true"><use href="#ps-download"/></svg></button>
-            <a class="ps-btn is-icon ps-phone-only" x-show="boot.admin_url" :href="boot.admin_url" data-tip="{{ $u('legacy_panel') }}" aria-label="{{ $u('legacy_panel') }}"><svg aria-hidden="true"><use href="#ps-legacy"/></svg></a>
+            <a class="ps-btn is-icon" x-show="boot.admin_url" :href="boot.admin_url" data-tip="{{ $u('legacy_panel') }}" aria-label="{{ $u('legacy_panel') }}"><svg aria-hidden="true"><use href="#ps-legacy"/></svg></a>
             <form method="post" :action="boot.logout_url">@csrf
                 <button type="submit" class="ps-btn is-icon" data-tip="{{ $u('sign_out') }}" aria-label="{{ $u('sign_out') }}"><svg aria-hidden="true"><use href="#ps-logout"/></svg></button>
             </form>
