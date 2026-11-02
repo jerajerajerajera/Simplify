@@ -298,6 +298,8 @@ async function scheduleFlow() {
   // Where the Tasks block is when there are no rows: the headings on the page, relation managers, lazy placeholders.
   if (!st.tasks) st.page = await page.evaluate(() => ({ headings: [...document.querySelectorAll('h2, h3, .fi-section-header-heading, .fi-ta-header-heading')].filter((e) => e.getClientRects().length).map((e) => e.textContent.trim()).slice(0, 12),
     managers: document.querySelectorAll('.fi-resource-relation-managers, .fi-resource-relation-manager').length, lazy: document.querySelectorAll('[wire\\:init], [x-intersect]').length,
+    lazies: [...document.querySelectorAll('[wire\\:init], [x-intersect]')].map((e) => { const r = e.getBoundingClientRect(); return { html: e.outerHTML.slice(0, 220), top: Math.round(r.top), h: Math.round(r.height), shown: e.getClientRects().length > 0 }; }),
+    components: [...document.querySelectorAll('[wire\\:id]')].map((e) => e.getAttribute('wire:name') || (e.getAttribute('wire:snapshot') || '').match(/"name":"([^"]+)"/)?.[1] || '?').slice(0, 15),
     tables: document.querySelectorAll('.fi-ta-ctn').length, hidden: [...document.querySelectorAll('.fi-ta-ctn, .fi-resource-relation-managers')].filter((e) => !e.getClientRects().length).map((e) => e.className.slice(0, 80)) })).catch(() => null);
   await record('schedule-edit', 'Schedules · taak bewerken (onderaan)');
   say('schedule-edit', st.tasks >= 3 && st.inView && st.clickable && st.pageScroll <= 1, st);
