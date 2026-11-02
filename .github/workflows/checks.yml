@@ -3,6 +3,14 @@ on:
   push:
     branches: [main]
   pull_request: {}
+  # The update from PelicanSimplify 0.7.0 (and pelican-simplify 1.3.11, Simplify 1.4.4) runs by hand only, once
+  # before the 2.0 release; every other run updates from 1.5.5, the base since 2 November 2026.
+  workflow_dispatch:
+    inputs:
+      from070:
+        description: 'Update from PelicanSimplify 0.7.0 files, pelican-simplify 1.3.11 and Simplify 1.4.4 instead of 1.5.5'
+        type: boolean
+        default: false
 jobs:
   tests:
     runs-on: ubuntu-latest
@@ -63,6 +71,7 @@ jobs:
       # Until 1.4.0 the plugin id was pelican-simplify, the id of the old PelicanSimplify too: install 1.3.11 first and
       # leave PelicanSimplify 0.7.0's files in storage, so the job proves the new id takes over both.
       - name: Install the old pelican-simplify 1.3.11 and PelicanSimplify's files
+        if: inputs.from070
         run: |
           git clone --quiet --depth 1 --branch v1.3.11 "https://github.com/${{ github.repository }}.git" panel/plugins/pelican-simplify
           rm -rf panel/plugins/pelican-simplify/.git
@@ -77,11 +86,22 @@ jobs:
           done
       # The way most panels update: 1.4.4 first, with PelicanSimplify's files still there, then this version over it.
       - name: Install Simplify 1.4.4
+        if: inputs.from070
         run: |
           git clone --quiet --depth 1 --branch v1.4.4 "https://github.com/${{ github.repository }}.git" panel/plugins/simplify
           rm -rf panel/plugins/simplify/.git
           cd panel
           php artisan p:plugin:install simplify
+          rm -rf plugins/simplify
+      # The way panels update now: 1.5.5 with every setting filled in, then this version over it.
+      - name: Install Simplify 1.5.5 with its settings filled in
+        if: ${{ !inputs.from070 }}
+        run: |
+          git clone --quiet --depth 1 --branch v1.5.5 "https://github.com/${{ github.repository }}.git" panel/plugins/simplify
+          rm -rf panel/plugins/simplify/.git
+          cd panel
+          php artisan p:plugin:install simplify
+          php -r '$db = new PDO("sqlite:database/database.sqlite"); $set = $db->prepare("INSERT OR REPLACE INTO simplify_settings (key, value) VALUES (?, ?)"); foreach (["support_url" => "https://example.com/kept", "accent" => "#e11d48", "brand_name" => "Old panel", "brand_font" => "rounded", "brand_colour" => "gradient", "brand_show" => "both", "pelican_suffix" => false] as $k => $v) { $set->execute([$k, json_encode($v)]); } $db->prepare("INSERT INTO simplify_core_announcements (category, title, body, audience, in_bell, bell_pinned, push, in_game, in_game_repeat, created_at, updated_at) VALUES (?, ?, ?, ?, 1, 1, 0, 1, 30, ?, ?)")->execute(["warning", "Old announcement", "From 1.5.5", "everyone", "2026-11-02 12:00:00", "2026-11-02 12:00:00"]); $db->prepare("INSERT OR REPLACE INTO simplify_core_embed_settings (key, value) VALUES (?, ?)")->execute(["style", json_encode("dark")]);'
           rm -rf plugins/simplify
       - name: Install Simplify
         run: |

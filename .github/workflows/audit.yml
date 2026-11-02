@@ -29,8 +29,11 @@ on:
       from:
         description: 'A Simplify tag (e.g. v1.5.1) installed and seeded first; then the Simplify branch updates it, as on a real panel'
         default: ''
+      baseline:
+        description: 'With section compare: the Simplify tag the overview is measured against (its own compare run must exist), at most 10% larger'
+        default: 'v1.5.5'
       legacy:
-        description: 'A branch of PelicanSimplify to install instead of Simplify and the add-ons (with section compare)'
+        description: 'A branch of PelicanSimplify to install instead of Simplify and the add-ons (with section compare; no longer the baseline)'
         default: ''
       legacy_brand:
         description: 'yes = a PelicanSimplify 0.7.0 appearance.json with a brand block before Simplify installs (its import migration)'
@@ -178,6 +181,15 @@ jobs:
         id: style
         continue-on-error: true
         run: set -o pipefail; python3 simplify/tests/audit/style-report.py result/result.json | tee result/style.md
+      - name: Compare verdict (section compare, against the baseline's own compare run)
+        if: inputs.section == 'compare' && !inputs.legacy && inputs.simplify != inputs.baseline
+        id: compare
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          git -C simplify fetch -q --depth 1 origin "+refs/heads/audit-results-$(echo "${{ inputs.baseline }}" | tr "/" "-")-compare-${{ matrix.stand }}:baseline" || { echo "::error::No compare run of ${{ inputs.baseline }} for ${{ matrix.stand }}: run this workflow with section compare and simplify ${{ inputs.baseline }} first"; exit 1; }
+          git -C simplify show baseline:compare.json > baseline.json
+          python3 simplify/tests/audit/compare-verdict.py baseline.json result/compare.json | tee result/compare.md
       - if: always()
         name: Result to the audit-results branch
         run: |
@@ -186,6 +198,11 @@ jobs:
           git add -A
           git -c user.name=audit -c user.email=audit@users.noreply.github.com commit -qm "Audit ${{ github.sha }} ${{ matrix.stand }}"
           git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "results:refs/heads/audit-results-$(echo "${{ inputs.legacy && format('legacy-{0}', inputs.legacy) || inputs.simplify || github.ref_name }}" | tr "/" "-")${{ inputs.from && format('-from-{0}', inputs.from) || '' }}${{ (inputs.section == 'compare' || inputs.section == 'inventory') && format('-{0}', inputs.section) || '' }}${{ inputs.servermaker == 'none' && '-nosm' || '' }}-${{ matrix.stand }}"
+      - name: Fail when the compare verdict is red
+        if: steps.compare.outcome == 'failure'
+        run: |
+          echo "::error::The overview is more than 10% larger than ${{ inputs.baseline }}, see compare.md on the results branch"
+          exit 1
       - name: Fail when the style verdict is red
         if: steps.style.outcome == 'failure'
         run: |
