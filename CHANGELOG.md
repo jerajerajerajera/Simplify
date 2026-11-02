@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- One place for each action. A server card's quick actions are Start, Stop and Restart; Force stop and Delete server are in the server page's ⋯ menu (and the main button still turns into Force stop while a server starts or stops); Rename is the pencil by the name. The floating status bar keeps Start, Stop and Restart. The legacy panel moved to the account menu, server groups open from Customize, and host health sits only in the top bar. The account menu is a list with words on every screen, without a second way to the notification settings that the bell already has.
 - A suspended server's card no longer shows the tops of its CPU and RAM tiles above the note about the suspension.
 - The overview and the server page load less: the code and styles for holidays load only on a day with one.
 - Checks and screen audit take less time. A change to text only (docs, Markdown) skips the panel smoke; tests and pint still run. In the screen audit, dark and light are jobs of their own, side by side, so a run takes half as long; the light job writes to the results branch `…-<stand>-light`. New inputs: `theme`, `parts` (the parts of a round: overview, server, admin, host, seasons, create, extras, notify, klant) and `scope` `changed`, which runs only the parts that the files changed since main can touch (`tests/audit/parts.py`; an unknown file counts as everything). The full audit still runs before every release.

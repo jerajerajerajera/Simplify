@@ -19,7 +19,6 @@
             <button type="button" class="ps-btn is-sm is-primary" x-show="!installView()" x-on:click="power('start')" :disabled="busy || !server.permissions['control.start'] || status==='running'" aria-label="{{ $u('start_server') }}" data-tip="{{ $u('start') }}"><svg aria-hidden="true"><use href="#ps-play"/></svg></button>
             <button type="button" class="ps-btn is-sm" x-show="!installView()" x-on:click="power('restart')" :disabled="busy || !server.permissions['control.restart'] || !canRestart()" aria-label="{{ $u('restart_server') }}" data-tip="{{ $u('restart') }}"><svg aria-hidden="true"><use href="#ps-restart"/></svg></button>
             <button type="button" class="ps-btn is-sm" x-on:click="power('stop')" :disabled="busy || !server.permissions['control.stop'] || status==='offline'" aria-label="{{ $u('stop_server') }}" data-tip="{{ $u('stop') }}"><svg aria-hidden="true"><use href="#ps-stop"/></svg></button>
-            <button type="button" class="ps-btn is-sm is-danger" x-on:click="power('kill')" :disabled="busy || !server.permissions['control.stop'] || status==='offline'" aria-label="{{ $u('force_stop_server') }}" data-tip="{{ $u('kill') }}"><svg aria-hidden="true"><use href="#ps-kill"/></svg></button>
         </div>
     </div>
     <div class="ps-main">
@@ -67,7 +66,6 @@
                     <span class="ps-label ps-menu-heading" x-show="server.can_edit">{{ $u('look') }}</span>
                     <button type="button" class="ps-menu-item" role="menuitem" x-show="server.can_edit" :disabled="busy" x-on:click="openColorMenu()"><span class="ps-color-dot" aria-hidden="true"></span><span>{{ $u('server_color') }}</span></button>
                     <button type="button" class="ps-menu-item" role="menuitem" x-show="server.can_edit" :disabled="busy" x-on:click="openBannerMenu()"><svg aria-hidden="true"><use href="#ps-image"/></svg><span>{{ $u('server_background') }}</span></button>
-                    <button type="button" class="ps-menu-item" role="menuitem" x-show="server.can_edit" x-on:click="infoMenu=false; saveName(@js($u('server_name')), @js($u('rename')))"><svg aria-hidden="true"><use href="#ps-edit"/></svg><span>{{ $u('rename') }}</span></button>
                     <template x-if="server.sftp"><hr></template>
                     <span class="ps-label ps-menu-heading" x-show="server.sftp">{{ $u('sftp') }}</span>
                     <button type="button" class="ps-menu-item" role="menuitem" x-show="server.sftp" x-on:click="infoMenu=false; copyText(server.sftp.username, @js($u('username_copied')))"><svg aria-hidden="true"><use href="#ps-copy"/></svg><span>{{ $u('copy_sftp_username') }}</span></button>
@@ -185,10 +183,6 @@
                     <span><strong>{{ $item['label'] }}</strong></span>
                 </a>
             @endforeach
-            <button type="button" class="ps-widget is-danger" x-show="server.can_delete" :disabled="busy || !canDelete()" :data-tip="canDelete() ? null : @js($u('stop_to_delete'))" x-on:click="deleteServer()">
-                <span class="ps-widget-icon"><svg aria-hidden="true"><use href="#ps-trash"/></svg></span>
-                <span><strong>{{ $u('delete_server') }}</strong></span>
-            </button>
         </details>
     </nav>
     {{-- Phones: four tabs that always fit. The first three sections, the rest and Advanced under More. --}}
@@ -208,7 +202,6 @@
                 @foreach ($menu['advanced'] as $item)
                     <a class="ps-menu-item" href="{{ $item['url'] }}" @if ($navigate && ! $item['new_tab']) wire:navigate @endif data-ps-match="{{ implode(' ', array_map(fn ($url) => parse_url($url, PHP_URL_PATH), $item['match'])) }}" @if ($item['active']) aria-current="page" @endif>@if ($item['icon'])<x-filament::icon :icon="$item['icon']" />@endif<span>{{ $item['label'] }}</span></a>
                 @endforeach
-                <button type="button" class="ps-menu-item is-danger" x-show="server.can_delete" :disabled="busy || !canDelete()" x-on:click="more=false; deleteServer()"><svg aria-hidden="true"><use href="#ps-trash"/></svg><span>{{ $u('delete_server') }}</span></button>
             </div>
         </div>
     </nav>
