@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Edit schedule: the buttons (delete, run now, export, save) sit in a bar over the page instead of on top of the Name field, also on a phone.
+
 - Installed app: pull down to reload works on the overview only. In the settings and on other pages a pull down no longer reloads and sends you back to the overview.
 
 ## 1.5.4
