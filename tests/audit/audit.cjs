@@ -837,22 +837,30 @@ async function fixesFlow() {
     if (await sw.count()) { await sw.click().catch(() => {}); await page.waitForSelector('.s-saved', { state: 'visible', timeout: 6000 }).catch(() => {}); toast = await vis('.s-saved'); await record('phone-autosave', 'Telefoon · instellingen slaan zelf op'); await sw.click().catch(() => {}); await sleep(2500); }
     say('phone-autosave', save === false && toast === true, { save, toast });
   }
-  // Pull to refresh in the installed app (pull.js): a finger pulled down from the top shows the mark and reloads.
+  // Pull to refresh in the installed app (pull.js): only on the overview (Jeroen 2-11). There a finger pulled down from
+  // the top shows the mark and reloads; in the settings a pull must not reload (it sent you back to the overview).
   if (phone()) {
-    const p2 = await page.context().newPage(); await quiet(p2);
-    await p2.addInitScript(() => { const mm = window.matchMedia.bind(window); window.matchMedia = (q) => (/display-mode: *standalone/.test(q) ? { matches: true, media: q, onchange: null, addEventListener() {}, removeEventListener() {}, addListener() {}, removeListener() {} } : mm(q)); });
-    await p2.setViewportSize(VIEWPORTS.phone390);
-    await p2.goto(new URL('/admin/simplify', base).href, { waitUntil: 'load' }).catch(() => {}); await settle(p2, 1200);
-    const cdp = await p2.context().newCDPSession(p2); await cdp.send('Emulation.setTouchEmulationEnabled', { enabled: true, maxTouchPoints: 1 });
-    let loads = 0; p2.on('load', () => loads++);
-    const touch = (type, y) => cdp.send('Input.dispatchTouchEvent', { type, touchPoints: type === 'touchEnd' ? [] : [{ x: 195, y }] });
-    await touch('touchStart', 220);
-    for (let y = 230; y <= 420; y += 10) { await touch('touchMove', y); await sleep(16); }
-    const mark = await p2.evaluate(() => { const m = document.querySelector('.s-pull'); return m ? { shown: m.getClientRects().length > 0, ready: m.classList.contains('is-ready') } : null; }).catch(() => null);
-    const shot = page; page = p2; await record('pull-refresh', 'App · naar beneden vegen'); page = shot;
-    await touch('touchEnd', 420); await sleep(3500);
-    say('pull-refresh', !!(mark && mark.shown && mark.ready) && loads >= 1, { mark, loads });
-    await p2.close().catch(() => {});
+    const pull = async (url, name, label) => {
+      const p2 = await page.context().newPage(); await quiet(p2);
+      await p2.addInitScript(() => { const mm = window.matchMedia.bind(window); window.matchMedia = (q) => (/display-mode: *standalone/.test(q) ? { matches: true, media: q, onchange: null, addEventListener() {}, removeEventListener() {}, addListener() {}, removeListener() {} } : mm(q)); });
+      await p2.setViewportSize(VIEWPORTS.phone390);
+      await p2.goto(new URL(url, base).href, { waitUntil: 'load' }).catch(() => {}); await settle(p2, 1200);
+      const cdp = await p2.context().newCDPSession(p2); await cdp.send('Emulation.setTouchEmulationEnabled', { enabled: true, maxTouchPoints: 1 });
+      let loads = 0; p2.on('load', () => loads++);
+      const touch = (type, y) => cdp.send('Input.dispatchTouchEvent', { type, touchPoints: type === 'touchEnd' ? [] : [{ x: 195, y }] });
+      await touch('touchStart', 220);
+      for (let y = 230; y <= 420; y += 10) { await touch('touchMove', y); await sleep(16); }
+      const mark = await p2.evaluate(() => { const m = document.querySelector('.s-pull'); return m ? { shown: m.getClientRects().length > 0, ready: m.classList.contains('is-ready') } : null; }).catch(() => null);
+      const shot = page; page = p2; await record(name, label); page = shot;
+      await touch('touchEnd', 420); await sleep(3500);
+      const at = new URL(p2.url()).pathname;
+      await p2.close().catch(() => {});
+      return { mark, loads, at };
+    };
+    const home = await pull('/simplify', 'pull-refresh', 'App · overzicht naar beneden vegen');
+    say('pull-refresh', !!(home.mark && home.mark.shown && home.mark.ready) && home.loads >= 1, home);
+    const settings = await pull('/admin/simplify', 'pull-settings', 'App · instellingen naar beneden vegen');
+    say('pull-settings', !settings.mark && settings.loads === 0 && settings.at === '/admin/simplify', settings);
   }
 }
 
