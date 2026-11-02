@@ -157,7 +157,7 @@ const measure = (opts = {}) => {
     const region = (isFrame && native && !serverFrame) ? document.body : (r.fit || serverFrame) ? document.querySelector('.fi-main-ctn > .fi-main') : null;
     const consolePage = !!document.querySelector('.ps-server-top.is-console');
     if (region) for (const el of boxes) if (el !== region && region.contains(el) && !nested.some(([, i]) => i === el) && !(consolePage && el.matches('.fi-wi-widget, .ps-console'))) nested.push([null, el]);
-    if (nested.length) push('boxinbox', 'box inside a box: ' + nested.slice(0, 5).map(([o, i]) => `${name(i)} (${Math.round(i.getBoundingClientRect().width)}x${Math.round(i.getBoundingClientRect().height)}) in ${o ? name(o) : 'the content box'}`).join(' | ') + (nested.length > 5 ? ` (+${nested.length - 5})` : ''));
+    if (nested.length) push('boxinbox', 'box inside a box: ' + nested.slice(0, 5).map(([o, i]) => `${name(i)} (${Math.round(i.getBoundingClientRect().width)}x${Math.round(i.getBoundingClientRect().height)})${i.matches('.fi-callout') ? ' "' + text(i) + '"' : ''} in ${o ? name(o) : 'the content box'}`).join(' | ') + (nested.length > 5 ? ` (+${nested.length - 5})` : ''));
     r.info.boxes = boxes.slice(0, 8).map((el) => { const b = el.getBoundingClientRect(); return `${name(el)} ${Math.round(b.left)},${Math.round(b.top)} ${Math.round(b.width)}x${Math.round(b.height)}`; });
     // Action buttons that belong in the title bar: a page header's actions, a table's toolbar buttons, a form's save.
     const actionSel = '.fi-header-actions-ctn .fi-ac > :is(button, a), .fi-ta-header-toolbar > .fi-ta-actions > :is(button, a), .s-bar button, .fi-form-actions button, form > .fi-ac > button, .fi-fo-actions button, button[type=submit]:not(.fi-modal *)';

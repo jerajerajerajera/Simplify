@@ -981,6 +981,8 @@ async function notifyFlow() {
   const say = (step, ok, detail) => problems.push(`${stand} notify-${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
   const bell = '#ps-notify-menu';
   await openBell();
+  // The list comes in after the window opens: wait for it (up to 8 s) rather than a fixed pause.
+  await page.waitForFunction((sc) => !!document.querySelector(`${sc} .ps-notify-item`), bell, { timeout: 8000 }).catch(() => null);
   const c0 = await count(bell); await record('notify-bell', 'Meldingen · bel open', { counts: c0 });
   if (!c0 || !c0.items) { say('bell', false, { c0, note: 'no notifications under the bell' }); return; }
   // 1. Mark read on one unread notification.
