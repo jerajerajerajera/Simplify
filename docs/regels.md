@@ -315,7 +315,7 @@ Alle meldingsopties (dit apparaat, berichten, updates, Pelican, scheduler, appar
 
 #### P-22 Telefoon
 Eén frame: bovenin naam, bel en account; onderin één balk. Menu's openen als blad van onderaf. Instellingen slaan
-vanzelf op. Trekken om te verversen alleen op het overzicht; een blad dichttrekken ververst nooit.
+nooit vanzelf op (P-38). Trekken om te verversen alleen op het overzicht; een blad dichttrekken ververst nooit.
 *Bewaakt door:* audit `phone-*`, `pull-*`.
 
 ## Teksten
@@ -404,6 +404,14 @@ zonder controle (open routes staan in de README onder "What it sends where"). Bi
 #### P-37 Testfase
 De eerste Hub-versie (2.0.0) moet echt goed zijn; liever langer testen dan veel updates afdwingen.
 *Vervangt:* R64.
+
+#### P-38 Niets slaat vanzelf op
+Een wijziging geeft onderin de melding "Changes made" met Discard en Save, ook op de telefoon. Wie de pagina verlaat met
+wijzigingen (link, menu, terug, tabblad sluiten, blad dichtdoen) krijgt eerst Save, Discard of Cancel. Eén gedeeld
+mechanisme in de kern (`resources/js/unsaved.js`, attribuut `data-simplify-unsaved`, ADDONS.md); add-ons gebruiken
+hetzelfde en bouwen geen eigen opslag-logica.
+*Bewaakt door:* `tests/unsaved.cjs`, audit `phone-unsaved`.
+*Besluit:* V54, V57.
 
 ## Oud → nieuw
 
