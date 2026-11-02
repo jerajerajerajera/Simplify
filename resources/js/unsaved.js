@@ -21,6 +21,8 @@
     const host = el.closest('[wire\\:id]');
     try { return host && window.Livewire ? window.Livewire.find(host.getAttribute('wire:id')) : null; } catch { return null; }
   };
+  /** A field typed back to what it was is no change: 20 and "20" are the same, and so are an empty field and none. */
+  const same = (key, value) => (typeof value === 'number' ? String(value) : value === '' ? null : value);
   /** What the form holds now: its Livewire properties, or for a plain form the values of its fields. */
   const read = (el) => {
     const wire = livewire(el);
@@ -28,7 +30,7 @@
       const all = wire.__instance?.ephemeral || {};
       const named = (el.dataset.simplifyUnsaved || '').split(',').map((name) => name.trim()).filter(Boolean);
       const props = named.length ? named : ('data' in all ? ['data'] : Object.keys(all));
-      return JSON.stringify(props.map((name) => { try { return wire.$get(name); } catch { return all[name]; } }));
+      return JSON.stringify(props.map((name) => { try { return wire.$get(name); } catch { return all[name]; } }), same);
     }
     return JSON.stringify([...el.querySelectorAll('input, select, textarea')].map((field) => (['checkbox', 'radio'].includes(field.type) ? field.checked : field.value)));
   };

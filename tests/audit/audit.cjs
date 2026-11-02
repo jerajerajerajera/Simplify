@@ -250,11 +250,14 @@ async function round(theme) {
       await sleep(400);
       st.stayed = rel(page.url()) === rel(mc.url) && !(await shown('.s-unsaved-dialog'));
       st.url = rel(page.url());
-      const good = st.bar === true && st.asked === true && st.stayed === true;
-      problems.push(`${stand} server-addon-unsaved: ${good ? 'ok' : 'WRONG'} ${JSON.stringify(st)}`);
-      // Set back, so nothing is left unsaved.
+      // Typed back to what it was: no change any more, the bar goes and leaving asks nothing.
       await field.fill(before).catch(() => {});
-      await sleep(300);
+      await page.waitForSelector('.s-unsaved', { state: 'hidden', timeout: 3000 }).catch(() => {});
+      st.gone = !(await shown('.s-unsaved'));
+      const good = st.bar === true && st.asked === true && st.stayed === true && st.gone === true;
+      problems.push(`${stand} server-addon-unsaved: ${good ? 'ok' : 'WRONG'} ${JSON.stringify(st)}`);
+      // Whatever is left, the rest of the round goes on (the browser's own question would stop the next page).
+      page.once('dialog', (dialog) => dialog.accept().catch(() => {}));
     }
   }
   // A second server with another game, console only.

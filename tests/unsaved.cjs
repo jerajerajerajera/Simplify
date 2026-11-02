@@ -28,7 +28,7 @@ const page = `<!doctype html><meta charset="utf-8"><body>
   // A small stand-in for Livewire: one component with a data property, its commit hook and navigate.
   const hooks = [];
   const component = { id: 'c1', snapshot: { memo: { errors: {} } } };
-  const state = { data: { name: 'Lobby', max: 20 } };
+  const state = { data: { name: 'Lobby', max: 20, motd: null } };
   window.navigated = [];
   window.Livewire = {
     hook: (name, fn) => name === 'commit' && hooks.push(fn),
@@ -77,6 +77,16 @@ const page = `<!doctype html><meta charset="utf-8"><body>
     await wait(50);
     ok('Cancel stays on the page with the change', !dialog() && window.navigated.length === 0 && bar() === 'changes', { dialog: dialog(), navigated: window.navigated, bar: bar() });
 
+    // Typed back to what it was (a number field gives text, an emptied field gives ''): no change any more.
+    state.data.max = '20';
+    state.data.motd = '';
+    document.getElementById('lwname').dispatchEvent(new Event('input', { bubbles: true }));
+    await wait(150);
+    ok('typed back to what it was is no change', bar() === null, bar());
+    state.data.max = 30;
+    state.data.motd = null;
+    document.getElementById('lwname').dispatchEvent(new Event('input', { bubbles: true }));
+    await wait(150);
     // A save that fails keeps the bar and says so; one that works takes it away.
     commit([{ method: 'save', params: [] }], { max: ['too big'] });
     await wait(150);
