@@ -1143,9 +1143,10 @@ const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(
       const overview = urls.app.find((p) => /App\\Pages\\Overview$/.test(p.class))?.url || '/';
       await goto(overview); await setTheme('dark'); await goto(overview); await sleep(800); await record('overview', 'Klant · overzicht');
       // A suspended server tells its owner why, inside its card, with the add-on's main link (Hosting V26; the audit's
-      // plugin gives Pay invoice): the note sits within the card's edges, without power buttons.
-      const sus = await page.evaluate(() => { const card = [...document.querySelectorAll('.ps-server-card')].find((c) => /Old Factions/.test(c.innerText)); const note = card?.querySelector('.ps-card-suspended'); if (!note || !note.getClientRects().length) return { card: !!card, note: false }; const c = card.getBoundingClientRect(), n = note.getBoundingClientRect(); return { card: true, note: true, inside: n.left >= c.left - 1 && n.right <= c.right + 1 && n.bottom <= c.bottom + 1 && n.top >= c.top - 1, power: [...card.querySelectorAll('.ps-power-wrap')].some((e) => e.getClientRects().length) }; }).catch(() => null);
-      problems.push(`${stand} suspended-card: ${!!sus && sus.card && sus.note && sus.inside && !sus.power ? 'ok' : 'WRONG'} ${JSON.stringify(sus)}`);
+      // plugin gives Pay invoice): the note sits within the card's edges, without power buttons, and no half-covered usage
+      // tile shows above it.
+      const sus = await page.evaluate(() => { const card = [...document.querySelectorAll('.ps-server-card')].find((c) => /Old Factions/.test(c.innerText)); const note = card?.querySelector('.ps-card-suspended'); if (!note || !note.getClientRects().length) return { card: !!card, note: false }; const c = card.getBoundingClientRect(), n = note.getBoundingClientRect(); const peek = [...card.querySelectorAll('.ps-card-mini-metric')].filter((e) => { const r = e.getBoundingClientRect(); return e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden' && r.top < n.top - 1 && r.bottom > n.top + 1; }).length; return { card: true, note: true, inside: n.left >= c.left - 1 && n.right <= c.right + 1 && n.bottom <= c.bottom + 1 && n.top >= c.top - 1, power: [...card.querySelectorAll('.ps-power-wrap')].some((e) => e.getClientRects().length), peek }; }).catch(() => null);
+      problems.push(`${stand} suspended-card: ${!!sus && sus.card && sus.note && sus.inside && !sus.power && !sus.peek ? 'ok' : 'WRONG'} ${JSON.stringify(sus)}`);
       // The card alone, light and dark, for Simplify-Hosting's screenshots (docs/screenshots there).
       for (const theme of ['dark', 'light']) {
         if (theme === 'light') { await setTheme('light'); await goto(overview); await sleep(800); }
