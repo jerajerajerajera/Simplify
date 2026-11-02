@@ -16,6 +16,7 @@ return [
         'new' => 'Baru',
         'menu' => 'Menu',
         'customize' => 'Sesuaikan',
+        'suspended_note' => 'Penyedia hosting Anda menjeda server ini. Bayar tagihan yang belum lunas untuk menjalankannya lagi.',
         'profile_options' => 'Opsi profil',
         'profile_settings' => 'Pengaturan profil',
         'theme_prefix' => 'Tema:',

@@ -16,6 +16,7 @@ return [
         'new' => '新規',
         'menu' => 'メニュー',
         'customize' => 'カスタマイズ',
+        'suspended_note' => 'ホスティング会社がこのサーバーを一時停止しました。未払いの請求書を支払うと再び起動できます。',
         'profile_options' => 'プロフィールのオプション',
         'profile_settings' => 'プロフィール設定',
         'theme_prefix' => 'テーマ:',

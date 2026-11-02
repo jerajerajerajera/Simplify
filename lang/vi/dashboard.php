@@ -16,6 +16,7 @@ return [
         'new' => 'Mới',
         'menu' => 'Menu',
         'customize' => 'Tùy chỉnh',
+        'suspended_note' => 'Nhà cung cấp hosting đã tạm dừng máy chủ này. Hãy thanh toán hóa đơn còn nợ để khởi động lại.',
         'profile_options' => 'Tùy chọn hồ sơ',
         'profile_settings' => 'Cài đặt hồ sơ',
         'theme_prefix' => 'Giao diện:',

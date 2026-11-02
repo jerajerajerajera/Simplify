@@ -64,13 +64,15 @@ $list = [
     ['Fresh Start', 'Paper', 'offline', 0, 0, $admin, null],
     // First start: a new Minecraft server without an eula.txt at all.
     ['No EULA', 'Paper', 'offline', 0, 0, $admin, null],
+    // Paused by the hosting company: the customer's card says why (Hosting V26).
+    ['Old Factions', 'Paper', 'offline', 0, 0, $customer, null],
 ];
 // The overview comparison with PelicanSimplify 0.7.0 (seed.php <port> <count>): the same first servers, no groups.
 $limit = (int) ($argv[2] ?? 0);
 if ($limit > 0) {
     $list = array_slice($list, 0, $limit);
 }
-$status = ['New World' => 'installing', 'Broken Install' => 'install_failed'];
+$status = ['New World' => 'installing', 'Broken Install' => 'install_failed', 'Old Factions' => 'suspended'];
 $minecraft = ['Paper', 'Forge'];
 // Docker images as the pelican-eggs repository has them, so the icon per kind of egg shows what a real panel shows.
 $images = ['Valheim' => 'ghcr.io/parkervcp/steamcmd:debian', 'Palworld' => 'ghcr.io/parkervcp/steamcmd:debian', 'Rust' => 'ghcr.io/parkervcp/games:rust',
@@ -94,7 +96,7 @@ foreach ($list as $i => [$name, $eggName, $state, $memory, $cpu, $owner, $color]
         'docker_images' => [$images[$eggName] ?? 'ghcr.io/pelican-eggs/yolks:java_21'], 'update_url' => null]);
     $allocation = Allocation::factory()->create(['node_id' => $node->id, 'ip' => '127.0.0.1', 'ip_alias' => 'play.example.com', 'port' => 25565 + $i]);
     $server = Server::factory()->create(['name' => $name, 'owner_id' => $owner->id, 'node_id' => $node->id, 'allocation_id' => $allocation->id, 'egg_id' => $eggs[$eggName]->id,
-        'image' => $images[$eggName] ?? 'ghcr.io/pelican-eggs/yolks:java_21', 'memory' => $memory > 4096 ? 8192 : 4096, 'disk' => 20480, 'cpu' => 200, 'installed_at' => isset($status[$name]) ? null : now(), 'status' => $status[$name] ?? null,
+        'image' => $images[$eggName] ?? 'ghcr.io/pelican-eggs/yolks:java_21', 'memory' => $memory > 4096 ? 8192 : 4096, 'disk' => 20480, 'cpu' => 200, 'installed_at' => in_array($status[$name] ?? null, ['installing', 'install_failed'], true) ? null : now(), 'status' => $status[$name] ?? null,
         'created_at' => now()->subDays(20 - $i)]);
     $allocation->update(['server_id' => $server->id]);
     $servers[$name] = $server;
