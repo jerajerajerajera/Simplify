@@ -21,6 +21,8 @@ const measure = (opts = {}) => {
     // closes its tooltips on scroll, so the screenshot taken next would lose them.
     const ov = (el) => getComputedStyle(el).overflowY;
     const moved = !['hidden', 'clip'].includes(ov(root)) && !['hidden', 'clip'].includes(ov(document.body)) && getComputedStyle(root).position !== 'fixed' && getComputedStyle(document.body).position !== 'fixed';
+    // What makes the page taller: the body and its children with their place and minimum height.
+    r.info.tall = { body: `${document.body.className} ${getComputedStyle(document.body).display} min ${getComputedStyle(document.body).minHeight}`, ps: !!document.querySelector('.ps'), kids: [...document.body.children].filter((k) => k.getClientRects().length).map((k) => { const b = k.getBoundingClientRect(); return `${k.tagName.toLowerCase()}.${[...k.classList].slice(0, 2).join('.')} ${Math.round(b.top + scrollY)}..${Math.round(b.bottom + scrollY)} min ${getComputedStyle(k).minHeight}`; }).slice(0, 8), inner: [...document.querySelectorAll('.fi-layout > .fi-main-ctn, .fi-main-ctn > .fi-main, .fi-main > .fi-page')].map((k) => `${[...k.classList].slice(0, 2).join('.')} ${Math.round(k.getBoundingClientRect().height)} min ${getComputedStyle(k).minHeight}`) };
     push(moved ? 'pagescroll' : 'tallnoscroll', `page is taller than the window (${root.scrollHeight} > ${H})${moved ? ', the page scrolls' : ', nothing scrolls'}`);
   }
   // 2. Text cut off: single-line text hidden without an ellipsis, and text shortened with an ellipsis (info).
@@ -155,7 +157,7 @@ const measure = (opts = {}) => {
     const region = (isFrame && native && !serverFrame) ? document.body : (r.fit || serverFrame) ? document.querySelector('.fi-main-ctn > .fi-main') : null;
     const consolePage = !!document.querySelector('.ps-server-top.is-console');
     if (region) for (const el of boxes) if (el !== region && region.contains(el) && !nested.some(([, i]) => i === el) && !(consolePage && el.matches('.fi-wi-widget, .ps-console'))) nested.push([null, el]);
-    if (nested.length) push('boxinbox', 'box inside a box: ' + nested.slice(0, 5).map(([o, i]) => `${name(i)} (${Math.round(i.getBoundingClientRect().width)}x${Math.round(i.getBoundingClientRect().height)}) in ${o ? name(o) : 'the content box'}`).join(' | ') + (nested.length > 5 ? ` (+${nested.length - 5})` : ''));
+    if (nested.length) push('boxinbox', 'box inside a box: ' + nested.slice(0, 5).map(([o, i]) => `${name(i)} (${Math.round(i.getBoundingClientRect().width)}x${Math.round(i.getBoundingClientRect().height)})${i.matches('.fi-callout') ? ' "' + text(i) + '"' : ''} in ${o ? name(o) : 'the content box'}`).join(' | ') + (nested.length > 5 ? ` (+${nested.length - 5})` : ''));
     r.info.boxes = boxes.slice(0, 8).map((el) => { const b = el.getBoundingClientRect(); return `${name(el)} ${Math.round(b.left)},${Math.round(b.top)} ${Math.round(b.width)}x${Math.round(b.height)}`; });
     // Action buttons that belong in the title bar: a page header's actions, a table's toolbar buttons, a form's save.
     const actionSel = '.fi-header-actions-ctn .fi-ac > :is(button, a), .fi-ta-header-toolbar > .fi-ta-actions > :is(button, a), .s-bar button, .fi-form-actions button, form > .fi-ac > button, .fi-fo-actions button, button[type=submit]:not(.fi-modal *)';

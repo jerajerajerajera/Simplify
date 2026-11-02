@@ -26,8 +26,9 @@ let browser, page, stand = '', screen = '';
 
 const { measure } = require('./measure.cjs');
 const settle = async (p, ms = 600) => { await p.waitForLoadState('networkidle', { timeout: 12000 }).catch(() => {}); await sleep(ms); };
-// Waits (up to 10 s) for Alpine on Simplify's root first: a slow page load must not skip the step.
-const alpine = async (body) => { await page.waitForFunction(() => { const el = document.querySelector('.ps'); return !!(el && window.Alpine && el._x_dataStack); }, null, { timeout: 10000 }).catch(() => null); return page.evaluate((b) => { const el = document.querySelector('.ps'); return el && window.Alpine ? new Function('d', b)(window.Alpine.$data(el)) : null; }, body).catch(() => null) };
+// Waits (up to 10 s) for Alpine on Simplify's root: a slow page load must not skip a step or swallow a click.
+const ready = () => page.waitForFunction(() => { const el = document.querySelector('.ps'); return !!(el && window.Alpine && el._x_dataStack); }, null, { timeout: 10000 }).catch(() => null);
+const alpine = async (body) => { await ready(); return page.evaluate((b) => { const el = document.querySelector('.ps'); return el && window.Alpine ? new Function('d', b)(window.Alpine.$data(el)) : null; }, body).catch(() => null) };
 // The theme is set before any page script runs (both Filament's and Simplify's stored choice) and the browser's own
 // colour scheme follows it, so every page of the stand opens in that theme.
 const setTheme = async (theme) => { await page.context().addInitScript((t) => { try { localStorage.setItem('pelicanSimplify.theme', t); localStorage.setItem('theme', t); } catch {} document.documentElement?.classList.toggle('dark', t === 'dark'); }, theme); await page.emulateMedia({ colorScheme: theme }); await page.evaluate((t) => { localStorage.setItem('pelicanSimplify.theme', t); localStorage.setItem('theme', t); window.SimplifyTheme?.set(t); document.documentElement.classList.toggle('dark', t === 'dark'); }, theme); };
@@ -872,7 +873,7 @@ async function fixesFlow() {
     const vis = (sel) => page.evaluate((s) => [...document.querySelectorAll(s)].some((e) => e.getClientRects().length > 0 && getComputedStyle(e).visibility !== 'hidden'), sel).catch(() => null);
     const sheet = (sel) => page.evaluate((s) => { const e = [...document.querySelectorAll(s)].find((x) => x.getClientRects().length > 0); if (!e) return null; const r = e.getBoundingClientRect(); return { width: Math.round(r.width), bottom: Math.round(r.bottom), height: Math.round(r.height), window: [innerWidth, innerHeight] }; }, sel).catch(() => null);
     const isSheet = (r, tall = 0) => !!r && r.width >= r.window[0] - 2 && Math.abs(r.bottom - r.window[1]) <= 2 && r.height >= tall * r.window[1];
-    await goto(overview, 2500);
+    await goto(overview, 2500); await ready();
     const top = { menuButton: await vis('.ps-mobile-menu'), bell: await vis('.ps-top [x-ref="notifyButton"]'), account: await vis('.ps-top .ps-account-button'), servers: await page.evaluate(() => [...document.querySelectorAll('.ps-tabbar .ps-tab')].filter((b) => b.getClientRects().length).map((b) => b.innerText.trim())).catch(() => null) };
     await record('phone-frame-overview', 'Telefoon · overzicht: bel en account bovenin, balk onderin');
     say('phone-frame-overview', top.menuButton === false && top.bell && top.account && Array.isArray(top.servers) && !top.servers.includes('Servers') && top.servers.length >= 2, top);
@@ -880,8 +881,12 @@ async function fixesFlow() {
     const bell = await sheet('#ps-notify-menu'); await record('phone-sheet-bell', 'Telefoon · meldingen als blad');
     say('phone-sheet-bell', isSheet(bell, 0.85), bell);
     const before = page.url();
+    const hit = await page.evaluate(() => { const e = document.elementFromPoint(195, 20); return e ? `${e.tagName.toLowerCase()}.${[...e.classList].slice(0, 2).join('.')}` : null; }).catch(() => null);
+    // What the tap did: whether the click reached the page and was taken by the sheet handler, and the bell's state.
+    await page.evaluate(() => { window.__tap = null; document.addEventListener('click', (e) => { window.__tap = { target: e.target.tagName.toLowerCase(), prevented: e.defaultPrevented }; }, { capture: true, once: true }); }).catch(() => {});
     await page.mouse.click(195, 20); await sleep(700);
-    const closed = { open: await vis('#ps-notify-menu'), url: page.url() === before };
+    const after = await page.evaluate(() => { const m = document.getElementById('ps-notify-menu'); const ps = document.querySelector('.ps'); return { tap: window.__tap, menu: ps && ps._x_dataStack ? ps._x_dataStack[0].notifyMenu : null, style: m ? m.getAttribute('style') : null, menus: document.querySelectorAll('#ps-notify-menu').length, roots: document.querySelectorAll('.ps').length }; }).catch(() => null);
+    const closed = { open: await vis('#ps-notify-menu'), url: page.url() === before, hit, after };
     say('phone-sheet-close', closed.open === false && closed.url, closed);
     await page.locator('.ps-tabbar .ps-tab-customize > .ps-tab').first().click().catch(() => {}); await sleep(700);
     const custom = await sheet('#ps-tab-customize-menu'); await record('phone-sheet-customize', 'Telefoon · Customize als blad');
@@ -976,11 +981,13 @@ async function fixesFlow() {
 async function notifyFlow() {
   const overview = urls.app.find((p) => /App\\Pages\\Overview$/.test(p.class))?.url || '/';
   const onPhone = phone();
-  const openBell = async () => { await goto(overview); await sleep(600); if (onPhone) { if (!(await page.locator('.ps-tabbar button[aria-controls="ps-navigation-items"]').count())) await page.locator('.ps-mobile-menu').first().click().catch(() => {}); else await page.locator('.ps-tabbar button[aria-controls="ps-navigation-items"]').first().click().catch(() => {}); await sleep(500); } await page.locator('[x-ref="notifyButton"]').first().click().catch(() => {}); await sleep(900); };
+  const openBell = async () => { await goto(overview); await ready(); await sleep(600); if (onPhone) { if (!(await page.locator('.ps-tabbar button[aria-controls="ps-navigation-items"]').count())) await page.locator('.ps-mobile-menu').first().click().catch(() => {}); else await page.locator('.ps-tabbar button[aria-controls="ps-navigation-items"]').first().click().catch(() => {}); await sleep(500); } await page.locator('[x-ref="notifyButton"]').first().click().catch(() => {}); await sleep(900); };
   const count = (scope) => page.evaluate((sc) => { const root = document.querySelector(sc); if (!root) return null; const vis = (e) => e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden'; const items = [...root.querySelectorAll('.ps-notify-item')].filter((e) => vis(e) && !e.closest('.ps-notify-pinned')); const inArchive = (e) => !!e.closest('#ps-notify-archived'); return { items: items.filter((e) => !inArchive(e)).length, unread: items.filter((e) => !inArchive(e) && !e.classList.contains('is-read')).length, archived: items.filter(inArchive).length }; }, scope).catch(() => null);
   const say = (step, ok, detail) => problems.push(`${stand} notify-${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
   const bell = '#ps-notify-menu';
   await openBell();
+  // The list comes in after the window opens: wait for it (up to 8 s) rather than a fixed pause.
+  await page.waitForFunction((sc) => !!document.querySelector(`${sc} .ps-notify-item`), bell, { timeout: 8000 }).catch(() => null);
   const c0 = await count(bell); await record('notify-bell', 'Meldingen · bel open', { counts: c0 });
   if (!c0 || !c0.items) { say('bell', false, { c0, note: 'no notifications under the bell' }); return; }
   // 1. Mark read on one unread notification.

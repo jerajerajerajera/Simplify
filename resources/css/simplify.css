@@ -823,6 +823,23 @@ html:not(.ps-frame) :is(.s-health, .s-fit)[style*="--s-fit"],
   position: relative;
 }
 
+/* Pelican's pages on a smaller window: the sidebar button (or the top bar) sits above Filament's layout, which is a
+   whole window high itself, so every page scrolled by the height of that bar. The layout takes what is left instead. */
+html:not(.ps-frame) body.fi-body:not(:has(.ps)) {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+html:not(.ps-frame) body.fi-body:not(:has(.ps)) > .fi-layout {
+  flex: 1 0 auto;
+  min-height: 0;
+}
+
+html:not(.ps-frame) body.fi-body:not(:has(.ps)) > .fi-layout > .fi-main-ctn {
+  min-height: 0 !important;
+}
+
 /* With Pelican's top bar (a small window or a phone) the content's own minimum of a whole window comes on top of
    it; the fitted card already takes the window's height, so the page needs no minimum. */
 html:not(.ps-frame) body:has(:is(.s-settings-tabs, .s-health, .s-people, .s-fit, .s-done)[style*="--s-fit"]) .fi-main-ctn {
