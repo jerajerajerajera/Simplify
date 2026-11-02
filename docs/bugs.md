@@ -17,6 +17,7 @@
 | K-B2 | 1.4.4–1.5.5 | Pelicans beheerpagina's (Announcements, Egg Updates, Server Maker) scrollen 44 px op een tablet | De menuknop staat boven `.fi-layout`, en die is zelf al een vol venster hoog | 1.5.5 | audit `pagescroll` tablet768 (rood op 9195163, groen op 0c20132) | 0× | P-7 |
 | K-B3 | 1.5.4 | Op de telefoon ververst een blad dat je dichttrekt de pagina | De eigen pull-to-refresh van de browser stond aan | 1.5.5 (#113) | audit `pull-sheet`, `pull-refresh` | 0× | P-22 |
 | K-B4 | 1.5.5 | Op de kaart van een geschorste server schemeren boven de melding twee half bedekte vakjes (CPU en RAM) door | De melding ligt onderaan over de kaart, de gebruiksvakjes eronder bleven zichtbaar | Unreleased | audit `suspended-card` (`peek`; rood op 71dbaf4) | 0× | P-8 |
+| K-B5 | 1.5.4–1.5.5 | Op de telefoon (portrait) zag het node-overzicht en elke andere Pelican-lijst in het legacy panel er kapot uit: geen kolomtitels, alles op één regel geperst (melding Khion) | De korte rijen voor Pelicans tabellen op de telefoon golden voor elk admin- en serverpaneel, ook buiten Simplify | Unreleased | `tests/legacy-css.php` (rood op main 63e5210) | 0× | P-1 |
 
 ## Patronen
 

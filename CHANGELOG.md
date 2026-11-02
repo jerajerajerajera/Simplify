@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- On a phone, Pelican's own lists in the legacy panel (such as Nodes) look as Pelican draws them again. Simplify's short rows apply only inside Simplify.
 - Add-ons can give a start page (add-on contract API 5): the server list and the overview open it when an add-on gives one, and Pelican's admin pages then keep Simplify's header on top. The groups of the admin menu are now built on the server.
 - A suspended server's card no longer shows the tops of its CPU and RAM tiles above the note about the suspension.
 - The overview and the server page load less: the code and styles for holidays load only on a day with one.
