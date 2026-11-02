@@ -842,7 +842,7 @@ async function fixesFlow() {
   if (phone()) {
     const pull = async (url, name, label) => {
       const p2 = await page.context().newPage(); await quiet(p2);
-      await p2.addInitScript(() => { const mm = window.matchMedia.bind(window); window.matchMedia = (q) => (/display-mode: *standalone/.test(q) ? { matches: true, media: q, onchange: null, addEventListener() {}, removeEventListener() {}, addListener() {}, removeListener() {} } : mm(q)); });
+      await p2.addInitScript(() => { const mm = window.matchMedia.bind(window); window.matchMedia = (q) => (/display-mode: *standalone|pointer: *coarse/.test(q) ? { matches: true, media: q, onchange: null, addEventListener() {}, removeEventListener() {}, addListener() {}, removeListener() {} } : mm(q)); });
       await p2.setViewportSize(VIEWPORTS.phone390);
       await p2.goto(new URL(url, base).href, { waitUntil: 'load' }).catch(() => {}); await settle(p2, 1200);
       const cdp = await p2.context().newCDPSession(p2); await cdp.send('Emulation.setTouchEmulationEnabled', { enabled: true, maxTouchPoints: 1 });
@@ -872,7 +872,7 @@ async function fixesFlow() {
     // A sheet swiped down on the overview closes and does not reload.
     {
       const p4 = await page.context().newPage(); await quiet(p4);
-      await p4.addInitScript(() => { const mm = window.matchMedia.bind(window); window.matchMedia = (q) => (/display-mode: *standalone/.test(q) ? { matches: true, media: q, onchange: null, addEventListener() {}, removeEventListener() {}, addListener() {}, removeListener() {} } : mm(q)); });
+      await p4.addInitScript(() => { const mm = window.matchMedia.bind(window); window.matchMedia = (q) => (/display-mode: *standalone|pointer: *coarse/.test(q) ? { matches: true, media: q, onchange: null, addEventListener() {}, removeEventListener() {}, addListener() {}, removeListener() {} } : mm(q)); });
       await p4.setViewportSize(VIEWPORTS.phone390);
       await p4.goto(new URL('/simplify', base).href, { waitUntil: 'load' }).catch(() => {}); await settle(p4, 1200);
       await p4.evaluate(() => { const d = window.Alpine.$data(document.querySelector('.ps')); d.customizeMenu = true; }).catch(() => {}); await sleep(700);

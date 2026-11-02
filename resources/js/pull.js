@@ -1,11 +1,9 @@
-/* Pull to refresh in the installed app: only on the overview (Jeroen 2-11). The page never scrolls and an installed app
-   has no reload button, so a pull down from the top of the overview reloads it. Settings and admin pages, and every page
-   inside a frame, leave the gesture alone: a reload there sent you back to the overview. Only with the app installed;
-   a browser tab has its own reload. */
+/* Pull to refresh: only on the overview (Jeroen 2-11). A pull down from the top of the overview reloads it, in the app
+   and in a browser tab; the browser's own pull to refresh is off (simplify.css). Settings and admin pages, sheets, and
+   every page inside a frame leave the gesture alone: a reload there sent you back to the overview. */
 (() => {
   if (window !== window.top) return;
-  const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
-  if (!standalone || window.SimplifyPull) return;
+  if (window.SimplifyPull || !matchMedia('(pointer: coarse)').matches) return;
   window.SimplifyPull = true;
   const PULL = 70;
   let start = null, pulled = 0, mark = null;

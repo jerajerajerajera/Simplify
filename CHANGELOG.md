@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Installed app: pull down to reload works on the overview only. In the settings and on other pages a pull down no longer reloads and sends you back to the overview.
+- Pull down to reload works on the overview only, in the app and in a browser tab. In the settings, on other pages and when you swipe a sheet down to close it, nothing reloads any more: the browser's own pull to refresh is off.
 
 ## 1.5.4
 
