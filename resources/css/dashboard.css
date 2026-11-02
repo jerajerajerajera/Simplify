@@ -4,9 +4,10 @@
 /* Page shell: the dashboard replaces Filament's chrome and pins the overview to the viewport. ------- */
 html:has(.ps), body:has(.ps) { margin: 0; padding: 0; min-height: 100%; background: var(--ps-bg); overflow-x: clip; }
 body:has(.ps) :is(.fi-sidebar, .fi-topbar, .fi-breadcrumbs, .fi-layout-sidebar-toggle-btn-ctn, .fi-sidebar-close-overlay) { display: none !important; }
-/* The overview fills the page itself; on a server page Pelican's page keeps its own layout. */
-body:has(.ps:not(.ps-server-top)) .fi-header { display: none !important; }
-body:has(.ps:not(.ps-server-top)) :is(.fi-layout, .fi-main-ctn, .fi-main, .fi-page, .fi-page-header-main-ctn, .fi-page-main, .fi-page-content) {
+/* The overview fills the page itself; on a server page, and on an admin page under an add-on's host mode (.ps-admin-top),
+   Pelican's page keeps its own layout. */
+body:has(.ps:not(.ps-server-top, .ps-admin-top)) .fi-header { display: none !important; }
+body:has(.ps:not(.ps-server-top, .ps-admin-top)) :is(.fi-layout, .fi-main-ctn, .fi-main, .fi-page, .fi-page-header-main-ctn, .fi-page-main, .fi-page-content) {
   display: flex !important;
   flex-direction: column;
   flex: 1 0 auto;
@@ -1237,6 +1238,9 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
    server menu in a card on the left. The top is display: contents, so its parts share one grid with Pelican's page. */
 /* The top stays while the menu changes the page (@persist): its wrapper must not become one grid cell. */
 .ps.ps-server-top, [x-persist^="simplify-server-"] { display: contents; }
+/* An admin page under an add-on's host mode: only Simplify's header, over the add-on's menu and Pelican's page. */
+.ps.ps-admin-top.server-active .ps-main { padding-bottom: 0; }
+.ps.ps-admin-top .ps-top { max-width: none; }
 body:has(.ps-server-top) .fi-main-ctn {
   display: grid !important;
   grid-template-columns: 220px minmax(0, 1fr);

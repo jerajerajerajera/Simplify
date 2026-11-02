@@ -62,7 +62,7 @@ Only `id()` and `name()` are required. Everything else has a default.
 | `saveSetup(array $state): void` | nothing | saves what the setup asked, by field name (since 1.3, API 3) |
 | `accountPages(User $user): list<Button>` | `[]` | your own pages for every user, as icon buttons in Simplify's account menu (for example a Steam account). They open inside Simplify, in the content area, as Admin tools do; a URL that is not on this panel is left out. Without an `icon` the button shows `tabler-puzzle` (since 1.5.5, API 4) |
 | `hostModeUrl(User $user): ?string` | `null` | a URL on this panel for your own host mode. Simplify then shows one button in the account menu that opens it, instead of its own host-mode switch (since 1.5.6, API 5) |
-| `startUrl(User $user): ?string` | `null` | a URL on this panel where this user starts: the server list and Simplify's overview redirect there, before the panel's own start page. Return `null` when the user should start in Simplify; Simplify shows the account button as on when any add-on returns a URL (since 1.5.6, API 5) |
+| `startUrl(User $user): ?string` | `null` | a URL on this panel where this user starts: the server list and Simplify's overview redirect there, before the panel's own start page. Return `null` when the user should start in Simplify; Simplify shows the account button as on when any add-on returns a URL, and puts its own header (panel name, bell, account menu) over Pelican's admin pages for admins, as the first child of `.fi-layout` (since 1.5.6, API 5) |
 
 `Button` is `new Button(string $label, string $url, ?string $icon = null, bool $primary = false)`.
 

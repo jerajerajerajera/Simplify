@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Add-ons can bring their own host mode and start page (add-on contract API 5): the account menu then has one button that opens it, and the server list and the overview open the add-on's start page when it gives one. The groups of the admin menu are now built on the server.
+- Add-ons can bring their own host mode and start page (add-on contract API 5): the account menu then has one button that opens it, the server list and the overview open the add-on's start page when it gives one, and Pelican's admin pages then keep Simplify's header on top. The groups of the admin menu are now built on the server.
 - A suspended server's card no longer shows the tops of its CPU and RAM tiles above the note about the suspension.
 - The overview and the server page load less: the code and styles for holidays load only on a day with one.
 
