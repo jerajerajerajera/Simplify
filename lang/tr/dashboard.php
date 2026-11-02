@@ -16,6 +16,7 @@ return [
         'new' => 'Yeni',
         'menu' => 'Menü',
         'customize' => 'Özelleştir',
+        'suspended_note' => 'Barındırma firmanız bu sunucuyu duraklattı. Yeniden başlatmak için açık faturayı ödeyin.',
         'profile_options' => 'Profil seçenekleri',
         'profile_settings' => 'Profil ayarları',
         'theme_prefix' => 'Tema:',

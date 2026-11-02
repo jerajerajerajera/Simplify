@@ -16,6 +16,7 @@ return [
         'new' => '新',
         'menu' => '菜单',
         'customize' => '自定义',
+        'suspended_note' => '你的托管服务商已暂停此服务器。支付未结发票后即可重新启动。',
         'profile_options' => '个人资料选项',
         'profile_settings' => '个人资料设置',
         'theme_prefix' => '主题：',

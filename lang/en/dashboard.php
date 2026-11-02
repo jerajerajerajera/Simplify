@@ -16,6 +16,7 @@ return [
         'new' => 'New',
         'menu' => 'Menu',
         'customize' => 'Customize',
+        'suspended_note' => 'This server is paused by your hosting company. Pay the open invoice to start it again.',
         'profile_options' => 'Profile options',
         'profile_settings' => 'Profile settings',
         'theme_prefix' => 'Theme:',

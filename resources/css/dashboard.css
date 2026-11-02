@@ -246,6 +246,9 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-card-motd { width: 100%; height: 47px; min-height: 47px; max-height: 47px; margin-top: 8px; padding: 7px 8px; font-size: 11px; line-height: 1.4; }
 
 /* Quick power controls slide in from the card edge; the card keeps its footprint. */
+.ps-card-suspended { position: absolute; inset-inline: 0; bottom: 0; z-index: 4; display: grid; justify-items: start; gap: 10px; padding: 14px 18px 18px; border-radius: 0 0 19px 19px; background: var(--ps-surface); }
+.ps-card-suspended p { margin: 0; color: var(--ps-muted); font-size: 13px; line-height: 1.45; }
+.ps-server-grid.is-list .ps-card-suspended { position: static; padding: 0 16px 14px; background: none; }
 .ps-overview-power-wrap { position: absolute; inset-inline-end: 0; bottom: 0; inset-inline-start: 0; z-index: 4; visibility: hidden; pointer-events: none; transform: translateY(100%); transition: transform var(--ps-slow), visibility var(--ps-slow); }
 .ps-overview-power { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; padding: 7px; border-top: 1px solid var(--ps-line); background: var(--ps-surface); }
 .ps-overview-power > .ps-btn { width: 100%; transition: opacity var(--ps-fast), transform var(--ps-fast); }

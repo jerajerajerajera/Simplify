@@ -16,6 +16,7 @@ return [
         'new' => 'Nieuw',
         'menu' => 'Menu',
         'customize' => 'Aanpassen',
+        'suspended_note' => 'Je hostingbedrijf heeft deze server gepauzeerd. Betaal de openstaande factuur om hem weer te starten.',
         'profile_options' => 'Profielopties',
         'profile_settings' => 'Profielinstellingen',
         'theme_prefix' => 'Thema:',

@@ -16,6 +16,7 @@ return [
         'new' => 'Uusi',
         'menu' => 'Valikko',
         'customize' => 'Mukauta',
+        'suspended_note' => 'Palveluntarjoajasi on keskeyttänyt tämän palvelimen. Maksa avoin lasku käynnistääksesi sen uudelleen.',
         'profile_options' => 'Profiilin valinnat',
         'profile_settings' => 'Profiilin asetukset',
         'theme_prefix' => 'Teema:',

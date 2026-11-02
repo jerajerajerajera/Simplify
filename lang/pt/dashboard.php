@@ -16,6 +16,7 @@ return [
         'new' => 'Novo',
         'menu' => 'Menu',
         'customize' => 'Personalizar',
+        'suspended_note' => 'O seu fornecedor de alojamento pausou este servidor. Pague a fatura em aberto para o voltar a iniciar.',
         'profile_options' => 'Opções do perfil',
         'profile_settings' => 'Definições do perfil',
         'theme_prefix' => 'Tema:',

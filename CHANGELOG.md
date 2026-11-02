@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- A suspended server's card tells its owner that the hosting company paused it, with the add-on's main link next to it (with Simplify-Hosting: Pay invoice). Admins see the card as before.
+
 - Installed app: pull down to reload works on the overview only. In the settings and on other pages a pull down no longer reloads and sends you back to the overview.
 
 ## 1.5.4
