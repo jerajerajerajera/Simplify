@@ -109,6 +109,8 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-server-stage { flex: none; width: 100%; max-width: var(--ps-grid-width); margin: clamp(4px, calc(4dvh - 28px), 24px) auto 0; }
 .ps-server-stage.is-list { max-width: 1088px; }
 /* Hosting customers: greeting left, account links right, on the same line as far as it fits. */
+.ps-server-stage > .ps-bars { margin: 0; }
+.ps-server-stage > .ps-bars:has(> *) { margin: 0 0 14px; }
 .ps-customer-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; margin: 0 0 14px; }
 .ps-customer-head h2 { margin: 0; font-size: var(--ps-text-lg); font-weight: 650; }
 .ps-customer-head p { margin: 2px 0 0; color: var(--ps-muted); font-size: var(--ps-text-sm); }

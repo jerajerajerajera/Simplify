@@ -779,6 +779,18 @@ async function fixesFlow() {
     // A Steam game (Counter-Strike 2 on steamcmd, as in pelican-eggs) shows the Steam icon, not Java's cup.
     const steam = await page.evaluate(() => { const card = [...document.querySelectorAll('.ps-server-card')].find((c) => /Arena/.test(c.innerText)); return card?.querySelector('.ps-card-icon svg use')?.getAttribute('href') || null; }).catch(() => null);
     say('egg-kind-steam', steam === '#ps-steam', { steam });
+    // Pinned announcements on the overview sit under the top bar, as wide as the servers, as in 0.7.0 (Jeroen V23, 2-11).
+    const pins = await page.evaluate(() => {
+      const vis = (e) => !!e && e.getClientRects().length > 0;
+      const bar = [...document.querySelectorAll('.ps-bars')].find((b) => vis(b) && b.children.length); const top = [...document.querySelectorAll('.ps-top')].find(vis);
+      const tools = [...document.querySelectorAll('.ps-overview-toolbar')].find(vis); const cards = [...document.querySelectorAll('.ps-server-card')].filter(vis).map((c) => c.getBoundingClientRect());
+      if (!bar || !top || !tools || !cards.length) return { bar: !!bar, top: !!top, tools: !!tools, cards: cards.length };
+      const b = bar.getBoundingClientRect(), t = top.getBoundingClientRect(), o = tools.getBoundingClientRect();
+      // As wide as the servers: the cards' outer edges (the toolbar runs into the side gutters on a phone).
+      return { barTop: Math.round(b.top), topBottom: Math.round(t.bottom), barLeft: Math.round(b.left), barRight: Math.round(b.right), toolsLeft: Math.round(Math.min(...cards.map((r) => r.left))), toolsRight: Math.round(Math.max(...cards.map((r) => r.right))), toolsTop: Math.round(o.top) };
+    }).catch(() => null);
+    await record('pinned-overview', 'Overzicht · vastgezette meldingen onder de bovenbalk');
+    say('pinned-overview', !!pins && pins.barTop >= pins.topBottom && pins.barTop < pins.toolsTop && Math.abs(pins.barLeft - pins.toolsLeft) <= 2 && Math.abs(pins.barRight - pins.toolsRight) <= 2, pins);
     // Every notification option sits in the bell sheet: this device, messages, Pelican's, and the devices.
     await alpine('d.openAllNotifications()'); await sleep(1500);
     const bell = await page.evaluate(() => { const box = [...document.querySelectorAll('.ps-notify-settings')].find((e) => e.getClientRects().length); if (!box) return { shown: false }; return { shown: true, pelican: !![...box.querySelectorAll('input.ps-switch')].find((i) => /pelican/.test(i.getAttribute('x-on:change') || '') && i.getClientRects().length) }; }).catch(() => null);
