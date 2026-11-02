@@ -10,17 +10,32 @@ Simplify 1.0 is a rebuild from the ground up. The earlier PelicanSimplify (0.6.0
 ## What it does
 
 - An overview of all your servers as cards, compact rows or a list, with live numbers, players, filters, a section
-  per node and your own groups. Start, stop and restart from each card.
+  per node and your own groups. Start, stop and restart from each card. A server without a picture of its own shows an
+  icon for its kind of server.
 - A server page that fits the window: a header card with status, address and power, number cards, a short menu and
-  the live console. While a server installs, a card shows the steps and how long it usually takes.
+  the live console. While a server installs, a card shows the steps and how long it usually takes; after that, First
+  start asks for the Minecraft EULA when it is still open. The menu changes only the page next to it.
+- Create server opens in a Simplify popup from every entry point, with Server Maker when it is installed.
 - Host mode for admins: the admin pages and the servers per node on the left, the page on the right, node health at
   the bottom. Pelican's admin pages open inside Simplify.
 - Announcements at the top of every page, in the bell, as app notifications and in game chats.
 - Your servers on your own website, with a script, an iframe or a status page.
 - A subdomain for every server under your own domain, made in Cloudflare and removed with the server.
-- Your own name, logo, colours and app icon. Install the panel as an app with notifications per device.
+- Your own name, logo, colours and app icon. Install the panel as an app with notifications per device; every
+  notification option sits in the bell's window.
+- On a phone one frame with a bar at the bottom, menus that open as a sheet from the bottom, settings that save
+  themselves, and pull down to reload in the installed app.
 - A setup that checks the panel, asks who it is for and sets up the installed add-ons in one go.
 - 32 languages.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/overview-egg-icons-dark-desktop.png">
+  <img src="docs/screenshots/overview-egg-icons-light-desktop.png" alt="The Simplify overview" width="720">
+</picture>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/phone-overview-dark-phone.png">
+  <img src="docs/screenshots/phone-overview-light-phone.png" alt="The Simplify overview on a phone" width="240">
+</picture>
 
 ## Install
 
