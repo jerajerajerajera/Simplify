@@ -8,8 +8,8 @@ Regels:
 - `aanwezig` mag alleen met een test in de kolom **test** (bestand of audit-sectie) die de functie echt gebruikt.
   Een functie zonder test is niet af.
 - `bewust weg` en `anders` alleen met datum en akkoord van de eigenaar in de noot.
-- Werk deze lijst bij in dezelfde PR als de functie. Een kernrelease met `ontbreekt` of `deels` zonder akkoord
-  van de eigenaar gaat niet door.
+- Werk deze lijst bij in dezelfde PR als de functie. Sinds V37 is 1.5.5 de basis om mee te vergelijken; wat nog
+  `ontbreekt` of `deels` is, is een gewone wens en houdt geen release tegen (V38).
 - Nieuwe functies na 0.7.0 komen onderaan onder *Nieuw*, met dezelfde kolommen.
 
 
