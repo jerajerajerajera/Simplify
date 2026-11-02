@@ -105,6 +105,14 @@
     return on.sort((a, b) => a.length - b.length);
   };
 
+  /** Every day of year y with a holiday on, as YYYY-MM-DD: what this device remembers so it loads seasons.js only then. */
+  const iso = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  const days = (y, dutch = false) => {
+    const out = [];
+    for (let d = day(y, 1, 1); d.getFullYear() === y; d = plus(d, 1)) if (active(d, { dutch }).length) out.push(iso(d));
+    return out;
+  };
+
   /** A server's birthday: created on this day, at least a year ago. created is a Unix timestamp. */
   const birthday = (created, date = new Date()) => {
     if (!created) return 0;
@@ -162,5 +170,5 @@
     });
   };
 
-  window.SimplifySeasons = { SEASONS, active, birthday, easter, calendarDay, moonDay, fireworks, confetti, powder };
+  window.SimplifySeasons = { SEASONS, active, days, iso, birthday, easter, calendarDay, moonDay, fireworks, confetti, powder };
 })();
