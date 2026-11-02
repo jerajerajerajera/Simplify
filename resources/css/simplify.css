@@ -1808,22 +1808,22 @@ html.ps-frame .s-done {
   to { transform: rotate(360deg); }
 }
 
-/* Phones (1.5.4): Pelican's lists in the admin pages (Eggs, Servers, Nodes, Users, …) as short rows: icon, name and
+/* Phones (1.5.4): Pelican's lists in the admin and server pages (Eggs, Servers, a schedule's tasks, …) as short rows: icon, name and
    the columns after it on one line, without the checkboxes, the column titles and the long descriptions (an egg's
    description shows on its own page). On a wider screen the table stays as Pelican draws it. */
 @media (max-width: 600px) {
-  .fi-panel-admin .fi-ta-table :is(thead, .fi-ta-selection-cell, .fi-ta-group-selection-cell),
-  .fi-panel-admin .fi-ta-table .fi-ta-cell :is([class$="-description"], [class*="-description "]) { display: none !important; }
-  .fi-panel-admin .fi-ta-table, .fi-panel-admin .fi-ta-table > tbody { display: block; width: 100%; }
-  .fi-panel-admin .fi-ta-table .fi-ta-row { display: flex; flex-wrap: nowrap; align-items: center; gap: 12px; padding: 10px 14px; }
-  .fi-panel-admin .fi-ta-table .fi-ta-row > .fi-ta-cell { display: block; flex: 0 1 auto; min-width: 0; width: auto !important; padding: 0 !important; }
-  .fi-panel-admin .fi-ta-table .fi-ta-row > .fi-ta-cell :not(button, .fi-icon-btn, .fi-icon-btn *) { padding-block: 0 !important; }
-  .fi-panel-admin .fi-ta-table .fi-ta-row > .fi-ta-cell > * { padding-inline: 0 !important; }
-  .fi-panel-admin .fi-ta-table .fi-ta-row > .fi-ta-cell:has(img) { flex: none; }
-  .fi-panel-admin .fi-ta-table .fi-ta-row > .fi-ta-cell:not(.fi-ta-actions-cell):not(:has(img)) { flex: none; max-width: 30%; overflow: hidden; color: var(--s-muted, inherit); font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+  :is(.fi-panel-admin, .fi-panel-server) .fi-ta-table :is(thead, .fi-ta-selection-cell, .fi-ta-group-selection-cell),
+  :is(.fi-panel-admin, .fi-panel-server) .fi-ta-table .fi-ta-cell :is([class$="-description"], [class*="-description "]) { display: none !important; }
+  :is(.fi-panel-admin, .fi-panel-server) .fi-ta-table, :is(.fi-panel-admin, .fi-panel-server) .fi-ta-table > tbody { display: block; width: 100%; }
+  :is(.fi-panel-admin, .fi-panel-server) .fi-ta-table .fi-ta-row { display: flex; flex-wrap: nowrap; align-items: center; gap: 12px; padding: 10px 14px; }
+  :is(.fi-panel-admin, .fi-panel-server) .fi-ta-table .fi-ta-row > .fi-ta-cell { display: block; flex: 0 1 auto; min-width: 0; width: auto !important; padding: 0 !important; }
+  :is(.fi-panel-admin, .fi-panel-server) .fi-ta-table .fi-ta-row > .fi-ta-cell :not(button, .fi-icon-btn, .fi-icon-btn *) { padding-block: 0 !important; }
+  :is(.fi-panel-admin, .fi-panel-server) .fi-ta-table .fi-ta-row > .fi-ta-cell > * { padding-inline: 0 !important; }
+  :is(.fi-panel-admin, .fi-panel-server) .fi-ta-table .fi-ta-row > .fi-ta-cell:has(img) { flex: none; }
+  :is(.fi-panel-admin, .fi-panel-server) .fi-ta-table .fi-ta-row > .fi-ta-cell:not(.fi-ta-actions-cell):not(:has(img)) { flex: none; max-width: 30%; overflow: hidden; color: var(--s-muted, inherit); font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
   /* The name: the first column after the icon (or the first column), taking what is left. */
-  .fi-panel-admin .fi-ta-table .fi-ta-row > :is(.fi-ta-cell:has(img) + .fi-ta-cell, .fi-ta-selection-cell + .fi-ta-cell:not(:has(img))):not(.fi-ta-actions-cell) { flex: 1 1 0; max-width: none; color: inherit; font-size: 14px; font-weight: 600; }
-  .fi-panel-admin .fi-ta-table .fi-ta-row > .fi-ta-actions-cell { flex: none; margin-inline-start: auto; }
+  :is(.fi-panel-admin, .fi-panel-server) .fi-ta-table .fi-ta-row > :is(.fi-ta-cell:has(img) + .fi-ta-cell, .fi-ta-selection-cell + .fi-ta-cell:not(:has(img)), .fi-ta-cell:first-child:not(:has(img))):not(.fi-ta-actions-cell) { flex: 1 1 0; max-width: none; color: inherit; font-size: 14px; font-weight: 600; }
+  :is(.fi-panel-admin, .fi-panel-server) .fi-ta-table .fi-ta-row > .fi-ta-actions-cell { flex: none; margin-inline-start: auto; }
 }
 
 /* Phones (1.5.4): Simplify's settings save themselves (settings.blade.php); Save shows only on Pelican's own tabs.

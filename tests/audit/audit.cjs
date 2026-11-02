@@ -280,9 +280,18 @@ async function scheduleFlow() {
   const row = page.locator('.fi-ta-row:has-text("Nightly restart") >> visible=true').first();
   if (!(await row.count())) return say('schedule-edit', false, { note: 'no Nightly restart row', url: rel(page.url()) });
   await row.click().catch(() => {}); await page.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {}); await sleep(2000);
+  // The page's buttons (delete, run, export, save) never lie over a field, right after opening (2-11: four buttons covered
+  // the Name field until the Tasks table had loaded, and on a phone for good).
+  const over = await page.evaluate(() => { const v = (e) => e.getClientRects().length > 0; const btns = [...document.querySelectorAll('.fi-header-actions-ctn button, .fi-header-actions-ctn a, .fi-ac button')].filter(v);
+    const fields = [...document.querySelectorAll('.fi-input-wrp, input:not([type=hidden]), .fi-fo-toggle')].filter(v);
+    for (const b of btns) { const r = b.getBoundingClientRect(); for (const f of fields) { const q = f.getBoundingClientRect(); if (r.left < q.right - 1 && r.right > q.left + 1 && r.top < q.bottom - 1 && r.bottom > q.top + 1 && !f.contains(b) && !b.contains(f)) return { button: (b.getAttribute('aria-label') || b.textContent.trim()).slice(0, 30), field: (f.getAttribute('name') || f.id || f.className).slice(0, 40) }; } }
+    return null; }).catch(() => null);
+  say('schedule-buttons-free', !over, over);
   const reach = () => page.evaluate(() => {
     const box = document.querySelector('.fi-page-main') || document.scrollingElement;
     box.scrollTop = box.scrollHeight;
+    // On a phone the page itself scrolls under the bars (the phone frame): scroll it to its end as well.
+    document.scrollingElement.scrollTop = document.scrollingElement.scrollHeight;
     const rows = [...document.querySelectorAll('.fi-ta-row')].filter((r) => r.getClientRects().length);
     const last = rows[rows.length - 1];
     const action = last && [...last.querySelectorAll('button, a')].filter((b) => b.getClientRects().length).pop();
@@ -293,9 +302,10 @@ async function scheduleFlow() {
       inView: !!r && r.top >= 0 && r.bottom <= innerHeight, clickable: !!hit && (hit === action || action.contains(hit)) };
   });
   await sleep(500);
+  await reach(); await page.waitForSelector('.fi-ta-row >> visible=true', { timeout: 10000 }).catch(() => {});
   const st = await reach();
   await record('schedule-edit', 'Schedules · taak bewerken (onderaan)');
-  say('schedule-edit', st.tasks >= 3 && st.inView && st.clickable && st.pageScroll <= 1, st);
+  say('schedule-edit', st.tasks >= 3 && st.inView && st.clickable && (/^phone/.test(stand) || st.pageScroll <= 1), st);
 }
 
 // Server Maker (section=maker, with servermaker): every wizard step on a real screen, for its own docs/screenshots:

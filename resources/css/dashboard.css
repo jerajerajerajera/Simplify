@@ -1272,9 +1272,9 @@ body:has(.ps-server-top) .fi-header :is(.fi-header-heading, .fi-header-subheadin
 body:has(.ps-server-top) .fi-header:not(:has(.fi-header-actions-ctn > *)) { display: none !important; }
 body:has(.ps-server-top) .fi-header { justify-content: space-between; margin: 0 0 14px !important; }
 body:has(.ps-server-top) .fi-header-actions-ctn { margin-inline-start: auto; }
-body:has(.ps-server-top) .fi-page-header-main-ctn:not(:has(.fi-ta, > .fi-header .fi-btn)) { position: relative; }
-body:has(.ps-server-top) .fi-page-header-main-ctn:not(:has(.fi-ta, > .fi-header .fi-btn)) > .fi-header { position: absolute; top: 14px; inset-inline-end: 16px; z-index: 2; }
-body:has(.ps-server-top) .fi-page-header-main-ctn:not(:has(.fi-ta, > .fi-header .fi-btn)):has(> .fi-header .fi-header-actions-ctn > *) .fi-grid-col:first-child > .fi-sc-component > .fi-section > .fi-section-header { padding-inline-end: 72px; }
+body:has(.ps-server-top) .fi-page-header-main-ctn:not(:has(.fi-ta, > .fi-header .fi-btn, > .fi-header .fi-ac > :nth-child(2))) { position: relative; }
+body:has(.ps-server-top) .fi-page-header-main-ctn:not(:has(.fi-ta, > .fi-header .fi-btn, > .fi-header .fi-ac > :nth-child(2))) > .fi-header { position: absolute; top: 14px; inset-inline-end: 16px; z-index: 2; }
+body:has(.ps-server-top) .fi-page-header-main-ctn:not(:has(.fi-ta, > .fi-header .fi-btn, > .fi-header .fi-ac > :nth-child(2))):has(> .fi-header .fi-header-actions-ctn > *) .fi-grid-col:first-child > .fi-sc-component > .fi-section > .fi-section-header { padding-inline-end: 72px; }
 /* The page never scrolls (server.js fitPage): the menu and the page next to it are as tall as the window under the
    cards, also when there is little on the page. The page is one card like the menu, rounded at top and bottom: its
    head (buttons, a title bar) stays and only what is under it scrolls. The cards Filament draws inside lose their
@@ -1287,8 +1287,9 @@ html.ps-fit body:has(.ps-server-top) .fi-page-header-main-ctn { display: flex; f
 html.ps-fit body:has(.ps-server-top) .fi-page-main { position: relative; flex: 1; min-height: 0; padding: 0 !important; overflow-y: auto; overscroll-behavior: contain; }
 html.ps-fit body:has(.ps-server-top) .fi-page-content { row-gap: 0 !important; }
 html.ps-fit body:has(.ps-server-top) :is(.fi-page, .fi-page-content) > div:empty { display: none; }
-/* The head: a bar over the page, or, for a lone icon button on a list, in the row of the table's search field. */
-html.ps-fit body:has(.ps-server-top) :is(.fi-page-header-main-ctn:has(> .fi-header .fi-btn), .fi-page:not(.fi-resource-list-records-page) .fi-page-header-main-ctn:has(.fi-ta)) > .fi-header { flex: none; margin: 0 !important; padding: 12px 16px; border-bottom: 1px solid var(--ps-line); }
+/* The head: a bar over the page, or, for a lone icon button on a list, in the row of the table's search field. More than
+   one icon button (Edit schedule: delete, run, export, save) always gets the bar: laid over the page they covered a field. */
+html.ps-fit body:has(.ps-server-top) :is(.fi-page-header-main-ctn:has(> .fi-header .fi-btn, > .fi-header .fi-ac > :nth-child(2)), .fi-page:not(.fi-resource-list-records-page) .fi-page-header-main-ctn:has(.fi-ta)) > .fi-header { flex: none; margin: 0 !important; padding: 12px 16px; border-bottom: 1px solid var(--ps-line); }
 html.ps-fit body:has(.ps-server-top) .fi-resource-list-records-page .fi-page-header-main-ctn:not(:has(> .fi-header .fi-btn)) { position: relative; }
 html.ps-fit body:has(.ps-server-top) .fi-resource-list-records-page .fi-page-header-main-ctn:not(:has(> .fi-header .fi-btn)) > .fi-header { position: absolute; top: 12px; inset-inline-end: 16px; z-index: 2; margin: 0 !important; }
 html.ps-fit body:has(.ps-server-top) .fi-resource-list-records-page .fi-page-header-main-ctn:not(:has(> .fi-header .fi-btn)):has(> .fi-header .fi-header-actions-ctn > *) .fi-ta-header-toolbar { padding-inline-end: 68px; }
