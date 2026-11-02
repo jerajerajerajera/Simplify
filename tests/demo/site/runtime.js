@@ -53,7 +53,7 @@
     for (const c of req.components) {
       const [name, keys, snap] = K.keys(c);
       const table = await shard('lw-' + K.h(name));
-      const hit = keys.map((k) => table[k]).find(Boolean);
+      const hit = (table.items || [])[keys.map((k) => (table.keys || {})[k]).find((i) => i !== undefined)];
       // The console asks the panel for a Wings token once its socket opens; the stand-in socket takes any token.
       if (!hit && (c.calls || []).some((x) => x.method === '__dispatch' && x.params[0] === 'token-request')) {
         components.push({ snapshot: c.snapshot, effects: { returns: [null], dispatches: [{ name: 'sendAuthRequest', params: { token: 'demo' } }] } });

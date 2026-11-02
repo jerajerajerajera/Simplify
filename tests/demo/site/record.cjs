@@ -68,7 +68,11 @@ async function record(tree, email, starts) {
           const [name, keys, snap] = K.keys(c);
           const t = table('lw-' + K.h(name));
           const entry = { req: { id: snap.memo.id, children: snap.memo.children || {} }, res: marked(JSON.stringify(back)) };
-          for (const k of keys) t[k] ??= entry;
+          // Each answer is kept once; the keys point at it.
+          t.items ??= []; t.keys ??= {};
+          if (keys.every((k) => k in t.keys)) return;
+          t.items.push(entry);
+          for (const k of keys) t.keys[k] ??= t.items.length - 1;
         });
         return;
       }
