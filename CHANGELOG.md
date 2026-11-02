@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- A suspended server's card no longer shows the tops of its CPU and RAM tiles above the note about the suspension.
 - The overview and the server page load less: the code and styles for holidays load only on a day with one.
 
 ## 1.5.5
