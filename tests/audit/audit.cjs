@@ -748,10 +748,11 @@ async function fixesFlow() {
     const pins = await page.evaluate(() => {
       const vis = (e) => !!e && e.getClientRects().length > 0;
       const bar = [...document.querySelectorAll('.ps-bars')].find((b) => vis(b) && b.children.length); const top = [...document.querySelectorAll('.ps-top')].find(vis);
-      const tools = [...document.querySelectorAll('.ps-overview-toolbar')].find(vis);
-      if (!bar || !top || !tools) return { bar: !!bar, top: !!top, tools: !!tools };
+      const tools = [...document.querySelectorAll('.ps-overview-toolbar')].find(vis); const cards = [...document.querySelectorAll('.ps-server-card')].filter(vis).map((c) => c.getBoundingClientRect());
+      if (!bar || !top || !tools || !cards.length) return { bar: !!bar, top: !!top, tools: !!tools, cards: cards.length };
       const b = bar.getBoundingClientRect(), t = top.getBoundingClientRect(), o = tools.getBoundingClientRect();
-      return { barTop: Math.round(b.top), topBottom: Math.round(t.bottom), barLeft: Math.round(b.left), barRight: Math.round(b.right), toolsLeft: Math.round(o.left), toolsRight: Math.round(o.right), toolsTop: Math.round(o.top) };
+      // As wide as the servers: the cards' outer edges (the toolbar runs into the side gutters on a phone).
+      return { barTop: Math.round(b.top), topBottom: Math.round(t.bottom), barLeft: Math.round(b.left), barRight: Math.round(b.right), toolsLeft: Math.round(Math.min(...cards.map((r) => r.left))), toolsRight: Math.round(Math.max(...cards.map((r) => r.right))), toolsTop: Math.round(o.top) };
     }).catch(() => null);
     await record('pinned-overview', 'Overzicht · vastgezette meldingen onder de bovenbalk');
     say('pinned-overview', !!pins && pins.barTop >= pins.topBottom && pins.barTop < pins.toolsTop && Math.abs(pins.barLeft - pins.toolsLeft) <= 2 && Math.abs(pins.barRight - pins.toolsRight) <= 2, pins);
