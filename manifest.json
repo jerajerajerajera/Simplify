@@ -1,0 +1,3037 @@
+{
+  "made": "2026-11-02T14:04:30.449Z",
+  "versions": {
+    "simplify": {
+      "repo": "Simplify",
+      "branch": "main",
+      "version": "1.5.4",
+      "commit": "cec523c"
+    },
+    "simplify-toolkit": {
+      "repo": "Simplify-Toolkit",
+      "branch": "main",
+      "version": "1.3.1",
+      "commit": "57201b7"
+    },
+    "simplify-eggupdates": {
+      "repo": "Simplify-EggUpdates",
+      "branch": "main",
+      "version": "1.1.5",
+      "commit": "57a1c1f"
+    },
+    "simplify-explain": {
+      "repo": "Simplify-Explain",
+      "branch": "main",
+      "version": "1.1.0",
+      "commit": "e4fc536"
+    },
+    "simplify-servermaker": {
+      "repo": "Simplify-ServerMaker",
+      "branch": "main",
+      "version": "1.4.2",
+      "commit": "2c0a640"
+    },
+    "simplify-hosting": {
+      "repo": "Simplify-Hosting",
+      "branch": "main",
+      "version": "1.0.3",
+      "commit": "e608cc2"
+    },
+    "pelican": {
+      "version": "1.0.0-rc.2"
+    }
+  },
+  "screens": [
+    {
+      "id": "overview",
+      "title": "Overzicht",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/simplify",
+      "file": "overview.html"
+    },
+    {
+      "id": "overview@phone",
+      "title": "Overzicht",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/simplify",
+      "file": "overview@phone.html",
+      "phoneOf": "overview"
+    },
+    {
+      "id": "overview-account",
+      "title": "Accountmenu open",
+      "group": "Klantkant",
+      "parent": "overview",
+      "url": "/simplify",
+      "file": "overview-account.html"
+    },
+    {
+      "id": "overview-bell",
+      "title": "Meldingen (bel) open",
+      "group": "Klantkant",
+      "parent": "overview",
+      "url": "/simplify",
+      "file": "overview-bell.html"
+    },
+    {
+      "id": "overview-admin",
+      "title": "Beheermenu open",
+      "group": "Klantkant",
+      "parent": "overview",
+      "url": "/simplify",
+      "file": "overview-admin.html"
+    },
+    {
+      "id": "overview-customize",
+      "title": "Weergave aanpassen",
+      "group": "Klantkant",
+      "parent": "overview",
+      "url": "/simplify",
+      "file": "overview-customize.html"
+    },
+    {
+      "id": "overview-groups",
+      "title": "Servergroepen",
+      "group": "Klantkant",
+      "parent": "overview",
+      "url": "/simplify",
+      "file": "overview-groups.html"
+    },
+    {
+      "id": "overview-health",
+      "title": "Gezondheid van de host",
+      "group": "Klantkant",
+      "parent": "overview",
+      "url": "/simplify",
+      "file": "overview-health.html"
+    },
+    {
+      "id": "overview-compact",
+      "title": "Overzicht, compact",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/simplify",
+      "file": "overview-compact.html"
+    },
+    {
+      "id": "overview-list",
+      "title": "Overzicht, lijst",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/simplify",
+      "file": "overview-list.html"
+    },
+    {
+      "id": "app-server-maker",
+      "title": "Server Maker",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/server-maker",
+      "file": "app-server-maker.html"
+    },
+    {
+      "id": "app-server-maker@phone",
+      "title": "Server Maker",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/server-maker",
+      "file": "app-server-maker@phone.html",
+      "phoneOf": "app-server-maker"
+    },
+    {
+      "id": "app-steam",
+      "title": "Steam",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/steam",
+      "file": "app-steam.html"
+    },
+    {
+      "id": "app-steam@phone",
+      "title": "Steam",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/steam",
+      "file": "app-steam@phone.html",
+      "phoneOf": "app-steam"
+    },
+    {
+      "id": "server",
+      "title": "Serverpagina (Survival SMP)",
+      "group": "Server",
+      "parent": null,
+      "url": "/server/jga0ry1r/console",
+      "file": "server.html"
+    },
+    {
+      "id": "server@phone",
+      "title": "Serverpagina (Survival SMP)",
+      "group": "Server",
+      "parent": null,
+      "url": "/server/jga0ry1r/console",
+      "file": "server@phone.html",
+      "phoneOf": "server"
+    },
+    {
+      "id": "server-menu",
+      "title": "Server ⋯-menu",
+      "group": "Server",
+      "parent": "server",
+      "url": "/server/jga0ry1r/console",
+      "file": "server-menu.html"
+    },
+    {
+      "id": "server-console",
+      "title": "Server · Console",
+      "group": "Server",
+      "parent": "server",
+      "url": "/server/jga0ry1r/console",
+      "file": "server-console.html"
+    },
+    {
+      "id": "server-files",
+      "title": "Server · Files",
+      "group": "Server",
+      "parent": "server",
+      "url": "/server/jga0ry1r/files",
+      "file": "server-files.html"
+    },
+    {
+      "id": "server-backups-tasks",
+      "title": "Server · Backups & tasks",
+      "group": "Server",
+      "parent": "server",
+      "url": "/server/jga0ry1r/backups",
+      "file": "server-backups-tasks.html"
+    },
+    {
+      "id": "server-subdomain",
+      "title": "Server · Subdomain",
+      "group": "Server",
+      "parent": "server",
+      "url": "/server/jga0ry1r/subdomain",
+      "file": "server-subdomain.html"
+    },
+    {
+      "id": "server-minecraft",
+      "title": "Server · Minecraft",
+      "group": "Server",
+      "parent": "server",
+      "url": "/server/jga0ry1r/minecraft",
+      "file": "server-minecraft.html"
+    },
+    {
+      "id": "server-plugins",
+      "title": "Server · Plugins",
+      "group": "Server",
+      "parent": "server",
+      "url": "/server/jga0ry1r/plugins",
+      "file": "server-plugins.html"
+    },
+    {
+      "id": "server-players",
+      "title": "Server · Players",
+      "group": "Server",
+      "parent": "server",
+      "url": "/server/jga0ry1r/players",
+      "file": "server-players.html"
+    },
+    {
+      "id": "server-website",
+      "title": "Server · Website",
+      "group": "Server",
+      "parent": "server",
+      "url": "/server/jga0ry1r/website",
+      "file": "server-website.html"
+    },
+    {
+      "id": "server-server-software",
+      "title": "Server · Server software",
+      "group": "Server",
+      "parent": "server",
+      "url": "/server/jga0ry1r/software",
+      "file": "server-server-software.html"
+    },
+    {
+      "id": "server-performance",
+      "title": "Server · Performance",
+      "group": "Server",
+      "parent": "server",
+      "url": "/server/jga0ry1r/performance",
+      "file": "server-performance.html"
+    },
+    {
+      "id": "server-explain",
+      "title": "Explain bij een consolefout (Survival SMP)",
+      "group": "Server",
+      "parent": null,
+      "url": "/server/jga0ry1r/console",
+      "file": "server-explain.html"
+    },
+    {
+      "id": "server-explain@phone",
+      "title": "Explain bij een consolefout (Survival SMP)",
+      "group": "Server",
+      "parent": null,
+      "url": "/server/jga0ry1r/console",
+      "file": "server-explain@phone.html",
+      "phoneOf": "server-explain"
+    },
+    {
+      "id": "server-schedule-edit",
+      "title": "Schedule bewerken (Survival SMP)",
+      "group": "Server",
+      "parent": null,
+      "url": "/server/jga0ry1r/schedules/1/edit",
+      "file": "server-schedule-edit.html"
+    },
+    {
+      "id": "server-schedule-edit@phone",
+      "title": "Schedule bewerken (Survival SMP)",
+      "group": "Server",
+      "parent": null,
+      "url": "/server/jga0ry1r/schedules/1/edit",
+      "file": "server-schedule-edit@phone.html",
+      "phoneOf": "server-schedule-edit"
+    },
+    {
+      "id": "server-automatic-backups",
+      "title": "Automatic backups (Survival SMP)",
+      "group": "Server",
+      "parent": null,
+      "url": "/server/jga0ry1r/automatic-backups",
+      "file": "server-automatic-backups.html"
+    },
+    {
+      "id": "server-mods-modpack",
+      "title": "Mods met modpack (All the Mods 10)",
+      "group": "Server",
+      "parent": null,
+      "url": "/server/gpi4gymc/plugins",
+      "file": "server-mods-modpack.html"
+    },
+    {
+      "id": "server-mods-modpack-open",
+      "title": "Mods met modpack, opengeklapt",
+      "group": "Server",
+      "parent": "server-mods-modpack",
+      "url": "/server/gpi4gymc/plugins",
+      "file": "server-mods-modpack-open.html"
+    },
+    {
+      "id": "settings",
+      "title": "Instellingen",
+      "group": "Beheer",
+      "parent": null,
+      "url": "/admin/simplify",
+      "file": "settings.html"
+    },
+    {
+      "id": "settings@phone",
+      "title": "Instellingen",
+      "group": "Beheer",
+      "parent": null,
+      "url": "/admin/simplify",
+      "file": "settings@phone.html",
+      "phoneOf": "settings"
+    },
+    {
+      "id": "settings-general",
+      "title": "Instellingen · General",
+      "group": "Beheer",
+      "parent": "settings",
+      "url": "/admin/simplify",
+      "file": "settings-general.html"
+    },
+    {
+      "id": "settings-appearance",
+      "title": "Instellingen · Appearance",
+      "group": "Beheer",
+      "parent": "settings",
+      "url": "/admin/simplify?tab=appearance",
+      "file": "settings-appearance.html"
+    },
+    {
+      "id": "settings-add-ons",
+      "title": "Instellingen · Add-ons",
+      "group": "Beheer",
+      "parent": "settings",
+      "url": "/admin/simplify?tab=addons",
+      "file": "settings-add-ons.html"
+    },
+    {
+      "id": "settings-browse-hub",
+      "title": "Instellingen · Browse Hub",
+      "group": "Beheer",
+      "parent": "settings",
+      "url": "/admin/simplify?tab=hub",
+      "file": "settings-browse-hub.html"
+    },
+    {
+      "id": "settings-mail",
+      "title": "Instellingen · Mail",
+      "group": "Beheer",
+      "parent": "settings",
+      "url": "/admin/simplify?tab=pelican-mail",
+      "file": "settings-mail.html"
+    },
+    {
+      "id": "settings-backup",
+      "title": "Instellingen · Backup",
+      "group": "Beheer",
+      "parent": "settings",
+      "url": "/admin/simplify?tab=pelican-backup",
+      "file": "settings-backup.html"
+    },
+    {
+      "id": "settings-oauth",
+      "title": "Instellingen · OAuth",
+      "group": "Beheer",
+      "parent": "settings",
+      "url": "/admin/simplify?tab=pelican-oauth",
+      "file": "settings-oauth.html"
+    },
+    {
+      "id": "settings-misc",
+      "title": "Instellingen · Misc",
+      "group": "Beheer",
+      "parent": "settings",
+      "url": "/admin/simplify?tab=pelican-misc",
+      "file": "settings-misc.html"
+    },
+    {
+      "id": "admin-setup-done",
+      "title": "Setup Done",
+      "group": "Beheer",
+      "parent": null,
+      "url": "/admin/simplify-setup-done",
+      "file": "admin-setup-done.html"
+    },
+    {
+      "id": "admin-people-roles",
+      "title": "People & roles",
+      "group": "Beheer",
+      "parent": null,
+      "url": "/admin/simplify-people",
+      "file": "admin-people-roles.html"
+    },
+    {
+      "id": "people-add",
+      "title": "Persoon toevoegen",
+      "group": "Beheer",
+      "parent": "admin-people-roles",
+      "url": "/admin/simplify-people",
+      "file": "people-add.html"
+    },
+    {
+      "id": "admin-people-roles-people",
+      "title": "People · People",
+      "group": "Beheer",
+      "parent": "admin-people-roles",
+      "url": "/admin/simplify-people",
+      "file": "admin-people-roles-people.html"
+    },
+    {
+      "id": "admin-people-roles-roles",
+      "title": "People · Roles",
+      "group": "Beheer",
+      "parent": "admin-people-roles",
+      "url": "/admin/simplify-people",
+      "file": "admin-people-roles-roles.html"
+    },
+    {
+      "id": "admin-website-embed",
+      "title": "Website embed",
+      "group": "Beheer",
+      "parent": null,
+      "url": "/admin/simplify-embed",
+      "file": "admin-website-embed.html"
+    },
+    {
+      "id": "admin-automatic-subdomains",
+      "title": "Automatic subdomains",
+      "group": "Beheer",
+      "parent": null,
+      "url": "/admin/simplify-subdomains",
+      "file": "admin-automatic-subdomains.html"
+    },
+    {
+      "id": "admin-egg-updates",
+      "title": "Egg Updates",
+      "group": "Beheer",
+      "parent": null,
+      "url": "/admin/egg-updates",
+      "file": "admin-egg-updates.html"
+    },
+    {
+      "id": "admin-explain",
+      "title": "Explain",
+      "group": "Beheer",
+      "parent": null,
+      "url": "/admin/simplify-explain",
+      "file": "admin-explain.html"
+    },
+    {
+      "id": "admin-hosting",
+      "title": "Hosting",
+      "group": "Beheer",
+      "parent": null,
+      "url": "/admin/simplify-hosting",
+      "file": "admin-hosting.html"
+    },
+    {
+      "id": "admin-server-maker",
+      "title": "Server Maker",
+      "group": "Beheer",
+      "parent": null,
+      "url": "/admin/server-maker",
+      "file": "admin-server-maker.html"
+    },
+    {
+      "id": "admin-maker-settings",
+      "title": "Maker Settings",
+      "group": "Beheer",
+      "parent": null,
+      "url": "/admin/server-maker/settings",
+      "file": "admin-maker-settings.html"
+    },
+    {
+      "id": "admin-toolkit",
+      "title": "Toolkit",
+      "group": "Beheer",
+      "parent": null,
+      "url": "/admin/simplify-toolkit",
+      "file": "admin-toolkit.html"
+    },
+    {
+      "id": "admin-announcements",
+      "title": "Announcements",
+      "group": "Beheer",
+      "parent": null,
+      "url": "/admin/simplify-announcements",
+      "file": "admin-announcements.html"
+    },
+    {
+      "id": "announcements-new",
+      "title": "Nieuwe aankondiging",
+      "group": "Beheer",
+      "parent": "admin-announcements",
+      "url": "/admin/simplify-announcements",
+      "file": "announcements-new.html"
+    },
+    {
+      "id": "host",
+      "title": "Hostmodus",
+      "group": "Hostmodus",
+      "parent": null,
+      "url": "/simplify",
+      "file": "host.html"
+    },
+    {
+      "id": "host@phone",
+      "title": "Hostmodus",
+      "group": "Hostmodus",
+      "parent": null,
+      "url": "/simplify",
+      "file": "host@phone.html",
+      "phoneOf": "host"
+    },
+    {
+      "id": "host-serverlist",
+      "title": "Hostmodus · serverlijst",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-serverlist.html"
+    },
+    {
+      "id": "host-serverlist-all-the-mods-10",
+      "title": "Hostmodus · server All the Mods 10",
+      "group": "Hostmodus",
+      "parent": "host-serverlist",
+      "url": "/simplify",
+      "file": "host-serverlist-all-the-mods-10.html"
+    },
+    {
+      "id": "host-serverlist-arena",
+      "title": "Hostmodus · server Arena",
+      "group": "Hostmodus",
+      "parent": "host-serverlist",
+      "url": "/simplify",
+      "file": "host-serverlist-arena.html"
+    },
+    {
+      "id": "host-serverlist-creative-builds",
+      "title": "Hostmodus · server Creative Builds",
+      "group": "Hostmodus",
+      "parent": "host-serverlist",
+      "url": "/simplify",
+      "file": "host-serverlist-creative-builds.html"
+    },
+    {
+      "id": "host-servers",
+      "title": "Hostmodus · Servers",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-servers.html"
+    },
+    {
+      "id": "host-eggs",
+      "title": "Hostmodus · Eggs",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-eggs.html"
+    },
+    {
+      "id": "host-mounts",
+      "title": "Hostmodus · Mounts",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-mounts.html"
+    },
+    {
+      "id": "host-nodes",
+      "title": "Hostmodus · Nodes",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-nodes.html"
+    },
+    {
+      "id": "host-database-hosts",
+      "title": "Hostmodus · Database Hosts",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-database-hosts.html"
+    },
+    {
+      "id": "host-backup-hosts",
+      "title": "Hostmodus · Backup Hosts",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-backup-hosts.html"
+    },
+    {
+      "id": "host-users",
+      "title": "Hostmodus · Users",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-users.html"
+    },
+    {
+      "id": "host-roles",
+      "title": "Hostmodus · Roles",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-roles.html"
+    },
+    {
+      "id": "host-people-roles",
+      "title": "Hostmodus · People & roles",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-people-roles.html"
+    },
+    {
+      "id": "host-api-keys",
+      "title": "Hostmodus · API Keys",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-api-keys.html"
+    },
+    {
+      "id": "host-webhooks",
+      "title": "Hostmodus · Webhooks",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-webhooks.html"
+    },
+    {
+      "id": "host-general",
+      "title": "Hostmodus · General",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-general.html"
+    },
+    {
+      "id": "host-appearance",
+      "title": "Hostmodus · Appearance",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-appearance.html"
+    },
+    {
+      "id": "host-announcements",
+      "title": "Hostmodus · Announcements",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-announcements.html"
+    },
+    {
+      "id": "host-automatic-subdomains",
+      "title": "Hostmodus · Automatic subdomains",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-automatic-subdomains.html"
+    },
+    {
+      "id": "host-website-embed",
+      "title": "Hostmodus · Website embed",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-website-embed.html"
+    },
+    {
+      "id": "host-add-ons",
+      "title": "Hostmodus · Add-ons",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-add-ons.html"
+    },
+    {
+      "id": "host-browse-hub",
+      "title": "Hostmodus · Browse Hub",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-browse-hub.html"
+    },
+    {
+      "id": "host-egg-updates",
+      "title": "Hostmodus · Egg Updates",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-egg-updates.html"
+    },
+    {
+      "id": "host-explain",
+      "title": "Hostmodus · Explain",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-explain.html"
+    },
+    {
+      "id": "host-hosting",
+      "title": "Hostmodus · Hosting",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-hosting.html"
+    },
+    {
+      "id": "host-server-maker",
+      "title": "Hostmodus · Server Maker",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-server-maker.html"
+    },
+    {
+      "id": "host-toolkit",
+      "title": "Hostmodus · Toolkit",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-toolkit.html"
+    },
+    {
+      "id": "host-plugins",
+      "title": "Hostmodus · Plugins",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-plugins.html"
+    },
+    {
+      "id": "host-general-24",
+      "title": "Hostmodus · General",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-general-24.html"
+    },
+    {
+      "id": "host-captcha",
+      "title": "Hostmodus · Captcha",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-captcha.html"
+    },
+    {
+      "id": "host-mail",
+      "title": "Hostmodus · Mail",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-mail.html"
+    },
+    {
+      "id": "host-backup",
+      "title": "Hostmodus · Backup",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-backup.html"
+    },
+    {
+      "id": "host-oauth",
+      "title": "Hostmodus · OAuth",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-oauth.html"
+    },
+    {
+      "id": "host-misc",
+      "title": "Hostmodus · Misc",
+      "group": "Hostmodus",
+      "parent": "host",
+      "url": "/simplify",
+      "file": "host-misc.html"
+    },
+    {
+      "id": "p-admin",
+      "title": "Welcome to Pelican!",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin",
+      "crawled": true,
+      "file": "p-admin.html"
+    },
+    {
+      "id": "p-admin-settings",
+      "title": "Settings",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/settings",
+      "crawled": true,
+      "file": "p-admin-settings.html"
+    },
+    {
+      "id": "p-admin-plugins",
+      "title": "Plugins",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/plugins",
+      "crawled": true,
+      "file": "p-admin-plugins.html"
+    },
+    {
+      "id": "p-admin-eggs",
+      "title": "Eggs",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/eggs",
+      "crawled": true,
+      "file": "p-admin-eggs.html"
+    },
+    {
+      "id": "p-admin-nodes",
+      "title": "Nodes",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/nodes",
+      "crawled": true,
+      "file": "p-admin-nodes.html"
+    },
+    {
+      "id": "p-admin-servers",
+      "title": "Servers",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/servers",
+      "crawled": true,
+      "file": "p-admin-servers.html"
+    },
+    {
+      "id": "p-admin-roles",
+      "title": "Roles",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/roles",
+      "crawled": true,
+      "file": "p-admin-roles.html"
+    },
+    {
+      "id": "p-admin-users",
+      "title": "Users",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/users",
+      "crawled": true,
+      "file": "p-admin-users.html"
+    },
+    {
+      "id": "p-admin-health",
+      "title": "Health",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/health",
+      "crawled": true,
+      "file": "p-admin-health.html"
+    },
+    {
+      "id": "p-admin-api-keys",
+      "title": "Application API Keys",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/api-keys",
+      "crawled": true,
+      "file": "p-admin-api-keys.html"
+    },
+    {
+      "id": "p-admin-backup-hosts",
+      "title": "Backup Hosts",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/backup-hosts",
+      "crawled": true,
+      "file": "p-admin-backup-hosts.html"
+    },
+    {
+      "id": "p-admin-database-hosts",
+      "title": "Database Hosts",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/database-hosts",
+      "crawled": true,
+      "file": "p-admin-database-hosts.html"
+    },
+    {
+      "id": "p-admin-mounts",
+      "title": "Mounts",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/mounts",
+      "crawled": true,
+      "file": "p-admin-mounts.html"
+    },
+    {
+      "id": "p-admin-webhooks",
+      "title": "Webhooks",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/webhooks",
+      "crawled": true,
+      "file": "p-admin-webhooks.html"
+    },
+    {
+      "id": "p-admin-logs",
+      "title": "Panel Logs",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/logs",
+      "crawled": true,
+      "file": "p-admin-logs.html"
+    },
+    {
+      "id": "p-profile",
+      "title": "Profile",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/profile",
+      "crawled": true,
+      "file": "p-profile.html"
+    },
+    {
+      "id": "p-admin-simplify-setup",
+      "title": "Set up Simplify",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/simplify-setup",
+      "crawled": true,
+      "file": "p-admin-simplify-setup.html"
+    },
+    {
+      "id": "p-simplify-embed",
+      "title": "Pelican servers",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/simplify/embed?page=1",
+      "crawled": true,
+      "file": "p-simplify-embed.html"
+    },
+    {
+      "id": "p-server-gpi4gymc-console",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gpi4gymc/console",
+      "crawled": true,
+      "file": "p-server-gpi4gymc-console.html"
+    },
+    {
+      "id": "p-server-ruhim19b-console",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ruhim19b/console",
+      "crawled": true,
+      "file": "p-server-ruhim19b-console.html"
+    },
+    {
+      "id": "p-server-cimqup8b-console",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/cimqup8b/console",
+      "crawled": true,
+      "file": "p-server-cimqup8b-console.html"
+    },
+    {
+      "id": "p-server-vfvgmmnp-console",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/vfvgmmnp/console",
+      "crawled": true,
+      "file": "p-server-vfvgmmnp-console.html"
+    },
+    {
+      "id": "p-server-ihufnthp-console",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ihufnthp/console",
+      "crawled": true,
+      "file": "p-server-ihufnthp-console.html"
+    },
+    {
+      "id": "p-server-gv2lwoua-console",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gv2lwoua/console",
+      "crawled": true,
+      "file": "p-server-gv2lwoua-console.html"
+    },
+    {
+      "id": "p-server-qaba1ecq-console",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/qaba1ecq/console",
+      "crawled": true,
+      "file": "p-server-qaba1ecq-console.html"
+    },
+    {
+      "id": "p-server-phh2l6oo-console",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/phh2l6oo/console",
+      "crawled": true,
+      "file": "p-server-phh2l6oo-console.html"
+    },
+    {
+      "id": "p-server-ttma22sr-console",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ttma22sr/console",
+      "crawled": true,
+      "file": "p-server-ttma22sr-console.html"
+    },
+    {
+      "id": "p-admin-api-keys-create",
+      "title": "Create Application API Key",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/api-keys/create",
+      "crawled": true,
+      "file": "p-admin-api-keys-create.html"
+    },
+    {
+      "id": "p-admin-backup-hosts-create",
+      "title": "Create Backup Host",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/backup-hosts/create",
+      "crawled": true,
+      "file": "p-admin-backup-hosts-create.html"
+    },
+    {
+      "id": "p-admin-backup-hosts-1-edit",
+      "title": "Edit Local",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/backup-hosts/1/edit",
+      "crawled": true,
+      "file": "p-admin-backup-hosts-1-edit.html"
+    },
+    {
+      "id": "p-admin-database-hosts-create",
+      "title": "Create Database Host",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/database-hosts/create",
+      "crawled": true,
+      "file": "p-admin-database-hosts-create.html"
+    },
+    {
+      "id": "p-admin-eggs-create",
+      "title": "Create Egg",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/eggs/create",
+      "crawled": true,
+      "file": "p-admin-eggs-create.html"
+    },
+    {
+      "id": "p-admin-eggs-1-edit",
+      "title": "Edit Paper",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/eggs/1/edit",
+      "crawled": true,
+      "file": "p-admin-eggs-1-edit.html"
+    },
+    {
+      "id": "p-admin-eggs-2-edit",
+      "title": "Edit Forge",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/eggs/2/edit",
+      "crawled": true,
+      "file": "p-admin-eggs-2-edit.html"
+    },
+    {
+      "id": "p-admin-mounts-create",
+      "title": "Create Mount",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/mounts/create",
+      "crawled": true,
+      "file": "p-admin-mounts-create.html"
+    },
+    {
+      "id": "p-admin-nodes-create",
+      "title": "Create Node",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/nodes/create",
+      "crawled": true,
+      "file": "p-admin-nodes-create.html"
+    },
+    {
+      "id": "p-admin-nodes-1-edit",
+      "title": "Edit Amsterdam",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/nodes/1/edit",
+      "crawled": true,
+      "file": "p-admin-nodes-1-edit.html"
+    },
+    {
+      "id": "p-admin-roles-create",
+      "title": "Create Role",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/roles/create",
+      "crawled": true,
+      "file": "p-admin-roles-create.html"
+    },
+    {
+      "id": "p-admin-roles-1-edit",
+      "title": "Edit Root Admin",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/roles/1/edit",
+      "crawled": true,
+      "file": "p-admin-roles-1-edit.html"
+    },
+    {
+      "id": "p-admin-roles-2-edit",
+      "title": "Edit Moderator",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/roles/2/edit",
+      "crawled": true,
+      "file": "p-admin-roles-2-edit.html"
+    },
+    {
+      "id": "p-server-gpi4gymc-files",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gpi4gymc/files",
+      "crawled": true,
+      "file": "p-server-gpi4gymc-files.html"
+    },
+    {
+      "id": "p-server-gpi4gymc-backups",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gpi4gymc/backups",
+      "crawled": true,
+      "file": "p-server-gpi4gymc-backups.html"
+    },
+    {
+      "id": "p-server-gpi4gymc-schedules",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gpi4gymc/schedules",
+      "crawled": true,
+      "file": "p-server-gpi4gymc-schedules.html"
+    },
+    {
+      "id": "p-server-gpi4gymc-subusers",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gpi4gymc/subusers",
+      "crawled": true,
+      "file": "p-server-gpi4gymc-subusers.html"
+    },
+    {
+      "id": "p-server-gpi4gymc-databases",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gpi4gymc/databases",
+      "crawled": true,
+      "file": "p-server-gpi4gymc-databases.html"
+    },
+    {
+      "id": "p-server-gpi4gymc-allocations",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gpi4gymc/allocations",
+      "crawled": true,
+      "file": "p-server-gpi4gymc-allocations.html"
+    },
+    {
+      "id": "p-server-gpi4gymc-subdomain",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gpi4gymc/subdomain",
+      "crawled": true,
+      "file": "p-server-gpi4gymc-subdomain.html"
+    },
+    {
+      "id": "p-server-gpi4gymc-activities",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gpi4gymc/activities",
+      "crawled": true,
+      "file": "p-server-gpi4gymc-activities.html"
+    },
+    {
+      "id": "p-server-gpi4gymc-mounts",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gpi4gymc/mounts",
+      "crawled": true,
+      "file": "p-server-gpi4gymc-mounts.html"
+    },
+    {
+      "id": "p-server-gpi4gymc-minecraft",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gpi4gymc/minecraft",
+      "crawled": true,
+      "file": "p-server-gpi4gymc-minecraft.html"
+    },
+    {
+      "id": "p-server-gpi4gymc-startup",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gpi4gymc/startup",
+      "crawled": true,
+      "file": "p-server-gpi4gymc-startup.html"
+    },
+    {
+      "id": "p-server-gpi4gymc-settings",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gpi4gymc/settings",
+      "crawled": true,
+      "file": "p-server-gpi4gymc-settings.html"
+    },
+    {
+      "id": "p-server-gpi4gymc-players",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gpi4gymc/players",
+      "crawled": true,
+      "file": "p-server-gpi4gymc-players.html"
+    },
+    {
+      "id": "p-server-gpi4gymc-webhook",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gpi4gymc/webhook",
+      "crawled": true,
+      "file": "p-server-gpi4gymc-webhook.html"
+    },
+    {
+      "id": "p-server-gpi4gymc-website",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gpi4gymc/website",
+      "crawled": true,
+      "file": "p-server-gpi4gymc-website.html"
+    },
+    {
+      "id": "p-server-gpi4gymc-automatic-backups",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gpi4gymc/automatic-backups",
+      "crawled": true,
+      "file": "p-server-gpi4gymc-automatic-backups.html"
+    },
+    {
+      "id": "p-server-gpi4gymc-software",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gpi4gymc/software",
+      "crawled": true,
+      "file": "p-server-gpi4gymc-software.html"
+    },
+    {
+      "id": "p-server-gpi4gymc-performance",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gpi4gymc/performance",
+      "crawled": true,
+      "file": "p-server-gpi4gymc-performance.html"
+    },
+    {
+      "id": "p-admin-servers-3-edit",
+      "title": "Edit All the Mods 10",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/servers/3/edit",
+      "crawled": true,
+      "file": "p-admin-servers-3-edit.html"
+    },
+    {
+      "id": "p-server-ruhim19b-files",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ruhim19b/files",
+      "crawled": true,
+      "file": "p-server-ruhim19b-files.html"
+    },
+    {
+      "id": "p-server-ruhim19b-backups",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ruhim19b/backups",
+      "crawled": true,
+      "file": "p-server-ruhim19b-backups.html"
+    },
+    {
+      "id": "p-server-ruhim19b-schedules",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ruhim19b/schedules",
+      "crawled": true,
+      "file": "p-server-ruhim19b-schedules.html"
+    },
+    {
+      "id": "p-server-ruhim19b-subusers",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ruhim19b/subusers",
+      "crawled": true,
+      "file": "p-server-ruhim19b-subusers.html"
+    },
+    {
+      "id": "p-server-ruhim19b-databases",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ruhim19b/databases",
+      "crawled": true,
+      "file": "p-server-ruhim19b-databases.html"
+    },
+    {
+      "id": "p-server-ruhim19b-allocations",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ruhim19b/allocations",
+      "crawled": true,
+      "file": "p-server-ruhim19b-allocations.html"
+    },
+    {
+      "id": "p-server-ruhim19b-subdomain",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ruhim19b/subdomain",
+      "crawled": true,
+      "file": "p-server-ruhim19b-subdomain.html"
+    },
+    {
+      "id": "p-server-ruhim19b-activities",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ruhim19b/activities",
+      "crawled": true,
+      "file": "p-server-ruhim19b-activities.html"
+    },
+    {
+      "id": "p-server-ruhim19b-mounts",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ruhim19b/mounts",
+      "crawled": true,
+      "file": "p-server-ruhim19b-mounts.html"
+    },
+    {
+      "id": "p-server-ruhim19b-startup",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ruhim19b/startup",
+      "crawled": true,
+      "file": "p-server-ruhim19b-startup.html"
+    },
+    {
+      "id": "p-server-ruhim19b-settings",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ruhim19b/settings",
+      "crawled": true,
+      "file": "p-server-ruhim19b-settings.html"
+    },
+    {
+      "id": "p-server-ruhim19b-webhook",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ruhim19b/webhook",
+      "crawled": true,
+      "file": "p-server-ruhim19b-webhook.html"
+    },
+    {
+      "id": "p-server-ruhim19b-website",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ruhim19b/website",
+      "crawled": true,
+      "file": "p-server-ruhim19b-website.html"
+    },
+    {
+      "id": "p-server-ruhim19b-automatic-backups",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ruhim19b/automatic-backups",
+      "crawled": true,
+      "file": "p-server-ruhim19b-automatic-backups.html"
+    },
+    {
+      "id": "p-server-ruhim19b-performance",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ruhim19b/performance",
+      "crawled": true,
+      "file": "p-server-ruhim19b-performance.html"
+    },
+    {
+      "id": "p-admin-servers-8-edit",
+      "title": "Edit Arena",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/servers/8/edit",
+      "crawled": true,
+      "file": "p-admin-servers-8-edit.html"
+    },
+    {
+      "id": "p-server-cimqup8b-files",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/cimqup8b/files",
+      "crawled": true,
+      "file": "p-server-cimqup8b-files.html"
+    },
+    {
+      "id": "p-server-cimqup8b-backups",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/cimqup8b/backups",
+      "crawled": true,
+      "file": "p-server-cimqup8b-backups.html"
+    },
+    {
+      "id": "p-server-cimqup8b-schedules",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/cimqup8b/schedules",
+      "crawled": true,
+      "file": "p-server-cimqup8b-schedules.html"
+    },
+    {
+      "id": "p-server-cimqup8b-subusers",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/cimqup8b/subusers",
+      "crawled": true,
+      "file": "p-server-cimqup8b-subusers.html"
+    },
+    {
+      "id": "p-server-cimqup8b-databases",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/cimqup8b/databases",
+      "crawled": true,
+      "file": "p-server-cimqup8b-databases.html"
+    },
+    {
+      "id": "p-server-cimqup8b-allocations",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/cimqup8b/allocations",
+      "crawled": true,
+      "file": "p-server-cimqup8b-allocations.html"
+    },
+    {
+      "id": "p-server-cimqup8b-subdomain",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/cimqup8b/subdomain",
+      "crawled": true,
+      "file": "p-server-cimqup8b-subdomain.html"
+    },
+    {
+      "id": "p-server-cimqup8b-activities",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/cimqup8b/activities",
+      "crawled": true,
+      "file": "p-server-cimqup8b-activities.html"
+    },
+    {
+      "id": "p-server-cimqup8b-mounts",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/cimqup8b/mounts",
+      "crawled": true,
+      "file": "p-server-cimqup8b-mounts.html"
+    },
+    {
+      "id": "p-server-cimqup8b-minecraft",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/cimqup8b/minecraft",
+      "crawled": true,
+      "file": "p-server-cimqup8b-minecraft.html"
+    },
+    {
+      "id": "p-server-cimqup8b-startup",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/cimqup8b/startup",
+      "crawled": true,
+      "file": "p-server-cimqup8b-startup.html"
+    },
+    {
+      "id": "p-server-cimqup8b-plugins",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/cimqup8b/plugins",
+      "crawled": true,
+      "file": "p-server-cimqup8b-plugins.html"
+    },
+    {
+      "id": "p-server-cimqup8b-settings",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/cimqup8b/settings",
+      "crawled": true,
+      "file": "p-server-cimqup8b-settings.html"
+    },
+    {
+      "id": "p-server-cimqup8b-players",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/cimqup8b/players",
+      "crawled": true,
+      "file": "p-server-cimqup8b-players.html"
+    },
+    {
+      "id": "p-server-cimqup8b-webhook",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/cimqup8b/webhook",
+      "crawled": true,
+      "file": "p-server-cimqup8b-webhook.html"
+    },
+    {
+      "id": "p-server-cimqup8b-website",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/cimqup8b/website",
+      "crawled": true,
+      "file": "p-server-cimqup8b-website.html"
+    },
+    {
+      "id": "p-server-cimqup8b-automatic-backups",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/cimqup8b/automatic-backups",
+      "crawled": true,
+      "file": "p-server-cimqup8b-automatic-backups.html"
+    },
+    {
+      "id": "p-server-cimqup8b-software",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/cimqup8b/software",
+      "crawled": true,
+      "file": "p-server-cimqup8b-software.html"
+    },
+    {
+      "id": "p-server-cimqup8b-performance",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/cimqup8b/performance",
+      "crawled": true,
+      "file": "p-server-cimqup8b-performance.html"
+    },
+    {
+      "id": "p-admin-servers-create",
+      "title": "Create Server",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/servers/create",
+      "crawled": true,
+      "file": "p-admin-servers-create.html"
+    },
+    {
+      "id": "p-admin-users-2-edit",
+      "title": "Edit sam",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/users/2/edit",
+      "crawled": true,
+      "file": "p-admin-users-2-edit.html"
+    },
+    {
+      "id": "p-admin-users-1-edit",
+      "title": "Edit jeroen",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/users/1/edit",
+      "crawled": true,
+      "file": "p-admin-users-1-edit.html"
+    },
+    {
+      "id": "p-admin-users-create",
+      "title": "Create User",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/users/create",
+      "crawled": true,
+      "file": "p-admin-users-create.html"
+    },
+    {
+      "id": "p-admin-webhooks-create",
+      "title": "Create Webhook",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/webhooks/create",
+      "crawled": true,
+      "file": "p-admin-webhooks-create.html"
+    },
+    {
+      "id": "p-server-jga0ry1r-schedules",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/jga0ry1r/schedules",
+      "crawled": true,
+      "file": "p-server-jga0ry1r-schedules.html"
+    },
+    {
+      "id": "p-server-jga0ry1r-subusers",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/jga0ry1r/subusers",
+      "crawled": true,
+      "file": "p-server-jga0ry1r-subusers.html"
+    },
+    {
+      "id": "p-server-jga0ry1r-databases",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/jga0ry1r/databases",
+      "crawled": true,
+      "file": "p-server-jga0ry1r-databases.html"
+    },
+    {
+      "id": "p-server-jga0ry1r-allocations",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/jga0ry1r/allocations",
+      "crawled": true,
+      "file": "p-server-jga0ry1r-allocations.html"
+    },
+    {
+      "id": "p-server-jga0ry1r-activities",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/jga0ry1r/activities",
+      "crawled": true,
+      "file": "p-server-jga0ry1r-activities.html"
+    },
+    {
+      "id": "p-server-jga0ry1r-mounts",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/jga0ry1r/mounts",
+      "crawled": true,
+      "file": "p-server-jga0ry1r-mounts.html"
+    },
+    {
+      "id": "p-server-jga0ry1r-startup",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/jga0ry1r/startup",
+      "crawled": true,
+      "file": "p-server-jga0ry1r-startup.html"
+    },
+    {
+      "id": "p-server-jga0ry1r-settings",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/jga0ry1r/settings",
+      "crawled": true,
+      "file": "p-server-jga0ry1r-settings.html"
+    },
+    {
+      "id": "p-server-jga0ry1r-webhook",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/jga0ry1r/webhook",
+      "crawled": true,
+      "file": "p-server-jga0ry1r-webhook.html"
+    },
+    {
+      "id": "p-simplify-embed-x",
+      "title": "Pelican servers",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/simplify/embed?server=jga0ry1r&page=1",
+      "crawled": true,
+      "file": "p-simplify-embed-x.html"
+    },
+    {
+      "id": "p-admin-logs-2026-11-02",
+      "title": "View log November 2, 2026",
+      "group": "Beheer · alle pagina's",
+      "parent": null,
+      "url": "/admin/logs/2026-11-02",
+      "crawled": true,
+      "file": "p-admin-logs-2026-11-02.html"
+    },
+    {
+      "id": "p-server-vfvgmmnp-files",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/vfvgmmnp/files",
+      "crawled": true,
+      "file": "p-server-vfvgmmnp-files.html"
+    },
+    {
+      "id": "p-server-vfvgmmnp-backups",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/vfvgmmnp/backups",
+      "crawled": true,
+      "file": "p-server-vfvgmmnp-backups.html"
+    },
+    {
+      "id": "p-server-vfvgmmnp-schedules",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/vfvgmmnp/schedules",
+      "crawled": true,
+      "file": "p-server-vfvgmmnp-schedules.html"
+    },
+    {
+      "id": "p-server-vfvgmmnp-subusers",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/vfvgmmnp/subusers",
+      "crawled": true,
+      "file": "p-server-vfvgmmnp-subusers.html"
+    },
+    {
+      "id": "p-server-vfvgmmnp-databases",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/vfvgmmnp/databases",
+      "crawled": true,
+      "file": "p-server-vfvgmmnp-databases.html"
+    },
+    {
+      "id": "p-server-vfvgmmnp-allocations",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/vfvgmmnp/allocations",
+      "crawled": true,
+      "file": "p-server-vfvgmmnp-allocations.html"
+    },
+    {
+      "id": "p-server-vfvgmmnp-subdomain",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/vfvgmmnp/subdomain",
+      "crawled": true,
+      "file": "p-server-vfvgmmnp-subdomain.html"
+    },
+    {
+      "id": "p-server-vfvgmmnp-activities",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/vfvgmmnp/activities",
+      "crawled": true,
+      "file": "p-server-vfvgmmnp-activities.html"
+    },
+    {
+      "id": "p-server-vfvgmmnp-mounts",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/vfvgmmnp/mounts",
+      "crawled": true,
+      "file": "p-server-vfvgmmnp-mounts.html"
+    },
+    {
+      "id": "p-server-vfvgmmnp-startup",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/vfvgmmnp/startup",
+      "crawled": true,
+      "file": "p-server-vfvgmmnp-startup.html"
+    },
+    {
+      "id": "p-server-vfvgmmnp-settings",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/vfvgmmnp/settings",
+      "crawled": true,
+      "file": "p-server-vfvgmmnp-settings.html"
+    },
+    {
+      "id": "p-server-vfvgmmnp-webhook",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/vfvgmmnp/webhook",
+      "crawled": true,
+      "file": "p-server-vfvgmmnp-webhook.html"
+    },
+    {
+      "id": "p-server-vfvgmmnp-website",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/vfvgmmnp/website",
+      "crawled": true,
+      "file": "p-server-vfvgmmnp-website.html"
+    },
+    {
+      "id": "p-server-vfvgmmnp-automatic-backups",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/vfvgmmnp/automatic-backups",
+      "crawled": true,
+      "file": "p-server-vfvgmmnp-automatic-backups.html"
+    },
+    {
+      "id": "p-server-vfvgmmnp-performance",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/vfvgmmnp/performance",
+      "crawled": true,
+      "file": "p-server-vfvgmmnp-performance.html"
+    },
+    {
+      "id": "p-server-ihufnthp-files",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ihufnthp/files",
+      "crawled": true,
+      "file": "p-server-ihufnthp-files.html"
+    },
+    {
+      "id": "p-server-ihufnthp-backups",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ihufnthp/backups",
+      "crawled": true,
+      "file": "p-server-ihufnthp-backups.html"
+    },
+    {
+      "id": "p-server-ihufnthp-schedules",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ihufnthp/schedules",
+      "crawled": true,
+      "file": "p-server-ihufnthp-schedules.html"
+    },
+    {
+      "id": "p-server-ihufnthp-subusers",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ihufnthp/subusers",
+      "crawled": true,
+      "file": "p-server-ihufnthp-subusers.html"
+    },
+    {
+      "id": "p-server-ihufnthp-databases",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ihufnthp/databases",
+      "crawled": true,
+      "file": "p-server-ihufnthp-databases.html"
+    },
+    {
+      "id": "p-server-ihufnthp-allocations",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ihufnthp/allocations",
+      "crawled": true,
+      "file": "p-server-ihufnthp-allocations.html"
+    },
+    {
+      "id": "p-server-ihufnthp-subdomain",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ihufnthp/subdomain",
+      "crawled": true,
+      "file": "p-server-ihufnthp-subdomain.html"
+    },
+    {
+      "id": "p-server-ihufnthp-activities",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ihufnthp/activities",
+      "crawled": true,
+      "file": "p-server-ihufnthp-activities.html"
+    },
+    {
+      "id": "p-server-ihufnthp-mounts",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ihufnthp/mounts",
+      "crawled": true,
+      "file": "p-server-ihufnthp-mounts.html"
+    },
+    {
+      "id": "p-server-ihufnthp-startup",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ihufnthp/startup",
+      "crawled": true,
+      "file": "p-server-ihufnthp-startup.html"
+    },
+    {
+      "id": "p-server-ihufnthp-settings",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ihufnthp/settings",
+      "crawled": true,
+      "file": "p-server-ihufnthp-settings.html"
+    },
+    {
+      "id": "p-server-ihufnthp-webhook",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ihufnthp/webhook",
+      "crawled": true,
+      "file": "p-server-ihufnthp-webhook.html"
+    },
+    {
+      "id": "p-server-ihufnthp-website",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ihufnthp/website",
+      "crawled": true,
+      "file": "p-server-ihufnthp-website.html"
+    },
+    {
+      "id": "p-server-ihufnthp-automatic-backups",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ihufnthp/automatic-backups",
+      "crawled": true,
+      "file": "p-server-ihufnthp-automatic-backups.html"
+    },
+    {
+      "id": "p-server-ihufnthp-performance",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ihufnthp/performance",
+      "crawled": true,
+      "file": "p-server-ihufnthp-performance.html"
+    },
+    {
+      "id": "p-server-gv2lwoua-files",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gv2lwoua/files",
+      "crawled": true,
+      "file": "p-server-gv2lwoua-files.html"
+    },
+    {
+      "id": "p-server-gv2lwoua-backups",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gv2lwoua/backups",
+      "crawled": true,
+      "file": "p-server-gv2lwoua-backups.html"
+    },
+    {
+      "id": "p-server-gv2lwoua-schedules",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gv2lwoua/schedules",
+      "crawled": true,
+      "file": "p-server-gv2lwoua-schedules.html"
+    },
+    {
+      "id": "p-server-gv2lwoua-subusers",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gv2lwoua/subusers",
+      "crawled": true,
+      "file": "p-server-gv2lwoua-subusers.html"
+    },
+    {
+      "id": "p-server-gv2lwoua-databases",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gv2lwoua/databases",
+      "crawled": true,
+      "file": "p-server-gv2lwoua-databases.html"
+    },
+    {
+      "id": "p-server-gv2lwoua-allocations",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gv2lwoua/allocations",
+      "crawled": true,
+      "file": "p-server-gv2lwoua-allocations.html"
+    },
+    {
+      "id": "p-server-gv2lwoua-subdomain",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gv2lwoua/subdomain",
+      "crawled": true,
+      "file": "p-server-gv2lwoua-subdomain.html"
+    },
+    {
+      "id": "p-server-gv2lwoua-activities",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gv2lwoua/activities",
+      "crawled": true,
+      "file": "p-server-gv2lwoua-activities.html"
+    },
+    {
+      "id": "p-server-gv2lwoua-mounts",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gv2lwoua/mounts",
+      "crawled": true,
+      "file": "p-server-gv2lwoua-mounts.html"
+    },
+    {
+      "id": "p-server-gv2lwoua-startup",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gv2lwoua/startup",
+      "crawled": true,
+      "file": "p-server-gv2lwoua-startup.html"
+    },
+    {
+      "id": "p-server-gv2lwoua-settings",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gv2lwoua/settings",
+      "crawled": true,
+      "file": "p-server-gv2lwoua-settings.html"
+    },
+    {
+      "id": "p-server-gv2lwoua-webhook",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gv2lwoua/webhook",
+      "crawled": true,
+      "file": "p-server-gv2lwoua-webhook.html"
+    },
+    {
+      "id": "p-server-gv2lwoua-website",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gv2lwoua/website",
+      "crawled": true,
+      "file": "p-server-gv2lwoua-website.html"
+    },
+    {
+      "id": "p-server-gv2lwoua-automatic-backups",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gv2lwoua/automatic-backups",
+      "crawled": true,
+      "file": "p-server-gv2lwoua-automatic-backups.html"
+    },
+    {
+      "id": "p-server-gv2lwoua-performance",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gv2lwoua/performance",
+      "crawled": true,
+      "file": "p-server-gv2lwoua-performance.html"
+    },
+    {
+      "id": "p-server-qaba1ecq-files",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/qaba1ecq/files",
+      "crawled": true,
+      "file": "p-server-qaba1ecq-files.html"
+    },
+    {
+      "id": "p-server-qaba1ecq-backups",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/qaba1ecq/backups",
+      "crawled": true,
+      "file": "p-server-qaba1ecq-backups.html"
+    },
+    {
+      "id": "p-server-qaba1ecq-schedules",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/qaba1ecq/schedules",
+      "crawled": true,
+      "file": "p-server-qaba1ecq-schedules.html"
+    },
+    {
+      "id": "p-server-qaba1ecq-subusers",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/qaba1ecq/subusers",
+      "crawled": true,
+      "file": "p-server-qaba1ecq-subusers.html"
+    },
+    {
+      "id": "p-server-qaba1ecq-databases",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/qaba1ecq/databases",
+      "crawled": true,
+      "file": "p-server-qaba1ecq-databases.html"
+    },
+    {
+      "id": "p-server-qaba1ecq-allocations",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/qaba1ecq/allocations",
+      "crawled": true,
+      "file": "p-server-qaba1ecq-allocations.html"
+    },
+    {
+      "id": "p-server-qaba1ecq-subdomain",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/qaba1ecq/subdomain",
+      "crawled": true,
+      "file": "p-server-qaba1ecq-subdomain.html"
+    },
+    {
+      "id": "p-server-qaba1ecq-activities",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/qaba1ecq/activities",
+      "crawled": true,
+      "file": "p-server-qaba1ecq-activities.html"
+    },
+    {
+      "id": "p-server-qaba1ecq-mounts",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/qaba1ecq/mounts",
+      "crawled": true,
+      "file": "p-server-qaba1ecq-mounts.html"
+    },
+    {
+      "id": "p-server-qaba1ecq-minecraft",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/qaba1ecq/minecraft",
+      "crawled": true,
+      "file": "p-server-qaba1ecq-minecraft.html"
+    },
+    {
+      "id": "p-server-qaba1ecq-startup",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/qaba1ecq/startup",
+      "crawled": true,
+      "file": "p-server-qaba1ecq-startup.html"
+    },
+    {
+      "id": "p-server-qaba1ecq-plugins",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/qaba1ecq/plugins",
+      "crawled": true,
+      "file": "p-server-qaba1ecq-plugins.html"
+    },
+    {
+      "id": "p-server-qaba1ecq-settings",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/qaba1ecq/settings",
+      "crawled": true,
+      "file": "p-server-qaba1ecq-settings.html"
+    },
+    {
+      "id": "p-server-qaba1ecq-players",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/qaba1ecq/players",
+      "crawled": true,
+      "file": "p-server-qaba1ecq-players.html"
+    },
+    {
+      "id": "p-server-qaba1ecq-webhook",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/qaba1ecq/webhook",
+      "crawled": true,
+      "file": "p-server-qaba1ecq-webhook.html"
+    },
+    {
+      "id": "p-server-qaba1ecq-website",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/qaba1ecq/website",
+      "crawled": true,
+      "file": "p-server-qaba1ecq-website.html"
+    },
+    {
+      "id": "p-server-qaba1ecq-automatic-backups",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/qaba1ecq/automatic-backups",
+      "crawled": true,
+      "file": "p-server-qaba1ecq-automatic-backups.html"
+    },
+    {
+      "id": "p-server-qaba1ecq-software",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/qaba1ecq/software",
+      "crawled": true,
+      "file": "p-server-qaba1ecq-software.html"
+    },
+    {
+      "id": "p-server-qaba1ecq-performance",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/qaba1ecq/performance",
+      "crawled": true,
+      "file": "p-server-qaba1ecq-performance.html"
+    },
+    {
+      "id": "p-server-phh2l6oo-files",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/phh2l6oo/files",
+      "crawled": true,
+      "file": "p-server-phh2l6oo-files.html"
+    },
+    {
+      "id": "p-server-phh2l6oo-backups",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/phh2l6oo/backups",
+      "crawled": true,
+      "file": "p-server-phh2l6oo-backups.html"
+    },
+    {
+      "id": "p-server-phh2l6oo-schedules",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/phh2l6oo/schedules",
+      "crawled": true,
+      "file": "p-server-phh2l6oo-schedules.html"
+    },
+    {
+      "id": "p-server-phh2l6oo-subusers",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/phh2l6oo/subusers",
+      "crawled": true,
+      "file": "p-server-phh2l6oo-subusers.html"
+    },
+    {
+      "id": "p-server-phh2l6oo-databases",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/phh2l6oo/databases",
+      "crawled": true,
+      "file": "p-server-phh2l6oo-databases.html"
+    },
+    {
+      "id": "p-server-phh2l6oo-allocations",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/phh2l6oo/allocations",
+      "crawled": true,
+      "file": "p-server-phh2l6oo-allocations.html"
+    },
+    {
+      "id": "p-server-phh2l6oo-subdomain",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/phh2l6oo/subdomain",
+      "crawled": true,
+      "file": "p-server-phh2l6oo-subdomain.html"
+    },
+    {
+      "id": "p-server-phh2l6oo-activities",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/phh2l6oo/activities",
+      "crawled": true,
+      "file": "p-server-phh2l6oo-activities.html"
+    },
+    {
+      "id": "p-server-phh2l6oo-mounts",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/phh2l6oo/mounts",
+      "crawled": true,
+      "file": "p-server-phh2l6oo-mounts.html"
+    },
+    {
+      "id": "p-server-phh2l6oo-startup",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/phh2l6oo/startup",
+      "crawled": true,
+      "file": "p-server-phh2l6oo-startup.html"
+    },
+    {
+      "id": "p-server-phh2l6oo-settings",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/phh2l6oo/settings",
+      "crawled": true,
+      "file": "p-server-phh2l6oo-settings.html"
+    },
+    {
+      "id": "p-server-phh2l6oo-webhook",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/phh2l6oo/webhook",
+      "crawled": true,
+      "file": "p-server-phh2l6oo-webhook.html"
+    },
+    {
+      "id": "p-server-phh2l6oo-website",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/phh2l6oo/website",
+      "crawled": true,
+      "file": "p-server-phh2l6oo-website.html"
+    },
+    {
+      "id": "p-server-phh2l6oo-automatic-backups",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/phh2l6oo/automatic-backups",
+      "crawled": true,
+      "file": "p-server-phh2l6oo-automatic-backups.html"
+    },
+    {
+      "id": "p-server-phh2l6oo-performance",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/phh2l6oo/performance",
+      "crawled": true,
+      "file": "p-server-phh2l6oo-performance.html"
+    },
+    {
+      "id": "p-server-ttma22sr-files",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ttma22sr/files",
+      "crawled": true,
+      "file": "p-server-ttma22sr-files.html"
+    },
+    {
+      "id": "p-server-ttma22sr-backups",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ttma22sr/backups",
+      "crawled": true,
+      "file": "p-server-ttma22sr-backups.html"
+    },
+    {
+      "id": "p-server-ttma22sr-schedules",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ttma22sr/schedules",
+      "crawled": true,
+      "file": "p-server-ttma22sr-schedules.html"
+    },
+    {
+      "id": "p-server-ttma22sr-subusers",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ttma22sr/subusers",
+      "crawled": true,
+      "file": "p-server-ttma22sr-subusers.html"
+    },
+    {
+      "id": "p-server-ttma22sr-databases",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ttma22sr/databases",
+      "crawled": true,
+      "file": "p-server-ttma22sr-databases.html"
+    },
+    {
+      "id": "p-server-ttma22sr-allocations",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ttma22sr/allocations",
+      "crawled": true,
+      "file": "p-server-ttma22sr-allocations.html"
+    },
+    {
+      "id": "p-server-ttma22sr-subdomain",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ttma22sr/subdomain",
+      "crawled": true,
+      "file": "p-server-ttma22sr-subdomain.html"
+    },
+    {
+      "id": "p-server-ttma22sr-activities",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ttma22sr/activities",
+      "crawled": true,
+      "file": "p-server-ttma22sr-activities.html"
+    },
+    {
+      "id": "p-server-ttma22sr-mounts",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ttma22sr/mounts",
+      "crawled": true,
+      "file": "p-server-ttma22sr-mounts.html"
+    },
+    {
+      "id": "p-server-ttma22sr-startup",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ttma22sr/startup",
+      "crawled": true,
+      "file": "p-server-ttma22sr-startup.html"
+    },
+    {
+      "id": "p-server-ttma22sr-settings",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ttma22sr/settings",
+      "crawled": true,
+      "file": "p-server-ttma22sr-settings.html"
+    },
+    {
+      "id": "p-server-ttma22sr-webhook",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ttma22sr/webhook",
+      "crawled": true,
+      "file": "p-server-ttma22sr-webhook.html"
+    },
+    {
+      "id": "p-server-ttma22sr-website",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ttma22sr/website",
+      "crawled": true,
+      "file": "p-server-ttma22sr-website.html"
+    },
+    {
+      "id": "p-server-ttma22sr-automatic-backups",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ttma22sr/automatic-backups",
+      "crawled": true,
+      "file": "p-server-ttma22sr-automatic-backups.html"
+    },
+    {
+      "id": "p-server-ttma22sr-performance",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ttma22sr/performance",
+      "crawled": true,
+      "file": "p-server-ttma22sr-performance.html"
+    },
+    {
+      "id": "p-server-gpi4gymc-files-logs",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gpi4gymc/files/logs",
+      "crawled": true,
+      "file": "p-server-gpi4gymc-files-logs.html"
+    },
+    {
+      "id": "p-server-gpi4gymc-files-mods",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gpi4gymc/files/mods",
+      "crawled": true,
+      "file": "p-server-gpi4gymc-files-mods.html"
+    },
+    {
+      "id": "p-server-gpi4gymc-schedules-create",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gpi4gymc/schedules/create",
+      "crawled": true,
+      "file": "p-server-gpi4gymc-schedules-create.html"
+    },
+    {
+      "id": "p-server-gpi4gymc-webhook-create",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gpi4gymc/webhook/create",
+      "crawled": true,
+      "file": "p-server-gpi4gymc-webhook-create.html"
+    },
+    {
+      "id": "p-simplify-embed-x-x",
+      "title": "Pelican servers",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/simplify/embed?server=gpi4gymc&page=1",
+      "crawled": true,
+      "file": "p-simplify-embed-x-x.html"
+    },
+    {
+      "id": "p-server-ruhim19b-files-logs",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ruhim19b/files/logs",
+      "crawled": true,
+      "file": "p-server-ruhim19b-files-logs.html"
+    },
+    {
+      "id": "p-server-ruhim19b-schedules-create",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ruhim19b/schedules/create",
+      "crawled": true,
+      "file": "p-server-ruhim19b-schedules-create.html"
+    },
+    {
+      "id": "p-server-ruhim19b-webhook-create",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ruhim19b/webhook/create",
+      "crawled": true,
+      "file": "p-server-ruhim19b-webhook-create.html"
+    },
+    {
+      "id": "p-server-cimqup8b-files-logs",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/cimqup8b/files/logs",
+      "crawled": true,
+      "file": "p-server-cimqup8b-files-logs.html"
+    },
+    {
+      "id": "p-server-cimqup8b-files-plugins",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/cimqup8b/files/plugins",
+      "crawled": true,
+      "file": "p-server-cimqup8b-files-plugins.html"
+    },
+    {
+      "id": "p-server-cimqup8b-schedules-create",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/cimqup8b/schedules/create",
+      "crawled": true,
+      "file": "p-server-cimqup8b-schedules-create.html"
+    },
+    {
+      "id": "p-server-cimqup8b-webhook-create",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/cimqup8b/webhook/create",
+      "crawled": true,
+      "file": "p-server-cimqup8b-webhook-create.html"
+    },
+    {
+      "id": "p-simplify-embed-x-x-x",
+      "title": "Pelican servers",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/simplify/embed?server=cimqup8b&page=1",
+      "crawled": true,
+      "file": "p-simplify-embed-x-x-x.html"
+    },
+    {
+      "id": "p-server-jga0ry1r-schedules-create",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/jga0ry1r/schedules/create",
+      "crawled": true,
+      "file": "p-server-jga0ry1r-schedules-create.html"
+    },
+    {
+      "id": "p-server-jga0ry1r-webhook-create",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/jga0ry1r/webhook/create",
+      "crawled": true,
+      "file": "p-server-jga0ry1r-webhook-create.html"
+    },
+    {
+      "id": "p-server-vfvgmmnp-files-logs",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/vfvgmmnp/files/logs",
+      "crawled": true,
+      "file": "p-server-vfvgmmnp-files-logs.html"
+    },
+    {
+      "id": "p-server-vfvgmmnp-schedules-create",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/vfvgmmnp/schedules/create",
+      "crawled": true,
+      "file": "p-server-vfvgmmnp-schedules-create.html"
+    },
+    {
+      "id": "p-server-vfvgmmnp-webhook-create",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/vfvgmmnp/webhook/create",
+      "crawled": true,
+      "file": "p-server-vfvgmmnp-webhook-create.html"
+    },
+    {
+      "id": "p-server-ihufnthp-files-logs",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ihufnthp/files/logs",
+      "crawled": true,
+      "file": "p-server-ihufnthp-files-logs.html"
+    },
+    {
+      "id": "p-server-ihufnthp-schedules-create",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ihufnthp/schedules/create",
+      "crawled": true,
+      "file": "p-server-ihufnthp-schedules-create.html"
+    },
+    {
+      "id": "p-server-ihufnthp-webhook-create",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ihufnthp/webhook/create",
+      "crawled": true,
+      "file": "p-server-ihufnthp-webhook-create.html"
+    },
+    {
+      "id": "p-server-gv2lwoua-files-logs",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gv2lwoua/files/logs",
+      "crawled": true,
+      "file": "p-server-gv2lwoua-files-logs.html"
+    },
+    {
+      "id": "p-server-gv2lwoua-schedules-create",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gv2lwoua/schedules/create",
+      "crawled": true,
+      "file": "p-server-gv2lwoua-schedules-create.html"
+    },
+    {
+      "id": "p-server-gv2lwoua-webhook-create",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/gv2lwoua/webhook/create",
+      "crawled": true,
+      "file": "p-server-gv2lwoua-webhook-create.html"
+    },
+    {
+      "id": "p-simplify-embed-x-x-x-x",
+      "title": "Pelican servers",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/simplify/embed?server=gv2lwoua&page=1",
+      "crawled": true,
+      "file": "p-simplify-embed-x-x-x-x.html"
+    },
+    {
+      "id": "p-server-qaba1ecq-files-logs",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/qaba1ecq/files/logs",
+      "crawled": true,
+      "file": "p-server-qaba1ecq-files-logs.html"
+    },
+    {
+      "id": "p-server-qaba1ecq-files-plugins",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/qaba1ecq/files/plugins",
+      "crawled": true,
+      "file": "p-server-qaba1ecq-files-plugins.html"
+    },
+    {
+      "id": "p-server-qaba1ecq-schedules-create",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/qaba1ecq/schedules/create",
+      "crawled": true,
+      "file": "p-server-qaba1ecq-schedules-create.html"
+    },
+    {
+      "id": "p-server-qaba1ecq-webhook-create",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/qaba1ecq/webhook/create",
+      "crawled": true,
+      "file": "p-server-qaba1ecq-webhook-create.html"
+    },
+    {
+      "id": "p-server-phh2l6oo-files-logs",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/phh2l6oo/files/logs",
+      "crawled": true,
+      "file": "p-server-phh2l6oo-files-logs.html"
+    },
+    {
+      "id": "p-server-phh2l6oo-schedules-create",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/phh2l6oo/schedules/create",
+      "crawled": true,
+      "file": "p-server-phh2l6oo-schedules-create.html"
+    },
+    {
+      "id": "p-server-phh2l6oo-webhook-create",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/phh2l6oo/webhook/create",
+      "crawled": true,
+      "file": "p-server-phh2l6oo-webhook-create.html"
+    },
+    {
+      "id": "p-server-ttma22sr-files-logs",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ttma22sr/files/logs",
+      "crawled": true,
+      "file": "p-server-ttma22sr-files-logs.html"
+    },
+    {
+      "id": "p-server-ttma22sr-schedules-create",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ttma22sr/schedules/create",
+      "crawled": true,
+      "file": "p-server-ttma22sr-schedules-create.html"
+    },
+    {
+      "id": "p-server-ttma22sr-webhook-create",
+      "title": "Northwind Games",
+      "group": "Server · alle pagina's",
+      "parent": null,
+      "url": "/server/ttma22sr/webhook/create",
+      "crawled": true,
+      "file": "p-server-ttma22sr-webhook-create.html"
+    },
+    {
+      "id": "p-simplify-embed-x-x-x-x-x",
+      "title": "Pelican servers",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/simplify/embed?server=ttma22sr&page=1",
+      "crawled": true,
+      "file": "p-simplify-embed-x-x-x-x-x.html"
+    },
+    {
+      "id": "app-server-maker-minecraft",
+      "title": "Server maker · Minecraft-stap",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/server-maker",
+      "file": "app-server-maker-minecraft.html"
+    },
+    {
+      "id": "app-server-maker-minecraft@phone",
+      "title": "Server maker · Minecraft-stap",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/server-maker",
+      "file": "app-server-maker-minecraft@phone.html",
+      "phoneOf": "app-server-maker-minecraft"
+    },
+    {
+      "id": "app-server-maker-review",
+      "title": "Server maker · Review-stap",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/server-maker",
+      "file": "app-server-maker-review.html"
+    },
+    {
+      "id": "app-server-maker-review@phone",
+      "title": "Server maker · Review-stap",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/server-maker",
+      "file": "app-server-maker-review@phone.html",
+      "phoneOf": "app-server-maker-review"
+    },
+    {
+      "id": "customer",
+      "title": "Overzicht als klant (sam)",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/simplify",
+      "file": "customer.html"
+    },
+    {
+      "id": "customer@phone",
+      "title": "Overzicht als klant (sam)",
+      "group": "Klantkant",
+      "parent": null,
+      "url": "/simplify",
+      "file": "customer@phone.html",
+      "phoneOf": "customer"
+    },
+    {
+      "id": "customer-account",
+      "title": "Accountmenu klant",
+      "group": "Klantkant",
+      "parent": "customer",
+      "url": "/simplify",
+      "file": "customer-account.html"
+    }
+  ],
+  "problems": [
+    "settings-general-4: could not open (page.goto: Timeout 10000ms exceeded.)",
+    "settings-captcha: could not open (page.goto: Timeout 10000ms exceeded.)"
+  ]
+}
