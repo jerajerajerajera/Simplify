@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Edit schedule: the buttons (delete, run now, export, save) sit in a bar over the page instead of on top of the Name field, also on a phone.
+- Edit schedule: the buttons (delete, run now, export, save) sit in a bar over the page instead of on top of the Name field. On a phone the tasks are short rows with their edit and delete buttons in view, instead of a table that ran off the screen (old plugin issue #236).
 
 - Installed app: pull down to reload works on the overview only. In the settings and on other pages a pull down no longer reloads and sends you back to the overview.
 
