@@ -744,6 +744,9 @@ async function fixesFlow() {
     const ic = await page.evaluate(() => { const card = [...document.querySelectorAll('.ps-server-card')].find((c) => /Discord bot/.test(c.innerText)); const box = card && card.querySelector('.ps-card-icon'); if (!box) return null; const img = box.querySelector('img'); const svg = box.querySelector('svg use'); return { picture: !!img && img.getClientRects().length > 0 && img.naturalWidth > 0, icon: svg && svg.closest('svg').getClientRects().length ? svg.getAttribute('href') : null }; }).catch(() => null);
     await record('egg-kind-icon', 'Overzicht · icoon per soort egg');
     say('egg-kind-icon', ic && (ic.picture || /^#ps-kind-/.test(ic.icon || '')), ic);
+    // A Steam game (Counter-Strike 2 on steamcmd, as in pelican-eggs) shows the Steam icon, not Java's cup.
+    const steam = await page.evaluate(() => { const card = [...document.querySelectorAll('.ps-server-card')].find((c) => /Arena/.test(c.innerText)); return card?.querySelector('.ps-card-icon svg use')?.getAttribute('href') || null; }).catch(() => null);
+    say('egg-kind-steam', steam === '#ps-steam', { steam });
     // Every notification option sits in the bell sheet: this device, messages, Pelican's, and the devices.
     await alpine('d.openAllNotifications()'); await sleep(1500);
     const bell = await page.evaluate(() => { const box = [...document.querySelectorAll('.ps-notify-settings')].find((e) => e.getClientRects().length); if (!box) return { shown: false }; return { shown: true, pelican: !![...box.querySelectorAll('input.ps-switch')].find((i) => /pelican/.test(i.getAttribute('x-on:change') || '') && i.getClientRects().length) }; }).catch(() => null);
