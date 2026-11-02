@@ -72,6 +72,9 @@ if ($limit > 0) {
 }
 $status = ['New World' => 'installing', 'Broken Install' => 'install_failed'];
 $minecraft = ['Paper', 'Forge'];
+// Docker images as the pelican-eggs repository has them, so the icon per kind of egg shows what a real panel shows.
+$images = ['Valheim' => 'ghcr.io/parkervcp/steamcmd:debian', 'Palworld' => 'ghcr.io/parkervcp/steamcmd:debian', 'Rust' => 'ghcr.io/parkervcp/games:rust',
+    'Counter-Strike 2' => 'ghcr.io/parkervcp/steamcmd:sniper', 'Terraria' => 'ghcr.io/parkervcp/yolks:debian', 'Node.js' => 'ghcr.io/parkervcp/yolks:nodejs_20'];
 // Egg descriptions as the pelican-eggs repository has them.
 $about = [
     'Paper' => 'High performance Spigot fork that aims to fix gameplay and mechanics inconsistencies.',
@@ -88,10 +91,10 @@ $out = [];
 $servers = [];
 foreach ($list as $i => [$name, $eggName, $state, $memory, $cpu, $owner, $color]) {
     $eggs[$eggName] ??= Egg::factory()->create(['name' => $eggName, 'description' => $about[$eggName] ?? '', 'author' => 'panel@example.com', 'features' => in_array($eggName, $minecraft, true) ? ['eula', 'java_version'] : [],
-        'docker_images' => ['ghcr.io/pelican-eggs/yolks:java_21'], 'update_url' => null]);
+        'docker_images' => [$images[$eggName] ?? 'ghcr.io/pelican-eggs/yolks:java_21'], 'update_url' => null]);
     $allocation = Allocation::factory()->create(['node_id' => $node->id, 'ip' => '127.0.0.1', 'ip_alias' => 'play.example.com', 'port' => 25565 + $i]);
     $server = Server::factory()->create(['name' => $name, 'owner_id' => $owner->id, 'node_id' => $node->id, 'allocation_id' => $allocation->id, 'egg_id' => $eggs[$eggName]->id,
-        'image' => 'ghcr.io/pelican-eggs/yolks:java_21', 'memory' => $memory > 4096 ? 8192 : 4096, 'disk' => 20480, 'cpu' => 200, 'installed_at' => isset($status[$name]) ? null : now(), 'status' => $status[$name] ?? null,
+        'image' => $images[$eggName] ?? 'ghcr.io/pelican-eggs/yolks:java_21', 'memory' => $memory > 4096 ? 8192 : 4096, 'disk' => 20480, 'cpu' => 200, 'installed_at' => isset($status[$name]) ? null : now(), 'status' => $status[$name] ?? null,
         'created_at' => now()->subDays(20 - $i)]);
     $allocation->update(['server_id' => $server->id]);
     $servers[$name] = $server;

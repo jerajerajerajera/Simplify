@@ -744,6 +744,9 @@ async function fixesFlow() {
     const ic = await page.evaluate(() => { const card = [...document.querySelectorAll('.ps-server-card')].find((c) => /Discord bot/.test(c.innerText)); const box = card && card.querySelector('.ps-card-icon'); if (!box) return null; const img = box.querySelector('img'); const svg = box.querySelector('svg use'); return { picture: !!img && img.getClientRects().length > 0 && img.naturalWidth > 0, icon: svg && svg.closest('svg').getClientRects().length ? svg.getAttribute('href') : null }; }).catch(() => null);
     await record('egg-kind-icon', 'Overzicht · icoon per soort egg');
     say('egg-kind-icon', ic && (ic.picture || /^#ps-kind-/.test(ic.icon || '')), ic);
+    // A Steam game (Counter-Strike 2 on steamcmd, as in pelican-eggs) shows the Steam icon, not Java's cup.
+    const steam = await page.evaluate(() => { const card = [...document.querySelectorAll('.ps-server-card')].find((c) => /Arena/.test(c.innerText)); return card?.querySelector('.ps-card-icon svg use')?.getAttribute('href') || null; }).catch(() => null);
+    say('egg-kind-steam', steam === '#ps-steam', { steam });
     // Pinned announcements on the overview sit under the top bar, as wide as the servers, as in 0.7.0 (Jeroen V23, 2-11).
     const pins = await page.evaluate(() => {
       const vis = (e) => !!e && e.getClientRects().length > 0;
@@ -854,7 +857,7 @@ async function fixesFlow() {
   if (phone()) {
     const pull = async (url, name, label) => {
       const p2 = await page.context().newPage(); await quiet(p2);
-      await p2.addInitScript(() => { const mm = window.matchMedia.bind(window); window.matchMedia = (q) => (/display-mode: *standalone/.test(q) ? { matches: true, media: q, onchange: null, addEventListener() {}, removeEventListener() {}, addListener() {}, removeListener() {} } : mm(q)); });
+      await p2.addInitScript(() => { const mm = window.matchMedia.bind(window); window.matchMedia = (q) => (/display-mode: *standalone|pointer: *coarse/.test(q) ? { matches: true, media: q, onchange: null, addEventListener() {}, removeEventListener() {}, addListener() {}, removeListener() {} } : mm(q)); });
       await p2.setViewportSize(VIEWPORTS.phone390);
       await p2.goto(new URL(url, base).href, { waitUntil: 'load' }).catch(() => {}); await settle(p2, 1200);
       const cdp = await p2.context().newCDPSession(p2); await cdp.send('Emulation.setTouchEmulationEnabled', { enabled: true, maxTouchPoints: 1 });
@@ -873,6 +876,30 @@ async function fixesFlow() {
     say('pull-refresh', !!(home.mark && home.mark.shown && home.mark.ready) && home.loads >= 1, home);
     const settings = await pull('/admin/simplify', 'pull-settings', 'App · instellingen naar beneden vegen');
     say('pull-settings', !settings.mark && settings.loads === 0 && settings.at === '/admin/simplify', settings);
+    // The browser's own pull to refresh (Android Chrome) is off on every page, so only the overview's own pull reloads;
+    // swiping a sheet down to close it, or pulling in the settings, never reloads (Jeroen 2-11).
+    const native = async (url) => { const p3 = await page.context().newPage(); await quiet(p3); await p3.setViewportSize(VIEWPORTS.phone390);
+      await p3.goto(new URL(url, base).href, { waitUntil: 'load' }).catch(() => {}); await settle(p3, 800);
+      const v = await p3.evaluate(() => [getComputedStyle(document.documentElement).overscrollBehaviorY, getComputedStyle(document.body).overscrollBehaviorY]).catch(() => null);
+      await p3.close().catch(() => {}); return v; };
+    const nativePull = { overview: await native('/simplify'), settings: await native('/admin/simplify') };
+    say('pull-native-off', Object.values(nativePull).every((v) => v && v.every((x) => x === 'none')), nativePull);
+    // A sheet swiped down on the overview closes and does not reload.
+    {
+      const p4 = await page.context().newPage(); await quiet(p4);
+      await p4.addInitScript(() => { const mm = window.matchMedia.bind(window); window.matchMedia = (q) => (/display-mode: *standalone|pointer: *coarse/.test(q) ? { matches: true, media: q, onchange: null, addEventListener() {}, removeEventListener() {}, addListener() {}, removeListener() {} } : mm(q)); });
+      await p4.setViewportSize(VIEWPORTS.phone390);
+      await p4.goto(new URL('/simplify', base).href, { waitUntil: 'load' }).catch(() => {}); await settle(p4, 1200);
+      await p4.evaluate(() => { const d = window.Alpine.$data(document.querySelector('.ps')); d.customizeMenu = true; }).catch(() => {}); await sleep(700);
+      const box = await p4.evaluate(() => { const m = document.querySelector('#ps-tab-customize-menu'); const r = m && m.getClientRects().length ? m.getBoundingClientRect() : null; return r && { x: Math.round(r.left + r.width / 2), y: Math.round(r.top + 12) }; }).catch(() => null);
+      const cdp = await p4.context().newCDPSession(p4); await cdp.send('Emulation.setTouchEmulationEnabled', { enabled: true, maxTouchPoints: 1 });
+      let loads = 0; p4.on('load', () => loads++);
+      if (box) { const t = (type, y) => cdp.send('Input.dispatchTouchEvent', { type, touchPoints: type === 'touchEnd' ? [] : [{ x: box.x, y }] });
+        await t('touchStart', box.y); for (let y = box.y + 10; y <= box.y + 200; y += 10) { await t('touchMove', y); await sleep(16); } await t('touchEnd', box.y + 200); await sleep(2500); }
+      const shut = await p4.evaluate(() => !document.querySelector('#ps-tab-customize-menu')?.getClientRects().length).catch(() => null);
+      await p4.close().catch(() => {});
+      say('pull-sheet', !!box && shut === true && loads === 0, { box, shut, loads });
+    }
   }
 }
 
