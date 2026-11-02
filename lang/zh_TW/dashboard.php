@@ -16,6 +16,7 @@ return [
         'new' => '新',
         'menu' => '選單',
         'customize' => '自訂',
+        'suspended_note' => '你的主機服務商已暫停此伺服器。支付未結帳單後即可重新啟動。',
         'profile_options' => '個人資料選項',
         'profile_settings' => '個人資料設定',
         'theme_prefix' => '主題：',

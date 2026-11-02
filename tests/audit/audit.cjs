@@ -747,6 +747,18 @@ async function fixesFlow() {
     // A Steam game (Counter-Strike 2 on steamcmd, as in pelican-eggs) shows the Steam icon, not Java's cup.
     const steam = await page.evaluate(() => { const card = [...document.querySelectorAll('.ps-server-card')].find((c) => /Arena/.test(c.innerText)); return card?.querySelector('.ps-card-icon svg use')?.getAttribute('href') || null; }).catch(() => null);
     say('egg-kind-steam', steam === '#ps-steam', { steam });
+    // Pinned announcements on the overview sit under the top bar, as wide as the servers, as in 0.7.0 (Jeroen V23, 2-11).
+    const pins = await page.evaluate(() => {
+      const vis = (e) => !!e && e.getClientRects().length > 0;
+      const bar = [...document.querySelectorAll('.ps-bars')].find((b) => vis(b) && b.children.length); const top = [...document.querySelectorAll('.ps-top')].find(vis);
+      const tools = [...document.querySelectorAll('.ps-overview-toolbar')].find(vis); const cards = [...document.querySelectorAll('.ps-server-card')].filter(vis).map((c) => c.getBoundingClientRect());
+      if (!bar || !top || !tools || !cards.length) return { bar: !!bar, top: !!top, tools: !!tools, cards: cards.length };
+      const b = bar.getBoundingClientRect(), t = top.getBoundingClientRect(), o = tools.getBoundingClientRect();
+      // As wide as the servers: the cards' outer edges (the toolbar runs into the side gutters on a phone).
+      return { barTop: Math.round(b.top), topBottom: Math.round(t.bottom), barLeft: Math.round(b.left), barRight: Math.round(b.right), toolsLeft: Math.round(Math.min(...cards.map((r) => r.left))), toolsRight: Math.round(Math.max(...cards.map((r) => r.right))), toolsTop: Math.round(o.top) };
+    }).catch(() => null);
+    await record('pinned-overview', 'Overzicht · vastgezette meldingen onder de bovenbalk');
+    say('pinned-overview', !!pins && pins.barTop >= pins.topBottom && pins.barTop < pins.toolsTop && Math.abs(pins.barLeft - pins.toolsLeft) <= 2 && Math.abs(pins.barRight - pins.toolsRight) <= 2, pins);
     // An add-on's account page (as Server Maker's Steam account) opens in the content area from the account menu: a
     // real click on the button, nothing over it, no page load (Jeroen V29, 2-11).
     const accountPage = async (from) => {
@@ -878,7 +890,9 @@ async function fixesFlow() {
       for (let y = 230; y <= 420; y += 10) { await touch('touchMove', y); await sleep(16); }
       const mark = await p2.evaluate(() => { const m = document.querySelector('.s-pull'); return m ? { shown: m.getClientRects().length > 0, ready: m.classList.contains('is-ready') } : null; }).catch(() => null);
       const shot = page; page = p2; await record(name, label); page = shot;
-      await touch('touchEnd', 420); await sleep(3500);
+      // The reload may take longer than a few seconds on the test panel: wait for it, up to 15 s.
+      const reloaded = p2.waitForEvent('load', { timeout: 15000 }).catch(() => null);
+      await touch('touchEnd', 420); await reloaded; await sleep(500);
       const at = new URL(p2.url()).pathname;
       await p2.close().catch(() => {});
       return { mark, loads, at };
@@ -1078,6 +1092,10 @@ const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(
     try {
       const overview = urls.app.find((p) => /App\\Pages\\Overview$/.test(p.class))?.url || '/';
       await goto(overview); await setTheme('dark'); await goto(overview); await sleep(800); await record('overview', 'Klant · overzicht');
+      // A suspended server tells its owner why, inside its card, when an add-on gives a main link (Hosting V26): the note
+      // sits within the card's edges, without power buttons.
+      const sus = await page.evaluate(() => { const card = [...document.querySelectorAll('.ps-server-card')].find((c) => /Old Factions/.test(c.innerText)); const note = card?.querySelector('.ps-card-suspended'); if (!note || !note.getClientRects().length) return { card: !!card, note: false }; const c = card.getBoundingClientRect(), n = note.getBoundingClientRect(); return { card: true, note: true, inside: n.left >= c.left - 1 && n.right <= c.right + 1 && n.bottom <= c.bottom + 1 && n.top >= c.top - 1, power: [...card.querySelectorAll('.ps-power-wrap')].some((e) => e.getClientRects().length) }; }).catch(() => null);
+      problems.push(`${stand} suspended-card: ${!!sus && sus.card && (!sus.note || (sus.inside && !sus.power)) ? 'ok' : 'WRONG'} ${JSON.stringify(sus)}`);
       await click('.ps-account-button'); await record('account', 'Klant · accountmenu'); await escape();
       await goto(urls.servers['Survival SMP'], 3000); await record('server-console', 'Klant · console');
       await click('.ps-info-more-button'); await record('server-more', 'Klant · ⋯-menu'); await escape();

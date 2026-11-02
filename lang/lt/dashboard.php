@@ -16,6 +16,7 @@ return [
         'new' => 'Nauja',
         'menu' => 'Meniu',
         'customize' => 'Tinkinti',
+        'suspended_note' => 'Jūsų prieglobos tiekėjas sustabdė šį serverį. Apmokėkite neapmokėtą sąskaitą, kad vėl jį paleistumėte.',
         'profile_options' => 'Profilio parinktys',
         'profile_settings' => 'Profilio nustatymai',
         'theme_prefix' => 'Tema:',

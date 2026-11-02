@@ -16,6 +16,7 @@ return [
         'new' => 'Ny',
         'menu' => 'Meny',
         'customize' => 'Anpassa',
+        'suspended_note' => 'Ditt webbhotell har pausat den här servern. Betala den obetalda fakturan för att starta den igen.',
         'profile_options' => 'Profilalternativ',
         'profile_settings' => 'Profilinställningar',
         'theme_prefix' => 'Tema:',

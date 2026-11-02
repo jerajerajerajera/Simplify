@@ -16,6 +16,7 @@ return [
         'new' => 'Nouveau',
         'menu' => 'Menu',
         'customize' => 'Personnaliser',
+        'suspended_note' => 'Votre hébergeur a mis ce serveur en pause. Réglez la facture en attente pour le redémarrer.',
         'profile_options' => 'Options du profil',
         'profile_settings' => 'Paramètres du profil',
         'theme_prefix' => 'Thème :',

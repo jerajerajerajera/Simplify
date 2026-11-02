@@ -16,6 +16,7 @@ return [
         'new' => 'Neu',
         'menu' => 'Menü',
         'customize' => 'Anpassen',
+        'suspended_note' => 'Dein Hoster hat diesen Server pausiert. Bezahle die offene Rechnung, um ihn wieder zu starten.',
         'profile_options' => 'Profiloptionen',
         'profile_settings' => 'Profileinstellungen',
         'theme_prefix' => 'Theme:',

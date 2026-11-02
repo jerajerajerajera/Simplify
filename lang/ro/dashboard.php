@@ -16,6 +16,7 @@ return [
         'new' => 'Nou',
         'menu' => 'Meniu',
         'customize' => 'Personalizează',
+        'suspended_note' => 'Furnizorul tău de găzduire a pus acest server pe pauză. Plătește factura restantă pentru a-l porni din nou.',
         'profile_options' => 'Opțiuni de profil',
         'profile_settings' => 'Setări de profil',
         'theme_prefix' => 'Temă:',

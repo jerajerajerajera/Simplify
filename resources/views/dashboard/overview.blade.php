@@ -2,6 +2,8 @@
 <section class="ps-overview" x-show="!hostMode && !adminView" :class="{'is-list': overviewView==='list'}" :style="{'--grid-columns': overviewColumns(), ...overviewGridStyle()}">
     <div class="ps-server-scroll" tabindex="0" role="region" aria-label="{{ $u('servers') }}">
         <div class="ps-server-stage" :class="{'is-list': overviewView==='list'}">
+            {{-- Pinned announcements under the top bar, as wide as the servers (as in 0.7.0). --}}
+            @livewire('simplify-core-announcement-bars', key('simplify-overview-bars'))
             {{-- Customers: a greeting with the links add-ons give them (such as a hoster's client area) and support. --}}
             <div class="ps-customer-head" x-show="boot.customer?.length" x-cloak>
                 <div>
@@ -108,7 +110,14 @@
                             <template x-if="easterEgg(s)">
                                 <button type="button" class="ps-season-egg" aria-label="{{ $u('easter_egg') }}" x-on:click="findEasterEgg($event)"><svg aria-hidden="true"><use href="#ps-egg"/></svg></button>
                             </template>
-                            <div class="ps-overview-power-wrap" x-show="quickActionsMode()!=='off'">
+                            {{-- Suspended by the hoster: the owner reads why and gets the add-ons' main links, such as Pay invoice from Simplify-Hosting. --}}
+                            <div class="ps-card-suspended" x-show="(s.suspended || []).length" x-cloak>
+                                <p>{{ $u('suspended_note') }}</p>
+                                <template x-for="link in s.suspended || []" :key="link.url">
+                                    <a class="ps-btn is-primary" :href="safeLink(link.url)" target="_blank" rel="noopener noreferrer"><span x-text="link.label"></span><svg aria-hidden="true"><use href="#ps-external"/></svg></a>
+                                </template>
+                            </div>
+                            <div class="ps-overview-power-wrap" x-show="quickActionsMode()!=='off' && !(s.suspended || []).length">
                                 <div class="ps-overview-power" :class="{'is-confirming': powerConfirmation?.uuid===s.uuid}" role="group" :aria-label="Simplify.fill(@js($u('power_controls_for')), { name: s.name })">
                                     <template x-for="action in [{key:'start',label:@js($u('start')),icon:'play'},{key:'stop',label:@js($u('stop')),icon:'stop'},{key:'restart',label:@js($u('restart')),icon:'restart'},{key:'kill',label:@js($u('force_stop')),icon:'kill'}]" :key="action.key">
                                         <button type="button" class="ps-btn is-icon" :class="{'is-danger': action.key==='kill'}" :data-power="action.key" :data-tip="action.label" :aria-label="action.label+' '+s.name" :disabled="!!overviewPowerBusy || !canOverviewPower(s, action.key)" x-on:click.stop="overviewPower(s, action.key)">

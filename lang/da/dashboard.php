@@ -16,6 +16,7 @@ return [
         'new' => 'Ny',
         'menu' => 'Menu',
         'customize' => 'Tilpas',
+        'suspended_note' => 'Dit hostingfirma har sat denne server på pause. Betal den åbne faktura for at starte den igen.',
         'profile_options' => 'Profilindstillinger',
         'profile_settings' => 'Profilindstillinger',
         'theme_prefix' => 'Tema:',

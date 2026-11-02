@@ -16,6 +16,7 @@ return [
         'new' => 'Új',
         'menu' => 'Menü',
         'customize' => 'Testreszabás',
+        'suspended_note' => 'A tárhelyszolgáltatód szüneteltette ezt a szervert. Fizesd ki a nyitott számlát az újraindításhoz.',
         'profile_options' => 'Profilbeállítások',
         'profile_settings' => 'Profilbeállítások',
         'theme_prefix' => 'Téma:',
