@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Checks and screen audit take less time. A change to text only (docs, Markdown) skips the panel smoke; tests and pint still run. In the screen audit, dark and light are jobs of their own, side by side, so a run takes half as long; the light job writes to the results branch `…-<stand>-light`. New inputs: `theme`, `parts` (the parts of a round: overview, server, admin, host, seasons, create, extras, notify, klant) and `scope` `changed`, which runs only the parts that the files changed since main can touch (`tests/audit/parts.py`; an unknown file counts as everything). The full audit still runs before every release.
+
 ## 1.5.5
 
 - The line under a server's name (status, software, address) stays one line on narrower screens: a long software name is shortened with … instead of pushing the address to a second line, so every server's page keeps the same height. Between 961 and 1200 px the message of the day box is a little narrower to make room.

@@ -8,6 +8,15 @@ on:
       only:
         description: 'Stands, comma separated (empty = all): d1920,d1440,laag1366,laag1100,d1100,hoog1280,tablet768,phone390,phone360'
         default: ''
+      theme:
+        description: 'dark or light (empty = both where a stand has both: d1440 and phone390); each theme is a job of its own'
+        default: ''
+      scope:
+        description: 'all = every screen; changed = only the parts of the audit that the files changed since main can touch (tests/audit/parts.py). The full audit runs before every release.'
+        default: 'all'
+      parts:
+        description: 'Parts of a round, comma separated (empty = all): overview, server, admin, host, seasons, create, extras, notify, klant. After a red run: the parts of the red screens.'
+        default: ''
       toolkit:
         description: 'Branch of Simplify-Toolkit'
         default: 'main'
@@ -44,17 +53,52 @@ jobs:
   plan:
     runs-on: ubuntu-latest
     outputs:
-      stands: ${{ steps.list.outputs.stands }}
+      matrix: ${{ steps.list.outputs.matrix }}
+      parts: ${{ steps.list.outputs.parts }}
     steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - id: list
-        run: echo "stands=$(python3 -c "import json;s='${{ inputs.only }}'.strip();print(json.dumps(s.split(',') if s else ['d1920','d1440','laag1366','laag1100','d1100','hoog1280','tablet768','phone390','phone360']))")" >> "$GITHUB_OUTPUT"
-  # One job per stand, side by side; each pushes its screens to the branch audit-results-<branch>-<stand>.
+        env:
+          ONLY: ${{ inputs.only }}
+          THEME: ${{ inputs.theme }}
+          SCOPE: ${{ inputs.scope }}
+          PARTS: ${{ inputs.parts }}
+          SECTION: ${{ inputs.section }}
+        run: |
+          parts="$PARTS"; skip=no
+          if [ -z "$parts" ] && [ "$SCOPE" = changed ] && [ -z "$SECTION" ]; then
+            git fetch -q origin main
+            if [ "$(git merge-base origin/main HEAD)" = "$(git rev-parse HEAD)" ]; then
+              echo "::notice::This checkout is main itself: every part runs"
+            else
+              files=$(git diff --name-only "$(git merge-base origin/main HEAD)" HEAD)
+              printf 'Changed since main:\n%s\n' "$files"
+              parts=$(printf '%s\n' "$files" | python3 tests/audit/parts.py)
+              echo "Parts: ${parts:-none}"
+              if [ -z "$parts" ]; then skip=yes; echo "::notice::No changed file is visible in the screen audit; nothing to audit"; elif [ "$parts" = all ]; then parts=''; fi
+            fi
+          fi
+          echo "parts=$parts" >> "$GITHUB_OUTPUT"
+          python3 - "$ONLY" "$THEME" "$SECTION" "$skip" <<'PY' >> "$GITHUB_OUTPUT"
+          import json, sys
+          only, theme, section, skip = sys.argv[1:5]
+          stands = only.split(',') if only.strip() else ['d1920', 'd1440', 'laag1366', 'laag1100', 'd1100', 'hoog1280', 'tablet768', 'phone390', 'phone360']
+          both = ['d1440', 'phone390'] if section not in ('compare', 'inventory') else []
+          rows = [{'stand': s, 'theme': t} for s in stands for t in (['dark', 'light'] if s in both else ['dark']) if not theme or t == theme]
+          print('matrix=' + json.dumps([] if skip == 'yes' else rows))
+          PY
+  # One job per stand and theme, side by side; each pushes its screens to the branch audit-results-<branch>-<stand>
+  # (the light job to ...-<stand>-light).
   audit:
     needs: plan
+    if: needs.plan.outputs.matrix != '[]'
+    name: audit (${{ matrix.stand }}, ${{ matrix.theme }})
     strategy:
       fail-fast: false
       matrix:
-        stand: ${{ fromJson(needs.plan.outputs.stands) }}
+        include: ${{ fromJson(needs.plan.outputs.matrix) }}
     runs-on: ubuntu-latest
     timeout-minutes: 120
     env:
@@ -170,7 +214,7 @@ jobs:
           npx playwright install --with-deps chromium > /dev/null
           if [ "${{ inputs.section }}" = inventory ]; then node inventory.cjs --base http://127.0.0.1:8001 --out ../../../result; exit 0; fi
           if [ "${{ inputs.section }}" = compare ]; then node compare.cjs --base http://127.0.0.1:8001 --out ../../../result --only ${{ matrix.stand }}; exit 0; fi
-          node audit.cjs --base http://127.0.0.1:8001 --urls ../../../panel/urls.json --out ../../../result --only ${{ matrix.stand }} --section "${{ inputs.section }}" --servermaker "${{ inputs.servermaker }}"
+          node audit.cjs --base http://127.0.0.1:8001 --urls ../../../panel/urls.json --out ../../../result --only ${{ matrix.stand }} --theme "${{ matrix.theme }}" --parts "${{ needs.plan.outputs.parts }}" --section "${{ inputs.section }}" --servermaker "${{ inputs.servermaker }}"
       - if: always()
         name: Logs
         run: |
@@ -196,8 +240,8 @@ jobs:
           cd result
           git init -q -b results
           git add -A
-          git -c user.name=audit -c user.email=audit@users.noreply.github.com commit -qm "Audit ${{ github.sha }} ${{ matrix.stand }}"
-          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "results:refs/heads/audit-results-$(echo "${{ inputs.legacy && format('legacy-{0}', inputs.legacy) || inputs.simplify || github.ref_name }}" | tr "/" "-")${{ inputs.from && format('-from-{0}', inputs.from) || '' }}${{ (inputs.section == 'compare' || inputs.section == 'inventory') && format('-{0}', inputs.section) || '' }}${{ inputs.servermaker == 'none' && '-nosm' || '' }}-${{ matrix.stand }}"
+          git -c user.name=audit -c user.email=audit@users.noreply.github.com commit -qm "Audit ${{ github.sha }} ${{ matrix.stand }} ${{ matrix.theme }}"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "results:refs/heads/audit-results-$(echo "${{ inputs.legacy && format('legacy-{0}', inputs.legacy) || inputs.simplify || github.ref_name }}" | tr "/" "-")${{ inputs.from && format('-from-{0}', inputs.from) || '' }}${{ (inputs.section == 'compare' || inputs.section == 'inventory') && format('-{0}', inputs.section) || '' }}${{ inputs.servermaker == 'none' && '-nosm' || '' }}-${{ matrix.stand }}${{ matrix.theme == 'light' && '-light' || '' }}"
       - name: Fail when the compare verdict is red
         if: steps.compare.outcome == 'failure'
         run: |

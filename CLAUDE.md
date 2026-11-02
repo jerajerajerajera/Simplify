@@ -152,7 +152,8 @@ Een fix zonder test die eerst rood was, is niet af. Zo komt dezelfde fout niet t
   (`tests/addons.php` bewaakt dat) en een regel in ADDONS.md. Een nieuwere add-on moet op een oudere kern blijven werken.
 - **Stijlaudit** (`.github/workflows/audit.yml`, `tests/audit/`): verplicht bij elke UI-wijziging en vóór elke release.
   Inputs: `only` (standen), `section` (bijv. `compare`, `extras`, `seasons`), `legacy` (0.7.0 als vergelijking),
-  `toolkit`/`servermaker` (add-on-branches). Resultaat op `audit-results-<branch>-<stand>`; `style.md` moet leeg zijn.
+  `toolkit`/`servermaker` (add-on-branches). Verder `theme`, `parts` en `scope=changed` (alleen de delen die de gewijzigde bestanden raken; vóór een release de volledige audit).
+  Resultaat op `audit-results-<branch>-<stand>` (licht: `-<stand>-light`); `style.md` moet leeg zijn.
   Een uitkomst is altijd ok of fout tegen een regel uit §4, nooit alleen informatie.
 - **Upgradetest** in `checks.yml`: oude kern + volle instellingen → nieuwe versie (de test vanaf 0.7.0-bestanden
   draait alleen nog één keer vóór de 2.0-release naar de Hub, V37). Elke nieuwe

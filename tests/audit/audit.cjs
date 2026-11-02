@@ -10,6 +10,12 @@ const arg = (n, d) => { const i = process.argv.indexOf('--' + n); return i > 0 ?
 const base = arg('base', 'http://127.0.0.1:8001'), out = arg('out', 'result'), urls = JSON.parse(fs.readFileSync(arg('urls'), 'utf8'));
 const only = arg('only', '') ? arg('only').split(',') : null;
 const section = arg('section', ''); // 'seasons', 'extras', 'layers' or 'first' runs only that part (quick diagnosis)
+const themeOnly = arg('theme', ''); // 'dark' or 'light': one theme per job, so the two run side by side
+// The parts of a round, so a run after a fix or for a small change does only the screens it can touch (parts.py says which).
+const PARTS = ['overview', 'server', 'admin', 'host', 'seasons', 'create', 'extras', 'notify', 'klant'];
+const parts = arg('parts', '') ? arg('parts').split(',').filter(Boolean) : null;
+const want = (part) => !parts || parts.includes(part);
+for (const part of parts || []) if (!PARTS.includes(part)) { console.error(`unknown part ${part}; parts are ${PARTS.join(', ')}`); process.exit(2); }
 const panelDir = path.resolve(arg('panel', '../../../panel'));
 const servermaker = arg('servermaker', 'main') !== 'none';
 const uuidOf = (name) => { try { return (JSON.parse(fs.readFileSync(path.join(panelDir, 'servers.json'), 'utf8')).find((x) => x.name === name) || {}).uuid; } catch { return null; } };
@@ -133,6 +139,7 @@ async function round(theme) {
 
   // Pelican's health checks run when its Health page opens; the overview's menus and host mode show their results.
   await goto('/admin/health', 2500);
+  if (want('overview')) {
   // Overview and its menus.
   await goto(overview); await setTheme(theme); await goto(overview); await ready(); await alpine('d.setHostMode(false)'); await sleep(500);
   for (const view of ['grid', 'compact', 'list']) { await alpine(`d.setOverviewView('${view}')`); await sleep(700); await record('overview-' + view, 'Overzicht, ' + view); }
@@ -180,7 +187,9 @@ async function round(theme) {
   await click('.ps-server-card .ps-card-menu-button, .ps-server-card button[aria-label*="options" i], .ps-server-card button[aria-label*="menu" i]', 500) && await record('overview-card-menu', 'Serverkaart ⋯-menu open'); await escape();
   for (const p of urls.app.filter((x) => x.url !== overview)) { await goto(p.url); await record('app-' + slug(p.title), p.title); }
   if (urls.profile) { await goto(urls.profile); await record('profile', 'Profiel'); }
+  }
 
+  if (want('server')) {
   // The server page: console (live, through the fake Wings' websocket), its menus, every section and add-on tab.
   await goto(serverUrl, 3500); await record('server-console', `Server · Console (${mainServer})`);
   await page.fill('#send-command', 'say a command typed in the bar').catch(() => {}); await page.keyboard.press('Enter').catch(() => {}); await sleep(800);
@@ -227,7 +236,9 @@ async function round(theme) {
     if (await files.count()) { await files.click().catch(() => {}); await settle(page, 2500); await record('server4-files', 'Server · Files (Creative Builds)'); }
     for (const sid of ['server4-console', 'server4-files']) { const e = screens.filter((x) => x.id === sid && x.stand === stand).pop(); if (e) problems.push(`${stand} ${sid}: tab title ${/^Creative Builds - Simplify$/.test(e.docTitle || '') ? 'ok' : 'WRONG'}: "${e.docTitle}"`); }
   }
+  }
 
+  if (want('admin')) {
   // The admin side as Pelican shows it (sidebar, topbar, notifications, user menu, search) and Simplify's admin pages.
   const admin = urls.admin;
   await goto('/admin', 1200); await record('admin-dashboard', 'Beheer · Dashboard');
@@ -250,7 +261,9 @@ async function round(theme) {
     if (/People$/.test(p.class)) { if (await click('main button:has-text("Add person"), main button:has-text("Add")', 1000)) await record('admin-people-add', 'Beheer · People, persoon toevoegen'); await escape(); }
     if (/AnnouncementResource$|Announcements$/.test(p.class)) { if (await click('main a:has-text("New announcement"), main button:has-text("New announcement")', 1200)) await record('admin-announcements-new', 'Beheer · nieuwe aankondiging'); await escape(); }
   }
+  }
 
+  if (want('host')) {
   // Host mode: the tree with every section and page, the server list and a server in the frame.
   await goto(overview); await ready();
   await alpine('d.setHostMode(true)'); await sleep(2500);
@@ -265,11 +278,12 @@ async function round(theme) {
     for (let j = 0; j < Math.min(ln, 40); j++) { const l = leaves.nth(j); const t = (await l.innerText().catch(() => 'pagina ' + j)).trim(); if (screens.some((s) => s.stand === stand && s.id === 'host-' + slug(label) + '-' + slug(t))) continue; await l.click().catch(() => {}); await sleep(2500); await record('host-' + slug(label) + '-' + slug(t), `Hostmodus · ${label} · ${t}`); } }
   if (await click('.ps-host-tabs button:nth-child(2)', 1200)) { await record('host-servers', 'Hostmodus · serverlijst'); if (await click('.ps-host-server strong, .ps-host-server', 3000)) { await record('host-server', 'Hostmodus · server open (console in frame)'); await click('.ps-host-server-head .ps-info-more-button, .ps-info-more-button', 500) && await record('host-server-more', 'Hostmodus · server ⋯-menu'); await escape(); } }
   await alpine('d.setHostMode(false)'); await sleep(800);
-  if (['d1440', 'tablet768', 'phone390'].includes(stand.split('-')[0])) await seasons(theme);
-  if (['d1440', 'phone390'].includes(stand.split('-')[0])) await createFlow();
-  if (['d1440', 'laag1366', 'laag1100', 'phone390'].includes(stand.split('-')[0])) await extrasFlow(theme);
+  }
+  if (want('seasons') && ['d1440', 'tablet768', 'phone390'].includes(stand.split('-')[0])) await seasons(theme);
+  if (want('create') && ['d1440', 'phone390'].includes(stand.split('-')[0])) await createFlow();
+  if (want('extras') && ['d1440', 'laag1366', 'laag1100', 'phone390'].includes(stand.split('-')[0])) await extrasFlow(theme);
   // Last, because it changes what the account has read and archived.
-  if (theme === 'dark' && ['d1440', 'phone390'].includes(stand.split('-')[0])) await notifyFlow();
+  if (want('notify') && theme === 'dark' && ['d1440', 'phone390'].includes(stand.split('-')[0])) await notifyFlow();
 }
 
 // Create server (1.5.0): without Server Maker, Pelican's create form opens inside Simplify like an Admin tools page
@@ -1117,22 +1131,25 @@ const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(
   for (const [name, size] of Object.entries(VIEWPORTS)) {
     if (only && !only.includes(name)) continue;
     for (const theme of LIGHT.includes(name) ? ['dark', 'light'] : ['dark']) {
+      if (themeOnly && theme !== themeOnly) continue;
       stand = `${name}-${theme}`;
       console.log(`[${new Date().toISOString().slice(11, 19)}] ${stand} (${screens.length} screens, ${problems.length} problems so far)`);
       await page.setViewportSize(size);
       if (section) {
         // One or more sections (comma separated), each on its own stands.
-        const parts = { first: [['d1440', 'phone390'], () => firstFlow(theme)], layers: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => layersFlow()], nav: [['d1440', 'laag1366'], () => navFlow()], create: [['d1440', 'laag1366', 'phone390'], () => createFlow()],
+        const sections = { first: [['d1440', 'phone390'], () => firstFlow(theme)], layers: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => layersFlow()], nav: [['d1440', 'laag1366'], () => navFlow()], create: [['d1440', 'laag1366', 'phone390'], () => createFlow()],
           maker: [['d1440', 'phone390'], () => makerFlow()],
           schedule: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => scheduleFlow()],
           extras: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => extrasFlow(theme)], fixes: [['d1440', 'phone390'], () => fixesFlow()], hub: [['d1440', 'laag1366', 'phone390'], () => hubFlow()], seasons: [['d1440', 'tablet768', 'phone390'], () => seasons(theme)] };
-        for (const part of section.split(',')) { const [where, run] = parts[part] || [[], null]; if (!run || !where.includes(name)) continue; try { await setTheme(theme); await run(); } catch (e) { problems.push(`${stand} ${part}: ${e.message.slice(0, 200)}`); } }
+        for (const part of section.split(',')) { const [where, run] = sections[part] || [[], null]; if (!run || !where.includes(name)) continue; try { await setTheme(theme); await run(); } catch (e) { problems.push(`${stand} ${part}: ${e.message.slice(0, 200)}`); } }
         continue;
       }
       try { await round(theme); } catch (e) { problems.push(`${stand} ${screen}: round stopped: ${e.message.slice(0, 200)}`); console.log('  ! ' + e.message.slice(0, 200)); if (page.isClosed()) { page = await context.newPage(); await quiet(page); await login('demo@example.com', 'DemoPassword123!'); } }
     }
   }
-  // The customer's view, two stands.
+  // The customer's view, two stands (with the dark round, so a light job does not repeat them).
+  const klant = want('klant') && themeOnly !== 'light' && ['d1440', 'phone390'].some((n) => !only || only.includes(n));
+  if (klant) {
   const customer = await browser.newContext({ viewport: VIEWPORTS.d1440, baseURL: base });
   const cp = await customer.newPage(); const admin = page; page = cp; page.setDefaultTimeout(8000); await quiet(page);
   await login('sam@example.com', 'DemoPassword123!');
@@ -1160,6 +1177,7 @@ const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(
     } catch (e) { problems.push(`${stand}: ${e.message.slice(0, 200)}`); }
   }
   page = admin;
+  }
   fs.writeFileSync(path.join(out, 'result.json'), JSON.stringify({ base, screens, problems }, null, 1));
   const flagged = screens.filter((s) => (s.main?.problems?.length || 0) + (s.frames || []).reduce((n, f) => n + (f.problems?.length || 0), 0));
   console.log(`${screens.length} screens, ${flagged.length} with findings, ${problems.length} problems`);
