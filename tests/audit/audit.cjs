@@ -929,11 +929,25 @@ async function fixesFlow() {
     const toggle = await sheet('.ps-host-menu-toggle'); await record('phone-frame-host', 'Telefoon · hostmodus, paginaknop onderin');
     say('phone-frame-host', isSheet(toggle) && toggle.height <= 100, toggle);
     await alpine('d.setHostMode(false)'); await sleep(500);
-    // Pelican's lists as short rows: no checkboxes, no column titles and no egg descriptions.
-    await goto(new URL('/admin/eggs', base).href, 2500);
-    const eggs = await page.evaluate(() => { const rows = [...document.querySelectorAll('.fi-ta-row')].filter((r) => r.getClientRects().length); const shown = (s) => [...document.querySelectorAll(s)].filter((e) => e.getClientRects().length > 0).length; return { rows: rows.length, tallest: Math.max(0, ...rows.map((r) => Math.round(r.getBoundingClientRect().height))), checkboxes: shown('.fi-ta-table .fi-ta-record-checkbox'), head: shown('.fi-ta-table thead'), descriptions: shown('.fi-ta-table .fi-ta-cell :is([class$="-description"], [class*="-description "])'), names: [...document.querySelectorAll('.fi-ta-row')].filter((r) => r.getClientRects().length && /[A-Za-z]{3}/.test(r.innerText)).length, wide: document.documentElement.scrollWidth > innerWidth + 1 }; }).catch(() => null);
-    await record('phone-eggs', 'Telefoon · Eggs als korte rijen');
+    // Pelican's lists inside Simplify (host mode's frame) are short rows: no checkboxes, no column titles and no egg
+    // descriptions. The same page in the legacy panel keeps Pelican's own table (K-B5, Jeroen 2-11).
+    const measureEggs = () => { const rows = [...document.querySelectorAll('.fi-ta-row')].filter((r) => r.getClientRects().length); const shown = (s) => [...document.querySelectorAll(s)].filter((e) => e.getClientRects().length > 0).length; return { rows: rows.length, tallest: Math.max(0, ...rows.map((r) => Math.round(r.getBoundingClientRect().height))), checkboxes: shown('.fi-ta-table .fi-ta-record-checkbox'), head: shown('.fi-ta-table thead'), descriptions: shown('.fi-ta-table .fi-ta-cell :is([class$="-description"], [class*="-description "])'), names: [...document.querySelectorAll('.fi-ta-row')].filter((r) => r.getClientRects().length && /[A-Za-z]{3}/.test(r.innerText)).length, wide: document.documentElement.scrollWidth > innerWidth + 1 }; };
+    let eggs = null;
+    await goto(overview, 1500);
+    const eggItem = await alpine(`for (const sec of d.hostSections()) { const it = sec.pages.find((i) => i.key === 'eggresource'); if (it) return [sec.key, it.key]; } return null;`);
+    if (eggItem) {
+      await page.goto('about:blank').catch(() => {});
+      await goto(`${overview}#admin:${encodeURIComponent(eggItem[0])}/${encodeURIComponent(eggItem[1])}`, 600);
+      await page.waitForSelector('.ps-host-frame iframe', { timeout: 10000 }).catch(() => {});
+      const frame = page.frames().find((f) => f !== page.mainFrame() && /\/admin\/eggs/.test(f.url()));
+      if (frame) { await frame.waitForLoadState('load').catch(() => {}); await sleep(1800); eggs = await frame.evaluate(measureEggs).catch(() => null); }
+    }
+    await record('phone-eggs', 'Telefoon · Eggs als korte rijen (Simplify)');
     say('phone-eggs', eggs && eggs.rows > 0 && eggs.names === eggs.rows && eggs.tallest <= 90 && !eggs.checkboxes && !eggs.head && !eggs.descriptions, eggs);
+    await goto(new URL('/admin/eggs', base).href, 2500);
+    const legacy = await page.evaluate(measureEggs).catch(() => null);
+    await record('phone-eggs-legacy', 'Telefoon · Eggs in het legacy-paneel (Pelicans tabel)');
+    say('phone-eggs-legacy', legacy && legacy.rows > 0 && legacy.head > 0 && !legacy.wide, legacy);
     // Simplify's settings save themselves on a phone: no Save button, and a toast after a change.
     await goto(new URL('/admin/simplify', base).href, 2500);
     const save = await vis('.s-save-button, .s-settings > .s-bar button[type="submit"]');
