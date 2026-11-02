@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Installed app: pull down to reload works on the overview only. In the settings and on other pages a pull down no longer reloads and sends you back to the overview.
+
 ## 1.5.4
 
 - Switches (such as Capital letters in the settings and the notification switches) sit inside their row again; their knob no longer slides past the end of the track.

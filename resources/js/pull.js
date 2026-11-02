@@ -1,16 +1,23 @@
-/* Pull to refresh in the installed app (1.5.3). The page itself never scrolls and an installed app has no reload button,
-   so a pull down from the top of whatever scrolls under the finger reloads the app. Also inside host mode's frame:
-   then the whole app reloads. Only with the app installed; a browser tab has its own reload. */
+/* Pull to refresh in the installed app: only on the overview (Jeroen 2-11). The page never scrolls and an installed app
+   has no reload button, so a pull down from the top of the overview reloads it. Settings and admin pages, and every page
+   inside a frame, leave the gesture alone: a reload there sent you back to the overview. Only with the app installed;
+   a browser tab has its own reload. */
 (() => {
-  let top;
-  try { top = window.top; top.document; } catch { return; }
-  const standalone = top.matchMedia('(display-mode: standalone)').matches || top.navigator.standalone === true;
+  if (window !== window.top) return;
+  const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
   if (!standalone || window.SimplifyPull) return;
   window.SimplifyPull = true;
   const PULL = 70;
   let start = null, pulled = 0, mark = null;
+  // Only the overview itself: not a server page, host mode or an admin page in Simplify's frame.
+  const overview = () => {
+    const ps = document.querySelector('.ps');
+    const d = ps && window.Alpine ? window.Alpine.$data(ps) : null;
+    return !!d && !d.server && !d.hostMode && !d.adminView;
+  };
   // Something under the finger that scrolls and is not at its top, a console, or a field takes the gesture itself.
   const blocked = (el) => {
+    if (!overview()) return true;
     for (; el && el.nodeType === 1; el = el.parentElement) {
       if (el.matches('input, textarea, select, [contenteditable], #terminal, .xterm, [role=dialog], .fi-modal-window, .ps-dropdown, .ps-account-menu')) return true;
       const style = getComputedStyle(el);
@@ -45,7 +52,7 @@
   addEventListener('touchend', () => {
     if (start && pulled >= PULL) {
       mark?.classList.add('is-busy');
-      top.location.reload();
+      location.reload();
     } else hide();
     start = null;
   }, { passive: true });
