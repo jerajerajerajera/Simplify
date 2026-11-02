@@ -96,6 +96,17 @@ jobs:
           PHP_CLI_SERVER_WORKERS=8 nohup php artisan serve --host 127.0.0.1 --port 8001 > serve.log 2>&1 &
           for i in $(seq 1 30); do curl -sf -o /dev/null http://127.0.0.1:8001/login && break; sleep 1; done
           curl -sS http://127.0.0.1:8090/api/system
+      # The seeded panel itself (code, vendor, built assets, database), so the static demo can be worked on without
+      # installing Pelican again.
+      - if: steps.plan.outputs.skip == '0' && matrix.variant == 'main'
+        name: Pack the seeded panel
+        run: tar --exclude=panel/node_modules -czf panel-kit.tgz panel demo/tests/demo
+      - if: steps.plan.outputs.skip == '0' && matrix.variant == 'main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: panel-kit
+          path: panel-kit.tgz
+          retention-days: 7
       - if: steps.plan.outputs.skip == '0'
         name: Record every screen
         working-directory: panel
