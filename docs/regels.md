@@ -86,6 +86,7 @@ Threads geven zelf geen nummers; ze melden ongenummerd aan de regisseur.
 | P-35 | Zo klein mogelijk | Product |
 | P-36 | Veiligheid voorop | Product |
 | P-37 | Testfase | Release |
+| P-38 | Opslaan met Save, nooit vanzelf | UI |
 
 ## Werkwijze
 
@@ -314,9 +315,18 @@ Alle meldingsopties (dit apparaat, berichten, updates, Pelican, scheduler, appar
 *Besluit:* V12.
 
 #### P-22 Telefoon
-Eén frame: bovenin naam, bel en account; onderin één balk. Menu's openen als blad van onderaf. Instellingen slaan
-nooit vanzelf op (P-38). Trekken om te verversen alleen op het overzicht; een blad dichttrekken ververst nooit.
+Eén frame: bovenin naam, bel en account; onderin één balk. Menu's openen als blad van onderaf. Opslaan zoals overal
+(P-38). Trekken om te verversen alleen op het overzicht; een blad dichttrekken ververst nooit.
 *Bewaakt door:* audit `phone-*`, `pull-*`.
+
+#### P-38 Opslaan met Save, nooit vanzelf
+Nergens autosave, in de kern en in elke add-on, ook op de telefoon. Zodra iets gewijzigd is, verschijnt de melding
+"Changes made" met een Save-knop. Wie de pagina verlaat (menu, tab, terug, blad sluiten, tabblad sluiten) terwijl er
+niet-opgeslagen wijzigingen zijn, kiest eerst Save of Discard; niets gaat stil verloren en niets wordt stil
+opgeslagen. Eén gedeeld mechanisme in de kern (`resources/js/unsaved.js`, attribuut `data-simplify-unsaved`, zie
+ADDONS.md); add-ons gebruiken hetzelfde.
+*Bewaakt door:* `tests/unsaved.cjs`, audit `phone-unsaved`.
+*Besluit:* V57 (vervangt V54 en de autosave in V51).
 
 ## Teksten
 
@@ -404,14 +414,6 @@ zonder controle (open routes staan in de README onder "What it sends where"). Bi
 #### P-37 Testfase
 De eerste Hub-versie (2.0.0) moet echt goed zijn; liever langer testen dan veel updates afdwingen.
 *Vervangt:* R64.
-
-#### P-38 Niets slaat vanzelf op
-Een wijziging geeft onderin de melding "Changes made" met Discard en Save, ook op de telefoon. Wie de pagina verlaat met
-wijzigingen (link, menu, terug, tabblad sluiten, blad dichtdoen) krijgt eerst Save, Discard of Cancel. Eén gedeeld
-mechanisme in de kern (`resources/js/unsaved.js`, attribuut `data-simplify-unsaved`, ADDONS.md); add-ons gebruiken
-hetzelfde en bouwen geen eigen opslag-logica.
-*Bewaakt door:* `tests/unsaved.cjs`, audit `phone-unsaved`.
-*Besluit:* V54, V57.
 
 ## Oud → nieuw
 
