@@ -68,4 +68,15 @@ return [
         'removing' => 'Poistetaan…',
         'error' => 'Ei yhdistetty',
     ],
+    'setup' => [
+        'title' => 'Näin otat sen käyttöön',
+        'intro' => 'Pelaajat liittyvät silloin nimellä kuten oak.:domain IP-osoitteen ja portin sijaan. Tämä asetetaan kerran.',
+        'step_domain' => 'Täytä verkkotunnus (Cloudflare-vyöhykkeesi) ja palvelimen osoite: olemassa oleva DNS only -tietue, joka osoittaa julkiseen IP:hen, johon porttisi saapuvat.',
+        'step_token' => 'Avaa Cloudflaressa My Profile › API Tokens › Create Token ja valitse malli "Edit zone DNS". Valitse kohdassa Zone Resources vain tämä verkkotunnus, luo tunnus ja kopioi se.',
+        'step_test' => 'Liitä tunnus alle ja paina :test. Simplify tarkistaa sen ja täyttää vyöhyketunnuksen itse.',
+        'step_save' => 'Paina :save. Jokaisella palvelimella, jonka portti on edelleenohjatulla alueella, on silloin valikossa :menu, jossa omistaja valitsee nimen.',
+        'open_cloudflare' => 'Avaa Cloudflaren API-tunnukset',
+        'button' => 'Ota aliverkkotunnukset käyttöön',
+        'server_help' => 'Sen jälkeen pelaajat voivat liittyä tälle palvelimelle osoitteella :address. Siihen asti vain pääkäyttäjät näkevät tämän sivun.',
+    ],
 ];

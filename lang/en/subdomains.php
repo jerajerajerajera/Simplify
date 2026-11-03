@@ -68,4 +68,15 @@ return [
         'removing' => 'Removing…',
         'error' => 'Not connected',
     ],
+    'setup' => [
+        'title' => 'How to set it up',
+        'intro' => 'Players then join with a name such as oak.:domain instead of an IP address and port. You set this up once.',
+        'step_domain' => 'Fill in the domain (your Cloudflare zone) and the server address: an existing DNS-only record that points to the public IP where your ports arrive.',
+        'step_token' => 'In Cloudflare, open My Profile › API Tokens › Create Token and pick the template "Edit zone DNS". Under Zone Resources choose only this domain, create the token and copy it.',
+        'step_test' => 'Paste the token below and press :test. Simplify checks it and fills in the zone ID itself.',
+        'step_save' => 'Press :save. Every server with a port in the forwarded range then has :menu in its menu, where its owner picks the name.',
+        'open_cloudflare' => 'Open Cloudflare API tokens',
+        'button' => 'Set up subdomains',
+        'server_help' => 'Once they are, players can join this server with :address. Until then only root admins see this page.',
+    ],
 ];

@@ -68,4 +68,15 @@ return [
         'removing' => 'Se elimină…',
         'error' => 'Neconectat',
     ],
+    'setup' => [
+        'title' => 'Cum îl configurezi',
+        'intro' => 'Jucătorii se conectează apoi cu un nume ca oak.:domain în loc de adresă IP și port. Se configurează o singură dată.',
+        'step_domain' => 'Completează domeniul (zona ta Cloudflare) și adresa serverului: o înregistrare DNS only existentă care indică IP-ul public unde ajung porturile tale.',
+        'step_token' => 'În Cloudflare, deschide My Profile › API Tokens › Create Token și alege șablonul "Edit zone DNS". La Zone Resources alege doar acest domeniu, creează tokenul și copiază-l.',
+        'step_test' => 'Lipește tokenul mai jos și apasă :test. Simplify îl verifică și completează singur ID-ul zonei.',
+        'step_save' => 'Apasă :save. Fiecare server cu un port în intervalul redirecționat are apoi :menu în meniu, unde proprietarul alege numele.',
+        'open_cloudflare' => 'Deschide tokenurile API Cloudflare',
+        'button' => 'Configurează subdomeniile',
+        'server_help' => 'După aceea, jucătorii pot intra pe acest server cu :address. Până atunci doar adminii root văd această pagină.',
+    ],
 ];

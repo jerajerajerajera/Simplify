@@ -68,4 +68,15 @@ return [
         'removing' => 'Weghalen…',
         'error' => 'Niet verbonden',
     ],
+    'setup' => [
+        'title' => 'Zo stel je het in',
+        'intro' => 'Spelers verbinden dan met een naam zoals oak.:domain in plaats van een IP-adres en poort. Dit stel je één keer in.',
+        'step_domain' => 'Vul het domein in (je Cloudflare-zone) en het serveradres: een bestaand DNS-only-record dat wijst naar het publieke IP waar je poorten binnenkomen.',
+        'step_token' => 'Open in Cloudflare My Profile › API Tokens › Create Token en kies de template "Edit zone DNS". Kies bij Zone Resources alleen dit domein, maak de token en kopieer hem.',
+        'step_test' => 'Plak de token hieronder en druk op :test. Simplify controleert hem en vult de zone-ID zelf in.',
+        'step_save' => 'Druk op :save. Elke server met een poort in het doorgestuurde bereik heeft dan :menu in zijn menu, waar de eigenaar de naam kiest.',
+        'open_cloudflare' => 'Cloudflare API-tokens openen',
+        'button' => 'Subdomeinen instellen',
+        'server_help' => 'Daarna kunnen spelers met :address op deze server. Tot die tijd zien alleen root admins deze pagina.',
+    ],
 ];
