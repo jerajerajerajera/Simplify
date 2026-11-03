@@ -946,6 +946,36 @@ async function fixesFlow() {
       say('account-page-server', fromServer.onTop === true && inside(fromServer), fromServer);
       await goto(overview, 2500);
     }
+    // Connections (API 6): from the account menu without a page load, measured as a page in the content box; an add-on's
+    // row (Server Maker's Steam key) opens its own popup. Without an add-on row there is no menu item and no page.
+    {
+      let loads = 0; const onLoad = () => loads++; page.on('load', onLoad);
+      await page.locator('.ps-top .ps-account-button >> visible=true').first().click().catch(() => {}); await sleep(700);
+      const link = page.locator('#ps-account-actions a[href$="/connections"] >> visible=true').first();
+      if (await link.count()) {
+        await link.click({ timeout: 4000 }).catch(() => {});
+        await page.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {}); await sleep(1500);
+        page.off('load', onLoad);
+        const at = await page.evaluate(() => ({ path: location.pathname, rows: document.querySelectorAll('.s-connections > *').length, shell: document.documentElement.classList.contains('ps-shell'), header: !!document.querySelector('.ps-admin-top .ps-top') })).catch(() => null);
+        await record('connections', 'Accountmenu · Connections');
+        say('connections', loads === 0 && at?.path === '/connections' && at.rows > 0 && at.shell && at.header, { loads, ...at });
+        const connect = page.locator('.s-connections button:has-text("Connect") >> visible=true').first();
+        if (await connect.count()) {
+          await connect.click().catch(() => {}); await sleep(1200);
+          const modal = await page.evaluate(() => [...document.querySelectorAll('.fi-modal-window, [role="dialog"]')].some((e) => e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden')).catch(() => false);
+          await record('connections-connect', 'Connections · pop-up van een koppeling');
+          say('connections-connect', modal, { modal });
+          await escape();
+        }
+      } else {
+        page.off('load', onLoad);
+        // Only the core: no add-on gives a row, so the menu has no Connections.
+        const item = await page.evaluate(() => [...document.querySelectorAll('#ps-account-actions a[href$="/connections"]')].some((a) => a.getClientRects().length)).catch(() => null);
+        say('connections-none', item === false, { item });
+        await escape();
+      }
+      await goto(overview, 1500);
+    }
     // Every notification option sits in the bell sheet: this device, messages, Pelican's, and the devices.
     await alpine('d.openAllNotifications()'); await sleep(1500);
     const bell = await page.evaluate(() => { const box = [...document.querySelectorAll('.ps-notify-settings')].find((e) => e.getClientRects().length); if (!box) return { shown: false }; return { shown: true, pelican: !![...box.querySelectorAll('input.ps-switch')].find((i) => /pelican/.test(i.getAttribute('x-on:change') || '') && i.getClientRects().length) }; }).catch(() => null);
