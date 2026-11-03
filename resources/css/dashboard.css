@@ -83,7 +83,7 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-nav-heading { display: none; }
 .ps-mobile-menu, .ps-mobile-label { display: none !important; }
 .ps-overview-appearance, .ps-notify { position: relative; }
-/* Customize Simplify hangs under the account button it opens from (K-B18): the box covers the button without taking
+/* Customize Simplify hangs under the account button it opens from (K-B19): the box covers the button without taking
    its clicks, and its menu and arrow line up with the account menu's right edge. */
 .ps-account > .ps-overview-appearance { position: absolute; inset: 0; pointer-events: none; }
 .ps-account > .ps-overview-appearance > .ps-dropdown { pointer-events: auto; }

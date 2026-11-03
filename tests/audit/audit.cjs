@@ -291,7 +291,7 @@ async function round(theme) {
   const openNav = async () => {};
   await click('.ps-account-button'); await record('overview-account', 'Accountmenu open');
   await escape(); await alpine('d.accountMenu=false; d.appearanceMenu=true'); await sleep(600); await record('overview-customize-theme', 'Customize Simplify, thema bovenaan');
-  // K-B18: Customize Simplify opens from the account menu, so its arrow points at the account button and its box ends
+  // K-B19: Customize Simplify opens from the account menu, so its arrow points at the account button and its box ends
   // where the account menu ends, not at the place Customize had in the top bar before.
   if (!phone()) {
     const at = await page.evaluate(() => {
