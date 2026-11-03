@@ -90,6 +90,7 @@ const adminPage = async (overview) => {
   const st = await adminState(); await record('admin-page', 'Admin-pagina (schild)');
   say('admin-page', !!st && st.shell && st.side && st.header && !st.frames && !st.pelicanBars && st.pageScroll <= 1 && (phone() || /auto|scroll/.test(st.card || '')), st);
   // The legacy panel: the same page as Pelican draws it, and its Back to Simplify button clears that again.
+  if (!(await page.locator('.ps-admin-top .ps-account-button >> visible=true').count())) { await page.locator('.ps-admin-top .ps-mobile-menu >> visible=true').first().click().catch(() => {}); await sleep(500); }
   await page.locator('.ps-admin-top .ps-account-button >> visible=true').first().click().catch(() => {}); await sleep(700);
   const legacy = page.locator('#ps-account-actions a[href*="simplify_legacy=1"] >> visible=true').first();
   if (await legacy.count()) {

@@ -36,7 +36,8 @@ for f in sys.argv[1:]:
                 top, rest = box.split('..'); bottom = rest.split(' of ')[0]
                 # The Admin page's card (host-*, and Pelican's admin pages admin-*) is one kind; a server opened from its
                 # Servers list (host-server) is a server page.
-                host = s['id'].startswith(('host', 'admin-', 'app-', 'profile', 'settings-', 'setup-', 'wizard-', 'other-plugins', 'scroll-frame', 'setup-done-host', 'account-page')) and s['id'] != 'host-server'
+                path = '/' + (m.get('url') or '').split('://')[-1].split('/', 1)[-1].lstrip('/')
+                host = (s['id'].startswith(('host', 'other-plugins', 'scroll-frame', 'account-page')) or path.startswith(('/admin', '/profile', '/steam', '/server-maker'))) and s['id'] != 'host-server'
                 heights[(s['stand'], 'host' if host else 'admin' if s['id'].startswith(('tile-', 'create-')) else 'server')].append((int(bottom) - int(top), s['id']))
     # Every check of the audit's flows says ok or WRONG against a rule; a WRONG one breaks the verdict too.
     for p in data.get('problems') or []:
