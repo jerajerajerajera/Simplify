@@ -2449,14 +2449,17 @@ html.ps-frame .s-done {
   :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell { display: block; order: 4; flex: 0 1 auto; min-width: 0; max-width: 100%; width: auto !important; padding: 0 !important; overflow: hidden; color: var(--s-muted, inherit); font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
   :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell :not(button, .fi-icon-btn, .fi-icon-btn *) { padding-block: 0 !important; }
   :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell > * { padding-inline: 0 !important; }
-  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell:not(.fi-ta-actions-cell) * { min-width: 0; max-width: 100%; }
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell:not(:is(.fi-ta-actions-cell, .fi-ta-cell:has(.fi-ta-actions)), :has(img)) * { min-width: 0; max-width: 100%; }
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell :is(.fi-ta-text, .fi-ta-text-item, .fi-ta-text-item-label):not(.fi-badge, .fi-badge *) { font-size: inherit !important; line-height: 1.4; }
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell :is(.fi-ta-text, .fi-ta-text-item, .fi-ta-text-item-label):not(.fi-badge, .fi-badge *, [class*="fi-color-"], [class*="fi-color-"] *) { color: inherit !important; }
   /* The icon sits in the margin, so the lines under the name start where the name starts. */
   :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row:has(> .fi-ta-cell img) { padding-inline-start: 58px; }
   :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell:has(img) { order: 0; flex: none; width: 32px !important; margin-inline-start: -44px; }
-  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell:has(img) img { width: 32px !important; height: 32px !important; }
-  /* The name: the first column after the icon (or the first column), taking what is left of the first line. */
-  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > :is(.fi-ta-cell:has(img) + .fi-ta-cell, .fi-ta-selection-cell + .fi-ta-cell:not(:has(img)), .fi-ta-cell:first-child:not(:has(img))):not(.fi-ta-actions-cell) { order: 1; flex: 1 1 0; color: inherit; font-size: 14px; font-weight: 600; }
-  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-actions-cell { order: 2; flex: none; margin-inline-start: auto; overflow: visible; }
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell:has(img) img { flex: none; width: 32px !important; max-width: none !important; height: 32px !important; object-fit: cover; }
+  /* The name: the first column with plain text (not the icon, a status badge, a select or the buttons), taking what is
+     left of the first line; the row's buttons end that line. */
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell:nth-child(1 of .fi-ta-cell:not(.fi-ta-selection-cell, :is(.fi-ta-actions-cell, .fi-ta-cell:has(.fi-ta-actions)), :has(img, .fi-badge, select, .fi-ta-icon, .fi-icon))) { order: 1; flex: 1 1 0; color: inherit; font-size: 14px; font-weight: 600; }
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > :is(.fi-ta-actions-cell, .fi-ta-cell:has(.fi-ta-actions)) { order: 2; flex: none; margin-inline-start: auto; overflow: visible; }
 }
 
 /* Unsaved changes (P-38, unsaved.js): a bar at the bottom says "Changes made" with Discard and Save; leaving the

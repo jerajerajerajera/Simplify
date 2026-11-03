@@ -1182,12 +1182,15 @@ async function fixesFlow() {
       const seen = (e) => e && e.getClientRects().length > 0;
       const rows = [...document.querySelectorAll('.fi-ta-table .fi-ta-row')].filter(seen);
       const off = rows.filter((r) => { const b = r.getBoundingClientRect(); return b.left < -1 || b.right > innerWidth + 1 || [...r.querySelectorAll('.fi-ta-cell')].filter(seen).some((c) => c.getBoundingClientRect().right > b.right + 1); }).length;
+      // The name and the row's buttons share the first line, and the name is text (not a status badge).
+      const mid = (e) => { const b = e.getBoundingClientRect(); return (b.top + b.bottom) / 2; };
+      const first = rows.filter((r) => { const cells = [...r.children].filter(seen), name = cells.find((c) => getComputedStyle(c).order === '1'), acts = cells.find((c) => getComputedStyle(c).order === '2'); return !name || !/[A-Za-z]{2}/.test(name.innerText) || name.querySelector('.fi-badge') || (acts && Math.abs(mid(acts) - mid(name)) > 8); }).length;
       const box = document.querySelector('.fi-ta-content-ctn');
       const bar = [...document.querySelectorAll('.fi-main .fi-ta-header-toolbar')].find(seen);
       const tools = bar ? [...bar.querySelectorAll('.fi-ta-actions > :is(button, a, div), .fi-ta-search-field, .fi-ta-filters-trigger-action-ctn, .fi-ta-col-manager-dropdown, .fi-dropdown')].filter((e) => seen(e) && !e.parentElement.closest('.fi-dropdown, .fi-ta-search-field')) : [];
       const tops = tools.map((e) => Math.round(e.getBoundingClientRect().top));
       const crumb = [...document.querySelectorAll('.ps-admin-crumb')].find(seen);
-      return { rows: rows.length, off, sideways: !!box && box.scrollWidth > box.clientWidth + 1, wide: document.documentElement.scrollWidth > innerWidth + 1, tools: tools.length, spread: tops.length ? Math.max(...tops) - Math.min(...tops) : 0, gap: crumb && tools.length ? Math.round(Math.min(...tools.map((e) => e.getBoundingClientRect().top)) - crumb.getBoundingClientRect().bottom) : null, search: !!bar?.querySelector('.fi-ta-search-field') };
+      return { rows: rows.length, off, first, sideways: !!box && box.scrollWidth > box.clientWidth + 1, wide: document.documentElement.scrollWidth > innerWidth + 1, tools: tools.length, spread: tops.length ? Math.max(...tops) - Math.min(...tops) : 0, gap: crumb && tools.length ? Math.round(Math.min(...tools.map((e) => e.getBoundingClientRect().top)) - crumb.getBoundingClientRect().bottom) : null, search: !!bar?.querySelector('.fi-ta-search-field') };
     };
     for (const list of ['users', 'servers', 'nodes', 'eggs']) {
       await goto(new URL(`/admin/${list}`, base).href, 2500);
@@ -1200,7 +1203,7 @@ async function fixesFlow() {
         await page.keyboard.press('Escape').catch(() => {}); await page.evaluate(() => document.activeElement?.blur?.()).catch(() => {}); await sleep(200);
       }
       await record(`phone-admin-${list}`, `Telefoon · ${list} als rijen binnen het scherm`);
-      say(`phone-admin-${list}`, !!m && m.rows > 0 && !m.off && !m.sideways && !m.wide && m.spread <= 6 && m.gap !== null && m.gap <= 24 && (!m.search || (!!open && open.focused && open.width >= (page.viewportSize()?.width ?? 390) * 0.6)), { ...m, open });
+      say(`phone-admin-${list}`, !!m && m.rows > 0 && !m.off && !m.first && !m.sideways && !m.wide && m.spread <= 6 && m.gap !== null && m.gap <= 24 && (!m.search || (!!open && open.focused && open.width >= (page.viewportSize()?.width ?? 390) * 0.6)), { ...m, open });
     }
     await goto(new URL('/admin/eggs?simplify_legacy=1', base).href, 2500);
     const legacy = await page.evaluate(measureEggs).catch(() => null);
