@@ -612,7 +612,7 @@ step('panel settings are saved and a bad value is refused', function () use ($ad
     try {
         PanelSettings::save(['overview_seconds' => 2]);
         throw new RuntimeException('a refresh of 2 seconds was accepted');
-    } catch (Illuminate\Validation\ValidationException) {
+    } catch (ValidationException) {
     }
     // The refresh time is no longer on the settings page; a saved one stays when the page saves.
     PanelSettings::save(['overview_seconds' => 20]);
