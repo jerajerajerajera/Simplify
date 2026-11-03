@@ -37,8 +37,11 @@ for f in sys.argv[1:]:
                 # The Admin page's card (host-*, and Pelican's admin pages admin-*) is one kind; a server opened from its
                 # Servers list (host-server) is a server page.
                 path = '/' + (m.get('url') or '').split('://')[-1].split('/', 1)[-1].lstrip('/')
-                host = (s['id'].startswith(('host', 'other-plugins', 'scroll-frame', 'account-page')) or path.startswith(('/admin', '/profile', '/steam', '/server-maker'))) and s['id'] != 'host-server'
-                heights[(s['stand'], 'host' if host else 'admin' if s['id'].startswith(('tile-', 'create-')) else 'server')].append((int(bottom) - int(top), s['id']))
+                # Account pages have the header but no Admin menu (and on a phone no bottom bar): a kind of their own.
+                account = s['id'].startswith(('account-page', 'app-', 'profile')) or path.startswith(('/profile', '/steam', '/server-maker'))
+                host = (s['id'].startswith(('host', 'other-plugins', 'scroll-frame')) or path.startswith('/admin')) and s['id'] != 'host-server'
+                kind = 'account' if account else 'host' if host else 'admin' if s['id'].startswith(('tile-', 'create-')) else 'server'
+                heights[(s['stand'], kind)].append((int(bottom) - int(top), s['id']))
     # Every check of the audit's flows says ok or WRONG against a rule; a WRONG one breaks the verdict too.
     for p in data.get('problems') or []:
         m = re.match(r'^(\S+) (\S+): WRONG (.*)$', p)
