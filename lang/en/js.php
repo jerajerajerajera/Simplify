@@ -153,6 +153,11 @@ return [
         'server_color_saved' => 'Server color saved',
         'traffic_used' => 'Used :traffic · since server start',
         'of_allocated' => 'of :amount allocated',
+        'share_of' => ':percent of :amount',
+        'cpu_short' => 'CPU',
+        'memory_short' => 'MEM',
+        'storage_short' => 'DISK',
+        'network_short' => 'NET',
     ],
     'seasons' => [
         'newyear' => ['name' => 'New Year', 'text' => 'The last night of the year and the first day of the next.'],

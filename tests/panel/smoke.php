@@ -217,7 +217,7 @@ step('a panel with settings opens them, a new panel opens the setup, and finishi
     Setting::query()->delete();
     PanelSettings::save([]);
     $response = visit($admin, Settings::getUrl(panel: 'admin'));
-    if (! $response->isRedirect() || ! str_contains((string) $response->headers->get('Location'), 'simplify-setup')) {
+    if (! $response->isRedirect() || ! str_contains((string) $response->headers->get('Location'), 'simplify/setup')) {
         throw new RuntimeException('the settings did not open the setup first (HTTP '.$response->getStatusCode().')');
     }
     $url = Setup::getUrl(panel: 'admin');
@@ -632,6 +632,15 @@ step('panel settings are saved and a bad value is refused', function () use ($ad
     noErrors(Livewire\Livewire::actingAs($admin)->test(Settings::class)->set('data.accent', '#336699')->call('save'));
     if (PanelSettings::get('overview_seconds') !== 20 || PanelSettings::get('accent') !== '#336699') {
         throw new RuntimeException('settings were not saved: '.json_encode(PanelSettings::all()));
+    }
+    $friends = PanelSettings::get('friends_mode');
+    PanelSettings::save(['friends_mode' => true]);
+    $on = PanelSettings::friendsMode();
+    PanelSettings::save(['friends_mode' => false]);
+    $off = PanelSettings::friendsMode();
+    PanelSettings::save(['friends_mode' => (bool) $friends]);
+    if ($on !== true || $off !== false) {
+        throw new RuntimeException('friendsMode() does not follow the friends mode setting');
     }
 });
 step('the accent colour and refresh rate reach the panel', function () use ($admin) {

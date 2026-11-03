@@ -16,7 +16,7 @@ use Simplify\Core\Filament\App\Pages\Overview;
  */
 final class SetupDone extends Page
 {
-    protected static ?string $slug = 'simplify-setup-done';
+    protected static ?string $slug = 'simplify/setup-done';
 
     protected static bool $shouldRegisterNavigation = false;
 

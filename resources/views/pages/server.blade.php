@@ -158,11 +158,18 @@
             </article>
             <template x-for="metric in metrics" :key="metric.key">
                 <article class="ps-card ps-stat">
-                    <div class="ps-stat-top"><span x-text="metric.label"></span><svg aria-hidden="true"><use :href="'#ps-'+metric.icon"/></svg></div>
-                    <strong x-text="metricValue(metric.key)"></strong>
+                    <div class="ps-stat-top" :data-tip="metric.title"><span x-text="metric.label"></span><svg aria-hidden="true"><use :href="'#ps-'+metric.icon"/></svg></div>
+                    <template x-if="metric.key !== 'network'"><strong x-text="metricValue(metric.key)"></strong></template>
+                    {{-- Download and upload each with their own number: the line of bars has download above, upload below. --}}
+                    <template x-if="metric.key === 'network'"><strong class="ps-stat-rates"><span x-text="'↓ ' + rate('rx')"></span><span class="is-up" x-text="'↑ ' + rate('tx')"></span></strong></template>
+                    {{-- The last measurements as bars next to the number, from 0 to the limit; only the bars take the colour of the load. --}}
+                    <svg class="ps-spark" :class="metric.key === 'network' ? 'is-net' : metricLevel(metric.key)" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true">
+                        <path class="ps-spark-axis" :d="metric.key === 'network' ? 'M0 15H100' : 'M0 28.5H100'"/>
+                        <g :class="metric.key === 'network' && 'is-rx'"><path :d="spark(metric.key === 'network' ? 'rx' : metric.key)"/><path class="ps-spark-now" :d="spark(metric.key === 'network' ? 'rx' : metric.key, true)"/></g>
+                        <g class="is-tx" x-show="metric.key === 'network'"><path :d="metric.key === 'network' ? spark('tx') : ''"/><path class="ps-spark-now" :d="metric.key === 'network' ? spark('tx', true) : ''"/></g>
+                    </svg>
                     {{-- A long line (traffic "since server start") keeps its first part; the whole line is the tooltip. --}}
                     <small x-text="metricLimit(metric.key).split(' · ')[0]" :data-tip="metricLimit(metric.key).includes(' · ') ? metricLimit(metric.key) : null"></small>
-                    <svg class="ps-spark" viewBox="0 0 200 36" preserveAspectRatio="none" aria-hidden="true"><path :d="spark(metric.key)"/></svg>
                 </article>
             </template>
         </section>
@@ -197,7 +204,7 @@
     <nav class="ps-phone-sections" aria-label="{{ $u('phone_navigation') }}" x-data="{ more: false }" x-on:click.outside="more=false" x-on:keydown.escape.stop="more=false" wire:ignore>
         <a class="ps-phone-section" href="{{ \Simplify\Core\Filament\App\Pages\Overview::getUrl(panel: 'app') }}"><svg class="ps-phone-section-icon" aria-hidden="true"><use href="#ps-grid"/></svg><span>{{ $u('servers') }}</span></a>
         <button type="button" class="ps-phone-section" x-show="createButtons().length" x-cloak x-on:click="more=false; openCreate(null, createButtons()[0]) || (location.href = createButtons()[0].url)"><svg class="ps-phone-section-icon" aria-hidden="true"><use href="#ps-plus"/></svg><span>{{ $u('new') }}</span></button>
-        <a class="ps-phone-section" x-show="boot.admin_url" x-cloak :href="boot.admin_url"><svg class="ps-phone-section-icon" aria-hidden="true"><use href="#ps-shield"/></svg><span>{{ $u('admin') }}</span></a>
+        <a class="ps-phone-section" x-show="boot.admin_url" x-cloak :href="boot.admin_url + '#menu'"><svg class="ps-phone-section-icon" aria-hidden="true"><use href="#ps-shield"/></svg><span>{{ $u('admin') }}</span></a>
         <div class="ps-phone-more">
             <button type="button" class="ps-phone-section" aria-controls="ps-phone-more-menu" :aria-expanded="more" aria-current="page" x-on:click="more=!more"><svg class="ps-phone-section-icon" aria-hidden="true"><use href="#ps-list"/></svg><span>{{ $u('sections') }}</span></button>
             <div id="ps-phone-more-menu" class="ps-dropdown is-end ps-phone-more-menu" x-show="more" x-cloak x-transition.opacity>

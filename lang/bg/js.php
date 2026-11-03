@@ -153,6 +153,11 @@ return [
         'server_color_saved' => 'Цветът на сървъра е запазен',
         'traffic_used' => 'Използвано :traffic · от стартирането на сървъра',
         'of_allocated' => 'от :amount разпределени',
+        'share_of' => ':percent от :amount',
+        'cpu_short' => 'CPU',
+        'memory_short' => 'RAM',
+        'storage_short' => 'ДИСК',
+        'network_short' => 'МРЕЖА',
     ],
     'seasons' => [
         'newyear' => ['name' => 'Нова година', 'text' => 'Последната нощ на годината и първият ден на следващата.'],

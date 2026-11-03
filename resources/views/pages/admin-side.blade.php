@@ -1,14 +1,16 @@
 @php($u = fn (string $key, array $values = []) => __('simplify::dashboard.ui.'.$key, $values))
 {{-- The Admin page's menu (AdminSide, V52): the admin pages as a tree, or the servers per node, with health at the
-     bottom. It keeps its place while its links load the page next to it (wire:navigate). On a phone it is a sheet that
-     the bottom bar's Menu tab opens (simplify:admin-menu). --}}
+     bottom. It keeps its place while its links load the page next to it (wire:navigate). On a phone (Jeroen 3-11) the
+     bottom bar's Admin opens it as a page of its own; a link loads its page, whose breadcrumb (group › page) is the
+     title, and the group in it, Admin again or a swipe from the left edge bring the menu back. --}}
 <div class="ps server-active ps-admin-side" :class="{'menu-open': open, 'dark': dark}" x-data="{
         open: false,
         dark: window.SimplifyTheme?.dark() ?? document.documentElement.classList.contains('dark'),
         branches: {},
         here: '',
         path: '',
-        pages: @js(collect($sections)->flatMap(fn ($section) => collect($section['pages'])->map(fn ($page) => [$section['key'], $page['key'] ?? '', $page['url'] ?? '']))->values()),
+        crumb: null,
+        pages: @js(collect($sections)->flatMap(fn ($section) => collect($section['pages'])->map(fn ($page) => [$section['key'], $page['key'] ?? '', $page['url'] ?? '', $section['label'], count($section['pages']) > 1 || $section['key'] === 'extensions' ? $page['label'] : '', $section['icon'], $section['color']]))->values()),
         locate() {
             this.path = location.pathname.replace(/\/$/, '');
             const at = location.pathname + location.search;
@@ -22,13 +24,35 @@
             }
             this.here = length < 0 ? '' : best[0] + '/' + best[1];
             if (best[0]) this.branches[best[0]] = true;
-            this.open = false;
+            // The breadcrumb: the group, its page, and on a page under it (an edit page) Pelican's own title.
+            const title = document.querySelector('.fi-main .fi-header-heading')?.textContent.trim() ?? '';
+            const exact = length >= 1000 || (best[2] && at.replace(/\/$/, '') === new URL(best[2], location.origin).pathname.replace(/\/$/, ''));
+            this.crumb = length < 0 ? (title ? { group: title, icon: 'shield', color: 'currentColor', page: '', sub: '' } : null)
+                : { group: best[3], page: best[4], icon: best[5], color: best[6], sub: exact || title === best[4] || title === best[3] ? '' : title };
+            // Admin in the bottom bar comes with #menu: the menu as a page (phones). Livewire also sends navigated on the first load.
+            this.open = location.hash === '#menu' && this.phone();
+        },
+        phone() { return matchMedia('(max-width: 600px)').matches; },
+        // The panel's accent, as the header (AdminTop) has it, for New in the bottom bar and the menu.
+        accent() { this.$nextTick(() => { const top = document.querySelector('.ps-admin-top'); if (!top) return; const css = getComputedStyle(top); for (const key of ['--ps-accent', '--ps-on-accent']) { const value = css.getPropertyValue(key).trim(); if (value) this.$root.style.setProperty(key, value); } }); },
+        // A swipe from the left edge to the right brings the menu back (phones; the menu is beside the page elsewhere).
+        swipe() {
+            let start = null;
+            addEventListener('touchstart', (e) => { const t = e.touches[0]; start = !this.open && this.phone() && e.touches.length === 1 && t.clientX <= 24 ? [t.clientX, t.clientY] : null; }, { passive: true });
+            addEventListener('touchend', (e) => { const t = e.changedTouches[0]; if (start && t.clientX - start[0] > 70 && Math.abs(t.clientY - start[1]) < t.clientX - start[0]) this.open = true; start = null; }, { passive: true });
         },
         all() { return @js(array_column($sections, 'key')).every((key) => this.branches[key]); },
         toggleAll() { const on = !this.all(); for (const key of @js(array_column($sections, 'key'))) this.branches[key] = on; },
      }"
-     x-init="locate()" x-on:livewire:navigated.window="locate()" x-on:simplify:admin-menu.window="open = !open" x-on:simplify:theme.window="dark = $event.detail.dark" x-on:keydown.escape.window="open = false">
+     x-init="locate(); swipe(); accent()" x-on:livewire:navigated.window="locate()" x-on:simplify:admin-menu.window="open = !open" x-on:simplify:theme.window="dark = $event.detail.dark; accent()" x-on:keydown.escape.window="open = false">
     <div class="ps-host-backdrop" x-show="open" x-cloak x-on:click="open = false"></div>
+    {{-- Phones: where you are, as the page's title; the group brings the menu back. --}}
+    <nav class="ps-admin-crumb" aria-label="{{ $u('admin_sections') }}" x-show="crumb && !open" x-cloak>
+        <button type="button" aria-controls="ps-admin-side" :aria-expanded="open" x-on:click.stop="open = true" :class="{'is-last': !crumb?.page && !crumb?.sub}" :style="'--ps-tone: ' + (crumb?.color ?? 'currentColor')"><svg aria-hidden="true"><use :href="'#ps-' + (crumb?.icon ?? 'shield')"/></svg><span x-text="crumb?.group"></span></button>
+        <template x-for="part in [crumb?.page, crumb?.sub].filter(Boolean)" :key="part">
+            <span class="ps-admin-crumb-part"><svg class="ps-admin-crumb-sep" aria-hidden="true"><use href="#ps-chevron"/></svg><strong x-text="part"></strong></span>
+        </template>
+    </nav>
     <aside id="ps-admin-side" class="ps-host-side" aria-label="{{ $u('admin_sections') }}">
         <div class="ps-host-tabs" role="group" aria-label="{{ $u('menu') }}">
             <button type="button" aria-pressed="{{ $tab === 'admin' ? 'true' : 'false' }}" wire:click="$set('tab', 'admin')"><svg aria-hidden="true"><use href="#ps-shield"/></svg>{{ $u('admin') }}</button>
@@ -113,13 +137,12 @@
             </div>
         @endif
     </aside>
-    {{-- Phones: the bottom bar, as on the overview; Menu opens the Admin menu as a sheet. --}}
+    {{-- Phones: the bottom bar, as on the overview; Admin opens the Admin menu as a page. --}}
     <nav class="ps-tabbar" aria-label="{{ $u('phone_navigation') }}">
         <a class="ps-tab" href="{{ $overviewUrl }}"><svg aria-hidden="true"><use href="#ps-grid"/></svg><span>{{ $u('servers') }}</span></a>
         @if ($create)
             <button type="button" class="ps-tab" x-on:click="open = false; $dispatch('simplify:create')"><span class="ps-tab-plus"><svg aria-hidden="true"><use href="#ps-plus"/></svg></span><span>{{ $u('new') }}</span></button>
         @endif
-        <a class="ps-tab is-active" href="{{ $adminUrl }}" aria-current="page"><svg aria-hidden="true"><use href="#ps-shield"/></svg><span>{{ $u('admin') }}</span></a>
-        <button type="button" class="ps-tab" aria-controls="ps-admin-side" :aria-expanded="open" x-on:click.stop="open = !open"><svg aria-hidden="true"><use href="#ps-list"/></svg><span>{{ $u('menu') }}</span></button>
+        <button type="button" class="ps-tab is-active" aria-current="page" aria-controls="ps-admin-side" :aria-expanded="open" x-on:click.stop="open = true"><svg aria-hidden="true"><use href="#ps-shield"/></svg><span>{{ $u('admin') }}</span></button>
     </nav>
 </div>

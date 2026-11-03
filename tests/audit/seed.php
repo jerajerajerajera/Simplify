@@ -25,6 +25,7 @@ use Simplify\Core\Subdomains\Models\Subdomain;
 use Simplify\Core\Support\PanelSettings;
 use Simplify\Core\Support\Preferences;
 use Simplify\Hosting\Services\Settings;
+use Simplify\ServerMaker\Settings as MakerSettings;
 
 define('LARAVEL_START', microtime(true));
 require getcwd().'/vendor/autoload.php';
@@ -196,6 +197,8 @@ $part('toolkit software', function () use ($servers) {
         'directory' => '/plugins', 'filename' => 'LuckPerms-Bukkit-5.4.141.jar', 'title' => 'LuckPerms', 'version' => '5.4.141', 'version_id' => 'old123',
         'icon' => '', 'page' => 'https://modrinth.com/plugin/luckperms', 'fits' => true, 'created_at' => now(), 'updated_at' => now()]);
 });
+// Server Maker with self-service on (no node or egg limits), so its settings page shows the whole "Who may make servers" block.
+$part('server maker self-service', fn () => MakerSettings::put(['self_service' => true, 'node_ids' => [], 'eggs' => []]));
 // One schedule with three tasks, so the Edit schedule page shows its Tasks block (old plugin issue #236: no way to scroll to it).
 $part('schedule', function () use ($servers) {
     $schedule = Schedule::create(['server_id' => $servers['Survival SMP']->id, 'name' => 'Nightly restart', 'cron_minute' => '0', 'cron_hour' => '4',

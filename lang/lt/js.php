@@ -153,6 +153,11 @@ return [
         'server_color_saved' => 'Serverio spalva išsaugota',
         'traffic_used' => 'Sunaudota :traffic · nuo serverio paleidimo',
         'of_allocated' => 'iš :amount paskirta',
+        'share_of' => ':percent iš :amount',
+        'cpu_short' => 'CPU',
+        'memory_short' => 'MEM',
+        'storage_short' => 'DISK',
+        'network_short' => 'NET',
     ],
     'seasons' => [
         'newyear' => ['name' => 'Naujieji metai', 'text' => 'Paskutinė metų naktis ir pirmoji kitų metų diena.'],
