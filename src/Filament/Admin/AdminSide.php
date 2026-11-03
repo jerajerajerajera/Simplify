@@ -28,7 +28,8 @@ final class AdminSide extends Component
         $sections = AdminTree::build();
 
         return view('simplify::pages.admin-side', [
-            'sections' => array_values(array_filter($sections, fn (array $section) => $section['key'] !== 'health')),
+            // Health is the Admin page's start page: first in the tree (Jeroen 3-11).
+            'sections' => [...array_filter($sections, fn (array $section) => $section['key'] === 'health'), ...array_filter($sections, fn (array $section) => $section['key'] !== 'health')],
             'healthUrl' => self::page($sections, 'health'),
             'health' => $user->isRootAdmin() ? HostHealth::cached() : [],
             'checks' => HostHealth::checks(),

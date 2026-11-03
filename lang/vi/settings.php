@@ -10,7 +10,7 @@ return [
     'page_title' => 'Cài đặt Simplify',
     'pelican_frame_title' => 'Cài đặt Pelican: :label',
     'pelican_frame' => 'Cài đặt :label của chính Pelican.',
-    'version_line' => 'Phiên bản :version · Thay đổi áp dụng cho mọi người trên panel này sau khi lưu.',
+    'save_note' => 'Thay đổi áp dụng cho mọi người trên panel này sau khi lưu.',
     'profile' => [
         'support' => 'Liên kết hỗ trợ',
         'support_help' => 'Trang trợ giúp hoặc địa chỉ mailto:, hiện trong menu tài khoản của mọi người. Để trống thì không hiện gì.',

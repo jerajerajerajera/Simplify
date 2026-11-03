@@ -10,7 +10,7 @@ return [
     'page_title' => 'Ajustes de Simplify',
     'pelican_frame_title' => 'Ajustes de Pelican: :label',
     'pelican_frame' => 'Ajustes de :label propios de Pelican.',
-    'version_line' => 'Versión :version · Los cambios se aplican a todos en este panel al guardar.',
+    'save_note' => 'Los cambios se aplican a todos en este panel al guardar.',
     'profile' => [
         'support' => 'Enlace de ayuda',
         'support_help' => 'Una página de ayuda o una dirección mailto:, en el menú de cuenta de todos. Vacío no muestra nada.',

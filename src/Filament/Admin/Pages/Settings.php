@@ -10,6 +10,7 @@ use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
+use Filament\Schemas\Components\Actions;
 use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Components\View;
@@ -89,11 +90,6 @@ final class Settings extends Page implements HasForms
         ));
     }
 
-    public function getSubheading(): string
-    {
-        return __('simplify::settings.version_line', ['version' => Assets::version()]);
-    }
-
     public function mount(): void
     {
         // The first visit on a new panel walks through the setup; the settings page is for changes afterwards.
@@ -108,8 +104,6 @@ final class Settings extends Page implements HasForms
     protected function getHeaderActions(): array
     {
         return [
-            Action::make('setup')->label(__('simplify::setup.again'))->icon('tabler-wand')->color('gray')->button()
-                ->url(fn () => Setup::getUrl(panel: 'admin')),
             // Save in the head of the page; it presses the form's own button, which also saves a Pelican tab (settings.blade.php).
             Action::make('save')->label(__('simplify::settings.save'))->icon('tabler-device-floppy')->extraAttributes(['class' => 's-save-button'])
                 ->alpineClickHandler("document.querySelector('.s-settings > .s-bar button[type=submit]')?.click()"),
@@ -129,6 +123,11 @@ final class Settings extends Page implements HasForms
                     SettingsFields::support(),
                     SettingsFields::visibility(),
                     SettingsFields::banners(),
+                    // Only here, not in the head of every tab (Jeroen 3-11).
+                    Actions::make([
+                        Action::make('setup')->label(__('simplify::setup.again'))->icon('tabler-wand')->color('gray')
+                            ->url(fn () => Setup::getUrl(panel: 'admin')),
+                    ])->extraAttributes(['class' => 's-settings-setup']),
                 ]),
                 Tab::make(__('simplify::settings.appearance.app'))->key('app')->icon('tabler-device-mobile')->schema([
                     SettingsFields::app(),

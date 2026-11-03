@@ -1357,9 +1357,6 @@
           ...window.psMotd.runs(line).map(({ text, style, obfuscated }) => ({ text: obfuscated ? text.replace(/\S/g, '▒') : text, style })),
         ]);
       },
-      adminPages() {
-        return Array.isArray(this.boot.admin_pages) ? this.boot.admin_pages : [];
-      },
     };
   };
 })();

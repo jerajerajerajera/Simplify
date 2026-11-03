@@ -17,7 +17,7 @@ final class AdminTree
     private const PLAN = [
         ['servers', 'servers', 'host', '#5fb87a', ['serverresource', 'eggresource', 'mountresource']],
         ['nodes', 'nodes', 'monitor', '#5b9cf0', ['noderesource', 'databasehostresource', 'backuphostresource']],
-        ['people', 'people', 'players', '#a78bfa', ['userresource', 'roleresource', 'people']],
+        ['people', 'people', 'players', '#a78bfa', ['people']],
         ['integrations', 'integrations', 'link', '#f0a35b', ['apikeyresource', 'webhookresource']],
         ['panel', 'panel', 'gear', '#94a3b8', ['settings', 'pluginresource', 'listlogs']],
         ['extensions', null, 'plugins', '#2dd4bf', []],
@@ -29,10 +29,12 @@ final class AdminTree
      */
     public static function build(): array
     {
-        $items = array_merge(...array_column(AdminMenu::items(), 'items')) ?: [];
-        $menu = Settings::canAccess() ? Settings::menu() : [];
+        // Once per request: the header (AdminTop) and the menu beside the page (AdminSide) both draw it.
+        return once(function () {
+            $items = array_merge(...array_column(AdminMenu::items(), 'items')) ?: [];
 
-        return self::group($items, $menu);
+            return self::group($items, Settings::canAccess() ? Settings::menu() : []);
+        });
     }
 
     /**
@@ -44,17 +46,30 @@ final class AdminTree
     {
         $label = fn (?string $key) => $key === null ? __('simplify::js.dashboard.other_plugins') : __('simplify::js.dashboard.admin_groups.'.$key);
         $plan = array_map(fn (array $p) => ['key' => $p[0], 'label' => $label($p[1]), 'icon' => $p[2], 'color' => $p[3], 'keys' => $p[4], 'tabs' => []], self::PLAN);
+        // People & roles is Simplify's page for Pelican's users and roles: one leaf instead of three (Jeroen 3-11). Pelican's
+        // own Users and Roles stay in the legacy panel, and in the tree only when People & roles is not there.
+        $people = array_values(array_filter($items, fn (array $item) => $item['key'] === 'people'))[0] ?? null;
+        if ($people === null) {
+            $plan[2]['keys'] = ['userresource', 'roleresource'];
+        } else {
+            $plan[2]['label'] = $people['label'];
+        }
         // The settings are leaves of the tree: Simplify's tabs, the add-ons' pages and Pelican's tabs, each in its group.
         if ($menu !== []) {
             $tabs = fn (string $group) => array_values(array_map(fn (array $tab) => [...$tab, 'settings' => true], array_filter($menu, fn (array $tab) => ($tab['group'] ?? null) === $group)));
             $at = array_search('panel', array_column($plan, 'key'), true);
+            // Simplify settings (with the add-on list last) and Pelican settings (with its plugin list) above, then apart
+            // under the menu what does not come with Pelican: Simplify add-ons and Pelican plugins (Jeroen 3-11).
+            $list = array_values(array_filter($tabs('addons'), fn (array $tab) => $tab['key'] === 'settings:addons'));
             array_splice($plan, (int) $at, 1, [
-                ['key' => 'panel', 'label' => $label('settings'), 'icon' => 'gear', 'color' => '#94a3b8', 'keys' => [], 'tabs' => $tabs('panel')],
-                ['key' => 'addons', 'label' => $label('addons'), 'icon' => 'plugins', 'color' => '#b48cf2', 'keys' => ['pluginresource'], 'tabs' => $tabs('addons')],
-                ['key' => 'pelican', 'label' => $label('pelican_settings'), 'icon' => 'settings', 'color' => '#5b9cf0', 'keys' => ['listlogs'], 'tabs' => $tabs('pelican')],
+                ['key' => 'panel', 'label' => $label('settings'), 'icon' => 'gear', 'color' => '#94a3b8', 'keys' => [], 'tabs' => $tabs('panel'), 'last' => $list],
+                ['key' => 'pelican', 'label' => $label('pelican_settings'), 'icon' => 'settings', 'color' => '#5b9cf0', 'keys' => ['pluginresource', 'listlogs'], 'tabs' => $tabs('pelican')],
+                ['key' => 'addons', 'label' => $label('addons'), 'icon' => 'plugins', 'color' => '#b48cf2', 'keys' => [], 'tabs' => array_values(array_filter($tabs('addons'), fn (array $tab) => $tab['key'] !== 'settings:addons')), 'apart' => true],
             ]);
+            // Pelican plugins comes after the add-ons.
+            $plan = [...array_filter($plan, fn (array $p) => $p['key'] !== 'extensions'), ...array_filter($plan, fn (array $p) => $p['key'] === 'extensions')];
         }
-        $known = [...array_merge(...array_column($plan, 'keys')), 'settings'];
+        $known = [...array_merge(...array_column($plan, 'keys')), 'settings', ...$people === null ? [] : ['userresource', 'roleresource']];
         // An add-on's settings page that is also in Pelican's menu (Hosting) shows once, under Add-ons; an add-on page
         // with the same name as the add-on's settings (Server Maker's own page) shows once.
         $tabUrls = array_column($menu, 'url');
@@ -70,9 +85,11 @@ final class AdminTree
         foreach ($plan as $section) {
             $pages = $section['key'] === 'extensions'
                 ? array_values(array_filter($items, fn (array $item) => $loose($item) && ! ($menu !== [] && $item['origin'] !== '')))
-                : [...$section['tabs'], ...$extra[$section['key']] ?? [], ...array_values(array_filter(array_map(fn (string $key) => $byKey[$key] ?? null, $section['keys'])))];
+                : [...$section['tabs'], ...$extra[$section['key']] ?? [], ...array_values(array_filter(array_map(fn (string $key) => $byKey[$key] ?? null, $section['keys']))), ...$section['last'] ?? []];
             if ($pages !== []) {
-                $tree[] = ['key' => $section['key'], 'label' => (string) $section['label'], 'icon' => $section['icon'], 'color' => $section['color'], 'pages' => $pages];
+                // The first group of what is not Pelican's own stands apart, under the rest of the menu.
+                $apart = ($section['apart'] ?? false) || ($section['key'] === 'extensions' && ! in_array(true, array_column($tree, 'apart'), true));
+                $tree[] = ['key' => $section['key'], 'label' => (string) $section['label'], 'icon' => $section['icon'], 'color' => $section['color'], 'pages' => $pages, 'apart' => $apart];
             }
         }
 
