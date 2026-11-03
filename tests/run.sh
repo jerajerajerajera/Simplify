@@ -21,6 +21,7 @@ node tests/seasons.cjs
 node tests/unsaved.cjs
 node tests/boot.cjs
 node tests/shell-footer.cjs
+node tests/beta-footer.cjs
 node tests/standalone-viewport.cjs
 node tests/server-stats.cjs
 python3 tests/hub-check.py

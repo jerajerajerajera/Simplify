@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+<<<<<<< HEAD
+=======
+- Beta versions name the browser after the version in the footer (browser, system, window size, app or browser, light or dark), so a screenshot shows where it was taken. It is worked out in the browser and never sent. Stable versions show the version only.
+>>>>>>> origin/main
 - Phones: Admin in the bottom bar opens the admin menu as a page of its own, with the same tree as on a computer and Health at the bottom. A link opens its page, and the page's title is where you are, such as Servers › Eggs; tap the group, tap Admin again or swipe from the left edge to go back to the menu. The separate Menu tab is gone, so the bar is Servers, New and Admin again, and the page sits straight on the background without a card around it.
 - The Admin page has the panel's accent colour again, such as New in the bottom bar on a phone.
 - The installed app on an iPhone keeps the bottom bar clear of the home bar after a click in a menu too. It no longer drops a little and loses its room at the bottom when another page opens.

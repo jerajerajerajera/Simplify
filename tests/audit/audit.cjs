@@ -37,7 +37,8 @@ const ready = () => page.waitForFunction(() => { const el = document.querySelect
 const alpine = async (body) => { await ready(); return page.evaluate((b) => { const el = document.querySelector('.ps'); return el && window.Alpine ? new Function('d', b)(window.Alpine.$data(el)) : null; }, body).catch(() => null) };
 // The theme is set before any page script runs (both Filament's and Simplify's stored choice) and the browser's own
 // colour scheme follows it, so every page of the stand opens in that theme.
-const setTheme = async (theme) => { await page.context().addInitScript((t) => { try { localStorage.setItem('pelicanSimplify.theme', t); localStorage.setItem('theme', t); } catch {} document.documentElement?.classList.toggle('dark', t === 'dark'); }, theme); await page.emulateMedia({ colorScheme: theme }); await page.evaluate((t) => { localStorage.setItem('pelicanSimplify.theme', t); localStorage.setItem('theme', t); window.SimplifyTheme?.set(t); document.documentElement.classList.toggle('dark', t === 'dark'); }, theme); };
+let theme_ = null;
+const setTheme = async (theme) => { theme_ = theme; await page.context().addInitScript((t) => { try { localStorage.setItem('pelicanSimplify.theme', t); localStorage.setItem('theme', t); } catch {} document.documentElement?.classList.toggle('dark', t === 'dark'); }, theme); await page.emulateMedia({ colorScheme: theme }); await page.evaluate((t) => { localStorage.setItem('pelicanSimplify.theme', t); localStorage.setItem('theme', t); window.SimplifyTheme?.set(t); document.documentElement.classList.toggle('dark', t === 'dark'); }, theme); };
 
 // Simplify's own admin pages (by their path), so the measurement knows which admin pages must follow Simplify's style.
 const mopts = () => ({ simplifyAdmin: (urls.admin || []).filter((p) => /^Simplify\\/.test(p.class)).map((p) => rel(p.url)) });
@@ -57,6 +58,9 @@ async function record(id, title, extra = {}) {
       const top = card.getBoundingClientRect().top - card.scrollTop, f = footer.getBoundingClientRect();
       return { footerTop: Math.round(f.top - top), footerBottom: Math.round(f.bottom - top), page: Math.round(main.getBoundingClientRect().bottom - top), overflow: main.scrollHeight - main.clientHeight, scroll: card.scrollHeight };
     }).catch(() => null);
+    // Every screen in a dark folder is dark and every screen in a light folder light (a partial run once shot its dark folder light).
+    const dark = await page.evaluate(() => document.documentElement.classList.contains('dark')).catch(() => null);
+    if (theme_ && dark !== null && dark !== (theme_ === 'dark')) problems.push(`${stand} ${id} theme: WRONG the page is ${dark ? 'dark' : 'light'} in a ${theme_} round`);
     if (foot && (foot.overflow > 2 || foot.footerTop < foot.page - 1 || foot.footerBottom < foot.scroll - 2)) problems.push(`${stand} ${id} footer-end: WRONG the copyright line is not at the end of the page ${JSON.stringify(foot)}`);
     entry.frames = [];
     for (const f of page.frames()) {
@@ -122,7 +126,7 @@ const adminPage = async (overview) => {
       await goto('/admin/health', 1500); const again = await adminState();
       say('admin-legacy-back', !!again && again.shell && again.side, { ...again, clickError });
     } else say('admin-legacy-back', false, { note: 'no Back to Simplify in the legacy panel' });
-  } else say('admin-legacy', false, { note: 'no Legacy panel link in the account menu' });
+  } else say('admin-legacy', false, { note: 'no Legacy panel link in the account menu', at: await page.evaluate(() => { const b = [...document.querySelectorAll('.ps-admin-top .ps-account-button')].find((e) => e.getClientRects().length); if (!b) return null; const r = b.getBoundingClientRect(); const top = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2); const menu = document.querySelector('#ps-account-actions'); const link = menu?.querySelector('a[href*="simplify_legacy"]'); const box = menu?.getBoundingClientRect(); return { onTop: top ? String(top.className?.baseVal ?? top.className) + ' < ' + String(top.parentElement?.className ?? '') : null, open: b.getAttribute('aria-expanded'), menu: box ? [Math.round(box.top), Math.round(box.height), getComputedStyle(menu).visibility, getComputedStyle(menu).display] : null, link: link ? [link.getAttribute('href'), getComputedStyle(link).display, link.getClientRects().length] : null }; }).catch((e) => e.message) });
   // Always end inside Simplify, so a failed step above does not leave the rest of the round in the legacy panel.
   await goto(overview + (overview.includes('?') ? '&' : '?') + 'simplify_legacy=0', 600);
 };
@@ -190,6 +194,9 @@ async function round(theme) {
 
   // Pelican's health checks run when its Health page opens; the overview's menus and host mode show their results.
   await goto('/admin/health', 2500);
+  // Every round sets its theme first: a run of only some parts (parts=admin) skips the overview, and its dark folder
+  // must still be dark.
+  await setTheme(theme); await goto('/admin/health', 1500);
   if (want('overview')) {
   // Overview and its menus.
   await goto(overview); await setTheme(theme); await goto(overview); await ready(); await sleep(500);

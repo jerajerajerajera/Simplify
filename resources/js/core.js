@@ -1,7 +1,8 @@
 /* Simplify core runtime, loaded with Simplify's own pages.
    1. Theme: the light/dark preference (shared with Filament's own switcher), applied before paint.
    2. UI: tooltips, toasts, confirm/prompt dialogs and a notice history, all in the Simplify style.
-   3. Web app: "Install app" where the browser allows it. */
+   3. Web app: "Install app" where the browser allows it.
+   4. Beta builds: the browser in the footer, so a screenshot shows where it was taken. */
 (() => {
   if (window.SimplifyTheme) return;
   const root = document.documentElement;
@@ -349,6 +350,30 @@
       window.dispatchEvent(new CustomEvent('simplify:installable'));
     });
   }
+
+  /* Beta builds ---------------------------------------------------------------------------------
+     After a pre-release version (2.0.0-beta.1) the footer names the browser, system, window, app or browser, and
+     light or dark, so a screenshot shows where it was taken. Worked out here in the browser; it is never sent. */
+  const environment = () => {
+    const ua = navigator.userAgent;
+    const find = (pattern) => (ua.match(pattern) || [])[1];
+    const browser = [[/Edg(?:A|iOS)?\/(\d+)/, 'Edge'], [/OPR\/(\d+)/, 'Opera'], [/SamsungBrowser\/(\d+)/, 'Samsung'], [/(?:Firefox|FxiOS)\/(\d+)/, 'Firefox'], [/(?:Chrome|CriOS)\/(\d+)/, 'Chrome'], [/Version\/(\d+)[.\d]* .*Safari/, 'Safari']]
+      .map(([pattern, name]) => find(pattern) && name + ' ' + find(pattern)).find(Boolean) || 'Browser';
+    const os = webApp.ios() ? ('iOS ' + (find(/OS (\d+)_/) || find(/Version\/(\d+)/) || '')).trim()
+      : find(/Android (\d+)/) ? 'Android ' + find(/Android (\d+)/)
+        : [[/Windows/, 'Windows'], [/CrOS/, 'ChromeOS'], [/Mac OS X/, 'macOS'], [/Linux/, 'Linux']].find(([pattern]) => pattern.test(ua))?.[1];
+    return [browser, os, innerWidth + '×' + innerHeight + ' @' + Math.round(devicePixelRatio * 100) / 100 + 'x', webApp.standalone() ? 'App' : 'Browser', dark() ? 'Dark' : 'Light'].filter(Boolean).join(' · ');
+  };
+  const showEnvironment = () => {
+    const spots = document.querySelectorAll('[data-ps-env]');
+    if (!spots.length) return;
+    const text = ' · ' + environment();
+    spots.forEach((spot) => spot.textContent !== text && (spot.textContent = text));
+  };
+  window.SimplifyEnv = { line: environment, show: showEnvironment };
+  ['resize', 'simplify:theme', 'livewire:navigated'].forEach((name) => window.addEventListener(name, showEnvironment));
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', showEnvironment);
+  else showEnvironment();
 
   apply();
 })();
