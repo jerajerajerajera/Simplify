@@ -105,7 +105,8 @@ const adminPage = async (overview) => {
   say('admin-page', !!st && st.shell && st.side && st.header && !st.frames && !st.pelicanBars && st.pageScroll <= 1 && (phone() || /auto|scroll/.test(st.card || '')), st);
   // The legacy panel: the same page as Pelican draws it, and its Back to Simplify button clears that again.
   if (!(await page.locator('.ps-admin-top .ps-account-button >> visible=true').count())) { await page.locator('.ps-admin-top .ps-mobile-menu >> visible=true').first().click().catch(() => {}); await sleep(500); }
-  await page.locator('.ps-admin-top .ps-account-button >> visible=true').first().click().catch(() => {}); await sleep(700);
+  let accountError = null;
+  await page.locator('.ps-admin-top .ps-account-button >> visible=true').first().click({ timeout: 5000 }).catch((e) => { accountError = e.message.split('\n').slice(0, 3).join(' ').slice(0, 300); }); await sleep(700);
   const legacy = page.locator('#ps-account-actions a[href*="simplify_legacy=1"] >> visible=true').first();
   if (await legacy.count()) {
     await legacy.click().catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await settle(page, 1500);
@@ -126,7 +127,17 @@ const adminPage = async (overview) => {
       await goto('/admin/health', 1500); const again = await adminState();
       say('admin-legacy-back', !!again && again.shell && again.side, { ...again, clickError });
     } else say('admin-legacy-back', false, { note: 'no Back to Simplify in the legacy panel' });
-  } else say('admin-legacy', false, { note: 'no Legacy panel link in the account menu' });
+  } else {
+    // What the account button and its menu were doing, and a picture of it, so the cause is in the result.
+    const why = await page.evaluate(() => {
+      const button = [...document.querySelectorAll('.ps-admin-top .ps-account-button')].find((b) => b.getClientRects().length), account = button?.closest('.ps-account'), menu = account?.querySelector('#ps-account-actions'), link = menu?.querySelector('a[href*="simplify_legacy=1"]');
+      const r = button?.getBoundingClientRect(), hit = r ? document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2) : null;
+      const cs = menu ? getComputedStyle(menu) : null, ls = link ? getComputedStyle(link) : null;
+      return { buttons: document.querySelectorAll('.ps-admin-top .ps-account-button').length, open: account?.classList.contains('account-open') ?? null, hit: hit ? `${hit.tagName.toLowerCase()}.${[...hit.classList].join('.')}` : null, hitInside: !!(hit && button?.contains(hit)), menu: cs && { display: cs.display, visibility: cs.visibility, position: cs.position }, link: link ? { href: link.getAttribute('href'), display: ls.display, rect: link.getClientRects().length } : null, url: location.pathname + location.hash };
+    }).catch((e) => ({ error: e.message.slice(0, 120) }));
+    await record('admin-legacy-missing', 'Accountmenu op de Admin-pagina: geen Legacy-link');
+    say('admin-legacy', false, { note: 'no Legacy panel link in the account menu', accountError, ...why });
+  }
   // Always end inside Simplify, so a failed step above does not leave the rest of the round in the legacy panel.
   await goto(overview + (overview.includes('?') ? '&' : '?') + 'simplify_legacy=0', 600);
 };
