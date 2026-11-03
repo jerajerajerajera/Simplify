@@ -89,7 +89,7 @@ const adminState = () => page.evaluate(() => {
     // Computers: the page's own buttons sit on the breadcrumb's row (its title bar), not on a row of their own below it.
     offRow: (() => { const crumb = document.querySelector('.ps-admin-crumb'); if (!crumb || innerWidth <= 600 || !crumb.getClientRects().length) return 0; const r = crumb.getBoundingClientRect(); return [...document.querySelectorAll('.fi-main .fi-header .fi-header-actions-ctn :is(button, a)')].filter((e) => e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden').filter((e) => { const b = e.getBoundingClientRect(), y = b.top + b.height / 2; return y < r.top || y > r.bottom; }).length; })(),
     // Nothing of the page starts under the breadcrumb's row.
-    underCrumb: (() => { const crumb = document.querySelector('.ps-admin-crumb'), body = document.querySelector('.fi-main .fi-page-main'), ctn = document.querySelector('.fi-layout > .fi-main-ctn'); if (!crumb || !body || innerWidth <= 600 || !ctn || ctn.scrollTop > 0) return false; return body.getBoundingClientRect().top < crumb.getBoundingClientRect().bottom - 1; })() };
+    underCrumb: (() => { const crumb = document.querySelector('.ps-admin-crumb'), body = document.querySelector('.fi-main .fi-page-main'), ctn = document.querySelector('.fi-layout > .fi-main-ctn'); if (!crumb || !body || innerWidth <= 600 || !ctn || ctn.scrollTop > 0) return false; if (body.getBoundingClientRect().top >= crumb.getBoundingClientRect().bottom - 1) return false; const main = document.querySelector('.fi-main'), head = document.querySelector('.fi-main .fi-header'), r = (e) => e ? Math.round(e.getBoundingClientRect().top) + '..' + Math.round(e.getBoundingClientRect().bottom) : null; return { crumb: r(crumb), ctn: r(ctn), main: r(main), pad: main && getComputedStyle(main).paddingTop, head: head && getComputedStyle(head).display + ' ' + r(head) + ' mt ' + getComputedStyle(head).marginTop, body: r(body), parents: [...(function* (e) { while (e && e !== main) { yield e.className.split(' ')[0] + ' ' + r(e) + ' ' + getComputedStyle(e).display + ' pt ' + getComputedStyle(e).paddingTop + ' mt ' + getComputedStyle(e).marginTop; e = e.parentElement; } })(body)], doc: document.scrollingElement.scrollTop }; })() };
 }).catch(() => null);
 const markAdminSide = () => page.evaluate(() => { const side = document.querySelector('.ps-admin-side'); if (side) side.dataset.auditMark = '1'; }).catch(() => {});
 const openAdminMenu = async () => { if (phone() && !(await page.locator('.ps-admin-side.menu-open').count())) { await page.locator('.ps-admin-side .ps-tabbar button[aria-controls="ps-admin-side"]').first().click().catch(() => {}); await sleep(700); } };
@@ -436,7 +436,7 @@ async function round(theme) {
       const st = await adminState(); await record(id, title); visited.push(id);
       if (!st || !st.kept || !st.shell || st.frames) lost.push({ id, ...st });
       if (st?.offRow) offRow.push(id);
-      if (st?.underCrumb) underCrumb.push(id);
+      if (st?.underCrumb) underCrumb.push(underCrumb.length ? id : { id, ...st.underCrumb });
     };
     const groups = page.locator('.ps-admin-side .ps-host-group'); const gn = await groups.count();
     for (let i = 0; i < gn; i++) {
