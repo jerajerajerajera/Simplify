@@ -1,6 +1,6 @@
 // The Admin page on a computer (html.ps-shell-menu, simplify.css) in a real browser, without a panel: the page's own
 // buttons (Pelican's header actions, such as Run setup again and Save) sit in the middle of the breadcrumb's row,
-// also when the page has a subheading that goes on a line of its own under that row (K-B18, Settings › General,
+// also when the page has a subheading that goes on a line of its own under that row (K-B21, Settings › General,
 // Jeroen 3-11), and nothing of the page starts under that row. Needs Chrome or Chromium (GitHub's runners have Chrome).
 const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');

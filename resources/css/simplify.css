@@ -876,7 +876,7 @@ html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header-heading {
   }
 
   /* A long subheading goes under the row, so the buttons stay next to the breadcrumb, in the middle of its row
-     (K-B18). */
+     (K-B21). */
   html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header {
     row-gap: 0;
   }
