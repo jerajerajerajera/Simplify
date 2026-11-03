@@ -42,15 +42,17 @@
             addEventListener('touchstart', (e) => { const t = e.touches[0]; start = !this.open && this.phone() && e.touches.length === 1 && t.clientX <= 24 ? [t.clientX, t.clientY] : null; }, { passive: true });
             addEventListener('touchend', (e) => { const t = e.changedTouches[0]; if (start && t.clientX - start[0] > 70 && Math.abs(t.clientY - start[1]) < t.clientX - start[0]) this.open = true; start = null; }, { passive: true });
         },
+        // The breadcrumb's width, so the page's own buttons on its row (simplify.css) start after it.
+        crumbWidth() { const crumb = this.$root.querySelector('.ps-admin-crumb'); if (crumb) new ResizeObserver(() => document.documentElement.style.setProperty('--ps-crumb-w', crumb.offsetWidth + 'px')).observe(crumb); },
         // The group in the breadcrumb: on a phone back to the menu, on a computer its branch in the tree beside the page.
         group() { if (this.phone()) this.open = true; else if (this.crumb?.key) this.branches[this.crumb.key] = true; },
         all() { return @js(array_column($sections, 'key')).every((key) => this.branches[key]); },
         toggleAll() { const on = !this.all(); for (const key of @js(array_column($sections, 'key'))) this.branches[key] = on; },
      }"
-     x-init="locate(); swipe(); accent(); new ResizeObserver(() => document.documentElement.style.setProperty('--ps-crumb-w', $refs.crumb.offsetWidth + 'px')).observe($refs.crumb)" x-on:livewire:navigated.window="locate()" x-on:simplify:admin-menu.window="open = !open" x-on:simplify:theme.window="dark = $event.detail.dark; accent()" x-on:keydown.escape.window="open = false">
+     x-init="locate(); swipe(); accent(); crumbWidth();" x-on:livewire:navigated.window="locate()" x-on:simplify:admin-menu.window="open = !open" x-on:simplify:theme.window="dark = $event.detail.dark; accent()" x-on:keydown.escape.window="open = false">
     <div class="ps-host-backdrop" x-show="open" x-cloak x-on:click="open = false"></div>
     {{-- Where you are, as the page's title: All servers (computers; on a phone the bottom bar has it) › group › page. --}}
-    <nav class="ps-admin-crumb" x-ref="crumb" aria-label="{{ $u('admin_sections') }}" x-show="crumb && !open" x-cloak>
+    <nav class="ps-admin-crumb" aria-label="{{ $u('admin_sections') }}" x-show="crumb && !open" x-cloak>
         <a class="ps-admin-crumb-home" href="{{ $overviewUrl }}"><svg aria-hidden="true"><use href="#ps-grid"/></svg><span>{{ $u('all_servers') }}</span></a>
         <svg class="ps-admin-crumb-sep ps-admin-crumb-home" aria-hidden="true"><use href="#ps-chevron"/></svg>
         <button type="button" aria-controls="ps-admin-side" :aria-expanded="open" x-on:click.stop="group()" :class="{'is-last': !crumb?.page && !crumb?.sub}" :style="'--ps-tone: ' + (crumb?.color ?? 'currentColor')"><svg aria-hidden="true"><use :href="'#ps-' + (crumb?.icon ?? 'shield')"/></svg><span x-text="crumb?.group"></span></button>

@@ -835,6 +835,7 @@ html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header-heading {
   html.ps-shell-menu:not(.ps-frame) .ps-admin-side > .ps-admin-crumb {
     grid-column: 2;
     grid-row: 2;
+    justify-self: start;
   }
 
   html.ps-shell-menu:not(.ps-frame) .fi-layout > :not([x-persist]) {
@@ -873,6 +874,18 @@ html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header-heading {
   html.ps-shell-menu:not(.ps-frame) .fi-main-ctn:not(:has(.fi-header)) > .fi-main {
     padding-top: 52px !important;
   }
+
+  /* Pelican's header is the first row: no room above it, and a small gap to what follows. */
+  html.ps-shell-menu:not(.ps-frame) .fi-main :is(.fi-page, .fi-page-header-main-ctn) {
+    padding-top: 0 !important;
+    row-gap: 12px !important;
+  }
+}
+
+/* The page keeps its own height, so Pelican's footer comes after it instead of lying over it. */
+html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn > *,
+html.ps-shell:not(.ps-frame) .fi-main-ctn :is(.fi-main, .fi-page, .fi-page-header-main-ctn, .fi-page-main, .fi-page-content) {
+  flex: 0 0 auto !important;
 }
 
 @media (max-width: 600px) {
