@@ -1,5 +1,5 @@
 {{-- Personal appearance preferences, opened from Customize in the account menu. --}}
-<div class="ps-overview-appearance ps-nav-view" x-data="{ adminTop: !!$el.closest('.ps-admin-top') }" x-on:click.outside="appearanceMenu=false" x-on:keydown.escape.stop="appearanceMenu=false; $root.querySelector('.ps-account-button')?.focus()">
+<div class="ps-overview-appearance" x-data="{ adminTop: !!$el.closest('.ps-admin-top') }" x-on:click.outside="appearanceMenu=false" x-on:keydown.escape.stop="appearanceMenu=false; $el.closest('.ps-account')?.querySelector('.ps-account-button')?.focus()">
     <div id="ps-overview-appearance-menu" class="ps-dropdown is-end ps-overview-appearance-menu" x-show="appearanceMenu" x-cloak x-transition.opacity>
         <strong class="ps-dropdown-title">{{ $u('customize') }}</strong>
         <p class="ps-dropdown-hint">{{ $u('only_for_you_on_this_device') }}</p>

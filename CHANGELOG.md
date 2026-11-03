@@ -5,6 +5,10 @@
 - Phones: the overview ends with Pelican's copyright line again, under the servers and above the bottom bar.
 - Host health: opened, everything around the nodes lights up on hover, together with the card and its tab, and a click there folds it shut again. A node keeps its own hover and click.
 - The Admin page and the account pages have the same background as the overview, in light and dark. Going from the overview to Admin and back, for example with Go to the panel at the end of the setup, no longer makes the background lighter or darker.
+- Computers: on an Admin page the page's own buttons, such as Run setup again and Save on Settings › General, sit in the middle of the breadcrumb's row again, with room under the header, instead of at the top of that row.
+- The console page loads without a jump: the empty card that stood above the console for a moment while Pelican's numbers loaded no longer shows, so the console stays where it is.
+- Phones: the window with all notifications closes with a pull down, like the menus: from its top bar, or from the list when it is scrolled to the top. Popups and menus follow your thumb while you drag them, spring back after a short pull, slide away after a longer one, and stay put on a sideways swipe. Closing them never reloads the page.
+- Website embed: the preview of the saved list follows the theme instead of showing a white block in dark mode, and is only as big as the cards it shows. The iframe code for other websites no longer shows a white block on a dark website either.
 
 ## 2.0.0-beta.3
 

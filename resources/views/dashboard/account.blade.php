@@ -31,4 +31,6 @@
         </div>
         <p class="ps-account-foot ps-phone-only">{{ __('simplify::js.dashboard.enhanced_by') }} Simplify · {{ __('simplify::js.dashboard.build', ['version' => \Simplify\Core\Support\Assets::version()]) }}@if (str_contains(\Simplify\Core\Support\Assets::version(), '-'))<span data-ps-env></span>@endif</p>
     </div>
+    {{-- Customize Simplify opens from the account menu, so it hangs under the account button (K-B19). --}}
+    @include('simplify::dashboard.customize-menu')
 </div>

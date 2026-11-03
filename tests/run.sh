@@ -19,13 +19,17 @@ php tests/assets.php
 php tests/lang.php
 node tests/seasons.cjs
 node tests/unsaved.cjs
+node tests/sheet-drag.cjs
 node tests/boot.cjs
 node tests/shell-footer.cjs
+node tests/admin-crumb-row.cjs
 node tests/beta-footer.cjs
 node tests/standalone-viewport.cjs
 node tests/server-stats.cjs
 node tests/overview-filters.cjs
 node tests/card-bars.cjs
+node tests/embed-preview.cjs
+node tests/console-placeholders.cjs
 python3 tests/hub-check.py
 python3 tests/audit/parts.py --self-test
 # What a download of the repository holds (the Hub's zip): every file the plugin runs on, nothing of the tests or docs.

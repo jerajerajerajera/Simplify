@@ -171,7 +171,7 @@
                 </div>
             </template>
         </article>
-        {{-- Opened, a click anywhere around the nodes folds the card shut again; a node, link or button keeps its own click (K-B26). --}}
+        {{-- Opened, a click anywhere around the nodes folds the card shut again; a node, link or button keeps its own click (K-B30). --}}
         <div id="ps-health-details" class="ps-health-drawer" :inert="!healthExpanded" :aria-hidden="!healthExpanded" x-on:click="if (healthExpanded && !$event.target.closest('.ps-node-health, a, button')) openHostHealth()">
             <div>
                 <div class="ps-health-detail-toolbar">{{ $u('expand_a_node_to_view_its') }}</div>

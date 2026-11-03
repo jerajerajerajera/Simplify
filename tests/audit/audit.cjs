@@ -176,7 +176,7 @@ const adminPage = async (overview) => {
     const navAdmin = await pageLook();
     const d2 = same(fullAdmin, navAdmin, keys);
     say('overview-to-admin-look', d2.length === 0, { diff: d2, full: fullAdmin, after: navAdmin, path: new URL(page.url()).pathname });
-    // The overview and the Admin page share one background, so going between them changes no colour (K-B24).
+    // The overview and the Admin page share one background, so going between them changes no colour (K-B28).
     const bg = (look) => look?.body?.split(' | ')[0] || null;
     say('admin-overview-bg', !!bg(fullOverview) && bg(fullOverview) === bg(fullAdmin) && bg(fullAdmin) === bg(navAdmin), { overview: bg(fullOverview), admin: bg(fullAdmin), adminAfterShield: bg(navAdmin) });
     await shieldTo(overview);
@@ -284,7 +284,7 @@ const healthHover = async (where) => {
   else problems.push(`${stand} ${where}-health-hover: ok, card and tab light up together (${onCard.card})`);
 };
 // Opened, everything around the nodes folds the card shut again, so all of it lights up together; a node keeps its own
-// smaller hover and click (K-B26, Jeroen 3-11).
+// smaller hover and click (K-B30, Jeroen 3-11).
 const healthSurround = async () => {
   const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
   if (!(await page.locator('.ps-health-panel >> visible=true').count()) && !(await page.locator('.ps-health-pill >> visible=true').count())) return;
@@ -354,7 +354,22 @@ async function round(theme) {
   // Phones have no panel menu any more (1.5.4): the bell and the account sit in the top bar, the rest in the bottom bar.
   const openNav = async () => {};
   await click('.ps-account-button'); await record('overview-account', 'Accountmenu open');
-  await escape(); await alpine('d.accountMenu=false; d.appearanceMenu=true'); await sleep(600); await record('overview-customize-theme', 'Customize Simplify, thema bovenaan'); await alpine('d.appearanceMenu=false'); await sleep(300);
+  await escape(); await alpine('d.accountMenu=false; d.appearanceMenu=true'); await sleep(600); await record('overview-customize-theme', 'Customize Simplify, thema bovenaan');
+  // K-B19: Customize Simplify opens from the account menu, so its arrow points at the account button and its box ends
+  // where the account menu ends, not at the place Customize had in the top bar before.
+  if (!phone()) {
+    const at = await page.evaluate(() => {
+      const button = [...document.querySelectorAll('.ps-top .ps-account-button')].find((e) => e.getClientRects().length);
+      const menu = document.querySelector('#ps-overview-appearance-menu');
+      const wrap = menu?.parentElement;
+      if (!button || !menu || !menu.getClientRects().length || !wrap) return null;
+      const b = button.getBoundingClientRect(), m = menu.getBoundingClientRect(), w = wrap.getBoundingClientRect();
+      const arrow = getComputedStyle(wrap, '::after');
+      const x = w.right - parseFloat(arrow.insetInlineEnd || arrow.right || '0') - 6;
+      return { arrowX: Math.round(x), button: [Math.round(b.left), Math.round(b.right)], menuRight: Math.round(m.right), arrowShown: arrow.content !== 'none' };
+    }).catch(() => null);
+    problems.push(`${stand} customize-anchor: ${at && at.arrowShown && at.arrowX >= at.button[0] && at.arrowX <= at.button[1] && Math.abs(at.menuRight - at.button[1]) <= 2 ? 'ok' : 'WRONG'} ${JSON.stringify(at)}`);
+  } await alpine('d.appearanceMenu=false'); await sleep(300);
   await openNav();
   await click('[x-ref="notifyButton"]'); await record('overview-bell', 'Bel (aankondigingen) open'); await escape();
   await openNav();
@@ -1168,7 +1183,7 @@ async function fixesFlow() {
     await record('phone-frame-overview', 'Telefoon · overzicht: bel en account bovenin, balk onderin');
     say('phone-frame-overview', top.menuButton === false && top.bell && top.account && Array.isArray(top.servers) && top.servers[0] === 'Servers' && top.servers.includes('Admin') && !top.servers.includes('Customize'), top);
     // Pelican's copyright line is at the end of the overview on a phone too, above the bottom bar once you scrolled
-    // down, with Simplify's credit in it (K-B25, Jeroen 3-11 on iOS: no copyright on the overview).
+    // down, with Simplify's credit in it (K-B29, Jeroen 3-11 on iOS: no copyright on the overview).
     // Measures the text itself: the footer's box runs on under the bar on purpose (its bottom padding).
     await page.evaluate(() => scrollTo(0, document.documentElement.scrollHeight)).catch(() => {}); await sleep(600);
     const foot = await page.evaluate(() => {
