@@ -1155,6 +1155,15 @@ async function fixesFlow() {
     const opened = await adminPhone(); await record('phone-frame-host', 'Telefoon · Admin opent het menu als pagina');
     say('phone-admin-accent', !!opened && !!overviewPlus && opened.plus === overviewPlus, { overviewPlus, admin: opened?.plus });
     say('phone-frame-host', !!opened && opened.tabs[0] === 'Servers' && opened.tabs[opened.tabs.length - 1] === 'Admin' && !opened.tabs.includes('Menu') && opened.menu && opened.leaves > 0 && opened.below && !opened.page && opened.pageScroll <= 1, opened);
+    // With the menu open, the bottom bar and the header keep their taps (K-B18, Jeroen 3-11: every tap showed
+    // Servers › Servers). Admin again keeps the menu, the account button opens the account menu.
+    await page.locator('.ps-admin-side .ps-tabbar button.ps-tab:has(use[href="#ps-shield"]) >> visible=true').first().click().catch(() => {}); await sleep(600);
+    const again = await adminPhone();
+    say('phone-admin-tab-again', !!again && again.menu && !again.page, again);
+    await page.locator('.ps-top .ps-account-button >> visible=true').first().click().catch(() => {}); await sleep(700);
+    const accountOpen = await page.evaluate(() => ({ account: !!document.querySelector('.ps-account.account-open'), menu: [...document.querySelectorAll('.ps-admin-side .ps-host-side')].some((e) => e.getClientRects().length > 0) })).catch(() => null);
+    say('phone-admin-account', !!accountOpen && accountOpen.account, accountOpen);
+    await escape();
     const leaf = page.locator('.ps-admin-side .ps-host-group:has(.ps-host-leaf) .ps-host-leaf:not([aria-current]) >> visible=true').first();
     const leafText = (await leaf.innerText().catch(() => '')).trim();
     await leaf.click().catch(() => {}); await settle(page, 1800);
@@ -1168,6 +1177,11 @@ async function fixesFlow() {
     await page.locator('.ps-admin-crumb button >> visible=true').first().click().catch(() => {}); await sleep(600);
     const back = await adminPhone();
     say('phone-admin-crumb-back', !!back && back.menu && !back.page, back);
+    // Servers in the bottom bar goes to the overview, also with the menu open (not to the admin page under it).
+    await page.locator('.ps-admin-side .ps-tabbar a.ps-tab:has(use[href="#ps-grid"]) >> visible=true').first().click().catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await settle(page, 1500);
+    const toOverview = await page.evaluate(() => ({ url: location.pathname, admin: !!document.querySelector('.ps-admin-side') })).catch(() => null);
+    const home = new URL(overview, base).pathname.replace(/\/$/, '');
+    say('phone-admin-tab-servers', !!toOverview && !toOverview.admin && toOverview.url.replace(/\/$/, '') === home, { ...toOverview, home });
     await escape();
     // Pelican's lists inside Simplify (the Admin page) are short rows: no checkboxes, no column titles and no egg
     // descriptions. The same page in the legacy panel keeps Pelican's own table (K-B5, Jeroen 2-11).

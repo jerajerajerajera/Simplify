@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Phones: with the admin menu open, every tap does what it says again. Admin keeps the menu, Servers opens the overview and the account button opens the account menu; before, each of them showed the first admin page (Servers › Servers). The menu no longer slides along when you drag down on it.
+
 ## 2.0.0-beta.3
 
 - Texts say server or egg where they said game, because not every server is a game: Website embed picks one egg, Subdomains asks for the server address, the install steps and Force stop no longer speak of games, and the in-game chat commands of Announcements are set per egg (as they were already stored). In all 32 languages.
