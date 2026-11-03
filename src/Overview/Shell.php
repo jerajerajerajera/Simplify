@@ -42,6 +42,7 @@ trait Shell
 
         $admin = $user->canAccessPanel(Filament::getPanel('admin'));
         $tree = AdminTree::build();
+        $adminUrl = AdminSide::page($tree, 'health') ?? $tree[0]['pages'][0]['url'] ?? Filament::getPanel('admin')->getUrl();
 
         return [
             'user' => $user->username,
@@ -64,8 +65,9 @@ trait Shell
             'profile_url' => EditProfile::getUrl(panel: 'app'),
             'notifications_url' => Push::enabled() ? Overview::getUrl(panel: 'app').'#notifications' : null,
             'logout_url' => Filament::getPanel('app')->getLogoutUrl(),
-            // The shield opens the Admin page (V52) on Health, its start page, else on the first page of its menu.
-            'admin_url' => $admin ? (AdminSide::page($tree, 'health') ?? $tree[0]['pages'][0]['url'] ?? Filament::getPanel('admin')->getUrl()) : null,
+            // The shield opens the Admin page (V52) on Health, its start page, else on the first page of its menu. It is
+            // Simplify's way in: it ends the legacy panel, which only the account menu opens.
+            'admin_url' => $admin ? (Legacy::on() ? Legacy::url($adminUrl, false) : $adminUrl) : null,
             // The legacy panel: Pelican's own pages, as Pelican draws them (Legacy); everyone has the account pages.
             'legacy_url' => Legacy::url($admin ? Filament::getPanel('admin')->getUrl() : EditProfile::getUrl(panel: 'app'), true),
             'settings_url' => Settings::canAccess() ? Settings::getUrl(panel: 'admin') : null,

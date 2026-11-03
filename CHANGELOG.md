@@ -9,6 +9,7 @@
 - The Admin page and the account pages have the same background as the overview, in light and dark. Going from the overview to Admin and back, for example with Go to the panel at the end of the setup, no longer makes the background lighter or darker.
 - Computers: on an Admin page the page's own buttons, such as Run setup again and Save on Settings › General, sit in the middle of the breadcrumb's row again, with room under the header, instead of at the top of that row.
 - Admin tools open like the rest of an app: from the overview to the Admin page and back (the shield, Admin and Servers in the bottom bar, All servers in the breadcrumb) only the content changes. The header and the bottom bar stay where they are, without a whole page and its placeholders loading in between.
+- The shield always opens Simplify's Admin page, also after the legacy panel was opened from the account menu.
 - Health is the start page of Admin tools and the first item of its menu.
 - Healthy stays in the top bar on the Admin page, on a phone too, and keeps its state there: it no longer turns into a grey "Health", and the buttons next to it no longer move when you switch.
 - The console page loads without a jump: the empty card that stood above the console for a moment while Pelican's numbers loaded no longer shows, so the console stays where it is.
