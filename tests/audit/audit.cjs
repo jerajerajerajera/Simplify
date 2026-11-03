@@ -1014,12 +1014,12 @@ async function fixesFlow() {
     await page.locator('.ps-tabbar a.ps-tab:has(use[href="#ps-shield"]) >> visible=true').first().click().catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await settle(page, 1800);
     const opened = await adminPhone(); await record('phone-frame-host', 'Telefoon · Admin opent het menu als pagina');
     say('phone-admin-accent', !!opened && !!overviewPlus && opened.plus === overviewPlus, { overviewPlus, admin: opened?.plus });
-    say('phone-frame-host', !!opened && opened.tabs[0] === 'Servers' && opened.tabs[opened.tabs.length - 1] === 'Admin' && !opened.tabs.includes('Menu') && opened.menu && opened.leaves > 0 && opened.below && !opened.page && opened.pageScroll <= 1 && !/#menu/.test(page.url()), opened);
+    say('phone-frame-host', !!opened && opened.tabs[0] === 'Servers' && opened.tabs[opened.tabs.length - 1] === 'Admin' && !opened.tabs.includes('Menu') && opened.menu && opened.leaves > 0 && opened.below && !opened.page && opened.pageScroll <= 1, opened);
     const leaf = page.locator('.ps-admin-side .ps-host-group:has(.ps-host-leaf) .ps-host-leaf >> visible=true').first();
     const leafText = (await leaf.innerText().catch(() => '')).trim();
     await leaf.click().catch(() => {}); await settle(page, 1800);
     const shownPage = await adminPhone(); await record('phone-admin-crumb', 'Telefoon · Admin-pagina met kruimelpad als titel');
-    say('phone-admin-crumb', !!shownPage && !shownPage.menu && shownPage.page && !!shownPage.crumb && shownPage.crumb.endsWith(leafText) && !shownPage.heading && !shownPage.cardBox, { ...shownPage, leafText });
+    say('phone-admin-crumb', !!leafText && !!shownPage && !shownPage.menu && shownPage.page && !!shownPage.crumb && shownPage.crumb.endsWith(leafText) && !shownPage.heading && !shownPage.cardBox, { ...shownPage, leafText });
     await page.evaluate(() => { const at = (x) => ({ identifier: 1, target: document.body, clientX: x, clientY: 400 }); const fire = (type, x) => document.dispatchEvent(new TouchEvent(type, { bubbles: true, touches: type === 'touchend' ? [] : [new Touch(at(x))], changedTouches: [new Touch(at(x))] })); fire('touchstart', 6); fire('touchend', 220); }).catch(() => {}); await sleep(700);
     const swiped = await adminPhone(); await record('phone-admin-swipe', 'Telefoon · swipe vanaf links: terug naar het menu');
     say('phone-admin-swipe', !!swiped && swiped.menu && !swiped.page, swiped);

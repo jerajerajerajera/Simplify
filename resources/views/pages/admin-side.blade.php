@@ -29,7 +29,8 @@
             const exact = length >= 1000 || (best[2] && at.replace(/\/$/, '') === new URL(best[2], location.origin).pathname.replace(/\/$/, ''));
             this.crumb = length < 0 ? (title ? { group: title, icon: 'shield', color: 'currentColor', page: '', sub: '' } : null)
                 : { group: best[3], page: best[4], icon: best[5], color: best[6], sub: exact || title === best[4] || title === best[3] ? '' : title };
-            this.open = false;
+            // Admin in the bottom bar comes with #menu: the menu as a page (phones). Livewire also sends navigated on the first load.
+            this.open = location.hash === '#menu' && this.phone();
         },
         phone() { return matchMedia('(max-width: 600px)').matches; },
         // The panel's accent, as the header (AdminTop) has it, for New in the bottom bar and the menu.
@@ -43,7 +44,7 @@
         all() { return @js(array_column($sections, 'key')).every((key) => this.branches[key]); },
         toggleAll() { const on = !this.all(); for (const key of @js(array_column($sections, 'key'))) this.branches[key] = on; },
      }"
-     x-init="locate(); swipe(); accent(); if (location.hash === '#menu') { history.replaceState(history.state, '', location.pathname + location.search); open = phone(); }" x-on:livewire:navigated.window="locate()" x-on:simplify:admin-menu.window="open = !open" x-on:simplify:theme.window="dark = $event.detail.dark; accent()" x-on:keydown.escape.window="open = false">
+     x-init="locate(); swipe(); accent()" x-on:livewire:navigated.window="locate()" x-on:simplify:admin-menu.window="open = !open" x-on:simplify:theme.window="dark = $event.detail.dark; accent()" x-on:keydown.escape.window="open = false">
     <div class="ps-host-backdrop" x-show="open" x-cloak x-on:click="open = false"></div>
     {{-- Phones: where you are, as the page's title; the group brings the menu back. --}}
     <nav class="ps-admin-crumb" aria-label="{{ $u('admin_sections') }}" x-show="crumb && !open" x-cloak>
