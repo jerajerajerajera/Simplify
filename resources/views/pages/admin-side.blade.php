@@ -1,8 +1,9 @@
 @php($u = fn (string $key, array $values = []) => __('simplify::dashboard.ui.'.$key, $values))
-{{-- The Admin page's menu (AdminSide, V52): the admin pages as a tree, or the servers per node, with health at the
-     bottom. It keeps its place while its links load the page next to it (wire:navigate). On a phone (Jeroen 3-11) the
-     bottom bar's Admin opens it as a page of its own; a link loads its page, whose breadcrumb (group › page) is the
-     title, and the group in it, Admin again or a swipe from the left edge bring the menu back. --}}
+{{-- The Admin page's menu (AdminSide, V52): the admin pages as a tree. It keeps its place while its links load the
+     page next to it (wire:navigate), and its breadcrumb (All servers › group › page) is the page's title (Jeroen 3-11).
+     On a computer the tree sits left of the page, both straight on the background as on the overview. On a phone the
+     bottom bar's Admin opens it as a page of its own with Health at the bottom; the group in the breadcrumb, Admin
+     again or a swipe from the left edge bring it back. --}}
 <div class="ps server-active ps-admin-side" :class="{'menu-open': open, 'dark': dark}" x-data="{
         open: false,
         dark: window.SimplifyTheme?.dark() ?? document.documentElement.classList.contains('dark'),
@@ -27,8 +28,8 @@
             // The breadcrumb: the group, its page, and on a page under it (an edit page) Pelican's own title.
             const title = document.querySelector('.fi-main .fi-header-heading')?.textContent.trim() ?? '';
             const exact = length >= 1000 || (best[2] && at.replace(/\/$/, '') === new URL(best[2], location.origin).pathname.replace(/\/$/, ''));
-            this.crumb = length < 0 ? (title ? { group: title, icon: 'shield', color: 'currentColor', page: '', sub: '' } : null)
-                : { group: best[3], page: best[4], icon: best[5], color: best[6], sub: exact || title === best[4] || title === best[3] ? '' : title };
+            this.crumb = length < 0 ? (title ? { key: '', group: title, icon: 'shield', color: 'currentColor', page: '', sub: '' } : null)
+                : { key: best[0], group: best[3], page: best[4], icon: best[5], color: best[6], sub: exact || title === best[4] || title === best[3] ? '' : title };
             // Admin in the bottom bar comes with #menu: the menu as a page (phones). Livewire also sends navigated on the first load.
             this.open = location.hash === '#menu' && this.phone();
         },
@@ -41,76 +42,51 @@
             addEventListener('touchstart', (e) => { const t = e.touches[0]; start = !this.open && this.phone() && e.touches.length === 1 && t.clientX <= 24 ? [t.clientX, t.clientY] : null; }, { passive: true });
             addEventListener('touchend', (e) => { const t = e.changedTouches[0]; if (start && t.clientX - start[0] > 70 && Math.abs(t.clientY - start[1]) < t.clientX - start[0]) this.open = true; start = null; }, { passive: true });
         },
+        // The breadcrumb's width, so the page's own buttons on its row (simplify.css) start after it.
+        crumbWidth() { const crumb = this.$root.querySelector('.ps-admin-crumb'); if (crumb) new ResizeObserver(() => document.documentElement.style.setProperty('--ps-crumb-w', crumb.offsetWidth + 'px')).observe(crumb); },
+        // The group in the breadcrumb: on a phone back to the menu, on a computer its branch in the tree beside the page.
+        group() { if (this.phone()) this.open = true; else if (this.crumb?.key) this.branches[this.crumb.key] = true; },
         all() { return @js(array_column($sections, 'key')).every((key) => this.branches[key]); },
         toggleAll() { const on = !this.all(); for (const key of @js(array_column($sections, 'key'))) this.branches[key] = on; },
      }"
-     x-init="locate(); swipe(); accent()" x-on:livewire:navigated.window="locate()" x-on:simplify:admin-menu.window="open = !open" x-on:simplify:theme.window="dark = $event.detail.dark; accent()" x-on:keydown.escape.window="open = false">
+     x-init="locate(); swipe(); accent(); crumbWidth()" x-on:livewire:navigated.window="locate()" x-on:simplify:admin-menu.window="open = !open" x-on:simplify:theme.window="dark = $event.detail.dark; accent()" x-on:keydown.escape.window="open = false">
     <div class="ps-host-backdrop" x-show="open" x-cloak x-on:click="open = false"></div>
-    {{-- Phones: where you are, as the page's title; the group brings the menu back. --}}
+    {{-- Where you are, as the page's title: All servers (computers; on a phone the bottom bar has it) › group › page. --}}
     <nav class="ps-admin-crumb" aria-label="{{ $u('admin_sections') }}" x-show="crumb && !open" x-cloak>
-        <button type="button" aria-controls="ps-admin-side" :aria-expanded="open" x-on:click.stop="open = true" :class="{'is-last': !crumb?.page && !crumb?.sub}" :style="'--ps-tone: ' + (crumb?.color ?? 'currentColor')"><svg aria-hidden="true"><use :href="'#ps-' + (crumb?.icon ?? 'shield')"/></svg><span x-text="crumb?.group"></span></button>
+        <a class="ps-admin-crumb-home" href="{{ $overviewUrl }}"><svg aria-hidden="true"><use href="#ps-grid"/></svg><span>{{ $u('all_servers') }}</span></a>
+        <svg class="ps-admin-crumb-sep ps-admin-crumb-home" aria-hidden="true"><use href="#ps-chevron"/></svg>
+        <button type="button" aria-controls="ps-admin-side" :aria-expanded="open" x-on:click.stop="group()" :class="{'is-last': !crumb?.page && !crumb?.sub}" :style="'--ps-tone: ' + (crumb?.color ?? 'currentColor')"><svg aria-hidden="true"><use :href="'#ps-' + (crumb?.icon ?? 'shield')"/></svg><span x-text="crumb?.group"></span></button>
         <template x-for="part in [crumb?.page, crumb?.sub].filter(Boolean)" :key="part">
             <span class="ps-admin-crumb-part"><svg class="ps-admin-crumb-sep" aria-hidden="true"><use href="#ps-chevron"/></svg><strong x-text="part"></strong></span>
         </template>
     </nav>
     <aside id="ps-admin-side" class="ps-host-side" aria-label="{{ $u('admin_sections') }}">
-        <div class="ps-host-tabs" role="group" aria-label="{{ $u('menu') }}">
-            <button type="button" aria-pressed="{{ $tab === 'admin' ? 'true' : 'false' }}" wire:click="$set('tab', 'admin')"><svg aria-hidden="true"><use href="#ps-shield"/></svg>{{ $u('admin') }}</button>
-            <button type="button" aria-pressed="{{ $tab === 'servers' ? 'true' : 'false' }}" wire:click="$set('tab', 'servers')"><svg aria-hidden="true"><use href="#ps-host"/></svg>{{ $u('servers') }}<small>{{ $serverCount }}</small></button>
-            <button type="button" class="ps-btn is-icon is-subtle ps-host-menu-close" x-on:click="open = false" aria-label="{{ $u('close_menu') }}"><svg aria-hidden="true"><use href="#ps-close"/></svg></button>
-        </div>
         <div class="ps-host-side-scroll">
-            @if ($tab === 'admin')
-                {{-- A section with one page opens it; the others (and Other plugins, so a plugin shows its own name) fold open and shut. --}}
-                <nav class="ps-host-tree" aria-label="{{ $u('admin_sections') }}">
-                    <button type="button" class="ps-host-expand" x-on:click="toggleAll()" x-text="all() ? @js($u('collapse_all')) : @js($u('expand_all'))">{{ $u('expand_all') }}</button>
-                    @foreach ($sections as $section)
-                        <div class="ps-host-group" wire:key="section-{{ $section['key'] }}" :class="{'is-open': branches[@js($section['key'])]}" style="--ps-tone: {{ $section['color'] }}">
-                            @if (count($section['pages']) === 1 && $section['key'] !== 'extensions')
-                                <a class="ps-host-group-head" href="{{ $section['pages'][0]['url'] }}" wire:navigate :aria-current="here === @js($section['key'].'/'.($section['pages'][0]['key'] ?? '')) ? 'page' : null">
-                                    <svg aria-hidden="true"><use href="#ps-{{ $section['icon'] }}"/></svg><span>{{ $section['label'] }}</span>
-                                </a>
-                            @else
-                                <button type="button" class="ps-host-group-head" :aria-expanded="!!branches[@js($section['key'])]" x-on:click="branches[@js($section['key'])] = !branches[@js($section['key'])]">
-                                    <svg aria-hidden="true"><use href="#ps-{{ $section['icon'] }}"/></svg><span>{{ $section['label'] }}</span>
-                                    <svg class="ps-host-group-chevron" aria-hidden="true"><use href="#ps-chevron"/></svg>
-                                </button>
-                                <div class="ps-host-branch" x-show="branches[@js($section['key'])]" x-cloak>
-                                    @foreach ($section['pages'] as $page)
-                                        <a class="ps-host-leaf" href="{{ $page['url'] }}" wire:navigate :aria-current="here === @js($section['key'].'/'.($page['key'] ?? '')) ? 'page' : null">
-                                            <svg aria-hidden="true"><use href="#ps-{{ $page['icon'] ?? 'plugins' }}"/></svg><span>{{ $page['label'] }}</span>
-                                        </a>
-                                    @endforeach
-                                </div>
-                            @endif
-                        </div>
-                    @endforeach
-                </nav>
-            @else
-                {{-- Servers per node; a server opens its own page. --}}
-                <div class="ps-host-server-list" wire:poll.visible.15s>
-                    @forelse ($nodes as $node)
-                        <div class="ps-host-node" wire:key="node-{{ $loop->index }}">
-                            <span class="ps-label"><svg aria-hidden="true"><use href="#ps-host"/></svg><span>{{ $node['name'] }}</span><small>{{ trans_choice('simplify::dashboard.ui.server_count', count($node['servers']), ['count' => count($node['servers'])]) }}</small></span>
-                            @foreach ($node['servers'] as $server)
-                                <a class="ps-host-server" href="{{ $server['url'] }}" wire:key="server-{{ $server['uuid'] }}">
-                                    <i class="ps-host-dot ps-status {{ $server['status'] }}"></i>
-                                    <strong>{{ $server['name'] }}</strong>
-                                    <small>{{ $server['line'] }}</small>
-                                    <span class="ps-host-players"><svg aria-hidden="true"><use href="#ps-players"/></svg><span>{{ $server['players'] }}</span></span>
-                                </a>
-                            @endforeach
-                        </div>
-                    @empty
-                        <p class="ps-empty">{{ $u('no_servers_yet') }}</p>
-                    @endforelse
-                </div>
-            @endif
-            <div wire:loading.delay wire:target="tab">
-                @for ($i = 0; $i < 6; $i++)
-                    <div class="ps-host-placeholder"></div>
-                @endfor
-            </div>
+            {{-- A section with one page opens it; the others (and Other plugins, so a plugin shows its own name) fold open and shut. --}}
+            <nav class="ps-host-tree" aria-label="{{ $u('admin_sections') }}">
+                <button type="button" class="ps-host-expand" x-on:click="toggleAll()" x-text="all() ? @js($u('collapse_all')) : @js($u('expand_all'))">{{ $u('expand_all') }}</button>
+                @foreach ($sections as $section)
+                    <div class="ps-host-group" wire:key="section-{{ $section['key'] }}" :class="{'is-open': branches[@js($section['key'])]}" style="--ps-tone: {{ $section['color'] }}">
+                        @if (count($section['pages']) === 1 && $section['key'] !== 'extensions')
+                            <a class="ps-host-group-head" href="{{ $section['pages'][0]['url'] }}" wire:navigate :aria-current="here === @js($section['key'].'/'.($section['pages'][0]['key'] ?? '')) ? 'page' : null">
+                                <svg aria-hidden="true"><use href="#ps-{{ $section['icon'] }}"/></svg><span>{{ $section['label'] }}</span>
+                            </a>
+                        @else
+                            <button type="button" class="ps-host-group-head" :aria-expanded="!!branches[@js($section['key'])]" x-on:click="branches[@js($section['key'])] = !branches[@js($section['key'])]">
+                                <svg aria-hidden="true"><use href="#ps-{{ $section['icon'] }}"/></svg><span>{{ $section['label'] }}</span>
+                                <svg class="ps-host-group-chevron" aria-hidden="true"><use href="#ps-chevron"/></svg>
+                            </button>
+                            <div class="ps-host-branch" x-show="branches[@js($section['key'])]" x-cloak>
+                                @foreach ($section['pages'] as $page)
+                                    <a class="ps-host-leaf" href="{{ $page['url'] }}" wire:navigate :aria-current="here === @js($section['key'].'/'.($page['key'] ?? '')) ? 'page' : null">
+                                        <svg aria-hidden="true"><use href="#ps-{{ $page['icon'] ?? 'plugins' }}"/></svg><span>{{ $page['label'] }}</span>
+                                    </a>
+                                @endforeach
+                            </div>
+                        @endif
+                    </div>
+                @endforeach
+            </nav>
         </div>
         {{-- Health at the bottom: state, CPU and RAM (root admins), and one mark per health check of Pelican. --}}
         @if ($healthUrl !== null)

@@ -8,6 +8,7 @@ use Filament\Facades\Filament;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use Simplify\Core\Filament\App\Pages\Overview;
+use Simplify\Core\Health\HostHealth;
 use Simplify\Core\Overview\Shell;
 use Simplify\Core\Support\Legacy;
 
@@ -27,8 +28,18 @@ final class AdminTop extends Component
     /** @return array<string, mixed> */
     public function initial(): array
     {
-        // On the Admin page the shield shows where you are.
-        return [...$this->shell($this->user()), 'admin_here' => Filament::getCurrentPanel()?->getId() === 'admin'];
+        // The same header as on the overview (Jeroen 3-11): Healthy and Create server stay, and Healthy opens the Health
+        // page. On the Admin page the shield shows where you are and brings you back to the overview.
+        $user = $this->user();
+        $shell = $this->shell($user);
+
+        return [
+            ...$shell,
+            'admin_here' => Filament::getCurrentPanel()?->getId() === 'admin',
+            'admin_page' => true,
+            'host_health' => $user->isRootAdmin() ? HostHealth::cached() : [],
+            'health_url' => $user->isAdmin() ? AdminSide::page($shell['admin_tree'], 'health') : null,
+        ];
     }
 
     /**

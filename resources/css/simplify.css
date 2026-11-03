@@ -694,8 +694,9 @@ html.ps-frame .fi-main-ctn {
 }
 
 /* The Admin page and the account pages (V52, AdminTop::here(), head.blade.php sets html.ps-shell): Pelican's page in
-   Simplify's frame, without iframes. Simplify's header on top, on admin pages the Admin menu on the left
-   (html.ps-shell-menu, AdminSide) and the page in a card beside it. Only the card scrolls; the page never does. */
+   Simplify's frame, without iframes. Simplify's header on top, as wide as on the overview; on admin pages the Admin
+   menu on the left (html.ps-shell-menu, AdminSide) and the page beside it, its breadcrumb as the title. Menu and page
+   sit straight on the background, as the overview's servers do (Jeroen 3-11). Only the page scrolls, never the window. */
 html.ps-shell:not(.ps-frame) :is(.fi-topbar, .fi-sidebar, .fi-sidebar-close-overlay, .fi-layout-sidebar-toggle-btn-ctn, .fi-breadcrumbs) {
   display: none !important;
 }
@@ -714,7 +715,7 @@ html.ps-shell:not(.ps-frame) body .fi-layout {
   gap: 0 16px;
   box-sizing: border-box;
   width: 100%;
-  max-width: 1680px;
+  max-width: calc(1400px + 72px);
   height: 100dvh;
   min-height: 0 !important;
   margin: 0 auto;
@@ -730,7 +731,7 @@ html.ps-shell-menu:not(.ps-frame) body .fi-layout {
    positioned itself. */
 html.ps-shell:not(.ps-frame) .fi-layout > [x-persist="simplify-admin-top"] {
   position: relative;
-  z-index: 3;
+  z-index: 30;
   grid-column: 1 / -1;
   grid-row: 1;
   min-width: 0;
@@ -762,10 +763,6 @@ html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn {
   padding: 0 !important;
   overflow-y: auto;
   overscroll-behavior: contain;
-  border: 1px solid var(--s-line);
-  border-radius: var(--s-radius);
-  background: var(--s-surface);
-  box-shadow: var(--s-shadow);
   scrollbar-width: thin;
 }
 
@@ -776,7 +773,7 @@ html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn > .fi-main {
   height: auto !important;
   min-height: 0 !important;
   max-width: none !important;
-  padding: 18px 22px 24px !important;
+  padding: 0 0 24px !important;
 }
 
 /* The footer is a thin line at the end, on a phone too (not the overview's account sheet: there is none here). */
@@ -785,7 +782,7 @@ html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn > :is(footer, [data-ps-fo
   flex: none;
 }
 
-/* Inside the card a page's own sections and tables need no second card (no box in a box). */
+/* A page's own sections and tables have no card either (no box in a box). */
 html.ps-shell:not(.ps-frame) .fi-main-ctn :is(.fi-section:not(.fi-section .fi-section), .fi-ta-ctn:not(.fi-section .fi-ta-ctn), :is(.fi-sc-wizard, .fi-fo-wizard):not(.fi-section *), .fi-sc-tabs.fi-contained:not(.fi-section *)) {
   border: 0 !important;
   border-radius: 0 !important;
@@ -794,7 +791,7 @@ html.ps-shell:not(.ps-frame) .fi-main-ctn :is(.fi-section:not(.fi-section .fi-se
   outline: 0 !important;
 }
 
-/* Simplify's own admin pages sit straight in the card as well. */
+/* Simplify's own admin pages sit straight on the background as well. */
 html.ps-shell:not(.ps-frame) .fi-main-ctn :is(.s-people > .s-card, .s-health, .s-done) {
   border: 0 !important;
   border-radius: 0 !important;
@@ -804,6 +801,104 @@ html.ps-shell:not(.ps-frame) .fi-main-ctn :is(.s-people > .s-card, .s-health, .s
 
 html.ps-shell:not(.ps-frame) .fi-main-ctn .fi-ta-ctn:not(.fi-section .fi-ta-ctn) :is(.fi-ta-header-ctn, .fi-ta-header, .fi-ta-header-toolbar, .fi-ta-content-ctn, .fi-pagination) {
   background: transparent !important;
+}
+
+/* The breadcrumb is the title: Pelican's own heading goes. */
+html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header-heading {
+  display: none !important;
+}
+
+/* Computers: the Admin menu's parts share the layout's grid (display: contents). The tree is on the left; the
+   breadcrumb lies over the page's top row, a band that stays while the page scrolls, with the page's own buttons
+   on the right of it (P-8: buttons in the title bar). */
+@media (min-width: 601px) {
+  html.ps-shell:not(.ps-frame) .ps.ps-admin-top .ps-main {
+    padding-inline: 0;
+  }
+
+  html.ps-shell-menu:not(.ps-frame) body .fi-layout {
+    grid-template-rows: auto auto minmax(0, 1fr);
+    column-gap: 24px;
+  }
+
+  html.ps-shell-menu:not(.ps-frame) .fi-layout > [x-persist="simplify-admin-side"],
+  html.ps-shell-menu:not(.ps-frame) .fi-layout .ps.ps-admin-side {
+    display: contents;
+  }
+
+  html.ps-shell-menu:not(.ps-frame) .ps-admin-side > .ps-host-side {
+    grid-column: 1;
+    grid-row: 2 / 4;
+    min-height: 0;
+  }
+
+  html.ps-shell-menu:not(.ps-frame) .ps-admin-side > .ps-admin-crumb {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: start;
+  }
+
+  html.ps-shell-menu:not(.ps-frame) .fi-layout > :not([x-persist]) {
+    grid-row: 2 / 4;
+  }
+
+  html.ps-shell-menu:not(.ps-frame) .fi-layout > .fi-main-ctn::before {
+    content: "";
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: block;
+    flex: none;
+    height: 52px;
+    margin-bottom: -52px;
+    background: var(--s-bg);
+    pointer-events: none;
+  }
+
+  html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header {
+    position: sticky;
+    top: 0;
+    z-index: 11;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    box-sizing: border-box;
+    min-height: 52px;
+    padding-inline-start: calc(var(--ps-crumb-w, 0px) + 16px);
+    background: var(--s-bg);
+    pointer-events: none;
+  }
+
+  /* The menu beside the page has the settings' pages, so their row of tabs (phone) is not shown twice. */
+  html.ps-shell-menu:not(.ps-frame) .s-settings-nav {
+    display: none;
+  }
+
+  /* A long subheading goes under the row, so the buttons stay next to the breadcrumb. */
+  html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header > div:first-child {
+    order: 2;
+    flex-basis: 100%;
+  }
+
+  html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header > * {
+    pointer-events: auto;
+  }
+
+  /* The breadcrumb's row stays free above the page; Pelican's header (when shown) moves up into it. */
+  html.ps-shell-menu:not(.ps-frame) .fi-layout > .fi-main-ctn > .fi-main {
+    padding-top: 52px !important;
+  }
+
+  html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header {
+    margin-top: -52px !important;
+  }
+
+  /* Pelican's header is the first row: no room above it, and a small gap to what follows. */
+  html.ps-shell-menu:not(.ps-frame) .fi-main :is(.fi-page, .fi-page-header-main-ctn) {
+    padding-top: 0 !important;
+    row-gap: 12px !important;
+  }
 }
 
 @media (max-width: 600px) {
@@ -832,23 +927,11 @@ html.ps-shell:not(.ps-frame) .fi-main-ctn .fi-ta-ctn:not(.fi-section .fi-ta-ctn)
     display: none !important;
   }
 
-  /* On a phone the page sits straight on the background, as the overview does: no card around it. */
-  html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn {
-    border: 0;
-    border-radius: 0;
-    background: transparent;
-    box-shadow: none;
-  }
-
   html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn > .fi-main {
     padding: 8px 0 18px !important;
   }
 
-  /* The breadcrumb is the title: Pelican's own heading goes, and its header when nothing else is in it. */
-  html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header-heading {
-    display: none !important;
-  }
-
+  /* Pelican's header goes when nothing but the heading is in it. */
   html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header:not(:has(.fi-header-subheading, :is(.fi-ac, .fi-header-actions-ctn) :is(button, a))) {
     display: none !important;
   }
@@ -2325,3 +2408,7 @@ html.ps-frame .s-done {
 @keyframes s-unsaved-in { from { opacity: 0; transform: translate(-50%, 8px); } to { opacity: 1; transform: translate(-50%, 0); } }
 @media (max-width: 600px) { .s-unsaved { left: 12px; right: 12px; bottom: calc(76px + env(safe-area-inset-bottom, 0px)); transform: none; animation: none; } .s-unsaved-text { flex: 1; } }
 @media (prefers-reduced-motion: reduce) { .s-unsaved { animation: none; } }
+
+/* Connections (account menu): the add-ons' rows under each other, in the page's one card (no box in a box). */
+.s-connections { display: grid; gap: 0; }
+.s-connections > * + * { border-top: 1px solid var(--s-line); }

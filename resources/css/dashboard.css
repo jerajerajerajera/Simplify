@@ -125,16 +125,18 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-overview-toolbar { display: flex; align-items: flex-start; gap: 8px 16px; margin: 0 0 12px; }
 .ps-overview-filters { display: flex; flex: 1 1 auto; flex-wrap: wrap; align-items: center; gap: 8px 16px; min-width: 0; }
 /* The Filter (V52): one chip naming what is chosen, a menu with Show, Game, Node and Group. */
-.ps-filter { position: relative; flex: 0 1 auto; }
+.ps-filter { position: relative; flex: 0 1 auto; gap: 8px; }
 .ps-filter-button { gap: 7px; max-width: min(420px, 100%); }
 .ps-filter-button > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .ps-filter-button svg { flex: none; width: 14px; height: 14px; }
 .ps-filter-button.is-on { border-color: var(--ps-accent); color: var(--ps-ink); }
 .ps-filter-button .ps-filter-chevron { transform: rotate(90deg); }
-.ps-filter-menu { inset-inline-start: 0; top: calc(100% + 8px); width: min(300px, calc(100vw - 24px)); max-height: min(66.667dvh, calc(100dvh - 160px), var(--ps-room, 100dvh)); overflow-y: auto; }
+.ps-filter-menu { inset-inline-start: var(--ps-filter-x, 0); top: calc(100% + 8px); width: min(300px, calc(100vw - 24px)); max-height: min(66.667dvh, calc(100dvh - 160px), var(--ps-room, 100dvh)); overflow-y: auto; }
 .ps-filter-section + .ps-filter-section { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--ps-line); }
 .ps-filter-section > .ps-label { display: block; margin: 2px 10px 4px; }
 .ps-filter-section > .ps-node-search { width: calc(100% - 8px); margin: 0 4px 4px; }
+.ps-filter-count { margin-inline-start: auto; color: var(--ps-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.ps-filter-count + .ps-filter-check { margin-inline-start: 0; }
 .ps-filter-check { flex: none; width: 16px; height: 16px; margin-inline-start: auto; color: var(--ps-accent); visibility: hidden; }
 .ps-menu-item[aria-checked="true"] { background: var(--ps-raised); font-weight: 650; }
 .ps-menu-item[aria-checked="true"] .ps-filter-check { visibility: visible; }
@@ -217,14 +219,18 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-server-entry.has-card-motd .ps-card-usage { margin-top: 0; }
 .ps-card-usage.single-metric { grid-template-columns: minmax(0, 1fr); }
 .ps-card-mini-metric { min-width: 0; padding: 6px; border: 1px solid var(--ps-line); border-radius: 8px; background: var(--ps-raised); }
-.ps-card-usage-label { display: flex; align-items: baseline; justify-content: space-between; gap: 5px; color: var(--ps-muted); font-size: 11px; }
-.ps-card-usage-label strong { color: var(--ps-accent); font-size: 11px; font-weight: 600; white-space: nowrap; }
-.ps-card-metric-name { display: flex; align-items: center; gap: 4px; }
+.ps-card-usage-label { display: flex; align-items: center; justify-content: space-between; gap: 5px; color: var(--ps-muted); font-size: 11px; }
+.ps-card-usage-label strong { color: var(--ps-ink); font-size: inherit; line-height: 1; font-weight: 600; white-space: nowrap; }
+/* Bars from 0 to what the server may use, as on the server page; only the bars take the colour of the load (W4). */
+.ps-card-metric-name { display: flex; align-items: center; gap: 4px; line-height: 1; }
 .ps-card-metric-name svg { width: 12px; height: 12px; }
-.ps-card-graph { display: block; width: 100%; height: 46px; margin-top: 5px; overflow: visible; stroke: var(--ps-accent); stroke-width: 1.5; opacity: .7; transition: height var(--ps-slow); }
-.ps-card-graph path { fill: none; vector-effect: non-scaling-stroke; }
-.ps-card-graph circle { fill: var(--ps-accent); stroke: none; }
-.ps-card-graph .ps-card-graph-axis { stroke: var(--ps-line); stroke-width: 1; opacity: .6; }
+.ps-card-graph { display: block; width: 100%; height: 46px; margin-top: 5px; overflow: hidden; color: var(--ps-muted); fill: currentColor; transition: height var(--ps-slow); }
+.ps-card-graph path { opacity: .35; }
+.ps-card-graph path.is-now { opacity: 1; }
+.ps-card-graph.is-ok { color: var(--ps-ok); }
+.ps-card-graph.is-warn { color: var(--ps-warn); }
+.ps-card-graph.is-hot { color: var(--ps-danger); }
+.ps-card-graph .ps-card-graph-axis { fill: none; stroke: var(--ps-line); stroke-width: 1; opacity: 1; vector-effect: non-scaling-stroke; }
 .ps-card-bottom { display: flex; flex: none; align-self: stretch; align-items: center; justify-content: space-between; margin-top: 6px; padding-top: 11px; border-top: 1px solid var(--ps-line); color: var(--ps-accent); font-size: 15px; font-weight: 650; }
 .ps-server-grid.no-metrics .ps-card-bottom { margin-top: auto; }
 .ps-card-bottom svg { flex: none; width: 17px; height: 17px; }
@@ -757,14 +763,8 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 /* A page without buttons in the title bar (Pelican's create form): the close button still goes to the right end. */
 .ps-host-head:not(:has(.ps-frame-tools)) > .ps-host-close { margin-inline-start: auto; }
 .ps-host-side { display: flex; flex-direction: column; min-width: 0; min-height: 0; border-inline-end: 1px solid var(--ps-line); }
-/* The menu tabs and the page header form one row: same height, same bottom line. */
+/* The page header's height. */
 .ps-host { --ps-host-row: 48px; }
-.ps-host-tabs { display: flex; flex: none; align-items: stretch; box-sizing: border-box; height: var(--ps-host-row); border-bottom: 1px solid var(--ps-line); }
-.ps-host-tabs > button:not(.ps-btn) { display: inline-flex; flex: 1; align-items: center; justify-content: center; gap: 7px; padding: 2px 10px 0; border: 0; border-bottom: 2px solid transparent; background: none; color: var(--ps-muted); font: 600 13px/1 var(--ps-font); cursor: pointer; }
-.ps-host-tabs > button:not(.ps-btn):hover { color: var(--ps-ink); }
-.ps-host-tabs > button[aria-pressed="true"] { border-bottom-color: var(--ps-accent); color: var(--ps-ink); }
-.ps-host-tabs > button svg { width: 16px; height: 16px; }
-.ps-host-tabs small { color: var(--ps-muted); font-size: 12px; font-weight: 600; }
 .ps-host-side-scroll { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 8px; }
 
 /* The admin tree: a section, with its pages hung underneath on ↳ lines. */
@@ -790,21 +790,8 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 .ps-host-leaf::before { content: ""; position: absolute; top: -3px; inset-inline-start: -16px; width: 11px; height: 17px; border-bottom: 1.5px solid var(--ps-line-strong); border-inline-start: 1.5px solid var(--ps-line-strong); border-end-start-radius: 7px; }
 .ps-host-leaf:not(:last-child)::after { content: ""; position: absolute; top: 12px; bottom: -4px; inset-inline-start: -16px; border-inline-start: 1.5px solid var(--ps-line-strong); }
 
-/* Servers per node: one row each, status dot, name in the server colour, version and players. */
-.ps-host-node + .ps-host-node { margin-top: 12px; }
-.ps-host-node > .ps-label { display: flex; align-items: center; gap: 6px; margin: 4px 6px 6px; }
-.ps-host-node > .ps-label svg { width: 13px; height: 13px; }
-.ps-host-node > .ps-label small { margin-inline-start: auto; font-weight: 500; text-transform: none; letter-spacing: 0; }
-.ps-host-server { display: grid; grid-template-columns: 8px minmax(0, 1fr) auto; align-items: center; gap: 2px 10px; padding: 7px 8px; border-radius: var(--ps-radius-sm); color: var(--ps-ink); text-decoration: none; }
-.ps-host-server:hover { background: var(--ps-raised); }
-.ps-host-server[aria-current="page"] { background: color-mix(in srgb, var(--ps-accent) 13%, transparent); }
-.ps-host-server[aria-disabled="true"] { opacity: .55; cursor: default; }
-.ps-host-server strong { min-width: 0; overflow: hidden; color: var(--ps-accent); font-size: 13px; text-overflow: ellipsis; white-space: nowrap; }
-.ps-host-server small { grid-column: 2; min-width: 0; overflow: hidden; color: var(--ps-muted); font-size: 11.5px; text-overflow: ellipsis; white-space: nowrap; }
+/* A status dot, as in a server's title bar. */
 .ps-host-dot { --ps-tone: var(--ps-muted); flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--ps-tone); }
-.ps-host-server > .ps-host-dot { grid-row: 1 / 3; }
-.ps-host-players { display: inline-flex; grid-row: 1 / 3; grid-column: 3; align-items: center; gap: 4px; color: var(--ps-ink); font-size: 12px; font-weight: 600; }
-.ps-host-players svg { width: 13px; height: 13px; }
 
 /* Health strip at the bottom of the menu. */
 .ps-host-health-bar { flex: none; display: grid; gap: 8px; padding: 10px 14px 12px; border-top: 1px solid var(--ps-line); }
@@ -865,7 +852,6 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   .ps-host-leaf { min-height: 40px; }
   .ps-host-leaf::before { top: 0; height: 21px; }
   .ps-host-frame.is-server { padding: 0; }
-  .ps-host-server { min-height: 48px; }
   .ps-host-head { padding: 0; }
   /* The menu button already names the open page: the title bar stays only as a slim row for the page's buttons. */
   .ps-host-head.is-page:not(:has(.ps-frame-tools)) { display: none !important; }
@@ -1016,7 +1002,6 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 /* Every header menu points at the button that opened it, like the incoming notification does. The arrow
    sits on the wrapper because the menu itself scrolls (and would clip it). */
 :is(.ps-notify, .ps-overview-appearance):has(> .ps-dropdown.is-end:not([style*="display: none"]))::after { content: ""; position: absolute; top: calc(100% + 2px); inset-inline-end: calc(var(--ps-h) / 2 - 6px); z-index: calc(var(--ps-z-dropdown) + 1); width: 12px; height: 12px; border-top: 1px solid var(--ps-line); border-left: 1px solid var(--ps-line); background: var(--ps-surface); transform: rotate(45deg); pointer-events: none; }
-.ps-theme-option[aria-pressed="true"] { border-color: var(--ps-accent); color: var(--ps-accent); }
 
 /* Resource presets on the Performance page: the same cards as the creator's resource step. */
 
@@ -1074,8 +1059,10 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   .ps .ps-server-grid.is-list .ps-card-badges { position: static; grid-column: 2; grid-row: 2; flex-direction: row; justify-content: flex-start; gap: 6px; transform: none; }
   .ps .ps-card-badges > .ps-badge:nth-of-type(n+3), .ps .ps-card-extras { display: none !important; }
   .ps .ps-server-grid.is-list .ps-card-usage { grid-column: 2; grid-row: 3; display: flex; justify-self: start; gap: 14px; width: auto; max-width: 100%; margin: 2px 0 0; }
-  .ps .ps-server-grid.is-list .ps-card-mini-metric { padding: 0; border: 0; background: none; }
-  .ps .ps-server-grid.is-list .ps-card-graph { display: none; }
+  .ps .ps-server-grid.is-list .ps-card-mini-metric { display: flex; align-items: center; gap: 6px; padding: 0; border: 0; background: none; }
+  /* A small bar chart behind each number; the icon names it, so the words CPU and RAM make room. */
+  .ps .ps-server-grid.is-list .ps-card-graph { flex: none; width: 30px; height: 14px; margin: 0; }
+  .ps .ps-server-grid.is-list .ps-card-metric-name > span { display: none; }
   .ps .ps-server-grid.is-list .ps-card-usage-label { gap: 6px; font-size: 12px; }
   .ps .ps-server-grid.is-list .ps-card-usage-label svg { width: 14px; height: 14px; }
   .ps .ps-server-grid.is-list .ps-card-footer { display: none; }
@@ -1254,34 +1241,44 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
    server menu in a card on the left. The top is display: contents, so its parts share one grid with Pelican's page. */
 /* The top stays while the menu changes the page (@persist): its wrapper must not become one grid cell. */
 .ps.ps-server-top, [x-persist^="simplify-server-"] { display: contents; }
-/* The Admin page and the account pages (V52): Simplify's header over Pelican's page; the Admin menu (.ps-admin-side)
-   is a card on the left of it. On a phone (Jeroen 3-11) the menu is a page of its own that the bottom bar's Admin
-   opens, and a page's breadcrumb (.ps-admin-crumb: group › page) is its title. */
+/* The Admin page and the account pages (V52): Simplify's header over Pelican's page, as on the overview (Jeroen 3-11).
+   The Admin menu (.ps-admin-side) is a tree left of the page and a page's breadcrumb (.ps-admin-crumb: All servers ›
+   group › page) is its title, both straight on the background. On a phone the menu is a page of its own that the
+   bottom bar's Admin opens, and the breadcrumb starts at the group. */
 .ps.ps-admin-top.server-active .ps-main { padding-bottom: 0; }
+.ps.ps-admin-top .ps-top { max-width: none; }
 .ps.ps-admin-side { display: flex; flex: 1; min-width: 0; min-height: 0; overflow: visible; }
-.ps-admin-side .ps-host-side { flex: 1; overflow: hidden; border: 1px solid var(--ps-line); border-radius: var(--ps-radius); background: var(--ps-surface); box-shadow: var(--ps-shadow); }
-.ps-admin-side .ps-host-tabs { --ps-host-row: 48px; }
-.ps-admin-side .ps-host-backdrop, .ps-admin-side .ps-host-menu-close, .ps-admin-crumb { display: none; }
-.ps-admin-side .ps-host-placeholder { height: 30px; margin: 4px 2px; border-radius: var(--ps-radius-sm); background: var(--ps-raised); }
+.ps-admin-side .ps-host-side { flex: 1; overflow: hidden; border: 0; background: transparent; }
+.ps-admin-side .ps-host-side-scroll { padding: 0 8px 8px 0; scrollbar-width: thin; }
+.ps-admin-side .ps-host-backdrop, .ps-admin-side .ps-host-health-bar { display: none; }
+.ps-admin-crumb { position: relative; z-index: 12; display: flex; align-items: center; gap: 2px; align-self: start; min-width: 0; max-width: 60%; height: 52px; color: var(--ps-ink); font: 700 16px/1.25 var(--ps-font); }
+.ps-admin-crumb :is(a, button) { display: inline-flex; flex: none; align-items: center; gap: 6px; max-width: 45%; min-height: 34px; padding: 0 6px; border: 0; border-radius: var(--ps-radius-sm); background: none; color: var(--ps-muted); font: 500 15px/1.2 var(--ps-font); text-decoration: none; cursor: pointer; }
+.ps-admin-crumb a.ps-admin-crumb-home { margin-inline-start: -6px; }
+.ps-admin-crumb button.is-last { max-width: 100%; color: var(--ps-ink); font-weight: 700; font-size: 16px; }
+.ps-admin-crumb :is(a, button):hover { background: var(--ps-raised); color: var(--ps-ink); }
+.ps-admin-crumb :is(a, button, .ps-admin-crumb-part) > :is(span, strong) { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ps-admin-crumb-part { display: inline-flex; align-items: center; gap: 2px; min-width: 0; }
+.ps-admin-crumb-part strong { padding-inline-start: 4px; }
+.ps-admin-crumb svg { flex: none; width: 17px; height: 17px; color: var(--ps-tone, currentColor); fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.ps-admin-crumb .ps-admin-crumb-sep { width: 14px; height: 14px; color: var(--ps-muted); stroke-width: 2; }
+.ps-admin-top .ps-nav-admin[aria-current="page"] { background: var(--ps-raised); color: var(--ps-accent); }
 @media (max-width: 600px) {
   .ps.ps-admin-side { flex-direction: column; }
-  .ps-admin-side .ps-host-side { position: static; display: none; max-height: none; padding-bottom: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; transform: none; visibility: visible; transition: none; }
+  .ps-admin-side .ps-host-side { position: static; display: none; max-height: none; padding-bottom: 0; border-radius: 0; box-shadow: none; transform: none; visibility: visible; transition: none; }
   .ps-admin-side.menu-open .ps-host-side { display: flex; }
-  .ps-admin-side .ps-host-tabs { display: none; }
   .ps-admin-side .ps-host-side-scroll { padding: 4px 0 8px; }
+  .ps-admin-side .ps-host-health-bar { display: grid; }
   .ps-admin-side .ps-host-group-head { min-height: 44px; font-size: 15px; }
   .ps-admin-side .ps-host-leaf { min-height: 40px; font-size: 14px; }
   .ps-admin-side .ps-host-leaf::before { top: 0; height: 21px; }
-  .ps-admin-crumb { display: flex; align-items: center; gap: 2px; min-width: 0; padding: 6px 0 2px; color: var(--ps-ink); font: 700 17px/1.25 var(--ps-font); }
-  .ps-admin-crumb button { display: inline-flex; flex: none; align-items: center; gap: 7px; max-width: 55%; min-height: 36px; padding: 0 6px 0 2px; border: 0; border-radius: var(--ps-radius-sm); background: none; color: var(--ps-muted); font: 500 16px/1.2 var(--ps-font); cursor: pointer; }
-  .ps-admin-crumb button.is-last { max-width: 100%; color: var(--ps-ink); font-weight: 700; font-size: 17px; }
-  .ps-admin-crumb button:hover { background: var(--ps-raised); }
-  .ps-admin-crumb :is(button, .ps-admin-crumb-part) > :is(span, strong) { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .ps-admin-crumb-part { display: inline-flex; align-items: center; gap: 2px; min-width: 0; }
-  .ps-admin-crumb svg { flex: none; width: 18px; height: 18px; color: var(--ps-tone, currentColor); fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-  .ps-admin-crumb .ps-admin-crumb-sep { width: 14px; height: 14px; color: var(--ps-muted); stroke-width: 2; }
+  .ps-admin-crumb { align-self: stretch; max-width: none; height: auto; padding: 6px 0 2px; font-size: 17px; }
+  /* The phone's header stays as it was (the bottom bar has New; Health is at the bottom of the menu). */
+  .ps-admin-top .ps-top-overview { display: none !important; }
+  .ps-admin-crumb .ps-admin-crumb-home { display: none; }
+  .ps-admin-crumb button { max-width: 55%; min-height: 36px; padding: 0 6px 0 2px; font-size: 16px; }
+  .ps-admin-crumb button.is-last { font-size: 17px; }
+  .ps-admin-crumb svg { width: 18px; height: 18px; }
 }
-.ps.ps-admin-top .ps-top { max-width: none; }
 body:has(.ps-server-top) .fi-main-ctn {
   display: grid !important;
   grid-template-columns: 220px minmax(0, 1fr);
@@ -1486,6 +1483,7 @@ body:has(.ps-install:not([style*="none"], [x-cloak])) .fi-main .fi-page .fi-call
    bar for where you go (the overview's tab bar, a server's sections, host mode's page button); every menu is a
    sheet from the bottom with rows for a thumb (sheet.js closes it on a tap beside it or a swipe down). */
 @media (min-width: 601px) { .ps-phone-only { display: none !important; } }
+@media (max-width: 600px) { .ps-desktop-only { display: none !important; } }
 @media (max-width: 600px) {
   .ps .ps-mobile-menu, .ps .ps-mobile-label, .ps .ps-title-pelican, .ps .ps-nav-heading { display: none !important; }
   .ps .ps-brand { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -1543,3 +1541,7 @@ body:has(.ps-install:not([style*="none"], [x-cloak])) .fi-main .fi-page .fi-call
   .ps .ps-host-menu-chevron { transform: rotate(-90deg); }
   .ps .ps-host-main { height: calc(100dvh - 166px - env(safe-area-inset-bottom, 0px)); }
 }
+
+/* Customize Simplify: the theme first, on every page; a line under it when the page's own choices follow. */
+.ps-customize-row.is-first { padding-top: 0; border-top: 0; }
+.ps-customize-theme:has(~ .ps-customize) { padding-bottom: 10px; border-bottom: 1px solid var(--ps-line); }

@@ -26,10 +26,11 @@
     @endif
     <nav class="ps-top-actions" aria-label="{{ $u('panel_navigation') }}" :class="{'nav-open': navMenu}"
          x-on:click.outside="navMenu=false; accountMenu=false" x-on:keydown.escape.stop="navMenu=false; accountMenu=false">
-        {{-- Health in the top bar: the button opens the details below it; the create buttons sit next to it. --}}
-        <div class="ps-top-overview" x-show="!server && !$el.closest('.ps-admin-top') && healthPlace()==='top-bar'" x-cloak>
-            <button type="button" class="ps-btn ps-health-pill" :class="boot.host_health?.state || 'unavailable'" x-on:click="healthPopover=!healthPopover; healthExpanded=false; healthOpenNodes=[]; placeHealthPopover()" :aria-expanded="healthPopover" aria-controls="ps-health-panel" :aria-label="Simplify.fill(@js($u('host_health_label')), { state: boot.host_health?.label || @js($u('unavailable')) })">
-                <svg aria-hidden="true"><use href="#ps-heart"/></svg><span x-text="boot.host_health?.label || @js($u('unavailable'))"></span>
+        {{-- Health in the top bar: the button opens the details below it (on the Admin page and the account pages the
+             Health page); the create buttons sit next to it. The same on the overview as on the Admin page (Jeroen 3-11). --}}
+        <div class="ps-top-overview" x-show="!server && (healthPlace()==='top-bar' || boot.admin_page)" x-cloak>
+            <button type="button" class="ps-btn ps-health-pill" x-show="healthPlace() || boot.health_url" :class="boot.host_health?.state || 'unavailable'" x-on:click="if (boot.health_url) return boot.admin_here ? Livewire.navigate(boot.health_url) : (location.href = boot.health_url); healthPopover=!healthPopover; healthExpanded=false; healthOpenNodes=[]; placeHealthPopover()" :aria-expanded="healthPopover" aria-controls="ps-health-panel" :aria-label="Simplify.fill(@js($u('host_health_label')), { state: boot.host_health?.label || @js($u('unavailable')) })">
+                <svg aria-hidden="true"><use href="#ps-heart"/></svg><span x-text="boot.host_health?.label || (boot.health_url ? @js($u('health')) : @js($u('unavailable')))"></span>
             </button>
             @include('simplify::dashboard.create-buttons')
         </div>
@@ -113,7 +114,7 @@
             {{-- Phones list these buttons as a menu: first what everyone uses, then the admin buttons under their own heading. --}}
             <span class="ps-label ps-nav-heading" x-show="boot.admin_url">{{ $u('panel') }}</span>
             {{-- The Admin page (V52): Pelican's admin pages inside Simplify, with the Admin menu beside them (AdminSide). --}}
-            <a class="ps-btn is-icon is-subtle ps-nav-admin" x-show="boot.admin_url" x-cloak :href="boot.admin_url" data-tip="{{ $u('admin') }}" aria-label="{{ $u('admin') }}" :aria-current="boot.admin_here ? 'page' : null">
+            <a class="ps-btn is-icon is-subtle ps-nav-admin" x-show="boot.admin_url" x-cloak :href="boot.admin_here ? boot.list_url : boot.admin_url" data-tip="{{ $u('admin') }}" aria-label="{{ $u('admin') }}" :aria-current="boot.admin_here ? 'page' : null">
                 <svg aria-hidden="true"><use href="#ps-shield"/></svg><span class="ps-mobile-label">{{ $u('admin') }}</span>
             </a>
             @include('simplify::dashboard.account')

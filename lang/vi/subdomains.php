@@ -6,11 +6,11 @@ return [
     'saved' => 'Đã lưu cài đặt',
     'settings' => [
         'addresses' => 'Địa chỉ',
-        'addresses_help' => 'Máy chủ tên "oak" sẽ nhận oak.<domain>: một CNAME tới địa chỉ trò chơi và, với Minecraft, một bản ghi SRV kèm cổng, để người chơi Java có thể bỏ qua cổng. Cả hai đều là DNS only (không proxy), vì proxy của Cloudflare không chuyển lưu lượng trò chơi.',
+        'addresses_help' => 'Máy chủ tên "oak" sẽ nhận oak.<domain>: một CNAME tới địa chỉ máy chủ và, với Minecraft, một bản ghi SRV kèm cổng, để người chơi Java có thể bỏ qua cổng. Cả hai đều là DNS only (không proxy), vì proxy của Cloudflare không chuyển lưu lượng trò chơi.',
         'domain' => 'Tên miền',
         'domain_help' => 'Vùng Cloudflare nơi các tên miền phụ được tạo.',
-        'target' => 'Địa chỉ trò chơi',
-        'target_help' => 'Một bản ghi DNS-only có sẵn trỏ tới IP công khai nơi các cổng trò chơi của bạn đến.',
+        'target' => 'Địa chỉ máy chủ',
+        'target_help' => 'Một bản ghi DNS-only có sẵn trỏ tới IP công khai nơi các cổng máy chủ của bạn đến.',
         'host_name' => 'Nhập tên host như example.com.',
         'port_min' => 'Cổng chuyển tiếp đầu tiên',
         'port_max' => 'Cổng chuyển tiếp cuối cùng',
@@ -42,7 +42,7 @@ return [
     ],
     'missing' => [
         'domain' => 'tên miền',
-        'target' => 'địa chỉ trò chơi',
+        'target' => 'địa chỉ máy chủ',
         'token' => 'Token Cloudflare',
         'zone' => 'ID vùng (nhấn Kiểm tra)',
     ],

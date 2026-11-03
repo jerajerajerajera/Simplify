@@ -6,11 +6,11 @@ return [
     'saved' => 'Setările au fost salvate',
     'settings' => [
         'addresses' => 'Adrese',
-        'addresses_help' => 'Un server numit „oak” primește oak.<domain>: un CNAME către adresa jocului și, pentru Minecraft, o înregistrare SRV cu portul său, astfel încât jucătorii Java pot omite portul. Ambele sunt doar DNS (fără proxy), deoarece proxy-ul Cloudflare nu transportă trafic de joc.',
+        'addresses_help' => 'Un server numit „oak” primește oak.<domain>: un CNAME către adresa serverului și, pentru Minecraft, o înregistrare SRV cu portul său, astfel încât jucătorii Java pot omite portul. Ambele sunt doar DNS (fără proxy), deoarece proxy-ul Cloudflare nu transportă trafic de joc.',
         'domain' => 'Domeniu',
         'domain_help' => 'Zona Cloudflare în care sunt create subdomeniile.',
-        'target' => 'Adresa jocului',
-        'target_help' => 'O înregistrare existentă doar DNS care indică IP-ul public la care ajung porturile de joc.',
+        'target' => 'Adresa serverului',
+        'target_help' => 'O înregistrare existentă doar DNS care indică IP-ul public la care ajung porturile serverelor.',
         'host_name' => 'Introduceți un nume de gazdă, de exemplu example.com.',
         'port_min' => 'Primul port redirecționat',
         'port_max' => 'Ultimul port redirecționat',
@@ -42,7 +42,7 @@ return [
     ],
     'missing' => [
         'domain' => 'domeniu',
-        'target' => 'adresa jocului',
+        'target' => 'adresa serverului',
         'token' => 'Token Cloudflare',
         'zone' => 'ID-ul zonei (apăsați Testați)',
     ],

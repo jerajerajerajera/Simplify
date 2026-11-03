@@ -6,11 +6,11 @@ return [
     'saved' => 'Indstillinger gemt',
     'settings' => [
         'addresses' => 'Adresser',
-        'addresses_help' => 'En server med navnet "oak" får oak.<domain>: en CNAME til spiladressen og, for Minecraft, en SRV-post med dens port, så Java-spillere kan udelade porten. Begge er kun DNS (ikke proxied), fordi Cloudflares proxy ikke fører spiltrafik.',
+        'addresses_help' => 'En server med navnet "oak" får oak.<domain>: en CNAME til serveradressen og, for Minecraft, en SRV-post med dens port, så Java-spillere kan udelade porten. Begge er kun DNS (ikke proxied), fordi Cloudflares proxy ikke fører spiltrafik.',
         'domain' => 'Domæne',
         'domain_help' => 'Den Cloudflare-zone, underdomænerne oprettes i.',
-        'target' => 'Spiladresse',
-        'target_help' => 'En eksisterende DNS-only-post, der peger på den offentlige IP, hvor dine spilporte ankommer.',
+        'target' => 'Serveradresse',
+        'target_help' => 'En eksisterende DNS-only-post, der peger på den offentlige IP, hvor dine serverporte ankommer.',
         'host_name' => 'Indtast et værtsnavn som example.com.',
         'port_min' => 'Første videresendte port',
         'port_max' => 'Sidste videresendte port',
@@ -42,7 +42,7 @@ return [
     ],
     'missing' => [
         'domain' => 'domæne',
-        'target' => 'spiladresse',
+        'target' => 'serveradresse',
         'token' => 'Cloudflare-token',
         'zone' => 'zone-ID (tryk på Test)',
     ],

@@ -6,11 +6,11 @@ return [
     'saved' => 'Pengaturan disimpan',
     'settings' => [
         'addresses' => 'Alamat',
-        'addresses_help' => 'Server bernama "oak" mendapat oak.<domain>: CNAME ke alamat game dan, untuk Minecraft, catatan SRV dengan port-nya, sehingga pemain Java dapat mengabaikan port. Keduanya hanya DNS (tidak di-proxy), karena proxy Cloudflare tidak membawa lalu lintas game.',
+        'addresses_help' => 'Server bernama "oak" mendapat oak.<domain>: CNAME ke alamat server dan, untuk Minecraft, catatan SRV dengan port-nya, sehingga pemain Java dapat mengabaikan port. Keduanya hanya DNS (tidak di-proxy), karena proxy Cloudflare tidak membawa lalu lintas game.',
         'domain' => 'Domain',
         'domain_help' => 'Zona Cloudflare tempat subdomain dibuat.',
-        'target' => 'Alamat game',
-        'target_help' => 'Catatan khusus DNS yang sudah ada dan mengarah ke IP publik tempat port game Anda tiba.',
+        'target' => 'Alamat server',
+        'target_help' => 'Catatan khusus DNS yang sudah ada dan mengarah ke IP publik tempat port server Anda tiba.',
         'host_name' => 'Masukkan nama host seperti example.com.',
         'port_min' => 'Port pertama yang diteruskan',
         'port_max' => 'Port terakhir yang diteruskan',
@@ -42,7 +42,7 @@ return [
     ],
     'missing' => [
         'domain' => 'domain',
-        'target' => 'alamat game',
+        'target' => 'alamat server',
         'token' => 'Token Cloudflare',
         'zone' => 'ID zona (tekan Uji)',
     ],

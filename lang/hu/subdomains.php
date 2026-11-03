@@ -6,11 +6,11 @@ return [
     'saved' => 'Beállítások mentve',
     'settings' => [
         'addresses' => 'Címek',
-        'addresses_help' => 'Egy „oak” nevű szerver megkapja az oak.<domain> címet: egy CNAME-et a játékcímre, Minecraft esetén pedig egy SRV-rekordot a portjával, így a Java-játékosok elhagyhatják a portot. Mindkettő csak DNS (nem proxyzott), mert a Cloudflare proxyja nem továbbít játékforgalmat.',
+        'addresses_help' => 'Egy „oak” nevű szerver megkapja az oak.<domain> címet: egy CNAME-et a szervercímre, Minecraft esetén pedig egy SRV-rekordot a portjával, így a Java-játékosok elhagyhatják a portot. Mindkettő csak DNS (nem proxyzott), mert a Cloudflare proxyja nem továbbít játékforgalmat.',
         'domain' => 'Domain',
         'domain_help' => 'A Cloudflare-zóna, amelyben az aldomainek létrejönnek.',
-        'target' => 'Játékcím',
-        'target_help' => 'Egy meglévő, csak DNS-es rekord, amely arra a nyilvános IP-re mutat, ahová a játékportjaid érkeznek.',
+        'target' => 'Szervercím',
+        'target_help' => 'Egy meglévő, csak DNS-es rekord, amely arra a nyilvános IP-re mutat, ahová a szerverportjaid érkeznek.',
         'host_name' => 'Adj meg egy hosztnevet, például example.com.',
         'port_min' => 'Első továbbított port',
         'port_max' => 'Utolsó továbbított port',
@@ -42,7 +42,7 @@ return [
     ],
     'missing' => [
         'domain' => 'domain',
-        'target' => 'játékcím',
+        'target' => 'szervercím',
         'token' => 'Cloudflare-token',
         'zone' => 'zónaazonosító (nyomd meg a Teszt gombot)',
     ],

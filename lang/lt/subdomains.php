@@ -6,11 +6,11 @@ return [
     'saved' => 'Nustatymai išsaugoti',
     'settings' => [
         'addresses' => 'Adresai',
-        'addresses_help' => 'Serveris, pavadintas "oak", gauna oak.<domain>: CNAME į žaidimo adresą, o Minecraft – ir SRV įrašą su prievadu, kad Java žaidėjai galėtų prievadą praleisti. Abu įrašai yra tik DNS (be proxy), nes Cloudflare proxy neperduoda žaidimų srauto.',
+        'addresses_help' => 'Serveris, pavadintas "oak", gauna oak.<domain>: CNAME į serverio adresą, o Minecraft – ir SRV įrašą su prievadu, kad Java žaidėjai galėtų prievadą praleisti. Abu įrašai yra tik DNS (be proxy), nes Cloudflare proxy neperduoda žaidimų srauto.',
         'domain' => 'Domenas',
         'domain_help' => 'Cloudflare zona, kurioje kuriami subdomenai.',
-        'target' => 'Žaidimo adresas',
-        'target_help' => 'Esamas tik DNS įrašas, rodantis į viešą IP, kur atkeliauja jūsų žaidimų prievadai.',
+        'target' => 'Serverio adresas',
+        'target_help' => 'Esamas tik DNS įrašas, rodantis į viešą IP, kur atkeliauja jūsų serverių prievadai.',
         'host_name' => 'Įveskite hosto vardą, pavyzdžiui, example.com.',
         'port_min' => 'Pirmasis nukreiptas prievadas',
         'port_max' => 'Paskutinis nukreiptas prievadas',
@@ -42,7 +42,7 @@ return [
     ],
     'missing' => [
         'domain' => 'domenas',
-        'target' => 'žaidimo adresas',
+        'target' => 'serverio adresas',
         'token' => 'Cloudflare žetonas',
         'zone' => 'zonos ID (spauskite Tikrinti)',
     ],

@@ -6,11 +6,11 @@ return [
     'saved' => 'Asetukset tallennettu',
     'settings' => [
         'addresses' => 'Osoitteet',
-        'addresses_help' => 'Palvelin nimeltä "oak" saa osoitteen oak.<domain>: CNAME-tietueen peliosoitteeseen ja Minecraftille SRV-tietueen porttinsa kanssa, joten Java-pelaajat voivat jättää portin pois. Molemmat ovat pelkkiä DNS-tietueita (ei välitystä), koska Cloudflaren välityspalvelin ei välitä peliliikennettä.',
+        'addresses_help' => 'Palvelin nimeltä "oak" saa osoitteen oak.<domain>: CNAME-tietueen palvelimen osoitteeseen ja Minecraftille SRV-tietueen porttinsa kanssa, joten Java-pelaajat voivat jättää portin pois. Molemmat ovat pelkkiä DNS-tietueita (ei välitystä), koska Cloudflaren välityspalvelin ei välitä peliliikennettä.',
         'domain' => 'Verkkotunnus',
         'domain_help' => 'Cloudflare-vyöhyke, johon aliverkkotunnukset luodaan.',
-        'target' => 'Peliosoite',
-        'target_help' => 'Olemassa oleva pelkkä DNS-tietue, joka osoittaa julkiseen IP-osoitteeseen, johon peliporttisi saapuvat.',
+        'target' => 'Palvelimen osoite',
+        'target_help' => 'Olemassa oleva pelkkä DNS-tietue, joka osoittaa julkiseen IP-osoitteeseen, johon palvelinporttisi saapuvat.',
         'host_name' => 'Anna isäntänimi, kuten example.com.',
         'port_min' => 'Ensimmäinen välitetty portti',
         'port_max' => 'Viimeinen välitetty portti',
@@ -42,7 +42,7 @@ return [
     ],
     'missing' => [
         'domain' => 'verkkotunnus',
-        'target' => 'peliosoite',
+        'target' => 'palvelimen osoite',
         'token' => 'Cloudflare-tunnus',
         'zone' => 'vyöhykkeen tunniste (paina Testaa)',
     ],

@@ -12,6 +12,6 @@
     @include('simplify::dashboard.halloween')
     @include('simplify::dashboard.seasons')
     <div class="ps-main">
-        @include('simplify::dashboard.header', ['notes' => 'host'])
+        @include('simplify::dashboard.header')
     </div>
 </div>

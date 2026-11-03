@@ -6,11 +6,11 @@ return [
     'saved' => 'Settings saved',
     'settings' => [
         'addresses' => 'Addresses',
-        'addresses_help' => 'A server named "oak" gets oak.<domain>: a CNAME to the game address and, for Minecraft, an SRV record with its port, so Java players can leave the port out. Both are DNS only (not proxied), because Cloudflare\'s proxy does not carry game traffic.',
+        'addresses_help' => 'A server named "oak" gets oak.<domain>: a CNAME to the server address and, for Minecraft, an SRV record with its port, so Java players can leave the port out. Both are DNS only (not proxied), because Cloudflare\'s proxy does not carry game traffic.',
         'domain' => 'Domain',
         'domain_help' => 'The Cloudflare zone the subdomains are created in.',
-        'target' => 'Game address',
-        'target_help' => 'An existing DNS-only record that points to the public IP where your game ports arrive.',
+        'target' => 'Server address',
+        'target_help' => 'An existing DNS-only record that points to the public IP where your server ports arrive.',
         'host_name' => 'Enter a host name such as example.com.',
         'port_min' => 'First forwarded port',
         'port_max' => 'Last forwarded port',
@@ -42,7 +42,7 @@ return [
     ],
     'missing' => [
         'domain' => 'domain',
-        'target' => 'game address',
+        'target' => 'server address',
         'token' => 'Cloudflare token',
         'zone' => 'zone ID (press Test)',
     ],

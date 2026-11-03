@@ -133,8 +133,9 @@ final class Listing
             'background' => Artwork::background($server, $look['banner'] ?? null),
             'background_id' => $look['banner_id'] ?? 'auto',
             'software' => $server->egg?->name,
+            'egg_id' => (int) $server->egg_id,
             'game' => $minecraft ? 'minecraft' : 'other',
-            'game_label' => $minecraft ? 'Minecraft' : ($server->egg?->name ?: __('simplify::dashboard.page.other_game')),
+            'game_label' => $minecraft ? 'Minecraft' : ($server->egg?->name ?: __('simplify::dashboard.page.other_egg')),
             'status' => $status,
             // Suspended by the hoster: its owner gets the add-ons' main links (Simplify-Hosting: Pay invoice); admins see the card as before.
             'suspended' => $status === 'suspended' && ! $user->isAdmin() ? self::primaryLinks($server) : [],

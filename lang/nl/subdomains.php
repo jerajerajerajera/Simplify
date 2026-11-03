@@ -6,11 +6,11 @@ return [
     'saved' => 'Instellingen opgeslagen',
     'settings' => [
         'addresses' => 'Adressen',
-        'addresses_help' => 'Een server met de naam "oak" krijgt oak.<domain>: een CNAME naar het gameadres en, voor Minecraft, een SRV-record met de poort, zodat Java-spelers de poort kunnen weglaten. Beide zijn alleen DNS (niet geproxied), omdat de proxy van Cloudflare geen gameverkeer doorgeeft.',
+        'addresses_help' => 'Een server met de naam "oak" krijgt oak.<domain>: een CNAME naar het serveradres en, voor Minecraft, een SRV-record met de poort, zodat Java-spelers de poort kunnen weglaten. Beide zijn alleen DNS (niet geproxied), omdat de proxy van Cloudflare geen gameverkeer doorgeeft.',
         'domain' => 'Domein',
         'domain_help' => 'De Cloudflare-zone waarin de subdomeinen worden gemaakt.',
-        'target' => 'Gameadres',
-        'target_help' => 'Een bestaand record (alleen DNS) dat wijst naar het publieke IP waar je gamepoorten binnenkomen.',
+        'target' => 'Serveradres',
+        'target_help' => 'Een bestaand record (alleen DNS) dat wijst naar het publieke IP waar je serverpoorten binnenkomen.',
         'host_name' => 'Vul een hostnaam in, zoals example.com.',
         'port_min' => 'Eerste doorgestuurde poort',
         'port_max' => 'Laatste doorgestuurde poort',
@@ -42,7 +42,7 @@ return [
     ],
     'missing' => [
         'domain' => 'domein',
-        'target' => 'gameadres',
+        'target' => 'serveradres',
         'token' => 'Cloudflare-token',
         'zone' => 'zone-ID (druk op Testen)',
     ],
