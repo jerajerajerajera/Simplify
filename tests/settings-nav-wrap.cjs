@@ -1,5 +1,5 @@
 // Simplify's settings outside Simplify's frame (the legacy panel) in a real browser, without a panel: with many add-ons
-// the row of tabs breaks onto more lines on a computer instead of scrolling sideways (K-B32, Jeroen 3-11); a phone keeps
+// the row of tabs breaks onto more lines on a computer instead of scrolling sideways (K-B33, Jeroen 3-11); a phone keeps
 // one row that scrolls. Needs Chrome or Chromium (GitHub's runners have Chrome).
 const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
@@ -43,7 +43,7 @@ for (const [stand, size] of [['d1440', '1440,900'], ['laag1100', '1100,700'], ['
   if (!r) { check(`${stand}: measured`, false, null); continue; }
   check(`${stand}: the page never scrolls sideways`, r.pageWide <= 0, r);
   if (stand === 'phone390') check(`${stand}: the tabs stay one row that scrolls`, r.rows === 1 && r.sideways > 0, r);
-  else check(`${stand}: every tab is on the screen, on more lines instead of a sideways scroll (K-B32)`, r.sideways <= 1 && r.rows > 1, r);
+  else check(`${stand}: every tab is on the screen, on more lines instead of a sideways scroll (K-B33)`, r.sideways <= 1 && r.rows > 1, r);
 }
 fs.rmSync(dir, { recursive: true, force: true });
 if (failures) { console.error(`FAIL ${failures} settings row check(s)`); process.exit(1); }
