@@ -29,10 +29,10 @@ for f in sys.argv[1:]:
                 if k == 'cardoff' and tag: continue
                 rows.append((s['stand'], s['id'], s.get('title', ''), k + tag, p['text'], s.get('shot', '')))
             box = (m.get('info') or {}).get('box')
-            # A server that installs, or waits for its EULA, has a taller card above the box (the install steps, the
+            # A pull gesture (pull-*) is measured while the finger is still down. A server that installs, or waits for its EULA, has a taller card above the box (the install steps, the
             # EULA box): its own height, not a page that jumps. Create server is a popup over whichever page was open. An
             # add-on's account page opens in the host frame, so it is measured with the host pages.
-            if box and not tag and not s['id'].startswith(('server-install', 'first-eula', 'create-')):
+            if box and not tag and not s['id'].startswith(('server-install', 'first-eula', 'create-', 'pull-')):
                 top, rest = box.split('..'); bottom = rest.split(' of ')[0]
                 # The Admin page's card (host-*, and Pelican's admin pages admin-*) is one kind; a server opened from its
                 # Servers list (host-server) is a server page.
