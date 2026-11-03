@@ -103,6 +103,34 @@ const adminPage = async (overview) => {
   if (!(await shieldTo(overview))) return say('admin-page', false, { note: 'no shield link on the overview' });
   const st = await adminState(); await record('admin-page', 'Admin-pagina (schild)');
   say('admin-page', !!st && st.shell && st.side && st.header && !st.frames && !st.pelicanBars && st.pageScroll <= 1 && (phone() || /auto|scroll/.test(st.card || '')), st);
+  // A click in the Admin menu changes only the page: the same page looks the same after Servers → Eggs → Servers
+  // (wire:navigate) as after a full load: card, menu, title and footer (Jeroen 3-11, video).
+  if (!phone()) {
+    const look = () => page.evaluate(() => {
+      const css = (sel, props) => { const e = [...document.querySelectorAll(sel)].find((x) => x.getClientRects().length); if (!e) return null; const s = getComputedStyle(e); return props.map((p) => s.getPropertyValue(p)).join(' | '); };
+      return {
+        card: css('.fi-layout > .fi-main-ctn', ['background-color', 'border-top-color', 'padding-top']),
+        main: css('.fi-layout > .fi-main-ctn > .fi-main', ['padding-top', 'padding-left']),
+        leaf: css('.ps-admin-side .ps-host-leaf', ['font-family', 'font-size', 'font-weight', 'letter-spacing']),
+        head: css('.ps-admin-side .ps-host-group-head, .ps-admin-side .ps-host-group > button', ['font-family', 'font-size', 'font-weight']),
+        title: css('.fi-main .fi-header-heading', ['font-family', 'font-size', 'font-weight']),
+        body: css('body', ['font-family', 'background-color']),
+        footer: (document.querySelector('.fi-main-ctn [data-ps-footer], .fi-main-ctn footer')?.innerText || '').replace(/\s+/g, ' ').trim(),
+        sheets: [...document.head.querySelectorAll('link[rel="stylesheet"], style')].map((e) => (e.getAttribute('href') || 'style:' + e.textContent.length).replace(/^https?:\/\/[^/]+/, '').replace(/\?.*$/, '')),
+      };
+    }).catch(() => null);
+    const leaf = (re) => page.locator('.ps-admin-side a.ps-host-leaf >> visible=true').filter({ hasText: re }).first();
+    await goto(new URL('/admin/servers', base).href, 2000);
+    const first = await look();
+    let loads = 0; const onLoad = () => loads++; page.on('load', onLoad);
+    if (!(await leaf(/^\s*Eggs\s*$/).count())) { await page.locator('.ps-admin-side .ps-host-group > button >> visible=true').filter({ hasText: /Servers/ }).first().click().catch(() => {}); await sleep(400); }
+    await leaf(/^\s*Eggs\s*$/).click({ timeout: 4000 }).catch(() => {}); await settle(page, 1500);
+    await leaf(/^\s*Servers\s*$/).click({ timeout: 4000 }).catch(() => {}); await settle(page, 1500);
+    page.off('load', onLoad);
+    const again = await look(); await record('admin-nav-look', 'Admin-pagina · zelfde stijl na menuklikken');
+    const diff = first && again ? Object.keys(first).filter((k) => JSON.stringify(first[k]) !== JSON.stringify(again[k])) : ['missing'];
+    say('admin-nav-look', !!first && !!first.card && diff.length === 0 && loads === 0 && /\/admin\/servers/.test(page.url()), { diff, loads, first, again });
+  }
   // The legacy panel: the same page as Pelican draws it, and its Back to Simplify button clears that again.
   if (!(await page.locator('.ps-admin-top .ps-account-button >> visible=true').count())) { await page.locator('.ps-admin-top .ps-mobile-menu >> visible=true').first().click().catch(() => {}); await sleep(500); }
   let accountError = null;
