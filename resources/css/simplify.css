@@ -773,7 +773,6 @@ html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn {
   padding: 0 !important;
   overflow-y: auto;
   overscroll-behavior: contain;
-  scrollbar-width: thin;
 }
 
 /* The page grows with what is on it (Filament gives it the card's height), so Pelican's copyright footer after it is
@@ -1152,7 +1151,6 @@ html:not(.ps-frame) .s-people[style*="--s-fit"] > .s-card {
   padding: 0 0 6px;
   overflow-x: auto;
   border-bottom: 1px solid var(--s-line);
-  scrollbar-width: thin;
 }
 
 .s-settings-nav-item {

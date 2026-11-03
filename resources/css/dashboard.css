@@ -1259,7 +1259,7 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 .ps.ps-admin-top .ps-top { max-width: none; }
 .ps.ps-admin-side { display: flex; flex: 1; min-width: 0; min-height: 0; overflow: visible; }
 .ps-admin-side .ps-host-side { flex: 1; overflow: hidden; border: 0; background: transparent; }
-.ps-admin-side .ps-host-side-scroll { padding: 0 8px 8px 0; scrollbar-width: thin; }
+.ps-admin-side .ps-host-side-scroll { padding: 0 8px 8px 0; }
 .ps-admin-side .ps-host-backdrop, .ps-admin-side .ps-host-health-bar { display: none; }
 .ps-admin-crumb { position: relative; z-index: 12; display: flex; align-items: center; gap: 2px; align-self: start; min-width: 0; max-width: 60%; height: 52px; color: var(--ps-ink); font: 700 16px/1.25 var(--ps-font); }
 .ps-admin-crumb :is(a, button) { display: inline-flex; flex: none; align-items: center; gap: 6px; max-width: 45%; min-height: 34px; padding: 0 6px; border: 0; border-radius: var(--ps-radius-sm); background: none; color: var(--ps-muted); font: 500 15px/1.2 var(--ps-font); text-decoration: none; cursor: pointer; }
@@ -1560,7 +1560,7 @@ body:has(.ps-install:not([style*="none"], [x-cloak])) .fi-main .fi-page .fi-call
    The Admin page and the account pages have the theme only and keep the narrow window. */
 .ps-overview-appearance-menu.is-wide { display: grid; grid-template-columns: 196px minmax(0, 1fr); width: min(720px, calc(100vw - 32px)); max-height: min(560px, calc(100dvh - 96px)); padding: 0; overflow: hidden; }
 .ps-overview-appearance-menu.is-wide .ps-customize-side { display: flex; flex-direction: column; gap: 2px; min-width: 0; padding: 16px 10px 16px 16px; border-inline-end: 1px solid var(--ps-line); }
-.ps-overview-appearance-menu.is-wide .ps-customize-pane { min-width: 0; min-height: 0; padding: 14px 18px 16px; overflow-y: auto; scrollbar-width: thin; }
+.ps-overview-appearance-menu.is-wide .ps-customize-pane { min-width: 0; min-height: 0; padding: 14px 18px 16px; overflow-y: auto; }
 .ps-overview-appearance-menu.is-wide .ps-customize-theme { padding-bottom: 0; border-bottom: 0; }
 .ps-customize-nav { display: grid; gap: 2px; margin-top: 10px; }
 .ps-customize-nav > button { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 36px; padding: 0 10px; border: 0; border-radius: 9px; background: none; color: var(--ps-ink); font: inherit; font-size: 13px; font-weight: 550; text-align: start; cursor: pointer; }
