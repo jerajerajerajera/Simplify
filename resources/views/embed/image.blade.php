@@ -17,7 +17,7 @@
             </button>
         @endforeach
         <label class="se-image se-upload">
-            <input type="file" accept="image/png,image/jpeg,image/webp" wire:model="upload" x-on:change="state = 'upload'" class="sr-only">
+            <input type="file" accept="image/png,image/jpeg,image/webp" wire:model="upload" x-on:change="state = 'upload'" aria-label="{{ __('simplify::embed.server.image_upload') }}">
             <x-filament::icon icon="tabler-upload" />
             <span>{{ __('simplify::embed.server.image_upload') }}</span>
         </label>
@@ -32,5 +32,7 @@
     .se-image.is-picked { border-color: var(--primary-500, #5b8fd0); }
     .se-upload { border: 1px dashed rgb(127 127 127 / .45); background: transparent; display: flex; gap: 4px; align-items: center; justify-content: center; font-size: 12px; color: rgb(113 113 122); }
     .se-upload svg { width: 16px; height: 16px; }
+    /* The file field covers the tile, invisible, so it stays inside it and the whole tile opens the file picker. */
+    .se-upload input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
     .se-error { margin: 6px 0 0; font-size: 13px; color: rgb(220 38 38); }
 </style>
