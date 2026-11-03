@@ -53,7 +53,7 @@
     <div class="ps-host-backdrop" x-show="open" x-cloak x-on:click="open = false"></div>
     {{-- Where you are, as the page's title: All servers (computers; on a phone the bottom bar has it) › group › page. --}}
     <nav class="ps-admin-crumb" aria-label="{{ $u('admin_sections') }}" x-show="crumb && !open" x-cloak>
-        <a class="ps-admin-crumb-home" href="{{ $overviewUrl }}"><svg aria-hidden="true"><use href="#ps-grid"/></svg><span>{{ $u('all_servers') }}</span></a>
+        <a class="ps-admin-crumb-home" href="{{ $overviewUrl }}" wire:navigate><svg aria-hidden="true"><use href="#ps-grid"/></svg><span>{{ $u('all_servers') }}</span></a>
         <svg class="ps-admin-crumb-sep ps-admin-crumb-home" aria-hidden="true"><use href="#ps-chevron"/></svg>
         <button type="button" aria-controls="ps-admin-side" :aria-expanded="open" x-on:click.stop="group()" :class="{'is-last': !crumb?.page && !crumb?.sub}" :style="'--ps-tone: ' + (crumb?.color ?? 'currentColor')"><svg aria-hidden="true"><use :href="'#ps-' + (crumb?.icon ?? 'shield')"/></svg><span x-text="crumb?.group"></span></button>
         <template x-for="part in [crumb?.page, crumb?.sub].filter(Boolean)" :key="part">
@@ -115,7 +115,7 @@
     </aside>
     {{-- Phones: the bottom bar, as on the overview; Admin opens the Admin menu as a page. --}}
     <nav class="ps-tabbar" aria-label="{{ $u('phone_navigation') }}">
-        <a class="ps-tab" href="{{ $overviewUrl }}"><svg aria-hidden="true"><use href="#ps-grid"/></svg><span>{{ $u('servers') }}</span></a>
+        <a class="ps-tab" href="{{ $overviewUrl }}" wire:navigate><svg aria-hidden="true"><use href="#ps-grid"/></svg><span>{{ $u('servers') }}</span></a>
         @if ($create)
             <button type="button" class="ps-tab" x-on:click="open = false; $dispatch('simplify:create')"><span class="ps-tab-plus"><svg aria-hidden="true"><use href="#ps-plus"/></svg></span><span>{{ $u('new') }}</span></button>
         @endif

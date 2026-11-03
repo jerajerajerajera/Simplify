@@ -28,6 +28,13 @@
       ...base,
       init() {
         this.initShell();
+        // Healthy keeps its state here as on the overview: asked right after first paint when no snapshot was ready,
+        // then at the overview's pace, so it never turns grey.
+        if (this.boot.features?.host_health) {
+          const health = () => !document.hidden && wire.hostHealth().then((h) => { if (!this.destroyed) this.boot.host_health = h; }).catch(() => {});
+          if (!this.boot.host_health?.state) health();
+          this.refreshTimer = setInterval(health, this.refreshSeconds);
+        }
         // This header stays (@persist) while the menu loads the next page: its new footer gets the thin line again.
         document.addEventListener('livewire:navigated', () => this.enhanceCopyright());
         // Admin → Servers → Create (Pelican's link on its page) opens Simplify's Create server popup, as everywhere else.

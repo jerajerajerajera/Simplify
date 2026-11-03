@@ -1,14 +1,11 @@
 <?php
 
-// The server side of opening Admin tools, measured on the audit panel: the whole request for an admin page through
-// the HTTP kernel (Simplify's page and the same page in the legacy panel, which has none of Simplify's header or menu),
-// and each part Simplify adds to it, with its time and database queries. Writes JSON to stdout.
+// The server side of opening Admin tools, measured on the audit panel: each part Simplify adds to an admin page, with
+// its time and database queries (the whole answer is timed in the browser, speed.cjs). Writes JSON to stdout.
 // Run from the panel folder: php speed.php [rounds]
 use App\Models\User;
 use Filament\Facades\Filament;
 use Illuminate\Contracts\Console\Kernel;
-use Illuminate\Contracts\Http\Kernel as HttpKernel;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Simplify\Core\Filament\Admin\AdminSide;
 use Simplify\Core\Filament\Admin\AdminTop;
@@ -49,37 +46,7 @@ $time = function (callable $fn) use (&$queries, $rounds): array {
     return ['ms' => round($ms[intdiv(count($ms), 2)], 1), 'queries' => $count];
 };
 
-$result = ['rounds' => $rounds, 'requests' => [], 'parts' => []];
-
-// The whole request, as a browser asks for it (a fresh app per request, so nothing is remembered in between).
-$request = function (string $path) use ($admin): array {
-    $app = require getcwd().'/bootstrap/app.php';
-    $kernel = $app->make(HttpKernel::class);
-    $count = 0;
-    $app->booted(function ($app) use ($admin, &$count) {
-        $app['auth']->guard('web')->setUser($admin);
-        $app['db']->listen(function () use (&$count) {
-            $count++;
-        });
-    });
-    $start = hrtime(true);
-    try {
-        $response = $kernel->handle(Request::create($path, 'GET', server: ['HTTP_HOST' => '127.0.0.1:8001']));
-    } catch (Throwable $e) {
-        return ['ms' => 0, 'error' => strtok($e->getMessage(), "\n")];
-    }
-    $ms = (hrtime(true) - $start) / 1e6;
-
-    return ['ms' => round($ms, 1), 'status' => $response->getStatusCode(), 'bytes' => strlen((string) $response->getContent()), 'queries' => $count];
-};
-foreach (['/admin/servers', '/admin/eggs', '/admin/settings', '/simplify'] as $path) {
-    $runs = [];
-    for ($i = 0; $i < $rounds; $i++) {
-        $runs[] = $request($path);
-    }
-    usort($runs, fn ($a, $b) => $a['ms'] <=> $b['ms']);
-    $result['requests'][$path] = $runs[intdiv(count($runs), 2)];
-}
+$result = ['rounds' => $rounds, 'parts' => []];
 
 // Simplify's parts of an admin page, each on its own.
 auth()->setUser($admin);

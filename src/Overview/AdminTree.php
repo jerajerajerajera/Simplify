@@ -29,10 +29,12 @@ final class AdminTree
      */
     public static function build(): array
     {
-        $items = array_merge(...array_column(AdminMenu::items(), 'items')) ?: [];
-        $menu = Settings::canAccess() ? Settings::menu() : [];
+        // Once per request: the header (AdminTop) and the menu beside the page (AdminSide) both draw it.
+        return once(function () {
+            $items = array_merge(...array_column(AdminMenu::items(), 'items')) ?: [];
 
-        return self::group($items, $menu);
+            return self::group($items, Settings::canAccess() ? Settings::menu() : []);
+        });
     }
 
     /**

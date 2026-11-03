@@ -13,6 +13,7 @@ use Simplify\Core\Account\Connections;
 use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Addons\Button;
+use Simplify\Core\Filament\Admin\AdminSide;
 use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\App\Pages\Connections as ConnectionsPage;
 use Simplify\Core\Filament\App\Pages\Overview;
@@ -63,12 +64,11 @@ trait Shell
             'profile_url' => EditProfile::getUrl(panel: 'app'),
             'notifications_url' => Push::enabled() ? Overview::getUrl(panel: 'app').'#notifications' : null,
             'logout_url' => Filament::getPanel('app')->getLogoutUrl(),
-            // The shield opens the Admin page (V52) on the first page of its menu.
-            'admin_url' => $admin ? ($tree[0]['pages'][0]['url'] ?? Filament::getPanel('admin')->getUrl()) : null,
+            // The shield opens the Admin page (V52) on Health, its start page, else on the first page of its menu.
+            'admin_url' => $admin ? (AdminSide::page($tree, 'health') ?? $tree[0]['pages'][0]['url'] ?? Filament::getPanel('admin')->getUrl()) : null,
             // The legacy panel: Pelican's own pages, as Pelican draws them (Legacy); everyone has the account pages.
             'legacy_url' => Legacy::url($admin ? Filament::getPanel('admin')->getUrl() : EditProfile::getUrl(panel: 'app'), true),
             'settings_url' => Settings::canAccess() ? Settings::getUrl(panel: 'admin') : null,
-            'settings_menu' => Settings::canAccess() ? Settings::menu() : [],
             'support_url' => $settings['support_url'],
             // The add-ons' customer links that have an icon (such as Simplify Hosting's Client area), before Support.
             'account_links' => app(AddonRegistry::class)->collect(fn (Addon $addon) => array_values(array_map(
@@ -83,7 +83,6 @@ trait Shell
                 ...array_map(fn (Button $button) => $button->toArray(), app(AddonRegistry::class)->collect(fn (Addon $addon) => $addon->dashboardActions())),
                 ...AdminMenu::createServer(),
             ],
-            'admin_pages' => AdminMenu::items(),
             'admin_tree' => $tree,
             'health_checks' => $user->isAdmin() ? HostHealth::checks() : [],
             'features' => ['host_health' => $user->isRootAdmin()],
@@ -124,6 +123,19 @@ trait Shell
         Preferences::set($this->user(), 'overview.groups', $clean);
 
         return $clean;
+    }
+
+    /** Host health for the Healthy button in the header, on the overview and on the Admin page alike. */
+    #[Renderless]
+    public function hostHealth(): array
+    {
+        return $this->user()->isRootAdmin() ? HostHealth::snapshot() : [];
+    }
+
+    #[Renderless]
+    public function refreshHostHealth(): array
+    {
+        return $this->user()->isRootAdmin() ? HostHealth::refresh() : [];
     }
 
     #[Renderless]
