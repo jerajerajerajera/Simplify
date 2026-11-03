@@ -258,8 +258,8 @@ const adminPage = async (overview) => {
         offScreen: n ? n.left < 0 || n.right > innerWidth + 1 : null, pageWide: document.documentElement.scrollWidth - innerWidth };
     }).catch((e) => ({ error: e.message.slice(0, 120) }));
     await record('admin-legacy-settings', 'Legacy-paneel · Simplify settings');
-    say('admin-legacy-settings', !!ls && !ls.shell?.length && (onPhone || ls.topbar) && ls.nav && (ls.barBottom === null || ls.navTop >= ls.barBottom) && ls.navTop >= 0
-      && (onPhone || ls.sideways <= 1) && !ls.offScreen && ls.pageWide <= 1, ls);
+    say('admin-legacy-settings', !!ls && !ls.shell?.length && (phone() || ls.topbar) && ls.nav && (ls.barBottom === null || ls.navTop >= ls.barBottom) && ls.navTop >= 0
+      && (phone() || ls.sideways <= 1) && !ls.offScreen && ls.pageWide <= 1, ls);
     // The way back is the first item of Pelican's sidebar; on a small window that sidebar opens from its button first.
     // (A closed off-canvas sidebar still counts as visible to Playwright: look whether the link is on the screen.)
     const onScreen = () => page.evaluate(() => [...document.querySelectorAll('a[href*="simplify_legacy=0"]')].some((a) => { const b = a.getBoundingClientRect(); return b.width > 0 && b.left >= 0 && b.right <= innerWidth && b.top >= 0 && b.bottom <= innerHeight; })).catch(() => false);
