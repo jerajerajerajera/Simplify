@@ -283,6 +283,29 @@ const healthHover = async (where) => {
   if (!same || !lit) problems.push(`${stand} ${where}-health-hover: card and tab ${same ? 'same' : 'DIFFERENT'} on hover${lit ? '' : ', hover does NOT colour both'}: rest ${JSON.stringify(rest)} card ${JSON.stringify(onCard)} tab ${JSON.stringify(onTab)}`);
   else problems.push(`${stand} ${where}-health-hover: ok, card and tab light up together (${onCard.card})`);
 };
+// Opened, everything around the nodes folds the card shut again, so all of it lights up together; a node keeps its own
+// smaller hover and click (K-B20, Jeroen 3-11).
+const healthSurround = async () => {
+  const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
+  if (!(await page.locator('.ps-health-panel >> visible=true').count()) && !(await page.locator('.ps-health-pill >> visible=true').count())) return;
+  if (!(await page.locator('.ps-health-panel >> visible=true').count())) { await page.locator('.ps-health-pill >> visible=true').first().click().catch(() => {}); await sleep(600); }
+  if (!(await page.locator('.ps-health-panel >> visible=true').count())) return say('overview-health-surround', false, { panel: 'not open' });
+  if (!(await alpine('return d.healthExpanded'))) { await page.locator('.ps-health-tab').first().click().catch(() => {}); await sleep(900); }
+  const look = () => page.evaluate(() => { const p = document.querySelector('.ps-health-panel'), n = p.querySelector('.ps-node-health'); const bg = (el, x) => el ? getComputedStyle(el, x).backgroundColor : null; return { panel: bg(p), card: bg(p.querySelector('.ps-host-health')), tab: bg(p.querySelector('.ps-health-tab')), tabTop: bg(p.querySelector('.ps-health-tab'), '::before'), node: bg(n), cursor: getComputedStyle(p.querySelector('.ps-health-detail-toolbar')).cursor }; });
+  const hoverAt = async (sel, pos) => { const l = page.locator(sel).first(); if (!(await l.count())) return null; await l.hover({ position: pos, force: true }).catch(() => {}); await sleep(400); return look(); };
+  const onCard = await hoverAt('.ps-host-health', { x: 40, y: 10 });
+  const onToolbar = await hoverAt('.ps-health-detail-toolbar', { x: 4, y: 4 });
+  await record('overview-health-surround', 'Host health open, wijzen naast de nodes', { colours: onToolbar });
+  const onNode = await hoverAt('.ps-node-health', { x: 6, y: 6 });
+  const lit = (l) => !!l && l.panel === onCard.card && l.card === onCard.card && l.tab === onCard.card && l.tabTop === onCard.card;
+  const nodeOwn = !onNode || (onNode.panel !== onCard.card && onNode.card !== onCard.card);
+  const box = await page.locator('.ps-health-detail-toolbar').first().boundingBox().catch(() => null);
+  if (box) await page.mouse.click(box.x + 4, box.y + 4); await sleep(700);
+  const closed = !(await alpine('return d.healthExpanded'));
+  await page.mouse.move(5, 5);
+  say('overview-health-surround', !!onCard && lit(onToolbar) && onToolbar.cursor === 'pointer' && nodeOwn && closed, { onCard, onToolbar, onNode, closed });
+  await escape();
+};
 const goto = async (url, ms = 900) => { for (let i = 0; i < 3; i++) { try { await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 }); break; } catch (e) { if (i === 2) throw e; await sleep(1500); } } await settle(page, ms); };
 const click = async (sel, ms = 600) => { const l = page.locator(sel).first(); if (!(await l.count()) || !(await l.isVisible().catch(() => false))) { problems.push(`${stand} ${screen}: nothing to click for ${sel}`); return false; } await l.click({ timeout: 5000 }).catch((e) => problems.push(`${stand} ${screen}: click ${sel}: ${e.message.slice(0, 80)}`)); await sleep(ms); return true; };
 const escape = async () => { await page.keyboard.press('Escape'); await sleep(300); };
@@ -347,6 +370,7 @@ async function round(theme) {
   // Host health card's tab under its bottom edge (1.4.4): the nodes fold open.
   if (await click('.ps-health-tab', 900)) { await record('overview-health-nodes', 'Host health, nodes uitgeklapt'); await click('.ps-health-tab', 600); }
   await healthHover('overview');
+  await healthSurround();
   await adminPage(overview);
   // The menus under the top bar once more with one announcement bar and with none: their height must follow the bars.
   const unpinBar = async () => { const b = page.locator('button[aria-label="Unpin"], .ps-announcement-unpin, [wire\\:click^="unpin"]').first(); if (!(await b.count())) return false; await b.click().catch(() => {}); await sleep(1500); return true; };
