@@ -143,7 +143,7 @@ const filterCheck = async () => {
   const all = await alpine("return d.filterMenu === 'all'");
   await record('overview-filter', 'Overzicht · Filter open');
   const pick = page.locator('#ps-filter-menu .ps-filter-section .ps-menu-item[aria-checked="false"] >> visible=true').first();
-  const label = (await pick.innerText().catch(() => '')).trim();
+  const label = (await pick.locator('span').first().innerText().catch(() => '')).trim(); // the option's name, without its count
   await pick.click().catch(() => {}); await sleep(700);
   const after = await alpine('return { servers: d.visibleServers().length, label: d.filterLabel(), open: d.filterMenu }');
   await record('overview-filtered', 'Overzicht · gefilterd');
