@@ -937,9 +937,11 @@ async function fixesFlow() {
       const title = [...document.querySelectorAll('.ps-server-info .ps-game-title h2')].find(vis);
       return { field: !!field, value: field?.value ?? null, selected: field ? field.value.slice(field.selectionStart, field.selectionEnd) : null, focused: !!field && document.activeElement === field, active: document.activeElement ? document.activeElement.tagName + '#' + document.activeElement.id + '.' + String(document.activeElement.className).slice(0, 40) : null, title: title?.textContent ?? null, dialog: [...document.querySelectorAll('.ps-modal-layer')].some(vis) };
     }).catch(() => null);
+    // A busy runner (the console streams) can take a moment to open the field: wait for it to have the focus, at most 4 s.
+    const fieldReady = () => page.waitForFunction(() => document.activeElement?.classList.contains('ps-name-input'), null, { timeout: 4000 }).catch(() => {});
     const before = await nameState();
     const original = before?.title || '';
-    await page.locator('.ps-server-info .ps-game-title h2 >> visible=true').first().click({ timeout: 4000 }).catch(() => {}); await sleep(500);
+    await page.locator('.ps-server-info .ps-game-title h2 >> visible=true').first().click({ timeout: 4000 }).catch(() => {}); await fieldReady(); await sleep(300);
     const opened = await nameState();
     await record('server-name-edit', 'Server · naam bewerken in de titelkaart');
     say('name-edit-open', !!opened && opened.field && !opened.dialog && opened.focused && !!original && opened.selected === original, opened);
@@ -950,12 +952,12 @@ async function fixesFlow() {
     await page.keyboard.press('Escape'); await sleep(400);
     const back = await nameState();
     say('name-edit-escape', !!back && !back.field && back.title === original, back);
-    await page.locator('.ps-server-info .ps-alias-button >> visible=true').first().click({ timeout: 4000 }).catch(() => {}); await sleep(500);
+    await page.locator('.ps-server-info .ps-alias-button >> visible=true').first().click({ timeout: 4000 }).catch(() => {}); await fieldReady(); await sleep(300);
     await page.keyboard.type(original + ' 2'); await page.keyboard.press('Enter'); await sleep(2000);
     const saved = await nameState();
     say('name-edit-enter', !!saved && !saved.field && saved.title === original + ' 2', saved);
     // Put the seeded name back for the rest of the round.
-    await page.locator('.ps-server-info .ps-game-title h2 >> visible=true').first().click({ timeout: 4000 }).catch(() => {}); await sleep(500);
+    await page.locator('.ps-server-info .ps-game-title h2 >> visible=true').first().click({ timeout: 4000 }).catch(() => {}); await fieldReady(); await sleep(300);
     await page.keyboard.type(original); await page.keyboard.press('Enter'); await sleep(2000);
   } else say('name-edit-open', false, { note: 'server not seeded: Survival SMP' });
   if (urls.servers['New World']) {
