@@ -928,12 +928,14 @@ async function fixesFlow() {
   // The server's name is edited in the title card itself (Jeroen 3-11): a click on the name opens a field with all its
   // text selected, a click beside it keeps a change (no autosave, P-38), Esc puts the name back, Enter saves.
   if (urls.servers['Survival SMP']) {
+    // The settings check above opened a page of its own; this page gets the window's focus back, as a person's tab has.
+    await page.bringToFront().catch(() => {});
     await goto(urls.servers['Survival SMP'], 3500);
     const nameState = () => page.evaluate(() => {
       const vis = (e) => !!e && e.getClientRects().length > 0;
       const field = [...document.querySelectorAll('.ps-server-info .ps-name-input')].find(vis);
       const title = [...document.querySelectorAll('.ps-server-info .ps-game-title h2')].find(vis);
-      return { field: !!field, value: field?.value ?? null, selected: field ? field.value.slice(field.selectionStart, field.selectionEnd) : null, focused: !!field && document.activeElement === field, title: title?.textContent ?? null, dialog: [...document.querySelectorAll('.ps-modal-layer')].some(vis) };
+      return { field: !!field, value: field?.value ?? null, selected: field ? field.value.slice(field.selectionStart, field.selectionEnd) : null, focused: !!field && document.activeElement === field, active: document.activeElement ? document.activeElement.tagName + '#' + document.activeElement.id + '.' + String(document.activeElement.className).slice(0, 40) : null, title: title?.textContent ?? null, dialog: [...document.querySelectorAll('.ps-modal-layer')].some(vis) };
     }).catch(() => null);
     const before = await nameState();
     const original = before?.title || '';
