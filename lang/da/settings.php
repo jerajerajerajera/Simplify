@@ -10,7 +10,7 @@ return [
     'page_title' => 'Simplify-indstillinger',
     'pelican_frame_title' => 'Pelican-indstillinger: :label',
     'pelican_frame' => 'Pelicans egne :label-indstillinger.',
-    'version_line' => 'Version :version · Ændringer gælder for alle på dette panel, når de er gemt.',
+    'save_note' => 'Ændringer gælder for alle på dette panel, når de er gemt.',
     'profile' => [
         'support' => 'Supportlink',
         'support_help' => 'En hjælpeside eller mailto:-adresse, vist i alles kontomenu. Tom viser intet.',

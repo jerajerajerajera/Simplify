@@ -6,4 +6,6 @@
             <x-filament::button type="submit">{{ __('simplify::settings.save') }}</x-filament::button>
         </div>
     </form>
+    {{-- Small, under the settings: what Save does (the version is in the panel's footer already, Jeroen 3-11). --}}
+    <p class="s-settings-note">{{ __('simplify::settings.save_note') }}</p>
 </x-filament-panels::page>

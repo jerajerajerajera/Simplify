@@ -10,7 +10,7 @@ return [
     'page_title' => 'Ustawienia Simplify',
     'pelican_frame_title' => 'Ustawienia Pelican: :label',
     'pelican_frame' => 'Własne ustawienia :label w Pelican.',
-    'version_line' => 'Wersja :version · Zmiany obowiązują wszystkich w tym panelu po zapisaniu.',
+    'save_note' => 'Zmiany obowiązują wszystkich w tym panelu po zapisaniu.',
     'profile' => [
         'support' => 'Link do pomocy',
         'support_help' => 'Strona pomocy lub adres mailto:, w menu konta każdego. Puste nic nie pokazuje.',

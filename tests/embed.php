@@ -4,7 +4,7 @@
 // what other plugins add. Run: php tests/embed.php
 declare(strict_types=1);
 
-foreach (['EmbedOptions', 'PublicAddress', 'ServerList', 'Snippet'] as $class) {
+foreach (['EmbedDetails', 'EmbedOptions', 'PublicAddress', 'ServerList', 'Snippet'] as $class) {
     require __DIR__.'/../src/Embed/Services/'.$class.'.php';
 }
 
@@ -72,6 +72,27 @@ same('negative max', null, $clean['max_players']);
 same('javascript icon', null, $clean['icon']);
 same('http modpack link', null, $clean['modpack']['url']);
 same('https modpack icon', 'https://cdn.example.com/a.png', $clean['modpack']['icon']);
+same('description cleaned', 'Line one  line two', ServerList::clean(['id' => 'a', 'name' => 'a', 'game' => 'a', 'state' => 'online', 'description' => " Line one\r\nline two "])['description']);
+same('description cut', 300, mb_strlen(ServerList::clean(['id' => 'a', 'name' => 'a', 'game' => 'a', 'state' => 'online', 'description' => str_repeat('d', 900)])['description']));
+same('empty description', null, ServerList::clean(['id' => 'a', 'name' => 'a', 'game' => 'a', 'state' => 'online', 'description' => '  '])['description']);
+same('https banner', 'https://panel.example.com/simplify/embed/banners/abc.png', ServerList::clean(['id' => 'a', 'name' => 'a', 'game' => 'a', 'state' => 'online', 'banner' => 'https://panel.example.com/simplify/embed/banners/abc.png'])['banner']);
+same('http banner', null, ServerList::clean(['id' => 'a', 'name' => 'a', 'game' => 'a', 'state' => 'online', 'banner' => 'http://panel.example.com/a.png'])['banner']);
+same('no banner', null, ServerList::clean(['id' => 'a', 'name' => 'a', 'game' => 'a', 'state' => 'online'])['banner']);
+$base = ['id' => 'a', 'name' => 'a', 'game' => 'a', 'state' => 'online'];
+same('https download', 'https://modrinth.com/modpack/x/version/abc', ServerList::clean([...$base, 'download' => 'https://modrinth.com/modpack/x/version/abc'])['download']);
+same('javascript download', null, ServerList::clean([...$base, 'download' => 'javascript:alert(1)'])['download']);
+same('modpack download', 'https://www.feed-the-beast.com/modpacks/1', ServerList::clean([...$base, 'modpack' => ['name' => 'FTB', 'download' => 'https://www.feed-the-beast.com/modpacks/1']])['modpack']['download']);
+same('second address', 'bedrock.example.com:19132', ServerList::clean([...$base, 'address2' => 'bedrock.example.com:19132'])['address2']);
+same('position', 3, ServerList::clean([...$base, 'position' => '3'])['position']);
+same('negative position', null, ServerList::clean([...$base, 'position' => -2])['position']);
+$order = ServerList::sorted([
+    ['name' => 'Zeta', 'state' => 'offline', 'position' => 1],
+    ['name' => 'beta', 'state' => 'online', 'position' => null],
+    ['name' => 'Alpha', 'state' => 'online', 'position' => null],
+    ['name' => 'Gamma', 'state' => 'online', 'position' => 2],
+    ['name' => 'Delta', 'state' => 'offline', 'position' => null],
+]);
+same('order: online first, then position, then name', ['Gamma', 'Alpha', 'beta', 'Zeta', 'Delta'], array_column($order, 'name'));
 same('no modpack without a name', null, ServerList::clean(['id' => 'a', 'name' => 'a', 'game' => 'a', 'state' => 'online', 'modpack' => ['url' => 'https://x.example']])['modpack']);
 
 if ($failures) {
