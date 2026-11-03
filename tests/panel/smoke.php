@@ -1030,7 +1030,9 @@ step('embed: the Website page of a server saves what the website shows, only on 
             ->set('data.address2', 'bedrock.example.com:19132')->set('data.position', 2)->set('data.banner', 'scene:bg-harbor.jpg')->call('save'));
         $entry = $guest->get('/simplify/embed/servers.json')->json('servers.0');
         if (! EmbedServers::visible($server) || ($entry['description'] ?? null) !== 'Build together with quests' || ($entry['download'] ?? null) !== 'https://modrinth.com/modpack/smoke/version/abc'
-            || ($entry['address2'] ?? null) !== 'bedrock.example.com:19132' || ($entry['position'] ?? null) !== 2 || ! str_contains((string) ($entry['banner'] ?? ''), 'bg-harbor')) {
+            || ($entry['address2'] ?? null) !== 'bedrock.example.com:19132' || ($entry['position'] ?? null) !== 2 || EmbedDetails::for($server)['banner'] !== 'scene:bg-harbor.jpg'
+            // Only https links are published: on a test panel without https the image is left out.
+            || (str_starts_with(url('/'), 'https://') ? ! str_contains((string) ($entry['banner'] ?? ''), 'bg-harbor') : ($entry['banner'] ?? null) !== null)) {
             throw new RuntimeException('unexpected entry: '.json_encode($entry));
         }
         Livewire\Livewire::actingAs($admin)->test(EmbedWebsite::class)->set('data.address2', '192.168.1.5:19132')->call('save')->assertHasErrors(['data.address2']);
