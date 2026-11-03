@@ -10,7 +10,7 @@ return [
     'page_title' => 'Simplify ayarları',
     'pelican_frame_title' => 'Pelican ayarları: :label',
     'pelican_frame' => 'Pelican\'ın kendi ayarları: :label.',
-    'version_line' => 'Sürüm :version · Değişiklikler kaydettikten sonra bu paneldeki herkes için geçerli olur.',
+    'save_note' => 'Değişiklikler kaydettikten sonra bu paneldeki herkes için geçerli olur.',
     'profile' => [
         'support' => 'Destek bağlantısı',
         'support_help' => 'Bir yardım sayfası veya mailto: adresi; herkesin hesap menüsünde gösterilir. Boş bırakılırsa hiçbir şey görünmez.',

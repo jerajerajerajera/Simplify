@@ -33,7 +33,7 @@ on:
         description: 'Branch of Simplify to audit (empty = this checkout); the audit itself always comes from this checkout'
         default: ''
       section:
-        description: 'Only one section (empty = everything): seasons, extras, fixes (1.5.3: settings and setup on a phone, no Start/Restart while installing, steady quick commands), layers, first, nav, create, maker (Server Maker steps), schedule (Edit schedule reachable, #236), hub (Settings › Browse Hub: list, Install on Hub links, Details on top), inventory (every function, for the 0.7.0 diff), or compare (the overview measured, 8 servers)'
+        description: 'Only one section (empty = everything): seasons, extras, fixes (1.5.3: settings and setup on a phone, no Start/Restart while installing, steady quick commands), layers, first, nav, create, maker (Server Maker steps), schedule (Edit schedule reachable, #236), hub (Settings › Browse Hub: list, Install on Hub links, Details on top), inventory (every function, for the 0.7.0 diff), compare (the overview measured, 8 servers) or speed (opening Admin tools timed: server parts, files, legacy panel)'
         default: ''
       from:
         description: 'A Simplify tag (e.g. v1.5.1) installed and seeded first; then the Simplify branch updates it, as on a real panel'
@@ -85,7 +85,7 @@ jobs:
           import json, sys
           only, theme, section, skip = sys.argv[1:5]
           stands = only.split(',') if only.strip() else ['d1920', 'd1440', 'laag1366', 'laag1100', 'd1100', 'hoog1280', 'tablet768', 'phone390', 'phone360']
-          both = ['d1440', 'phone390'] if section not in ('compare', 'inventory') else []
+          both = ['d1440', 'phone390'] if section not in ('compare', 'inventory', 'speed') else []
           rows = [{'stand': s, 'theme': t} for s in stands for t in (['dark', 'light'] if s in both else ['dark']) if not theme or t == theme]
           print('matrix=' + json.dumps([] if skip == 'yes' else rows))
           PY
@@ -213,6 +213,7 @@ jobs:
           npm install --silent playwright@1.48.2
           npx playwright install --with-deps chromium > /dev/null
           if [ "${{ inputs.section }}" = inventory ]; then node inventory.cjs --base http://127.0.0.1:8001 --out ../../../result; exit 0; fi
+          if [ "${{ inputs.section }}" = speed ]; then (cd ../../../panel && php ../simplify/tests/audit/speed.php 5 > ../result-server.json) || true; node speed.cjs --base http://127.0.0.1:8001 --out ../../../result; mv ../../../result-server.json ../../../result/server.json || true; cat ../../../result/server.json || true; exit 0; fi
           if [ "${{ inputs.section }}" = compare ]; then node compare.cjs --base http://127.0.0.1:8001 --out ../../../result --only ${{ matrix.stand }}; exit 0; fi
           node audit.cjs --base http://127.0.0.1:8001 --urls ../../../panel/urls.json --out ../../../result --only ${{ matrix.stand }} --theme "${{ matrix.theme }}" --parts "${{ needs.plan.outputs.parts }}" --section "${{ inputs.section }}" --servermaker "${{ inputs.servermaker }}"
       - if: always()
@@ -221,7 +222,7 @@ jobs:
           tail -n 40 panel/wings.log || true
           grep -h -E '^\[[0-9-]+ [0-9:]+\]' panel/storage/logs/*.log | cut -c1-600 | tail -n 30 || true
       - name: Style verdict (fails the job when a UI rule is broken)
-        if: inputs.section != 'compare' && inputs.section != 'inventory'
+        if: inputs.section != 'compare' && inputs.section != 'inventory' && inputs.section != 'speed'
         id: style
         continue-on-error: true
         run: set -o pipefail; python3 simplify/tests/audit/style-report.py result/result.json | tee result/style.md
@@ -237,7 +238,7 @@ jobs:
       - if: always()
         name: Result to the audit-results branch
         # One branch for every result, a folder per branch and stand; see tests/audit/publish.sh.
-        run: bash simplify/tests/audit/publish.sh "$(echo "${{ inputs.legacy && format('legacy-{0}', inputs.legacy) || inputs.simplify || github.ref_name }}" | tr "/" "-")${{ inputs.from && format('-from-{0}', inputs.from) || '' }}${{ (inputs.section == 'compare' || inputs.section == 'inventory') && format('-{0}', inputs.section) || '' }}${{ inputs.servermaker == 'none' && '-nosm' || '' }}-${{ matrix.stand }}${{ matrix.theme == 'light' && '-light' || '' }}" result "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+        run: bash simplify/tests/audit/publish.sh "$(echo "${{ inputs.legacy && format('legacy-{0}', inputs.legacy) || inputs.simplify || github.ref_name }}" | tr "/" "-")${{ inputs.from && format('-from-{0}', inputs.from) || '' }}${{ (inputs.section == 'compare' || inputs.section == 'inventory' || inputs.section == 'speed') && format('-{0}', inputs.section) || '' }}${{ inputs.servermaker == 'none' && '-nosm' || '' }}-${{ matrix.stand }}${{ matrix.theme == 'light' && '-light' || '' }}" result "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
       - name: Fail when the compare verdict is red
         if: steps.compare.outcome == 'failure'
         run: |

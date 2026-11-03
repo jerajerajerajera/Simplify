@@ -83,18 +83,6 @@ final class Overview extends Page
     }
 
     #[Renderless]
-    public function hostHealth(): array
-    {
-        return $this->user()->isRootAdmin() ? HostHealth::snapshot() : [];
-    }
-
-    #[Renderless]
-    public function refreshHostHealth(): array
-    {
-        return $this->user()->isRootAdmin() ? HostHealth::refresh() : [];
-    }
-
-    #[Renderless]
     public function overviewPower(string $uuid, string $action): void
     {
         $user = $this->user();
