@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+- Simplify's settings: the head no longer repeats the version (it is in the panel's footer). What Save does is a small line under the settings, and Run setup again is a button on General only, not in the head of every tab.
+- Browse Hub is hidden for now: it is no longer a tab of Simplify's settings or an item of the Admin menu. It can come back later.
+- Phones: with the admin menu open, every tap does what it says again. Admin keeps the menu, Servers opens the overview and the account button opens the account menu; before, each of them showed the first admin page (Servers › Servers). The menu no longer slides along when you drag down on it.
+- Customize Simplify is wider and shows what is in a section straight away: the sections (Theme, Server groups, Layout, Cards, Grouping, More) sit on the left and the chosen one's settings on the right, with no folding open. Server groups lists your groups with their colour and number of servers, and Edit groups opens their window. On a phone the sections are a row of chips at the top of the sheet. On a server's page the sections are Theme and Server pages; the Admin page and the account pages keep the narrow window with the theme only. It opens on the section you had last.
+- Phones: the overview ends with Pelican's copyright line again, under the servers and above the bottom bar.
+- Host health: opened, everything around the nodes lights up on hover, together with the card and its tab, and a click there folds it shut again. A node keeps its own hover and click.
+- The Admin page and the account pages have the same background as the overview, in light and dark. Going from the overview to Admin and back, for example with Go to the panel at the end of the setup, no longer makes the background lighter or darker.
+- Computers: on an Admin page the page's own buttons, such as Run setup again and Save on Settings › General, sit in the middle of the breadcrumb's row again, with room under the header, instead of at the top of that row.
+- The console page loads without a jump: the empty card that stood above the console for a moment while Pelican's numbers loaded no longer shows, so the console stays where it is.
+- Phones: the window with all notifications closes with a pull down, like the menus: from its top bar, or from the list when it is scrolled to the top. Popups and menus follow your thumb while you drag them, spring back after a short pull, slide away after a longer one, and stay put on a sideways swipe. Closing them never reloads the page.
+- Website embed: the preview of the saved list follows the theme instead of showing a white block in dark mode, and is only as big as the cards it shows. The iframe code for other websites no longer shows a white block on a dark website either.
 - Phones: every admin list fits the screen. A row shows the icon, the name and its buttons on the first line and the other columns under the name, on more lines when needed, so nothing scrolls sideways. The buttons, search and filter share one row right under the breadcrumb; the search field gets smaller when room runs out, down to just its magnifier, and opens over the row when tapped.
 
 ## 2.0.0-beta.3

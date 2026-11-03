@@ -10,7 +10,7 @@ return [
     'page_title' => 'Paramètres de Simplify',
     'pelican_frame_title' => 'Paramètres de Pelican : :label',
     'pelican_frame' => 'Paramètres :label propres à Pelican.',
-    'version_line' => 'Version :version · Les modifications s’appliquent à tout le monde sur ce panel après l’enregistrement.',
+    'save_note' => 'Les modifications s’appliquent à tout le monde sur ce panel après l’enregistrement.',
     'profile' => [
         'support' => 'Lien d\'aide',
         'support_help' => 'Une page d\'aide ou une adresse mailto:, dans le menu du compte de chacun. Vide n\'affiche rien.',

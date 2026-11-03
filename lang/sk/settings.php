@@ -10,7 +10,7 @@ return [
     'page_title' => 'Nastavenia Simplify',
     'pelican_frame_title' => 'Nastavenia Pelican: :label',
     'pelican_frame' => 'Vlastné nastavenia :label v Pelican.',
-    'version_line' => 'Verzia :version · Zmeny po uložení platia pre všetkých na tomto paneli.',
+    'save_note' => 'Zmeny po uložení platia pre všetkých na tomto paneli.',
     'profile' => [
         'support' => 'Odkaz na podporu',
         'support_help' => 'Stránka pomoci alebo adresa mailto:, v ponuke účtu každého. Prázdne nič nezobrazí.',

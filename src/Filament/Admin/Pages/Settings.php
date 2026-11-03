@@ -10,6 +10,7 @@ use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
+use Filament\Schemas\Components\Actions;
 use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Components\View;
@@ -33,8 +34,14 @@ final class Settings extends Page implements HasForms
 {
     use InteractsWithForms;
 
+    /**
+     * Browse Hub (the 'hub' tab) is hidden for now: not in the tabs, the settings row or the Admin menu (Jeroen 3-11).
+     * Its code stays, so turning this on brings it back.
+     */
+    public const HUB = false;
+
     /** The tabs of this page, in the order of the form (form()). */
-    public const TABS = ['appearance', 'general', 'app', 'addons', 'hub'];
+    public const TABS = self::HUB ? ['appearance', 'general', 'app', 'addons', 'hub'] : ['appearance', 'general', 'app', 'addons'];
 
     protected static ?string $slug = 'simplify';
 
@@ -83,11 +90,6 @@ final class Settings extends Page implements HasForms
         ));
     }
 
-    public function getSubheading(): string
-    {
-        return __('simplify::settings.version_line', ['version' => Assets::version()]);
-    }
-
     public function mount(): void
     {
         // The first visit on a new panel walks through the setup; the settings page is for changes afterwards.
@@ -102,8 +104,6 @@ final class Settings extends Page implements HasForms
     protected function getHeaderActions(): array
     {
         return [
-            Action::make('setup')->label(__('simplify::setup.again'))->icon('tabler-wand')->color('gray')->button()
-                ->url(fn () => Setup::getUrl(panel: 'admin')),
             // Save in the head of the page; it presses the form's own button, which also saves a Pelican tab (settings.blade.php).
             Action::make('save')->label(__('simplify::settings.save'))->icon('tabler-device-floppy')->extraAttributes(['class' => 's-save-button'])
                 ->alpineClickHandler("document.querySelector('.s-settings > .s-bar button[type=submit]')?.click()"),
@@ -123,6 +123,11 @@ final class Settings extends Page implements HasForms
                     SettingsFields::support(),
                     SettingsFields::visibility(),
                     SettingsFields::banners(),
+                    // Only here, not in the head of every tab (Jeroen 3-11).
+                    Actions::make([
+                        Action::make('setup')->label(__('simplify::setup.again'))->icon('tabler-wand')->color('gray')
+                            ->url(fn () => Setup::getUrl(panel: 'admin')),
+                    ])->extraAttributes(['class' => 's-settings-setup']),
                 ]),
                 Tab::make(__('simplify::settings.appearance.app'))->key('app')->icon('tabler-device-mobile')->schema([
                     SettingsFields::app(),
@@ -130,7 +135,7 @@ final class Settings extends Page implements HasForms
                 Tab::make(__('simplify::settings.addons.heading'))->key('addons')->icon('tabler-puzzle')->schema([
                     View::make('simplify::partials.addon-list'),
                 ]),
-                Tab::make(__('simplify::settings.hub.tab'))->key('hub')->icon('tabler-building-store')->schema([
+                Tab::make(__('simplify::settings.hub.tab'))->key('hub')->icon('tabler-building-store')->visible(self::HUB)->schema([
                     View::make('simplify::hub.tab'),
                 ]),
             ]),
@@ -164,7 +169,9 @@ final class Settings extends Page implements HasForms
             }
         }
         $items[] = $tab('addons', __('simplify::settings.addons.heading'), 'tabler-puzzle');
-        $items[] = $tab('hub', __('simplify::settings.hub.tab'), 'tabler-building-store');
+        if (self::HUB) {
+            $items[] = $tab('hub', __('simplify::settings.hub.tab'), 'tabler-building-store');
+        }
         if (PelicanSettings::canAccess()) {
             $items[] = $page('pelican', __('simplify::js.dashboard.admin_groups.pelican_settings').' ↗', 'tabler-settings', PelicanSettings::getUrl(panel: 'admin'));
         }
@@ -185,8 +192,10 @@ final class Settings extends Page implements HasForms
             $tab('appearance', 'panel', __('simplify::settings.appearance.tab'), 'palette'),
             $tab('app', 'panel', __('simplify::settings.appearance.app'), 'image'),
             $tab('addons', 'addons', __('simplify::settings.addons.heading'), 'puzzle'),
-            $tab('hub', 'addons', __('simplify::settings.hub.tab'), 'store'),
         ];
+        if (self::HUB) {
+            $items[] = $tab('hub', 'addons', __('simplify::settings.hub.tab'), 'store');
+        }
         foreach (self::addonRows() as $addon) {
             if ($addon['url']) {
                 $items[] = ['key' => 'addon:'.$addon['id'], 'group' => 'addons', 'label' => $addon['name'], 'icon' => 'plugins', 'url' => $addon['url']];

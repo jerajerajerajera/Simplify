@@ -10,7 +10,7 @@ return [
     'page_title' => 'Simplify-beállítások',
     'pelican_frame_title' => 'Pelican-beállítások: :label',
     'pelican_frame' => 'A Pelican saját beállításai: :label.',
-    'version_line' => 'Verzió: :version · A módosítások mentés után a panel minden felhasználójára érvényesek.',
+    'save_note' => 'A módosítások mentés után a panel minden felhasználójára érvényesek.',
     'profile' => [
         'support' => 'Támogatási hivatkozás',
         'support_help' => 'Súgóoldal vagy mailto: cím, mindenki fiókmenüjében. Üresen semmi sem jelenik meg.',

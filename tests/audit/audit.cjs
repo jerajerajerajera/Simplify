@@ -140,6 +140,47 @@ const adminPage = async (overview) => {
     const diff = first && again ? Object.keys(first).filter((k) => JSON.stringify(first[k]) !== JSON.stringify(again[k])) : ['missing'];
     say('admin-nav-look', !!first && !!first.card && diff.length === 0 && loads === 0 && /\/admin\/servers/.test(page.url()), { diff, loads, first, again });
   }
+  // The other way out of an admin page: the end of the setup's "Go to the panel" opens the overview with wire:navigate.
+  // It looks as after a full load (Jeroen 3-11, beta.3: the background turned lighter grey), and so does the Admin page
+  // the shield opens from there.
+  if (!phone()) {
+    const pageLook = () => page.evaluate(() => {
+      const css = (el, props) => { if (!el) return null; const s = getComputedStyle(el); return props.map((p) => s.getPropertyValue(p).trim()).join(' | '); };
+      const root = document.documentElement;
+      return {
+        html: [...root.classList].filter((c) => !/^nprogress/.test(c)).sort().join(' '),
+        busy: root.classList.contains('nprogress-busy'),
+        tokens: css(root, ['--gray-950', '--gray-900', '--ps-bg', '--ps-surface', '--s-bg', '--s-surface']),
+        body: css(document.body, ['background-color', 'color']),
+        layout: css(document.querySelector('.fi-layout'), ['background-color']),
+        top: css([...document.querySelectorAll('.ps-top')].find((e) => e.getClientRects().length), ['background-color']),
+        sheets: [...document.head.querySelectorAll('link[rel="stylesheet"], style')].map((e) => (e.getAttribute('href') || 'style:' + e.textContent.length).replace(/^https?:\/\/[^/]+/, '').replace(/\?.*$/, '')),
+      };
+    }).catch(() => null);
+    const same = (a, b, keys) => (a && b ? keys.filter((k) => JSON.stringify(a[k]) !== JSON.stringify(b[k])) : ['missing']);
+    const keys = ['html', 'busy', 'tokens', 'body', 'layout', 'top'];
+    const arrivedAt = (test) => page.waitForFunction((src) => new RegExp(src).test(location.pathname) && !document.documentElement.classList.contains('nprogress-busy'), test.source, { timeout: 10000 }).catch(() => {});
+    const overviewPath = new URL(overview, base).pathname;
+    await goto(new URL(overview, base).href, 2000);
+    const fullOverview = await pageLook();
+    await goto(new URL('/admin/simplify/setup-done', base).href, 2000);
+    const fullAdmin = await pageLook();
+    const go = page.locator('.fi-header a >> visible=true').filter({ hasText: /Go to the panel/ }).first();
+    const found = (await go.count()) > 0;
+    await go.click({ timeout: 4000 }).catch(() => {}); await arrivedAt(new RegExp('^' + overviewPath.replace(/\/$/, '') + '/?$')); await settle(page, 1500);
+    const navOverview = await pageLook(); await record('setup-done-to-overview', 'Setup klaar › Go to the panel: overzicht');
+    const d1 = same(fullOverview, navOverview, keys);
+    say('setup-done-to-overview', found && d1.length === 0, { found, diff: d1, full: fullOverview, after: navOverview });
+    const shield = page.locator('a.ps-nav-admin >> visible=true').first();
+    await shield.click({ timeout: 4000 }).catch(() => {}); await arrivedAt(/^\/admin/); await settle(page, 1500);
+    const navAdmin = await pageLook();
+    const d2 = same(fullAdmin, navAdmin, keys);
+    say('overview-to-admin-look', d2.length === 0, { diff: d2, full: fullAdmin, after: navAdmin, path: new URL(page.url()).pathname });
+    // The overview and the Admin page share one background, so going between them changes no colour (K-B28).
+    const bg = (look) => look?.body?.split(' | ')[0] || null;
+    say('admin-overview-bg', !!bg(fullOverview) && bg(fullOverview) === bg(fullAdmin) && bg(fullAdmin) === bg(navAdmin), { overview: bg(fullOverview), admin: bg(fullAdmin), adminAfterShield: bg(navAdmin) });
+    await shieldTo(overview);
+  }
   // Computers (Jeroen 3-11): the Admin page belongs to the overview instead of feeling like a separate site. The same
   // header (Healthy, Create server), the menu and the page together as wide as it, both without a card and without a
   // Servers tab; the breadcrumb (All servers › …) is the title, the page's buttons sit on its row, and every crumb and
@@ -242,6 +283,29 @@ const healthHover = async (where) => {
   if (!same || !lit) problems.push(`${stand} ${where}-health-hover: card and tab ${same ? 'same' : 'DIFFERENT'} on hover${lit ? '' : ', hover does NOT colour both'}: rest ${JSON.stringify(rest)} card ${JSON.stringify(onCard)} tab ${JSON.stringify(onTab)}`);
   else problems.push(`${stand} ${where}-health-hover: ok, card and tab light up together (${onCard.card})`);
 };
+// Opened, everything around the nodes folds the card shut again, so all of it lights up together; a node keeps its own
+// smaller hover and click (K-B30, Jeroen 3-11).
+const healthSurround = async () => {
+  const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
+  if (!(await page.locator('.ps-health-panel >> visible=true').count()) && !(await page.locator('.ps-health-pill >> visible=true').count())) return;
+  if (!(await page.locator('.ps-health-panel >> visible=true').count())) { await page.locator('.ps-health-pill >> visible=true').first().click().catch(() => {}); await sleep(600); }
+  if (!(await page.locator('.ps-health-panel >> visible=true').count())) return say('overview-health-surround', false, { panel: 'not open' });
+  if (!(await alpine('return d.healthExpanded'))) { await page.locator('.ps-health-tab').first().click().catch(() => {}); await sleep(900); }
+  const look = () => page.evaluate(() => { const p = document.querySelector('.ps-health-panel'), n = p.querySelector('.ps-node-health'); const bg = (el, x) => el ? getComputedStyle(el, x).backgroundColor : null; return { panel: bg(p), card: bg(p.querySelector('.ps-host-health')), tab: bg(p.querySelector('.ps-health-tab')), tabTop: bg(p.querySelector('.ps-health-tab'), '::before'), node: bg(n), cursor: getComputedStyle(p.querySelector('.ps-health-detail-toolbar')).cursor }; });
+  const hoverAt = async (sel, pos) => { const l = page.locator(sel).first(); if (!(await l.count())) return null; await l.hover({ position: pos, force: true }).catch(() => {}); await sleep(400); return look(); };
+  const onCard = await hoverAt('.ps-host-health', { x: 40, y: 10 });
+  const onToolbar = await hoverAt('.ps-health-detail-toolbar', { x: 4, y: 4 });
+  await record('overview-health-surround', 'Host health open, wijzen naast de nodes', { colours: onToolbar });
+  const onNode = await hoverAt('.ps-node-health', { x: 6, y: 6 });
+  const lit = (l) => !!l && l.panel === onCard.card && l.card === onCard.card && l.tab === onCard.card && l.tabTop === onCard.card;
+  const nodeOwn = !onNode || (onNode.panel !== onCard.card && onNode.card !== onCard.card);
+  const box = await page.locator('.ps-health-detail-toolbar').first().boundingBox().catch(() => null);
+  if (box) await page.mouse.click(box.x + 4, box.y + 4); await sleep(700);
+  const closed = !(await alpine('return d.healthExpanded'));
+  await page.mouse.move(5, 5);
+  say('overview-health-surround', !!onCard && lit(onToolbar) && onToolbar.cursor === 'pointer' && nodeOwn && closed, { onCard, onToolbar, onNode, closed });
+  await escape();
+};
 const goto = async (url, ms = 900) => { for (let i = 0; i < 3; i++) { try { await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 }); break; } catch (e) { if (i === 2) throw e; await sleep(1500); } } await settle(page, ms); };
 const click = async (sel, ms = 600) => { const l = page.locator(sel).first(); if (!(await l.count()) || !(await l.isVisible().catch(() => false))) { problems.push(`${stand} ${screen}: nothing to click for ${sel}`); return false; } await l.click({ timeout: 5000 }).catch((e) => problems.push(`${stand} ${screen}: click ${sel}: ${e.message.slice(0, 80)}`)); await sleep(ms); return true; };
 const escape = async () => { await page.keyboard.press('Escape'); await sleep(300); };
@@ -250,7 +314,7 @@ const phone = () => VIEWPORTS[stand.split('-')[0]].width <= 600;
 // Customize (the look of the overview and the server pages) is in the account menu on every screen (Jeroen 3-11);
 // server groups open from inside Customize.
 const CUSTOMIZE = ['.ps-top .ps-account-button', '#ps-account-actions button:has(use[href="#ps-wand"])'];
-const PHONE_ROUTE = { overviewAppearance: CUSTOMIZE, overviewGroupsButton: [...CUSTOMIZE, '#ps-overview-appearance-menu .ps-customize-go'] };
+const PHONE_ROUTE = { overviewAppearance: CUSTOMIZE, overviewGroupsButton: [...CUSTOMIZE, '#ps-overview-appearance-menu [data-tab="groups"]', '#ps-overview-appearance-menu .ps-customize-edit'] };
 const DESK_ROUTE = PHONE_ROUTE;
 const openRef = async (ref, ms) => { if (!phone() && DESK_ROUTE[ref]) { for (const sel of DESK_ROUTE[ref]) if (!(await click(sel, ms))) return false; return true; } if (phone() && PHONE_ROUTE[ref] && (await page.locator('.ps-tabbar >> visible=true').count())) { for (const sel of PHONE_ROUTE[ref]) if (!(await click(sel, ms))) return false; return true; } return click(`[x-ref="${ref}"]`, ms); };
 
@@ -290,7 +354,45 @@ async function round(theme) {
   // Phones have no panel menu any more (1.5.4): the bell and the account sit in the top bar, the rest in the bottom bar.
   const openNav = async () => {};
   await click('.ps-account-button'); await record('overview-account', 'Accountmenu open');
-  await escape(); await alpine('d.accountMenu=false; d.appearanceMenu=true'); await sleep(600); await record('overview-customize-theme', 'Customize Simplify, thema bovenaan'); await alpine('d.appearanceMenu=false'); await sleep(300);
+  await escape(); await alpine('d.accountMenu=false; d.appearanceMenu=true'); await sleep(600); await record('overview-customize-theme', 'Customize Simplify, thema bovenaan');
+  // K-B19: Customize Simplify opens from the account menu, so its arrow points at the account button and its box ends
+  // where the account menu ends, not at the place Customize had in the top bar before.
+  if (!phone()) {
+    const at = await page.evaluate(() => {
+      const button = [...document.querySelectorAll('.ps-top .ps-account-button')].find((e) => e.getClientRects().length);
+      const menu = document.querySelector('#ps-overview-appearance-menu');
+      const wrap = menu?.parentElement;
+      if (!button || !menu || !menu.getClientRects().length || !wrap) return null;
+      const b = button.getBoundingClientRect(), m = menu.getBoundingClientRect(), w = wrap.getBoundingClientRect();
+      const arrow = getComputedStyle(wrap, '::after');
+      const x = w.right - parseFloat(arrow.insetInlineEnd || arrow.right || '0') - 6;
+      return { arrowX: Math.round(x), button: [Math.round(b.left), Math.round(b.right)], menuRight: Math.round(m.right), arrowShown: arrow.content !== 'none' };
+    }).catch(() => null);
+    problems.push(`${stand} customize-anchor: ${at && at.arrowShown && at.arrowX >= at.button[0] && at.arrowX <= at.button[1] && Math.abs(at.menuRight - at.button[1]) <= 2 ? 'ok' : 'WRONG'} ${JSON.stringify(at)}`);
+  }
+  // Wide Customize (Jeroen 3-11): every section shows its contents straight away, inside the window; on a computer the
+  // window is wide with the sections beside their contents, on a phone the sections are chips above them.
+  {
+    const tabs = await page.evaluate(() => [...document.querySelectorAll('#ps-overview-appearance-menu [data-tab]')].filter((b) => b.getClientRects().length).map((b) => b.dataset.tab)).catch(() => []);
+    const seen = [];
+    for (const key of tabs) {
+      await page.locator(`#ps-overview-appearance-menu [data-tab="${key}"]`).first().click().catch(() => {}); await sleep(350);
+      const at = await page.evaluate(() => {
+        const menu = document.querySelector('#ps-overview-appearance-menu');
+        const pane = menu?.querySelector('.ps-customize-pane');
+        const side = menu?.querySelector('.ps-customize-side');
+        if (!menu || !pane || !side) return null;
+        const m = menu.getBoundingClientRect(), p = pane.getBoundingClientRect(), d = side.getBoundingClientRect();
+        const rows = [...pane.querySelectorAll('.ps-customize-row, .ps-customize-switch, .ps-customize-edit, .ps-customize-lead')].filter((e) => e.getClientRects().length).length;
+        return { width: Math.round(m.width), inside: m.top >= 0 && m.bottom <= innerHeight + 1 && m.left >= 0 && m.right <= innerWidth + 1, beside: p.left >= d.right - 1, rows };
+      }).catch(() => null);
+      await record('overview-customize-' + key, 'Customize Simplify · ' + key);
+      seen.push({ key, ...at });
+    }
+    const wide = (x) => x && x.rows > 0 && x.inside && (phone() || (x.width >= 640 && x.beside));
+    problems.push(`${stand} customize-wide: ${tabs.length >= 5 && seen.every(wide) ? 'ok' : 'WRONG'} ${JSON.stringify(seen)}`);
+  }
+  await alpine('d.appearanceMenu=false'); await sleep(300);
   await openNav();
   await click('[x-ref="notifyButton"]'); await record('overview-bell', 'Bel (aankondigingen) open'); await escape();
   await openNav();
@@ -306,6 +408,7 @@ async function round(theme) {
   // Host health card's tab under its bottom edge (1.4.4): the nodes fold open.
   if (await click('.ps-health-tab', 900)) { await record('overview-health-nodes', 'Host health, nodes uitgeklapt'); await click('.ps-health-tab', 600); }
   await healthHover('overview');
+  await healthSurround();
   await adminPage(overview);
   // The menus under the top bar once more with one announcement bar and with none: their height must follow the bars.
   const unpinBar = async () => { const b = page.locator('button[aria-label="Unpin"], .ps-announcement-unpin, [wire\\:click^="unpin"]').first(); if (!(await b.count())) return false; await b.click().catch(() => {}); await sleep(1500); return true; };
@@ -812,6 +915,9 @@ async function otherPlugins() {
 async function hubFlow() {
   const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
   await goto('/admin/simplify?tab=hub', 1000);
+  // Browse Hub is hidden for now (Settings::HUB, Jeroen 3-11): then neither the row of tabs nor the Admin menu has it.
+  const hubLinks = await page.evaluate(() => document.querySelectorAll('a[href*="tab=hub"]').length).catch(() => -1);
+  if (!(await page.locator('.s-hub, .s-hub-card, .s-hub-empty').count())) return say('hub-hidden', hubLinks === 0, { links: hubLinks });
   // The placeholder has a grid too: wait for a real card (with its Hub link) or the empty note.
   await page.waitForSelector('.s-hub-card a.s-btn, .s-hub-empty', { timeout: 45000 }).catch(() => {});
   await sleep(800);
@@ -1102,6 +1208,20 @@ async function fixesFlow() {
     const top = { menuButton: await vis('.ps-mobile-menu'), bell: await vis('.ps-top [x-ref="notifyButton"]'), account: await vis('.ps-top .ps-account-button'), servers: await page.evaluate(() => [...document.querySelectorAll('.ps-tabbar .ps-tab')].filter((b) => b.getClientRects().length).map((b) => b.innerText.trim())).catch(() => null) };
     await record('phone-frame-overview', 'Telefoon · overzicht: bel en account bovenin, balk onderin');
     say('phone-frame-overview', top.menuButton === false && top.bell && top.account && Array.isArray(top.servers) && top.servers[0] === 'Servers' && top.servers.includes('Admin') && !top.servers.includes('Customize'), top);
+    // Pelican's copyright line is at the end of the overview on a phone too, above the bottom bar once you scrolled
+    // down, with Simplify's credit in it (K-B29, Jeroen 3-11 on iOS: no copyright on the overview).
+    // Measures the text itself: the footer's box runs on under the bar on purpose (its bottom padding).
+    await page.evaluate(() => scrollTo(0, document.documentElement.scrollHeight)).catch(() => {}); await sleep(600);
+    const foot = await page.evaluate(() => {
+      const f = [...document.querySelectorAll('[data-ps-footer], .fi-footer')].find((e) => e.getClientRects().length && getComputedStyle(e).display !== 'none');
+      if (!f) return { shown: false };
+      const line = f.querySelector('[data-ps-copyright-line]') || f, text = document.createRange(); text.selectNodeContents(line); const r = text.getBoundingClientRect(), bar = [...document.querySelectorAll('.ps-tabbar')].find((e) => e.getClientRects().length)?.getBoundingClientRect();
+      const cards = [...document.querySelectorAll('.ps-server-card')].filter((e) => e.getClientRects().length).map((e) => e.getBoundingClientRect().bottom);
+      return { shown: true, text: line.innerText.replace(/\s+/g, ' ').trim(), top: Math.round(r.top), bottom: Math.round(r.bottom), bar: bar ? Math.round(bar.top) : null, lastCard: cards.length ? Math.round(Math.max(...cards)) : null, inWindow: r.top >= 0 && r.bottom <= innerHeight, gap: cards.length ? Math.round(r.top - Math.max(...cards)) : null };
+    }).catch(() => null);
+    await record('phone-overview-footer', 'Telefoon · overzicht onderaan: copyright boven de balk');
+    say('phone-overview-footer', !!foot && foot.shown && /©|copyright/i.test(foot.text) && /Simplify/.test(foot.text) && foot.inWindow && (foot.bar === null || foot.bottom <= foot.bar) && (foot.lastCard === null || (foot.gap >= 0 && foot.gap <= 120)), foot);
+    await page.evaluate(() => scrollTo(0, 0)).catch(() => {}); await sleep(300);
     await page.locator('.ps-top [x-ref="notifyButton"]').first().click().catch(() => {}); await sleep(900);
     const bell = await sheet('#ps-notify-menu'); await record('phone-sheet-bell', 'Telefoon · meldingen als blad');
     say('phone-sheet-bell', isSheet(bell, 0.85), bell);
@@ -1120,7 +1240,8 @@ async function fixesFlow() {
     say('phone-sheet-close', closed.open === false && closed.url, closed);
     for (const sel of CUSTOMIZE) { await page.locator(sel).first().click().catch(() => {}); await sleep(700); }
     const custom = await sheet('#ps-overview-appearance-menu'); await record('phone-sheet-customize', 'Telefoon · Customize (accountmenu) als blad');
-    await page.locator('#ps-overview-appearance-menu .ps-customize-go').first().click().catch(() => {}); await sleep(900);
+    await page.locator('#ps-overview-appearance-menu [data-tab="groups"]').first().click().catch(() => {}); await sleep(300);
+    await page.locator('#ps-overview-appearance-menu .ps-customize-edit').first().click().catch(() => {}); await sleep(900);
     const groups = await sheet('#ps-overview-groups-menu'); await record('phone-sheet-groups', 'Telefoon · Server groups als blad');
     say('phone-sheet-customize', isSheet(custom) && isSheet(groups), { custom, groups });
     await escape();
@@ -1155,6 +1276,15 @@ async function fixesFlow() {
     const opened = await adminPhone(); await record('phone-frame-host', 'Telefoon · Admin opent het menu als pagina');
     say('phone-admin-accent', !!opened && !!overviewPlus && opened.plus === overviewPlus, { overviewPlus, admin: opened?.plus });
     say('phone-frame-host', !!opened && opened.tabs[0] === 'Servers' && opened.tabs[opened.tabs.length - 1] === 'Admin' && !opened.tabs.includes('Menu') && opened.menu && opened.leaves > 0 && opened.below && !opened.page && opened.pageScroll <= 1, opened);
+    // With the menu open, the bottom bar and the header keep their taps (K-B24, Jeroen 3-11: every tap showed
+    // Servers › Servers). Admin again keeps the menu, the account button opens the account menu.
+    await page.locator('.ps-admin-side .ps-tabbar button.ps-tab:has(use[href="#ps-shield"]) >> visible=true').first().click().catch(() => {}); await sleep(600);
+    const again = await adminPhone();
+    say('phone-admin-tab-again', !!again && again.menu && !again.page, again);
+    await page.locator('.ps-top .ps-account-button >> visible=true').first().click().catch(() => {}); await sleep(700);
+    const accountOpen = await page.evaluate(() => ({ account: !!document.querySelector('.ps-account.account-open'), menu: [...document.querySelectorAll('.ps-admin-side .ps-host-side')].some((e) => e.getClientRects().length > 0) })).catch(() => null);
+    say('phone-admin-account', !!accountOpen && accountOpen.account, accountOpen);
+    await escape();
     const leaf = page.locator('.ps-admin-side .ps-host-group:has(.ps-host-leaf) .ps-host-leaf:not([aria-current]) >> visible=true').first();
     const leafText = (await leaf.innerText().catch(() => '')).trim();
     await leaf.click().catch(() => {}); await settle(page, 1800);
@@ -1168,6 +1298,11 @@ async function fixesFlow() {
     await page.locator('.ps-admin-crumb button >> visible=true').first().click().catch(() => {}); await sleep(600);
     const back = await adminPhone();
     say('phone-admin-crumb-back', !!back && back.menu && !back.page, back);
+    // Servers in the bottom bar goes to the overview, also with the menu open (not to the admin page under it).
+    await page.locator('.ps-admin-side .ps-tabbar a.ps-tab:has(use[href="#ps-grid"]) >> visible=true').first().click().catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await settle(page, 1500);
+    const toOverview = await page.evaluate(() => ({ url: location.pathname, admin: !!document.querySelector('.ps-admin-side') })).catch(() => null);
+    const home = new URL(overview, base).pathname.replace(/\/$/, '');
+    say('phone-admin-tab-servers', !!toOverview && !toOverview.admin && toOverview.url.replace(/\/$/, '') === home, { ...toOverview, home });
     await escape();
     // Pelican's lists inside Simplify (the Admin page) are short rows: no checkboxes, no column titles and no egg
     // descriptions. The same page in the legacy panel keeps Pelican's own table (K-B5, Jeroen 2-11).
@@ -1176,7 +1311,7 @@ async function fixesFlow() {
     const eggs = await page.evaluate(measureEggs).catch(() => null);
     await record('phone-eggs', 'Telefoon · Eggs als korte rijen (Simplify)');
     say('phone-eggs', eggs && eggs.rows > 0 && eggs.names === eggs.rows && eggs.tallest <= 90 && !eggs.checkboxes && !eggs.head && !eggs.descriptions, eggs);
-    // Every admin list fits the phone (Jeroen 3-11, K-B18): rows never run off the side, the buttons, search and filter
+    // Every admin list fits the phone (Jeroen 3-11, K-B40): rows never run off the side, the buttons, search and filter
     // share one row right under the breadcrumb, and the search field, however small, opens over that row when tapped.
     const measureList = () => {
       const seen = (e) => e && e.getClientRects().length > 0;

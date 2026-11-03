@@ -84,6 +84,7 @@ return [
         'close' => 'Sulje',
         'close_server' => 'Sulje palvelin',
         'server_groups' => 'Palvelinryhmät',
+        'edit_groups' => 'Muokkaa ryhmiä',
         'saved_with_your_account_so_every' => 'Tallennetaan tilillesi, joten jokainen laite näyttää samat ryhmät ja järjestyksen.',
         'server_order' => 'Palvelinten järjestys',
         'for_the_overview_and_for_groups' => 'Yleiskatsaukselle ja sitä seuraaville ryhmille',

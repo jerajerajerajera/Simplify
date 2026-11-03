@@ -10,7 +10,7 @@ return [
     'page_title' => 'Simplify-Einstellungen',
     'pelican_frame_title' => 'Pelican-Einstellungen: :label',
     'pelican_frame' => 'Pelicans eigene Einstellungen für :label.',
-    'version_line' => 'Version :version · Änderungen gelten nach dem Speichern für alle auf diesem Panel.',
+    'save_note' => 'Änderungen gelten nach dem Speichern für alle auf diesem Panel.',
     'profile' => [
         'support' => 'Hilfelink',
         'support_help' => 'Eine Hilfeseite oder mailto:-Adresse, im Kontomenü aller. Leer zeigt nichts.',

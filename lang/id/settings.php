@@ -10,7 +10,7 @@ return [
     'page_title' => 'Pengaturan Simplify',
     'pelican_frame_title' => 'Pengaturan Pelican: :label',
     'pelican_frame' => 'Pengaturan :label milik Pelican sendiri.',
-    'version_line' => 'Versi :version · Perubahan berlaku untuk semua orang di panel ini setelah disimpan.',
+    'save_note' => 'Perubahan berlaku untuk semua orang di panel ini setelah disimpan.',
     'profile' => [
         'support' => 'Tautan bantuan',
         'support_help' => 'Halaman bantuan atau alamat mailto:, ditampilkan di menu akun semua orang. Kosong tidak menampilkan apa pun.',

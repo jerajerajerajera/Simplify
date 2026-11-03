@@ -10,7 +10,7 @@ return [
     'page_title' => 'Simplify 設定',
     'pelican_frame_title' => 'Pelican 設定：:label',
     'pelican_frame' => 'Pelican 自己的 :label 設定。',
-    'version_line' => '版本 :version · 儲存後，變更將對此面板上的所有人生效。',
+    'save_note' => '儲存後，變更將對此面板上的所有人生效。',
     'profile' => [
         'support' => '支援連結',
         'support_help' => '說明頁面或 mailto: 位址，顯示在每個人的帳號選單中。留空則不顯示。',
