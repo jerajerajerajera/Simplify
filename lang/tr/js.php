@@ -153,6 +153,11 @@ return [
         'server_color_saved' => 'Sunucu rengi kaydedildi',
         'traffic_used' => 'Kullanılan: :traffic · sunucu başlangıcından beri',
         'of_allocated' => 'ayrılan :amount içinden',
+        'share_of' => ':amount içinden :percent',
+        'cpu_short' => 'CPU',
+        'memory_short' => 'MEM',
+        'storage_short' => 'DISK',
+        'network_short' => 'NET',
     ],
     'seasons' => [
         'newyear' => ['name' => 'Yılbaşı', 'text' => 'Yılın son gecesi ve yeni yılın ilk günü.'],

@@ -153,6 +153,11 @@ return [
         'server_color_saved' => 'Culoarea serverului a fost salvată',
         'traffic_used' => 'Folosit :traffic · de la pornirea serverului',
         'of_allocated' => 'din :amount alocat',
+        'share_of' => ':percent din :amount',
+        'cpu_short' => 'CPU',
+        'memory_short' => 'MEM',
+        'storage_short' => 'DISK',
+        'network_short' => 'NET',
     ],
     'seasons' => [
         'newyear' => ['name' => 'Anul Nou', 'text' => 'Ultima noapte a anului și prima zi a celui următor.'],

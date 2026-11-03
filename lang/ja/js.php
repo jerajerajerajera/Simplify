@@ -153,6 +153,11 @@ return [
         'server_color_saved' => 'サーバーの色を保存しました',
         'traffic_used' => '使用量 :traffic · サーバー起動以降',
         'of_allocated' => '割り当て :amount 中',
+        'share_of' => ':amount 中 :percent',
+        'cpu_short' => 'CPU',
+        'memory_short' => 'メモリ',
+        'storage_short' => 'ディスク',
+        'network_short' => 'ネット',
     ],
     'seasons' => [
         'newyear' => ['name' => 'お正月', 'text' => '一年の最後の夜と、新しい年の最初の日。'],

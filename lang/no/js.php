@@ -153,6 +153,11 @@ return [
         'server_color_saved' => 'Serverfarge lagret',
         'traffic_used' => 'Brukt :traffic · siden serverstart',
         'of_allocated' => 'av :amount tildelt',
+        'share_of' => ':percent av :amount',
+        'cpu_short' => 'CPU',
+        'memory_short' => 'MEM',
+        'storage_short' => 'DISK',
+        'network_short' => 'NET',
     ],
     'seasons' => [
         'newyear' => ['name' => 'Nyttår', 'text' => 'Årets siste natt og det nye årets første dag.'],

@@ -153,6 +153,11 @@ return [
         'server_color_saved' => 'Barva serveru uložena',
         'traffic_used' => 'Využito :traffic · od spuštění serveru',
         'of_allocated' => 'z :amount přiděleno',
+        'share_of' => ':percent z :amount',
+        'cpu_short' => 'CPU',
+        'memory_short' => 'MEM',
+        'storage_short' => 'DISK',
+        'network_short' => 'NET',
     ],
     'seasons' => [
         'newyear' => ['name' => 'Nový rok', 'text' => 'Poslední noc roku a první den toho dalšího.'],

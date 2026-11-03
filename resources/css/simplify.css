@@ -813,22 +813,44 @@ html.ps-shell:not(.ps-frame) .fi-main-ctn .fi-ta-ctn:not(.fi-section .fi-ta-ctn)
     padding: 0 12px 12px;
   }
 
-  /* Room for the bottom bar (AdminSide). */
+  /* Room for the bottom bar (AdminSide). Under the header the breadcrumb, then the page; the open Admin menu is a
+     page of its own in place of both (Jeroen 3-11). */
   html.ps-shell-menu:not(.ps-frame) body .fi-layout {
+    grid-template-rows: auto auto minmax(0, 1fr);
     padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px));
   }
 
-  html.ps-shell:not(.ps-frame) .fi-layout > [x-persist="simplify-admin-side"] {
-    position: fixed;
+  html.ps-shell-menu:not(.ps-frame) .fi-layout > :not([x-persist]) {
+    grid-row: 3;
   }
 
-  /* The open menu sheet and its backdrop cover the header too. */
-  html.ps-shell:not(.ps-frame) .fi-layout > [x-persist="simplify-admin-side"]:has(.menu-open) {
-    z-index: 4;
+  html.ps-shell-menu:not(.ps-frame) .fi-layout:has(.ps-admin-side.menu-open) > [x-persist="simplify-admin-side"] {
+    grid-row: 2 / 4;
+  }
+
+  html.ps-shell-menu:not(.ps-frame) .fi-layout:has(.ps-admin-side.menu-open) > :not([x-persist]) {
+    display: none !important;
+  }
+
+  /* On a phone the page sits straight on the background, as the overview does: no card around it. */
+  html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn {
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
   }
 
   html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn > .fi-main {
-    padding: 12px 12px 18px !important;
+    padding: 8px 0 18px !important;
+  }
+
+  /* The breadcrumb is the title: Pelican's own heading goes, and its header when nothing else is in it. */
+  html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header-heading {
+    display: none !important;
+  }
+
+  html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header:not(:has(.fi-header-subheading, :is(.fi-ac, .fi-header-actions-ctn) :is(button, a))) {
+    display: none !important;
   }
 }
 

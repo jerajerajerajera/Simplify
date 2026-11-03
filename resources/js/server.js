@@ -56,12 +56,14 @@
       COLORS: boot.colors || {}, // Looks::COLORS
       stats: { cpu: null, memory: null, disk: null, rx: null, tx: null },
       rates: { rx: null, tx: null },
-      series: { cpu: [], ram: [], disk: [], network: [] },
+      series: { cpu: [], ram: [], disk: [], rx: [], tx: [] },
+      // 0 → 1 between two measurements: the bars slide one step to the left while the next number is on its way.
+      glide: 1,
       metrics: [
-        { key: 'cpu', label: t('dashboard.cpu_load'), icon: 'cpu' },
-        { key: 'ram', label: t('dashboard.memory'), icon: 'ram' },
-        { key: 'disk', label: t('dashboard.storage'), icon: 'disk' },
-        { key: 'network', label: t('dashboard.network_usage'), icon: 'traffic' },
+        { key: 'cpu', label: t('dashboard.cpu_short'), title: t('dashboard.cpu_load'), icon: 'cpu' },
+        { key: 'ram', label: t('dashboard.memory_short'), title: t('dashboard.memory'), icon: 'ram' },
+        { key: 'disk', label: t('dashboard.storage_short'), title: t('dashboard.storage'), icon: 'disk' },
+        { key: 'network', label: t('dashboard.network_short'), title: t('dashboard.network_usage'), icon: 'traffic' },
       ],
       infoMenu: false,
       colorMenu: false,
@@ -254,12 +256,26 @@
           this.rates = { rx: reset ? 0 : (sample.rx - previous.rx) / (at - previous.at), tx: reset ? 0 : (sample.tx - previous.tx) / (at - previous.at) };
         }
         this.sample = { ...sample, at };
-        const values = { cpu: sample.cpu, ram: sample.memory, disk: sample.disk, network: (this.rates.rx ?? 0) + (this.rates.tx ?? 0) };
+        const values = { cpu: sample.cpu, ram: sample.memory, disk: sample.disk, rx: this.rates.rx ?? 0, tx: this.rates.tx ?? 0 };
         for (const [key, value] of Object.entries(values)) {
           if (value == null) continue;
           this.series[key].push(Number(value));
-          if (this.series[key].length > SERIES) this.series[key].shift();
+          // One more than is shown: the oldest bar slides out on the left while the newest slides in.
+          if (this.series[key].length > SERIES + 1) this.series[key].shift();
         }
+        this.slide(previous ? (at - previous.at) * 1000 : 0);
+      },
+      /** Moves the bars over the time between two measurements, so they glide instead of jumping. */
+      slide(ms) {
+        cancelAnimationFrame(this.glideFrame);
+        if (!(ms > 0) || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return void (this.glide = 1);
+        const start = performance.now(), duration = Math.min(Math.max(ms, 400), 5000);
+        const step = (now) => {
+          this.glide = Math.min(1, (now - start) / duration);
+          if (this.glide < 1) this.glideFrame = requestAnimationFrame(step);
+        };
+        this.glide = 0;
+        this.glideFrame = requestAnimationFrame(step);
       },
       /** The newest numbers from Pelican's console (window.ServerStats), once per new frame. */
       live() {
@@ -569,23 +585,51 @@
 
       /* Numbers ---------------------------------------------------------------------------------- */
       metricValue(key) {
-        if (key === 'network') return this.rateLabel(this.rates.rx, this.rates.tx);
         const value = this.stats[{ cpu: 'cpu', ram: 'memory', disk: 'disk' }[key]];
         if (value == null) return '—';
         return key === 'cpu' ? Number(value).toFixed(1) + '%' : this.trafficBytes(value);
       },
+      /** Download (rx) or upload (tx) per second, such as "1.4 MB/s". */
+      rate(way) {
+        return this.rates[way] == null ? '—' : this.trafficBytes(this.rates[way]) + '/s';
+      },
       metricLimit(key) {
         const u = this.server.usage || {};
         if (key === 'network') return t('dashboard.traffic_used', { traffic: this.stats.rx == null || this.stats.tx == null ? '—' : '↓ ' + this.trafficBytes(this.stats.rx) + ' / ↑ ' + this.trafficBytes(this.stats.tx) });
-        if (key === 'cpu') return t('dashboard.of_allocated', { amount: (u.cpu_limit || '∞') + '%' });
-        const limit = key === 'ram' ? u.memory_limit_bytes : u.disk_limit_bytes;
-        return t('dashboard.of_allocated', { amount: limit ? this.trafficBytes(limit) : '∞' });
+        const cap = this.metricCap(key), share = this.metricShare(key);
+        if (!cap) return t('dashboard.of_allocated', { amount: '∞' });
+        const amount = key === 'cpu' ? cap + '%' : this.trafficBytes(cap);
+        return share == null ? t('dashboard.of_allocated', { amount }) : t('dashboard.share_of', { percent: share < 0.01 ? '<1%' : Math.round(share * 100) + '%', amount });
       },
-      spark(key) {
-        const a = this.series[key];
-        if (a.length < 2) return 'M0 34 L200 34';
-        const max = Math.max(...a, 1);
-        return a.map((v, i) => `${i ? 'L' : 'M'}${((i * 200) / (a.length - 1)).toFixed(1)} ${(34 - (v / max) * 30).toFixed(1)}`).join(' ');
+      /** What the server may use of a metric: CPU in %, memory and storage in bytes; null without a limit. */
+      metricCap(key) {
+        const u = this.server.usage || {};
+        const cap = { cpu: u.cpu_limit, ram: u.memory_limit_bytes, disk: u.disk_limit_bytes }[key];
+        return cap > 0 ? Number(cap) : null;
+      },
+      metricShare(key) {
+        const value = this.stats[{ cpu: 'cpu', ram: 'memory', disk: 'disk' }[key]], cap = this.metricCap(key);
+        return value == null || !cap ? null : value / cap;
+      },
+      /** The colour of the load, as on the overview cards (W4): calm below 60%, warning from 60%, alarm from 85%. */
+      metricLevel(key) {
+        const share = this.metricShare(key);
+        return share == null ? '' : share >= 0.85 ? 'is-hot' : share >= 0.6 ? 'is-warn' : 'is-ok';
+      },
+      /** One bar per measurement from 0 to the limit; network: download (rx) up and upload (tx) down to their shared peak. */
+      spark(key, newest = false) {
+        const a = this.series[key], net = key === 'rx' || key === 'tx';
+        if (!a.length) return '';
+        const top = net ? Math.max(...this.series.rx, ...this.series.tx, 1) : this.metricCap(key) || Math.max(...a, 1);
+        const base = net ? 15 : 28, room = net ? 13 : 25, sign = key === 'tx' ? 1 : -1, w = 100 / SERIES;
+        let d = '';
+        a.forEach((v, i) => {
+          if ((i === a.length - 1) !== newest) return;
+          const x = (SERIES - a.length + i + 1 - this.glide) * w;
+          const h = Math.max(net ? 0.6 : 1, Math.min(1, v / top) * room);
+          d += `M${(x + 0.6).toFixed(2)} ${base}v${(sign * h).toFixed(2)}h${(w - 1.2).toFixed(2)}V${base}z`;
+        });
+        return d;
       },
     };
   };

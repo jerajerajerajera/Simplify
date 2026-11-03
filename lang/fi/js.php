@@ -153,6 +153,11 @@ return [
         'server_color_saved' => 'Palvelimen väri tallennettu',
         'traffic_used' => 'Käytetty :traffic · palvelimen käynnistyksestä',
         'of_allocated' => '/ :amount varattu',
+        'share_of' => ':percent / :amount',
+        'cpu_short' => 'CPU',
+        'memory_short' => 'MEM',
+        'storage_short' => 'DISK',
+        'network_short' => 'NET',
     ],
     'seasons' => [
         'newyear' => ['name' => 'Uusivuosi', 'text' => 'Vuoden viimeinen yö ja seuraavan ensimmäinen päivä.'],

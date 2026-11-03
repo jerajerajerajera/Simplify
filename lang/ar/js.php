@@ -153,6 +153,11 @@ return [
         'server_color_saved' => 'تم حفظ لون الخادم',
         'traffic_used' => 'المستخدم :traffic · منذ بدء الخادم',
         'of_allocated' => 'من :amount مخصصة',
+        'share_of' => ':percent من :amount',
+        'cpu_short' => 'CPU',
+        'memory_short' => 'RAM',
+        'storage_short' => 'قرص',
+        'network_short' => 'شبكة',
     ],
     'seasons' => [
         'newyear' => ['name' => 'رأس السنة', 'text' => 'آخر ليلة في السنة وأول يوم في السنة الجديدة.'],
