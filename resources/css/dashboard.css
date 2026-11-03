@@ -550,6 +550,16 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 .ps-info-content { grid-area: content; min-width: 0; }
 .ps-game-title { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin-bottom: 6px; }
 .ps-game-title h2 { max-width: 100%; padding-inline-end: 2px; overflow-wrap: anywhere; font-size: 24px; font-weight: 750; line-height: 1.2; letter-spacing: -.4px; }
+/* The name edited in place: the field takes the heading's size and place, ✕ and ✓ beside it (on a phone Cancel and Save under it). */
+.ps-game-title h2.is-editable { margin-inline-start: -6px; padding-inline: 6px 8px; border-radius: var(--ps-radius-sm); cursor: text; transition: background var(--ps-fast); }
+.ps-game-title h2.is-editable:hover { background: color-mix(in srgb, var(--ps-ink) 6%, transparent); }
+.ps-name-edit { display: flex; flex: 1 1 auto; align-items: center; gap: 4px; min-width: 0; max-width: 560px; }
+.ps-name-edit .ps-name-input { flex: 1 1 auto; min-height: 0; margin-inline-start: -7px; padding: 1px 6px; font-size: 24px; font-weight: 750; line-height: 1.2; letter-spacing: -.4px; }
+.ps-name-edit .ps-btn > span { display: none; }
+.ps-name-save { color: var(--ps-ok); }
+.ps-name-input.is-shake { animation: ps-name-shake .3s; }
+@keyframes ps-name-shake { 25% { transform: translateX(-3px); } 75% { transform: translateX(3px); } }
+@media (prefers-reduced-motion: reduce) { .ps-name-input.is-shake { animation: none; } }
 .ps-info-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; min-width: 0; color: var(--ps-muted); font-size: 13px; }
 .ps-info-meta-item { display: inline-flex; align-items: center; gap: 6px; min-width: 0; }
 .ps-info-meta-item > span { overflow-wrap: anywhere; }
@@ -1107,6 +1117,10 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   .ps .ps-software-icon.is-badge img { width: 16px; height: 16px; }
   .ps .ps-game-title { margin-bottom: 2px; }
   .ps .ps-game-title h2 { font-size: 20px; }
+  .ps .ps-name-edit { flex-wrap: wrap; flex-basis: 100%; max-width: none; gap: 8px; }
+  .ps .ps-name-edit .ps-name-input { flex-basis: 100%; margin-inline-start: 0; padding: 4px 8px; font-size: 20px; }
+  .ps .ps-name-edit .ps-btn { flex: 1 1 0; width: auto; height: var(--ps-h-sm); gap: 6px; }
+  .ps .ps-name-edit .ps-btn > span { display: inline; }
   .ps .ps-info-meta { gap: 4px 12px; font-size: 12px; }
   .ps .ps-info-meta-item { display: none; }
   .ps .ps-info-power { gap: 8px; }

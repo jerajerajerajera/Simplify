@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- A server's name is edited in its title card. Click the name or the pencil: the name turns into a field with its text selected. Enter or ✓ saves, Esc or ✕ puts it back, and a click beside the field keeps what you typed. On a phone, Cancel and Save sit under the field.
 - Pages no longer open white. While Simplify starts, the overview, a server's page and the Admin page show their shapes as grey placeholders in your light or dark theme, and the real page takes their place.
 - Pages load faster on a first visit and after every update: Simplify sends its styles and scripts gzipped (about 100 KB instead of 400 KB), because Pelican's web server compresses only HTML.
 
