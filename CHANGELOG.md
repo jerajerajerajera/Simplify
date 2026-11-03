@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Phones: Admin in the bottom bar opens the admin menu as a page of its own, with the same tree as on a computer and Health at the bottom. A link opens its page, and the page's title is where you are, such as Servers › Eggs; tap the group, tap Admin again or swipe from the left edge to go back to the menu. The separate Menu tab is gone, so the bar is Servers, New and Admin again, and the page sits straight on the background without a card around it.
+
 ## 2.0.0-beta.1
 
 - A download of the repository holds the plugin only, without its screenshots, art, tests and scripts (2.3 MB instead of 9.3 MB).

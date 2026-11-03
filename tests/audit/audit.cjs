@@ -65,7 +65,7 @@ async function record(id, title, extra = {}) {
   fs.writeFileSync(path.join(out, 'result.json'), JSON.stringify({ base, screens, problems }, null, 1));
 }
 // The Admin page (V52): the shield opens Pelican's admin pages inside Simplify without a frame: Simplify's header, the
-// Admin menu on the left (a sheet from the bottom bar's Menu on a phone) and the page in a card beside it. The menu stays
+// Admin menu on the left (on a phone a page of its own that the bottom bar's Admin opens) and the page in a card beside it. The menu stays
 // while its links change the page (wire:navigate). The legacy panel shows the same pages as Pelican draws them.
 const adminState = () => page.evaluate(() => {
   const side = document.querySelector('.ps-admin-side'), card = document.querySelector('.fi-layout > .fi-main-ctn');
@@ -337,7 +337,7 @@ async function round(theme) {
   // The Admin page: every section and page of its menu, the menu kept beside each page, and the servers per node.
   if (await shieldTo(overview)) {
     await record('host', 'Admin-pagina');
-    if (onPhone) { await openAdminMenu(); await record('host-phone-menu', 'Admin-pagina · telefoon, menu als blad'); await escape(); }
+    if (onPhone) { await openAdminMenu(); await record('host-phone-menu', 'Admin-pagina · telefoon, menu als pagina'); await escape(); }
     const lost = [], visited = [];
     const go = async (locator, id, title) => {
       await markAdminSide(); await locator.click().catch(() => {}); await settle(page, 1800);
@@ -996,12 +996,34 @@ async function fixesFlow() {
       say('phone-frame-server', srv.menuButton === false && srv.back && srv.back <= 48 && isSheet(more), { ...srv, more });
       await escape();
     }
-    // The Admin page: its own bottom bar (Servers, Admin, Menu) and the menu as a sheet over the full width.
-    await goto('/admin/health', 2000);
-    const tabs = await page.evaluate(() => [...document.querySelectorAll('.ps-admin-side .ps-tabbar .ps-tab')].filter((b) => b.getClientRects().length).map((b) => b.innerText.trim())).catch(() => null);
-    await openAdminMenu();
-    const menu = await sheet('.ps-admin-side.menu-open .ps-host-side'); await record('phone-frame-host', 'Telefoon · Admin-pagina, menu als blad');
-    say('phone-frame-host', Array.isArray(tabs) && tabs[0] === 'Servers' && tabs.includes('Admin') && tabs[tabs.length - 1] === 'Menu' && isSheet(menu), { tabs, menu });
+    // The Admin page (Jeroen 3-11): the bottom bar is Servers, New, Admin (no Menu tab), and Admin opens the menu as a
+    // page of its own: the tree in place of the page, under the header, without a card. A page's breadcrumb
+    // (group › page) is its title, Pelican's heading is gone and the page has no card; the group and a swipe from the
+    // left edge bring the menu back.
+    const adminPhone = () => page.evaluate(() => {
+      const shown = (e) => !!e && e.getClientRects().length > 0 && getComputedStyle(e).display !== 'none' && getComputedStyle(e).visibility !== 'hidden';
+      const side = document.querySelector('.ps-admin-side .ps-host-side'), card = document.querySelector('.fi-layout > .fi-main-ctn'), top = document.querySelector('.ps-admin-top .ps-top'), crumb = document.querySelector('.ps-admin-crumb');
+      const cs = card && getComputedStyle(card);
+      return { tabs: [...document.querySelectorAll('.ps-admin-side .ps-tabbar .ps-tab')].filter(shown).map((b) => b.innerText.trim()), menu: shown(side), leaves: [...document.querySelectorAll('.ps-admin-side .ps-host-leaf')].filter(shown).length, page: shown(card),
+        below: !!side && !!top && side.getBoundingClientRect().top >= top.getBoundingClientRect().bottom - 1, crumb: shown(crumb) ? crumb.innerText.replace(/\s+/g, ' ').trim() : null,
+        heading: [...document.querySelectorAll('.fi-main .fi-header-heading')].some(shown), cardBox: !!cs && (cs.borderTopWidth !== '0px' || !/rgba\(0, 0, 0, 0\)|transparent/.test(cs.backgroundColor)), pageScroll: document.documentElement.scrollHeight - innerHeight };
+    }).catch(() => null);
+    await goto(overview, 1500);
+    await page.locator('.ps-tabbar a.ps-tab:has(use[href="#ps-shield"]) >> visible=true').first().click().catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await settle(page, 1800);
+    const opened = await adminPhone(); await record('phone-frame-host', 'Telefoon · Admin opent het menu als pagina');
+    say('phone-frame-host', !!opened && opened.tabs[0] === 'Servers' && opened.tabs[opened.tabs.length - 1] === 'Admin' && !opened.tabs.includes('Menu') && opened.menu && opened.leaves > 0 && opened.below && !opened.page && opened.pageScroll <= 1 && !/#menu/.test(page.url()), opened);
+    const leaf = page.locator('.ps-admin-side .ps-host-group:has(.ps-host-leaf) .ps-host-leaf >> visible=true').first();
+    const leafText = (await leaf.innerText().catch(() => '')).trim();
+    await leaf.click().catch(() => {}); await settle(page, 1800);
+    const shownPage = await adminPhone(); await record('phone-admin-crumb', 'Telefoon · Admin-pagina met kruimelpad als titel');
+    say('phone-admin-crumb', !!shownPage && !shownPage.menu && shownPage.page && !!shownPage.crumb && shownPage.crumb.endsWith(leafText) && !shownPage.heading && !shownPage.cardBox, { ...shownPage, leafText });
+    await page.evaluate(() => { const at = (x) => ({ identifier: 1, target: document.body, clientX: x, clientY: 400 }); const fire = (type, x) => document.dispatchEvent(new TouchEvent(type, { bubbles: true, touches: type === 'touchend' ? [] : [new Touch(at(x))], changedTouches: [new Touch(at(x))] })); fire('touchstart', 6); fire('touchend', 220); }).catch(() => {}); await sleep(700);
+    const swiped = await adminPhone(); await record('phone-admin-swipe', 'Telefoon · swipe vanaf links: terug naar het menu');
+    say('phone-admin-swipe', !!swiped && swiped.menu && !swiped.page, swiped);
+    await escape();
+    await page.locator('.ps-admin-crumb button >> visible=true').first().click().catch(() => {}); await sleep(600);
+    const back = await adminPhone();
+    say('phone-admin-crumb-back', !!back && back.menu && !back.page, back);
     await escape();
     // Pelican's lists inside Simplify (the Admin page) are short rows: no checkboxes, no column titles and no egg
     // descriptions. The same page in the legacy panel keeps Pelican's own table (K-B5, Jeroen 2-11).

@@ -190,7 +190,7 @@
     <nav class="ps-phone-sections" aria-label="{{ $u('phone_navigation') }}" x-data="{ more: false }" x-on:click.outside="more=false" x-on:keydown.escape.stop="more=false" wire:ignore>
         <a class="ps-phone-section" href="{{ \Simplify\Core\Filament\App\Pages\Overview::getUrl(panel: 'app') }}"><svg class="ps-phone-section-icon" aria-hidden="true"><use href="#ps-grid"/></svg><span>{{ $u('servers') }}</span></a>
         <button type="button" class="ps-phone-section" x-show="createButtons().length" x-cloak x-on:click="more=false; openCreate(null, createButtons()[0]) || (location.href = createButtons()[0].url)"><svg class="ps-phone-section-icon" aria-hidden="true"><use href="#ps-plus"/></svg><span>{{ $u('new') }}</span></button>
-        <a class="ps-phone-section" x-show="boot.admin_url" x-cloak :href="boot.admin_url"><svg class="ps-phone-section-icon" aria-hidden="true"><use href="#ps-shield"/></svg><span>{{ $u('admin') }}</span></a>
+        <a class="ps-phone-section" x-show="boot.admin_url" x-cloak :href="boot.admin_url + '#menu'"><svg class="ps-phone-section-icon" aria-hidden="true"><use href="#ps-shield"/></svg><span>{{ $u('admin') }}</span></a>
         <div class="ps-phone-more">
             <button type="button" class="ps-phone-section" aria-controls="ps-phone-more-menu" :aria-expanded="more" aria-current="page" x-on:click="more=!more"><svg class="ps-phone-section-icon" aria-hidden="true"><use href="#ps-list"/></svg><span>{{ $u('sections') }}</span></button>
             <div id="ps-phone-more-menu" class="ps-dropdown is-end ps-phone-more-menu" x-show="more" x-cloak x-transition.opacity>

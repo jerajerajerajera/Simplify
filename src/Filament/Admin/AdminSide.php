@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Simplify\Core\Filament\Admin;
 
-use Filament\Facades\Filament;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use Simplify\Core\Addons\Addon;
@@ -17,8 +16,8 @@ use Simplify\Core\Overview\Listing;
 
 /**
  * The Admin page's menu (V52): beside every admin page, the admin pages as a tree, or the servers per node, with host
- * health at the bottom. It stays in place while its links load the page next to it (wire:navigate); on a phone it opens
- * as a sheet. Every admin has it; add-ons put their pages in it through Pelican's admin menu (AdminTree).
+ * health at the bottom. It stays in place while its links load the page next to it (wire:navigate); on a phone it is a
+ * page of its own that the bottom bar's Admin opens. Every admin has it; add-ons put their pages in it through Pelican's admin menu (AdminTree).
  */
 final class AdminSide extends Component
 {
@@ -54,7 +53,6 @@ final class AdminSide extends Component
             'overviewUrl' => Overview::getUrl(panel: 'app'),
             // New opens Create server in Simplify's popup (AdminTop listens for simplify:create).
             'create' => AdminMenu::createServer() !== [] || app(AddonRegistry::class)->collect(fn (Addon $addon) => $addon->dashboardActions()) !== [],
-            'adminUrl' => $sections[0]['pages'][0]['url'] ?? Filament::getPanel('admin')->getUrl(),
         ]);
     }
 

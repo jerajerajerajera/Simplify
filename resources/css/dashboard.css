@@ -1242,22 +1242,32 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 /* The top stays while the menu changes the page (@persist): its wrapper must not become one grid cell. */
 .ps.ps-server-top, [x-persist^="simplify-server-"] { display: contents; }
 /* The Admin page and the account pages (V52): Simplify's header over Pelican's page; the Admin menu (.ps-admin-side)
-   is a card on the left of it, on a phone a sheet that the bottom bar's Menu opens. */
+   is a card on the left of it. On a phone (Jeroen 3-11) the menu is a page of its own that the bottom bar's Admin
+   opens, and a page's breadcrumb (.ps-admin-crumb: group › page) is its title. */
 .ps.ps-admin-top.server-active .ps-main { padding-bottom: 0; }
 .ps.ps-admin-side { display: flex; flex: 1; min-width: 0; min-height: 0; overflow: visible; }
 .ps-admin-side .ps-host-side { flex: 1; overflow: hidden; border: 1px solid var(--ps-line); border-radius: var(--ps-radius); background: var(--ps-surface); box-shadow: var(--ps-shadow); }
 .ps-admin-side .ps-host-tabs { --ps-host-row: 48px; }
-.ps-admin-side .ps-host-backdrop, .ps-admin-side .ps-host-menu-close { display: none; }
+.ps-admin-side .ps-host-backdrop, .ps-admin-side .ps-host-menu-close, .ps-admin-crumb { display: none; }
 .ps-admin-side .ps-host-placeholder { height: 30px; margin: 4px 2px; border-radius: var(--ps-radius-sm); background: var(--ps-raised); }
 @media (max-width: 600px) {
-  .ps-admin-side .ps-host-side { position: fixed; inset-inline-end: 0; bottom: 0; inset-inline-start: 0; z-index: var(--ps-z-modal, 80); max-height: 82dvh; border: 0; border-top: 1px solid var(--ps-line); border-radius: 18px 18px 0 0; box-shadow: var(--ps-shadow-modal); transform: translateY(105%); visibility: hidden; transition: transform var(--ps-slow), visibility var(--ps-slow); padding-bottom: env(safe-area-inset-bottom, 0px); }
-  .ps-admin-side.menu-open .ps-host-side { transform: none; visibility: visible; }
-  .ps-admin-side .ps-host-backdrop { display: block; position: fixed; inset: 0; z-index: calc(var(--ps-z-modal, 80) - 1); background: var(--ps-backdrop); }
-  .ps-admin-side .ps-host-menu-close { display: inline-flex; flex: none; align-self: center; margin: 0 6px; }
-  .ps-admin-side .ps-host-group-head { min-height: 42px; }
-  .ps-admin-side .ps-host-leaf { min-height: 40px; }
+  .ps.ps-admin-side { flex-direction: column; }
+  .ps-admin-side .ps-host-side { position: static; display: none; max-height: none; padding-bottom: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; transform: none; visibility: visible; transition: none; }
+  .ps-admin-side.menu-open .ps-host-side { display: flex; }
+  .ps-admin-side .ps-host-tabs { display: none; }
+  .ps-admin-side .ps-host-side-scroll { padding: 4px 0 8px; }
+  .ps-admin-side .ps-host-group-head { min-height: 44px; font-size: 15px; }
+  .ps-admin-side .ps-host-leaf { min-height: 40px; font-size: 14px; }
+  .ps-admin-side .ps-host-leaf::before { top: 0; height: 21px; }
+  .ps-admin-crumb { display: flex; align-items: center; gap: 2px; min-width: 0; padding: 6px 0 2px; color: var(--ps-ink); font: 700 17px/1.25 var(--ps-font); }
+  .ps-admin-crumb button { display: inline-flex; flex: none; align-items: center; gap: 7px; max-width: 55%; min-height: 36px; padding: 0 6px 0 2px; border: 0; border-radius: var(--ps-radius-sm); background: none; color: var(--ps-muted); font: 500 16px/1.2 var(--ps-font); cursor: pointer; }
+  .ps-admin-crumb button.is-last { max-width: 100%; color: var(--ps-ink); font-weight: 700; font-size: 17px; }
+  .ps-admin-crumb button:hover { background: var(--ps-raised); }
+  .ps-admin-crumb :is(button, .ps-admin-crumb-part) > :is(span, strong) { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .ps-admin-crumb-part { display: inline-flex; align-items: center; gap: 2px; min-width: 0; }
+  .ps-admin-crumb svg { flex: none; width: 18px; height: 18px; color: var(--ps-tone, currentColor); fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .ps-admin-crumb .ps-admin-crumb-sep { width: 14px; height: 14px; color: var(--ps-muted); stroke-width: 2; }
 }
-@media (prefers-reduced-motion: reduce) { .ps-admin-side .ps-host-side { transition: none; } }
 .ps.ps-admin-top .ps-top { max-width: none; }
 body:has(.ps-server-top) .fi-main-ctn {
   display: grid !important;
