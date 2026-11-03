@@ -14,6 +14,7 @@ php tests/announcements-rules.php
 php tests/announcements-game-chat.php
 php tests/embed.php
 php tests/subdomains.php
+php tests/subdomains-import.php
 php tests/hub.php
 php tests/assets.php
 php tests/lang.php
