@@ -101,6 +101,12 @@ final class PanelSettings
         return self::all()[$key] ?? null;
     }
 
+    /** Friends mode: everyone signed in sees every server's card. Public for add-ons (ADDONS.md). */
+    public static function friendsMode(): bool
+    {
+        return (bool) self::get('friends_mode');
+    }
+
     /** @param array<string, mixed> $values only known keys are saved; throws a ValidationException for bad values */
     public static function save(array $values): void
     {

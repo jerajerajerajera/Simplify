@@ -5,6 +5,7 @@
      x-on:resize.window.debounce.150ms="applyScale()"
      x-on:simplify:create.window="createButtons().length && (openCreate(null, createButtons()[0]) || (location.href = createButtons()[0].url))"
      :class="{'dark': themeDark}"
+     :style="accentStyle('overview')"
      :data-season="seasonKeys()">
     @include('simplify::dashboard.assets')
     @include('simplify::dashboard.icons')

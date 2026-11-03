@@ -125,16 +125,18 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-overview-toolbar { display: flex; align-items: flex-start; gap: 8px 16px; margin: 0 0 12px; }
 .ps-overview-filters { display: flex; flex: 1 1 auto; flex-wrap: wrap; align-items: center; gap: 8px 16px; min-width: 0; }
 /* The Filter (V52): one chip naming what is chosen, a menu with Show, Game, Node and Group. */
-.ps-filter { position: relative; flex: 0 1 auto; }
+.ps-filter { position: relative; flex: 0 1 auto; gap: 8px; }
 .ps-filter-button { gap: 7px; max-width: min(420px, 100%); }
 .ps-filter-button > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .ps-filter-button svg { flex: none; width: 14px; height: 14px; }
 .ps-filter-button.is-on { border-color: var(--ps-accent); color: var(--ps-ink); }
 .ps-filter-button .ps-filter-chevron { transform: rotate(90deg); }
-.ps-filter-menu { inset-inline-start: 0; top: calc(100% + 8px); width: min(300px, calc(100vw - 24px)); max-height: min(66.667dvh, calc(100dvh - 160px), var(--ps-room, 100dvh)); overflow-y: auto; }
+.ps-filter-menu { inset-inline-start: var(--ps-filter-x, 0); top: calc(100% + 8px); width: min(300px, calc(100vw - 24px)); max-height: min(66.667dvh, calc(100dvh - 160px), var(--ps-room, 100dvh)); overflow-y: auto; }
 .ps-filter-section + .ps-filter-section { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--ps-line); }
 .ps-filter-section > .ps-label { display: block; margin: 2px 10px 4px; }
 .ps-filter-section > .ps-node-search { width: calc(100% - 8px); margin: 0 4px 4px; }
+.ps-filter-count { margin-inline-start: auto; color: var(--ps-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.ps-filter-count + .ps-filter-check { margin-inline-start: 0; }
 .ps-filter-check { flex: none; width: 16px; height: 16px; margin-inline-start: auto; color: var(--ps-accent); visibility: hidden; }
 .ps-menu-item[aria-checked="true"] { background: var(--ps-raised); font-weight: 650; }
 .ps-menu-item[aria-checked="true"] .ps-filter-check { visibility: visible; }
@@ -217,9 +219,14 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-server-entry.has-card-motd .ps-card-usage { margin-top: 0; }
 .ps-card-usage.single-metric { grid-template-columns: minmax(0, 1fr); }
 .ps-card-mini-metric { min-width: 0; padding: 6px; border: 1px solid var(--ps-line); border-radius: 8px; background: var(--ps-raised); }
-.ps-card-usage-label { display: flex; align-items: baseline; justify-content: space-between; gap: 5px; color: var(--ps-muted); font-size: 11px; }
-.ps-card-usage-label strong { color: var(--ps-accent); font-size: 11px; font-weight: 600; white-space: nowrap; }
-.ps-card-metric-name { display: flex; align-items: center; gap: 4px; }
+.ps-card-usage-label { display: flex; align-items: center; justify-content: space-between; gap: 5px; color: var(--ps-muted); font-size: 11px; }
+.ps-card-usage-label strong { font-size: inherit; line-height: 1; font-weight: 600; white-space: nowrap; }
+/* The value takes the colour of its load (W4), not the server's colour. */
+.ps-card-usage-label strong.is-ok { color: var(--ps-ok); }
+.ps-card-usage-label strong.is-warn { color: var(--ps-warn); }
+.ps-card-usage-label strong.is-hot { color: var(--ps-danger); }
+.ps-card-usage-label strong.is-none { color: var(--ps-muted); }
+.ps-card-metric-name { display: flex; align-items: center; gap: 4px; line-height: 1; }
 .ps-card-metric-name svg { width: 12px; height: 12px; }
 .ps-card-graph { display: block; width: 100%; height: 46px; margin-top: 5px; overflow: visible; stroke: var(--ps-accent); stroke-width: 1.5; opacity: .7; transition: height var(--ps-slow); }
 .ps-card-graph path { fill: none; vector-effect: non-scaling-stroke; }
@@ -626,11 +633,15 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 .ps-log-strip { margin-bottom: 14px; padding: 10px 14px; overflow: hidden; border-color: var(--ps-console-line); background: var(--ps-console-bg); color: var(--ps-console-ink); font: 12px/1.55 var(--ps-mono); }
 .ps-log-strip > div { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .ps-server-stats { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; margin-bottom: 14px; }
-.ps-server-stats .ps-stat { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px 12px; }
-.ps-server-stats .ps-stat > strong { font-size: 20px; line-height: 1.2; overflow-wrap: normal; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.ps-server-stats .ps-stat > small { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.ps-server-stats .ps-stat:last-child > strong { font-size: 16px; }
-.ps-server-stats .ps-spark { height: 18px; }
+/* Each card: the number with its line under it on the left; the icon and short name in the top-right corner, the bars below it. */
+.ps-server-stats .ps-stat { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto 1fr; gap: 2px 10px; padding: 10px 14px 9px; }
+.ps-server-stats .ps-stat-top { grid-area: 1 / 2; flex-direction: row-reverse; justify-content: flex-start; gap: 6px; }
+.ps-server-stats .ps-stat > strong { grid-area: 1 / 1; font-size: 20px; line-height: 1.2; overflow-wrap: normal; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ps-server-stats .ps-stat > small { grid-area: 2 / 1; align-self: end; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ps-server-stats .ps-players-stat > small { grid-column: 1 / -1; }
+.ps-server-stats .ps-spark { grid-area: 2 / 2; align-self: stretch; }
+.ps-server-stats .ps-stat > .ps-stat-rates { display: grid; font-size: 13px; line-height: 1.3; }
+.ps-stat-rates .is-up { color: var(--ps-accent); }
 .ps-player-empty { color: var(--ps-muted); font-size: 11px; }
 .ps-widget {
   display: flex;
@@ -674,7 +685,16 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 .ps-stat > strong { display: block; color: var(--ps-ink); font-size: 26px; font-weight: 750; line-height: 1.25; letter-spacing: -.6px; overflow-wrap: anywhere; }
 .ps-stat > small { position: relative; z-index: 1; color: var(--ps-muted); font-size: 11px; line-height: 1.4; overflow-wrap: anywhere; }
 .ps-stat-total { color: var(--ps-muted); font-size: 15px; font-weight: 500; }
-.ps-spark { position: absolute; bottom: 0; inset-inline-start: 0; width: 100%; height: 22px; stroke: var(--ps-accent); stroke-width: 1.7; opacity: .3; }
+/* The bars next to the number: the colour of the load (W4), grey without a limit; the newest bar is solid. */
+.ps-spark { width: 76px; height: 100%; min-height: 20px; color: var(--ps-muted); fill: currentColor; }
+.ps-spark path { opacity: .35; }
+.ps-spark .ps-spark-now { opacity: 1; }
+.ps-spark .ps-spark-axis { fill: none; stroke: var(--ps-line); stroke-width: 1; opacity: 1; vector-effect: non-scaling-stroke; }
+.ps-spark.is-ok { color: var(--ps-ok); }
+.ps-spark.is-warn { color: var(--ps-warn); }
+.ps-spark.is-hot { color: var(--ps-danger); }
+.ps-spark .is-rx { color: var(--ps-ink); }
+.ps-spark .is-tx { color: var(--ps-accent); }
 
 @media (min-width: 1700px) { .ps-main { padding-inline: 60px; } }
 
@@ -725,7 +745,7 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   .ps-health-drawer { --ps-health-details-height: clamp(80px, calc(100dvh - 440px), 320px); }
   .ps-node-health-list, .ps-health-detail-toolbar { padding-inline: 10px; }
   .ps-console-title { height: 48px; padding: 0 12px; }
-  .ps-spark { height: 14px; }
+  .ps-spark { width: 46px; }
 }
 
 /* Host mode (admins, large hosts) ---------------------------------------------------------------
@@ -1003,7 +1023,6 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 /* Every header menu points at the button that opened it, like the incoming notification does. The arrow
    sits on the wrapper because the menu itself scrolls (and would clip it). */
 :is(.ps-notify, .ps-overview-appearance):has(> .ps-dropdown.is-end:not([style*="display: none"]))::after { content: ""; position: absolute; top: calc(100% + 2px); inset-inline-end: calc(var(--ps-h) / 2 - 6px); z-index: calc(var(--ps-z-dropdown) + 1); width: 12px; height: 12px; border-top: 1px solid var(--ps-line); border-left: 1px solid var(--ps-line); background: var(--ps-surface); transform: rotate(45deg); pointer-events: none; }
-.ps-theme-option[aria-pressed="true"] { border-color: var(--ps-accent); color: var(--ps-accent); }
 
 /* Resource presets on the Performance page: the same cards as the creator's resource step. */
 
@@ -1115,7 +1134,7 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   .ps .ps-statusbar-power .ps-btn { width: 40px; height: 40px; }
   /* Two by two: four in a row left values and labels cut off on a phone. */
   .ps .ps-server-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-bottom: 12px; }
-  .ps .ps-server-stats .ps-stat { gap: 2px; padding: 10px 10px 8px; }
+  .ps .ps-server-stats .ps-stat { gap: 2px 8px; padding: 10px 10px 8px; }
   .ps .ps-server-stats .ps-stat:last-child { display: none; }
   .ps .ps-server-stats .ps-stat > strong { font-size: 15px; }
   .ps .ps-server-stats .ps-stat > strong .ps-stat-total { font-size: 12px; }
@@ -1242,22 +1261,32 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 /* The top stays while the menu changes the page (@persist): its wrapper must not become one grid cell. */
 .ps.ps-server-top, [x-persist^="simplify-server-"] { display: contents; }
 /* The Admin page and the account pages (V52): Simplify's header over Pelican's page; the Admin menu (.ps-admin-side)
-   is a card on the left of it, on a phone a sheet that the bottom bar's Menu opens. */
+   is a card on the left of it. On a phone (Jeroen 3-11) the menu is a page of its own that the bottom bar's Admin
+   opens, and a page's breadcrumb (.ps-admin-crumb: group › page) is its title. */
 .ps.ps-admin-top.server-active .ps-main { padding-bottom: 0; }
 .ps.ps-admin-side { display: flex; flex: 1; min-width: 0; min-height: 0; overflow: visible; }
 .ps-admin-side .ps-host-side { flex: 1; overflow: hidden; border: 1px solid var(--ps-line); border-radius: var(--ps-radius); background: var(--ps-surface); box-shadow: var(--ps-shadow); }
 .ps-admin-side .ps-host-tabs { --ps-host-row: 48px; }
-.ps-admin-side .ps-host-backdrop, .ps-admin-side .ps-host-menu-close { display: none; }
+.ps-admin-side .ps-host-backdrop, .ps-admin-side .ps-host-menu-close, .ps-admin-crumb { display: none; }
 .ps-admin-side .ps-host-placeholder { height: 30px; margin: 4px 2px; border-radius: var(--ps-radius-sm); background: var(--ps-raised); }
 @media (max-width: 600px) {
-  .ps-admin-side .ps-host-side { position: fixed; inset-inline-end: 0; bottom: 0; inset-inline-start: 0; z-index: var(--ps-z-modal, 80); max-height: 82dvh; border: 0; border-top: 1px solid var(--ps-line); border-radius: 18px 18px 0 0; box-shadow: var(--ps-shadow-modal); transform: translateY(105%); visibility: hidden; transition: transform var(--ps-slow), visibility var(--ps-slow); padding-bottom: env(safe-area-inset-bottom, 0px); }
-  .ps-admin-side.menu-open .ps-host-side { transform: none; visibility: visible; }
-  .ps-admin-side .ps-host-backdrop { display: block; position: fixed; inset: 0; z-index: calc(var(--ps-z-modal, 80) - 1); background: var(--ps-backdrop); }
-  .ps-admin-side .ps-host-menu-close { display: inline-flex; flex: none; align-self: center; margin: 0 6px; }
-  .ps-admin-side .ps-host-group-head { min-height: 42px; }
-  .ps-admin-side .ps-host-leaf { min-height: 40px; }
+  .ps.ps-admin-side { flex-direction: column; }
+  .ps-admin-side .ps-host-side { position: static; display: none; max-height: none; padding-bottom: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; transform: none; visibility: visible; transition: none; }
+  .ps-admin-side.menu-open .ps-host-side { display: flex; }
+  .ps-admin-side .ps-host-tabs { display: none; }
+  .ps-admin-side .ps-host-side-scroll { padding: 4px 0 8px; }
+  .ps-admin-side .ps-host-group-head { min-height: 44px; font-size: 15px; }
+  .ps-admin-side .ps-host-leaf { min-height: 40px; font-size: 14px; }
+  .ps-admin-side .ps-host-leaf::before { top: 0; height: 21px; }
+  .ps-admin-crumb { display: flex; align-items: center; gap: 2px; min-width: 0; padding: 6px 0 2px; color: var(--ps-ink); font: 700 17px/1.25 var(--ps-font); }
+  .ps-admin-crumb button { display: inline-flex; flex: none; align-items: center; gap: 7px; max-width: 55%; min-height: 36px; padding: 0 6px 0 2px; border: 0; border-radius: var(--ps-radius-sm); background: none; color: var(--ps-muted); font: 500 16px/1.2 var(--ps-font); cursor: pointer; }
+  .ps-admin-crumb button.is-last { max-width: 100%; color: var(--ps-ink); font-weight: 700; font-size: 17px; }
+  .ps-admin-crumb button:hover { background: var(--ps-raised); }
+  .ps-admin-crumb :is(button, .ps-admin-crumb-part) > :is(span, strong) { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .ps-admin-crumb-part { display: inline-flex; align-items: center; gap: 2px; min-width: 0; }
+  .ps-admin-crumb svg { flex: none; width: 18px; height: 18px; color: var(--ps-tone, currentColor); fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .ps-admin-crumb .ps-admin-crumb-sep { width: 14px; height: 14px; color: var(--ps-muted); stroke-width: 2; }
 }
-@media (prefers-reduced-motion: reduce) { .ps-admin-side .ps-host-side { transition: none; } }
 .ps.ps-admin-top .ps-top { max-width: none; }
 body:has(.ps-server-top) .fi-main-ctn {
   display: grid !important;
@@ -1463,6 +1492,7 @@ body:has(.ps-install:not([style*="none"], [x-cloak])) .fi-main .fi-page .fi-call
    bar for where you go (the overview's tab bar, a server's sections, host mode's page button); every menu is a
    sheet from the bottom with rows for a thumb (sheet.js closes it on a tap beside it or a swipe down). */
 @media (min-width: 601px) { .ps-phone-only { display: none !important; } }
+@media (max-width: 600px) { .ps-desktop-only { display: none !important; } }
 @media (max-width: 600px) {
   .ps .ps-mobile-menu, .ps .ps-mobile-label, .ps .ps-title-pelican, .ps .ps-nav-heading { display: none !important; }
   .ps .ps-brand { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -1520,3 +1550,7 @@ body:has(.ps-install:not([style*="none"], [x-cloak])) .fi-main .fi-page .fi-call
   .ps .ps-host-menu-chevron { transform: rotate(-90deg); }
   .ps .ps-host-main { height: calc(100dvh - 166px - env(safe-area-inset-bottom, 0px)); }
 }
+
+/* Customize Simplify: the theme first, on every page; a line under it when the page's own choices follow. */
+.ps-customize-row.is-first { padding-top: 0; border-top: 0; }
+.ps-customize-theme:has(~ .ps-customize) { padding-bottom: 10px; border-bottom: 1px solid var(--ps-line); }

@@ -769,10 +769,20 @@ html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn {
   scrollbar-width: thin;
 }
 
+/* The page grows with what is on it (Filament gives it the card's height), so Pelican's copyright footer after it is
+   at the very end of the card, never halfway over the page where the card's first screen ended (K-B9). */
 html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn > .fi-main {
+  flex: 1 0 auto;
+  height: auto !important;
   min-height: 0 !important;
   max-width: none !important;
   padding: 18px 22px 24px !important;
+}
+
+/* The footer is a thin line at the end, on a phone too (not the overview's account sheet: there is none here). */
+html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn > :is(footer, [data-ps-footer]) {
+  display: flex !important;
+  flex: none;
 }
 
 /* Inside the card a page's own sections and tables need no second card (no box in a box). */
@@ -803,22 +813,44 @@ html.ps-shell:not(.ps-frame) .fi-main-ctn .fi-ta-ctn:not(.fi-section .fi-ta-ctn)
     padding: 0 12px 12px;
   }
 
-  /* Room for the bottom bar (AdminSide). */
+  /* Room for the bottom bar (AdminSide). Under the header the breadcrumb, then the page; the open Admin menu is a
+     page of its own in place of both (Jeroen 3-11). */
   html.ps-shell-menu:not(.ps-frame) body .fi-layout {
+    grid-template-rows: auto auto minmax(0, 1fr);
     padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px));
   }
 
-  html.ps-shell:not(.ps-frame) .fi-layout > [x-persist="simplify-admin-side"] {
-    position: fixed;
+  html.ps-shell-menu:not(.ps-frame) .fi-layout > :not([x-persist]) {
+    grid-row: 3;
   }
 
-  /* The open menu sheet and its backdrop cover the header too. */
-  html.ps-shell:not(.ps-frame) .fi-layout > [x-persist="simplify-admin-side"]:has(.menu-open) {
-    z-index: 4;
+  html.ps-shell-menu:not(.ps-frame) .fi-layout:has(.ps-admin-side.menu-open) > [x-persist="simplify-admin-side"] {
+    grid-row: 2 / 4;
+  }
+
+  html.ps-shell-menu:not(.ps-frame) .fi-layout:has(.ps-admin-side.menu-open) > :not([x-persist]) {
+    display: none !important;
+  }
+
+  /* On a phone the page sits straight on the background, as the overview does: no card around it. */
+  html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn {
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
   }
 
   html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn > .fi-main {
-    padding: 12px 12px 18px !important;
+    padding: 8px 0 18px !important;
+  }
+
+  /* The breadcrumb is the title: Pelican's own heading goes, and its header when nothing else is in it. */
+  html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header-heading {
+    display: none !important;
+  }
+
+  html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header:not(:has(.fi-header-subheading, :is(.fi-ac, .fi-header-actions-ctn) :is(button, a))) {
+    display: none !important;
   }
 }
 
@@ -2293,3 +2325,7 @@ html.ps-frame .s-done {
 @keyframes s-unsaved-in { from { opacity: 0; transform: translate(-50%, 8px); } to { opacity: 1; transform: translate(-50%, 0); } }
 @media (max-width: 600px) { .s-unsaved { left: 12px; right: 12px; bottom: calc(76px + env(safe-area-inset-bottom, 0px)); transform: none; animation: none; } .s-unsaved-text { flex: 1; } }
 @media (prefers-reduced-motion: reduce) { .s-unsaved { animation: none; } }
+
+/* Connections (account menu): the add-ons' rows under each other, in the page's one card (no box in a box). */
+.s-connections { display: grid; gap: 0; }
+.s-connections > * + * { border-top: 1px solid var(--s-line); }

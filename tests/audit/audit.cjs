@@ -37,7 +37,8 @@ const ready = () => page.waitForFunction(() => { const el = document.querySelect
 const alpine = async (body) => { await ready(); return page.evaluate((b) => { const el = document.querySelector('.ps'); return el && window.Alpine ? new Function('d', b)(window.Alpine.$data(el)) : null; }, body).catch(() => null) };
 // The theme is set before any page script runs (both Filament's and Simplify's stored choice) and the browser's own
 // colour scheme follows it, so every page of the stand opens in that theme.
-const setTheme = async (theme) => { await page.context().addInitScript((t) => { try { localStorage.setItem('pelicanSimplify.theme', t); localStorage.setItem('theme', t); } catch {} document.documentElement?.classList.toggle('dark', t === 'dark'); }, theme); await page.emulateMedia({ colorScheme: theme }); await page.evaluate((t) => { localStorage.setItem('pelicanSimplify.theme', t); localStorage.setItem('theme', t); window.SimplifyTheme?.set(t); document.documentElement.classList.toggle('dark', t === 'dark'); }, theme); };
+let theme_ = null;
+const setTheme = async (theme) => { theme_ = theme; await page.context().addInitScript((t) => { try { localStorage.setItem('pelicanSimplify.theme', t); localStorage.setItem('theme', t); } catch {} document.documentElement?.classList.toggle('dark', t === 'dark'); }, theme); await page.emulateMedia({ colorScheme: theme }); await page.evaluate((t) => { localStorage.setItem('pelicanSimplify.theme', t); localStorage.setItem('theme', t); window.SimplifyTheme?.set(t); document.documentElement.classList.toggle('dark', t === 'dark'); }, theme); };
 
 // Simplify's own admin pages (by their path), so the measurement knows which admin pages must follow Simplify's style.
 const mopts = () => ({ simplifyAdmin: (urls.admin || []).filter((p) => /^Simplify\\/.test(p.class)).map((p) => rel(p.url)) });
@@ -48,6 +49,19 @@ async function record(id, title, extra = {}) {
   const entry = { id, title, stand, url: rel(page.url()), docTitle: await page.title().catch(() => null), ...extra };
   try {
     entry.main = await page.evaluate(measure, mopts());
+    // K-B9: on the Admin and account pages Pelican's copyright line is the last thing in the card, under the whole page,
+    // never halfway over it where the card's first screen ended (every screen, so every settings tab, phone and computer).
+    const foot = await page.evaluate(() => {
+      const card = document.querySelector('html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn'), main = card?.querySelector(':scope > .fi-main'), footer = card?.querySelector(':scope > footer, :scope > [data-ps-footer]');
+      if (!main || !footer || !footer.getClientRects().length) return null;
+      // The page itself holds everything on it (what scrolls inside its own box, a popup or Monaco's helpers aside).
+      const top = card.getBoundingClientRect().top - card.scrollTop, f = footer.getBoundingClientRect();
+      return { footerTop: Math.round(f.top - top), footerBottom: Math.round(f.bottom - top), page: Math.round(main.getBoundingClientRect().bottom - top), overflow: main.scrollHeight - main.clientHeight, scroll: card.scrollHeight };
+    }).catch(() => null);
+    // Every screen in a dark folder is dark and every screen in a light folder light (a partial run once shot its dark folder light).
+    const dark = await page.evaluate(() => document.documentElement.classList.contains('dark')).catch(() => null);
+    if (theme_ && dark !== null && dark !== (theme_ === 'dark')) problems.push(`${stand} ${id} theme: WRONG the page is ${dark ? 'dark' : 'light'} in a ${theme_} round`);
+    if (foot && (foot.overflow > 2 || foot.footerTop < foot.page - 1 || foot.footerBottom < foot.scroll - 2)) problems.push(`${stand} ${id} footer-end: WRONG the copyright line is not at the end of the page ${JSON.stringify(foot)}`);
     entry.frames = [];
     for (const f of page.frames()) {
       if (f === page.mainFrame()) continue;
@@ -65,7 +79,7 @@ async function record(id, title, extra = {}) {
   fs.writeFileSync(path.join(out, 'result.json'), JSON.stringify({ base, screens, problems }, null, 1));
 }
 // The Admin page (V52): the shield opens Pelican's admin pages inside Simplify without a frame: Simplify's header, the
-// Admin menu on the left (a sheet from the bottom bar's Menu on a phone) and the page in a card beside it. The menu stays
+// Admin menu on the left (on a phone a page of its own that the bottom bar's Admin opens) and the page in a card beside it. The menu stays
 // while its links change the page (wire:navigate). The legacy panel shows the same pages as Pelican draws them.
 const adminState = () => page.evaluate(() => {
   const side = document.querySelector('.ps-admin-side'), card = document.querySelector('.fi-layout > .fi-main-ctn');
@@ -89,9 +103,38 @@ const adminPage = async (overview) => {
   if (!(await shieldTo(overview))) return say('admin-page', false, { note: 'no shield link on the overview' });
   const st = await adminState(); await record('admin-page', 'Admin-pagina (schild)');
   say('admin-page', !!st && st.shell && st.side && st.header && !st.frames && !st.pelicanBars && st.pageScroll <= 1 && (phone() || /auto|scroll/.test(st.card || '')), st);
+  // A click in the Admin menu changes only the page: the same page looks the same after Servers → Eggs → Servers
+  // (wire:navigate) as after a full load: card, menu, title and footer (Jeroen 3-11, video).
+  if (!phone()) {
+    const look = () => page.evaluate(() => {
+      const css = (sel, props) => { const e = [...document.querySelectorAll(sel)].find((x) => x.getClientRects().length); if (!e) return null; const s = getComputedStyle(e); return props.map((p) => s.getPropertyValue(p)).join(' | '); };
+      return {
+        card: css('.fi-layout > .fi-main-ctn', ['background-color', 'border-top-color', 'padding-top']),
+        main: css('.fi-layout > .fi-main-ctn > .fi-main', ['padding-top', 'padding-left']),
+        leaf: css('.ps-admin-side .ps-host-leaf', ['font-family', 'font-size', 'font-weight', 'letter-spacing']),
+        head: css('.ps-admin-side .ps-host-group-head, .ps-admin-side .ps-host-group > button', ['font-family', 'font-size', 'font-weight']),
+        title: css('.fi-main .fi-header-heading', ['font-family', 'font-size', 'font-weight']),
+        body: css('body', ['font-family', 'background-color']),
+        footer: (document.querySelector('.fi-main-ctn [data-ps-footer], .fi-main-ctn footer')?.innerText || '').replace(/\s+/g, ' ').trim(),
+        sheets: [...document.head.querySelectorAll('link[rel="stylesheet"], style')].map((e) => (e.getAttribute('href') || 'style:' + e.textContent.length).replace(/^https?:\/\/[^/]+/, '').replace(/\?.*$/, '')),
+      };
+    }).catch(() => null);
+    const leaf = (re) => page.locator('.ps-admin-side a.ps-host-leaf >> visible=true').filter({ hasText: re }).first();
+    await goto(new URL('/admin/servers', base).href, 2000);
+    const first = await look();
+    let loads = 0; const onLoad = () => loads++; page.on('load', onLoad);
+    if (!(await leaf(/^\s*Eggs\s*$/).count())) { await page.locator('.ps-admin-side .ps-host-group > button >> visible=true').filter({ hasText: /Servers/ }).first().click().catch(() => {}); await sleep(400); }
+    await leaf(/^\s*Eggs\s*$/).click({ timeout: 4000 }).catch(() => {}); await settle(page, 1500);
+    await leaf(/^\s*Servers\s*$/).click({ timeout: 4000 }).catch(() => {}); await settle(page, 1500);
+    page.off('load', onLoad);
+    const again = await look(); await record('admin-nav-look', 'Admin-pagina · zelfde stijl na menuklikken');
+    const diff = first && again ? Object.keys(first).filter((k) => JSON.stringify(first[k]) !== JSON.stringify(again[k])) : ['missing'];
+    say('admin-nav-look', !!first && !!first.card && diff.length === 0 && loads === 0 && /\/admin\/servers/.test(page.url()), { diff, loads, first, again });
+  }
   // The legacy panel: the same page as Pelican draws it, and its Back to Simplify button clears that again.
   if (!(await page.locator('.ps-admin-top .ps-account-button >> visible=true').count())) { await page.locator('.ps-admin-top .ps-mobile-menu >> visible=true').first().click().catch(() => {}); await sleep(500); }
-  await page.locator('.ps-admin-top .ps-account-button >> visible=true').first().click().catch(() => {}); await sleep(700);
+  let accountError = null;
+  await page.locator('.ps-admin-top .ps-account-button >> visible=true').first().click({ timeout: 5000 }).catch((e) => { accountError = e.message.split('\n').slice(0, 3).join(' ').slice(0, 300); }); await sleep(700);
   const legacy = page.locator('#ps-account-actions a[href*="simplify_legacy=1"] >> visible=true').first();
   if (await legacy.count()) {
     await legacy.click().catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await settle(page, 1500);
@@ -112,27 +155,40 @@ const adminPage = async (overview) => {
       await goto('/admin/health', 1500); const again = await adminState();
       say('admin-legacy-back', !!again && again.shell && again.side, { ...again, clickError });
     } else say('admin-legacy-back', false, { note: 'no Back to Simplify in the legacy panel' });
-  } else say('admin-legacy', false, { note: 'no Legacy panel link in the account menu' });
+  } else {
+    // What the account button and its menu were doing, and a picture of it, so the cause is in the result.
+    const why = await page.evaluate(() => {
+      const button = [...document.querySelectorAll('.ps-admin-top .ps-account-button')].find((b) => b.getClientRects().length), account = button?.closest('.ps-account'), menu = account?.querySelector('#ps-account-actions'), link = menu?.querySelector('a[href*="simplify_legacy=1"]');
+      const r = button?.getBoundingClientRect(), hit = r ? document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2) : null;
+      const cs = menu ? getComputedStyle(menu) : null, ls = link ? getComputedStyle(link) : null;
+      return { buttons: document.querySelectorAll('.ps-admin-top .ps-account-button').length, open: account?.classList.contains('account-open') ?? null, hit: hit ? `${hit.tagName.toLowerCase()}.${[...hit.classList].join('.')}` : null, hitInside: !!(hit && button?.contains(hit)), menu: cs && { display: cs.display, visibility: cs.visibility, position: cs.position }, link: link ? { href: link.getAttribute('href'), display: ls.display, rect: link.getClientRects().length } : null, url: location.pathname + location.hash };
+    }).catch((e) => ({ error: e.message.slice(0, 120) }));
+    await record('admin-legacy-missing', 'Accountmenu op de Admin-pagina: geen Legacy-link');
+    say('admin-legacy', false, { note: 'no Legacy panel link in the account menu', accountError, ...why });
+  }
   // Always end inside Simplify, so a failed step above does not leave the rest of the round in the legacy panel.
   await goto(overview + (overview.includes('?') ? '&' : '?') + 'simplify_legacy=0', 600);
 };
-// The Filter (V52, Khion): one chip with Show, Game, Node and Group in one menu (a sheet on a phone); Group only when the
-// account has server groups. A choice narrows the servers and names itself on the chip; All takes it back.
+// The filters: on a desktop a dropdown per filter (Egg always, then Show, Node and Group when they have a choice); on a
+// phone one Filter with them all as a sheet. Group only when the account has server groups. A choice narrows the servers and names itself on the chip; All takes it back.
 const filterCheck = async () => {
   const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
   const want = await alpine('return { sections: d.filterSections().map((x) => x.key), groups: d.overviewGroups.length, servers: d.visibleServers().length }');
-  if (!want || !want.sections.length) return say('overview-filter', !!want, { note: 'nothing to filter on this panel', want });
-  if (!(await click('.ps-filter-button', 700))) return say('overview-filter', false, { note: 'no Filter button' });
+  // K-B15: the egg filter is always there while the overview has servers (it vanished with one game, one node and only own servers).
+  if (!want || want.sections[0] !== 'egg') return say('overview-filter', false, { note: 'no egg filter', want });
+  if (!(await click('.ps-filter-button >> visible=true', 700))) return say('overview-filter', false, { note: 'no Filter button' });
   const shown = await page.evaluate(() => [...document.querySelectorAll('#ps-filter-menu .ps-filter-section')].filter((e) => e.getClientRects().length).map((e) => e.querySelector('.ps-label').textContent.trim())).catch(() => null);
+  // A desktop dropdown holds its own filter; the phone's one Filter holds them all.
+  const all = await alpine("return d.filterMenu === 'all'");
   await record('overview-filter', 'Overzicht · Filter open');
   const pick = page.locator('#ps-filter-menu .ps-filter-section .ps-menu-item[aria-checked="false"] >> visible=true').first();
-  const label = (await pick.innerText().catch(() => '')).trim();
+  const label = (await pick.locator('span').first().innerText().catch(() => '')).trim(); // the option's name, without its count
   await pick.click().catch(() => {}); await sleep(700);
   const after = await alpine('return { servers: d.visibleServers().length, label: d.filterLabel(), open: d.filterMenu }');
   await record('overview-filtered', 'Overzicht · gefilterd');
   await alpine(`for (const x of d.filterSections()) d.setFilter(x.key, 'all'); return true;`); await sleep(500);
   const back = await alpine('return d.visibleServers().length');
-  say('overview-filter', Array.isArray(shown) && shown.length === want.sections.length && (want.groups > 0) === want.sections.includes('group') && !!after && !after.open && after.label.includes(label) && after.servers <= want.servers && back === want.servers, { want, shown, label, after, back });
+  say('overview-filter', Array.isArray(shown) && shown.length === (all ? want.sections.length : 1) && (want.groups > 0) === want.sections.includes('group') && !!after && !after.open && after.label.includes(label) && after.servers <= want.servers && back === want.servers, { want, shown, all, label, after, back });
 };
 // Host health card and its fold-open tab are one hover zone (1.4.5): pointing at either gives the same colours.
 const healthHover = async (where) => {
@@ -180,6 +236,9 @@ async function round(theme) {
 
   // Pelican's health checks run when its Health page opens; the overview's menus and host mode show their results.
   await goto('/admin/health', 2500);
+  // Every round sets its theme first: a run of only some parts (parts=admin) skips the overview, and its dark folder
+  // must still be dark.
+  await setTheme(theme); await goto('/admin/health', 1500);
   if (want('overview')) {
   // Overview and its menus.
   await goto(overview); await setTheme(theme); await goto(overview); await ready(); await sleep(500);
@@ -195,7 +254,7 @@ async function round(theme) {
   // Phones have no panel menu any more (1.5.4): the bell and the account sit in the top bar, the rest in the bottom bar.
   const openNav = async () => {};
   await click('.ps-account-button'); await record('overview-account', 'Accountmenu open');
-  await click('#ps-account-actions button[aria-label]:nth-child(2)'); await record('overview-account-theme', 'Accountmenu, themakeuze open'); await escape();
+  await escape(); await alpine('d.accountMenu=false; d.appearanceMenu=true'); await sleep(600); await record('overview-customize-theme', 'Customize Simplify, thema bovenaan'); await alpine('d.appearanceMenu=false'); await sleep(300);
   await openNav();
   await click('[x-ref="notifyButton"]'); await record('overview-bell', 'Bel (aankondigingen) open'); await escape();
   await openNav();
@@ -337,7 +396,7 @@ async function round(theme) {
   // The Admin page: every section and page of its menu, the menu kept beside each page, and the servers per node.
   if (await shieldTo(overview)) {
     await record('host', 'Admin-pagina');
-    if (onPhone) { await openAdminMenu(); await record('host-phone-menu', 'Admin-pagina · telefoon, menu als blad'); await escape(); }
+    if (onPhone) { await openAdminMenu(); await record('host-phone-menu', 'Admin-pagina · telefoon, menu als pagina'); await escape(); }
     const lost = [], visited = [];
     const go = async (locator, id, title) => {
       await markAdminSide(); await locator.click().catch(() => {}); await settle(page, 1800);
@@ -754,7 +813,7 @@ async function extrasFlow(theme) {
   const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
   const fits = (doc) => doc.evaluate(() => ({ scroll: document.documentElement.scrollHeight, window: innerHeight })).catch(() => null);
   // Setup done: the page itself never scrolls; the add-on list scrolls inside its card.
-  await goto('/admin/simplify-setup-done', 1500); await record('setup-done', 'Setup klaar (gewone beheerpagina)');
+  await goto('/admin/simplify/setup-done', 1500); await record('setup-done', 'Setup klaar (gewone beheerpagina)');
   let f = await fits(page); say('setup-done', f && f.scroll <= f.window, f);
   // In the Admin page the end of the setup fits the card beside the menu; neither the page nor the card's frame scrolls.
   const card = await page.evaluate(() => { const c = document.querySelector('.fi-layout > .fi-main-ctn'); return { shell: document.documentElement.classList.contains('ps-shell-menu'), page: document.documentElement.scrollHeight - innerHeight, card: c ? c.scrollHeight - c.clientHeight : null }; }).catch(() => null);
@@ -762,7 +821,7 @@ async function extrasFlow(theme) {
 
   // The setup's Look step (#86): logo, text or both; effect; colour = accent. The preview follows every choice.
   if (stand.split('-')[0] !== 'laag1100') {
-    await goto('/admin/simplify-setup', 1500);
+    await goto('/admin/simplify/setup', 1500);
     const step = page.locator('.fi-sc-wizard-header :is(button, a):has-text("Look") >> visible=true').first();
     if (await step.count()) { await step.click().catch(() => {}); await sleep(1200); }
     else { for (let i = 0; i < 2; i++) { await page.locator('.s-setup button:has-text("Next") >> visible=true').first().click().catch(() => {}); await sleep(1200); } }
@@ -867,7 +926,7 @@ async function fixesFlow() {
     await record('settings-phone', 'Instellingen · telefoon');
     const st = await page.evaluate(() => ({ nav: !!document.querySelector('.s-settings-nav'), page: document.documentElement.scrollHeight, window: innerHeight })).catch(() => null);
     say('settings-phone', !!st && st.nav && st.page <= st.window + 2, st);
-    await goto('/admin/simplify-setup', 2000); await record('setup-phone', 'Setup · telefoon');
+    await goto('/admin/simplify/setup', 2000); await record('setup-phone', 'Setup · telefoon');
     const su = await page.evaluate(() => { const w = document.querySelector('.s-setup'), s = w && w.querySelector('.fi-sc-wizard-step.fi-active'); if (!s) return null; const r = s.getBoundingClientRect(); return { step: Math.round(r.height), inner: s.scrollHeight <= s.clientHeight + 4, width: Math.round(r.width) }; }).catch(() => null);
     say('setup-phone', su && su.step > 120 && su.inner && su.width > 250, su);
   }
@@ -917,6 +976,36 @@ async function fixesFlow() {
       const fromServer = await accountPage('server');
       say('account-page-server', fromServer.onTop === true && inside(fromServer), fromServer);
       await goto(overview, 2500);
+    }
+    // Connections (API 6): from the account menu without a page load, measured as a page in the content box; an add-on's
+    // row (Server Maker's Steam key) opens its own popup. Without an add-on row there is no menu item and no page.
+    {
+      let loads = 0; const onLoad = () => loads++; page.on('load', onLoad);
+      await page.locator('.ps-top .ps-account-button >> visible=true').first().click().catch(() => {}); await sleep(700);
+      const link = page.locator('#ps-account-actions a[href$="/connections"] >> visible=true').first();
+      if (await link.count()) {
+        await link.click({ timeout: 4000 }).catch(() => {});
+        await page.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {}); await sleep(1500);
+        page.off('load', onLoad);
+        const at = await page.evaluate(() => ({ path: location.pathname, rows: document.querySelectorAll('.s-connections > *').length, shell: document.documentElement.classList.contains('ps-shell'), header: !!document.querySelector('.ps-admin-top .ps-top') })).catch(() => null);
+        await record('connections', 'Accountmenu · Connections');
+        say('connections', loads === 0 && at?.path === '/connections' && at.rows > 0 && at.shell && at.header, { loads, ...at });
+        const connect = page.locator('.s-connections button:has-text("Connect") >> visible=true').first();
+        if (await connect.count()) {
+          await connect.click().catch(() => {}); await sleep(1200);
+          const modal = await page.evaluate(() => [...document.querySelectorAll('.fi-modal-window, [role="dialog"]')].some((e) => e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden')).catch(() => false);
+          await record('connections-connect', 'Connections · pop-up van een koppeling');
+          say('connections-connect', modal, { modal });
+          await escape();
+        }
+      } else {
+        page.off('load', onLoad);
+        // Only the core: no add-on gives a row, so the menu has no Connections.
+        const item = await page.evaluate(() => [...document.querySelectorAll('#ps-account-actions a[href$="/connections"]')].some((a) => a.getClientRects().length)).catch(() => null);
+        say('connections-none', item === false, { item });
+        await escape();
+      }
+      await goto(overview, 1500);
     }
     // Every notification option sits in the bell sheet: this device, messages, Pelican's, and the devices.
     await alpine('d.openAllNotifications()'); await sleep(1500);
@@ -996,12 +1085,38 @@ async function fixesFlow() {
       say('phone-frame-server', srv.menuButton === false && srv.back && srv.back <= 48 && isSheet(more), { ...srv, more });
       await escape();
     }
-    // The Admin page: its own bottom bar (Servers, Admin, Menu) and the menu as a sheet over the full width.
-    await goto('/admin/health', 2000);
-    const tabs = await page.evaluate(() => [...document.querySelectorAll('.ps-admin-side .ps-tabbar .ps-tab')].filter((b) => b.getClientRects().length).map((b) => b.innerText.trim())).catch(() => null);
-    await openAdminMenu();
-    const menu = await sheet('.ps-admin-side.menu-open .ps-host-side'); await record('phone-frame-host', 'Telefoon · Admin-pagina, menu als blad');
-    say('phone-frame-host', Array.isArray(tabs) && tabs[0] === 'Servers' && tabs.includes('Admin') && tabs[tabs.length - 1] === 'Menu' && isSheet(menu), { tabs, menu });
+    // The Admin page (Jeroen 3-11): the bottom bar is Servers, New, Admin (no Menu tab), and Admin opens the menu as a
+    // page of its own: the tree in place of the page, under the header, without a card. A page's breadcrumb
+    // (group › page) is its title, Pelican's heading is gone and the page has no card; the group and a swipe from the
+    // left edge bring the menu back.
+    const adminPhone = () => page.evaluate(() => {
+      const shown = (e) => !!e && e.getClientRects().length > 0 && getComputedStyle(e).display !== 'none' && getComputedStyle(e).visibility !== 'hidden';
+      const side = document.querySelector('.ps-admin-side .ps-host-side'), card = document.querySelector('.fi-layout > .fi-main-ctn'), top = document.querySelector('.ps-admin-top .ps-top'), crumb = document.querySelector('.ps-admin-crumb');
+      const cs = card && getComputedStyle(card);
+      return { tabs: [...document.querySelectorAll('.ps-admin-side .ps-tabbar .ps-tab')].filter(shown).map((b) => b.innerText.trim()), menu: shown(side), leaves: [...document.querySelectorAll('.ps-admin-side .ps-host-leaf')].filter(shown).length, page: shown(card),
+        below: !!side && !!top && side.getBoundingClientRect().top >= top.getBoundingClientRect().bottom - 1, crumb: shown(crumb) ? crumb.innerText.replace(/\s+/g, ' ').trim() : null,
+        heading: [...document.querySelectorAll('.fi-main .fi-header-heading')].some(shown), plus: (() => { const e = document.querySelector('.ps-admin-side .ps-tab-plus'); return e ? getComputedStyle(e).backgroundColor : null; })(), alpine: (() => { const el = document.querySelector('.ps-admin-side'); const d = el && window.Alpine?.$data(el); return d ? { open: d.open, here: d.here, crumb: d.crumb, url: location.pathname + location.hash } : null; })(), cardBox: !!cs && (cs.borderTopWidth !== '0px' || !/rgba\(0, 0, 0, 0\)|transparent/.test(cs.backgroundColor)), pageScroll: document.documentElement.scrollHeight - innerHeight };
+    }).catch(() => null);
+    await goto(overview, 1500);
+    // New keeps the panel's accent on the Admin page too (Jeroen 3-11: it turned grey there).
+    const overviewPlus = await page.evaluate(() => { const e = [...document.querySelectorAll('.ps-tabbar .ps-tab-plus')].find((x) => x.getClientRects().length); return e ? getComputedStyle(e).backgroundColor : null; }).catch(() => null);
+    await page.locator('.ps-tabbar a.ps-tab:has(use[href="#ps-shield"]) >> visible=true').first().click().catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await settle(page, 1800);
+    const opened = await adminPhone(); await record('phone-frame-host', 'Telefoon · Admin opent het menu als pagina');
+    say('phone-admin-accent', !!opened && !!overviewPlus && opened.plus === overviewPlus, { overviewPlus, admin: opened?.plus });
+    say('phone-frame-host', !!opened && opened.tabs[0] === 'Servers' && opened.tabs[opened.tabs.length - 1] === 'Admin' && !opened.tabs.includes('Menu') && opened.menu && opened.leaves > 0 && opened.below && !opened.page && opened.pageScroll <= 1, opened);
+    const leaf = page.locator('.ps-admin-side .ps-host-group:has(.ps-host-leaf) .ps-host-leaf:not([aria-current]) >> visible=true').first();
+    const leafText = (await leaf.innerText().catch(() => '')).trim();
+    await leaf.click().catch(() => {}); await settle(page, 1800);
+    await page.waitForFunction(() => [...document.querySelectorAll('.ps-admin-crumb')].some((e) => e.getClientRects().length), null, { timeout: 5000 }).catch(() => {});
+    const shownPage = await adminPhone(); await record('phone-admin-crumb', 'Telefoon · Admin-pagina met kruimelpad als titel');
+    say('phone-admin-crumb', !!leafText && !!shownPage && !shownPage.menu && shownPage.page && !!shownPage.crumb && shownPage.crumb.endsWith(leafText) && !shownPage.heading && !shownPage.cardBox, { ...shownPage, leafText });
+    await page.evaluate(() => { const at = (x) => ({ identifier: 1, target: document.body, clientX: x, clientY: 400 }); const fire = (type, x) => document.dispatchEvent(new TouchEvent(type, { bubbles: true, touches: type === 'touchend' ? [] : [new Touch(at(x))], changedTouches: [new Touch(at(x))] })); fire('touchstart', 6); fire('touchend', 220); }).catch(() => {}); await sleep(700);
+    const swiped = await adminPhone(); await record('phone-admin-swipe', 'Telefoon · swipe vanaf links: terug naar het menu');
+    say('phone-admin-swipe', !!swiped && swiped.menu && !swiped.page, swiped);
+    await escape();
+    await page.locator('.ps-admin-crumb button >> visible=true').first().click().catch(() => {}); await sleep(600);
+    const back = await adminPhone();
+    say('phone-admin-crumb-back', !!back && back.menu && !back.page, back);
     await escape();
     // Pelican's lists inside Simplify (the Admin page) are short rows: no checkboxes, no column titles and no egg
     // descriptions. The same page in the legacy panel keeps Pelican's own table (K-B5, Jeroen 2-11).

@@ -9,10 +9,12 @@ use App\Models\User;
 use Filament\Facades\Filament;
 use InvalidArgumentException;
 use Livewire\Attributes\Renderless;
+use Simplify\Core\Account\Connections;
 use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Addons\Button;
 use Simplify\Core\Filament\Admin\Pages\Settings;
+use Simplify\Core\Filament\App\Pages\Connections as ConnectionsPage;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Health\HostHealth;
 use Simplify\Core\Models\PushDevice;
@@ -74,6 +76,8 @@ trait Shell
                 array_filter($addon->customerLinks($user), fn (Button $link) => $link->icon !== null),
             ))),
             'account_pages' => self::accountPages($user),
+            // Connections (add-ons' outside accounts, such as Steam): in the account menu only while an add-on gives a row.
+            'connections_url' => Connections::rows($user) === [] ? null : ConnectionsPage::getUrl(panel: 'app'),
             // Create server: an add-on's buttons (Server Maker) and Pelican's own form, in Simplify's popup on every page.
             'create' => [
                 ...array_map(fn (Button $button) => $button->toArray(), app(AddonRegistry::class)->collect(fn (Addon $addon) => $addon->dashboardActions())),

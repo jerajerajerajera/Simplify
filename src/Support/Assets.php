@@ -76,6 +76,23 @@ final class Assets
         }
     }
 
+    /**
+     * A text file (styles, scripts, SVG) gzipped, for a browser that accepts that: Pelican's web server compresses only
+     * HTML, so a first visit fetched about 400 KB of styles and scripts uncompressed. A few milliseconds, and only
+     * when a browser does not have the file yet (url() lets it keep each version for a year). Null for images and
+     * fonts, which are compressed already.
+     */
+    public static function gzip(string $name): ?string
+    {
+        $path = self::path($name);
+        $type = self::type($name);
+        if ($path === null || ! is_file($path) || ! (str_starts_with($type, 'text/') || str_starts_with($type, 'image/svg'))) {
+            return null;
+        }
+
+        return gzencode((string) file_get_contents($path), 6) ?: null;
+    }
+
     public static function url(string $name): string
     {
         $hash = self::$hashes[$name] ??= substr((string) hash_file('xxh3', (string) self::path($name)), 0, 12);

@@ -22,6 +22,7 @@ use Simplify\Core\Filament\Admin\Pages\People;
 use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\Admin\Pages\Setup;
 use Simplify\Core\Filament\Admin\Pages\SetupDone;
+use Simplify\Core\Filament\App\Pages\Connections;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Filament\Server\ServerPage;
 use Simplify\Core\Http\Middleware\FramePolicy;
@@ -50,7 +51,7 @@ final class SimplifyPlugin implements Plugin
         $panel->middleware([FramePolicy::class]);
 
         if ($panel->getId() === 'app') {
-            $panel->pages([Overview::class]);
+            $panel->pages([Overview::class, Connections::class]);
             $panel->middleware([StartPage::class]);
         }
         if (in_array($panel->getId(), ['app', 'server'], true)) {
@@ -115,7 +116,7 @@ final class SimplifyPlugin implements Plugin
 
         // The top stays while the menu changes the page next to it (wire:navigate, ServerMenu::navigates()); the
         // marker after it tells the kept top which page came in.
-        return Blade::render('@persist($key)@livewire($component, $data)@endpersist<template data-ps-server-page data-console="{{ $console ? 1 : 0 }}"></template>', [
+        return Blade::render('@persist($key)@livewire($component, $data)@endpersist<template data-ps-server-page data-console="{{ $console ? 1 : 0 }}"></template>@include(\'simplify::dashboard.boot\', [\'kind\' => \'server\'])', [
             'key' => 'simplify-server-'.$server->uuid,
             'component' => ServerPage::class,
             'data' => ['server' => $server, 'console' => $console],
@@ -129,7 +130,7 @@ final class SimplifyPlugin implements Plugin
         if (! AdminTop::here()) {
             return '';
         }
-        $top = Blade::render("@persist('simplify-admin-top')@livewire(\$component)@endpersist", ['component' => AdminTop::class]);
+        $top = Blade::render("@persist('simplify-admin-top')@livewire(\$component)@endpersist\n@include('simplify::dashboard.boot', ['kind' => 'admin'])", ['component' => AdminTop::class]);
 
         return AdminTop::menu() ? $top.Blade::render("@persist('simplify-admin-side')@livewire(\$component)@endpersist", ['component' => AdminSide::class]) : $top;
     }

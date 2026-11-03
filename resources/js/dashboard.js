@@ -81,7 +81,7 @@
       overviewNetwork: {},
       overviewHistory: {},
       overviewRefreshing: false,
-      gameFilter: 'all',
+      eggFilter: 'all',
       nodeFilter: 'all',
       groupFilter: 'all',
       filterMenu: false,
@@ -703,8 +703,15 @@
           link.rel = 'noopener noreferrer';
           credit.append(link);
           if (this.boot.build_version) credit.append(document.createTextNode(' · ' + t('dashboard.build', { version: this.boot.build_version })));
+          // A pre-release (2.0.0-beta.1) also names the browser, so a screenshot shows where it was taken (core.js).
+          if (this.boot.build_version?.includes('-')) {
+            const env = document.createElement('span');
+            env.dataset.psEnv = '';
+            credit.append(env);
+          }
           line.append(credit);
         }
+        window.SimplifyEnv?.show();
       },
       applyFavicon() {
         if (!this.boot.favicon_url || !document.head) return;
@@ -831,38 +838,60 @@
         return s.status === 'running' ? t('dashboard.running_software', { software: label }) : label;
       },
       gameLabel(s) {
-        return s.game === 'minecraft' ? 'Minecraft' : String(s.game_label || t('dashboard.other_game')).trim() || t('dashboard.other_game');
+        return s.game === 'minecraft' ? 'Minecraft' : String(s.game_label || t('dashboard.other_egg')).trim() || t('dashboard.other_egg');
       },
       gameKey(s) {
         return this.gameLabel(s).toLocaleLowerCase();
       },
-      gameOptions() {
-        const games = new Map();
-        for (const s of this.boot.servers || []) games.set(this.gameKey(s), this.gameLabel(s));
-        return [...games].map(([key, label]) => ({ key, label })).sort((a, b) => a.label.localeCompare(b.label));
+      /** The overview filters per egg, not per game: not every server is a game (Jeroen, 3-11). */
+      eggKey(s) {
+        return s.egg_id ? 'egg-' + s.egg_id : 'egg-' + String(s.software || '');
       },
-      visibleServers() {
-        const scope = this.ownerFilterShown() ? this.overviewPreferences.serverScope : 'all';
-        const group = this.groupFilter === 'all' ? null : this.overviewGroups.find((g) => g.id === this.groupFilter);
-        return (this.boot.servers || []).filter((s) => (this.gameFilter === 'all' || this.gameKey(s) === this.gameFilter) && (this.nodeFilter === 'all' || Number(s.node_id) === this.nodeFilter) && (scope === 'all' || !!s.mine === (scope === 'mine')) && (!group || group.servers.includes(s.uuid)));
+      eggOptions() {
+        const eggs = new Map();
+        for (const s of this.boot.servers || []) eggs.set(this.eggKey(s), String(s.software || '').trim() || t('dashboard.other_egg'));
+        return [...eggs].map(([key, label]) => ({ key, label })).sort((a, b) => a.label.localeCompare(b.label));
       },
-      /** The Filter's sections (V52): Show (mine or others), Game, Node and Group, each only when it has a choice. */
+      /** The servers the filters let through; `change` tries one other choice (for the count behind each option). */
+      visibleServers(change = {}) {
+        const f = { egg: this.eggFilter, show: this.ownerFilterShown() ? this.overviewPreferences.serverScope : 'all', node: this.nodeFilter, group: this.groupFilter, ...change };
+        const group = f.group === 'all' ? null : this.overviewGroups.find((g) => g.id === f.group);
+        return (this.boot.servers || []).filter((s) => (f.egg === 'all' || this.eggKey(s) === f.egg) && (f.node === 'all' || Number(s.node_id) === f.node) && (f.show === 'all' || !!s.mine === (f.show === 'mine')) && (!group || group.servers.includes(s.uuid)));
+      },
+      filterCount(key, value) {
+        return this.visibleServers({ [key]: value }).length;
+      },
+      /** The filters: Egg always (also with one egg, so the filter never disappears), then Show (mine or others), Node and Group when they have a choice. */
       filterSections() {
-        const sections = [], text = this.filterText;
-        if (this.ownerFilterShown()) sections.push({ key: 'show', label: text.filter_show, options: [{ value: 'all', label: text.all_servers }, { value: 'mine', label: text.my_servers }, { value: 'others', label: text.others }] });
-        const games = this.gameOptions();
-        if (games.length > 1) sections.push({ key: 'game', label: text.game, options: [{ value: 'all', label: text.all_games }, ...games.map((g) => ({ value: g.key, label: g.label }))] });
+        const sections = [], text = this.filterText, eggs = this.eggOptions();
+        if (eggs.length) sections.push({ key: 'egg', icon: 'egg', label: text.filter_egg, options: [{ value: 'all', label: text.all_eggs }, ...eggs.map((g) => ({ value: g.key, label: g.label }))] });
+        if (this.ownerFilterShown()) sections.push({ key: 'show', icon: 'account', label: text.filter_show, options: [{ value: 'all', label: text.all_servers }, { value: 'mine', label: text.my_servers }, { value: 'others', label: text.others }] });
         const nodes = this.nodeOptions();
-        if (nodes.length > 1) sections.push({ key: 'node', label: text.filter_node, options: [{ value: 'all', label: text.all_nodes }, ...nodes.map((n) => ({ value: n.id, label: n.name }))] });
-        if (this.overviewGroups.length) sections.push({ key: 'group', label: text.filter_group, options: [{ value: 'all', label: text.all_groups }, ...this.overviewGroups.map((g) => ({ value: g.id, label: g.name }))] });
+        if (nodes.length > 1) sections.push({ key: 'node', icon: 'host', label: text.filter_node, options: [{ value: 'all', label: text.all_nodes }, ...nodes.map((n) => ({ value: n.id, label: n.name }))] });
+        if (this.overviewGroups.length) sections.push({ key: 'group', icon: 'files', label: text.filter_group, options: [{ value: 'all', label: text.all_groups }, ...this.overviewGroups.map((g) => ({ value: g.id, label: g.name }))] });
         return sections;
       },
+      /** On a desktop each filter is its own dropdown (filterMenu = its key); on a phone one Filter opens them all (filterMenu = 'all'). */
+      filterMenuSections() {
+        return this.filterSections().filter((section) => this.filterMenu === 'all' || this.filterMenu === section.key);
+      },
+      openFilter(key, button) {
+        this.$refs.filterMenu.style.setProperty('--ps-room', Math.max(160, innerHeight - button.getBoundingClientRect().bottom - 24) + 'px');
+        this.$refs.filterMenu.style.setProperty('--ps-filter-x', (key === 'all' ? 0 : button.offsetLeft) + 'px');
+        this.filterMenu = this.filterMenu === key ? false : key;
+        this.appearanceMenu = false; this.groupsMenu = false; this.accountMenu = false; this.notifyMenu = false;
+      },
+      /** A filter's own button names its choice, else its "All …". */
+      filterChoice(section) {
+        const value = this.filterValue(section.key);
+        return section.options.find((o) => o.value === value)?.label || section.options[0].label;
+      },
       filterValue(key) {
-        return { show: this.ownerFilterShown() ? this.overviewPreferences.serverScope : 'all', game: this.gameFilter, node: this.nodeFilter, group: this.groupFilter }[key];
+        return { egg: this.eggFilter, show: this.ownerFilterShown() ? this.overviewPreferences.serverScope : 'all', node: this.nodeFilter, group: this.groupFilter }[key];
       },
       setFilter(key, value) {
         if (key === 'show') this.setOverviewPreference('serverScope', value);
-        else if (key === 'game') this.setGameFilter(value);
+        else if (key === 'egg') this.setEggFilter(value);
         else if (key === 'node') this.nodeFilter = value;
         else if (key === 'group') this.groupFilter = value === 'all' || this.overviewGroups.some((g) => g.id === value) ? value : 'all';
         this.filterMenu = false;
@@ -1021,8 +1050,8 @@
       groupCount(group) {
         return (this.boot.servers || []).filter((s) => group.servers.includes(s.uuid)).length;
       },
-      setGameFilter(key) {
-        if (key === 'all' || this.gameOptions().some((g) => g.key === key)) this.gameFilter = key;
+      setEggFilter(key) {
+        if (key === 'all' || this.eggOptions().some((g) => g.key === key)) this.eggFilter = key;
       },
       overviewPreferencesKey() {
         return 'pelicanSimplify.overviewAppearance.' + encodeURIComponent(this.boot.user || 'default');
@@ -1205,6 +1234,14 @@
           delete this.overviewNetwork[id];
         }
       },
+      /** CPU and RAM on a card take the colour of their load (W4): calm below 60%, warning from 60%, alarm from 85%. */
+      cardMetricLevel(s, key) {
+        const value = key === 'cpu' ? s.usage?.cpu_percent : s.usage?.memory_bytes;
+        if (typeof value !== 'number' || !Number.isFinite(value) || value < 0) return 'is-none';
+        const limit = key === 'cpu' ? (s.usage?.cpu_limit > 0 ? s.usage.cpu_limit : 100) : s.usage?.memory_limit_bytes;
+        const share = limit > 0 ? value / limit : 0;
+        return share >= 0.85 ? 'is-hot' : share >= 0.6 ? 'is-warn' : 'is-ok';
+      },
       cardRamLabel(s) {
         return this.memoryLabel({ usage: { memory_bytes: s.usage?.memory_bytes } });
       },
@@ -1243,7 +1280,7 @@
           if (this.destroyed) return;
           const badges = Object.fromEntries(this.boot.servers.map((s) => [s.uuid, s.badges]));
           this.boot.servers = servers.map((s) => ({ ...s, badges: badges[s.uuid] || [] }));
-          if (this.gameFilter !== 'all' && !this.gameOptions().some((g) => g.key === this.gameFilter)) this.gameFilter = 'all';
+          if (this.eggFilter !== 'all' && !this.eggOptions().some((g) => g.key === this.eggFilter)) this.eggFilter = 'all';
           this.boot.host_health = health;
           this.healthOpenNodes = this.healthOpenNodes.filter((id) => health.nodes?.some((n) => String(n.id) === String(id)));
           this.recordOverview(servers);

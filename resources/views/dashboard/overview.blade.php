@@ -17,21 +17,25 @@
                 </div>
             </div>
             <div class="ps-overview-toolbar" x-init="scrollHint($el)">
-                {{-- One Filter (Khion, V52): who, game, node and the own server groups in one list; on a phone a sheet. --}}
-                <div class="ps-overview-filters ps-filter" x-init="filterText = @js(collect(['filter_show', 'all_servers', 'my_servers', 'others', 'game', 'all_games', 'filter_node', 'all_nodes', 'filter_group', 'all_groups'])->mapWithKeys(fn ($key) => [$key => $u($key)]))" x-show="filterSections().length" x-on:click.outside="filterMenu=false" x-on:keydown.escape.stop="filterMenu=false; $refs.filterButton.focus()">
-                    <button type="button" x-ref="filterButton" class="ps-chip ps-filter-button" :class="{'is-on': filterActive()}" aria-controls="ps-filter-menu" :aria-expanded="filterMenu" aria-haspopup="menu"
-                            x-on:click="$refs.filterMenu.style.setProperty('--ps-room', Math.max(160, innerHeight - $el.getBoundingClientRect().bottom - 24) + 'px'); filterMenu=!filterMenu; appearanceMenu=false; groupsMenu=false; accountMenu=false; notifyMenu=false">
+                {{-- Filters: on a desktop one dropdown per filter, Egg first and always there; on a phone one Filter that opens them all as a sheet. --}}
+                <div class="ps-overview-filters ps-filter" x-init="filterText = @js(collect(['filter_show', 'all_servers', 'my_servers', 'others', 'filter_egg', 'all_eggs', 'filter_node', 'all_nodes', 'filter_group', 'all_groups'])->mapWithKeys(fn ($key) => [$key => $u($key)]))" x-show="filterSections().length" x-on:click.outside="filterMenu=false" x-on:keydown.escape.stop="filterMenu=false">
+                    <template x-for="section in filterSections()" :key="'chip-' + section.key">
+                        <button type="button" class="ps-chip ps-filter-button ps-desktop-only" :class="{'is-on': filterValue(section.key) !== 'all'}" :data-filter="section.key" aria-controls="ps-filter-menu" :aria-expanded="filterMenu===section.key" aria-haspopup="menu" :aria-label="section.label + ': ' + filterChoice(section)" x-on:click="openFilter(section.key, $el)">
+                            <svg aria-hidden="true"><use :href="'#ps-' + section.icon"/></svg><span x-text="filterChoice(section)"></span><svg class="ps-filter-chevron" aria-hidden="true"><use href="#ps-chevron"/></svg>
+                        </button>
+                    </template>
+                    <button type="button" class="ps-chip ps-filter-button ps-phone-only" :class="{'is-on': filterActive()}" data-filter="all" aria-controls="ps-filter-menu" :aria-expanded="filterMenu==='all'" aria-haspopup="menu" x-on:click="openFilter('all', $el)">
                         <svg aria-hidden="true"><use href="#ps-filter"/></svg><span x-text="filterLabel()">{{ $u('all_servers') }}</span><svg class="ps-filter-chevron" aria-hidden="true"><use href="#ps-chevron"/></svg>
                     </button>
                     <div id="ps-filter-menu" x-ref="filterMenu" class="ps-dropdown ps-filter-menu" x-show="filterMenu" x-cloak x-transition.opacity role="menu" aria-label="{{ $u('filter') }}">
-                        <strong class="ps-dropdown-title">{{ $u('filter') }}</strong>
-                        <template x-for="section in filterSections()" :key="section.key">
+                        <strong class="ps-dropdown-title" x-show="filterMenu==='all'">{{ $u('filter') }}</strong>
+                        <template x-for="section in filterMenuSections()" :key="section.key">
                             <div class="ps-filter-section" role="group" :aria-label="section.label">
                                 <span class="ps-label" x-text="section.label"></span>
                                 <input type="search" class="ps-input ps-node-search" x-show="section.key==='node' && section.options.length > 4" x-model.debounce.200ms="nodeSearch" placeholder="{{ $u('search_nodes') }}" aria-label="{{ $u('search_nodes') }}">
                                 <template x-for="option in section.options.filter((o) => section.key !== 'node' || o.value === 'all' || !nodeSearch || o.label.toLowerCase().includes(nodeSearch.toLowerCase()))" :key="section.key + '-' + option.value">
                                     <button type="button" class="ps-menu-item" role="menuitemradio" :aria-checked="filterValue(section.key) === option.value" x-on:click="setFilter(section.key, option.value)">
-                                        <span x-text="option.label"></span><svg class="ps-filter-check" aria-hidden="true"><use href="#ps-check"/></svg>
+                                        <span x-text="option.label"></span><small class="ps-filter-count" x-text="filterCount(section.key, option.value)"></small><svg class="ps-filter-check" aria-hidden="true"><use href="#ps-check"/></svg>
                                     </button>
                                 </template>
                             </div>
@@ -80,7 +84,7 @@
                                         <div class="ps-card-mini-metric">
                                             <span class="ps-card-usage-label">
                                                 <span class="ps-card-metric-name"><svg aria-hidden="true"><use :href="'#ps-'+metric.icon"/></svg><span x-text="metric.label"></span></span>
-                                                <strong x-text="metric.key==='cpu' ? cpuLabel(s) : cardRamLabel(s)"></strong>
+                                                <strong :class="cardMetricLevel(s, metric.key)" x-text="metric.key==='cpu' ? cpuLabel(s) : cardRamLabel(s)"></strong>
                                             </span>
                                             <svg class="ps-card-graph" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true">
                                                 <path class="ps-card-graph-axis" d="M2 27H98"/>
