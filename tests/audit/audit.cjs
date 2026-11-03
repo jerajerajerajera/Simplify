@@ -980,6 +980,9 @@ async function fixesFlow() {
     // Connections (API 6): from the account menu without a page load, measured as a page in the content box; an add-on's
     // row (Server Maker's Steam key) opens its own popup. Without an add-on row there is no menu item and no page.
     {
+      // The overview from the goto above may still fire its own load event (goto waits for the DOM only); that load
+      // is not the click's, so the count starts once it is done.
+      await page.waitForLoadState('load', { timeout: 15000 }).catch(() => {});
       let loads = 0; const onLoad = () => loads++; page.on('load', onLoad);
       // When the click loads the whole page, the result says why: Livewire's own request for the page (and its
       // answer), the page loads after it, the tracked head assets that differ, and what the browser logged.
