@@ -84,6 +84,7 @@ return [
         'close' => 'Sluiten',
         'close_server' => 'Server sluiten',
         'server_groups' => 'Servergroepen',
+        'edit_groups' => 'Groepen bewerken',
         'saved_with_your_account_so_every' => 'Opgeslagen bij je account, dus elk apparaat toont dezelfde groepen en volgorde.',
         'server_order' => 'Servervolgorde',
         'for_the_overview_and_for_groups' => 'Voor het overzicht en voor groepen die het volgen',

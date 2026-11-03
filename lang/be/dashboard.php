@@ -84,6 +84,7 @@ return [
         'close' => 'Закрыць',
         'close_server' => 'Закрыць сервер',
         'server_groups' => 'Групы сервераў',
+        'edit_groups' => 'Змяніць групы',
         'saved_with_your_account_so_every' => 'Захоўваецца ў вашым акаўнце, таму на кожнай прыладзе тыя ж групы і парадак.',
         'server_order' => 'Парадак сервераў',
         'for_the_overview_and_for_groups' => 'Для агляду і груп, якія ідуць за ім',

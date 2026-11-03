@@ -84,6 +84,7 @@ return [
         'close' => 'Luk',
         'close_server' => 'Luk server',
         'server_groups' => 'Servergrupper',
+        'edit_groups' => 'Rediger grupper',
         'saved_with_your_account_so_every' => 'Gemt med din konto, så alle enheder viser de samme grupper og den samme rækkefølge.',
         'server_order' => 'Serverrækkefølge',
         'for_the_overview_and_for_groups' => 'Til oversigten og til grupper, der følger den',
