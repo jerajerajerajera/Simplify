@@ -920,28 +920,36 @@ async function scrollbars(serverUrl) {
   await sleep(400); info = await look(page, true); await record('scroll-console', 'Scrollbalk · console'); judge('console', info);
 }
 
-// Other plugins (1.5.2): always a group that folds open, and a plugin's page shows "Other plugins · <page>" in the
-// head. CI has no plugin outside Simplify, so when the group is empty the check puts a page of Pelican's in it.
+// Pelican plugins (Other plugins in 1.5.2): always a group that folds open, and a plugin's page shows "Pelican plugins ›
+// <page>" in the head. Simplify add-ons and Pelican plugins stand apart under the rest of the menu (Jeroen 3-11).
 async function otherPlugins() {
   const overview = urls.app.find((p) => /App\\Pages\\Overview$/.test(p.class))?.url || '/';
   const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
   if (!(await shieldTo(overview))) return say('other-plugins', false, { note: 'no shield link' });
   await openAdminMenu();
-  const group = '.ps-admin-side .ps-host-group:has(.ps-host-group-head:has-text("Other plugins"))';
+  // The menu's order (Jeroen 3-11): People & roles one leaf, Pelican's plugin list under Pelican settings, and apart below
+  // the rest Simplify add-ons, then Pelican plugins.
+  const order = await page.evaluate(() => [...document.querySelectorAll('.ps-admin-side .ps-host-group')].map((g) => ({ head: g.querySelector('.ps-host-group-head')?.innerText.trim(), apart: g.classList.contains('is-apart'), links: [...g.querySelectorAll('a')].map((a) => new URL(a.href).pathname) }))).catch(() => []);
+  const at = (name) => order.findIndex((g) => g.head === name);
+  const people = order[at('People & roles')];
+  say('admin-menu-order', at('Health') === 0 && !!people && people.links.length === 1 && !order.some((g) => g.links.some((l) => /\/admin\/(users|roles)$/.test(l)))
+    && order[at('Pelican settings')]?.links.some((l) => /\/admin\/plugins$/.test(l)) && order.find((g) => g.apart)?.head === (at('Simplify add-ons') >= 0 ? 'Simplify add-ons' : 'Pelican plugins') && at('Pelican plugins') > at('Simplify add-ons')
+    && order.filter((g) => g.apart).length === 1 && order.slice(order.findIndex((g) => g.apart)).every((g) => !['Servers', 'Nodes', 'Simplify settings', 'Pelican settings'].includes(g.head)), order.map((g) => g.head + (g.apart ? ' (apart)' : '')));
+  const group = '.ps-admin-side .ps-host-group:has(.ps-host-group-head:has-text("Pelican plugins"))';
   const head = page.locator(`${group} .ps-host-group-head`).first();
   // The test panel has a plugin outside Simplify with its own admin page (CLAUDE.md), so the group is real.
-  if (!(await head.count())) { say('other-plugins', false, { note: 'no Other plugins group in the Admin menu' }); if (phone()) await escape(); return; }
+  if (!(await head.count())) { say('other-plugins', false, { note: 'no Pelican plugins group in the Admin menu' }); if (phone()) await escape(); return; }
   const before = await head.getAttribute('aria-expanded');
   if (before !== 'true') { await head.click().catch(() => {}); await sleep(600); }
   const after = await head.getAttribute('aria-expanded');
   const leaf = page.locator(`${group} .ps-host-branch a >> visible=true`).first();
   const leafs = await page.locator(`${group} .ps-host-branch a >> visible=true`).count();
   const name = leafs ? (await leaf.innerText().catch(() => '')).trim() : '';
-  await record('other-plugins-open', 'Other plugins · uitgeklapt');
+  await record('other-plugins-open', 'Pelican plugins · uitgeklapt');
   await markAdminSide(); if (leafs) { await leaf.click().catch(() => {}); await settle(page, 2000); }
   const st = await adminState();
   const current = await page.evaluate(() => { const a = document.querySelector('.ps-admin-side .ps-host-leaf[aria-current="page"]'); return a ? a.innerText.trim() : null; }).catch(() => null);
-  await record('other-plugins-page', 'Other plugins · pagina van een plugin');
+  await record('other-plugins-page', 'Pelican plugins · pagina van een plugin');
   say('other-plugins', after === 'true' && leafs >= 1 && !!st && st.kept && st.shell && current === name, { before, after, leafs, name, current, kept: st && st.kept });
 }
 

@@ -7,7 +7,9 @@
 <div class="ps server-active ps-admin-side" :class="{'menu-open': open, 'dark': dark}" x-data="{
         open: false,
         dark: window.SimplifyTheme?.dark() ?? document.documentElement.classList.contains('dark'),
-        branches: {},
+        // The groups you opened stay open, on every page and next time (per browser).
+        branches: (() => { try { return JSON.parse(localStorage.getItem('simplify-admin-open')) || {}; } catch { return {}; } })(),
+        remember() { this.$watch('branches', (open) => { try { localStorage.setItem('simplify-admin-open', JSON.stringify(open)); } catch {} }); },
         here: '',
         path: '',
         crumb: null,
@@ -49,7 +51,7 @@
         all() { return @js(array_column($sections, 'key')).every((key) => this.branches[key]); },
         toggleAll() { const on = !this.all(); for (const key of @js(array_column($sections, 'key'))) this.branches[key] = on; },
      }"
-     x-init="locate(); swipe(); accent(); crumbWidth()" x-on:livewire:navigated.window="locate()" x-on:simplify:admin-menu.window="open = !open" x-on:simplify:theme.window="dark = $event.detail.dark; accent()" x-on:keydown.escape.window="open = false">
+     x-init="locate(); remember(); swipe(); accent(); crumbWidth()" x-on:livewire:navigated.window="locate()" x-on:simplify:admin-menu.window="open = !open" x-on:simplify:theme.window="dark = $event.detail.dark; accent()" x-on:keydown.escape.window="open = false">
     <div class="ps-host-backdrop" x-show="open" x-cloak x-on:click="open = false"></div>
     {{-- Where you are, as the page's title: All servers (computers; on a phone the bottom bar has it) › group › page. --}}
     <nav class="ps-admin-crumb" aria-label="{{ $u('admin_sections') }}" x-show="crumb && !open" x-cloak>
@@ -62,11 +64,11 @@
     </nav>
     <aside id="ps-admin-side" class="ps-host-side" aria-label="{{ $u('admin_sections') }}">
         <div class="ps-host-side-scroll">
-            {{-- A section with one page opens it; the others (and Other plugins, so a plugin shows its own name) fold open and shut. --}}
+            {{-- A section with one page opens it; the others (and Pelican plugins, so a plugin shows its own name) fold open and shut. --}}
             <nav class="ps-host-tree" aria-label="{{ $u('admin_sections') }}">
                 <button type="button" class="ps-host-expand" x-on:click="toggleAll()" x-text="all() ? @js($u('collapse_all')) : @js($u('expand_all'))">{{ $u('expand_all') }}</button>
                 @foreach ($sections as $section)
-                    <div class="ps-host-group" wire:key="section-{{ $section['key'] }}" :class="{'is-open': branches[@js($section['key'])]}" style="--ps-tone: {{ $section['color'] }}">
+                    <div @class(['ps-host-group', 'is-apart' => $section['apart'] ?? false]) wire:key="section-{{ $section['key'] }}" :class="{'is-open': branches[@js($section['key'])]}" style="--ps-tone: {{ $section['color'] }}">
                         @if (count($section['pages']) === 1 && $section['key'] !== 'extensions')
                             <a class="ps-host-group-head" href="{{ $section['pages'][0]['url'] }}" wire:navigate :aria-current="here === @js($section['key'].'/'.($section['pages'][0]['key'] ?? '')) ? 'page' : null">
                                 <svg aria-hidden="true"><use href="#ps-{{ $section['icon'] }}"/></svg><span>{{ $section['label'] }}</span>
@@ -79,7 +81,7 @@
                             <div class="ps-host-branch" x-show="branches[@js($section['key'])]" x-cloak>
                                 @foreach ($section['pages'] as $page)
                                     <a class="ps-host-leaf" href="{{ $page['url'] }}" wire:navigate :aria-current="here === @js($section['key'].'/'.($page['key'] ?? '')) ? 'page' : null">
-                                        <svg aria-hidden="true"><use href="#ps-{{ $page['icon'] ?? 'plugins' }}"/></svg><span>{{ $page['label'] }}</span>
+                                        <span>{{ $page['label'] }}</span>
                                     </a>
                                 @endforeach
                             </div>
