@@ -68,4 +68,15 @@ return [
         'removing' => 'Menghapus…',
         'error' => 'Tidak terhubung',
     ],
+    'setup' => [
+        'title' => 'Cara mengaturnya',
+        'intro' => 'Pemain lalu bergabung dengan nama seperti oak.:domain, bukan alamat IP dan port. Ini diatur sekali saja.',
+        'step_domain' => 'Isi domain (zona Cloudflare Anda) dan alamat server: record DNS only yang sudah ada dan menunjuk ke IP publik tempat port Anda masuk.',
+        'step_token' => 'Di Cloudflare, buka My Profile › API Tokens › Create Token dan pilih template "Edit zone DNS". Di Zone Resources pilih hanya domain ini, buat token, lalu salin.',
+        'step_test' => 'Tempel token di bawah dan tekan :test. Simplify memeriksanya dan mengisi ID zona sendiri.',
+        'step_save' => 'Tekan :save. Setiap server dengan port di rentang yang diteruskan lalu punya :menu di menunya, tempat pemiliknya memilih nama.',
+        'open_cloudflare' => 'Buka token API Cloudflare',
+        'button' => 'Atur subdomain',
+        'server_help' => 'Setelah itu, pemain bisa masuk ke server ini dengan :address. Sampai saat itu hanya admin root yang melihat halaman ini.',
+    ],
 ];

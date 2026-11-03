@@ -127,6 +127,19 @@ html, body { overscroll-behavior-y: none; }
   justify-content: flex-end;
 }
 
+/* Numbered steps, such as how to set up Subdomains. */
+.s-steps {
+  display: grid;
+  gap: var(--s-space-2);
+  list-style: decimal;
+  padding-inline-start: 1.25rem;
+}
+
+.s-steps a {
+  font-weight: 500;
+  text-decoration: underline;
+}
+
 /* Badge: a short status or fact. */
 .s-badge {
   align-items: center;

@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Automatic subdomains explains itself: a How to set it up section with the four steps and a link to Cloudflare's token page (folded shut once everything is set), and what is still missing under the title. Until Cloudflare is set up, root admins still see Subdomain in the server menu, with what is missing and a Set up subdomains button; owners see it once it works.
 - Subdomains keep working after the update from PelicanSimplify 0.7.0: the Cloudflare token and zone ID that 0.7.0 read from `.env` (`CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ZONE_ID`) are taken over once, encrypted, unless Simplify already has its own. `.env` is only read.
 - Computers: on an Admin page the page's own buttons, such as Run setup again and Save on Settings › General, sit in the middle of the breadcrumb's row again, with room under the header, instead of at the top of that row.
 - The console page loads without a jump: the empty card that stood above the console for a moment while Pelican's numbers loaded no longer shows, so the console stays where it is.

@@ -68,4 +68,15 @@ return [
         'removing' => 'Odoberá sa…',
         'error' => 'Nepripojené',
     ],
+    'setup' => [
+        'title' => 'Ako to nastaviť',
+        'intro' => 'Hráči sa potom pripájajú menom ako oak.:domain namiesto IP adresy a portu. Nastavuje sa to raz.',
+        'step_domain' => 'Vyplňte doménu (vašu zónu Cloudflare) a adresu servera: existujúci záznam DNS only, ktorý smeruje na verejnú IP, kam prichádzajú vaše porty.',
+        'step_token' => 'V Cloudflare otvorte My Profile › API Tokens › Create Token a zvoľte šablónu "Edit zone DNS". V Zone Resources vyberte len túto doménu, vytvorte token a skopírujte ho.',
+        'step_test' => 'Vložte token nižšie a stlačte :test. Simplify ho overí a ID zóny doplní sám.',
+        'step_save' => 'Stlačte :save. Každý server s portom v presmerovanom rozsahu potom má v menu :menu, kde vlastník zvolí meno.',
+        'open_cloudflare' => 'Otvoriť API tokeny Cloudflare',
+        'button' => 'Nastaviť subdomény',
+        'server_help' => 'Potom sa hráči môžu na tento server pripojiť cez :address. Dovtedy túto stránku vidia len root administrátori.',
+    ],
 ];

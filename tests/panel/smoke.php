@@ -1031,6 +1031,38 @@ Subdomains::$transport = function (string $method, string $path, ?array $body) u
 
     return ['success' => true];
 };
+step('subdomains: until Cloudflare is set up, a root admin sees the steps and the way there, an owner nothing', function () use ($admin, $server) {
+    SubdomainSettings::save(['domain' => 'example.com', 'target' => 'play.example.com', 'port_min' => 1, 'port_max' => 65535, 'zone_id' => '', 'token' => ''], true);
+    SubdomainSettings::flush();
+    if (Subdomains::ready()) {
+        throw new RuntimeException('still ready without a token');
+    }
+    $settings = AutomaticSubdomains::getUrl(panel: 'admin');
+    $page = visit($admin, $settings);
+    expectOk($page, $settings);
+    foreach (['https://dash.cloudflare.com/profile/api-tokens', 'Still missing: Cloudflare token, zone ID (press Test).'] as $text) {
+        if (! str_contains($page->getContent(), $text)) {
+            throw new RuntimeException('the settings page misses '.$text);
+        }
+    }
+    $url = ServerSubdomain::getUrl(panel: 'server', tenant: $server);
+    $page = visit($admin, $url);
+    expectOk($page, $url);
+    if (! str_contains($page->getContent(), 'Set up subdomains') || ! str_contains($page->getContent(), e($settings))) {
+        throw new RuntimeException('the server page has no button to the settings');
+    }
+    $customer = User::query()->where('email', 'smoke-customer@example.com')->first()
+        ?? User::withoutEvents(fn () => User::factory()->create(['username' => 'smoke-customer', 'email' => 'smoke-customer@example.com']));
+    $owner = $server->owner_id;
+    $server->forceFill(['owner_id' => $customer->id])->saveQuietly();
+    try {
+        if (visit($customer, $url)->getStatusCode() === 200) {
+            throw new RuntimeException('the owner sees the page before Cloudflare is set up');
+        }
+    } finally {
+        $server->forceFill(['owner_id' => $owner])->saveQuietly();
+    }
+});
 step('subdomains: the settings and server pages open, and the token is stored encrypted', function () use ($admin, $server) {
     SubdomainSettings::save(['domain' => 'Example.com', 'target' => 'play.example.com', 'port_min' => 1, 'port_max' => 65535, 'zone_id' => str_repeat('a', 32), 'token' => 'smoke-token']);
     SubdomainSettings::flush();
