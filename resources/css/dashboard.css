@@ -1016,7 +1016,6 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 /* Every header menu points at the button that opened it, like the incoming notification does. The arrow
    sits on the wrapper because the menu itself scrolls (and would clip it). */
 :is(.ps-notify, .ps-overview-appearance):has(> .ps-dropdown.is-end:not([style*="display: none"]))::after { content: ""; position: absolute; top: calc(100% + 2px); inset-inline-end: calc(var(--ps-h) / 2 - 6px); z-index: calc(var(--ps-z-dropdown) + 1); width: 12px; height: 12px; border-top: 1px solid var(--ps-line); border-left: 1px solid var(--ps-line); background: var(--ps-surface); transform: rotate(45deg); pointer-events: none; }
-.ps-theme-option[aria-pressed="true"] { border-color: var(--ps-accent); color: var(--ps-accent); }
 
 /* Resource presets on the Performance page: the same cards as the creator's resource step. */
 
@@ -1543,3 +1542,7 @@ body:has(.ps-install:not([style*="none"], [x-cloak])) .fi-main .fi-page .fi-call
   .ps .ps-host-menu-chevron { transform: rotate(-90deg); }
   .ps .ps-host-main { height: calc(100dvh - 166px - env(safe-area-inset-bottom, 0px)); }
 }
+
+/* Customize Simplify: the theme first, on every page; a line under it when the page's own choices follow. */
+.ps-customize-row.is-first { padding-top: 0; border-top: 0; }
+.ps-customize-theme:has(~ .ps-customize) { padding-bottom: 10px; border-bottom: 1px solid var(--ps-line); }

@@ -1,9 +1,21 @@
 {{-- Personal appearance preferences, opened from Customize in the account menu. --}}
-<div class="ps-overview-appearance ps-nav-view" x-show="!$el.closest('.ps-admin-top')" x-on:click.outside="appearanceMenu=false" x-on:keydown.escape.stop="appearanceMenu=false; $root.querySelector('.ps-account-button')?.focus()">
+<div class="ps-overview-appearance ps-nav-view" x-data="{ adminTop: !!$el.closest('.ps-admin-top') }" x-on:click.outside="appearanceMenu=false" x-on:keydown.escape.stop="appearanceMenu=false; $root.querySelector('.ps-account-button')?.focus()">
     <div id="ps-overview-appearance-menu" class="ps-dropdown is-end ps-overview-appearance-menu" x-show="appearanceMenu" x-cloak x-transition.opacity>
-        <strong class="ps-dropdown-title">{{ $u('customize_overview') }}</strong>
+        <strong class="ps-dropdown-title">{{ $u('customize') }}</strong>
         <p class="ps-dropdown-hint">{{ $u('only_for_you_on_this_device') }}</p>
-        <template x-if="!server">
+        {{-- The theme, on every page (Jeroen 3-11: in Customize Simplify instead of the account menu). --}}
+        <div class="ps-customize ps-customize-theme">
+            <div class="ps-customize-row is-first">
+                <div><strong>{{ $u('theme') }}</strong><small>{{ $u('theme_hint') }}</small></div>
+                <div class="ps-segmented" role="group" aria-label="{{ $u('theme') }}">
+                    <template x-for="t in [{key:'light',label:@js($u('light')),icon:'sun'},{key:'dark',label:@js($u('dark')),icon:'moon'},{key:'system',label:@js($u('system')),icon:'monitor'}]" :key="t.key">
+                        <button type="button" :aria-pressed="theme===t.key" x-on:click="setTheme(t.key)"><svg aria-hidden="true"><use :href="'#ps-'+t.icon"/></svg><span x-text="t.label"></span></button>
+                    </template>
+                </div>
+            </div>
+        </div>
+        {{-- The Admin page and the account pages have only the theme. --}}
+        <template x-if="!server && !adminTop">
             <div class="ps-customize">
                 {{-- Server groups have their own window, opened from here (as Customize › Server groups on a phone). --}}
                 <button type="button" class="ps-customize-switch is-first" x-on:click.stop="appearanceMenu=false; groupsMenu=true">
@@ -91,7 +103,7 @@
                 </div>
             </div>
         </template>
-        <template x-if="server">
+        <template x-if="server && !adminTop">
             <div class="ps-customize">
                 <span class="ps-customize-sub">{{ $u('server_pages') }}</span>
                 <button type="button" class="ps-customize-switch" role="switch" :aria-checked="overviewPreferences.serverBiggerConsole" x-on:click="setOverviewPreference('serverBiggerConsole', !overviewPreferences.serverBiggerConsole)">

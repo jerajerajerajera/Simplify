@@ -1,5 +1,5 @@
 {{-- Account: avatar with inline profile, theme, notifications and sign-out actions. --}}
-<div class="ps-account" x-data="{ themeOpen: false }" x-effect="accountMenu || (themeOpen = false)" :class="{'account-open': accountMenu}" x-on:click.outside="accountMenu=false" x-on:keydown.escape.stop="accountMenu=false">
+<div class="ps-account" :class="{'account-open': accountMenu}" x-on:click.outside="accountMenu=false" x-on:keydown.escape.stop="accountMenu=false">
     <button type="button" x-on:click="accountMenu=!accountMenu; appearanceMenu=false; groupsMenu=false; notifyMenu=false" class="ps-btn ps-account-button" aria-label="{{ $u('profile_options') }}" aria-controls="ps-account-actions" :aria-expanded="accountMenu">
         <span class="ps-account-avatar" x-data="{failed:false}">
             <img x-show="boot.avatar && !failed" :src="boot.avatar" alt="" x-on:error="failed=true">
@@ -12,17 +12,8 @@
             <a class="ps-btn is-icon" :href="boot.profile_url" data-tip="{{ $u('profile_settings') }}" aria-label="{{ $u('profile_settings') }}"><svg aria-hidden="true"><use href="#ps-account"/></svg></a>
             {{-- Connections: the add-ons' outside accounts (Steam, CurseForge), only when an add-on gives a row. --}}
             <a class="ps-btn is-icon" x-show="boot.connections_url" x-cloak :href="boot.connections_url" wire:navigate data-tip="{{ $u('connections') }}" aria-label="{{ $u('connections') }}"><svg aria-hidden="true"><use href="#ps-link"/></svg></a>
-            {{-- Theme: the current choice; clicking it unfolds Light, Dark and System. --}}
-            <button type="button" class="ps-btn is-icon" x-show="!themeOpen" x-on:click="themeOpen=true" :data-tip="@js($u('theme_prefix'))+' '+(theme==='light' ? @js($u('light')) : theme==='dark' ? @js($u('dark')) : @js($u('system')))" aria-label="{{ $u('choose_theme') }}" :aria-expanded="themeOpen">
-                <svg aria-hidden="true"><use :href="theme==='light' ? '#ps-sun' : theme==='dark' ? '#ps-moon' : '#ps-monitor'"/></svg>
-            </button>
-            <template x-for="t in ['light','dark','system']" :key="t">
-                <button type="button" class="ps-btn is-icon ps-theme-option" x-show="themeOpen" :aria-pressed="theme===t" x-on:click="setTheme(t); themeOpen=false" :data-tip="{ light: @js($u('light')), dark: @js($u('dark')), system: @js($u('system')) }[t]" :aria-label="Simplify.fill(@js($u('theme_option')), { theme: { light: @js($u('light')), dark: @js($u('dark')), system: @js($u('system')) }[t] })">
-                    <svg aria-hidden="true"><use :href="t==='light' ? '#ps-sun' : t==='dark' ? '#ps-moon' : '#ps-monitor'"/></svg>
-                </button>
-            </template>
-            {{-- Customize: the look of the overview and of the server pages, and the server groups. --}}
-            <button type="button" class="ps-btn is-icon" x-show="!$el.closest('.ps-admin-top')" x-on:click.stop="accountMenu=false; appearanceMenu=true" data-tip="{{ $u('customize') }}" aria-label="{{ $u('customize') }}"><svg aria-hidden="true"><use href="#ps-wand"/></svg></button>
+            {{-- Customize Simplify: the theme, the look of the overview and of the server pages, and the server groups. --}}
+            <button type="button" class="ps-btn is-icon" x-on:click.stop="accountMenu=false; appearanceMenu=true" data-tip="{{ $u('customize') }}" aria-label="{{ $u('customize') }}"><svg aria-hidden="true"><use href="#ps-wand"/></svg></button>
             {{-- Add-on pages (such as Server Maker's Steam account): Pelican's account panel inside Simplify (AdminTop). --}}
             <template x-for="page in boot.account_pages || []" :key="page.key">
                 <a class="ps-btn is-icon" :href="page.url" wire:navigate :data-tip="page.label" :aria-label="page.label" x-html="page.icon"></a>
