@@ -101,11 +101,37 @@ const shieldTo = async (overview) => {
   // A narrow window (tablet) keeps the top bar's buttons behind its menu button.
   if (!(await shield.count()) && await page.locator('.ps-top .ps-mobile-menu >> visible=true').count()) { await page.locator('.ps-top .ps-mobile-menu >> visible=true').first().click().catch(() => {}); await sleep(500); }
   if (!(await shield.count())) return false;
-  await shield.click().catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await settle(page, 1500);
+  // The switch to Admin changes only the content (wire:navigate), as in an app: no whole page, the top bar's buttons stay.
+  switched = { before: await topButtons() };
+  await page.evaluate(() => { window.__psSwitch = 1; }).catch(() => {});
+  await shield.click().catch(() => {}); await page.waitForURL(/\/admin\//, { timeout: 15000 }).catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await settle(page, 1500);
+  switched.reloaded = await page.evaluate(() => window.__psSwitch !== 1).catch(() => true);
+  switched.after = await topButtons();
   return true;
 };
+let switched = null;
+// Back from Admin to the overview: the shield on a computer, Servers in the bottom bar on a phone.
+const shieldBack = async () => {
+  const back = page.locator((phone() ? '.ps-admin-side .ps-tabbar a.ps-tab' : '.ps-admin-top a.ps-nav-admin') + ' >> visible=true').first();
+  if (!(await back.count()) && await page.locator('.ps-top .ps-mobile-menu >> visible=true').count()) { await page.locator('.ps-top .ps-mobile-menu >> visible=true').first().click().catch(() => {}); await sleep(500); }
+  await back.click().catch(() => {}); await page.waitForURL((u) => !/\/admin\//.test(u.pathname), { timeout: 15000 }).catch(() => {}); await settle(page, 1500);
+};
+// Where the top bar's buttons are (the bottom bar's on a phone): the same place on the overview and on Admin.
+const topButtons = () => page.evaluate(() => [...document.querySelectorAll('.ps-top :is(.ps-health-pill, .ps-nav-admin, .ps-notify-button, .ps-account-button), .ps-tabbar .ps-tab')]
+  .filter((e) => e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden')
+  .map((e) => { const b = e.getBoundingClientRect(); return `${(e.className.baseVal ?? e.className).split(' ').find((c) => /^ps-(health-pill|nav-admin|notify-button|account-button|tab)$/.test(c))}@${Math.round(b.left)},${Math.round(b.top)}`; })).catch(() => []);
 const adminPage = async (overview) => {
   const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
+  if (!(await shieldTo(overview))) return say('admin-page', false, { note: 'no shield link on the overview' });
+  // Overview → Admin and back like an app (Jeroen 3-11): only the content changes, the top bar's buttons (Health too, on
+  // a phone) stay where they are; the bottom bar keeps its tabs.
+  const there = switched;
+  await shieldBack();
+  const back = { reloaded: await page.evaluate(() => window.__psSwitch !== 1).catch(() => true), path: await page.evaluate(() => location.pathname).catch(() => null), after: await topButtons() };
+  // A narrow window keeps the top bar's buttons behind its menu button: there only the switch itself counts.
+  const folded = (await page.locator('.ps-top .ps-mobile-menu >> visible=true').count()) > 0;
+  const same = (a, b) => folded || !!a && !!b && a.filter((x) => !/^ps-tab@/.test(x)).join() === b.filter((x) => !/^ps-tab@/.test(x)).join();
+  say('admin-switch', !!there && !there.reloaded && same(there.before, there.after) && (folded || there.before.some((x) => x.startsWith('ps-health-pill'))) && !back.reloaded && !/\/admin\//.test(back.path || '') && same(there.after, back.after), { there, back });
   if (!(await shieldTo(overview))) return say('admin-page', false, { note: 'no shield link on the overview' });
   const st = await adminState(); await record('admin-page', 'Admin-pagina (schild)');
   say('admin-page', !!st && st.shell && st.side && st.header && !st.frames && !st.pelicanBars && st.pageScroll <= 1 && (phone() || /auto|scroll/.test(st.card || '')), st);
