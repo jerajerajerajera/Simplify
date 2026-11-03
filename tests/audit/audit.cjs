@@ -140,6 +140,47 @@ const adminPage = async (overview) => {
     const diff = first && again ? Object.keys(first).filter((k) => JSON.stringify(first[k]) !== JSON.stringify(again[k])) : ['missing'];
     say('admin-nav-look', !!first && !!first.card && diff.length === 0 && loads === 0 && /\/admin\/servers/.test(page.url()), { diff, loads, first, again });
   }
+  // The other way out of an admin page: the end of the setup's "Go to the panel" opens the overview with wire:navigate.
+  // It looks as after a full load (Jeroen 3-11, beta.3: the background turned lighter grey), and so does the Admin page
+  // the shield opens from there.
+  if (!phone()) {
+    const pageLook = () => page.evaluate(() => {
+      const css = (el, props) => { if (!el) return null; const s = getComputedStyle(el); return props.map((p) => s.getPropertyValue(p).trim()).join(' | '); };
+      const root = document.documentElement;
+      return {
+        html: [...root.classList].filter((c) => !/^nprogress/.test(c)).sort().join(' '),
+        busy: root.classList.contains('nprogress-busy'),
+        tokens: css(root, ['--gray-950', '--gray-900', '--ps-bg', '--ps-surface', '--s-bg', '--s-surface']),
+        body: css(document.body, ['background-color', 'color']),
+        layout: css(document.querySelector('.fi-layout'), ['background-color']),
+        top: css([...document.querySelectorAll('.ps-top')].find((e) => e.getClientRects().length), ['background-color']),
+        sheets: [...document.head.querySelectorAll('link[rel="stylesheet"], style')].map((e) => (e.getAttribute('href') || 'style:' + e.textContent.length).replace(/^https?:\/\/[^/]+/, '').replace(/\?.*$/, '')),
+      };
+    }).catch(() => null);
+    const same = (a, b, keys) => (a && b ? keys.filter((k) => JSON.stringify(a[k]) !== JSON.stringify(b[k])) : ['missing']);
+    const keys = ['html', 'busy', 'tokens', 'body', 'layout', 'top'];
+    const arrivedAt = (test) => page.waitForFunction((src) => new RegExp(src).test(location.pathname) && !document.documentElement.classList.contains('nprogress-busy'), test.source, { timeout: 10000 }).catch(() => {});
+    const overviewPath = new URL(overview, base).pathname;
+    await goto(new URL(overview, base).href, 2000);
+    const fullOverview = await pageLook();
+    await goto(new URL('/admin/simplify/setup-done', base).href, 2000);
+    const fullAdmin = await pageLook();
+    const go = page.locator('.fi-header a >> visible=true').filter({ hasText: /Go to the panel/ }).first();
+    const found = (await go.count()) > 0;
+    await go.click({ timeout: 4000 }).catch(() => {}); await arrivedAt(new RegExp('^' + overviewPath.replace(/\/$/, '') + '/?$')); await settle(page, 1500);
+    const navOverview = await pageLook(); await record('setup-done-to-overview', 'Setup klaar › Go to the panel: overzicht');
+    const d1 = same(fullOverview, navOverview, keys);
+    say('setup-done-to-overview', found && d1.length === 0, { found, diff: d1, full: fullOverview, after: navOverview });
+    const shield = page.locator('a.ps-nav-admin >> visible=true').first();
+    await shield.click({ timeout: 4000 }).catch(() => {}); await arrivedAt(/^\/admin/); await settle(page, 1500);
+    const navAdmin = await pageLook();
+    const d2 = same(fullAdmin, navAdmin, keys);
+    say('overview-to-admin-look', d2.length === 0, { diff: d2, full: fullAdmin, after: navAdmin, path: new URL(page.url()).pathname });
+    // The overview and the Admin page share one background, so going between them changes no colour (K-B28).
+    const bg = (look) => look?.body?.split(' | ')[0] || null;
+    say('admin-overview-bg', !!bg(fullOverview) && bg(fullOverview) === bg(fullAdmin) && bg(fullAdmin) === bg(navAdmin), { overview: bg(fullOverview), admin: bg(fullAdmin), adminAfterShield: bg(navAdmin) });
+    await shieldTo(overview);
+  }
   // Computers (Jeroen 3-11): the Admin page belongs to the overview instead of feeling like a separate site. The same
   // header (Healthy, Create server), the menu and the page together as wide as it, both without a card and without a
   // Servers tab; the breadcrumb (All servers › …) is the title, the page's buttons sit on its row, and every crumb and
@@ -241,6 +282,29 @@ const healthHover = async (where) => {
   const lit = onCard.card !== rest.card && onCard.tab !== rest.tab;
   if (!same || !lit) problems.push(`${stand} ${where}-health-hover: card and tab ${same ? 'same' : 'DIFFERENT'} on hover${lit ? '' : ', hover does NOT colour both'}: rest ${JSON.stringify(rest)} card ${JSON.stringify(onCard)} tab ${JSON.stringify(onTab)}`);
   else problems.push(`${stand} ${where}-health-hover: ok, card and tab light up together (${onCard.card})`);
+};
+// Opened, everything around the nodes folds the card shut again, so all of it lights up together; a node keeps its own
+// smaller hover and click (K-B30, Jeroen 3-11).
+const healthSurround = async () => {
+  const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
+  if (!(await page.locator('.ps-health-panel >> visible=true').count()) && !(await page.locator('.ps-health-pill >> visible=true').count())) return;
+  if (!(await page.locator('.ps-health-panel >> visible=true').count())) { await page.locator('.ps-health-pill >> visible=true').first().click().catch(() => {}); await sleep(600); }
+  if (!(await page.locator('.ps-health-panel >> visible=true').count())) return say('overview-health-surround', false, { panel: 'not open' });
+  if (!(await alpine('return d.healthExpanded'))) { await page.locator('.ps-health-tab').first().click().catch(() => {}); await sleep(900); }
+  const look = () => page.evaluate(() => { const p = document.querySelector('.ps-health-panel'), n = p.querySelector('.ps-node-health'); const bg = (el, x) => el ? getComputedStyle(el, x).backgroundColor : null; return { panel: bg(p), card: bg(p.querySelector('.ps-host-health')), tab: bg(p.querySelector('.ps-health-tab')), tabTop: bg(p.querySelector('.ps-health-tab'), '::before'), node: bg(n), cursor: getComputedStyle(p.querySelector('.ps-health-detail-toolbar')).cursor }; });
+  const hoverAt = async (sel, pos) => { const l = page.locator(sel).first(); if (!(await l.count())) return null; await l.hover({ position: pos, force: true }).catch(() => {}); await sleep(400); return look(); };
+  const onCard = await hoverAt('.ps-host-health', { x: 40, y: 10 });
+  const onToolbar = await hoverAt('.ps-health-detail-toolbar', { x: 4, y: 4 });
+  await record('overview-health-surround', 'Host health open, wijzen naast de nodes', { colours: onToolbar });
+  const onNode = await hoverAt('.ps-node-health', { x: 6, y: 6 });
+  const lit = (l) => !!l && l.panel === onCard.card && l.card === onCard.card && l.tab === onCard.card && l.tabTop === onCard.card;
+  const nodeOwn = !onNode || (onNode.panel !== onCard.card && onNode.card !== onCard.card);
+  const box = await page.locator('.ps-health-detail-toolbar').first().boundingBox().catch(() => null);
+  if (box) await page.mouse.click(box.x + 4, box.y + 4); await sleep(700);
+  const closed = !(await alpine('return d.healthExpanded'));
+  await page.mouse.move(5, 5);
+  say('overview-health-surround', !!onCard && lit(onToolbar) && onToolbar.cursor === 'pointer' && nodeOwn && closed, { onCard, onToolbar, onNode, closed });
+  await escape();
 };
 const goto = async (url, ms = 900) => { for (let i = 0; i < 3; i++) { try { await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 }); break; } catch (e) { if (i === 2) throw e; await sleep(1500); } } await settle(page, ms); };
 const click = async (sel, ms = 600) => { const l = page.locator(sel).first(); if (!(await l.count()) || !(await l.isVisible().catch(() => false))) { problems.push(`${stand} ${screen}: nothing to click for ${sel}`); return false; } await l.click({ timeout: 5000 }).catch((e) => problems.push(`${stand} ${screen}: click ${sel}: ${e.message.slice(0, 80)}`)); await sleep(ms); return true; };
@@ -344,6 +408,7 @@ async function round(theme) {
   // Host health card's tab under its bottom edge (1.4.4): the nodes fold open.
   if (await click('.ps-health-tab', 900)) { await record('overview-health-nodes', 'Host health, nodes uitgeklapt'); await click('.ps-health-tab', 600); }
   await healthHover('overview');
+  await healthSurround();
   await adminPage(overview);
   // The menus under the top bar once more with one announcement bar and with none: their height must follow the bars.
   const unpinBar = async () => { const b = page.locator('button[aria-label="Unpin"], .ps-announcement-unpin, [wire\\:click^="unpin"]').first(); if (!(await b.count())) return false; await b.click().catch(() => {}); await sleep(1500); return true; };
@@ -1140,6 +1205,20 @@ async function fixesFlow() {
     const top = { menuButton: await vis('.ps-mobile-menu'), bell: await vis('.ps-top [x-ref="notifyButton"]'), account: await vis('.ps-top .ps-account-button'), servers: await page.evaluate(() => [...document.querySelectorAll('.ps-tabbar .ps-tab')].filter((b) => b.getClientRects().length).map((b) => b.innerText.trim())).catch(() => null) };
     await record('phone-frame-overview', 'Telefoon · overzicht: bel en account bovenin, balk onderin');
     say('phone-frame-overview', top.menuButton === false && top.bell && top.account && Array.isArray(top.servers) && top.servers[0] === 'Servers' && top.servers.includes('Admin') && !top.servers.includes('Customize'), top);
+    // Pelican's copyright line is at the end of the overview on a phone too, above the bottom bar once you scrolled
+    // down, with Simplify's credit in it (K-B29, Jeroen 3-11 on iOS: no copyright on the overview).
+    // Measures the text itself: the footer's box runs on under the bar on purpose (its bottom padding).
+    await page.evaluate(() => scrollTo(0, document.documentElement.scrollHeight)).catch(() => {}); await sleep(600);
+    const foot = await page.evaluate(() => {
+      const f = [...document.querySelectorAll('[data-ps-footer], .fi-footer')].find((e) => e.getClientRects().length && getComputedStyle(e).display !== 'none');
+      if (!f) return { shown: false };
+      const line = f.querySelector('[data-ps-copyright-line]') || f, text = document.createRange(); text.selectNodeContents(line); const r = text.getBoundingClientRect(), bar = [...document.querySelectorAll('.ps-tabbar')].find((e) => e.getClientRects().length)?.getBoundingClientRect();
+      const cards = [...document.querySelectorAll('.ps-server-card')].filter((e) => e.getClientRects().length).map((e) => e.getBoundingClientRect().bottom);
+      return { shown: true, text: line.innerText.replace(/\s+/g, ' ').trim(), top: Math.round(r.top), bottom: Math.round(r.bottom), bar: bar ? Math.round(bar.top) : null, lastCard: cards.length ? Math.round(Math.max(...cards)) : null, inWindow: r.top >= 0 && r.bottom <= innerHeight, gap: cards.length ? Math.round(r.top - Math.max(...cards)) : null };
+    }).catch(() => null);
+    await record('phone-overview-footer', 'Telefoon · overzicht onderaan: copyright boven de balk');
+    say('phone-overview-footer', !!foot && foot.shown && /©|copyright/i.test(foot.text) && /Simplify/.test(foot.text) && foot.inWindow && (foot.bar === null || foot.bottom <= foot.bar) && (foot.lastCard === null || (foot.gap >= 0 && foot.gap <= 120)), foot);
+    await page.evaluate(() => scrollTo(0, 0)).catch(() => {}); await sleep(300);
     await page.locator('.ps-top [x-ref="notifyButton"]').first().click().catch(() => {}); await sleep(900);
     const bell = await sheet('#ps-notify-menu'); await record('phone-sheet-bell', 'Telefoon · meldingen als blad');
     say('phone-sheet-bell', isSheet(bell, 0.85), bell);

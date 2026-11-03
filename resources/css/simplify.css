@@ -701,6 +701,16 @@ html.ps-shell:not(.ps-frame) :is(.fi-topbar, .fi-sidebar, .fi-sidebar-close-over
   display: none !important;
 }
 
+/* The Admin page and the account pages have the overview's background (tokens.css --ps-bg), so the colour stays
+   the same when you go between them (K-B28, Jeroen 3-11). */
+html.ps-shell:not(.ps-frame) {
+  --s-bg: var(--ps-bg, var(--gray-50));
+}
+
+html.ps-shell.dark:not(.ps-frame) {
+  --s-bg: var(--ps-bg, var(--gray-950));
+}
+
 html.ps-shell:not(.ps-frame) body {
   background: var(--s-bg);
 }
