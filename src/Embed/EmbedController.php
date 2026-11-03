@@ -6,9 +6,11 @@ namespace Simplify\Core\Embed;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Simplify\Core\Embed\Services\EmbedDetails;
 use Simplify\Core\Embed\Services\ServerList;
 use Simplify\Core\Embed\Services\Snippet;
 use Simplify\Core\SimplifyPlugin;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 /**
  * For other websites: the server list as JSON, the script that draws it and a small page for an iframe.
@@ -27,6 +29,19 @@ final class EmbedController
             'Content-Type' => 'application/json',
             'Cache-Control' => 'public, max-age='.ServerList::TTL,
         ]);
+    }
+
+    /**
+     * An uploaded image of a server that is on the website (its Simplify banner, or the image picked on its Website page), so other websites can show it. Any other banner (of a
+     * server that is not on the website, or no longer in use) answers 404, like a file that does not exist.
+     */
+    public function banner(string $file): BinaryFileResponse
+    {
+        $path = EmbedDetails::publicPath($file);
+        abort_if($path === null, 404);
+
+        // Every upload gets a new random name, so a name never changes content.
+        return response()->file($path, [...self::HEADERS, 'Cache-Control' => 'public, max-age=86400']);
     }
 
     public function script(Request $request): Response

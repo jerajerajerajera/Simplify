@@ -101,11 +101,39 @@ const shieldTo = async (overview) => {
   // A narrow window (tablet) keeps the top bar's buttons behind its menu button.
   if (!(await shield.count()) && await page.locator('.ps-top .ps-mobile-menu >> visible=true').count()) { await page.locator('.ps-top .ps-mobile-menu >> visible=true').first().click().catch(() => {}); await sleep(500); }
   if (!(await shield.count())) return false;
-  await shield.click().catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await settle(page, 1500);
+  // The switch to Admin changes only the content (wire:navigate), as in an app: no whole page, the top bar's buttons stay.
+  switched = { before: await topButtons() };
+  await page.evaluate(() => { window.__psSwitch = 1; }).catch(() => {});
+  await shield.click().catch(() => {}); await page.waitForURL(/\/admin\//, { timeout: 15000 }).catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await settle(page, 1500);
+  switched.reloaded = await page.evaluate(() => window.__psSwitch !== 1).catch(() => true);
+  switched.after = await topButtons();
+  // Healthy keeps its state on the Admin page (asked there too), instead of a grey "Health".
+  switched.health = await page.waitForFunction(() => { const p = [...document.querySelectorAll('.ps-top .ps-health-pill')].find((e) => e.getClientRects().length); return !p || !p.classList.contains('unavailable') ? (p ? p.className : 'none') : false; }, null, { timeout: 8000 }).then((h) => h.jsonValue()).catch(() => 'unavailable');
   return true;
 };
+let switched = null;
+// Back from Admin to the overview: the shield on a computer, Servers in the bottom bar on a phone.
+const shieldBack = async () => {
+  const back = page.locator((phone() ? '.ps-admin-side .ps-tabbar a.ps-tab' : '.ps-admin-top a.ps-nav-admin') + ' >> visible=true').first();
+  if (!(await back.count()) && await page.locator('.ps-top .ps-mobile-menu >> visible=true').count()) { await page.locator('.ps-top .ps-mobile-menu >> visible=true').first().click().catch(() => {}); await sleep(500); }
+  await back.click().catch(() => {}); await page.waitForURL((u) => !/\/admin\//.test(u.pathname), { timeout: 15000 }).catch(() => {}); await settle(page, 1500);
+};
+// Where the top bar's buttons are (the bottom bar's on a phone): the same place on the overview and on Admin.
+const topButtons = () => page.evaluate(() => [...document.querySelectorAll('.ps-top :is(.ps-health-pill, .ps-nav-admin, .ps-notify-button, .ps-account-button), .ps-tabbar .ps-tab')]
+  .filter((e) => e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden')
+  .map((e) => { const b = e.getBoundingClientRect(); return `${(e.className.baseVal ?? e.className).split(' ').find((c) => /^ps-(health-pill|nav-admin|notify-button|account-button|tab)$/.test(c))}@${Math.round(b.left)},${Math.round(b.top)}`; })).catch(() => []);
 const adminPage = async (overview) => {
   const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
+  if (!(await shieldTo(overview))) return say('admin-page', false, { note: 'no shield link on the overview' });
+  // Overview → Admin and back like an app (Jeroen 3-11): only the content changes, the top bar's buttons (Health too, on
+  // a phone) stay where they are; the bottom bar keeps its tabs.
+  const there = switched;
+  await shieldBack();
+  const back = { reloaded: await page.evaluate(() => window.__psSwitch !== 1).catch(() => true), path: await page.evaluate(() => location.pathname).catch(() => null), after: await topButtons() };
+  // A narrow window keeps the top bar's buttons behind its menu button: there only the switch itself counts.
+  const folded = (await page.locator('.ps-top .ps-mobile-menu >> visible=true').count()) > 0;
+  const same = (a, b) => folded || !!a && !!b && a.filter((x) => !/^ps-tab@/.test(x)).join() === b.filter((x) => !/^ps-tab@/.test(x)).join();
+  say('admin-switch', !!there && !there.reloaded && there.health !== 'unavailable' && same(there.before, there.after) && (folded || there.before.some((x) => x.startsWith('ps-health-pill'))) && !back.reloaded && !/\/admin\//.test(back.path || '') && same(there.after, back.after), { there, back });
   if (!(await shieldTo(overview))) return say('admin-page', false, { note: 'no shield link on the overview' });
   const st = await adminState(); await record('admin-page', 'Admin-pagina (schild)');
   say('admin-page', !!st && st.shell && st.side && st.header && !st.frames && !st.pelicanBars && st.pageScroll <= 1 && (phone() || /auto|scroll/.test(st.card || '')), st);
@@ -232,6 +260,13 @@ const adminPage = async (overview) => {
       await goto('/admin/health', 1500); const again = await adminState();
       say('admin-legacy-back', !!again && again.shell && again.side, { ...again, clickError });
     } else say('admin-legacy-back', false, { note: 'no Back to Simplify in the legacy panel' });
+    // The legacy panel is kept for the session, but Simplify's own way in (the shield, Admin in the bottom bar) always
+    // opens Simplify's Admin page, never the legacy panel (Jeroen 3-11: "Admin goes to legacy again").
+    await goto('/admin/health?simplify_legacy=1', 1200);
+    if (await shieldTo(overview)) {
+      const via = await adminState();
+      say('admin-legacy-shield', !!via && via.shell && via.side, { ...via, url: page.url() });
+    } else say('admin-legacy-shield', false, { note: 'no shield link on the overview' });
   } else {
     // What the account button and its menu were doing, and a picture of it, so the cause is in the result.
     const why = await page.evaluate(() => {
@@ -885,28 +920,36 @@ async function scrollbars(serverUrl) {
   await sleep(400); info = await look(page, true); await record('scroll-console', 'Scrollbalk · console'); judge('console', info);
 }
 
-// Other plugins (1.5.2): always a group that folds open, and a plugin's page shows "Other plugins · <page>" in the
-// head. CI has no plugin outside Simplify, so when the group is empty the check puts a page of Pelican's in it.
+// Pelican plugins (Other plugins in 1.5.2): always a group that folds open, and a plugin's page shows "Pelican plugins ›
+// <page>" in the head. Simplify add-ons and Pelican plugins stand apart under the rest of the menu (Jeroen 3-11).
 async function otherPlugins() {
   const overview = urls.app.find((p) => /App\\Pages\\Overview$/.test(p.class))?.url || '/';
   const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
   if (!(await shieldTo(overview))) return say('other-plugins', false, { note: 'no shield link' });
   await openAdminMenu();
-  const group = '.ps-admin-side .ps-host-group:has(.ps-host-group-head:has-text("Other plugins"))';
+  // The menu's order (Jeroen 3-11): People & roles one leaf, Pelican's plugin list under Pelican settings, and apart below
+  // the rest Simplify add-ons, then Pelican plugins.
+  const order = await page.evaluate(() => [...document.querySelectorAll('.ps-admin-side .ps-host-group')].map((g) => ({ head: g.querySelector('.ps-host-group-head')?.innerText.trim(), apart: g.classList.contains('is-apart'), links: [...g.querySelectorAll('a')].map((a) => new URL(a.href).pathname) }))).catch(() => []);
+  const at = (name) => order.findIndex((g) => g.head === name);
+  const people = order[at('People & roles')];
+  say('admin-menu-order', at('Health') === 0 && !!people && people.links.length === 1 && !order.some((g) => g.links.some((l) => /\/admin\/(users|roles)$/.test(l)))
+    && order[at('Pelican settings')]?.links.some((l) => /\/admin\/plugins$/.test(l)) && order.find((g) => g.apart)?.head === (at('Simplify add-ons') >= 0 ? 'Simplify add-ons' : 'Pelican plugins') && at('Pelican plugins') > at('Simplify add-ons')
+    && order.filter((g) => g.apart).length === 1 && order.slice(order.findIndex((g) => g.apart)).every((g) => !['Servers', 'Nodes', 'Simplify settings', 'Pelican settings'].includes(g.head)), order.map((g) => g.head + (g.apart ? ' (apart)' : '')));
+  const group = '.ps-admin-side .ps-host-group:has(.ps-host-group-head:has-text("Pelican plugins"))';
   const head = page.locator(`${group} .ps-host-group-head`).first();
   // The test panel has a plugin outside Simplify with its own admin page (CLAUDE.md), so the group is real.
-  if (!(await head.count())) { say('other-plugins', false, { note: 'no Other plugins group in the Admin menu' }); if (phone()) await escape(); return; }
+  if (!(await head.count())) { say('other-plugins', false, { note: 'no Pelican plugins group in the Admin menu' }); if (phone()) await escape(); return; }
   const before = await head.getAttribute('aria-expanded');
   if (before !== 'true') { await head.click().catch(() => {}); await sleep(600); }
   const after = await head.getAttribute('aria-expanded');
   const leaf = page.locator(`${group} .ps-host-branch a >> visible=true`).first();
   const leafs = await page.locator(`${group} .ps-host-branch a >> visible=true`).count();
   const name = leafs ? (await leaf.innerText().catch(() => '')).trim() : '';
-  await record('other-plugins-open', 'Other plugins · uitgeklapt');
+  await record('other-plugins-open', 'Pelican plugins · uitgeklapt');
   await markAdminSide(); if (leafs) { await leaf.click().catch(() => {}); await settle(page, 2000); }
   const st = await adminState();
   const current = await page.evaluate(() => { const a = document.querySelector('.ps-admin-side .ps-host-leaf[aria-current="page"]'); return a ? a.innerText.trim() : null; }).catch(() => null);
-  await record('other-plugins-page', 'Other plugins · pagina van een plugin');
+  await record('other-plugins-page', 'Pelican plugins · pagina van een plugin');
   say('other-plugins', after === 'true' && leafs >= 1 && !!st && st.kept && st.shell && current === name, { before, after, leafs, name, current, kept: st && st.kept });
 }
 
@@ -1265,7 +1308,7 @@ async function fixesFlow() {
       const shown = (e) => !!e && e.getClientRects().length > 0 && getComputedStyle(e).display !== 'none' && getComputedStyle(e).visibility !== 'hidden';
       const side = document.querySelector('.ps-admin-side .ps-host-side'), card = document.querySelector('.fi-layout > .fi-main-ctn'), top = document.querySelector('.ps-admin-top .ps-top'), crumb = document.querySelector('.ps-admin-crumb');
       const cs = card && getComputedStyle(card);
-      return { tabs: [...document.querySelectorAll('.ps-admin-side .ps-tabbar .ps-tab')].filter(shown).map((b) => b.innerText.trim()), menu: shown(side), leaves: [...document.querySelectorAll('.ps-admin-side .ps-host-leaf')].filter(shown).length, page: shown(card),
+      return { tabs: [...document.querySelectorAll('.ps-admin-side .ps-tabbar .ps-tab')].filter(shown).map((b) => b.innerText.trim()), menu: shown(side), leaves: [...document.querySelectorAll('.ps-admin-side .ps-host-leaf')].filter(shown).length, groups: [...document.querySelectorAll('.ps-admin-side .ps-host-group-head')].filter(shown).length, page: shown(card),
         below: !!side && !!top && side.getBoundingClientRect().top >= top.getBoundingClientRect().bottom - 1, crumb: shown(crumb) ? crumb.innerText.replace(/\s+/g, ' ').trim() : null,
         heading: [...document.querySelectorAll('.fi-main .fi-header-heading')].some(shown), plus: (() => { const e = document.querySelector('.ps-admin-side .ps-tab-plus'); return e ? getComputedStyle(e).backgroundColor : null; })(), alpine: (() => { const el = document.querySelector('.ps-admin-side'); const d = el && window.Alpine?.$data(el); return d ? { open: d.open, here: d.here, crumb: d.crumb, url: location.pathname + location.hash } : null; })(), cardBox: !!cs && (cs.borderTopWidth !== '0px' || !/rgba\(0, 0, 0, 0\)|transparent/.test(cs.backgroundColor)), pageScroll: document.documentElement.scrollHeight - innerHeight };
     }).catch(() => null);
@@ -1275,7 +1318,7 @@ async function fixesFlow() {
     await page.locator('.ps-tabbar a.ps-tab:has(use[href="#ps-shield"]) >> visible=true').first().click().catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await settle(page, 1800);
     const opened = await adminPhone(); await record('phone-frame-host', 'Telefoon · Admin opent het menu als pagina');
     say('phone-admin-accent', !!opened && !!overviewPlus && opened.plus === overviewPlus, { overviewPlus, admin: opened?.plus });
-    say('phone-frame-host', !!opened && opened.tabs[0] === 'Servers' && opened.tabs[opened.tabs.length - 1] === 'Admin' && !opened.tabs.includes('Menu') && opened.menu && opened.leaves > 0 && opened.below && !opened.page && opened.pageScroll <= 1, opened);
+    say('phone-frame-host', !!opened && opened.tabs[0] === 'Servers' && opened.tabs[opened.tabs.length - 1] === 'Admin' && !opened.tabs.includes('Menu') && opened.menu && opened.groups > 1 && opened.below && !opened.page && opened.pageScroll <= 1, opened);
     // With the menu open, the bottom bar and the header keep their taps (K-B24, Jeroen 3-11: every tap showed
     // Servers › Servers). Admin again keeps the menu, the account button opens the account menu.
     await page.locator('.ps-admin-side .ps-tabbar button.ps-tab:has(use[href="#ps-shield"]) >> visible=true').first().click().catch(() => {}); await sleep(600);
@@ -1285,6 +1328,8 @@ async function fixesFlow() {
     const accountOpen = await page.evaluate(() => ({ account: !!document.querySelector('.ps-account.account-open'), menu: [...document.querySelectorAll('.ps-admin-side .ps-host-side')].some((e) => e.getClientRects().length > 0) })).catch(() => null);
     say('phone-admin-account', !!accountOpen && accountOpen.account, accountOpen);
     await escape();
+    // Admin starts on Health, a group of one page: a page under a group that folds (Servers) opens from its group.
+    if (!(await page.locator('.ps-admin-side .ps-host-leaf >> visible=true').count())) { await page.locator('.ps-admin-side button.ps-host-group-head >> visible=true').first().click().catch(() => {}); await sleep(400); }
     const leaf = page.locator('.ps-admin-side .ps-host-group:has(.ps-host-leaf) .ps-host-leaf:not([aria-current]) >> visible=true').first();
     const leafText = (await leaf.innerText().catch(() => '')).trim();
     await leaf.click().catch(() => {}); await settle(page, 1800);
