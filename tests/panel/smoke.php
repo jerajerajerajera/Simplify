@@ -415,7 +415,8 @@ step('the Admin page: an admin page has Simplify\'s header and the Admin menu, t
             throw new RuntimeException('the Admin page has no '.$part);
         }
     }
-    if (str_contains($page->getContent(), '<iframe')) {
+    // Only Create server's popup has a frame (filled when it opens); the page itself is not in one.
+    if (preg_match_all('/<iframe\b(?![^>]*\bps-create-frame\b)/', $page->getContent()) > 0) {
         throw new RuntimeException('the Admin page uses a frame');
     }
     $legacy = $client->get($url.'?simplify_legacy=1');
