@@ -1,7 +1,7 @@
 name: Screen audit
 # A real Pelican panel with this checkout of Simplify and the add-ons (main), example data, a fake Wings with a live
 # console, and a browser that opens every screen, tab, menu and overlay on eight window sizes and measures cut-off
-# text, scrolling pages, popups off the screen and the console's colours. Result on the branch audit-results-<branch>-<stand>.
+# text, scrolling pages, popups off the screen and the console's colours. Result on the branch audit-results, folder <branch>-<stand>.
 on:
   workflow_dispatch:
     inputs:
@@ -89,7 +89,7 @@ jobs:
           rows = [{'stand': s, 'theme': t} for s in stands for t in (['dark', 'light'] if s in both else ['dark']) if not theme or t == theme]
           print('matrix=' + json.dumps([] if skip == 'yes' else rows))
           PY
-  # One job per stand and theme, side by side; each pushes its screens to the branch audit-results-<branch>-<stand>
+  # One job per stand and theme, side by side; each puts its screens on the branch audit-results, folder <branch>-<stand>
   # (the light job to ...-<stand>-light).
   audit:
     needs: plan
@@ -231,17 +231,13 @@ jobs:
         continue-on-error: true
         run: |
           set -o pipefail
-          git -C simplify fetch -q --depth 1 origin "+refs/heads/audit-results-$(echo "${{ inputs.baseline }}" | tr "/" "-")-compare-${{ matrix.stand }}:baseline" || { echo "::error::No compare run of ${{ inputs.baseline }} for ${{ matrix.stand }}: run this workflow with section compare and simplify ${{ inputs.baseline }} first"; exit 1; }
-          git -C simplify show baseline:compare.json > baseline.json
+          base="$(echo "${{ inputs.baseline }}" | tr "/" "-")-compare-${{ matrix.stand }}"
+          git -C simplify fetch -q --depth 1 origin "+refs/heads/audit-results:baseline" && git -C simplify show "baseline:$base/compare.json" > baseline.json || { echo "::error::No compare run of ${{ inputs.baseline }} for ${{ matrix.stand }}: run this workflow with section compare and simplify ${{ inputs.baseline }} first"; exit 1; }
           python3 simplify/tests/audit/compare-verdict.py baseline.json result/compare.json | tee result/compare.md
       - if: always()
         name: Result to the audit-results branch
-        run: |
-          cd result
-          git init -q -b results
-          git add -A
-          git -c user.name=audit -c user.email=audit@users.noreply.github.com commit -qm "Audit ${{ github.sha }} ${{ matrix.stand }} ${{ matrix.theme }}"
-          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "results:refs/heads/audit-results-$(echo "${{ inputs.legacy && format('legacy-{0}', inputs.legacy) || inputs.simplify || github.ref_name }}" | tr "/" "-")${{ inputs.from && format('-from-{0}', inputs.from) || '' }}${{ (inputs.section == 'compare' || inputs.section == 'inventory') && format('-{0}', inputs.section) || '' }}${{ inputs.servermaker == 'none' && '-nosm' || '' }}-${{ matrix.stand }}${{ matrix.theme == 'light' && '-light' || '' }}"
+        # One branch for every result, a folder per branch and stand; see tests/audit/publish.sh.
+        run: bash simplify/tests/audit/publish.sh "$(echo "${{ inputs.legacy && format('legacy-{0}', inputs.legacy) || inputs.simplify || github.ref_name }}" | tr "/" "-")${{ inputs.from && format('-from-{0}', inputs.from) || '' }}${{ (inputs.section == 'compare' || inputs.section == 'inventory') && format('-{0}', inputs.section) || '' }}${{ inputs.servermaker == 'none' && '-nosm' || '' }}-${{ matrix.stand }}${{ matrix.theme == 'light' && '-light' || '' }}" result "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
       - name: Fail when the compare verdict is red
         if: steps.compare.outcome == 'failure'
         run: |
