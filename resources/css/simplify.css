@@ -884,8 +884,13 @@ html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header-heading {
     pointer-events: auto;
   }
 
-  html.ps-shell-menu:not(.ps-frame) .fi-main-ctn:not(:has(.fi-header)) > .fi-main {
+  /* The breadcrumb's row stays free above the page; Pelican's header (when shown) moves up into it. */
+  html.ps-shell-menu:not(.ps-frame) .fi-layout > .fi-main-ctn > .fi-main {
     padding-top: 52px !important;
+  }
+
+  html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header {
+    margin-top: -52px !important;
   }
 
   /* Pelican's header is the first row: no room above it, and a small gap to what follows. */
