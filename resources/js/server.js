@@ -496,7 +496,9 @@
         if (!this.server.can_edit || this.busy) return;
         this.nameDraft = this.server.name;
         this.naming = true;
-        this.$nextTick(() => { const field = this.$refs.nameInput; field?.focus(); field?.select(); });
+        // Once more on the next frame when the pencil (now hidden) had the focus: the browser may move it to the page then.
+        const focus = () => { const field = this.$refs.nameInput; if (field && document.activeElement !== field) { field.focus(); field.select(); } };
+        this.$nextTick(() => { focus(); requestAnimationFrame(focus); });
       },
       /** A click beside the field closes it only when nothing changed; a change stays until Save or Cancel (P-38). */
       nameOutside() {
