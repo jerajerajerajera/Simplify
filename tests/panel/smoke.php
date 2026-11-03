@@ -633,6 +633,15 @@ step('panel settings are saved and a bad value is refused', function () use ($ad
     if (PanelSettings::get('overview_seconds') !== 20 || PanelSettings::get('accent') !== '#336699') {
         throw new RuntimeException('settings were not saved: '.json_encode(PanelSettings::all()));
     }
+    $friends = PanelSettings::get('friends_mode');
+    PanelSettings::save(['friends_mode' => true]);
+    $on = PanelSettings::friendsMode();
+    PanelSettings::save(['friends_mode' => false]);
+    $off = PanelSettings::friendsMode();
+    PanelSettings::save(['friends_mode' => (bool) $friends]);
+    if ($on !== true || $off !== false) {
+        throw new RuntimeException('friendsMode() does not follow the friends mode setting');
+    }
 });
 step('the accent colour and refresh rate reach the panel', function () use ($admin) {
     $url = Overview::getUrl(panel: 'app');

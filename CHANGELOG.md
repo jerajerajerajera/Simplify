@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Add-ons can ask whether the panel runs in friends mode: `PanelSettings::friendsMode()` (ADDONS.md).
 - Pages no longer open white. While Simplify starts, the overview, a server's page and the Admin page show their shapes as grey placeholders in your light or dark theme, and the real page takes their place.
 - Pages load faster on a first visit and after every update: Simplify sends its styles and scripts gzipped (about 100 KB instead of 400 KB), because Pelican's web server compresses only HTML.
 
