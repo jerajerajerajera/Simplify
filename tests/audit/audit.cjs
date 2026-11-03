@@ -260,6 +260,13 @@ const adminPage = async (overview) => {
       await goto('/admin/health', 1500); const again = await adminState();
       say('admin-legacy-back', !!again && again.shell && again.side, { ...again, clickError });
     } else say('admin-legacy-back', false, { note: 'no Back to Simplify in the legacy panel' });
+    // The legacy panel is kept for the session, but Simplify's own way in (the shield, Admin in the bottom bar) always
+    // opens Simplify's Admin page, never the legacy panel (Jeroen 3-11: "Admin goes to legacy again").
+    await goto('/admin/health?simplify_legacy=1', 1200);
+    if (await shieldTo(overview)) {
+      const via = await adminState();
+      say('admin-legacy-shield', !!via && via.shell && via.side, { ...via, url: page.url() });
+    } else say('admin-legacy-shield', false, { note: 'no shield link on the overview' });
   } else {
     // What the account button and its menu were doing, and a picture of it, so the cause is in the result.
     const why = await page.evaluate(() => {
