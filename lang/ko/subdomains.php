@@ -68,4 +68,15 @@ return [
         'removing' => '제거 중…',
         'error' => '연결 안 됨',
     ],
+    'setup' => [
+        'title' => '설정 방법',
+        'intro' => '그러면 플레이어는 IP 주소와 포트 대신 oak.:domain 같은 이름으로 접속합니다. 한 번만 설정하면 됩니다.',
+        'step_domain' => '도메인(Cloudflare 영역)과 서버 주소를 입력하세요. 서버 주소는 포트가 들어오는 공인 IP를 가리키는 기존 DNS only 레코드입니다.',
+        'step_token' => 'Cloudflare에서 My Profile › API Tokens › Create Token을 열고 "Edit zone DNS" 템플릿을 고르세요. Zone Resources에서 이 도메인만 선택하고 토큰을 만든 뒤 복사하세요.',
+        'step_test' => '아래에 토큰을 붙여넣고 :test를 누르세요. Simplify가 확인하고 영역 ID를 직접 채웁니다.',
+        'step_save' => ':save를 누르세요. 전달된 범위의 포트를 가진 모든 서버 메뉴에 :menu이 생기고, 소유자가 이름을 고릅니다.',
+        'open_cloudflare' => 'Cloudflare API 토큰 열기',
+        'button' => '서브도메인 설정',
+        'server_help' => '그 후 플레이어는 :address 로 이 서버에 접속할 수 있습니다. 그전까지는 root 관리자만 이 페이지를 봅니다.',
+    ],
 ];

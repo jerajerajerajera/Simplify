@@ -1077,6 +1077,45 @@ Subdomains::$transport = function (string $method, string $path, ?array $body) u
 
     return ['success' => true];
 };
+step('subdomains: until Cloudflare is set up, a root admin sees the steps and the way there, an owner nothing', function () use ($admin, $server) {
+    SubdomainSettings::save(['domain' => 'example.com', 'target' => 'play.example.com', 'port_min' => 1, 'port_max' => 65535, 'zone_id' => '', 'token' => ''], true);
+    SubdomainSettings::flush();
+    if (Subdomains::ready()) {
+        throw new RuntimeException('still ready without a token');
+    }
+    // The server panel first, as the other server steps do: in one process a page of another panel stays current.
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('server'));
+    $settings = AutomaticSubdomains::getUrl(panel: 'admin');
+    $url = ServerSubdomain::getUrl(panel: 'server', tenant: $server);
+    $page = visit($admin, $url);
+    expectOk($page, $url);
+    if (! str_contains($page->getContent(), 'Set up subdomains') || ! str_contains($page->getContent(), e($settings))) {
+        throw new RuntimeException('the server page has no button to the settings');
+    }
+    $customer = User::query()->where('email', 'smoke-customer@example.com')->first()
+        ?? User::withoutEvents(fn () => User::factory()->create(['username' => 'smoke-customer', 'email' => 'smoke-customer@example.com']));
+    $owner = $server->owner_id;
+    $server->forceFill(['owner_id' => $customer->id])->saveQuietly();
+    try {
+        $status = visit($customer, $url)->getStatusCode();
+        if ($status !== 403) {
+            throw new RuntimeException('the owner gets HTTP '.$status.' before Cloudflare is set up, not 403');
+        }
+    } finally {
+        $server->forceFill(['owner_id' => $owner])->saveQuietly();
+    }
+    $page = visit($admin, $settings);
+    expectOk($page, $settings);
+    foreach (['https://dash.cloudflare.com/profile/api-tokens', 'Still missing: Cloudflare token, zone ID (press Test).'] as $text) {
+        if (! str_contains($page->getContent(), $text)) {
+            throw new RuntimeException('the settings page misses '.$text);
+        }
+    }
+    // K-B36: the browser must not fill in the panel password as the Cloudflare token (that showed Changes made).
+    if (! preg_match('/<input[^>]*type="password"[^>]*>/', $page->getContent(), $field) || ! str_contains($field[0], 'autocomplete="new-password"')) {
+        throw new RuntimeException('the token field lets the browser fill in a saved password: '.($field[0] ?? 'no field'));
+    }
+});
 step('subdomains: the settings and server pages open, and the token is stored encrypted', function () use ($admin, $server) {
     SubdomainSettings::save(['domain' => 'Example.com', 'target' => 'play.example.com', 'port_min' => 1, 'port_max' => 65535, 'zone_id' => str_repeat('a', 32), 'token' => 'smoke-token']);
     SubdomainSettings::flush();
@@ -1084,6 +1123,7 @@ step('subdomains: the settings and server pages open, and the token is stored en
     if (! Subdomains::ready() || SubdomainSettings::domain() !== 'example.com' || $stored === '' || str_contains($stored, 'smoke-token')) {
         throw new RuntimeException('settings not saved right: missing '.implode(', ', SubdomainSettings::missing()));
     }
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('server'));
     foreach ([ServerSubdomain::getUrl(panel: 'server', tenant: $server), AutomaticSubdomains::getUrl(panel: 'admin')] as $url) {
         expectOk(visit($admin, $url), $url);
     }

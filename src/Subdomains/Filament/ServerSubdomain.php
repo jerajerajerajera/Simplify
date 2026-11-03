@@ -11,13 +11,16 @@ use Filament\Notifications\Notification;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Text;
 use Filament\Schemas\Schema;
+use Illuminate\Support\HtmlString;
 use Illuminate\Validation\ValidationException;
 use Simplify\Core\Filament\FormPage;
 use Simplify\Core\Subdomains\Models\Subdomain;
+use Simplify\Core\Subdomains\Services\Settings;
 use Simplify\Core\Subdomains\Subdomains;
 
 /**
  * The server's own subdomain. Its owner (or a root admin) picks the name; the records follow after the response.
+ * Until Cloudflare is set up only root admins see the page, with what is missing and a button to the settings.
  */
 final class ServerSubdomain extends FormPage
 {
@@ -34,8 +37,7 @@ final class ServerSubdomain extends FormPage
 
         return $server instanceof Server
             && $user !== null
-            && ((int) $server->owner_id === (int) $user->id || $user->isRootAdmin())
-            && Subdomains::ready();
+            && ($user->isRootAdmin() || ((int) $server->owner_id === (int) $user->id && Subdomains::ready()));
     }
 
     public static function getNavigationLabel(): string
@@ -46,6 +48,9 @@ final class ServerSubdomain extends FormPage
     public function mount(): void
     {
         abort_unless(self::canAccess(), 403);
+        if (! Subdomains::ready()) {
+            return;
+        }
         $server = $this->server();
         $name = Subdomains::state($server)['name'];
         $this->form->fill(['name' => $name !== '' ? $name : Subdomains::suggest((string) $server->name, $server->uuid)]);
@@ -59,6 +64,19 @@ final class ServerSubdomain extends FormPage
 
     public function form(Schema $schema): Schema
     {
+        if (! Subdomains::ready()) {
+            return $schema->components([
+                Section::make(__('simplify::subdomains.errors.not_set_up'))
+                    ->icon('tabler-alert-circle')
+                    ->description(fn () => $this->notSetUp())
+                    ->schema([Text::make(fn () => new HtmlString(sprintf(
+                        '<a class="s-btn" href="%s">%s</a>',
+                        e(AutomaticSubdomains::getUrl(panel: 'admin')),
+                        e(__('simplify::subdomains.setup.button')),
+                    )))]),
+            ]);
+        }
+
         return $schema->statePath('data')->components([
             Section::make(__('simplify::subdomains.subdomain'))
                 ->description(__('simplify::subdomains.server.help'))
@@ -87,9 +105,27 @@ final class ServerSubdomain extends FormPage
         return $detail !== '' ? $label.': '.$detail : $label;
     }
 
+    /** Until Cloudflare is set up there is nothing to save: the button to the settings is in the page itself. */
+    protected function getHeaderActions(): array
+    {
+        return Subdomains::ready() ? parent::getHeaderActions() : [];
+    }
+
+    /** "Still missing: Cloudflare token. Once they are, players can join this server with oak.example.com." */
+    private function notSetUp(): string
+    {
+        $items = array_map(fn (string $item) => __('simplify::subdomains.missing.'.$item), Settings::missing());
+        $server = $this->server();
+        $name = Subdomains::state($server)['name'] ?: Subdomains::suggest((string) $server->name, $server->uuid) ?: 'oak';
+        $address = $name.'.'.(Subdomains::domain() ?: 'example.com');
+
+        return __('simplify::subdomains.settings.still_missing', ['items' => implode(', ', $items)]).' '
+            .__('simplify::subdomains.setup.server_help', ['address' => $address]);
+    }
+
     public function save(): void
     {
-        abort_unless(self::canAccess(), 403);
+        abort_unless(self::canAccess() && Subdomains::ready(), 403);
         $name = (string) ($this->form->getState()['name'] ?? '');
         try {
             Subdomains::request($this->server(), $name);
