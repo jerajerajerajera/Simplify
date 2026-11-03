@@ -1176,6 +1176,32 @@ async function fixesFlow() {
     const eggs = await page.evaluate(measureEggs).catch(() => null);
     await record('phone-eggs', 'Telefoon · Eggs als korte rijen (Simplify)');
     say('phone-eggs', eggs && eggs.rows > 0 && eggs.names === eggs.rows && eggs.tallest <= 90 && !eggs.checkboxes && !eggs.head && !eggs.descriptions, eggs);
+    // Every admin list fits the phone (Jeroen 3-11, K-B18): rows never run off the side, the buttons, search and filter
+    // share one row right under the breadcrumb, and the search field, however small, opens over that row when tapped.
+    const measureList = () => {
+      const seen = (e) => e && e.getClientRects().length > 0;
+      const rows = [...document.querySelectorAll('.fi-ta-table .fi-ta-row')].filter(seen);
+      const off = rows.filter((r) => { const b = r.getBoundingClientRect(); return b.left < -1 || b.right > innerWidth + 1 || [...r.querySelectorAll('.fi-ta-cell')].filter(seen).some((c) => c.getBoundingClientRect().right > b.right + 1); }).length;
+      const box = document.querySelector('.fi-ta-content-ctn');
+      const bar = [...document.querySelectorAll('.fi-main .fi-ta-header-toolbar')].find(seen);
+      const tools = bar ? [...bar.querySelectorAll('.fi-ta-actions > :is(button, a, div), .fi-ta-search-field, .fi-ta-filters-trigger-action-ctn, .fi-ta-col-manager-dropdown, .fi-dropdown')].filter((e) => seen(e) && !e.parentElement.closest('.fi-dropdown, .fi-ta-search-field')) : [];
+      const tops = tools.map((e) => Math.round(e.getBoundingClientRect().top));
+      const crumb = [...document.querySelectorAll('.ps-admin-crumb')].find(seen);
+      return { rows: rows.length, off, sideways: !!box && box.scrollWidth > box.clientWidth + 1, wide: document.documentElement.scrollWidth > innerWidth + 1, tools: tools.length, spread: tops.length ? Math.max(...tops) - Math.min(...tops) : 0, gap: crumb && tools.length ? Math.round(Math.min(...tools.map((e) => e.getBoundingClientRect().top)) - crumb.getBoundingClientRect().bottom) : null, search: !!bar?.querySelector('.fi-ta-search-field') };
+    };
+    for (const list of ['users', 'servers', 'nodes', 'eggs']) {
+      await goto(new URL(`/admin/${list}`, base).href, 2500);
+      const m = await page.evaluate(measureList).catch((e) => ({ error: e.message }));
+      let open = null;
+      if (m?.search) {
+        await page.locator('.fi-main .fi-ta-search-field input >> visible=true').first().click({ timeout: 5000 }).catch(() => {}); await sleep(300);
+        open = await page.evaluate(() => { const f = document.querySelector('.fi-main .fi-ta-search-field'); const r = f?.getBoundingClientRect(); return { width: r ? Math.round(r.width) : 0, focused: !!f?.contains(document.activeElement) }; }).catch(() => null);
+        await record(`phone-admin-${list}-search`, `Telefoon · ${list}: zoekveld open`);
+        await page.keyboard.press('Escape').catch(() => {}); await page.evaluate(() => document.activeElement?.blur?.()).catch(() => {}); await sleep(200);
+      }
+      await record(`phone-admin-${list}`, `Telefoon · ${list} als rijen binnen het scherm`);
+      say(`phone-admin-${list}`, !!m && m.rows > 0 && !m.off && !m.sideways && !m.wide && m.spread <= 6 && m.gap !== null && m.gap <= 24 && (!m.search || (!!open && open.focused && open.width >= (page.viewportSize()?.width ?? 390) * 0.6)), { ...m, open });
+    }
     await goto(new URL('/admin/eggs?simplify_legacy=1', base).href, 2500);
     const legacy = await page.evaluate(measureEggs).catch(() => null);
     await record('phone-eggs-legacy', 'Telefoon · Eggs in het legacy-paneel (Pelicans tabel)');

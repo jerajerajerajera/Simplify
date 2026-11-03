@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Phones: every admin list fits the screen. A row shows the icon, the name and its buttons on the first line and the other columns under the name, on more lines when needed, so nothing scrolls sideways. The buttons, search and filter share one row right under the breadcrumb; the search field gets smaller when room runs out, down to just its magnifier, and opens over the row when tapped.
+
 ## 2.0.0-beta.3
 
 - Texts say server or egg where they said game, because not every server is a game: Website embed picks one egg, Subdomains asks for the server address, the install steps and Force stop no longer speak of games, and the in-game chat commands of Announcements are set per egg (as they were already stored). In all 32 languages.

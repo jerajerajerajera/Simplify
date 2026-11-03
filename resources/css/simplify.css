@@ -935,6 +935,75 @@ html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header-heading {
   html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header:not(:has(.fi-header-subheading, :is(.fi-ac, .fi-header-actions-ctn) :is(button, a))) {
     display: none !important;
   }
+
+  /* The buttons sit right under the breadcrumb (Jeroen 3-11): no room above the page's header and table. */
+  html.ps-shell-menu:not(.ps-frame) .fi-main :is(.fi-page-header-main-ctn, .fi-page-main, .fi-page-content) {
+    row-gap: 8px !important;
+    padding-block: 0 !important;
+  }
+
+  html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header {
+    margin: 0 !important;
+  }
+
+  /* A table's buttons, search and filter on one row: the search field gives way, down to just its magnifier. Tapped,
+     or with a search in it, it opens over the whole row. */
+  html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-header-toolbar {
+    position: relative;
+    flex-wrap: nowrap;
+    gap: 8px;
+    padding: 4px 0 10px !important;
+  }
+
+  html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-header-toolbar > * {
+    flex: none;
+    gap: 8px;
+  }
+
+  html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-header-toolbar > :has(.fi-ta-search-field) {
+    flex: 1 1 0;
+    min-width: 0;
+    justify-content: flex-end;
+  }
+
+  html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-search-field {
+    container-type: inline-size;
+    flex: 1 1 0;
+    min-width: 40px;
+  }
+
+  html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-search-field :is(.fi-input-wrp, .fi-input-wrp-content-ctn, input) {
+    min-width: 0;
+  }
+
+  html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-search-field:is(:focus-within, :has(input:not(:placeholder-shown))) {
+    position: absolute;
+    inset: 4px 0 auto;
+    z-index: 20;
+  }
+
+  @container (max-width: 96px) {
+    html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-search-field .fi-input-wrp {
+      position: relative;
+      justify-content: center;
+    }
+
+    html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-search-field .fi-input-wrp-content-ctn {
+      position: absolute;
+      inset: 0;
+    }
+
+    html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-search-field input {
+      width: 100%;
+      height: 100%;
+      color: transparent;
+      cursor: pointer;
+    }
+
+    html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-search-field input::placeholder {
+      color: transparent;
+    }
+  }
 }
 
 html.ps-frame[data-ps-frame="native"] .fi-header-heading {
@@ -2366,22 +2435,28 @@ html.ps-frame .s-done {
   to { transform: rotate(360deg); }
 }
 
-/* Phones (1.5.4): Pelican's lists inside Simplify (an admin page in Simplify, a server's pages) as short rows: icon, name and
-   the columns after it on one line, without the checkboxes, the column titles and the long descriptions (an egg's
-   description shows on its own page). On a wider screen, and on the legacy panel, the table stays as Pelican draws it (K-B5). */
+/* Phones: Pelican's lists inside Simplify (an admin page in Simplify, a server's pages) as rows that fit the screen,
+   never scrolling sideways (Jeroen 3-11): the icon, the name and the row's buttons on the first line, the other columns
+   under the name, on as many lines as they need. No checkboxes, column titles or long descriptions (an egg's description
+   shows on its own page). On a wider screen, and on the legacy panel, the table stays as Pelican draws it (K-B5). */
 @media (max-width: 600px) {
   :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table :is(thead, .fi-ta-selection-cell, .fi-ta-group-selection-cell),
   :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-cell :is([class$="-description"], [class*="-description "]) { display: none !important; }
   :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table, :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table > tbody { display: block; width: 100%; }
-  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row { display: flex; flex-wrap: nowrap; align-items: center; gap: 12px; padding: 10px 14px; }
-  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell { display: block; flex: 0 1 auto; min-width: 0; width: auto !important; padding: 0 !important; }
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-content-ctn { overflow-x: hidden !important; }
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 12px; padding: 10px 14px; }
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row::after { content: ""; order: 3; flex-basis: 100%; height: 0; }
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell { display: block; order: 4; flex: 0 1 auto; min-width: 0; max-width: 100%; width: auto !important; padding: 0 !important; overflow: hidden; color: var(--s-muted, inherit); font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
   :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell :not(button, .fi-icon-btn, .fi-icon-btn *) { padding-block: 0 !important; }
   :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell > * { padding-inline: 0 !important; }
-  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell:has(img) { flex: none; }
-  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell:not(.fi-ta-actions-cell):not(:has(img)) { flex: none; max-width: 30%; overflow: hidden; color: var(--s-muted, inherit); font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
-  /* The name: the first column after the icon (or the first column), taking what is left. */
-  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > :is(.fi-ta-cell:has(img) + .fi-ta-cell, .fi-ta-selection-cell + .fi-ta-cell:not(:has(img)), .fi-ta-cell:first-child:not(:has(img))):not(.fi-ta-actions-cell) { flex: 1 1 0; max-width: none; color: inherit; font-size: 14px; font-weight: 600; }
-  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-actions-cell { flex: none; margin-inline-start: auto; }
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell:not(.fi-ta-actions-cell) * { min-width: 0; max-width: 100%; }
+  /* The icon sits in the margin, so the lines under the name start where the name starts. */
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row:has(> .fi-ta-cell img) { padding-inline-start: 58px; }
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell:has(img) { order: 0; flex: none; width: 32px !important; margin-inline-start: -44px; }
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell:has(img) img { width: 32px !important; height: 32px !important; }
+  /* The name: the first column after the icon (or the first column), taking what is left of the first line. */
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > :is(.fi-ta-cell:has(img) + .fi-ta-cell, .fi-ta-selection-cell + .fi-ta-cell:not(:has(img)), .fi-ta-cell:first-child:not(:has(img))):not(.fi-ta-actions-cell) { order: 1; flex: 1 1 0; color: inherit; font-size: 14px; font-weight: 600; }
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-actions-cell { order: 2; flex: none; margin-inline-start: auto; overflow: visible; }
 }
 
 /* Unsaved changes (P-38, unsaved.js): a bar at the bottom says "Changes made" with Discard and Save; leaving the
