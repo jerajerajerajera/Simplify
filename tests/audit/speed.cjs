@@ -74,7 +74,8 @@ const median = (list) => { const v = list.filter((x) => typeof x === 'number').s
   for (let i = 0; i < rounds; i++) {
     for (const target of ['/admin/eggs', '/admin/servers']) {
       const t0 = Date.now();
-      await page.locator(`.ps-admin-side a[href$="${target}"], .ps-host-tree a[href$="${target}"]`).first().click().catch(() => {});
+      // The link may sit in a folded group (Health is the start page): a click on it all the same.
+      await page.evaluate((t) => document.querySelector(`.ps-admin-side a[href$="${t}"]`)?.click(), target).catch(() => {});
       await page.waitForURL('**' + target, { timeout: 15000 }).catch(() => {});
       await page.waitForSelector('.fi-ta-row, .fi-ta-empty-state', { timeout: 15000 }).catch(() => {});
       menu.push({ target, ms: Date.now() - t0 });
@@ -102,7 +103,7 @@ const median = (list) => { const v = list.filter((x) => typeof x === 'number').s
   };
   await page.goto('/simplify'); await page.waitForSelector('a.ps-nav-admin >> visible=true', { timeout: 20000 }).catch(() => {}); await sleep(1500);
   result.profile = { shield: await profile(async () => { await page.locator('a.ps-nav-admin >> visible=true').first().click(); await page.waitForURL('**/admin/**').catch(() => {}); }) };
-  result.profile.menu = await profile(async () => { await page.locator('.ps-admin-side a[href$="/admin/eggs"]').first().click().catch(() => {}); await page.waitForURL('**/admin/eggs').catch(() => {}); });
+  result.profile.menu = await profile(async () => { await page.evaluate(() => document.querySelector('.ps-admin-side a[href$="/admin/eggs"]')?.click()).catch(() => {}); await page.waitForURL('**/admin/eggs').catch(() => {}); });
 
   // 3. The same page in the legacy panel: Pelican's own admin page, without Simplify's header and menu.
   await page.goto('/admin/servers?simplify_legacy=1'); await settle();

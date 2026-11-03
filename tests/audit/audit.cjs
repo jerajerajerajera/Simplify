@@ -107,6 +107,8 @@ const shieldTo = async (overview) => {
   await shield.click().catch(() => {}); await page.waitForURL(/\/admin\//, { timeout: 15000 }).catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await settle(page, 1500);
   switched.reloaded = await page.evaluate(() => window.__psSwitch !== 1).catch(() => true);
   switched.after = await topButtons();
+  // Healthy keeps its state on the Admin page (asked there too), instead of a grey "Health".
+  switched.health = await page.waitForFunction(() => { const p = [...document.querySelectorAll('.ps-top .ps-health-pill')].find((e) => e.getClientRects().length); return !p || !p.classList.contains('unavailable') ? (p ? p.className : 'none') : false; }, null, { timeout: 8000 }).then((h) => h.jsonValue()).catch(() => 'unavailable');
   return true;
 };
 let switched = null;
@@ -131,7 +133,7 @@ const adminPage = async (overview) => {
   // A narrow window keeps the top bar's buttons behind its menu button: there only the switch itself counts.
   const folded = (await page.locator('.ps-top .ps-mobile-menu >> visible=true').count()) > 0;
   const same = (a, b) => folded || !!a && !!b && a.filter((x) => !/^ps-tab@/.test(x)).join() === b.filter((x) => !/^ps-tab@/.test(x)).join();
-  say('admin-switch', !!there && !there.reloaded && same(there.before, there.after) && (folded || there.before.some((x) => x.startsWith('ps-health-pill'))) && !back.reloaded && !/\/admin\//.test(back.path || '') && same(there.after, back.after), { there, back });
+  say('admin-switch', !!there && !there.reloaded && there.health !== 'unavailable' && same(there.before, there.after) && (folded || there.before.some((x) => x.startsWith('ps-health-pill'))) && !back.reloaded && !/\/admin\//.test(back.path || '') && same(there.after, back.after), { there, back });
   if (!(await shieldTo(overview))) return say('admin-page', false, { note: 'no shield link on the overview' });
   const st = await adminState(); await record('admin-page', 'Admin-pagina (schild)');
   say('admin-page', !!st && st.shell && st.side && st.header && !st.frames && !st.pelicanBars && st.pageScroll <= 1 && (phone() || /auto|scroll/.test(st.card || '')), st);
