@@ -891,6 +891,8 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
    fitWorkspace), so the page never scrolls for them; a long menu scrolls inside its own column. */
 .ps-console-tool { display: inline-flex; align-items: center; gap: 6px; padding: 4px 7px; }
 .ps-console-tool svg { width: 14px; height: 14px; }
+/* An add-on's button from the Console page's hidden header (server.js consoleActions) keeps the tools' size. */
+.ps-console-action svg { width: 14px !important; height: 14px !important; }
 .ps-console-tool[aria-pressed="true"] { color: var(--ps-console-ink); border-color: var(--ps-console-muted); }
 /* A workspace open: it takes the block, and the console folds to a mini console under it: the status
    dot and the command line. The chevron pulls the last log lines open; "Full console" closes the workspace. */

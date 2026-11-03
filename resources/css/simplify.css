@@ -993,13 +993,30 @@ html.ps-frame[data-ps-frame="native"] .fi-ta-ctn:not(.fi-section .fi-ta-ctn) :is
   background: transparent !important;
 }
 
-html.ps-frame[data-ps-head-tools] :is(.fi-header-actions-ctn .fi-ac > :is(button, a), .fi-ta-ctn:not(:is(.fi-resource-relation-managers, .fi-resource-relation-manager, .fi-sc-tabs, .fi-section, .fi-modal, .fi-ta-ctn) *) :is(.fi-ta-header-toolbar > .fi-ta-actions > :is(button, a), .fi-ta-search-field)) {
+html.ps-frame[data-ps-head-tools] :is(.fi-header-actions-ctn .fi-ac > :is(button, a), .fi-header-actions-ctn > :is(button, a):is(.fi-btn, .fi-icon-btn, .fi-link), .fi-header-actions-ctn > :not(.fi-ac) :is(button, a):is(.fi-btn, .fi-icon-btn, .fi-link):not(.fi-modal *), .fi-ta-ctn:not(:is(.fi-resource-relation-managers, .fi-resource-relation-manager, .fi-sc-tabs, .fi-section, .fi-modal, .fi-ta-ctn) *) :is(.fi-ta-header-toolbar > .fi-ta-actions > :is(button, a), .fi-ta-search-field)) {
   display: none !important;
 }
 
 html.ps-frame[data-ps-head-tools] .fi-header:not(:has(.fi-header-actions-ctn .fi-dropdown, .fi-breadcrumbs-item + .fi-breadcrumbs-item)),
 html.ps-frame[data-ps-head-tools] .fi-ta-ctn:not(:is(.fi-resource-relation-managers, .fi-resource-relation-manager, .fi-sc-tabs, .fi-section, .fi-modal, .fi-ta-ctn) *):not(:has(.fi-ta-record-checkbox:checked, .fi-ta-page-checkbox:checked)) .fi-ta-header-ctn {
   display: none !important;
+}
+
+/* A header whose render hook holds its own modal (an add-on's button, such as Explain on Logs) is folded away instead of
+   hidden, so the modal that its button in the title bar opens still shows. */
+html.ps-frame[data-ps-head-tools] .fi-header:not(:has(.fi-header-actions-ctn .fi-dropdown, .fi-breadcrumbs-item + .fi-breadcrumbs-item)):has(.fi-header-actions-ctn .fi-modal) {
+  display: block !important;
+  position: absolute !important;
+  width: 0;
+  height: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible;
+  visibility: hidden;
+}
+
+html.ps-frame[data-ps-head-tools] .fi-header .fi-header-actions-ctn .fi-modal {
+  visibility: visible;
 }
 
 html.ps-frame[data-ps-head-tools] :is(.fi-main, .fi-page-header-main-ctn, .fi-page-main) {
@@ -1169,6 +1186,15 @@ html:not(.ps-frame) .s-people[style*="--s-fit"] > .s-card {
   padding: 0 0 6px;
   overflow-x: auto;
   border-bottom: 1px solid var(--s-line);
+}
+
+/* On a computer the row breaks onto a second line instead of scrolling sideways, also in the legacy panel with many
+   add-ons (K-B33). A phone keeps the one row that scrolls. */
+@media (min-width: 640px) {
+  .s-settings-nav {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
 }
 
 .s-settings-nav-item {

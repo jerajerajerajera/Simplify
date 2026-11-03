@@ -24,6 +24,7 @@ node tests/sheet-drag.cjs
 node tests/boot.cjs
 node tests/shell-footer.cjs
 node tests/admin-crumb-row.cjs
+node tests/settings-nav-wrap.cjs
 node tests/beta-footer.cjs
 node tests/standalone-viewport.cjs
 node tests/server-stats.cjs
@@ -32,6 +33,7 @@ node tests/card-bars.cjs
 node tests/admin-menu-page.cjs
 node tests/embed-preview.cjs
 node tests/console-placeholders.cjs
+node tests/console-header-actions.cjs
 python3 tests/hub-check.py
 python3 tests/audit/parts.py --self-test
 # What a download of the repository holds (the Hub's zip): every file the plugin runs on, nothing of the tests or docs.

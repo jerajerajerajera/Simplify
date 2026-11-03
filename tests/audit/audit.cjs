@@ -283,6 +283,21 @@ const adminPage = async (overview) => {
     await legacy.click().catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await settle(page, 1500);
     const lg = await adminState(); await record('admin-legacy', 'Legacy-paneel (Pelicans eigen pagina)');
     say('admin-legacy', !!lg && !lg.shell && !lg.side && !lg.header && !/simplify_legacy/.test(page.url()), lg);
+    // Simplify's settings in the legacy panel look as Pelican's pages do: Pelican's top bar and sidebar, the row of tabs
+    // under the top bar and on the screen, wrapping instead of scrolling sideways on a computer (Jeroen 3-11).
+    const viaMenu = page.locator('.fi-sidebar a[href$="/admin/simplify"] >> visible=true').first();
+    if (await viaMenu.count()) { await viaMenu.click().catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await settle(page, 1500); }
+    if (!/\/admin\/simplify$/.test(new URL(page.url()).pathname)) await goto('/admin/simplify', 1500);
+    const ls = await page.evaluate(() => {
+      const shown = (e) => !!e && e.getClientRects().length > 0 && getComputedStyle(e).visibility !== 'hidden';
+      const nav = document.querySelector('.s-settings-nav'), bar = document.querySelector('.fi-topbar'), n = nav?.getBoundingClientRect(), b = bar?.getBoundingClientRect();
+      return { path: location.pathname, shell: document.documentElement.className.split(' ').filter((c) => c.startsWith('ps-shell')), topbar: shown(bar), nav: !!nav,
+        navTop: n ? Math.round(n.top) : null, barBottom: b && shown(bar) ? Math.round(b.bottom) : null, sideways: nav ? nav.scrollWidth - nav.clientWidth : null,
+        offScreen: n ? n.left < 0 || n.right > innerWidth + 1 : null, pageWide: document.documentElement.scrollWidth - innerWidth };
+    }).catch((e) => ({ error: e.message.slice(0, 120) }));
+    await record('admin-legacy-settings', 'Legacy-paneel · Simplify settings');
+    say('admin-legacy-settings', !!ls && !ls.shell?.length && (onPhone || ls.topbar) && ls.nav && (ls.barBottom === null || ls.navTop >= ls.barBottom) && ls.navTop >= 0
+      && (onPhone || ls.sideways <= 1) && !ls.offScreen && ls.pageWide <= 1, ls);
     // The way back is the first item of Pelican's sidebar; on a small window that sidebar opens from its button first.
     // (A closed off-canvas sidebar still counts as visible to Playwright: look whether the link is on the screen.)
     const onScreen = () => page.evaluate(() => [...document.querySelectorAll('a[href*="simplify_legacy=0"]')].some((a) => { const b = a.getBoundingClientRect(); return b.width > 0 && b.left >= 0 && b.right <= innerWidth && b.top >= 0 && b.bottom <= innerHeight; })).catch(() => false);
@@ -500,6 +515,10 @@ async function round(theme) {
   if (want('server')) {
   // The server page: console (live, through the fake Wings' websocket), its menus, every section and add-on tab.
   await goto(serverUrl, 3500); await record('server-console', `Server · Console (${mainServer})`);
+  // An add-on's header action on Pelican's Console page (the audit plugin's, as Explain's) is in the console's title row;
+  // Pelican's own power buttons are not (K-B34).
+  const consoleTools = await page.evaluate(() => [...document.querySelectorAll('#terminal > .ps-console-title .ps-console-action')].map((el) => ({ label: el.getAttribute('aria-label'), shown: el.getBoundingClientRect().width > 0 }))).catch(() => null);
+  problems.push(`${stand} server-console-addon-action: ${consoleTools && consoleTools.some((t) => t.label === 'Audit action' && t.shown) && !consoleTools.some((t) => /^(Start|Restart|Stop|Kill)$/.test(t.label)) ? 'ok' : 'WRONG'} ${JSON.stringify(consoleTools)}`);
   await page.fill('#send-command', 'say a command typed in the bar').catch(() => {}); await page.keyboard.press('Enter').catch(() => {}); await sleep(800);
   await record('server-console-typed', 'Server · Console na een commando');
   if (await click('.ps-console-grow', 800)) { await record('server-console-big', 'Server · Console vergroot'); await click('.ps-console-grow', 800); }
