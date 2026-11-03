@@ -915,6 +915,9 @@ async function otherPlugins() {
 async function hubFlow() {
   const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
   await goto('/admin/simplify?tab=hub', 1000);
+  // Browse Hub is hidden for now (Settings::HUB, Jeroen 3-11): then neither the row of tabs nor the Admin menu has it.
+  const hubLinks = await page.evaluate(() => document.querySelectorAll('a[href*="tab=hub"]').length).catch(() => -1);
+  if (!(await page.locator('.s-hub, .s-hub-card, .s-hub-empty').count())) return say('hub-hidden', hubLinks === 0, { links: hubLinks });
   // The placeholder has a grid too: wait for a real card (with its Hub link) or the empty note.
   await page.waitForSelector('.s-hub-card a.s-btn, .s-hub-empty', { timeout: 45000 }).catch(() => {});
   await sleep(800);

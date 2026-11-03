@@ -301,7 +301,7 @@ step('settings page renders with its one row of tabs, Pelican as a link without 
     if (preg_match('/<iframe(?![^>]*ps-create-frame)/', $html) || str_contains((string) ($menu['settings:pelican-mail']['url'] ?? ''), 'simplify_embed')) {
         throw new RuntimeException('Pelican\'s settings are still in a frame');
     }
-    foreach (['appearance', 'general', 'app', 'website', 'subdomains', 'announcements', 'addons', 'hub', 'pelican'] as $key) {
+    foreach (['appearance', 'general', 'app', 'website', 'subdomains', 'announcements', 'addons', ...(Settings::HUB ? ['hub'] : []), 'pelican'] as $key) {
         if (! $nav->contains($key)) {
             throw new RuntimeException("the settings' row of tabs has no $key: ".$nav->toJson());
         }
@@ -374,8 +374,12 @@ step('Browse Hub: a tab of the settings that lists the Hub with its makers and o
     $response = visit($admin, $url);
     expectOk($response, $url);
     auth()->setUser($admin);
-    if (! str_contains($response->getContent(), __('simplify::settings.hub.tab')) || (collect(Settings::menu())->pluck('group', 'key')['settings:hub'] ?? null) !== 'addons') {
-        throw new RuntimeException('Browse Hub is not a tab of the settings under Add-ons');
+    // Browse Hub is hidden for now (Settings::HUB, Jeroen 3-11): no tab, no item in the row or the Admin menu. Its list
+    // itself is still tested below, so turning it back on needs no new work.
+    $hubGroup = collect(Settings::menu())->pluck('group', 'key')['settings:hub'] ?? null;
+    $hubInRow = collect(Settings::nav())->pluck('key')->contains('hub');
+    if (Settings::HUB ? (! str_contains($response->getContent(), __('simplify::settings.hub.tab')) || $hubGroup !== 'addons' || ! $hubInRow) : ($hubGroup !== null || $hubInRow)) {
+        throw new RuntimeException(Settings::HUB ? 'Browse Hub is not a tab of the settings under Add-ons' : 'Browse Hub is still in the settings row or the Admin menu');
     }
     if ($asked !== []) {
         throw new RuntimeException('the settings page read the Hub before the tab was shown: '.json_encode($asked));

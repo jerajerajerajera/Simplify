@@ -33,8 +33,14 @@ final class Settings extends Page implements HasForms
 {
     use InteractsWithForms;
 
+    /**
+     * Browse Hub (the 'hub' tab) is hidden for now: not in the tabs, the settings row or the Admin menu (Jeroen 3-11).
+     * Its code stays, so turning this on brings it back.
+     */
+    public const HUB = false;
+
     /** The tabs of this page, in the order of the form (form()). */
-    public const TABS = ['appearance', 'general', 'app', 'addons', 'hub'];
+    public const TABS = self::HUB ? ['appearance', 'general', 'app', 'addons', 'hub'] : ['appearance', 'general', 'app', 'addons'];
 
     protected static ?string $slug = 'simplify';
 
@@ -130,7 +136,7 @@ final class Settings extends Page implements HasForms
                 Tab::make(__('simplify::settings.addons.heading'))->key('addons')->icon('tabler-puzzle')->schema([
                     View::make('simplify::partials.addon-list'),
                 ]),
-                Tab::make(__('simplify::settings.hub.tab'))->key('hub')->icon('tabler-building-store')->schema([
+                Tab::make(__('simplify::settings.hub.tab'))->key('hub')->icon('tabler-building-store')->visible(self::HUB)->schema([
                     View::make('simplify::hub.tab'),
                 ]),
             ]),
@@ -164,7 +170,9 @@ final class Settings extends Page implements HasForms
             }
         }
         $items[] = $tab('addons', __('simplify::settings.addons.heading'), 'tabler-puzzle');
-        $items[] = $tab('hub', __('simplify::settings.hub.tab'), 'tabler-building-store');
+        if (self::HUB) {
+            $items[] = $tab('hub', __('simplify::settings.hub.tab'), 'tabler-building-store');
+        }
         if (PelicanSettings::canAccess()) {
             $items[] = $page('pelican', __('simplify::js.dashboard.admin_groups.pelican_settings').' ↗', 'tabler-settings', PelicanSettings::getUrl(panel: 'admin'));
         }
@@ -185,8 +193,10 @@ final class Settings extends Page implements HasForms
             $tab('appearance', 'panel', __('simplify::settings.appearance.tab'), 'palette'),
             $tab('app', 'panel', __('simplify::settings.appearance.app'), 'image'),
             $tab('addons', 'addons', __('simplify::settings.addons.heading'), 'puzzle'),
-            $tab('hub', 'addons', __('simplify::settings.hub.tab'), 'store'),
         ];
+        if (self::HUB) {
+            $items[] = $tab('hub', 'addons', __('simplify::settings.hub.tab'), 'store');
+        }
         foreach (self::addonRows() as $addon) {
             if ($addon['url']) {
                 $items[] = ['key' => 'addon:'.$addon['id'], 'group' => 'addons', 'label' => $addon['name'], 'icon' => 'plugins', 'url' => $addon['url']];
