@@ -107,7 +107,6 @@
                 </div>
             </div>
             @include('simplify::dashboard.groups-menu')
-            @include('simplify::dashboard.customize-menu')
             <button type="button" x-show="installable" x-cloak x-on:click="installApp()" class="ps-btn is-icon is-subtle ps-nav-view" data-tip="{{ $u('install_app') }}" aria-label="{{ $u('install_app') }}">
                 <svg aria-hidden="true"><use href="#ps-download"/></svg><span class="ps-mobile-label">{{ $u('install_app') }}</span>
             </button>

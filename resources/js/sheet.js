@@ -1,7 +1,7 @@
 /* Phones (1.5.4): every menu is a sheet from the bottom (dashboard.css). A tap beside an open sheet only closes it,
    instead of also pressing what lies under the dimmed page, and a swipe down on a sheet closes it too. Closing sends
    Escape to the sheet: every menu already closes on Escape. The Admin menu on a phone is a page of its own, not a
-   sheet (K-B18): its bottom bar and header keep their taps. */
+   sheet (K-B24): its bottom bar and header keep their taps. */
 (() => {
   if (window.SimplifySheet) return;
   window.SimplifySheet = true;

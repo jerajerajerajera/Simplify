@@ -1,4 +1,4 @@
-// The Admin menu on a phone is a page of its own (K-B13), not a sheet (K-B18, Jeroen 3-11): with the menu open, a tap
+// The Admin menu on a phone is a page of its own (K-B13), not a sheet (K-B24, Jeroen 3-11): with the menu open, a tap
 // on the bottom bar (Servers, Admin) or the header (account) must do what it says. sheet.js swallowed every tap
 // outside the menu as "a tap beside an open sheet", closed the menu and showed the page under it (Servers › Servers).
 // Needs Chrome or Chromium (GitHub's runners have Chrome).
