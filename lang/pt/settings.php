@@ -10,7 +10,7 @@ return [
     'page_title' => 'Definições do Simplify',
     'pelican_frame_title' => 'Definições do Pelican: :label',
     'pelican_frame' => 'As definições de :label do próprio Pelican.',
-    'version_line' => 'Versão :version · As alterações valem para todos neste painel depois de guardar.',
+    'save_note' => 'As alterações valem para todos neste painel depois de guardar.',
     'profile' => [
         'support' => 'Link de suporte',
         'support_help' => 'Uma página de ajuda ou endereço mailto:, no menu da conta de todos. Vazio não mostra nada.',

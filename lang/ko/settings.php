@@ -10,7 +10,7 @@ return [
     'page_title' => 'Simplify 설정',
     'pelican_frame_title' => 'Pelican 설정: :label',
     'pelican_frame' => 'Pelican 자체의 :label 설정입니다.',
-    'version_line' => '버전 :version · 저장하면 이 패널의 모두에게 변경 사항이 적용됩니다.',
+    'save_note' => '저장하면 이 패널의 모두에게 변경 사항이 적용됩니다.',
     'profile' => [
         'support' => '지원 링크',
         'support_help' => '도움말 페이지 또는 mailto: 주소. 모든 사용자의 계정 메뉴에 표시됩니다. 비워 두면 아무것도 표시하지 않습니다.',
