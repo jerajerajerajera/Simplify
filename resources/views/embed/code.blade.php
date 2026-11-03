@@ -39,14 +39,14 @@
                 </p>
             </div>
         @endforeach
-        {{-- The preview loads only once it is on screen, so the page itself is ready at once, and is as tall as the list (up to 420px). --}}
+        {{-- The preview loads only once it is on screen, so the page itself is ready at once, and is only as big as the cards (up to 420px tall). --}}
         <div class="se-block" x-data="{ shown: false }" x-intersect.once="shown = true">
             <strong>{{ __('simplify::embed.code.preview') }}</strong>
             <iframe
                 x-bind:src="shown ? {{ \Illuminate\Support\Js::from(str_replace('page=1', 'page=0', $snippet['page'])) }} : null"
                 title="{{ __('simplify::embed.code.preview') }}"
                 class="se-preview"
-                x-on:load="const fit = () => { try { $el.style.height = Math.min(420, Math.max(80, $el.contentDocument.documentElement.scrollHeight)) + 'px' } catch {} }; fit(); try { new ResizeObserver(fit).observe($el.contentDocument.body) } catch {}"
+                x-on:load="const fit = () => { try { const doc = $el.contentDocument, host = doc.getElementById('simplify-servers'); $el.style.width = ''; const right = Math.max(0, ...[...(host?.shadowRoot ?? host)?.querySelectorAll('.card') ?? []].map((card) => card.getBoundingClientRect().right)); if (right) $el.style.width = Math.ceil(right + 2) + 'px'; $el.style.height = Math.min(420, Math.max(80, doc.body.scrollHeight)) + 'px' } catch {} }; fit(); try { new ResizeObserver(fit).observe($el.contentDocument.body) } catch {}"
             ></iframe>
         </div>
     </div>
@@ -58,6 +58,5 @@
     .se-code pre { margin: 0; padding: 10px 12px; border-radius: 8px; background: #0b0b0e; color: #e4e4e7; font: 12.5px/1.55 ui-monospace, Menlo, Consolas, monospace; white-space: pre-wrap; overflow-wrap: anywhere; }
     .se-muted { margin: 0; font-size: 13px; color: rgb(113 113 122); }
     .se-link { font-weight: 600; text-decoration: underline; }
-    .se-preview { width: 100%; height: 420px; border: 1px dashed rgb(212 212 216); border-radius: 8px; background: transparent; }
-    .dark .se-preview { border-color: rgb(63 63 70); }
+    .se-preview { display: block; width: 100%; max-width: 100%; height: 420px; border: 0; background: transparent; color-scheme: normal; }
 </style>

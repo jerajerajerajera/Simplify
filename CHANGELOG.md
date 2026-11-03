@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Website embed: the preview of the saved list follows the theme instead of showing a white block in dark mode, and is only as big as the cards it shows. The iframe code for other websites no longer shows a white block on a dark website either.
+
 ## 2.0.0-beta.3
 
 - Texts say server or egg where they said game, because not every server is a game: Website embed picks one egg, Subdomains asks for the server address, the install steps and Force stop no longer speak of games, and the in-game chat commands of Announcements are set per egg (as they were already stored). In all 32 languages.
