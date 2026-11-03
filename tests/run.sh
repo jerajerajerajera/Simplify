@@ -15,6 +15,7 @@ php tests/announcements-game-chat.php
 php tests/embed.php
 php tests/subdomains.php
 php tests/hub.php
+php tests/assets.php
 php tests/lang.php
 node tests/seasons.cjs
 node tests/unsaved.cjs

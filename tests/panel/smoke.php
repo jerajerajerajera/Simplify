@@ -93,7 +93,7 @@ function step(string $what, callable $run): void
         echo "FAIL $what: ".get_class($e).': '.substr($e->getMessage(), 0, 400).' ('.basename($e->getFile()).':'.$e->getLine().")\n";
     }
 }
-function visit(User $user, string $url): TestResponse
+function visit(User $user, string $url, array $headers = []): TestResponse
 {
     $client = new class(app())
     {
@@ -102,7 +102,7 @@ function visit(User $user, string $url): TestResponse
         public function __construct(public $app) {}
     };
 
-    return $client->actingAs($user)->get($url);
+    return $client->actingAs($user)->get($url, $headers);
 }
 // Livewire's own assertions need PHPUnit's configuration, which a plain script does not have.
 function noErrors(Testable $component): void
@@ -298,13 +298,21 @@ step('a tagged add-on shows on the settings page', function ($app) use ($admin) 
         throw new RuntimeException('the add-on is not listed');
     }
 });
-step('the stylesheet and logo are served with a long cache', function () use ($admin) {
+step('the stylesheet and logo are served with a long cache, styles and scripts gzipped', function () use ($admin) {
     foreach (['simplify.css' => 'text/css', 'logo.svg' => 'image/svg+xml'] as $name => $type) {
         $url = Assets::url($name);
         $response = visit($admin, $url);
         expectOk($response, $url);
         if (! str_starts_with((string) $response->headers->get('Content-Type'), $type)) {
             throw new RuntimeException("$name has type ".$response->headers->get('Content-Type'));
+        }
+    }
+    // Pelican's web server compresses only HTML: Simplify gzips its own styles and scripts.
+    foreach (['dashboard.css', 'dashboard.js'] as $name) {
+        $response = visit($admin, Assets::url($name), ['Accept-Encoding' => 'gzip, deflate, br']);
+        expectOk($response, $name);
+        if ($response->headers->get('Content-Encoding') !== 'gzip' || gzdecode((string) $response->getContent()) !== file_get_contents((string) Assets::path($name))) {
+            throw new RuntimeException("$name is not sent gzipped (Content-Encoding: ".$response->headers->get('Content-Encoding').')');
         }
     }
     $response = visit($admin, '/simplify/assets/plugin.json');
