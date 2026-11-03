@@ -109,12 +109,13 @@ const adminPage = async (overview) => {
     const look = () => page.evaluate(() => {
       const css = (sel, props) => { const e = [...document.querySelectorAll(sel)].find((x) => x.getClientRects().length); if (!e) return null; const s = getComputedStyle(e); return props.map((p) => s.getPropertyValue(p)).join(' | '); };
       return {
-        card: css('.fi-layout > .fi-main-ctn', ['background-color', 'border-top-color', 'padding-top']),
+        card: css('.fi-layout > .fi-main-ctn', ['background-color', 'border-top-width', 'border-top-color', 'padding-top']),
         main: css('.fi-layout > .fi-main-ctn > .fi-main', ['padding-top', 'padding-left']),
         leaf: css('.ps-admin-side .ps-host-leaf', ['font-family', 'font-size', 'font-weight', 'letter-spacing']),
         head: css('.ps-admin-side .ps-host-group-head, .ps-admin-side .ps-host-group > button', ['font-family', 'font-size', 'font-weight']),
         title: css('.fi-main .fi-header-heading', ['font-family', 'font-size', 'font-weight']),
         body: css('body', ['font-family', 'background-color']),
+        busy: document.documentElement.classList.contains('nprogress-busy'),
         footer: (document.querySelector('.fi-main-ctn [data-ps-footer], .fi-main-ctn footer')?.innerText || '').replace(/\s+/g, ' ').trim(),
         sheets: [...document.head.querySelectorAll('link[rel="stylesheet"], style')].map((e) => (e.getAttribute('href') || 'style:' + e.textContent.length).replace(/^https?:\/\/[^/]+/, '').replace(/\?.*$/, '')),
       };
@@ -124,8 +125,10 @@ const adminPage = async (overview) => {
     const first = await look();
     let loads = 0; const onLoad = () => loads++; page.on('load', onLoad);
     if (!(await leaf(/^\s*Eggs\s*$/).count())) { await page.locator('.ps-admin-side .ps-host-group > button >> visible=true').filter({ hasText: /Servers/ }).first().click().catch(() => {}); await sleep(400); }
-    await leaf(/^\s*Eggs\s*$/).click({ timeout: 4000 }).catch(() => {}); await settle(page, 1500);
-    await leaf(/^\s*Servers\s*$/).click({ timeout: 4000 }).catch(() => {}); await settle(page, 1500);
+    // Measure only once wire:navigate is done: while it runs (html.nprogress-busy) the page is still changing.
+    const arrived = (re) => page.waitForFunction((src) => new RegExp(src).test(location.pathname) && !document.documentElement.classList.contains('nprogress-busy'), re.source, { timeout: 10000 }).catch(() => {});
+    await leaf(/^\s*Eggs\s*$/).click({ timeout: 4000 }).catch(() => {}); await arrived(/\/admin\/eggs$/); await settle(page, 1500);
+    await leaf(/^\s*Servers\s*$/).click({ timeout: 4000 }).catch(() => {}); await arrived(/\/admin\/servers$/); await settle(page, 1500);
     page.off('load', onLoad);
     const again = await look(); await record('admin-nav-look', 'Admin-pagina · zelfde stijl na menuklikken');
     const diff = first && again ? Object.keys(first).filter((k) => JSON.stringify(first[k]) !== JSON.stringify(again[k])) : ['missing'];
