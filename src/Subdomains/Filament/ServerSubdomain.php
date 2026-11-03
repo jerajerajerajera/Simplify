@@ -5,14 +5,13 @@ declare(strict_types=1);
 namespace Simplify\Core\Subdomains\Filament;
 
 use App\Models\Server;
-use Filament\Actions\Action;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
-use Filament\Schemas\Components\Actions;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Text;
 use Filament\Schemas\Schema;
+use Illuminate\Support\HtmlString;
 use Illuminate\Validation\ValidationException;
 use Simplify\Core\Filament\FormPage;
 use Simplify\Core\Subdomains\Models\Subdomain;
@@ -70,14 +69,11 @@ final class ServerSubdomain extends FormPage
                 Section::make(__('simplify::subdomains.errors.not_set_up'))
                     ->icon('tabler-alert-circle')
                     ->description(fn () => $this->notSetUp())
-                    ->schema([
-                        Actions::make([
-                            Action::make('set_up')
-                                ->label(__('simplify::subdomains.setup.button'))
-                                ->icon('tabler-settings')
-                                ->url(AutomaticSubdomains::getUrl(panel: 'admin')),
-                        ]),
-                    ]),
+                    ->schema([Text::make(fn () => new HtmlString(sprintf(
+                        '<a class="s-btn" href="%s">%s</a>',
+                        e(AutomaticSubdomains::getUrl(panel: 'admin')),
+                        e(__('simplify::subdomains.setup.button')),
+                    )))]),
             ]);
         }
 
