@@ -176,7 +176,7 @@ const adminPage = async (overview) => {
     const navAdmin = await pageLook();
     const d2 = same(fullAdmin, navAdmin, keys);
     say('overview-to-admin-look', d2.length === 0, { diff: d2, full: fullAdmin, after: navAdmin, path: new URL(page.url()).pathname });
-    // The overview and the Admin page share one background, so going between them changes no colour (K-B17).
+    // The overview and the Admin page share one background, so going between them changes no colour (K-B18).
     const bg = (look) => look?.body?.split(' | ')[0] || null;
     say('admin-overview-bg', !!bg(fullOverview) && bg(fullOverview) === bg(fullAdmin) && bg(fullAdmin) === bg(navAdmin), { overview: bg(fullOverview), admin: bg(fullAdmin), adminAfterShield: bg(navAdmin) });
     await shieldTo(overview);
@@ -1143,6 +1143,19 @@ async function fixesFlow() {
     const top = { menuButton: await vis('.ps-mobile-menu'), bell: await vis('.ps-top [x-ref="notifyButton"]'), account: await vis('.ps-top .ps-account-button'), servers: await page.evaluate(() => [...document.querySelectorAll('.ps-tabbar .ps-tab')].filter((b) => b.getClientRects().length).map((b) => b.innerText.trim())).catch(() => null) };
     await record('phone-frame-overview', 'Telefoon · overzicht: bel en account bovenin, balk onderin');
     say('phone-frame-overview', top.menuButton === false && top.bell && top.account && Array.isArray(top.servers) && top.servers[0] === 'Servers' && top.servers.includes('Admin') && !top.servers.includes('Customize'), top);
+    // Pelican's copyright line is at the end of the overview on a phone too, above the bottom bar once you scrolled
+    // down, with Simplify's credit in it (K-B19, Jeroen 3-11 on iOS: no copyright on the overview).
+    await page.evaluate(() => scrollTo(0, document.documentElement.scrollHeight)).catch(() => {}); await sleep(600);
+    const foot = await page.evaluate(() => {
+      const f = [...document.querySelectorAll('[data-ps-footer], .fi-footer')].find((e) => e.getClientRects().length && getComputedStyle(e).display !== 'none');
+      if (!f) return { shown: false };
+      const line = f.querySelector('[data-ps-copyright-line]') || f, r = line.getBoundingClientRect(), bar = [...document.querySelectorAll('.ps-tabbar')].find((e) => e.getClientRects().length)?.getBoundingClientRect();
+      const cards = [...document.querySelectorAll('.ps-server-card')].filter((e) => e.getClientRects().length).map((e) => e.getBoundingClientRect().bottom);
+      return { shown: true, text: line.innerText.replace(/\s+/g, ' ').trim(), top: Math.round(r.top), bottom: Math.round(r.bottom), bar: bar ? Math.round(bar.top) : null, lastCard: cards.length ? Math.round(Math.max(...cards)) : null, inWindow: r.top >= 0 && r.bottom <= innerHeight, gap: cards.length ? Math.round(r.top - Math.max(...cards)) : null };
+    }).catch(() => null);
+    await record('phone-overview-footer', 'Telefoon · overzicht onderaan: copyright boven de balk');
+    say('phone-overview-footer', !!foot && foot.shown && /©|copyright/i.test(foot.text) && /Simplify/.test(foot.text) && foot.inWindow && (foot.bar === null || foot.bottom <= foot.bar) && (foot.lastCard === null || (foot.gap >= 0 && foot.gap <= 120)), foot);
+    await page.evaluate(() => scrollTo(0, 0)).catch(() => {}); await sleep(300);
     await page.locator('.ps-top [x-ref="notifyButton"]').first().click().catch(() => {}); await sleep(900);
     const bell = await sheet('#ps-notify-menu'); await record('phone-sheet-bell', 'Telefoon · meldingen als blad');
     say('phone-sheet-bell', isSheet(bell, 0.85), bell);
