@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Testing\TestResponse;
 use Illuminate\Validation\ValidationException;
+use Livewire\Component;
 use Livewire\Features\SupportTesting\Testable;
 use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
@@ -36,6 +37,7 @@ use Simplify\Core\Embed\Services\EmbedServers;
 use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\Admin\Pages\Setup;
 use Simplify\Core\Filament\Admin\Pages\SetupDone;
+use Simplify\Core\Filament\App\Pages\Connections;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Filament\Server\ServerPage;
 use Simplify\Core\Hub\HubCatalog;
@@ -202,7 +204,7 @@ final class AccountAddon extends Addon
     }
 }
 
-final class SteamConnectionRow extends Livewire\Component
+final class SteamConnectionRow extends Component
 {
     public function render(): string
     {
@@ -551,16 +553,20 @@ step('an add-on adds its own page to the account menu, only on this panel', func
 });
 step('Connections: only with an add-on row, in the account menu and as a page with that row', function ($app) use ($admin) {
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
-    $url = Simplify\Core\Filament\App\Pages\Connections::getUrl(panel: 'app');
+    $url = Connections::getUrl(panel: 'app');
     if (($status = visit($admin, $url)->getStatusCode()) !== 404) {
         throw new RuntimeException("the Connections page without rows answers $status, not 404");
     }
     if ((Livewire\Livewire::actingAs($admin)->test(Overview::class)->instance()->initial()['connections_url'] ?? null) !== null) {
         throw new RuntimeException('the account menu offers Connections without rows');
     }
+    // The registry keeps the add-ons it found first: built again with the new one.
     $app->tag([ConnectionsAddon::class], AddonRegistry::TAG);
-    if ((Livewire\Livewire::actingAs($admin)->test(Overview::class)->instance()->initial()['connections_url'] ?? null) !== $url) {
-        throw new RuntimeException('the account menu has no Connections with a row');
+    $app->forgetInstance(AddonRegistry::class);
+    // By path: a request in between can change the host that URLs are made with.
+    $menu = Livewire\Livewire::actingAs($admin)->test(Overview::class)->instance()->initial()['connections_url'] ?? null;
+    if (! is_string($menu) || parse_url($menu, PHP_URL_PATH) !== parse_url($url, PHP_URL_PATH)) {
+        throw new RuntimeException('the account menu has no Connections with a row: '.json_encode($menu));
     }
     $page = visit($admin, $url);
     $html = (string) $page->getContent();
