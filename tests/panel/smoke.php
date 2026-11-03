@@ -268,7 +268,8 @@ step('settings page renders with its one row of tabs, Pelican as a link without 
     if (! str_contains($html, 's-settings-tabs') || ! str_contains($html, '<nav class="s-settings-nav"') || ($menu['settings:appearance']['group'] ?? null) !== 'panel' || ($menu['settings:pelican-mail']['group'] ?? null) !== 'pelican') {
         throw new RuntimeException('the settings menu is incomplete: '.json_encode($menu->pluck('group', 'key')));
     }
-    if (str_contains($html, '<iframe') || str_contains((string) ($menu['settings:pelican-mail']['url'] ?? ''), 'simplify_embed')) {
+    // The header's create popup has a frame of its own; nothing else on the page may be one.
+    if (preg_match('/<iframe(?![^>]*ps-create-frame)/', $html) || str_contains((string) ($menu['settings:pelican-mail']['url'] ?? ''), 'simplify_embed')) {
         throw new RuntimeException('Pelican\'s settings are still in a frame');
     }
     foreach (['appearance', 'general', 'app', 'website', 'subdomains', 'announcements', 'addons', 'hub', 'pelican'] as $key) {
