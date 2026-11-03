@@ -57,7 +57,11 @@ const page = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewp
     for (let i = 1; i <= 5; i++) { touch('touchmove', el, 100 + dx * i / 5, 300 + dy * i / 5); await wait(step); }
     const during = check ? check() : null;
     touch('touchend', el, 100 + dx, 300 + dy);
-    await wait(1000);
+    // Wait for the sheet to settle (sheet.js clears its inline styles at the end), not for a fixed time: under load a
+    // fixed wait measured the sheet halfway (#170).
+    const sheet = el.closest('.ps-modal, .ps-dropdown');
+    for (let t = 0; t < 5000 && (sheet.style.translate || sheet.parentElement.style.getPropertyValue('--ps-drag')); t += 20) await wait(20);
+    await wait(50);
     return during;
   };
   const shift = (el) => new DOMMatrix(getComputedStyle(el).transform).m42 + (parseFloat((getComputedStyle(el).translate || '').split(' ')[1]) || 0);

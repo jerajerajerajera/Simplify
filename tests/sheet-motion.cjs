@@ -30,6 +30,8 @@ const page = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewp
   const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   const results = [];
   const ok = (name, pass, detail) => results.push((pass ? 'PASS ' : 'FAIL ') + name + (pass ? '' : ' ' + JSON.stringify(detail)));
+  // Wait for a state, not a fixed time (under load fixed waits measure halfway).
+  const until = async (fn) => { for (let t = 0; t < 5000 && !fn(); t += 10) await wait(10); return fn(); };
   const phone = matchMedia('(max-width: 600px)').matches;
   const seconds = (el) => parseFloat(getComputedStyle(el).transitionDuration) || 0;
   // What Alpine's x-transition does on leave: the leave class, then a frame later the end state.
@@ -47,19 +49,15 @@ const page = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewp
       ok('a popup slides down as it closes and its backdrop fades', l.duration > 0 && modal.transform !== 'none' && /rgba\\(0, 0, 0, 0\\)|transparent/.test(l.from.backgroundColor), { duration: l.duration, transform: modal.transform, bg: l.from.backgroundColor });
       // The confirm dialog and the toast leave the same way, and are gone after.
       const answer = Simplify.confirm({ title: 'Delete?' });
-      await wait(400);
+      await until(() => document.querySelector('[data-cancel]'));
       document.querySelector('[data-cancel]').click();
-      await wait(40);
       const dialog = document.querySelector('.ps-modal-layer:not(#layer)');
       ok('the confirm dialog answers at once and slides away', (await answer) === false && !!dialog && dialog.classList.contains('ps-t-out'), { dialog: !!dialog });
-      await wait(500);
-      ok('the confirm dialog is gone after', !document.querySelector('.ps-modal-layer:not(#layer)'), {});
+      ok('the confirm dialog is gone after', await until(() => !document.querySelector('.ps-modal-layer:not(#layer)')), {});
       Simplify.toast('Saved', 'ok', 200);
-      await wait(260);
       const toast = document.querySelector('.ps-toast');
-      ok('a toast fades away instead of vanishing', !!toast && toast.classList.contains('ps-t-out'), { toast: !!toast });
-      await wait(500);
-      ok('the toast is gone after', !document.querySelector('.ps-toast'), {});
+      ok('a toast fades away instead of vanishing', await until(() => toast.classList.contains('ps-t-out')) && toast.isConnected, { toast: toast.isConnected });
+      ok('the toast is gone after', await until(() => !toast.isConnected), {});
     } else {
       ok('on a computer a menu keeps its short fade', m.duration > 0 && m.props === 'opacity' && m.from.opacity === '0', { m: { duration: m.duration, props: m.props } });
       ok('on a computer a popup still closes at once', l.duration === 0, { duration: l.duration });
