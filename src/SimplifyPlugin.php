@@ -129,7 +129,7 @@ final class SimplifyPlugin implements Plugin
         if (! AdminTop::here()) {
             return '';
         }
-        $top = Blade::render("@persist('simplify-admin-top')@livewire(\$component)@endpersist@include('simplify::dashboard.boot', ['kind' => 'admin'])", ['component' => AdminTop::class]);
+        $top = Blade::render("@persist('simplify-admin-top')@livewire(\$component)@endpersist\n@include('simplify::dashboard.boot', ['kind' => 'admin'])", ['component' => AdminTop::class]);
 
         return AdminTop::menu() ? $top.Blade::render("@persist('simplify-admin-side')@livewire(\$component)@endpersist", ['component' => AdminSide::class]) : $top;
     }
