@@ -2103,15 +2103,15 @@ html.ps-frame .s-done {
   .s-done { padding: 16px 14px; }
 }
 
-/* The button back to Simplify on Pelican's own pages: not inside host mode's frame, which has its own way back. */
-.ps-frame .s-return {
-  display: none;
+/* The button back to Simplify on Pelican's own pages (legacy panel): the first item of Pelican's sidebar, not inside a
+   frame, which has its own way back. */
+.s-return {
+  justify-content: flex-start;
+  width: 100%;
 }
 
-@media (max-width: 640px) {
-  .s-return .fi-btn-label {
-    display: none;
-  }
+.ps-frame .s-return {
+  display: none;
 }
 
 /* Simplify settings → Appearance → Server banners: one row per upload. */

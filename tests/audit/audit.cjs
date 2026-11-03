@@ -78,6 +78,8 @@ const openAdminMenu = async () => { if (phone()) { await page.locator('.ps-admin
 const shieldTo = async (overview) => {
   await goto(overview, 800);
   const shield = page.locator((phone() ? '.ps-tabbar a.ps-tab:has(use[href="#ps-shield"])' : 'a.ps-nav-admin') + ' >> visible=true').first();
+  // A narrow window (tablet) keeps the top bar's buttons behind its menu button.
+  if (!(await shield.count()) && await page.locator('.ps-top .ps-mobile-menu >> visible=true').count()) { await page.locator('.ps-top .ps-mobile-menu >> visible=true').first().click().catch(() => {}); await sleep(500); }
   if (!(await shield.count())) return false;
   await shield.click().catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await settle(page, 1500);
   return true;
@@ -94,6 +96,8 @@ const adminPage = async (overview) => {
     await legacy.click().catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await settle(page, 1500);
     const lg = await adminState(); await record('admin-legacy', 'Legacy-paneel (Pelicans eigen pagina)');
     say('admin-legacy', !!lg && !lg.shell && !lg.side && !lg.header && !/simplify_legacy/.test(page.url()), lg);
+    // The way back is the first item of Pelican's sidebar; on a small window that sidebar opens from its button first.
+    if (!(await page.locator('a[href*="simplify_legacy=0"] >> visible=true').count())) { await page.evaluate(() => window.Alpine?.store('sidebar')?.open?.()).catch(() => {}); await sleep(600); }
     const back = page.locator('a[href*="simplify_legacy=0"] >> visible=true').first();
     if (await back.count()) {
       await back.click().catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await settle(page, 1200);
@@ -101,7 +105,8 @@ const adminPage = async (overview) => {
       say('admin-legacy-back', !!again && again.shell && again.side, again);
     } else say('admin-legacy-back', false, { note: 'no Back to Simplify in the legacy panel' });
   } else say('admin-legacy', false, { note: 'no Legacy panel link in the account menu' });
-  await goto(overview, 600);
+  // Always end inside Simplify, so a failed step above does not leave the rest of the round in the legacy panel.
+  await goto(overview + (overview.includes('?') ? '&' : '?') + 'simplify_legacy=0', 600);
 };
 // The Filter (V52, Khion): one chip with Show, Game, Node and Group in one menu (a sheet on a phone); Group only when the
 // account has server groups. A choice narrows the servers and names itself on the chip; All takes it back.

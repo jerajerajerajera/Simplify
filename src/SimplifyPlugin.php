@@ -67,7 +67,9 @@ final class SimplifyPlugin implements Plugin
             }
         }
         if (in_array($panel->getId(), ['app', 'admin'], true)) {
-            $panel->renderHook(PanelsRenderHook::GLOBAL_SEARCH_AFTER, fn () => self::returnButton());
+            // Pelican's panels have no top bar (search and user menu sit in the sidebar), so the way back to Simplify
+            // is the first item of the sidebar.
+            $panel->renderHook(PanelsRenderHook::SIDEBAR_NAV_START, fn () => self::returnButton());
         }
         if ($panel->getId() === 'server') {
             // Simplify's header, server card and menu around every page of a server.
