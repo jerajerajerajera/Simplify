@@ -313,7 +313,8 @@ async function round(theme) {
     const go = async (locator, id, title) => {
       await markAdminSide(); await locator.click().catch(() => {}); await settle(page, 1800);
       const st = await adminState(); await record(id, title); visited.push(id);
-      if (!st || !st.kept || !st.shell || st.frames) lost.push({ id, ...st });
+      // Simplify's own settings still show Pelican's settings tabs in frames; the settings tabs (V52 part C) take them out.
+      if (!st || !st.kept || !st.shell || (st.frames && st.path !== '/admin/simplify')) lost.push({ id, ...st });
     };
     const groups = page.locator('.ps-admin-side .ps-host-group'); const gn = await groups.count();
     for (let i = 0; i < gn; i++) {
