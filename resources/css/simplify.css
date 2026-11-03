@@ -1155,6 +1155,15 @@ html:not(.ps-frame) .s-people[style*="--s-fit"] > .s-card {
   scrollbar-width: thin;
 }
 
+/* On a computer the row breaks onto a second line instead of scrolling sideways, also in the legacy panel with many
+   add-ons (K-B31). A phone keeps the one row that scrolls. */
+@media (min-width: 640px) {
+  .s-settings-nav {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+}
+
 .s-settings-nav-item {
   display: inline-flex;
   flex: none;
