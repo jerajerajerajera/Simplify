@@ -10,7 +10,7 @@ return [
     'page_title' => 'Setări Simplify',
     'pelican_frame_title' => 'Setări Pelican: :label',
     'pelican_frame' => 'Setările :label proprii ale Pelican.',
-    'version_line' => 'Versiunea :version · Modificările se aplică tuturor celor de pe acest panou după salvare.',
+    'save_note' => 'Modificările se aplică tuturor celor de pe acest panou după salvare.',
     'profile' => [
         'support' => 'Link de asistență',
         'support_help' => 'O pagină de ajutor sau o adresă mailto:, afișată în meniul de cont al tuturor. Gol nu afișează nimic.',

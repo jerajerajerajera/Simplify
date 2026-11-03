@@ -10,7 +10,7 @@ return [
     'page_title' => 'Simplify подешавања',
     'pelican_frame_title' => 'Pelican подешавања: :label',
     'pelican_frame' => 'Сопствена :label подешавања Pelican-а.',
-    'version_line' => 'Верзија :version · Промене важе за све на овом панелу после чувања.',
+    'save_note' => 'Промене важе за све на овом панелу после чувања.',
     'profile' => [
         'support' => 'Линк за подршку',
         'support_help' => 'Страница помоћи или mailto: адреса, приказана у менију налога свих корисника. Празно не приказује ништа.',

@@ -306,6 +306,11 @@ step('settings page renders with its one row of tabs, Pelican as a link without 
             throw new RuntimeException("the settings' row of tabs has no $key: ".$nav->toJson());
         }
     }
+    // No version line in the head (it is in the panel's footer) and Run setup again only on General, as a button in
+    // its list (Jeroen 3-11); what Save does stays, small, under the settings.
+    if (str_contains($html, 'fi-header-subheading') || ! str_contains($html, 's-settings-setup') || ! str_contains($html, 's-settings-note')) {
+        throw new RuntimeException('the settings head still has the version line or Run setup again');
+    }
     // Appearance keeps colour, name and logo; the name's style designer is the setup's only.
     if (str_contains($html, 'class="s-presets"') || ! str_contains($html, 'brand_name')) {
         throw new RuntimeException('Appearance on the settings page is not the short one');

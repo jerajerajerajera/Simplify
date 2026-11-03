@@ -10,7 +10,7 @@ return [
     'page_title' => 'Simplify nustatymai',
     'pelican_frame_title' => 'Pelican nustatymai: :label',
     'pelican_frame' => 'Paties Pelican nustatymai: :label.',
-    'version_line' => 'Versija :version · Išsaugoti pakeitimai galioja visiems šio skydelio naudotojams.',
+    'save_note' => 'Išsaugoti pakeitimai galioja visiems šio skydelio naudotojams.',
     'profile' => [
         'support' => 'Pagalbos nuoroda',
         'support_help' => 'Pagalbos puslapis arba mailto: adresas, rodomas visų paskyros meniu. Tuščias nieko nerodo.',

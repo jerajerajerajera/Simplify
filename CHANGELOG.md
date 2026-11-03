@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Simplify's settings: the head no longer repeats the version (it is in the panel's footer). What Save does is a small line under the settings, and Run setup again is a button on General only, not in the head of every tab.
 - Phones: with the admin menu open, every tap does what it says again. Admin keeps the menu, Servers opens the overview and the account button opens the account menu; before, each of them showed the first admin page (Servers › Servers). The menu no longer slides along when you drag down on it.
 - Customize Simplify is wider and shows what is in a section straight away: the sections (Theme, Server groups, Layout, Cards, Grouping, More) sit on the left and the chosen one's settings on the right, with no folding open. Server groups lists your groups with their colour and number of servers, and Edit groups opens their window. On a phone the sections are a row of chips at the top of the sheet. On a server's page the sections are Theme and Server pages; the Admin page and the account pages keep the narrow window with the theme only. It opens on the section you had last.
 - Phones: the overview ends with Pelican's copyright line again, under the servers and above the bottom bar.

@@ -10,7 +10,7 @@ return [
     'page_title' => 'إعدادات Simplify',
     'pelican_frame_title' => 'إعدادات Pelican: :label',
     'pelican_frame' => 'إعدادات :label الخاصة بـ Pelican.',
-    'version_line' => 'الإصدار :version · تُطبَّق التغييرات على كل من في هذه اللوحة بعد الحفظ.',
+    'save_note' => 'تُطبَّق التغييرات على كل من في هذه اللوحة بعد الحفظ.',
     'profile' => [
         'support' => 'رابط الدعم',
         'support_help' => 'صفحة مساعدة أو عنوان mailto:، يظهر في قائمة الحساب لدى الجميع. الفراغ لا يُظهر شيئًا.',

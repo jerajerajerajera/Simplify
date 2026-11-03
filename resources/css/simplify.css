@@ -1564,6 +1564,14 @@ html:not(.ps-frame) .s-people[style*="--s-fit"] > .s-card {
   }
 }
 
+/* Under the settings, small and quiet: what Save does. */
+.s-settings-note {
+  margin: var(--s-space-2) 0 0;
+  color: var(--s-muted);
+  font-size: 12px;
+  text-align: end;
+}
+
 /* The form's own Save stays for Enter and host mode's title bar; on the page it is in the head (Settings.php). */
 .s-settings > .s-bar {
   display: none;
