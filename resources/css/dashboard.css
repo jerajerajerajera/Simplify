@@ -1369,8 +1369,8 @@ html.ps-console-big body:has(.ps-server-top) .fi-main-ctn > .fi-main { grid-colu
 /* Pelican's console, dressed as Simplify's live console: a title row (server.js puts it in), the output and the
    command bar in one dark card. Pelican's numbers and charts are replaced by the cards above. */
 body:has(.ps-server-top.is-console) :is(.fi-header, .fi-wi-stats-overview, .fi-wi-chart) { display: none !important; }
-/* Pelican's charts load late: until then an empty card stands in for each, so they go by component name. */
-body:has(.ps-server-top.is-console) :is([wire\:name$="\\ServerCpuChart"], [wire\:name$="\\ServerMemoryChart"], [wire\:name$="\\ServerNetworkChart"]) { display: none !important; }
+/* Pelican's numbers and charts load late: until then an empty card stands in for each, so they go by component name. */
+body:has(.ps-server-top.is-console) :is([wire\:name$="\\ServerOverview"], [wire\:name$="\\ServerCpuChart"], [wire\:name$="\\ServerMemoryChart"], [wire\:name$="\\ServerNetworkChart"]) { display: none !important; }
 #terminal :is(.xterm-viewport, .xterm-screen) { background: transparent !important; }
 :has(> #terminal) { overflow: hidden; border: 1px solid var(--ps-console-line); border-radius: var(--ps-radius-lg); background: #131a20 !important; color: var(--ps-console-ink); box-shadow: none !important; }
 /* Pelican's own terminal colour for the whole card, so the output has no box of its own. The room around the output is

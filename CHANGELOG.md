@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Computers: on an Admin page the page's own buttons, such as Run setup again and Save on Settings › General, sit in the middle of the breadcrumb's row again, with room under the header, instead of at the top of that row.
+- The console page loads without a jump: the empty card that stood above the console for a moment while Pelican's numbers loaded no longer shows, so the console stays where it is.
 - Phones: the window with all notifications closes with a pull down, like the menus: from its top bar, or from the list when it is scrolled to the top. Popups and menus follow your thumb while you drag them, spring back after a short pull, slide away after a longer one, and stay put on a sideways swipe. Closing them never reloads the page.
 
 ## 2.0.0-beta.3
