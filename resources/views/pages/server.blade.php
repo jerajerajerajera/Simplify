@@ -185,23 +185,25 @@
             @endforeach
         </details>
     </nav>
-    {{-- Phones: four tabs that always fit. The first three sections, the rest and Advanced under More. --}}
-    @php($phoneMore = array_slice($menu['main'], 3))
-    <nav class="ps-phone-sections" aria-label="{{ $u('server_sections') }}" x-data="{ more: false }" x-on:click.outside="more=false" x-on:keydown.escape.stop="more=false" wire:ignore>
-        @foreach (array_slice($menu['main'], 0, 3) as $item)
-            <a class="ps-phone-section" href="{{ $item['url'] }}" @if ($navigate && ! $item['new_tab']) wire:navigate @endif data-ps-match="{{ implode(' ', array_map(fn ($url) => parse_url($url, PHP_URL_PATH), $item['match'])) }}" @if ($item['active']) aria-current="page" @endif>@if ($item['icon'])<x-filament::icon class="ps-phone-section-icon" :icon="$item['icon']" />@endif<span>{{ $item['label'] }}</span></a>
-        @endforeach
+    {{-- Phones: the same bottom bar everywhere (V55): Servers, New and Admin for who may use them, and Sections, which
+         opens every section of this server as one sheet (V56), Console first. --}}
+    <nav class="ps-phone-sections" aria-label="{{ $u('phone_navigation') }}" x-data="{ more: false }" x-on:click.outside="more=false" x-on:keydown.escape.stop="more=false" wire:ignore>
+        <a class="ps-phone-section" href="{{ \Simplify\Core\Filament\App\Pages\Overview::getUrl(panel: 'app') }}"><svg class="ps-phone-section-icon" aria-hidden="true"><use href="#ps-grid"/></svg><span>{{ $u('servers') }}</span></a>
+        <button type="button" class="ps-phone-section" x-show="createButtons().length" x-cloak x-on:click="more=false; openCreate(null, createButtons()[0]) || (location.href = createButtons()[0].url)"><svg class="ps-phone-section-icon" aria-hidden="true"><use href="#ps-plus"/></svg><span>{{ $u('new') }}</span></button>
+        <a class="ps-phone-section" x-show="boot.admin_url" x-cloak :href="boot.admin_url"><svg class="ps-phone-section-icon" aria-hidden="true"><use href="#ps-shield"/></svg><span>{{ $u('admin') }}</span></a>
         <div class="ps-phone-more">
-            <button type="button" class="ps-phone-section" aria-controls="ps-phone-more-menu" :aria-expanded="more" @if ($onAdvanced || in_array(true, array_column($phoneMore, 'active'), true)) aria-current="page" @endif x-on:click="more=!more"><svg class="ps-phone-section-icon" aria-hidden="true"><use href="#ps-dots"/></svg><span>{{ $u('more') }}</span></button>
+            <button type="button" class="ps-phone-section" aria-controls="ps-phone-more-menu" :aria-expanded="more" aria-current="page" x-on:click="more=!more"><svg class="ps-phone-section-icon" aria-hidden="true"><use href="#ps-list"/></svg><span>{{ $u('sections') }}</span></button>
             <div id="ps-phone-more-menu" class="ps-dropdown is-end ps-phone-more-menu" x-show="more" x-cloak x-transition.opacity>
-                @foreach ($phoneMore as $item)
-                    <a class="ps-menu-item" href="{{ $item['url'] }}" @if ($navigate && ! $item['new_tab']) wire:navigate @endif data-ps-match="{{ implode(' ', array_map(fn ($url) => parse_url($url, PHP_URL_PATH), $item['match'])) }}" @if ($item['active']) aria-current="page" @endif>@if ($item['icon'])<x-filament::icon :icon="$item['icon']" />@endif<span>{{ $item['label'] }}</span></a>
+                <strong class="ps-dropdown-title" x-text="server.name"></strong>
+                @foreach ($menu['main'] as $item)
+                    <a class="ps-menu-item" href="{{ $item['url'] }}" @if ($navigate && ! $item['new_tab']) wire:navigate @endif data-ps-match="{{ implode(' ', array_map(fn ($url) => parse_url($url, PHP_URL_PATH), $item['match'])) }}" @if ($item['active']) aria-current="page" @endif @if ($item['new_tab']) target="_blank" rel="noopener" @endif x-on:click="more=false">@if ($item['icon'])<x-filament::icon :icon="$item['icon']" />@endif<span>{{ $item['label'] }}</span></a>
                 @endforeach
-                @if ($phoneMore !== [])<hr>@endif
-                <span class="ps-label ps-menu-heading">{{ $u('advanced') }}</span>
-                @foreach ($menu['advanced'] as $item)
-                    <a class="ps-menu-item" href="{{ $item['url'] }}" @if ($navigate && ! $item['new_tab']) wire:navigate @endif data-ps-match="{{ implode(' ', array_map(fn ($url) => parse_url($url, PHP_URL_PATH), $item['match'])) }}" @if ($item['active']) aria-current="page" @endif>@if ($item['icon'])<x-filament::icon :icon="$item['icon']" />@endif<span>{{ $item['label'] }}</span></a>
-                @endforeach
+                @if ($menu['advanced'] !== [])
+                    <span class="ps-label ps-menu-heading">{{ $u('advanced') }}</span>
+                    @foreach ($menu['advanced'] as $item)
+                        <a class="ps-menu-item" href="{{ $item['url'] }}" @if ($navigate && ! $item['new_tab']) wire:navigate @endif data-ps-match="{{ implode(' ', array_map(fn ($url) => parse_url($url, PHP_URL_PATH), $item['match'])) }}" @if ($item['active']) aria-current="page" @endif @if ($item['new_tab']) target="_blank" rel="noopener" @endif x-on:click="more=false">@if ($item['icon'])<x-filament::icon :icon="$item['icon']" />@endif<span>{{ $item['label'] }}</span></a>
+                    @endforeach
+                @endif
             </div>
         </div>
     </nav>

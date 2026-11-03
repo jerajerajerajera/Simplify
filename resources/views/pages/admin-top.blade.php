@@ -2,6 +2,7 @@
 <div class="ps server-active host-mode ps-admin-top" data-simplify-root x-cloak wire:ignore.self
      x-data="simplifyAdminTop($wire, @js($this->initial()))"
      x-on:resize.window.debounce.150ms="applyScale()"
+     x-on:simplify:create.window="createButtons().length && (openCreate(null, createButtons()[0]) || (location.href = createButtons()[0].url))"
      :class="{'dark': themeDark}"
      :data-season="seasonKeys()">
     @include('simplify::dashboard.assets')

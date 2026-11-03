@@ -1,9 +1,5 @@
-{{-- Personal appearance preferences. --}}
-<div class="ps-overview-appearance ps-nav-view" x-show="!$el.closest('.ps-admin-top')" x-on:click.outside="appearanceMenu=false" x-on:keydown.escape.stop="appearanceMenu=false; $refs.overviewAppearance.focus()">
-    <button type="button" x-ref="overviewAppearance" class="ps-btn is-icon is-subtle" data-tip="{{ $u('customize_overview') }}" aria-label="{{ $u('customize_overview') }}" aria-controls="ps-overview-appearance-menu" :aria-expanded="appearanceMenu"
-            x-on:click="appearanceMenu=!appearanceMenu; groupsMenu=false; accountMenu=false; notifyMenu=false">
-        <svg aria-hidden="true"><use href="#ps-wand"/></svg><span class="ps-mobile-label">{{ $u('customize_overview') }}</span>
-    </button>
+{{-- Personal appearance preferences, opened from Customize in the account menu. --}}
+<div class="ps-overview-appearance ps-nav-view" x-show="!$el.closest('.ps-admin-top')" x-on:click.outside="appearanceMenu=false" x-on:keydown.escape.stop="appearanceMenu=false; $root.querySelector('.ps-account-button')?.focus()">
     <div id="ps-overview-appearance-menu" class="ps-dropdown is-end ps-overview-appearance-menu" x-show="appearanceMenu" x-cloak x-transition.opacity>
         <strong class="ps-dropdown-title">{{ $u('customize_overview') }}</strong>
         <p class="ps-dropdown-hint">{{ $u('only_for_you_on_this_device') }}</p>

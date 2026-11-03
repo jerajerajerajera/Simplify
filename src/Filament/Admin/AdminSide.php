@@ -7,8 +7,11 @@ namespace Simplify\Core\Filament\Admin;
 use Filament\Facades\Filament;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
+use Simplify\Core\Addons\Addon;
+use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Health\HostHealth;
+use Simplify\Core\Overview\AdminMenu;
 use Simplify\Core\Overview\AdminTree;
 use Simplify\Core\Overview\Listing;
 
@@ -49,6 +52,8 @@ final class AdminSide extends Component
             'health' => $user->isRootAdmin() ? HostHealth::cached() : [],
             'checks' => HostHealth::checks(),
             'overviewUrl' => Overview::getUrl(panel: 'app'),
+            // New opens Create server in Simplify's popup (AdminTop listens for simplify:create).
+            'create' => AdminMenu::createServer() !== [] || app(AddonRegistry::class)->collect(fn (Addon $addon) => $addon->dashboardActions()) !== [],
             'adminUrl' => $sections[0]['pages'][0]['url'] ?? Filament::getPanel('admin')->getUrl(),
         ]);
     }

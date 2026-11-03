@@ -83,11 +83,14 @@
       overviewRefreshing: false,
       gameFilter: 'all',
       nodeFilter: 'all',
+      groupFilter: 'all',
+      filterMenu: false,
+      // The Filter's words, from the page (dashboard/overview.blade.php).
+      filterText: {},
       nodeSearch: '',
       overviewView: typeof innerWidth !== 'undefined' && innerWidth <= 600 ? 'list' : 'grid',
       accountMenu: false,
       createMenu: false,
-      customizeMenu: false,
       createFrame: null,
       navMenu: false,
       SERVER_ORDERS,
@@ -840,7 +843,37 @@
       },
       visibleServers() {
         const scope = this.ownerFilterShown() ? this.overviewPreferences.serverScope : 'all';
-        return (this.boot.servers || []).filter((s) => (this.gameFilter === 'all' || this.gameKey(s) === this.gameFilter) && (this.nodeFilter === 'all' || Number(s.node_id) === this.nodeFilter) && (scope === 'all' || !!s.mine === (scope === 'mine')));
+        const group = this.groupFilter === 'all' ? null : this.overviewGroups.find((g) => g.id === this.groupFilter);
+        return (this.boot.servers || []).filter((s) => (this.gameFilter === 'all' || this.gameKey(s) === this.gameFilter) && (this.nodeFilter === 'all' || Number(s.node_id) === this.nodeFilter) && (scope === 'all' || !!s.mine === (scope === 'mine')) && (!group || group.servers.includes(s.uuid)));
+      },
+      /** The Filter's sections (V52): Show (mine or others), Game, Node and Group, each only when it has a choice. */
+      filterSections() {
+        const sections = [], text = this.filterText;
+        if (this.ownerFilterShown()) sections.push({ key: 'show', label: text.filter_show, options: [{ value: 'all', label: text.all_servers }, { value: 'mine', label: text.my_servers }, { value: 'others', label: text.others }] });
+        const games = this.gameOptions();
+        if (games.length > 1) sections.push({ key: 'game', label: text.game, options: [{ value: 'all', label: text.all_games }, ...games.map((g) => ({ value: g.key, label: g.label }))] });
+        const nodes = this.nodeOptions();
+        if (nodes.length > 1) sections.push({ key: 'node', label: text.filter_node, options: [{ value: 'all', label: text.all_nodes }, ...nodes.map((n) => ({ value: n.id, label: n.name }))] });
+        if (this.overviewGroups.length) sections.push({ key: 'group', label: text.filter_group, options: [{ value: 'all', label: text.all_groups }, ...this.overviewGroups.map((g) => ({ value: g.id, label: g.name }))] });
+        return sections;
+      },
+      filterValue(key) {
+        return { show: this.ownerFilterShown() ? this.overviewPreferences.serverScope : 'all', game: this.gameFilter, node: this.nodeFilter, group: this.groupFilter }[key];
+      },
+      setFilter(key, value) {
+        if (key === 'show') this.setOverviewPreference('serverScope', value);
+        else if (key === 'game') this.setGameFilter(value);
+        else if (key === 'node') this.nodeFilter = value;
+        else if (key === 'group') this.groupFilter = value === 'all' || this.overviewGroups.some((g) => g.id === value) ? value : 'all';
+        this.filterMenu = false;
+      },
+      filterActive() {
+        return this.filterSections().some((section) => this.filterValue(section.key) !== 'all');
+      },
+      /** The button names what is chosen ("Minecraft · Beelink"), or All servers. */
+      filterLabel() {
+        const chosen = this.filterSections().map((section) => section.options.find((o) => o.value !== 'all' && o.value === this.filterValue(section.key))?.label).filter(Boolean);
+        return chosen.length ? chosen.join(' · ') : this.filterText.all_servers;
       },
       /** My servers / Others only means something when the overview holds both (administrators, or everyone in friends mode). */
       ownerFilterShown() {

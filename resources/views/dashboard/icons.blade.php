@@ -40,6 +40,7 @@
         <symbol id="ps-disk" viewBox="0 0 24 24"><path d="M12 6m-8 0a8 3 0 1 0 16 0a8 3 0 1 0 -16 0"/> <path d="M4 6v6a8 3 0 0 0 16 0v-6"/> <path d="M4 12v6a8 3 0 0 0 16 0v-6"/></symbol>
         <symbol id="ps-sun" viewBox="0 0 24 24"><path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/> <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"/></symbol>
         <symbol id="ps-moon" viewBox="0 0 24 24"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"/></symbol>
+        <symbol id="ps-filter" viewBox="0 0 24 24"><path d="M4 4h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414v7l-6 2v-8.5l-4.48 -4.928a2 2 0 0 1 -.52 -1.345v-2.227z"/></symbol>
         <symbol id="ps-grid" viewBox="0 0 24 24"><path d="M4 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"/> <path d="M14 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"/> <path d="M4 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"/> <path d="M14 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"/></symbol>
         <symbol id="ps-grid-small" viewBox="0 0 24 24"><path d="M3 6h18"/> <path d="M3 12h18"/> <path d="M3 18h18"/> <path d="M6 3v18"/> <path d="M12 3v18"/> <path d="M18 3v18"/></symbol>
         <symbol id="ps-list" viewBox="0 0 24 24"><path d="M9 6l11 0"/> <path d="M9 12l11 0"/> <path d="M9 18l11 0"/> <path d="M5 6l0 .01"/> <path d="M5 12l0 .01"/> <path d="M5 18l0 .01"/></symbol>

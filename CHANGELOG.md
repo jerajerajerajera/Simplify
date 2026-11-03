@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- One Filter on the overview instead of the rows of chips: Show (all, mine, others), Game, Node and, when you have server groups, Group, in one menu (a sheet on a phone). The chip names what is chosen.
+- Phones: one bottom bar everywhere. Servers, New and Admin (the last two for who may use them); on a server a fourth tab, Sections, opens every section as one sheet with Console first, and on the Admin page Menu opens the admin pages. Customize is in the account menu on every screen, with the server groups inside it.
 - The Admin page, for every admin. The shield opens Pelican's admin pages inside Simplify: Simplify's header on top, the admin pages in a menu on the left (or the servers per node, with node health at the bottom), and the page itself in a card next to it. The menu stays where it is while its links change the page. On a phone the bottom bar has Servers, Admin and Menu, and Menu opens the admin pages as a sheet. The old host mode, its switch in the account menu and the shield's dropdown are gone; old links to an admin page inside the overview open that page. Admin → Servers → Create still opens the Create server popup.
 - The account pages of add-ons (such as Server Maker's Steam account) open on Pelican's account panel inside Simplify, without a frame. Customize is in the account menu on the overview.
 - The legacy panel in the account menu shows Pelican's pages as Pelican draws them until you press Back to Simplify, on admin and account pages alike.

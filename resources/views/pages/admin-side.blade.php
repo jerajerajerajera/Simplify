@@ -116,6 +116,9 @@
     {{-- Phones: the bottom bar, as on the overview; Menu opens the Admin menu as a sheet. --}}
     <nav class="ps-tabbar" aria-label="{{ $u('phone_navigation') }}">
         <a class="ps-tab" href="{{ $overviewUrl }}"><svg aria-hidden="true"><use href="#ps-grid"/></svg><span>{{ $u('servers') }}</span></a>
+        @if ($create)
+            <button type="button" class="ps-tab" x-on:click="open = false; $dispatch('simplify:create')"><span class="ps-tab-plus"><svg aria-hidden="true"><use href="#ps-plus"/></svg></span><span>{{ $u('new') }}</span></button>
+        @endif
         <a class="ps-tab is-active" href="{{ $adminUrl }}" aria-current="page"><svg aria-hidden="true"><use href="#ps-shield"/></svg><span>{{ $u('admin') }}</span></a>
         <button type="button" class="ps-tab" aria-controls="ps-admin-side" :aria-expanded="open" x-on:click.stop="open = !open"><svg aria-hidden="true"><use href="#ps-list"/></svg><span>{{ $u('menu') }}</span></button>
     </nav>

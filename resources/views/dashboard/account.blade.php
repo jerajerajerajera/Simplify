@@ -19,8 +19,8 @@
                     <svg aria-hidden="true"><use :href="t==='light' ? '#ps-sun' : t==='dark' ? '#ps-moon' : '#ps-monitor'"/></svg>
                 </button>
             </template>
-            {{-- Customize: the overview's look and its server groups (on the overview). --}}
-            <button type="button" class="ps-btn is-icon" x-show="!server && !$el.closest('.ps-admin-top')" x-on:click.stop="accountMenu=false; appearanceMenu=true" data-tip="{{ $u('customize') }}" aria-label="{{ $u('customize') }}"><svg aria-hidden="true"><use href="#ps-wand"/></svg></button>
+            {{-- Customize: the look of the overview and of the server pages, and the server groups. --}}
+            <button type="button" class="ps-btn is-icon" x-show="!$el.closest('.ps-admin-top')" x-on:click.stop="accountMenu=false; appearanceMenu=true" data-tip="{{ $u('customize') }}" aria-label="{{ $u('customize') }}"><svg aria-hidden="true"><use href="#ps-wand"/></svg></button>
             {{-- Add-on pages (such as Server Maker's Steam account): Pelican's account panel inside Simplify (AdminTop). --}}
             <template x-for="page in boot.account_pages || []" :key="page.key">
                 <a class="ps-btn is-icon" :href="page.url" wire:navigate :data-tip="page.label" :aria-label="page.label" x-html="page.icon"></a>

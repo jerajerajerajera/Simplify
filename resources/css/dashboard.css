@@ -124,11 +124,20 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-customer-links .ps-btn svg { width: 14px; height: 14px; opacity: .7; }
 .ps-overview-toolbar { display: flex; align-items: flex-start; gap: 8px 16px; margin: 0 0 12px; }
 .ps-overview-filters { display: flex; flex: 1 1 auto; flex-wrap: wrap; align-items: center; gap: 8px 16px; min-width: 0; }
-.ps-game-filters { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 6px; min-width: 0; }
-.ps-node-filters { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 6px; min-width: 0; }
-.ps-node-filters .ps-chip svg { width: 13px; height: 13px; }
-.ps-owner-filters { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; min-width: 0; padding-inline-start: 10px; border-inline-start: 1px solid var(--ps-line); }
-.ps-owner-filters .ps-chip svg { width: 13px; height: 13px; }
+/* The Filter (V52): one chip naming what is chosen, a menu with Show, Game, Node and Group. */
+.ps-filter { position: relative; flex: 0 1 auto; }
+.ps-filter-button { gap: 7px; max-width: min(420px, 100%); }
+.ps-filter-button > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ps-filter-button svg { flex: none; width: 14px; height: 14px; }
+.ps-filter-button.is-on { border-color: var(--ps-accent); color: var(--ps-ink); }
+.ps-filter-button .ps-filter-chevron { transform: rotate(90deg); }
+.ps-filter-menu { inset-inline-start: 0; top: calc(100% + 8px); width: min(300px, calc(100vw - 24px)); max-height: min(66.667dvh, calc(100dvh - 160px)); overflow-y: auto; }
+.ps-filter-section + .ps-filter-section { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--ps-line); }
+.ps-filter-section > .ps-label { display: block; margin: 2px 10px 4px; }
+.ps-filter-section > .ps-node-search { width: calc(100% - 8px); margin: 0 4px 4px; }
+.ps-filter-check { flex: none; width: 16px; height: 16px; margin-inline-start: auto; color: var(--ps-accent); visibility: hidden; }
+.ps-menu-item[aria-checked="true"] { background: var(--ps-raised); font-weight: 650; }
+.ps-menu-item[aria-checked="true"] .ps-filter-check { visibility: visible; }
 .ps-node-search { width: 170px; min-height: var(--ps-h-sm); padding: 4px 10px; font-size: 13px; }
 /* Node groups: a heading row spanning the grid (or list) before each node's servers. */
 .ps-server-entry.is-node-heading { grid-column: 1 / -1; display: flex; align-items: end; min-height: 0; }
@@ -1014,10 +1023,8 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   /* One swipeable filter row; creating moves to the tab bar. */
   .ps .ps-overview-toolbar { flex-wrap: nowrap; justify-content: flex-start; gap: 8px; margin: 0 -14px 12px; padding: 2px 14px 4px; overflow-x: auto; scrollbar-width: none; overscroll-behavior-x: contain; }
   .ps .ps-overview-toolbar::-webkit-scrollbar { display: none; }
-  .ps .ps-overview-toolbar > .ps-create-buttons, .ps .ps-top-overview .ps-create-button, .ps .ps-node-search { display: none !important; }
-  .ps .ps-overview-filters { display: contents; }
-  .ps .ps-overview-filters > :is(.ps-game-filters, .ps-node-filters, .ps-owner-filters) { flex: none; flex-wrap: nowrap; margin: 0; order: 0; }
-  .ps .ps-overview-filters > :is(.ps-node-filters, .ps-owner-filters) { padding-inline-start: 8px; border-inline-start: 1px solid var(--ps-line); }
+  .ps .ps-overview-toolbar > .ps-create-buttons, .ps .ps-top-overview .ps-create-button { display: none !important; }
+  .ps .ps-filter { flex: none; position: static; }
   .ps .ps-overview-toolbar .ps-chip { min-height: 40px; padding-inline: 14px; white-space: nowrap; }
 
   /* Host health: one summary line above the servers; tapping still opens the node details. */
@@ -1505,7 +1512,6 @@ body:has(.ps-install:not([style*="none"], [x-cloak])) .fi-main .fi-page .fi-call
 
   /* Bottom bars: the overview's has as many tabs as it shows. */
   .ps-tabbar { grid-template-columns: none; grid-auto-columns: minmax(0, 1fr); grid-auto-flow: column; }
-  .ps-tab-customize { display: grid; }
   .ps .ps-tab-create-menu, .ps .ps-phone-more > .ps-phone-more-menu { width: auto; transform: none; }
 
   /* Host mode: the page button sits at the bottom, under the thumb, and opens the menu sheet from there. */
