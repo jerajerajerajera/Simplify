@@ -776,28 +776,26 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 .ps-host { --ps-host-row: 48px; }
 .ps-host-side-scroll { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 8px; }
 
-/* The admin tree: a section, with its pages hung underneath on ↳ lines. */
+/* The admin tree: a section, with its pages underneath in calm, regular type (Jeroen 3-11: too dense with bold
+   pages and tree lines). What does not come with Pelican (Simplify add-ons, Pelican plugins) stands apart below. */
 .ps-host-group + .ps-host-group { margin-top: 2px; }
+.ps-host-group.is-apart { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--ps-line); }
 .ps-host-group-head, .ps-host-leaf { display: flex; align-items: center; gap: 9px; width: 100%; min-width: 0; border: 0; border-radius: var(--ps-radius-sm); background: none; color: var(--ps-ink); text-align: start; cursor: pointer; }
-.ps-host-group-head { min-height: 32px; padding: 0 8px; font: 600 13px/1.2 var(--ps-font); }
-.ps-host-leaf { min-height: 28px; padding: 0 9px; font: 550 12.5px/1.2 var(--ps-font); }
+.ps-host-group-head { min-height: 36px; padding: 0 10px; font: 500 14px/1.2 var(--ps-font); }
+.ps-host-leaf { min-height: 32px; padding: 0 10px; color: var(--ps-muted); font: 400 13.5px/1.25 var(--ps-font); }
 .ps-host-group-head svg { width: 17px; height: 17px; color: var(--ps-tone); }
 .ps-host-group-head .ps-host-group-chevron { width: 14px; height: 14px; margin-inline-start: auto; color: var(--ps-muted); fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform var(--ps-fast, .15s); }
 .ps-host-group.is-open .ps-host-group-chevron { transform: rotate(90deg); }
 .ps-host-expand { display: block; width: fit-content; margin: 0 4px 4px auto; padding: 2px 8px; border: 0; border-radius: var(--ps-radius-sm); background: none; color: var(--ps-muted); font: 600 11.5px/1.6 var(--ps-font); cursor: pointer; }
 .ps-host-expand:hover, .ps-host-expand:focus-visible { background: var(--ps-raised); color: var(--ps-ink); }
-.ps-host-leaf svg { width: 15px; height: 15px; color: var(--ps-tone); }
-.ps-host-group-head svg, .ps-host-leaf svg { flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.ps-host-group-head svg { flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .ps-host-group-head span, .ps-host-leaf span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 /* A page name too long for the menu (in some languages) wraps onto a second line instead of being cut off. */
 .ps-host-leaf { padding-block: 5px; line-height: 1.25; }
 .ps-host-leaf span { overflow: visible; white-space: normal; overflow-wrap: anywhere; }
-.ps-host-group-head:hover, .ps-host-leaf:hover { background: var(--ps-raised); }
-.ps-host-group-head[aria-current="page"], .ps-host-leaf[aria-current="page"] { background: color-mix(in srgb, var(--ps-tone) 14%, transparent); }
-.ps-host-branch { display: grid; gap: 1px; margin-inline-start: 16px; padding: 0 0 4px 16px; }
-.ps-host-leaf { position: relative; overflow: visible; }
-.ps-host-leaf::before { content: ""; position: absolute; top: -3px; inset-inline-start: -16px; width: 11px; height: 17px; border-bottom: 1.5px solid var(--ps-line-strong); border-inline-start: 1.5px solid var(--ps-line-strong); border-end-start-radius: 7px; }
-.ps-host-leaf:not(:last-child)::after { content: ""; position: absolute; top: 12px; bottom: -4px; inset-inline-start: -16px; border-inline-start: 1.5px solid var(--ps-line-strong); }
+.ps-host-group-head:hover, .ps-host-leaf:hover { background: var(--ps-raised); color: var(--ps-ink); }
+.ps-host-group-head[aria-current="page"], .ps-host-leaf[aria-current="page"] { background: color-mix(in srgb, var(--ps-tone) 14%, transparent); color: var(--ps-ink); }
+.ps-host-branch { display: grid; gap: 2px; margin-inline-start: 26px; padding: 2px 0 6px; }
 
 /* A status dot, as in a server's title bar. */
 .ps-host-dot { --ps-tone: var(--ps-muted); flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--ps-tone); }
@@ -859,7 +857,6 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   .ps-host-menu-close { display: inline-flex; flex: none; align-self: center; margin: 0 6px; }
   .ps-host-group-head { min-height: 42px; }
   .ps-host-leaf { min-height: 40px; }
-  .ps-host-leaf::before { top: 0; height: 21px; }
   .ps-host-frame.is-server { padding: 0; }
   .ps-host-head { padding: 0; }
   /* The menu button already names the open page: the title bar stays only as a slim row for the page's buttons. */
@@ -1280,10 +1277,7 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   .ps-admin-side .ps-host-health-bar { display: grid; }
   .ps-admin-side .ps-host-group-head { min-height: 44px; font-size: 15px; }
   .ps-admin-side .ps-host-leaf { min-height: 40px; font-size: 14px; }
-  .ps-admin-side .ps-host-leaf::before { top: 0; height: 21px; }
   .ps-admin-crumb { align-self: stretch; max-width: none; height: auto; padding: 6px 0 2px; font-size: 17px; }
-  /* The phone's header stays as it was (the bottom bar has New; Health is at the bottom of the menu). */
-  .ps-admin-top .ps-top-overview { display: none !important; }
   .ps-admin-crumb .ps-admin-crumb-home { display: none; }
   .ps-admin-crumb button { max-width: 55%; min-height: 36px; padding: 0 6px 0 2px; font-size: 16px; }
   .ps-admin-crumb button.is-last { font-size: 17px; }
