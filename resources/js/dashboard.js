@@ -24,6 +24,8 @@
   const OVERVIEW_CHOICES = { largeIcon: ['server', 'egg'], groupByNode: ['auto', 'always', 'off'], quickActions: ['off', 'on', 'hover'], columns: ['auto', '2', '3', '4', '5', '6'], cardWidth: ['narrow', 'normal', 'wide'], serverScope: ['all', 'mine', 'others'] };
   const OVERVIEW_VIEWS = ['grid', 'compact', 'list'];
   // Own server groups in the overview: at most this many groups, names at most this long.
+  // Bars on an overview card: one per refresh.
+  const CARD_BARS = 24;
   const GROUP_LIMIT = 30;
   const GROUP_NAME_LENGTH = 40;
   // Server order for the overview, and per group (Overview follows the overview's order, Manual uses the arrows).
@@ -80,6 +82,7 @@
       overviewPowerBusy: null,
       overviewNetwork: {},
       overviewHistory: {},
+      cardGlide: 1,
       overviewRefreshing: false,
       eggFilter: 'all',
       nodeFilter: 'all',
@@ -1226,50 +1229,57 @@
           const h = this.overviewHistory[s.uuid] || (this.overviewHistory[s.uuid] = []);
           h.push({ cpu: s.usage?.cpu_percent ?? null, ram: s.usage?.memory_bytes ?? null });
           this.overviewNetwork[s.uuid] = this.networkSample({ rx_bytes: s.usage?.network_rx_bytes, tx_bytes: s.usage?.network_tx_bytes }, s.usage?.network_sampled_at ?? Date.now() / 1000, this.overviewNetwork[s.uuid]);
-          if (h.length > 24) h.shift();
+          // One more than is shown: the oldest bar slides out while the newest slides in.
+          if (h.length > CARD_BARS + 1) h.shift();
         }
+        if (Object.keys(this.overviewHistory).length && globalThis.requestAnimationFrame) this.slideCards();
         for (const id of Object.keys(this.overviewHistory)) {
           if (ids.has(id)) continue;
           delete this.overviewHistory[id];
           delete this.overviewNetwork[id];
         }
       },
-      /** CPU and RAM on a card take the colour of their load (W4): calm below 60%, warning from 60%, alarm from 85%. */
+      /** The colour of a load (W4), the one rule for cards and the server page: calm below 60%, warning from 60%, alarm from 85%. */
+      loadLevel(share) {
+        return share >= 0.85 ? 'is-hot' : share >= 0.6 ? 'is-warn' : 'is-ok';
+      },
+      /** What a server may use: CPU in % (100 without a limit), memory in bytes (without a limit: its highest recent value, at least 1 GB). */
+      cardLimit(s, key) {
+        if (key === 'cpu') return s.usage?.cpu_limit > 0 ? s.usage.cpu_limit : 100;
+        return s.usage?.memory_limit_bytes > 0 ? s.usage.memory_limit_bytes : Math.max(1073741824, ...(this.overviewHistory[s.uuid] || []).map((p) => p.ram || 0));
+      },
+      /** CPU and RAM on a card: the colour of their load, on the bars only. */
       cardMetricLevel(s, key) {
         const value = key === 'cpu' ? s.usage?.cpu_percent : s.usage?.memory_bytes;
         if (typeof value !== 'number' || !Number.isFinite(value) || value < 0) return 'is-none';
-        const limit = key === 'cpu' ? (s.usage?.cpu_limit > 0 ? s.usage.cpu_limit : 100) : s.usage?.memory_limit_bytes;
-        const share = limit > 0 ? value / limit : 0;
-        return share >= 0.85 ? 'is-hot' : share >= 0.6 ? 'is-warn' : 'is-ok';
+        return key === 'ram' && !(s.usage?.memory_limit_bytes > 0) ? 'is-ok' : this.loadLevel(value / this.cardLimit(s, key));
       },
       cardRamLabel(s) {
         return this.memoryLabel({ usage: { memory_bytes: s.usage?.memory_bytes } });
       },
-      cardGraphY(s, key, value) {
-        if (typeof value !== 'number' || !Number.isFinite(value) || value < 0) return null;
-        const limit = key === 'cpu'
-          ? (s.usage?.cpu_limit > 0 ? s.usage.cpu_limit : 100)
-          : (s.usage?.memory_limit_bytes > 0 ? s.usage.memory_limit_bytes : Math.max(1073741824, ...(this.overviewHistory[s.uuid] || []).map((p) => p.ram || 0)));
-        return 26 - Math.min(1, value / limit) * 23;
-      },
-      cardGraph(s, key) {
-        const h = this.overviewHistory[s.uuid] || [];
-        let path = '', drawing = false;
+      /** One bar per refresh from 0 to the limit, as on the server page; `newest` draws only the last bar. They slide in on each refresh. */
+      cardBars(s, key, newest = false) {
+        const h = this.overviewHistory[s.uuid] || [], limit = this.cardLimit(s, key), w = 100 / CARD_BARS;
+        let d = '';
         h.forEach((p, i) => {
-          const y = this.cardGraphY(s, key, p[key]);
-          if (y === null) {
-            drawing = false;
-            return;
-          }
-          const x = 2 + ((24 - h.length + i) / 23) * 96;
-          path += (drawing ? ' L' : ' M') + x.toFixed(2) + ' ' + y.toFixed(2);
-          drawing = true;
+          const v = p[key];
+          if ((i === h.length - 1) !== newest || typeof v !== 'number' || !Number.isFinite(v) || v < 0) return;
+          const x = (CARD_BARS - h.length + i + 1 - this.cardGlide) * w, top = Math.max(1, Math.min(1, v / limit) * 25);
+          d += `M${(x + 0.6).toFixed(2)} 28V${(28 - top).toFixed(2)}h${(w - 1.2).toFixed(2)}V28z`;
         });
-        return path;
+        return d;
       },
-      cardGraphPoint(s, key) {
-        const h = this.overviewHistory[s.uuid] || [];
-        return h.length ? this.cardGraphY(s, key, h[h.length - 1][key]) : null;
+      /** After a refresh the bars move one step to the left in a second, instead of jumping. */
+      slideCards() {
+        cancelAnimationFrame(this.cardFrame);
+        if (globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return void (this.cardGlide = 1);
+        const start = performance.now();
+        const step = (now) => {
+          this.cardGlide = Math.min(1, (now - start) / 1000);
+          if (this.cardGlide < 1) this.cardFrame = requestAnimationFrame(step);
+        };
+        this.cardGlide = 0;
+        this.cardFrame = requestAnimationFrame(step);
       },
       async refreshOverview() {
         if (globalThis.document?.hidden || this.server || this.destroyed || this.overviewRefreshing) return;

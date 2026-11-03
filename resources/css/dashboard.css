@@ -220,18 +220,17 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-card-usage.single-metric { grid-template-columns: minmax(0, 1fr); }
 .ps-card-mini-metric { min-width: 0; padding: 6px; border: 1px solid var(--ps-line); border-radius: 8px; background: var(--ps-raised); }
 .ps-card-usage-label { display: flex; align-items: center; justify-content: space-between; gap: 5px; color: var(--ps-muted); font-size: 11px; }
-.ps-card-usage-label strong { font-size: inherit; line-height: 1; font-weight: 600; white-space: nowrap; }
-/* The value takes the colour of its load (W4), not the server's colour. */
-.ps-card-usage-label strong.is-ok { color: var(--ps-ok); }
-.ps-card-usage-label strong.is-warn { color: var(--ps-warn); }
-.ps-card-usage-label strong.is-hot { color: var(--ps-danger); }
-.ps-card-usage-label strong.is-none { color: var(--ps-muted); }
+.ps-card-usage-label strong { color: var(--ps-ink); font-size: inherit; line-height: 1; font-weight: 600; white-space: nowrap; }
+/* Bars from 0 to what the server may use, as on the server page; only the bars take the colour of the load (W4). */
 .ps-card-metric-name { display: flex; align-items: center; gap: 4px; line-height: 1; }
 .ps-card-metric-name svg { width: 12px; height: 12px; }
-.ps-card-graph { display: block; width: 100%; height: 46px; margin-top: 5px; overflow: visible; stroke: var(--ps-accent); stroke-width: 1.5; opacity: .7; transition: height var(--ps-slow); }
-.ps-card-graph path { fill: none; vector-effect: non-scaling-stroke; }
-.ps-card-graph circle { fill: var(--ps-accent); stroke: none; }
-.ps-card-graph .ps-card-graph-axis { stroke: var(--ps-line); stroke-width: 1; opacity: .6; }
+.ps-card-graph { display: block; width: 100%; height: 46px; margin-top: 5px; overflow: hidden; color: var(--ps-muted); fill: currentColor; transition: height var(--ps-slow); }
+.ps-card-graph path { opacity: .35; }
+.ps-card-graph path.is-now { opacity: 1; }
+.ps-card-graph.is-ok { color: var(--ps-ok); }
+.ps-card-graph.is-warn { color: var(--ps-warn); }
+.ps-card-graph.is-hot { color: var(--ps-danger); }
+.ps-card-graph .ps-card-graph-axis { fill: none; stroke: var(--ps-line); stroke-width: 1; opacity: 1; vector-effect: non-scaling-stroke; }
 .ps-card-bottom { display: flex; flex: none; align-self: stretch; align-items: center; justify-content: space-between; margin-top: 6px; padding-top: 11px; border-top: 1px solid var(--ps-line); color: var(--ps-accent); font-size: 15px; font-weight: 650; }
 .ps-server-grid.no-metrics .ps-card-bottom { margin-top: auto; }
 .ps-card-bottom svg { flex: none; width: 17px; height: 17px; }
@@ -1080,8 +1079,10 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   .ps .ps-server-grid.is-list .ps-card-badges { position: static; grid-column: 2; grid-row: 2; flex-direction: row; justify-content: flex-start; gap: 6px; transform: none; }
   .ps .ps-card-badges > .ps-badge:nth-of-type(n+3), .ps .ps-card-extras { display: none !important; }
   .ps .ps-server-grid.is-list .ps-card-usage { grid-column: 2; grid-row: 3; display: flex; justify-self: start; gap: 14px; width: auto; max-width: 100%; margin: 2px 0 0; }
-  .ps .ps-server-grid.is-list .ps-card-mini-metric { padding: 0; border: 0; background: none; }
-  .ps .ps-server-grid.is-list .ps-card-graph { display: none; }
+  .ps .ps-server-grid.is-list .ps-card-mini-metric { display: flex; align-items: center; gap: 6px; padding: 0; border: 0; background: none; }
+  /* A small bar chart behind each number; the icon names it, so the words CPU and RAM make room. */
+  .ps .ps-server-grid.is-list .ps-card-graph { flex: none; width: 30px; height: 14px; margin: 0; }
+  .ps .ps-server-grid.is-list .ps-card-metric-name > span { display: none; }
   .ps .ps-server-grid.is-list .ps-card-usage-label { gap: 6px; font-size: 12px; }
   .ps .ps-server-grid.is-list .ps-card-usage-label svg { width: 14px; height: 14px; }
   .ps .ps-server-grid.is-list .ps-card-footer { display: none; }

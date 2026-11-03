@@ -84,12 +84,12 @@
                                         <div class="ps-card-mini-metric">
                                             <span class="ps-card-usage-label">
                                                 <span class="ps-card-metric-name"><svg aria-hidden="true"><use :href="'#ps-'+metric.icon"/></svg><span x-text="metric.label"></span></span>
-                                                <strong :class="cardMetricLevel(s, metric.key)" x-text="metric.key==='cpu' ? cpuLabel(s) : cardRamLabel(s)"></strong>
+                                                <strong x-text="metric.key==='cpu' ? cpuLabel(s) : cardRamLabel(s)"></strong>
                                             </span>
-                                            <svg class="ps-card-graph" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true">
-                                                <path class="ps-card-graph-axis" d="M2 27H98"/>
-                                                <path :d="cardGraph(s, metric.key)"/>
-                                                <circle x-show="cardGraphPoint(s, metric.key)!==null" cx="98" :cy="cardGraphPoint(s, metric.key) || 0" r="1.4"/>
+                                            <svg class="ps-card-graph" :class="cardMetricLevel(s, metric.key)" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true">
+                                                <path class="ps-card-graph-axis" d="M0 28.5H100"/>
+                                                <path :d="cardBars(s, metric.key)"/>
+                                                <path class="is-now" :d="cardBars(s, metric.key, true)"/>
                                             </svg>
                                         </div>
                                     </template>
