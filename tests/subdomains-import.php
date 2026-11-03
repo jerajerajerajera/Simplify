@@ -45,6 +45,9 @@ namespace Illuminate\Support\Facades {
 }
 
 namespace {
+    use Illuminate\Support\Facades\DB;
+    use Illuminate\Support\Facades\Storage;
+
     final class FakeQuery
     {
         /** @var array<string, mixed> */
@@ -63,7 +66,7 @@ namespace {
         private function rows(): array
         {
             return array_values(array_filter(
-                Illuminate\Support\Facades\DB::$tables[$this->table] ?? [],
+                DB::$tables[$this->table] ?? [],
                 fn ($row) => array_intersect_assoc(array_map('strval', $this->where), array_map('strval', $row)) === array_map('strval', $this->where),
             ));
         }
@@ -85,14 +88,14 @@ namespace {
 
         public function insert(array $row): bool
         {
-            Illuminate\Support\Facades\DB::$tables[$this->table][] = $row;
+            DB::$tables[$this->table][] = $row;
 
             return true;
         }
 
         public function updateOrInsert(array $match, array $values): bool
         {
-            $rows = &Illuminate\Support\Facades\DB::$tables[$this->table];
+            $rows = &DB::$tables[$this->table];
             foreach ($rows ?? [] as $i => $row) {
                 if (array_intersect_assoc($match, $row) === $match) {
                     $rows[$i] = $values + $row;
@@ -135,15 +138,15 @@ namespace {
 
     $migrations = glob(__DIR__.'/../database/migrations/*import_pelicansimplify_subdomains*.php') ?: [];
     sort($migrations);
-    $setting = fn (string $key) => Illuminate\Support\Facades\DB::table('simplify_core_subdomain_settings')->where('key', $key)->value('value');
+    $setting = fn (string $key) => DB::table('simplify_core_subdomain_settings')->where('key', $key)->value('value');
 
     /** A 0.7.0 panel: the settings file, one server's subdomain, and the Cloudflare keys in .env (tests/fixtures/env) or the environment. */
     $panel = function (string $dotenv, array $environment = [], array $existing = []) use ($migrations) {
-        Illuminate\Support\Facades\Storage::$files = [
+        Storage::$files = [
             'simplify/subdomains.json' => json_encode(['domain' => 'example.com', 'target' => 'play.example.com', 'port_min' => 25565, 'port_max' => 25600]),
             'simplify/subdomains/0b5a1f0e-8a8e-4f7e-9f5e-1c2d3e4f5a6b.json' => json_encode(['name' => 'oak', 'port' => 25565]),
         ];
-        Illuminate\Support\Facades\DB::$tables = ['simplify_core_subdomain_settings' => $existing];
+        DB::$tables = ['simplify_core_subdomain_settings' => $existing];
         $GLOBALS['env'] = $environment;
         $GLOBALS['dotenvPath'] = __DIR__.'/fixtures/env/'.$dotenv.'.env';
         foreach ($migrations as $file) {
@@ -156,7 +159,7 @@ namespace {
     check($setting('domain') === 'example.com', 'the domain from subdomains.json is kept');
     check($setting('token') === 'enc:cf-token-070', 'the token from .env is taken over, encrypted');
     check($setting('zone_id') === $zone, 'the zone ID from .env is taken over');
-    check(count(Illuminate\Support\Facades\DB::$tables['simplify_core_subdomains'] ?? []) === 1, 'the server\'s subdomain is kept');
+    check(count(DB::$tables['simplify_core_subdomains'] ?? []) === 1, 'the server\'s subdomain is kept');
 
     $panel('none', ['CLOUDFLARE_API_TOKEN' => 'from-env', 'CLOUDFLARE_ZONE_ID' => $zone]);
     check($setting('token') === 'enc:from-env' && $setting('zone_id') === $zone, 'the token and zone ID from the environment are taken over');
