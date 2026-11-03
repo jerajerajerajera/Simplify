@@ -62,9 +62,15 @@
                 if (shell) {
                     const room = shell.getBoundingClientRect();
                     const tall = Math.max(160, Math.floor(room.bottom - box.top - (shell.scrollHeight - shell.scrollTop - (box.bottom - room.top))));
-                    card.style.setProperty('--s-fit', tall + 'px');
-                    const over = shell.scrollHeight - shell.clientHeight;
-                    if (over > 0) card.style.setProperty('--s-fit', Math.max(160, tall - over) + 'px');
+                    let fitted = tall;
+                    card.style.setProperty('--s-fit', fitted + 'px');
+                    // Whatever still grows with the card (its paddings, a page's minimum height) is taken off again.
+                    for (let i = 0; i < 3; i++) {
+                        const over = shell.scrollHeight - shell.clientHeight;
+                        if (over <= 0 || fitted <= 160) break;
+                        fitted = Math.max(160, fitted - over);
+                        card.style.setProperty('--s-fit', fitted + 'px');
+                    }
                     continue;
                 }
                 const below = document.documentElement.scrollHeight - (box.bottom + scrollY);
