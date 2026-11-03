@@ -38,7 +38,7 @@ for f in sys.argv[1:]:
                 # Servers list (host-server) is a server page.
                 path = '/' + (m.get('url') or '').split('://')[-1].split('/', 1)[-1].lstrip('/')
                 # Account pages have the header but no Admin menu (and on a phone no bottom bar): a kind of their own.
-                account = s['id'].startswith(('account-page', 'app-', 'profile')) or path.startswith(('/profile', '/steam', '/server-maker'))
+                account = s['id'].startswith(('account-page', 'app-', 'profile', 'connections')) or path.startswith(('/profile', '/steam', '/server-maker', '/connections'))
                 host = (s['id'].startswith(('host', 'other-plugins', 'scroll-frame')) or path.startswith('/admin')) and s['id'] != 'host-server'
                 kind = 'account' if account else 'host' if host else 'admin' if s['id'].startswith(('tile-', 'create-')) else 'server'
                 heights[(s['stand'], kind)].append((int(bottom) - int(top), s['id']))
