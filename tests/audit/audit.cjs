@@ -171,7 +171,18 @@ const adminPage = async (overview) => {
   // Plugins page: the categories are a filter in the table's toolbar, not tabs above it, with the import buttons on that
   // row; a choice changes only the list (no page load, no other address) and its menu lies above the table (Jeroen 3-11).
   {
+    // Where the list starts: the toolbar right under the breadcrumb and the table's head right under the toolbar, as on
+    // Servers (no empty band where the tabs were, no extra line).
+    const bar = () => page.evaluate(() => {
+      const box = (sel) => { const e = [...document.querySelectorAll(sel)].find((x) => x.getClientRects().length); return e ? e.getBoundingClientRect() : null; };
+      const crumb = box('.ps-admin-crumb'), search = box('.fi-ta-header-toolbar .fi-ta-search-field'), head = box('.fi-ta-table thead');
+      return crumb && search && head ? { top: Math.round(search.top - crumb.bottom), under: Math.round(head.top - search.bottom) } : null;
+    }).catch(() => null);
+    await goto('/admin/servers', 2000);
+    const servers = await bar();
     await goto('/admin/plugins', 2000);
+    const plugins = await bar();
+    const flush = phone() || (!!servers && !!plugins && Math.abs(plugins.top - servers.top) <= 4 && Math.abs(plugins.under - servers.under) <= 4);
     await page.evaluate(() => { window.__psKept = 1; }).catch(() => {});
     const row = () => page.evaluate(() => {
       const shown = (e) => !!e && e.getClientRects().length > 0 && getComputedStyle(e).visibility !== 'hidden';
@@ -193,7 +204,7 @@ const adminPage = async (overview) => {
       after = await row(); path = new URL(page.url()).pathname;
     }
     const kept = await page.evaluate(() => window.__psKept === 1).catch(() => false);
-    say('admin-plugins-filter', !!before && !!before.pick && before.tabs === 0 && (phone() || before.oneRow) && !!menu && menu.items >= 2 && menu.onTop && !!after && after.pick !== before.pick && kept && path === '/admin/plugins', { before, menu, after, kept, path });
+    say('admin-plugins-filter', flush && !!before && !!before.pick && before.tabs === 0 && (phone() || before.oneRow) && !!menu && menu.items >= 2 && menu.onTop && !!after && after.pick !== before.pick && kept && path === '/admin/plugins', { servers, plugins, before, menu, after, kept, path });
   }
   // The other way out of an admin page: the end of the setup's "Go to the panel" opens the overview with wire:navigate.
   // It looks as after a full load (Jeroen 3-11, beta.3: the background turned lighter grey), and so does the Admin page
