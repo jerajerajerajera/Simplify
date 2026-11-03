@@ -68,4 +68,15 @@ return [
         'removing' => 'Tar bort…',
         'error' => 'Inte ansluten',
     ],
+    'setup' => [
+        'title' => 'Så här ställer du in det',
+        'intro' => 'Spelare ansluter då med ett namn som oak.:domain i stället för IP-adress och port. Du ställer in det en gång.',
+        'step_domain' => 'Fyll i domänen (din Cloudflare-zon) och serveradressen: en befintlig DNS only-post som pekar på den publika IP där dina portar kommer in.',
+        'step_token' => 'Öppna My Profile › API Tokens › Create Token i Cloudflare och välj mallen "Edit zone DNS". Välj bara den här domänen under Zone Resources, skapa token och kopiera den.',
+        'step_test' => 'Klistra in token nedan och tryck på :test. Simplify kontrollerar den och fyller själv i zon-ID.',
+        'step_save' => 'Tryck på :save. Varje server med en port i det vidarebefordrade intervallet har då :menu i sin meny, där ägaren väljer namnet.',
+        'open_cloudflare' => 'Öppna Cloudflare API-tokens',
+        'button' => 'Ställ in underdomäner',
+        'server_help' => 'Sedan kan spelare ansluta till den här servern med :address. Tills dess ser bara root-administratörer den här sidan.',
+    ],
 ];

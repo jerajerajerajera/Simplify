@@ -68,4 +68,15 @@ return [
         'removing' => 'Šalinama…',
         'error' => 'Neprisijungta',
     ],
+    'setup' => [
+        'title' => 'Kaip nustatyti',
+        'intro' => 'Tada žaidėjai jungiasi vardu, pvz., oak.:domain, vietoj IP adreso ir prievado. Tai nustatoma vieną kartą.',
+        'step_domain' => 'Įveskite domeną (savo Cloudflare zoną) ir serverio adresą: esamą DNS only įrašą, rodantį į viešą IP, į kurį ateina jūsų prievadai.',
+        'step_token' => 'Cloudflare atidarykite My Profile › API Tokens › Create Token ir pasirinkite šabloną "Edit zone DNS". Skiltyje Zone Resources pasirinkite tik šį domeną, sukurkite žetoną ir nukopijuokite jį.',
+        'step_test' => 'Įklijuokite žetoną žemiau ir paspauskite :test. Simplify jį patikrins ir pats įrašys zonos ID.',
+        'step_save' => 'Paspauskite :save. Kiekvienas serveris, kurio prievadas yra peradresuotame intervale, tada turi meniu punktą :menu, kur savininkas pasirenka vardą.',
+        'open_cloudflare' => 'Atidaryti Cloudflare API žetonus',
+        'button' => 'Nustatyti subdomenus',
+        'server_help' => 'Po to žaidėjai galės jungtis prie šio serverio per :address. Iki tol šį puslapį mato tik root administratoriai.',
+    ],
 ];

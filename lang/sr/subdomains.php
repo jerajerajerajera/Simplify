@@ -68,4 +68,15 @@ return [
         'removing' => 'Уклања се…',
         'error' => 'Није повезано',
     ],
+    'setup' => [
+        'title' => 'Kako da podesite',
+        'intro' => 'Igrači se tada povezuju imenom kao oak.:domain umesto IP adrese i porta. Podešava se jednom.',
+        'step_domain' => 'Unesite domen (vašu Cloudflare zonu) i adresu servera: postojeći DNS only zapis koji pokazuje na javnu IP adresu na koju stižu vaši portovi.',
+        'step_token' => 'U Cloudflare-u otvorite My Profile › API Tokens › Create Token i izaberite šablon "Edit zone DNS". U Zone Resources izaberite samo ovaj domen, napravite token i kopirajte ga.',
+        'step_test' => 'Nalepite token ispod i pritisnite :test. Simplify ga proverava i sam popunjava ID zone.',
+        'step_save' => 'Pritisnite :save. Svaki server sa portom u prosleđenom opsegu tada ima :menu u svom meniju, gde vlasnik bira ime.',
+        'open_cloudflare' => 'Otvori Cloudflare API tokene',
+        'button' => 'Podesi poddomene',
+        'server_help' => 'Posle toga igrači mogu da uđu na ovaj server preko :address. Do tada ovu stranicu vide samo root administratori.',
+    ],
 ];

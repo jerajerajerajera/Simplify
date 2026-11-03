@@ -21,6 +21,16 @@
     Object.defineProperty(window, 'Xterm', { configurable: true, get: () => xterm, set: (value) => { xterm = clearTerminal(value); } });
   } catch {}
 
+  /* The buttons of a page's header: its header actions and what an add-on puts in the header-actions render hook (Explain
+     on Pelican's Console page), without dropdowns and the modals they open. Same set as frame.js. Pelican's own power
+     buttons on the Console page are left out: the server card has those. */
+  const HEADER_ACTIONS = ['.fi-ac > :is(button, a)', '> :is(button, a):is(.fi-btn, .fi-icon-btn, .fi-link)', '> :not(.fi-ac) :is(button, a):is(.fi-btn, .fi-icon-btn, .fi-link)'].map((part) => '.fi-header-actions-ctn ' + part).join(', ');
+  const POWER = /mountAction\(\s*['"](start|restart|stop|kill)['"]/;
+  const headerActions = (header) => [...header.querySelectorAll(HEADER_ACTIONS)]
+    .filter((el) => !el.closest('.fi-dropdown, .fi-modal') && ![...el.attributes].some((attr) => POWER.test(attr.value)));
+  const tooltip = (el) => el.getAttribute('x-tooltip')?.match(/content:\s*'((?:[^'\\]|\\.)*)'/)?.[1]?.replace(/\\'/g, "'") || '';
+  const actionLabel = (el) => el.getAttribute('aria-label') || el.getAttribute('title') || tooltip(el) || el.textContent.trim();
+
   /* Pelican's admin pages while an add-on's own host mode is on (AdminTop): only the header, as in host mode. */
   window.simplifyAdminTop = function (wire, boot) {
     const base = window.pelicanSimplify(wire, boot);
@@ -401,12 +411,47 @@
             if (!window.open(url, 'simplify-console-' + this.server.uuid, 'popup,width=960,height=640')) this.toast(t('dashboard.the_browser_blocked_the_new_window'), 'warn');
           });
         }
+        this.consoleActions(bar);
         const state = bar.querySelector('.ps-console-state');
         bar.querySelector('.ps-console-dot').classList.toggle('connected', connected);
         bar.querySelector('.ps-live-bars').hidden = !connected;
         this.quickCommands(terminal, bar.dataset.quick);
         if (!terminal.style.height) this.fitPage();
         state.textContent = connected ? state.dataset.connected : state.dataset.connecting;
+      },
+
+      /** The Console page's own header is hidden (dashboard.css): its add-on buttons (Explain) come into the console's
+          title row as icon buttons before the size tools, and a click goes to the hidden button. They follow the header
+          when Livewire changes it. */
+      consoleActions(bar) {
+        const header = document.querySelector('.fi-header');
+        const build = () => {
+          const sources = header?.isConnected ? headerActions(header) : [];
+          const next = JSON.stringify(sources.map((el) => [actionLabel(el), el.disabled || el.getAttribute('aria-disabled') === 'true']));
+          if (bar.dataset.actions === next) return;
+          bar.dataset.actions = next;
+          bar.querySelectorAll(':scope > .ps-console-action').forEach((el) => el.remove());
+          const before = bar.querySelector('.ps-console-grow');
+          for (const source of sources) {
+            const text = actionLabel(source);
+            const btn = Object.assign(document.createElement('button'), { type: 'button', className: 'ps-console-clear ps-console-tool ps-console-action' });
+            btn.setAttribute('aria-label', text);
+            btn.dataset.tip = tooltip(source) || text;
+            btn.disabled = source.disabled || source.getAttribute('aria-disabled') === 'true';
+            const icon = source.querySelector('svg');
+            if (icon) btn.append(icon.cloneNode(true));
+            else btn.textContent = text;
+            btn.addEventListener('click', () => source.click());
+            bar.insertBefore(btn, before);
+          }
+        };
+        build();
+        if (header && bar.actionsWatch !== header) {
+          bar.actionsObserver?.disconnect();
+          bar.actionsWatch = header;
+          bar.actionsObserver = new MutationObserver(build);
+          bar.actionsObserver.observe(header, { childList: true, subtree: true, attributes: true, attributeFilter: ['disabled', 'aria-disabled', 'style', 'class'] });
+        }
       },
 
       /** The page never scrolls: the menu and the page next to it get the window's height under the cards, and only

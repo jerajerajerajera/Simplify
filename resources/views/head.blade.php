@@ -29,6 +29,9 @@
     // (simplify.css, html.ps-shell). The legacy panel (?simplify_legacy=1) shows them as Pelican does.
     @if (\Simplify\Core\Filament\Admin\AdminTop::here())
     if (!window.frameElement) document.documentElement.classList.add('ps-shell'@if (\Simplify\Core\Filament\Admin\AdminTop::menu()), 'ps-shell-menu'@endif);
+    @else
+    // Not in Simplify's frame (the legacy panel, K-B33): nothing of the frame may hide Pelican's top bar and sidebar.
+    if (!window.frameElement) document.documentElement.classList.remove('ps-shell', 'ps-shell-menu');
     @endif
     // wire:navigate keeps <html> as it was: the page that came in says by its header and menu whether it is one.
     if (!window.simplifyShellWatch) {

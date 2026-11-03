@@ -9,6 +9,7 @@ use Filament\Actions\Action;
 use Filament\Contracts\Plugin;
 use Filament\Facades\Filament;
 use Filament\Panel;
+use Filament\Tables\View\TablesRenderHook;
 use Filament\View\PanelsRenderHook;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Js;
@@ -18,6 +19,7 @@ use Simplify\Core\Embed\Filament\EmbedSettings;
 use Simplify\Core\Embed\Filament\Website;
 use Simplify\Core\Filament\Admin\AdminSide;
 use Simplify\Core\Filament\Admin\AdminTop;
+use Simplify\Core\Filament\Admin\CategoryFilter;
 use Simplify\Core\Filament\Admin\Pages\People;
 use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\Admin\Pages\Setup;
@@ -88,6 +90,7 @@ final class SimplifyPlugin implements Plugin
         if ($panel->getId() === 'admin') {
             $panel->pages([Settings::class, Setup::class, SetupDone::class, People::class]);
             $panel->renderHook(PanelsRenderHook::PAGE_START, fn () => self::settingsNav());
+            $panel->renderHook(TablesRenderHook::TOOLBAR_REORDER_TRIGGER_AFTER, fn () => CategoryFilter::render(), CategoryFilter::PAGE);
         }
         if ($panel->getId() === 'admin') {
             $panel->resources([AnnouncementResource::class]);
