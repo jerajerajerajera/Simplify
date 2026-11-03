@@ -16,6 +16,8 @@ return [
         'new' => 'Novo',
         'menu' => 'Menu',
         'customize' => 'Personalizar',
+        'connections' => 'Ligações',
+        'connections_intro' => 'Contas externas que os suplementos usam por si. Cada linha guarda-se sozinha.',
         'filter' => 'Filtrar',
         'filter_show' => 'Mostrar',
         'filter_node' => 'Nó',

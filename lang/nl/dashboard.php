@@ -16,6 +16,8 @@ return [
         'new' => 'Nieuw',
         'menu' => 'Menu',
         'customize' => 'Aanpassen',
+        'connections' => 'Koppelingen',
+        'connections_intro' => 'Externe accounts die de add-ons voor je gebruiken. Elke rij slaat apart op.',
         'filter' => 'Filter',
         'filter_show' => 'Tonen',
         'filter_node' => 'Node',

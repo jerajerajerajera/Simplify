@@ -16,6 +16,8 @@ return [
         'new' => 'Nou',
         'menu' => 'Meniu',
         'customize' => 'Personalizează',
+        'connections' => 'Conexiuni',
+        'connections_intro' => 'Conturi externe pe care suplimentele le folosesc pentru tine. Fiecare rând se salvează separat.',
         'filter' => 'Filtru',
         'filter_show' => 'Afișează',
         'filter_node' => 'Nod',

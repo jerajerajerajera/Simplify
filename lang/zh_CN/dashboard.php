@@ -16,6 +16,8 @@ return [
         'new' => '新',
         'menu' => '菜单',
         'customize' => '自定义',
+        'connections' => '连接',
+        'connections_intro' => '附加组件为你使用的外部账户。每一行单独保存。',
         'filter' => '筛选',
         'filter_show' => '显示',
         'filter_node' => '节点',

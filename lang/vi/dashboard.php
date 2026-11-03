@@ -16,6 +16,8 @@ return [
         'new' => 'Mới',
         'menu' => 'Menu',
         'customize' => 'Tùy chỉnh',
+        'connections' => 'Kết nối',
+        'connections_intro' => 'Các tài khoản bên ngoài mà tiện ích bổ sung dùng thay bạn. Mỗi dòng được lưu riêng.',
         'filter' => 'Lọc',
         'filter_show' => 'Hiển thị',
         'filter_node' => 'Nút',

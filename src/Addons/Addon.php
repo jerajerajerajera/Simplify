@@ -25,9 +25,10 @@ abstract class Addon
 {
     /**
      * The contract version: 1 in Simplify 1.0, 2 since 1.1 (serverInfo, serverLinks, customerLinks, hostModeDefault),
-     * 3 since 1.3 (setupFields, setupState, saveSetup), 4 since 1.5.5 (accountPages). Raised whenever a method is added.
+     * 3 since 1.3 (setupFields, setupState, saveSetup), 4 since 1.5.5 (accountPages), 5 since 1.5.6 (startUrl), 6 since
+     * 2.0 (connections). Raised whenever a method is added.
      */
-    public const API = 5;
+    public const API = 6;
 
     /** The add-on's plugin id, for example "simplify-servermaker". */
     abstract public function id(): string;
@@ -123,6 +124,18 @@ abstract class Addon
      * @return list<Button>
      */
     public function accountPages(User $user): array
+    {
+        return [];
+    }
+
+    /**
+     * The add-on's rows on Simplify's Connections page (the account menu), one Livewire component class per row, for
+     * example Server Maker's Steam account. Each row is the add-on's own: it checks its user, saves on its own (the page
+     * has no Save) and keeps its secrets. The page and its menu item show only while at least one add-on gives a row.
+     *
+     * @return list<class-string<\Livewire\Component>>
+     */
+    public function connections(User $user): array
     {
         return [];
     }

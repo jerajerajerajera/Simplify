@@ -16,6 +16,8 @@ return [
         'new' => 'Nuevo',
         'menu' => 'Menú',
         'customize' => 'Personalizar',
+        'connections' => 'Conexiones',
+        'connections_intro' => 'Cuentas externas que los complementos usan por ti. Cada fila se guarda por sí sola.',
         'filter' => 'Filtrar',
         'filter_show' => 'Mostrar',
         'filter_node' => 'Nodo',

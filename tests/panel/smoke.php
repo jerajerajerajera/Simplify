@@ -202,6 +202,33 @@ final class AccountAddon extends Addon
     }
 }
 
+final class SteamConnectionRow extends Livewire\Component
+{
+    public function render(): string
+    {
+        return '<div class="smoke-connection-row">Steam account row</div>';
+    }
+}
+
+final class ConnectionsAddon extends Addon
+{
+    public function id(): string
+    {
+        return 'connections-addon';
+    }
+
+    public function name(): string
+    {
+        return 'Connections add-on';
+    }
+
+    public function connections(User $user): array
+    {
+        // A class that is not a Livewire component is left out.
+        return [SteamConnectionRow::class, stdClass::class];
+    }
+}
+
 // Pelican 1.0 has no users.root_admin column: root admins have the root admin role.
 $admin = User::where('email', 'smoke-simplify@example.com')->first()
     ?? User::withoutEvents(fn () => User::factory()->create(['email' => 'smoke-simplify@example.com']));
@@ -520,6 +547,25 @@ step('an add-on adds its own page to the account menu, only on this panel', func
     $pages = Livewire\Livewire::actingAs($admin)->test(Overview::class)->instance()->initial()['account_pages'] ?? null;
     if (! is_array($pages) || count($pages) !== 1 || $pages[0]['url'] !== url('/steam-key') || $pages[0]['label'] !== 'Steam' || ! str_contains($pages[0]['icon'], '<svg') || ($pages[0]['key'] ?? '') === '') {
         throw new RuntimeException('the account pages are wrong: '.json_encode($pages));
+    }
+});
+step('Connections: only with an add-on row, in the account menu and as a page with that row', function ($app) use ($admin) {
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
+    $url = Simplify\Core\Filament\App\Pages\Connections::getUrl(panel: 'app');
+    if (($status = visit($admin, $url)->getStatusCode()) !== 404) {
+        throw new RuntimeException("the Connections page without rows answers $status, not 404");
+    }
+    if ((Livewire\Livewire::actingAs($admin)->test(Overview::class)->instance()->initial()['connections_url'] ?? null) !== null) {
+        throw new RuntimeException('the account menu offers Connections without rows');
+    }
+    $app->tag([ConnectionsAddon::class], AddonRegistry::TAG);
+    if ((Livewire\Livewire::actingAs($admin)->test(Overview::class)->instance()->initial()['connections_url'] ?? null) !== $url) {
+        throw new RuntimeException('the account menu has no Connections with a row');
+    }
+    $page = visit($admin, $url);
+    $html = (string) $page->getContent();
+    if ($page->getStatusCode() !== 200 || ! str_contains($html, 'Steam account row') || substr_count($html, 'smoke-connection-row') !== 1 || ! str_contains($html, __('simplify::dashboard.ui.connections_intro'))) {
+        throw new RuntimeException('the Connections page does not show its one row: '.$page->getStatusCode());
     }
 });
 step('add-ons give server links, customer links and host mode', function ($app) use ($admin, $server) {

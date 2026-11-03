@@ -16,6 +16,8 @@ return [
         'new' => 'Új',
         'menu' => 'Menü',
         'customize' => 'Testreszabás',
+        'connections' => 'Kapcsolatok',
+        'connections_intro' => 'Külső fiókok, amelyeket a bővítmények használnak helyetted. Minden sor külön mentődik.',
         'filter' => 'Szűrő',
         'filter_show' => 'Mutasd',
         'filter_node' => 'Csomópont',

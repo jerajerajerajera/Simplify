@@ -16,6 +16,8 @@ return [
         'new' => 'Neu',
         'menu' => 'Menü',
         'customize' => 'Anpassen',
+        'connections' => 'Verbindungen',
+        'connections_intro' => 'Externe Konten, die die Add-ons für dich nutzen. Jede Zeile speichert für sich.',
         'filter' => 'Filter',
         'filter_show' => 'Anzeigen',
         'filter_node' => 'Node',

@@ -16,6 +16,8 @@ return [
         'new' => 'Uusi',
         'menu' => 'Valikko',
         'customize' => 'Mukauta',
+        'connections' => 'Yhteydet',
+        'connections_intro' => 'Ulkoiset tilit, joita lisäosat käyttävät puolestasi. Jokainen rivi tallentuu erikseen.',
         'filter' => 'Suodata',
         'filter_show' => 'Näytä',
         'filter_node' => 'Solmu',

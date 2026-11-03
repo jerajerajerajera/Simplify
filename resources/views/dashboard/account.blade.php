@@ -10,6 +10,8 @@
     <div id="ps-account-actions" class="ps-account-menu" :inert="!accountMenu" :aria-hidden="!accountMenu">
         <div class="ps-account-actions-inner">
             <a class="ps-btn is-icon" :href="boot.profile_url" data-tip="{{ $u('profile_settings') }}" aria-label="{{ $u('profile_settings') }}"><svg aria-hidden="true"><use href="#ps-account"/></svg></a>
+            {{-- Connections: the add-ons' outside accounts (Steam, CurseForge), only when an add-on gives a row. --}}
+            <a class="ps-btn is-icon" x-show="boot.connections_url" x-cloak :href="boot.connections_url" wire:navigate data-tip="{{ $u('connections') }}" aria-label="{{ $u('connections') }}"><svg aria-hidden="true"><use href="#ps-link"/></svg></a>
             {{-- Theme: the current choice; clicking it unfolds Light, Dark and System. --}}
             <button type="button" class="ps-btn is-icon" x-show="!themeOpen" x-on:click="themeOpen=true" :data-tip="@js($u('theme_prefix'))+' '+(theme==='light' ? @js($u('light')) : theme==='dark' ? @js($u('dark')) : @js($u('system')))" aria-label="{{ $u('choose_theme') }}" :aria-expanded="themeOpen">
                 <svg aria-hidden="true"><use :href="theme==='light' ? '#ps-sun' : theme==='dark' ? '#ps-moon' : '#ps-monitor'"/></svg>

@@ -16,6 +16,8 @@ return [
         'new' => 'Yeni',
         'menu' => 'Menü',
         'customize' => 'Özelleştir',
+        'connections' => 'Bağlantılar',
+        'connections_intro' => 'Eklentilerin sizin için kullandığı dış hesaplar. Her satır ayrı kaydedilir.',
         'filter' => 'Filtre',
         'filter_show' => 'Göster',
         'filter_node' => 'Düğüm',

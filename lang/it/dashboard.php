@@ -16,6 +16,8 @@ return [
         'new' => 'Nuovo',
         'menu' => 'Menu',
         'customize' => 'Personalizza',
+        'connections' => 'Connessioni',
+        'connections_intro' => 'Account esterni che i componenti aggiuntivi usano per te. Ogni riga si salva da sola.',
         'filter' => 'Filtra',
         'filter_show' => 'Mostra',
         'filter_node' => 'Nodo',

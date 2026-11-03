@@ -16,6 +16,8 @@ return [
         'new' => 'Nowe',
         'menu' => 'Menu',
         'customize' => 'Dostosuj',
+        'connections' => 'Połączenia',
+        'connections_intro' => 'Zewnętrzne konta, których dodatki używają za Ciebie. Każdy wiersz zapisuje się osobno.',
         'filter' => 'Filtr',
         'filter_show' => 'Pokaż',
         'filter_node' => 'Węzeł',

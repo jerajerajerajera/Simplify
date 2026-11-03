@@ -16,6 +16,8 @@ return [
         'new' => 'Ny',
         'menu' => 'Meny',
         'customize' => 'Tilpass',
+        'connections' => 'Tilkoblinger',
+        'connections_intro' => 'Eksterne kontoer som tilleggene bruker for deg. Hver rad lagres for seg.',
         'filter' => 'Filter',
         'filter_show' => 'Vis',
         'filter_node' => 'Node',

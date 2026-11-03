@@ -16,6 +16,8 @@ return [
         'new' => '새로 만들기',
         'menu' => '메뉴',
         'customize' => '사용자 지정',
+        'connections' => '연결',
+        'connections_intro' => '애드온이 사용자를 위해 사용하는 외부 계정입니다. 각 행은 따로 저장됩니다.',
         'filter' => '필터',
         'filter_show' => '표시',
         'filter_node' => '노드',

@@ -16,6 +16,8 @@ return [
         'new' => 'Ново',
         'menu' => 'Мени',
         'customize' => 'Прилагоди',
+        'connections' => 'Повезивања',
+        'connections_intro' => 'Спољни налози које додаци користе за вас. Сваки ред се чува засебно.',
         'filter' => 'Filter',
         'filter_show' => 'Prikaži',
         'filter_node' => 'Čvor',

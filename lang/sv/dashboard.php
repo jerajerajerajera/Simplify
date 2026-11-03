@@ -16,6 +16,8 @@ return [
         'new' => 'Ny',
         'menu' => 'Meny',
         'customize' => 'Anpassa',
+        'connections' => 'Anslutningar',
+        'connections_intro' => 'Externa konton som tilläggen använder åt dig. Varje rad sparas för sig.',
         'filter' => 'Filter',
         'filter_show' => 'Visa',
         'filter_node' => 'Nod',

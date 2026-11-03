@@ -16,6 +16,8 @@ return [
         'new' => '新規',
         'menu' => 'メニュー',
         'customize' => 'カスタマイズ',
+        'connections' => '接続',
+        'connections_intro' => 'アドオンがあなたのために使う外部アカウントです。各行は個別に保存されます。',
         'filter' => 'フィルター',
         'filter_show' => '表示',
         'filter_node' => 'ノード',

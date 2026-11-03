@@ -16,6 +16,8 @@ return [
         'new' => 'Ny',
         'menu' => 'Menu',
         'customize' => 'Tilpas',
+        'connections' => 'Forbindelser',
+        'connections_intro' => 'Eksterne konti, som tilføjelserne bruger for dig. Hver række gemmes for sig.',
         'filter' => 'Filter',
         'filter_show' => 'Vis',
         'filter_node' => 'Node',

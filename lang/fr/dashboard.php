@@ -16,6 +16,8 @@ return [
         'new' => 'Nouveau',
         'menu' => 'Menu',
         'customize' => 'Personnaliser',
+        'connections' => 'Connexions',
+        'connections_intro' => 'Comptes externes que les modules utilisent pour vous. Chaque ligne s’enregistre séparément.',
         'filter' => 'Filtrer',
         'filter_show' => 'Afficher',
         'filter_node' => 'Nœud',

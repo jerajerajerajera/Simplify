@@ -16,6 +16,8 @@ return [
         'new' => 'Nové',
         'menu' => 'Nabídka',
         'customize' => 'Přizpůsobit',
+        'connections' => 'Propojení',
+        'connections_intro' => 'Externí účty, které pro vás doplňky používají. Každý řádek se ukládá samostatně.',
         'filter' => 'Filtr',
         'filter_show' => 'Zobrazit',
         'filter_node' => 'Uzel',

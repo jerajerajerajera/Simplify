@@ -16,6 +16,8 @@ return [
         'new' => 'Baru',
         'menu' => 'Menu',
         'customize' => 'Sesuaikan',
+        'connections' => 'Koneksi',
+        'connections_intro' => 'Akun luar yang dipakai add-on untuk Anda. Setiap baris disimpan sendiri.',
         'filter' => 'Filter',
         'filter_show' => 'Tampilkan',
         'filter_node' => 'Node',

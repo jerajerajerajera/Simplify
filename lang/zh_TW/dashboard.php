@@ -16,6 +16,8 @@ return [
         'new' => '新',
         'menu' => '選單',
         'customize' => '自訂',
+        'connections' => '連結',
+        'connections_intro' => '附加元件為你使用的外部帳戶。每一列單獨儲存。',
         'filter' => '篩選',
         'filter_show' => '顯示',
         'filter_node' => '節點',

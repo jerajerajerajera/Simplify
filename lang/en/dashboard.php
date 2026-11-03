@@ -16,6 +16,8 @@ return [
         'new' => 'New',
         'menu' => 'Menu',
         'customize' => 'Customize',
+        'connections' => 'Connections',
+        'connections_intro' => 'Outside accounts that the add-ons use for you. Each row saves on its own.',
         'filter' => 'Filter',
         'filter_show' => 'Show',
         'filter_node' => 'Node',

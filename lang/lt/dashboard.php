@@ -16,6 +16,8 @@ return [
         'new' => 'Nauja',
         'menu' => 'Meniu',
         'customize' => 'Tinkinti',
+        'connections' => 'Ryšiai',
+        'connections_intro' => 'Išorinės paskyros, kurias priedai naudoja už jus. Kiekviena eilutė išsaugoma atskirai.',
         'filter' => 'Filtras',
         'filter_show' => 'Rodyti',
         'filter_node' => 'Mazgas',
