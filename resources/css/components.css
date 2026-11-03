@@ -251,6 +251,10 @@ input[type="file"].ps-input::file-selector-button {
   font: 400 13px/1.45 var(--ps-font);
 }
 .ps-dropdown.is-end { inset-inline-end: 0; top: calc(100% + 8px); }
+/* Opening and closing (Alpine's x-transition classes ps-t-in, ps-t-out, ps-t-from): a fade here, a slide on a phone. */
+.ps-dropdown.ps-t-in { transition: opacity var(--ps-fast) ease; }
+.ps-dropdown.ps-t-out { transition: opacity calc(var(--ps-fast) / 2) ease; }
+.ps-dropdown.ps-t-from { opacity: 0; }
 .ps-dropdown-title { display: block; margin: 0 0 4px; font-size: 14px; font-weight: 700; }
 .ps-dropdown-section { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--ps-line); }
 .ps-dropdown-section > .ps-label { display: block; margin-bottom: 8px; }
@@ -314,6 +318,20 @@ input[type="file"].ps-input::file-selector-button {
   .ps-modal-head { min-height: 52px; touch-action: none; }
   .ps-modal-foot { padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); }
   .ps-modal-foot > .ps-btn { flex: 1 1 0; min-height: 44px; }
+  /* Closing slides the sheet down while the backdrop fades; dragging it (sheet.js) lightens the backdrop as it goes. */
+  .ps-modal-layer { background: color-mix(in srgb, var(--ps-backdrop) calc(100% - var(--ps-drag, 0%)), transparent); }
+  .ps-modal-layer:is(.ps-t-in, .ps-t-out) { transition: background-color var(--ps-sheet-in) ease; }
+  .ps-modal-layer.ps-t-out { transition-duration: var(--ps-sheet-out); }
+  .ps-modal-layer.ps-t-from { background-color: transparent; }
+  .ps-modal-layer.ps-t-out > .ps-modal { transition: transform var(--ps-sheet-out) var(--ps-ease-out); }
+  .ps-modal-layer.ps-t-out.ps-t-from > .ps-modal { transform: translateY(100%); }
+  /* A toast leaves the way it came, or sideways when swiped (core.js). */
+  .ps-toast.ps-t-out { transition: opacity var(--ps-sheet-out) ease, translate var(--ps-sheet-out) var(--ps-ease-out); }
+  .ps-toast { touch-action: pan-y; }
+  .ps-toast.ps-t-from { opacity: 0; translate: 0 8px; }
+  /* Pressing gives a little under the thumb. */
+  .ps :is(.ps-btn, .ps-chip, .ps-menu-item, .ps-tab, .ps-server-open), .ps-ui :is(.ps-btn, .ps-menu-item) { transition: scale .12s ease, background-color var(--ps-fast), border-color var(--ps-fast), color var(--ps-fast), padding var(--ps-slow); }
+  .ps :is(.ps-btn, .ps-chip, .ps-menu-item, .ps-tab, .ps-server-open):active:not(:disabled), .ps-ui :is(.ps-btn, .ps-menu-item):active:not(:disabled) { scale: .97; }
 }
 @keyframes ps-sheet-in { from { transform: translateY(100%); } to { transform: none; } }
 @media (prefers-reduced-motion: reduce) { .ps-modal { animation: none; transition: none; } }

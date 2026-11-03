@@ -68,6 +68,10 @@
   --ps-ease: cubic-bezier(.2, .8, .2, 1);
   --ps-fast: .15s;
   --ps-slow: .25s;
+  /* Sheets on a phone: in with --ps-ease, out a little quicker with --ps-ease-out. */
+  --ps-ease-out: cubic-bezier(.4, 0, 1, 1);
+  --ps-sheet-in: .26s;
+  --ps-sheet-out: .2s;
 }
 
 :root.dark,
@@ -150,5 +154,7 @@
   :root {
     --ps-fast: 0s;
     --ps-slow: 0s;
+    --ps-sheet-in: 0s;
+    --ps-sheet-out: 0s;
   }
 }

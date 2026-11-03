@@ -1511,17 +1511,21 @@ body:has(.ps-install:not([style*="none"], [x-cloak])) .fi-main .fi-page .fi-call
   .ps .ps-dropdown, .ps .ps-account-menu, .ps .ps-account.account-open .ps-account-menu {
     position: fixed; inset: auto 0 0; z-index: var(--ps-z-modal); width: auto; min-width: 0; max-width: none; height: auto; max-height: 86dvh !important; margin: 0;
     padding: 26px 12px calc(14px + env(safe-area-inset-bottom, 0px)); overflow-y: auto; overscroll-behavior: contain;
-    border: 0; border-radius: 20px 20px 0 0; background: var(--ps-surface); box-shadow: 0 0 0 100vmax var(--ps-backdrop), var(--ps-shadow-modal); transform: none; font-size: 14px;
+    border: 0; border-radius: 20px 20px 0 0; background: var(--ps-surface); box-shadow: 0 0 0 100vmax color-mix(in srgb, var(--ps-backdrop) calc(100% - var(--ps-drag, 0%)), transparent), var(--ps-shadow-modal); transform: none; font-size: 14px;
   }
   .ps .ps-dropdown::before, .ps .ps-account-menu::before { content: ""; position: absolute; top: 9px; left: 50%; width: 38px; height: 5px; margin-left: -19px; border-radius: 99px; background: var(--ps-line); }
   .ps .ps-dropdown-title { margin-bottom: 8px; padding-inline: 4px; font-size: 16px; }
   .ps .ps-dropdown .ps-menu-item { min-height: 48px; gap: 14px; padding-inline: 12px; font-size: 15px; }
   .ps .ps-dropdown .ps-menu-item svg { width: 20px; height: 20px; }
+  /* A sheet slides up as it opens and down as it closes; its backdrop (the shadow) fades with it. */
+  .ps .ps-dropdown.ps-t-in { transition: translate var(--ps-sheet-in) var(--ps-ease), box-shadow var(--ps-sheet-in) ease; }
+  .ps .ps-dropdown.ps-t-out { transition: translate var(--ps-sheet-out) var(--ps-ease-out), box-shadow var(--ps-sheet-out) ease; }
+  .ps .ps-dropdown.ps-t-from { opacity: 1; translate: 0 100%; box-shadow: 0 0 0 100vmax transparent, var(--ps-shadow-modal); }
   /* Notifications nearly fill the screen. */
   .ps .ps-notify-menu { height: 92dvh; max-height: 92dvh !important; }
   /* The account: one row per action, named after its tip, and the panel's build line at the end. */
-  .ps .ps-account-menu { visibility: hidden; opacity: 0; translate: 0 100%; transition: translate var(--ps-slow), opacity var(--ps-fast), visibility var(--ps-slow); }
-  .ps .ps-account.account-open .ps-account-menu { visibility: visible; opacity: 1; translate: none; }
+  .ps .ps-account-menu { visibility: hidden; opacity: 0; translate: 0 100%; transition: translate var(--ps-sheet-out) var(--ps-ease-out), opacity var(--ps-sheet-out), visibility var(--ps-sheet-out); }
+  .ps .ps-account.account-open .ps-account-menu { visibility: visible; opacity: 1; translate: none; transition: translate var(--ps-sheet-in) var(--ps-ease), opacity var(--ps-fast), visibility 0s; }
   .ps .ps-account-actions-inner { display: grid; width: 100%; gap: 2px; }
   .ps .ps-account-actions-inner form { display: grid; }
   .ps .ps-account-actions-inner .ps-btn.is-icon { justify-content: flex-start; gap: 14px; width: 100%; min-height: 48px; padding: 0 12px; border: 0; background: none; font-size: 15px; font-weight: 500; }

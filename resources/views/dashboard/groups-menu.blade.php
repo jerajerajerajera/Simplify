@@ -4,7 +4,7 @@
             x-on:click="groupsMenu=!groupsMenu; appearanceMenu=false; accountMenu=false; notifyMenu=false">
         <svg aria-hidden="true"><use href="#ps-files"/></svg><span class="ps-mobile-label">{{ $u('server_groups') }}</span>
     </button>
-    <div id="ps-overview-groups-menu" class="ps-dropdown is-end ps-overview-appearance-menu" x-show="groupsMenu" x-cloak x-transition.opacity>
+    <div id="ps-overview-groups-menu" class="ps-dropdown is-end ps-overview-appearance-menu" x-show="groupsMenu" x-cloak x-transition:enter="ps-t-in" x-transition:enter-start="ps-t-from" x-transition:leave="ps-t-out" x-transition:leave-end="ps-t-from">
         <strong class="ps-dropdown-title">{{ $u('server_groups') }}</strong>
         <p class="ps-dropdown-hint">{{ $u('saved_with_your_account_so_every') }}</p>
         <div class="ps-customize">

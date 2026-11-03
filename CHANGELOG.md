@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Phones: every menu, sheet and popup slides up as it opens and back down as it closes, also with ✕, Escape or a tap beside it, instead of fading or vanishing. While you drag one down it follows your thumb and the dimmed page behind it brightens; let go past a third of its height, or flick it, and it slides away, otherwise it springs back. A swipe up scrolls, a swipe sideways still goes back. The confirm dialog slides away too, a message at the bottom fades out and can be swiped aside, and buttons, rows and menu items give a little under your thumb. With reduced motion on, nothing slides. Computers keep the short fade.
 - Phones: the window with all notifications closes with a pull down, like the menus: from its top bar, or from the list when it is scrolled to the top. Popups and menus follow your thumb while you drag them, spring back after a short pull, slide away after a longer one, and stay put on a sideways swipe. Closing them never reloads the page.
 
 ## 2.0.0-beta.3

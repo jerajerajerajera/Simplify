@@ -27,7 +27,7 @@
                     <button type="button" class="ps-chip ps-filter-button ps-phone-only" :class="{'is-on': filterActive()}" data-filter="all" aria-controls="ps-filter-menu" :aria-expanded="filterMenu==='all'" aria-haspopup="menu" x-on:click="openFilter('all', $el)">
                         <svg aria-hidden="true"><use href="#ps-filter"/></svg><span x-text="filterLabel()">{{ $u('all_servers') }}</span><svg class="ps-filter-chevron" aria-hidden="true"><use href="#ps-chevron"/></svg>
                     </button>
-                    <div id="ps-filter-menu" x-ref="filterMenu" class="ps-dropdown ps-filter-menu" x-show="filterMenu" x-cloak x-transition.opacity role="menu" aria-label="{{ $u('filter') }}">
+                    <div id="ps-filter-menu" x-ref="filterMenu" class="ps-dropdown ps-filter-menu" x-show="filterMenu" x-cloak x-transition:enter="ps-t-in" x-transition:enter-start="ps-t-from" x-transition:leave="ps-t-out" x-transition:leave-end="ps-t-from" role="menu" aria-label="{{ $u('filter') }}">
                         <strong class="ps-dropdown-title" x-show="filterMenu==='all'">{{ $u('filter') }}</strong>
                         <template x-for="section in filterMenuSections()" :key="section.key">
                             <div class="ps-filter-section" role="group" :aria-label="section.label">

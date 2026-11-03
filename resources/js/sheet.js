@@ -23,43 +23,56 @@
     open().filter((sheet) => !sheet.contains(event.target)).forEach(close);
   });
 
-  // A swipe down follows the thumb and closes the sheet past 80px; a shorter one springs back. Popups that fill the
-  // screen (.ps-modal, such as all notifications) close the same way (K-B22). Only from the top of what scrolls under
-  // the finger, and never on a sideways swipe (that one goes back).
+  // A swipe down follows the thumb and lightens the backdrop as it goes (--ps-drag). Past 30% of the sheet, or with a
+  // quick flick, it slides away and closes; otherwise it springs back. Popups that fill the screen (.ps-modal, such as
+  // all notifications) close the same way (K-B22). Only from the top of what scrolls under the finger, and never on a
+  // sideways swipe (that one goes back) or a swipe up (that one scrolls). Opening and closing themselves slide through
+  // the ps-t-* classes (components.css, dashboard.css).
   const DRAG = SHEETS + ', .ps-modal-layer[data-open="true"] > .ps-modal';
-  const still = matchMedia('(prefers-reduced-motion: reduce)');
   const atTop = (el, sheet) => {
     for (; el && el !== sheet.parentElement; el = el.parentElement) if (el.scrollTop > 0) return false;
     return true;
   };
-  const settle = (sheet, to, then) => {
-    if (still.matches) return then();
-    sheet.style.transition = 'translate .2s ' + (to ? 'ease-in' : 'ease-out');
-    sheet.style.translate = to;
-    setTimeout(then, 200);
+  const seconds = (el, name) => parseFloat(getComputedStyle(el).getPropertyValue(name)) * 1000 || 0;
+  const style = (sheet, transition, translate, drag) => {
+    sheet.style.transition = transition;
+    sheet.style.translate = translate;
+    sheet.parentElement.style.transition = transition && transition.replace('translate', 'background-color');
+    sheet.parentElement.style.setProperty('--ps-drag', drag);
   };
-  const reset = (sheet) => { sheet.style.transition = ''; sheet.style.translate = ''; };
+  const reset = (sheet) => style(sheet, '', '', '');
   let drag = null;
   document.addEventListener('touchstart', (event) => {
     const sheets = phone.matches && event.touches.length === 1 ? [...document.querySelectorAll(DRAG)].filter((el) => el.getClientRects().length > 0) : [];
     const sheet = sheets.reverse().find((el) => el.contains(event.target));
-    drag = sheet && atTop(event.target, sheet) ? { sheet, x: event.touches[0].clientX, y: event.touches[0].clientY, moved: 0, way: null } : null;
+    const { clientX: x, clientY: y } = event.touches[0] || {};
+    drag = sheet && atTop(event.target, sheet) ? { sheet, x, y, moved: 0, speed: 0, at: event.timeStamp, way: null } : null;
   }, { passive: true });
   document.addEventListener('touchmove', (event) => {
     if (!drag) return;
     const dx = event.touches[0].clientX - drag.x, dy = event.touches[0].clientY - drag.y;
-    if (!drag.way && Math.hypot(dx, dy) > 8) drag.way = Math.abs(dx) > Math.abs(dy) ? 'side' : 'down';
+    if (!drag.way && Math.hypot(dx, dy) > 8) drag.way = Math.abs(dx) > Math.abs(dy) ? 'side' : dy > 0 ? 'down' : 'up';
     if (drag.way !== 'down') return;
-    drag.moved = Math.max(0, dy);
-    drag.sheet.style.transition = 'none';
-    drag.sheet.style.translate = '0 ' + drag.moved + 'px';
+    const moved = Math.max(0, dy);
+    drag.speed = (moved - drag.moved) / Math.max(event.timeStamp - drag.at, 1);
+    drag.at = event.timeStamp;
+    drag.moved = moved;
+    style(drag.sheet, 'none', '0 ' + moved + 'px', Math.min(100, (moved / drag.sheet.offsetHeight) * 100) + '%');
   }, { passive: true });
   document.addEventListener('touchend', () => {
     if (!drag) return;
-    const { sheet, moved } = drag;
+    const { sheet, moved, speed } = drag;
     drag = null;
-    if (moved > 80) settle(sheet, '0 100%', () => { close(sheet); setTimeout(() => reset(sheet), 300); });
-    else if (moved > 0) settle(sheet, '', () => reset(sheet));
+    if (!moved) return;
+    if (moved > sheet.offsetHeight * 0.3 || (speed > 0.5 && moved > 24)) {
+      const out = seconds(sheet, '--ps-sheet-out');
+      style(sheet, out ? `translate ${out}ms var(--ps-ease-out), box-shadow ${out}ms ease` : 'none', '0 100%', '100%');
+      setTimeout(() => { close(sheet); setTimeout(() => reset(sheet), out + 200); }, out);
+    } else {
+      const back = seconds(sheet, '--ps-sheet-in');
+      style(sheet, back ? `translate ${back}ms cubic-bezier(.3, 1.3, .5, 1), box-shadow ${back}ms ease` : 'none', '', '');
+      setTimeout(() => reset(sheet), back);
+    }
   });
   document.addEventListener('touchcancel', () => { if (drag) reset(drag.sheet); drag = null; });
 })();

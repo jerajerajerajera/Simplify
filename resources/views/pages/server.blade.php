@@ -62,7 +62,7 @@
                 <button type="button" class="ps-btn ps-power-main" x-show="!installView()" :class="{'is-primary': ['start', 'first'].includes(mainPower().action), 'is-danger': mainPower().action==='kill'}" x-on:click="power(mainPower().action)" :disabled="busy || !server.permissions[mainPower().permission] || (mainPower().action==='start' && !canRestart()) || (mainPower().action==='first' && eulaNeeded && !eulaAccepted)" :aria-label="Simplify.fill(@js($u('action_server')), { action: mainPower().label })"><svg aria-hidden="true"><use :href="'#ps-'+mainPower().icon"/></svg><span x-text="mainPower().label"></span></button>
                 <button type="button" class="ps-btn ps-power-restart" x-show="!firstStart() && !installView()" x-on:click="power('restart')" :disabled="busy || !server.permissions['control.restart'] || !canRestart()" aria-label="{{ $u('restart_server') }}"><svg aria-hidden="true"><use href="#ps-restart"/></svg><span>{{ $u('restart') }}</span></button>
                 <button type="button" class="ps-btn is-icon ps-info-more-button" aria-label="{{ $u('more_server_options') }}" aria-controls="ps-info-menu" :aria-expanded="infoMenu" x-on:click="infoMenu=!infoMenu; colorMenu=false; bannerMenu=false"><svg aria-hidden="true"><use href="#ps-dots"/></svg></button>
-                <div id="ps-info-menu" class="ps-dropdown is-end ps-info-menu" x-show="infoMenu" x-cloak x-transition.opacity role="menu">
+                <div id="ps-info-menu" class="ps-dropdown is-end ps-info-menu" x-show="infoMenu" x-cloak x-transition:enter="ps-t-in" x-transition:enter-start="ps-t-from" x-transition:leave="ps-t-out" x-transition:leave-end="ps-t-from" role="menu">
                     <span class="ps-label ps-menu-heading" x-show="server.can_edit">{{ $u('look') }}</span>
                     <button type="button" class="ps-menu-item" role="menuitem" x-show="server.can_edit" :disabled="busy" x-on:click="openColorMenu()"><span class="ps-color-dot" aria-hidden="true"></span><span>{{ $u('server_color') }}</span></button>
                     <button type="button" class="ps-menu-item" role="menuitem" x-show="server.can_edit" :disabled="busy" x-on:click="openBannerMenu()"><svg aria-hidden="true"><use href="#ps-image"/></svg><span>{{ $u('server_background') }}</span></button>
@@ -80,7 +80,7 @@
                     <button type="button" class="ps-menu-item is-danger" role="menuitem" x-show="server.can_delete" :disabled="busy || !canDelete()" :data-tip="canDelete() ? null : @js($u('stop_to_delete'))" x-on:click="infoMenu=false; deleteServer()"><svg aria-hidden="true"><use href="#ps-trash"/></svg><span>{{ $u('delete_server') }}</span></button>
                 </div>
                 {{-- Background: automatic, one of Simplify's scenes, a banner uploaded for another server of theirs, or a new upload. --}}
-                <div class="ps-dropdown is-end ps-banner-dropdown" x-show="bannerMenu" x-cloak x-on:click.stop>
+                <div class="ps-dropdown is-end ps-banner-dropdown" x-show="bannerMenu" x-cloak x-transition:enter="ps-t-in" x-transition:enter-start="ps-t-from" x-transition:leave="ps-t-out" x-transition:leave-end="ps-t-from" x-on:click.stop>
                     <span class="ps-label">{{ $u('server_background') }}</span>
                     <div class="ps-banner-choices">
                         <button type="button" class="ps-banner-choice is-auto" :aria-pressed="server.background_id==='auto'" :disabled="busy" x-on:click="chooseBanner('auto')"><svg aria-hidden="true"><use href="#ps-sparkles"/></svg><span>{{ $u('automatic') }}</span></button>
@@ -93,7 +93,7 @@
                         <button type="button" class="ps-btn is-sm" x-on:click="bannerMenu=false">{{ $u('close') }}</button>
                     </div>
                 </div>
-                <div class="ps-dropdown is-end ps-color-dropdown" x-show="colorMenu" x-cloak x-on:click.stop>
+                <div class="ps-dropdown is-end ps-color-dropdown" x-show="colorMenu" x-cloak x-transition:enter="ps-t-in" x-transition:enter-start="ps-t-from" x-transition:leave="ps-t-out" x-transition:leave-end="ps-t-from" x-on:click.stop>
                     <span class="ps-label">{{ $u('server_color') }}</span>
                     <div class="ps-swatches ps-color-presets">
                         <template x-for="(name, color) in COLORS" :key="color">
@@ -200,7 +200,7 @@
         <a class="ps-phone-section" x-show="boot.admin_url" x-cloak :href="boot.admin_url + '#menu'"><svg class="ps-phone-section-icon" aria-hidden="true"><use href="#ps-shield"/></svg><span>{{ $u('admin') }}</span></a>
         <div class="ps-phone-more">
             <button type="button" class="ps-phone-section" aria-controls="ps-phone-more-menu" :aria-expanded="more" aria-current="page" x-on:click="more=!more"><svg class="ps-phone-section-icon" aria-hidden="true"><use href="#ps-list"/></svg><span>{{ $u('sections') }}</span></button>
-            <div id="ps-phone-more-menu" class="ps-dropdown is-end ps-phone-more-menu" x-show="more" x-cloak x-transition.opacity>
+            <div id="ps-phone-more-menu" class="ps-dropdown is-end ps-phone-more-menu" x-show="more" x-cloak x-transition:enter="ps-t-in" x-transition:enter-start="ps-t-from" x-transition:leave="ps-t-out" x-transition:leave-end="ps-t-from">
                 <strong class="ps-dropdown-title" x-text="server.name"></strong>
                 @foreach ($menu['main'] as $item)
                     <a class="ps-menu-item" href="{{ $item['url'] }}" @if ($navigate && ! $item['new_tab']) wire:navigate @endif data-ps-match="{{ implode(' ', array_map(fn ($url) => parse_url($url, PHP_URL_PATH), $item['match'])) }}" @if ($item['active']) aria-current="page" @endif @if ($item['new_tab']) target="_blank" rel="noopener" @endif x-on:click="more=false">@if ($item['icon'])<x-filament::icon :icon="$item['icon']" />@endif<span>{{ $item['label'] }}</span></a>

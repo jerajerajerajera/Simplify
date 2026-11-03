@@ -1,7 +1,7 @@
 // Sheets on phones follow the thumb and close when dragged down (resources/js/sheet.js). K-B22 (Jeroen 3-11): the
 // full-screen window with every notification (a popup, .ps-modal) did not close on a pull down; only the menus did.
 // The test drags in a real browser at phone width: a menu, the notifications window by its head and by its list, a short
-// drag that springs back, a list that is scrolled down (it scrolls instead) and a sideways swipe (it stays open).
+// drag that springs back, a quick flick that closes, a swipe up, a list that is scrolled down (it scrolls instead) and a sideways swipe (it stays open).
 // Needs Chrome or Chromium (GitHub's runners have Chrome).
 const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
@@ -52,9 +52,9 @@ const page = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewp
     const t = new Touch({ identifier: 1, target: el, clientX: x, clientY: y });
     el.dispatchEvent(new TouchEvent(type, { bubbles: true, cancelable: true, touches: type === 'touchend' ? [] : [t], targetTouches: type === 'touchend' ? [] : [t], changedTouches: [t] }));
   };
-  const drag = async (el, dx, dy, check) => {
+  const drag = async (el, dx, dy, check, step = 16) => {
     touch('touchstart', el, 100, 300);
-    for (let i = 1; i <= 5; i++) { touch('touchmove', el, 100 + dx * i / 5, 300 + dy * i / 5); await wait(16); }
+    for (let i = 1; i <= 5; i++) { touch('touchmove', el, 100 + dx * i / 5, 300 + dy * i / 5); await wait(step); }
     const during = check ? check() : null;
     touch('touchend', el, 100 + dx, 300 + dy);
     await wait(1000);
@@ -67,15 +67,23 @@ const page = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewp
     let during = await drag(document.getElementById('head'), 160, 30, () => shift(modal));
     ok('a sideways swipe does not move or close the window', during === 0 && !shut.includes('modal'), { during, shut });
     // A short pull springs back and keeps the window open.
-    during = await drag(document.getElementById('head'), 0, 40, () => shift(modal));
-    ok('the window follows the thumb', during > 30, { during });
-    ok('a short pull springs back and keeps the window open', !shut.includes('modal') && shift(modal) === 0, { shut, after: shift(modal) });
+    during = await drag(document.getElementById('head'), 0, 40, () => [shift(modal), getComputedStyle(document.getElementById('layer')).getPropertyValue('--ps-drag')], 60);
+    ok('the window follows the thumb and the backdrop lightens', during[0] > 30 && parseFloat(during[1]) > 5, { during });
+    during = shift(modal);
+    ok('a short, slow pull springs back and keeps the window open', !shut.includes('modal') && during === 0, { shut, after: during });
+    // A swipe up on the list scrolls it and leaves the window where it is.
+    during = await drag(document.getElementById('list'), 0, -120, () => shift(modal));
+    ok('a swipe up does not move the window', during === 0 && !shut.includes('modal'), { during, shut });
     // A list that is scrolled down scrolls back up instead of closing.
     const body = document.getElementById('body');
     body.scrollTop = 400;
     during = await drag(document.getElementById('list'), 0, 200, () => shift(modal));
     ok('a scrolled list does not close the window', during === 0 && !shut.includes('modal'), { during, shut });
     body.scrollTop = 0;
+    // A quick flick closes it, even when short.
+    await drag(document.getElementById('head'), 0, 60, null, 8);
+    ok('a quick flick down closes the window', shut.includes('modal'), { shut });
+    shut.length = 0; modal.style.cssText = '';
     // A pull down on the list at its top closes the notifications window (K-B22).
     await drag(document.getElementById('list'), 0, 200);
     ok('a pull down on the list closes the notifications window', shut.includes('modal'), { shut });

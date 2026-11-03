@@ -190,6 +190,15 @@
   window.addEventListener('scroll', hideTip, { passive: true, capture: true });
   document.addEventListener('keydown', (event) => event.key === 'Escape' && hideTip());
 
+  // Closing on a phone: the ps-t-out and ps-t-from classes slide it away (components.css); elsewhere it goes at once.
+  const leave = (el, done) => {
+    el.classList.add('ps-t-out');
+    const ms = parseFloat(getComputedStyle(el).transitionDuration) * 1000 || 0;
+    if (!ms) return done();
+    requestAnimationFrame(() => el.classList.add('ps-t-from'));
+    setTimeout(done, ms + 20);
+  };
+
   const toast = (message, tone = 'info', duration) => {
     const text = String(message ?? '').trim();
     if (!text) return;
@@ -205,8 +214,20 @@
     node.className = 'ps-toast is-' + tone;
     node.innerHTML = icon(tone) + '<span></span><button type="button" aria-label="Dismiss">' + icon('close') + '</button>';
     node.querySelector('span').textContent = text;
-    const remove = () => node.remove();
+    const remove = () => node.isConnected && !node.classList.contains('ps-t-out') && leave(node, () => node.remove());
     node.querySelector('button').addEventListener('click', remove);
+    // A swipe sideways with a finger takes it away.
+    let from = null;
+    node.addEventListener('pointerdown', (event) => (from = event.pointerType === 'touch' ? event.clientX : null));
+    node.addEventListener('pointermove', (event) => from !== null && (node.style.translate = event.clientX - from + 'px 0'));
+    node.addEventListener('pointercancel', () => ((from = null), (node.style.translate = '')));
+    node.addEventListener('pointerup', (event) => {
+      const dx = from === null ? 0 : event.clientX - from;
+      from = null;
+      if (Math.abs(dx) < 70) return (node.style.translate = '');
+      remove();
+      node.style.translate = Math.sign(dx) * 120 + '% 0';
+    });
     ui.toasts.append(node);
     while (ui.toasts.children.length > 3) ui.toasts.firstElementChild.remove();
     setTimeout(remove, duration || (tone === 'danger' ? 10000 : 6500));
@@ -257,7 +278,9 @@
         check();
       }
       const finish = (value) => {
-        wrap.remove();
+        if (wrap.dataset.open !== 'true') return;
+        wrap.dataset.open = 'false';
+        leave(wrap, () => wrap.remove());
         ui.dialogs--;
         if (!ui.dialogs) root.classList.remove('ps-ui-locked');
         try { previous?.focus?.(); } catch {}
