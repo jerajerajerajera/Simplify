@@ -1,5 +1,5 @@
 // The overview filters (resources/js/dashboard.js) without a panel. Usage: node tests/overview-filters.cjs
-// K-B7 (Jeroen, 3-11, 2.0.0-beta.1): with one game, one node, only your own servers and no groups the Filter vanished on
+// K-B15 (Jeroen, 3-11, 2.0.0-beta.1): with one game, one node, only your own servers and no groups the Filter vanished on
 // desktop and phone. The filter is per egg (not every server is a game) and stays there; CPU and RAM take the colour of their load.
 const path = require('path');
 global.window = { addEventListener() {} };

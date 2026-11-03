@@ -153,6 +153,11 @@ return [
         'server_color_saved' => 'Couleur du serveur enregistrée',
         'traffic_used' => ':traffic utilisés · depuis le démarrage du serveur',
         'of_allocated' => 'sur :amount alloués',
+        'share_of' => ':percent sur :amount',
+        'cpu_short' => 'CPU',
+        'memory_short' => 'MEM',
+        'storage_short' => 'DISK',
+        'network_short' => 'NET',
     ],
     'seasons' => [
         'newyear' => ['name' => 'Nouvel An', 'text' => 'La dernière nuit de l\'année et le premier jour de la suivante.'],

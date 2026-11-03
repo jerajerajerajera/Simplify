@@ -16,4 +16,5 @@
     </main>
     @include('simplify::dashboard.tabbar')
 </div>
+@include('simplify::dashboard.boot', ['kind' => 'overview'])
 </x-filament-panels::page>

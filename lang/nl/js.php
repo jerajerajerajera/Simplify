@@ -153,6 +153,11 @@ return [
         'server_color_saved' => 'Serverkleur opgeslagen',
         'traffic_used' => ':traffic gebruikt · sinds de serverstart',
         'of_allocated' => 'van :amount toegewezen',
+        'share_of' => ':percent van :amount',
+        'cpu_short' => 'CPU',
+        'memory_short' => 'MEM',
+        'storage_short' => 'DISK',
+        'network_short' => 'NET',
     ],
     'seasons' => [
         'newyear' => ['name' => 'Oud en Nieuw', 'text' => 'De laatste nacht van het jaar en de eerste dag van het nieuwe.'],

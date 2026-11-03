@@ -15,9 +15,15 @@ php tests/announcements-game-chat.php
 php tests/embed.php
 php tests/subdomains.php
 php tests/hub.php
+php tests/assets.php
 php tests/lang.php
 node tests/seasons.cjs
 node tests/unsaved.cjs
+node tests/boot.cjs
+node tests/shell-footer.cjs
+node tests/beta-footer.cjs
+node tests/standalone-viewport.cjs
+node tests/server-stats.cjs
 node tests/overview-filters.cjs
 python3 tests/hub-check.py
 python3 tests/audit/parts.py --self-test

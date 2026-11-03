@@ -93,7 +93,7 @@ function step(string $what, callable $run): void
         echo "FAIL $what: ".get_class($e).': '.substr($e->getMessage(), 0, 400).' ('.basename($e->getFile()).':'.$e->getLine().")\n";
     }
 }
-function visit(User $user, string $url): TestResponse
+function visit(User $user, string $url, array $headers = []): TestResponse
 {
     $client = new class(app())
     {
@@ -102,7 +102,7 @@ function visit(User $user, string $url): TestResponse
         public function __construct(public $app) {}
     };
 
-    return $client->actingAs($user)->get($url);
+    return $client->actingAs($user)->get($url, $headers);
 }
 // Livewire's own assertions need PHPUnit's configuration, which a plain script does not have.
 function noErrors(Testable $component): void
@@ -217,7 +217,7 @@ step('a panel with settings opens them, a new panel opens the setup, and finishi
     Setting::query()->delete();
     PanelSettings::save([]);
     $response = visit($admin, Settings::getUrl(panel: 'admin'));
-    if (! $response->isRedirect() || ! str_contains((string) $response->headers->get('Location'), 'simplify-setup')) {
+    if (! $response->isRedirect() || ! str_contains((string) $response->headers->get('Location'), 'simplify/setup')) {
         throw new RuntimeException('the settings did not open the setup first (HTTP '.$response->getStatusCode().')');
     }
     $url = Setup::getUrl(panel: 'admin');
@@ -298,13 +298,21 @@ step('a tagged add-on shows on the settings page', function ($app) use ($admin) 
         throw new RuntimeException('the add-on is not listed');
     }
 });
-step('the stylesheet and logo are served with a long cache', function () use ($admin) {
+step('the stylesheet and logo are served with a long cache, styles and scripts gzipped', function () use ($admin) {
     foreach (['simplify.css' => 'text/css', 'logo.svg' => 'image/svg+xml'] as $name => $type) {
         $url = Assets::url($name);
         $response = visit($admin, $url);
         expectOk($response, $url);
         if (! str_starts_with((string) $response->headers->get('Content-Type'), $type)) {
             throw new RuntimeException("$name has type ".$response->headers->get('Content-Type'));
+        }
+    }
+    // Pelican's web server compresses only HTML: Simplify gzips its own styles and scripts.
+    foreach (['dashboard.css', 'dashboard.js'] as $name) {
+        $response = visit($admin, Assets::url($name), ['Accept-Encoding' => 'gzip, deflate, br']);
+        expectOk($response, $name);
+        if ($response->headers->get('Content-Encoding') !== 'gzip' || gzdecode((string) $response->getContent()) !== file_get_contents((string) Assets::path($name))) {
+            throw new RuntimeException("$name is not sent gzipped (Content-Encoding: ".$response->headers->get('Content-Encoding').')');
         }
     }
     $response = visit($admin, '/simplify/assets/plugin.json');
@@ -384,6 +392,10 @@ step('the overview renders with the server card', function () use ($admin, $serv
     if (! str_contains($response->getContent(), 'pelicanSimplify(') || ! str_contains($response->getContent(), '/simplify/assets/dashboard.js?v=')) {
         throw new RuntimeException('the overview script is missing');
     }
+    // P-10: placeholders while Simplify starts, never a white page (dashboard/boot.blade.php, tests/boot.cjs).
+    if (! str_contains($response->getContent(), 'class="ps-boot is-overview"')) {
+        throw new RuntimeException('the overview has no placeholders while it starts');
+    }
     $card = collect(Listing::for($admin))->firstWhere('uuid', $server->uuid);
     if ($card === null || $card['name'] !== $server->name || ! isset($card['status'], $card['usage'])) {
         throw new RuntimeException('the server has no card: '.json_encode($card));
@@ -434,7 +446,7 @@ step('the Admin page: an admin page has Simplify\'s header and the Admin menu, t
     expectOk($page, $url);
     // The header and the menu as @persist draws them, and the class head.blade.php sets (the head's own script names
     // them too, so the markup itself is what counts).
-    foreach (['<div x-persist="simplify-admin-top"', '<div x-persist="simplify-admin-side"', "classList.add('ps-shell'"] as $part) {
+    foreach (['<div x-persist="simplify-admin-top"', '<div x-persist="simplify-admin-side"', "classList.add('ps-shell'", 'class="ps-boot is-admin"'] as $part) {
         if (! str_contains($page->getContent(), $part)) {
             throw new RuntimeException('the Admin page has no '.$part);
         }
@@ -621,6 +633,15 @@ step('panel settings are saved and a bad value is refused', function () use ($ad
     if (PanelSettings::get('overview_seconds') !== 20 || PanelSettings::get('accent') !== '#336699') {
         throw new RuntimeException('settings were not saved: '.json_encode(PanelSettings::all()));
     }
+    $friends = PanelSettings::get('friends_mode');
+    PanelSettings::save(['friends_mode' => true]);
+    $on = PanelSettings::friendsMode();
+    PanelSettings::save(['friends_mode' => false]);
+    $off = PanelSettings::friendsMode();
+    PanelSettings::save(['friends_mode' => (bool) $friends]);
+    if ($on !== true || $off !== false) {
+        throw new RuntimeException('friendsMode() does not follow the friends mode setting');
+    }
 });
 step('the accent colour and refresh rate reach the panel', function () use ($admin) {
     $url = Overview::getUrl(panel: 'app');
@@ -803,6 +824,9 @@ step('announcements: a server page shows them as short rows in the top bar, not 
         }
         expectOk($response, $url);
         $page = $response->getContent();
+        if (! str_contains($page, 'class="ps-boot is-server"')) {
+            throw new RuntimeException('the server page has no placeholders while it starts');
+        }
         $card = strpos($page, 'ps-info-notes');
         if ($card === false || strpos($page, 'Smoke card note', $card) === false || str_contains($page, 'simplify-announcement-')) {
             throw new RuntimeException('the announcement is not a row in the top bar');
