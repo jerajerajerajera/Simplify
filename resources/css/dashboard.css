@@ -1013,7 +1013,8 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 @media (max-width: 600px) {
   body:has(.ps:not(.server-active, .host-mode)), body:has(.ps:not(.server-active, .host-mode)) :is(.fi-layout, .fi-main-ctn) { height: auto; overflow: visible; }
   body:has(.ps:not(.server-active, .host-mode)) :is(.fi-main, .fi-page, .fi-page-header-main-ctn, .fi-page-main, .fi-page-content), .ps:not(.server-active, .host-mode), .ps:not(.server-active, .host-mode) .ps-main { flex: 1 0 auto; min-height: auto; overflow: visible; }
-  .ps:not(.server-active, .host-mode) .ps-main { padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
+  /* The copyright line under the servers keeps the room for the bottom bar (below), so the servers need only a gap. */
+  .ps:not(.server-active, .host-mode) .ps-main { padding-bottom: 16px; }
   body:has(.ps:not(.server-active, .host-mode)) :is(.fi-footer, [data-ps-footer]) { padding-bottom: calc(76px + env(safe-area-inset-bottom)) !important; }
   .ps .ps-overview, .ps .ps-server-scroll { flex: none; min-height: auto; overflow: visible; mask-image: none; }
   .ps .ps-server-scroll { padding: 0; }
@@ -1528,8 +1529,9 @@ body:has(.ps-install:not([style*="none"], [x-cloak])) .fi-main .fi-page .fi-call
   .ps .ps-account-actions-inner .ps-btn.is-icon::after { content: attr(data-tip); }
   .ps .ps-account-actions-inner .ps-btn.is-icon[aria-pressed="true"] { color: var(--ps-accent); }
   .ps .ps-account-foot { margin: 8px 0 0; color: var(--ps-muted); font-size: 12px; text-align: center; }
-  /* The build line sits in the account sheet; the page keeps its height for the servers. */
-  body:has(.ps) :is(.fi-footer, [data-ps-footer]) { display: none !important; }
+  /* A server's page keeps its height for the console; its build line sits in the account sheet. The overview ends
+     with Pelican's copyright line under the servers, above the bottom bar (K-B19). */
+  body:has(.ps-server-top) :is(.fi-footer, [data-ps-footer]) { display: none !important; }
 
   /* Bottom bars: the overview's has as many tabs as it shows. */
   .ps-tabbar { grid-template-columns: none; grid-auto-columns: minmax(0, 1fr); grid-auto-flow: column; }
