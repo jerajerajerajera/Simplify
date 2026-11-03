@@ -331,8 +331,13 @@
     // Installed: the app draws up to the screen edges and keeps clear of the notch and home bar itself.
     if (webApp.standalone()) {
       root.classList.add('ps-standalone');
-      const viewport = document.querySelector('meta[name="viewport"]');
-      if (viewport && !/viewport-fit/.test(viewport.content)) viewport.content += ', viewport-fit=cover';
+      const cover = () => {
+        const viewport = document.querySelector('meta[name="viewport"]');
+        if (viewport && !/viewport-fit/.test(viewport.content)) viewport.content += ', viewport-fit=cover';
+      };
+      cover();
+      // A click in a menu (wire:navigate) brings the next page's head, whose viewport has no cover (K-B10).
+      document.addEventListener('livewire:navigated', cover);
     }
     window.addEventListener('beforeinstallprompt', (event) => {
       event.preventDefault();
