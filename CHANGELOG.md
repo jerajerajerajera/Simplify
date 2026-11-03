@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- The filters are back on the overview. On a desktop each filter is a dropdown of its own above the servers: Egg first and always there, then Show (all, mine, others), Node and Group when there is something to choose. On a phone one Filter opens them all as a sheet, and it no longer disappears when every server has the same game, node and owner. The overview filters per egg instead of per game, because not every server is a game. Every choice shows how many servers it holds.
+- CPU and RAM on a server card take the colour of their load: green below 60%, orange from 60%, red from 85% of the server's limit, grey when unknown. They no longer take the server's colour, and the value sits on one line with its label.
+
 ## 2.0.0-beta.1
 
 - A download of the repository holds the plugin only, without its screenshots, art, tests and scripts (2.3 MB instead of 9.3 MB).

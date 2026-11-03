@@ -116,14 +116,17 @@ const adminPage = async (overview) => {
   // Always end inside Simplify, so a failed step above does not leave the rest of the round in the legacy panel.
   await goto(overview + (overview.includes('?') ? '&' : '?') + 'simplify_legacy=0', 600);
 };
-// The Filter (V52, Khion): one chip with Show, Game, Node and Group in one menu (a sheet on a phone); Group only when the
-// account has server groups. A choice narrows the servers and names itself on the chip; All takes it back.
+// The filters: on a desktop a dropdown per filter (Egg always, then Show, Node and Group when they have a choice); on a
+// phone one Filter with them all as a sheet. Group only when the account has server groups. A choice narrows the servers and names itself on the chip; All takes it back.
 const filterCheck = async () => {
   const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
   const want = await alpine('return { sections: d.filterSections().map((x) => x.key), groups: d.overviewGroups.length, servers: d.visibleServers().length }');
-  if (!want || !want.sections.length) return say('overview-filter', !!want, { note: 'nothing to filter on this panel', want });
-  if (!(await click('.ps-filter-button', 700))) return say('overview-filter', false, { note: 'no Filter button' });
+  // K-B7: the egg filter is always there while the overview has servers (it vanished with one game, one node and only own servers).
+  if (!want || want.sections[0] !== 'egg') return say('overview-filter', false, { note: 'no egg filter', want });
+  if (!(await click('.ps-filter-button >> visible=true', 700))) return say('overview-filter', false, { note: 'no Filter button' });
   const shown = await page.evaluate(() => [...document.querySelectorAll('#ps-filter-menu .ps-filter-section')].filter((e) => e.getClientRects().length).map((e) => e.querySelector('.ps-label').textContent.trim())).catch(() => null);
+  // A desktop dropdown holds its own filter; the phone's one Filter holds them all.
+  const all = await alpine("return d.filterMenu === 'all'");
   await record('overview-filter', 'Overzicht · Filter open');
   const pick = page.locator('#ps-filter-menu .ps-filter-section .ps-menu-item[aria-checked="false"] >> visible=true').first();
   const label = (await pick.innerText().catch(() => '')).trim();
@@ -132,7 +135,7 @@ const filterCheck = async () => {
   await record('overview-filtered', 'Overzicht · gefilterd');
   await alpine(`for (const x of d.filterSections()) d.setFilter(x.key, 'all'); return true;`); await sleep(500);
   const back = await alpine('return d.visibleServers().length');
-  say('overview-filter', Array.isArray(shown) && shown.length === want.sections.length && (want.groups > 0) === want.sections.includes('group') && !!after && !after.open && after.label.includes(label) && after.servers <= want.servers && back === want.servers, { want, shown, label, after, back });
+  say('overview-filter', Array.isArray(shown) && shown.length === (all ? want.sections.length : 1) && (want.groups > 0) === want.sections.includes('group') && !!after && !after.open && after.label.includes(label) && after.servers <= want.servers && back === want.servers, { want, shown, all, label, after, back });
 };
 // Host health card and its fold-open tab are one hover zone (1.4.5): pointing at either gives the same colours.
 const healthHover = async (where) => {

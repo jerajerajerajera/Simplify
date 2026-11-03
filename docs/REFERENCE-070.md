@@ -75,7 +75,7 @@ Status: ontbreekt / deels / in 1.5.2 / anders / bewust weg / aanwezig.
 | P01 | Overzicht | Kaarten, kleine kaarten of lijst; kolommen; kaartbreedte; volle breedte | iedereen | aanwezig |  | Customize overview | simplify |  |  |
 | P02 | Overzicht | Kaartinhoud: kaarticoon server/spel, MOTD, CPU- en RAM-grafiekje, snelle acties hover/altijd | iedereen | aanwezig |  | Customize overview | simplify |  |  |
 | P03 | Overzicht | Groeperen per node, eigen servergroepen met kleur en volgorde, knop Server groups, sorteren (naam, aangemaakt, poort, eigen) | iedereen | aanwezig |  | groups-menu, dashboard.js | simplify |  |  |
-| P04 | Overzicht | Filters op spel, node en eigenaar; zoeken in nodes | iedereen | aanwezig |  | overview.blade | simplify |  |  |
+| P04 | Overzicht | Filters op spel, node en eigenaar; zoeken in nodes | iedereen | anders (3-11, akkoord eigenaar: per egg i.p.v. per spel) |  | overview.blade, dashboard.js filterSections | simplify |  | tests/overview-filters.cjs, audit `overview-filter` |
 | P05 | Overzicht | Hostgezondheid (bovenbalk, boven, onder), per node, verversen | admin | aanwezig |  | HostHealth | simplify |  |  |
 | P06 | Overzicht | Serverkleuren (één of per server), seizoensaccenten | iedereen | aanwezig |  | Customize + Appearance | simplify |  |  |
 | P07 | Overzicht | Vriendenmodus (alle kaarten zichtbaar, "not assigned to you") | admin | aanwezig |  | General › friends_mode | simplify |  |  |
