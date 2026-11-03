@@ -176,6 +176,9 @@ const adminPage = async (overview) => {
     const navAdmin = await pageLook();
     const d2 = same(fullAdmin, navAdmin, keys);
     say('overview-to-admin-look', d2.length === 0, { diff: d2, full: fullAdmin, after: navAdmin, path: new URL(page.url()).pathname });
+    // The overview and the Admin page share one background, so going between them changes no colour (K-B17).
+    const bg = (look) => look?.body?.split(' | ')[0] || null;
+    say('admin-overview-bg', !!bg(fullOverview) && bg(fullOverview) === bg(fullAdmin) && bg(fullAdmin) === bg(navAdmin), { overview: bg(fullOverview), admin: bg(fullAdmin), adminAfterShield: bg(navAdmin) });
     await shieldTo(overview);
   }
   // Computers (Jeroen 3-11): the Admin page belongs to the overview instead of feeling like a separate site. The same
