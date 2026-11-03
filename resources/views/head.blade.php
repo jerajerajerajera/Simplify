@@ -56,14 +56,15 @@
                 // On a phone the settings' menu sits above the settings, so a fitted card would leave them a few lines: the page scrolls.
                 if (innerWidth <= 600 && card.matches('.s-settings-tabs')) continue;
                 const box = card.getBoundingClientRect();
-                // In the Admin page's card (html.ps-shell) the card scrolls, not the page: fit what is left of the card.
+                // In the Admin page's card (html.ps-shell) the card scrolls, not the page: fit what is left of the card (on a
+                // low window that can be less than the page's usual minimum).
                 const shell = card.closest('html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn');
                 if (shell) {
                     const room = shell.getBoundingClientRect();
-                    const tall = Math.max(320, Math.floor(room.bottom - box.top - (shell.scrollHeight - shell.scrollTop - (box.bottom - room.top))));
+                    const tall = Math.max(160, Math.floor(room.bottom - box.top - (shell.scrollHeight - shell.scrollTop - (box.bottom - room.top))));
                     card.style.setProperty('--s-fit', tall + 'px');
                     const over = shell.scrollHeight - shell.clientHeight;
-                    if (over > 0) card.style.setProperty('--s-fit', Math.max(320, tall - over) + 'px');
+                    if (over > 0) card.style.setProperty('--s-fit', Math.max(160, tall - over) + 'px');
                     continue;
                 }
                 const below = document.documentElement.scrollHeight - (box.bottom + scrollY);
