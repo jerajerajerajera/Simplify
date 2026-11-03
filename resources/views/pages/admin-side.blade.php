@@ -32,6 +32,8 @@
             this.open = false;
         },
         phone() { return matchMedia('(max-width: 600px)').matches; },
+        // The panel's accent, as the header (AdminTop) has it, for New in the bottom bar and the menu.
+        accent() { this.$nextTick(() => { const top = document.querySelector('.ps-admin-top'); if (!top) return; const css = getComputedStyle(top); for (const key of ['--ps-accent', '--ps-on-accent']) { const value = css.getPropertyValue(key).trim(); if (value) this.$root.style.setProperty(key, value); } }); },
         // A swipe from the left edge to the right brings the menu back (phones; the menu is beside the page elsewhere).
         swipe() {
             let start = null;
@@ -41,7 +43,7 @@
         all() { return @js(array_column($sections, 'key')).every((key) => this.branches[key]); },
         toggleAll() { const on = !this.all(); for (const key of @js(array_column($sections, 'key'))) this.branches[key] = on; },
      }"
-     x-init="locate(); swipe(); if (location.hash === '#menu') { history.replaceState(history.state, '', location.pathname + location.search); open = phone(); }" x-on:livewire:navigated.window="locate()" x-on:simplify:admin-menu.window="open = !open" x-on:simplify:theme.window="dark = $event.detail.dark" x-on:keydown.escape.window="open = false">
+     x-init="locate(); swipe(); accent(); if (location.hash === '#menu') { history.replaceState(history.state, '', location.pathname + location.search); open = phone(); }" x-on:livewire:navigated.window="locate()" x-on:simplify:admin-menu.window="open = !open" x-on:simplify:theme.window="dark = $event.detail.dark; accent()" x-on:keydown.escape.window="open = false">
     <div class="ps-host-backdrop" x-show="open" x-cloak x-on:click="open = false"></div>
     {{-- Phones: where you are, as the page's title; the group brings the menu back. --}}
     <nav class="ps-admin-crumb" aria-label="{{ $u('admin_sections') }}" x-show="crumb && !open" x-cloak>

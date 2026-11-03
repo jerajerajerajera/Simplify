@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Phones: Admin in the bottom bar opens the admin menu as a page of its own, with the same tree as on a computer and Health at the bottom. A link opens its page, and the page's title is where you are, such as Servers › Eggs; tap the group, tap Admin again or swipe from the left edge to go back to the menu. The separate Menu tab is gone, so the bar is Servers, New and Admin again, and the page sits straight on the background without a card around it.
+- The Admin page has the panel's accent colour again, such as New in the bottom bar on a phone.
 
 ## 2.0.0-beta.1
 
