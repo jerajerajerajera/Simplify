@@ -753,8 +753,10 @@ html.ps-shell:not(.ps-frame) .fi-layout > :not([x-persist]) {
 
 html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn {
   position: relative;
+  align-self: stretch;
   box-sizing: border-box;
   height: auto !important;
+  max-height: 100%;
   min-width: 0;
   min-height: 0 !important;
   padding: 0 !important;
