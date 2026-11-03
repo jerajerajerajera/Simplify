@@ -84,6 +84,7 @@ return [
         'close' => 'Schließen',
         'close_server' => 'Server schließen',
         'server_groups' => 'Servergruppen',
+        'edit_groups' => 'Gruppen bearbeiten',
         'saved_with_your_account_so_every' => 'Mit deinem Konto gespeichert, also zeigt jedes Gerät dieselben Gruppen und dieselbe Reihenfolge.',
         'server_order' => 'Serverreihenfolge',
         'for_the_overview_and_for_groups' => 'Für die Übersicht und für Gruppen, die ihr folgen',

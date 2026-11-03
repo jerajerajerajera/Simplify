@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Customize Simplify is wider and shows what is in a section straight away: the sections (Theme, Server groups, Layout, Cards, Grouping, More) sit on the left and the chosen one's settings on the right, with no folding open. Server groups lists your groups with their colour and number of servers, and Edit groups opens their window. On a phone the sections are a row of chips at the top of the sheet. On a server's page the sections are Theme and Server pages; the Admin page and the account pages keep the narrow window with the theme only. It opens on the section you had last.
 - Phones: the overview ends with Pelican's copyright line again, under the servers and above the bottom bar.
 - Host health: opened, everything around the nodes lights up on hover, together with the card and its tab, and a click there folds it shut again. A node keeps its own hover and click.
 - The Admin page and the account pages have the same background as the overview, in light and dark. Going from the overview to Admin and back, for example with Go to the panel at the end of the setup, no longer makes the background lighter or darker.

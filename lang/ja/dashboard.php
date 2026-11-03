@@ -84,6 +84,7 @@ return [
         'close' => '閉じる',
         'close_server' => 'サーバーを閉じる',
         'server_groups' => 'サーバーグループ',
+        'edit_groups' => 'グループを編集',
         'saved_with_your_account_so_every' => 'アカウントに保存されるため、どのデバイスでも同じグループと並び順が表示されます。',
         'server_order' => 'サーバーの並び順',
         'for_the_overview_and_for_groups' => '一覧と、それに従うグループに適用',
