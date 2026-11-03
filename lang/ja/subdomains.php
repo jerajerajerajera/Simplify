@@ -68,4 +68,15 @@ return [
         'removing' => '削除中…',
         'error' => '未接続',
     ],
+    'setup' => [
+        'title' => '設定方法',
+        'intro' => 'プレイヤーは IP アドレスとポートの代わりに oak.:domain のような名前で接続できます。設定は一度だけです。',
+        'step_domain' => 'ドメイン（Cloudflare のゾーン）とサーバーアドレスを入力します。サーバーアドレスは、ポートが届く公開 IP を指す既存の DNS only レコードです。',
+        'step_token' => 'Cloudflare で My Profile › API Tokens › Create Token を開き、テンプレート「Edit zone DNS」を選びます。Zone Resources ではこのドメインだけを選び、トークンを作成してコピーします。',
+        'step_test' => '下にトークンを貼り付けて :test を押します。Simplify が確認し、ゾーン ID を自動で入力します。',
+        'step_save' => ':save を押します。転送範囲のポートを持つ各サーバーのメニューに :menu が表示され、所有者が名前を選べます。',
+        'open_cloudflare' => 'Cloudflare の API トークンを開く',
+        'button' => 'サブドメインを設定',
+        'server_help' => '設定後、プレイヤーは :address でこのサーバーに参加できます。それまでこのページは root 管理者にだけ表示されます。',
+    ],
 ];

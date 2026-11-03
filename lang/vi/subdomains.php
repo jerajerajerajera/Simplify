@@ -68,4 +68,15 @@ return [
         'removing' => 'Đang gỡ…',
         'error' => 'Chưa kết nối',
     ],
+    'setup' => [
+        'title' => 'Cách thiết lập',
+        'intro' => 'Khi đó người chơi vào bằng tên như oak.:domain thay vì địa chỉ IP và cổng. Chỉ cần thiết lập một lần.',
+        'step_domain' => 'Điền tên miền (zone Cloudflare của bạn) và địa chỉ máy chủ: một bản ghi DNS only có sẵn trỏ đến IP công khai nơi các cổng của bạn đi vào.',
+        'step_token' => 'Trong Cloudflare, mở My Profile › API Tokens › Create Token và chọn mẫu "Edit zone DNS". Ở Zone Resources chỉ chọn tên miền này, tạo token rồi sao chép.',
+        'step_test' => 'Dán token vào bên dưới và bấm :test. Simplify kiểm tra và tự điền Zone ID.',
+        'step_save' => 'Bấm :save. Mỗi máy chủ có cổng trong dải được chuyển tiếp sẽ có :menu trong menu, nơi chủ sở hữu chọn tên.',
+        'open_cloudflare' => 'Mở API token của Cloudflare',
+        'button' => 'Thiết lập tên miền phụ',
+        'server_help' => 'Sau đó người chơi có thể vào máy chủ này bằng :address. Cho đến lúc đó chỉ quản trị viên root thấy trang này.',
+    ],
 ];

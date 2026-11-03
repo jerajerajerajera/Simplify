@@ -68,4 +68,15 @@ return [
         'removing' => 'Usuwanie…',
         'error' => 'Brak połączenia',
     ],
+    'setup' => [
+        'title' => 'Jak to skonfigurować',
+        'intro' => 'Gracze łączą się wtedy nazwą, np. oak.:domain, zamiast adresem IP i portem. Konfigurujesz to raz.',
+        'step_domain' => 'Wpisz domenę (Twoją strefę Cloudflare) i adres serwera: istniejący rekord DNS only wskazujący na publiczny IP, na który trafiają Twoje porty.',
+        'step_token' => 'W Cloudflare otwórz My Profile › API Tokens › Create Token i wybierz szablon "Edit zone DNS". W Zone Resources wybierz tylko tę domenę, utwórz token i skopiuj go.',
+        'step_test' => 'Wklej token poniżej i naciśnij :test. Simplify go sprawdzi i sam uzupełni ID strefy.',
+        'step_save' => 'Naciśnij :save. Każdy serwer z portem w przekierowanym zakresie ma wtedy w menu :menu, gdzie właściciel wybiera nazwę.',
+        'open_cloudflare' => 'Otwórz tokeny API Cloudflare',
+        'button' => 'Skonfiguruj subdomeny',
+        'server_help' => 'Potem gracze mogą dołączyć do tego serwera przez :address. Do tego czasu tę stronę widzą tylko administratorzy root.',
+    ],
 ];

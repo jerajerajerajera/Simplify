@@ -68,4 +68,15 @@ return [
         'removing' => 'Suppression…',
         'error' => 'Non connecté',
     ],
+    'setup' => [
+        'title' => 'Comment le configurer',
+        'intro' => 'Les joueurs se connectent alors avec un nom comme oak.:domain au lieu d\'une adresse IP et d\'un port. À faire une seule fois.',
+        'step_domain' => 'Indiquez le domaine (votre zone Cloudflare) et l\'adresse du serveur : un enregistrement DNS only existant qui pointe vers l\'IP publique où arrivent vos ports.',
+        'step_token' => 'Dans Cloudflare, ouvrez My Profile › API Tokens › Create Token et choisissez le modèle "Edit zone DNS". Dans Zone Resources, choisissez uniquement ce domaine, créez le jeton et copiez-le.',
+        'step_test' => 'Collez le jeton ci-dessous et appuyez sur :test. Simplify le vérifie et remplit lui-même l\'ID de zone.',
+        'step_save' => 'Appuyez sur :save. Chaque serveur dont le port est dans la plage redirigée a alors :menu dans son menu, où son propriétaire choisit le nom.',
+        'open_cloudflare' => 'Ouvrir les jetons API Cloudflare',
+        'button' => 'Configurer les sous-domaines',
+        'server_help' => 'Ensuite, les joueurs pourront rejoindre ce serveur avec :address. D\'ici là, seuls les admins root voient cette page.',
+    ],
 ];

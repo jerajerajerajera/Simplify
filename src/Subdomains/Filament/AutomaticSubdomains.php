@@ -12,6 +12,7 @@ use Filament\Schemas\Components\Actions;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Text;
 use Filament\Schemas\Schema;
+use Illuminate\Support\HtmlString;
 use Simplify\Core\Filament\FormPage;
 use Simplify\Core\Subdomains\Services\CloudflareDns;
 use Simplify\Core\Subdomains\Services\Settings;
@@ -47,6 +48,11 @@ final class AutomaticSubdomains extends FormPage
     public function form(Schema $schema): Schema
     {
         return $schema->statePath('data')->components([
+            Section::make(__('simplify::subdomains.setup.title'))
+                ->description(fn () => __('simplify::subdomains.setup.intro', ['domain' => Settings::domain() ?: 'example.com']))
+                ->collapsible()
+                ->collapsed(fn () => Subdomains::ready())
+                ->schema([Text::make(fn () => self::steps())]),
             Section::make(__('simplify::subdomains.settings.addresses'))
                 ->description(__('simplify::subdomains.settings.addresses_help'))
                 ->columns(2)
@@ -72,7 +78,7 @@ final class AutomaticSubdomains extends FormPage
                     TextInput::make('token')
                         ->label(__('simplify::subdomains.form.api_token'))
                         ->password()
-                        ->autocomplete(false)
+                        ->autocomplete('new-password')
                         ->maxLength(200)
                         ->columnSpanFull()
                         ->placeholder(fn () => Settings::all()['has_token']
@@ -94,9 +100,14 @@ final class AutomaticSubdomains extends FormPage
                             ->color('gray')
                             ->action(fn () => $this->test()),
                     ])->columnSpanFull(),
-                    Text::make(fn () => $this->readiness())->columnSpanFull(),
                 ]),
         ]);
+    }
+
+    /** What is still missing, under the title, so it shows before the form. */
+    public function getSubheading(): string
+    {
+        return $this->readiness();
     }
 
     public function save(): void
@@ -140,6 +151,23 @@ final class AutomaticSubdomains extends FormPage
             ->dehydrateStateUsing(fn ($state) => strtolower(trim((string) $state)))
             ->placeholder($placeholder)
             ->maxLength($length);
+    }
+
+    /** The four setup steps, with a link to Cloudflare's token page. Every text is escaped. */
+    private static function steps(): HtmlString
+    {
+        $link = sprintf(
+            ' <a href="https://dash.cloudflare.com/profile/api-tokens" target="_blank" rel="noopener noreferrer">%s ↗</a>',
+            e(__('simplify::subdomains.setup.open_cloudflare')),
+        );
+        $steps = [
+            e(__('simplify::subdomains.setup.step_domain')),
+            e(__('simplify::subdomains.setup.step_token')).$link,
+            e(__('simplify::subdomains.setup.step_test', ['test' => __('simplify::subdomains.form.test')])),
+            e(__('simplify::subdomains.setup.step_save', ['save' => __('simplify::settings.save'), 'menu' => __('simplify::subdomains.subdomain')])),
+        ];
+
+        return new HtmlString('<ol class="s-steps">'.implode('', array_map(fn ($step) => '<li>'.$step.'</li>', $steps)).'</ol>');
     }
 
     private function fillForm(): void
