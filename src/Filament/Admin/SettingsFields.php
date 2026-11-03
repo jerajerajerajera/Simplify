@@ -86,7 +86,11 @@ final class SettingsFields
      * The Look: the accent colour, then the name and logo, then the name's style, with one preview beside them that
      * stays in view while they scroll. Without a logo the top bar shows the name, so "what shows" only asks with one.
      */
-    public static function look(): Section
+    /**
+     * @param  bool  $full  the setup's whole Look; the settings page keeps colour, name and logo (V53). The logo's
+     *                      height, what shows and the name's style keep their saved values there.
+     */
+    public static function look(bool $full = true): Section
     {
         $hasLogo = fn (Get $get) => self::previewUrl($get('brand_logo')) !== null;
 
@@ -111,15 +115,15 @@ final class SettingsFields
                     Group::make([
                         self::image('brand_logo', 'appearance.logo', 'appearance.logo_help'),
                         ViewField::make('logo_height')->view('simplify::fields.logo-size')->label(__(self::T.'appearance.logo_size'))
-                            ->rules(['required', 'integer', 'min:16', 'max:64'])->visible($hasLogo)
+                            ->rules(['required', 'integer', 'min:16', 'max:64'])->visible(fn (Get $get) => $full && $hasLogo($get))
                             ->viewData(fn (Get $get) => ['image' => self::previewUrl($get('brand_logo'))]),
                     ])->extraAttributes(['class' => 's-look-logo']),
                 ]),
-                self::chips('brand_show', 'appearance.show', 'logo,text,both', 'appearance.shows.', live: true)->visible($hasLogo),
+                self::chips('brand_show', 'appearance.show', 'logo,text,both', 'appearance.shows.', live: true)->visible(fn (Get $get) => $full && $hasLogo($get)),
                 ViewField::make('brand_font')->view('simplify::fields.brand-style')->label(__(self::T.'appearance.text_style'))
                     ->rules(['required', 'in:'.implode(',', array_keys(Brand::FONTS))])
                     ->viewData(['fallback' => (string) config('app.name')])
-                    ->visible(fn (Get $get) => ! $hasLogo($get) || $get('brand_show') !== 'logo'),
+                    ->visible(fn (Get $get) => $full && (! $hasLogo($get) || $get('brand_show') !== 'logo')),
                 // The name's style itself, set by the field above.
                 Hidden::make('brand_weight')->rules(['required', 'integer', 'in:400,500,600,700,800,900']),
                 Hidden::make('brand_colour')->rules(['required', 'in:solid,accent,gradient']),

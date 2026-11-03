@@ -18,10 +18,13 @@ use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\HtmlString;
 use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
+use Simplify\Core\Announcements\Filament\AnnouncementResource;
+use Simplify\Core\Embed\Filament\EmbedSettings;
 use Simplify\Core\Filament\Admin\SettingsFields;
 use Simplify\Core\Server\Looks;
 use Simplify\Core\Support\Assets;
 use Simplify\Core\Support\PanelSettings;
+use Simplify\Core\Subdomains\Filament\AutomaticSubdomains;
 
 /**
  * Simplify's settings for the whole panel, in a few categories. Add-ons list their own settings page here.
@@ -29,6 +32,9 @@ use Simplify\Core\Support\PanelSettings;
 final class Settings extends Page implements HasForms
 {
     use InteractsWithForms;
+
+    /** The tabs of this page, in the order of the form (form()). */
+    public const TABS = ['appearance', 'general', 'app', 'addons', 'hub'];
 
     protected static ?string $slug = 'simplify';
 
@@ -106,22 +112,20 @@ final class Settings extends Page implements HasForms
 
     public function form(Schema $schema): Schema
     {
-        $pelican = array_map(fn (array $tab) => Tab::make($tab['label'])->key($tab['key'])->icon($tab['icon'])->schema([
-            View::make('simplify::partials.pelican-settings')->viewData($tab),
-        ]), self::pelicanTabs());
-
+        // One row of tabs over Simplify's settings (V51/V53): the settings nav (partials/settings-nav) draws it and
+        // switches these tabs, whose own row stays hidden. Settings that left the screen keep their saved values.
         return $schema->statePath('data')->components([
-            Tabs::make()->vertical()->persistTabInQueryString()->columnSpanFull()->extraAttributes(['class' => 's-settings-tabs'])->tabs([
+            Tabs::make()->persistTabInQueryString()->columnSpanFull()->extraAttributes(['class' => 's-settings-tabs'])->tabs([
+                Tab::make(__('simplify::settings.appearance.tab'))->key('appearance')->icon('tabler-palette')->schema([
+                    SettingsFields::look(full: false),
+                ]),
                 Tab::make(__('simplify::settings.general.tab'))->key('general')->icon('tabler-adjustments')->schema([
                     SettingsFields::support(),
-                    SettingsFields::startPage(),
                     SettingsFields::visibility(),
-                    SettingsFields::refresh(),
-                ]),
-                Tab::make(__('simplify::settings.appearance.tab'))->key('appearance')->icon('tabler-palette')->schema([
-                    SettingsFields::look(),
-                    SettingsFields::app(),
                     SettingsFields::banners(),
+                ]),
+                Tab::make(__('simplify::settings.appearance.app'))->key('app')->icon('tabler-device-mobile')->schema([
+                    SettingsFields::app(),
                 ]),
                 Tab::make(__('simplify::settings.addons.heading'))->key('addons')->icon('tabler-puzzle')->schema([
                     View::make('simplify::partials.addon-list'),
@@ -129,13 +133,47 @@ final class Settings extends Page implements HasForms
                 Tab::make(__('simplify::settings.hub.tab'))->key('hub')->icon('tabler-building-store')->schema([
                     View::make('simplify::hub.tab'),
                 ]),
-                ...$pelican,
             ]),
         ]);
     }
 
     /**
-     * The settings as leaves of host mode's menu tree: Simplify's tabs, each add-on's own page and Pelican's tabs.
+     * The one row of tabs over the settings: this page's tabs, Simplify's other settings pages, each add-on's own
+     * settings page and Pelican's settings. A tab that is a page of its own shows the same row over it (SimplifyPlugin).
+     *
+     * @return list<array{key: string, label: string, icon: string, url: string, tab: bool}>
+     */
+    public static function nav(): array
+    {
+        if (! self::canAccess()) {
+            return [];
+        }
+        $tab = fn (string $key, string $label, string $icon) => ['key' => $key, 'label' => $label, 'icon' => $icon, 'url' => self::getUrl(['tab' => $key], panel: 'admin'), 'tab' => true];
+        $page = fn (string $key, string $label, string $icon, string $url) => ['key' => $key, 'label' => $label, 'icon' => $icon, 'url' => $url, 'tab' => false];
+        $items = [
+            $tab('appearance', __('simplify::settings.appearance.tab'), 'tabler-palette'),
+            $tab('general', __('simplify::settings.general.tab'), 'tabler-adjustments'),
+            $tab('app', __('simplify::settings.appearance.app'), 'tabler-device-mobile'),
+            $page('website', EmbedSettings::getNavigationLabel(), 'tabler-code', EmbedSettings::getUrl(panel: 'admin')),
+            $page('subdomains', AutomaticSubdomains::getNavigationLabel(), 'tabler-world', AutomaticSubdomains::getUrl(panel: 'admin')),
+            $page('announcements', AnnouncementResource::getNavigationLabel(), 'tabler-speakerphone', AnnouncementResource::getUrl(panel: 'admin')),
+        ];
+        foreach (self::addonRows() as $addon) {
+            if ($addon['url']) {
+                $items[] = $page('addon:'.$addon['id'], $addon['name'], $addon['icon'], $addon['url']);
+            }
+        }
+        $items[] = $tab('addons', __('simplify::settings.addons.heading'), 'tabler-puzzle');
+        $items[] = $tab('hub', __('simplify::settings.hub.tab'), 'tabler-building-store');
+        if (PelicanSettings::canAccess()) {
+            $items[] = $page('pelican', __('simplify::js.dashboard.admin_groups.pelican_settings').' ↗', 'tabler-settings', PelicanSettings::getUrl(panel: 'admin'));
+        }
+
+        return $items;
+    }
+
+    /**
+     * The settings as leaves of the Admin menu's tree: Simplify's tabs, each add-on's own page and Pelican's tabs.
      *
      * @return list<array{key: string, group: string, label: string, icon: string, url: string}>
      */
@@ -145,6 +183,7 @@ final class Settings extends Page implements HasForms
         $items = [
             $tab('general', 'panel', __('simplify::settings.general.tab'), 'settings'),
             $tab('appearance', 'panel', __('simplify::settings.appearance.tab'), 'palette'),
+            $tab('app', 'panel', __('simplify::settings.appearance.app'), 'image'),
             $tab('addons', 'addons', __('simplify::settings.addons.heading'), 'puzzle'),
             $tab('hub', 'addons', __('simplify::settings.hub.tab'), 'store'),
         ];
@@ -153,18 +192,18 @@ final class Settings extends Page implements HasForms
                 $items[] = ['key' => 'addon:'.$addon['id'], 'group' => 'addons', 'label' => $addon['name'], 'icon' => 'plugins', 'url' => $addon['url']];
             }
         }
-        // The menu draws from Simplify's own icon sprite, not Filament's Tabler names.
+        // The menu draws from Simplify's own icon sprite, not Filament's Tabler names. Pelican's tabs open Pelican's own
+        // settings page, on that tab, in the Admin page's card.
         $sprite = ['pelican-general' => 'home', 'pelican-captcha' => 'shield', 'pelican-mail' => 'mail', 'pelican-backup' => 'backups', 'pelican-oauth' => 'key', 'pelican-misc' => 'tool'];
         foreach (self::pelicanTabs() as $pelican) {
-            // From the admin menu Pelican's tab opens inside Simplify's settings; host mode frames Pelican's page itself.
-            $items[] = [...$tab($pelican['key'], 'pelican', $pelican['label'], $sprite[$pelican['key']] ?? 'gear'), 'frame' => $pelican['url']];
+            $items[] = ['key' => 'settings:'.$pelican['key'], 'group' => 'pelican', 'label' => $pelican['label'], 'icon' => $sprite[$pelican['key']] ?? 'gear', 'url' => $pelican['url']];
         }
 
         return $items;
     }
 
     /**
-     * Pelican's own settings close the menu: each tab shows Pelican's page on that tab, saved with Pelican's button.
+     * Pelican's own settings, one leaf per tab of its page.
      *
      * @return list<array{key: string, label: string, icon: string, url: string}>
      */
@@ -179,7 +218,7 @@ final class Settings extends Page implements HasForms
             'key' => 'pelican-'.$key,
             'label' => (string) __('admin/setting.navigation.'.$key),
             'icon' => 'tabler-'.$icon,
-            'url' => PelicanSettings::getUrl(['tab' => $key.'::data::tab', 'simplify_embed' => 1], panel: 'admin'),
+            'url' => PelicanSettings::getUrl(['tab' => $key.'::data::tab'], panel: 'admin'),
         ], array_keys($icons), $icons);
     }
 
@@ -191,7 +230,6 @@ final class Settings extends Page implements HasForms
         Notification::make()->title(__('simplify::settings.appearance.banner_removed'))->success()->send();
     }
 
-    /** @param  bool  $auto  saved on its own on a phone, which says so in its own toast (settings.blade.php) */
     public function save(): void
     {
         abort_unless(self::canAccess(), 403);

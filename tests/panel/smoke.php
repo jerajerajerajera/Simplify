@@ -257,14 +257,35 @@ step('opening the panel shows the overview, unless Pelican is the start page', f
         PanelSettings::save(['start_page' => 'overview']);
     }
 });
-step('settings page renders with its menu, Pelican tabs included', function () use ($admin) {
+step('settings page renders with its one row of tabs, Pelican as a link without frames', function () use ($admin) {
     $url = Settings::getUrl(panel: 'admin');
     $response = visit($admin, $url);
     expectOk($response, $url);
+    $html = $response->getContent();
     auth()->setUser($admin);
-    $menu = collect(Settings::menu())->pluck('group', 'key');
-    if (! str_contains($response->getContent(), 's-settings-tabs') || ($menu['settings:appearance'] ?? null) !== 'panel' || ($menu['settings:pelican-mail'] ?? null) !== 'pelican') {
-        throw new RuntimeException('the settings menu is incomplete: '.json_encode($menu));
+    $menu = collect(Settings::menu())->keyBy('key');
+    $nav = collect(Settings::nav())->pluck('key');
+    if (! str_contains($html, 's-settings-tabs') || ! str_contains($html, '<nav class="s-settings-nav"') || ($menu['settings:appearance']['group'] ?? null) !== 'panel' || ($menu['settings:pelican-mail']['group'] ?? null) !== 'pelican') {
+        throw new RuntimeException('the settings menu is incomplete: '.json_encode($menu->pluck('group', 'key')));
+    }
+    if (str_contains($html, '<iframe') || str_contains((string) ($menu['settings:pelican-mail']['url'] ?? ''), 'simplify_embed')) {
+        throw new RuntimeException('Pelican\'s settings are still in a frame');
+    }
+    foreach (['appearance', 'general', 'app', 'website', 'subdomains', 'announcements', 'addons', 'hub', 'pelican'] as $key) {
+        if (! $nav->contains($key)) {
+            throw new RuntimeException("the settings' row of tabs has no $key: ".$nav->toJson());
+        }
+    }
+    // Appearance keeps colour, name and logo; the name's style designer is the setup's only.
+    if (str_contains($html, 'class="s-presets"') || ! str_contains($html, 'brand_name')) {
+        throw new RuntimeException('Appearance on the settings page is not the short one');
+    }
+    // A settings page of its own (Website) has the same row of tabs over it.
+    $embed = EmbedSettings::getUrl(panel: 'admin');
+    $page = visit($admin, $embed);
+    expectOk($page, $embed);
+    if (! str_contains($page->getContent(), '<nav class="s-settings-nav"')) {
+        throw new RuntimeException('Website has no settings row of tabs');
     }
 });
 step('a tagged add-on shows on the settings page', function ($app) use ($admin) {

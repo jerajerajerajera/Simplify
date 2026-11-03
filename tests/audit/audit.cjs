@@ -324,7 +324,7 @@ async function round(theme) {
   for (const p of admin) {
     if (/Setup$|ViewLogs$|Dashboard$/.test(p.class)) continue;
     await goto(p.url, 1200); await record('admin-' + slug(p.title), 'Beheer · ' + p.title);
-    const tabs = page.locator('main [role=tab], .fi-sc-tabs-tab, .s-settings-tabs [role=tab], .s-segment');
+    const tabs = page.locator('main [role=tab]:visible, .fi-sc-tabs-tab:visible, .s-settings-nav a, .s-segment');
     const n = await tabs.count();
     for (let i = 1; i < Math.min(n, 9); i++) { await tabs.nth(i).click().catch(() => {}); await sleep(900); await record(`admin-${slug(p.title)}-tab${i}`, `Beheer · ${p.title}, tabblad ${i + 1}`); }
     if (/RoleResource|UserResource|ServerResource|NodeResource|EggResource/.test(p.class)) { const edit = page.locator('.fi-ta-row a[href*="/edit"], .fi-ta-row a[href*="/admin/"]').first(); if (await edit.count()) { const h = await edit.getAttribute('href'); if (h) { await goto(h, 1500); await record('admin-' + slug(p.title) + '-edit', 'Beheer · ' + p.title + ', bewerken'); const t2 = page.locator('main [role=tab], .fi-sc-tabs-tab'); const m = await t2.count(); for (let i = 1; i < Math.min(m, 7); i++) { await t2.nth(i).click().catch(() => {}); await sleep(800); await record(`admin-${slug(p.title)}-edit-tab${i}`, `Beheer · ${p.title}, bewerken, tabblad ${i + 1}`); } } } }
@@ -342,8 +342,7 @@ async function round(theme) {
     const go = async (locator, id, title) => {
       await markAdminSide(); await locator.click().catch(() => {}); await settle(page, 1800);
       const st = await adminState(); await record(id, title); visited.push(id);
-      // Simplify's own settings still show Pelican's settings tabs in frames; the settings tabs (V52 part C) take them out.
-      if (!st || !st.kept || !st.shell || (st.frames && st.path !== '/admin/simplify')) lost.push({ id, ...st });
+      if (!st || !st.kept || !st.shell || st.frames) lost.push({ id, ...st });
     };
     const groups = page.locator('.ps-admin-side .ps-host-group'); const gn = await groups.count();
     for (let i = 0; i < gn; i++) {
@@ -854,17 +853,18 @@ async function fixesFlow() {
     const fresh = await browser.newContext({ viewport: page.viewportSize(), baseURL: base, storageState: await page.context().storageState() });
     const p2 = await fresh.newPage(); await quiet(p2);
     await p2.goto(new URL('/admin/simplify', base).href, { waitUntil: 'domcontentloaded' }).catch(() => {}); await sleep(3000);
-    const fl = await p2.evaluate(() => { const c = document.querySelector('.s-settings-tabs.fi-vertical'); if (!c) return null; const f = [...document.querySelectorAll('footer, .fi-footer, [data-ps-footer]')].find((e) => e.getClientRects().length && e.getBoundingClientRect().height > 0); const bottom = Math.round(c.getBoundingClientRect().bottom), end = f ? Math.round(f.getBoundingClientRect().top) : innerHeight; return { bottom, end, gap: end - bottom, page: document.documentElement.scrollHeight, window: innerHeight, fit: c.style.getPropertyValue('--s-fit'), footer: !!f }; }).catch(() => null);
+    // In the Admin page's card (V52) the card scrolls and the page does not; the settings' row of tabs is there at once.
+    const fl = await p2.evaluate(() => ({ nav: !!document.querySelector('.s-settings-nav'), page: document.documentElement.scrollHeight, window: innerHeight })).catch(() => null);
     const shot = page; page = p2; await record('settings-first-load', 'Instellingen · eerste paginalaad, lege cache'); page = shot;
     await fresh.close().catch(() => {});
-    say('settings-first-load', fl && fl.gap <= 48 && fl.page <= fl.window + 2, fl);
+    say('settings-first-load', !!fl && fl.nav && fl.page <= fl.window + 2, fl);
   }
   if (phone()) {
     await goto('/admin/simplify', 2000);
-    await click('.s-settings-tabs [role=tab]:has-text("Appearance"), .s-settings-tabs button:has-text("Appearance")', 900);
+    await click('.s-settings-nav a:has-text("Appearance")', 900);
     await record('settings-phone', 'Instellingen · telefoon');
-    const st = await page.evaluate(() => { const p = document.querySelector('.s-settings-tabs > .fi-sc-tabs-tab.fi-active'); if (!p) return null; return { pane: p.clientHeight, content: p.scrollHeight, window: innerHeight }; }).catch(() => null);
-    say('settings-phone', st && st.content <= st.pane + 4, st);
+    const st = await page.evaluate(() => ({ nav: !!document.querySelector('.s-settings-nav'), page: document.documentElement.scrollHeight, window: innerHeight })).catch(() => null);
+    say('settings-phone', !!st && st.nav && st.page <= st.window + 2, st);
     await goto('/admin/simplify-setup', 2000); await record('setup-phone', 'Setup · telefoon');
     const su = await page.evaluate(() => { const w = document.querySelector('.s-setup'), s = w && w.querySelector('.fi-sc-wizard-step.fi-active'); if (!s) return null; const r = s.getBoundingClientRect(); return { step: Math.round(r.height), inner: s.scrollHeight <= s.clientHeight + 4, width: Math.round(r.width) }; }).catch(() => null);
     say('setup-phone', su && su.step > 120 && su.inner && su.width > 250, su);
@@ -1200,7 +1200,7 @@ async function seasons(theme) {
   const setSeasonal = async (on) => {
     if (!settings) { problems.push(`${stand}: no Simplify settings page in urls`); return false; }
     await goto(settings, 1500);
-    await click('.s-settings-tabs [role=tab]:has-text("Appearance"), .s-settings-tabs button:has-text("Appearance")', 900);
+    await click('.s-settings-nav a:has-text("Appearance")', 900);
     const sw = page.locator('.fi-fo-field:has-text("Seasonal") button[role=switch], label:has-text("Seasonal") ~ * button[role=switch], .fi-fo-toggle:has-text("Seasonal") button, button[role=switch][id*="seasonal"]').first();
     if (!(await sw.count())) { problems.push(`${stand}: no "Seasonal touches" switch found`); return false; }
     const state = (await sw.getAttribute('aria-checked')) === 'true';

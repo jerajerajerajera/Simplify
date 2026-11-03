@@ -12,6 +12,7 @@ use Filament\Panel;
 use Filament\View\PanelsRenderHook;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Js;
+use Livewire\Livewire;
 use Simplify\Core\Announcements\Filament\AnnouncementResource;
 use Simplify\Core\Embed\Filament\EmbedSettings;
 use Simplify\Core\Embed\Filament\Website;
@@ -85,6 +86,7 @@ final class SimplifyPlugin implements Plugin
         }
         if ($panel->getId() === 'admin') {
             $panel->pages([Settings::class, Setup::class, SetupDone::class, People::class]);
+            $panel->renderHook(PanelsRenderHook::PAGE_START, fn () => self::settingsNav());
         }
         if ($panel->getId() === 'admin') {
             $panel->resources([AnnouncementResource::class]);
@@ -142,6 +144,40 @@ final class SimplifyPlugin implements Plugin
     }
 
     /** Back to Simplify from Pelican's own pages; Simplify's own pages have their own header, a frame has host mode's. */
+    /**
+     * The settings' one row of tabs (V51/V53) over the settings page and over each settings page it links to: Website,
+     * Subdomains, Announcements and every add-on's own settings page. No add-on API: the row knows their addresses.
+     */
+    private static function settingsNav(): string
+    {
+        $items = Settings::nav();
+        // A Livewire update draws the page again from /livewire/update: the page's own address is the one it came from.
+        $url = Livewire::isLivewireRequest() ? (string) request()->header('referer') : request()->fullUrl();
+        $path = '/'.trim((string) parse_url($url, PHP_URL_PATH), '/');
+        parse_str((string) parse_url($url, PHP_URL_QUERY), $query);
+        $own = fn (string $url) => '/'.trim((string) parse_url($url, PHP_URL_PATH), '/');
+        $here = $path === $own(Settings::getUrl(panel: 'admin'));
+        $active = null;
+        foreach ($items as $item) {
+            if ($item['tab'] || $item['key'] === 'pelican') {
+                continue;
+            }
+            // A page and the pages under it (an announcement's own page).
+            if ($path === $own($item['url']) || str_starts_with($path, $own($item['url']).'/')) {
+                $active = $item['key'];
+            }
+        }
+        if ($here) {
+            $tab = is_string($query['tab'] ?? null) ? $query['tab'] : Settings::TABS[0];
+            $active = in_array($tab, Settings::TABS, true) ? $tab : Settings::TABS[0];
+        }
+        if ($active === null) {
+            return '';
+        }
+
+        return view('simplify::partials.settings-nav', ['items' => $items, 'active' => $active, 'here' => $here])->render();
+    }
+
     private static function returnButton(): string
     {
         if (user() === null || request()->routeIs(Overview::getRouteName(Filament::getPanel('app')))) {
