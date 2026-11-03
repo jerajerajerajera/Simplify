@@ -430,6 +430,9 @@ step('the Admin page: an admin page has Simplify\'s header and the Admin menu, t
     if (str_contains($plain->getContent(), '<div x-persist="simplify-admin-side"') || str_contains($plain->getContent(), '<div x-persist="simplify-admin-top"')) {
         throw new RuntimeException('the legacy panel still has Simplify\'s header or menu');
     }
+    if (! str_contains($plain->getContent(), 's-return') || ! str_contains($plain->getContent(), 'simplify_legacy=0')) {
+        throw new RuntimeException('the legacy panel has no Back to Simplify button');
+    }
     $client->get($url.'?simplify_legacy=0');
     if (! str_contains($client->get($url)->getContent(), '<div x-persist="simplify-admin-side"')) {
         throw new RuntimeException('Back to Simplify does not bring the Admin page back');
