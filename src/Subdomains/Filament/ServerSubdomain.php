@@ -9,6 +9,7 @@ use Filament\Actions\Action;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
+use Filament\Schemas\Components\Actions;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Text;
 use Filament\Schemas\Schema;
@@ -68,7 +69,15 @@ final class ServerSubdomain extends FormPage
             return $schema->components([
                 Section::make(__('simplify::subdomains.errors.not_set_up'))
                     ->icon('tabler-alert-circle')
-                    ->description(fn () => $this->notSetUp()),
+                    ->description(fn () => $this->notSetUp())
+                    ->schema([
+                        Actions::make([
+                            Action::make('set_up')
+                                ->label(__('simplify::subdomains.setup.button'))
+                                ->icon('tabler-settings')
+                                ->url(AutomaticSubdomains::getUrl(panel: 'admin')),
+                        ]),
+                    ]),
             ]);
         }
 
@@ -100,19 +109,10 @@ final class ServerSubdomain extends FormPage
         return $detail !== '' ? $label.': '.$detail : $label;
     }
 
-    /** Until Cloudflare is set up: a button to Automatic subdomains instead of Save. */
+    /** Until Cloudflare is set up there is nothing to save: the button to the settings is in the page itself. */
     protected function getHeaderActions(): array
     {
-        if (Subdomains::ready()) {
-            return parent::getHeaderActions();
-        }
-
-        return [
-            Action::make('set_up')
-                ->label(__('simplify::subdomains.setup.button'))
-                ->icon('tabler-settings')
-                ->url(AutomaticSubdomains::getUrl(panel: 'admin')),
-        ];
+        return Subdomains::ready() ? parent::getHeaderActions() : [];
     }
 
     /** "Still missing: Cloudflare token. Once they are, players can join this server with oak.example.com." */
