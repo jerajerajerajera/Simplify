@@ -726,13 +726,19 @@ html.ps-shell-menu:not(.ps-frame) body .fi-layout {
   grid-template-columns: 252px minmax(0, 1fr);
 }
 
+/* The header (its dropdowns and popups) and the Admin menu (its sheet on a phone) lie above the card, which is
+   positioned itself. */
 html.ps-shell:not(.ps-frame) .fi-layout > [x-persist="simplify-admin-top"] {
+  position: relative;
+  z-index: 3;
   grid-column: 1 / -1;
   grid-row: 1;
   min-width: 0;
 }
 
 html.ps-shell:not(.ps-frame) .fi-layout > [x-persist="simplify-admin-side"] {
+  position: relative;
+  z-index: 2;
   grid-column: 1;
   grid-row: 2;
   display: flex;
@@ -801,6 +807,11 @@ html.ps-shell:not(.ps-frame) .fi-main-ctn .fi-ta-ctn:not(.fi-section .fi-ta-ctn)
 
   html.ps-shell:not(.ps-frame) .fi-layout > [x-persist="simplify-admin-side"] {
     position: fixed;
+  }
+
+  /* The open menu sheet and its backdrop cover the header too. */
+  html.ps-shell:not(.ps-frame) .fi-layout > [x-persist="simplify-admin-side"]:has(.menu-open) {
+    z-index: 4;
   }
 
   html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn > .fi-main {
