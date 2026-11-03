@@ -19,9 +19,11 @@ use Throwable;
  * description and its banner). Never ids, owners, nodes or private addresses.
  *
  * Other plugins can add details through the "simplify.embed.server" event. A listener receives the Server and
- * returns an array with any of: game, software, version, players, max_players, motd, address, icon and
- * modpack (name, version, url, icon). Simplify Toolkit adds players and modpacks this way. The address of
- * Simplify's subdomain is used when it works.
+ * returns an array with any of: game, software, version, players, max_players, motd, address, icon, download and
+ * modpack (name, version, url, icon, download). Simplify Toolkit adds players and modpacks this way. The address
+ * of Simplify's subdomain is used when it works. What the owner fills in on the server's Website page (description,
+ * image, download, second address, position) comes first; download falls back to the listener's download, then the
+ * modpack's.
  */
 final class ServerList
 {
@@ -60,20 +62,38 @@ final class ServerList
             ->orderBy('name')
             ->limit(self::LIMIT)
             ->get();
+        $details = EmbedDetails::many($servers->modelKeys());
         $out = [];
         foreach ($servers as $server) {
             try {
-                $out[] = self::entry($server);
+                $out[] = self::entry($server, $details[(int) $server->id] ?? []);
             } catch (Throwable $error) {
                 report($error);
             }
         }
 
-        return $out;
+        return self::sorted($out);
     }
 
-    /** @return array<string, mixed> */
-    public static function entry(Server $server): array
+    /**
+     * Online servers first, then by the position the owner gave (none comes last), then by name.
+     *
+     * @param  list<array<string, mixed>>  $servers
+     * @return list<array<string, mixed>>
+     */
+    public static function sorted(array $servers): array
+    {
+        usort($servers, fn (array $a, array $b) => [$a['state'] !== 'online', $a['position'] ?? PHP_INT_MAX, mb_strtolower((string) $a['name'])]
+            <=> [$b['state'] !== 'online', $b['position'] ?? PHP_INT_MAX, mb_strtolower((string) $b['name'])]);
+
+        return $servers;
+    }
+
+    /**
+     * @param  array<string, mixed>  $details  what the owner filled in on the server's Website page (EmbedDetails)
+     * @return array<string, mixed>
+     */
+    public static function entry(Server $server, array $details = []): array
     {
         $state = self::state($server);
         $extra = self::extra($server, $state === 'online');
@@ -98,19 +118,22 @@ final class ServerList
             ]),
             'icon' => $extra['icon'] ?? $extra['modpack']['icon'] ?? $server->egg?->icon,
             'modpack' => $extra['modpack'] ?? null,
-            'description' => $server->description,
-            'banner' => self::banner($server),
+            'description' => $details['description'] ?? $server->description,
+            'banner' => self::banner($server, $details['banner'] ?? null),
+            'download' => self::safeUrl($details['download'] ?? null) ?? self::safeUrl($extra['download'] ?? null) ?? ($extra['modpack']['download'] ?? null),
+            'address2' => PublicAddress::first([$details['address2'] ?? null]),
+            'position' => $details['position'] ?? null,
         ]);
     }
 
     /**
-     * The banner the server shows in Simplify, as a public https link: a scene of Simplify, or an uploaded banner
-     * through the embed's own address, which serves only banners of servers on the website. Null for the automatic
-     * scene.
+     * The image for the website as a public https link: the one picked on the Website page, else the banner the
+     * server shows in Simplify. A scene links to Simplify's asset, an upload to the embed's own address, which
+     * serves only images of servers on the website. Null for the automatic scene.
      */
-    private static function banner(Server $server): ?string
+    private static function banner(Server $server, ?string $picked): ?string
     {
-        $banner = ServerLook::query()->where('server_id', $server->id)->value('banner');
+        $banner = $picked ?? ServerLook::query()->where('server_id', $server->id)->value('banner');
 
         return match (true) {
             ! is_string($banner) || $banner === '' => null,
@@ -190,6 +213,7 @@ final class ServerList
             'version' => $text($entry['modpack']['version'] ?? null, 40),
             'url' => self::safeUrl($entry['modpack']['url'] ?? null),
             'icon' => self::safeUrl($entry['modpack']['icon'] ?? null),
+            'download' => self::safeUrl($entry['modpack']['download'] ?? null),
         ] : null;
 
         return [
@@ -205,8 +229,11 @@ final class ServerList
             'address' => $entry['address'] ?? null,
             'icon' => self::safeUrl($entry['icon'] ?? null),
             'modpack' => $pack,
-            'description' => $text($entry['description'] ?? null, 300),
+            'description' => $text($entry['description'] ?? null, EmbedDetails::DESCRIPTION),
             'banner' => self::safeUrl($entry['banner'] ?? null),
+            'download' => self::safeUrl($entry['download'] ?? null),
+            'address2' => $text($entry['address2'] ?? null, 120),
+            'position' => $count($entry['position'] ?? null),
         ];
     }
 
