@@ -848,6 +848,7 @@ html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header-heading {
     top: 0;
     z-index: 10;
     display: block;
+    flex: none;
     height: 52px;
     margin-bottom: -52px;
     background: var(--s-bg);
