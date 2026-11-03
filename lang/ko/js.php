@@ -153,6 +153,11 @@ return [
         'server_color_saved' => '서버 색 저장됨',
         'traffic_used' => '사용량 :traffic · 서버 시작 이후',
         'of_allocated' => '할당량 :amount 중',
+        'share_of' => ':amount 중 :percent',
+        'cpu_short' => 'CPU',
+        'memory_short' => '메모리',
+        'storage_short' => '디스크',
+        'network_short' => '네트워크',
     ],
     'seasons' => [
         'newyear' => ['name' => '새해', 'text' => '한 해의 마지막 밤과 새해의 첫날.'],

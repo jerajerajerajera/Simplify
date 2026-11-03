@@ -153,6 +153,11 @@ return [
         'server_color_saved' => 'Đã lưu màu máy chủ',
         'traffic_used' => 'Đã dùng :traffic · kể từ khi máy chủ khởi động',
         'of_allocated' => 'trên :amount được cấp',
+        'share_of' => ':percent trên :amount',
+        'cpu_short' => 'CPU',
+        'memory_short' => 'MEM',
+        'storage_short' => 'DISK',
+        'network_short' => 'NET',
     ],
     'seasons' => [
         'newyear' => ['name' => 'Năm mới', 'text' => 'Đêm cuối cùng của năm và ngày đầu tiên của năm mới.'],

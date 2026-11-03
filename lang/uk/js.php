@@ -153,6 +153,11 @@ return [
         'server_color_saved' => 'Колір сервера збережено',
         'traffic_used' => 'Використано :traffic · від запуску сервера',
         'of_allocated' => 'із :amount виділено',
+        'share_of' => ':percent із :amount',
+        'cpu_short' => 'ЦП',
+        'memory_short' => 'ОЗП',
+        'storage_short' => 'ДИСК',
+        'network_short' => 'МЕРЕЖА',
     ],
     'seasons' => [
         'newyear' => ['name' => 'Новий рік', 'text' => 'Остання ніч року й перший день наступного.'],

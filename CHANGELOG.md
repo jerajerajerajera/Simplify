@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- The numbers on the server page show the last minute as bars next to the number instead of a faint line under the text. The bars run from 0 to what the server may use, take the colour of the load (green, orange from 60%, red from 85%, as on the overview cards) and glide between two measurements; the number changes once per measurement. The line under the number reads "35% of 400%". Each card has its icon and a short name (CPU, MEM, DISK, NET) in the top-right corner, and the cards are lower than before. Network shows download and upload each with their own number, download bars up and upload bars down.
+
 ## 2.0.0-beta.1
 
 - A download of the repository holds the plugin only, without its screenshots, art, tests and scripts (2.3 MB instead of 9.3 MB).

@@ -153,6 +153,11 @@ return [
         'server_color_saved' => 'Το χρώμα του διακομιστή αποθηκεύτηκε',
         'traffic_used' => 'Χρησιμοποιήθηκαν :traffic · από την εκκίνηση του διακομιστή',
         'of_allocated' => 'από :amount που έχουν κατανεμηθεί',
+        'share_of' => ':percent από :amount',
+        'cpu_short' => 'CPU',
+        'memory_short' => 'RAM',
+        'storage_short' => 'ΔΙΣΚΟΣ',
+        'network_short' => 'ΔΙΚΤΥΟ',
     ],
     'seasons' => [
         'newyear' => ['name' => 'Πρωτοχρονιά', 'text' => 'Η τελευταία νύχτα του χρόνου και η πρώτη μέρα του επόμενου.'],

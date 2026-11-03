@@ -153,6 +153,11 @@ return [
         'server_color_saved' => 'Warna server disimpan',
         'traffic_used' => 'Terpakai :traffic · sejak server dimulai',
         'of_allocated' => 'dari :amount yang dialokasikan',
+        'share_of' => ':percent dari :amount',
+        'cpu_short' => 'CPU',
+        'memory_short' => 'MEM',
+        'storage_short' => 'DISK',
+        'network_short' => 'NET',
     ],
     'seasons' => [
         'newyear' => ['name' => 'Tahun Baru', 'text' => 'Malam terakhir tahun ini dan hari pertama tahun berikutnya.'],

@@ -153,6 +153,11 @@ return [
         'server_color_saved' => 'Szerver színe mentve',
         'traffic_used' => 'Felhasználva: :traffic · a szerver indítása óta',
         'of_allocated' => '/ :amount kiosztva',
+        'share_of' => ':percent / :amount',
+        'cpu_short' => 'CPU',
+        'memory_short' => 'MEM',
+        'storage_short' => 'DISK',
+        'network_short' => 'NET',
     ],
     'seasons' => [
         'newyear' => ['name' => 'Újév', 'text' => 'Az év utolsó éjszakája és a következő első napja.'],
