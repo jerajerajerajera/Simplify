@@ -33,7 +33,7 @@ function partial(kind) {
 
 const failures = [];
 let passes = 0;
-function run(name, { kind, dark = false, width = 1440, height = 900, cloaked = true, wait = 500 }) {
+function run(name, { kind, dark = false, width = 1440, height = 900, cloaked = true, wait = 500, seek = false }) {
   const page = `<!doctype html><html class="${dark ? 'dark' : ''}"><meta charset="utf-8"><meta name="viewport" content="width=device-width">
 <body style="margin:0;background:#fff">
 <div class="ps" data-simplify-root ${cloaked ? 'x-cloak' : ''} style="${cloaked ? 'display:none' : ''}">Simplify</div>
@@ -42,6 +42,11 @@ ${partial(kind)}
 <script>
   setTimeout(() => {
     const boot = document.querySelector('.ps-boot');
+    // The fade runs on the browser's own animation clock, which headless Chrome's virtual time does not always move
+    // as far as its timers: the fade is jumped to its end instead of waited for, and its end time is reported.
+    const away = ${seek} ? boot.getAnimations().find((a) => a.animationName === 'ps-boot-away') : null;
+    const fadeEnd = away ? away.effect.getComputedTiming().endTime : null;
+    if (away) away.currentTime = fadeEnd;
     const style = getComputedStyle(boot);
     const box = boot.getBoundingClientRect();
     const card = document.querySelector('.ps-boot-card');
@@ -53,6 +58,7 @@ ${partial(kind)}
       cards: document.querySelectorAll('.ps-boot-card').length,
       cardWidth: card ? Math.round(card.getBoundingClientRect().width) : 0,
       width: innerWidth,
+      fadeEnd,
     });
   }, ${wait});
 </script></html>`;
@@ -85,8 +91,8 @@ const phone = run('', { kind: 'overview', width: 390, height: 844 });
 check('on a phone the placeholders are one column and never wider than the window', phone && phone.shown && !phone.wider && phone.width <= 600 && phone.cardWidth === phone.width - 28, phone);
 const started = run('', { kind: 'overview', cloaked: false });
 check('once Alpine starts Simplify the placeholders are gone', started && !started.shown, started);
-const stuck = run('', { kind: 'server', wait: 7000 });
-check('should the scripts never start, the placeholders fade away by themselves', stuck && !stuck.shown, stuck);
+const stuck = run('', { kind: 'server', seek: true });
+check('should the scripts never start, the placeholders fade away by themselves', stuck && !stuck.shown && stuck.fadeEnd > 0 && stuck.fadeEnd <= 7000, stuck);
 
 if (failures.length) {
   console.error('FAIL ' + failures.join('\nFAIL '));

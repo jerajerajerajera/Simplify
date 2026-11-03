@@ -290,7 +290,22 @@ async function round(theme) {
   // Phones have no panel menu any more (1.5.4): the bell and the account sit in the top bar, the rest in the bottom bar.
   const openNav = async () => {};
   await click('.ps-account-button'); await record('overview-account', 'Accountmenu open');
-  await escape(); await alpine('d.accountMenu=false; d.appearanceMenu=true'); await sleep(600); await record('overview-customize-theme', 'Customize Simplify, thema bovenaan'); await alpine('d.appearanceMenu=false'); await sleep(300);
+  await escape(); await alpine('d.accountMenu=false; d.appearanceMenu=true'); await sleep(600); await record('overview-customize-theme', 'Customize Simplify, thema bovenaan');
+  // K-B19: Customize Simplify opens from the account menu, so its arrow points at the account button and its box ends
+  // where the account menu ends, not at the place Customize had in the top bar before.
+  if (!phone()) {
+    const at = await page.evaluate(() => {
+      const button = [...document.querySelectorAll('.ps-top .ps-account-button')].find((e) => e.getClientRects().length);
+      const menu = document.querySelector('#ps-overview-appearance-menu');
+      const wrap = menu?.parentElement;
+      if (!button || !menu || !menu.getClientRects().length || !wrap) return null;
+      const b = button.getBoundingClientRect(), m = menu.getBoundingClientRect(), w = wrap.getBoundingClientRect();
+      const arrow = getComputedStyle(wrap, '::after');
+      const x = w.right - parseFloat(arrow.insetInlineEnd || arrow.right || '0') - 6;
+      return { arrowX: Math.round(x), button: [Math.round(b.left), Math.round(b.right)], menuRight: Math.round(m.right), arrowShown: arrow.content !== 'none' };
+    }).catch(() => null);
+    problems.push(`${stand} customize-anchor: ${at && at.arrowShown && at.arrowX >= at.button[0] && at.arrowX <= at.button[1] && Math.abs(at.menuRight - at.button[1]) <= 2 ? 'ok' : 'WRONG'} ${JSON.stringify(at)}`);
+  } await alpine('d.appearanceMenu=false'); await sleep(300);
   await openNav();
   await click('[x-ref="notifyButton"]'); await record('overview-bell', 'Bel (aankondigingen) open'); await escape();
   await openNav();

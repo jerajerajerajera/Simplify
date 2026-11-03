@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- The console page loads without a jump: the empty card that stood above the console for a moment while Pelican's numbers loaded no longer shows, so the console stays where it is.
 - Phones: the window with all notifications closes with a pull down, like the menus: from its top bar, or from the list when it is scrolled to the top. Popups and menus follow your thumb while you drag them, spring back after a short pull, slide away after a longer one, and stay put on a sideways swipe. Closing them never reloads the page.
 - Website embed: the preview of the saved list follows the theme instead of showing a white block in dark mode, and is only as big as the cards it shows. The iframe code for other websites no longer shows a white block on a dark website either.
 
