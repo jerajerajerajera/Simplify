@@ -22,9 +22,9 @@ use Simplify\Core\Announcements\Filament\AnnouncementResource;
 use Simplify\Core\Embed\Filament\EmbedSettings;
 use Simplify\Core\Filament\Admin\SettingsFields;
 use Simplify\Core\Server\Looks;
+use Simplify\Core\Subdomains\Filament\AutomaticSubdomains;
 use Simplify\Core\Support\Assets;
 use Simplify\Core\Support\PanelSettings;
-use Simplify\Core\Subdomains\Filament\AutomaticSubdomains;
 
 /**
  * Simplify's settings for the whole panel, in a few categories. Add-ons list their own settings page here.
