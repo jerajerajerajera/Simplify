@@ -427,6 +427,10 @@ async function round(theme) {
   if (want('server')) {
   // The server page: console (live, through the fake Wings' websocket), its menus, every section and add-on tab.
   await goto(serverUrl, 3500); await record('server-console', `Server · Console (${mainServer})`);
+  // An add-on's header action on Pelican's Console page (the audit plugin's, as Explain's) is in the console's title row;
+  // Pelican's own power buttons are not (K-B34).
+  const consoleTools = await page.evaluate(() => [...document.querySelectorAll('#terminal > .ps-console-title .ps-console-action')].map((el) => ({ label: el.getAttribute('aria-label'), shown: el.getBoundingClientRect().width > 0 }))).catch(() => null);
+  problems.push(`${stand} server-console-addon-action: ${consoleTools && consoleTools.some((t) => t.label === 'Audit action' && t.shown) && !consoleTools.some((t) => /^(Start|Restart|Stop|Kill)$/.test(t.label)) ? 'ok' : 'WRONG'} ${JSON.stringify(consoleTools)}`);
   await page.fill('#send-command', 'say a command typed in the bar').catch(() => {}); await page.keyboard.press('Enter').catch(() => {}); await sleep(800);
   await record('server-console-typed', 'Server · Console na een commando');
   if (await click('.ps-console-grow', 800)) { await record('server-console-big', 'Server · Console vergroot'); await click('.ps-console-grow', 800); }
