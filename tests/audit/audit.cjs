@@ -981,25 +981,39 @@ async function fixesFlow() {
     // row (Server Maker's Steam key) opens its own popup. Without an add-on row there is no menu item and no page.
     {
       let loads = 0; const onLoad = () => loads++; page.on('load', onLoad);
+      // When the click loads the whole page, the result says why: Livewire's own request for the page (and its
+      // answer), the page loads after it, the tracked head assets that differ, and what the browser logged.
+      const trace = []; const logs = [];
+      const onRequest = (r) => { if (r.frame() !== page.mainFrame()) return; const nav = r.headers()['x-livewire-navigate'] !== undefined; if (nav || r.isNavigationRequest()) trace.push({ kind: nav ? 'navigate' : 'document', url: new URL(r.url()).pathname }); };
+      const onResponse = (r) => { const q = r.request(); if (q.frame() === page.mainFrame() && (q.headers()['x-livewire-navigate'] !== undefined || q.isNavigationRequest())) trace.push({ kind: 'answer', url: new URL(r.url()).pathname, status: r.status() }); };
+      const onConsole = (m) => ['error', 'warning'].includes(m.type()) && logs.push(m.text().slice(0, 200));
+      page.on('request', onRequest); page.on('response', onResponse); page.on('console', onConsole);
+      const tracked = () => page.evaluate(() => [...document.querySelectorAll('head [data-navigate-track]')].map((e) => e.getAttribute('src') || e.getAttribute('href'))).catch(() => []);
+      const before = await tracked();
       await page.locator('.ps-top .ps-account-button >> visible=true').first().click().catch(() => {}); await sleep(700);
       const link = page.locator('#ps-account-actions a[href$="/connections"] >> visible=true').first();
       if (await link.count()) {
+        const href = await link.evaluate((a) => ({ href: a.getAttribute('href'), navigate: a.hasAttribute('wire:navigate'), origin: new URL(a.href).origin === location.origin })).catch(() => null);
         await link.click({ timeout: 4000 }).catch(() => {});
         await page.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {}); await sleep(1500);
-        page.off('load', onLoad);
+        page.off('load', onLoad); page.off('request', onRequest); page.off('response', onResponse); page.off('console', onConsole);
+        const after = await tracked();
+        const assets = { gone: before.filter((x) => !after.includes(x)), new: after.filter((x) => !before.includes(x)) };
         const at = await page.evaluate(() => ({ path: location.pathname, rows: document.querySelectorAll('.s-connections > *').length, shell: document.documentElement.classList.contains('ps-shell'), header: !!document.querySelector('.ps-admin-top .ps-top') })).catch(() => null);
         await record('connections', 'Accountmenu · Connections');
-        say('connections', loads === 0 && at?.path === '/connections' && at.rows > 0 && at.shell && at.header, { loads, ...at });
+        say('connections', loads === 0 && at?.path === '/connections' && at.rows > 0 && at.shell && at.header, { loads, ...at, ...(loads ? { link: href, trace, assets, logs } : {}) });
         const connect = page.locator('.s-connections button:has-text("Connect") >> visible=true').first();
         if (await connect.count()) {
+          // How the row's button is drawn, so a button that shows as a bare icon says which style took its frame away.
+          const look = await connect.evaluate((b) => { const c = getComputedStyle(b); const l = b.querySelector('.fi-btn-label, span'); return { classes: b.className, bg: c.backgroundColor, color: c.color, border: c.borderStyle + ' ' + c.borderWidth, label: l ? { text: l.textContent.trim(), shown: !!l.getClientRects().length, color: getComputedStyle(l).color } : null }; }).catch(() => null);
           await connect.click().catch(() => {}); await sleep(1200);
           const modal = await page.evaluate(() => [...document.querySelectorAll('.fi-modal-window, [role="dialog"]')].some((e) => e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden')).catch(() => false);
           await record('connections-connect', 'Connections · pop-up van een koppeling');
-          say('connections-connect', modal, { modal });
+          say('connections-connect', modal, { modal, button: look });
           await escape();
         }
       } else {
-        page.off('load', onLoad);
+        page.off('load', onLoad); page.off('request', onRequest); page.off('response', onResponse); page.off('console', onConsole);
         // Only the core: no add-on gives a row, so the menu has no Connections.
         const item = await page.evaluate(() => [...document.querySelectorAll('#ps-account-actions a[href$="/connections"]')].some((a) => a.getClientRects().length)).catch(() => null);
         say('connections-none', item === false, { item });
