@@ -53,11 +53,11 @@ async function record(id, title, extra = {}) {
     const foot = await page.evaluate(() => {
       const card = document.querySelector('html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn'), main = card?.querySelector(':scope > .fi-main'), footer = card?.querySelector(':scope > footer, :scope > [data-ps-footer]');
       if (!main || !footer || !footer.getClientRects().length) return null;
+      // The page itself holds everything on it (what scrolls inside its own box, a popup or Monaco's helpers aside).
       const top = card.getBoundingClientRect().top - card.scrollTop, f = footer.getBoundingClientRect();
-      const content = Math.max(...[...main.querySelectorAll('*')].filter((el) => el.getClientRects().length && getComputedStyle(el).position !== 'fixed').map((el) => el.getBoundingClientRect().bottom - top), 0);
-      return { footerTop: Math.round(f.top - top), footerBottom: Math.round(f.bottom - top), content: Math.round(content), scroll: card.scrollHeight };
+      return { footerTop: Math.round(f.top - top), footerBottom: Math.round(f.bottom - top), page: Math.round(main.getBoundingClientRect().bottom - top), overflow: main.scrollHeight - main.clientHeight, scroll: card.scrollHeight };
     }).catch(() => null);
-    if (foot && (foot.footerTop < foot.content - 2 || foot.footerBottom < foot.scroll - 2)) problems.push(`${stand} ${id} footer-end: WRONG the copyright line is not at the end of the page ${JSON.stringify(foot)}`);
+    if (foot && (foot.overflow > 2 || foot.footerTop < foot.page - 1 || foot.footerBottom < foot.scroll - 2)) problems.push(`${stand} ${id} footer-end: WRONG the copyright line is not at the end of the page ${JSON.stringify(foot)}`);
     entry.frames = [];
     for (const f of page.frames()) {
       if (f === page.mainFrame()) continue;
