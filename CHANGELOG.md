@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Phones: the overview ends with Pelican's copyright line again, under the servers and above the bottom bar.
+- Host health: opened, everything around the nodes lights up on hover, together with the card and its tab, and a click there folds it shut again. A node keeps its own hover and click.
 - The Admin page and the account pages have the same background as the overview, in light and dark. Going from the overview to Admin and back, for example with Go to the panel at the end of the setup, no longer makes the background lighter or darker.
 
 ## 2.0.0-beta.3
