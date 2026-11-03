@@ -626,11 +626,15 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 .ps-log-strip { margin-bottom: 14px; padding: 10px 14px; overflow: hidden; border-color: var(--ps-console-line); background: var(--ps-console-bg); color: var(--ps-console-ink); font: 12px/1.55 var(--ps-mono); }
 .ps-log-strip > div { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .ps-server-stats { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; margin-bottom: 14px; }
-.ps-server-stats .ps-stat { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px 12px; }
-.ps-server-stats .ps-stat > strong { font-size: 20px; line-height: 1.2; overflow-wrap: normal; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.ps-server-stats .ps-stat > small { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.ps-server-stats .ps-stat:last-child > strong { font-size: 16px; }
-.ps-server-stats .ps-spark { height: 18px; }
+/* Each card: the number with its line under it on the left; the icon and short name in the top-right corner, the bars below it. */
+.ps-server-stats .ps-stat { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto 1fr; gap: 2px 10px; padding: 10px 14px 9px; }
+.ps-server-stats .ps-stat-top { grid-area: 1 / 2; flex-direction: row-reverse; justify-content: flex-start; gap: 6px; }
+.ps-server-stats .ps-stat > strong { grid-area: 1 / 1; font-size: 20px; line-height: 1.2; overflow-wrap: normal; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ps-server-stats .ps-stat > small { grid-area: 2 / 1; align-self: end; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ps-server-stats .ps-players-stat > small { grid-column: 1 / -1; }
+.ps-server-stats .ps-spark { grid-area: 2 / 2; align-self: stretch; }
+.ps-server-stats .ps-stat > .ps-stat-rates { display: grid; font-size: 13px; line-height: 1.3; }
+.ps-stat-rates .is-up { color: var(--ps-accent); }
 .ps-player-empty { color: var(--ps-muted); font-size: 11px; }
 .ps-widget {
   display: flex;
@@ -674,7 +678,16 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 .ps-stat > strong { display: block; color: var(--ps-ink); font-size: 26px; font-weight: 750; line-height: 1.25; letter-spacing: -.6px; overflow-wrap: anywhere; }
 .ps-stat > small { position: relative; z-index: 1; color: var(--ps-muted); font-size: 11px; line-height: 1.4; overflow-wrap: anywhere; }
 .ps-stat-total { color: var(--ps-muted); font-size: 15px; font-weight: 500; }
-.ps-spark { position: absolute; bottom: 0; inset-inline-start: 0; width: 100%; height: 22px; stroke: var(--ps-accent); stroke-width: 1.7; opacity: .3; }
+/* The bars next to the number: the colour of the load (W4), grey without a limit; the newest bar is solid. */
+.ps-spark { width: 76px; height: 100%; min-height: 20px; color: var(--ps-muted); fill: currentColor; }
+.ps-spark path { opacity: .35; }
+.ps-spark .ps-spark-now { opacity: 1; }
+.ps-spark .ps-spark-axis { fill: none; stroke: var(--ps-line); stroke-width: 1; opacity: 1; vector-effect: non-scaling-stroke; }
+.ps-spark.is-ok { color: var(--ps-ok); }
+.ps-spark.is-warn { color: var(--ps-warn); }
+.ps-spark.is-hot { color: var(--ps-danger); }
+.ps-spark .is-rx { color: var(--ps-ink); }
+.ps-spark .is-tx { color: var(--ps-accent); }
 
 @media (min-width: 1700px) { .ps-main { padding-inline: 60px; } }
 
@@ -725,7 +738,7 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   .ps-health-drawer { --ps-health-details-height: clamp(80px, calc(100dvh - 440px), 320px); }
   .ps-node-health-list, .ps-health-detail-toolbar { padding-inline: 10px; }
   .ps-console-title { height: 48px; padding: 0 12px; }
-  .ps-spark { height: 14px; }
+  .ps-spark { width: 46px; }
 }
 
 /* Host mode (admins, large hosts) ---------------------------------------------------------------
@@ -1115,7 +1128,7 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   .ps .ps-statusbar-power .ps-btn { width: 40px; height: 40px; }
   /* Two by two: four in a row left values and labels cut off on a phone. */
   .ps .ps-server-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-bottom: 12px; }
-  .ps .ps-server-stats .ps-stat { gap: 2px; padding: 10px 10px 8px; }
+  .ps .ps-server-stats .ps-stat { gap: 2px 8px; padding: 10px 10px 8px; }
   .ps .ps-server-stats .ps-stat:last-child { display: none; }
   .ps .ps-server-stats .ps-stat > strong { font-size: 15px; }
   .ps .ps-server-stats .ps-stat > strong .ps-stat-total { font-size: 12px; }

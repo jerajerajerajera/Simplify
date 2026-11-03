@@ -153,6 +153,11 @@ return [
         'server_color_saved' => '伺服器顏色已儲存',
         'traffic_used' => '已用 :traffic · 自伺服器啟動以來',
         'of_allocated' => '（共分配 :amount）',
+        'share_of' => ':percent（共 :amount）',
+        'cpu_short' => 'CPU',
+        'memory_short' => '記憶體',
+        'storage_short' => '磁碟',
+        'network_short' => '網路',
     ],
     'seasons' => [
         'newyear' => ['name' => '新年', 'text' => '一年的最後一夜和新一年的第一天。'],
