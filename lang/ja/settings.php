@@ -10,7 +10,7 @@ return [
     'page_title' => 'Simplify 設定',
     'pelican_frame_title' => 'Pelican 設定: :label',
     'pelican_frame' => 'Pelican 自身の :label 設定です。',
-    'version_line' => 'バージョン :version · 保存すると、このパネルの全員に変更が適用されます。',
+    'save_note' => '保存すると、このパネルの全員に変更が適用されます。',
     'profile' => [
         'support' => 'サポートリンク',
         'support_help' => 'ヘルプページまたは mailto: アドレス。全員のアカウントメニューに表示されます。空欄なら何も表示しません。',

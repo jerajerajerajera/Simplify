@@ -10,7 +10,7 @@ return [
     'page_title' => 'Simplifyn asetukset',
     'pelican_frame_title' => 'Pelicanin asetukset: :label',
     'pelican_frame' => 'Pelicanin omat asetukset (:label).',
-    'version_line' => 'Versio :version · Muutokset koskevat kaikkia tämän paneelin käyttäjiä tallennuksen jälkeen.',
+    'save_note' => 'Muutokset koskevat kaikkia tämän paneelin käyttäjiä tallennuksen jälkeen.',
     'profile' => [
         'support' => 'Tukilinkki',
         'support_help' => 'Ohjesivu tai mailto:-osoite, näytetään jokaisen tilivalikossa. Tyhjä ei näytä mitään.',

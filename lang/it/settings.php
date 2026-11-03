@@ -10,7 +10,7 @@ return [
     'page_title' => 'Impostazioni di Simplify',
     'pelican_frame_title' => 'Impostazioni di Pelican: :label',
     'pelican_frame' => 'Impostazioni :label di Pelican.',
-    'version_line' => 'Versione :version · Le modifiche valgono per tutti su questo pannello dopo il salvataggio.',
+    'save_note' => 'Le modifiche valgono per tutti su questo pannello dopo il salvataggio.',
     'profile' => [
         'support' => 'Link di assistenza',
         'support_help' => 'Una pagina di aiuto o un indirizzo mailto:, nel menu account di tutti. Vuoto non mostra nulla.',

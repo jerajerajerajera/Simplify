@@ -10,7 +10,7 @@ return [
     'page_title' => 'Simplify settings',
     'pelican_frame_title' => 'Pelican settings: :label',
     'pelican_frame' => 'Pelican\'s own :label settings.',
-    'version_line' => 'Version :version · Changes apply to everyone on this panel after saving.',
+    'save_note' => 'Changes apply to everyone on this panel after saving.',
     'profile' => [
         'support' => 'Support link',
         'support_help' => 'A help page or mailto: address, shown in everyone\'s account menu. Empty shows nothing.',
