@@ -98,12 +98,13 @@ const adminPage = async (overview) => {
     const lg = await adminState(); await record('admin-legacy', 'Legacy-paneel (Pelicans eigen pagina)');
     say('admin-legacy', !!lg && !lg.shell && !lg.side && !lg.header && !/simplify_legacy/.test(page.url()), lg);
     // The way back is the first item of Pelican's sidebar; on a small window that sidebar opens from its button first.
-    if (!(await page.locator('a[href*="simplify_legacy=0"] >> visible=true').count())) { await page.evaluate(() => window.Alpine?.store('sidebar')?.open?.()).catch(() => {}); await sleep(600); }
+    if (!(await page.locator('a[href*="simplify_legacy=0"] >> visible=true').count())) { await page.evaluate(() => window.Alpine?.store('sidebar')?.open?.()).catch(() => {}); await sleep(1200); await record('admin-legacy-sidebar', 'Legacy-paneel, zijbalk open'); }
     const back = page.locator('a[href*="simplify_legacy=0"] >> visible=true').first();
     if (await back.count()) {
-      await back.click().catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await settle(page, 1200);
+      let clickError = null;
+      await Promise.all([page.waitForNavigation({ timeout: 10000 }).catch(() => {}), back.click({ timeout: 5000 }).catch((e) => { clickError = e.message.slice(0, 120); })]); await settle(page, 1200);
       await goto('/admin/health', 1500); const again = await adminState();
-      say('admin-legacy-back', !!again && again.shell && again.side, again);
+      say('admin-legacy-back', !!again && again.shell && again.side, { ...again, clickError });
     } else say('admin-legacy-back', false, { note: 'no Back to Simplify in the legacy panel' });
   } else say('admin-legacy', false, { note: 'no Legacy panel link in the account menu' });
   // Always end inside Simplify, so a failed step above does not leave the rest of the round in the legacy panel.
