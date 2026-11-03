@@ -33,7 +33,6 @@ use Simplify\Core\Announcements\Models\Announcement;
 use Simplify\Core\Announcements\Services\Bell as AnnouncementBell;
 use Simplify\Core\Embed\Filament\EmbedSettings;
 use Simplify\Core\Embed\Filament\Website as EmbedWebsite;
-use Simplify\Core\Embed\Filament\Website;
 use Simplify\Core\Embed\Services\EmbedDetails;
 use Simplify\Core\Embed\Services\EmbedServers;
 use Simplify\Core\Filament\Admin\Pages\Settings;
@@ -1022,8 +1021,8 @@ step('embed: the Website page of a server saves what the website shows, only on 
     Filament\Facades\Filament::setTenant($server);
     EmbedServers::replace([]);
     try {
-        expectOk(visit($admin, Website::getUrl(panel: 'server', tenant: $server)), 'Website page');
-        $page = Livewire\Livewire::actingAs($admin)->test(Website::class)->set('data.visible', true);
+        expectOk(visit($admin, EmbedWebsite::getUrl(panel: 'server', tenant: $server)), 'Website page');
+        $page = Livewire\Livewire::actingAs($admin)->test(EmbedWebsite::class)->set('data.visible', true);
         if (EmbedServers::visible($server)) {
             throw new RuntimeException('the switch saved before Save');
         }
@@ -1034,8 +1033,8 @@ step('embed: the Website page of a server saves what the website shows, only on 
             || ($entry['address2'] ?? null) !== 'bedrock.example.com:19132' || ($entry['position'] ?? null) !== 2 || ! str_contains((string) ($entry['banner'] ?? ''), 'bg-harbor')) {
             throw new RuntimeException('unexpected entry: '.json_encode($entry));
         }
-        Livewire\Livewire::actingAs($admin)->test(Website::class)->set('data.address2', '192.168.1.5:19132')->call('save')->assertHasErrors(['data.address2']);
-        Livewire\Livewire::actingAs($admin)->test(Website::class)->set('data.download', 'http://example.com/a.zip')->call('save')->assertHasErrors(['data.download']);
+        Livewire\Livewire::actingAs($admin)->test(EmbedWebsite::class)->set('data.address2', '192.168.1.5:19132')->call('save')->assertHasErrors(['data.address2']);
+        Livewire\Livewire::actingAs($admin)->test(EmbedWebsite::class)->set('data.download', 'http://example.com/a.zip')->call('save')->assertHasErrors(['data.download']);
         if ($guest->get('/simplify/embed/banners/'.str_repeat('a', 40).'.png')->getStatusCode() !== 404) {
             throw new RuntimeException('an unknown banner did not answer 404');
         }
