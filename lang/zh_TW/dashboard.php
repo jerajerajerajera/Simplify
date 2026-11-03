@@ -84,6 +84,7 @@ return [
         'close' => '關閉',
         'close_server' => '關閉伺服器頁面',
         'server_groups' => '伺服器分組',
+        'edit_groups' => '編輯群組',
         'saved_with_your_account_so_every' => '儲存在你的帳戶中，因此每台裝置顯示相同的分組和順序。',
         'server_order' => '伺服器順序',
         'for_the_overview_and_for_groups' => '用於概覽以及跟隨它的分組',

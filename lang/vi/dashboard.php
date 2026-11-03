@@ -84,6 +84,7 @@ return [
         'close' => 'Đóng',
         'close_server' => 'Đóng máy chủ',
         'server_groups' => 'Nhóm máy chủ',
+        'edit_groups' => 'Sửa nhóm',
         'saved_with_your_account_so_every' => 'Được lưu theo tài khoản, nên mọi thiết bị đều hiện cùng nhóm và thứ tự.',
         'server_order' => 'Thứ tự máy chủ',
         'for_the_overview_and_for_groups' => 'Cho tổng quan và các nhóm theo nó',

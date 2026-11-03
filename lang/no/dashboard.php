@@ -84,6 +84,7 @@ return [
         'close' => 'Lukk',
         'close_server' => 'Lukk server',
         'server_groups' => 'Servergrupper',
+        'edit_groups' => 'Rediger grupper',
         'saved_with_your_account_so_every' => 'Lagres med kontoen din, så alle enheter viser de samme gruppene og den samme rekkefølgen.',
         'server_order' => 'Serverrekkefølge',
         'for_the_overview_and_for_groups' => 'For oversikten og for grupper som følger den',

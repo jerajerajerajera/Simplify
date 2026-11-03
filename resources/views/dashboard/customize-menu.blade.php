@@ -1,10 +1,32 @@
 {{-- Personal appearance preferences, opened from Customize in the account menu. --}}
-<div class="ps-overview-appearance" x-data="{ adminTop: !!$el.closest('.ps-admin-top') }" x-on:click.outside="appearanceMenu=false" x-on:keydown.escape.stop="appearanceMenu=false; $el.closest('.ps-account')?.querySelector('.ps-account-button')?.focus()">
-    <div id="ps-overview-appearance-menu" class="ps-dropdown is-end ps-overview-appearance-menu" x-show="appearanceMenu" x-cloak x-transition.opacity>
-        <strong class="ps-dropdown-title">{{ $u('customize') }}</strong>
-        <p class="ps-dropdown-hint">{{ $u('only_for_you_on_this_device') }}</p>
+<div class="ps-overview-appearance" x-data="{
+        adminTop: !!$el.closest('.ps-admin-top'),
+        tab: (() => { try { return localStorage.getItem('ps.customize.tab') || 'theme'; } catch { return 'theme'; } })(),
+        tabs() {
+            const list = [{ key: 'theme', label: @js($u('theme')), icon: 'palette' }];
+            if (this.adminTop) return list;
+            if (this.server) return [...list, { key: 'server', label: @js($u('server_pages')), icon: 'terminal' }];
+            list.push({ key: 'groups', label: @js($u('server_groups')), icon: 'files' }, { key: 'layout', label: @js($u('layout')), icon: 'grid' }, { key: 'cards', label: @js($u('cards')), icon: 'grid-small' }, { key: 'grouping', label: @js($u('grouping')), icon: 'host' });
+            if ((this.seasonsToday().length && this.boot.appearance?.seasonal !== false) || this.boot.settings_url) list.push({ key: 'more', label: @js($u('more')), icon: 'dots' });
+            return list;
+        },
+        shown(key) { const keys = this.tabs().map((t) => t.key); return (keys.includes(this.tab) ? this.tab : keys[0]) === key; },
+        pick(key) { this.tab = key; try { localStorage.setItem('ps.customize.tab', key); } catch {} },
+    }" x-on:click.outside="appearanceMenu=false" x-on:keydown.escape.stop="appearanceMenu=false; $el.closest('.ps-account')?.querySelector('.ps-account-button')?.focus()">
+    <div id="ps-overview-appearance-menu" class="ps-dropdown is-end ps-overview-appearance-menu" :class="{ 'is-wide': !adminTop }" x-show="appearanceMenu" x-cloak x-transition.opacity>
+        {{-- Wide (Jeroen 3-11): the sections on the left, the chosen one's contents straight away on the right; chips on a phone. --}}
+        <div class="ps-customize-side">
+            <strong class="ps-dropdown-title">{{ $u('customize') }}</strong>
+            <p class="ps-dropdown-hint">{{ $u('only_for_you_on_this_device') }}</p>
+            <div class="ps-customize-nav" role="tablist" aria-label="{{ $u('sections') }}" x-show="!adminTop">
+                <template x-for="t in tabs()" :key="t.key">
+                    <button type="button" role="tab" :data-tab="t.key" :aria-selected="shown(t.key)" x-on:click.stop="pick(t.key)"><svg aria-hidden="true"><use :href="'#ps-'+t.icon"/></svg><span x-text="t.label"></span></button>
+                </template>
+            </div>
+        </div>
+        <div class="ps-customize-pane">
         {{-- The theme, on every page (Jeroen 3-11: in Customize Simplify instead of the account menu). --}}
-        <div class="ps-customize ps-customize-theme">
+        <div class="ps-customize ps-customize-theme" x-show="shown('theme')">
             <div class="ps-customize-row is-first">
                 <div><strong>{{ $u('theme') }}</strong><small>{{ $u('theme_hint') }}</small></div>
                 <div class="ps-segmented" role="group" aria-label="{{ $u('theme') }}">
@@ -17,13 +39,16 @@
         {{-- The Admin page and the account pages have only the theme. --}}
         <template x-if="!server && !adminTop">
             <div class="ps-customize">
-                {{-- Server groups have their own window, opened from here (as Customize › Server groups on a phone). --}}
-                <button type="button" class="ps-customize-switch is-first" x-on:click.stop="appearanceMenu=false; groupsMenu=true">
-                    <span><strong>{{ $u('server_groups') }}</strong><small>{{ $u('saved_with_your_account_so_every') }}</small></span>
-                    <svg class="ps-customize-go" aria-hidden="true"><use href="#ps-chevron"/></svg>
-                </button>
-                <button type="button" class="ps-customize-head is-toggle is-first" :aria-expanded="customizeOpen('overview.layout')" aria-controls="ps-customize-overview-layout" x-on:click="toggleCustomize('overview.layout')"><span>{{ $u('layout') }}</span><svg class="ps-customize-chevron" aria-hidden="true"><use href="#ps-chevron"/></svg></button>
-                <div class="ps-customize-section" id="ps-customize-overview-layout" x-show="customizeOpen('overview.layout')">
+                <div class="ps-customize-section" x-show="shown('groups')">
+                    <small class="ps-customize-lead">{{ $u('saved_with_your_account_so_every') }}</small>
+                    <small class="ps-customize-lead" x-show="!overviewGroups.length">{{ $u('make_your_own_groups_such_as') }}</small>
+                    <template x-for="group in overviewGroups" :key="group.id">
+                        <div class="ps-customize-row ps-customize-group"><span><span class="ps-group-dot" x-show="group.color" :style="{'background-color': group.color}" aria-hidden="true"></span><strong x-text="group.name"></strong></span><small x-text="Simplify.choice(@js($u('server_count')), groupCount(group))"></small></div>
+                    </template>
+                    {{-- Making, ordering and colouring groups stays in its own window. --}}
+                    <button type="button" class="ps-btn is-sm ps-customize-edit" x-on:click.stop="appearanceMenu=false; groupsMenu=true">{{ $u('edit_groups') }}<svg class="ps-customize-go" aria-hidden="true"><use href="#ps-chevron"/></svg></button>
+                </div>
+                <div class="ps-customize-section" x-show="shown('layout')">
                 <div class="ps-customize-row">
                     <div><strong>{{ $u('layout') }}</strong><small>{{ $u('cards_small_cards_or_rows') }}</small></div>
                     <div class="ps-segmented" role="group" aria-label="{{ $u('layout') }}">
@@ -53,8 +78,7 @@
                     <span class="ps-switch" :class="{'is-on': overviewPreferences.fullWidth}" aria-hidden="true"></span>
                 </button>
                 </div>
-                <button type="button" class="ps-customize-head is-toggle" :aria-expanded="customizeOpen('overview.cards')" aria-controls="ps-customize-overview-cards" x-on:click="toggleCustomize('overview.cards')"><span>{{ $u('cards') }}</span><svg class="ps-customize-chevron" aria-hidden="true"><use href="#ps-chevron"/></svg></button>
-                <div class="ps-customize-section" id="ps-customize-overview-cards" x-show="customizeOpen('overview.cards')">
+                <div class="ps-customize-section" x-show="shown('cards')">
                 <div class="ps-customize-row">
                     <div><strong>{{ $u('card_icon') }}</strong><small>{{ $u('the_big_picture_at_the_top') }}</small></div>
                     <div class="ps-segmented" role="group" aria-label="{{ $u('card_icon') }}">
@@ -78,8 +102,7 @@
                     </div>
                 </div>
                 </div>
-                <button type="button" class="ps-customize-head is-toggle" :aria-expanded="customizeOpen('overview.grouping')" aria-controls="ps-customize-overview-grouping" x-on:click="toggleCustomize('overview.grouping')"><span>{{ $u('grouping') }}</span><svg class="ps-customize-chevron" aria-hidden="true"><use href="#ps-chevron"/></svg></button>
-                <div class="ps-customize-section" id="ps-customize-overview-grouping" x-show="customizeOpen('overview.grouping')">
+                <div class="ps-customize-section" x-show="shown('grouping')">
                 <div class="ps-customize-row">
                     <div><strong>{{ $u('group_by_node') }}</strong><small>{{ $u('auto_groups_servers_per_node_once') }}</small></div>
                     <div class="ps-segmented" role="group" aria-label="{{ $u('group_by_node') }}">
@@ -89,8 +112,7 @@
                     </div>
                 </div>
                 </div>
-                <button type="button" class="ps-customize-head is-toggle" x-show="(seasonsToday().length && boot.appearance?.seasonal !== false) || boot.settings_url" :aria-expanded="customizeOpen('overview.more')" aria-controls="ps-customize-overview-more" x-on:click="toggleCustomize('overview.more')"><span>{{ $u('more') }}</span><svg class="ps-customize-chevron" aria-hidden="true"><use href="#ps-chevron"/></svg></button>
-                <div class="ps-customize-section" id="ps-customize-overview-more" x-show="customizeOpen('overview.more')">
+                <div class="ps-customize-section" x-show="shown('more')">
                 <button type="button" class="ps-customize-switch" role="switch" x-show="seasonsToday().length && boot.appearance?.seasonal !== false" :aria-checked="overviewPreferences.halloween" x-on:click="setOverviewPreference('halloween', !overviewPreferences.halloween)">
                     <span><strong>{{ $u('seasonal_touches') }}</strong><small x-text="Simplify.fill(@js($u('a_few_small_touches_for')), { name: seasonNames() })"></small></span>
                     <span class="ps-switch" :class="{'is-on': overviewPreferences.halloween}" aria-hidden="true"></span>
@@ -104,8 +126,7 @@
             </div>
         </template>
         <template x-if="server && !adminTop">
-            <div class="ps-customize">
-                <span class="ps-customize-sub">{{ $u('server_pages') }}</span>
+            <div class="ps-customize" x-show="shown('server')">
                 <button type="button" class="ps-customize-switch" role="switch" :aria-checked="overviewPreferences.serverBiggerConsole" x-on:click="setOverviewPreference('serverBiggerConsole', !overviewPreferences.serverBiggerConsole)">
                     <span><strong>{{ $u('bigger_console') }}</strong><small>{{ $u('open_server_pages_with_the_large') }}</small></span>
                     <span class="ps-switch" :class="{'is-on': overviewPreferences.serverBiggerConsole}" aria-hidden="true"></span>
@@ -120,5 +141,6 @@
                 </button>
             </div>
         </template>
+        </div>
     </div>
 </div>

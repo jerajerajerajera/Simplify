@@ -84,6 +84,7 @@ return [
         'close' => 'Fechar',
         'close_server' => 'Fechar servidor',
         'server_groups' => 'Grupos de servidores',
+        'edit_groups' => 'Editar grupos',
         'saved_with_your_account_so_every' => 'Guardado na sua conta, por isso todos os dispositivos mostram os mesmos grupos e a mesma ordem.',
         'server_order' => 'Ordem dos servidores',
         'for_the_overview_and_for_groups' => 'Para a visão geral e para os grupos que a seguem',
