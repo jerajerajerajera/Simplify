@@ -875,10 +875,20 @@ html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header-heading {
     display: none;
   }
 
-  /* A long subheading goes under the row, so the buttons stay next to the breadcrumb. */
+  /* A long subheading goes under the row, so the buttons stay next to the breadcrumb, in the middle of its row
+     (K-B21). */
+  html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header {
+    row-gap: 0;
+  }
+
   html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header > div:first-child {
     order: 2;
     flex-basis: 100%;
+  }
+
+  html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header > .fi-header-actions-ctn {
+    align-self: flex-start;
+    min-height: 52px;
   }
 
   html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header > * {

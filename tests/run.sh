@@ -22,6 +22,7 @@ node tests/unsaved.cjs
 node tests/sheet-drag.cjs
 node tests/boot.cjs
 node tests/shell-footer.cjs
+node tests/admin-crumb-row.cjs
 node tests/beta-footer.cjs
 node tests/standalone-viewport.cjs
 node tests/server-stats.cjs
