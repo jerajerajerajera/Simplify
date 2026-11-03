@@ -2459,7 +2459,8 @@ html.ps-frame .s-done {
 
 /* Plugins page: its categories are a filter in the table's toolbar (CategoryFilter), so Pelican's tabs above the
    table go, and the import buttons sit on the toolbar's row after the search: one row instead of three. */
-.fi-page:has(.ps-category-filter) .fi-tabs:not(.fi-ta-ctn *) {
+/* The tabs and every wrapper around them that holds no table, so no empty band stays above the list. */
+.fi-page:has(.ps-category-filter) :is(.fi-tabs, :not(:has(.fi-ta-ctn)):has(.fi-tabs:not(.fi-ta-ctn *))):not(.fi-ta-ctn *) {
   display: none !important;
 }
 
@@ -2476,11 +2477,13 @@ html.ps-frame .s-done {
 .fi-ta-header-ctn:has(.ps-category-filter) > .fi-ta-header-toolbar {
   grid-row: 1;
   grid-column: 1;
+  border-block: 0 !important;
 }
 
 .fi-ta-header-ctn:has(.ps-category-filter) > .fi-ta-header {
   grid-row: 1;
   grid-column: 2;
+  padding-block: 0 !important;
   padding-inline-start: 0 !important;
   border: 0 !important;
 }
