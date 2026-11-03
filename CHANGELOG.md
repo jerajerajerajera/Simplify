@@ -1,7 +1,8 @@
 # Changelog
 
-## Unreleased
+## 2.0.0-beta.1
 
+- A download of the repository holds the plugin only, without its screenshots, art, tests and scripts (2.3 MB instead of 9.3 MB).
 - Simplify's settings are one row of tabs: Appearance, General, App, Website, Subdomains, Announcements, each add-on's own settings, Add-ons, Browse Hub and Pelican settings. Website, Subdomains, Announcements and the add-ons' pages show the same row over them. Pelican's settings open Pelican's own page in the Admin page, without frames. Appearance keeps the colour, the panel name and the logo; the name's style, the logo's height, what the top bar shows and the start page stay as they were saved and can be changed in Run setup again; the refresh time keeps its saved value. Server banners moved to General.
 - One Filter on the overview instead of the rows of chips: Show (all, mine, others), Game, Node and, when you have server groups, Group, in one menu (a sheet on a phone). The chip names what is chosen.
 - Phones: one bottom bar everywhere. Servers, New and Admin (the last two for who may use them); on a server a fourth tab, Sections, opens every section as one sheet with Console first, and on the Admin page Menu opens the admin pages. Customize is in the account menu on every screen, with the server groups inside it.
@@ -15,7 +16,7 @@
 - Add-ons can give a start page (add-on contract API 5): the server list and the overview open it when an add-on gives one, and Pelican's admin pages then keep Simplify's header on top. The groups of the admin menu are now built on the server.
 - A suspended server's card no longer shows the tops of its CPU and RAM tiles above the note about the suspension.
 - The overview and the server page load less: the code and styles for holidays load only on a day with one.
-- Checks and screen audit take less time. A change to text only (docs, Markdown) skips the panel smoke; tests and pint still run. In the screen audit, dark and light are jobs of their own, side by side, so a run takes half as long; the light job writes to the results branch `…-<stand>-light`. New inputs: `theme`, `parts` (the parts of a round: overview, server, admin, host, seasons, create, extras, notify, klant) and `scope` `changed`, which runs only the parts that the files changed since main can touch (`tests/audit/parts.py`; an unknown file counts as everything). The full audit still runs before every release.
+- Checks and screen audit take less time. A change to text only (docs, Markdown) skips the panel smoke; tests and pint still run. In the screen audit, dark and light are jobs of their own, side by side, so a run takes half as long; every job puts its result in a folder of its own on the one branch `audit-results` (`<branch>-<stand>`, the light job `…-<stand>-light`), instead of a branch per result; folders older than 14 days drop off. New inputs: `theme`, `parts` (the parts of a round: overview, server, admin, host, seasons, create, extras, notify, klant) and `scope` `changed`, which runs only the parts that the files changed since main can touch (`tests/audit/parts.py`; an unknown file counts as everything). The full audit still runs before every release.
 
 ## 1.5.5
 
