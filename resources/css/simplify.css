@@ -770,6 +770,7 @@ html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn {
 }
 
 html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn > .fi-main {
+  min-height: 0 !important;
   max-width: none !important;
   padding: 18px 22px 24px !important;
 }
