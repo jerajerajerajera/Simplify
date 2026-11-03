@@ -1169,11 +1169,12 @@ async function fixesFlow() {
     say('phone-frame-overview', top.menuButton === false && top.bell && top.account && Array.isArray(top.servers) && top.servers[0] === 'Servers' && top.servers.includes('Admin') && !top.servers.includes('Customize'), top);
     // Pelican's copyright line is at the end of the overview on a phone too, above the bottom bar once you scrolled
     // down, with Simplify's credit in it (K-B25, Jeroen 3-11 on iOS: no copyright on the overview).
+    // Measures the text itself: the footer's box runs on under the bar on purpose (its bottom padding).
     await page.evaluate(() => scrollTo(0, document.documentElement.scrollHeight)).catch(() => {}); await sleep(600);
     const foot = await page.evaluate(() => {
       const f = [...document.querySelectorAll('[data-ps-footer], .fi-footer')].find((e) => e.getClientRects().length && getComputedStyle(e).display !== 'none');
       if (!f) return { shown: false };
-      const line = f.querySelector('[data-ps-copyright-line]') || f, r = line.getBoundingClientRect(), bar = [...document.querySelectorAll('.ps-tabbar')].find((e) => e.getClientRects().length)?.getBoundingClientRect();
+      const line = f.querySelector('[data-ps-copyright-line]') || f, text = document.createRange(); text.selectNodeContents(line); const r = text.getBoundingClientRect(), bar = [...document.querySelectorAll('.ps-tabbar')].find((e) => e.getClientRects().length)?.getBoundingClientRect();
       const cards = [...document.querySelectorAll('.ps-server-card')].filter((e) => e.getClientRects().length).map((e) => e.getBoundingClientRect().bottom);
       return { shown: true, text: line.innerText.replace(/\s+/g, ' ').trim(), top: Math.round(r.top), bottom: Math.round(r.bottom), bar: bar ? Math.round(bar.top) : null, lastCard: cards.length ? Math.round(Math.max(...cards)) : null, inWindow: r.top >= 0 && r.bottom <= innerHeight, gap: cards.length ? Math.round(r.top - Math.max(...cards)) : null };
     }).catch(() => null);
