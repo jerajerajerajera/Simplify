@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 2.0.0-beta.3
 
 - Texts say server or egg where they said game, because not every server is a game: Website embed picks one egg, Subdomains asks for the server address, the install steps and Force stop no longer speak of games, and the in-game chat commands of Announcements are set per egg (as they were already stored). In all 32 languages.
 - The filters are back on the overview. On a desktop each filter is a dropdown of its own above the servers: Egg first and always there, then Show (all, mine, others), Node and Group when there is something to choose. On a phone one Filter opens them all as a sheet, and it no longer disappears when every server has the same egg, node and owner. The overview filters per egg instead of per game, because not every server is a game. Every choice shows how many servers it holds.
