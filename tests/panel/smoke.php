@@ -217,7 +217,7 @@ step('a panel with settings opens them, a new panel opens the setup, and finishi
     Setting::query()->delete();
     PanelSettings::save([]);
     $response = visit($admin, Settings::getUrl(panel: 'admin'));
-    if (! $response->isRedirect() || ! str_contains((string) $response->headers->get('Location'), 'simplify-setup')) {
+    if (! $response->isRedirect() || ! str_contains((string) $response->headers->get('Location'), 'simplify/setup')) {
         throw new RuntimeException('the settings did not open the setup first (HTTP '.$response->getStatusCode().')');
     }
     $url = Setup::getUrl(panel: 'admin');

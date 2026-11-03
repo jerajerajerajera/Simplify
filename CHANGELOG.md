@@ -4,6 +4,8 @@
 
 - Pages no longer open white. While Simplify starts, the overview, a server's page and the Admin page show their shapes as grey placeholders in your light or dark theme, and the real page takes their place.
 - Pages load faster on a first visit and after every update: Simplify sends its styles and scripts gzipped (about 100 KB instead of 400 KB), because Pelican's web server compresses only HTML.
+- Pelican's copyright line on the Admin page and the account pages sits at the very end of the page, under everything on it, on a phone too. It no longer stays halfway over the page where the first screen ended, and it keeps Simplify's thin style after a click in the menu.
+- The setup and its last step are part of Settings: the Admin menu shows Settings as the current page and the breadcrumb reads Settings › Set up Simplify. Their addresses moved to /admin/simplify/setup and /admin/simplify/setup-done.
 
 ## 2.0.0-beta.1
 

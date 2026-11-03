@@ -29,3 +29,4 @@ Bugs met dezelfde oorzaak, en de regel of check die het hele patroon voorkomt.
 - **Updatepad** (B11, kern 1.4.4 en 1.5.1): P-28. Upgradetest met echte 0.7.0-instellingen in `checks.yml`.
 - **Testpaneel lijkt niet op het echte paneel** (B15 Egg Updates 1.1.3/1.1.4, kern-audit): P-31. Smoke en audit bootsen
   het echte paneel na (volle nodes, echte eggs, 20+ servers, nep-plugin).
+| K-B9 | 2.0.0-beta.1 | Op de Admin- en accountpagina's blijft de copyright-regel hangen waar het eerste scherm van het vak eindigde, ook als je verder scrolt (telefoon, Settings › Setup; Jeroen 3-11) | Filament geeft `.fi-main` de hoogte van het vak; de inhoud loopt eroverheen en de footer erna staat halverwege. Na een menuklik kreeg de nieuwe footer ook de dunne Simplify-stijl niet meer | Unreleased | `tests/shell-footer.cjs` (rood op 20f9b24) | 0× | P-7 |
