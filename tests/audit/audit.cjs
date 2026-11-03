@@ -1006,7 +1006,7 @@ async function fixesFlow() {
       const cs = card && getComputedStyle(card);
       return { tabs: [...document.querySelectorAll('.ps-admin-side .ps-tabbar .ps-tab')].filter(shown).map((b) => b.innerText.trim()), menu: shown(side), leaves: [...document.querySelectorAll('.ps-admin-side .ps-host-leaf')].filter(shown).length, page: shown(card),
         below: !!side && !!top && side.getBoundingClientRect().top >= top.getBoundingClientRect().bottom - 1, crumb: shown(crumb) ? crumb.innerText.replace(/\s+/g, ' ').trim() : null,
-        heading: [...document.querySelectorAll('.fi-main .fi-header-heading')].some(shown), plus: (() => { const e = document.querySelector('.ps-admin-side .ps-tab-plus'); return e ? getComputedStyle(e).backgroundColor : null; })(), cardBox: !!cs && (cs.borderTopWidth !== '0px' || !/rgba\(0, 0, 0, 0\)|transparent/.test(cs.backgroundColor)), pageScroll: document.documentElement.scrollHeight - innerHeight };
+        heading: [...document.querySelectorAll('.fi-main .fi-header-heading')].some(shown), plus: (() => { const e = document.querySelector('.ps-admin-side .ps-tab-plus'); return e ? getComputedStyle(e).backgroundColor : null; })(), alpine: (() => { const el = document.querySelector('.ps-admin-side'); const d = el && window.Alpine?.$data(el); return d ? { open: d.open, here: d.here, crumb: d.crumb, url: location.pathname + location.hash } : null; })(), cardBox: !!cs && (cs.borderTopWidth !== '0px' || !/rgba\(0, 0, 0, 0\)|transparent/.test(cs.backgroundColor)), pageScroll: document.documentElement.scrollHeight - innerHeight };
     }).catch(() => null);
     await goto(overview, 1500);
     // New keeps the panel's accent on the Admin page too (Jeroen 3-11: it turned grey there).
@@ -1015,9 +1015,10 @@ async function fixesFlow() {
     const opened = await adminPhone(); await record('phone-frame-host', 'Telefoon · Admin opent het menu als pagina');
     say('phone-admin-accent', !!opened && !!overviewPlus && opened.plus === overviewPlus, { overviewPlus, admin: opened?.plus });
     say('phone-frame-host', !!opened && opened.tabs[0] === 'Servers' && opened.tabs[opened.tabs.length - 1] === 'Admin' && !opened.tabs.includes('Menu') && opened.menu && opened.leaves > 0 && opened.below && !opened.page && opened.pageScroll <= 1, opened);
-    const leaf = page.locator('.ps-admin-side .ps-host-group:has(.ps-host-leaf) .ps-host-leaf >> visible=true').first();
+    const leaf = page.locator('.ps-admin-side .ps-host-group:has(.ps-host-leaf) .ps-host-leaf:not([aria-current]) >> visible=true').first();
     const leafText = (await leaf.innerText().catch(() => '')).trim();
     await leaf.click().catch(() => {}); await settle(page, 1800);
+    await page.waitForFunction(() => [...document.querySelectorAll('.ps-admin-crumb')].some((e) => e.getClientRects().length), null, { timeout: 5000 }).catch(() => {});
     const shownPage = await adminPhone(); await record('phone-admin-crumb', 'Telefoon · Admin-pagina met kruimelpad als titel');
     say('phone-admin-crumb', !!leafText && !!shownPage && !shownPage.menu && shownPage.page && !!shownPage.crumb && shownPage.crumb.endsWith(leafText) && !shownPage.heading && !shownPage.cardBox, { ...shownPage, leafText });
     await page.evaluate(() => { const at = (x) => ({ identifier: 1, target: document.body, clientX: x, clientY: 400 }); const fire = (type, x) => document.dispatchEvent(new TouchEvent(type, { bubbles: true, touches: type === 'touchend' ? [] : [new Touch(at(x))], changedTouches: [new Touch(at(x))] })); fire('touchstart', 6); fire('touchend', 220); }).catch(() => {}); await sleep(700);
