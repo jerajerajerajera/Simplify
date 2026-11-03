@@ -62,7 +62,6 @@
       overviewCompact: false,
       phone: false,
       overviewPreferences: { ...OVERVIEW_DEFAULTS },
-      customizeSections: null,
       overviewGroups: [],
       overviewGroupsTimer: null,
       overviewServerOrder: 'name',
@@ -1072,23 +1071,6 @@
         } catch {}
         this.overviewPreferences = preferences;
       },
-      /** Customize menus fold their sections; the first stays open by default and each choice is remembered on this device. */
-      customizeOpen(key) {
-        if (!this.customizeSections) {
-          let saved = {};
-          try {
-            saved = JSON.parse(localStorage.getItem('ps.customize.sections') || '{}') || {};
-          } catch {}
-          this.customizeSections = typeof saved === 'object' ? saved : {};
-        }
-        return key in this.customizeSections ? !!this.customizeSections[key] : key.endsWith('.layout');
-      },
-      toggleCustomize(key) {
-        this.customizeSections = { ...this.customizeSections, [key]: !this.customizeOpen(key) };
-        try {
-          localStorage.setItem('ps.customize.sections', JSON.stringify(this.customizeSections));
-        } catch {}
-      },
       setOverviewPreference(key, value) {
         if (OVERVIEW_SWITCHES.includes(key)) {
           if (typeof value !== 'boolean') return;
@@ -1374,9 +1356,6 @@
           ...(index ? [{ text: '\n', style: {} }] : []),
           ...window.psMotd.runs(line).map(({ text, style, obfuscated }) => ({ text: obfuscated ? text.replace(/\S/g, '▒') : text, style })),
         ]);
-      },
-      adminPages() {
-        return Array.isArray(this.boot.admin_pages) ? this.boot.admin_pages : [];
       },
     };
   };

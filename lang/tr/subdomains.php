@@ -68,4 +68,15 @@ return [
         'removing' => 'Kaldırılıyor…',
         'error' => 'Bağlı değil',
     ],
+    'setup' => [
+        'title' => 'Nasıl kurulur',
+        'intro' => 'Oyuncular o zaman IP adresi ve port yerine oak.:domain gibi bir adla bağlanır. Bunu bir kez kurarsınız.',
+        'step_domain' => 'Alan adını (Cloudflare bölgeniz) ve sunucu adresini girin: portlarınızın geldiği genel IP\'yi gösteren mevcut bir DNS only kaydı.',
+        'step_token' => 'Cloudflare\'de My Profile › API Tokens › Create Token\'ı açın ve "Edit zone DNS" şablonunu seçin. Zone Resources altında yalnızca bu alan adını seçin, tokeni oluşturun ve kopyalayın.',
+        'step_test' => 'Tokeni aşağıya yapıştırın ve ":test" düğmesine basın. Simplify onu kontrol eder ve bölge kimliğini kendisi doldurur.',
+        'step_save' => '":save" düğmesine basın. Portu yönlendirilen aralıkta olan her sunucunun menüsünde artık :menu vardır; adı sahibi seçer.',
+        'open_cloudflare' => 'Cloudflare API tokenlerini aç',
+        'button' => 'Alt alan adlarını kur',
+        'server_help' => 'Ardından oyuncular bu sunucuya :address ile katılabilir. O zamana kadar bu sayfayı yalnızca root yöneticiler görür.',
+    ],
 ];

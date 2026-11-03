@@ -16,7 +16,7 @@
             </template>
         </div>
     </div>
-    <a class="ps-tab" x-show="boot.admin_url" x-cloak :href="boot.admin_url + '#menu'">
+    <a class="ps-tab" x-show="boot.admin_url" x-cloak :href="boot.admin_url + '#menu'" wire:navigate>
         <svg aria-hidden="true"><use href="#ps-shield"/></svg><span>{{ $u('admin') }}</span>
     </a>
 </nav>

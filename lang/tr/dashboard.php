@@ -84,6 +84,7 @@ return [
         'close' => 'Kapat',
         'close_server' => 'Sunucuyu kapat',
         'server_groups' => 'Sunucu grupları',
+        'edit_groups' => 'Grupları düzenle',
         'saved_with_your_account_so_every' => 'Hesabınla kaydedilir, böylece her cihaz aynı grupları ve sırayı gösterir.',
         'server_order' => 'Sunucu sırası',
         'for_the_overview_and_for_groups' => 'Genel bakış ve onu izleyen gruplar için',

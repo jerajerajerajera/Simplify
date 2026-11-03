@@ -84,6 +84,7 @@ return [
         'close' => 'Затвори',
         'close_server' => 'Затвори сервер',
         'server_groups' => 'Групе сервера',
+        'edit_groups' => 'Уреди групе',
         'saved_with_your_account_so_every' => 'Чува се уз ваш налог, па сваки уређај приказује исте групе и редослед.',
         'server_order' => 'Редослед сервера',
         'for_the_overview_and_for_groups' => 'За преглед и за групе које га прате',

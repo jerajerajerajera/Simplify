@@ -1,11 +1,12 @@
 /* Phones (1.5.4): every menu is a sheet from the bottom (dashboard.css). A tap beside an open sheet only closes it,
    instead of also pressing what lies under the dimmed page, and a swipe down on a sheet closes it too. Closing sends
-   Escape to the sheet: every menu already closes on Escape. */
+   Escape to the sheet: every menu already closes on Escape. The Admin menu on a phone is a page of its own, not a
+   sheet (K-B24): its bottom bar and header keep their taps. */
 (() => {
   if (window.SimplifySheet) return;
   window.SimplifySheet = true;
   const phone = matchMedia('(max-width: 600px)');
-  const SHEETS = '.ps .ps-dropdown, .ps .account-open > .ps-account-menu, .ps-admin-side.menu-open > .ps-host-side';
+  const SHEETS = '.ps .ps-dropdown, .ps .account-open > .ps-account-menu';
   const open = () => (phone.matches ? [...document.querySelectorAll(SHEETS)].filter((el) => el.getClientRects().length > 0) : []);
   const close = (sheet) => sheet.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
 

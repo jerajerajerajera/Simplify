@@ -84,6 +84,7 @@ return [
         'close' => 'Zavrieť',
         'close_server' => 'Zavrieť server',
         'server_groups' => 'Skupiny serverov',
+        'edit_groups' => 'Upraviť skupiny',
         'saved_with_your_account_so_every' => 'Ukladá sa k vášmu účtu, takže máte na každom zariadení rovnaké skupiny a poradie.',
         'server_order' => 'Poradie serverov',
         'for_the_overview_and_for_groups' => 'Pre prehľad a skupiny, ktoré sa ním riadia',

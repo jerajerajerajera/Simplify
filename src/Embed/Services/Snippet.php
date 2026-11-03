@@ -48,7 +48,7 @@ final class Snippet
 
         return [
             'script' => '<div id="simplify-servers"></div>'."\n".'<script src="'.$origin.'/simplify/embed.js"'.$attributes.' defer></script>',
-            'iframe' => '<iframe src="'.$origin.'/simplify/embed'.$string.'" title="Game servers" style="width:100%;height:'.$height.'px;border:0" loading="lazy"></iframe>',
+            'iframe' => '<iframe src="'.$origin.'/simplify/embed'.$string.'" title="Game servers" style="width:100%;height:'.$height.'px;border:0;color-scheme:normal" loading="lazy"></iframe>',
             'page' => $origin.'/simplify/embed?'.http_build_query([...$query, 'page' => 1], '', '&', PHP_QUERY_RFC3986),
         ];
     }

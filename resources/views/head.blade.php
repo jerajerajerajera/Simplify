@@ -29,6 +29,9 @@
     // (simplify.css, html.ps-shell). The legacy panel (?simplify_legacy=1) shows them as Pelican does.
     @if (\Simplify\Core\Filament\Admin\AdminTop::here())
     if (!window.frameElement) document.documentElement.classList.add('ps-shell'@if (\Simplify\Core\Filament\Admin\AdminTop::menu()), 'ps-shell-menu'@endif);
+    @else
+    // Not in Simplify's frame (the legacy panel, K-B33): nothing of the frame may hide Pelican's top bar and sidebar.
+    if (!window.frameElement) document.documentElement.classList.remove('ps-shell', 'ps-shell-menu');
     @endif
     // wire:navigate keeps <html> as it was: the page that came in says by its header and menu whether it is one.
     if (!window.simplifyShellWatch) {
@@ -46,12 +49,15 @@
     // Simplify's own admin pages (settings, Health, People & roles, the form pages, the end of the setup) get the height the window leaves them, so the page never scrolls:
     // the card scrolls inside (simplify.css). In host mode's frame the frame itself already has the window's height.
     // The end of the setup is one card in host mode too, so it fits there as well. The settings on a phone scroll with the page.
-    {
-        const fitCards = document.documentElement.matches('.ps-frame, .ps-shell') ? '.s-done' : '.s-settings-tabs.fi-vertical, .s-health, .s-people, .s-fit, .s-done';
+    // Once per window: wire:navigate runs this script again when the next page's head differs (overview ↔ Admin page).
+    if (!window.simplifyFitWatch) {
+        window.simplifyFitWatch = true;
+        // Read again on every page: wire:navigate also goes between the overview and the Admin page (html.ps-shell).
+        const fitCards = () => document.documentElement.matches('.ps-frame, .ps-shell') ? '.s-done' : '.s-settings-tabs.fi-vertical, .s-health, .s-people, .s-fit, .s-done';
         let queued = 0;
         const fit = () => {
             queued = 0;
-            for (const card of document.querySelectorAll(fitCards)) {
+            for (const card of document.querySelectorAll(fitCards())) {
                 card.style.removeProperty('--s-fit');
                 // On a phone the settings' menu sits above the settings, so a fitted card would leave them a few lines: the page scrolls.
                 if (innerWidth <= 600 && card.matches('.s-settings-tabs')) continue;
@@ -82,17 +88,15 @@
             }
         };
         const queue = () => (queued ||= requestAnimationFrame(fit));
+        // A new card, or Livewire redrawing one without its height, measures again; wire:navigate brings a new body.
+        const lost = (change) => change.type === 'attributes'
+            ? change.target.matches(fitCards()) && !change.target.style.getPropertyValue('--s-fit')
+            : [...change.addedNodes].some((node) => node.nodeType === 1 && (node.matches(fitCards()) || node.querySelector(fitCards())));
+        const watch = new MutationObserver((changes) => changes.some(lost) && queue());
+        const start = () => { queue(); watch.disconnect(); watch.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style'] }); };
         addEventListener('resize', queue);
-        document.addEventListener('livewire:navigated', queue);
-        addEventListener('DOMContentLoaded', () => {
-            queue();
-            // A new card, or Livewire redrawing one without its height, measures again.
-            const lost = (change) => change.type === 'attributes'
-                ? change.target.matches(fitCards) && !change.target.style.getPropertyValue('--s-fit')
-                : [...change.addedNodes].some((node) => node.nodeType === 1 && (node.matches(fitCards) || node.querySelector(fitCards)));
-            new MutationObserver((changes) => changes.some(lost) && queue())
-                .observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style'] });
-        });
+        document.addEventListener('livewire:navigated', start);
+        addEventListener('DOMContentLoaded', start);
         // Whatever comes later on a first visit with nothing cached (fonts, Livewire starting, Pelican's footer) changes
         // what is left under the card, without the page telling: measure again when they are there, and a few times
         // after the page loaded.

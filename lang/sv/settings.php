@@ -10,7 +10,7 @@ return [
     'page_title' => 'Simplify-inställningar',
     'pelican_frame_title' => 'Pelican-inställningar: :label',
     'pelican_frame' => 'Pelicans egna :label-inställningar.',
-    'version_line' => 'Version :version · Ändringar gäller för alla på den här panelen när de har sparats.',
+    'save_note' => 'Ändringar gäller för alla på den här panelen när de har sparats.',
     'profile' => [
         'support' => 'Supportlänk',
         'support_help' => 'En hjälpsida eller mailto:-adress som visas i allas kontomeny. Tomt visar ingenting.',

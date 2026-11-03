@@ -38,6 +38,12 @@ final class HostHealth
      */
     public static function checks(): array
     {
+        return once(fn () => self::readChecks());
+    }
+
+    /** @return list<array{label: string, status: string, message: string}> */
+    private static function readChecks(): array
+    {
         try {
             $results = app(ResultStore::class)->latestResults();
         } catch (Throwable) {

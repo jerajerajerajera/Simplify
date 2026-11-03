@@ -105,6 +105,9 @@ jobs:
             echo '{"accent_color":"#e11d48","brand":{"mode":"text","text":"Old panel","font":"rounded","weight":800,"color_style":"gradient","color1":"#ff0000","color2":"","spacing":2,"uppercase":false,"suffix":false,"logo":null,"logo_height":32,"logo_text":true}}' > $d/simplify/appearance.json
             echo '{"style":"dark","corners":"square","players":false}' > $d/simplify/website-embed.json
           done
+          # 0.7.0's subdomains: the addresses in storage, the Cloudflare token and zone ID in .env.
+          for d in storage/app/private storage/app; do echo '{"domain":"example.com","target":"play.example.com","port_min":25565,"port_max":25600}' > $d/simplify/subdomains.json; done
+          printf 'CLOUDFLARE_API_TOKEN=upgrade-token\nCLOUDFLARE_ZONE_ID=%s\n' "$(printf 'a%.0s' $(seq 32))" >> .env
       # The way most panels update: 1.4.4 first, with PelicanSimplify's files still there, then this version over it.
       - name: Install Simplify 1.4.4
         if: inputs.from070
@@ -137,6 +140,11 @@ jobs:
           test ! -e plugins/pelican-simplify || { echo 'The old pelican-simplify folder is still there'; exit 1; }
           test "$(grep -c '| Simplify ' plugins.txt)" = 1 || { echo 'Simplify is listed twice'; exit 1; }
           php -r '$db = new PDO("sqlite:database/database.sqlite"); $v = fn ($k) => json_decode((string) $db->query("SELECT value FROM simplify_settings WHERE key = \"$k\"")->fetchColumn()); $a = $db->query("SELECT title, in_bell, push, in_game, in_game_repeat FROM simplify_core_announcements")->fetchAll(PDO::FETCH_ASSOC); $e = $db->query("SELECT value FROM simplify_core_embed_settings WHERE key = \"style\"")->fetchColumn(); echo json_encode([$v("support_url"), $v("accent"), $v("brand_name"), $v("brand_font"), $v("brand_show"), $v("pelican_suffix"), $a, $e]), PHP_EOL; exit($v("support_url") === "https://example.com/kept" && $v("pelican_suffix") === false && $v("accent") === "#e11d48" && $v("brand_name") === "Old panel" && $v("brand_font") === "rounded" && $v("brand_colour") === "gradient" && $v("brand_show") === "both" && count($a) === 1 && $a[0]["title"] === "Old announcement" && (int) $a[0]["in_bell"] === 1 && (int) $a[0]["push"] === 0 && (int) $a[0]["in_game_repeat"] === 30 && $e === "\"dark\"" ? 0 : 1);' || { echo 'The old settings were not kept or not imported'; exit 1; }
+      - name: Check that 0.7.0's subdomain setup was taken over
+        if: inputs.from070
+        working-directory: panel
+        run: |
+          php -r '$db = new PDO("sqlite:database/database.sqlite"); $v = fn ($k) => (string) $db->query("SELECT value FROM simplify_core_subdomain_settings WHERE key = \"$k\"")->fetchColumn(); exit($v("domain") === "example.com" && $v("zone_id") === str_repeat("a", 32) && $v("token") !== "" && ! str_contains($v("token"), "upgrade-token") ? 0 : 1);' || { echo 'The Cloudflare token and zone ID from .env were not taken over'; exit 1; }
       - name: Install Simplify over its own tables
         # An install that stopped halfway leaves tables without their migration rows; the next install keeps them.
         working-directory: panel

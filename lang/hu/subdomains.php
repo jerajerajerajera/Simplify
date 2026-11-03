@@ -68,4 +68,15 @@ return [
         'removing' => 'Eltávolítás…',
         'error' => 'Nincs csatlakoztatva',
     ],
+    'setup' => [
+        'title' => 'Így állítod be',
+        'intro' => 'A játékosok ezután egy névvel csatlakoznak, például oak.:domain, IP-cím és port helyett. Ezt egyszer kell beállítani.',
+        'step_domain' => 'Add meg a domaint (a Cloudflare-zónádat) és a szervercímet: egy meglévő DNS only rekordot, amely arra a nyilvános IP-re mutat, ahová a portjaid érkeznek.',
+        'step_token' => 'A Cloudflare-ben nyisd meg: My Profile › API Tokens › Create Token, és válaszd az "Edit zone DNS" sablont. A Zone Resources alatt csak ezt a domaint válaszd, hozd létre a tokent és másold ki.',
+        'step_test' => 'Illeszd be lent a tokent, és nyomd meg a :test gombot. A Simplify ellenőrzi, és maga tölti ki a zónaazonosítót.',
+        'step_save' => 'Nyomd meg a :save gombot. Minden szerver, amelynek portja a továbbított tartományban van, ezután a menüjében látja a :menu pontot, ahol a tulajdonos kiválasztja a nevet.',
+        'open_cloudflare' => 'Cloudflare API-tokenek megnyitása',
+        'button' => 'Aldomainek beállítása',
+        'server_help' => 'Ezután a játékosok :address címen csatlakozhatnak ehhez a szerverhez. Addig csak a root adminok látják ezt az oldalt.',
+    ],
 ];

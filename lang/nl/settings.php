@@ -10,7 +10,7 @@ return [
     'page_title' => 'Simplify-instellingen',
     'pelican_frame_title' => 'Pelican-instellingen: :label',
     'pelican_frame' => 'Pelicans eigen instellingen voor :label.',
-    'version_line' => 'Versie :version · Wijzigingen gelden na opslaan voor iedereen op dit paneel.',
+    'save_note' => 'Wijzigingen gelden na opslaan voor iedereen op dit paneel.',
     'profile' => [
         'support' => 'Hulplink',
         'support_help' => 'Een hulppagina of mailto:-adres, in ieders accountmenu. Leeg toont niets.',

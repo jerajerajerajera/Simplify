@@ -7,7 +7,9 @@ namespace Simplify\Core\Server;
 use App\Enums\SubuserPermission;
 use App\Models\Server;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Simplify\Core\Embed\Services\EmbedDetails;
 use Simplify\Core\Models\ServerLook;
 use Simplify\Core\Overview\Artwork;
 use Simplify\Core\Support\Assets;
@@ -118,12 +120,13 @@ final class Looks
         return $uploads;
     }
 
-    /** Removes an upload: its servers go back to their automatic scene. */
+    /** Removes an upload: its servers go back to their automatic scene, also on the website. */
     public static function forget(string $file): void
     {
         $path = self::DIRECTORY.'/'.$file;
         if (preg_match('#^'.self::FILE_PATTERN.'$#', $file)) {
             ServerLook::query()->where('banner', $path)->update(['banner' => null]);
+            DB::table(EmbedDetails::TABLE)->where('banner', $path)->update(['banner' => null]);
             Storage::disk('local')->delete($path);
         }
     }
@@ -137,10 +140,11 @@ final class Looks
         return preg_match('#^'.self::DIRECTORY.'/'.self::FILE_PATTERN.'$#', $banner) === 1;
     }
 
-    /** An upload is deleted once no server shows it any more. */
+    /** An upload is deleted once no server shows it any more, in Simplify or on the website. */
     private static function deleteUnused(string $old): void
     {
-        if (! str_starts_with($old, self::SCENE) && ! ServerLook::query()->where('banner', $old)->exists()) {
+        if (! str_starts_with($old, self::SCENE) && ! ServerLook::query()->where('banner', $old)->exists()
+            && ! DB::table(EmbedDetails::TABLE)->where('banner', $old)->exists()) {
             Storage::disk('local')->delete($old);
         }
     }

@@ -68,4 +68,15 @@ return [
         'removing' => '正在移除…',
         'error' => '未連接',
     ],
+    'setup' => [
+        'title' => '如何設定',
+        'intro' => '之後玩家可以用 oak.:domain 這樣的名稱加入，而不是 IP 位址和連接埠。只需設定一次。',
+        'step_domain' => '填寫網域（你的 Cloudflare 區域）和伺服器位址：一筆既有的 DNS only 記錄，指向連接埠所到達的公開 IP。',
+        'step_token' => '在 Cloudflare 中開啟 My Profile › API Tokens › Create Token，選擇範本「Edit zone DNS」。在 Zone Resources 中只選這個網域，建立權杖並複製。',
+        'step_test' => '把權杖貼到下方並按 :test。Simplify 會檢查它並自動填入區域 ID。',
+        'step_save' => '按 :save。連接埠在轉送範圍內的每台伺服器選單中都會出現 :menu，由擁有者選擇名稱。',
+        'open_cloudflare' => '開啟 Cloudflare API 權杖',
+        'button' => '設定子網域',
+        'server_help' => '設定完成後，玩家可以用 :address 加入這台伺服器。在此之前只有 root 管理員能看到此頁面。',
+    ],
 ];

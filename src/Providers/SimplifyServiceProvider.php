@@ -66,6 +66,8 @@ final class SimplifyServiceProvider extends ServiceProvider
         // PelicanSimplify used, so websites that show the list keep working. The controller answers 404 while the
         // part is off.
         Route::get('/simplify/embed/servers.json', [EmbedController::class, 'servers'])->middleware('throttle:120,1')->name('simplify.embed.servers');
+        Route::get('/simplify/embed/banners/{file}', [EmbedController::class, 'banner'])->where('file', Looks::FILE_PATTERN)
+            ->middleware('throttle:120,1')->name('simplify.embed.banner');
         Route::get('/simplify/embed.js', [EmbedController::class, 'script'])->name('simplify.embed.script');
         Route::get('/simplify/embed', [EmbedController::class, 'frame'])->middleware('throttle:120,1')->name('simplify.embed.frame');
 

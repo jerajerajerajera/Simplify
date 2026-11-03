@@ -83,6 +83,10 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-nav-heading { display: none; }
 .ps-mobile-menu, .ps-mobile-label { display: none !important; }
 .ps-overview-appearance, .ps-notify { position: relative; }
+/* Customize Simplify hangs under the account button it opens from (K-B19): the box covers the button without taking
+   its clicks, and its menu and arrow line up with the account menu's right edge. */
+.ps-account > .ps-overview-appearance { position: absolute; inset: 0; pointer-events: none; }
+.ps-account > .ps-overview-appearance > .ps-dropdown { pointer-events: auto; }
 .ps-overview-appearance-menu { width: 300px; }
 .ps-notify-menu { width: 340px; }
 /* Menus under the top bar use the height left on the screen before they scroll. */
@@ -409,10 +413,15 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 /* The fold-open tab sticks out under the card's bottom edge, in the middle, so it reads as "pull this open". */
 .ps-health-tab { position: absolute; bottom: -14px; left: 50%; z-index: 1; display: grid; place-items: center; width: 52px; height: 14px; padding: 0; border: 1px solid var(--ps-line); border-top: 0; border-radius: 0 0 10px 10px; background: var(--ps-surface); color: var(--ps-muted); cursor: pointer; transform: translateX(-50%); transition: color var(--ps-fast), background-color var(--ps-fast); }
 .ps-health-tab::before { content: ""; position: absolute; inset: -1px 0 auto; height: 2px; background: var(--ps-surface); }
-/* The card and its tab open the same thing, so they are one hover zone with one hover colour. */
-.ps-health-panel:has(> .ps-health-tab:hover, > .ps-host-health:hover) > :is(.ps-host-health, .ps-health-tab),
-.ps-health-panel:has(> .ps-health-tab:hover, > .ps-host-health:hover) > .ps-health-tab::before { background: color-mix(in srgb, var(--ps-raised) 40%, var(--ps-surface)); }
-.ps-health-panel:has(> .ps-health-tab:hover, > .ps-host-health:hover) > .ps-health-tab { color: var(--ps-ink); }
+/* The card and its tab open the same thing, so they are one hover zone with one hover colour. Opened, everything around
+   the nodes folds it shut again, so all of that lights up together; a node keeps its own hover and click (K-B30). */
+.ps-health-panel:is(:has(> .ps-health-tab:hover, > .ps-host-health:hover), .expanded:has(> .ps-health-drawer:hover)):not(:has(.ps-node-health:hover)),
+.ps-health-panel:is(:has(> .ps-health-tab:hover, > .ps-host-health:hover), .expanded:has(> .ps-health-drawer:hover)):not(:has(.ps-node-health:hover)) > :is(.ps-host-health, .ps-health-tab),
+.ps-health-panel:is(:has(> .ps-health-tab:hover, > .ps-host-health:hover), .expanded:has(> .ps-health-drawer:hover)):not(:has(.ps-node-health:hover)) > .ps-health-tab::before { background: color-mix(in srgb, var(--ps-raised) 40%, var(--ps-surface)); }
+.ps-health-panel:is(:has(> .ps-health-tab:hover, > .ps-host-health:hover), .expanded:has(> .ps-health-drawer:hover)):not(:has(.ps-node-health:hover)) > .ps-health-tab { color: var(--ps-ink); }
+.ps-health-panel:is(:has(> .ps-health-tab:hover, > .ps-host-health:hover), .expanded:has(> .ps-health-drawer:hover)):not(:has(.ps-node-health:hover)) .ps-node-health:not(.expanded) { background: var(--ps-surface); }
+.ps-health-panel.expanded .ps-health-drawer { cursor: pointer; }
+.ps-health-panel.expanded .ps-node-health { cursor: auto; }
 .ps-health-tab:focus-visible { color: var(--ps-ink); outline: 2px solid var(--ps-accent); outline-offset: 1px; }
 .ps-health-tab svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; transform: rotate(90deg); transition: transform var(--ps-slow); }
 .ps-health-tab.expanded svg { transform: rotate(-90deg); }
@@ -767,28 +776,26 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 .ps-host { --ps-host-row: 48px; }
 .ps-host-side-scroll { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 8px; }
 
-/* The admin tree: a section, with its pages hung underneath on ↳ lines. */
+/* The admin tree: a section, with its pages underneath in calm, regular type (Jeroen 3-11: too dense with bold
+   pages and tree lines). What does not come with Pelican (Simplify add-ons, Pelican plugins) stands apart below. */
 .ps-host-group + .ps-host-group { margin-top: 2px; }
+.ps-host-group.is-apart { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--ps-line); }
 .ps-host-group-head, .ps-host-leaf { display: flex; align-items: center; gap: 9px; width: 100%; min-width: 0; border: 0; border-radius: var(--ps-radius-sm); background: none; color: var(--ps-ink); text-align: start; cursor: pointer; }
-.ps-host-group-head { min-height: 32px; padding: 0 8px; font: 600 13px/1.2 var(--ps-font); }
-.ps-host-leaf { min-height: 28px; padding: 0 9px; font: 550 12.5px/1.2 var(--ps-font); }
+.ps-host-group-head { min-height: 36px; padding: 0 10px; font: 500 14px/1.2 var(--ps-font); }
+.ps-host-leaf { min-height: 32px; padding: 0 10px; color: var(--ps-muted); font: 400 13.5px/1.25 var(--ps-font); }
 .ps-host-group-head svg { width: 17px; height: 17px; color: var(--ps-tone); }
 .ps-host-group-head .ps-host-group-chevron { width: 14px; height: 14px; margin-inline-start: auto; color: var(--ps-muted); fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform var(--ps-fast, .15s); }
 .ps-host-group.is-open .ps-host-group-chevron { transform: rotate(90deg); }
 .ps-host-expand { display: block; width: fit-content; margin: 0 4px 4px auto; padding: 2px 8px; border: 0; border-radius: var(--ps-radius-sm); background: none; color: var(--ps-muted); font: 600 11.5px/1.6 var(--ps-font); cursor: pointer; }
 .ps-host-expand:hover, .ps-host-expand:focus-visible { background: var(--ps-raised); color: var(--ps-ink); }
-.ps-host-leaf svg { width: 15px; height: 15px; color: var(--ps-tone); }
-.ps-host-group-head svg, .ps-host-leaf svg { flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.ps-host-group-head svg { flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .ps-host-group-head span, .ps-host-leaf span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 /* A page name too long for the menu (in some languages) wraps onto a second line instead of being cut off. */
 .ps-host-leaf { padding-block: 5px; line-height: 1.25; }
 .ps-host-leaf span { overflow: visible; white-space: normal; overflow-wrap: anywhere; }
-.ps-host-group-head:hover, .ps-host-leaf:hover { background: var(--ps-raised); }
-.ps-host-group-head[aria-current="page"], .ps-host-leaf[aria-current="page"] { background: color-mix(in srgb, var(--ps-tone) 14%, transparent); }
-.ps-host-branch { display: grid; gap: 1px; margin-inline-start: 16px; padding: 0 0 4px 16px; }
-.ps-host-leaf { position: relative; overflow: visible; }
-.ps-host-leaf::before { content: ""; position: absolute; top: -3px; inset-inline-start: -16px; width: 11px; height: 17px; border-bottom: 1.5px solid var(--ps-line-strong); border-inline-start: 1.5px solid var(--ps-line-strong); border-end-start-radius: 7px; }
-.ps-host-leaf:not(:last-child)::after { content: ""; position: absolute; top: 12px; bottom: -4px; inset-inline-start: -16px; border-inline-start: 1.5px solid var(--ps-line-strong); }
+.ps-host-group-head:hover, .ps-host-leaf:hover { background: var(--ps-raised); color: var(--ps-ink); }
+.ps-host-group-head[aria-current="page"], .ps-host-leaf[aria-current="page"] { background: color-mix(in srgb, var(--ps-tone) 14%, transparent); color: var(--ps-ink); }
+.ps-host-branch { display: grid; gap: 2px; margin-inline-start: 26px; padding: 2px 0 6px; }
 
 /* A status dot, as in a server's title bar. */
 .ps-host-dot { --ps-tone: var(--ps-muted); flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--ps-tone); }
@@ -850,7 +857,6 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   .ps-host-menu-close { display: inline-flex; flex: none; align-self: center; margin: 0 6px; }
   .ps-host-group-head { min-height: 42px; }
   .ps-host-leaf { min-height: 40px; }
-  .ps-host-leaf::before { top: 0; height: 21px; }
   .ps-host-frame.is-server { padding: 0; }
   .ps-host-head { padding: 0; }
   /* The menu button already names the open page: the title bar stays only as a slim row for the page's buttons. */
@@ -885,6 +891,8 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
    fitWorkspace), so the page never scrolls for them; a long menu scrolls inside its own column. */
 .ps-console-tool { display: inline-flex; align-items: center; gap: 6px; padding: 4px 7px; }
 .ps-console-tool svg { width: 14px; height: 14px; }
+/* An add-on's button from the Console page's hidden header (server.js consoleActions) keeps the tools' size. */
+.ps-console-action svg { width: 14px !important; height: 14px !important; }
 .ps-console-tool[aria-pressed="true"] { color: var(--ps-console-ink); border-color: var(--ps-console-muted); }
 /* A workspace open: it takes the block, and the console folds to a mini console under it: the status
    dot and the command line. The chevron pulls the last log lines open; "Full console" closes the workspace. */
@@ -1013,7 +1021,8 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 @media (max-width: 600px) {
   body:has(.ps:not(.server-active, .host-mode)), body:has(.ps:not(.server-active, .host-mode)) :is(.fi-layout, .fi-main-ctn) { height: auto; overflow: visible; }
   body:has(.ps:not(.server-active, .host-mode)) :is(.fi-main, .fi-page, .fi-page-header-main-ctn, .fi-page-main, .fi-page-content), .ps:not(.server-active, .host-mode), .ps:not(.server-active, .host-mode) .ps-main { flex: 1 0 auto; min-height: auto; overflow: visible; }
-  .ps:not(.server-active, .host-mode) .ps-main { padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
+  /* The copyright line under the servers keeps the room for the bottom bar (below), so the servers need only a gap. */
+  .ps:not(.server-active, .host-mode) .ps-main { padding-bottom: 16px; }
   body:has(.ps:not(.server-active, .host-mode)) :is(.fi-footer, [data-ps-footer]) { padding-bottom: calc(76px + env(safe-area-inset-bottom)) !important; }
   .ps .ps-overview, .ps .ps-server-scroll { flex: none; min-height: auto; overflow: visible; mask-image: none; }
   .ps .ps-server-scroll { padding: 0; }
@@ -1249,7 +1258,7 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 .ps.ps-admin-top .ps-top { max-width: none; }
 .ps.ps-admin-side { display: flex; flex: 1; min-width: 0; min-height: 0; overflow: visible; }
 .ps-admin-side .ps-host-side { flex: 1; overflow: hidden; border: 0; background: transparent; }
-.ps-admin-side .ps-host-side-scroll { padding: 0 8px 8px 0; scrollbar-width: thin; }
+.ps-admin-side .ps-host-side-scroll { padding: 0 8px 8px 0; }
 .ps-admin-side .ps-host-backdrop, .ps-admin-side .ps-host-health-bar { display: none; }
 .ps-admin-crumb { position: relative; z-index: 12; display: flex; align-items: center; gap: 2px; align-self: start; min-width: 0; max-width: 60%; height: 52px; color: var(--ps-ink); font: 700 16px/1.25 var(--ps-font); }
 .ps-admin-crumb :is(a, button) { display: inline-flex; flex: none; align-items: center; gap: 6px; max-width: 45%; min-height: 34px; padding: 0 6px; border: 0; border-radius: var(--ps-radius-sm); background: none; color: var(--ps-muted); font: 500 15px/1.2 var(--ps-font); text-decoration: none; cursor: pointer; }
@@ -1270,10 +1279,7 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   .ps-admin-side .ps-host-health-bar { display: grid; }
   .ps-admin-side .ps-host-group-head { min-height: 44px; font-size: 15px; }
   .ps-admin-side .ps-host-leaf { min-height: 40px; font-size: 14px; }
-  .ps-admin-side .ps-host-leaf::before { top: 0; height: 21px; }
   .ps-admin-crumb { align-self: stretch; max-width: none; height: auto; padding: 6px 0 2px; font-size: 17px; }
-  /* The phone's header stays as it was (the bottom bar has New; Health is at the bottom of the menu). */
-  .ps-admin-top .ps-top-overview { display: none !important; }
   .ps-admin-crumb .ps-admin-crumb-home { display: none; }
   .ps-admin-crumb button { max-width: 55%; min-height: 36px; padding: 0 6px 0 2px; font-size: 16px; }
   .ps-admin-crumb button.is-last { font-size: 17px; }
@@ -1365,8 +1371,8 @@ html.ps-console-big body:has(.ps-server-top) .fi-main-ctn > .fi-main { grid-colu
 /* Pelican's console, dressed as Simplify's live console: a title row (server.js puts it in), the output and the
    command bar in one dark card. Pelican's numbers and charts are replaced by the cards above. */
 body:has(.ps-server-top.is-console) :is(.fi-header, .fi-wi-stats-overview, .fi-wi-chart) { display: none !important; }
-/* Pelican's charts load late: until then an empty card stands in for each, so they go by component name. */
-body:has(.ps-server-top.is-console) :is([wire\:name$="\\ServerCpuChart"], [wire\:name$="\\ServerMemoryChart"], [wire\:name$="\\ServerNetworkChart"]) { display: none !important; }
+/* Pelican's numbers and charts load late: until then an empty card stands in for each, so they go by component name. */
+body:has(.ps-server-top.is-console) :is([wire\:name$="\\ServerOverview"], [wire\:name$="\\ServerCpuChart"], [wire\:name$="\\ServerMemoryChart"], [wire\:name$="\\ServerNetworkChart"]) { display: none !important; }
 #terminal :is(.xterm-viewport, .xterm-screen) { background: transparent !important; }
 :has(> #terminal) { overflow: hidden; border: 1px solid var(--ps-console-line); border-radius: var(--ps-radius-lg); background: #131a20 !important; color: var(--ps-console-ink); box-shadow: none !important; }
 /* Pelican's own terminal colour for the whole card, so the output has no box of its own. The room around the output is
@@ -1532,8 +1538,9 @@ body:has(.ps-install:not([style*="none"], [x-cloak])) .fi-main .fi-page .fi-call
   .ps .ps-account-actions-inner .ps-btn.is-icon::after { content: attr(data-tip); }
   .ps .ps-account-actions-inner .ps-btn.is-icon[aria-pressed="true"] { color: var(--ps-accent); }
   .ps .ps-account-foot { margin: 8px 0 0; color: var(--ps-muted); font-size: 12px; text-align: center; }
-  /* The build line sits in the account sheet; the page keeps its height for the servers. */
-  body:has(.ps) :is(.fi-footer, [data-ps-footer]) { display: none !important; }
+  /* A server's page keeps its height for the console; its build line sits in the account sheet. The overview ends
+     with Pelican's copyright line under the servers, above the bottom bar (K-B29). */
+  body:has(.ps-server-top) :is(.fi-footer, [data-ps-footer]) { display: none !important; }
 
   /* Bottom bars: the overview's has as many tabs as it shows. */
   .ps-tabbar { grid-template-columns: none; grid-auto-columns: minmax(0, 1fr); grid-auto-flow: column; }
@@ -1549,3 +1556,32 @@ body:has(.ps-install:not([style*="none"], [x-cloak])) .fi-main .fi-page .fi-call
 /* Customize Simplify: the theme first, on every page; a line under it when the page's own choices follow. */
 .ps-customize-row.is-first { padding-top: 0; border-top: 0; }
 .ps-customize-theme:has(~ .ps-customize) { padding-bottom: 10px; border-bottom: 1px solid var(--ps-line); }
+/* Customize Simplify, wide (Jeroen 3-11): the sections on the left, the chosen one's contents straight away on the right.
+   The Admin page and the account pages have the theme only and keep the narrow window. */
+.ps-overview-appearance-menu.is-wide { display: grid; grid-template-columns: 196px minmax(0, 1fr); width: min(720px, calc(100vw - 32px)); max-height: min(560px, calc(100dvh - 96px)); padding: 0; overflow: hidden; }
+.ps-overview-appearance-menu.is-wide .ps-customize-side { display: flex; flex-direction: column; gap: 2px; min-width: 0; padding: 16px 10px 16px 16px; border-inline-end: 1px solid var(--ps-line); }
+.ps-overview-appearance-menu.is-wide .ps-customize-pane { min-width: 0; min-height: 0; padding: 14px 18px 16px; overflow-y: auto; }
+.ps-overview-appearance-menu.is-wide .ps-customize-theme { padding-bottom: 0; border-bottom: 0; }
+.ps-customize-nav { display: grid; gap: 2px; margin-top: 10px; }
+.ps-customize-nav > button { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 36px; padding: 0 10px; border: 0; border-radius: 9px; background: none; color: var(--ps-ink); font: inherit; font-size: 13px; font-weight: 550; text-align: start; cursor: pointer; }
+.ps-customize-nav > button svg { flex: none; width: 17px; height: 17px; color: var(--ps-muted); }
+.ps-customize-nav > button:hover { background: var(--ps-raised); }
+.ps-customize-nav > button:focus-visible { outline: 2px solid var(--ps-accent); outline-offset: -2px; }
+.ps-customize-nav > button[aria-selected="true"] { background: color-mix(in srgb, var(--ps-accent) 14%, transparent); color: var(--ps-accent); }
+.ps-customize-nav > button[aria-selected="true"] svg { color: var(--ps-accent); }
+.ps-customize-lead { display: block; margin: 0 0 6px; color: var(--ps-muted); font-size: 12px; }
+.ps-customize-group > span { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.ps-customize-group strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ps-customize-group > small { flex: none; }
+.ps-customize-edit { justify-self: start; gap: 6px; margin-top: 10px; }
+.ps-customize-edit .ps-customize-go { width: 14px; height: 14px; color: currentColor; }
+/* A phone: the sheet holds the title, the sections as a row of chips, and below them the chosen section. */
+@media (max-width: 600px) {
+  .ps .ps-overview-appearance-menu.is-wide { display: flex; flex-direction: column; grid-template-columns: none; width: auto; max-height: 92dvh; }
+  .ps .ps-overview-appearance-menu.is-wide .ps-customize-side { padding: 18px 16px 0; border-inline-end: 0; border-bottom: 1px solid var(--ps-line); }
+  .ps .ps-customize-nav { display: flex; gap: 6px; margin: 8px -16px 0; padding: 0 16px 12px; overflow-x: auto; scrollbar-width: none; }
+  .ps .ps-customize-nav > button { flex: none; width: auto; min-height: 34px; padding: 0 12px; border: 1px solid var(--ps-line); border-radius: 99px; }
+  .ps .ps-customize-nav > button svg { display: none; }
+  .ps .ps-customize-nav > button[aria-selected="true"] { border-color: var(--ps-accent); background: var(--ps-accent); color: var(--ps-on-accent, #fff); }
+  .ps .ps-overview-appearance-menu.is-wide .ps-customize-pane { flex: 1 1 auto; padding: 12px 16px 20px; }
+}

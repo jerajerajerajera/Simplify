@@ -68,4 +68,15 @@ return [
         'removing' => 'A remover…',
         'error' => 'Não ligado',
     ],
+    'setup' => [
+        'title' => 'Como configurar',
+        'intro' => 'Os jogadores ligam-se depois com um nome como oak.:domain em vez de endereço IP e porta. Configura-se uma só vez.',
+        'step_domain' => 'Preencha o domínio (a sua zona Cloudflare) e o endereço do servidor: um registo DNS only existente que aponta para o IP público onde chegam as suas portas.',
+        'step_token' => 'No Cloudflare, abra My Profile › API Tokens › Create Token e escolha o modelo "Edit zone DNS". Em Zone Resources escolha só este domínio, crie o token e copie-o.',
+        'step_test' => 'Cole o token abaixo e carregue em :test. O Simplify verifica-o e preenche sozinho o ID da zona.',
+        'step_save' => 'Carregue em :save. Cada servidor com uma porta no intervalo encaminhado passa a ter :menu no menu, onde o dono escolhe o nome.',
+        'open_cloudflare' => 'Abrir os tokens API do Cloudflare',
+        'button' => 'Configurar subdomínios',
+        'server_help' => 'Depois, os jogadores podem entrar neste servidor com :address. Até lá, só os administradores root veem esta página.',
+    ],
 ];

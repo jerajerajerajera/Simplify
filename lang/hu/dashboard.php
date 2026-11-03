@@ -84,6 +84,7 @@ return [
         'close' => 'Bezárás',
         'close_server' => 'Szerver bezárása',
         'server_groups' => 'Szervercsoportok',
+        'edit_groups' => 'Csoportok szerkesztése',
         'saved_with_your_account_so_every' => 'A fiókodhoz mentve, így minden eszköz ugyanazokat a csoportokat és sorrendet mutatja.',
         'server_order' => 'Szerverek sorrendje',
         'for_the_overview_and_for_groups' => 'Az áttekintéshez és az azt követő csoportokhoz',

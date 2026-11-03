@@ -19,6 +19,7 @@
 ],
 "menu":[
 {"group":"panel","label":"General","url":"/admin/simplify?tab=general","key":"general"},
+{"group":"addons","label":"Add-ons","url":"/admin/simplify?tab=addons","key":"settings:addons"},
 {"group":"addons","label":"Server Maker","url":"/admin/maker-settings","key":"maker"},
 {"group":"addons","label":"Hosting","url":"/admin/hosting","key":"hosting"},
 {"group":"pelican","label":"Mail","url":"/admin/settings?tab=mail","key":"mail"}

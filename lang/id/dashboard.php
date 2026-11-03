@@ -84,6 +84,7 @@ return [
         'close' => 'Tutup',
         'close_server' => 'Tutup server',
         'server_groups' => 'Grup server',
+        'edit_groups' => 'Edit grup',
         'saved_with_your_account_so_every' => 'Disimpan bersama akun Anda, sehingga setiap perangkat menampilkan grup dan urutan yang sama.',
         'server_order' => 'Urutan server',
         'for_the_overview_and_for_groups' => 'Untuk ikhtisar dan grup yang mengikutinya',

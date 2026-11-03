@@ -33,6 +33,7 @@ use Simplify\Core\Announcements\Models\Announcement;
 use Simplify\Core\Announcements\Services\Bell as AnnouncementBell;
 use Simplify\Core\Embed\Filament\EmbedSettings;
 use Simplify\Core\Embed\Filament\Website as EmbedWebsite;
+use Simplify\Core\Embed\Services\EmbedDetails;
 use Simplify\Core\Embed\Services\EmbedServers;
 use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\Admin\Pages\Setup;
@@ -301,10 +302,15 @@ step('settings page renders with its one row of tabs, Pelican as a link without 
     if (preg_match('/<iframe(?![^>]*ps-create-frame)/', $html) || str_contains((string) ($menu['settings:pelican-mail']['url'] ?? ''), 'simplify_embed')) {
         throw new RuntimeException('Pelican\'s settings are still in a frame');
     }
-    foreach (['appearance', 'general', 'app', 'website', 'subdomains', 'announcements', 'addons', 'hub', 'pelican'] as $key) {
+    foreach (['appearance', 'general', 'app', 'website', 'subdomains', 'announcements', 'addons', ...(Settings::HUB ? ['hub'] : []), 'pelican'] as $key) {
         if (! $nav->contains($key)) {
             throw new RuntimeException("the settings' row of tabs has no $key: ".$nav->toJson());
         }
+    }
+    // No version line in the head (it is in the panel's footer) and Run setup again only on General, as a button in
+    // its list (Jeroen 3-11); what Save does stays, small, under the settings.
+    if (str_contains($html, 'fi-header-subheading') || ! str_contains($html, 's-settings-setup') || ! str_contains($html, 's-settings-note')) {
+        throw new RuntimeException('the settings head still has the version line or Run setup again');
     }
     // Appearance keeps colour, name and logo; the name's style designer is the setup's only.
     if (str_contains($html, 'class="s-presets"') || ! str_contains($html, 'brand_name')) {
@@ -374,8 +380,12 @@ step('Browse Hub: a tab of the settings that lists the Hub with its makers and o
     $response = visit($admin, $url);
     expectOk($response, $url);
     auth()->setUser($admin);
-    if (! str_contains($response->getContent(), __('simplify::settings.hub.tab')) || (collect(Settings::menu())->pluck('group', 'key')['settings:hub'] ?? null) !== 'addons') {
-        throw new RuntimeException('Browse Hub is not a tab of the settings under Add-ons');
+    // Browse Hub is hidden for now (Settings::HUB, Jeroen 3-11): no tab, no item in the row or the Admin menu. Its list
+    // itself is still tested below, so turning it back on needs no new work.
+    $hubGroup = collect(Settings::menu())->pluck('group', 'key')['settings:hub'] ?? null;
+    $hubInRow = collect(Settings::nav())->pluck('key')->contains('hub');
+    if (Settings::HUB ? (! str_contains($response->getContent(), __('simplify::settings.hub.tab')) || $hubGroup !== 'addons' || ! $hubInRow) : ($hubGroup !== null || $hubInRow)) {
+        throw new RuntimeException(Settings::HUB ? 'Browse Hub is not a tab of the settings under Add-ons' : 'Browse Hub is still in the settings row or the Admin menu');
     }
     if ($asked !== []) {
         throw new RuntimeException('the settings page read the Hub before the tab was shown: '.json_encode($asked));
@@ -1008,6 +1018,42 @@ step('embed: the public list shows only servers put on the website, without priv
         EmbedServers::replace([]);
     }
 });
+step('embed: the Website page of a server saves what the website shows, only on Save', function () use ($admin, $server) {
+    $guest = new class(app())
+    {
+        use MakesHttpRequests;
+
+        public function __construct(public $app) {}
+    };
+    auth()->setUser($admin);
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('server'));
+    Filament\Facades\Filament::setTenant($server);
+    EmbedServers::replace([]);
+    try {
+        expectOk(visit($admin, EmbedWebsite::getUrl(panel: 'server', tenant: $server)), 'Website page');
+        $page = Livewire\Livewire::actingAs($admin)->test(EmbedWebsite::class)->set('data.visible', true);
+        if (EmbedServers::visible($server)) {
+            throw new RuntimeException('the switch saved before Save');
+        }
+        noErrors($page->set('data.description', "Build together\nwith quests")->set('data.download', 'https://modrinth.com/modpack/smoke/version/abc')
+            ->set('data.address2', 'bedrock.example.com:19132')->set('data.position', 2)->set('data.banner', 'scene:bg-harbor.jpg')->call('save'));
+        $entry = $guest->get('/simplify/embed/servers.json')->json('servers.0');
+        if (! EmbedServers::visible($server) || ($entry['description'] ?? null) !== 'Build together with quests' || ($entry['download'] ?? null) !== 'https://modrinth.com/modpack/smoke/version/abc'
+            || ($entry['address2'] ?? null) !== 'bedrock.example.com:19132' || ($entry['position'] ?? null) !== 2 || EmbedDetails::for($server)['banner'] !== 'scene:bg-harbor.jpg'
+            // Only https links are published: on a test panel without https the image is left out.
+            || (str_starts_with(url('/'), 'https://') ? ! str_contains((string) ($entry['banner'] ?? ''), 'bg-harbor') : ($entry['banner'] ?? null) !== null)) {
+            throw new RuntimeException('unexpected entry: '.json_encode($entry));
+        }
+        Livewire\Livewire::actingAs($admin)->test(EmbedWebsite::class)->set('data.address2', '192.168.1.5:19132')->call('save')->assertHasErrors(['data.address2']);
+        Livewire\Livewire::actingAs($admin)->test(EmbedWebsite::class)->set('data.download', 'http://example.com/a.zip')->call('save')->assertHasErrors(['data.download']);
+        if ($guest->get('/simplify/embed/banners/'.str_repeat('a', 40).'.png')->getStatusCode() !== 404) {
+            throw new RuntimeException('an unknown banner did not answer 404');
+        }
+    } finally {
+        EmbedDetails::save($server, []);
+        EmbedServers::replace([]);
+    }
+});
 // Cloudflare in memory for the subdomain steps: every call is kept, every write succeeds.
 $records = [];
 $calls = [];
@@ -1031,6 +1077,45 @@ Subdomains::$transport = function (string $method, string $path, ?array $body) u
 
     return ['success' => true];
 };
+step('subdomains: until Cloudflare is set up, a root admin sees the steps and the way there, an owner nothing', function () use ($admin, $server) {
+    SubdomainSettings::save(['domain' => 'example.com', 'target' => 'play.example.com', 'port_min' => 1, 'port_max' => 65535, 'zone_id' => '', 'token' => ''], true);
+    SubdomainSettings::flush();
+    if (Subdomains::ready()) {
+        throw new RuntimeException('still ready without a token');
+    }
+    // The server panel first, as the other server steps do: in one process a page of another panel stays current.
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('server'));
+    $settings = AutomaticSubdomains::getUrl(panel: 'admin');
+    $url = ServerSubdomain::getUrl(panel: 'server', tenant: $server);
+    $page = visit($admin, $url);
+    expectOk($page, $url);
+    if (! str_contains($page->getContent(), 'Set up subdomains') || ! str_contains($page->getContent(), e($settings))) {
+        throw new RuntimeException('the server page has no button to the settings');
+    }
+    $customer = User::query()->where('email', 'smoke-customer@example.com')->first()
+        ?? User::withoutEvents(fn () => User::factory()->create(['username' => 'smoke-customer', 'email' => 'smoke-customer@example.com']));
+    $owner = $server->owner_id;
+    $server->forceFill(['owner_id' => $customer->id])->saveQuietly();
+    try {
+        $status = visit($customer, $url)->getStatusCode();
+        if ($status !== 403) {
+            throw new RuntimeException('the owner gets HTTP '.$status.' before Cloudflare is set up, not 403');
+        }
+    } finally {
+        $server->forceFill(['owner_id' => $owner])->saveQuietly();
+    }
+    $page = visit($admin, $settings);
+    expectOk($page, $settings);
+    foreach (['https://dash.cloudflare.com/profile/api-tokens', 'Still missing: Cloudflare token, zone ID (press Test).'] as $text) {
+        if (! str_contains($page->getContent(), $text)) {
+            throw new RuntimeException('the settings page misses '.$text);
+        }
+    }
+    // K-B36: the browser must not fill in the panel password as the Cloudflare token (that showed Changes made).
+    if (! preg_match('/<input[^>]*type="password"[^>]*>/', $page->getContent(), $field) || ! str_contains($field[0], 'autocomplete="new-password"')) {
+        throw new RuntimeException('the token field lets the browser fill in a saved password: '.($field[0] ?? 'no field'));
+    }
+});
 step('subdomains: the settings and server pages open, and the token is stored encrypted', function () use ($admin, $server) {
     SubdomainSettings::save(['domain' => 'Example.com', 'target' => 'play.example.com', 'port_min' => 1, 'port_max' => 65535, 'zone_id' => str_repeat('a', 32), 'token' => 'smoke-token']);
     SubdomainSettings::flush();
@@ -1038,6 +1123,7 @@ step('subdomains: the settings and server pages open, and the token is stored en
     if (! Subdomains::ready() || SubdomainSettings::domain() !== 'example.com' || $stored === '' || str_contains($stored, 'smoke-token')) {
         throw new RuntimeException('settings not saved right: missing '.implode(', ', SubdomainSettings::missing()));
     }
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('server'));
     foreach ([ServerSubdomain::getUrl(panel: 'server', tenant: $server), AutomaticSubdomains::getUrl(panel: 'admin')] as $url) {
         expectOk(visit($admin, $url), $url);
     }

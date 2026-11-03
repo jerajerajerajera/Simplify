@@ -9,6 +9,9 @@
   } catch {}
   if (!head) return;
   const parent = head.ownerDocument;
+  // The header's buttons: its actions and what an add-on puts in the header-actions render hook (Explain on Logs), as in
+  // server.js. A hook's own modal stays in the hidden header and still opens (simplify.css).
+  const HEADER_ACTIONS = ['.fi-ac > :is(button, a)', '> :is(button, a):is(.fi-btn, .fi-icon-btn, .fi-link)', '> :not(.fi-ac) :is(button, a):is(.fi-btn, .fi-icon-btn, .fi-link)'].map((part) => '.fi-header-actions-ctn ' + part).join(', ');
   const tooltip = (el) => el.getAttribute('x-tooltip')?.match(/content:\s*'((?:[^'\\]|\\.)*)'/)?.[1]?.replace(/\\'/g, "'") || '';
   const label = (el) => el.getAttribute('aria-label') || el.getAttribute('title') || tooltip(el) || el.textContent.trim();
   // The page's own table, not one inside a form, tab or relation manager: those keep their toolbar.
@@ -50,7 +53,7 @@
     const table = visible ? mainTable() : null;
     // Simplify's settings save with the button under the form; in the tree their header (Run setup again) stays hidden.
     const settings = document.querySelector('.s-settings > .s-bar button[type="submit"]');
-    const header = document.querySelector('.s-settings') && root.dataset.psTree ? [] : [...document.querySelectorAll('.fi-header-actions-ctn .fi-ac > :is(button, a)')];
+    const header = document.querySelector('.s-settings') && root.dataset.psTree ? [] : [...document.querySelectorAll(HEADER_ACTIONS)].filter((el) => !el.closest('.fi-modal'));
     const sources = visible ? [...header, ...(table?.querySelectorAll('.fi-ta-header-toolbar > .fi-ta-actions > :is(button, a)') || []), ...(settings ? [settings] : [])].filter((el) => !el.closest('.fi-dropdown')) : [];
     // Simplify's own pages (People & roles) have one toolbar: tabs, search and the add button.
     const own = visible ? document.querySelector('.fi-main .s-toolbar') : null;
