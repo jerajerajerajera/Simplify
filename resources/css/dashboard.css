@@ -413,10 +413,15 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 /* The fold-open tab sticks out under the card's bottom edge, in the middle, so it reads as "pull this open". */
 .ps-health-tab { position: absolute; bottom: -14px; left: 50%; z-index: 1; display: grid; place-items: center; width: 52px; height: 14px; padding: 0; border: 1px solid var(--ps-line); border-top: 0; border-radius: 0 0 10px 10px; background: var(--ps-surface); color: var(--ps-muted); cursor: pointer; transform: translateX(-50%); transition: color var(--ps-fast), background-color var(--ps-fast); }
 .ps-health-tab::before { content: ""; position: absolute; inset: -1px 0 auto; height: 2px; background: var(--ps-surface); }
-/* The card and its tab open the same thing, so they are one hover zone with one hover colour. */
-.ps-health-panel:has(> .ps-health-tab:hover, > .ps-host-health:hover) > :is(.ps-host-health, .ps-health-tab),
-.ps-health-panel:has(> .ps-health-tab:hover, > .ps-host-health:hover) > .ps-health-tab::before { background: color-mix(in srgb, var(--ps-raised) 40%, var(--ps-surface)); }
-.ps-health-panel:has(> .ps-health-tab:hover, > .ps-host-health:hover) > .ps-health-tab { color: var(--ps-ink); }
+/* The card and its tab open the same thing, so they are one hover zone with one hover colour. Opened, everything around
+   the nodes folds it shut again, so all of that lights up together; a node keeps its own hover and click (K-B30). */
+.ps-health-panel:is(:has(> .ps-health-tab:hover, > .ps-host-health:hover), .expanded:has(> .ps-health-drawer:hover)):not(:has(.ps-node-health:hover)),
+.ps-health-panel:is(:has(> .ps-health-tab:hover, > .ps-host-health:hover), .expanded:has(> .ps-health-drawer:hover)):not(:has(.ps-node-health:hover)) > :is(.ps-host-health, .ps-health-tab),
+.ps-health-panel:is(:has(> .ps-health-tab:hover, > .ps-host-health:hover), .expanded:has(> .ps-health-drawer:hover)):not(:has(.ps-node-health:hover)) > .ps-health-tab::before { background: color-mix(in srgb, var(--ps-raised) 40%, var(--ps-surface)); }
+.ps-health-panel:is(:has(> .ps-health-tab:hover, > .ps-host-health:hover), .expanded:has(> .ps-health-drawer:hover)):not(:has(.ps-node-health:hover)) > .ps-health-tab { color: var(--ps-ink); }
+.ps-health-panel:is(:has(> .ps-health-tab:hover, > .ps-host-health:hover), .expanded:has(> .ps-health-drawer:hover)):not(:has(.ps-node-health:hover)) .ps-node-health:not(.expanded) { background: var(--ps-surface); }
+.ps-health-panel.expanded .ps-health-drawer { cursor: pointer; }
+.ps-health-panel.expanded .ps-node-health { cursor: auto; }
 .ps-health-tab:focus-visible { color: var(--ps-ink); outline: 2px solid var(--ps-accent); outline-offset: 1px; }
 .ps-health-tab svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; transform: rotate(90deg); transition: transform var(--ps-slow); }
 .ps-health-tab.expanded svg { transform: rotate(-90deg); }
@@ -1017,7 +1022,8 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 @media (max-width: 600px) {
   body:has(.ps:not(.server-active, .host-mode)), body:has(.ps:not(.server-active, .host-mode)) :is(.fi-layout, .fi-main-ctn) { height: auto; overflow: visible; }
   body:has(.ps:not(.server-active, .host-mode)) :is(.fi-main, .fi-page, .fi-page-header-main-ctn, .fi-page-main, .fi-page-content), .ps:not(.server-active, .host-mode), .ps:not(.server-active, .host-mode) .ps-main { flex: 1 0 auto; min-height: auto; overflow: visible; }
-  .ps:not(.server-active, .host-mode) .ps-main { padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
+  /* The copyright line under the servers keeps the room for the bottom bar (below), so the servers need only a gap. */
+  .ps:not(.server-active, .host-mode) .ps-main { padding-bottom: 16px; }
   body:has(.ps:not(.server-active, .host-mode)) :is(.fi-footer, [data-ps-footer]) { padding-bottom: calc(76px + env(safe-area-inset-bottom)) !important; }
   .ps .ps-overview, .ps .ps-server-scroll { flex: none; min-height: auto; overflow: visible; mask-image: none; }
   .ps .ps-server-scroll { padding: 0; }
@@ -1532,8 +1538,9 @@ body:has(.ps-install:not([style*="none"], [x-cloak])) .fi-main .fi-page .fi-call
   .ps .ps-account-actions-inner .ps-btn.is-icon::after { content: attr(data-tip); }
   .ps .ps-account-actions-inner .ps-btn.is-icon[aria-pressed="true"] { color: var(--ps-accent); }
   .ps .ps-account-foot { margin: 8px 0 0; color: var(--ps-muted); font-size: 12px; text-align: center; }
-  /* The build line sits in the account sheet; the page keeps its height for the servers. */
-  body:has(.ps) :is(.fi-footer, [data-ps-footer]) { display: none !important; }
+  /* A server's page keeps its height for the console; its build line sits in the account sheet. The overview ends
+     with Pelican's copyright line under the servers, above the bottom bar (K-B29). */
+  body:has(.ps-server-top) :is(.fi-footer, [data-ps-footer]) { display: none !important; }
 
   /* Bottom bars: the overview's has as many tabs as it shows. */
   .ps-tabbar { grid-template-columns: none; grid-auto-columns: minmax(0, 1fr); grid-auto-flow: column; }
