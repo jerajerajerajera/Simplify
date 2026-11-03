@@ -942,6 +942,41 @@ async function fixesFlow() {
     say('bell-customize', bell && (!bell.shown || bell.pelican), bell);
     await escape();
   }
+  // The server's name is edited in the title card itself (Jeroen 3-11): a click on the name opens a field with all its
+  // text selected, a click beside it keeps a change (no autosave, P-38), Esc puts the name back, Enter saves.
+  if (urls.servers['Survival SMP']) {
+    // The settings check above opened a page of its own; this page gets the window's focus back, as a person's tab has.
+    await page.bringToFront().catch(() => {});
+    await goto(urls.servers['Survival SMP'], 3500);
+    const nameState = () => page.evaluate(() => {
+      const vis = (e) => !!e && e.getClientRects().length > 0;
+      const field = [...document.querySelectorAll('.ps-server-info .ps-name-input')].find(vis);
+      const title = [...document.querySelectorAll('.ps-server-info .ps-game-title h2')].find(vis);
+      return { field: !!field, value: field?.value ?? null, selected: field ? field.value.slice(field.selectionStart, field.selectionEnd) : null, focused: !!field && document.activeElement === field, active: document.activeElement ? document.activeElement.tagName + '#' + document.activeElement.id + '.' + String(document.activeElement.className).slice(0, 40) : null, title: title?.textContent ?? null, dialog: [...document.querySelectorAll('.ps-modal-layer')].some(vis) };
+    }).catch(() => null);
+    // A busy runner (the console streams) can take a moment to open the field: wait for it to have the focus, at most 4 s.
+    const fieldReady = () => page.waitForFunction(() => document.activeElement?.classList.contains('ps-name-input'), null, { timeout: 4000 }).catch(() => {});
+    const before = await nameState();
+    const original = before?.title || '';
+    await page.locator('.ps-server-info .ps-game-title h2 >> visible=true').first().click({ timeout: 4000 }).catch(() => {}); await fieldReady(); await sleep(300);
+    const opened = await nameState();
+    await record('server-name-edit', 'Server · naam bewerken in de titelkaart');
+    say('name-edit-open', !!opened && opened.field && !opened.dialog && opened.focused && !!original && opened.selected === original, opened);
+    await page.keyboard.type('Audit name'); await sleep(200);
+    await page.locator('.ps-server-info .ps-info-meta >> visible=true').first().click({ timeout: 4000, position: { x: 2, y: 2 } }).catch(() => {}); await sleep(500);
+    const beside = await nameState();
+    say('name-edit-click-beside', !!beside && beside.field && beside.value === 'Audit name', beside);
+    await page.keyboard.press('Escape'); await sleep(400);
+    const back = await nameState();
+    say('name-edit-escape', !!back && !back.field && back.title === original, back);
+    await page.locator('.ps-server-info .ps-alias-button >> visible=true').first().click({ timeout: 4000 }).catch(() => {}); await fieldReady(); await sleep(300);
+    await page.keyboard.type(original + ' 2'); await page.keyboard.press('Enter'); await sleep(2000);
+    const saved = await nameState();
+    say('name-edit-enter', !!saved && !saved.field && saved.title === original + ' 2', saved);
+    // Put the seeded name back for the rest of the round.
+    await page.locator('.ps-server-info .ps-game-title h2 >> visible=true').first().click({ timeout: 4000 }).catch(() => {}); await fieldReady(); await sleep(300);
+    await page.keyboard.type(original); await page.keyboard.press('Enter'); await sleep(2000);
+  } else say('name-edit-open', false, { note: 'server not seeded: Survival SMP' });
   if (urls.servers['New World']) {
     await goto(urls.servers['New World'], 3500); await record('server-install-buttons', 'Server · installeert, geen Start/Restart');
     const shown = await page.evaluate(() => [...document.querySelectorAll('.ps button')].filter((b) => b.getClientRects().length && getComputedStyle(b).visibility !== 'hidden' && /^(start|restart|first start)$/i.test((b.innerText.trim() || b.getAttribute('data-tip') || '').trim())).map((b) => b.className + ' ' + (b.innerText.trim() || b.getAttribute('data-tip'))));

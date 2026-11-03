@@ -66,6 +66,9 @@
         { key: 'network', label: t('dashboard.network_short'), title: t('dashboard.network_usage'), icon: 'traffic' },
       ],
       infoMenu: false,
+      // The server's name being edited in the title card, and what is typed so far.
+      naming: false,
+      nameDraft: '',
       colorMenu: false,
       bannerMenu: false,
       bannerChoices: [],
@@ -506,17 +509,40 @@
           this.toast(message, 'ok');
         } catch {}
       },
-      async saveName(title, confirmLabel) {
-        const name = await window.Simplify.prompt({ title, value: this.server.name, confirmLabel });
-        if (name === null || !name.trim() || this.busy) return;
+      /** The name in the title card becomes a field with its text selected, ready to type over. */
+      editName() {
+        if (!this.server.can_edit || this.busy) return;
+        this.nameDraft = this.server.name;
+        this.naming = true;
+        // Once more on the next frame when the pencil (now hidden) had the focus: the browser may move it to the page then.
+        const focus = () => { const field = this.$refs.nameInput; if (field && document.activeElement !== field) { field.focus(); field.select(); } };
+        this.$nextTick(() => { focus(); requestAnimationFrame(focus); });
+      },
+      /** A click beside the field closes it only when nothing changed; a change stays until Save or Cancel (P-38). */
+      nameOutside() {
+        if (this.nameDraft.trim() === this.server.name) { this.naming = false; return; }
+        const field = this.$refs.nameInput;
+        if (!field) return;
+        field.classList.remove('is-shake');
+        void field.offsetWidth;
+        field.classList.add('is-shake');
+        // After the click's own focus change, so Enter and Esc go to the field again.
+        setTimeout(() => field.focus());
+      },
+      async saveName() {
+        const name = this.nameDraft.trim();
+        if (!name || this.busy) return;
+        if (name === this.server.name) { this.naming = false; return; }
         this.busy = true;
         try {
           this.server = await wire.saveName(name);
+          this.naming = false;
           this.toast(t('dashboard.server_renamed'), 'ok');
         } catch {
           this.toast(t('dashboard.the_action_could_not_be_completed'), 'danger');
         } finally {
           this.busy = false;
+          if (this.naming) this.$nextTick(() => this.$refs.nameInput?.focus());
         }
       },
       /** Stopped, or unable to run (unknown to Wings, failed install, suspended): the same list as ServerPage::deleteServer(). */
