@@ -98,7 +98,13 @@ const adminPage = async (overview) => {
     const lg = await adminState(); await record('admin-legacy', 'Legacy-paneel (Pelicans eigen pagina)');
     say('admin-legacy', !!lg && !lg.shell && !lg.side && !lg.header && !/simplify_legacy/.test(page.url()), lg);
     // The way back is the first item of Pelican's sidebar; on a small window that sidebar opens from its button first.
-    if (!(await page.locator('a[href*="simplify_legacy=0"] >> visible=true').count())) { await page.evaluate(() => window.Alpine?.store('sidebar')?.open?.()).catch(() => {}); await sleep(1200); await record('admin-legacy-sidebar', 'Legacy-paneel, zijbalk open'); }
+    // (A closed off-canvas sidebar still counts as visible to Playwright: look whether the link is on the screen.)
+    const onScreen = () => page.evaluate(() => [...document.querySelectorAll('a[href*="simplify_legacy=0"]')].some((a) => { const b = a.getBoundingClientRect(); return b.width > 0 && b.left >= 0 && b.right <= innerWidth && b.top >= 0 && b.bottom <= innerHeight; })).catch(() => false);
+    if (!(await onScreen())) {
+      const opener = page.locator('.fi-topbar-open-sidebar-btn, .fi-layout-sidebar-toggle-btn-ctn button, button[x-on\\:click*="sidebar.open"] >> visible=true').first();
+      if (await opener.count()) await opener.click().catch(() => {}); else await page.evaluate(() => window.Alpine?.store('sidebar')?.open?.()).catch(() => {});
+      await sleep(1200); await record('admin-legacy-sidebar', 'Legacy-paneel, zijbalk open');
+    }
     const back = page.locator('a[href*="simplify_legacy=0"] >> visible=true').first();
     if (await back.count()) {
       let clickError = null;
