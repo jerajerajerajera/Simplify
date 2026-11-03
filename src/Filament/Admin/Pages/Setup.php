@@ -12,6 +12,7 @@ use Filament\Schemas\Components\View;
 use Filament\Schemas\Components\Wizard;
 use Filament\Schemas\Components\Wizard\Step;
 use Filament\Schemas\Schema;
+use Filament\Support\Facades\FilamentView;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\HtmlString;
 use Simplify\Core\Addons\Addon;
@@ -30,7 +31,7 @@ final class Setup extends Page implements HasForms
 {
     use InteractsWithForms;
 
-    protected static ?string $slug = 'simplify-setup';
+    protected static ?string $slug = 'simplify/setup';
 
     protected static bool $shouldRegisterNavigation = false;
 
@@ -109,7 +110,9 @@ final class Setup extends Page implements HasForms
 
             return [];
         });
-        $this->redirect(SetupDone::getUrl(panel: 'admin'));
+        // Only the page changes, as everywhere in the Admin page (Pelican's panels are single-page).
+        $url = SetupDone::getUrl(panel: 'admin');
+        $this->redirect($url, navigate: FilamentView::hasSpaMode($url));
     }
 
     /**

@@ -769,10 +769,20 @@ html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn {
   scrollbar-width: thin;
 }
 
+/* The page grows with what is on it (Filament gives it the card's height), so Pelican's copyright footer after it is
+   at the very end of the card, never halfway over the page where the card's first screen ended (K-B9). */
 html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn > .fi-main {
+  flex: 1 0 auto;
+  height: auto !important;
   min-height: 0 !important;
   max-width: none !important;
   padding: 18px 22px 24px !important;
+}
+
+/* The footer is a thin line at the end, on a phone too (not the overview's account sheet: there is none here). */
+html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn > :is(footer, [data-ps-footer]) {
+  display: flex !important;
+  flex: none;
 }
 
 /* Inside the card a page's own sections and tables need no second card (no box in a box). */

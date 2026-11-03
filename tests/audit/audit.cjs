@@ -48,6 +48,16 @@ async function record(id, title, extra = {}) {
   const entry = { id, title, stand, url: rel(page.url()), docTitle: await page.title().catch(() => null), ...extra };
   try {
     entry.main = await page.evaluate(measure, mopts());
+    // K-B9: on the Admin and account pages Pelican's copyright line is the last thing in the card, under the whole page,
+    // never halfway over it where the card's first screen ended (every screen, so every settings tab, phone and computer).
+    const foot = await page.evaluate(() => {
+      const card = document.querySelector('html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn'), main = card?.querySelector(':scope > .fi-main'), footer = card?.querySelector(':scope > footer, :scope > [data-ps-footer]');
+      if (!main || !footer || !footer.getClientRects().length) return null;
+      // The page itself holds everything on it (what scrolls inside its own box, a popup or Monaco's helpers aside).
+      const top = card.getBoundingClientRect().top - card.scrollTop, f = footer.getBoundingClientRect();
+      return { footerTop: Math.round(f.top - top), footerBottom: Math.round(f.bottom - top), page: Math.round(main.getBoundingClientRect().bottom - top), overflow: main.scrollHeight - main.clientHeight, scroll: card.scrollHeight };
+    }).catch(() => null);
+    if (foot && (foot.overflow > 2 || foot.footerTop < foot.page - 1 || foot.footerBottom < foot.scroll - 2)) problems.push(`${stand} ${id} footer-end: WRONG the copyright line is not at the end of the page ${JSON.stringify(foot)}`);
     entry.frames = [];
     for (const f of page.frames()) {
       if (f === page.mainFrame()) continue;
@@ -754,7 +764,7 @@ async function extrasFlow(theme) {
   const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
   const fits = (doc) => doc.evaluate(() => ({ scroll: document.documentElement.scrollHeight, window: innerHeight })).catch(() => null);
   // Setup done: the page itself never scrolls; the add-on list scrolls inside its card.
-  await goto('/admin/simplify-setup-done', 1500); await record('setup-done', 'Setup klaar (gewone beheerpagina)');
+  await goto('/admin/simplify/setup-done', 1500); await record('setup-done', 'Setup klaar (gewone beheerpagina)');
   let f = await fits(page); say('setup-done', f && f.scroll <= f.window, f);
   // In the Admin page the end of the setup fits the card beside the menu; neither the page nor the card's frame scrolls.
   const card = await page.evaluate(() => { const c = document.querySelector('.fi-layout > .fi-main-ctn'); return { shell: document.documentElement.classList.contains('ps-shell-menu'), page: document.documentElement.scrollHeight - innerHeight, card: c ? c.scrollHeight - c.clientHeight : null }; }).catch(() => null);
@@ -762,7 +772,7 @@ async function extrasFlow(theme) {
 
   // The setup's Look step (#86): logo, text or both; effect; colour = accent. The preview follows every choice.
   if (stand.split('-')[0] !== 'laag1100') {
-    await goto('/admin/simplify-setup', 1500);
+    await goto('/admin/simplify/setup', 1500);
     const step = page.locator('.fi-sc-wizard-header :is(button, a):has-text("Look") >> visible=true').first();
     if (await step.count()) { await step.click().catch(() => {}); await sleep(1200); }
     else { for (let i = 0; i < 2; i++) { await page.locator('.s-setup button:has-text("Next") >> visible=true').first().click().catch(() => {}); await sleep(1200); } }
@@ -867,7 +877,7 @@ async function fixesFlow() {
     await record('settings-phone', 'Instellingen · telefoon');
     const st = await page.evaluate(() => ({ nav: !!document.querySelector('.s-settings-nav'), page: document.documentElement.scrollHeight, window: innerHeight })).catch(() => null);
     say('settings-phone', !!st && st.nav && st.page <= st.window + 2, st);
-    await goto('/admin/simplify-setup', 2000); await record('setup-phone', 'Setup · telefoon');
+    await goto('/admin/simplify/setup', 2000); await record('setup-phone', 'Setup · telefoon');
     const su = await page.evaluate(() => { const w = document.querySelector('.s-setup'), s = w && w.querySelector('.fi-sc-wizard-step.fi-active'); if (!s) return null; const r = s.getBoundingClientRect(); return { step: Math.round(r.height), inner: s.scrollHeight <= s.clientHeight + 4, width: Math.round(r.width) }; }).catch(() => null);
     say('setup-phone', su && su.step > 120 && su.inner && su.width > 250, su);
   }
