@@ -704,7 +704,10 @@ html.ps-shell:not(.ps-frame) body {
   background: var(--s-bg);
 }
 
+/* Positioned, so what a page places with position: absolute (Monaco's helpers, Pelican's own widgets) stays inside
+   the layout and the card instead of making the page taller. */
 html.ps-shell:not(.ps-frame) body .fi-layout {
+  position: relative;
   display: grid !important;
   grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto minmax(0, 1fr);
@@ -723,13 +726,19 @@ html.ps-shell-menu:not(.ps-frame) body .fi-layout {
   grid-template-columns: 252px minmax(0, 1fr);
 }
 
+/* The header (its dropdowns and popups) and the Admin menu (its sheet on a phone) lie above the card, which is
+   positioned itself. */
 html.ps-shell:not(.ps-frame) .fi-layout > [x-persist="simplify-admin-top"] {
+  position: relative;
+  z-index: 3;
   grid-column: 1 / -1;
   grid-row: 1;
   min-width: 0;
 }
 
 html.ps-shell:not(.ps-frame) .fi-layout > [x-persist="simplify-admin-side"] {
+  position: relative;
+  z-index: 2;
   grid-column: 1;
   grid-row: 2;
   display: flex;
@@ -743,8 +752,11 @@ html.ps-shell:not(.ps-frame) .fi-layout > :not([x-persist]) {
 }
 
 html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn {
+  position: relative;
+  align-self: stretch;
   box-sizing: border-box;
   height: auto !important;
+  max-height: 100%;
   min-width: 0;
   min-height: 0 !important;
   padding: 0 !important;
@@ -763,7 +775,7 @@ html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn > .fi-main {
 }
 
 /* Inside the card a page's own sections and tables need no second card (no box in a box). */
-html.ps-shell:not(.ps-frame) .fi-main-ctn :is(.fi-section:not(.fi-section .fi-section), .fi-ta-ctn:not(.fi-section .fi-ta-ctn), :is(.fi-sc-wizard, .fi-fo-wizard):not(.fi-section *)) {
+html.ps-shell:not(.ps-frame) .fi-main-ctn :is(.fi-section:not(.fi-section .fi-section), .fi-ta-ctn:not(.fi-section .fi-ta-ctn), :is(.fi-sc-wizard, .fi-fo-wizard):not(.fi-section *), .fi-sc-tabs.fi-contained:not(.fi-section *)) {
   border: 0 !important;
   border-radius: 0 !important;
   background: transparent !important;
@@ -799,6 +811,11 @@ html.ps-shell:not(.ps-frame) .fi-main-ctn .fi-ta-ctn:not(.fi-section .fi-ta-ctn)
     position: fixed;
   }
 
+  /* The open menu sheet and its backdrop cover the header too. */
+  html.ps-shell:not(.ps-frame) .fi-layout > [x-persist="simplify-admin-side"]:has(.menu-open) {
+    z-index: 4;
+  }
+
   html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn > .fi-main {
     padding: 12px 12px 18px !important;
   }
@@ -811,7 +828,7 @@ html.ps-frame[data-ps-frame="native"] .fi-header-heading {
 /* A Pelican page in host mode sits straight on host mode's page, as in 0.7.0: no card around its table or form
    and no band above it. Its search and buttons are in host mode's title bar (frame.js, data-ps-head-tools), so its
    own header and table toolbar hide; the toolbar comes back for bulk actions once rows are selected. */
-html.ps-frame[data-ps-frame="native"] :is(.fi-section:not(.fi-section .fi-section), .fi-ta-ctn:not(.fi-section .fi-ta-ctn), :is(.fi-sc-wizard, .fi-fo-wizard):not(.fi-section *)) {
+html.ps-frame[data-ps-frame="native"] :is(.fi-section:not(.fi-section .fi-section), .fi-ta-ctn:not(.fi-section .fi-ta-ctn), :is(.fi-sc-wizard, .fi-fo-wizard):not(.fi-section *), .fi-sc-tabs.fi-contained:not(.fi-section *)) {
   border: 0 !important;
   border-radius: 0 !important;
   background: transparent !important;

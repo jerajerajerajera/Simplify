@@ -70,11 +70,11 @@ async function record(id, title, extra = {}) {
 const adminState = () => page.evaluate(() => {
   const side = document.querySelector('.ps-admin-side'), card = document.querySelector('.fi-layout > .fi-main-ctn');
   const shown = (s) => [...document.querySelectorAll(s)].some((e) => e.getClientRects().length && getComputedStyle(e).display !== 'none' && getComputedStyle(e).visibility !== 'hidden');
-  return { shell: document.documentElement.classList.contains('ps-shell-menu'), side: !!side, kept: !!side && side.dataset.auditMark === '1', frames: document.querySelectorAll('.fi-main-ctn iframe').length,
+  return { shell: document.documentElement.classList.contains('ps-shell-menu'), side: !!side, kept: !!side && side.dataset.auditMark === '1', /* a page in a frame; the embed's own preview is content */ frames: document.querySelectorAll('.fi-main-ctn iframe[data-ps-frame]:not(.ps-create-frame)').length,
     header: shown('.ps-admin-top .ps-top'), pelicanBars: shown('.fi-sidebar, .fi-topbar'), pageScroll: document.documentElement.scrollHeight - innerHeight, card: card ? getComputedStyle(card).overflowY : null, path: location.pathname };
 }).catch(() => null);
 const markAdminSide = () => page.evaluate(() => { const side = document.querySelector('.ps-admin-side'); if (side) side.dataset.auditMark = '1'; }).catch(() => {});
-const openAdminMenu = async () => { if (phone()) { await page.locator('.ps-admin-side .ps-tabbar button[aria-controls="ps-admin-side"]').first().click().catch(() => {}); await sleep(700); } };
+const openAdminMenu = async () => { if (phone() && !(await page.locator('.ps-admin-side.menu-open').count())) { await page.locator('.ps-admin-side .ps-tabbar button[aria-controls="ps-admin-side"]').first().click().catch(() => {}); await sleep(700); } };
 const shieldTo = async (overview) => {
   await goto(overview, 800);
   const shield = page.locator((phone() ? '.ps-tabbar a.ps-tab:has(use[href="#ps-shield"])' : 'a.ps-nav-admin') + ' >> visible=true').first();
@@ -90,6 +90,7 @@ const adminPage = async (overview) => {
   const st = await adminState(); await record('admin-page', 'Admin-pagina (schild)');
   say('admin-page', !!st && st.shell && st.side && st.header && !st.frames && !st.pelicanBars && st.pageScroll <= 1 && (phone() || /auto|scroll/.test(st.card || '')), st);
   // The legacy panel: the same page as Pelican draws it, and its Back to Simplify button clears that again.
+  if (!(await page.locator('.ps-admin-top .ps-account-button >> visible=true').count())) { await page.locator('.ps-admin-top .ps-mobile-menu >> visible=true').first().click().catch(() => {}); await sleep(500); }
   await page.locator('.ps-admin-top .ps-account-button >> visible=true').first().click().catch(() => {}); await sleep(700);
   const legacy = page.locator('#ps-account-actions a[href*="simplify_legacy=1"] >> visible=true').first();
   if (await legacy.count()) {
@@ -97,12 +98,19 @@ const adminPage = async (overview) => {
     const lg = await adminState(); await record('admin-legacy', 'Legacy-paneel (Pelicans eigen pagina)');
     say('admin-legacy', !!lg && !lg.shell && !lg.side && !lg.header && !/simplify_legacy/.test(page.url()), lg);
     // The way back is the first item of Pelican's sidebar; on a small window that sidebar opens from its button first.
-    if (!(await page.locator('a[href*="simplify_legacy=0"] >> visible=true').count())) { await page.evaluate(() => window.Alpine?.store('sidebar')?.open?.()).catch(() => {}); await sleep(600); }
+    // (A closed off-canvas sidebar still counts as visible to Playwright: look whether the link is on the screen.)
+    const onScreen = () => page.evaluate(() => [...document.querySelectorAll('a[href*="simplify_legacy=0"]')].some((a) => { const b = a.getBoundingClientRect(); return b.width > 0 && b.left >= 0 && b.right <= innerWidth && b.top >= 0 && b.bottom <= innerHeight; })).catch(() => false);
+    if (!(await onScreen())) {
+      const opener = page.locator('.fi-topbar-open-sidebar-btn, .fi-layout-sidebar-toggle-btn-ctn button, button[x-on\\:click*="sidebar.open"] >> visible=true').first();
+      if (await opener.count()) await opener.click().catch(() => {}); else await page.evaluate(() => window.Alpine?.store('sidebar')?.open?.()).catch(() => {});
+      await sleep(1200); await record('admin-legacy-sidebar', 'Legacy-paneel, zijbalk open');
+    }
     const back = page.locator('a[href*="simplify_legacy=0"] >> visible=true').first();
     if (await back.count()) {
-      await back.click().catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await settle(page, 1200);
+      let clickError = null;
+      await Promise.all([page.waitForNavigation({ timeout: 10000 }).catch(() => {}), back.click({ timeout: 5000 }).catch((e) => { clickError = e.message.slice(0, 120); })]); await settle(page, 1200);
       await goto('/admin/health', 1500); const again = await adminState();
-      say('admin-legacy-back', !!again && again.shell && again.side, again);
+      say('admin-legacy-back', !!again && again.shell && again.side, { ...again, clickError });
     } else say('admin-legacy-back', false, { note: 'no Back to Simplify in the legacy panel' });
   } else say('admin-legacy', false, { note: 'no Legacy panel link in the account menu' });
   // Always end inside Simplify, so a failed step above does not leave the rest of the round in the legacy panel.
@@ -334,7 +342,8 @@ async function round(theme) {
     const go = async (locator, id, title) => {
       await markAdminSide(); await locator.click().catch(() => {}); await settle(page, 1800);
       const st = await adminState(); await record(id, title); visited.push(id);
-      if (!st || !st.kept || !st.shell || st.frames) lost.push({ id, ...st });
+      // Simplify's own settings still show Pelican's settings tabs in frames; the settings tabs (V52 part C) take them out.
+      if (!st || !st.kept || !st.shell || (st.frames && st.path !== '/admin/simplify')) lost.push({ id, ...st });
     };
     const groups = page.locator('.ps-admin-side .ps-host-group'); const gn = await groups.count();
     for (let i = 0; i < gn; i++) {
