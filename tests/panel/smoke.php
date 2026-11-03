@@ -410,7 +410,9 @@ step('the Admin page: an admin page has Simplify\'s header and the Admin menu, t
     $url = Health::getUrl(panel: 'admin');
     $page = $client->get($url);
     expectOk($page, $url);
-    foreach (['simplify-admin-top', 'simplify-admin-side', 'ps-shell'] as $part) {
+    // The header and the menu as @persist draws them, and the class head.blade.php sets (the head's own script names
+    // them too, so the markup itself is what counts).
+    foreach (['<div x-persist="simplify-admin-top"', '<div x-persist="simplify-admin-side"', "classList.add('ps-shell'"] as $part) {
         if (! str_contains($page->getContent(), $part)) {
             throw new RuntimeException('the Admin page has no '.$part);
         }
@@ -425,11 +427,11 @@ step('the Admin page: an admin page has Simplify\'s header and the Admin menu, t
     }
     $plain = $client->get($url);
     expectOk($plain, $url);
-    if (str_contains($plain->getContent(), 'simplify-admin-side') || str_contains($plain->getContent(), 'simplify-admin-top')) {
+    if (str_contains($plain->getContent(), '<div x-persist="simplify-admin-side"') || str_contains($plain->getContent(), '<div x-persist="simplify-admin-top"')) {
         throw new RuntimeException('the legacy panel still has Simplify\'s header or menu');
     }
     $client->get($url.'?simplify_legacy=0');
-    if (! str_contains($client->get($url)->getContent(), 'simplify-admin-side')) {
+    if (! str_contains($client->get($url)->getContent(), '<div x-persist="simplify-admin-side"')) {
         throw new RuntimeException('Back to Simplify does not bring the Admin page back');
     }
 });
