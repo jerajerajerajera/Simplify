@@ -84,6 +84,7 @@ return [
         'close' => 'Close',
         'close_server' => 'Close server',
         'server_groups' => 'Server groups',
+        'edit_groups' => 'Edit groups',
         'saved_with_your_account_so_every' => 'Saved with your account, so every device shows the same groups and order.',
         'server_order' => 'Server order',
         'for_the_overview_and_for_groups' => 'For the overview and for groups that follow it',

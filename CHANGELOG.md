@@ -3,9 +3,11 @@
 ## Unreleased
 
 - Subdomains keep working after the update from PelicanSimplify 0.7.0: the Cloudflare token and zone ID that 0.7.0 read from `.env` (`CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ZONE_ID`) are taken over once, encrypted, unless Simplify already has its own. `.env` is only read.
+- Customize Simplify is wider and shows what is in a section straight away: the sections (Theme, Server groups, Layout, Cards, Grouping, More) sit on the left and the chosen one's settings on the right, with no folding open. Server groups lists your groups with their colour and number of servers, and Edit groups opens their window. On a phone the sections are a row of chips at the top of the sheet. On a server's page the sections are Theme and Server pages; the Admin page and the account pages keep the narrow window with the theme only. It opens on the section you had last.
 - Computers: on an Admin page the page's own buttons, such as Run setup again and Save on Settings › General, sit in the middle of the breadcrumb's row again, with room under the header, instead of at the top of that row.
 - The console page loads without a jump: the empty card that stood above the console for a moment while Pelican's numbers loaded no longer shows, so the console stays where it is.
 - Phones: the window with all notifications closes with a pull down, like the menus: from its top bar, or from the list when it is scrolled to the top. Popups and menus follow your thumb while you drag them, spring back after a short pull, slide away after a longer one, and stay put on a sideways swipe. Closing them never reloads the page.
+- Website embed: the preview of the saved list follows the theme instead of showing a white block in dark mode, and is only as big as the cards it shows. The iframe code for other websites no longer shows a white block on a dark website either.
 
 ## 2.0.0-beta.3
 

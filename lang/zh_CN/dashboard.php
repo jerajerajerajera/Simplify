@@ -84,6 +84,7 @@ return [
         'close' => '关闭',
         'close_server' => '关闭服务器页面',
         'server_groups' => '服务器分组',
+        'edit_groups' => '编辑分组',
         'saved_with_your_account_so_every' => '保存在你的账户中，因此每台设备显示相同的分组和顺序。',
         'server_order' => '服务器顺序',
         'for_the_overview_and_for_groups' => '用于概览以及跟随它的分组',

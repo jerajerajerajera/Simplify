@@ -84,6 +84,7 @@ return [
         'close' => 'إغلاق',
         'close_server' => 'إغلاق الخادم',
         'server_groups' => 'مجموعات الخوادم',
+        'edit_groups' => 'تعديل المجموعات',
         'saved_with_your_account_so_every' => 'تُحفظ مع حسابك، لذا يعرض كل جهاز المجموعات والترتيب نفسه.',
         'server_order' => 'ترتيب الخوادم',
         'for_the_overview_and_for_groups' => 'للنظرة العامة وللمجموعات التي تتبعها',
