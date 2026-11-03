@@ -61,6 +61,7 @@ Only `id()` and `name()` are required. Everything else has a default.
 | `setupState(): array` | `[]` | the current values for those fields, by field name (since 1.3, API 3) |
 | `saveSetup(array $state): void` | nothing | saves what the setup asked, by field name (since 1.3, API 3) |
 | `accountPages(User $user): list<Button>` | `[]` | your own pages for every user, as icon buttons in Simplify's account menu (for example a Steam account). They open inside Simplify, in the content area, as Admin tools do; a URL that is not on this panel is left out. Without an `icon` the button shows `tabler-puzzle` (since 1.5.5, API 4) |
+| `connections(User $user): list<class-string<Livewire\Component>>` | `[]` | your rows on Simplify's Connections page (account menu, right after Profile), one Livewire component per outside account, for example a Steam account or a CurseForge key. Each row is yours: it checks its user, saves on its own (the page has no Save and nothing saves by itself) and keeps its secrets. The page and its menu item show only while an add-on gives at least one row; without one the page answers 404. A class that is not a Livewire component is left out (since 2.0, API 6) |
 | `startUrl(User $user): ?string` | `null` | a URL on this panel where this user starts: the server list and Simplify's overview redirect there, before the panel's own start page. Return `null` when the user should start in Simplify; while it returns a URL, Simplify puts its own header (panel name, bell, account menu) over Pelican's admin pages for admins, as the first child of `.fi-layout` (since 1.5.6, API 5) |
 
 `Button` is `new Button(string $label, string $url, ?string $icon = null, bool $primary = false)`.
@@ -89,7 +90,7 @@ public function saveSetup(array $state): void
 ## Rules
 
 - New methods are only ever added with a default, so an add-on keeps working when Simplify updates. A test in Simplify's CI fails when a method without a default is added.
-- `Addon::API` is the contract version: 1 in Simplify 1.0, 2 since 1.1 (`serverInfo()`, `serverLinks()`, `customerLinks()`, `hostModeDefault()`), 3 since 1.3 (`setupFields()`, `setupState()`, `saveSetup()`), 4 since 1.5.5 (`accountPages()`), 5 since 1.5.6 (`startUrl()`). It goes up by one whenever a method is added.
+- `Addon::API` is the contract version: 1 in Simplify 1.0, 2 since 1.1 (`serverInfo()`, `serverLinks()`, `customerLinks()`, `hostModeDefault()`), 3 since 1.3 (`setupFields()`, `setupState()`, `saveSetup()`), 4 since 1.5.5 (`accountPages()`), 5 since 1.5.6 (`startUrl()`), 6 since 2.0 (`connections()`). It goes up by one whenever a method is added.
 - A newer add-on on an older Simplify just works: Simplify never calls the methods it does not know yet. Check `defined(Addon::class.'::API') ? Addon::API : 1` only when your add-on wants to show something different on an older core.
 - `\Simplify\Core\Health\HostHealth::cached()` is stable for add-ons: it returns the last shared host-health snapshot, or `[]` when none is kept, without running the checks (since 1.5.6).
 - If your add-on throws, Simplify reports the error and leaves your add-on out. It never breaks a Simplify page.

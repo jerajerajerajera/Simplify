@@ -2325,3 +2325,7 @@ html.ps-frame .s-done {
 @keyframes s-unsaved-in { from { opacity: 0; transform: translate(-50%, 8px); } to { opacity: 1; transform: translate(-50%, 0); } }
 @media (max-width: 600px) { .s-unsaved { left: 12px; right: 12px; bottom: calc(76px + env(safe-area-inset-bottom, 0px)); transform: none; animation: none; } .s-unsaved-text { flex: 1; } }
 @media (prefers-reduced-motion: reduce) { .s-unsaved { animation: none; } }
+
+/* Connections (account menu): the add-ons' rows under each other, in the page's one card (no box in a box). */
+.s-connections { display: grid; gap: 0; }
+.s-connections > * + * { border-top: 1px solid var(--s-line); }

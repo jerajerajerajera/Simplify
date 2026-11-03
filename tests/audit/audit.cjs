@@ -105,7 +105,8 @@ const adminPage = async (overview) => {
   say('admin-page', !!st && st.shell && st.side && st.header && !st.frames && !st.pelicanBars && st.pageScroll <= 1 && (phone() || /auto|scroll/.test(st.card || '')), st);
   // The legacy panel: the same page as Pelican draws it, and its Back to Simplify button clears that again.
   if (!(await page.locator('.ps-admin-top .ps-account-button >> visible=true').count())) { await page.locator('.ps-admin-top .ps-mobile-menu >> visible=true').first().click().catch(() => {}); await sleep(500); }
-  await page.locator('.ps-admin-top .ps-account-button >> visible=true').first().click().catch(() => {}); await sleep(700);
+  let accountError = null;
+  await page.locator('.ps-admin-top .ps-account-button >> visible=true').first().click({ timeout: 5000 }).catch((e) => { accountError = e.message.split('\n').slice(0, 3).join(' ').slice(0, 300); }); await sleep(700);
   const legacy = page.locator('#ps-account-actions a[href*="simplify_legacy=1"] >> visible=true').first();
   if (await legacy.count()) {
     await legacy.click().catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await settle(page, 1500);
@@ -126,7 +127,17 @@ const adminPage = async (overview) => {
       await goto('/admin/health', 1500); const again = await adminState();
       say('admin-legacy-back', !!again && again.shell && again.side, { ...again, clickError });
     } else say('admin-legacy-back', false, { note: 'no Back to Simplify in the legacy panel' });
-  } else say('admin-legacy', false, { note: 'no Legacy panel link in the account menu' });
+  } else {
+    // What the account button and its menu were doing, and a picture of it, so the cause is in the result.
+    const why = await page.evaluate(() => {
+      const button = [...document.querySelectorAll('.ps-admin-top .ps-account-button')].find((b) => b.getClientRects().length), account = button?.closest('.ps-account'), menu = account?.querySelector('#ps-account-actions'), link = menu?.querySelector('a[href*="simplify_legacy=1"]');
+      const r = button?.getBoundingClientRect(), hit = r ? document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2) : null;
+      const cs = menu ? getComputedStyle(menu) : null, ls = link ? getComputedStyle(link) : null;
+      return { buttons: document.querySelectorAll('.ps-admin-top .ps-account-button').length, open: account?.classList.contains('account-open') ?? null, hit: hit ? `${hit.tagName.toLowerCase()}.${[...hit.classList].join('.')}` : null, hitInside: !!(hit && button?.contains(hit)), menu: cs && { display: cs.display, visibility: cs.visibility, position: cs.position }, link: link ? { href: link.getAttribute('href'), display: ls.display, rect: link.getClientRects().length } : null, url: location.pathname + location.hash };
+    }).catch((e) => ({ error: e.message.slice(0, 120) }));
+    await record('admin-legacy-missing', 'Accountmenu op de Admin-pagina: geen Legacy-link');
+    say('admin-legacy', false, { note: 'no Legacy panel link in the account menu', accountError, ...why });
+  }
   // Always end inside Simplify, so a failed step above does not leave the rest of the round in the legacy panel.
   await goto(overview + (overview.includes('?') ? '&' : '?') + 'simplify_legacy=0', 600);
 };
@@ -215,7 +226,7 @@ async function round(theme) {
   // Phones have no panel menu any more (1.5.4): the bell and the account sit in the top bar, the rest in the bottom bar.
   const openNav = async () => {};
   await click('.ps-account-button'); await record('overview-account', 'Accountmenu open');
-  await click('#ps-account-actions button[aria-label]:nth-child(2)'); await record('overview-account-theme', 'Accountmenu, themakeuze open'); await escape();
+  await escape(); await alpine('d.accountMenu=false; d.appearanceMenu=true'); await sleep(600); await record('overview-customize-theme', 'Customize Simplify, thema bovenaan'); await alpine('d.appearanceMenu=false'); await sleep(300);
   await openNav();
   await click('[x-ref="notifyButton"]'); await record('overview-bell', 'Bel (aankondigingen) open'); await escape();
   await openNav();
@@ -937,6 +948,36 @@ async function fixesFlow() {
       const fromServer = await accountPage('server');
       say('account-page-server', fromServer.onTop === true && inside(fromServer), fromServer);
       await goto(overview, 2500);
+    }
+    // Connections (API 6): from the account menu without a page load, measured as a page in the content box; an add-on's
+    // row (Server Maker's Steam key) opens its own popup. Without an add-on row there is no menu item and no page.
+    {
+      let loads = 0; const onLoad = () => loads++; page.on('load', onLoad);
+      await page.locator('.ps-top .ps-account-button >> visible=true').first().click().catch(() => {}); await sleep(700);
+      const link = page.locator('#ps-account-actions a[href$="/connections"] >> visible=true').first();
+      if (await link.count()) {
+        await link.click({ timeout: 4000 }).catch(() => {});
+        await page.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {}); await sleep(1500);
+        page.off('load', onLoad);
+        const at = await page.evaluate(() => ({ path: location.pathname, rows: document.querySelectorAll('.s-connections > *').length, shell: document.documentElement.classList.contains('ps-shell'), header: !!document.querySelector('.ps-admin-top .ps-top') })).catch(() => null);
+        await record('connections', 'Accountmenu · Connections');
+        say('connections', loads === 0 && at?.path === '/connections' && at.rows > 0 && at.shell && at.header, { loads, ...at });
+        const connect = page.locator('.s-connections button:has-text("Connect") >> visible=true').first();
+        if (await connect.count()) {
+          await connect.click().catch(() => {}); await sleep(1200);
+          const modal = await page.evaluate(() => [...document.querySelectorAll('.fi-modal-window, [role="dialog"]')].some((e) => e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden')).catch(() => false);
+          await record('connections-connect', 'Connections · pop-up van een koppeling');
+          say('connections-connect', modal, { modal });
+          await escape();
+        }
+      } else {
+        page.off('load', onLoad);
+        // Only the core: no add-on gives a row, so the menu has no Connections.
+        const item = await page.evaluate(() => [...document.querySelectorAll('#ps-account-actions a[href$="/connections"]')].some((a) => a.getClientRects().length)).catch(() => null);
+        say('connections-none', item === false, { item });
+        await escape();
+      }
+      await goto(overview, 1500);
     }
     // Every notification option sits in the bell sheet: this device, messages, Pelican's, and the devices.
     await alpine('d.openAllNotifications()'); await sleep(1500);
