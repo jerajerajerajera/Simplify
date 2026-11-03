@@ -19,6 +19,7 @@
 | K-B4 | 1.5.5 | Op de kaart van een geschorste server schemeren boven de melding twee half bedekte vakjes (CPU en RAM) door | De melding ligt onderaan over de kaart, de gebruiksvakjes eronder bleven zichtbaar | Unreleased | audit `suspended-card` (`peek`; rood op 71dbaf4) | 0× | P-8 |
 | K-B5 | 1.5.4–1.5.5 | Op de telefoon (portrait) zag het node-overzicht en elke andere Pelican-lijst in het legacy panel er kapot uit: geen kolomtitels, alles op één regel geperst (melding Khion) | De korte rijen voor Pelicans tabellen op de telefoon golden voor elk admin- en serverpaneel, ook buiten Simplify | Unreleased | `tests/legacy-css.php` (rood op main 63e5210) | 0× | P-1 |
 | K-B6 | 1.5.0–1.5.5 | In het legacy panel (Pelicans eigen admin- en accountpagina's) staat geen knop Back to Simplify | De knop hing aan de zoekbalk bovenin (`GLOBAL_SEARCH_AFTER`), maar Pelican heeft geen bovenbalk: zoeken staat in de zijbalk | Unreleased | smoke `the Admin page…` (Back to Simplify-knop), audit `admin-legacy-back` (rood op f7f3a52) | 0× | P-1 |
+| K-B7 | 1.0–2.0.0-beta.1 | Elke pagina opende eerst wit; pas daarna kwamen de inhoud en de kleuren (melding Jeroen 3-11, Beelink; server 0,44 s, bestanden uit de cache) | Simplifys root staat op `x-cloak` tot Alpine start, en er was niets anders te zien | Unreleased | `tests/boot.cjs` (rood op 20f9b24: geen placeholders), smoke `the overview renders…`, `the Admin page…`, `announcements: a server page…` (`ps-boot`) | 0× | P-10 |
 
 ## Patronen
 

@@ -392,6 +392,10 @@ step('the overview renders with the server card', function () use ($admin, $serv
     if (! str_contains($response->getContent(), 'pelicanSimplify(') || ! str_contains($response->getContent(), '/simplify/assets/dashboard.js?v=')) {
         throw new RuntimeException('the overview script is missing');
     }
+    // P-10: placeholders while Simplify starts, never a white page (dashboard/boot.blade.php, tests/boot.cjs).
+    if (! str_contains($response->getContent(), 'class="ps-boot is-overview"')) {
+        throw new RuntimeException('the overview has no placeholders while it starts');
+    }
     $card = collect(Listing::for($admin))->firstWhere('uuid', $server->uuid);
     if ($card === null || $card['name'] !== $server->name || ! isset($card['status'], $card['usage'])) {
         throw new RuntimeException('the server has no card: '.json_encode($card));
@@ -442,7 +446,7 @@ step('the Admin page: an admin page has Simplify\'s header and the Admin menu, t
     expectOk($page, $url);
     // The header and the menu as @persist draws them, and the class head.blade.php sets (the head's own script names
     // them too, so the markup itself is what counts).
-    foreach (['<div x-persist="simplify-admin-top"', '<div x-persist="simplify-admin-side"', "classList.add('ps-shell'"] as $part) {
+    foreach (['<div x-persist="simplify-admin-top"', '<div x-persist="simplify-admin-side"', "classList.add('ps-shell'", 'class="ps-boot is-admin"'] as $part) {
         if (! str_contains($page->getContent(), $part)) {
             throw new RuntimeException('the Admin page has no '.$part);
         }
@@ -811,6 +815,9 @@ step('announcements: a server page shows them as short rows in the top bar, not 
         }
         expectOk($response, $url);
         $page = $response->getContent();
+        if (! str_contains($page, 'class="ps-boot is-server"')) {
+            throw new RuntimeException('the server page has no placeholders while it starts');
+        }
         $card = strpos($page, 'ps-info-notes');
         if ($card === false || strpos($page, 'Smoke card note', $card) === false || str_contains($page, 'simplify-announcement-')) {
             throw new RuntimeException('the announcement is not a row in the top bar');
