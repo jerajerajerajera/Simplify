@@ -869,6 +869,11 @@ html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header-heading {
     pointer-events: none;
   }
 
+  /* The menu beside the page has the settings' pages, so their row of tabs (phone) is not shown twice. */
+  html.ps-shell-menu:not(.ps-frame) .s-settings-nav {
+    display: none;
+  }
+
   /* A long subheading goes under the row, so the buttons stay next to the breadcrumb. */
   html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header > div:first-child {
     order: 2;

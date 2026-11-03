@@ -87,7 +87,9 @@ const adminState = () => page.evaluate(() => {
   return { shell: document.documentElement.classList.contains('ps-shell-menu'), side: !!side, kept: !!side && side.dataset.auditMark === '1', /* a page in a frame; the embed's own preview is content */ frames: document.querySelectorAll('.fi-main-ctn iframe[data-ps-frame]:not(.ps-create-frame)').length,
     header: shown('.ps-admin-top .ps-top'), pelicanBars: shown('.fi-sidebar, .fi-topbar'), pageScroll: document.documentElement.scrollHeight - innerHeight, card: card ? getComputedStyle(card).overflowY : null, path: location.pathname,
     // Computers: the page's own buttons sit on the breadcrumb's row (its title bar), not on a row of their own below it.
-    offRow: (() => { const crumb = document.querySelector('.ps-admin-crumb'); if (!crumb || innerWidth <= 600 || !crumb.getClientRects().length) return 0; const r = crumb.getBoundingClientRect(); return [...document.querySelectorAll('.fi-main .fi-header .fi-header-actions-ctn :is(button, a)')].filter((e) => e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden').filter((e) => { const b = e.getBoundingClientRect(), y = b.top + b.height / 2; return y < r.top || y > r.bottom; }).length; })() };
+    offRow: (() => { const crumb = document.querySelector('.ps-admin-crumb'); if (!crumb || innerWidth <= 600 || !crumb.getClientRects().length) return 0; const r = crumb.getBoundingClientRect(); return [...document.querySelectorAll('.fi-main .fi-header .fi-header-actions-ctn :is(button, a)')].filter((e) => e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden').filter((e) => { const b = e.getBoundingClientRect(), y = b.top + b.height / 2; return y < r.top || y > r.bottom; }).length; })(),
+    // The page holds what is on it, so nothing runs on under Pelican's footer.
+    overFoot: (() => { const main = document.querySelector('.fi-main-ctn > .fi-main'); return !!main && innerWidth > 600 && main.scrollHeight > main.clientHeight + 2; })() };
 }).catch(() => null);
 const markAdminSide = () => page.evaluate(() => { const side = document.querySelector('.ps-admin-side'); if (side) side.dataset.auditMark = '1'; }).catch(() => {});
 const openAdminMenu = async () => { if (phone() && !(await page.locator('.ps-admin-side.menu-open').count())) { await page.locator('.ps-admin-side .ps-tabbar button[aria-controls="ps-admin-side"]').first().click().catch(() => {}); await sleep(700); } };
@@ -426,7 +428,7 @@ async function round(theme) {
   if (await shieldTo(overview)) {
     await record('host', 'Admin-pagina');
     if (onPhone) { await openAdminMenu(); await record('host-phone-menu', 'Admin-pagina · telefoon, menu als pagina'); await escape(); }
-    const lost = [], visited = [], offRow = [];
+    const lost = [], visited = [], offRow = [], overFoot = [];
     const go = async (locator, id, title) => {
       await markAdminSide(); await locator.click().catch(() => {}); await settle(page, 1800);
       // A page that still loads its table (Plugins) can be taller for a moment: measure once the card has its place.
@@ -434,6 +436,7 @@ async function round(theme) {
       const st = await adminState(); await record(id, title); visited.push(id);
       if (!st || !st.kept || !st.shell || st.frames) lost.push({ id, ...st });
       if (st?.offRow) offRow.push(id);
+      if (st?.overFoot) overFoot.push(id);
     };
     const groups = page.locator('.ps-admin-side .ps-host-group'); const gn = await groups.count();
     for (let i = 0; i < gn; i++) {
@@ -458,6 +461,7 @@ async function round(theme) {
     if (await page.locator('.ps-admin-side .ps-host-health-open >> visible=true').count()) await go(page.locator('.ps-admin-side .ps-host-health-open').first(), 'host-health', 'Admin-pagina · Health');
     problems.push(`${stand} admin-menu-kept: ${visited.length && !lost.length ? 'ok' : 'WRONG'} ${JSON.stringify({ pages: visited.length, lost: lost.slice(0, 5) })}`);
     if (!onPhone) problems.push(`${stand} admin-desktop-rows: ${visited.length && !offRow.length ? 'ok' : 'WRONG'} ${JSON.stringify({ pages: visited.length, offRow })}`);
+    if (!onPhone) problems.push(`${stand} admin-desktop-footer: ${visited.length && !overFoot.length ? 'ok' : 'WRONG'} ${JSON.stringify({ pages: visited.length, overFoot })}`);
   } else problems.push(`${stand} host: WRONG no shield link to the Admin page`);
   }
   if (want('seasons') && ['d1440', 'tablet768', 'phone390'].includes(stand.split('-')[0])) await seasons(theme);
