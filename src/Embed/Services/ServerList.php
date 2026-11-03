@@ -7,13 +7,16 @@ namespace Simplify\Core\Embed\Services;
 use App\Enums\ContainerStatus;
 use App\Models\Server;
 use Illuminate\Support\Facades\Event;
+use Simplify\Core\Models\ServerLook;
+use Simplify\Core\Server\Looks;
 use Simplify\Core\Subdomains\Subdomains;
+use Simplify\Core\Support\Assets;
 use Simplify\Core\Support\SafeCache;
 use Throwable;
 
 /**
- * The public list: only what a visitor needs (name, game, status, players and a public join address).
- * Never ids, owners, nodes or private addresses.
+ * The public list: only what a visitor needs (name, game, status, players, a public join address, the server's
+ * description and its banner). Never ids, owners, nodes or private addresses.
  *
  * Other plugins can add details through the "simplify.embed.server" event. A listener receives the Server and
  * returns an array with any of: game, software, version, players, max_players, motd, address, icon and
@@ -95,7 +98,25 @@ final class ServerList
             ]),
             'icon' => $extra['icon'] ?? $extra['modpack']['icon'] ?? $server->egg?->icon,
             'modpack' => $extra['modpack'] ?? null,
+            'description' => $server->description,
+            'banner' => self::banner($server),
         ]);
+    }
+
+    /**
+     * The banner the server shows in Simplify, as a public https link: a scene of Simplify, or an uploaded banner
+     * through the embed's own address, which serves only banners of servers on the website. Null for the automatic
+     * scene.
+     */
+    private static function banner(Server $server): ?string
+    {
+        $banner = ServerLook::query()->where('server_id', $server->id)->value('banner');
+
+        return match (true) {
+            ! is_string($banner) || $banner === '' => null,
+            str_starts_with($banner, Looks::SCENE) => Assets::url(substr($banner, strlen(Looks::SCENE))),
+            default => route('simplify.embed.banner', ['file' => basename($banner)]),
+        };
     }
 
     /** The subdomain when it works. */
@@ -184,6 +205,8 @@ final class ServerList
             'address' => $entry['address'] ?? null,
             'icon' => self::safeUrl($entry['icon'] ?? null),
             'modpack' => $pack,
+            'description' => $text($entry['description'] ?? null, 300),
+            'banner' => self::safeUrl($entry['banner'] ?? null),
         ];
     }
 

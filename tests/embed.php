@@ -72,6 +72,12 @@ same('negative max', null, $clean['max_players']);
 same('javascript icon', null, $clean['icon']);
 same('http modpack link', null, $clean['modpack']['url']);
 same('https modpack icon', 'https://cdn.example.com/a.png', $clean['modpack']['icon']);
+same('description cleaned', 'Line one  line two', ServerList::clean(['id' => 'a', 'name' => 'a', 'game' => 'a', 'state' => 'online', 'description' => " Line one\r\nline two "])['description']);
+same('description cut', 300, mb_strlen(ServerList::clean(['id' => 'a', 'name' => 'a', 'game' => 'a', 'state' => 'online', 'description' => str_repeat('d', 900)])['description']));
+same('empty description', null, ServerList::clean(['id' => 'a', 'name' => 'a', 'game' => 'a', 'state' => 'online', 'description' => '  '])['description']);
+same('https banner', 'https://panel.example.com/simplify/embed/banners/abc.png', ServerList::clean(['id' => 'a', 'name' => 'a', 'game' => 'a', 'state' => 'online', 'banner' => 'https://panel.example.com/simplify/embed/banners/abc.png'])['banner']);
+same('http banner', null, ServerList::clean(['id' => 'a', 'name' => 'a', 'game' => 'a', 'state' => 'online', 'banner' => 'http://panel.example.com/a.png'])['banner']);
+same('no banner', null, ServerList::clean(['id' => 'a', 'name' => 'a', 'game' => 'a', 'state' => 'online'])['banner']);
 same('no modpack without a name', null, ServerList::clean(['id' => 'a', 'name' => 'a', 'game' => 'a', 'state' => 'online', 'modpack' => ['url' => 'https://x.example']])['modpack']);
 
 if ($failures) {

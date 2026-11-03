@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Website embed: each server in `/simplify/embed/servers.json` also has `description` (Pelican's server description, cleaned and at most 300 characters) and `banner` (an https link to the banner the server shows in Simplify, or null for the automatic scene). An uploaded banner is served at `/simplify/embed/banners/{file}`, only while its server is on the website, so a website can show it without a login.
 - Phones: with the admin menu open, every tap does what it says again. Admin keeps the menu, Servers opens the overview and the account button opens the account menu; before, each of them showed the first admin page (Servers › Servers). The menu no longer slides along when you drag down on it.
 - Customize Simplify is wider and shows what is in a section straight away: the sections (Theme, Server groups, Layout, Cards, Grouping, More) sit on the left and the chosen one's settings on the right, with no folding open. Server groups lists your groups with their colour and number of servers, and Edit groups opens their window. On a phone the sections are a row of chips at the top of the sheet. On a server's page the sections are Theme and Server pages; the Admin page and the account pages keep the narrow window with the theme only. It opens on the section you had last.
 - Computers: on an Admin page the page's own buttons, such as Run setup again and Save on Settings › General, sit in the middle of the breadcrumb's row again, with room under the header, instead of at the top of that row.
