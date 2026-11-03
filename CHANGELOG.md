@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- The installed app on an iPhone keeps the bottom bar clear of the home bar after a click in a menu too. It no longer drops a little and loses its room at the bottom when another page opens.
+- Add-ons can ask whether the panel runs in friends mode: `PanelSettings::friendsMode()` (ADDONS.md).
+- Pages no longer open white. While Simplify starts, the overview, a server's page and the Admin page show their shapes as grey placeholders in your light or dark theme, and the real page takes their place.
+- Pages load faster on a first visit and after every update: Simplify sends its styles and scripts gzipped (about 100 KB instead of 400 KB), because Pelican's web server compresses only HTML.
+- Pelican's copyright line on the Admin page and the account pages sits at the very end of the page, under everything on it, on a phone too. It no longer stays halfway over the page where the first screen ended, and it keeps Simplify's thin style after a click in the menu.
+- The setup and its last step are part of Settings: the Admin menu shows Settings as the current page and the breadcrumb reads Settings › Set up Simplify. Their addresses moved to /admin/simplify/setup and /admin/simplify/setup-done.
 - The numbers on the server page show the last minute as bars next to the number instead of a faint line under the text. The bars run from 0 to what the server may use, take the colour of the load (green, orange from 60%, red from 85%, as on the overview cards) and glide between two measurements; the number changes once per measurement. The line under the number reads "35% of 400%". Each card has its icon and a short name (CPU, MEM, DISK, NET) in the top-right corner, and the cards are lower than before. Network shows download and upload each with their own number, download bars up and upload bars down.
 
 ## 2.0.0-beta.1

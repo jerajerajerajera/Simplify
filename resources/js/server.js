@@ -28,6 +28,8 @@
       ...base,
       init() {
         this.initShell();
+        // This header stays (@persist) while the menu loads the next page: its new footer gets the thin line again.
+        document.addEventListener('livewire:navigated', () => this.enhanceCopyright());
         // Admin → Servers → Create (Pelican's link on its page) opens Simplify's Create server popup, as everywhere else.
         // Livewire starts wire:navigate on mousedown, so that press stays away from the link too.
         const create = (event) => {

@@ -1,4 +1,4 @@
-// The numbers on the server page (K-B7): bars from 0 to the server's limit, the colour of the load (W4), the share as
+// The numbers on the server page (K-B11): bars from 0 to the server's limit, the colour of the load (W4), the share as
 // "35% of 400%", download and upload apart, and bars that glide between two measurements. Runs server.js without a panel.
 const fs = require('node:fs');
 const path = require('node:path');

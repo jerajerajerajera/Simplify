@@ -115,7 +115,7 @@ final class SimplifyPlugin implements Plugin
 
         // The top stays while the menu changes the page next to it (wire:navigate, ServerMenu::navigates()); the
         // marker after it tells the kept top which page came in.
-        return Blade::render('@persist($key)@livewire($component, $data)@endpersist<template data-ps-server-page data-console="{{ $console ? 1 : 0 }}"></template>', [
+        return Blade::render('@persist($key)@livewire($component, $data)@endpersist<template data-ps-server-page data-console="{{ $console ? 1 : 0 }}"></template>@include(\'simplify::dashboard.boot\', [\'kind\' => \'server\'])', [
             'key' => 'simplify-server-'.$server->uuid,
             'component' => ServerPage::class,
             'data' => ['server' => $server, 'console' => $console],
@@ -129,7 +129,7 @@ final class SimplifyPlugin implements Plugin
         if (! AdminTop::here()) {
             return '';
         }
-        $top = Blade::render("@persist('simplify-admin-top')@livewire(\$component)@endpersist", ['component' => AdminTop::class]);
+        $top = Blade::render("@persist('simplify-admin-top')@livewire(\$component)@endpersist\n@include('simplify::dashboard.boot', ['kind' => 'admin'])", ['component' => AdminTop::class]);
 
         return AdminTop::menu() ? $top.Blade::render("@persist('simplify-admin-side')@livewire(\$component)@endpersist", ['component' => AdminSide::class]) : $top;
     }
