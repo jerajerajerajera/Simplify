@@ -1045,6 +1045,10 @@ step('subdomains: until Cloudflare is set up, a root admin sees the steps and th
             throw new RuntimeException('the settings page misses '.$text);
         }
     }
+    // K-B32: the browser must not fill in the panel password as the Cloudflare token (that showed Changes made).
+    if (! preg_match('/<input[^>]*type="password"[^>]*>/', $page->getContent(), $field) || ! str_contains($field[0], 'autocomplete="new-password"')) {
+        throw new RuntimeException('the token field lets the browser fill in a saved password: '.($field[0] ?? 'no field'));
+    }
     $url = ServerSubdomain::getUrl(panel: 'server', tenant: $server);
     $page = visit($admin, $url);
     expectOk($page, $url);

@@ -78,7 +78,7 @@ final class AutomaticSubdomains extends FormPage
                     TextInput::make('token')
                         ->label(__('simplify::subdomains.form.api_token'))
                         ->password()
-                        ->autocomplete(false)
+                        ->autocomplete('new-password')
                         ->maxLength(200)
                         ->columnSpanFull()
                         ->placeholder(fn () => Settings::all()['has_token']

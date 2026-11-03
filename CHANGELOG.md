@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Automatic subdomains no longer says Changes made when you only open the page: the browser no longer fills in your saved panel password as the Cloudflare token.
 - Automatic subdomains explains itself: a How to set it up section with the four steps and a link to Cloudflare's token page (folded shut once everything is set), and what is still missing under the title. Until Cloudflare is set up, root admins still see Subdomain in the server menu, with what is missing and a Set up subdomains button; owners see it once it works.
 - Subdomains keep working after the update from PelicanSimplify 0.7.0: the Cloudflare token and zone ID that 0.7.0 read from `.env` (`CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ZONE_ID`) are taken over once, encrypted, unless Simplify already has its own. `.env` is only read.
 - Customize Simplify is wider and shows what is in a section straight away: the sections (Theme, Server groups, Layout, Cards, Grouping, More) sit on the left and the chosen one's settings on the right, with no folding open. Server groups lists your groups with their colour and number of servers, and Edit groups opens their window. On a phone the sections are a row of chips at the top of the sheet. On a server's page the sections are Theme and Server pages; the Admin page and the account pages keep the narrow window with the theme only. It opens on the section you had last.
