@@ -12,6 +12,7 @@
             @unless ($item['tab'] && $here) wire:navigate @endunless
             :aria-current="current === @js($item['key']) ? 'page' : null"
             @if ($item['tab'] && $here)
+                data-tab
                 x-on:click="
                     const tabs = document.querySelector('.s-settings-tabs > .fi-tabs');
                     if (! tabs) return;

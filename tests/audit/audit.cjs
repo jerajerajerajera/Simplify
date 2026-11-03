@@ -324,7 +324,7 @@ async function round(theme) {
   for (const p of admin) {
     if (/Setup$|ViewLogs$|Dashboard$/.test(p.class)) continue;
     await goto(p.url, 1200); await record('admin-' + slug(p.title), 'Beheer · ' + p.title);
-    const tabs = page.locator('main [role=tab]:visible, .fi-sc-tabs-tab:visible, .s-settings-nav a, .s-segment');
+    const tabs = page.locator('main [role=tab]:visible, .fi-sc-tabs-tab:visible, .s-settings-nav a[data-tab], .s-segment');
     const n = await tabs.count();
     for (let i = 1; i < Math.min(n, 9); i++) { await tabs.nth(i).click().catch(() => {}); await sleep(900); await record(`admin-${slug(p.title)}-tab${i}`, `Beheer · ${p.title}, tabblad ${i + 1}`); }
     if (/RoleResource|UserResource|ServerResource|NodeResource|EggResource/.test(p.class)) { const edit = page.locator('.fi-ta-row a[href*="/edit"], .fi-ta-row a[href*="/admin/"]').first(); if (await edit.count()) { const h = await edit.getAttribute('href'); if (h) { await goto(h, 1500); await record('admin-' + slug(p.title) + '-edit', 'Beheer · ' + p.title + ', bewerken'); const t2 = page.locator('main [role=tab], .fi-sc-tabs-tab'); const m = await t2.count(); for (let i = 1; i < Math.min(m, 7); i++) { await t2.nth(i).click().catch(() => {}); await sleep(800); await record(`admin-${slug(p.title)}-edit-tab${i}`, `Beheer · ${p.title}, bewerken, tabblad ${i + 1}`); } } } }

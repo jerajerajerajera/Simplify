@@ -20,10 +20,10 @@
                 {{-- One Filter (Khion, V52): who, game, node and the own server groups in one list; on a phone a sheet. --}}
                 <div class="ps-overview-filters ps-filter" x-init="filterText = @js(collect(['filter_show', 'all_servers', 'my_servers', 'others', 'game', 'all_games', 'filter_node', 'all_nodes', 'filter_group', 'all_groups'])->mapWithKeys(fn ($key) => [$key => $u($key)]))" x-show="filterSections().length" x-on:click.outside="filterMenu=false" x-on:keydown.escape.stop="filterMenu=false; $refs.filterButton.focus()">
                     <button type="button" x-ref="filterButton" class="ps-chip ps-filter-button" :class="{'is-on': filterActive()}" aria-controls="ps-filter-menu" :aria-expanded="filterMenu" aria-haspopup="menu"
-                            x-on:click="filterMenu=!filterMenu; appearanceMenu=false; groupsMenu=false; accountMenu=false; notifyMenu=false">
+                            x-on:click="$refs.filterMenu.style.setProperty('--ps-room', Math.max(160, innerHeight - $el.getBoundingClientRect().bottom - 24) + 'px'); filterMenu=!filterMenu; appearanceMenu=false; groupsMenu=false; accountMenu=false; notifyMenu=false">
                         <svg aria-hidden="true"><use href="#ps-filter"/></svg><span x-text="filterLabel()">{{ $u('all_servers') }}</span><svg class="ps-filter-chevron" aria-hidden="true"><use href="#ps-chevron"/></svg>
                     </button>
-                    <div id="ps-filter-menu" class="ps-dropdown ps-filter-menu" x-show="filterMenu" x-cloak x-transition.opacity role="menu" aria-label="{{ $u('filter') }}">
+                    <div id="ps-filter-menu" x-ref="filterMenu" class="ps-dropdown ps-filter-menu" x-show="filterMenu" x-cloak x-transition.opacity role="menu" aria-label="{{ $u('filter') }}">
                         <strong class="ps-dropdown-title">{{ $u('filter') }}</strong>
                         <template x-for="section in filterSections()" :key="section.key">
                             <div class="ps-filter-section" role="group" :aria-label="section.label">
