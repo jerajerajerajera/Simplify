@@ -6,11 +6,11 @@ return [
     'saved' => '설정 저장됨',
     'settings' => [
         'addresses' => '주소',
-        'addresses_help' => '"oak"라는 서버는 oak.<domain>을 받습니다. 게임 주소를 가리키는 CNAME과, Minecraft라면 포트가 담긴 SRV 레코드가 만들어져 Java 플레이어는 포트를 생략할 수 있습니다. Cloudflare 프록시는 게임 트래픽을 전달하지 않으므로 둘 다 DNS only(프록시 안 함)입니다.',
+        'addresses_help' => '"oak"라는 서버는 oak.<domain>을 받습니다. 서버 주소를 가리키는 CNAME과, Minecraft라면 포트가 담긴 SRV 레코드가 만들어져 Java 플레이어는 포트를 생략할 수 있습니다. Cloudflare 프록시는 게임 트래픽을 전달하지 않으므로 둘 다 DNS only(프록시 안 함)입니다.',
         'domain' => '도메인',
         'domain_help' => '하위 도메인을 만들 Cloudflare 영역.',
-        'target' => '게임 주소',
-        'target_help' => '게임 포트가 도착하는 공인 IP를 가리키는 기존 DNS only 레코드.',
+        'target' => '서버 주소',
+        'target_help' => '서버 포트가 도착하는 공인 IP를 가리키는 기존 DNS only 레코드.',
         'host_name' => 'example.com 같은 호스트 이름을 입력하세요.',
         'port_min' => '첫 번째 포워딩 포트',
         'port_max' => '마지막 포워딩 포트',
@@ -42,7 +42,7 @@ return [
     ],
     'missing' => [
         'domain' => '도메인',
-        'target' => '게임 주소',
+        'target' => '서버 주소',
         'token' => 'Cloudflare 토큰',
         'zone' => '영역 ID (테스트 누르기)',
     ],

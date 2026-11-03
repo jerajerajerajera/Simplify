@@ -6,11 +6,11 @@ return [
     'saved' => 'Nastavení uložena',
     'settings' => [
         'addresses' => 'Adresy',
-        'addresses_help' => 'Server s názvem "oak" dostane oak.<domain>: CNAME na adresu hry a pro Minecraft i záznam SRV s portem, aby hráči Java mohli port vynechat. Oba záznamy jsou jen DNS (bez proxy), protože proxy Cloudflare herní provoz nepřenáší.',
+        'addresses_help' => 'Server s názvem "oak" dostane oak.<domain>: CNAME na adresu serveru a pro Minecraft i záznam SRV s portem, aby hráči Java mohli port vynechat. Oba záznamy jsou jen DNS (bez proxy), protože proxy Cloudflare herní provoz nepřenáší.',
         'domain' => 'Doména',
         'domain_help' => 'Zóna Cloudflare, ve které se subdomény vytvářejí.',
-        'target' => 'Adresa hry',
-        'target_help' => 'Existující záznam jen DNS, který ukazuje na veřejnou IP, kam přicházejí herní porty.',
+        'target' => 'Adresa serveru',
+        'target_help' => 'Existující záznam jen DNS, který ukazuje na veřejnou IP, kam přicházejí porty serverů.',
         'host_name' => 'Zadejte název hostitele, například example.com.',
         'port_min' => 'První přesměrovaný port',
         'port_max' => 'Poslední přesměrovaný port',
@@ -42,7 +42,7 @@ return [
     ],
     'missing' => [
         'domain' => 'doména',
-        'target' => 'adresa hry',
+        'target' => 'adresa serveru',
         'token' => 'Token Cloudflare',
         'zone' => 'ID zóny (klikněte na Otestovat)',
     ],

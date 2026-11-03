@@ -6,11 +6,11 @@ return [
     'saved' => 'Ustawienia zapisane',
     'settings' => [
         'addresses' => 'Adresy',
-        'addresses_help' => 'Serwer o nazwie "oak" dostaje oak.<domain>: CNAME do adresu gry i, dla Minecraft, rekord SRV z portem, aby gracze Java mogli pominąć port. Oba są tylko DNS (bez proxy), bo proxy Cloudflare nie przenosi ruchu gier.',
+        'addresses_help' => 'Serwer o nazwie "oak" dostaje oak.<domain>: CNAME do adresu serwera i, dla Minecraft, rekord SRV z portem, aby gracze Java mogli pominąć port. Oba są tylko DNS (bez proxy), bo proxy Cloudflare nie przenosi ruchu gier.',
         'domain' => 'Domena',
         'domain_help' => 'Strefa Cloudflare, w której tworzone są subdomeny.',
-        'target' => 'Adres gry',
-        'target_help' => 'Istniejący rekord tylko DNS, który wskazuje na publiczny IP, na który trafiają porty gier.',
+        'target' => 'Adres serwera',
+        'target_help' => 'Istniejący rekord tylko DNS, który wskazuje na publiczny IP, na który trafiają porty serwerów.',
         'host_name' => 'Wpisz nazwę hosta, np. example.com.',
         'port_min' => 'Pierwszy przekierowany port',
         'port_max' => 'Ostatni przekierowany port',
@@ -42,7 +42,7 @@ return [
     ],
     'missing' => [
         'domain' => 'domena',
-        'target' => 'adres gry',
+        'target' => 'adres serwera',
         'token' => 'Token Cloudflare',
         'zone' => 'ID strefy (kliknij Testuj)',
     ],

@@ -6,11 +6,11 @@ return [
     'saved' => '設定を保存しました',
     'settings' => [
         'addresses' => 'アドレス',
-        'addresses_help' => '「oak」という名前のサーバーは oak.<domain> を得ます。ゲームアドレスへの CNAME と、Minecraft の場合はポート付きの SRV レコードが作られるため、Java のプレイヤーはポートを省略できます。Cloudflare のプロキシはゲームの通信を中継しないため、どちらも DNS only(プロキシなし)です。',
+        'addresses_help' => '「oak」という名前のサーバーは oak.<domain> を得ます。サーバーアドレスへの CNAME と、Minecraft の場合はポート付きの SRV レコードが作られるため、Java のプレイヤーはポートを省略できます。Cloudflare のプロキシはゲームの通信を中継しないため、どちらも DNS only(プロキシなし)です。',
         'domain' => 'ドメイン',
         'domain_help' => 'サブドメインを作成する Cloudflare のゾーン。',
-        'target' => 'ゲームアドレス',
-        'target_help' => 'ゲームのポートが届く公開 IP を指す、既存の DNS only レコード。',
+        'target' => 'サーバーアドレス',
+        'target_help' => 'サーバーのポートが届く公開 IP を指す、既存の DNS only レコード。',
         'host_name' => 'example.com のようなホスト名を入力してください。',
         'port_min' => '転送する最初のポート',
         'port_max' => '転送する最後のポート',
@@ -42,7 +42,7 @@ return [
     ],
     'missing' => [
         'domain' => 'ドメイン',
-        'target' => 'ゲームアドレス',
+        'target' => 'サーバーアドレス',
         'token' => 'Cloudflare トークン',
         'zone' => 'ゾーン ID（「テスト」を押す）',
     ],

@@ -6,11 +6,11 @@ return [
     'saved' => 'Ayarlar kaydedildi',
     'settings' => [
         'addresses' => 'Adresler',
-        'addresses_help' => '"oak" adlı bir sunucu oak.<domain> alır: oyun adresine bir CNAME ve Minecraft için portunu içeren bir SRV kaydı; böylece Java oyuncuları portu yazmayabilir. İkisi de yalnızca DNS\'tir (proxy\'lenmez), çünkü Cloudflare proxy\'si oyun trafiğini taşımaz.',
+        'addresses_help' => '"oak" adlı bir sunucu oak.<domain> alır: sunucu adresine bir CNAME ve Minecraft için portunu içeren bir SRV kaydı; böylece Java oyuncuları portu yazmayabilir. İkisi de yalnızca DNS\'tir (proxy\'lenmez), çünkü Cloudflare proxy\'si oyun trafiğini taşımaz.',
         'domain' => 'Alan adı',
         'domain_help' => 'Alt alan adlarının oluşturulduğu Cloudflare bölgesi.',
-        'target' => 'Oyun adresi',
-        'target_help' => 'Oyun portlarının ulaştığı genel IP\'yi gösteren mevcut, yalnızca DNS bir kayıt.',
+        'target' => 'Sunucu adresi',
+        'target_help' => 'Sunucu portlarının ulaştığı genel IP\'yi gösteren mevcut, yalnızca DNS bir kayıt.',
         'host_name' => 'example.com gibi bir ana bilgisayar adı gir.',
         'port_min' => 'İlk yönlendirilen port',
         'port_max' => 'Son yönlendirilen port',
@@ -42,7 +42,7 @@ return [
     ],
     'missing' => [
         'domain' => 'alan adı',
-        'target' => 'oyun adresi',
+        'target' => 'sunucu adresi',
         'token' => 'Cloudflare tokenı',
         'zone' => 'bölge kimliği (Test et\'e bas)',
     ],

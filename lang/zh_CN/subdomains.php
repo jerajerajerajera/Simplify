@@ -6,11 +6,11 @@ return [
     'saved' => '设置已保存',
     'settings' => [
         'addresses' => '地址',
-        'addresses_help' => '名为“oak”的服务器会得到 oak.<domain>：一条指向游戏地址的 CNAME 记录，对于 Minecraft 还有一条带端口的 SRV 记录，这样 Java 玩家可以省略端口。两者都是仅 DNS（不代理），因为 Cloudflare 的代理不承载游戏流量。',
+        'addresses_help' => '名为“oak”的服务器会得到 oak.<domain>：一条指向服务器地址的 CNAME 记录，对于 Minecraft 还有一条带端口的 SRV 记录，这样 Java 玩家可以省略端口。两者都是仅 DNS（不代理），因为 Cloudflare 的代理不承载游戏流量。',
         'domain' => '域名',
         'domain_help' => '创建子域名所在的 Cloudflare 区域。',
-        'target' => '游戏地址',
-        'target_help' => '一条现有的仅 DNS 记录，指向游戏端口到达的公网 IP。',
+        'target' => '服务器地址',
+        'target_help' => '一条现有的仅 DNS 记录，指向服务器端口到达的公网 IP。',
         'host_name' => '请输入主机名，例如 example.com。',
         'port_min' => '第一个转发端口',
         'port_max' => '最后一个转发端口',
@@ -42,7 +42,7 @@ return [
     ],
     'missing' => [
         'domain' => '域名',
-        'target' => '游戏地址',
+        'target' => '服务器地址',
         'token' => 'Cloudflare 令牌',
         'zone' => '区域 ID（点击“测试”）',
     ],

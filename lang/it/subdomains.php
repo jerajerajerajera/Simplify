@@ -6,11 +6,11 @@ return [
     'saved' => 'Impostazioni salvate',
     'settings' => [
         'addresses' => 'Indirizzi',
-        'addresses_help' => 'Un server chiamato "oak" riceve oak.<domain>: un CNAME all\'indirizzo di gioco e, per Minecraft, un record SRV con la sua porta, così i giocatori Java possono omettere la porta. Entrambi sono solo DNS (non in proxy), perché il proxy di Cloudflare non trasporta il traffico di gioco.',
+        'addresses_help' => 'Un server chiamato "oak" riceve oak.<domain>: un CNAME all\'indirizzo del server e, per Minecraft, un record SRV con la sua porta, così i giocatori Java possono omettere la porta. Entrambi sono solo DNS (non in proxy), perché il proxy di Cloudflare non trasporta il traffico di gioco.',
         'domain' => 'Dominio',
         'domain_help' => 'La zona Cloudflare in cui vengono creati i sottodomini.',
-        'target' => 'Indirizzo di gioco',
-        'target_help' => 'Un record solo DNS esistente che punta all\'IP pubblico dove arrivano le porte di gioco.',
+        'target' => 'Indirizzo del server',
+        'target_help' => 'Un record solo DNS esistente che punta all\'IP pubblico dove arrivano le porte dei server.',
         'host_name' => 'Inserisci un nome host come example.com.',
         'port_min' => 'Prima porta inoltrata',
         'port_max' => 'Ultima porta inoltrata',
@@ -42,7 +42,7 @@ return [
     ],
     'missing' => [
         'domain' => 'dominio',
-        'target' => 'indirizzo di gioco',
+        'target' => 'indirizzo del server',
         'token' => 'Token Cloudflare',
         'zone' => 'ID zona (premi Prova)',
     ],
