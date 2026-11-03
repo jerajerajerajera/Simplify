@@ -901,7 +901,7 @@ async function scrollbars(serverUrl) {
   const look = (doc, console) => doc.evaluate((onlyConsole) => {
     const rule = [...document.styleSheets].flatMap((sh) => { try { return [...sh.cssRules]; } catch { return []; } }).map((r) => r.cssText);
     const bar = rule.find((t) => /^html ::-webkit-scrollbar \{/.test(t)) || null, thumb = rule.find((t) => /^html ::-webkit-scrollbar-thumb \{/.test(t)) || null, track = rule.find((t) => /^html ::-webkit-scrollbar-track/.test(t)) || null;
-    const els = onlyConsole ? [document.querySelector('.ps-console')].filter(Boolean) : [document.scrollingElement, ...document.querySelectorAll('*')].filter((e) => { if (!e || !e.getClientRects().length) return false; const cs = getComputedStyle(e); return (e === document.scrollingElement || /(auto|scroll)/.test(cs.overflowY)) && e.scrollHeight > e.clientHeight + 4 && e.clientHeight > 60; });
+    const els = onlyConsole ? [document.querySelector('#terminal, .ps-console')].filter(Boolean) : [document.scrollingElement, ...document.querySelectorAll('*')].filter((e) => { if (!e || !e.getClientRects().length) return false; const cs = getComputedStyle(e); return (e === document.scrollingElement || /(auto|scroll)/.test(cs.overflowY)) && e.scrollHeight > e.clientHeight + 4 && e.clientHeight > 60; });
     const out = els.slice(0, 4).map((e) => { if (!onlyConsole) e.scrollTop = (e.scrollHeight - e.clientHeight) / 2; const cs = getComputedStyle(e); const r = e.getBoundingClientRect(); return { el: (e.className && String(e.className).trim().split(/\s+/).slice(0, 2).join('.')) || e.tagName.toLowerCase(), color: getComputedStyle(e).getPropertyValue('--s-scroll').trim(), bg: onlyConsole ? cs.backgroundColor : null, width: onlyConsole ? Math.round(r.width) : null, h: Math.round(r.height) }; });
     return { bar, thumb, track, boxes: out };
   }, !!console).catch((e) => ({ error: e.message.slice(0, 100) }));
@@ -916,7 +916,7 @@ async function scrollbars(serverUrl) {
   await goto('/admin/simplify', 2000); info = await look(page); await sleep(300); await record('scroll-settings', 'Scrollbalk · instellingen'); judge('settings', info, rel(page.url()));
   await goto('/admin/servers', 2500); info = await look(page); await sleep(300); await record('scroll-admin', 'Scrollbalk · Admin-pagina (kaart naast het menu)'); judge('admin', info, rel(page.url()));
   await goto(serverUrl, 3500);
-  await page.evaluate(() => { const t = document.querySelector('.ps-console .xterm-scrollable-element'); if (t) t.dispatchEvent(new WheelEvent('wheel', { deltaY: -400, bubbles: true })); }).catch(() => {});
+  await page.evaluate(() => { const t = document.querySelector(':is(#terminal, .ps-console) .xterm-scrollable-element'); if (t) t.dispatchEvent(new WheelEvent('wheel', { deltaY: -400, bubbles: true })); }).catch(() => {});
   await sleep(400); info = await look(page, true); await record('scroll-console', 'Scrollbalk · console'); judge('console', info);
 }
 

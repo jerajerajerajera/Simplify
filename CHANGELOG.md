@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Light theme: the console's scrollbar is light again, so you can see it on the dark console.
 - Website: a server's Website page now sets what the website shows besides Pelican's own data: a description (empty uses Pelican's), an image (the server's banner, another banner or an upload), a client download (empty uses the download of the installed modpack version), a second address (for example for Bedrock, public addresses only) and the position on the list. Nothing is saved before Save, also the switch to show the server. `/simplify/embed/servers.json` gives each server `description`, `banner`, `download`, `address2` and `position`, and lists online servers first, then by position, then by name. Images are served at `/simplify/embed/banners/{file}`, only while their server is on the website.
 - Simplify's settings: the head no longer repeats the version (it is in the panel's footer). What Save does is a small line under the settings, and Run setup again is a button on General only, not in the head of every tab.
 - Browse Hub is hidden for now: it is no longer a tab of Simplify's settings or an item of the Admin menu. It can come back later.

@@ -1694,7 +1694,7 @@ html ::-webkit-scrollbar-button, html ::-webkit-scrollbar-corner { display: none
 }
 /* The console's bar is xterm's own element. */
 /* The console is dark in both themes, so its bars take the dark theme's tint. */
-html .ps-console { --s-scroll: rgb(255 255 255 / .16); --s-scroll-hover: rgb(255 255 255 / .28); }
+html :is(.ps-console, #terminal) { --s-scroll: rgb(255 255 255 / .16); --s-scroll-hover: rgb(255 255 255 / .28); }
 html .xterm .xterm-scrollable-element > .scrollbar > .slider { border-radius: 999px; background: var(--s-scroll) !important; }
 html .xterm .xterm-scrollable-element > .scrollbar.vertical > .slider { left: 2px !important; width: 6px !important; }
 
