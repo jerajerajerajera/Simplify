@@ -140,6 +140,44 @@ const adminPage = async (overview) => {
     const diff = first && again ? Object.keys(first).filter((k) => JSON.stringify(first[k]) !== JSON.stringify(again[k])) : ['missing'];
     say('admin-nav-look', !!first && !!first.card && diff.length === 0 && loads === 0 && /\/admin\/servers/.test(page.url()), { diff, loads, first, again });
   }
+  // The other way out of an admin page: the end of the setup's "Go to the panel" opens the overview with wire:navigate.
+  // It looks as after a full load (Jeroen 3-11, beta.3: the background turned lighter grey), and so does the Admin page
+  // the shield opens from there.
+  if (!phone()) {
+    const pageLook = () => page.evaluate(() => {
+      const css = (el, props) => { if (!el) return null; const s = getComputedStyle(el); return props.map((p) => s.getPropertyValue(p).trim()).join(' | '); };
+      const root = document.documentElement;
+      return {
+        html: [...root.classList].filter((c) => !/^nprogress/.test(c)).sort().join(' '),
+        busy: root.classList.contains('nprogress-busy'),
+        tokens: css(root, ['--gray-950', '--gray-900', '--ps-bg', '--ps-surface', '--s-bg', '--s-surface']),
+        body: css(document.body, ['background-color', 'color']),
+        layout: css(document.querySelector('.fi-layout'), ['background-color']),
+        top: css([...document.querySelectorAll('.ps-top')].find((e) => e.getClientRects().length), ['background-color']),
+        sheets: [...document.head.querySelectorAll('link[rel="stylesheet"], style')].map((e) => (e.getAttribute('href') || 'style:' + e.textContent.length).replace(/^https?:\/\/[^/]+/, '').replace(/\?.*$/, '')),
+      };
+    }).catch(() => null);
+    const same = (a, b, keys) => (a && b ? keys.filter((k) => JSON.stringify(a[k]) !== JSON.stringify(b[k])) : ['missing']);
+    const keys = ['html', 'busy', 'tokens', 'body', 'layout', 'top'];
+    const arrivedAt = (test) => page.waitForFunction((src) => new RegExp(src).test(location.pathname) && !document.documentElement.classList.contains('nprogress-busy'), test.source, { timeout: 10000 }).catch(() => {});
+    const overviewPath = new URL(overview, base).pathname;
+    await goto(new URL(overview, base).href, 2000);
+    const fullOverview = await pageLook();
+    await goto(new URL('/admin/simplify/setup-done', base).href, 2000);
+    const fullAdmin = await pageLook();
+    const go = page.locator('.fi-header a >> visible=true').filter({ hasText: /Go to the panel/ }).first();
+    const found = (await go.count()) > 0;
+    await go.click({ timeout: 4000 }).catch(() => {}); await arrivedAt(new RegExp('^' + overviewPath.replace(/\/$/, '') + '/?$')); await settle(page, 1500);
+    const navOverview = await pageLook(); await record('setup-done-to-overview', 'Setup klaar › Go to the panel: overzicht');
+    const d1 = same(fullOverview, navOverview, keys);
+    say('setup-done-to-overview', found && d1.length === 0, { found, diff: d1, full: fullOverview, after: navOverview });
+    const shield = page.locator('a.ps-nav-admin >> visible=true').first();
+    await shield.click({ timeout: 4000 }).catch(() => {}); await arrivedAt(/^\/admin/); await settle(page, 1500);
+    const navAdmin = await pageLook();
+    const d2 = same(fullAdmin, navAdmin, keys);
+    say('overview-to-admin-look', d2.length === 0, { diff: d2, full: fullAdmin, after: navAdmin, path: new URL(page.url()).pathname });
+    await shieldTo(overview);
+  }
   // Computers (Jeroen 3-11): the Admin page belongs to the overview instead of feeling like a separate site. The same
   // header (Healthy, Create server), the menu and the page together as wide as it, both without a card and without a
   // Servers tab; the breadcrumb (All servers › …) is the title, the page's buttons sit on its row, and every crumb and
