@@ -731,7 +731,7 @@ html.ps-shell-menu:not(.ps-frame) body .fi-layout {
    positioned itself. */
 html.ps-shell:not(.ps-frame) .fi-layout > [x-persist="simplify-admin-top"] {
   position: relative;
-  z-index: 3;
+  z-index: 30;
   grid-column: 1 / -1;
   grid-row: 1;
   min-width: 0;
@@ -846,7 +846,7 @@ html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header-heading {
     content: "";
     position: sticky;
     top: 0;
-    z-index: 1;
+    z-index: 10;
     display: block;
     height: 52px;
     margin-bottom: -52px;
@@ -857,14 +857,22 @@ html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header-heading {
   html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header {
     position: sticky;
     top: 0;
-    z-index: 2;
+    z-index: 11;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: flex-end;
     box-sizing: border-box;
     min-height: 52px;
     padding-inline-start: calc(var(--ps-crumb-w, 0px) + 16px);
+    background: var(--s-bg);
     pointer-events: none;
+  }
+
+  /* A long subheading goes under the row, so the buttons stay next to the breadcrumb. */
+  html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header > div:first-child {
+    order: 2;
+    flex-basis: 100%;
   }
 
   html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header > * {
@@ -880,12 +888,6 @@ html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header-heading {
     padding-top: 0 !important;
     row-gap: 12px !important;
   }
-}
-
-/* The page keeps its own height, so Pelican's footer comes after it instead of lying over it. */
-html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn > *,
-html.ps-shell:not(.ps-frame) .fi-main-ctn :is(.fi-main, .fi-page, .fi-page-header-main-ctn, .fi-page-main, .fi-page-content) {
-  flex: 0 0 auto !important;
 }
 
 @media (max-width: 600px) {
