@@ -21,7 +21,11 @@ final class AuditDirectoryPlugin implements Plugin
     public function register(Panel $panel): void
     {
         view()->addNamespace('audit-directory', dirname(__DIR__).'/resources/views');
-        if ($panel->getId() === 'server' && enum_exists(HeaderActionPosition::class) && method_exists(Console::class, 'registerCustomHeaderActions')) {
+        // Console's header actions are static, so registering once from whichever panel registers first covers the
+        // server panel too (this plugin is not on the server panel).
+        static $consoleAction = false;
+        if (! $consoleAction && enum_exists(HeaderActionPosition::class) && method_exists(Console::class, 'registerCustomHeaderActions')) {
+            $consoleAction = true;
             Console::registerCustomHeaderActions(HeaderActionPosition::Before, Action::make('audit-action')->label('Audit action')->icon('tabler-bulb')->action(fn () => null));
         }
         if ($panel->getId() === 'app') {
