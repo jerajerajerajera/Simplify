@@ -64,37 +64,44 @@ async function record(id, title, extra = {}) {
   screens.push(entry);
   fs.writeFileSync(path.join(out, 'result.json'), JSON.stringify({ base, screens, problems }, null, 1));
 }
-// Admin tools outside host mode (1.4.5): a tile opens its page inside Simplify, in host mode's frame and title bar
-// without the tree, with a close button back to the overview; from a server page through /simplify#admin:group/page.
-const adminTiles = async (overview, serverUrl, openNav) => {
-  const has = await page.locator('.ps-host-close').count().catch(() => 0);
-  if (!has) return; // a kern without this feature
-  const want = await alpine(`const s = d.hostSections(); const pick = (sk, f) => { const sec = s.find((x) => x.key === sk); const it = sec && sec.pages.find(f); return it ? [sk, it.key, it.label] : null; };
-    return [pick('servers', (i) => i.key === 'serverresource'), pick('people', (i) => i.key === 'userresource'), pick('panel', (i) => i.settings), pick('pelican', (i) => i.settings), pick('health', (i) => i.key === 'health')].filter(Boolean);`) || [];
-  const frameReady = async () => { await page.waitForSelector('.ps-host-frame iframe', { timeout: 10000 }).catch(() => {}); const f = page.frames().find((x) => x !== page.mainFrame() && /\/admin/.test(x.url())); if (f) await f.waitForLoadState('load').catch(() => {}); await sleep(1800); };
-  for (const [sk, ik, label] of want) {
-    await page.goto('about:blank').catch(() => {});
-    await goto(`${overview}#admin:${encodeURIComponent(sk)}/${encodeURIComponent(ik)}`, 600); await frameReady();
-    const st = await alpine('return { adminView: d.adminView, hostMode: d.hostMode, page: d.hostPage && d.hostPage.label }');
-    if (!st || !st.adminView || st.hostMode) problems.push(`${stand} tile-${slug(label)}: did not open inside Simplify (${JSON.stringify(st)})`);
-    await record(`tile-${sk}-${slug(label)}`, `Admin tools-tegel · ${label} (gewone modus, Simplify-frame)`);
-  }
-  // The real path once: the shield menu, a tile, then the close button.
-  await goto(overview); await sleep(600); await openNav();
-  if (await openRef('adminButton')) {
-    if (!(await page.locator('.ps-admin-tile >> visible=true').count())) { await page.locator('.ps-admin-group-head >> visible=true').first().click().catch(() => {}); await sleep(600); } // phones: tiles fold out under a group
-    const tile = page.locator('.ps-admin-tile >> visible=true').first();
-    if (await tile.count()) { await tile.click().catch(() => {}); await frameReady(); await record('tile-click', 'Admin tools-tegel aangeklikt'); if (await click('.ps-host-close', 800)) { await record('tile-closed', 'Admin tools-pagina gesloten, terug op het overzicht'); const st = await alpine('return { adminView: d.adminView, hostPage: !!d.hostPage }'); if (st && (st.adminView || st.hostPage)) problems.push(`${stand} tile-closed: still open after close (${JSON.stringify(st)})`); } }
-    else problems.push(`${stand} tile-click: no visible admin tile in the shield menu`);
-  }
-  // From a server page: the tile goes through the overview. A phone reaches Admin tools from the overview's bar only.
-  if (!phone()) await goto(serverUrl, 2500);
-  if (!phone() && await openRef('adminButton')) {
-    if (!(await page.locator('.ps-admin-tile >> visible=true').count())) { await page.locator('.ps-admin-group-head >> visible=true').first().click().catch(() => {}); await sleep(600); }
-    const tile = page.locator('.ps-admin-tile >> visible=true').first();
-    if (await tile.count()) { await tile.click().catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await frameReady(); await record('tile-from-server', 'Admin tools-tegel vanaf een serverpagina'); const st = await alpine('return { adminView: d.adminView, hash: location.hash }'); if (!st || !st.adminView) problems.push(`${stand} tile-from-server: did not open inside Simplify (${JSON.stringify(st)}, url ${rel(page.url())})`); }
-  }
-  await goto(overview); await sleep(400);
+// The Admin page (V52): the shield opens Pelican's admin pages inside Simplify without a frame: Simplify's header, the
+// Admin menu on the left (a sheet from the bottom bar's Menu on a phone) and the page in a card beside it. The menu stays
+// while its links change the page (wire:navigate). The legacy panel shows the same pages as Pelican draws them.
+const adminState = () => page.evaluate(() => {
+  const side = document.querySelector('.ps-admin-side'), card = document.querySelector('.fi-layout > .fi-main-ctn');
+  const shown = (s) => [...document.querySelectorAll(s)].some((e) => e.getClientRects().length && getComputedStyle(e).display !== 'none' && getComputedStyle(e).visibility !== 'hidden');
+  return { shell: document.documentElement.classList.contains('ps-shell-menu'), side: !!side, kept: !!side && side.dataset.auditMark === '1', frames: document.querySelectorAll('.fi-main-ctn iframe').length,
+    header: shown('.ps-admin-top .ps-top'), pelicanBars: shown('.fi-sidebar, .fi-topbar'), pageScroll: document.documentElement.scrollHeight - innerHeight, card: card ? getComputedStyle(card).overflowY : null, path: location.pathname };
+}).catch(() => null);
+const markAdminSide = () => page.evaluate(() => { const side = document.querySelector('.ps-admin-side'); if (side) side.dataset.auditMark = '1'; }).catch(() => {});
+const openAdminMenu = async () => { if (phone()) { await page.locator('.ps-admin-side .ps-tabbar button[aria-controls="ps-admin-side"]').first().click().catch(() => {}); await sleep(700); } };
+const shieldTo = async (overview) => {
+  await goto(overview, 800);
+  const shield = page.locator((phone() ? '.ps-tabbar a.ps-tab:has(use[href="#ps-shield"])' : 'a.ps-nav-admin') + ' >> visible=true').first();
+  if (!(await shield.count())) return false;
+  await shield.click().catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await settle(page, 1500);
+  return true;
+};
+const adminPage = async (overview) => {
+  const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
+  if (!(await shieldTo(overview))) return say('admin-page', false, { note: 'no shield link on the overview' });
+  const st = await adminState(); await record('admin-page', 'Admin-pagina (schild)');
+  say('admin-page', !!st && st.shell && st.side && st.header && !st.frames && !st.pelicanBars && st.pageScroll <= 1 && (phone() || /auto|scroll/.test(st.card || '')), st);
+  // The legacy panel: the same page as Pelican draws it, and its Back to Simplify button clears that again.
+  await page.locator('.ps-admin-top .ps-account-button >> visible=true').first().click().catch(() => {}); await sleep(700);
+  const legacy = page.locator('#ps-account-actions a[href*="simplify_legacy=1"] >> visible=true').first();
+  if (await legacy.count()) {
+    await legacy.click().catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await settle(page, 1500);
+    const lg = await adminState(); await record('admin-legacy', 'Legacy-paneel (Pelicans eigen pagina)');
+    say('admin-legacy', !!lg && !lg.shell && !lg.side && !lg.header && !/simplify_legacy/.test(page.url()), lg);
+    const back = page.locator('a[href*="simplify_legacy=0"] >> visible=true').first();
+    if (await back.count()) {
+      await back.click().catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await settle(page, 1200);
+      await goto('/admin/health', 1500); const again = await adminState();
+      say('admin-legacy-back', !!again && again.shell && again.side, again);
+    } else say('admin-legacy-back', false, { note: 'no Back to Simplify in the legacy panel' });
+  } else say('admin-legacy', false, { note: 'no Legacy panel link in the account menu' });
+  await goto(overview, 600);
 };
 // Host health card and its fold-open tab are one hover zone (1.4.5): pointing at either gives the same colours.
 const healthHover = async (where) => {
@@ -116,9 +123,8 @@ const goto = async (url, ms = 900) => { for (let i = 0; i < 3; i++) { try { awai
 const click = async (sel, ms = 600) => { const l = page.locator(sel).first(); if (!(await l.count()) || !(await l.isVisible().catch(() => false))) { problems.push(`${stand} ${screen}: nothing to click for ${sel}`); return false; } await l.click({ timeout: 5000 }).catch((e) => problems.push(`${stand} ${screen}: click ${sel}: ${e.message.slice(0, 80)}`)); await sleep(ms); return true; };
 const escape = async () => { await page.keyboard.press('Escape'); await sleep(300); };
 const phone = () => VIEWPORTS[stand.split('-')[0]].width <= 600;
-// Phones (1.5.4) reach the overview's menus from the bottom bar: Admin tools as a tab, server groups and the
-// overview's look under Customize. Elsewhere, and on wider screens, the button in the top bar.
-const PHONE_ROUTE = { adminButton: ['.ps-tabbar button[aria-controls="ps-admin-menu"]'], overviewAppearance: ['.ps-tab-customize > .ps-tab', '#ps-tab-customize-menu button:nth-of-type(2)'], overviewGroupsButton: ['.ps-tab-customize > .ps-tab', '#ps-tab-customize-menu button:nth-of-type(1)'] };
+// Phones (1.5.4) reach the overview's menus from the bottom bar: server groups and the overview's look under Customize. Elsewhere, and on wider screens, the button in the top bar.
+const PHONE_ROUTE = { overviewAppearance: ['.ps-tab-customize > .ps-tab', '#ps-tab-customize-menu button:nth-of-type(2)'], overviewGroupsButton: ['.ps-tab-customize > .ps-tab', '#ps-tab-customize-menu button:nth-of-type(1)'] };
 // Server groups open from Customize on every screen size (V43).
 const DESK_ROUTE = { overviewGroupsButton: ['[x-ref="overviewAppearance"]', '#ps-overview-appearance-menu .ps-customize-go'] };
 const openRef = async (ref, ms) => { if (!phone() && DESK_ROUTE[ref]) { for (const sel of DESK_ROUTE[ref]) if (!(await click(sel, ms))) return false; return true; } if (phone() && PHONE_ROUTE[ref] && (await page.locator('.ps-tabbar >> visible=true').count())) { for (const sel of PHONE_ROUTE[ref]) if (!(await click(sel, ms))) return false; return true; } return click(`[x-ref="${ref}"]`, ms); };
@@ -143,7 +149,7 @@ async function round(theme) {
   await goto('/admin/health', 2500);
   if (want('overview')) {
   // Overview and its menus.
-  await goto(overview); await setTheme(theme); await goto(overview); await ready(); await alpine('d.setHostMode(false)'); await sleep(500);
+  await goto(overview); await setTheme(theme); await goto(overview); await ready(); await sleep(500);
   for (const view of ['grid', 'compact', 'list']) { await alpine(`d.setOverviewView('${view}')`); await sleep(700); await record('overview-' + view, 'Overzicht, ' + view); }
   // Full width (an overview preference): the scroller as wide as the grid, its scrollbar beside the cards (1.5.0).
   if (!phone() && await alpine('return typeof d.setOverviewPreference === "function"')) {
@@ -160,10 +166,6 @@ async function round(theme) {
   await openNav();
   await click('[x-ref="notifyButton"]'); await record('overview-bell', 'Bel (aankondigingen) open'); await escape();
   await openNav();
-  await openRef('adminButton'); await record('overview-admin', 'Beheermenu (schild) open');
-  // Admin tools (1.4.4, variant D): the second group open, its pages as tiles (on a phone they fold out under the group).
-  if (await click('.ps-admin-group-head:not(.is-open)', 700)) await record('overview-admin-group2', 'Beheermenu, tweede groep open'); await escape();
-  await openNav();
   await click('[x-ref="notifyButton"]');
   // The bell's expand button (1.4.4): a window with every notification.
   if (await click('.ps-notify-all, [x-ref="notifyButton"] ~ .ps-dropdown button[aria-label*="all" i], .ps-dropdown button[aria-label*="expand" i]', 1200)) await record('overview-bell-all', 'Meldingenvenster (alle meldingen) open'); await escape(); await escape();
@@ -175,13 +177,12 @@ async function round(theme) {
   // Host health card's tab under its bottom edge (1.4.4): the nodes fold open.
   if (await click('.ps-health-tab', 900)) { await record('overview-health-nodes', 'Host health, nodes uitgeklapt'); await click('.ps-health-tab', 600); }
   await healthHover('overview');
-  await adminTiles(overview, serverUrl, openNav);
+  await adminPage(overview);
   // The menus under the top bar once more with one announcement bar and with none: their height must follow the bars.
   const unpinBar = async () => { const b = page.locator('button[aria-label="Unpin"], .ps-announcement-unpin, [wire\\:click^="unpin"]').first(); if (!(await b.count())) return false; await b.click().catch(() => {}); await sleep(1500); return true; };
   for (const [tag, label] of [['1bar', 'één aankondigingsbalk'], ['0bar', 'geen aankondigingsbalk']]) {
     if (!(await unpinBar())) { problems.push(`${stand}: no announcement bar to unpin for ${tag}`); break; }
     await openNav(); await click('[x-ref="notifyButton"]'); await record('overview-bell-' + tag, `Bel open, ${label}`); await escape();
-    await openNav(); await openRef('adminButton'); await record('overview-admin-' + tag, `Beheermenu open, ${label}`); await escape();
     await openNav(); await openRef('overviewAppearance'); await record('overview-customize-' + tag, `Weergave aanpassen open, ${label}`); await escape();
   }
   // Pin both bars again for the next stand (the Livewire component keeps the choice per user).
@@ -299,20 +300,47 @@ async function round(theme) {
   }
 
   if (want('host')) {
-  // Host mode: the tree with every section and page, the server list and a server in the frame.
-  await goto(overview); await ready();
-  await alpine('d.setHostMode(true)'); await sleep(2500);
-  await record('host', 'Hostmodus');
-  if (await click('.ps-health-tab', 900)) { await record('host-health-nodes', 'Hostmodus · host health, nodes uitgeklapt'); await click('.ps-health-tab', 600); }
-  await healthHover('host');
-  if (onPhone) { if (await click('.ps-host-menu-toggle', 600)) await record('host-phone-menu', 'Hostmodus · telefoonmenu open'); await escape(); }
-  const heads = page.locator('.ps-host-group-head'); const hn = await heads.count();
-  for (let i = 0; i < hn; i++) { const h = heads.nth(i); const label = (await h.innerText().catch(() => 'sectie ' + i)).trim().split('\n')[0]; await h.click().catch(() => {}); await sleep(2500); await record('host-' + slug(label), 'Hostmodus · ' + label);
-    // Only this group's own pages (the tree keeps other groups open), all of them.
-    const leaves = page.locator('.ps-host-group').nth(i).locator('.ps-host-leaf >> visible=true'); const ln = await leaves.count();
-    for (let j = 0; j < Math.min(ln, 40); j++) { const l = leaves.nth(j); const t = (await l.innerText().catch(() => 'pagina ' + j)).trim(); if (screens.some((s) => s.stand === stand && s.id === 'host-' + slug(label) + '-' + slug(t))) continue; await l.click().catch(() => {}); await sleep(2500); await record('host-' + slug(label) + '-' + slug(t), `Hostmodus · ${label} · ${t}`); } }
-  if (await click('.ps-host-tabs button:nth-child(2)', 1200)) { await record('host-servers', 'Hostmodus · serverlijst'); if (await click('.ps-host-server strong, .ps-host-server', 3000)) { await record('host-server', 'Hostmodus · server open (console in frame)'); await click('.ps-host-server-head .ps-info-more-button, .ps-info-more-button', 500) && await record('host-server-more', 'Hostmodus · server ⋯-menu'); await escape(); } }
-  await alpine('d.setHostMode(false)'); await sleep(800);
+  // The Admin page: every section and page of its menu, the menu kept beside each page, and the servers per node.
+  if (await shieldTo(overview)) {
+    await record('host', 'Admin-pagina');
+    if (onPhone) { await openAdminMenu(); await record('host-phone-menu', 'Admin-pagina · telefoon, menu als blad'); await escape(); }
+    const lost = [], visited = [];
+    const go = async (locator, id, title) => {
+      await markAdminSide(); await locator.click().catch(() => {}); await settle(page, 1800);
+      const st = await adminState(); await record(id, title); visited.push(id);
+      if (!st || !st.kept || !st.shell || st.frames) lost.push({ id, ...st });
+    };
+    const groups = page.locator('.ps-admin-side .ps-host-group'); const gn = await groups.count();
+    for (let i = 0; i < gn; i++) {
+      await openAdminMenu();
+      const head = groups.nth(i).locator('.ps-host-group-head').first();
+      const label = (await head.innerText().catch(() => 'sectie ' + i)).trim().split('\n')[0];
+      if (await head.evaluate((e) => e.tagName === 'A').catch(() => false)) { await go(head, 'host-' + slug(label), 'Admin-pagina · ' + label); continue; }
+      if ((await head.getAttribute('aria-expanded')) !== 'true') { await head.click().catch(() => {}); await sleep(500); }
+      const ln = await groups.nth(i).locator('.ps-host-leaf').count();
+      for (let j = 0; j < Math.min(ln, 40); j++) {
+        await openAdminMenu();
+        const h2 = groups.nth(i).locator('.ps-host-group-head').first();
+        if ((await h2.getAttribute('aria-expanded')) !== 'true') { await h2.click().catch(() => {}); await sleep(500); }
+        const leaf = groups.nth(i).locator('.ps-host-leaf').nth(j);
+        const t = (await leaf.innerText().catch(() => 'pagina ' + j)).trim();
+        const id = 'host-' + slug(label) + '-' + slug(t);
+        if (visited.includes(id)) { if (onPhone) await escape(); continue; }
+        await go(leaf, id, `Admin-pagina · ${label} · ${t}`);
+      }
+    }
+    await openAdminMenu();
+    if (await page.locator('.ps-admin-side .ps-host-health-open >> visible=true').count()) await go(page.locator('.ps-admin-side .ps-host-health-open').first(), 'host-health', 'Admin-pagina · Health');
+    problems.push(`${stand} admin-menu-kept: ${visited.length && !lost.length ? 'ok' : 'WRONG'} ${JSON.stringify({ pages: visited.length, lost: lost.slice(0, 5) })}`);
+    await openAdminMenu();
+    if (await click('.ps-admin-side .ps-host-tabs button:nth-child(2)', 1800)) {
+      await record('host-servers', 'Admin-pagina · servers per node');
+      const rows = await page.locator('.ps-admin-side .ps-host-server >> visible=true').count();
+      problems.push(`${stand} admin-servers: ${rows > 0 ? 'ok' : 'WRONG'} ${JSON.stringify({ rows })}`);
+      if (rows && await click('.ps-admin-side .ps-host-server', 3000)) await record('host-server', 'Admin-pagina · server geopend');
+      if (await shieldTo(overview)) { await openAdminMenu(); await click('.ps-admin-side .ps-host-tabs button:nth-child(1)', 1000); if (onPhone) await escape(); }
+    }
+  } else problems.push(`${stand} host: WRONG no shield link to the Admin page`);
   }
   if (want('seasons') && ['d1440', 'tablet768', 'phone390'].includes(stand.split('-')[0])) await seasons(theme);
   if (want('create') && ['d1440', 'phone390'].includes(stand.split('-')[0])) await createFlow();
@@ -425,17 +453,11 @@ async function createFlow() {
     await goto(urls.servers['Survival SMP'], 3000);
     // 0.7.0 had no Create server on a server page (only the overview, its phone tab bar and the admin list): one there is a test of its own.
     if (await press('server')) await check('create-server-page', 'Create server (serverpagina)'); else problems.push(`${stand} create-server-page: ok none on a server page, as in 0.7.0`);
-    // Host mode: Admin → Servers → Create, inside the frame.
-    await goto(overview); await alpine('d.setHostMode(true)'); await sleep(1200);
-    await alpine(`const sec = d.hostSections().find((x) => x.key === 'servers'); const it = sec && sec.pages.find((p) => p.key === 'serverresource'); if (it) d.openHostLeaf(sec, it); return !!it;`);
-    await page.waitForSelector('.ps-host-frame iframe', { timeout: 8000 }).catch(() => {}); await sleep(2500);
-    const list = page.frames().find((x) => x !== page.mainFrame() && /\/admin\/servers/.test(x.url()));
-    // The list's header buttons sit in Simplify's title bar above the frame (frame.js); the link itself is hidden in the frame.
-    const bridged = page.locator('.ps-frame-tools button:is([aria-label*="Create" i], [aria-label*="New Server" i]) >> visible=true').first();
-    const link = (await bridged.count()) ? bridged : list && list.locator('a[href*="/servers/create"] >> visible=true').first();
-    if (link && (await link.count())) { await link.click().catch(() => {}); await sleep(800); await check('create-host-admin', 'Create server (hostmodus, Admin → Servers → Create)'); }
-    else problems.push(`${stand} create-host-admin: WRONG no Create in Admin → Servers (${list ? rel(list.url()) : 'no frame'})`);
-    await alpine('d.setHostMode(false)'); await sleep(500);
+    // The Admin page: Admin → Servers → Create (Pelican's own link on its page) opens the popup as well.
+    await goto('/admin/servers', 2500);
+    const link = page.locator('.fi-main-ctn a[href*="/servers/create"] >> visible=true').first();
+    if (await link.count()) { await link.click().catch(() => {}); await sleep(800); await check('create-host-admin', 'Create server (Admin-pagina, Servers → Create)'); }
+    else problems.push(`${stand} create-host-admin: WRONG no Create in Admin → Servers (${rel(page.url())})`);
   } else {
     await goto(overview); await sleep(600);
     const tab = page.locator('.ps-tabbar .ps-tab[aria-haspopup="dialog"] >> visible=true').first();
@@ -473,7 +495,7 @@ async function layersFlow() {
   }
   // The top bar's menus over the server card.
   const openNav = async () => { if (onPhone) await page.locator('.ps-tabbar button[aria-controls="ps-navigation-items"]').first().click().catch(() => {}); await sleep(500); };
-  if (!onPhone) for (const [btn, menu, id] of [['[x-ref="notifyButton"]', '#ps-notify-menu', 'bell'], ['[x-ref="adminButton"]', '#ps-admin-menu', 'admin'], ['.ps-account-button', '#ps-account-actions', 'account']]) {
+  if (!onPhone) for (const [btn, menu, id] of [['[x-ref="notifyButton"]', '#ps-notify-menu', 'bell'], ['.ps-account-button', '#ps-account-actions', 'account']]) {
     await goto(serverUrl, 2500); await openNav();
     if (!(await click(btn, 800))) continue;
     const h = await hits(menu); await record(`layers-${id}`, `Lagen · ${id}-menu boven de serverkaart`);
@@ -602,7 +624,7 @@ async function navFlow() {
 
 // Scrollbars (1.5.2): 11px wide with a 4px thumb, 14px short of both ends, in a tint of the background: white 16% in
 // dark, black 16% in light, and white on the console in both. Checked where something scrolls: the overview, the
-// settings, a page in the frame and the console.
+// settings, the Admin page and the console.
 async function scrollbars(serverUrl) {
   const overview = urls.app.find((p) => /App\\Pages\\Overview$/.test(p.class))?.url || '/';
   const theme = stand.endsWith('light') ? 'light' : 'dark';
@@ -625,12 +647,7 @@ async function scrollbars(serverUrl) {
   };
   await goto(overview, 1500); let info = await look(page); await sleep(300); await record('scroll-overview', 'Scrollbalk · overzicht'); judge('overview', info);
   await goto('/admin/simplify', 2000); info = await look(page); await sleep(300); await record('scroll-settings', 'Scrollbalk · instellingen'); judge('settings', info, rel(page.url()));
-  await goto(overview); await alpine('d.setHostMode(true)'); await sleep(1200);
-  await alpine(`const sec = d.hostSections().find((x) => x.key === 'servers'); const it = sec && sec.pages[0]; if (it) d.openHostLeaf(sec, it); return !!it;`);
-  await page.waitForSelector('.ps-host-frame iframe', { timeout: 8000 }).catch(() => {}); await sleep(2500);
-  const frame = page.frames().find((x) => x !== page.mainFrame() && /\/admin/.test(x.url()));
-  info = frame ? await look(frame) : null; await sleep(300); await record('scroll-frame', 'Scrollbalk · pagina in het frame (hostmodus)'); judge('frame', info, frame ? rel(frame.url()) : 'no frame');
-  await alpine('d.setHostMode(false)'); await sleep(500);
+  await goto('/admin/servers', 2500); info = await look(page); await sleep(300); await record('scroll-admin', 'Scrollbalk · Admin-pagina (kaart naast het menu)'); judge('admin', info, rel(page.url()));
   await goto(serverUrl, 3500);
   await page.evaluate(() => { const t = document.querySelector('.ps-console .xterm-scrollable-element'); if (t) t.dispatchEvent(new WheelEvent('wheel', { deltaY: -400, bubbles: true })); }).catch(() => {});
   await sleep(400); info = await look(page, true); await record('scroll-console', 'Scrollbalk · console'); judge('console', info);
@@ -641,28 +658,24 @@ async function scrollbars(serverUrl) {
 async function otherPlugins() {
   const overview = urls.app.find((p) => /App\\Pages\\Overview$/.test(p.class))?.url || '/';
   const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
-  await goto(overview, 1200); await alpine('d.setHostMode(true)'); await sleep(1200);
-  const real = await alpine(`const s = d.hostSections().find((x) => x.key === 'extensions'); return s ? s.pages.map((p) => p.label) : null;`);
-  if (!real) {
-    // A stand-in: the first Admin tools page that is not in a group, or the server list, as one plugin's page.
-    await alpine(`const orig = d.hostSections.bind(d); const any = orig().flatMap((s) => s.pages).find((p) => p.url && !p.settings); d.hostSections = () => { const list = orig(); const at = list.findIndex((s) => s.key === 'health'); const ext = { key: 'extensions', label: 'Other plugins', icon: 'plugins', color: '#2dd4bf', pages: [{ ...any, key: 'test-plugin', label: 'Server directory' }] }; list.splice(at < 0 ? list.length : at, 0, ext); return list; };`);
-    await sleep(300);
-  }
-  if (phone()) { await alpine('d.hostMenuOpen = true'); await sleep(500); }
-  const head = page.locator('.ps-host-group:has(.ps-host-group-head:has-text("Other plugins")) .ps-host-group-head').first();
-  if (!(await head.count())) { say('other-plugins', false, { note: 'no Other plugins group in the tree', real }); await alpine('d.setHostMode(false)'); return; }
+  if (!(await shieldTo(overview))) return say('other-plugins', false, { note: 'no shield link' });
+  await openAdminMenu();
+  const group = '.ps-admin-side .ps-host-group:has(.ps-host-group-head:has-text("Other plugins"))';
+  const head = page.locator(`${group} .ps-host-group-head`).first();
+  // The test panel has a plugin outside Simplify with its own admin page (CLAUDE.md), so the group is real.
+  if (!(await head.count())) { say('other-plugins', false, { note: 'no Other plugins group in the Admin menu' }); if (phone()) await escape(); return; }
   const before = await head.getAttribute('aria-expanded');
-  await head.click().catch(() => {}); await sleep(600);
+  if (before !== 'true') { await head.click().catch(() => {}); await sleep(600); }
   const after = await head.getAttribute('aria-expanded');
-  const leafs = await page.locator('.ps-host-group:has(.ps-host-group-head:has-text("Other plugins")) .ps-host-branch :is(a, button) >> visible=true').count();
-  await record('other-plugins-open', 'Other plugins · uitgeklapt' + (real ? '' : ' (stand-in)'));
-  await page.locator('.ps-host-group:has(.ps-host-group-head:has-text("Other plugins")) .ps-host-branch :is(a, button) >> visible=true').first().click().catch(() => {}); await sleep(2500);
-  const top = await page.evaluate(() => { const h = document.querySelector('.ps-host-head.is-page'); const t = document.querySelector('.ps-host-menu-toggle'); return { head: h ? h.innerText.replace(/\s+/g, ' ').trim() : null, toggle: t ? t.innerText.replace(/\s+/g, ' ').trim() : null }; });
-  await record('other-plugins-page', 'Other plugins · pagina van een plugin' + (real ? '' : ' (stand-in)'));
-  const name = real ? real[0] : 'Server directory';
-  say('other-plugins', before === 'false' && after === 'true' && leafs >= 1 && top.head && top.head.includes('Other plugins') && top.head.includes(name), { real: !!real, before, after, leafs, ...top });
-  if (phone()) say('other-plugins-toggle', top.toggle && top.toggle.includes('Other plugins · ' + name), top);
-  await alpine('d.setHostMode(false)'); await sleep(500);
+  const leaf = page.locator(`${group} .ps-host-branch a >> visible=true`).first();
+  const leafs = await page.locator(`${group} .ps-host-branch a >> visible=true`).count();
+  const name = leafs ? (await leaf.innerText().catch(() => '')).trim() : '';
+  await record('other-plugins-open', 'Other plugins · uitgeklapt');
+  await markAdminSide(); if (leafs) { await leaf.click().catch(() => {}); await settle(page, 2000); }
+  const st = await adminState();
+  const current = await page.evaluate(() => { const a = document.querySelector('.ps-admin-side .ps-host-leaf[aria-current="page"]'); return a ? a.innerText.trim() : null; }).catch(() => null);
+  await record('other-plugins-page', 'Other plugins · pagina van een plugin');
+  say('other-plugins', after === 'true' && leafs >= 1 && !!st && st.kept && st.shell && current === name, { before, after, leafs, name, current, kept: st && st.kept });
 }
 
 // Settings › Browse Hub: the list loads in its tab (placeholders first), the page does not scroll (except on a phone), Install on Hub only
@@ -697,7 +710,7 @@ async function hubFlow() {
   say('hub-details-close', !(await page.locator('.s-hub-dialog').count()), {});
 }
 
-// 1.5.0 extras: the end of the setup in low windows (in and outside host mode), the setup's Look step (#86), the
+// 1.5.0 extras: the end of the setup in low windows (also inside the Admin page), the setup's Look step (#86), the
 // install screen and the EULA bar (#89) and an announcement pinned in the bell (#92). Each check writes ok or WRONG.
 async function extrasFlow(theme) {
   const overview = urls.app.find((p) => /App\\Pages\\Overview$/.test(p.class))?.url || '/';
@@ -707,17 +720,9 @@ async function extrasFlow(theme) {
   // Setup done: the page itself never scrolls; the add-on list scrolls inside its card.
   await goto('/admin/simplify-setup-done', 1500); await record('setup-done', 'Setup klaar (gewone beheerpagina)');
   let f = await fits(page); say('setup-done', f && f.scroll <= f.window, f);
-  await goto(overview); await alpine('d.setHostMode(true)'); await sleep(1500);
-  const leaf = await alpine(`const sec = d.hostSections().find((x) => x.key === 'panel'); const it = sec && sec.pages.find((i) => i.settings); if (!it) return null; d.openHostLeaf(sec, it); return it.label;`);
-  await page.waitForSelector('.ps-host-frame iframe', { timeout: 8000 }).catch(() => {}); await sleep(2500);
-  const frame = page.frames().find((x) => x !== page.mainFrame() && /\/admin/.test(x.url()));
-  if (leaf && frame) {
-    await frame.goto(new URL('/admin/simplify-setup-done?simplify_embed=1', base).href, { waitUntil: 'load' }).catch(() => {}); await sleep(2000);
-    await record('setup-done-host', 'Setup klaar (hostmodus, in het frame)');
-    const ff = await fits(frame), pf = await fits(page);
-    say('setup-done-host', ff && pf && ff.scroll <= ff.window && pf.scroll <= pf.window, { frame: ff, page: pf });
-  } else say('setup-done-host', false, { note: 'no Simplify settings page in host mode', leaf, frames: page.frames().map((x) => rel(x.url())) });
-  await alpine('d.setHostMode(false)'); await sleep(500);
+  // In the Admin page the end of the setup fits the card beside the menu; neither the page nor the card's frame scrolls.
+  const card = await page.evaluate(() => { const c = document.querySelector('.fi-layout > .fi-main-ctn'); return { shell: document.documentElement.classList.contains('ps-shell-menu'), page: document.documentElement.scrollHeight - innerHeight, card: c ? c.scrollHeight - c.clientHeight : null }; }).catch(() => null);
+  say('setup-done-host', !!card && card.shell && card.page <= 1 && (onPhone || card.card <= 1), card);
 
   // The setup's Look step (#86): logo, text or both; effect; colour = accent. The preview follows every choice.
   if (stand.split('-')[0] !== 'laag1100') {
@@ -852,8 +857,8 @@ async function fixesFlow() {
     }).catch(() => null);
     await record('pinned-overview', 'Overzicht · vastgezette meldingen onder de bovenbalk');
     say('pinned-overview', !!pins && pins.barTop >= pins.topBottom && pins.barTop < pins.toolsTop && Math.abs(pins.barLeft - pins.toolsLeft) <= 2 && Math.abs(pins.barRight - pins.toolsRight) <= 2, pins);
-    // An add-on's account page (as Server Maker's Steam account) opens in the content area from the account menu: a
-    // real click on the button, nothing over it, no page load (Jeroen V29, 2-11).
+    // An add-on's account page (as Server Maker's Steam account) opens from the account menu inside Simplify: a real
+    // click on the button, nothing over it, no page load (wire:navigate, Jeroen V29, 2-11), Simplify's header on top.
     const accountPage = async (from) => {
       let loads = 0; const onLoad = () => loads++; page.on('load', onLoad);
       await page.locator('.ps-top .ps-account-button >> visible=true').first().click().catch(() => {}); await sleep(700);
@@ -862,17 +867,18 @@ async function fixesFlow() {
       await page.locator(`${sel} >> visible=true`).first().click({ timeout: 4000 }).catch(() => {});
       await page.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {}); await sleep(2000);
       page.off('load', onLoad);
-      const frame = await page.evaluate(() => { const f = [...document.querySelectorAll('.ps-host-frame iframe[data-ps-frame="native"]')].find((e) => e.getClientRects().length); let text = null; try { text = !!f?.contentDocument?.querySelector('.audit-account-page'); } catch {} return f ? { src: new URL(f.src).pathname, text } : null; }).catch(() => null);
-      return { from, onTop: top, loads, frame };
+      const at = await page.evaluate(() => ({ path: location.pathname, text: !!document.querySelector('.fi-main-ctn .audit-account-page'), shell: document.documentElement.classList.contains('ps-shell'), header: !!document.querySelector('.ps-admin-top .ps-top'), frames: document.querySelectorAll('.fi-main-ctn iframe').length })).catch(() => null);
+      return { from, onTop: top, loads, at };
     };
     const fromOverview = await accountPage('overview');
     await record('account-page', 'Accountmenu · pagina van een add-on in het contentvak');
-    say('account-page', fromOverview.onTop === true && fromOverview.loads === 0 && fromOverview.frame?.src === '/directory-account' && fromOverview.frame.text === true, fromOverview);
-    await alpine('d.closeAdminView()'); await sleep(400);
+    const inside = (r) => r.at?.path === '/directory-account' && r.at.text === true && r.at.shell && r.at.header && !r.at.frames;
+    say('account-page', fromOverview.onTop === true && fromOverview.loads === 0 && inside(fromOverview), fromOverview);
+    await goto(overview, 1500);
     if (urls.servers['Survival SMP']) {
       await goto(urls.servers['Survival SMP'], 3000);
       const fromServer = await accountPage('server');
-      say('account-page-server', fromServer.onTop === true && fromServer.frame?.src === '/directory-account' && fromServer.frame.text === true, fromServer);
+      say('account-page-server', fromServer.onTop === true && inside(fromServer), fromServer);
       await goto(overview, 2500);
     }
     // Every notification option sits in the bell sheet: this device, messages, Pelican's, and the devices.
@@ -898,21 +904,14 @@ async function fixesFlow() {
     await record('quick-commands', 'Server · telefoon: quick commands');
     say('quick-commands', qc && qc.adds === 0 && qc.gone === 0 && hidden === 0, { ...qc, hidden });
   }
-  // Host mode on a phone: a page's buttons (Health's refresh, Servers' search and Create) sit in a slim row above the
-  // page, not loose in the frame under an empty header.
+  // The Admin page on a phone: a page's buttons (Health's refresh, Servers' search and Create) are on the page itself,
+  // inside the window, above the bottom bar.
   if (phone()) {
-    const overview = urls.app.find((p) => /App\\Pages\\Overview$/.test(p.class))?.url || '/';
-    await goto(overview); await alpine('d.setHostMode(true)'); await sleep(1200);
-    for (const [want, id] of [['health', 'host-phone-health'], ['serverresource', 'host-phone-servers']]) {
-      const opened = await alpine(`for (const sec of d.hostSections()) { const it = sec.pages.find((p) => p.key === '${want}' || (p.label || '').toLowerCase() === '${want}'); if (it) { d.openHostLeaf(sec, it); return it.label; } } return null;`);
-      await page.waitForSelector('.ps-host-frame iframe', { timeout: 8000 }).catch(() => {}); await sleep(3000);
-      await record(id, `Hostmodus · telefoon, ${opened || want}`);
-      const frame = page.frames().find((x) => x !== page.mainFrame() && /\/admin/.test(x.url()));
-      const row = await page.evaluate(() => { const h = document.querySelector('.ps-host-head.is-page'); const t = h && h.querySelector('.ps-frame-tools'); return { row: !!h && h.getClientRects().length > 0, tools: t ? [...t.querySelectorAll('button, input')].filter((e) => e.getClientRects().length).length : 0 }; }).catch(() => null);
-      const loose = frame ? await frame.evaluate(() => [...document.querySelectorAll('.fi-header-actions-ctn :is(button, a), .fi-ta-header-toolbar > .fi-ta-actions :is(button, a)')].filter((e) => e.getClientRects().length).length).catch(() => -1) : -1;
-      say(id, !!opened && row && row.row && row.tools > 0 && loose === 0, { opened, ...row, loose });
+    for (const [url, id] of [['/admin/health', 'host-phone-health'], ['/admin/servers', 'host-phone-servers']]) {
+      await goto(url, 2500); await record(id, `Admin-pagina · telefoon, ${url}`);
+      const row = await page.evaluate(() => { const bar = document.querySelector('.ps-admin-side .ps-tabbar'); const limit = bar && bar.getClientRects().length ? bar.getBoundingClientRect().top : innerHeight; const tools = [...document.querySelectorAll('.fi-main-ctn :is(.fi-header-actions-ctn, .fi-ta-header-toolbar, .s-health) :is(button, a, input)')].filter((e) => e.getClientRects().length); return { tools: tools.length, inside: tools.every((e) => { const r = e.getBoundingClientRect(); return r.left >= 0 && r.right <= innerWidth + 1 && r.bottom <= limit + 1; }), bar: !!bar && bar.getClientRects().length > 0 }; }).catch(() => null);
+      say(id, !!row && row.tools > 0 && row.inside && row.bar, row);
     }
-    await alpine('d.setHostMode(false)'); await sleep(500);
   }
   // Phones (1.5.4): one frame on every screen. No menu button on top, the bell and the account in the top bar, the
   // overview's bar without "Servers", and every menu a sheet from the bottom over the full width; a tap beside a sheet
@@ -960,29 +959,25 @@ async function fixesFlow() {
       say('phone-frame-server', srv.menuButton === false && srv.back && srv.back <= 48 && isSheet(more), { ...srv, more });
       await escape();
     }
-    await goto(overview, 1500); await alpine('d.setHostMode(true)'); await sleep(1500);
-    const toggle = await sheet('.ps-host-menu-toggle'); await record('phone-frame-host', 'Telefoon · hostmodus, paginaknop onderin');
-    say('phone-frame-host', isSheet(toggle) && toggle.height <= 100, toggle);
-    await alpine('d.setHostMode(false)'); await sleep(500);
-    // Pelican's lists inside Simplify (host mode's frame) are short rows: no checkboxes, no column titles and no egg
+    // The Admin page: its own bottom bar (Servers, Admin, Menu) and the menu as a sheet over the full width.
+    await goto('/admin/health', 2000);
+    const tabs = await page.evaluate(() => [...document.querySelectorAll('.ps-admin-side .ps-tabbar .ps-tab')].filter((b) => b.getClientRects().length).map((b) => b.innerText.trim())).catch(() => null);
+    await openAdminMenu();
+    const menu = await sheet('.ps-admin-side.menu-open .ps-host-side'); await record('phone-frame-host', 'Telefoon · Admin-pagina, menu als blad');
+    say('phone-frame-host', Array.isArray(tabs) && tabs.length === 3 && isSheet(menu), { tabs, menu });
+    await escape();
+    // Pelican's lists inside Simplify (the Admin page) are short rows: no checkboxes, no column titles and no egg
     // descriptions. The same page in the legacy panel keeps Pelican's own table (K-B5, Jeroen 2-11).
     const measureEggs = () => { const rows = [...document.querySelectorAll('.fi-ta-row')].filter((r) => r.getClientRects().length); const shown = (s) => [...document.querySelectorAll(s)].filter((e) => e.getClientRects().length > 0).length; return { rows: rows.length, tallest: Math.max(0, ...rows.map((r) => Math.round(r.getBoundingClientRect().height))), checkboxes: shown('.fi-ta-table .fi-ta-record-checkbox'), head: shown('.fi-ta-table thead'), descriptions: shown('.fi-ta-table .fi-ta-cell :is([class$="-description"], [class*="-description "])'), names: [...document.querySelectorAll('.fi-ta-row')].filter((r) => r.getClientRects().length && /[A-Za-z]{3}/.test(r.innerText)).length, wide: document.documentElement.scrollWidth > innerWidth + 1 }; };
-    let eggs = null;
-    await goto(overview, 1500);
-    const eggItem = await alpine(`for (const sec of d.hostSections()) { const it = sec.pages.find((i) => i.key === 'eggresource'); if (it) return [sec.key, it.key]; } return null;`);
-    if (eggItem) {
-      await page.goto('about:blank').catch(() => {});
-      await goto(`${overview}#admin:${encodeURIComponent(eggItem[0])}/${encodeURIComponent(eggItem[1])}`, 600);
-      await page.waitForSelector('.ps-host-frame iframe', { timeout: 10000 }).catch(() => {});
-      const frame = page.frames().find((f) => f !== page.mainFrame() && /\/admin\/eggs/.test(f.url()));
-      if (frame) { await frame.waitForLoadState('load').catch(() => {}); await sleep(1800); eggs = await frame.evaluate(measureEggs).catch(() => null); }
-    }
+    await goto(new URL('/admin/eggs', base).href, 2500);
+    const eggs = await page.evaluate(measureEggs).catch(() => null);
     await record('phone-eggs', 'Telefoon · Eggs als korte rijen (Simplify)');
     say('phone-eggs', eggs && eggs.rows > 0 && eggs.names === eggs.rows && eggs.tallest <= 90 && !eggs.checkboxes && !eggs.head && !eggs.descriptions, eggs);
-    await goto(new URL('/admin/eggs', base).href, 2500);
+    await goto(new URL('/admin/eggs?simplify_legacy=1', base).href, 2500);
     const legacy = await page.evaluate(measureEggs).catch(() => null);
     await record('phone-eggs-legacy', 'Telefoon · Eggs in het legacy-paneel (Pelicans tabel)');
     say('phone-eggs-legacy', legacy && legacy.rows > 0 && legacy.head > 0 && !legacy.wide, legacy);
+    await goto(new URL('/admin/eggs?simplify_legacy=0', base).href, 800);
     // Nothing saves itself (P-38): Save stays, a change shows "Changes made" with Save and Discard, and leaving asks first.
     await goto(new URL('/admin/simplify', base).href, 2500);
     const save = await vis('.s-save-button, .s-settings > .s-bar button[type="submit"]');

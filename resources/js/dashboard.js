@@ -39,19 +39,10 @@
     return {
       boot,
       wire,
-      // The server page (later) and host mode share this component; the overview has neither.
+      // The server page shares this component; the overview has none.
       server: null,
-      hostMode: false,
-      // An admin page opened from Admin tools outside host mode: Simplify's frame without the tree (host.blade.php).
-      adminView: false,
       // Image URLs that did not load (an egg icon behind a wrong APP_URL, a deleted file): the next icon is used instead.
       brokenImages: {},
-      hostTab: 'admin',
-      hostMenuOpen: false,
-      hostSection: null,
-      hostPage: null,
-      hostOpen: [],
-      hostServer: null,
       refreshSeconds: Math.max(5, Number(boot.performance?.overview_seconds) || 15) * 1000,
       overviewDockObserver: null,
       appearanceMenu: false,
@@ -66,8 +57,6 @@
       pushOffer: false,
       notifyAll: false,
       push: { enabled: false, state: 'unsupported', busy: false, endpoint: null, key: null, messages: true, pelican: true, updates: null, scheduler: null, devices: [] },
-      adminMenu: false,
-      adminOpen: null,
       overviewCompact: false,
       phone: false,
       overviewPreferences: { ...OVERVIEW_DEFAULTS },
@@ -116,7 +105,6 @@
       init() {
         this.initShell();
         this.restoreOverviewView();
-        this.restoreHostMode();
         this.openAdminFromHash();
         // /simplify#notifications (the account menu on Pelican's own pages) opens the window with every notification.
         if (location.hash === '#notifications') {
@@ -136,7 +124,7 @@
         this.$nextTick(() => this.applyScale());
         // Every menu under the top bar ends inside the window when it opens, and again when the window changes.
         // The server's ⋯ menu exists only on the server page (server.js).
-        const menus = Object.entries({ notifyMenu: 'ps-notify-menu', adminMenu: 'ps-admin-menu', appearanceMenu: 'ps-overview-appearance-menu', groupsMenu: 'ps-overview-groups-menu', infoMenu: 'ps-info-menu' })
+        const menus = Object.entries({ notifyMenu: 'ps-notify-menu', appearanceMenu: 'ps-overview-appearance-menu', groupsMenu: 'ps-overview-groups-menu', infoMenu: 'ps-info-menu' })
           .filter(([key]) => key in this);
         for (const [key, id] of menus) this.$watch(key, (open) => open && this.$nextTick(() => this.fitDropdown(document.getElementById(id))));
         addEventListener('resize', () => menus.forEach(([key, id]) => this[key] && this.fitDropdown(document.getElementById(id))));
@@ -425,61 +413,10 @@
         }, 400);
       },
 
-      /* Admin menu ----------------------------------------------------------------------------- */
-      /** The groups of host mode and Admin tools, worked out on the server (AdminTree), so add-ons share them. */
+      /* Admin page -------------------------------------------------------------------------------- */
+      /** The admin pages as the Admin menu groups them (AdminTree), worked out on the server so add-ons share them. */
       hostSections() {
         return this.boot.admin_tree || [];
-      },
-      /** The Admin tools groups, without Health (its checks have their own row under the groups). */
-      adminSections() {
-        return this.hostSections().filter((section) => section.key !== 'health');
-      },
-      /** The open group: on a wide window always one (the first by default), in the phone menu none until tapped. */
-      adminGroup() {
-        const keys = this.adminSections().map((section) => section.key);
-        if (keys.includes(this.adminOpen)) return this.adminOpen;
-        return window.matchMedia('(max-width: 900px)').matches ? null : keys[0] || null;
-      },
-      adminSection() {
-        return this.adminSections().find((section) => section.key === this.adminGroup()) || null;
-      },
-      pickAdminGroup(key) {
-        const phone = window.matchMedia('(max-width: 900px)').matches;
-        this.adminOpen = phone && this.adminGroup() === key ? null : key;
-        this.$nextTick(() => this.fitDropdown(document.getElementById('ps-admin-menu')));
-      },
-      adminHealthPage() {
-        return this.adminPages().flatMap((group) => group.items).find((item) => item.key === 'health') || null;
-      },
-      /** Admin tools open their pages inside Simplify: on the overview in place, from a server page via the overview. */
-      adminLink(section, item) {
-        return (this.boot.list_url || '/') + '#admin:' + encodeURIComponent(section.key) + '/' + encodeURIComponent(item.key);
-      },
-      openAdminPage(event, section, item) {
-        if (event?.ctrlKey || event?.metaKey || event?.shiftKey || this.server) return;
-        event?.preventDefault();
-        this.adminMenu = false;
-        this.navMenu = false;
-        if (!this.hostMode) this.adminView = true;
-        this.openHostLeaf(section, item);
-      },
-      openAdminHealth(event) {
-        const section = this.hostSections().find((x) => x.key === 'health');
-        if (section?.pages[0]) this.openAdminPage(event, section, section.pages[0]);
-      },
-      /** An add-on's account page: on the overview in place, from a server page via the overview, as Admin tools do. */
-      accountLink(page) {
-        return this.server ? (this.boot.list_url || '/') + '#account:' + encodeURIComponent(page.key) : page.url;
-      },
-      openAccountPage(event, page) {
-        if (event?.ctrlKey || event?.metaKey || event?.shiftKey || this.server || !page) return;
-        event?.preventDefault();
-        this.accountMenu = false;
-        this.navMenu = false;
-        if (!this.hostMode) this.adminView = true;
-        this.hostSection = { key: 'account', label: page.label, icon: 'account', pages: [page] };
-        this.hostPage = page;
-        this.hostServer = null;
       },
       /** "Create server" (Server Maker, or Pelican's own form) opens in a Simplify popup, on every page. True when it did. */
       openCreate(event, choice) {
@@ -490,103 +427,27 @@
         this.createFrame = { url: this.frameUrl(choice.url), label: choice.label || t('dashboard.create_server') };
         return true;
       },
-      closeAdminView() {
-        this.adminView = false;
-        if (!this.hostMode) this.hostPage = null;
-      },
-      /** /simplify#admin:group/page (a link from Admin tools on a server page) opens that page once. */
+      /** Old links to an admin or account page inside the overview (/simplify#admin:group/page, #account:key) open that
+          page itself: the Admin page (V52) has it without a frame. */
       openAdminFromHash() {
         const account = /^#account:(.+)$/.exec(location.hash);
-        if (account) {
-          history.replaceState(null, '', location.pathname + location.search);
-          return this.openAccountPage(null, (this.boot.account_pages || []).find((x) => x.key === decodeURIComponent(account[1])));
-        }
-        const match = /^#admin:([^/]+)\/(.+)$/.exec(location.hash);
-        if (!match) return;
+        const admin = /^#admin:([^/]+)\/(.+)$/.exec(location.hash);
+        if (!account && !admin) return;
         history.replaceState(null, '', location.pathname + location.search);
-        const section = this.hostSections().find((x) => x.key === decodeURIComponent(match[1]));
-        const item = section?.pages.find((x) => x.key === decodeURIComponent(match[2]));
-        if (item) this.openAdminPage(null, section, item);
+        const page = account
+          ? (this.boot.account_pages || []).find((x) => x.key === decodeURIComponent(account[1]))
+          : this.hostSections().find((x) => x.key === decodeURIComponent(admin[1]))?.pages.find((x) => x.key === decodeURIComponent(admin[2]));
+        if (page?.url) location.assign(page.url);
       },
       /** Latest results of Pelican's health checks (admins only); empty until the checks have run once. */
       healthChecks() {
         return this.boot.health_checks || [];
       },
+      /** The Health page of the Admin page, for the health checks' marks. */
+      healthUrl() {
+        return this.hostSections().find((x) => x.key === 'health')?.pages[0]?.url || this.boot.admin_url || '';
+      },
 
-      /* Host mode -------------------------------------------------------------------------------- */
-      /** Host mode: an admin's choice on this device; otherwise on for hosting panels with more than one node. */
-      hostModeKey() {
-        return 'pelicanSimplify.hostMode.' + encodeURIComponent(this.boot.user || 'default');
-      },
-      restoreHostMode() {
-        if (!this.adminPages().length) return;
-        let saved = null, last = {};
-        try {
-          saved = localStorage.getItem(this.hostModeKey());
-          // Back from a server: reopen the section and page that were open (this browser tab only).
-          last = JSON.parse(sessionStorage.getItem(this.hostModeKey() + '.place') || '{}') || {};
-        } catch {}
-        this.hostMode = saved === null ? !!this.boot.host_mode_auto && this.nodeOptions().length > 1 : saved === '1';
-        if (!this.hostMode) return;
-        const sections = this.hostSections();
-        const section = sections.find((x) => x.key === last.section) || sections.find((x) => x.key === 'health') || sections[0];
-        this.openHostSection(section);
-        const page = section?.pages.find((item) => item.key === last.page);
-        if (page) this.openHostLeaf(section, page);
-      },
-      setHostMode(on) {
-        this.hostMode = !!on && this.adminPages().length > 0;
-        if (this.hostMode && !this.hostPage) this.openHostSection(this.hostSections().find((x) => x.key === 'health') || this.hostSections()[0]);
-        try {
-          localStorage.setItem(this.hostModeKey(), this.hostMode ? '1' : '0');
-        } catch {}
-      },
-      /** A section opens on its first page; a page picked in the tree opens with its section. */
-      openHostSection(section) {
-        if (section) this.openHostLeaf(section, section.pages[0]);
-      },
-      openHostLeaf(section, item) {
-        if (section && !this.hostOpen.includes(section.key)) this.hostOpen = [...this.hostOpen, section.key];
-        this.hostSection = section;
-        this.hostPage = item || null;
-        this.hostServer = null;
-        this.hostMenuOpen = false;
-        try {
-          sessionStorage.setItem(this.hostModeKey() + '.place', JSON.stringify({ section: section?.key || null, page: item?.key || null }));
-        } catch {}
-      },
-      /** A group with more than one page folds open and shut, and so does Other plugins, so a plugin's page shows its own name. */
-      hostBranch(section) {
-        return !!section && (section.pages.length > 1 || section.key === 'extensions');
-      },
-      /** The open page's group opens with it. */
-      hostBranchOpen(section) {
-        return this.hostBranch(section) && this.hostOpen.includes(section.key);
-      },
-      toggleHostBranch(section) {
-        this.hostOpen = this.hostOpen.includes(section.key) ? this.hostOpen.filter((key) => key !== section.key) : [...this.hostOpen, section.key];
-      },
-      hostAllOpen() {
-        return this.hostSections().every((section) => !this.hostBranch(section) || this.hostOpen.includes(section.key));
-      },
-      toggleHostBranches() {
-        this.hostOpen = this.hostAllOpen() ? [] : this.hostSections().filter((section) => this.hostBranch(section)).map((section) => section.key);
-      },
-      openHostServer(s) {
-        this.hostServer = s;
-        this.hostMenuOpen = false;
-      },
-      closeHostServer() {
-        this.hostServer = null;
-      },
-      hostServerVersion(s) {
-        const version = String(s.reported_version || '').trim();
-        const software = String(s.software || s.game_label || '').trim();
-        return version && !version.toLowerCase().includes(software.toLowerCase()) ? (software ? software + ' · ' + version : version) : version || software || '—';
-      },
-      hostNodes() {
-        return this.nodeOptions().map((node) => ({ ...node, servers: (this.boot.servers || []).filter((s) => Number(s.node_id) === node.id) })).filter((node) => node.servers.length);
-      },
       /** Same-origin URL with the embed marker, or '' for anything else. A framed page drops its own menus (head.blade.php). */
       frameUrl(href) {
         try {

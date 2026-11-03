@@ -22,7 +22,7 @@ RULES = [
     (r'^resources/(css|js|fonts|img|overrides)/', 'all'),
     (r'^resources/views/(head|form-page)\.blade\.php$', 'all'),
     (r'^resources/views/dashboard/(overview|header|tabbar|account|customize-menu|groups-menu|icons|assets)\.blade\.php$', 'all'),
-    (r'^resources/views/dashboard/host\.blade\.php$', 'host,create'),
+    (r'^resources/views/pages/admin-(side|top)\.blade\.php$', 'overview,host,create,extras'),
     (r'^resources/views/dashboard/(health-checks)\.blade\.php$', 'overview,host'),
     (r'^resources/views/dashboard/(notify-item)\.blade\.php$', 'overview,notify'),
     (r'^resources/views/dashboard/create-buttons\.blade\.php$', 'overview,create,klant'),

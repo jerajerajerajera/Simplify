@@ -27,7 +27,7 @@
     <nav class="ps-top-actions" aria-label="{{ $u('panel_navigation') }}" :class="{'nav-open': navMenu}"
          x-on:click.outside="navMenu=false; accountMenu=false" x-on:keydown.escape.stop="navMenu=false; accountMenu=false">
         {{-- Health in the top bar: the button opens the details below it; the create buttons sit next to it. --}}
-        <div class="ps-top-overview" x-show="!server && !hostMode && !adminView && healthPlace()==='top-bar'" x-cloak>
+        <div class="ps-top-overview" x-show="!server && !$el.closest('.ps-admin-top') && healthPlace()==='top-bar'" x-cloak>
             <button type="button" class="ps-btn ps-health-pill" :class="boot.host_health?.state || 'unavailable'" x-on:click="healthPopover=!healthPopover; healthExpanded=false; healthOpenNodes=[]; placeHealthPopover()" :aria-expanded="healthPopover" aria-controls="ps-health-panel" :aria-label="Simplify.fill(@js($u('host_health_label')), { state: boot.host_health?.label || @js($u('unavailable')) })">
                 <svg aria-hidden="true"><use href="#ps-heart"/></svg><span x-text="boot.host_health?.label || @js($u('unavailable'))"></span>
             </button>
@@ -111,55 +111,11 @@
                 <svg aria-hidden="true"><use href="#ps-download"/></svg><span class="ps-mobile-label">{{ $u('install_app') }}</span>
             </button>
             {{-- Phones list these buttons as a menu: first what everyone uses, then the admin buttons under their own heading. --}}
-            <span class="ps-label ps-nav-heading" x-show="adminPages().length">{{ $u('panel') }}</span>
-            {{-- Admin tools: Pelican's admin pages in coloured sections; each opens Pelican's own page. --}}
-            <div class="ps-notify ps-nav-admin" x-show="adminPages().length && !(hostMode && !server)" x-on:click.outside="adminMenu=false" x-on:keydown.escape.stop="adminMenu=false; $refs.adminButton.focus()">
-                <button type="button" x-ref="adminButton" class="ps-btn is-icon is-subtle" data-tip="{{ $u('admin_tools') }}" aria-label="{{ $u('admin_tools') }}" aria-controls="ps-admin-menu" :aria-expanded="adminMenu"
-                        x-on:click="adminMenu=!adminMenu; notifyMenu=false; appearanceMenu=false; groupsMenu=false; accountMenu=false">
-                    <svg aria-hidden="true"><use href="#ps-shield"/></svg><span class="ps-mobile-label">{{ $u('admin_tools') }}</span>
-                </button>
-                <div id="ps-admin-menu" class="ps-dropdown is-end ps-admin-menu" x-show="adminMenu" x-cloak x-transition.opacity>
-                    <strong class="ps-dropdown-title">{{ $u('admin_tools') }}</strong>
-                    {{-- Groups on the left, one open at a time; its pages as tiles on the right. In the phone menu the tiles fold out under their group. --}}
-                    <div class="ps-admin-split">
-                        <div class="ps-admin-nav">
-                            <template x-for="section in adminSections()" :key="section.key">
-                                <div class="ps-admin-group" :class="{'is-open': adminGroup() === section.key}" :style="{'--ps-tone': section.color}">
-                                    <button type="button" class="ps-admin-group-head" :aria-expanded="adminGroup() === section.key" x-on:click="pickAdminGroup(section.key)">
-                                        <span class="ps-host-rail-icon"><svg aria-hidden="true"><use :href="'#ps-'+section.icon"/></svg></span><span class="ps-admin-group-name" x-text="section.label"></span>
-                                        <small class="ps-admin-group-count" x-text="section.pages.length"></small><svg class="ps-admin-group-chevron" aria-hidden="true"><use href="#ps-chevron"/></svg>
-                                    </button>
-                                    <div class="ps-admin-tiles is-inline" x-show="adminGroup() === section.key">
-                                        <template x-for="item in section.pages" :key="item.key">
-                                            <a class="ps-admin-tile" :href="adminLink(section, item)" x-on:click="openAdminPage($event, section, item)"><span class="ps-host-rail-icon"><svg aria-hidden="true"><use :href="'#ps-'+item.icon"/></svg></span><span x-text="item.label"></span></a>
-                                        </template>
-                                    </div>
-                                </div>
-                            </template>
-                        </div>
-                        <div class="ps-admin-pane">
-                            <template x-if="adminSection()">
-                                <div :style="{'--ps-tone': adminSection().color}">
-                                    <div class="ps-admin-pane-head"><span x-text="adminSection().label"></span><small x-text="adminSection().pages.length"></small></div>
-                                    <div class="ps-admin-tiles">
-                                        <template x-for="item in adminSection().pages" :key="item.key">
-                                            <a class="ps-admin-tile" :href="adminLink(adminSection(), item)" x-on:click="openAdminPage($event, adminSection(), item)"><span class="ps-host-rail-icon"><svg aria-hidden="true"><use :href="'#ps-'+item.icon"/></svg></span><span x-text="item.label"></span></a>
-                                        </template>
-                                    </div>
-                                </div>
-                            </template>
-                        </div>
-                    </div>
-                    <template x-if="adminHealthPage()">
-                        <div class="ps-admin-health">
-                            <a class="ps-admin-health-title" :href="adminLink({ key: 'health' }, { key: 'health' })" x-on:click="openAdminHealth($event)"><svg aria-hidden="true"><use href="#ps-heart"/></svg><span>{{ $u('host_health_checks') }}</span></a>
-                            <div class="ps-health-grid">
-                                @include('simplify::dashboard.health-checks', ['open' => 'server ? (location.href = adminLink({ key: \'health\' }, { key: \'health\' })) : openAdminHealth(null)'])
-                            </div>
-                        </div>
-                    </template>
-                </div>
-            </div>
+            <span class="ps-label ps-nav-heading" x-show="boot.admin_url">{{ $u('panel') }}</span>
+            {{-- The Admin page (V52): Pelican's admin pages inside Simplify, with the Admin menu beside them (AdminSide). --}}
+            <a class="ps-btn is-icon is-subtle ps-nav-admin" x-show="boot.admin_url" x-cloak :href="boot.admin_url" data-tip="{{ $u('admin') }}" aria-label="{{ $u('admin') }}" :aria-current="boot.admin_here ? 'page' : null">
+                <svg aria-hidden="true"><use href="#ps-shield"/></svg><span class="ps-mobile-label">{{ $u('admin') }}</span>
+            </a>
             @include('simplify::dashboard.account')
         </div>
     </nav>

@@ -188,9 +188,9 @@ const measure = (opts = {}) => {
       if (actions.length) r.info.actionsBelow = actions.slice(0, 4).map((el) => `"${text(el)}" at y=${Math.round(el.getBoundingClientRect().top)}`);
       if (fiButtons.length) r.info.filamentButtons = fiButtons.slice(0, 4).map((el) => `"${text(el)}"`);
     }
-    // Host mode's own page: the content box must end inside the window.
-    const hostMain = document.querySelector('.ps-host-main');
-    if (hostMain && visible(hostMain)) { const b = hostMain.getBoundingClientRect(); r.info.box = `${Math.round(b.top)}..${Math.round(b.bottom)} of ${H}`; if (b.bottom > H + 2) push('boxoff', `host mode's content box ends below the window (${Math.round(b.bottom)} > ${H})`); }
+    // The Admin page and the account pages (html.ps-shell): the card with Pelican's page must end inside the window.
+    const hostMain = document.documentElement.classList.contains('ps-shell') ? document.querySelector('.fi-layout > .fi-main-ctn') : null;
+    if (hostMain && visible(hostMain)) { const b = hostMain.getBoundingClientRect(); r.info.box = `${Math.round(b.top)}..${Math.round(b.bottom)} of ${H}`; if (b.bottom > H + 2) push('boxoff', `the Admin page's content card ends below the window (${Math.round(b.bottom)} > ${H})`); }
     else if (main && visible(main) && r.fit) { const b = main.getBoundingClientRect(); r.info.box = `${Math.round(b.top)}..${Math.round(b.bottom)} of ${H}`; }
   }
   // Dropdowns under the top bar: at most two thirds of the window, scrolling only when the content needs it,

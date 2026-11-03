@@ -17,8 +17,9 @@ Simplify 1.0 is a rebuild from the ground up. The earlier PelicanSimplify (0.6.0
   start asks for the Minecraft EULA when it is still open. The menu changes only the page next to it. A suspended
   server tells its owner that the hosting company paused it.
 - Create server opens in a Simplify popup from every entry point, with Server Maker when it is installed.
-- Host mode for admins: the admin pages and the servers per node on the left, the page on the right, node health at
-  the bottom. Pelican's admin pages open inside Simplify.
+- The Admin page for every admin: the admin pages (or the servers per node) in a menu on the left, Pelican's page next
+  to it, node health at the bottom. On a phone the menu is a sheet from the bottom bar. The legacy panel in the account
+  menu shows Pelican's own pages.
 - Announcements at the top of every page, in the bell, as app notifications and in game chats. Pin one to everyone's
   notifications.
 - Your servers on your own website, with a script, an iframe or a status page.

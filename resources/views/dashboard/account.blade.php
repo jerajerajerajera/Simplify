@@ -19,12 +19,11 @@
                     <svg aria-hidden="true"><use :href="t==='light' ? '#ps-sun' : t==='dark' ? '#ps-moon' : '#ps-monitor'"/></svg>
                 </button>
             </template>
-            <button type="button" class="ps-btn is-icon" x-show="adminPages().length && !server" x-on:click="setHostMode(!hostMode); accountMenu=false" :data-tip="hostMode ? @js($u('switch_to_simple_mode')) : @js($u('switch_to_host_mode'))" :aria-label="hostMode ? @js($u('switch_to_simple_mode')) : @js($u('switch_to_host_mode'))">
-                <svg aria-hidden="true"><use :href="hostMode ? '#ps-grid' : '#ps-host'"/></svg>
-            </button>
-            {{-- Add-on pages (such as Server Maker's Steam account) open inside Simplify, like Admin tools. --}}
+            {{-- Customize: the overview's look and its server groups (on the overview). --}}
+            <button type="button" class="ps-btn is-icon" x-show="!server && !$el.closest('.ps-admin-top')" x-on:click.stop="accountMenu=false; appearanceMenu=true" data-tip="{{ $u('customize') }}" aria-label="{{ $u('customize') }}"><svg aria-hidden="true"><use href="#ps-wand"/></svg></button>
+            {{-- Add-on pages (such as Server Maker's Steam account): Pelican's account panel inside Simplify (AdminTop). --}}
             <template x-for="page in boot.account_pages || []" :key="page.key">
-                <a class="ps-btn is-icon" :href="accountLink(page)" x-on:click="openAccountPage($event, page)" :data-tip="page.label" :aria-label="page.label" x-html="page.icon"></a>
+                <a class="ps-btn is-icon" :href="page.url" wire:navigate :data-tip="page.label" :aria-label="page.label" x-html="page.icon"></a>
             </template>
             <template x-for="link in boot.account_links" :key="link.url">
                 <a class="ps-btn is-icon" :href="link.url" target="_blank" rel="noopener" :data-tip="link.label" :aria-label="Simplify.fill(@js($u('opens_in_new_tab')), { label: link.label })" x-html="link.icon"></a>
@@ -32,7 +31,7 @@
             <a class="ps-btn is-icon" x-show="boot.support_url" x-cloak :href="boot.support_url" target="_blank" rel="noopener noreferrer" data-tip="{{ $u('support') }}" aria-label="{{ $u('opens_in_new_tab', ['label' => $u('support')]) }}"><svg aria-hidden="true"><use href="#ps-question"/></svg></a>
             {{-- Install app (phones; the top bar has it elsewhere) and the legacy panel. --}}
             <button type="button" class="ps-btn is-icon ps-phone-only" x-show="installable" x-cloak x-on:click="accountMenu=false; installApp()" data-tip="{{ $u('install_app') }}" aria-label="{{ $u('install_app') }}"><svg aria-hidden="true"><use href="#ps-download"/></svg></button>
-            <a class="ps-btn is-icon" x-show="boot.admin_url" :href="boot.admin_url" data-tip="{{ $u('legacy_panel') }}" aria-label="{{ $u('legacy_panel') }}"><svg aria-hidden="true"><use href="#ps-legacy"/></svg></a>
+            <a class="ps-btn is-icon" x-show="boot.legacy_url" :href="boot.legacy_url" data-tip="{{ $u('legacy_panel') }}" aria-label="{{ $u('legacy_panel') }}"><svg aria-hidden="true"><use href="#ps-legacy"/></svg></a>
             <form method="post" :action="boot.logout_url">@csrf
                 <button type="submit" class="ps-btn is-icon" data-tip="{{ $u('sign_out') }}" aria-label="{{ $u('sign_out') }}"><svg aria-hidden="true"><use href="#ps-logout"/></svg></button>
             </form>

@@ -1,5 +1,5 @@
-{{-- Phone tab bar (overview only), within thumb reach: Customize (server groups and the overview's look), New and Admin tools. Each opens a sheet from the bottom. --}}
-<nav class="ps-tabbar" x-show="!hostMode && !adminView" aria-label="{{ $u('phone_navigation') }}" x-on:click.outside="createMenu=false; customizeMenu=false" x-on:keydown.escape.stop="createMenu=false; customizeMenu=false">
+{{-- Phone tab bar (overview only), within thumb reach: Customize (server groups and the overview's look) and New open a sheet from the bottom; Admin opens the Admin page. --}}
+<nav class="ps-tabbar" aria-label="{{ $u('phone_navigation') }}" x-on:click.outside="createMenu=false; customizeMenu=false" x-on:keydown.escape.stop="createMenu=false; customizeMenu=false">
     <div class="ps-tab-customize">
         <button type="button" class="ps-tab" aria-controls="ps-tab-customize-menu" :aria-expanded="customizeMenu" x-on:click="createMenu=false; customizeMenu=!customizeMenu">
             <svg aria-hidden="true"><use href="#ps-wand"/></svg><span>{{ $u('customize') }}</span>
@@ -22,7 +22,7 @@
             </template>
         </div>
     </div>
-    <button type="button" class="ps-tab" x-show="adminPages().length" aria-controls="ps-admin-menu" :aria-expanded="adminMenu" x-on:click.stop="createMenu=false; customizeMenu=false; adminMenu=!adminMenu">
-        <svg aria-hidden="true"><use href="#ps-shield"/></svg><span>{{ $u('admin_tools') }}</span>
-    </button>
+    <a class="ps-tab" x-show="boot.admin_url" x-cloak :href="boot.admin_url">
+        <svg aria-hidden="true"><use href="#ps-shield"/></svg><span>{{ $u('admin') }}</span>
+    </a>
 </nav>

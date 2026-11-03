@@ -5,7 +5,7 @@
   if (window.SimplifySheet) return;
   window.SimplifySheet = true;
   const phone = matchMedia('(max-width: 600px)');
-  const SHEETS = '.ps .ps-dropdown, .ps .account-open > .ps-account-menu';
+  const SHEETS = '.ps .ps-dropdown, .ps .account-open > .ps-account-menu, .ps-admin-side.menu-open > .ps-host-side';
   const open = () => (phone.matches ? [...document.querySelectorAll(SHEETS)].filter((el) => el.getClientRects().length > 0) : []);
   const close = (sheet) => sheet.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
 

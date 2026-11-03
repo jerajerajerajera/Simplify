@@ -11,7 +11,6 @@ use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Addons\Button;
 use Simplify\Core\Health\HostHealth;
-use Simplify\Core\Overview\AdminMenu;
 use Simplify\Core\Overview\Listing;
 use Simplify\Core\Overview\Power;
 use Simplify\Core\Overview\ServerQuery;
@@ -52,14 +51,8 @@ final class Overview extends Page
 
         return [
             ...$this->shell($user),
-            'create' => [
-                ...array_map(fn (Button $button) => $button->toArray(), $addons->collect(fn (Addon $addon) => $addon->dashboardActions())),
-                ...AdminMenu::createServer(),
-            ],
             'servers' => Listing::for($user),
             'host_health' => $user->isRootAdmin() ? HostHealth::cached() : [],
-            // An add-on (Simplify Hosting) can open host mode for admins of panels with more than one node, until they pick a mode.
-            'host_mode_auto' => $addons->collect(fn (Addon $addon) => $addon->hostModeDefault() ? [true] : []) !== [],
             'customer' => $user->isAdmin() ? [] : $this->customerLinks($addons->collect(fn (Addon $addon) => $addon->customerLinks($user))),
         ];
     }

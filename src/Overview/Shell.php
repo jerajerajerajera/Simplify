@@ -6,7 +6,6 @@ namespace Simplify\Core\Overview;
 
 use App\Filament\Pages\Auth\EditProfile;
 use App\Models\User;
-use Closure;
 use Filament\Facades\Filament;
 use InvalidArgumentException;
 use Livewire\Attributes\Renderless;
@@ -20,11 +19,11 @@ use Simplify\Core\Models\PushDevice;
 use Simplify\Core\Push\Push;
 use Simplify\Core\Support\Assets;
 use Simplify\Core\Support\Brand;
+use Simplify\Core\Support\Legacy;
 use Simplify\Core\Support\PanelSettings;
 use Simplify\Core\Support\Preferences;
 use Simplify\Core\Support\SafeCache;
 use Simplify\Core\Support\Scheduler;
-use Throwable;
 
 /**
  * What the overview and the server page share: the header with its menus, the notifications and the account. The
@@ -37,6 +36,9 @@ trait Shell
     {
         $settings = PanelSettings::all();
         $logo = Brand::logoFile($settings['brand_logo']);
+
+        $admin = $user->canAccessPanel(Filament::getPanel('admin'));
+        $tree = AdminTree::build();
 
         return [
             'user' => $user->username,
@@ -59,7 +61,10 @@ trait Shell
             'profile_url' => EditProfile::getUrl(panel: 'app'),
             'notifications_url' => Push::enabled() ? Overview::getUrl(panel: 'app').'#notifications' : null,
             'logout_url' => Filament::getPanel('app')->getLogoutUrl(),
-            'admin_url' => $user->canAccessPanel(Filament::getPanel('admin')) ? Filament::getPanel('admin')->getUrl() : null,
+            // The shield opens the Admin page (V52) on the first page of its menu.
+            'admin_url' => $admin ? ($tree[0]['pages'][0]['url'] ?? Filament::getPanel('admin')->getUrl()) : null,
+            // The legacy panel: Pelican's own pages, as Pelican draws them (Legacy); everyone has the account pages.
+            'legacy_url' => Legacy::url($admin ? Filament::getPanel('admin')->getUrl() : EditProfile::getUrl(panel: 'app'), true),
             'settings_url' => Settings::canAccess() ? Settings::getUrl(panel: 'admin') : null,
             'settings_menu' => Settings::canAccess() ? Settings::menu() : [],
             'support_url' => $settings['support_url'],
@@ -69,8 +74,13 @@ trait Shell
                 array_filter($addon->customerLinks($user), fn (Button $link) => $link->icon !== null),
             ))),
             'account_pages' => self::accountPages($user),
+            // Create server: an add-on's buttons (Server Maker) and Pelican's own form, in Simplify's popup on every page.
+            'create' => [
+                ...array_map(fn (Button $button) => $button->toArray(), app(AddonRegistry::class)->collect(fn (Addon $addon) => $addon->dashboardActions())),
+                ...AdminMenu::createServer(),
+            ],
             'admin_pages' => AdminMenu::items(),
-            'admin_tree' => AdminTree::build(),
+            'admin_tree' => $tree,
             'health_checks' => $user->isAdmin() ? HostHealth::checks() : [],
             'features' => ['host_health' => $user->isRootAdmin()],
             'performance' => ['overview_seconds' => $settings['overview_seconds']],
@@ -224,22 +234,5 @@ trait Shell
         abort_if($user === null, 403);
 
         return $user;
-    }
-
-    /** The first URL an add-on gives (API 5), or null. */
-    protected static function firstUrl(Closure $read): ?string
-    {
-        foreach (app(AddonRegistry::class)->all() as $addon) {
-            try {
-                $url = $read($addon);
-            } catch (Throwable) {
-                continue;
-            }
-            if (is_string($url) && $url !== '') {
-                return $url;
-            }
-        }
-
-        return null;
     }
 }

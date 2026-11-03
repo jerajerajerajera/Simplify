@@ -26,9 +26,22 @@
     const base = window.pelicanSimplify(wire, boot);
     return {
       ...base,
-      hostMode: true,
       init() {
         this.initShell();
+        // Admin → Servers → Create (Pelican's link on its page) opens Simplify's Create server popup, as everywhere else.
+        // Livewire starts wire:navigate on mousedown, so that press stays away from the link too.
+        const create = (event) => {
+          const link = event.target.closest?.('a[href]');
+          if (!link || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || link.closest('.ps')) return null;
+          return /\/servers\/create\/?$/.test(new URL(link.href, location.href).pathname) && this.createButtons().length ? link : null;
+        };
+        document.addEventListener('mousedown', (event) => create(event) && event.stopPropagation(), true);
+        document.addEventListener('click', (event) => {
+          if (create(event) && this.openCreate(null, this.createButtons()[0])) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+        }, true);
       },
     };
   };

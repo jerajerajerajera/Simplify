@@ -7,11 +7,11 @@
   window.SimplifyPull = true;
   const PULL = 70;
   let start = null, pulled = 0, mark = null;
-  // Only the overview itself: not a server page, host mode or an admin page in Simplify's frame.
+  // Only the overview itself: not a server page, the Admin page or an account page.
   const overview = () => {
-    const ps = document.querySelector('.ps');
+    const ps = document.querySelector('.ps:not(.ps-admin-top, .ps-admin-side)');
     const d = ps && window.Alpine ? window.Alpine.$data(ps) : null;
-    return !!d && !d.server && !d.hostMode && !d.adminView;
+    return !!d && !d.server && !document.documentElement.classList.contains('ps-shell');
   };
   // Something under the finger that scrolls and is not at its top, a console, or a field takes the gesture itself.
   const blocked = (el) => {

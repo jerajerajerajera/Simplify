@@ -56,7 +56,7 @@ Only `id()` and `name()` are required. Everything else has a default.
 | `serverSections(Server $server): list<class-string>` | `[]` | No longer shown since core 1.3.9 (the console page fits the window); kept so older add-ons keep working |
 | `serverLinks(Server $server): list<Button>` | `[]` | links in the ⋯ menu of the server page, opened in a new tab (since 1.1, API 2); a `primary` link also shows on a suspended server's card for its owner, under a line that the hoster paused it (since 1.5.5) |
 | `customerLinks(User $user): list<Button>` | `[]` | links for customers (not admins) beside a greeting at the top of the overview; the panel's support link follows (since 1.1, API 2). A link with an `icon` (a Tabler name such as `tabler-receipt`) is also an icon button in the account menu, before Support, for everyone it is given to |
-| `hostModeDefault(): bool` | `false` | `true` opens host mode for admins of panels with more than one node, until they pick a mode (since 1.1, API 2) |
+| `hostModeDefault(): bool` | `false` | No effect since the Admin page (every admin has it); kept so add-ons that override it still load (since 1.1, API 2) |
 | `setupFields(): list<Component>` | `[]` | your most important settings as Filament fields in the last step of Simplify's setup, so a new panel is set up in one go (since 1.3, API 3) |
 | `setupState(): array` | `[]` | the current values for those fields, by field name (since 1.3, API 3) |
 | `saveSetup(array $state): void` | nothing | saves what the setup asked, by field name (since 1.3, API 3) |
