@@ -36,6 +36,6 @@
                 <button type="submit" class="ps-btn is-icon" data-tip="{{ $u('sign_out') }}" aria-label="{{ $u('sign_out') }}"><svg aria-hidden="true"><use href="#ps-logout"/></svg></button>
             </form>
         </div>
-        <p class="ps-account-foot ps-phone-only">{{ __('simplify::js.dashboard.enhanced_by') }} Simplify · {{ __('simplify::js.dashboard.build', ['version' => \Simplify\Core\Support\Assets::version()]) }}</p>
+        <p class="ps-account-foot ps-phone-only">{{ __('simplify::js.dashboard.enhanced_by') }} Simplify · {{ __('simplify::js.dashboard.build', ['version' => \Simplify\Core\Support\Assets::version()]) }}@if (str_contains(\Simplify\Core\Support\Assets::version(), '-'))<span data-ps-env></span>@endif</p>
     </div>
 </div>

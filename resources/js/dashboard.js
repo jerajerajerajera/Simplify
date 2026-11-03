@@ -703,8 +703,15 @@
           link.rel = 'noopener noreferrer';
           credit.append(link);
           if (this.boot.build_version) credit.append(document.createTextNode(' · ' + t('dashboard.build', { version: this.boot.build_version })));
+          // A pre-release (2.0.0-beta.1) also names the browser, so a screenshot shows where it was taken (core.js).
+          if (this.boot.build_version?.includes('-')) {
+            const env = document.createElement('span');
+            env.dataset.psEnv = '';
+            credit.append(env);
+          }
           line.append(credit);
         }
+        window.SimplifyEnv?.show();
       },
       applyFavicon() {
         if (!this.boot.favicon_url || !document.head) return;
