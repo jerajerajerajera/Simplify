@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Subdomains keep working after the update from PelicanSimplify 0.7.0: the Cloudflare token and zone ID that 0.7.0 read from `.env` (`CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ZONE_ID`) are taken over once, encrypted, unless Simplify already has its own. `.env` is only read.
+- Computers: on an Admin page the page's own buttons, such as Run setup again and Save on Settings › General, sit in the middle of the breadcrumb's row again, with room under the header, instead of at the top of that row.
 - The console page loads without a jump: the empty card that stood above the console for a moment while Pelican's numbers loaded no longer shows, so the console stays where it is.
 - Phones: the window with all notifications closes with a pull down, like the menus: from its top bar, or from the list when it is scrolled to the top. Popups and menus follow your thumb while you drag them, spring back after a short pull, slide away after a longer one, and stay put on a sideways swipe. Closing them never reloads the page.
 
