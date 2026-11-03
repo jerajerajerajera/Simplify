@@ -168,6 +168,33 @@ const adminPage = async (overview) => {
     const diff = first && again ? Object.keys(first).filter((k) => JSON.stringify(first[k]) !== JSON.stringify(again[k])) : ['missing'];
     say('admin-nav-look', !!first && !!first.card && diff.length === 0 && loads === 0 && /\/admin\/servers/.test(page.url()), { diff, loads, first, again });
   }
+  // Plugins page: the categories are a filter in the table's toolbar, not tabs above it, with the import buttons on that
+  // row; a choice changes only the list (no page load, no other address) and its menu lies above the table (Jeroen 3-11).
+  {
+    await goto('/admin/plugins', 2000);
+    await page.evaluate(() => { window.__psKept = 1; }).catch(() => {});
+    const row = () => page.evaluate(() => {
+      const shown = (e) => !!e && e.getClientRects().length > 0 && getComputedStyle(e).visibility !== 'hidden';
+      const mid = (e) => { const r = e.getBoundingClientRect(); return Math.round(r.top + r.height / 2); };
+      const pick = document.querySelector('.ps-category-filter .ps-filter-button'), search = document.querySelector('.fi-ta-header-toolbar input[type="search"], .fi-ta-header-toolbar .fi-ta-search-field input');
+      const tabs = [...document.querySelectorAll('.fi-tabs')].filter((t) => !t.closest('.fi-ta-ctn') && shown(t)).length;
+      const imports = [...document.querySelectorAll('.fi-ta-header .fi-ta-actions :is(button, a)')].filter(shown);
+      const rows = [...document.querySelectorAll('.fi-ta-row')].filter(shown).length;
+      return { pick: shown(pick) ? pick.innerText.replace(/\s+/g, ' ').trim() : null, tabs, rows, imports: imports.length,
+        oneRow: shown(pick) && shown(search) && imports.length > 0 && [search, ...imports].every((e) => Math.abs(mid(e) - mid(pick)) <= 8) };
+    }).catch(() => null);
+    const before = await row(); await record('admin-plugins-filter', 'Admin · Plugins, categoriefilter in de werkbalk');
+    let menu = null, after = null, path = null;
+    if (before && before.pick) {
+      await page.locator('.ps-category-filter .ps-filter-button').first().click().catch(() => {}); await sleep(400);
+      menu = await page.evaluate(() => { const items = [...document.querySelectorAll('.ps-category-filter .ps-menu-item')].filter((e) => e.getClientRects().length); const b = items[1]; if (!b) return { items: items.length }; const r = b.getBoundingClientRect(); const top = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2); return { items: items.length, onTop: !!top && b.contains(top) }; }).catch(() => null);
+      await record('admin-plugins-filter-open', 'Admin · Plugins, categoriefilter open');
+      await page.locator('.ps-category-filter .ps-menu-item').nth(1).click().catch(() => {}); await sleep(1500);
+      after = await row(); path = new URL(page.url()).pathname;
+    }
+    const kept = await page.evaluate(() => window.__psKept === 1).catch(() => false);
+    say('admin-plugins-filter', !!before && !!before.pick && before.tabs === 0 && (phone() || before.oneRow) && !!menu && menu.items >= 2 && menu.onTop && !!after && after.pick !== before.pick && kept && path === '/admin/plugins', { before, menu, after, kept, path });
+  }
   // The other way out of an admin page: the end of the setup's "Go to the panel" opens the overview with wire:navigate.
   // It looks as after a full load (Jeroen 3-11, beta.3: the background turned lighter grey), and so does the Admin page
   // the shield opens from there.
