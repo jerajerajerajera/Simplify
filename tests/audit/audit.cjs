@@ -1184,7 +1184,7 @@ async function fixesFlow() {
       const off = rows.filter((r) => { const b = r.getBoundingClientRect(); return b.left < -1 || b.right > innerWidth + 1 || [...r.querySelectorAll('.fi-ta-cell')].filter(seen).some((c) => c.getBoundingClientRect().right > b.right + 1); }).length;
       // The name and the row's buttons share the first line, and the name is text (not a status badge).
       const mid = (e) => { const b = e.getBoundingClientRect(); return (b.top + b.bottom) / 2; };
-      const first = rows.filter((r) => { const cells = [...r.children].filter(seen), name = cells.find((c) => getComputedStyle(c).order === '1'), acts = cells.find((c) => getComputedStyle(c).order === '2'); return !name || !/[A-Za-z]{2}/.test(name.innerText) || name.querySelector('.fi-badge') || (acts && Math.abs(mid(acts) - mid(name)) > 8); }).length;
+      const first = rows.filter((r) => !r.querySelector('.fi-ta-group-header-cell')).filter((r) => { const cells = [...r.children].filter(seen), name = cells.find((c) => getComputedStyle(c).order === '1'), acts = cells.find((c) => getComputedStyle(c).order === '2'); return !name || !/[A-Za-z]{2}/.test(name.innerText) || name.querySelector('.fi-badge') || (acts && Math.abs(mid(acts) - mid(name)) > 8); }).length;
       const box = document.querySelector('.fi-ta-content-ctn');
       const bar = [...document.querySelectorAll('.fi-main .fi-ta-header-toolbar')].find(seen);
       const tools = bar ? [...bar.querySelectorAll('.fi-ta-actions > :is(button, a, div), .fi-ta-search-field, .fi-ta-filters-trigger-action-ctn, .fi-ta-col-manager-dropdown, .fi-dropdown')].filter((e) => seen(e) && !e.parentElement.closest('.fi-dropdown, .fi-ta-search-field')) : [];

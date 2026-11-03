@@ -2450,7 +2450,7 @@ html.ps-frame .s-done {
   :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell :not(button, .fi-icon-btn, .fi-icon-btn *) { padding-block: 0 !important; }
   :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell > * { padding-inline: 0 !important; }
   :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell:not(:is(.fi-ta-actions-cell, .fi-ta-cell:has(.fi-ta-actions)), :has(img)) * { min-width: 0; max-width: 100%; }
-  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell :is(.fi-ta-text, .fi-ta-text-item, .fi-ta-text-item-label):not(.fi-badge, .fi-badge *) { font-size: inherit !important; line-height: 1.4; }
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell :is(.fi-ta-text, .fi-ta-text-item, .fi-ta-text-item-label, .fi-ta-placeholder):not(.fi-badge, .fi-badge *) { font-size: inherit !important; line-height: 1.4; }
   :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell :is(.fi-ta-text, .fi-ta-text-item, .fi-ta-text-item-label):not(.fi-badge, .fi-badge *, [class*="fi-color-"], [class*="fi-color-"] *) { color: inherit !important; }
   /* The icon sits in the margin, so the lines under the name start where the name starts. */
   :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row:has(> .fi-ta-cell img) { padding-inline-start: 58px; }
