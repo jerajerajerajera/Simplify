@@ -176,7 +176,7 @@ const adminPage = async (overview) => {
     const navAdmin = await pageLook();
     const d2 = same(fullAdmin, navAdmin, keys);
     say('overview-to-admin-look', d2.length === 0, { diff: d2, full: fullAdmin, after: navAdmin, path: new URL(page.url()).pathname });
-    // The overview and the Admin page share one background, so going between them changes no colour (K-B18).
+    // The overview and the Admin page share one background, so going between them changes no colour (K-B24).
     const bg = (look) => look?.body?.split(' | ')[0] || null;
     say('admin-overview-bg', !!bg(fullOverview) && bg(fullOverview) === bg(fullAdmin) && bg(fullAdmin) === bg(navAdmin), { overview: bg(fullOverview), admin: bg(fullAdmin), adminAfterShield: bg(navAdmin) });
     await shieldTo(overview);
@@ -284,7 +284,7 @@ const healthHover = async (where) => {
   else problems.push(`${stand} ${where}-health-hover: ok, card and tab light up together (${onCard.card})`);
 };
 // Opened, everything around the nodes folds the card shut again, so all of it lights up together; a node keeps its own
-// smaller hover and click (K-B20, Jeroen 3-11).
+// smaller hover and click (K-B26, Jeroen 3-11).
 const healthSurround = async () => {
   const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
   if (!(await page.locator('.ps-health-panel >> visible=true').count()) && !(await page.locator('.ps-health-pill >> visible=true').count())) return;
@@ -1168,7 +1168,7 @@ async function fixesFlow() {
     await record('phone-frame-overview', 'Telefoon · overzicht: bel en account bovenin, balk onderin');
     say('phone-frame-overview', top.menuButton === false && top.bell && top.account && Array.isArray(top.servers) && top.servers[0] === 'Servers' && top.servers.includes('Admin') && !top.servers.includes('Customize'), top);
     // Pelican's copyright line is at the end of the overview on a phone too, above the bottom bar once you scrolled
-    // down, with Simplify's credit in it (K-B19, Jeroen 3-11 on iOS: no copyright on the overview).
+    // down, with Simplify's credit in it (K-B25, Jeroen 3-11 on iOS: no copyright on the overview).
     await page.evaluate(() => scrollTo(0, document.documentElement.scrollHeight)).catch(() => {}); await sleep(600);
     const foot = await page.evaluate(() => {
       const f = [...document.querySelectorAll('[data-ps-footer], .fi-footer')].find((e) => e.getClientRects().length && getComputedStyle(e).display !== 'none');
