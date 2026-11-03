@@ -880,6 +880,12 @@ async function scrollbars(serverUrl) {
   await goto(overview, 1500); let info = await look(page); await sleep(300); await record('scroll-overview', 'Scrollbalk · overzicht'); judge('overview', info);
   await goto('/admin/simplify', 2000); info = await look(page); await sleep(300); await record('scroll-settings', 'Scrollbalk · instellingen'); judge('settings', info, rel(page.url()));
   await goto('/admin/servers', 2500); info = await look(page); await sleep(300); await record('scroll-admin', 'Scrollbalk · Admin-pagina (kaart naast het menu)'); judge('admin', info, rel(page.url()));
+  // A box with scrollbar-width or scrollbar-color of its own gets Chrome's bar (with arrows on Windows) instead of ours:
+  // the standard properties switch ::-webkit-scrollbar off for that box (K-B31, Jeroen 3-11: the Admin menu).
+  const own = () => page.evaluate(() => [...document.querySelectorAll('*')].filter((e) => { if (!e.getClientRects().length) return false; const cs = getComputedStyle(e); return /auto|scroll/.test(cs.overflowY + cs.overflowX) && (cs.scrollbarWidth !== 'auto' || cs.scrollbarColor !== 'auto'); }).filter((e) => { const cs = getComputedStyle(e); return cs.scrollbarWidth !== 'none'; }).map((e) => `${e.tagName.toLowerCase()}.${String(e.className).trim().split(/\s+/).slice(0, 2).join('.')} ${getComputedStyle(e).scrollbarWidth}`).slice(0, 8)).catch((e) => [`error ${e.message.slice(0, 60)}`]);
+  const side = await page.locator('.ps-admin-side .ps-host-side-scroll').count();
+  const onAdmin = await own(); await goto('/admin/simplify', 1500); const onSettings = await own(); await goto(overview, 1500); const onOverview = await own();
+  say('scroll-own-bar', side > 0 && !onAdmin.length && !onSettings.length && !onOverview.length, { adminMenu: side, admin: onAdmin, settings: onSettings, overview: onOverview });
   await goto(serverUrl, 3500);
   await page.evaluate(() => { const t = document.querySelector('.ps-console .xterm-scrollable-element'); if (t) t.dispatchEvent(new WheelEvent('wheel', { deltaY: -400, bubbles: true })); }).catch(() => {});
   await sleep(400); info = await look(page, true); await record('scroll-console', 'Scrollbalk · console'); judge('console', info);
