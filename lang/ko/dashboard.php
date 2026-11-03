@@ -84,6 +84,7 @@ return [
         'close' => '닫기',
         'close_server' => '서버 닫기',
         'server_groups' => '서버 그룹',
+        'edit_groups' => '그룹 편집',
         'saved_with_your_account_so_every' => '계정에 저장되므로 모든 기기에서 같은 그룹과 순서가 표시됩니다.',
         'server_order' => '서버 순서',
         'for_the_overview_and_for_groups' => '목록과 이를 따르는 그룹에 적용',

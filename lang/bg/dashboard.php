@@ -84,6 +84,7 @@ return [
         'close' => 'Затвори',
         'close_server' => 'Затвори сървъра',
         'server_groups' => 'Групи сървъри',
+        'edit_groups' => 'Редактиране на групите',
         'saved_with_your_account_so_every' => 'Запазва се към акаунта ви, така че всяко устройство показва същите групи и ред.',
         'server_order' => 'Ред на сървърите',
         'for_the_overview_and_for_groups' => 'За прегледа и за групите, които го следват',

@@ -250,7 +250,7 @@ const phone = () => VIEWPORTS[stand.split('-')[0]].width <= 600;
 // Customize (the look of the overview and the server pages) is in the account menu on every screen (Jeroen 3-11);
 // server groups open from inside Customize.
 const CUSTOMIZE = ['.ps-top .ps-account-button', '#ps-account-actions button:has(use[href="#ps-wand"])'];
-const PHONE_ROUTE = { overviewAppearance: CUSTOMIZE, overviewGroupsButton: [...CUSTOMIZE, '#ps-overview-appearance-menu .ps-customize-go'] };
+const PHONE_ROUTE = { overviewAppearance: CUSTOMIZE, overviewGroupsButton: [...CUSTOMIZE, '#ps-overview-appearance-menu [data-tab="groups"]', '#ps-overview-appearance-menu .ps-customize-edit'] };
 const DESK_ROUTE = PHONE_ROUTE;
 const openRef = async (ref, ms) => { if (!phone() && DESK_ROUTE[ref]) { for (const sel of DESK_ROUTE[ref]) if (!(await click(sel, ms))) return false; return true; } if (phone() && PHONE_ROUTE[ref] && (await page.locator('.ps-tabbar >> visible=true').count())) { for (const sel of PHONE_ROUTE[ref]) if (!(await click(sel, ms))) return false; return true; } return click(`[x-ref="${ref}"]`, ms); };
 
@@ -305,7 +305,30 @@ async function round(theme) {
       return { arrowX: Math.round(x), button: [Math.round(b.left), Math.round(b.right)], menuRight: Math.round(m.right), arrowShown: arrow.content !== 'none' };
     }).catch(() => null);
     problems.push(`${stand} customize-anchor: ${at && at.arrowShown && at.arrowX >= at.button[0] && at.arrowX <= at.button[1] && Math.abs(at.menuRight - at.button[1]) <= 2 ? 'ok' : 'WRONG'} ${JSON.stringify(at)}`);
-  } await alpine('d.appearanceMenu=false'); await sleep(300);
+  }
+  // Wide Customize (Jeroen 3-11): every section shows its contents straight away, inside the window; on a computer the
+  // window is wide with the sections beside their contents, on a phone the sections are chips above them.
+  {
+    const tabs = await page.evaluate(() => [...document.querySelectorAll('#ps-overview-appearance-menu [data-tab]')].filter((b) => b.getClientRects().length).map((b) => b.dataset.tab)).catch(() => []);
+    const seen = [];
+    for (const key of tabs) {
+      await page.locator(`#ps-overview-appearance-menu [data-tab="${key}"]`).first().click().catch(() => {}); await sleep(350);
+      const at = await page.evaluate(() => {
+        const menu = document.querySelector('#ps-overview-appearance-menu');
+        const pane = menu?.querySelector('.ps-customize-pane');
+        const side = menu?.querySelector('.ps-customize-side');
+        if (!menu || !pane || !side) return null;
+        const m = menu.getBoundingClientRect(), p = pane.getBoundingClientRect(), d = side.getBoundingClientRect();
+        const rows = [...pane.querySelectorAll('.ps-customize-row, .ps-customize-switch, .ps-customize-edit, .ps-customize-lead')].filter((e) => e.getClientRects().length).length;
+        return { width: Math.round(m.width), inside: m.top >= 0 && m.bottom <= innerHeight + 1 && m.left >= 0 && m.right <= innerWidth + 1, beside: p.left >= d.right - 1, rows };
+      }).catch(() => null);
+      await record('overview-customize-' + key, 'Customize Simplify · ' + key);
+      seen.push({ key, ...at });
+    }
+    const wide = (x) => x && x.rows > 0 && x.inside && (phone() || (x.width >= 640 && x.beside));
+    problems.push(`${stand} customize-wide: ${tabs.length >= 5 && seen.every(wide) ? 'ok' : 'WRONG'} ${JSON.stringify(seen)}`);
+  }
+  await alpine('d.appearanceMenu=false'); await sleep(300);
   await openNav();
   await click('[x-ref="notifyButton"]'); await record('overview-bell', 'Bel (aankondigingen) open'); await escape();
   await openNav();
@@ -1135,7 +1158,8 @@ async function fixesFlow() {
     say('phone-sheet-close', closed.open === false && closed.url, closed);
     for (const sel of CUSTOMIZE) { await page.locator(sel).first().click().catch(() => {}); await sleep(700); }
     const custom = await sheet('#ps-overview-appearance-menu'); await record('phone-sheet-customize', 'Telefoon · Customize (accountmenu) als blad');
-    await page.locator('#ps-overview-appearance-menu .ps-customize-go').first().click().catch(() => {}); await sleep(900);
+    await page.locator('#ps-overview-appearance-menu [data-tab="groups"]').first().click().catch(() => {}); await sleep(300);
+    await page.locator('#ps-overview-appearance-menu .ps-customize-edit').first().click().catch(() => {}); await sleep(900);
     const groups = await sheet('#ps-overview-groups-menu'); await record('phone-sheet-groups', 'Telefoon · Server groups als blad');
     say('phone-sheet-customize', isSheet(custom) && isSheet(groups), { custom, groups });
     await escape();

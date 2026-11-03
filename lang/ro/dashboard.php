@@ -84,6 +84,7 @@ return [
         'close' => 'Închideți',
         'close_server' => 'Închideți serverul',
         'server_groups' => 'Grupuri de servere',
+        'edit_groups' => 'Editează grupurile',
         'saved_with_your_account_so_every' => 'Salvate în contul dumneavoastră, astfel încât fiecare dispozitiv afișează aceleași grupuri și aceeași ordine.',
         'server_order' => 'Ordinea serverelor',
         'for_the_overview_and_for_groups' => 'Pentru prezentare și pentru grupurile care o urmează',

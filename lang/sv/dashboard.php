@@ -84,6 +84,7 @@ return [
         'close' => 'Stäng',
         'close_server' => 'Stäng server',
         'server_groups' => 'Servergrupper',
+        'edit_groups' => 'Redigera grupper',
         'saved_with_your_account_so_every' => 'Sparas med ditt konto, så alla enheter visar samma grupper och ordning.',
         'server_order' => 'Serverordning',
         'for_the_overview_and_for_groups' => 'För översikten och för grupper som följer den',

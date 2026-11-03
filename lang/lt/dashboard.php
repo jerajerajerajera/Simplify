@@ -84,6 +84,7 @@ return [
         'close' => 'Uždaryti',
         'close_server' => 'Uždaryti serverį',
         'server_groups' => 'Serverių grupės',
+        'edit_groups' => 'Redaguoti grupes',
         'saved_with_your_account_so_every' => 'Išsaugoma su jūsų paskyra, todėl kiekviename įrenginyje rodomos tos pačios grupės ir tvarka.',
         'server_order' => 'Serverių tvarka',
         'for_the_overview_and_for_groups' => 'Apžvalgai ir grupėms, kurios jos laikosi',

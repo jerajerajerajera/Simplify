@@ -29,6 +29,7 @@ node tests/server-stats.cjs
 node tests/overview-filters.cjs
 node tests/card-bars.cjs
 node tests/admin-menu-page.cjs
+node tests/embed-preview.cjs
 node tests/console-placeholders.cjs
 python3 tests/hub-check.py
 python3 tests/audit/parts.py --self-test
