@@ -48,6 +48,16 @@ async function record(id, title, extra = {}) {
   const entry = { id, title, stand, url: rel(page.url()), docTitle: await page.title().catch(() => null), ...extra };
   try {
     entry.main = await page.evaluate(measure, mopts());
+    // K-B9: on the Admin and account pages Pelican's copyright line is the last thing in the card, under the whole page,
+    // never halfway over it where the card's first screen ended (every screen, so every settings tab, phone and computer).
+    const foot = await page.evaluate(() => {
+      const card = document.querySelector('html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn'), main = card?.querySelector(':scope > .fi-main'), footer = card?.querySelector(':scope > footer, :scope > [data-ps-footer]');
+      if (!main || !footer || !footer.getClientRects().length) return null;
+      const top = card.getBoundingClientRect().top - card.scrollTop, f = footer.getBoundingClientRect();
+      const content = Math.max(...[...main.querySelectorAll('*')].filter((el) => el.getClientRects().length && getComputedStyle(el).position !== 'fixed').map((el) => el.getBoundingClientRect().bottom - top), 0);
+      return { footerTop: Math.round(f.top - top), footerBottom: Math.round(f.bottom - top), content: Math.round(content), scroll: card.scrollHeight };
+    }).catch(() => null);
+    if (foot && (foot.footerTop < foot.content - 2 || foot.footerBottom < foot.scroll - 2)) problems.push(`${stand} ${id} footer-end: WRONG the copyright line is not at the end of the page ${JSON.stringify(foot)}`);
     entry.frames = [];
     for (const f of page.frames()) {
       if (f === page.mainFrame()) continue;
