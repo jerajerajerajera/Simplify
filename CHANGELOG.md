@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Plugins page in Admin: the categories (All, Plugin, Theme, Language Pack) are a filter button in the list's toolbar, on one row with sort, search and the import buttons. A choice changes only the list.
 - Automatic subdomains no longer says Changes made when you only open the page: the browser no longer fills in your saved panel password as the Cloudflare token.
 - Automatic subdomains explains itself: a How to set it up section with the four steps and a link to Cloudflare's token page (folded shut once everything is set), and what is still missing under the title. Until Cloudflare is set up, root admins still see Subdomain in the server menu, with what is missing and a Set up subdomains button; owners see it once it works.
 - Subdomains keep working after the update from PelicanSimplify 0.7.0: the Cloudflare token and zone ID that 0.7.0 read from `.env` (`CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ZONE_ID`) are taken over once, encrypted, unless Simplify already has its own. `.env` is only read.

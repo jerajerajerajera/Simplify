@@ -2456,3 +2456,35 @@ html.ps-frame .s-done {
 /* Connections (account menu): the add-ons' rows under each other, in the page's one card (no box in a box). */
 .s-connections { display: grid; gap: 0; }
 .s-connections > * + * { border-top: 1px solid var(--s-line); }
+
+/* Plugins page: its categories are a filter in the table's toolbar (CategoryFilter), so Pelican's tabs above the
+   table go, and the import buttons sit on the toolbar's row after the search: one row instead of three. */
+.fi-page:has(.ps-category-filter) .fi-tabs:not(.fi-ta-ctn *) {
+  display: none !important;
+}
+
+.fi-ta-header-ctn:has(.ps-category-filter) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+}
+
+.fi-ta-header-ctn:has(.ps-category-filter) > * {
+  grid-column: 1 / -1;
+}
+
+.fi-ta-header-ctn:has(.ps-category-filter) > .fi-ta-header-toolbar {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.fi-ta-header-ctn:has(.ps-category-filter) > .fi-ta-header {
+  grid-row: 1;
+  grid-column: 2;
+  padding-inline-start: 0 !important;
+  border: 0 !important;
+}
+
+.fi-ta-header-toolbar .ps-category-filter .ps-filter-menu {
+  inset-inline-start: 0;
+}
