@@ -29,7 +29,13 @@
                 <span class="ps-offline-artwork" x-show="status==='offline'" aria-label="{{ $u('server_offline') }}"><svg aria-hidden="true"><use href="#ps-offline"/></svg></span>
                 <img class="ps-server-banner" x-show="server.background && status!=='offline'" :src="safeImage(server.background)" alt="" x-on:error="$el.style.visibility='hidden'">
             </span>
-            <span class="ps-info-icons">
+            {{-- Look (colour and background) on the server's icon, a pencil in its corner (F4): it is no action on the server, so it left ⋯. --}}
+            <span class="ps-info-icons" x-on:click.outside="lookMenu=false" x-on:keydown.escape.stop="lookMenu=false">
+                <button type="button" class="ps-look-button" x-show="server.can_edit" x-cloak x-on:click.stop="lookMenu=!lookMenu; infoMenu=false" :aria-expanded="lookMenu" aria-controls="ps-look-menu" data-tip="{{ $u('look') }}" aria-label="{{ $u('look') }}"><svg aria-hidden="true"><use href="#ps-edit"/></svg></button>
+                <div id="ps-look-menu" class="ps-dropdown ps-look-menu" x-show="lookMenu" x-cloak x-transition:enter="ps-t-in" x-transition:enter-start="ps-t-from" x-transition:leave="ps-t-out" x-transition:leave-end="ps-t-from" role="menu">
+                    <button type="button" class="ps-menu-item" role="menuitem" :disabled="busy" x-on:click.stop="lookMenu=false; setTimeout(() => openColorMenu())"><span class="ps-color-dot" aria-hidden="true"></span><span>{{ $u('server_color') }}</span></button>
+                    <button type="button" class="ps-menu-item" role="menuitem" :disabled="busy" x-on:click.stop="lookMenu=false; setTimeout(() => openBannerMenu())"><svg aria-hidden="true"><use href="#ps-image"/></svg><span>{{ $u('server_background') }}</span></button>
+                </div>
                 {{-- The same order as the server's card on the overview: the game's own icon, then the icon set in Pelican. --}}
                 <span class="ps-info-icon ps-custom-server-icon" x-show="server.server_icon || server.icon"><img :src="safeImage(server.server_icon || server.icon)" alt="" x-on:error="$el.style.visibility='hidden'"></span>
                 <span class="ps-info-icon ps-software-icon" x-show="softwareIcon() || !(server.server_icon || server.icon)" :class="{'is-badge': server.server_icon || server.icon}" :data-tip="server.software || @js($u('server_software'))">
@@ -63,10 +69,6 @@
                 <button type="button" class="ps-btn ps-power-restart" x-show="!firstStart() && !installView()" x-on:click="power('restart')" :disabled="busy || !server.permissions['control.restart'] || !canRestart()" aria-label="{{ $u('restart_server') }}"><svg aria-hidden="true"><use href="#ps-restart"/></svg><span>{{ $u('restart') }}</span></button>
                 <button type="button" class="ps-btn is-icon ps-info-more-button" aria-label="{{ $u('more_server_options') }}" aria-controls="ps-info-menu" :aria-expanded="infoMenu" x-on:click="infoMenu=!infoMenu; colorMenu=false; bannerMenu=false"><svg aria-hidden="true"><use href="#ps-dots"/></svg></button>
                 <div id="ps-info-menu" class="ps-dropdown is-end ps-info-menu" x-show="infoMenu" x-cloak x-transition:enter="ps-t-in" x-transition:enter-start="ps-t-from" x-transition:leave="ps-t-out" x-transition:leave-end="ps-t-from" role="menu">
-                    <span class="ps-label ps-menu-heading" x-show="server.can_edit">{{ $u('look') }}</span>
-                    <button type="button" class="ps-menu-item" role="menuitem" x-show="server.can_edit" :disabled="busy" x-on:click="openColorMenu()"><span class="ps-color-dot" aria-hidden="true"></span><span>{{ $u('server_color') }}</span></button>
-                    <button type="button" class="ps-menu-item" role="menuitem" x-show="server.can_edit" :disabled="busy" x-on:click="openBannerMenu()"><svg aria-hidden="true"><use href="#ps-image"/></svg><span>{{ $u('server_background') }}</span></button>
-                    <template x-if="server.sftp"><hr></template>
                     <span class="ps-label ps-menu-heading" x-show="server.sftp">{{ $u('sftp') }}</span>
                     <button type="button" class="ps-menu-item" role="menuitem" x-show="server.sftp" x-on:click="infoMenu=false; copyText(server.sftp.username, @js($u('username_copied')))"><svg aria-hidden="true"><use href="#ps-copy"/></svg><span>{{ $u('copy_sftp_username') }}</span></button>
                     <a class="ps-menu-item" role="menuitem" x-show="server.sftp?.url" :href="server.sftp?.url" x-on:click="infoMenu=false"><svg aria-hidden="true"><use href="#ps-link"/></svg><span>{{ $u('open_sftp_connection') }}</span></a>
