@@ -2,7 +2,6 @@
 
 ## Unreleased
 
-- A tooltip (such as the bell's "Notifications") no longer stays on screen when you go to another page.
 - Server page: Server color and Server background open from a small pencil on the server's icon instead of the ⋯ menu; on a phone they open as a sheet.
 
 - Phones: the server page's head is lower and its numbers (players, CPU, memory, disk) are one strip, so the console starts higher.
@@ -11,6 +10,7 @@
 - Add-ons: an add-on puts its server pages among the Backups & tasks tabs itself, and can take over Pelican's server pages such as Settings and Startup, which then leave the server menu (add-on API 9, `serverTabs()` and `replacedServerPages()`).
 - Uninstalling Simplify keeps its settings, announcements, subdomains and website details; installing it again brings everything back.
 - Settings › Add-ons: every add-on is a section that opens, with what it does first and its settings under it. Simplify add-ons in the Admin menu holds only add-ons with a page of their own (add-on API 8, `settingsForm()`).
+- A tooltip (such as the bell's "Notifications") no longer stays on screen when you go to another page.
 - Phones: fields you type in have 16px text, so Safari on an iPhone no longer zooms in on them and leaves the page sliding sideways.
 - Errors: a server's page has the spot for an add-on's button (such as Explain) next to Try again when its installation failed, and Simplify gives that add-on the installation's last lines. A notification in the bell that carries an error id (`simplify_problem`) gets the same spot (ADDONS.md, Errors).
 - Admin: the breadcrumb no longer cuts "All servers" short when there is room to spare; a part only gives way when the names do not fit.
