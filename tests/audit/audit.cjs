@@ -489,6 +489,8 @@ async function round(theme) {
     const wide = (x) => x && x.rows > 0 && x.inside && (phone() || (x.width >= 640 && x.beside));
     problems.push(`${stand} customize-wide: ${tabs.length >= 5 && seen.every(wide) ? 'ok' : 'WRONG'} ${JSON.stringify(seen)}`);
   }
+  // On a tablet Customize was opened from the top bar's menu: close both, so the next steps see the overview.
+  if (folded) { await alpine('d.appearanceMenu=false; d.navMenu=false'); await sleep(400); }
   await alpine('d.appearanceMenu=false'); await sleep(300);
   await openNav();
   await click('[x-ref="notifyButton"]'); await record('overview-bell', 'Bel (aankondigingen) open'); await escape();
