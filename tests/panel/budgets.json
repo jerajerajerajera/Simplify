@@ -1,0 +1,7 @@
+{
+  "_": "Lighthouse budgets per screen (0-100), from the first runs (4 November 2026): a score may not fall under its budget. Performance keeps a margin of 10 for the noise of a CI runner; accessibility and best practices are stable and get their full score.",
+  "default": { "performance": 0, "accessibility": 0, "best-practices": 0 },
+  "overview": { "performance": 14, "accessibility": 90, "best-practices": 100 },
+  "server": { "performance": 17, "accessibility": 92, "best-practices": 100 },
+  "admin": { "performance": 13, "accessibility": 100, "best-practices": 100 }
+}

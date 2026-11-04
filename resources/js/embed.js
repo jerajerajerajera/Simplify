@@ -58,7 +58,7 @@
 
   const copy = async (button, text) => {
     try { await navigator.clipboard.writeText(text); button.textContent = t.copied; }
-    catch (_) { const range = document.createRange(); range.selectNodeContents(button.previousSibling); const selection = getSelection(); selection.removeAllRanges(); selection.addRange(range); button.textContent = t.selected; }
+    catch { const range = document.createRange(); range.selectNodeContents(button.previousSibling); const selection = window.getSelection(); selection.removeAllRanges(); selection.addRange(range); button.textContent = t.selected; }
     setTimeout(() => { button.textContent = t.copy; }, 1600);
   };
 
