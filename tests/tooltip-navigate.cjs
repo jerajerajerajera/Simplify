@@ -1,4 +1,4 @@
-// A tooltip goes when the page changes (B-K2 / K-B52): the bell kept its "Notifications" tooltip over the next page,
+// A tooltip goes when the page changes (B-K2 / K-B53): the bell kept its "Notifications" tooltip over the next page,
 // because the bell stays (wire:navigate keeps the top bar) and nothing told the tooltip the page had changed: not a
 // Livewire navigation and not a new page in host mode's frame. Needs Chrome or Chromium.
 const { execFileSync } = require('node:child_process');

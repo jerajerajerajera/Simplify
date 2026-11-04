@@ -76,4 +76,16 @@
     }
   });
   document.addEventListener('touchcancel', () => { if (drag) reset(drag.sheet); drag = null; });
+
+  // The Admin menu on a phone (AdminSide) is a page that slides like an app: away to the left over the page a tap in
+  // it opened, and back in from the left (dashboard.css, html[data-ps-admin-slide]). change() switches the menu and
+  // resolves once the page shows it. On a computer, with reduced motion or without view transitions it switches at once.
+  window.simplifyAdminSlide = (on, change) => {
+    const root = document.documentElement;
+    if (!phone.matches || !document.startViewTransition || matchMedia('(prefers-reduced-motion: reduce)').matches) return void change();
+    root.dataset.psAdminSlide = on ? 'in' : 'out';
+    const slide = document.startViewTransition(change);
+    slide.finished.finally(() => delete root.dataset.psAdminSlide);
+    return slide;
+  };
 })();
