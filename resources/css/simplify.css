@@ -418,46 +418,12 @@ html, body { overscroll-behavior-y: none; }
   --s-h: 28px;
 }
 
-/* People & roles */
-.s-avatar {
-  align-items: center;
-  background: var(--s-raised);
-  border-radius: var(--s-radius-pill);
-  display: inline-flex;
-  flex: none;
-  font-weight: 600;
-  height: 32px;
-  justify-content: center;
-  width: 32px;
-}
-
+/* Chips under a row's name. */
 .s-chips {
   display: flex;
   flex-wrap: wrap;
   gap: var(--s-space-1);
   margin-top: var(--s-space-1);
-}
-
-.s-person-meta {
-  align-items: center;
-  display: inline-flex;
-  gap: var(--s-space-1);
-}
-
-.s-person-meta svg {
-  height: 16px;
-  width: 16px;
-}
-
-.s-pages {
-  justify-content: center;
-  margin-top: var(--s-space-3);
-}
-
-@media (max-width: 600px) {
-  .s-people .s-row {
-    flex-wrap: wrap;
-  }
 }
 
 /* App notifications */
@@ -908,7 +874,7 @@ html.ps-shell:not(.ps-frame) .fi-main-ctn :is(.fi-section:not(.fi-section .fi-se
 }
 
 /* Simplify's own admin pages sit straight on the background as well. */
-html.ps-shell:not(.ps-frame) .fi-main-ctn :is(.s-people > .s-card, .s-health, .s-done) {
+html.ps-shell:not(.ps-frame) .fi-main-ctn :is(.s-health, .s-done) {
   border: 0 !important;
   border-radius: 0 !important;
   background: transparent !important;
@@ -1316,7 +1282,7 @@ html:not(.ps-frame) body.fi-body:not(:has(.ps)) > .fi-layout > .fi-main-ctn {
 
 /* With Pelican's top bar (a small window or a phone) the content's own minimum of a whole window comes on top of
    it; the fitted card already takes the window's height, so the page needs no minimum. */
-html:not(.ps-frame) body:has(:is(.s-settings-tabs, .s-health, .s-people, .s-fit, .s-done)[style*="--s-fit"]) .fi-main-ctn {
+html:not(.ps-frame) body:has(:is(.s-settings-tabs, .s-health, .s-fit, .s-done)[style*="--s-fit"]) .fi-main-ctn {
   min-height: 0 !important;
 }
 
@@ -1324,19 +1290,6 @@ html:not(.ps-frame) body:has(:is(.s-settings-tabs, .s-health, .s-people, .s-fit,
 html:not(.ps-frame) .s-fit[style*="--s-fit"] {
   margin: -4px;
   padding: 4px;
-}
-
-/* People & roles: the tabs, search and add button stay on top, the list scrolls in its card. */
-html:not(.ps-frame) .s-people[style*="--s-fit"] {
-  display: flex;
-  flex-direction: column;
-  height: var(--s-fit);
-}
-
-html:not(.ps-frame) .s-people[style*="--s-fit"] > .s-card {
-  flex: 1 1 auto;
-  min-height: 0;
-  overflow-y: auto;
 }
 
 /* Settings (V51/V53): one row of tabs over Simplify's settings and its other settings pages (partials/settings-nav).
@@ -1917,11 +1870,6 @@ html ::-webkit-scrollbar-button, html ::-webkit-scrollbar-corner { display: none
 html :is(.ps-console, #terminal) { --s-scroll: rgb(255 255 255 / .16); --s-scroll-hover: rgb(255 255 255 / .28); }
 html .xterm .xterm-scrollable-element > .scrollbar > .slider { border-radius: 999px; background: var(--s-scroll) !important; }
 html .xterm .xterm-scrollable-element > .scrollbar.vertical > .slider { left: 2px !important; width: 6px !important; }
-
-/* People & roles in host mode: tabs, search and the add button sit in the title bar (frame.js) and the list sits
-   straight on the page, as host mode's own box is already around it. */
-html.ps-frame[data-ps-head-tools] .s-people > .s-toolbar { display: none; }
-html.ps-frame[data-ps-frame="native"] .s-people > .s-card { border: 0; border-radius: 0; background: transparent; box-shadow: none; }
 
 /* Pelican's Health page (resources/overrides): what needs attention first, with a button where to fix it, then the
    checks that are fine as short rows. In host mode it sits straight on the page like Pelican's other pages. */

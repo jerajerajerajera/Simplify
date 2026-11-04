@@ -55,7 +55,7 @@
     const settings = document.querySelector('.s-settings > .s-bar button[type="submit"]');
     const header = document.querySelector('.s-settings') && root.dataset.psTree ? [] : [...document.querySelectorAll(HEADER_ACTIONS)].filter((el) => !el.closest('.fi-modal'));
     const sources = visible ? [...header, ...(table?.querySelectorAll('.fi-ta-header-toolbar > .fi-ta-actions > :is(button, a)') || []), ...(settings ? [settings] : [])].filter((el) => !el.closest('.fi-dropdown')) : [];
-    // Simplify's own pages (People & roles) have one toolbar: tabs, search and the add button.
+    // A Simplify page with its own toolbar (.s-toolbar): tabs, search and the add button.
     const own = visible ? document.querySelector('.fi-main .s-toolbar') : null;
     const segments = own ? [...own.querySelectorAll('.s-segments > button')] : [];
     if (own) sources.push(...own.querySelectorAll('.s-bar > button'));
