@@ -11,6 +11,7 @@ use Filament\Facades\Filament;
 use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Addons\Button;
+use Simplify\Core\Embed\Services\PublicAddress;
 use Simplify\Core\Server\Installation;
 use Simplify\Core\Server\Looks;
 use Simplify\Core\Subdomains\Services\Games;
@@ -60,7 +61,7 @@ final class Listing
         return [
             ...self::card($user, $server, $live, Looks::for($server), true),
             'badges' => self::badges($server, null),
-            'address' => $subdomain ?? ($allocation === null ? null : ($allocation->alias ?: $allocation->ip).':'.$allocation->port),
+            'address' => $subdomain ?? self::gameAddress($allocation?->alias, $allocation?->ip, (int) $allocation?->port),
             'minecraft' => Games::minecraft($server),
             'can_edit' => Looks::canEdit($user, $server),
             ...Installation::info($server),
@@ -69,6 +70,15 @@ final class Listing
             'can_console' => $user->can(SubuserPermission::ControlConsole, $server),
             'links' => array_map(fn (Button $link) => $link->toArray(), app(AddonRegistry::class)->collect(fn (Addon $addon) => $addon->serverLinks($server))),
         ];
+    }
+
+    /**
+     * The game address people copy: the allocation's alias or IP with its port, an IPv6 address in brackets as Pelican
+     * shows it ("[2001:db8::1]:25565"); without brackets a game cannot connect to it.
+     */
+    public static function gameAddress(?string $alias, ?string $ip, int $port): ?string
+    {
+        return PublicAddress::join($alias ?: $ip, $port);
     }
 
     /**
