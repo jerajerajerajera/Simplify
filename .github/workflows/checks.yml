@@ -18,7 +18,7 @@ jobs:
     outputs:
       code: ${{ steps.diff.outputs.code }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - id: diff
@@ -34,7 +34,7 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
@@ -42,7 +42,7 @@ jobs:
   pint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
@@ -64,7 +64,7 @@ jobs:
             php: '8.4'
     name: panel-smoke (Pelican ${{ matrix.pelican }})
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           path: plugin
       - uses: shivammathur/setup-php@v2
@@ -72,7 +72,7 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: bcmath, gd, intl, mbstring, pdo_sqlite, sqlite3, zip
           tools: composer
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: '22'
       - run: npm install -g yarn
