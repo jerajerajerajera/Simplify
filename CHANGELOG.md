@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Admin: the breadcrumb no longer cuts "All servers" short when there is room to spare; a part only gives way when the names do not fit.
+
 ## 2.0.0-beta.5
 
 - Server page: a server with a working subdomain shows just that subdomain as its address, under the name and in the status bar, and the copy button copies it. Without a subdomain it stays the game address with port. The address is no longer cut off; a long software name gets the ellipsis instead.
