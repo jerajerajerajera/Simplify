@@ -189,6 +189,10 @@
   document.addEventListener('pointerdown', hideTip, { passive: true });
   window.addEventListener('scroll', hideTip, { passive: true, capture: true });
   document.addEventListener('keydown', (event) => event.key === 'Escape' && hideTip());
+  // The page changes under a button that stays (the bell in the top bar): a Livewire navigation, or a new page in host
+  // mode's frame (an iframe's load reaches the document only while capturing). Nothing else would take the tooltip away.
+  ['livewire:navigating', 'livewire:navigated'].forEach((name) => document.addEventListener(name, hideTip));
+  document.addEventListener('load', (event) => event.target.tagName === 'IFRAME' && hideTip(), true);
 
   // Closing on a phone: the ps-t-out and ps-t-from classes slide it away (components.css); elsewhere it goes at once.
   const leave = (el, done) => {

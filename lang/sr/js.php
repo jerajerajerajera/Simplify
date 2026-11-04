@@ -49,6 +49,11 @@ return [
         'ok' => 'OK',
         'close' => 'Затвори',
     ],
+    'sort' => [
+        'by' => 'Сортирај по',
+        'ascending' => 'Растуће',
+        'descending' => 'Опадајуће',
+    ],
     'unsaved' => [
         'changes_made' => 'Направљене измене',
         'save' => 'Сачувај',

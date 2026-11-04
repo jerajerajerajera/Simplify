@@ -49,6 +49,11 @@ return [
         'ok' => '확인',
         'close' => '닫기',
     ],
+    'sort' => [
+        'by' => '정렬 기준',
+        'ascending' => '오름차순',
+        'descending' => '내림차순',
+    ],
     'unsaved' => [
         'changes_made' => '변경 사항 있음',
         'save' => '저장',

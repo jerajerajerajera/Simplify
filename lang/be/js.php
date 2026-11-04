@@ -49,6 +49,11 @@ return [
         'ok' => 'OK',
         'close' => 'Закрыць',
     ],
+    'sort' => [
+        'by' => 'Сартаваць па',
+        'ascending' => 'Па ўзрастанні',
+        'descending' => 'Па змяншэнні',
+    ],
     'unsaved' => [
         'changes_made' => 'Ёсць змены',
         'save' => 'Захаваць',
