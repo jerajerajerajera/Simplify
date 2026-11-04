@@ -395,7 +395,7 @@ Geen `composer install` of `yarn install` in de cloudcontainer; het echte paneel
 #### P-31 Definitie van klaar
 Lokale checks (`bash tests/run.sh`, `pint --test`, `python3 tests/hub-check.py`), CI groen met panel-smoke op elke
 Pelican-versie in de matrix, updatepad getest bij migratie of instelling, echt doorgeklikt in een paneel dat op het
-echte lijkt (klikken, niet kijken), stijlaudit groen bij UI (d1440, laag1366, phone390, licht en donker), screenshot
+echte lijkt (klikken, niet kijken; vóór een release de klikronde, `docs/klikronde.md`), stijlaudit groen bij UI (d1440, laag1366, phone390, licht en donker), screenshot
 van het echte scherm. Add-ons met én zonder kern (de echte kern uit de CI-matrix, niet alleen een stub). Kan een
 stap niet: precies zeggen welke. Verder (V64): PHPStan en ESLint groen; de browser-smoke (`tests/panel/browser.cjs`:
 Playwright, axe, Lighthouse) groen bij een wijziging in `resources/`, met Lighthouse en axe niet lager dan de vorige
@@ -415,6 +415,24 @@ Vóór een kernrelease: functielijst bijgewerkt, CI groen, upgradetest groen, st
 #### P-34 Versie en zip
 Versienummer in `plugin.json` en CHANGELOG gelijk. Zip:
 `github.com/jerajerajerajera/<Repo>/releases/download/v<v>/<id>-v<v>.zip`.
+Elke versie in `CHANGELOG.md` (Engels) heeft deze vorm; de GitHub-releasenotes en de Hub-changelog volgen mee:
+
+```markdown
+## 2.0.0-beta.6
+
+One sentence that says what this version brings.
+
+- The changes, one line each, as now.
+
+**Please test:**
+- 3 to 5 lines: what testers should click, only for a beta.
+
+**Known issues:**
+- What is known and not fixed yet; leave the heading out when there is nothing.
+```
+
+De eerste zin is de samenvatting en ook de tekst bij de versie op de Hub. Een versie zonder wijzigingen (alleen
+gelijkgetrokken) heeft alleen die zin. "Please test" alleen bij een beta; "Known issues" alleen als er iets is.
 *Vervangt:* R47.
 
 #### P-35 Duidelijk boven kort
