@@ -2595,3 +2595,62 @@ html.ps-frame .s-done {
 .fi-ta-header-toolbar .ps-category-filter .ps-filter-menu {
   inset-inline-start: 0;
 }
+
+/* In a narrow card (a tablet, with the Admin menu beside it) the row keeps its filter, search and import buttons
+   together: the search field gives way instead of dropping onto a row of its own (K-B42). */
+.fi-ta-header-ctn:has(.ps-category-filter) > .fi-ta-header-toolbar {
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  min-width: 0;
+}
+
+.fi-ta-header-ctn:has(.ps-category-filter) > .fi-ta-header-toolbar > * {
+  flex: none;
+}
+
+.fi-ta-header-ctn:has(.ps-category-filter) > .fi-ta-header-toolbar > :has(.fi-ta-search-field) {
+  flex: 1 1 0;
+  min-width: 0;
+  justify-content: flex-end;
+}
+
+.fi-ta-header-ctn:has(.ps-category-filter) .fi-ta-search-field {
+  flex: 1 1 auto;
+  min-width: 96px;
+  max-width: 100%;
+}
+
+.fi-ta-header-ctn:has(.ps-category-filter) .fi-ta-search-field :is(.fi-input-wrp, .fi-input-wrp-content-ctn, input) {
+  min-width: 0;
+}
+
+/* Every Admin list does the same in a narrow card, so the lists start at one height (Servers as Plugins). */
+@media (min-width: 601px) and (max-width: 1100px) {
+  html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-header-toolbar {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    min-width: 0;
+  }
+
+  html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-header-toolbar > * {
+    flex: none;
+  }
+
+  html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-header-toolbar > :has(.fi-ta-search-field) {
+    flex: 1 1 0;
+    min-width: 0;
+    justify-content: flex-end;
+  }
+
+  html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-search-field {
+    flex: 1 1 auto;
+    min-width: 96px;
+    max-width: 100%;
+  }
+
+  html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-search-field :is(.fi-input-wrp, .fi-input-wrp-content-ctn, input) {
+    min-width: 0;
+  }
+}

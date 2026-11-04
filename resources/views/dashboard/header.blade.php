@@ -29,8 +29,8 @@
         {{-- Health in the top bar: the button opens the details below it (on the Admin page and the account pages the
              Health page); the create buttons sit next to it. The same on the overview as on the Admin page (Jeroen 3-11). --}}
         <div class="ps-top-overview" x-show="!server && (healthPlace()==='top-bar' || boot.admin_page)" x-cloak>
-            <button type="button" class="ps-btn ps-health-pill" x-show="healthPlace() || boot.health_url" :class="boot.host_health?.state || 'unavailable'" x-on:click="if (boot.health_url) return Livewire.navigate(boot.health_url); healthPopover=!healthPopover; healthExpanded=false; healthOpenNodes=[]; placeHealthPopover()" :aria-expanded="healthPopover" aria-controls="ps-health-panel" :aria-label="Simplify.fill(@js($u('host_health_label')), { state: boot.host_health?.label || @js($u('unavailable')) })">
-                <svg aria-hidden="true"><use href="#ps-heart"/></svg><span x-text="boot.host_health?.label || (boot.health_url ? @js($u('health')) : @js($u('unavailable')))"></span>
+            <button type="button" class="ps-btn ps-health-pill" x-show="healthPlace() || boot.health_url" :class="boot.host_health?.state || 'unavailable'" x-on:click="if (boot.health_url) return Livewire.navigate(boot.health_url); healthPopover=!healthPopover; healthExpanded=false; healthOpenNodes=[]; placeHealthPopover()" :aria-expanded="healthPopover" aria-controls="ps-health-panel" :aria-label="Simplify.fill(@js($u('host_health_label')), { state: boot.host_health?.label || @js($u('health')) })">
+                <svg aria-hidden="true"><use href="#ps-heart"/></svg><span x-text="boot.host_health?.label || @js($u('health'))"></span>
             </button>
             @include('simplify::dashboard.create-buttons')
         </div>

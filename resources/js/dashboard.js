@@ -26,6 +26,8 @@
   // Own server groups in the overview: at most this many groups, names at most this long.
   // Bars on an overview card: one per refresh.
   const CARD_BARS = 24;
+  // The last host health this page saw: a switch to Admin and back keeps the pill as it was while fresh numbers load.
+  let lastHostHealth = null;
   const GROUP_LIMIT = 30;
   const GROUP_NAME_LENGTH = 40;
   // Server order for the overview, and per group (Overview follows the overview's order, Manual uses the arrows).
@@ -120,7 +122,10 @@
         this.recordOverview(this.boot.servers);
         this.refreshTimer = setInterval(() => this.refreshOverview(), this.refreshSeconds);
         // Host health is asked right after first paint when no snapshot was ready, so Wings never holds up the page.
-        if (this.boot.features?.host_health && !this.boot.host_health?.state) this.refreshOverview();
+        if (this.boot.features?.host_health && !this.boot.host_health?.state) {
+          this.restoreHostHealth();
+          this.refreshOverview();
+        } else if (this.boot.host_health?.state) lastHostHealth = this.boot.host_health;
       },
       /** What the overview and the server page (server.js) share: scale, preferences, theme, notifications. */
       initShell() {
@@ -1263,6 +1268,15 @@
         this.cardGlide = 0;
         this.cardFrame = requestAnimationFrame(step);
       },
+      /** Keeps a fresh host health for the next page (K-B41). */
+      setHostHealth(health) {
+        this.boot.host_health = health;
+        if (health?.state) lastHostHealth = health;
+      },
+      /** Shows the host health from before a switch until the page's own numbers are in, instead of Unavailable (K-B41). */
+      restoreHostHealth() {
+        if (!this.boot.host_health?.state && lastHostHealth) this.boot.host_health = lastHostHealth;
+      },
       async refreshOverview() {
         if (globalThis.document?.hidden || this.server || this.destroyed || this.overviewRefreshing) return;
         this.overviewRefreshing = true;
@@ -1273,7 +1287,7 @@
           const badges = Object.fromEntries(this.boot.servers.map((s) => [s.uuid, s.badges]));
           this.boot.servers = servers.map((s) => ({ ...s, badges: badges[s.uuid] || [] }));
           if (this.eggFilter !== 'all' && !this.eggOptions().some((g) => g.key === this.eggFilter)) this.eggFilter = 'all';
-          this.boot.host_health = health;
+          this.setHostHealth(health);
           this.healthOpenNodes = this.healthOpenNodes.filter((id) => health.nodes?.some((n) => String(n.id) === String(id)));
           this.recordOverview(servers);
         } catch {
@@ -1288,7 +1302,7 @@
         try {
           const health = await wire.refreshHostHealth();
           if (this.destroyed) return;
-          this.boot.host_health = health;
+          this.setHostHealth(health);
           this.healthOpenNodes = this.healthOpenNodes.filter((id) => health.nodes?.some((n) => String(n.id) === String(id)));
         } catch {
         } finally {

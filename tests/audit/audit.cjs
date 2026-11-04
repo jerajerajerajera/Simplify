@@ -95,6 +95,8 @@ const adminState = () => page.evaluate(() => {
 }).catch(() => null);
 const markAdminSide = () => page.evaluate(() => { const side = document.querySelector('.ps-admin-side'); if (side) side.dataset.auditMark = '1'; }).catch(() => {});
 const openAdminMenu = async () => { if (phone() && !(await page.locator('.ps-admin-side.menu-open').count())) { await page.locator('.ps-admin-side .ps-tabbar button[aria-controls="ps-admin-side"]').first().click().catch(() => {}); await sleep(700); } };
+// The Health pill asks for its numbers after first paint; its place is compared once they are in (K-B41).
+const healthReady = () => page.waitForFunction(() => { const p = [...document.querySelectorAll('.ps-top .ps-health-pill')].find((e) => e.getClientRects().length); return !p || !p.classList.contains('unavailable'); }, null, { timeout: 8000 }).catch(() => {});
 const shieldTo = async (overview) => {
   await goto(overview, 800);
   const shield = page.locator((phone() ? '.ps-tabbar a.ps-tab:has(use[href="#ps-shield"])' : 'a.ps-nav-admin') + ' >> visible=true').first();
@@ -102,13 +104,14 @@ const shieldTo = async (overview) => {
   if (!(await shield.count()) && await page.locator('.ps-top .ps-mobile-menu >> visible=true').count()) { await page.locator('.ps-top .ps-mobile-menu >> visible=true').first().click().catch(() => {}); await sleep(500); }
   if (!(await shield.count())) return false;
   // The switch to Admin changes only the content (wire:navigate), as in an app: no whole page, the top bar's buttons stay.
+  await healthReady();
   switched = { before: await topButtons() };
   await page.evaluate(() => { window.__psSwitch = 1; }).catch(() => {});
   await shield.click().catch(() => {}); await page.waitForURL(/\/admin\//, { timeout: 15000 }).catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await settle(page, 1500);
   switched.reloaded = await page.evaluate(() => window.__psSwitch !== 1).catch(() => true);
-  switched.after = await topButtons();
   // Healthy keeps its state on the Admin page (asked there too), instead of a grey "Health".
   switched.health = await page.waitForFunction(() => { const p = [...document.querySelectorAll('.ps-top .ps-health-pill')].find((e) => e.getClientRects().length); return !p || !p.classList.contains('unavailable') ? (p ? p.className : 'none') : false; }, null, { timeout: 8000 }).then((h) => h.jsonValue()).catch(() => 'unavailable');
+  switched.after = await topButtons();
   return true;
 };
 let switched = null;
@@ -129,6 +132,7 @@ const adminPage = async (overview) => {
   // a phone) stay where they are; the bottom bar keeps its tabs.
   const there = switched;
   await shieldBack();
+  await healthReady();
   const back = { reloaded: await page.evaluate(() => window.__psSwitch !== 1).catch(() => true), path: await page.evaluate(() => location.pathname).catch(() => null), after: await topButtons() };
   // A narrow window keeps the top bar's buttons behind its menu button: there only the switch itself counts.
   const folded = (await page.locator('.ps-top .ps-mobile-menu >> visible=true').count()) > 0;
@@ -237,6 +241,7 @@ const adminPage = async (overview) => {
     const navOverview = await pageLook(); await record('setup-done-to-overview', 'Setup klaar › Go to the panel: overzicht');
     const d1 = same(fullOverview, navOverview, keys);
     say('setup-done-to-overview', found && d1.length === 0, { found, diff: d1, full: fullOverview, after: navOverview });
+    if (!(await page.locator('a.ps-nav-admin >> visible=true').count())) { await page.locator('.ps-top .ps-mobile-menu >> visible=true').first().click().catch(() => {}); await sleep(500); }
     const shield = page.locator('a.ps-nav-admin >> visible=true').first();
     await shield.click({ timeout: 4000 }).catch(() => {}); await arrivedAt(/^\/admin/); await settle(page, 1500);
     const navAdmin = await pageLook();
@@ -283,20 +288,20 @@ const adminPage = async (overview) => {
     await legacy.click().catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await settle(page, 1500);
     const lg = await adminState(); await record('admin-legacy', 'Legacy-paneel (Pelicans eigen pagina)');
     say('admin-legacy', !!lg && !lg.shell && !lg.side && !lg.header && !/simplify_legacy/.test(page.url()), lg);
-    // Simplify's settings in the legacy panel look as Pelican's pages do: Pelican's top bar and sidebar, the row of tabs
+    // Simplify's settings in the legacy panel look as Pelican's pages do: Pelican's top bar or sidebar (with the user menu in the sidebar there is no top bar), the row of tabs
     // under the top bar and on the screen, wrapping instead of scrolling sideways on a computer (Jeroen 3-11).
     const viaMenu = page.locator('.fi-sidebar a[href$="/admin/simplify"] >> visible=true').first();
     if (await viaMenu.count()) { await viaMenu.click().catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await settle(page, 1500); }
     if (!/\/admin\/simplify$/.test(new URL(page.url()).pathname)) await goto('/admin/simplify', 1500);
     const ls = await page.evaluate(() => {
       const shown = (e) => !!e && e.getClientRects().length > 0 && getComputedStyle(e).visibility !== 'hidden';
-      const nav = document.querySelector('.s-settings-nav'), bar = document.querySelector('.fi-topbar'), n = nav?.getBoundingClientRect(), b = bar?.getBoundingClientRect();
-      return { path: location.pathname, shell: document.documentElement.className.split(' ').filter((c) => c.startsWith('ps-shell')), topbar: shown(bar), nav: !!nav,
+      const nav = document.querySelector('.s-settings-nav'), bar = document.querySelector('.fi-topbar'), side = document.querySelector('.fi-sidebar'), n = nav?.getBoundingClientRect(), b = bar?.getBoundingClientRect();
+      return { path: location.pathname, shell: document.documentElement.className.split(' ').filter((c) => c.startsWith('ps-shell')), topbar: shown(bar), sidebar: shown(side), nav: !!nav,
         navTop: n ? Math.round(n.top) : null, barBottom: b && shown(bar) ? Math.round(b.bottom) : null, sideways: nav ? nav.scrollWidth - nav.clientWidth : null,
         offScreen: n ? n.left < 0 || n.right > innerWidth + 1 : null, pageWide: document.documentElement.scrollWidth - innerWidth };
     }).catch((e) => ({ error: e.message.slice(0, 120) }));
     await record('admin-legacy-settings', 'Legacy-paneel · Simplify settings');
-    say('admin-legacy-settings', !!ls && !ls.shell?.length && (phone() || ls.topbar) && ls.nav && (ls.barBottom === null || ls.navTop >= ls.barBottom) && ls.navTop >= 0
+    say('admin-legacy-settings', !!ls && !ls.shell?.length && (phone() || ls.topbar || ls.sidebar) && ls.nav && (ls.barBottom === null || ls.navTop >= ls.barBottom) && ls.navTop >= 0
       && (phone() || ls.sideways <= 1) && !ls.offScreen && ls.pageWide <= 1, ls);
     // The way back is the first item of Pelican's sidebar; on a small window that sidebar opens from its button first.
     // (A closed off-canvas sidebar still counts as visible to Playwright: look whether the link is on the screen.)
@@ -338,6 +343,8 @@ const adminPage = async (overview) => {
 // phone one Filter with them all as a sheet. Group only when the account has server groups. A choice narrows the servers and names itself on the chip; All takes it back.
 const filterCheck = async () => {
   const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
+  // Escape in server groups only steps back to Customize; on a tablet Customize sits over the Filter button, so close every menu first.
+  await alpine('d.groupsMenu=false; d.appearanceMenu=false; d.accountMenu=false; d.navMenu=false'); await sleep(400);
   const want = await alpine('return { sections: d.filterSections().map((x) => x.key), groups: d.overviewGroups.length, servers: d.visibleServers().length }');
   // K-B15: the egg filter is always there while the overview has servers (it vanished with one game, one node and only own servers).
   if (!want || want.sections[0] !== 'egg') return say('overview-filter', false, { note: 'no egg filter', want });
@@ -395,7 +402,9 @@ const healthSurround = async () => {
   await escape();
 };
 const goto = async (url, ms = 900) => { for (let i = 0; i < 3; i++) { try { await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 }); break; } catch (e) { if (i === 2) throw e; await sleep(1500); } } await settle(page, ms); };
-const click = async (sel, ms = 600) => { const l = page.locator(sel).first(); if (!(await l.count()) || !(await l.isVisible().catch(() => false))) { problems.push(`${stand} ${screen}: nothing to click for ${sel}`); return false; } await l.click({ timeout: 5000 }).catch((e) => problems.push(`${stand} ${screen}: click ${sel}: ${e.message.slice(0, 80)}`)); await sleep(ms); return true; };
+// A narrow window (tablet) folds the top bar's bell and account button behind its menu button: open that first.
+const unfold = async (sel) => { if (!/account-button|notifyButton/.test(sel) || await page.locator(sel).first().isVisible().catch(() => false)) return; const menu = page.locator('.ps-top .ps-mobile-menu >> visible=true').first(); if (await menu.count()) { await menu.click().catch(() => {}); await sleep(500); } };
+const click = async (sel, ms = 600) => { await unfold(sel); const l = page.locator(sel).first(); if (!(await l.count()) || !(await l.isVisible().catch(() => false))) { problems.push(`${stand} ${screen}: nothing to click for ${sel}`); return false; } await l.click({ timeout: 5000 }).catch((e) => problems.push(`${stand} ${screen}: click ${sel}: ${e.message.slice(0, 80)}`)); await sleep(ms); return true; };
 const escape = async () => { await page.keyboard.press('Escape'); await sleep(300); };
 const phone = () => VIEWPORTS[stand.split('-')[0]].width <= 600;
 // Phones (1.5.4) reach the overview's menus from the bottom bar: server groups and the overview's look under Customize. Elsewhere, and on wider screens, the button in the top bar.
@@ -442,10 +451,12 @@ async function round(theme) {
   // Phones have no panel menu any more (1.5.4): the bell and the account sit in the top bar, the rest in the bottom bar.
   const openNav = async () => {};
   await click('.ps-account-button'); await record('overview-account', 'Accountmenu open');
-  await escape(); await alpine('d.accountMenu=false; d.appearanceMenu=true'); await sleep(600); await record('overview-customize-theme', 'Customize Simplify, thema bovenaan');
+  const folded = (await page.locator('.ps-top .ps-mobile-menu >> visible=true').count()) > 0;
+  await escape(); await alpine(`d.accountMenu=false; ${folded ? 'd.navMenu=true; ' : ''}d.appearanceMenu=true`); await sleep(600); await record('overview-customize-theme', 'Customize Simplify, thema bovenaan');
   // K-B19: Customize Simplify opens from the account menu, so its arrow points at the account button and its box ends
   // where the account menu ends, not at the place Customize had in the top bar before.
-  if (!phone()) {
+  // A tablet keeps the account button in the top bar's menu; Customize then opens over the page (customize-wide).
+  if (!phone() && !folded) {
     const at = await page.evaluate(() => {
       const button = [...document.querySelectorAll('.ps-top .ps-account-button')].find((e) => e.getClientRects().length);
       const menu = document.querySelector('#ps-overview-appearance-menu');
@@ -480,6 +491,8 @@ async function round(theme) {
     const wide = (x) => x && x.rows > 0 && x.inside && (phone() || (x.width >= 640 && x.beside));
     problems.push(`${stand} customize-wide: ${tabs.length >= 5 && seen.every(wide) ? 'ok' : 'WRONG'} ${JSON.stringify(seen)}`);
   }
+  // On a tablet Customize was opened from the top bar's menu: close both, so the next steps see the overview.
+  if (folded) { await alpine('d.appearanceMenu=false; d.navMenu=false'); await sleep(400); }
   await alpine('d.appearanceMenu=false'); await sleep(300);
   await openNav();
   await click('[x-ref="notifyButton"]'); await record('overview-bell', 'Bel (aankondigingen) open'); await escape();

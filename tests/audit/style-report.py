@@ -24,7 +24,8 @@ for f in sys.argv[1:]:
                 if k not in STYLE: continue
                 # A phone scrolls its server page by design (the fit applies from 601 px); frames scroll inside the box.
                 # Simplify's own admin pages in the normal mode (Settings, Health, People, add-ons) must not scroll either.
-                noscroll = NOSCROLL.match(s['id']) or (s['id'].startswith('admin-') and (m.get('info') or {}).get('scope') == 'simplify')
+                # In the legacy panel they are Pelican's pages and scroll as Pelican's pages do.
+                noscroll = NOSCROLL.match(s['id']) or (s['id'].startswith('admin-') and not s['id'].startswith('admin-legacy') and (m.get('info') or {}).get('scope') == 'simplify')
                 if k in ('pagescroll', 'hscroll') and (tag or not noscroll or (m.get('w') or 9999) <= 600): continue
                 if k == 'cardoff' and tag: continue
                 rows.append((s['stand'], s['id'], s.get('title', ''), k + tag, p['text'], s.get('shot', '')))
