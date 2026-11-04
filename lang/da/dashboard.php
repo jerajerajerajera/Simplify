@@ -239,7 +239,6 @@ return [
         'names_not_available' => 'Navne ikke tilgængelige',
         'no_players_online' => 'Ingen spillere online',
         'server_sections' => 'Serverafsnit',
-        'quick_commands' => 'Hurtige kommandoer',
         'live_console' => 'Live-konsol',
         'connecting_to_wings' => 'Forbinder til Wings…',
         'connected_to_wings' => 'Forbundet til Wings',

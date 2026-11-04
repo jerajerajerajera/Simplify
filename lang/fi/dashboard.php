@@ -239,7 +239,6 @@ return [
         'names_not_available' => 'Nimiä ei saatavilla',
         'no_players_online' => 'Ei pelaajia paikalla',
         'server_sections' => 'Palvelimen osiot',
-        'quick_commands' => 'Pikakomennot',
         'live_console' => 'Reaaliaikainen konsoli',
         'connecting_to_wings' => 'Yhdistetään Wingsiin…',
         'connected_to_wings' => 'Yhdistetty Wingsiin',

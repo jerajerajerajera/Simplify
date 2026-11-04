@@ -239,7 +239,6 @@ return [
         'names_not_available' => 'Имена нису доступна',
         'no_players_online' => 'Нема играча на мрежи',
         'server_sections' => 'Одељци сервера',
-        'quick_commands' => 'Брзе команде',
         'live_console' => 'Конзола уживо',
         'connecting_to_wings' => 'Повезивање са Wings-ом…',
         'connected_to_wings' => 'Повезано са Wings-ом',

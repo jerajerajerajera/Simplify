@@ -239,7 +239,6 @@ return [
         'names_not_available' => 'Không có tên',
         'no_players_online' => 'Không có người chơi trực tuyến',
         'server_sections' => 'Mục máy chủ',
-        'quick_commands' => 'Lệnh nhanh',
         'live_console' => 'Console trực tiếp',
         'connecting_to_wings' => 'Đang kết nối với Wings…',
         'connected_to_wings' => 'Đã kết nối với Wings',

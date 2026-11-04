@@ -239,7 +239,6 @@ return [
         'names_not_available' => 'Імена недоступні',
         'no_players_online' => 'Немає гравців онлайн',
         'server_sections' => 'Розділи сервера',
-        'quick_commands' => 'Швидкі команди',
         'live_console' => 'Жива консоль',
         'connecting_to_wings' => 'Підключення до Wings…',
         'connected_to_wings' => 'Підключено до Wings',

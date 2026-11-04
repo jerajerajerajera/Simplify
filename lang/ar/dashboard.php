@@ -239,7 +239,6 @@ return [
         'names_not_available' => 'الأسماء غير متاحة',
         'no_players_online' => 'لا يوجد لاعبون متصلون',
         'server_sections' => 'أقسام الخادم',
-        'quick_commands' => 'أوامر سريعة',
         'live_console' => 'وحدة التحكم المباشرة',
         'connecting_to_wings' => 'جارٍ الاتصال بـ Wings…',
         'connected_to_wings' => 'متصل بـ Wings',

@@ -239,7 +239,6 @@ return [
         'names_not_available' => 'Nume indisponibile',
         'no_players_online' => 'Niciun jucător online',
         'server_sections' => 'Secțiunile serverului',
-        'quick_commands' => 'Comenzi rapide',
         'live_console' => 'Consolă live',
         'connecting_to_wings' => 'Se conectează la Wings…',
         'connected_to_wings' => 'Conectat la Wings',

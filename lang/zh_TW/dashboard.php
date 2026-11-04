@@ -239,7 +239,6 @@ return [
         'names_not_available' => '名稱不可用',
         'no_players_online' => '沒有線上玩家',
         'server_sections' => '伺服器部分',
-        'quick_commands' => '快捷指令',
         'live_console' => '即時主控台',
         'connecting_to_wings' => '正在連接 Wings…',
         'connected_to_wings' => '已連接到 Wings',

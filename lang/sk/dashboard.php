@@ -239,7 +239,6 @@ return [
         'names_not_available' => 'Mená nie sú k dispozícii',
         'no_players_online' => 'Žiadni hráči online',
         'server_sections' => 'Sekcie servera',
-        'quick_commands' => 'Rýchle príkazy',
         'live_console' => 'Živá konzola',
         'connecting_to_wings' => 'Pripája sa k Wings…',
         'connected_to_wings' => 'Pripojené k Wings',

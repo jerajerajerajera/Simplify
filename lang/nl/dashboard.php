@@ -239,7 +239,6 @@ return [
         'names_not_available' => 'Namen niet beschikbaar',
         'no_players_online' => 'Geen spelers online',
         'server_sections' => 'Serveronderdelen',
-        'quick_commands' => 'Snelle commando\'s',
         'live_console' => 'Live console',
         'connecting_to_wings' => 'Verbinden met Wings…',
         'connected_to_wings' => 'Verbonden met Wings',

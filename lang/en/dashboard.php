@@ -239,7 +239,6 @@ return [
         'names_not_available' => 'Names not available',
         'no_players_online' => 'No players online',
         'server_sections' => 'Server sections',
-        'quick_commands' => 'Quick commands',
         'live_console' => 'Live console',
         'connecting_to_wings' => 'Connecting to Wings…',
         'connected_to_wings' => 'Connected to Wings',

@@ -239,7 +239,6 @@ return [
         'names_not_available' => 'Nomes indisponíveis',
         'no_players_online' => 'Nenhum jogador online',
         'server_sections' => 'Seções do servidor',
-        'quick_commands' => 'Comandos rápidos',
         'live_console' => 'Console ao vivo',
         'connecting_to_wings' => 'Conectando ao Wings…',
         'connected_to_wings' => 'Conectado ao Wings',

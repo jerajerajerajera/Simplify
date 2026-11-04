@@ -239,7 +239,6 @@ return [
         'names_not_available' => '이름을 알 수 없음',
         'no_players_online' => '온라인 플레이어 없음',
         'server_sections' => '서버 섹션',
-        'quick_commands' => '빠른 명령',
         'live_console' => '실시간 콘솔',
         'connecting_to_wings' => 'Wings에 연결 중…',
         'connected_to_wings' => 'Wings에 연결됨',

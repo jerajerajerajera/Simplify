@@ -239,7 +239,6 @@ return [
         'names_not_available' => 'Τα ονόματα δεν είναι διαθέσιμα',
         'no_players_online' => 'Κανένας συνδεδεμένος παίκτης',
         'server_sections' => 'Ενότητες διακομιστή',
-        'quick_commands' => 'Γρήγορες εντολές',
         'live_console' => 'Ζωντανή κονσόλα',
         'connecting_to_wings' => 'Σύνδεση στο Wings…',
         'connected_to_wings' => 'Συνδέθηκε στο Wings',

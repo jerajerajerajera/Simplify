@@ -239,7 +239,6 @@ return [
         'names_not_available' => 'Adlar mevcut değil',
         'no_players_online' => 'Çevrimiçi oyuncu yok',
         'server_sections' => 'Sunucu bölümleri',
-        'quick_commands' => 'Hızlı komutlar',
         'live_console' => 'Canlı konsol',
         'connecting_to_wings' => 'Wings\'e bağlanıyor…',
         'connected_to_wings' => 'Wings\'e bağlandı',

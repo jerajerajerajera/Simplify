@@ -239,7 +239,6 @@ return [
         'names_not_available' => '名前は取得できません',
         'no_players_online' => 'オンラインのプレイヤーはいません',
         'server_sections' => 'サーバーのセクション',
-        'quick_commands' => 'クイックコマンド',
         'live_console' => 'ライブコンソール',
         'connecting_to_wings' => 'Wings に接続中…',
         'connected_to_wings' => 'Wings に接続済み',

@@ -239,7 +239,6 @@ return [
         'names_not_available' => 'Vardai nepasiekiami',
         'no_players_online' => 'Nėra prisijungusių žaidėjų',
         'server_sections' => 'Serverio skiltys',
-        'quick_commands' => 'Greitos komandos',
         'live_console' => 'Gyva konsolė',
         'connecting_to_wings' => 'Jungiamasi prie Wings…',
         'connected_to_wings' => 'Prisijungta prie Wings',

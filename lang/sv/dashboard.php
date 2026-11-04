@@ -239,7 +239,6 @@ return [
         'names_not_available' => 'Namn inte tillgängliga',
         'no_players_online' => 'Inga spelare online',
         'server_sections' => 'Serveravsnitt',
-        'quick_commands' => 'Snabbkommandon',
         'live_console' => 'Live-konsol',
         'connecting_to_wings' => 'Ansluter till Wings…',
         'connected_to_wings' => 'Ansluten till Wings',

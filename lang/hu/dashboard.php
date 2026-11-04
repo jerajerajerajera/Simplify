@@ -239,7 +239,6 @@ return [
         'names_not_available' => 'Nevek nem érhetők el',
         'no_players_online' => 'Nincs online játékos',
         'server_sections' => 'Szerver részei',
-        'quick_commands' => 'Gyorsparancsok',
         'live_console' => 'Élő konzol',
         'connecting_to_wings' => 'Csatlakozás a Wingshez…',
         'connected_to_wings' => 'Csatlakozva a Wingshez',

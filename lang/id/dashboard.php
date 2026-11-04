@@ -239,7 +239,6 @@ return [
         'names_not_available' => 'Nama tidak tersedia',
         'no_players_online' => 'Tidak ada pemain online',
         'server_sections' => 'Bagian server',
-        'quick_commands' => 'Perintah cepat',
         'live_console' => 'Konsol langsung',
         'connecting_to_wings' => 'Menghubungkan ke Wings…',
         'connected_to_wings' => 'Terhubung ke Wings',
