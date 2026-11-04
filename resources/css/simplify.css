@@ -956,6 +956,17 @@ html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header-heading {
     grid-row: 3;
   }
 
+  /* The page runs on under the bottom bar, as the overview does: no strip of background between the page and the bar,
+     and the room for the bar is at the end of the page, so its last line (the copyright) scrolls fully above it
+     (K-B43). */
+  html.ps-shell-menu:not(.ps-frame) body .fi-layout:not(:has(.ps-admin-side.menu-open)) {
+    padding-bottom: 0;
+  }
+
+  html.ps-shell-menu:not(.ps-frame) .fi-layout > .fi-main-ctn {
+    padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
   html.ps-shell-menu:not(.ps-frame) .fi-layout:has(.ps-admin-side.menu-open) > [x-persist="simplify-admin-side"] {
     grid-row: 2 / 4;
   }
