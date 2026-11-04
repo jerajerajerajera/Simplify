@@ -43,7 +43,7 @@ final class InstallProblems
 
         return [
             'title' => __('simplify::dashboard.ui.install_problem_title', ['name' => $server->name]),
-            'context' => 'The installation of a game server on Pelican failed. The lines are the output of its install script (egg: '.($server->egg?->name ?: 'unknown').'), read from Wings.',
+            'context' => 'The installation of a game server on Pelican failed. The lines are the output of its install script (egg: '.($server->egg->name ?: 'unknown').'), read from Wings.',
             'lines' => self::lines($log),
         ];
     }
@@ -63,7 +63,7 @@ final class InstallProblems
     {
         $lines = preg_split('/\R/', trim((string) preg_replace('/\e\[[0-9;?]*[A-Za-z]/', '', $log))) ?: [];
 
-        return array_values(array_slice(array_filter($lines, fn (string $line) => trim($line) !== ''), -self::LINES));
+        return array_slice(array_filter($lines, fn (string $line) => trim($line) !== ''), -self::LINES);
     }
 
     /** The server behind the id, only while its installation failed and only for someone who may use its console. */

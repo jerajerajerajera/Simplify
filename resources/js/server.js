@@ -646,7 +646,6 @@
         return this.rates[way] == null ? '—' : this.trafficBytes(this.rates[way]) + '/s';
       },
       metricLimit(key) {
-        const u = this.server.usage || {};
         if (key === 'network') return t('dashboard.traffic_used', { traffic: this.stats.rx == null || this.stats.tx == null ? '—' : '↓ ' + this.trafficBytes(this.stats.rx) + ' / ↑ ' + this.trafficBytes(this.stats.tx) });
         const cap = this.metricCap(key), share = this.metricShare(key);
         if (!cap) return t('dashboard.of_allocated', { amount: '∞' });
