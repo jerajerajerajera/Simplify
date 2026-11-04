@@ -37,7 +37,7 @@ const page = (content, marked) => `<!doctype html><html class="ps-shell ps-shell
 </div>
 <pre id="out" style="position:fixed;top:0;left:0;margin:0;width:0;height:0;overflow:hidden"></pre>
 <script>
-  // A phone's bottom bar (K-B43): the page runs on to the bar, with no strip of background between them, and the
+  // A phone's bottom bar (K-B44): the page runs on to the bar, with no strip of background between them, and the
   // footer at the end of the page comes fully above the bar.
   const bar = (card, footer) => {
     const tabbar = document.querySelector('.ps-tabbar');
