@@ -8,6 +8,7 @@ return [
         'when_ready' => '(준비되면)',
         'you_get_a_notification' => '알림을 받게 됩니다',
         'try_again' => '다시 시도',
+        'install_problem_title' => ':name 설치',
         'installation_progress' => '설치 진행 상황',
         'all_notifications' => '모든 알림',
         'customize_notifications' => '알림 사용자 지정',

@@ -8,6 +8,7 @@ return [
         'when_ready' => 'când este gata',
         'you_get_a_notification' => 'Primiți o notificare',
         'try_again' => 'Încercați din nou',
+        'install_problem_title' => 'Instalarea :name',
         'installation_progress' => 'Progresul instalării',
         'all_notifications' => 'Toate notificările',
         'customize_notifications' => 'Personalizează notificările',

@@ -8,6 +8,7 @@ return [
         'when_ready' => 'saat siap',
         'you_get_a_notification' => 'Anda akan mendapat notifikasi',
         'try_again' => 'Coba lagi',
+        'install_problem_title' => 'Instalasi :name',
         'installation_progress' => 'Progres instalasi',
         'all_notifications' => 'Semua notifikasi',
         'customize_notifications' => 'Sesuaikan notifikasi',

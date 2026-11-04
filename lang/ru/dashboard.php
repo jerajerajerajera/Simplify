@@ -8,6 +8,7 @@ return [
         'when_ready' => 'когда будет готов',
         'you_get_a_notification' => 'Вы получите уведомление',
         'try_again' => 'Попробовать снова',
+        'install_problem_title' => 'Установка :name',
         'installation_progress' => 'Ход установки',
         'all_notifications' => 'Все уведомления',
         'customize_notifications' => 'Настроить уведомления',

@@ -8,6 +8,7 @@ return [
         'when_ready' => 'عند الجاهزية',
         'you_get_a_notification' => 'ستتلقى إشعارًا',
         'try_again' => 'حاول مرة أخرى',
+        'install_problem_title' => 'تثبيت :name',
         'installation_progress' => 'تقدّم التثبيت',
         'all_notifications' => 'كل الإشعارات',
         'customize_notifications' => 'تخصيص الإشعارات',

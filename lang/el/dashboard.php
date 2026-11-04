@@ -8,6 +8,7 @@ return [
         'when_ready' => 'όταν είναι έτοιμος',
         'you_get_a_notification' => 'Θα λάβετε ειδοποίηση',
         'try_again' => 'Δοκιμάστε ξανά',
+        'install_problem_title' => 'Εγκατάσταση του :name',
         'installation_progress' => 'Πρόοδος εγκατάστασης',
         'all_notifications' => 'Όλες οι ειδοποιήσεις',
         'customize_notifications' => 'Προσαρμογή ειδοποιήσεων',

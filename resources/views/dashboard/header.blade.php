@@ -39,6 +39,9 @@
             <svg aria-hidden="true"><use href="#ps-menu"/></svg>
         </button>
         <div class="ps-nav-items" id="ps-navigation-items">
+            {{-- The spot for an add-on's button after an error, once, for every notification that carries an error id:
+                 problemSpot() puts the id in place of __ID__ (ADDONS.md, Errors). --}}
+            <template data-simplify-problem-spot>{{ \Filament\Support\Facades\FilamentView::renderHook('simplify::problem.actions', scopes: ['simplify-problem', 'simplify-problem:__ID__']) }}</template>
             {{-- Notifications: Pelican's own (backups, installs, subusers) and host health alerts in one dropdown. --}}
             <div class="ps-notify" x-on:click.outside="notifyMenu=false" x-on:keydown.escape.stop="notifyMenu=false; $refs.notifyButton.focus()">
                 {{-- A new notification drops down from the bell and slides back up after a few seconds. --}}

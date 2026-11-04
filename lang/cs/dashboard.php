@@ -8,6 +8,7 @@ return [
         'when_ready' => 'až bude připraveno',
         'you_get_a_notification' => 'Dostanete upozornění',
         'try_again' => 'Zkusit znovu',
+        'install_problem_title' => 'Instalace :name',
         'installation_progress' => 'Průběh instalace',
         'all_notifications' => 'Všechna oznámení',
         'customize_notifications' => 'Upravit oznámení',

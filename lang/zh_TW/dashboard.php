@@ -8,6 +8,7 @@ return [
         'when_ready' => '（就緒時）',
         'you_get_a_notification' => '你會收到通知',
         'try_again' => '重試',
+        'install_problem_title' => ':name 的安裝',
         'installation_progress' => '安裝進度',
         'all_notifications' => '所有通知',
         'customize_notifications' => '自訂通知',
