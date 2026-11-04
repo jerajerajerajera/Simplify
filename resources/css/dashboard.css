@@ -1380,19 +1380,15 @@ html.ps-fit body:has(.ps-server-top) :is(.fi-page-header-main-ctn:has(> .fi-head
 html.ps-fit body:has(.ps-server-top) .fi-resource-list-records-page .fi-page-header-main-ctn:not(:has(> .fi-header .fi-btn)) { position: relative; }
 html.ps-fit body:has(.ps-server-top) .fi-resource-list-records-page .fi-page-header-main-ctn:not(:has(> .fi-header .fi-btn)) > .fi-header { position: absolute; top: 12px; inset-inline-end: 16px; z-index: 2; margin: 0 !important; }
 html.ps-fit body:has(.ps-server-top) .fi-resource-list-records-page .fi-page-header-main-ctn:not(:has(> .fi-header .fi-btn)):has(> .fi-header .fi-header-actions-ctn > *) .fi-ta-header-toolbar { padding-inline-end: 68px; }
-html.ps-fit body:has(.ps-server-top:not(.is-console)) .fi-main :is(.fi-section, .fi-ta-ctn, .sm-side > *) { margin: 0 !important; border: 0 !important; border-radius: 0 !important; background: transparent !important; box-shadow: none !important; outline: 0 !important; }
+html.ps-fit body:has(.ps-server-top:not(.is-console)) .fi-main :is(.fi-section, .fi-ta-ctn) { margin: 0 !important; border: 0 !important; border-radius: 0 !important; background: transparent !important; box-shadow: none !important; outline: 0 !important; }
 html.ps-fit body:has(.ps-server-top) .fi-main .fi-ta-header-toolbar { padding-inline: 16px; }
 html.ps-fit body:has(.ps-server-top:not(.is-console)) .fi-main .fi-sc.fi-sc-has-gap:not(:is(.fi-section, .fi-fieldset) *) { gap: 0 !important; }
-html.ps-fit body:has(.ps-server-top:not(.is-console)) .fi-main :is(.fi-sc > .fi-grid-col:not(.fi-hidden) ~ .fi-grid-col:not(.fi-hidden):not(:is(.fi-section, .fi-fieldset) *), .sm-side > * + *) { border-top: 1px solid var(--ps-line) !important; }
+html.ps-fit body:has(.ps-server-top:not(.is-console)) .fi-main .fi-sc > .fi-grid-col:not(.fi-hidden) ~ .fi-grid-col:not(.fi-hidden):not(:is(.fi-section, .fi-fieldset) *) { border-top: 1px solid var(--ps-line) !important; }
 html.ps-fit body:has(.ps-server-top:not(.is-console)) .fi-main .fi-fieldset { margin: 0 !important; padding: 0 !important; border: 0 !important; }
 html.ps-fit body:has(.ps-server-top:not(.is-console)) .fi-main .fi-fieldset > legend { margin: 0 0 8px; padding: 0; font-weight: 600; }
 /* Loose fields and notices (a schedule's name, the startup command, a Minecraft warning) get a section's margin. */
 html.ps-fit body:has(.ps-server-top:not(.is-console)) .fi-main .fi-sc > .fi-grid-col:not(:has(.fi-section, .fi-ta-ctn, > .fi-sc-component > .fi-sc)):not(:is(.fi-section, .fi-fieldset) *) { padding: 12px 24px; }
-html.ps-fit body:has(.ps-server-top:not(.is-console)) .fi-main :is(form > :not(.fi-sc), .fi-page-content > :not(.fi-sc, .fi-ta, .relative, .sm-columns, form, div:empty)) { margin: 0; padding: 12px 24px; }
-/* Toolkit's Plugins page: its two columns in the one card, split by a line. */
-html.ps-fit body:has(.ps-server-top) .fi-main .sm-columns { gap: 0 !important; align-items: stretch; min-height: 100%; }
-html.ps-fit body:has(.ps-server-top) .fi-main .sm-columns > .fi-section { border-inline-end: 1px solid var(--ps-line) !important; }
-html.ps-fit body:has(.ps-server-top) .fi-main .sm-side { gap: 0 !important; }
+html.ps-fit body:has(.ps-server-top:not(.is-console)) .fi-main :is(form > :not(.fi-sc), .fi-page-content > :not(.fi-sc, .fi-ta, .relative, form, div:empty)) { margin: 0; padding: 12px 24px; }
 html.ps-console-big .ps-server-menu { display: none; }
 html.ps-console-big body:has(.ps-server-top) .fi-main-ctn > .fi-main { grid-column: 1 / -1; }
 
