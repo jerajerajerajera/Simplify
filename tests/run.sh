@@ -28,6 +28,7 @@ node tests/admin-crumb-row.cjs
 node tests/settings-nav-wrap.cjs
 node tests/beta-footer.cjs
 node tests/standalone-viewport.cjs
+node tests/overview-footer.cjs
 node tests/server-stats.cjs
 node tests/overview-filters.cjs
 node tests/card-bars.cjs

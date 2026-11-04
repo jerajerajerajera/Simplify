@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Phones: the Admin pages run on under the bottom bar, without a thin dark strip above it, and their last line scrolls fully above the bar.
+- Phones: on the overview the copyright line stands at the bottom, just above the bottom bar, when there are only a few servers, and moves down with the list when there are more.
 
 ## 2.0.0-beta.4
 
