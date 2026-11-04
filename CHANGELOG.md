@@ -2,7 +2,6 @@
 
 ## Unreleased
 
-
 - Server page: Server color and Server background open from a small pencil on the server's icon instead of the ⋯ menu; on a phone they open as a sheet.
 
 - Phones: the server page's head is lower and its numbers (players, CPU, memory, disk) are one strip, so the console starts higher.
