@@ -2618,15 +2618,21 @@ html.ps-frame .s-done {
 :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell:has(img) img { flex: none; width: 32px !important; max-width: none !important; height: 32px !important; object-fit: cover; }
 /* The name: the first column with plain text (not the icon, a status badge, a select or the buttons), taking what is
    left of the first line; the row's buttons end that line. */
-:is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell:nth-child(1 of .fi-ta-cell:not(.fi-ta-selection-cell, :is(.fi-ta-actions-cell, .fi-ta-cell:has(.fi-ta-actions)), :has(img, .fi-badge, select, .fi-ta-icon, .fi-icon))) { order: 1; flex: 1 1 0; color: inherit; font-size: 14px; font-weight: 600; }
+:is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell:nth-child(1 of .fi-ta-cell:not(.fi-ta-selection-cell, :is(.fi-ta-actions-cell, .fi-ta-cell:has(.fi-ta-actions)), :has(img, .fi-badge, select, .fi-ta-icon))) { order: 1; flex: 1 1 0; color: inherit; font-size: 14px; font-weight: 600; }
 :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > :is(.fi-ta-actions-cell, .fi-ta-cell:has(.fi-ta-actions)) { order: 2; flex: none; margin-inline-start: auto; overflow: visible; }
-/* Phones leave out the checkboxes; wider screens keep them at the start of the row, for the bulk actions, and give each
-   row a little more room. */
+/* Phones leave out the checkboxes; wider screens keep them at the start of the row, for the bulk actions, and put each
+   row on one line. */
 @media (max-width: 600px) {
   :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table :is(.fi-ta-selection-cell, .fi-ta-group-selection-cell) { display: none !important; }
 }
 @media (min-width: 601px) {
   :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-selection-cell { order: 0; flex: none; }
+  /* One line per row: the name, then the other columns as short muted texts and chips, then the row's buttons. */
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row { flex-wrap: nowrap; }
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row::after { display: none; }
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell { order: 2; flex: 0 1 auto; }
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell:nth-child(1 of .fi-ta-cell:not(.fi-ta-selection-cell, :is(.fi-ta-actions-cell, .fi-ta-cell:has(.fi-ta-actions)), :has(img, .fi-badge, select, .fi-ta-icon))) { order: 1; flex: 1 1 12rem; }
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > :is(.fi-ta-actions-cell, .fi-ta-cell:has(.fi-ta-actions)) { order: 3; flex: none; }
   :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row { padding: 12px 18px; gap: 4px 14px; }
   :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row:has(> .fi-ta-cell img) { padding-inline-start: 64px; }
   :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell { font-size: 13px; }
