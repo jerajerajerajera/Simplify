@@ -343,6 +343,8 @@ const adminPage = async (overview) => {
 // phone one Filter with them all as a sheet. Group only when the account has server groups. A choice narrows the servers and names itself on the chip; All takes it back.
 const filterCheck = async () => {
   const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
+  // Escape in server groups only steps back to Customize; on a tablet Customize sits over the Filter button, so close every menu first.
+  await alpine('d.groupsMenu=false; d.appearanceMenu=false; d.accountMenu=false; d.navMenu=false'); await sleep(400);
   const want = await alpine('return { sections: d.filterSections().map((x) => x.key), groups: d.overviewGroups.length, servers: d.visibleServers().length }');
   // K-B15: the egg filter is always there while the overview has servers (it vanished with one game, one node and only own servers).
   if (!want || want.sections[0] !== 'egg') return say('overview-filter', false, { note: 'no egg filter', want });
