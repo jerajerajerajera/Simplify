@@ -536,8 +536,10 @@ async function round(theme) {
   await record('server-console-typed', 'Server · Console na een commando');
   if (await click('.ps-console-grow', 800)) { await record('server-console-big', 'Server · Console vergroot'); await click('.ps-console-grow', 800); }
   await click('.ps-info-more-button'); await record('server-more', 'Server · ⋯-menu open'); await escape();
-  const colour = page.locator('.ps-info-more-button').first();
-  if (await colour.count()) { await colour.click().catch(() => {}); await sleep(400); if (await click('.ps-menu-item:has-text("colour"), .ps-menu-item:has-text("Colour"), .ps-menu-item:has-text("color")', 500)) await record('server-colour', 'Server · kleurkiezer open'); await escape(); }
+  // Since F4 the colour and background sit behind a pencil on the server's icon; before that in the ⋯ menu.
+  if (await page.locator('.ps-look-button:visible').count()) { await click('.ps-look-button'); await record('server-look', 'Server · Look-menu op het icoon'); await escape(); }
+  const colour = page.locator('.ps-look-button:visible').count().then((n) => (n ? page.locator('.ps-look-button').first() : page.locator('.ps-info-more-button').first()));
+  if (await (await colour).count()) { await (await colour).click().catch(() => {}); await sleep(400); if (await click('.ps-menu-item:has-text("colour"), .ps-menu-item:has-text("Colour"), .ps-menu-item:has-text("color")', 500)) await record('server-colour', 'Server · kleurkiezer open'); await escape(); }
   if (await click('.ps-info-motd, .ps-motd-preview', 700)) { await record('server-motd', 'Server · MOTD-editor open'); await escape(); }
   if (onPhone) { if (await click('.ps-phone-more button', 500)) await record('server-phone-more', 'Server · telefoon: Meer-menu open'); await escape(); }
   // Server menu (1.5.0): main items plus "Advanced" (a <details>) with Delete server at the bottom; no "Open in Admin".
