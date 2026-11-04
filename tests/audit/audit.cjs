@@ -95,6 +95,8 @@ const adminState = () => page.evaluate(() => {
 }).catch(() => null);
 const markAdminSide = () => page.evaluate(() => { const side = document.querySelector('.ps-admin-side'); if (side) side.dataset.auditMark = '1'; }).catch(() => {});
 const openAdminMenu = async () => { if (phone() && !(await page.locator('.ps-admin-side.menu-open').count())) { await page.locator('.ps-admin-side .ps-tabbar button[aria-controls="ps-admin-side"]').first().click().catch(() => {}); await sleep(700); } };
+// The Health pill asks for its numbers after first paint; its place is compared once they are in (K-B41).
+const healthReady = () => page.waitForFunction(() => { const p = [...document.querySelectorAll('.ps-top .ps-health-pill')].find((e) => e.getClientRects().length); return !p || !p.classList.contains('unavailable'); }, null, { timeout: 8000 }).catch(() => {});
 const shieldTo = async (overview) => {
   await goto(overview, 800);
   const shield = page.locator((phone() ? '.ps-tabbar a.ps-tab:has(use[href="#ps-shield"])' : 'a.ps-nav-admin') + ' >> visible=true').first();
@@ -102,13 +104,14 @@ const shieldTo = async (overview) => {
   if (!(await shield.count()) && await page.locator('.ps-top .ps-mobile-menu >> visible=true').count()) { await page.locator('.ps-top .ps-mobile-menu >> visible=true').first().click().catch(() => {}); await sleep(500); }
   if (!(await shield.count())) return false;
   // The switch to Admin changes only the content (wire:navigate), as in an app: no whole page, the top bar's buttons stay.
+  await healthReady();
   switched = { before: await topButtons() };
   await page.evaluate(() => { window.__psSwitch = 1; }).catch(() => {});
   await shield.click().catch(() => {}); await page.waitForURL(/\/admin\//, { timeout: 15000 }).catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await settle(page, 1500);
   switched.reloaded = await page.evaluate(() => window.__psSwitch !== 1).catch(() => true);
-  switched.after = await topButtons();
   // Healthy keeps its state on the Admin page (asked there too), instead of a grey "Health".
   switched.health = await page.waitForFunction(() => { const p = [...document.querySelectorAll('.ps-top .ps-health-pill')].find((e) => e.getClientRects().length); return !p || !p.classList.contains('unavailable') ? (p ? p.className : 'none') : false; }, null, { timeout: 8000 }).then((h) => h.jsonValue()).catch(() => 'unavailable');
+  switched.after = await topButtons();
   return true;
 };
 let switched = null;
@@ -129,6 +132,7 @@ const adminPage = async (overview) => {
   // a phone) stay where they are; the bottom bar keeps its tabs.
   const there = switched;
   await shieldBack();
+  await healthReady();
   const back = { reloaded: await page.evaluate(() => window.__psSwitch !== 1).catch(() => true), path: await page.evaluate(() => location.pathname).catch(() => null), after: await topButtons() };
   // A narrow window keeps the top bar's buttons behind its menu button: there only the switch itself counts.
   const folded = (await page.locator('.ps-top .ps-mobile-menu >> visible=true').count()) > 0;
@@ -449,7 +453,8 @@ async function round(theme) {
   await escape(); await alpine(`d.accountMenu=false; ${folded ? 'd.navMenu=true; ' : ''}d.appearanceMenu=true`); await sleep(600); await record('overview-customize-theme', 'Customize Simplify, thema bovenaan');
   // K-B19: Customize Simplify opens from the account menu, so its arrow points at the account button and its box ends
   // where the account menu ends, not at the place Customize had in the top bar before.
-  if (!phone()) {
+  // A tablet keeps the account button in the top bar's menu; Customize then opens over the page (customize-wide).
+  if (!phone() && !folded) {
     const at = await page.evaluate(() => {
       const button = [...document.querySelectorAll('.ps-top .ps-account-button')].find((e) => e.getClientRects().length);
       const menu = document.querySelector('#ps-overview-appearance-menu');
