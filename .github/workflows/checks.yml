@@ -144,7 +144,7 @@ jobs:
         if: inputs.from070
         working-directory: panel
         run: |
-          php -r '$db = new PDO("sqlite:database/database.sqlite"); $v = fn ($k) => (string) $db->query("SELECT value FROM simplify_core_subdomain_settings WHERE key = \"$k\"")->fetchColumn(); exit($v("domain") === "example.com" && $v("zone_id") === str_repeat("a", 32) && $v("token") !== "" && ! str_contains($v("token"), "upgrade-token") ? 0 : 1);' || { echo 'The Cloudflare token and zone ID from .env were not taken over'; exit 1; }
+          php -r '$db = new PDO("sqlite:database/database.sqlite"); $v = fn ($k) => (string) $db->query("SELECT value FROM simplify_core_subdomain_settings WHERE key = \"$k\"")->fetchColumn(); $ran = $db->query("SELECT migration FROM migrations WHERE migration LIKE \"%subdomains%\"")->fetchAll(PDO::FETCH_COLUMN); echo json_encode(["migrations" => $ran, "domain" => $v("domain"), "zone_id" => strlen($v("zone_id")), "token" => $v("token") === "" ? "missing" : "present"]), PHP_EOL; exit($v("domain") === "example.com" && $v("zone_id") === str_repeat("a", 32) && $v("token") !== "" && ! str_contains($v("token"), "upgrade-token") ? 0 : 1);' || { echo 'The Cloudflare token and zone ID from .env were not taken over'; exit 1; }
       - name: Install Simplify over its own tables
         # An install that stopped halfway leaves tables without their migration rows; the next install keeps them.
         working-directory: panel
