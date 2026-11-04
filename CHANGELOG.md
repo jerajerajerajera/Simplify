@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Server page: a server with a working subdomain shows just that subdomain as its address, under the name and in the status bar, and the copy button copies it. Without a subdomain it stays the game address with port. The address is no longer cut off; a long software name gets the ellipsis instead.
+
 ## 2.0.0-beta.4
 
 - Tablets: Admin lists keep their filter, search and buttons on one row, the Admin page's top bar keeps the panel's name on one line, and Customize Simplify opens inside the window.

@@ -1137,9 +1137,14 @@ step('subdomains: a subdomain reaches Cloudflare and shows on the server card', 
     if (! in_array('POST /zones/'.str_repeat('a', 32).'/dns_records', $calls, true) || Subdomain::of($server->uuid)?->status !== Subdomain::ACTIVE) {
         throw new RuntimeException('not connected: '.json_encode($calls));
     }
-    $badges = Listing::one($admin, $server->fresh(['allocation', 'egg']))['badges'];
-    if (! str_starts_with((string) ($badges[0] ?? ''), 'smoke-oak.example.com')) {
-        throw new RuntimeException('no address on the card: '.json_encode($badges));
+    $badge = (string) (collect(Listing::for($admin))->firstWhere('uuid', $server->uuid)['badges'][0] ?? '');
+    if (! str_starts_with($badge, 'smoke-oak.example.com')) {
+        throw new RuntimeException('no address on the card: '.$badge);
+    }
+    // The server page shows only the subdomain as its address (K-B43): no game address with port next to it.
+    $page = Listing::one($admin, $server->fresh(['allocation', 'egg']));
+    if (! str_starts_with((string) $page['address'], 'smoke-oak.example.com') || preg_grep('/smoke-oak/', $page['badges']) !== []) {
+        throw new RuntimeException('server page address: '.json_encode(['address' => $page['address'], 'badges' => $page['badges']]));
     }
     if (Artisan::call('simplify:subdomains') !== 0) {
         throw new RuntimeException('the sync command failed: '.Artisan::output());
