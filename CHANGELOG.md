@@ -2,10 +2,20 @@
 
 ## Unreleased
 
+- Admin: the breadcrumb no longer cuts "All servers" short when there is room to spare; a part only gives way when the names do not fit.
+- Admin: a little room between a page's content and its scrollbar.
+- Server page: a server on an IPv6 address shows it in brackets with the port, as Pelican does ("[2001:db8::1]:25565"), so the copied address works in a game.
+- Errors: an add-on such as Explain can put its own button right after an error; on the Health page each check that needs attention has that spot (ADDONS.md, Errors).
+- Admin: an action that shows its name from a certain width on (such as Test first and Update in Egg Updates) shows as one button again, not as an icon button and a button with text side by side.
 - Add-on API 7: `serverSections()` is gone from the contract; no add-on used it since the console page fits the window (1.3.9).
 - Checks: PHPStan (level 5) and ESLint run in CI, and a browser smoke (Playwright with axe and Lighthouse) opens the overview, a server's console, a menu click, Admin and Settings on a desktop and a phone.
 - Styles: the Admin side reads the same design tokens as the overview and the server page (`tokens.css` loads everywhere; the `--s-*` names are aliases), so a corner or a shadow is the same size on every page.
+
+## 2.0.0-beta.5
+
 - Server page: a server with a working subdomain shows just that subdomain as its address, under the name and in the status bar, and the copy button copies it. Without a subdomain it stays the game address with port. The address is no longer cut off; a long software name gets the ellipsis instead.
+- Phones: the Admin pages run on under the bottom bar, without a thin dark strip above it, and their last line scrolls fully above the bar.
+- Phones: on the overview the copyright line stands at the bottom, just above the bottom bar, when there are only a few servers, and moves down with the list when there are more.
 - Console: the buttons in the console's title row (an add-on's button such as Explain, Bigger and the pop-out window) can be clicked again; the console's output no longer lies over them.
 
 ## 2.0.0-beta.4

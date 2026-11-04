@@ -29,7 +29,7 @@ const page = (content, marked) => `<!doctype html><html class="ps-shell ps-shell
 </head><body>
 <div class="fi-layout">
   <div x-persist="simplify-admin-top"><div class="ps server-active host-mode ps-admin-top" style="height:64px">Panel</div></div>
-  <div x-persist="simplify-admin-side"><div class="ps server-active ps-admin-side" style="height:40px">Menu</div></div>
+  <div x-persist="simplify-admin-side"><div class="ps server-active ps-admin-side" style="height:40px">Menu<nav class="ps-tabbar"><a class="ps-tab" style="display:block;height:56px">Servers</a><a class="ps-tab" style="display:block;height:56px">Admin</a></nav></div></div>
   <div class="fi-main-ctn" style="display: flex; opacity: 1">
     <main class="fi-main"><div id="content" style="height:${content}px">Page</div></main>
     <footer class="flex flex-col items-center justify-center text-center space-y-2 p-4" ${marked ? 'data-ps-footer' : ''}><a>&copy; 2026 Panel</a></footer>
@@ -37,6 +37,16 @@ const page = (content, marked) => `<!doctype html><html class="ps-shell ps-shell
 </div>
 <pre id="out" style="position:fixed;top:0;left:0;margin:0;width:0;height:0;overflow:hidden"></pre>
 <script>
+  // A phone's bottom bar (K-B44): the page runs on to the bar, with no strip of background between them, and the
+  // footer at the end of the page comes fully above the bar.
+  const bar = (card, footer) => {
+    const tabbar = document.querySelector('.ps-tabbar');
+    if (!tabbar || getComputedStyle(tabbar).display === 'none') return {};
+    const barTop = Math.round(tabbar.getBoundingClientRect().top), cardBottom = Math.round(card.getBoundingClientRect().bottom);
+    const before = card.scrollTop; card.scrollTop = card.scrollHeight;
+    const footerEnd = Math.round(footer.getBoundingClientRect().bottom); card.scrollTop = before;
+    return { barTop, cardBottom, footerEnd };
+  };
   addEventListener('load', () => setTimeout(() => {
     const card = document.querySelector('.fi-main-ctn'), footer = card.querySelector('footer'), content = document.getElementById('content');
     const top = card.getBoundingClientRect().top - card.scrollTop;
@@ -44,7 +54,8 @@ const page = (content, marked) => `<!doctype html><html class="ps-shell ps-shell
     document.getElementById('out').textContent = JSON.stringify({
       shown: getComputedStyle(footer).display !== 'none' && f.height > 0,
       footerTop: Math.round(f.top - top), footerBottom: Math.round(f.bottom - top), contentBottom: Math.round(c.bottom - top),
-      scrollHeight: card.scrollHeight, clientHeight: card.clientHeight, pageScroll: document.documentElement.scrollHeight - innerHeight,
+      scrollHeight: card.scrollHeight, clientHeight: card.clientHeight, room: Math.round(parseFloat(getComputedStyle(card).paddingBottom) || 0), pageScroll: document.documentElement.scrollHeight - innerHeight,
+      ...bar(card, footer),
     });
   }, 200));
 </script></body></html>`;
@@ -63,8 +74,12 @@ for (const [stand, size] of [['phone', '390,844'], ['computer', '1440,900']]) {
       if (!r) { check(`${name} measured`, false, null); continue; }
       check(`${name} the footer shows`, r.shown, r);
       check(`${name} the footer is under the page, not over it`, r.footerTop >= r.contentBottom - 1, r);
-      check(`${name} the footer is the last thing in the card`, Math.abs(r.footerBottom - Math.max(r.scrollHeight, r.clientHeight)) <= 2, r);
+      check(`${name} the footer is the last thing in the card`, Math.abs(r.footerBottom - (Math.max(r.scrollHeight, r.clientHeight) - r.room)) <= 2, r);
       check(`${name} the page itself does not scroll`, r.pageScroll <= 0, r);
+      if (stand === 'phone') {
+        check(`${name} the page runs on to the bottom bar, no strip between them`, r.barTop !== undefined && r.cardBottom >= r.barTop - 1, r);
+        check(`${name} at the end the footer is fully above the bottom bar`, r.barTop !== undefined && r.footerEnd <= r.barTop + 1, r);
+      }
     }
   }
 }
