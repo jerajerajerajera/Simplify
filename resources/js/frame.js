@@ -16,17 +16,20 @@
   const label = (el) => el.getAttribute('aria-label') || el.getAttribute('title') || tooltip(el) || el.textContent.trim();
   // The page's own table, not one inside a form, tab or relation manager: those keep their toolbar.
   const mainTable = () => [...document.querySelectorAll('.fi-ta-ctn')].find((el) => !el.parentElement.closest('.fi-resource-relation-managers, .fi-resource-relation-manager, .fi-sc-tabs, .fi-section, .fi-modal, .fi-ta-ctn'));
-  const button = (source, text, primary, fallback) => {
+  // kind: 'primary' (Create, with its name), 'text' (Save: icon and name, ADDONS.md "Page head") or an icon button.
+  const button = (source, text, kind, fallback) => {
+    const primary = kind === 'primary';
+    const labelled = primary || kind === 'text';
     const btn = parent.createElement('button');
     btn.type = 'button';
-    btn.className = 'ps-btn is-sm' + (primary ? ' is-primary' : ' is-icon') + (source.classList.contains('fi-color-danger') ? ' is-danger' : '');
+    btn.className = 'ps-btn is-sm' + (primary ? ' is-primary' : labelled ? '' : ' is-icon') + (source.classList.contains('fi-color-danger') ? ' is-danger' : '');
     btn.setAttribute('aria-label', text);
-    if (!primary) btn.dataset.tip = tooltip(source) || text;
+    if (!labelled) btn.dataset.tip = tooltip(source) || text;
     btn.disabled = source.disabled || source.getAttribute('aria-disabled') === 'true';
     const icon = source.querySelector('svg');
     if (icon) btn.append(parent.importNode(icon, true));
     else if (fallback) btn.insertAdjacentHTML('beforeend', `<svg aria-hidden="true"><use href="#ps-${fallback}"/></svg>`);
-    if (primary) btn.append(parent.createTextNode(text));
+    if (labelled) btn.append(parent.createTextNode(text));
     btn.addEventListener('click', () => createServer(source) || source.click());
     return btn;
   };
@@ -98,22 +101,24 @@
       field.append(input);
       bar.append(field);
     }
-    // Create (a link to /create) is the one button with its name; the rest are icon buttons before it.
+    // Create (a link to /create) has its name, Save its name and comes last; the rest are icon buttons before them.
     const primaries = [];
+    const saves = [];
     const seen = new Set();
     for (const source of sources) {
       const text = label(source);
       if (seen.has(text)) continue;
       seen.add(text);
-      if (/\/create(\?|$)/.test(source.getAttribute('href') || '') || source.classList.contains('s-btn-primary')) primaries.push(button(source, text, true));
-      else bar.append(button(source, text, false, source === settings ? 'save' : null));
+      if (/\/create(\?|$)/.test(source.getAttribute('href') || '') || source.classList.contains('s-btn-primary')) primaries.push(button(source, text, 'primary'));
+      else if (source === settings || source.classList.contains('s-save-button')) saves.push(button(source, text, 'text', 'save'));
+      else bar.append(button(source, text, 'icon'));
     }
     if (filters) {
-      const btn = button(filters, label(filters), false);
+      const btn = button(filters, label(filters), 'icon');
       btn.querySelectorAll('.fi-icon-btn-badge-ctn').forEach((el) => el.remove());
       bar.append(btn);
     }
-    bar.append(...primaries);
+    bar.append(...primaries, ...saves.slice(0, 1));
   };
   let queued = 0;
   const queue = () => (queued ||= requestAnimationFrame(() => {
