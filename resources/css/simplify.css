@@ -2626,13 +2626,13 @@ html.ps-frame .s-done {
   :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table :is(.fi-ta-selection-cell, .fi-ta-group-selection-cell) { display: none !important; }
 }
 @media (min-width: 601px) {
-  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-selection-cell { order: 0; flex: none; }
   /* One line per row: the name, then the other columns as short muted texts and chips, then the row's buttons. */
   :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row { flex-wrap: nowrap; }
   :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row::after { display: none; }
   :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell { order: 2; flex: 0 1 auto; }
   :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell:nth-child(1 of .fi-ta-cell:not(.fi-ta-selection-cell, :is(.fi-ta-actions-cell, .fi-ta-cell:has(.fi-ta-actions)), :has(img, .fi-badge, select, .fi-ta-icon))) { order: 1; flex: 1 1 12rem; }
   :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > :is(.fi-ta-actions-cell, .fi-ta-cell:has(.fi-ta-actions)) { order: 3; flex: none; }
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-selection-cell { order: 0; flex: none; }
   :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row { padding: 12px 18px; gap: 4px 14px; }
   :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row:has(> .fi-ta-cell img) { padding-inline-start: 64px; }
   :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell { font-size: 13px; }
