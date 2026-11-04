@@ -21,6 +21,7 @@ php tests/subdomains-import.php
 php tests/hub.php
 php tests/assets.php
 php tests/lang.php
+php tests/changelog.php
 bash tests/secrets.sh
 node tests/seasons.cjs
 node tests/unsaved.cjs
