@@ -8,6 +8,7 @@ return [
         'when_ready' => 'wenn er bereit ist',
         'you_get_a_notification' => 'Du bekommst eine Benachrichtigung',
         'try_again' => 'Erneut versuchen',
+        'install_problem_title' => 'Installation von :name',
         'installation_progress' => 'Installationsfortschritt',
         'all_notifications' => 'Alle Benachrichtigungen',
         'customize_notifications' => 'Benachrichtigungen anpassen',

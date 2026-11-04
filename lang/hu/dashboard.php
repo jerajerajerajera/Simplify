@@ -8,6 +8,7 @@ return [
         'when_ready' => 'ha kész',
         'you_get_a_notification' => 'Értesítést kapsz',
         'try_again' => 'Újra',
+        'install_problem_title' => ':name telepítése',
         'installation_progress' => 'Telepítés állapota',
         'all_notifications' => 'Összes értesítés',
         'customize_notifications' => 'Értesítések testreszabása',

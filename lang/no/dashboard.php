@@ -8,6 +8,7 @@ return [
         'when_ready' => 'når den er klar',
         'you_get_a_notification' => 'Du får et varsel',
         'try_again' => 'Prøv igjen',
+        'install_problem_title' => 'Installasjon av :name',
         'installation_progress' => 'Installasjonsfremdrift',
         'all_notifications' => 'Alle varsler',
         'customize_notifications' => 'Tilpass varsler',

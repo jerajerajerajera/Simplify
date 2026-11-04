@@ -125,6 +125,8 @@
                 <div class="ps-install-actions">
                     <button type="button" class="ps-btn" x-show="server.setup === 'installing'" :class="{'is-on': installNotify}" :aria-pressed="installNotify" x-on:click="toggleInstallNotify()"><svg aria-hidden="true"><use :href="installNotify ? '#ps-check' : '#ps-bell'"/></svg><span x-show="!installNotify">{{ $u('notify_me') }}<span class="ps-install-long"> {{ $u('when_ready') }}</span></span><span x-show="installNotify">{{ $u('you_get_a_notification') }}</span></button>
                     <button type="button" class="ps-btn is-primary" x-show="installFailed() && server.permissions['settings.reinstall']" x-on:click="reinstall()" :disabled="busy"><svg aria-hidden="true"><use href="#ps-restart"/></svg><span>{{ $u('try_again') }}</span></button>
+                    {{-- An add-on such as Explain explains a failed installation here (ADDONS.md, Errors; InstallProblems). --}}
+                    <span class="ps-problem" x-show="installFailed()">{{ \Filament\Support\Facades\FilamentView::renderHook('simplify::problem.actions', scopes: ['simplify-problem', 'simplify-problem:'.\Simplify\Core\Problems\InstallProblems::PREFIX.$server->uuid]) }}</span>
                 </div>
             </div>
             <ol class="ps-install-steps" x-show="server.setup !== 'restoring_backup'">

@@ -8,6 +8,7 @@ return [
         'when_ready' => 'cuando esté listo',
         'you_get_a_notification' => 'Recibirás una notificación',
         'try_again' => 'Reintentar',
+        'install_problem_title' => 'Instalación de :name',
         'installation_progress' => 'Progreso de la instalación',
         'all_notifications' => 'Todas las notificaciones',
         'customize_notifications' => 'Personalizar notificaciones',

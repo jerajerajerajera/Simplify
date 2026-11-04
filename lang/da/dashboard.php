@@ -8,6 +8,7 @@ return [
         'when_ready' => 'når den er klar',
         'you_get_a_notification' => 'Du får en notifikation',
         'try_again' => 'Prøv igen',
+        'install_problem_title' => 'Installation af :name',
         'installation_progress' => 'Installationsforløb',
         'all_notifications' => 'Alle notifikationer',
         'customize_notifications' => 'Tilpas notifikationer',
