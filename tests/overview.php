@@ -7,8 +7,11 @@ require __DIR__.'/../src/Overview/Usage.php';
 require __DIR__.'/../src/Overview/Power.php';
 require __DIR__.'/../src/Overview/NodeUsage.php';
 require __DIR__.'/../src/Overview/EggKind.php';
+require __DIR__.'/../src/Embed/Services/PublicAddress.php';
+require __DIR__.'/../src/Overview/Listing.php';
 
 use Simplify\Core\Overview\EggKind;
+use Simplify\Core\Overview\Listing;
 use Simplify\Core\Overview\NodeUsage;
 use Simplify\Core\Overview\Power;
 use Simplify\Core\Overview\Usage;
@@ -21,6 +24,12 @@ function check(bool $ok, string $what): void
         $failures[] = $what;
     }
 }
+
+// The address on the server page and its copy button (K-B49): an IPv6 address gets brackets, as in Pelican.
+check(Listing::gameAddress(null, '203.0.113.9', 25565) === '203.0.113.9:25565', 'an IPv4 address with its port');
+check(Listing::gameAddress(null, '2001:db8::1', 25565) === '[2001:db8::1]:25565', 'an IPv6 address in brackets: '.Listing::gameAddress(null, '2001:db8::1', 25565));
+check(Listing::gameAddress('play.example.com', '2001:db8::1', 25565) === 'play.example.com:25565', 'the alias wins over the IP');
+check(Listing::gameAddress('', '203.0.113.9', 0) === null, 'no port, no address');
 
 $running = Usage::fromWings('running', ['cpu_absolute' => 12.345, 'memory_bytes' => 1073741824, 'disk_bytes' => '2048', 'network' => ['rx_bytes' => 300, 'tx_bytes' => 400]]);
 check($running->toArray() === ['state' => 'running', 'cpu' => 12.3, 'memory' => 1073741824, 'disk' => 2048, 'rx' => 300, 'tx' => 400], 'a running server keeps its numbers: '.json_encode($running->toArray()));

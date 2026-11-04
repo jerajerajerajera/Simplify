@@ -9,6 +9,7 @@ php tests/admin-tree.php
 php tests/legacy-css.php
 php tests/server-groups.php
 php tests/host-health.php
+php tests/health-hook.php
 php tests/push.php
 php tests/announcements-rules.php
 php tests/announcements-game-chat.php
