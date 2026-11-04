@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Admin: the breadcrumb no longer cuts "All servers" short when there is room to spare; a part only gives way when the names do not fit.
+- Admin: a little room between a page's content and its scrollbar.
 - Admin: an action that shows its name from a certain width on (such as Test first and Update in Egg Updates) shows as one button again, not as an icon button and a button with text side by side.
 
 ## 2.0.0-beta.5
