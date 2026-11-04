@@ -54,11 +54,13 @@ final class Listing
     {
         $live = $server->status === null ? NodeUsage::read(collect([$server]))[$server->uuid] ?? null : null;
         $allocation = $server->allocation;
+        // A working subdomain is the address here (and what the copy button copies), so it is not a badge as well.
+        $subdomain = Subdomains::address($server);
 
         return [
             ...self::card($user, $server, $live, Looks::for($server), true),
-            'badges' => self::badges($server, Subdomains::address($server)),
-            'address' => $allocation === null ? null : ($allocation->alias ?: $allocation->ip).':'.$allocation->port,
+            'badges' => self::badges($server, null),
+            'address' => $subdomain ?? ($allocation === null ? null : ($allocation->alias ?: $allocation->ip).':'.$allocation->port),
             'minecraft' => Games::minecraft($server),
             'can_edit' => Looks::canEdit($user, $server),
             ...Installation::info($server),
