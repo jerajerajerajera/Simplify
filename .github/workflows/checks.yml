@@ -48,6 +48,14 @@ jobs:
           php-version: '8.3'
           tools: pint
       - run: pint --test -v
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npx --yes eslint@9 'resources/**/*.js'
   # Installs the plugin in a real Pelican panel and opens its pages, so an error that only shows when the panel loads the code blocks the merge.
   panel-smoke:
     needs: changes
@@ -176,6 +184,106 @@ jobs:
         run: |
           php plugins/simplify/tests/panel/smoke.php | tee smoke.txt
           tail -n 1 smoke.txt | grep -qx 'All steps passed'
+      - name: PHPStan (level 5, in the panel)
+        if: matrix.pelican == '1.0.0-rc.2' # the baseline fits one Pelican version, the newest: types differ between versions
+        working-directory: panel
+        # After the smoke: installing larastan brings PHPUnit into the panel, which changes how Livewire's test helpers behave.
+        run: |
+          composer require --dev larastan/larastan --no-interaction --no-progress --quiet
+          # Without a baseline yet: the first run writes one and prints it, to commit as the starting point (every
+          # finding in it is on the clean-up list; new code must be clean).
+          if [ -f plugins/simplify/phpstan-baseline.neon ]; then
+            vendor/bin/phpstan analyse --configuration plugins/simplify/phpstan.neon --memory-limit 1G --no-progress --error-format=github
+          else
+            vendor/bin/phpstan analyse --configuration plugins/simplify/phpstan.neon --memory-limit 1G --no-progress --generate-baseline=plugins/simplify/phpstan-baseline.neon --allow-empty-baseline
+            echo '::group::phpstan-baseline.neon'; cat plugins/simplify/phpstan-baseline.neon; echo '::endgroup::'
+          fi
       - name: Laravel log
         if: failure()
         run: grep -h -E '^\[[0-9-]+ [0-9:]+\]' panel/storage/logs/*.log | cut -c1-600 | tail -n 12 || true
+  # A real browser on a seeded panel (the audit's seed, urls and fake Wings from the branch audit-tools): the overview, a
+  # server's console, a menu click, Admin and Settings on a desktop and a phone, with axe-core and Lighthouse. Only when
+  # something the browser can see changed. The first run is the baseline for tests/panel/budgets.json.
+  browser:
+    needs: changes
+    if: needs.changes.outputs.code == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      PELICAN: '1.0.0-rc.2'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: simplify
+      - uses: actions/checkout@v4
+        with:
+          ref: audit-tools
+          path: simplify/tests/audit
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: bcmath, gd, intl, mbstring, pdo_sqlite, sqlite3, zip
+          tools: composer
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install -g yarn
+      - name: Install Pelican and Simplify
+        run: |
+          git clone --quiet --depth 1 --branch "v$PELICAN" https://github.com/pelican-dev/panel.git panel
+          cd panel
+          composer install --no-interaction --no-progress --prefer-dist
+          sed -i "s/'version' => 'canary'/'version' => '$PELICAN'/" config/app.php
+          cp .env.example .env
+          sed -i 's/^APP_INSTALLED=.*/APP_INSTALLED=true/; s/^APP_DEBUG=.*/APP_DEBUG=false/; s#^APP_URL=.*#APP_URL=http://127.0.0.1:8001#' .env
+          printf 'DB_CONNECTION=sqlite\nQUEUE_CONNECTION=sync\nCACHE_STORE=file\nSESSION_DRIVER=file\nMAIL_MAILER=log\n' >> .env
+          touch database/database.sqlite
+          php artisan key:generate --force
+          php artisan migrate --force --seed
+          php artisan storage:link || true
+          yarn install --silent
+          yarn build
+          mkdir -p plugins/simplify
+          tar -C ../simplify --exclude=.git --exclude=tests --exclude=.github -cf - . | tar -C plugins/simplify -xf -
+          php artisan p:plugin:install simplify
+          php artisan p:plugin:list
+      - name: Seed and start the panel and the fake Wings
+        working-directory: panel
+        run: |
+          php ../simplify/tests/audit/seed.php 8090 > servers.json
+          php ../simplify/tests/audit/urls.php > urls.json
+          nohup node ../simplify/tests/audit/fake-wings.cjs --port 8090 --servers servers.json --log wings.log > wings.out 2>&1 &
+          PHP_CLI_SERVER_WORKERS=8 nohup php artisan serve --host 127.0.0.1 --port 8001 > serve.log 2>&1 &
+          for i in $(seq 1 30); do curl -sf -o /dev/null http://127.0.0.1:8001/login && break; sleep 1; done
+      - name: Open the screens in a browser
+        working-directory: simplify
+        run: |
+          mkdir -p ../result
+          npm init -y > /dev/null
+          npm install --silent playwright@1.48.2 axe-core@4.10.2 lighthouse@12.2.1
+          npx playwright install --with-deps chromium > /dev/null
+          node tests/panel/browser.cjs --base http://127.0.0.1:8001 --urls ../panel/urls.json --out ../result | tee ../result/browser.txt
+          tail -n 1 ../result/browser.txt | grep -qx 'All steps passed'
+      - name: Lighthouse
+        working-directory: simplify
+        run: |
+          export CHROME_PATH="$(node -e "console.log(require('playwright').chromium.executablePath())")"
+          server="$(node -e "console.log(JSON.parse(require('fs').readFileSync('../panel/urls.json','utf8')).servers['Survival SMP'] || '')")"
+          for pair in "overview:/" "server:$server" "admin:/admin"; do
+            name=${pair%%:*}; url=${pair#*:}; [ -n "$url" ] || continue
+            case "$url" in http*) ;; *) url="http://127.0.0.1:8001$url";; esac # the seed's server URL is already absolute
+            npx lighthouse "$url" --chrome-flags="--headless=new --no-sandbox" --extra-headers "$(cat ../result/headers.json)" \
+              --only-categories=performance,accessibility,best-practices --output json --output html --output-path "../result/lh-$name" --quiet || true
+          done
+          node tests/panel/lighthouse.cjs --out ../result
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-smoke
+          path: result
+          retention-days: 14
+      - if: failure()
+        name: Logs
+        run: |
+          tail -n 20 panel/serve.log panel/wings.log || true
+          grep -h -E '^\[[0-9-]+ [0-9:]+\]' panel/storage/logs/*.log | cut -c1-600 | tail -n 12 || true

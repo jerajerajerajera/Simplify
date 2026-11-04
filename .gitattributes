@@ -1,5 +1,8 @@
-# The Pelican Hub packs the repository itself: the plugin's own files only, without the screenshots, art and tests.
+# The Pelican Hub packs the repository itself: the plugin's own files only, without the screenshots, art, tests and checks.
 /docs export-ignore
 /.github export-ignore
 /tests export-ignore
 /scripts export-ignore
+/phpstan.neon export-ignore
+/phpstan-baseline.neon export-ignore
+/eslint.config.mjs export-ignore

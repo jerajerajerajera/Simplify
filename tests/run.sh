@@ -42,6 +42,7 @@ node tests/overview-filters.cjs
 node tests/card-bars.cjs
 node tests/health-pill-steady.cjs
 node tests/admin-menu-page.cjs
+node tests/admin-menu-slide.cjs
 node tests/embed-preview.cjs
 node tests/console-placeholders.cjs
 node tests/console-header-actions.cjs

@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="{{ \Simplify\Core\Support\Assets::url('tokens.css') }}">
 <link rel="stylesheet" href="{{ \Simplify\Core\Support\Assets::url('simplify.css') }}">
 <link rel="manifest" href="{{ route('simplify.manifest') }}">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="{{ \Simplify\Core\WebApp\WebApp::LIGHT }}">

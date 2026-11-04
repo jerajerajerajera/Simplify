@@ -54,7 +54,6 @@ Only `id()` and `name()` are required. Everything else has a default.
 | `hiddenServerPrefixes(): list<string>` | `[]` | servers whose external id starts with one of these are left out of every Simplify list and count |
 | `tileBadges(Server $server): list<string>` | `[]` | short texts on a server tile, such as its address |
 | `serverInfo(Server $server): array` | `[]` | players, max_players, motd, version and icon of a running game, on the server's card and page (since 1.1, API 2) |
-| `serverSections(Server $server): list<class-string>` | `[]` | No longer shown since core 1.3.9 (the console page fits the window); kept so older add-ons keep working |
 | `serverLinks(Server $server): list<Button>` | `[]` | links in the ⋯ menu of the server page, opened in a new tab (since 1.1, API 2); a `primary` link also shows on a suspended server's card for its owner, under a line that the hoster paused it (since 1.5.5) |
 | `customerLinks(User $user): list<Button>` | `[]` | links for customers (not admins) beside a greeting at the top of the overview; the panel's support link follows (since 1.1, API 2). A link with an `icon` (a Tabler name such as `tabler-receipt`) is also an icon button in the account menu, before Support, for everyone it is given to |
 | `hostModeDefault(): bool` | `false` | No effect since the Admin page (every admin has it); kept so add-ons that override it still load (since 1.1, API 2) |
@@ -93,7 +92,7 @@ public function saveSetup(array $state): void
 ## Rules
 
 - New methods are only ever added with a default, so an add-on keeps working when Simplify updates. A test in Simplify's CI fails when a method without a default is added.
-- `Addon::API` is the contract version: 1 in Simplify 1.0, 2 since 1.1 (`serverInfo()`, `serverLinks()`, `customerLinks()`, `hostModeDefault()`), 3 since 1.3 (`setupFields()`, `setupState()`, `saveSetup()`), 4 since 1.5.5 (`accountPages()`), 5 since 1.5.6 (`startUrl()`), 6 since 2.0 (`connections()`), 8 since 2.0 (`settingsForm()`), 9 since 2.0 (`serverTabs()`, `replacedServerPages()`). It goes up by one whenever a method is added.
+- `Addon::API` is the contract version: 1 in Simplify 1.0, 2 since 1.1 (`serverInfo()`, `serverLinks()`, `customerLinks()`, `hostModeDefault()`), 3 since 1.3 (`setupFields()`, `setupState()`, `saveSetup()`), 4 since 1.5.5 (`accountPages()`), 5 since 1.5.6 (`startUrl()`), 6 since 2.0 (`connections()`), 7 since 2.0 (`serverSections()` gone), 8 since 2.0 (`settingsForm()`), 9 since 2.0 (`serverTabs()`, `replacedServerPages()`). It goes up by one whenever a method is added or removed.
 - A newer add-on on an older Simplify just works: Simplify never calls the methods it does not know yet. Check `defined(Addon::class.'::API') ? Addon::API : 1` only when your add-on wants to show something different on an older core.
 - `\Simplify\Core\Health\HostHealth::cached()` is stable for add-ons: it returns the last shared host-health snapshot, or `[]` when none is kept, without running the checks (since 1.5.6).
 - If your add-on throws, Simplify reports the error and leaves your add-on out. It never breaks a Simplify page.
