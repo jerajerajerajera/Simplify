@@ -592,7 +592,8 @@ async function round(theme) {
       st.asked = await shown('.s-unsaved-dialog');
       await page.locator('.s-unsaved-dialog .s-unsaved-btn').first().click().catch(() => {});
       await sleep(400);
-      st.stayed = rel(page.url()) === rel(mc.url) && !(await shown('.s-unsaved-dialog'));
+      // The page may add its tab to the address (#settings-minecraft): the same page without it still counts as staying.
+      st.stayed = rel(page.url()).split('#')[0] === rel(mc.url).split('#')[0] && !(await shown('.s-unsaved-dialog'));
       st.url = rel(page.url());
       // Typed back to what it was: no change any more, the bar goes and leaving asks nothing.
       await field.fill(before).catch(() => {});
@@ -1307,11 +1308,11 @@ async function fixesFlow() {
   } else say('install-buttons', false, { note: 'server not seeded: New World' });
   if (phone() && urls.servers['Survival SMP']) {
     await goto(urls.servers['Survival SMP'], 3500);
-    await page.evaluate(() => { window.__qc = { adds: 0, gone: 0 }; new MutationObserver((ms) => { for (const m of ms) { for (const n of m.addedNodes) if (n.nodeType === 1 && n.matches('.ps-quick-commands')) window.__qc.adds++; for (const n of m.removedNodes) if (n.nodeType === 1 && n.matches('.ps-quick-commands')) window.__qc.gone++; } }).observe(document.body, { childList: true, subtree: true }); }).catch(() => {});
+    await page.evaluate(() => { window.__qc = { adds: 0, gone: 0 }; new MutationObserver((ms) => { for (const m of ms) { for (const n of m.addedNodes) if (n.nodeType === 1 && n.matches('.ps-quick-commands, .sm-quick-commands')) window.__qc.adds++; for (const n of m.removedNodes) if (n.nodeType === 1 && n.matches('.ps-quick-commands, .sm-quick-commands')) window.__qc.gone++; } }).observe(document.body, { childList: true, subtree: true }); }).catch(() => {});
     // Pelican redraws its console on every status message and reconnect (token-request); do that three times here.
     await page.evaluate(() => { const c = window.Livewire?.all().find((x) => x.el?.querySelector?.('#terminal')); if (c) for (let i = 0; i < 3; i++) setTimeout(() => c.$wire.$refresh(), 800 + i * 1500); }).catch(() => {});
     let hidden = 0;
-    for (let i = 0; i < 60; i++) { if (!(await page.evaluate(() => { const r = document.querySelector('.ps-quick-commands'); return !!r && r.getClientRects().length > 0; }).catch(() => false))) hidden++; await sleep(100); }
+    for (let i = 0; i < 60; i++) { if (!(await page.evaluate(() => { const r = document.querySelector('.ps-quick-commands, .sm-quick-commands'); return !!r && r.getClientRects().length > 0; }).catch(() => false))) hidden++; await sleep(100); }
     const qc = await page.evaluate(() => window.__qc).catch(() => null);
     await record('quick-commands', 'Server · telefoon: quick commands');
     say('quick-commands', qc && qc.adds === 0 && qc.gone === 0 && hidden === 0, { ...qc, hidden });
