@@ -11,6 +11,7 @@ php tests/server-groups.php
 php tests/host-health.php
 php tests/health-hook.php
 php tests/problems.php
+php tests/migrations-keep.php
 php tests/push.php
 php tests/announcements-rules.php
 php tests/announcements-game-chat.php
@@ -20,6 +21,7 @@ php tests/subdomains-import.php
 php tests/hub.php
 php tests/assets.php
 php tests/lang.php
+bash tests/secrets.sh
 node tests/seasons.cjs
 node tests/unsaved.cjs
 node tests/sheet-drag.cjs

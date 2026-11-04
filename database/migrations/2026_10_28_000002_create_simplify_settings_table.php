@@ -18,8 +18,7 @@ return new class extends Migration
         }
     }
 
-    public function down(): void
-    {
-        Schema::dropIfExists('simplify_settings');
-    }
+    // Uninstalling Simplify keeps its data: Pelican rolls back a plugin's migrations on uninstall, and installing it
+    // again finds every table and setting as it was.
+    public function down(): void {}
 };

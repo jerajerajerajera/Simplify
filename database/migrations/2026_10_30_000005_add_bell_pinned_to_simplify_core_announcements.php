@@ -17,10 +17,7 @@ return new class extends Migration
         }
     }
 
-    public function down(): void
-    {
-        if (Schema::hasColumn('simplify_core_announcements', 'bell_pinned')) {
-            Schema::table('simplify_core_announcements', fn (Blueprint $table) => $table->dropColumn('bell_pinned'));
-        }
-    }
+    // Uninstalling Simplify keeps its data: Pelican rolls back a plugin's migrations on uninstall, and installing it
+    // again finds every table and setting as it was.
+    public function down(): void {}
 };
