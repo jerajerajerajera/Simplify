@@ -3,6 +3,8 @@
 ## Unreleased
 
 - Save is a button with its name and icon, as the last button in a page's head (Simplify settings, Automatic subdomains, a server's Website page).
+- Server page: Server color and Server background open from a small pencil on the server's icon instead of the ⋯ menu; on a phone they open as a sheet.
+
 - Phones: the server page's head is lower and its numbers (players, CPU, memory, disk) are one strip, so the console starts higher.
 - Phones: the Admin menu slides away to the left over the page you tapped, and Admin, the breadcrumb's group or a swipe from the edge slide it back in, instead of the page jumping into place.
 - Add-ons: a page with its own Blade view gets the same head as every other page with the partial `simplify::partials.page-head` (title, subtitle, actions with Save last; ADDONS.md, Page head).
