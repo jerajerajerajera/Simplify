@@ -160,8 +160,15 @@ jobs:
           php artisan tinker --execute="DB::table('migrations')->where('migration', 'like', '%simplify%')->delete();"
           php artisan tinker --execute="app('migrator')->run(base_path('plugins/simplify/database/migrations')); echo 'ran '.DB::table('migrations')->where('migration', 'like', '%simplify%')->count();" | tee again.txt
           grep -qx "ran $(ls plugins/simplify/database/migrations | wc -l)" again.txt || { echo 'Simplify did not install over its own tables'; exit 1; }
+      - name: Open the pages
+        working-directory: panel
+        # The last line must say so: an exit code alone missed a crash before the first step once.
+        run: |
+          php plugins/simplify/tests/panel/smoke.php | tee smoke.txt
+          tail -n 1 smoke.txt | grep -qx 'All steps passed'
       - name: PHPStan (level 5, in the panel)
         working-directory: panel
+        # After the smoke: installing larastan brings PHPUnit into the panel, which changes how Livewire's test helpers behave.
         run: |
           composer require --dev larastan/larastan --no-interaction --no-progress --quiet
           # Without a baseline yet: the first run writes one and prints it, to commit as the starting point (every
@@ -172,12 +179,6 @@ jobs:
             vendor/bin/phpstan analyse --configuration plugins/simplify/phpstan.neon --memory-limit 1G --no-progress --generate-baseline=plugins/simplify/phpstan-baseline.neon --allow-empty-baseline
             echo '::group::phpstan-baseline.neon'; cat plugins/simplify/phpstan-baseline.neon; echo '::endgroup::'
           fi
-      - name: Open the pages
-        working-directory: panel
-        # The last line must say so: an exit code alone missed a crash before the first step once.
-        run: |
-          php plugins/simplify/tests/panel/smoke.php | tee smoke.txt
-          tail -n 1 smoke.txt | grep -qx 'All steps passed'
       - name: Laravel log
         if: failure()
         run: grep -h -E '^\[[0-9-]+ [0-9:]+\]' panel/storage/logs/*.log | cut -c1-600 | tail -n 12 || true
