@@ -27,7 +27,6 @@ use Throwable;
  */
 final class ServerMenu
 {
-
     /** Pelican's pages that go under Advanced. */
     private const ADVANCED = [
         SubuserResource::class, DatabaseResource::class, AllocationResource::class, Startup::class, Settings::class,
