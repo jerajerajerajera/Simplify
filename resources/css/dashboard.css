@@ -1385,10 +1385,12 @@ body:has(.ps-server-top.is-console) :is([wire\:name$="\\ServerOverview"], [wire\
 /* Pelican's own terminal colour for the whole card, so the output has no box of its own. The room around the output is
    padding of xterm's own element: Pelican's fit counts that one, not the padding of #terminal, so the rows and columns
    fit the box and no line ends behind the command bar or the right edge. */
-#terminal { position: relative; padding: 0; background: transparent; }
+#terminal { position: relative; isolation: isolate; padding: 0; background: transparent; }
 #terminal > .xterm { padding: 68px 17px 14px; }
 #terminal .xterm-rows > div { padding-inline: 0 !important; }
-#terminal > .ps-console-title { position: absolute; inset: 0 0 auto; height: 56px; color: var(--ps-console-ink); }
+/* The title row lies over xterm's top padding: above xterm's own layers (its viewport covers the whole element, its
+   layers go up to z-index 10), which stay inside the console (isolation), so the page's bars and menus stay on top. */
+#terminal > .ps-console-title { position: absolute; inset: 0 0 auto; z-index: 11; height: 56px; color: var(--ps-console-ink); }
 :has(> #terminal) > div:has(#send-command) { gap: 10px; min-height: 62px; padding: 10px 14px; border-top: 1px solid var(--ps-console-line); background: transparent !important; color: var(--ps-console-muted); border-radius: 0 !important; }
 #send-command { height: 42px; padding: 8px 10px !important; border: 1px solid var(--ps-console-line) !important; border-radius: var(--ps-radius-sm); background: var(--ps-console-bg) !important; color: var(--ps-console-ink); font: 13px var(--ps-mono); }
 #send-command:focus { border-color: var(--ps-accent) !important; }

@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Console: the buttons in the console's title row (an add-on's button such as Explain, Bigger and the pop-out window) can be clicked again; the console's output no longer lies over them.
+
 ## 2.0.0-beta.4
 
 - Tablets: Admin lists keep their filter, search and buttons on one row, the Admin page's top bar keeps the panel's name on one line, and Customize Simplify opens inside the window.

@@ -36,6 +36,7 @@ node tests/admin-menu-page.cjs
 node tests/embed-preview.cjs
 node tests/console-placeholders.cjs
 node tests/console-header-actions.cjs
+node tests/console-title-clicks.cjs
 python3 tests/hub-check.py
 # The audit scripts live on the branch audit-tools (checked out into tests/audit by audit.yml), not in the plugin.
 if [ -f tests/audit/parts.py ]; then python3 tests/audit/parts.py --self-test; fi
