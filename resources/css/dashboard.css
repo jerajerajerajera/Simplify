@@ -1111,7 +1111,7 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 @media (max-width: 600px) {
   .ps .ps-statusbar-power .ps-btn { width: 40px; height: 40px; }
 
-  /* The head about half as high (G6): a smaller icon and name, status and address on one line, lower buttons. */
+  /* The head about half as high (G6): a smaller icon and name, status and address on one line when they fit, lower buttons. */
   .ps .ps-server-info { grid-template-columns: 36px minmax(0, 1fr); grid-template-areas: "icons content" "power power"; gap: 10px 12px; margin-bottom: 10px; padding: 12px; }
   .ps .ps-info-icon { width: 36px; height: 36px; border-radius: 10px; }
   .ps .ps-software-icon img { width: 28px; height: 28px; }
@@ -1119,9 +1119,8 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   .ps .ps-software-icon.is-badge img { width: 16px; height: 16px; }
   .ps .ps-game-title { margin-bottom: 2px; }
   .ps .ps-game-title h2 { font-size: 18px; }
-  .ps .ps-info-meta { flex-wrap: nowrap; gap: 4px 10px; font-size: 12px; }
-  .ps .ps-info-meta > .ps-info-address { min-width: 0; }
-  .ps .ps-info-meta > .ps-info-address > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  /* The address is never cut off: without room next to the status it goes to the next line. */
+  .ps .ps-info-meta { flex-wrap: wrap; gap: 4px 10px; font-size: 12px; }
   .ps .ps-info-meta-item { display: none; }
   .ps .ps-info-power { gap: 8px; }
   .ps .ps-info-power > .ps-power-main, .ps .ps-info-power > .ps-power-restart { flex: 1; min-height: 40px; }
