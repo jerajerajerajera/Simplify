@@ -16,17 +16,17 @@ use App\Filament\Server\Resources\Subusers\SubuserResource;
 use App\Filament\Server\Resources\Webhooks\WebhookResource;
 use Filament\Facades\Filament;
 use Filament\Resources\Resource;
+use Simplify\Core\Addons\Addon;
+use Simplify\Core\Addons\AddonRegistry;
 use Throwable;
 
 /**
  * The menu next to a server's page: the everyday pages on top, Backups, automatic backups and Schedules as one item with tabs, and
- * Pelican's rarely used pages under Advanced. Pages that add-ons and other plugins add stay on top.
+ * Pelican's rarely used pages under Advanced. Pages that add-ons and other plugins add stay on top, and Pelican's pages
+ * that an add-on takes over (Addon::replacedServerPages) are left out.
  */
 final class ServerMenu
 {
-    /** Simplify Toolkit's backup plan: a third tab next to Backups and Schedules. */
-    private const AUTOMATIC_BACKUPS = 'Simplify\\Toolkit\\Filament\\Server\\Pages\\Backups';
-
     /** Pelican's pages that go under Advanced. */
     private const ADVANCED = [
         SubuserResource::class, DatabaseResource::class, AllocationResource::class, Startup::class, Settings::class,
@@ -37,6 +37,7 @@ final class ServerMenu
     public static function build(): array
     {
         $advancedUrls = array_flip(array_filter(array_map(self::url(...), self::ADVANCED)));
+        $replacedUrls = array_flip(array_filter(array_map(self::url(...), self::addons(fn (Addon $addon) => $addon->replacedServerPages()))));
         $tabs = self::tabs();
         $admin = trans('server/console.open_in_admin');
         $main = $advanced = [];
@@ -44,7 +45,7 @@ final class ServerMenu
         foreach (Filament::getCurrentPanel()?->getNavigation() ?? [] as $group) {
             foreach ($group->getItems() as $item) {
                 // Pelican's "Open in Admin" leads to the legacy admin page; the server page has its own settings.
-                if (! $item->isVisible() || (string) $item->getLabel() === $admin) {
+                if (! $item->isVisible() || (string) $item->getLabel() === $admin || isset($replacedUrls[(string) $item->getUrl()])) {
                     continue;
                 }
                 $url = (string) $item->getUrl();
@@ -82,7 +83,7 @@ final class ServerMenu
     }
 
     /**
-     * Backups, Toolkit's automatic backups and Schedules, for the tabs on their pages; one or none when the person may see only one. The open one
+     * Backups, the add-ons' pages for that row (Addon::serverTabs) and Schedules, for the tabs on their pages; one or none when the person may see only one. The open one
      * comes from the page classes Filament's render hook passes, or else from the address.
      *
      * @param  list<string>  $scopes
@@ -92,7 +93,8 @@ final class ServerMenu
     {
         $resources = array_map(fn (string $page) => method_exists($page, 'getResource') ? $page::getResource() : null, $scopes);
         $tabs = [];
-        foreach ([BackupResource::class, self::AUTOMATIC_BACKUPS, ScheduleResource::class] as $class) {
+        $addonTabs = self::addons(fn (Addon $addon) => array_values((array) ($addon->serverTabs()['backups'] ?? [])));
+        foreach (array_unique([BackupResource::class, ...$addonTabs, ScheduleResource::class]) as $class) {
             try {
                 if (class_exists($class) && $class::canAccess() && ($url = self::url($class)) !== null) {
                     $active = $scopes !== [] ? in_array($class, [...$scopes, ...$resources], true) : str_starts_with(request()->url(), $url);
@@ -110,6 +112,21 @@ final class ServerMenu
     public static function onTabs(array $tabs): bool
     {
         return in_array(true, array_column($tabs, 'active'), true);
+    }
+
+    /**
+     * One list from every add-on, or none outside a panel (the registry is not bound there).
+     *
+     * @param  \Closure(Addon): list<mixed>  $read
+     * @return list<class-string>
+     */
+    private static function addons(\Closure $read): array
+    {
+        if (! app()->bound(AddonRegistry::class)) {
+            return [];
+        }
+
+        return array_values(array_filter(app(AddonRegistry::class)->collect($read), 'is_string'));
     }
 
     /** @param  class-string  $class */

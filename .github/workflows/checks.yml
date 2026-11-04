@@ -97,6 +97,11 @@ jobs:
           git clone --quiet --depth 1 --branch v1.3.11 "https://github.com/${{ github.repository }}.git" panel/plugins/pelican-simplify
           rm -rf panel/plugins/pelican-simplify/.git
           cd panel
+          # 0.7.0's subdomains were there before Simplify came: the addresses in storage, the Cloudflare token and zone
+          # ID in .env. Written before the first install, which is when Simplify takes the addresses over.
+          mkdir -p storage/app/private/simplify storage/app/simplify
+          for d in storage/app/private storage/app; do echo '{"domain":"example.com","target":"play.example.com","port_min":25565,"port_max":25600}' > $d/simplify/subdomains.json; done
+          printf 'CLOUDFLARE_API_TOKEN=upgrade-token\nCLOUDFLARE_ZONE_ID=%s\n' "$(printf 'a%.0s' $(seq 32))" >> .env
           php artisan p:plugin:install pelican-simplify
           php -r '$db = new PDO("sqlite:database/database.sqlite"); $db->prepare("INSERT INTO simplify_settings (key, value) VALUES (?, ?)")->execute(["support_url", json_encode("https://example.com/kept")]);'
           mkdir -p storage/app/private/simplify storage/app/simplify
@@ -105,9 +110,6 @@ jobs:
             echo '{"accent_color":"#e11d48","brand":{"mode":"text","text":"Old panel","font":"rounded","weight":800,"color_style":"gradient","color1":"#ff0000","color2":"","spacing":2,"uppercase":false,"suffix":false,"logo":null,"logo_height":32,"logo_text":true}}' > $d/simplify/appearance.json
             echo '{"style":"dark","corners":"square","players":false}' > $d/simplify/website-embed.json
           done
-          # 0.7.0's subdomains: the addresses in storage, the Cloudflare token and zone ID in .env.
-          for d in storage/app/private storage/app; do echo '{"domain":"example.com","target":"play.example.com","port_min":25565,"port_max":25600}' > $d/simplify/subdomains.json; done
-          printf 'CLOUDFLARE_API_TOKEN=upgrade-token\nCLOUDFLARE_ZONE_ID=%s\n' "$(printf 'a%.0s' $(seq 32))" >> .env
       # The way most panels update: 1.4.4 first, with PelicanSimplify's files still there, then this version over it.
       - name: Install Simplify 1.4.4
         if: inputs.from070
@@ -144,7 +146,7 @@ jobs:
         if: inputs.from070
         working-directory: panel
         run: |
-          php -r '$db = new PDO("sqlite:database/database.sqlite"); $v = fn ($k) => (string) $db->query("SELECT value FROM simplify_core_subdomain_settings WHERE key = \"$k\"")->fetchColumn(); exit($v("domain") === "example.com" && $v("zone_id") === str_repeat("a", 32) && $v("token") !== "" && ! str_contains($v("token"), "upgrade-token") ? 0 : 1);' || { echo 'The Cloudflare token and zone ID from .env were not taken over'; exit 1; }
+          php -r '$db = new PDO("sqlite:database/database.sqlite"); $v = fn ($k) => (string) $db->query("SELECT value FROM simplify_core_subdomain_settings WHERE key = \"$k\"")->fetchColumn(); $ran = $db->query("SELECT migration FROM migrations WHERE migration LIKE \"%subdomains%\"")->fetchAll(PDO::FETCH_COLUMN); echo json_encode(["migrations" => $ran, "domain" => $v("domain"), "zone_id" => strlen($v("zone_id")), "token" => $v("token") === "" ? "missing" : "present"]), PHP_EOL; exit($v("domain") === "example.com" && $v("zone_id") === str_repeat("a", 32) && $v("token") !== "" && ! str_contains($v("token"), "upgrade-token") ? 0 : 1);' || { echo 'The Cloudflare token and zone ID from .env were not taken over'; exit 1; }
       - name: Install Simplify over its own tables
         # An install that stopped halfway leaves tables without their migration rows; the next install keeps them.
         working-directory: panel
