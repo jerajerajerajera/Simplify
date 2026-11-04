@@ -61,8 +61,12 @@ html, body { overscroll-behavior-y: none; }
 /* A page without the dashboard (a popup frame such as Create server, a legacy page) had no colour tokens before
    tokens.css came to every page for the --s-* aliases (4-11): the colours stay guaranteed-invalid there, so an add-on's
    own fallback (Filament's primary, a faint line) keeps showing what it showed. Giving those pages Simplify's colours
-   is a visible change that first needs a preview (P-33). Sizes, shadows and timing do come from tokens.css. */
-html:not(:has(.ps)) {
+   is a visible change that first needs a preview (P-33). The selector names every root rule of tokens.css so it
+   wins on dark and panel-theme pages too. Sizes, shadows and timing do come from tokens.css. */
+:root:not(:has(.ps)),
+:root.dark:not(:has(.ps)),
+:root.ps-panel-theme:not(:has(.ps)),
+:root.ps-panel-theme.dark:not(:has(.ps)) {
   --ps-bg: initial;
   --ps-surface: initial;
   --ps-raised: initial;
