@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Tablets: on Admin › Plugins the filter, search and import buttons stay on one row, and the Admin page's top bar keeps the panel's name on one line.
 - Health in the top bar no longer says Unavailable for a moment when you come back from Admin to the overview, so the buttons next to it stay where they are.
 - New Simplify logo: the pelican S has a little more weight at the bottom. The favicon, the app icons on a phone's home screen, the notification badge and the Hub banner use it too.
 - Phones: every menu, sheet and popup slides up as it opens and back down as it closes, also with ✕, Escape or a tap beside it, instead of fading or vanishing. While you drag one down it follows your thumb and the dimmed page behind it brightens; let go past a third of its height, or flick it, and it slides away, otherwise it springs back. A swipe up scrolls, a swipe sideways still goes back. The confirm dialog slides away too, a message at the bottom fades out and can be swiped aside, and buttons, rows and menu items give a little under your thumb. With reduced motion on, nothing slides. Computers keep the short fade.
