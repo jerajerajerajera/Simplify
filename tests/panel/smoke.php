@@ -232,6 +232,60 @@ final class ConnectionsAddon extends Addon
     }
 }
 
+final class SettingsFormRow extends Component
+{
+    public function render(): string
+    {
+        return '<div class="smoke-settings-form" data-simplify-unsaved data-simplify-save="save">Settings form row</div>';
+    }
+}
+
+final class FormAddon extends Addon
+{
+    public function id(): string
+    {
+        return 'form-addon';
+    }
+
+    public function name(): string
+    {
+        return 'Form add-on';
+    }
+
+    public function description(): string
+    {
+        return 'What the form add-on does.';
+    }
+
+    public function settingsUrl(): ?string
+    {
+        return url('/form-addon-settings');
+    }
+
+    public function settingsForm(): ?string
+    {
+        return SettingsFormRow::class;
+    }
+}
+
+final class LinkAddon extends Addon
+{
+    public function id(): string
+    {
+        return 'link-addon';
+    }
+
+    public function name(): string
+    {
+        return 'Link add-on';
+    }
+
+    public function settingsUrl(): ?string
+    {
+        return url('/link-addon-settings');
+    }
+}
+
 // Pelican 1.0 has no users.root_admin column: root admins have the root admin role.
 $admin = User::where('email', 'smoke-simplify@example.com')->first()
     ?? User::withoutEvents(fn () => User::factory()->create(['email' => 'smoke-simplify@example.com']));
@@ -331,6 +385,27 @@ step('a tagged add-on shows on the settings page', function ($app) use ($admin) 
     expectOk($response, $url);
     if (! str_contains($response->getContent(), 'Smoke add-on')) {
         throw new RuntimeException('the add-on is not listed');
+    }
+});
+step('Settings › Add-ons: a section per add-on with what it does and its settings form; only pages in the menu', function ($app) use ($admin) {
+    $app->tag([FormAddon::class, LinkAddon::class], AddonRegistry::TAG);
+    $url = Settings::addonUrl('form-addon');
+    $response = visit($admin, $url);
+    expectOk($response, $url);
+    $html = $response->getContent();
+    // The asked add-on's section is open, with its explanation first and its own form under it.
+    if (! preg_match('/<details class="s-addon"[^>]*open[^>]*>.*?Form add-on.*?What the form add-on does\..*?smoke-settings-form/s', $html)) {
+        throw new RuntimeException('the add-on\'s section does not show its explanation and settings form');
+    }
+    // An add-on without a form keeps its Settings link; one with a form has no leaf in the menu or the row of tabs.
+    if (! str_contains($html, '/link-addon-settings') || str_contains($html, '/form-addon-settings')) {
+        throw new RuntimeException('the settings links of the add-ons are wrong');
+    }
+    auth()->setUser($admin);
+    $menu = collect(Settings::menu())->pluck('key');
+    $nav = collect(Settings::nav())->pluck('key');
+    if ($menu->contains('addon:form-addon') || $nav->contains('addon:form-addon') || ! $menu->contains('addon:link-addon')) {
+        throw new RuntimeException('an add-on with a settings form is still a leaf of its own: '.$menu->toJson());
     }
 });
 step('the stylesheet and logo are served with a long cache, styles and scripts gzipped', function () use ($admin) {

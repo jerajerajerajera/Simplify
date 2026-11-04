@@ -8,6 +8,7 @@ return [
         'when_ready' => '(準備ができたら)',
         'you_get_a_notification' => '通知が届きます',
         'try_again' => 'もう一度試す',
+        'install_problem_title' => ':name のインストール',
         'installation_progress' => 'インストールの進行状況',
         'all_notifications' => 'すべての通知',
         'customize_notifications' => '通知をカスタマイズ',

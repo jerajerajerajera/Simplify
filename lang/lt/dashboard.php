@@ -8,6 +8,7 @@ return [
         'when_ready' => 'kai bus paruošta',
         'you_get_a_notification' => 'Gausite pranešimą',
         'try_again' => 'Bandyti dar kartą',
+        'install_problem_title' => ':name diegimas',
         'installation_progress' => 'Diegimo eiga',
         'all_notifications' => 'Visi pranešimai',
         'customize_notifications' => 'Tinkinti pranešimus',

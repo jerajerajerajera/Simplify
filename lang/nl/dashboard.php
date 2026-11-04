@@ -8,6 +8,7 @@ return [
         'when_ready' => 'als hij klaar is',
         'you_get_a_notification' => 'Je krijgt een melding',
         'try_again' => 'Opnieuw proberen',
+        'install_problem_title' => 'Installatie van :name',
         'installation_progress' => 'Voortgang installatie',
         'all_notifications' => 'Alle meldingen',
         'customize_notifications' => 'Meldingen aanpassen',

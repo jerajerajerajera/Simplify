@@ -8,6 +8,7 @@ return [
         'when_ready' => 'когато е готово',
         'you_get_a_notification' => 'Ще получите известие',
         'try_again' => 'Опитай отново',
+        'install_problem_title' => 'Инсталиране на :name',
         'installation_progress' => 'Напредък на инсталирането',
         'all_notifications' => 'Всички известия',
         'customize_notifications' => 'Персонализиране на известията',

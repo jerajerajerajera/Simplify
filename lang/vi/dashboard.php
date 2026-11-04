@@ -8,6 +8,7 @@ return [
         'when_ready' => 'khi xong',
         'you_get_a_notification' => 'Bạn sẽ nhận thông báo',
         'try_again' => 'Thử lại',
+        'install_problem_title' => 'Cài đặt :name',
         'installation_progress' => 'Tiến trình cài đặt',
         'all_notifications' => 'Tất cả thông báo',
         'customize_notifications' => 'Tùy chỉnh thông báo',

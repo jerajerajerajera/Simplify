@@ -8,6 +8,7 @@ return [
         'when_ready' => 'kun se on valmis',
         'you_get_a_notification' => 'Saat ilmoituksen',
         'try_again' => 'Yritä uudelleen',
+        'install_problem_title' => 'Palvelimen :name asennus',
         'installation_progress' => 'Asennuksen eteneminen',
         'all_notifications' => 'Kaikki ilmoitukset',
         'customize_notifications' => 'Mukauta ilmoituksia',

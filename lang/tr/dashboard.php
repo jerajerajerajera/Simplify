@@ -8,6 +8,7 @@ return [
         'when_ready' => '(hazır olunca)',
         'you_get_a_notification' => 'Bildirim alacaksın',
         'try_again' => 'Tekrar dene',
+        'install_problem_title' => ':name kurulumu',
         'installation_progress' => 'Kurulum ilerlemesi',
         'all_notifications' => 'Tüm bildirimler',
         'customize_notifications' => 'Bildirimleri özelleştir',

@@ -1447,6 +1447,9 @@ body:has(.ps-install:not([style*="none"], [x-cloak])) .fi-main .fi-page .fi-call
 .ps-install-time strong { color: var(--ps-ink); font: 600 15px var(--ps-mono); font-variant-numeric: tabular-nums; }
 .ps-install-time small { font-size: 12px; }
 .ps-install-actions { position: relative; display: flex; flex: none; gap: 8px; }
+/* The spot for an add-on's button after an error (ADDONS.md, Errors): no room taken while it is empty. */
+.ps-problem { display: inline-flex; align-items: center; }
+.ps-problem:not(:has(*)) { display: none; }
 .ps-install-actions .ps-btn.is-on { border-color: color-mix(in srgb, var(--ps-ok) 45%, var(--ps-line)); color: var(--ps-ok); }
 .ps-install-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; margin: 0; padding: 0; list-style: none; }
 .ps-install-step { position: relative; display: flex; align-items: flex-start; gap: 10px; min-width: 0; padding-inline-end: 12px; }

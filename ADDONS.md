@@ -49,7 +49,8 @@ Only `id()` and `name()` are required. Everything else has a default.
 | `description(): string` | `''` | add-on list |
 | `icon(): string` | `'tabler-puzzle'` | add-on list (a Tabler icon name) |
 | `dashboardActions(): list<Button>` | `[]` | buttons in the dashboard toolbar |
-| `settingsUrl(): ?string` | `null` | "Settings" button in the add-on list |
+| `settingsUrl(): ?string` | `null` | "Settings" button in the add-on list, and a leaf under Simplify add-ons in the Admin menu, while `settingsForm()` gives no form |
+| `settingsForm(): ?class-string<Livewire\Component>` | `null` | your settings in your section of Simplify settings › Add-ons, under your `description()`. See "Settings" below (since 2.0, API 8) |
 | `hiddenServerPrefixes(): list<string>` | `[]` | servers whose external id starts with one of these are left out of every Simplify list and count |
 | `tileBadges(Server $server): list<string>` | `[]` | short texts on a server tile, such as its address |
 | `serverInfo(Server $server): array` | `[]` | players, max_players, motd, version and icon of a running game, on the server's card and page (since 1.1, API 2) |
@@ -89,11 +90,30 @@ public function saveSetup(array $state): void
 ## Rules
 
 - New methods are only ever added with a default, so an add-on keeps working when Simplify updates. A test in Simplify's CI fails when a method without a default is added.
-- `Addon::API` is the contract version: 1 in Simplify 1.0, 2 since 1.1 (`serverInfo()`, `serverLinks()`, `customerLinks()`, `hostModeDefault()`), 3 since 1.3 (`setupFields()`, `setupState()`, `saveSetup()`), 4 since 1.5.5 (`accountPages()`), 5 since 1.5.6 (`startUrl()`), 6 since 2.0 (`connections()`). It goes up by one whenever a method is added.
+- `Addon::API` is the contract version: 1 in Simplify 1.0, 2 since 1.1 (`serverInfo()`, `serverLinks()`, `customerLinks()`, `hostModeDefault()`), 3 since 1.3 (`setupFields()`, `setupState()`, `saveSetup()`), 4 since 1.5.5 (`accountPages()`), 5 since 1.5.6 (`startUrl()`), 6 since 2.0 (`connections()`), 7 since 2.0 (`serverSections()` gone), 8 since 2.0 (`settingsForm()`). It goes up by one whenever a method is added or removed.
 - A newer add-on on an older Simplify just works: Simplify never calls the methods it does not know yet. Check `defined(Addon::class.'::API') ? Addon::API : 1` only when your add-on wants to show something different on an older core.
 - `\Simplify\Core\Health\HostHealth::cached()` is stable for add-ons: it returns the last shared host-health snapshot, or `[]` when none is kept, without running the checks (since 1.5.6).
 - If your add-on throws, Simplify reports the error and leaves your add-on out. It never breaks a Simplify page.
 - Install other plugins only from the Pelican Hub, and list every outside service you call in your README.
+
+## Settings
+
+Simplify settings › Add-ons has a section for every installed add-on, closed until it is opened: first your
+`description()`, then your settings. Give your settings as a Livewire component in `settingsForm()` and the core shows
+it there; while it does, your add-on has no leaf of its own in the Admin menu, and **Simplify add-ons** holds only
+add-ons with a page of their own. With the core (`Addon::API >= 8`), hide your settings page from the menu and take
+the settings button off your other pages; without the core they stay where they are.
+
+- The component checks its user (root admin) and saves on its own. Its root element carries
+  `data-simplify-unsaved` and `data-simplify-save="save"` ("Unsaved changes" below), so Save in the page's title bar
+  saves it with the rest. Do not put a `<form>` in it: the section already sits inside Simplify's own form.
+- Use the same component on your own settings page, so both stay the same.
+- `Simplify\Core\Filament\Admin\Pages\Settings::addonUrl($id)` links to your section, opened (check
+  `method_exists` first).
+
+```php
+public function settingsForm(): ?string { return ExplainSettingsForm::class; }
+```
 
 ## Admin menu
 
@@ -186,6 +206,16 @@ Put this spot in your view while the error is shown:
 Simplify puts the spot on each Health check that is Failed, Crashed or a Warning, with the id
 `simplify:health:<check>` (the check's name in lower case without spaces, for example `simplify:health:queue`).
 Checks that are fine get no spot.
+
+A notification in Simplify's bell gets the spot when its data carries an error id under `simplify_problem`: in a
+Filament notification `->viewData(['simplify_problem' => 'my-addon:test:42'])->sendToDatabase($user)`, in a Laravel
+notification of your own at the top level of `toDatabase()`. The sender gives the id and is its source. The bell renders the spot once with the id `__ID__`
+and fills in each notification's own id, so an add-on that renders a button in the spot must keep the id in its HTML
+and check it again on the server.
+
+On a server's page, a failed installation has the spot next to Try again, with the id `simplify:install:<server uuid>`.
+Simplify is the source for it (`InstallProblems`): the last 100 lines of the install script's output from Wings, only
+for root admins and people who may use the server's console.
 
 ## Events
 
