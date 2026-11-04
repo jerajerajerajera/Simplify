@@ -20,7 +20,6 @@ use Simplify\Core\Embed\Filament\Website;
 use Simplify\Core\Filament\Admin\AdminSide;
 use Simplify\Core\Filament\Admin\AdminTop;
 use Simplify\Core\Filament\Admin\CategoryFilter;
-use Simplify\Core\Filament\Admin\Pages\People;
 use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\Admin\Pages\Setup;
 use Simplify\Core\Filament\Admin\Pages\SetupDone;
@@ -88,7 +87,7 @@ final class SimplifyPlugin implements Plugin
             $panel->renderHook(PanelsRenderHook::LAYOUT_START, fn () => self::adminTop());
         }
         if ($panel->getId() === 'admin') {
-            $panel->pages([Settings::class, Setup::class, SetupDone::class, People::class]);
+            $panel->pages([Settings::class, Setup::class, SetupDone::class]);
             $panel->renderHook(PanelsRenderHook::PAGE_START, fn () => self::settingsNav());
             $panel->renderHook(TablesRenderHook::TOOLBAR_REORDER_TRIGGER_AFTER, fn () => CategoryFilter::render(), CategoryFilter::PAGE);
         }

@@ -49,10 +49,10 @@ abstract class FormPage extends Page implements HasSchemas
     protected function getHeaderActions(): array
     {
         return [
+            // Save as a text button with its icon, the last action (ADDONS.md, Page head).
             Action::make('save')
-                ->hiddenLabel()
+                ->label(__('simplify::settings.save'))
                 ->icon('tabler-device-floppy')
-                ->tooltip(__('simplify::settings.save'))
                 ->action('save')
                 ->keyBindings(['mod+s']),
         ];

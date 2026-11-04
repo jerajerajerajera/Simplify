@@ -49,6 +49,11 @@ return [
         'ok' => 'Gerai',
         'close' => 'Uždaryti',
     ],
+    'sort' => [
+        'by' => 'Rikiuoti pagal',
+        'ascending' => 'Didėjančiai',
+        'descending' => 'Mažėjančiai',
+    ],
     'unsaved' => [
         'changes_made' => 'Atlikti pakeitimai',
         'save' => 'Išsaugoti',

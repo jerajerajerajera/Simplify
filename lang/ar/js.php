@@ -49,6 +49,11 @@ return [
         'ok' => 'حسنًا',
         'close' => 'إغلاق',
     ],
+    'sort' => [
+        'by' => 'ترتيب حسب',
+        'ascending' => 'تصاعدي',
+        'descending' => 'تنازلي',
+    ],
     'unsaved' => [
         'changes_made' => 'تم إجراء تغييرات',
         'save' => 'حفظ',

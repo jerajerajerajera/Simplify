@@ -49,6 +49,11 @@ return [
         'ok' => '确定',
         'close' => '关闭',
     ],
+    'sort' => [
+        'by' => '排序方式',
+        'ascending' => '升序',
+        'descending' => '降序',
+    ],
     'unsaved' => [
         'changes_made' => '有更改',
         'save' => '保存',

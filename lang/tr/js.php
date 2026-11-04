@@ -49,6 +49,11 @@ return [
         'ok' => 'Tamam',
         'close' => 'Kapat',
     ],
+    'sort' => [
+        'by' => 'Sırala',
+        'ascending' => 'Artan',
+        'descending' => 'Azalan',
+    ],
     'unsaved' => [
         'changes_made' => 'Değişiklikler yapıldı',
         'save' => 'Kaydet',

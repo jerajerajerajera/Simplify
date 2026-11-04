@@ -49,6 +49,11 @@ return [
         'ok' => 'OK',
         'close' => 'Sulje',
     ],
+    'sort' => [
+        'by' => 'Lajittele',
+        'ascending' => 'Nouseva',
+        'descending' => 'Laskeva',
+    ],
     'unsaved' => [
         'changes_made' => 'Muutoksia tehty',
         'save' => 'Tallenna',

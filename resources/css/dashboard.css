@@ -835,6 +835,9 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 .ps-host-head-actions { display: flex; flex: none; gap: 6px; margin-inline-start: auto; }
 .ps-frame-tools { display: flex; flex: 1 1 auto; align-items: center; justify-content: flex-end; gap: 6px; min-width: 0; margin-inline-start: auto; }
 .ps-frame-search { position: relative; flex: 0 1 260px; min-width: 0; margin-inline-end: 4px; }
+/* A list's "Sort by" menu and its direction (sort.js), in host mode's title bar. */
+.ps-frame-tools .s-sort { display: flex; flex: none; align-items: center; gap: 4px; }
+.ps-frame-tools .s-sort-select { width: auto; max-width: 180px; height: var(--ps-h-sm); min-height: 0; padding-block: 0; font-size: 13px; }
 .ps-frame-search svg { position: absolute; top: 50%; inset-inline-start: 10px; width: 16px; height: 16px; color: var(--ps-muted); transform: translateY(-50%); pointer-events: none; }
 .ps-frame-search input { box-sizing: border-box; width: 100%; height: var(--ps-h-sm); padding: 0 10px 0 33px; border: 1px solid var(--ps-line); border-radius: var(--ps-radius-sm); background: var(--ps-field); color: var(--ps-ink); font: 500 13px/1 var(--ps-font); outline: none; }
 .ps-frame-search input:focus { border-color: var(--ps-accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ps-accent) 20%, transparent); }

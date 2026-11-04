@@ -4,7 +4,6 @@
 {"key":"noderesource","label":"Nodes","url":"/admin/nodes","origin":""},
 {"key":"userresource","label":"Users","url":"/admin/users","origin":""},
 {"key":"roleresource","label":"Roles","url":"/admin/roles","origin":""},
-{"key":"people","label":"People & roles","url":"/admin/people","origin":"core"},
 {"key":"apikeyresource","label":"API Keys","url":"/admin/api","origin":""},
 {"key":"settings","label":"Settings","url":"/admin/settings","origin":""},
 {"key":"pluginresource","label":"Plugins","url":"/admin/plugins","origin":""},

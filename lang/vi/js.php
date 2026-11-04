@@ -49,6 +49,11 @@ return [
         'ok' => 'OK',
         'close' => 'Đóng',
     ],
+    'sort' => [
+        'by' => 'Sắp xếp theo',
+        'ascending' => 'Tăng dần',
+        'descending' => 'Giảm dần',
+    ],
     'unsaved' => [
         'changes_made' => 'Đã có thay đổi',
         'save' => 'Lưu',

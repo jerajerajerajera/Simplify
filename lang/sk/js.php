@@ -49,6 +49,11 @@ return [
         'ok' => 'OK',
         'close' => 'Zavrieť',
     ],
+    'sort' => [
+        'by' => 'Zoradiť podľa',
+        'ascending' => 'Vzostupne',
+        'descending' => 'Zostupne',
+    ],
     'unsaved' => [
         'changes_made' => 'Vykonané zmeny',
         'save' => 'Uložiť',
