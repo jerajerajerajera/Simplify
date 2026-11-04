@@ -21,23 +21,25 @@ html, body { overscroll-behavior-y: none; }
   --s-warn: var(--warning-700);
   --s-danger: var(--danger-600);
 
-  --s-text-sm: 12px;
-  --s-text: 14px;
-  --s-text-lg: 18px;
+  /* Sizes, shadows and timing come from tokens.css (loaded on every page): the --s-* names are aliases, so a corner
+     or a shadow is the same on the Admin side as on the overview. */
+  --s-text-sm: var(--ps-text-sm);
+  --s-text: var(--ps-text);
+  --s-text-lg: var(--ps-text-lg);
 
-  --s-radius-sm: 6px;
-  --s-radius: 10px;
-  --s-radius-pill: 999px;
+  --s-radius-sm: var(--ps-radius-sm);
+  --s-radius: var(--ps-radius);
+  --s-radius-pill: var(--ps-radius-pill);
 
-  --s-space-1: 4px;
-  --s-space-2: 8px;
-  --s-space-3: 12px;
-  --s-space-4: 16px;
-  --s-space-6: 24px;
+  --s-space-1: var(--ps-space-1);
+  --s-space-2: var(--ps-space-2);
+  --s-space-3: var(--ps-space-3);
+  --s-space-4: var(--ps-space-4);
+  --s-space-6: var(--ps-space-6);
 
   --s-h: 36px;
-  --s-shadow: 0 1px 2px rgb(0 0 0 / .05);
-  --s-fast: .15s;
+  --s-shadow: var(--ps-shadow-sm);
+  --s-fast: var(--ps-fast);
 }
 
 :root.dark {
@@ -54,7 +56,6 @@ html, body { overscroll-behavior-y: none; }
   --s-ok: var(--success-400);
   --s-warn: var(--warning-400);
   --s-danger: var(--danger-400);
-  --s-shadow: 0 1px 2px rgb(0 0 0 / .3);
 }
 
 /* Touch screens get 44px targets without per-component overrides. */
@@ -64,11 +65,6 @@ html, body { overscroll-behavior-y: none; }
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  :root {
-    --s-fast: 0s;
-  }
-}
 
 /* Card: the one container. Square-ish corners, a thin line, no nested frames. */
 .s-card {

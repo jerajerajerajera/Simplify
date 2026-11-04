@@ -214,7 +214,7 @@ kernfuncties. Nooit noemen dat Toolkit vroeger een andere naam had.
 *Vervangt:* R4.
 
 #### P-3 Add-on-contract
-`ADDONS.md` (API 4). Een nieuwe `Addon`-methode krijgt altijd een default en een regel in ADDONS.md; een nieuwere
+`ADDONS.md` (API 7). Een nieuwe `Addon`-methode krijgt altijd een default en een regel in ADDONS.md; een nieuwere
 add-on blijft werken op een oudere kern.
 *Bewaakt door:* `tests/addons.php` (kern).
 *Vervangt:* R5.
@@ -357,7 +357,17 @@ Geen verboden functienamen, geen eigen updater of pluginbeheer, updates alleen v
 #### P-27 Codestijl
 Per functie een eigen bestand; PSR-12 en `pint`; schrijf zoals de code eromheen. Laravel-job: nooit een methode
 `queue()`. Na een merge in CSS: accolades tellen. Eigen prefix voor klassen, CSS en routes (`simplify`, `s-`, `ps-`).
-*Bewaakt door:* `pint --test` in CI.
+Daarnaast (V64): **DRY**: één functie of component per taak; een herhaalde UI-actie (Save, verwijderen, bevestigen) is
+één geparametriseerde Action of component en de knop geeft alleen de naam mee; twee functies die voor meer dan de
+helft gelijk zijn worden één. **YAGNI**: geen code voor later, geen API-methode zonder implementatie. **KISS**: boven
+twintig takken of tachtig regels splitsen in benoemde stappen; een private functie met één aanroep die een bestaande
+functie ook kan, gaat weg. **Uitzondering = regel**: een waarde of gedrag dat zonder opgeschreven reden afwijkt, volgt
+de regel. **Design tokens**: maat, kleur, schaduw, ronding, overgang, laag en blur alleen via `tokens.css` van de kern
+(`--ps-*`); add-ons lezen die tokens met een fallback; `!important` alleen om Filament te overschrijven en het aantal
+mag alleen omlaag. **Gedrag gelijk**: een opschoning verandert niets aan wat de gebruiker kan of ziet en noemt in de
+PR de test die dat bewijst ("gedrag gelijk: <test>"); verandert het gedrag, dan is het een vraag aan de eigenaar.
+Naslag: `plannen/werkwijze/codekwaliteit-en-testen.md`.
+*Bewaakt door:* `pint --test`, PHPStan (`phpstan.neon`, level 5) en ESLint (`eslint.config.mjs`) in CI.
 *Vervangt:* R32, R34, R37.
 
 #### P-28 Migraties en instellingen
@@ -386,7 +396,10 @@ Geen `composer install` of `yarn install` in de cloudcontainer; het echte paneel
 Lokale checks (`bash tests/run.sh`, `pint --test`, `python3 tests/hub-check.py`), CI groen met panel-smoke op elke
 Pelican-versie in de matrix, updatepad getest bij migratie of instelling, echt doorgeklikt in een paneel dat op het
 echte lijkt (klikken, niet kijken), stijlaudit groen bij UI (d1440, laag1366, phone390, licht en donker), screenshot
-van het echte scherm. Add-ons met én zonder kern. Kan een stap niet: precies zeggen welke.
+van het echte scherm. Add-ons met én zonder kern (de echte kern uit de CI-matrix, niet alleen een stub). Kan een
+stap niet: precies zeggen welke. Verder (V64): PHPStan en ESLint groen; de browser-smoke (`tests/panel/browser.cjs`:
+Playwright, axe, Lighthouse) groen bij een wijziging in `resources/`, met Lighthouse en axe niet lager dan de vorige
+run; geen nieuwe losse CSS-waarde zonder token of reden.
 *Vervangt:* R38, R40.
 
 #### P-32 Uitkomst ok of fout
@@ -405,7 +418,8 @@ Versienummer in `plugin.json` en CHANGELOG gelijk. Zip:
 *Vervangt:* R47.
 
 #### P-35 Zo klein mogelijk
-Geen dubbele of onnodige functies, niet meer code dan nodig. Na een aantal wijzigingen een opschoonronde als eigen PR.
+Geen dubbele of onnodige functies, niet meer code dan nodig. Na een aantal wijzigingen een opschoonronde als eigen PR,
+op basis van de principes in P-27 (DRY, YAGNI, KISS, uitzondering = regel, tokens, gedrag gelijk; V64).
 *Vervangt:* R62.
 
 #### P-36 Veiligheid voorop

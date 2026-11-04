@@ -53,7 +53,6 @@ Only `id()` and `name()` are required. Everything else has a default.
 | `hiddenServerPrefixes(): list<string>` | `[]` | servers whose external id starts with one of these are left out of every Simplify list and count |
 | `tileBadges(Server $server): list<string>` | `[]` | short texts on a server tile, such as its address |
 | `serverInfo(Server $server): array` | `[]` | players, max_players, motd, version and icon of a running game, on the server's card and page (since 1.1, API 2) |
-| `serverSections(Server $server): list<class-string>` | `[]` | No longer shown since core 1.3.9 (the console page fits the window); kept so older add-ons keep working |
 | `serverLinks(Server $server): list<Button>` | `[]` | links in the ⋯ menu of the server page, opened in a new tab (since 1.1, API 2); a `primary` link also shows on a suspended server's card for its owner, under a line that the hoster paused it (since 1.5.5) |
 | `customerLinks(User $user): list<Button>` | `[]` | links for customers (not admins) beside a greeting at the top of the overview; the panel's support link follows (since 1.1, API 2). A link with an `icon` (a Tabler name such as `tabler-receipt`) is also an icon button in the account menu, before Support, for everyone it is given to |
 | `hostModeDefault(): bool` | `false` | No effect since the Admin page (every admin has it); kept so add-ons that override it still load (since 1.1, API 2) |

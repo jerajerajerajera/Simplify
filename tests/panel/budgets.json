@@ -1,0 +1,4 @@
+{
+  "_": "Lighthouse budgets per screen (0-100). The first run is the baseline: raise a number to what that run scored, so a later change cannot lower it.",
+  "default": { "performance": 0, "accessibility": 0, "best-practices": 0 }
+}

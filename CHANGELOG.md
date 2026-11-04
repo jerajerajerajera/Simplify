@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Add-on API 7: `serverSections()` is gone from the contract; no add-on used it since the console page fits the window (1.3.9).
+- Checks: PHPStan (level 5) and ESLint run in CI, and a browser smoke (Playwright with axe and Lighthouse) opens the overview, a server's console, a menu click, Admin and Settings on a desktop and a phone.
+- Styles: the Admin side reads the same design tokens as the overview and the server page (`tokens.css` loads everywhere; the `--s-*` names are aliases), so a corner or a shadow is the same size on every page.
 - Server page: a server with a working subdomain shows just that subdomain as its address, under the name and in the status bar, and the copy button copies it. Without a subdomain it stays the game address with port. The address is no longer cut off; a long software name gets the ellipsis instead.
 - Console: the buttons in the console's title row (an add-on's button such as Explain, Bigger and the pop-out window) can be clicked again; the console's output no longer lies over them.
 
