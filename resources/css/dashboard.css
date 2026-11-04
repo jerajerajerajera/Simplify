@@ -553,6 +553,11 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 /* The broken heart slips off the right edge of the server card, tilted as if falling. */
 .ps-server-info .ps-offline-artwork svg { inset-inline-end: 3%; top: 60%; height: 145%; transform: translateY(-50%) rotate(16deg); }
 .ps-info-icons { grid-area: icons; position: relative; display: flex; align-items: center; justify-content: center; }
+/* Look: a small pencil on the icon's corner, for whoever may edit the server (F4). */
+.ps-look-button { position: absolute; inset-inline-end: -6px; top: -6px; z-index: 2; display: grid; place-items: center; width: 22px; height: 22px; padding: 0; border: 1px solid var(--ps-line); border-radius: 50%; background: var(--ps-surface); color: var(--ps-muted); cursor: pointer; }
+.ps-look-button:hover, .ps-look-button[aria-expanded="true"] { border-color: var(--ps-accent); color: var(--ps-accent); }
+.ps-look-button svg { width: 12px; height: 12px; }
+.ps-look-menu { top: calc(100% + 8px); inset-inline-start: 0; min-width: 220px; }
 .ps-info-icon { display: grid; place-items: center; width: 56px; height: 56px; overflow: hidden; border: 1px solid var(--ps-line); border-radius: 14px; background: var(--ps-field); }
 .ps-info-icon img { width: 100%; height: 100%; object-fit: cover; image-rendering: pixelated; }
 .ps-software-icon { background: var(--ps-raised); }
