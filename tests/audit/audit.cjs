@@ -237,6 +237,7 @@ const adminPage = async (overview) => {
     const navOverview = await pageLook(); await record('setup-done-to-overview', 'Setup klaar › Go to the panel: overzicht');
     const d1 = same(fullOverview, navOverview, keys);
     say('setup-done-to-overview', found && d1.length === 0, { found, diff: d1, full: fullOverview, after: navOverview });
+    if (!(await page.locator('a.ps-nav-admin >> visible=true').count())) { await page.locator('.ps-top .ps-mobile-menu >> visible=true').first().click().catch(() => {}); await sleep(500); }
     const shield = page.locator('a.ps-nav-admin >> visible=true').first();
     await shield.click({ timeout: 4000 }).catch(() => {}); await arrivedAt(/^\/admin/); await settle(page, 1500);
     const navAdmin = await pageLook();
