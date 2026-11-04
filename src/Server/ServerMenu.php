@@ -93,7 +93,7 @@ final class ServerMenu
     {
         $resources = array_map(fn (string $page) => method_exists($page, 'getResource') ? $page::getResource() : null, $scopes);
         $tabs = [];
-        $addonTabs = self::addons(fn (Addon $addon) => array_values((array) ($addon->serverTabs()['backups'] ?? [])));
+        $addonTabs = self::addons(fn (Addon $addon) => $addon->serverTabs()['backups'] ?? []);
         foreach (array_unique([BackupResource::class, ...$addonTabs, ScheduleResource::class]) as $class) {
             try {
                 if (class_exists($class) && $class::canAccess() && ($url = self::url($class)) !== null) {
