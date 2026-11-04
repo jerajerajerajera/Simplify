@@ -1756,12 +1756,19 @@ html.ps-frame[data-ps-frame="settings"] :is(body, .fi-layout, .fi-main-ctn, .fi-
   border: 1px solid var(--s-line) !important;
   border-radius: var(--s-radius-sm) !important;
   color: var(--s-ink) !important;
-  display: inline-grid;
   height: var(--s-h) !important;
   margin: 0 !important;
   place-items: center;
   transition: background var(--s-fast), border-color var(--s-fast), color var(--s-fast);
   width: var(--s-h) !important;
+}
+
+/* An action with ->labeledFrom() is two buttons: an icon button, then a button with text and the class
+   fi-labeled-from-<breakpoint>. Filament hides the icon button from that breakpoint on through its neighbour
+   (.fi-icon-btn:has(+ .fi-btn.fi-labeled-from-sm)); this display rule is stronger, so it leaves that icon button to
+   Filament and both no longer show at once (K-B48). */
+:is(.fi-ta-header-toolbar, .fi-ta-header, .fi-header-actions-ctn, .fi-ta-actions) .fi-icon-btn:not(:has(+ .fi-btn[class*="fi-labeled-from-"])) {
+  display: inline-grid;
 }
 
 :is(.fi-ta-header-toolbar, .fi-ta-header, .fi-header-actions-ctn, .fi-ta-actions) .fi-icon-btn .fi-icon {

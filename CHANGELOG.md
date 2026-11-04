@@ -7,6 +7,7 @@
 - Admin: a little room between a page's content and its scrollbar.
 - Server page: a server on an IPv6 address shows it in brackets with the port, as Pelican does ("[2001:db8::1]:25565"), so the copied address works in a game.
 - Errors: an add-on such as Explain can put its own button right after an error; on the Health page each check that needs attention has that spot (ADDONS.md, Errors).
+- Admin: an action that shows its name from a certain width on (such as Test first and Update in Egg Updates) shows as one button again, not as an icon button and a button with text side by side.
 
 ## 2.0.0-beta.5
 
