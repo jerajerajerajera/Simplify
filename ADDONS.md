@@ -63,6 +63,8 @@ Only `id()` and `name()` are required. Everything else has a default.
 | `accountPages(User $user): list<Button>` | `[]` | your own pages for every user, as icon buttons in Simplify's account menu (for example a Steam account). They open inside Simplify, in the content area, as Admin tools do; a URL that is not on this panel is left out. Without an `icon` the button shows `tabler-puzzle` (since 1.5.5, API 4) |
 | `connections(User $user): list<class-string<Livewire\Component>>` | `[]` | your rows on Simplify's Connections page (account menu, right after Profile), one Livewire component per outside account, for example a Steam account or a CurseForge key. Each row is yours: it checks its user, saves on its own (the page has no Save and nothing saves by itself) and keeps its secrets. The page and its menu item show only while an add-on gives at least one row; without one the page answers 404. A class that is not a Livewire component is left out (since 2.0, API 6) |
 | `startUrl(User $user): ?string` | `null` | a URL on this panel where this user starts: the server list and Simplify's overview redirect there, before the panel's own start page. Return `null` when the user should start in Simplify; while it returns a URL, Simplify puts its own header (panel name, bell, account menu) over Pelican's admin pages for admins, as the first child of `.fi-layout` (since 1.5.6, API 5) |
+| `serverTabs(): array<string, list<class-string>>` | `[]` | your server pages as tabs in one of Simplify's rows instead of their own menu item, by row. The only row is `'backups'`: Backups, then the add-ons' pages, then Schedules, as one "Backups & tasks" item, for example `['backups' => [AutomaticBackups::class]]`. Label and address come from the class; a page the user may not open is left out (since 2.0, API 9) |
+| `replacedServerPages(): list<class-string>` | `[]` | Pelican's server pages that a page of yours takes over, for example `Settings::class` and `Startup::class`: Simplify leaves them out of the server menu. Return them only while the current user can open your page (since 2.0, API 9) |
 
 `Button` is `new Button(string $label, string $url, ?string $icon = null, bool $primary = false)`.
 
@@ -90,7 +92,7 @@ public function saveSetup(array $state): void
 ## Rules
 
 - New methods are only ever added with a default, so an add-on keeps working when Simplify updates. A test in Simplify's CI fails when a method without a default is added.
-- `Addon::API` is the contract version: 1 in Simplify 1.0, 2 since 1.1 (`serverInfo()`, `serverLinks()`, `customerLinks()`, `hostModeDefault()`), 3 since 1.3 (`setupFields()`, `setupState()`, `saveSetup()`), 4 since 1.5.5 (`accountPages()`), 5 since 1.5.6 (`startUrl()`), 6 since 2.0 (`connections()`), 7 since 2.0 (`serverSections()` gone), 8 since 2.0 (`settingsForm()`). It goes up by one whenever a method is added or removed.
+- `Addon::API` is the contract version: 1 in Simplify 1.0, 2 since 1.1 (`serverInfo()`, `serverLinks()`, `customerLinks()`, `hostModeDefault()`), 3 since 1.3 (`setupFields()`, `setupState()`, `saveSetup()`), 4 since 1.5.5 (`accountPages()`), 5 since 1.5.6 (`startUrl()`), 6 since 2.0 (`connections()`), 7 since 2.0 (`serverSections()` gone), 8 since 2.0 (`settingsForm()`), 9 since 2.0 (`serverTabs()`, `replacedServerPages()`). It goes up by one whenever a method is added or removed.
 - A newer add-on on an older Simplify just works: Simplify never calls the methods it does not know yet. Check `defined(Addon::class.'::API') ? Addon::API : 1` only when your add-on wants to show something different on an older core.
 - `\Simplify\Core\Health\HostHealth::cached()` is stable for add-ons: it returns the last shared host-health snapshot, or `[]` when none is kept, without running the checks (since 1.5.6).
 - If your add-on throws, Simplify reports the error and leaves your add-on out. It never breaks a Simplify page.
@@ -162,6 +164,50 @@ sees every server's card), false otherwise. It is newer than 2.0.0-beta.1, so ch
 
 `Simplify\Core\Embed\Services\EmbedServers::visible($server)` and `setVisible($server, $on)` read and set a server's
 "Show on the website" choice (the same as its Website page). They check no permissions: the caller does that.
+
+## Page head
+
+Every page of Simplify and its add-ons has the same head, so they read as one product. The content is one card, its
+buttons sit in its title bar, and there is no box inside a box. The head has three parts:
+
+1. **Title**: what the page is, usually its name in the menu.
+2. **Subtitle**: one short line saying what you do here or what it applies to (for example "For Paper 1.21.1"). Do not
+   put a warning paragraph above the content; put the warning in the subtitle, or send it as a notification.
+3. **Actions on the right**: Save comes last, as a text button "Save" with the `tabler-device-floppy` icon. Any other
+   buttons go before it. Dangerous actions go in a ⋯ group, never as a large red button.
+
+On a server page, the first `Section` of your form holds the title (`heading`) and the subtitle (`description`), and
+`getHeaderActions()` gives the actions. With the core, the page's own Filament heading is hidden and the actions sit
+at the right of that section's head. On an admin page, the breadcrumb in the Admin page's title bar is the title, and
+the actions and `getSubheading()` stay in the page's header. Without the core, Filament shows its own heading and
+actions as usual.
+
+```php
+public function form(Schema $schema): Schema
+{
+    return $schema->components([
+        Section::make(__('my-addon::page.title'))
+            ->description(__('my-addon::page.subtitle'))
+            ->schema([/* fields */]),
+    ]);
+}
+
+protected function getHeaderActions(): array
+{
+    return [
+        Action::make('save')->label(__('my-addon::page.save'))->icon('tabler-device-floppy')
+            ->action('save')->keyBindings(['mod+s']),
+    ];
+}
+```
+
+- Save works with "Unsaved changes" below: the form carries `data-simplify-unsaved`, and the `save` action counts as
+  saved when it ends without validation errors.
+- An empty page shows one grey line in the middle saying what is missing, with the action that fixes it in the head.
+  Do not use an illustration or an empty-state icon.
+- A page without a Filament form (your own Blade view) still follows the same model: wrap its content in a Filament
+  section with a heading and a description. A shared Blade partial for this head is planned in the core; this section
+  will name it once it ships.
 
 ## Unsaved changes
 
