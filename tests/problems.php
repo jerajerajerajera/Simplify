@@ -50,7 +50,7 @@ $header = (string) file_get_contents($root.'/resources/views/dashboard/header.bl
 $js = (string) file_get_contents($root.'/resources/js/dashboard.js');
 check(str_contains($item, '<span class="ps-problem" x-show="item.problem" x-html="problemSpot(item.problem)"></span>'), 'a notification with an error id shows the spot');
 check(substr_count($header, '<template data-simplify-problem-spot>') === 1 && str_contains($header, "scopes: ['simplify-problem', 'simplify-problem:__ID__']"), 'the bell renders the spot once, as a template');
-check(str_contains($js, "/^(?=.{1,128}\$)[A-Za-z0-9_.-]+(?::[A-Za-z0-9_.-]+){1,4}\$/.test(id)") && Bell::PROBLEM === '/^(?=.{1,128}$)[A-Za-z0-9_.-]+(?::[A-Za-z0-9_.-]+){1,4}$/', 'the browser checks the id as the server does');
+check(str_contains($js, '/^(?=.{1,128}$)[A-Za-z0-9_.-]+(?::[A-Za-z0-9_.-]+){1,4}$/.test(id)') && Bell::PROBLEM === '/^(?=.{1,128}$)[A-Za-z0-9_.-]+(?::[A-Za-z0-9_.-]+){1,4}$/', 'the browser checks the id as the server does');
 check(str_contains((string) file_get_contents($root.'/ADDONS.md'), '`simplify_problem`'), 'ADDONS.md names the data key');
 
 $source = (string) file_get_contents($root.'/src/Problems/InstallProblems.php');
