@@ -84,6 +84,7 @@
       ],
       infoMenu: false,
       colorMenu: false,
+      lookMenu: false,
       bannerMenu: false,
       bannerChoices: [],
       // Set while a power action, rename or look change is on its way; Alpine treats an undefined name as an error.
