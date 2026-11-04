@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Phones: the Admin menu slides away to the left over the page you tapped, and Admin, the breadcrumb's group or a swipe from the edge slide it back in, instead of the page jumping into place.
 - Uninstalling Simplify keeps its settings, announcements, subdomains and website details; installing it again brings everything back.
 - Settings › Add-ons: every add-on is a section that opens, with what it does first and its settings under it. Simplify add-ons in the Admin menu holds only add-ons with a page of their own (add-on API 8, `settingsForm()`).
 - Phones: fields you type in have 16px text, so Safari on an iPhone no longer zooms in on them and leaves the page sliding sideways.

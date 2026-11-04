@@ -1285,7 +1285,7 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 @media (max-width: 600px) {
   .ps.ps-admin-side { flex-direction: column; }
   .ps-admin-side .ps-host-side { position: static; display: none; max-height: none; padding-bottom: 0; border-radius: 0; box-shadow: none; transform: none; visibility: visible; transition: none; }
-  .ps-admin-side.menu-open .ps-host-side { display: flex; }
+  .ps-admin-side.menu-open .ps-host-side { display: flex; background: var(--s-bg, var(--ps-bg)); view-transition-name: ps-admin-menu; }
   .ps-admin-side .ps-host-side-scroll { padding: 4px 0 8px; }
   .ps-admin-side .ps-host-health-bar { display: grid; }
   .ps-admin-side .ps-host-group-head { min-height: 44px; font-size: 15px; }
@@ -1296,6 +1296,17 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   .ps-admin-crumb button.is-last { font-size: 17px; }
   .ps-admin-crumb svg { width: 18px; height: 18px; }
 }
+/* The Admin menu on a phone slides like an app (sheet.js, simplifyAdminSlide): away to the left over the page that a tap
+   in it opened, and back in from the left over the page. Only the menu moves; the header and the bottom bar stay. */
+html[data-ps-admin-slide]::view-transition-group(root) { animation: none; }
+html[data-ps-admin-slide]::view-transition-old(root), html[data-ps-admin-slide]::view-transition-new(root) { animation: none; }
+html[data-ps-admin-slide="in"]::view-transition-new(root) { opacity: 0; }
+html[data-ps-admin-slide]::view-transition-group(ps-admin-menu) { z-index: 1; animation: none; }
+html[data-ps-admin-slide="out"]::view-transition-old(ps-admin-menu) { animation: ps-admin-menu-out var(--ps-sheet-out) var(--ps-ease-out) both; box-shadow: var(--ps-shadow-modal); }
+html[data-ps-admin-slide="in"]::view-transition-new(ps-admin-menu) { animation: ps-admin-menu-in var(--ps-sheet-in) var(--ps-ease) both; box-shadow: var(--ps-shadow-modal); }
+html[data-ps-admin-slide="out"]::view-transition-new(ps-admin-menu), html[data-ps-admin-slide="in"]::view-transition-old(ps-admin-menu) { display: none; }
+@keyframes ps-admin-menu-out { to { transform: translateX(-100%); } }
+@keyframes ps-admin-menu-in { from { transform: translateX(-100%); } }
 body:has(.ps-server-top) .fi-main-ctn {
   display: grid !important;
   grid-template-columns: 220px minmax(0, 1fr);
