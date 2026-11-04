@@ -19,11 +19,12 @@ function findChrome(dir) {
 if (!chrome) { console.error('FAIL no Chrome or Chromium found for tests/labeled-from.cjs (set CHROME)'); process.exit(1); }
 
 const css = path.join(__dirname, '..', 'resources', 'css');
-// Filament's buttons and its breakpoint classes for labeledFrom('sm'), as far as they matter here. Filament's own
-// stylesheet comes before Simplify's, as in the panel.
-const filament = `.fi-btn,.fi-icon-btn{display:inline-grid}.hidden{display:none}
-@media (min-width:40rem){.sm\\:hidden{display:none}.sm\\:inline-grid{display:inline-grid}}`;
-const action = (where) => `<div class="${where}"><button class="fi-icon-btn fi-ac-icon-btn-action sm:hidden" data-kind="icon">i</button><button class="fi-btn fi-ac-btn-action hidden sm:inline-grid" data-kind="text">Update</button></div>`;
+// Filament's buttons and its rules for labeledFrom('sm') (Filament 5.10, packages/support/resources/css/components:
+// the button with text has fi-labeled-from-sm, the icon button is hidden through it), as far as they matter here.
+// Filament's own stylesheet comes before Simplify's, as in the panel.
+const filament = `.fi-btn,.fi-icon-btn{display:inline-grid}.fi-btn.fi-labeled-from-sm{display:none}
+@media (min-width:40rem){.fi-icon-btn:has(+ .fi-btn.fi-labeled-from-sm){display:none}.fi-btn.fi-labeled-from-sm{display:inline-grid}}`;
+const action = (where) => `<div class="${where}"><button class="fi-icon-btn fi-ac-icon-btn-action" data-kind="icon">i</button><button class="fi-btn fi-ac-btn-action fi-labeled-from-sm" data-kind="text">Update</button></div>`;
 const html = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <style>${filament}</style>
 <link rel="stylesheet" href="file://${css}/tokens.css"><link rel="stylesheet" href="file://${css}/simplify.css">
