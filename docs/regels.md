@@ -12,7 +12,7 @@
 2. **Geen dataverlies**: blijven instellingen en gegevens van de gebruiker altijd heel, ook bij een update?
 3. **Compatibel**: werkt het op elke Pelican-versie in de CI-matrix, met en zonder kern, naast andere plugins?
 4. **1.5.5 is de basis**: wat Simplify 1.5.5 kan, blijft kunnen, op dezelfde manier tenzij de eigenaar anders besluit (V37).
-5. **Eenvoud**: snel, overzichtelijk, duidelijk en overal hetzelfde; zo klein mogelijk.
+5. **Eenvoud**: snel, overzichtelijk, duidelijk en overal hetzelfde; duidelijk en leesbaar boven zo kort mogelijk (P-35).
 
 Botsen twee principes, dan wint de bovenste.
 
@@ -83,7 +83,7 @@ Threads geven zelf geen nummers; ze melden ongenummerd aan de regisseur.
 | P-32 | Uitkomst ok of fout | Testen |
 | P-33 | Kernrelease | Release |
 | P-34 | Versie en zip | Release |
-| P-35 | Zo klein mogelijk | Product |
+| P-35 | Duidelijk boven kort | Product |
 | P-36 | Veiligheid voorop | Product |
 | P-37 | Testfase | Release |
 | P-38 | Opslaan met Save, nooit vanzelf | UI |
@@ -417,9 +417,11 @@ Versienummer in `plugin.json` en CHANGELOG gelijk. Zip:
 `github.com/jerajerajerajera/<Repo>/releases/download/v<v>/<id>-v<v>.zip`.
 *Vervangt:* R47.
 
-#### P-35 Zo klein mogelijk
-Geen dubbele of onnodige functies, niet meer code dan nodig. Na een aantal wijzigingen een opschoonronde als eigen PR,
-op basis van de principes in P-27 (DRY, YAGNI, KISS, uitzondering = regel, tokens, gedrag gelijk; V64).
+#### P-35 Duidelijk boven kort
+Geen dubbele of onnodige functies, niet meer code dan nodig; maar duidelijkheid en leesbaarheid gaan boven zo kort
+mogelijk (eigenaar 4-11): wie zich aan de principes van P-27 houdt (DRY, YAGNI, KISS, uitzondering = regel, tokens,
+gedrag gelijk; V64) schrijft liever een regel meer dan een slimme regel die niemand leest. Na een aantal wijzigingen een
+opschoonronde als eigen PR op basis van die principes.
 *Vervangt:* R62.
 
 #### P-36 Veiligheid voorop

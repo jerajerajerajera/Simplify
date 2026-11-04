@@ -164,7 +164,14 @@ jobs:
         working-directory: panel
         run: |
           composer require --dev larastan/larastan --no-interaction --no-progress --quiet
-          vendor/bin/phpstan analyse --configuration plugins/simplify/phpstan.neon --memory-limit 1G --no-progress --error-format=github
+          # Without a baseline yet: the first run writes one and prints it, to commit as the starting point (every
+          # finding in it is on the clean-up list; new code must be clean).
+          if [ -f plugins/simplify/phpstan-baseline.neon ]; then
+            vendor/bin/phpstan analyse --configuration plugins/simplify/phpstan.neon --memory-limit 1G --no-progress --error-format=github
+          else
+            vendor/bin/phpstan analyse --configuration plugins/simplify/phpstan.neon --memory-limit 1G --no-progress --generate-baseline=plugins/simplify/phpstan-baseline.neon --allow-empty-baseline
+            echo '::group::phpstan-baseline.neon'; cat plugins/simplify/phpstan-baseline.neon; echo '::endgroup::'
+          fi
       - name: Open the pages
         working-directory: panel
         # The last line must say so: an exit code alone missed a crash before the first step once.
@@ -231,6 +238,7 @@ jobs:
       - name: Open the screens in a browser
         working-directory: simplify
         run: |
+          mkdir -p ../result
           npm init -y > /dev/null
           npm install --silent playwright@1.48.2 axe-core@4.10.2 lighthouse@12.2.1
           npx playwright install --with-deps chromium > /dev/null

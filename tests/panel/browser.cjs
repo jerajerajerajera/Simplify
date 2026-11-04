@@ -1,6 +1,7 @@
 // Browser smoke of a panel with Simplify (checks.yml, job browser): a real browser logs in and opens the overview, a
 // server's console, a click in the server menu, Admin and Settings › Save, on a desktop (1440) and a phone (390), and
-// checks what the HTTP smoke cannot see: the page never scrolls (P-7), a menu click keeps the page (P-11), the console
+// checks what the HTTP smoke cannot see: the page never scrolls (P-7; on a phone the overview and the server page
+// scroll as a whole, by design, so that check is for the desktop), a menu click keeps the page (P-11), the console
 // is there, and axe-core finds no critical accessibility problem. Writes a screenshot per screen, axe.json and
 // headers.json (the session cookie, for Lighthouse) to --out. The last line says "All steps passed" or lists the failures.
 // node tests/panel/browser.cjs --base http://127.0.0.1:8001 --urls panel/urls.json --out result
@@ -12,6 +13,7 @@ const urls = JSON.parse(fs.readFileSync(arg('urls'), 'utf8'));
 const axeMax = Number(arg('axe-critical', '0')); // critical axe violations allowed per screen (0 after the first run)
 const EMAIL = 'demo@example.com', PASSWORD = 'DemoPassword123!'; // the audit's seed.php
 const SERVER = 'Survival SMP';
+const SAVED = 'Settings saved'; // lang/en/settings.php 'saved'
 fs.mkdirSync(out, { recursive: true });
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const failures = [], axeReport = {};
@@ -53,6 +55,10 @@ async function axe(name) {
 
 async function run(viewport) {
   stand = viewport.name;
+  const phone = stand === 'phone390';
+  // The server's sections: a menu on a computer; on a phone a bottom bar whose Sections button opens them as a sheet.
+  const MENU = phone ? '.ps-phone-sections' : '.ps-server-menu';
+  const LINKS = phone ? '#ps-phone-more-menu a.ps-menu-item[href]' : '.ps-server-menu a[href]';
   const context = await browser.newContext({ viewport, colorScheme: 'dark', deviceScaleFactor: 1 });
   page = await context.newPage();
   page.on('pageerror', (e) => say('page error', false, { message: String(e.message).slice(0, 200) }));
@@ -65,8 +71,8 @@ async function run(viewport) {
   // The overview: the servers show, the page itself does not scroll (only the content does).
   await goto('/');
   await shot('overview');
-  say('overview shows the servers', await page.getByText(SERVER).first().isVisible().catch(() => false));
-  say('overview does not scroll', (await scrolls()) <= 1, { scroll: await scrolls() });
+  say('overview shows the servers', await page.locator('.ps-server-card', { hasText: SERVER }).first().isVisible().catch(() => false));
+  if (!phone) say('overview does not scroll', (await scrolls()) <= 1, { scroll: await scrolls() });
   await axe('overview');
 
   // The server page: title card, menu and Pelican's console (xterm) are there.
@@ -75,18 +81,19 @@ async function run(viewport) {
   if (serverUrl) {
     await goto(serverUrl);
     await shot('server');
-    say('server page shows the card and the menu', (await visible('.ps-server-info')) && (await visible('.ps-server-menu')));
+    say('server page shows the card and the menu', (await visible('.ps-server-info')) && (await visible(MENU)));
     say('server page shows the console', await page.locator('.xterm, #terminal').first().isVisible().catch(() => false));
-    say('server page does not scroll', (await scrolls()) <= 1, { scroll: await scrolls() });
+    if (!phone) say('server page does not scroll', (await scrolls()) <= 1, { scroll: await scrolls() });
     await axe('server');
 
     // A click in the server menu loads only the content: the page is not reloaded and the menu is the same element (P-11).
-    await page.evaluate(() => { window.__psMark = 1; const m = document.querySelector('.ps-server-menu'); if (m) m.__psKeep = 1; });
-    const link = page.locator('.ps-server-menu a[href]:not([aria-current="page"]) >> visible=true').first();
+    await page.evaluate((sel) => { window.__psMark = 1; const m = document.querySelector(sel); if (m) m.__psKeep = 1; }, MENU);
+    if (phone) { await page.locator('.ps-phone-more > .ps-phone-section').first().click().catch(() => {}); await sleep(700); }
+    const link = page.locator(`${LINKS}:not([aria-current="page"]) >> visible=true`).first();
     const target = await link.getAttribute('href').catch(() => null);
     await link.click().catch(() => {});
     await settle(1500);
-    const after = await page.evaluate(() => ({ reloaded: window.__psMark !== 1, menuKept: !!document.querySelector('.ps-server-menu') && document.querySelector('.ps-server-menu').__psKeep === 1, path: location.pathname }));
+    const after = await page.evaluate((sel) => ({ reloaded: window.__psMark !== 1, menuKept: !!document.querySelector(sel) && document.querySelector(sel).__psKeep === 1, path: location.pathname }), MENU);
     say('a menu click loads only the content', !!target && !after.reloaded && after.menuKept, { target, ...after });
     await shot('server-menu-click');
   }
@@ -94,7 +101,7 @@ async function run(viewport) {
   // Admin: on a desktop the shield in the top bar switches without a full load; on a phone the Admin tab in the bottom bar.
   await goto('/');
   await page.evaluate(() => { window.__psMark = 1; });
-  const admin = page.locator((stand === 'phone390' ? '.ps-tabbar a.ps-tab:has(use[href="#ps-shield"])' : 'a.ps-nav-admin') + ' >> visible=true').first();
+  const admin = page.locator((phone ? '.ps-tabbar a.ps-tab:has(use[href="#ps-shield"])' : 'a.ps-nav-admin') + ' >> visible=true').first();
   await admin.click().catch(() => {});
   await settle(1500);
   const onAdmin = await page.evaluate(() => ({ reloaded: window.__psMark !== 1, path: location.pathname }));
@@ -103,18 +110,17 @@ async function run(viewport) {
   await shot('admin');
   await axe('admin');
 
-  // Settings: the Save button in the title bar saves (a Filament notification follows).
+  // Settings: the Save button in the title bar saves ("Settings saved" follows as a notification).
   await goto('/admin/simplify');
   await shot('settings');
-  const save = page.locator('button:has-text("Save"), button[title="Save"], button[wire\\:click*="save"]').first();
+  const save = page.locator('.s-save-button >> visible=true').first();
   const hasSave = await save.isVisible().catch(() => false);
-  if (hasSave) { await save.click().catch(() => {}); await sleep(1500); }
-  say('Settings saves from the title bar', hasSave && (await page.locator('.fi-no-notification, [role="status"]').first().isVisible().catch(() => false)));
+  if (hasSave) await save.click().catch(() => {});
+  const saved = hasSave && !!(await page.getByText(SAVED).first().waitFor({ state: 'visible', timeout: 8000 }).then(() => true).catch(() => false));
+  say('Settings saves from the title bar', saved, { hasSave });
   say('Settings does not scroll', (await scrolls()) <= 1, { scroll: await scrolls() });
 
-  if (stand === 'phone390') {
-    say('phone shows the bottom bar', await visible('.ps-tabbar'));
-  }
+  if (phone) say('phone shows the bottom bar', await visible('.ps-tabbar'));
   await context.close();
 }
 
