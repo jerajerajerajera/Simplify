@@ -49,6 +49,11 @@ return [
         'ok' => 'OK',
         'close' => '閉じる',
     ],
+    'sort' => [
+        'by' => '並べ替え',
+        'ascending' => '昇順',
+        'descending' => '降順',
+    ],
     'unsaved' => [
         'changes_made' => '変更があります',
         'save' => '保存',

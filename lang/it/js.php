@@ -49,6 +49,11 @@ return [
         'ok' => 'OK',
         'close' => 'Chiudi',
     ],
+    'sort' => [
+        'by' => 'Ordina per',
+        'ascending' => 'Crescente',
+        'descending' => 'Decrescente',
+    ],
     'unsaved' => [
         'changes_made' => 'Modifiche effettuate',
         'save' => 'Salva',

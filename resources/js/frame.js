@@ -61,11 +61,13 @@
     if (own) sources.push(...own.querySelectorAll('.s-bar > button'));
     const search = table?.querySelector('.fi-ta-search-field input') || own?.querySelector('input[type="search"]') || null;
     const filters = table?.querySelector('.fi-ta-filters-dropdown .fi-dropdown-trigger > :is(button, a)') || null;
-    const next = JSON.stringify([!!search, !!filters, segments.map((el) => [label(el), el.classList.contains('is-active')]), sources.map((el) => [label(el), el.disabled || el.getAttribute('aria-disabled')])]);
+    // The list's "Sort by" menu (sort.js): its columns and the sorted one are part of what the bar shows.
+    const sorting = table && window.SimplifySort ? window.SimplifySort.state(table) : '';
+    const next = JSON.stringify([sorting, !!search, !!filters, segments.map((el) => [label(el), el.classList.contains('is-active')]), sources.map((el) => [label(el), el.disabled || el.getAttribute('aria-disabled')])]);
     if (next === signature) return;
     signature = next;
     bar.replaceChildren();
-    const bridged = !!(sources.length || search || filters || segments.length);
+    const bridged = !!(sources.length || search || filters || segments.length || sorting.includes('"'));
     root.toggleAttribute('data-ps-head-tools', bridged);
     if (!bridged) return bar.remove();
     if (!bar.isConnected) head.append(bar);
@@ -85,6 +87,8 @@
       }
       bar.append(group);
     }
+    const sort = table && window.SimplifySort ? window.SimplifySort.control(table, parent) : null;
+    if (sort) bar.append(sort);
     if (search) {
       const field = parent.createElement('label');
       field.className = 'ps-frame-search';
