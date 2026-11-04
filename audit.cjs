@@ -47,6 +47,9 @@ async function record(id, title, extra = {}) {
   screen = id;
   const dir = path.join(out, stand); fs.mkdirSync(dir, { recursive: true });
   const entry = { id, title, stand, url: rel(page.url()), docTitle: await page.title().catch(() => null), ...extra };
+  // A sheet that still slides in (phones, sheet-motion) is measured where it ends, not halfway: wait for the page's
+  // running transitions and animations to finish (endless ones, such as a spinner, do not count), at most 2 seconds.
+  await page.waitForFunction(() => !document.getAnimations().some((a) => a.playState === 'running' && Number.isFinite(a.effect?.getComputedTiming?.().endTime)), null, { timeout: 2000 }).catch(() => {});
   try {
     entry.main = await page.evaluate(measure, mopts());
     // K-B9: on the Admin and account pages Pelican's copyright line is the last thing in the card, under the whole page,
