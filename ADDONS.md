@@ -170,7 +170,8 @@ Discard or Cancel first.
 ## Errors
 
 Wherever Simplify or an add-on shows that something failed, an add-on such as Explain can put a small button right
-after the message. Put this spot in your view while the error is shown:
+after the message. The full contract is in Explain's README, ["Explain your plugin's errors"](https://github.com/jerajerajerajera/Simplify-Explain#explain-your-plugins-errors).
+Put this spot in your view while the error is shown:
 
 ```blade
 {{ \Filament\Support\Facades\FilamentView::renderHook('simplify::problem.actions', scopes: ['simplify-problem', 'simplify-problem:'.$problemId]) }}

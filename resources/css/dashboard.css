@@ -1270,8 +1270,10 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 .ps-admin-side .ps-host-side-scroll { padding: 0 8px 8px 0; }
 .ps-admin-side .ps-host-backdrop, .ps-admin-side .ps-host-health-bar { display: none; }
 .ps-admin-crumb { position: relative; z-index: 12; display: flex; align-items: center; gap: 2px; align-self: start; min-width: 0; max-width: 60%; height: 52px; color: var(--ps-ink); font: 700 16px/1.25 var(--ps-font); }
-.ps-admin-crumb :is(a, button) { display: inline-flex; flex: none; align-items: center; gap: 6px; max-width: 45%; min-height: 34px; padding: 0 6px; border: 0; border-radius: var(--ps-radius-sm); background: none; color: var(--ps-muted); font: 500 15px/1.2 var(--ps-font); text-decoration: none; cursor: pointer; }
+.ps-admin-crumb :is(a, button) { display: inline-flex; flex: 0 1 auto; align-items: center; gap: 6px; min-width: 0; min-height: 34px; padding: 0 6px; border: 0; border-radius: var(--ps-radius-sm); background: none; color: var(--ps-muted); font: 500 15px/1.2 var(--ps-font); text-decoration: none; cursor: pointer; }
 .ps-admin-crumb a.ps-admin-crumb-home { margin-inline-start: -6px; }
+/* Parts give way only when the names do not fit the breadcrumb's room (K-B47: a percentage of a breadcrumb as wide as its
+   names cut "All servers" short on Health with room to spare). */
 .ps-admin-crumb button.is-last { max-width: 100%; color: var(--ps-ink); font-weight: 700; font-size: 16px; }
 .ps-admin-crumb :is(a, button):hover { background: var(--ps-raised); color: var(--ps-ink); }
 .ps-admin-crumb :is(a, button, .ps-admin-crumb-part) > :is(span, strong) { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

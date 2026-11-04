@@ -920,6 +920,7 @@ html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header-heading {
   /* The breadcrumb's row stays free above the page; Pelican's header (when shown) moves up into it. */
   html.ps-shell-menu:not(.ps-frame) .fi-layout > .fi-main-ctn > .fi-main {
     padding-top: 52px !important;
+    padding-inline-end: var(--ps-scroll-gap, 12px) !important;
   }
 
   html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header {
@@ -1185,6 +1186,7 @@ html:not(.ps-frame) .s-settings-tabs.fi-vertical[style*="--s-fit"] {
 
 html:not(.ps-frame) .s-settings-tabs.fi-vertical[style*="--s-fit"] > .fi-tabs {
   overflow-y: auto;
+  padding-inline-end: var(--ps-scroll-gap, 12px);
 }
 
 html:not(.ps-frame) .s-settings-tabs.fi-vertical[style*="--s-fit"] > .fi-sc-tabs-tab.fi-active {
