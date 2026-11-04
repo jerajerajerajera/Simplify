@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Admin: an action that shows its name from a certain width on (such as Test first and Update in Egg Updates) shows as one button again, not as an icon button and a button with text side by side.
+
 ## 2.0.0-beta.5
 
 - Server page: a server with a working subdomain shows just that subdomain as its address, under the name and in the status bar, and the copy button copies it. Without a subdomain it stays the game address with port. The address is no longer cut off; a long software name gets the ellipsis instead.
