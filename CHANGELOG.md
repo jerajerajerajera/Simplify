@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Errors: a server's page has the spot for an add-on's button (such as Explain) next to Try again when its installation failed, and Simplify gives that add-on the installation's last lines (ADDONS.md, Errors).
+- Errors: a server's page has the spot for an add-on's button (such as Explain) next to Try again when its installation failed, and Simplify gives that add-on the installation's last lines. A notification in the bell that carries an error id (`simplify_problem`) gets the same spot (ADDONS.md, Errors).
 - Admin: the breadcrumb no longer cuts "All servers" short when there is room to spare; a part only gives way when the names do not fit.
 - Admin: a little room between a page's content and its scrollbar.
 - Server page: a server on an IPv6 address shows it in brackets with the port, as Pelican does ("[2001:db8::1]:25565"), so the copied address works in a game.

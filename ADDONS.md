@@ -188,6 +188,12 @@ Simplify puts the spot on each Health check that is Failed, Crashed or a Warning
 `simplify:health:<check>` (the check's name in lower case without spaces, for example `simplify:health:queue`).
 Checks that are fine get no spot.
 
+A notification in Simplify's bell gets the spot when its data carries an error id under `simplify_problem`: in a
+Filament notification `->viewData(['simplify_problem' => 'my-addon:test:42'])->sendToDatabase($user)`, in a Laravel
+notification of your own at the top level of `toDatabase()`. The sender gives the id and is its source. The bell renders the spot once with the id `__ID__`
+and fills in each notification's own id, so an add-on that renders a button in the spot must keep the id in its HTML
+and check it again on the server.
+
 On a server's page, a failed installation has the spot next to Try again, with the id `simplify:install:<server uuid>`.
 Simplify is the source for it (`InstallProblems`): the last 100 lines of the install script's output from Wings, only
 for root admins and people who may use the server's console.

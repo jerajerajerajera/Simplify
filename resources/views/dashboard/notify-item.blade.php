@@ -5,6 +5,8 @@
     {{-- ✕ moves one of Pelican's notifications to Archived (as in 0.7.0); nothing is deleted. --}}
     <button type="button" class="ps-notify-close" x-show="item.pelican && !item.archived && !item.pinned" x-on:click.stop="archiveNotifications([item.key])" :aria-label="@js($u('clear'))+': '+item.title" data-tip="{{ $u('clear') }}"><svg aria-hidden="true"><use href="#ps-close"/></svg></button>
     <small x-text="item.text" x-show="item.text"></small>
+    {{-- A notification about an error: an add-on such as Explain puts its button here (ADDONS.md, Errors; header.blade.php). --}}
+    <span class="ps-problem" x-show="item.problem" x-html="problemSpot(item.problem)"></span>
     <code class="ps-notify-command" x-show="item.command" x-text="item.command"></code>
     <small class="ps-notify-time" x-show="item.time" x-text="item.time"></small>
     <span class="ps-notify-actions" x-show="item.action || item.pelican">
