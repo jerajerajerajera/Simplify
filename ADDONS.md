@@ -164,6 +164,50 @@ sees every server's card), false otherwise. It is newer than 2.0.0-beta.1, so ch
 `Simplify\Core\Embed\Services\EmbedServers::visible($server)` and `setVisible($server, $on)` read and set a server's
 "Show on the website" choice (the same as its Website page). They check no permissions: the caller does that.
 
+## Page head
+
+Every page of Simplify and its add-ons has the same head, so they read as one product. The content is one card, its
+buttons sit in its title bar, and there is no box inside a box. The head has three parts:
+
+1. **Title**: what the page is, usually its name in the menu.
+2. **Subtitle**: one short line saying what you do here or what it applies to (for example "For Paper 1.21.1"). Do not
+   put a warning paragraph above the content; put the warning in the subtitle, or send it as a notification.
+3. **Actions on the right**: Save comes last, as a text button "Save" with the `tabler-device-floppy` icon. Any other
+   buttons go before it. Dangerous actions go in a ⋯ group, never as a large red button.
+
+On a server page, the first `Section` of your form holds the title (`heading`) and the subtitle (`description`), and
+`getHeaderActions()` gives the actions. With the core, the page's own Filament heading is hidden and the actions sit
+at the right of that section's head. On an admin page, the breadcrumb in the Admin page's title bar is the title, and
+the actions and `getSubheading()` stay in the page's header. Without the core, Filament shows its own heading and
+actions as usual.
+
+```php
+public function form(Schema $schema): Schema
+{
+    return $schema->components([
+        Section::make(__('my-addon::page.title'))
+            ->description(__('my-addon::page.subtitle'))
+            ->schema([/* fields */]),
+    ]);
+}
+
+protected function getHeaderActions(): array
+{
+    return [
+        Action::make('save')->label(__('my-addon::page.save'))->icon('tabler-device-floppy')
+            ->action('save')->keyBindings(['mod+s']),
+    ];
+}
+```
+
+- Save works with "Unsaved changes" below: the form carries `data-simplify-unsaved`, and the `save` action counts as
+  saved when it ends without validation errors.
+- An empty page shows one grey line in the middle saying what is missing, with the action that fixes it in the head.
+  Do not use an illustration or an empty-state icon.
+- A page without a Filament form (your own Blade view) still follows the same model: wrap its content in a Filament
+  section with a heading and a description. A shared Blade partial for this head is planned in the core; this section
+  will name it once it ships.
+
 ## Unsaved changes
 
 Nothing in Simplify saves itself. Give your settings form the attribute `data-simplify-unsaved` and Simplify does the
