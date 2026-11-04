@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Health: an add-on can put its own button on a check that needs attention (ADDONS.md, Health).
+- Errors: an add-on such as Explain can put its own button right after an error; on the Health page each check that needs attention has that spot (ADDONS.md, Errors).
 
 ## 2.0.0-beta.5
 

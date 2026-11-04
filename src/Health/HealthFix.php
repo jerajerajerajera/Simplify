@@ -18,11 +18,20 @@ final class HealthFix
     /** @return array{label: string, url: string, external: bool}|null */
     public static function for(string $check): ?array
     {
-        return match (preg_replace('/\s+/', '', mb_strtolower($check))) {
+        return match (self::key($check)) {
             'nodeversions' => ($url = self::nodes()) ? ['label' => __('simplify::dashboard.health.page.open_nodes'), 'url' => $url, 'external' => false] : null,
             'panelversion' => ['label' => __('simplify::dashboard.health.page.release_notes'), 'url' => self::RELEASES, 'external' => true],
             default => null,
         };
+    }
+
+    /**
+     * The check's name as one plain word, for example "Node Versions" → "nodeversions". It is the last part of the
+     * check's error id, simplify:health:<key> (ADDONS.md, Errors).
+     */
+    public static function key(string $check): string
+    {
+        return substr((string) preg_replace('/[^a-z0-9_.-]+/', '', mb_strtolower($check)), 0, 64);
     }
 
     /** Pelican's node list, found by name so a moved class in a later Pelican does not break the page. */

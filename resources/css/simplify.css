@@ -1846,7 +1846,6 @@ html.ps-frame[data-ps-frame="native"] .s-health { border: 0; border-radius: 0; b
 .s-health-pill { flex: none; }
 .s-health-actions { display: flex; flex: none; align-items: center; gap: var(--s-space-2); }
 .s-health-actions:not(:has(*)) { display: none; }
-.s-health-actions :is(button, a) { min-width: 32px; height: 32px; }
 .s-health-row.is-bad .s-health-pill { color: var(--s-danger); }
 .s-health-row.is-warn .s-health-pill { color: var(--s-warn); }
 .s-health-empty { margin: 0; color: var(--s-muted); }

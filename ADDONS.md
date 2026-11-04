@@ -167,19 +167,25 @@ Discard or Cancel first.
   you close a sheet that holds a form); `window.SimplifyUnsaved.dirty()` tells whether there are any.
 - On an older Simplify the attributes do nothing, so the form still works as before.
 
-## Health
+## Errors
 
-Each check on the Health page that is Failed, Crashed or a Warning has a place for an add-on's own buttons: the render
-hook `simplify::health.check.actions`, after Simplify's own fix button and before the status. Its scopes are
-`simplify-health-check` and `simplify-health-check:<label>`, the check's label in lower case without spaces (for
-example `simplify-health-check:queue`), so an add-on can register for every check or for one:
+Wherever Simplify or an add-on shows that something failed, an add-on such as Explain can put a small button right
+after the message. Put this spot in your view while the error is shown:
 
-```php
-FilamentView::registerRenderHook('simplify::health.check.actions', fn (array $scopes) => view('my-addon::ask', ['scopes' => $scopes]), scopes: 'simplify-health-check');
+```blade
+{{ \Filament\Support\Facades\FilamentView::renderHook('simplify::problem.actions', scopes: ['simplify-problem', 'simplify-problem:'.$problemId]) }}
 ```
 
-Give it a 32 px icon button; the row makes room for it, also on a phone. Read the check's details yourself on the
-server. Checks that are fine get no hook. On an older Simplify the hook is never rendered.
+- `$problemId` is `<plugin-id>:<kind>:<ref>`: 2 to 5 parts of only `A-Z a-z 0-9 _ . -`, at most 128 characters. For
+  example `simplify-eggupdates:test:42` or `simplify:health:queue`.
+- Without an add-on that registers the hook nothing renders, and no add-on needs Simplify or Explain for it.
+- Which log belongs to the error comes from a source class tagged `simplify.problems` in your service provider, with
+  `canExplainProblem(string $id, User $user): bool` and `explainProblem(string $id, User $user): ?array`. Check the
+  user in both, and never give panel or Wings log lines to someone who is not a root admin.
+
+Simplify puts the spot on each Health check that is Failed, Crashed or a Warning, with the id
+`simplify:health:<check>` (the check's name in lower case without spaces, for example `simplify:health:queue`).
+Checks that are fine get no spot.
 
 ## Events
 
