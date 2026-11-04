@@ -26,7 +26,8 @@ abstract class Addon
     /**
      * The contract version: 1 in Simplify 1.0, 2 since 1.1 (serverInfo, serverLinks, customerLinks, hostModeDefault),
      * 3 since 1.3 (setupFields, setupState, saveSetup), 4 since 1.5.5 (accountPages), 5 since 1.5.6 (startUrl), 6 since
-     * 2.0 (connections), 8 since 2.0 (settingsForm), 9 since 2.0 (serverTabs, replacedServerPages). Raised whenever a method is added.
+     * 2.0 (connections), 7 since 2.0 (serverSections gone), 8 since 2.0 (settingsForm), 9 since 2.0 (serverTabs,
+     * replacedServerPages). Raised whenever a method is added or removed.
      */
     public const API = 9;
 
@@ -185,17 +186,6 @@ abstract class Addon
      * @return list<class-string>
      */
     public function replacedServerPages(): array
-    {
-        return [];
-    }
-
-    /**
-     * Livewire components that were shown under a server's console. Simplify 1.3.9 and later no longer show them, as
-     * the console page fits the window; the method stays so add-ons that still return sections keep working.
-     *
-     * @return list<class-string>
-     */
-    public function serverSections(Server $server): array
     {
         return [];
     }

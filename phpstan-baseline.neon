@@ -1,0 +1,325 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Called ''env'' outside of the config directory which returns null when the config is cached, use ''config''\.$#'
+			identifier: larastan.noEnvCallsOutsideOfConfig
+			count: 1
+			path: database/migrations/2026_11_03_000001_import_pelicansimplify_subdomains_cloudflare_keys.php
+
+		-
+			message: '#^Call to function is_string\(\) with class\-string\<Livewire\\Component\> will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: src/Account/Connections.php
+
+		-
+			message: '#^Method Simplify\\Core\\Announcements\\Filament\\AnnouncementResource\:\:getNavigationGroup\(\) never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: src/Announcements/Filament/AnnouncementResource.php
+
+		-
+			message: '#^Offset ''sent'' on array\{sent\: int, offline\: int, unsupported\: int, failed\: int\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: src/Announcements/Filament/AnnouncementResource.php
+
+		-
+			message: '#^Parameter \#1 \$author of static method Simplify\\Core\\Announcements\\Services\\InGame\:\:groups\(\) expects App\\Models\\User\|null, Illuminate\\Database\\Eloquent\\Model\|null given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Announcements/Filament/AnnouncementResource.php
+
+		-
+			message: '#^Parameter \#2 \$replace of static method Simplify\\Core\\Announcements\\Filament\\AnnouncementResource\:\:text\(\) expects array\<string, string\>, array\<string, int\> given\.$#'
+			identifier: argument.type
+			count: 4
+			path: src/Announcements/Filament/AnnouncementResource.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>author" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 2
+			path: src/Announcements/Filament/AnnouncementResource.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 2
+			path: src/Announcements/Livewire/AnnouncementBars.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:dismissedBy\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: src/Announcements/Livewire/AnnouncementBars.php
+
+		-
+			message: '#^Parameter \#1 \$announcement of static method Simplify\\Core\\Announcements\\Services\\Bell\:\:send\(\) expects Simplify\\Core\\Announcements\\Models\\Announcement, Illuminate\\Database\\Eloquent\\Model given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Announcements/Livewire/AnnouncementBars.php
+
+		-
+			message: '#^Using nullsafe property access on non\-nullable type App\\Models\\Egg\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: src/Announcements/Services/InGame.php
+
+		-
+			message: '#^Method Simplify\\Core\\Embed\\Filament\\EmbedSettings\:\:getNavigationGroup\(\) never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: src/Embed/Filament/EmbedSettings.php
+
+		-
+			message: '#^Expression on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.expr
+			count: 1
+			path: src/Embed/Services/ServerList.php
+
+		-
+			message: '#^Parameter \#1 \$array \(list\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: src/Embed/Services/ServerList.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>port" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: src/Embed/Services/ServerList.php
+
+		-
+			message: '#^Using nullsafe property access on non\-nullable type App\\Models\\Egg\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: src/Embed/Services/ServerList.php
+
+		-
+			message: '#^Method Simplify\\Core\\Filament\\Admin\\Pages\\People\:\:getNavigationGroup\(\) never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: src/Filament/Admin/Pages/People.php
+
+		-
+			message: '#^Method Simplify\\Core\\Filament\\Admin\\Pages\\People\:\:getTitle\(\) never returns Illuminate\\Contracts\\Support\\Htmlable so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: src/Filament/Admin/Pages/People.php
+
+		-
+			message: '#^Access to an undefined property Simplify\\Core\\Filament\\Admin\\Pages\\Settings\:\:\$form\.$#'
+			identifier: property.notFound
+			count: 2
+			path: src/Filament/Admin/Pages/Settings.php
+
+		-
+			message: '#^If condition is always false\.$#'
+			identifier: if.alwaysFalse
+			count: 2
+			path: src/Filament/Admin/Pages/Settings.php
+
+		-
+			message: '#^Method Simplify\\Core\\Filament\\Admin\\Pages\\Settings\:\:getHeading\(\) never returns string so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: src/Filament/Admin/Pages/Settings.php
+
+		-
+			message: '#^Method Simplify\\Core\\Filament\\Admin\\Pages\\Settings\:\:getNavigationGroup\(\) never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: src/Filament/Admin/Pages/Settings.php
+
+		-
+			message: '#^Method Simplify\\Core\\Filament\\Admin\\Pages\\Settings\:\:getTitle\(\) never returns Illuminate\\Contracts\\Support\\Htmlable so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: src/Filament/Admin/Pages/Settings.php
+
+		-
+			message: '#^Ternary operator condition is always false\.$#'
+			identifier: ternary.alwaysFalse
+			count: 1
+			path: src/Filament/Admin/Pages/Settings.php
+
+		-
+			message: '#^Access to an undefined property Simplify\\Core\\Filament\\Admin\\Pages\\Setup\:\:\$form\.$#'
+			identifier: property.notFound
+			count: 2
+			path: src/Filament/Admin/Pages/Setup.php
+
+		-
+			message: '#^Method Simplify\\Core\\Filament\\Admin\\Pages\\Setup\:\:getHeading\(\) never returns string so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: src/Filament/Admin/Pages/Setup.php
+
+		-
+			message: '#^Method Simplify\\Core\\Filament\\Admin\\Pages\\Setup\:\:getTitle\(\) never returns Illuminate\\Contracts\\Support\\Htmlable so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: src/Filament/Admin/Pages/Setup.php
+
+		-
+			message: '#^Method Simplify\\Core\\Filament\\Admin\\Pages\\SetupDone\:\:getHeading\(\) never returns string so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: src/Filament/Admin/Pages/SetupDone.php
+
+		-
+			message: '#^Method Simplify\\Core\\Filament\\Admin\\Pages\\SetupDone\:\:getTitle\(\) never returns Illuminate\\Contracts\\Support\\Htmlable so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: src/Filament/Admin/Pages/SetupDone.php
+
+		-
+			message: '#^Method Simplify\\Core\\Filament\\App\\Pages\\Connections\:\:getTitle\(\) never returns Illuminate\\Contracts\\Support\\Htmlable so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: src/Filament/App/Pages/Connections.php
+
+		-
+			message: '#^Method Simplify\\Core\\Filament\\App\\Pages\\Overview\:\:getTitle\(\) never returns Illuminate\\Contracts\\Support\\Htmlable so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: src/Filament/App/Pages/Overview.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>features" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: src/Filament/Server/ServerPage.php
+
+		-
+			message: '#^Using nullsafe property access on non\-nullable type App\\Models\\Egg\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: src/Filament/Server/ServerPage.php
+
+		-
+			message: '#^Parameter \#1 \$array of function usort contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 1
+			path: src/Overview/AdminMenu.php
+
+		-
+			message: '#^Parameter \#2 \$callback of function usort contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 1
+			path: src/Overview/AdminMenu.php
+
+		-
+			message: '#^Call to function is_array\(\) with array will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: src/Overview/Bell.php
+
+		-
+			message: '#^Parameter \#1 \$callback of method Illuminate\\Database\\Eloquent\\Collection\<int,Illuminate\\Database\\Eloquent\\Model\>\:\:map\(\) expects callable\(Illuminate\\Database\\Eloquent\\Model, int\)\: \(array\<string, mixed\>\|null\), Closure\(Illuminate\\Notifications\\DatabaseNotification\)\: \(array\<string, mixed\>\|null\) given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Overview/Bell.php
+
+		-
+			message: '#^Call to function is_array\(\) with array\<string\> will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: src/Overview/EggKind.php
+
+		-
+			message: '#^Expression on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.expr
+			count: 1
+			path: src/Overview/EggKind.php
+
+		-
+			message: '#^Using nullsafe property access on non\-nullable type App\\Models\\Egg\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: src/Overview/EggKind.php
+
+		-
+			message: '#^Offset ''banner_id'' on array\{color\?\: string\|null, banner\?\: string\|null\} on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: src/Overview/Listing.php
+
+		-
+			message: '#^Strict comparison using \!\=\= between int\|string and null will always evaluate to true\.$#'
+			identifier: notIdentical.alwaysTrue
+			count: 1
+			path: src/Overview/Listing.php
+
+		-
+			message: '#^Using nullsafe property access on non\-nullable type App\\Models\\Egg\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 3
+			path: src/Overview/Listing.php
+
+		-
+			message: '#^Using nullsafe property access on non\-nullable type App\\Models\\Node\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: src/Overview/Listing.php
+
+		-
+			message: '#^Call to function is_array\(\) with array will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: src/Push/PelicanNotices.php
+
+		-
+			message: '#^Right side of && is always true\.$#'
+			identifier: booleanAnd.rightAlwaysTrue
+			count: 1
+			path: src/Push/Push.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Server/Looks.php
+
+		-
+			message: '#^Call to function str_starts_with\(\) with string and ''scene\:'' will always evaluate to false\.$#'
+			identifier: function.impossibleType
+			count: 1
+			path: src/Server/Looks.php
+
+		-
+			message: '#^Parameter \#1 \$callback of method Illuminate\\Support\\Collection\<int,Illuminate\\Database\\Eloquent\\Model\>\:\:filter\(\) expects \(callable\(Illuminate\\Database\\Eloquent\\Model, int\)\: bool\)\|null, Closure\(App\\Models\\Server\)\: bool given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Server/Looks.php
+
+		-
+			message: '#^Parameter \#1 \$array of function usort contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 1
+			path: src/Server/ServerMenu.php
+
+		-
+			message: '#^Parameter \#2 \$callback of function usort contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 1
+			path: src/Server/ServerMenu.php
+
+		-
+			message: '#^Method Simplify\\Core\\Subdomains\\Filament\\AutomaticSubdomains\:\:getNavigationGroup\(\) never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: src/Subdomains/Filament/AutomaticSubdomains.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>features" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: src/Subdomains/Services/Games.php
+
+		-
+			message: '#^Using nullsafe property access on non\-nullable type App\\Models\\Egg\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: src/Subdomains/Services/Games.php

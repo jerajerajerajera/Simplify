@@ -14,7 +14,7 @@
         path: '',
         crumb: null,
         pages: @js(collect($sections)->flatMap(fn ($section) => collect($section['pages'])->map(fn ($page) => [$section['key'], $page['key'] ?? '', $page['url'] ?? '', $section['label'], count($section['pages']) > 1 || $section['key'] === 'extensions' ? $page['label'] : '', $section['icon'], $section['color']]))->values()),
-        locate() {
+        locate(slide = false) {
             this.path = location.pathname.replace(/\/$/, '');
             const at = location.pathname + location.search;
             let best = ['', '', ''], length = -1;
@@ -33,26 +33,33 @@
             this.crumb = length < 0 ? (title ? { key: '', group: title, icon: 'shield', color: 'currentColor', page: '', sub: '' } : null)
                 : { key: best[0], group: best[3], page: best[4], icon: best[5], color: best[6], sub: exact || title === best[4] || title === best[3] ? '' : title };
             // Admin in the bottom bar comes with #menu: the menu as a page (phones). Livewire also sends navigated on the first load.
-            this.open = location.hash === '#menu' && this.phone();
+            // After a tap in the menu (navigated) the menu slides away over the page; on the first load it is just there.
+            this.slide(location.hash === '#menu' && this.phone(), slide);
         },
         phone() { return matchMedia('(max-width: 600px)').matches; },
+        // Every switch between the menu and the page slides on a phone, as an app does (sheet.js, Jeroen 4-11).
+        slide(on, move = true) {
+            if (on === this.open) return;
+            const change = () => { this.open = on; return new Promise((done) => this.$nextTick(done)); };
+            move && window.simplifyAdminSlide ? window.simplifyAdminSlide(on, change) : change();
+        },
         // The panel's accent, as the header (AdminTop) has it, for New in the bottom bar and the menu.
         accent() { this.$nextTick(() => { const top = document.querySelector('.ps-admin-top'); if (!top) return; const css = getComputedStyle(top); for (const key of ['--ps-accent', '--ps-on-accent']) { const value = css.getPropertyValue(key).trim(); if (value) this.$root.style.setProperty(key, value); } }); },
         // A swipe from the left edge to the right brings the menu back (phones; the menu is beside the page elsewhere).
         swipe() {
             let start = null;
             addEventListener('touchstart', (e) => { const t = e.touches[0]; start = !this.open && this.phone() && e.touches.length === 1 && t.clientX <= 24 ? [t.clientX, t.clientY] : null; }, { passive: true });
-            addEventListener('touchend', (e) => { const t = e.changedTouches[0]; if (start && t.clientX - start[0] > 70 && Math.abs(t.clientY - start[1]) < t.clientX - start[0]) this.open = true; start = null; }, { passive: true });
+            addEventListener('touchend', (e) => { const t = e.changedTouches[0]; if (start && t.clientX - start[0] > 70 && Math.abs(t.clientY - start[1]) < t.clientX - start[0]) this.slide(true); start = null; }, { passive: true });
         },
         // The breadcrumb's width, so the page's own buttons on its row (simplify.css) start after it.
         crumbWidth() { const crumb = this.$root.querySelector('.ps-admin-crumb'); if (crumb) new ResizeObserver(() => document.documentElement.style.setProperty('--ps-crumb-w', crumb.offsetWidth + 'px')).observe(crumb); },
         // The group in the breadcrumb: on a phone back to the menu, on a computer its branch in the tree beside the page.
-        group() { if (this.phone()) this.open = true; else if (this.crumb?.key) this.branches[this.crumb.key] = true; },
+        group() { if (this.phone()) this.slide(true); else if (this.crumb?.key) this.branches[this.crumb.key] = true; },
         all() { return @js(array_column($sections, 'key')).every((key) => this.branches[key]); },
         toggleAll() { const on = !this.all(); for (const key of @js(array_column($sections, 'key'))) this.branches[key] = on; },
      }"
-     x-init="locate(); remember(); swipe(); accent(); crumbWidth()" x-on:livewire:navigated.window="locate()" x-on:simplify:admin-menu.window="open = !open" x-on:simplify:theme.window="dark = $event.detail.dark; accent()" x-on:keydown.escape.window="open = false">
-    <div class="ps-host-backdrop" x-show="open" x-cloak x-on:click="open = false"></div>
+     x-init="locate(); remember(); swipe(); accent(); crumbWidth()" x-on:livewire:navigated.window="locate(true)" x-on:simplify:admin-menu.window="slide(!open)" x-on:simplify:theme.window="dark = $event.detail.dark; accent()" x-on:keydown.escape.window="slide(false)">
+    <div class="ps-host-backdrop" x-show="open" x-cloak x-on:click="slide(false)"></div>
     {{-- Where you are, as the page's title: All servers (computers; on a phone the bottom bar has it) › group › page. --}}
     <nav class="ps-admin-crumb" aria-label="{{ $u('admin_sections') }}" x-show="crumb && !open" x-cloak>
         <a class="ps-admin-crumb-home" href="{{ $overviewUrl }}" wire:navigate><svg aria-hidden="true"><use href="#ps-grid"/></svg><span>{{ $u('all_servers') }}</span></a>
@@ -121,6 +128,6 @@
         @if ($create)
             <button type="button" class="ps-tab" x-on:click="open = false; $dispatch('simplify:create')"><span class="ps-tab-plus"><svg aria-hidden="true"><use href="#ps-plus"/></svg></span><span>{{ $u('new') }}</span></button>
         @endif
-        <button type="button" class="ps-tab is-active" aria-current="page" aria-controls="ps-admin-side" :aria-expanded="open" x-on:click.stop="open = true"><svg aria-hidden="true"><use href="#ps-shield"/></svg><span>{{ $u('admin') }}</span></button>
+        <button type="button" class="ps-tab is-active" aria-current="page" aria-controls="ps-admin-side" :aria-expanded="open" x-on:click.stop="slide(true)"><svg aria-hidden="true"><use href="#ps-shield"/></svg><span>{{ $u('admin') }}</span></button>
     </nav>
 </div>

@@ -3,6 +3,8 @@
 ## Unreleased
 
 - Save is a button with its name and icon, as the last button in a page's head (Simplify settings, Automatic subdomains, a server's Website page).
+- Phones: the Admin menu slides away to the left over the page you tapped, and Admin, the breadcrumb's group or a swipe from the edge slide it back in, instead of the page jumping into place.
+- Add-ons: a page with its own Blade view gets the same head as every other page with the partial `simplify::partials.page-head` (title, subtitle, actions with Save last; ADDONS.md, Page head).
 - Add-ons: an add-on puts its server pages among the Backups & tasks tabs itself, and can take over Pelican's server pages such as Settings and Startup, which then leave the server menu (add-on API 9, `serverTabs()` and `replacedServerPages()`).
 - Uninstalling Simplify keeps its settings, announcements, subdomains and website details; installing it again brings everything back.
 - Settings › Add-ons: every add-on is a section that opens, with what it does first and its settings under it. Simplify add-ons in the Admin menu holds only add-ons with a page of their own (add-on API 8, `settingsForm()`).
@@ -13,6 +15,9 @@
 - Server page: a server on an IPv6 address shows it in brackets with the port, as Pelican does ("[2001:db8::1]:25565"), so the copied address works in a game.
 - Errors: an add-on such as Explain can put its own button right after an error; on the Health page each check that needs attention has that spot (ADDONS.md, Errors).
 - Admin: an action that shows its name from a certain width on (such as Test first and Update in Egg Updates) shows as one button again, not as an icon button and a button with text side by side.
+- Add-on API 7: `serverSections()` is gone from the contract; no add-on used it since the console page fits the window (1.3.9).
+- Checks: PHPStan (level 5) and ESLint run in CI, and a browser smoke (Playwright with axe and Lighthouse) opens the overview, a server's console, a menu click, Admin and Settings on a desktop and a phone.
+- Styles: the Admin side reads the same design tokens as the overview and the server page (`tokens.css` loads everywhere; the `--s-*` names are aliases), so a corner or a shadow is the same size on every page.
 
 ## 2.0.0-beta.5
 
