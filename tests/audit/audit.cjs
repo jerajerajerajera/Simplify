@@ -237,6 +237,7 @@ const adminPage = async (overview) => {
     const navOverview = await pageLook(); await record('setup-done-to-overview', 'Setup klaar › Go to the panel: overzicht');
     const d1 = same(fullOverview, navOverview, keys);
     say('setup-done-to-overview', found && d1.length === 0, { found, diff: d1, full: fullOverview, after: navOverview });
+    if (!(await page.locator('a.ps-nav-admin >> visible=true').count())) { await page.locator('.ps-top .ps-mobile-menu >> visible=true').first().click().catch(() => {}); await sleep(500); }
     const shield = page.locator('a.ps-nav-admin >> visible=true').first();
     await shield.click({ timeout: 4000 }).catch(() => {}); await arrivedAt(/^\/admin/); await settle(page, 1500);
     const navAdmin = await pageLook();
@@ -395,7 +396,9 @@ const healthSurround = async () => {
   await escape();
 };
 const goto = async (url, ms = 900) => { for (let i = 0; i < 3; i++) { try { await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 }); break; } catch (e) { if (i === 2) throw e; await sleep(1500); } } await settle(page, ms); };
-const click = async (sel, ms = 600) => { const l = page.locator(sel).first(); if (!(await l.count()) || !(await l.isVisible().catch(() => false))) { problems.push(`${stand} ${screen}: nothing to click for ${sel}`); return false; } await l.click({ timeout: 5000 }).catch((e) => problems.push(`${stand} ${screen}: click ${sel}: ${e.message.slice(0, 80)}`)); await sleep(ms); return true; };
+// A narrow window (tablet) folds the top bar's bell and account button behind its menu button: open that first.
+const unfold = async (sel) => { if (!/account-button|notifyButton/.test(sel) || await page.locator(sel).first().isVisible().catch(() => false)) return; const menu = page.locator('.ps-top .ps-mobile-menu >> visible=true').first(); if (await menu.count()) { await menu.click().catch(() => {}); await sleep(500); } };
+const click = async (sel, ms = 600) => { await unfold(sel); const l = page.locator(sel).first(); if (!(await l.count()) || !(await l.isVisible().catch(() => false))) { problems.push(`${stand} ${screen}: nothing to click for ${sel}`); return false; } await l.click({ timeout: 5000 }).catch((e) => problems.push(`${stand} ${screen}: click ${sel}: ${e.message.slice(0, 80)}`)); await sleep(ms); return true; };
 const escape = async () => { await page.keyboard.press('Escape'); await sleep(300); };
 const phone = () => VIEWPORTS[stand.split('-')[0]].width <= 600;
 // Phones (1.5.4) reach the overview's menus from the bottom bar: server groups and the overview's look under Customize. Elsewhere, and on wider screens, the button in the top bar.
@@ -442,7 +445,8 @@ async function round(theme) {
   // Phones have no panel menu any more (1.5.4): the bell and the account sit in the top bar, the rest in the bottom bar.
   const openNav = async () => {};
   await click('.ps-account-button'); await record('overview-account', 'Accountmenu open');
-  await escape(); await alpine('d.accountMenu=false; d.appearanceMenu=true'); await sleep(600); await record('overview-customize-theme', 'Customize Simplify, thema bovenaan');
+  const folded = (await page.locator('.ps-top .ps-mobile-menu >> visible=true').count()) > 0;
+  await escape(); await alpine(`d.accountMenu=false; ${folded ? 'd.navMenu=true; ' : ''}d.appearanceMenu=true`); await sleep(600); await record('overview-customize-theme', 'Customize Simplify, thema bovenaan');
   // K-B19: Customize Simplify opens from the account menu, so its arrow points at the account button and its box ends
   // where the account menu ends, not at the place Customize had in the top bar before.
   if (!phone()) {
