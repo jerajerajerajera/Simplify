@@ -17,6 +17,7 @@ use Filament\Schemas\Components\View;
 use Filament\Schemas\Schema;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\HtmlString;
+use Livewire\Component;
 use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Announcements\Filament\AnnouncementResource;
@@ -28,7 +29,8 @@ use Simplify\Core\Support\Assets;
 use Simplify\Core\Support\PanelSettings;
 
 /**
- * Simplify's settings for the whole panel, in a few categories. Add-ons list their own settings page here.
+ * Simplify's settings for the whole panel, in a few categories. Every add-on has a section under Add-ons with its
+ * explanation and its settings.
  */
 final class Settings extends Page implements HasForms
 {
@@ -105,8 +107,9 @@ final class Settings extends Page implements HasForms
     {
         return [
             // Save in the head of the page; it presses the form's own button, which also saves a Pelican tab (settings.blade.php).
+            // With changes in an add-on's settings it saves every form with changes, this page's own among them (unsaved.js).
             Action::make('save')->label(__('simplify::settings.save'))->icon('tabler-device-floppy')->extraAttributes(['class' => 's-save-button'])
-                ->alpineClickHandler("document.querySelector('.s-settings > .s-bar button[type=submit]')?.click()"),
+                ->alpineClickHandler("window.SimplifyUnsaved?.dirty() ? window.SimplifyUnsaved.save() : document.querySelector('.s-settings > .s-bar button[type=submit]')?.click()"),
         ];
     }
 
@@ -164,7 +167,7 @@ final class Settings extends Page implements HasForms
             $page('announcements', AnnouncementResource::getNavigationLabel(), 'tabler-speakerphone', AnnouncementResource::getUrl(panel: 'admin')),
         ];
         foreach (self::addonRows() as $addon) {
-            if ($addon['url']) {
+            if ($addon['url'] && ! $addon['form']) {
                 $items[] = $page('addon:'.$addon['id'], $addon['name'], $addon['icon'], $addon['url']);
             }
         }
@@ -196,8 +199,9 @@ final class Settings extends Page implements HasForms
         if (self::HUB) {
             $items[] = $tab('hub', 'addons', __('simplify::settings.hub.tab'), 'store');
         }
+        // An add-on whose settings are a form in the add-on list has no leaf of its own: Simplify add-ons holds pages.
         foreach (self::addonRows() as $addon) {
-            if ($addon['url']) {
+            if ($addon['url'] && ! $addon['form']) {
                 $items[] = ['key' => 'addon:'.$addon['id'], 'group' => 'addons', 'label' => $addon['name'], 'icon' => 'plugins', 'url' => $addon['url']];
             }
         }
@@ -247,14 +251,27 @@ final class Settings extends Page implements HasForms
     }
 
     /**
-     * Every add-on as a row of the list; one that throws is reported and left out, so the page still opens.
+     * Every add-on as a section of the list: its explanation, and its settings form or a link to its settings page. One
+     * that throws is reported and left out, so the page still opens.
      *
-     * @return list<array{id: string, name: string, description: string, icon: string, url: ?string}>
+     * @return list<array{id: string, name: string, description: string, icon: string, url: ?string, form: ?string}>
      */
     public static function addonRows(): array
     {
-        return app(AddonRegistry::class)->collect(fn (Addon $addon) => [[
-            'id' => $addon->id(), 'name' => $addon->name(), 'description' => $addon->description(), 'icon' => $addon->icon(), 'url' => $addon->settingsUrl(),
-        ]]);
+        return app(AddonRegistry::class)->collect(function (Addon $addon) {
+            $form = method_exists($addon, 'settingsForm') ? $addon->settingsForm() : null;
+
+            return [[
+                'id' => $addon->id(), 'name' => $addon->name(), 'description' => $addon->description(), 'icon' => $addon->icon(),
+                'url' => $addon->settingsUrl(),
+                'form' => is_string($form) && is_subclass_of($form, Component::class) ? $form : null,
+            ]];
+        });
+    }
+
+    /** Simplify settings › Add-ons with one add-on's section open, for links to an add-on's settings. */
+    public static function addonUrl(string $id): string
+    {
+        return self::getUrl(['tab' => 'addons', 'addon' => $id], panel: 'admin');
     }
 }

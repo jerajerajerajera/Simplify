@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Settings › Add-ons: every add-on is a section that opens, with what it does first and its settings under it. Simplify add-ons in the Admin menu holds only add-ons with a page of their own (add-on API 8, `settingsForm()`).
 - Admin: the breadcrumb no longer cuts "All servers" short when there is room to spare; a part only gives way when the names do not fit.
 - Admin: a little room between a page's content and its scrollbar.
 - Server page: a server on an IPv6 address shows it in brackets with the port, as Pelican does ("[2001:db8::1]:25565"), so the copied address works in a game.

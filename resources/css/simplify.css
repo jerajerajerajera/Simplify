@@ -202,6 +202,75 @@ html, body { overscroll-behavior-y: none; }
   margin-top: 2px;
 }
 
+/* Settings › Add-ons: a section per add-on that opens; what it does first, its settings under it. */
+.s-addon + .s-addon {
+  border-top: 1px solid var(--s-line);
+}
+
+.s-addon-head {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  gap: var(--s-space-3);
+  list-style: none;
+  padding: var(--s-space-3) 0;
+}
+
+.s-addon-head::-webkit-details-marker {
+  display: none;
+}
+
+.s-addon-head:focus-visible {
+  border-radius: var(--s-radius-sm);
+  outline: 2px solid var(--s-accent);
+  outline-offset: 2px;
+}
+
+.s-addon-chevron {
+  color: var(--s-muted);
+  flex: none;
+  height: 16px;
+  transition: transform var(--s-fast);
+  width: 16px;
+}
+
+.s-addon[open] .s-addon-chevron {
+  transform: rotate(90deg);
+}
+
+.s-addon-name {
+  flex: 1;
+  font-weight: 600;
+  min-width: 0;
+}
+
+.s-addon-tag {
+  background: var(--s-raised);
+  border-radius: var(--s-radius-pill);
+  color: var(--s-muted);
+  font-size: var(--s-text-sm);
+  padding: 2px var(--s-space-2);
+  white-space: nowrap;
+}
+
+.s-addon-body {
+  display: grid;
+  gap: var(--s-space-4);
+  padding: 0 0 var(--s-space-4) calc(16px + 20px + 2 * var(--s-space-3));
+}
+
+@media (max-width: 640px) {
+  .s-addon-body {
+    padding-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .s-addon-chevron {
+    transition: none;
+  }
+}
+
 .s-muted {
   color: var(--s-muted);
   font-size: var(--s-text-sm);
