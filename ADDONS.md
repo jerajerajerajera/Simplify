@@ -167,6 +167,20 @@ Discard or Cancel first.
   you close a sheet that holds a form); `window.SimplifyUnsaved.dirty()` tells whether there are any.
 - On an older Simplify the attributes do nothing, so the form still works as before.
 
+## Health
+
+Each check on the Health page that is Failed, Crashed or a Warning has a place for an add-on's own buttons: the render
+hook `simplify::health.check.actions`, after Simplify's own fix button and before the status. Its scopes are
+`simplify-health-check` and `simplify-health-check:<label>`, the check's label in lower case without spaces (for
+example `simplify-health-check:queue`), so an add-on can register for every check or for one:
+
+```php
+FilamentView::registerRenderHook('simplify::health.check.actions', fn (array $scopes) => view('my-addon::ask', ['scopes' => $scopes]), scopes: 'simplify-health-check');
+```
+
+Give it a 32 px icon button; the row makes room for it, also on a phone. Read the check's details yourself on the
+server. Checks that are fine get no hook. On an older Simplify the hook is never rendered.
+
 ## Events
 
 Some things go through Laravel events with a plain string name, so an add-on needs no Simplify class for them.
