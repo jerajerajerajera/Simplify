@@ -49,6 +49,11 @@ return [
         'ok' => 'OK',
         'close' => 'Закрити',
     ],
+    'sort' => [
+        'by' => 'Сортувати за',
+        'ascending' => 'За зростанням',
+        'descending' => 'За спаданням',
+    ],
     'unsaved' => [
         'changes_made' => 'Є зміни',
         'save' => 'Зберегти',

@@ -49,6 +49,11 @@ return [
         'ok' => 'OK',
         'close' => 'Bezárás',
     ],
+    'sort' => [
+        'by' => 'Rendezés',
+        'ascending' => 'Növekvő',
+        'descending' => 'Csökkenő',
+    ],
     'unsaved' => [
         'changes_made' => 'Változtatások történtek',
         'save' => 'Mentés',

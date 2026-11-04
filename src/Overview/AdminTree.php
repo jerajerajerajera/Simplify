@@ -17,7 +17,7 @@ final class AdminTree
     private const PLAN = [
         ['servers', 'servers', 'host', '#5fb87a', ['serverresource', 'eggresource', 'mountresource']],
         ['nodes', 'nodes', 'monitor', '#5b9cf0', ['noderesource', 'databasehostresource', 'backuphostresource']],
-        ['people', 'people', 'players', '#a78bfa', ['people']],
+        ['people', 'people', 'players', '#a78bfa', ['userresource', 'roleresource']],
         ['integrations', 'integrations', 'link', '#f0a35b', ['apikeyresource', 'webhookresource']],
         ['panel', 'panel', 'gear', '#94a3b8', ['settings', 'pluginresource', 'listlogs']],
         ['extensions', null, 'plugins', '#2dd4bf', []],
@@ -46,14 +46,6 @@ final class AdminTree
     {
         $label = fn (?string $key) => $key === null ? __('simplify::js.dashboard.other_plugins') : __('simplify::js.dashboard.admin_groups.'.$key);
         $plan = array_map(fn (array $p) => ['key' => $p[0], 'label' => $label($p[1]), 'icon' => $p[2], 'color' => $p[3], 'keys' => $p[4], 'tabs' => []], self::PLAN);
-        // People & roles is Simplify's page for Pelican's users and roles: one leaf instead of three (Jeroen 3-11). Pelican's
-        // own Users and Roles stay in the legacy panel, and in the tree only when People & roles is not there.
-        $people = array_values(array_filter($items, fn (array $item) => $item['key'] === 'people'))[0] ?? null;
-        if ($people === null) {
-            $plan[2]['keys'] = ['userresource', 'roleresource'];
-        } else {
-            $plan[2]['label'] = $people['label'];
-        }
         // The settings are leaves of the tree: Simplify's tabs, the add-ons' pages and Pelican's tabs, each in its group.
         if ($menu !== []) {
             $tabs = fn (string $group) => array_values(array_map(fn (array $tab) => [...$tab, 'settings' => true], array_filter($menu, fn (array $tab) => ($tab['group'] ?? null) === $group)));
@@ -69,7 +61,7 @@ final class AdminTree
             // Pelican plugins comes after the add-ons.
             $plan = [...array_filter($plan, fn (array $p) => $p['key'] !== 'extensions'), ...array_filter($plan, fn (array $p) => $p['key'] === 'extensions')];
         }
-        $known = [...array_merge(...array_column($plan, 'keys')), 'settings', ...$people === null ? [] : ['userresource', 'roleresource']];
+        $known = [...array_merge(...array_column($plan, 'keys')), 'settings'];
         // An add-on's settings page that is also in Pelican's menu (Hosting) shows once, under Add-ons; an add-on page
         // with the same name as the add-on's settings (Server Maker's own page) shows once.
         $tabUrls = array_column($menu, 'url');

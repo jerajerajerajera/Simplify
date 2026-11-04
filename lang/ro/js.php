@@ -49,6 +49,11 @@ return [
         'ok' => 'OK',
         'close' => 'Închideți',
     ],
+    'sort' => [
+        'by' => 'Sortează după',
+        'ascending' => 'Crescător',
+        'descending' => 'Descrescător',
+    ],
     'unsaved' => [
         'changes_made' => 'Modificări făcute',
         'save' => 'Salvează',

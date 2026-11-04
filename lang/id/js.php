@@ -49,6 +49,11 @@ return [
         'ok' => 'OK',
         'close' => 'Tutup',
     ],
+    'sort' => [
+        'by' => 'Urutkan menurut',
+        'ascending' => 'Naik',
+        'descending' => 'Turun',
+    ],
     'unsaved' => [
         'changes_made' => 'Ada perubahan',
         'save' => 'Simpan',
