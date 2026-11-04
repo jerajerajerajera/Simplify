@@ -167,6 +167,7 @@ jobs:
           php plugins/simplify/tests/panel/smoke.php | tee smoke.txt
           tail -n 1 smoke.txt | grep -qx 'All steps passed'
       - name: PHPStan (level 5, in the panel)
+        if: matrix.pelican == '1.0.0-rc.2' # the baseline fits one Pelican version, the newest: types differ between versions
         working-directory: panel
         # After the smoke: installing larastan brings PHPUnit into the panel, which changes how Livewire's test helpers behave.
         run: |
