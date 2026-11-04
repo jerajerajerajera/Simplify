@@ -9,6 +9,7 @@ php tests/admin-tree.php
 php tests/legacy-css.php
 php tests/server-groups.php
 php tests/host-health.php
+php tests/health-hook.php
 php tests/push.php
 php tests/announcements-rules.php
 php tests/announcements-game-chat.php
@@ -26,6 +27,7 @@ node tests/boot.cjs
 node tests/shell-footer.cjs
 node tests/admin-crumb-row.cjs
 node tests/admin-crumb-fit.cjs
+node tests/labeled-from.cjs
 node tests/settings-nav-wrap.cjs
 node tests/beta-footer.cjs
 node tests/standalone-viewport.cjs

@@ -47,6 +47,8 @@
                             @if ($action)
                                 <a class="s-btn s-health-fix" href="{{ $action['url'] }}" @if ($action['external']) target="_blank" rel="noopener" @endif>{{ $action['label'] }}</a>
                             @endif
+                            {{-- An add-on such as Explain puts its own button for this error here (ADDONS.md, Errors). --}}
+                            <span class="s-health-actions">{{ \Filament\Support\Facades\FilamentView::renderHook('simplify::problem.actions', scopes: ['simplify-problem', 'simplify-problem:simplify:health:'.$fix::key((string) $result->label)]) }}</span>
                             <span class="s-badge s-health-pill">{{ __('simplify::dashboard.health.page.status.'.strtolower((string) $result->status)) }}</span>
                         </div>
                     @endforeach

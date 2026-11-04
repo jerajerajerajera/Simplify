@@ -167,6 +167,27 @@ Discard or Cancel first.
   you close a sheet that holds a form); `window.SimplifyUnsaved.dirty()` tells whether there are any.
 - On an older Simplify the attributes do nothing, so the form still works as before.
 
+## Errors
+
+Wherever Simplify or an add-on shows that something failed, an add-on such as Explain can put a small button right
+after the message. The full contract is in Explain's README, ["Explain your plugin's errors"](https://github.com/jerajerajerajera/Simplify-Explain#explain-your-plugins-errors).
+Put this spot in your view while the error is shown:
+
+```blade
+{{ \Filament\Support\Facades\FilamentView::renderHook('simplify::problem.actions', scopes: ['simplify-problem', 'simplify-problem:'.$problemId]) }}
+```
+
+- `$problemId` is `<plugin-id>:<kind>:<ref>`: 2 to 5 parts of only `A-Z a-z 0-9 _ . -`, at most 128 characters. For
+  example `simplify-eggupdates:test:42` or `simplify:health:queue`.
+- Without an add-on that registers the hook nothing renders, and no add-on needs Simplify or Explain for it.
+- Which log belongs to the error comes from a source class tagged `simplify.problems` in your service provider, with
+  `canExplainProblem(string $id, User $user): bool` and `explainProblem(string $id, User $user): ?array`. Check the
+  user in both, and never give panel or Wings log lines to someone who is not a root admin.
+
+Simplify puts the spot on each Health check that is Failed, Crashed or a Warning, with the id
+`simplify:health:<check>` (the check's name in lower case without spaces, for example `simplify:health:queue`).
+Checks that are fine get no spot.
+
 ## Events
 
 Some things go through Laravel events with a plain string name, so an add-on needs no Simplify class for them.
