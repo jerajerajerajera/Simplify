@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- A tooltip (such as the bell's "Notifications") no longer stays on screen when you go to another page.
 - Add-ons: a page with its own Blade view gets the same head as every other page with the partial `simplify::partials.page-head` (title, subtitle, actions with Save last; ADDONS.md, Page head).
 - Add-ons: an add-on puts its server pages among the Backups & tasks tabs itself, and can take over Pelican's server pages such as Settings and Startup, which then leave the server menu (add-on API 9, `serverTabs()` and `replacedServerPages()`).
 - Uninstalling Simplify keeps its settings, announcements, subdomains and website details; installing it again brings everything back.
