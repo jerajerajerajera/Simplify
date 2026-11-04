@@ -32,6 +32,7 @@ node tests/labeled-from.cjs
 node tests/settings-nav-wrap.cjs
 node tests/beta-footer.cjs
 node tests/standalone-viewport.cjs
+node tests/phone-input-zoom.cjs
 node tests/overview-footer.cjs
 node tests/server-stats.cjs
 node tests/overview-filters.cjs

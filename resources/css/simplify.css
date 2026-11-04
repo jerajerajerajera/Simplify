@@ -2676,3 +2676,12 @@ html.ps-frame .s-done {
     min-width: 0;
   }
 }
+
+/* Phones: every field that takes typing has 16px text, as Filament's own fields do. Safari on an iPhone zooms in on a
+   field with smaller text, stays zoomed in and the page then slides sideways (Jeroen ja 4-11). Computers and tablets
+   keep the smaller fields. */
+@media (max-width: 600px) {
+  html :is(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="hidden"]), select, textarea) {
+    font-size: 16px !important;
+  }
+}
