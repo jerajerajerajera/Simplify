@@ -252,7 +252,8 @@ jobs:
           server="$(node -e "console.log(JSON.parse(require('fs').readFileSync('../panel/urls.json','utf8')).servers['Survival SMP'] || '')")"
           for pair in "overview:/" "server:$server" "admin:/admin"; do
             name=${pair%%:*}; url=${pair#*:}; [ -n "$url" ] || continue
-            npx lighthouse "http://127.0.0.1:8001$url" --chrome-flags="--headless=new --no-sandbox" --extra-headers "$(cat ../result/headers.json)" \
+            case "$url" in http*) ;; *) url="http://127.0.0.1:8001$url";; esac # the seed's server URL is already absolute
+            npx lighthouse "$url" --chrome-flags="--headless=new --no-sandbox" --extra-headers "$(cat ../result/headers.json)" \
               --only-categories=performance,accessibility,best-practices --output json --output html --output-path "../result/lh-$name" --quiet || true
           done
           node tests/panel/lighthouse.cjs --out ../result
