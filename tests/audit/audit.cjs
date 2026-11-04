@@ -283,20 +283,20 @@ const adminPage = async (overview) => {
     await legacy.click().catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await settle(page, 1500);
     const lg = await adminState(); await record('admin-legacy', 'Legacy-paneel (Pelicans eigen pagina)');
     say('admin-legacy', !!lg && !lg.shell && !lg.side && !lg.header && !/simplify_legacy/.test(page.url()), lg);
-    // Simplify's settings in the legacy panel look as Pelican's pages do: Pelican's top bar and sidebar, the row of tabs
+    // Simplify's settings in the legacy panel look as Pelican's pages do: Pelican's top bar or sidebar (with the user menu in the sidebar there is no top bar), the row of tabs
     // under the top bar and on the screen, wrapping instead of scrolling sideways on a computer (Jeroen 3-11).
     const viaMenu = page.locator('.fi-sidebar a[href$="/admin/simplify"] >> visible=true').first();
     if (await viaMenu.count()) { await viaMenu.click().catch(() => {}); await page.waitForLoadState('domcontentloaded').catch(() => {}); await settle(page, 1500); }
     if (!/\/admin\/simplify$/.test(new URL(page.url()).pathname)) await goto('/admin/simplify', 1500);
     const ls = await page.evaluate(() => {
       const shown = (e) => !!e && e.getClientRects().length > 0 && getComputedStyle(e).visibility !== 'hidden';
-      const nav = document.querySelector('.s-settings-nav'), bar = document.querySelector('.fi-topbar'), n = nav?.getBoundingClientRect(), b = bar?.getBoundingClientRect();
-      return { path: location.pathname, shell: document.documentElement.className.split(' ').filter((c) => c.startsWith('ps-shell')), topbar: shown(bar), nav: !!nav,
+      const nav = document.querySelector('.s-settings-nav'), bar = document.querySelector('.fi-topbar'), side = document.querySelector('.fi-sidebar'), n = nav?.getBoundingClientRect(), b = bar?.getBoundingClientRect();
+      return { path: location.pathname, shell: document.documentElement.className.split(' ').filter((c) => c.startsWith('ps-shell')), topbar: shown(bar), sidebar: shown(side), nav: !!nav,
         navTop: n ? Math.round(n.top) : null, barBottom: b && shown(bar) ? Math.round(b.bottom) : null, sideways: nav ? nav.scrollWidth - nav.clientWidth : null,
         offScreen: n ? n.left < 0 || n.right > innerWidth + 1 : null, pageWide: document.documentElement.scrollWidth - innerWidth };
     }).catch((e) => ({ error: e.message.slice(0, 120) }));
     await record('admin-legacy-settings', 'Legacy-paneel · Simplify settings');
-    say('admin-legacy-settings', !!ls && !ls.shell?.length && (phone() || ls.topbar) && ls.nav && (ls.barBottom === null || ls.navTop >= ls.barBottom) && ls.navTop >= 0
+    say('admin-legacy-settings', !!ls && !ls.shell?.length && (phone() || ls.topbar || ls.sidebar) && ls.nav && (ls.barBottom === null || ls.navTop >= ls.barBottom) && ls.navTop >= 0
       && (phone() || ls.sideways <= 1) && !ls.offScreen && ls.pageWide <= 1, ls);
     // The way back is the first item of Pelican's sidebar; on a small window that sidebar opens from its button first.
     // (A closed off-canvas sidebar still counts as visible to Playwright: look whether the link is on the screen.)
