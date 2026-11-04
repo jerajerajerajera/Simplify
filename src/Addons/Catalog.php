@@ -6,7 +6,8 @@ namespace Simplify\Core\Addons;
 
 /**
  * The add-ons made for Simplify, so the setup can show what exists. Each is a separate plugin on the Pelican Hub;
- * Simplify only links there and never installs anything itself.
+ * Simplify only links there and never installs anything itself. An installed add-on describes itself (Addon::name,
+ * description, icon); the list below is only for the ones that are not installed yet.
  */
 final class Catalog
 {
@@ -27,17 +28,34 @@ final class Catalog
         $list = [];
         foreach (self::ADDONS as $id => [$icon, $tone]) {
             $key = 'simplify::setup.catalog.'.substr($id, strlen('simplify-'));
+            $addon = $registry->find($id);
             $list[] = [
                 'id' => $id,
-                'icon' => $icon,
+                'icon' => self::own(fn () => $addon?->icon(), $icon),
                 'tone' => $tone,
-                'name' => __($key.'.name'),
-                'description' => __($key.'.description'),
+                'name' => self::own(fn () => $addon?->name(), __($key.'.name')),
+                'description' => self::own(fn () => $addon?->description(), __($key.'.description')),
                 'url' => self::HUB.$id,
-                'installed' => $registry->find($id) !== null,
+                'installed' => $addon !== null,
             ];
         }
 
         return $list;
+    }
+
+    /**
+     * What an installed add-on says about itself, or the catalog's own text when it says nothing or fails.
+     *
+     * @param  \Closure(): ?string  $read
+     */
+    private static function own(\Closure $read, string $fallback): string
+    {
+        try {
+            $value = trim((string) $read());
+        } catch (\Throwable) {
+            $value = '';
+        }
+
+        return $value === '' || $value === 'tabler-puzzle' ? $fallback : $value;
     }
 }

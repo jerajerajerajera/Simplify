@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Pelican's lists inside Simplify no longer show "Showing 1 to 6 of 6 results" or a "Per page" choice, and with one page the page bar is gone.
+- Account menu: Legacy panel is the last item, under a line and in grey.
+- Setup: an installed add-on shows its own name, description and icon in the add-on list.
 - Uninstalling Simplify keeps its settings, announcements, subdomains and website details; installing it again brings everything back.
 - Settings › Add-ons: every add-on is a section that opens, with what it does first and its settings under it. Simplify add-ons in the Admin menu holds only add-ons with a page of their own (add-on API 8, `settingsForm()`).
 - Phones: fields you type in have 16px text, so Safari on an iPhone no longer zooms in on them and leaves the page sliding sideways.

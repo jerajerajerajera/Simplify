@@ -1191,6 +1191,16 @@ html.ps-frame[data-ps-head-tools] .fi-page:not(:has(.fi-sc-tabs, .fi-fo-field)) 
   padding: 12px 22px !important;
 }
 
+/* Pelican's lists inside Simplify: no "Showing 1 to 6 of 6 results" and no "Per page" (I4); with one page there is
+   nothing to page through, so the whole bar goes. The legacy panel keeps Pelican's bar. */
+:is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-pagination :is(.fi-pagination-overview, .fi-pagination-records-per-page-select-ctn, .fi-pagination-records-per-page-select) {
+  display: none !important;
+}
+
+:is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-pagination:not(:has(.fi-pagination-items, .fi-pagination-previous-btn, .fi-pagination-next-btn)) {
+  display: none !important;
+}
+
 /* Save of Simplify's settings sits in host mode's title bar (frame.js). */
 html.ps-frame[data-ps-head-tools] .s-settings > .s-bar {
   display: none !important;

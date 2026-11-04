@@ -106,6 +106,8 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-account-actions-inner .ps-btn.is-icon { justify-content: flex-start; gap: 12px; width: 100%; height: auto; min-height: 38px; padding: 0 10px; border: 0; background: none; font-size: 13px; font-weight: 500; }
 .ps-account-actions-inner .ps-btn.is-icon:hover { background: var(--ps-raised); }
 .ps-account-actions-inner .ps-btn.is-icon::after { content: attr(data-tip); }
+/* The legacy panel: last, under a line, in grey (I9). */
+.ps-account-actions-inner .ps-btn.is-icon.ps-account-legacy { margin-top: 4px; padding-top: 4px; border-top: 1px solid var(--ps-line); border-radius: 0 0 var(--ps-radius-sm, 8px) var(--ps-radius-sm, 8px); color: var(--ps-muted); }
 .ps-account-actions-inner .ps-btn.is-icon[aria-pressed="true"] { color: var(--ps-accent); }
 
 /* Overview ----------------------------------------------------------------------------------- */
@@ -1234,8 +1236,6 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   .ps-tab-plus.is-pumpkin .ps-hw-tab { width: 46px; height: 34px; }
 }
 @media (prefers-reduced-motion: reduce) { .ps-hw-face { animation: none; } .ps-hw-bat { display: none; } }
-
-/* Explain this error: a compact popup that grows with the answer. */
 
 /* Right-to-left languages (Arabic). Layout follows logical properties; these parts need their own mirror. */
 [dir="rtl"] .ps-customize-head.is-toggle[aria-expanded="true"] .ps-customize-chevron,
