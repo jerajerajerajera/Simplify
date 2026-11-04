@@ -31,6 +31,7 @@ node tests/standalone-viewport.cjs
 node tests/server-stats.cjs
 node tests/overview-filters.cjs
 node tests/card-bars.cjs
+node tests/health-pill-steady.cjs
 node tests/admin-menu-page.cjs
 node tests/embed-preview.cjs
 node tests/console-placeholders.cjs
