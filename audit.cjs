@@ -1008,12 +1008,16 @@ async function otherPlugins() {
   const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
   if (!(await shieldTo(overview))) return say('other-plugins', false, { note: 'no shield link' });
   await openAdminMenu();
-  // The menu's order (Jeroen 3-11): People & roles one leaf, Pelican's plugin list under Pelican settings, and apart below
+  // The menu's order (Jeroen 3-11): People holds Users and Roles, Pelican's plugin list under Pelican settings, and apart below
   // the rest Simplify add-ons, then Pelican plugins.
   const order = await page.evaluate(() => [...document.querySelectorAll('.ps-admin-side .ps-host-group')].map((g) => ({ head: g.querySelector('.ps-host-group-head')?.innerText.trim(), apart: g.classList.contains('is-apart'), links: [...g.querySelectorAll('a')].map((a) => new URL(a.href).pathname) }))).catch(() => []);
   const at = (name) => order.findIndex((g) => g.head === name);
-  const people = order[at('People & roles')];
-  say('admin-menu-order', at('Health') === 0 && !!people && people.links.length === 1 && !order.some((g) => g.links.some((l) => /\/admin\/(users|roles)$/.test(l)))
+  // People is Pelican's Users and Roles (G7, V46); before that it was Simplify's one page People & roles.
+  const people = order[at('People')] || order[at('People & roles')];
+  const peopleOk = !!people && (people.head === 'People'
+    ? people.links.some((l) => /\/admin\/users$/.test(l)) && people.links.some((l) => /\/admin\/roles$/.test(l))
+    : people.links.length === 1 && !order.some((g) => g.links.some((l) => /\/admin\/(users|roles)$/.test(l))));
+  say('admin-menu-order', at('Health') === 0 && peopleOk
     && order[at('Pelican settings')]?.links.some((l) => /\/admin\/plugins$/.test(l)) && order.find((g) => g.apart)?.head === (at('Simplify add-ons') >= 0 ? 'Simplify add-ons' : 'Pelican plugins') && at('Pelican plugins') > at('Simplify add-ons')
     && order.filter((g) => g.apart).length === 1 && order.slice(order.findIndex((g) => g.apart)).every((g) => !['Servers', 'Nodes', 'Simplify settings', 'Pelican settings'].includes(g.head)), order.map((g) => g.head + (g.apart ? ' (apart)' : '')));
   const group = '.ps-admin-side .ps-host-group:has(.ps-host-group-head:has-text("Pelican plugins"))';
