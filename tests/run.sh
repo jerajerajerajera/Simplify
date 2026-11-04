@@ -20,6 +20,7 @@ php tests/subdomains-import.php
 php tests/hub.php
 php tests/assets.php
 php tests/lang.php
+bash tests/secrets.sh
 node tests/seasons.cjs
 node tests/unsaved.cjs
 node tests/sheet-drag.cjs
