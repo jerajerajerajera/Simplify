@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Uninstalling Simplify keeps its settings, announcements, subdomains and website details; installing it again brings everything back.
 - Settings › Add-ons: every add-on is a section that opens, with what it does first and its settings under it. Simplify add-ons in the Admin menu holds only add-ons with a page of their own (add-on API 8, `settingsForm()`).
 - Phones: fields you type in have 16px text, so Safari on an iPhone no longer zooms in on them and leaves the page sliding sideways.
 - Errors: a server's page has the spot for an add-on's button (such as Explain) next to Try again when its installation failed, and Simplify gives that add-on the installation's last lines. A notification in the bell that carries an error id (`simplify_problem`) gets the same spot (ADDONS.md, Errors).

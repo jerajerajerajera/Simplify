@@ -11,6 +11,7 @@ php tests/server-groups.php
 php tests/host-health.php
 php tests/health-hook.php
 php tests/problems.php
+php tests/migrations-keep.php
 php tests/push.php
 php tests/announcements-rules.php
 php tests/announcements-game-chat.php

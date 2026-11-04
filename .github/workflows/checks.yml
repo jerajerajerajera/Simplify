@@ -152,6 +152,22 @@ jobs:
           php artisan tinker --execute="DB::table('migrations')->where('migration', 'like', '%simplify%')->delete();"
           php artisan tinker --execute="app('migrator')->run(base_path('plugins/simplify/database/migrations')); echo 'ran '.DB::table('migrations')->where('migration', 'like', '%simplify%')->count();" | tee again.txt
           grep -qx "ran $(ls plugins/simplify/database/migrations | wc -l)" again.txt || { echo 'Simplify did not install over its own tables'; exit 1; }
+      - name: Uninstall Simplify and install it again
+        # Uninstalling keeps the data (every down() is empty): installing again finds the settings as they were. Pelican
+        # must still start without Simplify.
+        working-directory: panel
+        run: |
+          cp -r plugins/simplify ../simplify-copy
+          php artisan p:plugin:uninstall simplify --no-interaction
+          php artisan p:plugin:list | tee uninstalled.txt
+          ! grep -E 'Simplify .*\| enabled' uninstalled.txt || { echo 'Simplify is still enabled after uninstall'; exit 1; }
+          php artisan about > /dev/null || { echo 'Pelican does not start after Simplify was uninstalled'; exit 1; }
+          php -r '$db = new PDO("sqlite:database/database.sqlite"); $v = $db->query("SELECT value FROM simplify_settings WHERE key = \"support_url\"")->fetchColumn(); exit($v === json_encode("https://example.com/kept") ? 0 : 1);' || { echo 'Uninstalling removed the settings'; exit 1; }
+          test -d plugins/simplify || cp -r ../simplify-copy plugins/simplify
+          php artisan p:plugin:install simplify --no-interaction
+          php artisan p:plugin:list | tee reinstalled.txt
+          grep -E 'Simplify .*\| enabled' reinstalled.txt || { echo 'Simplify did not install again'; exit 1; }
+          php -r '$db = new PDO("sqlite:database/database.sqlite"); $v = $db->query("SELECT value FROM simplify_settings WHERE key = \"support_url\"")->fetchColumn(); $a = (int) $db->query("SELECT count(*) FROM simplify_core_announcements WHERE title = \"Old announcement\"")->fetchColumn(); echo json_encode([$v, $a]), PHP_EOL; exit($v === json_encode("https://example.com/kept") && $a === 1 ? 0 : 1);' || { echo 'The settings did not come back after installing again'; exit 1; }
       - name: Open the pages
         working-directory: panel
         # The last line must say so: an exit code alone missed a crash before the first step once.
