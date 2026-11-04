@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Add-ons: a page with its own Blade view gets the same head as every other page with the partial `simplify::partials.page-head` (title, subtitle, actions with Save last; ADDONS.md, Page head).
 - Add-ons: an add-on puts its server pages among the Backups & tasks tabs itself, and can take over Pelican's server pages such as Settings and Startup, which then leave the server menu (add-on API 9, `serverTabs()` and `replacedServerPages()`).
 - Uninstalling Simplify keeps its settings, announcements, subdomains and website details; installing it again brings everything back.
 - Settings › Add-ons: every add-on is a section that opens, with what it does first and its settings under it. Simplify add-ons in the Admin menu holds only add-ons with a page of their own (add-on API 8, `settingsForm()`).

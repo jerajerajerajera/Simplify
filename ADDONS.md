@@ -206,9 +206,22 @@ protected function getHeaderActions(): array
   saved when it ends without validation errors.
 - An empty page shows one grey line in the middle saying what is missing, with the action that fixes it in the head.
   Do not use an illustration or an empty-state icon.
-- A page without a Filament form (your own Blade view) still follows the same model: wrap its content in a Filament
-  section with a heading and a description. A shared Blade partial for this head is planned in the core; this section
-  will name it once it ships.
+- A page without a Filament form (your own Blade view) still follows the same model. With the core, draw its head with
+  the partial `simplify::partials.page-head` (since 2.0.0-beta.6); without the core, use a Filament section with a
+  heading and a description:
+
+```blade
+@if (view()->exists('simplify::partials.page-head'))
+    @include('simplify::partials.page-head', [
+        'title' => __('my-addon::page.title'),
+        'subtitle' => __('my-addon::page.subtitle'),
+        'actions' => [$this->refreshAction, $this->saveAction],
+    ])
+@endif
+```
+
+  `subtitle` and `actions` are optional; `actions` is one Filament action (or any `Htmlable`) or a list of them, Save
+  last.
 
 ## Unsaved changes
 
