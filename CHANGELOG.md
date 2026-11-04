@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Server page: a server with a working subdomain shows just that subdomain as its address, under the name and in the status bar, and the copy button copies it. Without a subdomain it stays the game address with port. The address is no longer cut off; a long software name gets the ellipsis instead.
 - Console: the buttons in the console's title row (an add-on's button such as Explain, Bigger and the pop-out window) can be clicked again; the console's output no longer lies over them.
 
 ## 2.0.0-beta.4
