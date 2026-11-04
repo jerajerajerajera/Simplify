@@ -1256,6 +1256,13 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
    bottom bar's Admin opens, and the breadcrumb starts at the group. */
 .ps.ps-admin-top.server-active .ps-main { padding-bottom: 0; }
 .ps.ps-admin-top .ps-top { max-width: none; }
+/* On a tablet the Admin page's top bar keeps the panel's name on one line, shortened when space runs out (a seasonal
+   touch beside the buttons made it wrap, so the card below started lower than on the other Admin pages, K-B42). */
+@media (min-width: 601px) and (max-width: 1100px) {
+  .ps.ps-admin-top :is(.ps-heading, .ps-identity, .ps-heading > a) { min-width: 0; }
+  .ps.ps-admin-top .ps-brand { flex-wrap: nowrap; min-width: 0; white-space: nowrap; }
+  .ps.ps-admin-top .ps-panel-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+}
 .ps.ps-admin-side { display: flex; flex: 1; min-width: 0; min-height: 0; overflow: visible; }
 .ps-admin-side .ps-host-side { flex: 1; overflow: hidden; border: 0; background: transparent; }
 .ps-admin-side .ps-host-side-scroll { padding: 0 8px 8px 0; }
