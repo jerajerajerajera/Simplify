@@ -49,6 +49,8 @@
   --ps-space-4: 16px;
   --ps-space-5: 20px;
   --ps-space-6: 24px;
+  /* Room between scrolling content and its scrollbar. */
+  --ps-scroll-gap: var(--ps-space-3);
 
   --ps-h: 38px;
   --ps-h-sm: 30px;
