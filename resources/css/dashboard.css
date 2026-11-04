@@ -1111,26 +1111,33 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 @media (max-width: 600px) {
   .ps .ps-statusbar-power .ps-btn { width: 40px; height: 40px; }
 
-  .ps .ps-server-info { grid-template-columns: 44px minmax(0, 1fr); grid-template-areas: "icons content" "power power"; gap: 12px 14px; margin-bottom: 12px; padding: 14px; }
-  .ps .ps-info-icon { width: 44px; height: 44px; border-radius: 12px; }
-  .ps .ps-software-icon img { width: 34px; height: 34px; }
+  /* The head about half as high (G6): a smaller icon and name, status and address on one line when they fit, lower buttons. */
+  .ps .ps-server-info { grid-template-columns: 36px minmax(0, 1fr); grid-template-areas: "icons content" "power power"; gap: 8px 12px; margin-bottom: 10px; padding: 10px 12px; }
+  .ps .ps-info-icon { width: 36px; height: 36px; border-radius: 10px; }
+  .ps .ps-software-icon img { width: 28px; height: 28px; }
   .ps .ps-software-icon.is-badge { width: 22px; height: 22px; inset-inline-end: -6px; bottom: -6px; }
   .ps .ps-software-icon.is-badge img { width: 16px; height: 16px; }
-  .ps .ps-game-title { margin-bottom: 2px; }
-  .ps .ps-game-title h2 { font-size: 20px; }
-  .ps .ps-info-meta { gap: 4px 12px; font-size: 12px; }
+  .ps .ps-game-title { margin-bottom: 0; }
+  .ps .ps-game-title h2 { font-size: 18px; }
+  /* The address is never cut off: without room next to the status it goes to the next line. */
+  .ps .ps-info-meta { flex-wrap: wrap; gap: 2px 10px; font-size: 12px; }
   .ps .ps-info-meta-item { display: none; }
   .ps .ps-info-power { gap: 8px; }
-  .ps .ps-info-power > .ps-power-main, .ps .ps-info-power > .ps-power-restart { flex: 1; min-height: 44px; }
-  .ps .ps-info-power > .ps-info-more-button { width: 44px; height: 44px; }
+  .ps .ps-info-power > .ps-power-main, .ps .ps-info-power > .ps-power-restart { flex: 1; min-height: 38px; }
+  .ps .ps-info-power > .ps-info-more-button { width: 38px; height: 38px; }
   .ps .ps-statusbar-power .ps-btn { width: 40px; height: 40px; }
-  /* Two by two: four in a row left values and labels cut off on a phone. */
-  .ps .ps-server-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-bottom: 12px; }
-  .ps .ps-server-stats .ps-stat { gap: 2px 8px; padding: 10px 10px 8px; }
+  /* The numbers as one strip (G6): one card with four cells side by side, each the number over its label; the bars and
+     the line under each number stay on the computer. */
+  .ps .ps-server-stats { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 0; margin-bottom: 10px; overflow: hidden; border: 1px solid var(--ps-line); border-radius: var(--ps-radius); background: var(--ps-surface); }
+  .ps .ps-server-stats .ps-stat { display: flex; flex-direction: column-reverse; align-items: center; justify-content: center; gap: 1px; min-height: 0; padding: 8px 4px; border: 0; border-radius: 0; background: none; box-shadow: none; text-align: center; }
+  .ps .ps-server-stats .ps-stat + .ps-stat { border-inline-start: 1px solid var(--ps-line); }
   .ps .ps-server-stats .ps-stat:last-child { display: none; }
-  .ps .ps-server-stats .ps-stat > strong { font-size: 15px; }
-  .ps .ps-server-stats .ps-stat > strong .ps-stat-total { font-size: 12px; }
-  .ps .ps-server-stats .ps-stat-top span { font-size: 11px; }
+  .ps .ps-server-stats .ps-stat > :is(small, .ps-spark) { display: none; }
+  .ps .ps-server-stats .ps-stat > strong { max-width: 100%; font-size: 15px; letter-spacing: -.2px; }
+  .ps .ps-server-stats .ps-stat > strong .ps-stat-total { font-size: 11px; }
+  .ps .ps-server-stats .ps-stat-top { gap: 4px; }
+  .ps .ps-server-stats .ps-stat-top span { font-size: 10px; letter-spacing: .3px; text-transform: uppercase; }
+  .ps .ps-server-stats .ps-stat-top svg { width: 13px; height: 13px; }
   /* The section tabs sit at the bottom of the screen, like the overview's tab bar. */
   .ps .ps-phone-sections { position: fixed; inset-inline-end: 0; bottom: 0; inset-inline-start: 0; z-index: var(--ps-z-dropdown); display: flex; gap: 0; padding: 4px 8px env(safe-area-inset-bottom); border-top: 1px solid var(--ps-line); background: color-mix(in srgb, var(--ps-surface) 92%, transparent); backdrop-filter: blur(12px); }
   .ps.server-active .ps-main { padding-bottom: 80px; }
