@@ -58,6 +58,31 @@ html, body { overscroll-behavior-y: none; }
   --s-danger: var(--danger-400);
 }
 
+/* A page without the dashboard (a popup frame such as Create server, a legacy page) had no colour tokens before
+   tokens.css came to every page for the --s-* aliases (4-11): the colours stay guaranteed-invalid there, so an add-on's
+   own fallback (Filament's primary, a faint line) keeps showing what it showed. Giving those pages Simplify's colours
+   is a visible change that first needs a preview (P-33). Sizes, shadows and timing do come from tokens.css. */
+html:not(:has(.ps)) {
+  --ps-bg: initial;
+  --ps-surface: initial;
+  --ps-raised: initial;
+  --ps-field: initial;
+  --ps-ink: initial;
+  --ps-muted: initial;
+  --ps-line: initial;
+  --ps-line-strong: initial;
+  --ps-contrast-bg: initial;
+  --ps-contrast-ink: initial;
+  --ps-contrast-line: initial;
+  --ps-accent: initial;
+  --ps-on-accent: initial;
+  --ps-backdrop: initial;
+  --ps-ok: initial;
+  --ps-warn: initial;
+  --ps-danger: initial;
+  --ps-info: initial;
+}
+
 /* Touch screens get 44px targets without per-component overrides. */
 @media (pointer: coarse) {
   :root {
