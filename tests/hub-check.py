@@ -17,8 +17,10 @@ HUB_UPDATE_URL = 'https://hub.pelican.dev/plugins/{id}/update.json'
 DOCS = 'https://raw.githubusercontent.com/pelican-dev/docs/main/docs/panel/advanced/plugins.mdx'
 # The Hub's "banned file or process operations" (from its rejection messages), plus PHP's other functions that
 # change files or start processes. The Hub matches the name, so a method of our own with such a name is blocked too
-# (0.5.1 was refused for "private static function link(").
-BANNED = ['file_put_contents', 'exec', 'unlink', 'fwrite', 'copy', 'rename', 'mkdir', 'rmdir', 'link',
+# (0.5.1 was refused for "private static function link("). eval, assert and create_function run code from a string;
+# the Hub's scan refuses those too, also in tests/.
+BANNED = ['eval', 'assert', 'create_function',
+          'file_put_contents', 'exec', 'unlink', 'fwrite', 'copy', 'rename', 'mkdir', 'rmdir', 'link',
           'symlink', 'chmod', 'chown', 'chgrp', 'lchown', 'lchgrp', 'touch', 'fputs', 'ftruncate',
           'move_uploaded_file', 'shell_exec', 'system', 'passthru', 'proc_open', 'popen', 'pcntl_exec']
 REQUIRED_FALLBACK = ['id', 'name', 'author', 'category', 'namespace', 'class']
