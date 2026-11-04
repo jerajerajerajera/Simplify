@@ -1,2 +1,5 @@
 dist/
 __pycache__/
+
+# The screen audit scripts are checked out here from the branch audit-tools; they are not part of the plugin.
+/tests/audit/

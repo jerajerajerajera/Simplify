@@ -37,7 +37,8 @@ node tests/embed-preview.cjs
 node tests/console-placeholders.cjs
 node tests/console-header-actions.cjs
 python3 tests/hub-check.py
-python3 tests/audit/parts.py --self-test
+# The audit scripts live on the branch audit-tools (checked out into tests/audit by audit.yml), not in the plugin.
+if [ -f tests/audit/parts.py ]; then python3 tests/audit/parts.py --self-test; fi
 # What a download of the repository holds (the Hub's zip): every file the plugin runs on, nothing of the tests or docs.
 archive="$(git archive HEAD 2>/dev/null | tar -t 2>/dev/null || true)"
 if [ -n "$archive" ]; then

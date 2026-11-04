@@ -31,7 +31,7 @@ Bij verschil tussen dit bestand, de chat en `docs/regels.md` geldt `docs/regels.
   (`resources/views/dashboard.blade.php`, `resources/css/dashboard.css`, `resources/js/dashboard.js`).
 - Add-on-contract: `ADDONS.md`, `Addon::API`. Een nieuwe `Addon`-methode krijgt altijd een default
   (`tests/addons.php` bewaakt dat) en een regel in ADDONS.md. Een nieuwere add-on moet op een oudere kern blijven werken.
-- **Stijlaudit** (`.github/workflows/audit.yml`, `tests/audit/`): verplicht bij elke UI-wijziging en vóór elke release.
+- **Stijlaudit** (`.github/workflows/audit.yml`; de scripts staan op de branch `audit-tools`, niet in de plugin; audit.yml zet ze in `tests/audit`, input `tools` kiest een andere branch): verplicht bij elke UI-wijziging en vóór elke release.
   Inputs: `only` (standen), `section` (bijv. `compare`, `extras`, `seasons`), `legacy` (0.7.0 als vergelijking),
   `toolkit`/`servermaker` (add-on-branches). Verder `theme`, `parts` en `scope=changed` (alleen de delen die de gewijzigde bestanden raken; vóór een release de volledige audit).
   Resultaat op de ene branch `audit-results`, map `<branch>-<stand>` (licht: `-<stand>-light`; ophalen: `git fetch --depth 1 origin audit-results` en `git show FETCH_HEAD:<map>/style.md`); `style.md` moet leeg zijn. Mappen ouder dan 14 dagen vallen er vanzelf af.
