@@ -1023,6 +1023,9 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   /* The copyright line under the servers keeps the room for the bottom bar (below), so the servers need only a gap. */
   .ps:not(.server-active, .host-mode) .ps-main { padding-bottom: 16px; }
   body:has(.ps:not(.server-active, .host-mode)) :is(.fi-footer, [data-ps-footer]) { padding-bottom: calc(76px + env(safe-area-inset-bottom)) !important; }
+  /* At least a window high, so with a few servers the copyright line stands at the bottom, just above the bar, and
+     with more it moves down with them (K-B45). */
+  body:has(.ps:not(.server-active, .host-mode)) :is(.fi-layout, .fi-main-ctn) { min-height: 100dvh !important; }
   .ps .ps-overview, .ps .ps-server-scroll { flex: none; min-height: auto; overflow: visible; mask-image: none; }
   .ps .ps-server-scroll { padding: 0; }
 
