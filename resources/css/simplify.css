@@ -2437,8 +2437,10 @@ html.ps-frame .s-done {
   justify-content: space-between;
 }
 
+/* As large as a field's help text beside it, not the small muted size. */
 .s-action-row > p {
   flex: 1 1 260px;
+  font-size: var(--s-text);
   margin: 0;
   min-width: 0;
 }
