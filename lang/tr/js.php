@@ -49,6 +49,9 @@ return [
         'ok' => 'Tamam',
         'close' => 'Kapat',
     ],
+    'row' => [
+        'more' => 'Diğer işlemler',
+    ],
     'sort' => [
         'by' => 'Sırala',
         'ascending' => 'Artan',

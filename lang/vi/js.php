@@ -49,6 +49,9 @@ return [
         'ok' => 'OK',
         'close' => 'Đóng',
     ],
+    'row' => [
+        'more' => 'Thêm thao tác',
+    ],
     'sort' => [
         'by' => 'Sắp xếp theo',
         'ascending' => 'Tăng dần',

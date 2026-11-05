@@ -2847,3 +2847,21 @@ html.ps-frame .s-done {
     height: var(--s-h, 36px);
   }
 }
+
+/* Phones: a list row with more than two buttons keeps its main one and ⋯ (row-actions.js); ⋯ opens a sheet with all. */
+@media (max-width: 600px) {
+  .fi-ta-actions.ps-row-folded :is(a, button):not(.ps-row-main, .ps-row-more, .fi-dropdown-panel *, .fi-modal *) {
+    display: none !important;
+  }
+}
+
+.ps-row-more { display: none; }
+
+@media (max-width: 600px) {
+  .fi-ta-actions.ps-row-folded .ps-row-more { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; padding: 0; border: 0; border-radius: 8px; background: transparent; color: var(--s-muted, currentColor); cursor: pointer; }
+  .ps-row-more svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+}
+
+.ps.ps-row-sheet { position: fixed; inset: 0; z-index: 95; display: block; width: auto; min-height: 0; pointer-events: none; }
+.ps.ps-row-sheet .ps-dropdown { pointer-events: auto; }
+.ps-row-sheet .ps-menu-item svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
