@@ -17,6 +17,7 @@
 - Errors: a server's page has the spot for an add-on's button (such as Explain) next to Try again when its installation failed, and Simplify gives that add-on the installation's last lines. A notification in the bell that carries an error id (`simplify_problem`) gets the same spot (ADDONS.md, Errors).
 - Admin: the breadcrumb no longer cuts "All servers" short when there is room to spare; a part only gives way when the names do not fit.
 - Admin: a little room between a page's content and its scrollbar.
+- Phones: in a list's toolbar the Sort by menu stays narrow and the search keeps the height of the buttons beside it.
 - Server page: a server on an IPv6 address shows it in brackets with the port, as Pelican does ("[2001:db8::1]:25565"), so the copied address works in a game.
 - Errors: an add-on such as Explain can put its own button right after an error; on the Health page each check that needs attention has that spot (ADDONS.md, Errors).
 - Admin: an action that shows its name from a certain width on (such as Test first and Update in Egg Updates) shows as one button again, not as an icon button and a button with text side by side.

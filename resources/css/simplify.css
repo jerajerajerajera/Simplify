@@ -1095,6 +1095,8 @@ html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header-heading {
     html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-search-field .fi-input-wrp {
       position: relative;
       justify-content: center;
+      /* Only the icon is left: the box keeps the height of the buttons beside it. */
+      min-height: var(--s-h, 36px);
     }
 
     html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-search-field .fi-input-wrp-content-ctn {
@@ -2797,4 +2799,12 @@ html.ps-frame .s-done {
   background: var(--s-surface, transparent);
   color: var(--s-ink, inherit);
   cursor: pointer;
+}
+
+/* Phones: the menu takes what its longest choice needs at most, so the search beside it keeps its room. */
+@media (max-width: 600px) {
+  .s-sort-select {
+    max-width: 8.5rem;
+    height: var(--s-h, 36px);
+  }
 }
