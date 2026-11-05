@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="{{ \Simplify\Core\Support\Assets::url('tokens.css') }}">
 <link rel="stylesheet" href="{{ \Simplify\Core\Support\Assets::url('simplify.css') }}">
 <link rel="manifest" href="{{ route('simplify.manifest') }}">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="{{ \Simplify\Core\WebApp\WebApp::LIGHT }}">
@@ -9,6 +10,8 @@
 <script src="{{ \Simplify\Core\Support\Assets::url('sheet.js') }}" defer></script>
 <script>window.simplifyUnsavedText = @js([...__('simplify::js.unsaved'), 'cancel' => __('simplify::js.common.cancel')]);</script>
 <script src="{{ \Simplify\Core\Support\Assets::url('unsaved.js') }}" defer></script>
+<script>window.simplifySortText = @js(__('simplify::js.sort'));</script>
+<script src="{{ \Simplify\Core\Support\Assets::url('sort.js') }}" defer></script>
 <script>
     // A page inside host mode's frame drops Pelican's own menus; it keeps that through every link it follows.
     try {
@@ -46,14 +49,14 @@
     if ('serviceWorker' in navigator && window.isSecureContext) {
         addEventListener('load', () => navigator.serviceWorker.register(@js(route('simplify.worker')), { scope: @js(\Simplify\Core\WebApp\WebApp::scope()) }).catch(() => {}));
     }
-    // Simplify's own admin pages (settings, Health, People & roles, the form pages, the end of the setup) get the height the window leaves them, so the page never scrolls:
+    // Simplify's own admin pages (settings, Health, the form pages, the end of the setup) get the height the window leaves them, so the page never scrolls:
     // the card scrolls inside (simplify.css). In host mode's frame the frame itself already has the window's height.
     // The end of the setup is one card in host mode too, so it fits there as well. The settings on a phone scroll with the page.
     // Once per window: wire:navigate runs this script again when the next page's head differs (overview ↔ Admin page).
     if (!window.simplifyFitWatch) {
         window.simplifyFitWatch = true;
         // Read again on every page: wire:navigate also goes between the overview and the Admin page (html.ps-shell).
-        const fitCards = () => document.documentElement.matches('.ps-frame, .ps-shell') ? '.s-done' : '.s-settings-tabs.fi-vertical, .s-health, .s-people, .s-fit, .s-done';
+        const fitCards = () => document.documentElement.matches('.ps-frame, .ps-shell') ? '.s-done' : '.s-settings-tabs.fi-vertical, .s-health, .s-fit, .s-done';
         let queued = 0;
         const fit = () => {
             queued = 0;

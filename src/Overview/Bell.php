@@ -36,6 +36,9 @@ final class Bell
 
     private const ID = '/^[0-9a-f-]{36}$/i';
 
+    /** An error id as ADDONS.md (Errors) gives it: 2 to 5 parts of A-Z a-z 0-9 _ . -, at most 128 characters. */
+    public const PROBLEM = '/^(?=.{1,128}$)[A-Za-z0-9_.-]+(?::[A-Za-z0-9_.-]+){1,4}$/';
+
     /**
      * One page, newest first; $archived: the ones under Archived.
      *
@@ -183,7 +186,14 @@ final class Bell
             'unread' => $row->read_at === null,
             'archived' => $archived,
             'action' => $action,
+            // The sender's error id (simplify_problem in the data or in a Filament notification's viewData), for an add-on's button such as Explain (ADDONS.md, Errors).
+            'problem' => self::problem($data['simplify_problem'] ?? $data['viewData']['simplify_problem'] ?? null),
         ];
+    }
+
+    public static function problem(mixed $id): ?string
+    {
+        return is_string($id) && preg_match(self::PROBLEM, $id) === 1 ? $id : null;
     }
 
     private static function text(mixed $value): string

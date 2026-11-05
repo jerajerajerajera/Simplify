@@ -45,7 +45,7 @@ const consolePage = `<!doctype html><html><head><meta charset="utf-8">
 <link rel="stylesheet" href="file://${css}/tokens.css"><link rel="stylesheet" href="file://${css}/components.css"><link rel="stylesheet" href="file://${css}/dashboard.css">
 </head><body><div class="ps server-active ps-server-top is-console"></div>
 <main class="fi-main"><div class="fi-page"><div class="fi-page-header-main-ctn">${header()}<div class="fi-page-content"><div><div id="terminal" style="height:300px"></div></div></div></div></div></main>
-<template id="bar"><div class="ps-console-title ps-ui" data-quick="Quick commands"><strong>Live console</strong><span class="ps-console-dot"></span><span class="ps-live-bars" hidden></span>
+<template id="bar"><div class="ps-console-title ps-ui"><strong>Live console</strong><span class="ps-console-dot"></span><span class="ps-live-bars" hidden></span>
   <span class="ps-console-state" data-connecting="Connecting" data-connected="Connected">Connecting</span>
   <button type="button" class="ps-console-clear ps-console-tool ps-console-grow" data-normal="Normal" data-bigger="Bigger"><svg></svg></button>
   <button type="button" class="ps-console-clear ps-console-tool ps-console-window"><svg></svg></button></div></template>
@@ -58,7 +58,7 @@ const consolePage = `<!doctype html><html><head><meta charset="utf-8">
     const out = {};
     try {
       const page = window.simplifyServer({}, { server: { uuid: 'u1', minecraft: false } });
-      Object.assign(page, { $refs: { consoleBar: document.getElementById('bar') }, overviewPreferences: {}, fitPage() {}, quickCommands() {}, setOverviewPreference() {} });
+      Object.assign(page, { $refs: { consoleBar: document.getElementById('bar') }, overviewPreferences: {}, fitPage() {}, setOverviewPreference() {} });
       page.consoleBar(true);
       const tools = () => [...document.querySelectorAll('#terminal > .ps-console-title button')];
       out.labels = tools().map((el) => el.getAttribute('aria-label') || el.className);

@@ -106,6 +106,8 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-account-actions-inner .ps-btn.is-icon { justify-content: flex-start; gap: 12px; width: 100%; height: auto; min-height: 38px; padding: 0 10px; border: 0; background: none; font-size: 13px; font-weight: 500; }
 .ps-account-actions-inner .ps-btn.is-icon:hover { background: var(--ps-raised); }
 .ps-account-actions-inner .ps-btn.is-icon::after { content: attr(data-tip); }
+/* The legacy panel: last, under a line, in grey (I9). */
+.ps-account-actions-inner .ps-btn.is-icon.ps-account-legacy { margin-top: 4px; padding-top: 4px; border-top: 1px solid var(--ps-line); border-radius: 0 0 var(--ps-radius-sm, 8px) var(--ps-radius-sm, 8px); color: var(--ps-muted); }
 .ps-account-actions-inner .ps-btn.is-icon[aria-pressed="true"] { color: var(--ps-accent); }
 
 /* Overview ----------------------------------------------------------------------------------- */
@@ -553,6 +555,11 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 /* The broken heart slips off the right edge of the server card, tilted as if falling. */
 .ps-server-info .ps-offline-artwork svg { inset-inline-end: 3%; top: 60%; height: 145%; transform: translateY(-50%) rotate(16deg); }
 .ps-info-icons { grid-area: icons; position: relative; display: flex; align-items: center; justify-content: center; }
+/* Look: a small pencil on the icon's corner, for whoever may edit the server (F4). */
+.ps-look-button { position: absolute; inset-inline-end: -6px; top: -6px; z-index: 2; display: grid; place-items: center; width: 22px; height: 22px; padding: 0; border: 1px solid var(--ps-line); border-radius: 50%; background: var(--ps-surface); color: var(--ps-muted); cursor: pointer; }
+.ps-look-button:hover, .ps-look-button[aria-expanded="true"] { border-color: var(--ps-accent); color: var(--ps-accent); }
+.ps-look-button svg { width: 12px; height: 12px; }
+.ps-look-menu { top: calc(100% + 8px); inset-inline-start: 0; min-width: 220px; }
 .ps-info-icon { display: grid; place-items: center; width: 56px; height: 56px; overflow: hidden; border: 1px solid var(--ps-line); border-radius: 14px; background: var(--ps-field); }
 .ps-info-icon img { width: 100%; height: 100%; object-fit: cover; image-rendering: pixelated; }
 .ps-software-icon { background: var(--ps-raised); }
@@ -830,6 +837,9 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 .ps-host-head-actions { display: flex; flex: none; gap: 6px; margin-inline-start: auto; }
 .ps-frame-tools { display: flex; flex: 1 1 auto; align-items: center; justify-content: flex-end; gap: 6px; min-width: 0; margin-inline-start: auto; }
 .ps-frame-search { position: relative; flex: 0 1 260px; min-width: 0; margin-inline-end: 4px; }
+/* A list's "Sort by" menu and its direction (sort.js), in host mode's title bar. */
+.ps-frame-tools .s-sort { display: flex; flex: none; align-items: center; gap: 4px; }
+.ps-frame-tools .s-sort-select { width: auto; max-width: 180px; height: var(--ps-h-sm); min-height: 0; padding-block: 0; font-size: 13px; }
 .ps-frame-search svg { position: absolute; top: 50%; inset-inline-start: 10px; width: 16px; height: 16px; color: var(--ps-muted); transform: translateY(-50%); pointer-events: none; }
 .ps-frame-search input { box-sizing: border-box; width: 100%; height: var(--ps-h-sm); padding: 0 10px 0 33px; border: 1px solid var(--ps-line); border-radius: var(--ps-radius-sm); background: var(--ps-field); color: var(--ps-ink); font: 500 13px/1 var(--ps-font); outline: none; }
 .ps-frame-search input:focus { border-color: var(--ps-accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ps-accent) 20%, transparent); }
@@ -1105,32 +1115,38 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 }
 
 /* Phone layout (server page): compact server card, large power buttons, four tabs that always fit
-   (Console, Players, Files, More) and a console that fills the screen with quick commands above the
-   command bar. */
-.ps-phone-sections, .ps-quick-commands { display: none; }
+   (Console, Players, Files, More) and a console that fills the screen. */
+.ps-phone-sections { display: none; }
 @media (max-width: 600px) {
   .ps .ps-statusbar-power .ps-btn { width: 40px; height: 40px; }
 
-  .ps .ps-server-info { grid-template-columns: 44px minmax(0, 1fr); grid-template-areas: "icons content" "power power"; gap: 12px 14px; margin-bottom: 12px; padding: 14px; }
-  .ps .ps-info-icon { width: 44px; height: 44px; border-radius: 12px; }
-  .ps .ps-software-icon img { width: 34px; height: 34px; }
+  /* The head about half as high (G6): a smaller icon and name, status and address on one line when they fit, lower buttons. */
+  .ps .ps-server-info { grid-template-columns: 36px minmax(0, 1fr); grid-template-areas: "icons content" "power power"; gap: 8px 12px; margin-bottom: 10px; padding: 10px 12px; }
+  .ps .ps-info-icon { width: 36px; height: 36px; border-radius: 10px; }
+  .ps .ps-software-icon img { width: 28px; height: 28px; }
   .ps .ps-software-icon.is-badge { width: 22px; height: 22px; inset-inline-end: -6px; bottom: -6px; }
   .ps .ps-software-icon.is-badge img { width: 16px; height: 16px; }
-  .ps .ps-game-title { margin-bottom: 2px; }
-  .ps .ps-game-title h2 { font-size: 20px; }
-  .ps .ps-info-meta { gap: 4px 12px; font-size: 12px; }
+  .ps .ps-game-title { margin-bottom: 0; }
+  .ps .ps-game-title h2 { font-size: 18px; }
+  /* The address is never cut off: without room next to the status it goes to the next line. */
+  .ps .ps-info-meta { flex-wrap: wrap; gap: 2px 10px; font-size: 12px; }
   .ps .ps-info-meta-item { display: none; }
   .ps .ps-info-power { gap: 8px; }
-  .ps .ps-info-power > .ps-power-main, .ps .ps-info-power > .ps-power-restart { flex: 1; min-height: 44px; }
-  .ps .ps-info-power > .ps-info-more-button { width: 44px; height: 44px; }
+  .ps .ps-info-power > .ps-power-main, .ps .ps-info-power > .ps-power-restart { flex: 1; min-height: 38px; }
+  .ps .ps-info-power > .ps-info-more-button { width: 38px; height: 38px; }
   .ps .ps-statusbar-power .ps-btn { width: 40px; height: 40px; }
-  /* Two by two: four in a row left values and labels cut off on a phone. */
-  .ps .ps-server-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-bottom: 12px; }
-  .ps .ps-server-stats .ps-stat { gap: 2px 8px; padding: 10px 10px 8px; }
+  /* The numbers as one strip (G6): one card with four cells side by side, each the number over its label; the bars and
+     the line under each number stay on the computer. */
+  .ps .ps-server-stats { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 0; margin-bottom: 10px; overflow: hidden; border: 1px solid var(--ps-line); border-radius: var(--ps-radius); background: var(--ps-surface); }
+  .ps .ps-server-stats .ps-stat { display: flex; flex-direction: column-reverse; align-items: center; justify-content: center; gap: 1px; min-height: 0; padding: 8px 4px; border: 0; border-radius: 0; background: none; box-shadow: none; text-align: center; }
+  .ps .ps-server-stats .ps-stat + .ps-stat { border-inline-start: 1px solid var(--ps-line); }
   .ps .ps-server-stats .ps-stat:last-child { display: none; }
-  .ps .ps-server-stats .ps-stat > strong { font-size: 15px; }
-  .ps .ps-server-stats .ps-stat > strong .ps-stat-total { font-size: 12px; }
-  .ps .ps-server-stats .ps-stat-top span { font-size: 11px; }
+  .ps .ps-server-stats .ps-stat > :is(small, .ps-spark) { display: none; }
+  .ps .ps-server-stats .ps-stat > strong { max-width: 100%; font-size: 15px; letter-spacing: -.2px; }
+  .ps .ps-server-stats .ps-stat > strong .ps-stat-total { font-size: 11px; }
+  .ps .ps-server-stats .ps-stat-top { gap: 4px; }
+  .ps .ps-server-stats .ps-stat-top span { font-size: 10px; letter-spacing: .3px; text-transform: uppercase; }
+  .ps .ps-server-stats .ps-stat-top svg { width: 13px; height: 13px; }
   /* The section tabs sit at the bottom of the screen, like the overview's tab bar. */
   .ps .ps-phone-sections { position: fixed; inset-inline-end: 0; bottom: 0; inset-inline-start: 0; z-index: var(--ps-z-dropdown); display: flex; gap: 0; padding: 4px 8px env(safe-area-inset-bottom); border-top: 1px solid var(--ps-line); background: color-mix(in srgb, var(--ps-surface) 92%, transparent); backdrop-filter: blur(12px); }
   .ps.server-active .ps-main { padding-bottom: 80px; }
@@ -1144,15 +1160,10 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   .ps-phone-more > .ps-phone-more-menu { top: auto; bottom: calc(100% + 10px); width: min(260px, calc(100vw - 28px)); max-height: 60dvh; overflow-y: auto; }
   .ps-phone-more-menu .ps-menu-item { min-height: 44px; font-size: 14px; }
   .ps-phone-more-menu .ps-menu-item[aria-current="page"] { background: var(--ps-raised); }
-  .ps .ps-quick-commands { display: flex; flex: none; gap: 6px; padding: 8px 12px 0; overflow-x: auto; scrollbar-width: none; border-top: 1px solid var(--ps-console-line); }
-  .ps .ps-quick-commands::-webkit-scrollbar { display: none; }
-  .ps .ps-quick-commands { background: transparent; }
-  .ps-quick-command { flex: none; min-height: 36px; padding: 0 12px; border: 1px solid var(--ps-console-line); border-radius: var(--ps-radius-pill); background: var(--ps-console-raised); color: var(--ps-console-ink); font: 12px var(--ps-mono); white-space: nowrap; }
-  .ps-quick-command:disabled { opacity: .45; }
 }
 @media (max-width: 480px) { .ps-customize-row > .ps-segmented { display: flex; width: 100%; } .ps-customize-row > .ps-segmented > button { flex: 1 1 0; justify-content: center; } .ps-customize-row > .ps-segmented svg { display: none; } }
 
-/* Sideways scrolling strips (filters, sections, quick commands): the side that hides more items fades
+/* Sideways scrolling strips (filters, sections): the side that hides more items fades
    out, so a half-visible chip reads as "swipe for more" instead of cut-off text. Set by scrollHint(). */
 [data-ps-more="end"] { mask-image: linear-gradient(to right, #000 calc(100% - 32px), transparent); }
 [data-ps-more="start"] { mask-image: linear-gradient(to left, #000 calc(100% - 32px), transparent); }
@@ -1235,8 +1246,6 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 }
 @media (prefers-reduced-motion: reduce) { .ps-hw-face { animation: none; } .ps-hw-bat { display: none; } }
 
-/* Explain this error: a compact popup that grows with the answer. */
-
 /* Right-to-left languages (Arabic). Layout follows logical properties; these parts need their own mirror. */
 [dir="rtl"] .ps-customize-head.is-toggle[aria-expanded="true"] .ps-customize-chevron,
 [dir="rtl"] .ps-group-edit.is-open .ps-group-toggle svg { transform: rotate(-90deg); }
@@ -1285,7 +1294,7 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 @media (max-width: 600px) {
   .ps.ps-admin-side { flex-direction: column; }
   .ps-admin-side .ps-host-side { position: static; display: none; max-height: none; padding-bottom: 0; border-radius: 0; box-shadow: none; transform: none; visibility: visible; transition: none; }
-  .ps-admin-side.menu-open .ps-host-side { display: flex; }
+  .ps-admin-side.menu-open .ps-host-side { display: flex; background: var(--s-bg, var(--ps-bg)); view-transition-name: ps-admin-menu; }
   .ps-admin-side .ps-host-side-scroll { padding: 4px 0 8px; }
   .ps-admin-side .ps-host-health-bar { display: grid; }
   .ps-admin-side .ps-host-group-head { min-height: 44px; font-size: 15px; }
@@ -1296,6 +1305,17 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   .ps-admin-crumb button.is-last { font-size: 17px; }
   .ps-admin-crumb svg { width: 18px; height: 18px; }
 }
+/* The Admin menu on a phone slides like an app (sheet.js, simplifyAdminSlide): away to the left over the page that a tap
+   in it opened, and back in from the left over the page. Only the menu moves; the header and the bottom bar stay. */
+html[data-ps-admin-slide]::view-transition-group(root) { animation: none; }
+html[data-ps-admin-slide]::view-transition-old(root), html[data-ps-admin-slide]::view-transition-new(root) { animation: none; }
+html[data-ps-admin-slide="in"]::view-transition-new(root) { opacity: 0; }
+html[data-ps-admin-slide]::view-transition-group(ps-admin-menu) { z-index: 1; animation: none; }
+html[data-ps-admin-slide="out"]::view-transition-old(ps-admin-menu) { animation: ps-admin-menu-out var(--ps-sheet-out) var(--ps-ease-out) both; box-shadow: var(--ps-shadow-modal); }
+html[data-ps-admin-slide="in"]::view-transition-new(ps-admin-menu) { animation: ps-admin-menu-in var(--ps-sheet-in) var(--ps-ease) both; box-shadow: var(--ps-shadow-modal); }
+html[data-ps-admin-slide="out"]::view-transition-new(ps-admin-menu), html[data-ps-admin-slide="in"]::view-transition-old(ps-admin-menu) { display: none; }
+@keyframes ps-admin-menu-out { to { transform: translateX(-100%); } }
+@keyframes ps-admin-menu-in { from { transform: translateX(-100%); } }
 body:has(.ps-server-top) .fi-main-ctn {
   display: grid !important;
   grid-template-columns: 220px minmax(0, 1fr);
@@ -1363,19 +1383,15 @@ html.ps-fit body:has(.ps-server-top) :is(.fi-page-header-main-ctn:has(> .fi-head
 html.ps-fit body:has(.ps-server-top) .fi-resource-list-records-page .fi-page-header-main-ctn:not(:has(> .fi-header .fi-btn)) { position: relative; }
 html.ps-fit body:has(.ps-server-top) .fi-resource-list-records-page .fi-page-header-main-ctn:not(:has(> .fi-header .fi-btn)) > .fi-header { position: absolute; top: 12px; inset-inline-end: 16px; z-index: 2; margin: 0 !important; }
 html.ps-fit body:has(.ps-server-top) .fi-resource-list-records-page .fi-page-header-main-ctn:not(:has(> .fi-header .fi-btn)):has(> .fi-header .fi-header-actions-ctn > *) .fi-ta-header-toolbar { padding-inline-end: 68px; }
-html.ps-fit body:has(.ps-server-top:not(.is-console)) .fi-main :is(.fi-section, .fi-ta-ctn, .sm-side > *) { margin: 0 !important; border: 0 !important; border-radius: 0 !important; background: transparent !important; box-shadow: none !important; outline: 0 !important; }
+html.ps-fit body:has(.ps-server-top:not(.is-console)) .fi-main :is(.fi-section, .fi-ta-ctn) { margin: 0 !important; border: 0 !important; border-radius: 0 !important; background: transparent !important; box-shadow: none !important; outline: 0 !important; }
 html.ps-fit body:has(.ps-server-top) .fi-main .fi-ta-header-toolbar { padding-inline: 16px; }
 html.ps-fit body:has(.ps-server-top:not(.is-console)) .fi-main .fi-sc.fi-sc-has-gap:not(:is(.fi-section, .fi-fieldset) *) { gap: 0 !important; }
-html.ps-fit body:has(.ps-server-top:not(.is-console)) .fi-main :is(.fi-sc > .fi-grid-col:not(.fi-hidden) ~ .fi-grid-col:not(.fi-hidden):not(:is(.fi-section, .fi-fieldset) *), .sm-side > * + *) { border-top: 1px solid var(--ps-line) !important; }
+html.ps-fit body:has(.ps-server-top:not(.is-console)) .fi-main .fi-sc > .fi-grid-col:not(.fi-hidden) ~ .fi-grid-col:not(.fi-hidden):not(:is(.fi-section, .fi-fieldset) *) { border-top: 1px solid var(--ps-line) !important; }
 html.ps-fit body:has(.ps-server-top:not(.is-console)) .fi-main .fi-fieldset { margin: 0 !important; padding: 0 !important; border: 0 !important; }
 html.ps-fit body:has(.ps-server-top:not(.is-console)) .fi-main .fi-fieldset > legend { margin: 0 0 8px; padding: 0; font-weight: 600; }
 /* Loose fields and notices (a schedule's name, the startup command, a Minecraft warning) get a section's margin. */
 html.ps-fit body:has(.ps-server-top:not(.is-console)) .fi-main .fi-sc > .fi-grid-col:not(:has(.fi-section, .fi-ta-ctn, > .fi-sc-component > .fi-sc)):not(:is(.fi-section, .fi-fieldset) *) { padding: 12px 24px; }
-html.ps-fit body:has(.ps-server-top:not(.is-console)) .fi-main :is(form > :not(.fi-sc), .fi-page-content > :not(.fi-sc, .fi-ta, .relative, .sm-columns, form, div:empty)) { margin: 0; padding: 12px 24px; }
-/* Toolkit's Plugins page: its two columns in the one card, split by a line. */
-html.ps-fit body:has(.ps-server-top) .fi-main .sm-columns { gap: 0 !important; align-items: stretch; min-height: 100%; }
-html.ps-fit body:has(.ps-server-top) .fi-main .sm-columns > .fi-section { border-inline-end: 1px solid var(--ps-line) !important; }
-html.ps-fit body:has(.ps-server-top) .fi-main .sm-side { gap: 0 !important; }
+html.ps-fit body:has(.ps-server-top:not(.is-console)) .fi-main :is(form > :not(.fi-sc), .fi-page-content > :not(.fi-sc, .fi-ta, .relative, form, div:empty)) { margin: 0; padding: 12px 24px; }
 html.ps-console-big .ps-server-menu { display: none; }
 html.ps-console-big body:has(.ps-server-top) .fi-main-ctn > .fi-main { grid-column: 1 / -1; }
 
@@ -1413,9 +1429,6 @@ html.ps-console-window body:has(.ps-server-top) .fi-main-ctn > .fi-main { grid-c
   .ps-console-grow { display: none !important; }
   #terminal > .xterm { padding: 60px 10px 10px; }
   #terminal > .ps-console-title { height: 48px; }
-  .ps-ui.ps-quick-commands { display: flex; flex: none; gap: 6px; padding: 8px 12px; overflow-x: auto; scrollbar-width: none; background: transparent; }
-  #terminal > .ps-quick-commands { position: absolute; inset: auto 0 0; border-top: 1px solid var(--ps-console-line); }
-  #terminal:has(> .ps-quick-commands) > .xterm { padding-bottom: 62px; }
 }
 .ps-live-bars[hidden] { display: none; }
 
@@ -1447,6 +1460,9 @@ body:has(.ps-install:not([style*="none"], [x-cloak])) .fi-main .fi-page .fi-call
 .ps-install-time strong { color: var(--ps-ink); font: 600 15px var(--ps-mono); font-variant-numeric: tabular-nums; }
 .ps-install-time small { font-size: 12px; }
 .ps-install-actions { position: relative; display: flex; flex: none; gap: 8px; }
+/* The spot for an add-on's button after an error (ADDONS.md, Errors): no room taken while it is empty. */
+.ps-problem { display: inline-flex; align-items: center; }
+.ps-problem:not(:has(*)) { display: none; }
 .ps-install-actions .ps-btn.is-on { border-color: color-mix(in srgb, var(--ps-ok) 45%, var(--ps-line)); color: var(--ps-ok); }
 .ps-install-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; margin: 0; padding: 0; list-style: none; }
 .ps-install-step { position: relative; display: flex; align-items: flex-start; gap: 10px; min-width: 0; padding-inline-end: 12px; }

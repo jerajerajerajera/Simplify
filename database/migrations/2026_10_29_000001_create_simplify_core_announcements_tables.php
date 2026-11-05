@@ -68,10 +68,7 @@ return new class extends Migration
         }
     }
 
-    public function down(): void
-    {
-        Schema::dropIfExists('simplify_core_announcement_commands');
-        Schema::dropIfExists('simplify_core_announcement_dismissals');
-        Schema::dropIfExists('simplify_core_announcements');
-    }
+    // Uninstalling Simplify keeps its data: Pelican rolls back a plugin's migrations on uninstall, and installing it
+    // again finds every table and setting as it was.
+    public function down(): void {}
 };

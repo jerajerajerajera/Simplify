@@ -49,6 +49,11 @@ return [
         'ok' => 'OK',
         'close' => 'Sluiten',
     ],
+    'sort' => [
+        'by' => 'Sorteren op',
+        'ascending' => 'Oplopend',
+        'descending' => 'Aflopend',
+    ],
     'unsaved' => [
         'changes_made' => 'Wijzigingen gemaakt',
         'save' => 'Opslaan',

@@ -101,7 +101,7 @@ $plain = new class extends Addon
         return 'Plain';
     }
 };
-check($plain->description() === '' && $plain->icon() === 'tabler-puzzle' && $plain->settingsUrl() === null && $plain->dashboardActions() === [] && $plain->hiddenServerPrefixes() === [], 'an add-on only has to give an id and a name');
+check($plain->description() === '' && $plain->icon() === 'tabler-puzzle' && $plain->settingsUrl() === null && $plain->settingsForm() === null && $plain->dashboardActions() === [] && $plain->hiddenServerPrefixes() === [], 'an add-on only has to give an id and a name');
 
 // The contract only grows with defaults: id() and name() stay the only methods an add-on must write.
 $required = array_values(array_map(fn (ReflectionMethod $m) => $m->name, array_filter((new ReflectionClass(Addon::class))->getMethods(), fn (ReflectionMethod $m) => $m->isAbstract())));

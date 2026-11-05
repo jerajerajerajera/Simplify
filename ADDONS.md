@@ -49,11 +49,11 @@ Only `id()` and `name()` are required. Everything else has a default.
 | `description(): string` | `''` | add-on list |
 | `icon(): string` | `'tabler-puzzle'` | add-on list (a Tabler icon name) |
 | `dashboardActions(): list<Button>` | `[]` | buttons in the dashboard toolbar |
-| `settingsUrl(): ?string` | `null` | "Settings" button in the add-on list |
+| `settingsUrl(): ?string` | `null` | "Settings" button in the add-on list, and a leaf under Simplify add-ons in the Admin menu, while `settingsForm()` gives no form |
+| `settingsForm(): ?class-string<Livewire\Component>` | `null` | your settings in your section of Simplify settings › Add-ons, under your `description()`. See "Settings" below (since 2.0, API 8) |
 | `hiddenServerPrefixes(): list<string>` | `[]` | servers whose external id starts with one of these are left out of every Simplify list and count |
 | `tileBadges(Server $server): list<string>` | `[]` | short texts on a server tile, such as its address |
 | `serverInfo(Server $server): array` | `[]` | players, max_players, motd, version and icon of a running game, on the server's card and page (since 1.1, API 2) |
-| `serverSections(Server $server): list<class-string>` | `[]` | No longer shown since core 1.3.9 (the console page fits the window); kept so older add-ons keep working |
 | `serverLinks(Server $server): list<Button>` | `[]` | links in the ⋯ menu of the server page, opened in a new tab (since 1.1, API 2); a `primary` link also shows on a suspended server's card for its owner, under a line that the hoster paused it (since 1.5.5) |
 | `customerLinks(User $user): list<Button>` | `[]` | links for customers (not admins) beside a greeting at the top of the overview; the panel's support link follows (since 1.1, API 2). A link with an `icon` (a Tabler name such as `tabler-receipt`) is also an icon button in the account menu, before Support, for everyone it is given to |
 | `hostModeDefault(): bool` | `false` | No effect since the Admin page (every admin has it); kept so add-ons that override it still load (since 1.1, API 2) |
@@ -63,6 +63,8 @@ Only `id()` and `name()` are required. Everything else has a default.
 | `accountPages(User $user): list<Button>` | `[]` | your own pages for every user, as icon buttons in Simplify's account menu (for example a Steam account). They open inside Simplify, in the content area, as Admin tools do; a URL that is not on this panel is left out. Without an `icon` the button shows `tabler-puzzle` (since 1.5.5, API 4) |
 | `connections(User $user): list<class-string<Livewire\Component>>` | `[]` | your rows on Simplify's Connections page (account menu, right after Profile), one Livewire component per outside account, for example a Steam account or a CurseForge key. Each row is yours: it checks its user, saves on its own (the page has no Save and nothing saves by itself) and keeps its secrets. The page and its menu item show only while an add-on gives at least one row; without one the page answers 404. A class that is not a Livewire component is left out (since 2.0, API 6) |
 | `startUrl(User $user): ?string` | `null` | a URL on this panel where this user starts: the server list and Simplify's overview redirect there, before the panel's own start page. Return `null` when the user should start in Simplify; while it returns a URL, Simplify puts its own header (panel name, bell, account menu) over Pelican's admin pages for admins, as the first child of `.fi-layout` (since 1.5.6, API 5) |
+| `serverTabs(): array<string, list<class-string>>` | `[]` | your server pages as tabs in one of Simplify's rows instead of their own menu item, by row. The only row is `'backups'`: Backups, then the add-ons' pages, then Schedules, as one "Backups & tasks" item, for example `['backups' => [AutomaticBackups::class]]`. Label and address come from the class; a page the user may not open is left out (since 2.0, API 9) |
+| `replacedServerPages(): list<class-string>` | `[]` | Pelican's server pages that a page of yours takes over, for example `Settings::class` and `Startup::class`: Simplify leaves them out of the server menu. Return them only while the current user can open your page (since 2.0, API 9) |
 
 `Button` is `new Button(string $label, string $url, ?string $icon = null, bool $primary = false)`.
 
@@ -90,11 +92,30 @@ public function saveSetup(array $state): void
 ## Rules
 
 - New methods are only ever added with a default, so an add-on keeps working when Simplify updates. A test in Simplify's CI fails when a method without a default is added.
-- `Addon::API` is the contract version: 1 in Simplify 1.0, 2 since 1.1 (`serverInfo()`, `serverLinks()`, `customerLinks()`, `hostModeDefault()`), 3 since 1.3 (`setupFields()`, `setupState()`, `saveSetup()`), 4 since 1.5.5 (`accountPages()`), 5 since 1.5.6 (`startUrl()`), 6 since 2.0 (`connections()`). It goes up by one whenever a method is added.
+- `Addon::API` is the contract version: 1 in Simplify 1.0, 2 since 1.1 (`serverInfo()`, `serverLinks()`, `customerLinks()`, `hostModeDefault()`), 3 since 1.3 (`setupFields()`, `setupState()`, `saveSetup()`), 4 since 1.5.5 (`accountPages()`), 5 since 1.5.6 (`startUrl()`), 6 since 2.0 (`connections()`), 7 since 2.0 (`serverSections()` gone), 8 since 2.0 (`settingsForm()`), 9 since 2.0 (`serverTabs()`, `replacedServerPages()`). It goes up by one whenever a method is added or removed.
 - A newer add-on on an older Simplify just works: Simplify never calls the methods it does not know yet. Check `defined(Addon::class.'::API') ? Addon::API : 1` only when your add-on wants to show something different on an older core.
 - `\Simplify\Core\Health\HostHealth::cached()` is stable for add-ons: it returns the last shared host-health snapshot, or `[]` when none is kept, without running the checks (since 1.5.6).
 - If your add-on throws, Simplify reports the error and leaves your add-on out. It never breaks a Simplify page.
 - Install other plugins only from the Pelican Hub, and list every outside service you call in your README.
+
+## Settings
+
+Simplify settings › Add-ons has a section for every installed add-on, closed until it is opened: first your
+`description()`, then your settings. Give your settings as a Livewire component in `settingsForm()` and the core shows
+it there; while it does, your add-on has no leaf of its own in the Admin menu, and **Simplify add-ons** holds only
+add-ons with a page of their own. With the core (`Addon::API >= 8`), hide your settings page from the menu and take
+the settings button off your other pages; without the core they stay where they are.
+
+- The component checks its user (root admin) and saves on its own. Its root element carries
+  `data-simplify-unsaved` and `data-simplify-save="save"` ("Unsaved changes" below), so Save in the page's title bar
+  saves it with the rest. Do not put a `<form>` in it: the section already sits inside Simplify's own form.
+- Use the same component on your own settings page, so both stay the same.
+- `Simplify\Core\Filament\Admin\Pages\Settings::addonUrl($id)` links to your section, opened (check
+  `method_exists` first).
+
+```php
+public function settingsForm(): ?string { return ExplainSettingsForm::class; }
+```
 
 ## Admin menu
 
@@ -144,6 +165,63 @@ sees every server's card), false otherwise. It is newer than 2.0.0-beta.1, so ch
 `Simplify\Core\Embed\Services\EmbedServers::visible($server)` and `setVisible($server, $on)` read and set a server's
 "Show on the website" choice (the same as its Website page). They check no permissions: the caller does that.
 
+## Page head
+
+Every page of Simplify and its add-ons has the same head, so they read as one product. The content is one card, its
+buttons sit in its title bar, and there is no box inside a box. The head has three parts:
+
+1. **Title**: what the page is, usually its name in the menu.
+2. **Subtitle**: one short line saying what you do here or what it applies to (for example "For Paper 1.21.1"). Do not
+   put a warning paragraph above the content; put the warning in the subtitle, or send it as a notification.
+3. **Actions on the right**: Save comes last, as a text button "Save" with the `tabler-device-floppy` icon. Any other
+   buttons go before it. Dangerous actions go in a ⋯ group, never as a large red button.
+
+On a server page, the first `Section` of your form holds the title (`heading`) and the subtitle (`description`), and
+`getHeaderActions()` gives the actions. With the core, the page's own Filament heading is hidden and the actions sit
+at the right of that section's head. On an admin page, the breadcrumb in the Admin page's title bar is the title, and
+the actions and `getSubheading()` stay in the page's header. Without the core, Filament shows its own heading and
+actions as usual.
+
+```php
+public function form(Schema $schema): Schema
+{
+    return $schema->components([
+        Section::make(__('my-addon::page.title'))
+            ->description(__('my-addon::page.subtitle'))
+            ->schema([/* fields */]),
+    ]);
+}
+
+protected function getHeaderActions(): array
+{
+    return [
+        Action::make('save')->label(__('my-addon::page.save'))->icon('tabler-device-floppy')
+            ->action('save')->keyBindings(['mod+s']),
+    ];
+}
+```
+
+- Save works with "Unsaved changes" below: the form carries `data-simplify-unsaved`, and the `save` action counts as
+  saved when it ends without validation errors.
+- An empty page shows one grey line in the middle saying what is missing, with the action that fixes it in the head.
+  Do not use an illustration or an empty-state icon.
+- A page without a Filament form (your own Blade view) still follows the same model. With the core, draw its head with
+  the partial `simplify::partials.page-head` (since 2.0.0-beta.6); without the core, use a Filament section with a
+  heading and a description:
+
+```blade
+@if (view()->exists('simplify::partials.page-head'))
+    @include('simplify::partials.page-head', [
+        'title' => __('my-addon::page.title'),
+        'subtitle' => __('my-addon::page.subtitle'),
+        'actions' => [$this->refreshAction, $this->saveAction],
+    ])
+@endif
+```
+
+  `subtitle` and `actions` are optional; `actions` is one Filament action (or any `Htmlable`) or a list of them, Save
+  last.
+
 ## Unsaved changes
 
 Nothing in Simplify saves itself. Give your settings form the attribute `data-simplify-unsaved` and Simplify does the
@@ -187,6 +265,16 @@ Put this spot in your view while the error is shown:
 Simplify puts the spot on each Health check that is Failed, Crashed or a Warning, with the id
 `simplify:health:<check>` (the check's name in lower case without spaces, for example `simplify:health:queue`).
 Checks that are fine get no spot.
+
+A notification in Simplify's bell gets the spot when its data carries an error id under `simplify_problem`: in a
+Filament notification `->viewData(['simplify_problem' => 'my-addon:test:42'])->sendToDatabase($user)`, in a Laravel
+notification of your own at the top level of `toDatabase()`. The sender gives the id and is its source. The bell renders the spot once with the id `__ID__`
+and fills in each notification's own id, so an add-on that renders a button in the spot must keep the id in its HTML
+and check it again on the server.
+
+On a server's page, a failed installation has the spot next to Try again, with the id `simplify:install:<server uuid>`.
+Simplify is the source for it (`InstallProblems`): the last 100 lines of the install script's output from Wings, only
+for root admins and people who may use the server's console.
 
 ## Events
 

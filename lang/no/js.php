@@ -49,6 +49,11 @@ return [
         'ok' => 'OK',
         'close' => 'Lukk',
     ],
+    'sort' => [
+        'by' => 'Sorter etter',
+        'ascending' => 'Stigende',
+        'descending' => 'Synkende',
+    ],
     'unsaved' => [
         'changes_made' => 'Endringer gjort',
         'save' => 'Lagre',

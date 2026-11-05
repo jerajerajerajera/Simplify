@@ -1338,6 +1338,12 @@
       imageFailed(url) {
         if (url) this.brokenImages = { ...this.brokenImages, [url]: true };
       },
+      /** The add-ons' spot after an error (header.blade.php) with this error id in place of __ID__; empty without one. */
+      problemSpot(id) {
+        if (typeof id !== 'string' || !/^(?=.{1,128}$)[A-Za-z0-9_.-]+(?::[A-Za-z0-9_.-]+){1,4}$/.test(id)) return '';
+        const spot = document.querySelector('template[data-simplify-problem-spot]');
+        return spot ? spot.innerHTML.trim().replaceAll('__ID__', id) : '';
+      },
       safeImage(s) {
         if (typeof s !== 'string' || !s.trim()) return '';
         if (s.startsWith('data:image/png;base64,') && s.length < 150000) return s;

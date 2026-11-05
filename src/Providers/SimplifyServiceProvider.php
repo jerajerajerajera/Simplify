@@ -25,6 +25,7 @@ use Simplify\Core\Http\Controllers\BannerController;
 use Simplify\Core\Http\Controllers\BrandController;
 use Simplify\Core\Http\Controllers\WebAppController;
 use Simplify\Core\Hub\Livewire\BrowseHub;
+use Simplify\Core\Problems\InstallProblems;
 use Simplify\Core\Push\PelicanNotices;
 use Simplify\Core\Push\Push;
 use Simplify\Core\Server\Looks;
@@ -44,6 +45,8 @@ final class SimplifyServiceProvider extends ServiceProvider
             fn (string $class) => $app->make($class),
             fn (Throwable $error) => report($error),
         ));
+        // The log behind Simplify's own errors, for an add-on such as Explain (ADDONS.md, Errors).
+        $this->app->tag([InstallProblems::class], 'simplify.problems');
     }
 
     public function boot(): void

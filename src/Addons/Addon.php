@@ -26,9 +26,10 @@ abstract class Addon
     /**
      * The contract version: 1 in Simplify 1.0, 2 since 1.1 (serverInfo, serverLinks, customerLinks, hostModeDefault),
      * 3 since 1.3 (setupFields, setupState, saveSetup), 4 since 1.5.5 (accountPages), 5 since 1.5.6 (startUrl), 6 since
-     * 2.0 (connections). Raised whenever a method is added.
+     * 2.0 (connections), 7 since 2.0 (serverSections gone), 8 since 2.0 (settingsForm), 9 since 2.0 (serverTabs,
+     * replacedServerPages). Raised whenever a method is added or removed.
      */
-    public const API = 6;
+    public const API = 9;
 
     /** The add-on's plugin id, for example "simplify-servermaker". */
     abstract public function id(): string;
@@ -56,8 +57,19 @@ abstract class Addon
         return [];
     }
 
-    /** The add-on's own settings page, shown in Simplify's add-on list. */
+    /** The add-on's own settings page, shown in Simplify's add-on list. Not used while settingsForm() gives a form. */
     public function settingsUrl(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * The add-on's settings as a Livewire component, shown under its explanation in Simplify settings › Add-ons. The
+     * component saves on its own (ADDONS.md, "Settings"). Null: the add-on list links to settingsUrl() instead.
+     *
+     * @return class-string<\Livewire\Component>|null
+     */
+    public function settingsForm(): ?string
     {
         return null;
     }
@@ -156,12 +168,24 @@ abstract class Addon
     }
 
     /**
-     * Livewire components that were shown under a server's console. Simplify 1.3.9 and later no longer show them, as
-     * the console page fits the window; the method stays so add-ons that still return sections keep working.
+     * The add-on's server pages that join one of Simplify's rows of tabs instead of getting their own menu item, by row.
+     * The only row is 'backups': Backups first, then the add-ons' pages, then Schedules, as one "Backups & tasks" item.
+     * Each page is a page or resource class of the server panel; one the user may not open is left out.
+     *
+     * @return array<string, list<class-string>>
+     */
+    public function serverTabs(): array
+    {
+        return [];
+    }
+
+    /**
+     * Pelican's server pages that a page of the add-on takes over, for example Settings and Startup. Simplify leaves
+     * them out of the server menu. Return them only while the current user can open the page that replaces them.
      *
      * @return list<class-string>
      */
-    public function serverSections(Server $server): array
+    public function replacedServerPages(): array
     {
         return [];
     }

@@ -21,23 +21,25 @@ html, body { overscroll-behavior-y: none; }
   --s-warn: var(--warning-700);
   --s-danger: var(--danger-600);
 
-  --s-text-sm: 12px;
-  --s-text: 14px;
-  --s-text-lg: 18px;
+  /* Sizes, shadows and timing come from tokens.css (loaded on every page): the --s-* names are aliases, so a corner
+     or a shadow is the same on the Admin side as on the overview. */
+  --s-text-sm: var(--ps-text-sm);
+  --s-text: var(--ps-text);
+  --s-text-lg: var(--ps-text-lg);
 
-  --s-radius-sm: 6px;
-  --s-radius: 10px;
-  --s-radius-pill: 999px;
+  --s-radius-sm: var(--ps-radius-sm);
+  --s-radius: var(--ps-radius);
+  --s-radius-pill: var(--ps-radius-pill);
 
-  --s-space-1: 4px;
-  --s-space-2: 8px;
-  --s-space-3: 12px;
-  --s-space-4: 16px;
-  --s-space-6: 24px;
+  --s-space-1: var(--ps-space-1);
+  --s-space-2: var(--ps-space-2);
+  --s-space-3: var(--ps-space-3);
+  --s-space-4: var(--ps-space-4);
+  --s-space-6: var(--ps-space-6);
 
   --s-h: 36px;
-  --s-shadow: 0 1px 2px rgb(0 0 0 / .05);
-  --s-fast: .15s;
+  --s-shadow: var(--ps-shadow-sm);
+  --s-fast: var(--ps-fast);
 }
 
 :root.dark {
@@ -54,7 +56,35 @@ html, body { overscroll-behavior-y: none; }
   --s-ok: var(--success-400);
   --s-warn: var(--warning-400);
   --s-danger: var(--danger-400);
-  --s-shadow: 0 1px 2px rgb(0 0 0 / .3);
+}
+
+/* A page without the dashboard (a popup frame such as Create server, a legacy page) had no colour tokens before
+   tokens.css came to every page for the --s-* aliases (4-11): the colours stay guaranteed-invalid there, so an add-on's
+   own fallback (Filament's primary, a faint line) keeps showing what it showed. Giving those pages Simplify's colours
+   is a visible change that first needs a preview (P-33). The selector names every root rule of tokens.css so it
+   wins on dark and panel-theme pages too. Sizes, shadows and timing do come from tokens.css. */
+:root:not(:has(.ps)),
+:root.dark:not(:has(.ps)),
+:root.ps-panel-theme:not(:has(.ps)),
+:root.ps-panel-theme.dark:not(:has(.ps)) {
+  --ps-bg: initial;
+  --ps-surface: initial;
+  --ps-raised: initial;
+  --ps-field: initial;
+  --ps-ink: initial;
+  --ps-muted: initial;
+  --ps-line: initial;
+  --ps-line-strong: initial;
+  --ps-contrast-bg: initial;
+  --ps-contrast-ink: initial;
+  --ps-contrast-line: initial;
+  --ps-accent: initial;
+  --ps-on-accent: initial;
+  --ps-backdrop: initial;
+  --ps-ok: initial;
+  --ps-warn: initial;
+  --ps-danger: initial;
+  --ps-info: initial;
 }
 
 /* Touch screens get 44px targets without per-component overrides. */
@@ -64,11 +94,6 @@ html, body { overscroll-behavior-y: none; }
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  :root {
-    --s-fast: 0s;
-  }
-}
 
 /* Card: the one container. Square-ish corners, a thin line, no nested frames. */
 .s-card {
@@ -202,6 +227,75 @@ html, body { overscroll-behavior-y: none; }
   margin-top: 2px;
 }
 
+/* Settings › Add-ons: a section per add-on that opens; what it does first, its settings under it. */
+.s-addon + .s-addon {
+  border-top: 1px solid var(--s-line);
+}
+
+.s-addon-head {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  gap: var(--s-space-3);
+  list-style: none;
+  padding: var(--s-space-3) 0;
+}
+
+.s-addon-head::-webkit-details-marker {
+  display: none;
+}
+
+.s-addon-head:focus-visible {
+  border-radius: var(--s-radius-sm);
+  outline: 2px solid var(--s-accent);
+  outline-offset: 2px;
+}
+
+.s-addon-chevron {
+  color: var(--s-muted);
+  flex: none;
+  height: 16px;
+  transition: transform var(--s-fast);
+  width: 16px;
+}
+
+.s-addon[open] .s-addon-chevron {
+  transform: rotate(90deg);
+}
+
+.s-addon-name {
+  flex: 1;
+  font-weight: 600;
+  min-width: 0;
+}
+
+.s-addon-tag {
+  background: var(--s-raised);
+  border-radius: var(--s-radius-pill);
+  color: var(--s-muted);
+  font-size: var(--s-text-sm);
+  padding: 2px var(--s-space-2);
+  white-space: nowrap;
+}
+
+.s-addon-body {
+  display: grid;
+  gap: var(--s-space-4);
+  padding: 0 0 var(--s-space-4) calc(16px + 20px + 2 * var(--s-space-3));
+}
+
+@media (max-width: 640px) {
+  .s-addon-body {
+    padding-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .s-addon-chevron {
+    transition: none;
+  }
+}
+
 .s-muted {
   color: var(--s-muted);
   font-size: var(--s-text-sm);
@@ -324,46 +418,12 @@ html, body { overscroll-behavior-y: none; }
   --s-h: 28px;
 }
 
-/* People & roles */
-.s-avatar {
-  align-items: center;
-  background: var(--s-raised);
-  border-radius: var(--s-radius-pill);
-  display: inline-flex;
-  flex: none;
-  font-weight: 600;
-  height: 32px;
-  justify-content: center;
-  width: 32px;
-}
-
+/* Chips under a row's name. */
 .s-chips {
   display: flex;
   flex-wrap: wrap;
   gap: var(--s-space-1);
   margin-top: var(--s-space-1);
-}
-
-.s-person-meta {
-  align-items: center;
-  display: inline-flex;
-  gap: var(--s-space-1);
-}
-
-.s-person-meta svg {
-  height: 16px;
-  width: 16px;
-}
-
-.s-pages {
-  justify-content: center;
-  margin-top: var(--s-space-3);
-}
-
-@media (max-width: 600px) {
-  .s-people .s-row {
-    flex-wrap: wrap;
-  }
 }
 
 /* App notifications */
@@ -814,7 +874,7 @@ html.ps-shell:not(.ps-frame) .fi-main-ctn :is(.fi-section:not(.fi-section .fi-se
 }
 
 /* Simplify's own admin pages sit straight on the background as well. */
-html.ps-shell:not(.ps-frame) .fi-main-ctn :is(.s-people > .s-card, .s-health, .s-done) {
+html.ps-shell:not(.ps-frame) .fi-main-ctn :is(.s-health, .s-done) {
   border: 0 !important;
   border-radius: 0 !important;
   background: transparent !important;
@@ -1035,6 +1095,8 @@ html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header-heading {
     html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-search-field .fi-input-wrp {
       position: relative;
       justify-content: center;
+      /* Only the icon is left: the box keeps the height of the buttons beside it. */
+      min-height: var(--s-h, 36px);
     }
 
     html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-search-field .fi-input-wrp-content-ctn {
@@ -1120,6 +1182,16 @@ html.ps-frame[data-ps-head-tools] .fi-page:not(:has(.fi-sc-tabs, .fi-fo-field)) 
 
 html.ps-frame[data-ps-head-tools] .fi-page:not(:has(.fi-sc-tabs, .fi-fo-field)) .fi-pagination {
   padding: 12px 22px !important;
+}
+
+/* Pelican's lists inside Simplify: no "Showing 1 to 6 of 6 results" and no "Per page" (I4); with one page there is
+   nothing to page through, so the whole bar goes. The legacy panel keeps Pelican's bar. */
+:is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-pagination :is(.fi-pagination-overview, .fi-pagination-records-per-page-select-ctn, .fi-pagination-records-per-page-select) {
+  display: none !important;
+}
+
+:is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-pagination:not(:has(.fi-pagination-items, .fi-pagination-previous-btn, .fi-pagination-next-btn)) {
+  display: none !important;
 }
 
 /* Save of Simplify's settings sits in host mode's title bar (frame.js). */
@@ -1222,7 +1294,7 @@ html:not(.ps-frame) body.fi-body:not(:has(.ps)) > .fi-layout > .fi-main-ctn {
 
 /* With Pelican's top bar (a small window or a phone) the content's own minimum of a whole window comes on top of
    it; the fitted card already takes the window's height, so the page needs no minimum. */
-html:not(.ps-frame) body:has(:is(.s-settings-tabs, .s-health, .s-people, .s-fit, .s-done)[style*="--s-fit"]) .fi-main-ctn {
+html:not(.ps-frame) body:has(:is(.s-settings-tabs, .s-health, .s-fit, .s-done)[style*="--s-fit"]) .fi-main-ctn {
   min-height: 0 !important;
 }
 
@@ -1230,19 +1302,6 @@ html:not(.ps-frame) body:has(:is(.s-settings-tabs, .s-health, .s-people, .s-fit,
 html:not(.ps-frame) .s-fit[style*="--s-fit"] {
   margin: -4px;
   padding: 4px;
-}
-
-/* People & roles: the tabs, search and add button stay on top, the list scrolls in its card. */
-html:not(.ps-frame) .s-people[style*="--s-fit"] {
-  display: flex;
-  flex-direction: column;
-  height: var(--s-fit);
-}
-
-html:not(.ps-frame) .s-people[style*="--s-fit"] > .s-card {
-  flex: 1 1 auto;
-  min-height: 0;
-  overflow-y: auto;
 }
 
 /* Settings (V51/V53): one row of tabs over Simplify's settings and its other settings pages (partials/settings-nav).
@@ -1823,11 +1882,6 @@ html ::-webkit-scrollbar-button, html ::-webkit-scrollbar-corner { display: none
 html :is(.ps-console, #terminal) { --s-scroll: rgb(255 255 255 / .16); --s-scroll-hover: rgb(255 255 255 / .28); }
 html .xterm .xterm-scrollable-element > .scrollbar > .slider { border-radius: 999px; background: var(--s-scroll) !important; }
 html .xterm .xterm-scrollable-element > .scrollbar.vertical > .slider { left: 2px !important; width: 6px !important; }
-
-/* People & roles in host mode: tabs, search and the add button sit in the title bar (frame.js) and the list sits
-   straight on the page, as host mode's own box is already around it. */
-html.ps-frame[data-ps-head-tools] .s-people > .s-toolbar { display: none; }
-html.ps-frame[data-ps-frame="native"] .s-people > .s-card { border: 0; border-radius: 0; background: transparent; box-shadow: none; }
 
 /* Pelican's Health page (resources/overrides): what needs attention first, with a button where to fix it, then the
    checks that are fine as short rows. In host mode it sits straight on the page like Pelican's other pages. */
@@ -2527,31 +2581,47 @@ html.ps-frame .s-done {
   to { transform: rotate(360deg); }
 }
 
-/* Phones: Pelican's lists inside Simplify (an admin page in Simplify, a server's pages) as rows that fit the screen,
-   never scrolling sideways (Jeroen 3-11): the icon, the name and the row's buttons on the first line, the other columns
-   under the name, on as many lines as they need. No checkboxes, column titles or long descriptions (an egg's description
-   shows on its own page). On a wider screen, and on the legacy panel, the table stays as Pelican draws it (K-B5). */
+/* Pelican's lists inside Simplify (an admin page in Simplify, a server's pages) as Simplify's list of rows, on every
+   screen (G1, 4-11): the icon, the name and the row's buttons on the first line, the other columns under the name, on
+   as many lines as they need, never scrolling sideways. No column titles or long descriptions, and on a phone no checkboxes (an egg's
+   description shows on its own page). The legacy panel keeps the table as Pelican draws it (K-B5). */
+:is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table thead,
+:is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-cell :is([class$="-description"], [class*="-description "]) { display: none !important; }
+:is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table, :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table > tbody { display: block; width: 100%; }
+:is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-content-ctn { overflow-x: hidden !important; }
+:is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 12px; padding: 10px 14px; }
+:is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row::after { content: ""; order: 3; flex-basis: 100%; height: 0; }
+:is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell { display: block; order: 4; flex: 0 1 auto; min-width: 0; max-width: 100%; width: auto !important; padding: 0 !important; overflow: hidden; color: var(--s-muted, inherit); font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+:is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell :not(button, .fi-icon-btn, .fi-icon-btn *) { padding-block: 0 !important; }
+:is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell > * { padding-inline: 0 !important; }
+:is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell:not(:is(.fi-ta-actions-cell, .fi-ta-cell:has(.fi-ta-actions)), :has(img)) * { min-width: 0; max-width: 100%; }
+:is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell :is(.fi-ta-text, .fi-ta-text-item, .fi-ta-text-item-label, .fi-ta-placeholder):not(.fi-badge, .fi-badge *) { font-size: inherit !important; line-height: 1.4; }
+:is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell :is(.fi-ta-text, .fi-ta-text-item, .fi-ta-text-item-label):not(.fi-badge, .fi-badge *, [class*="fi-color-"], [class*="fi-color-"] *) { color: inherit !important; }
+/* The icon sits in the margin, so the lines under the name start where the name starts. */
+:is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row:has(> .fi-ta-cell img) { padding-inline-start: 58px; }
+:is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell:has(img) { order: 0; flex: none; width: 32px !important; margin-inline-start: -44px; }
+:is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell:has(img) img { flex: none; width: 32px !important; max-width: none !important; height: 32px !important; object-fit: cover; }
+/* The name: the first column with plain text (not the icon, a status badge, a select or the buttons), taking what is
+   left of the first line; the row's buttons end that line. */
+:is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell:nth-child(1 of .fi-ta-cell:not(.fi-ta-selection-cell, :is(.fi-ta-actions-cell, .fi-ta-cell:has(.fi-ta-actions)), :has(img, .fi-badge, select, .fi-ta-icon))) { order: 1; flex: 1 1 0; color: inherit; font-size: 14px; font-weight: 600; }
+:is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > :is(.fi-ta-actions-cell, .fi-ta-cell:has(.fi-ta-actions)) { order: 2; flex: none; margin-inline-start: auto; overflow: visible; }
+/* Phones leave out the checkboxes; wider screens keep them at the start of the row, for the bulk actions, and put each
+   row on one line. */
 @media (max-width: 600px) {
-  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table :is(thead, .fi-ta-selection-cell, .fi-ta-group-selection-cell),
-  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-cell :is([class$="-description"], [class*="-description "]) { display: none !important; }
-  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table, :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table > tbody { display: block; width: 100%; }
-  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-content-ctn { overflow-x: hidden !important; }
-  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 12px; padding: 10px 14px; }
-  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row::after { content: ""; order: 3; flex-basis: 100%; height: 0; }
-  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell { display: block; order: 4; flex: 0 1 auto; min-width: 0; max-width: 100%; width: auto !important; padding: 0 !important; overflow: hidden; color: var(--s-muted, inherit); font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
-  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell :not(button, .fi-icon-btn, .fi-icon-btn *) { padding-block: 0 !important; }
-  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell > * { padding-inline: 0 !important; }
-  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell:not(:is(.fi-ta-actions-cell, .fi-ta-cell:has(.fi-ta-actions)), :has(img)) * { min-width: 0; max-width: 100%; }
-  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell :is(.fi-ta-text, .fi-ta-text-item, .fi-ta-text-item-label, .fi-ta-placeholder):not(.fi-badge, .fi-badge *) { font-size: inherit !important; line-height: 1.4; }
-  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell :is(.fi-ta-text, .fi-ta-text-item, .fi-ta-text-item-label):not(.fi-badge, .fi-badge *, [class*="fi-color-"], [class*="fi-color-"] *) { color: inherit !important; }
-  /* The icon sits in the margin, so the lines under the name start where the name starts. */
-  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row:has(> .fi-ta-cell img) { padding-inline-start: 58px; }
-  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell:has(img) { order: 0; flex: none; width: 32px !important; margin-inline-start: -44px; }
-  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell:has(img) img { flex: none; width: 32px !important; max-width: none !important; height: 32px !important; object-fit: cover; }
-  /* The name: the first column with plain text (not the icon, a status badge, a select or the buttons), taking what is
-     left of the first line; the row's buttons end that line. */
-  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell:nth-child(1 of .fi-ta-cell:not(.fi-ta-selection-cell, :is(.fi-ta-actions-cell, .fi-ta-cell:has(.fi-ta-actions)), :has(img, .fi-badge, select, .fi-ta-icon, .fi-icon))) { order: 1; flex: 1 1 0; color: inherit; font-size: 14px; font-weight: 600; }
-  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > :is(.fi-ta-actions-cell, .fi-ta-cell:has(.fi-ta-actions)) { order: 2; flex: none; margin-inline-start: auto; overflow: visible; }
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table :is(.fi-ta-selection-cell, .fi-ta-group-selection-cell) { display: none !important; }
+}
+@media (min-width: 601px) {
+  /* One line per row: the name, then the other columns as short muted texts and chips, then the row's buttons. */
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row { flex-wrap: nowrap; }
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row::after { display: none; }
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell { order: 2; flex: 0 1 auto; }
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell:nth-child(1 of .fi-ta-cell:not(.fi-ta-selection-cell, :is(.fi-ta-actions-cell, .fi-ta-cell:has(.fi-ta-actions)), :has(img, .fi-badge, select, .fi-ta-icon))) { order: 1; flex: 1 1 12rem; }
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > :is(.fi-ta-actions-cell, .fi-ta-cell:has(.fi-ta-actions)) { order: 3; flex: none; }
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-selection-cell { order: 0; flex: none; }
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row { padding: 12px 18px; gap: 4px 14px; }
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row:has(> .fi-ta-cell img) { padding-inline-start: 64px; }
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell { font-size: 13px; }
+  :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row:hover { background: color-mix(in srgb, var(--s-ink, currentColor) 4%, transparent); }
 }
 
 /* Unsaved changes (P-38, unsaved.js): a bar at the bottom says "Changes made" with Discard and Save; leaving the
@@ -2674,5 +2744,77 @@ html.ps-frame .s-done {
 
   html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-search-field :is(.fi-input-wrp, .fi-input-wrp-content-ctn, input) {
     min-width: 0;
+  }
+}
+
+/* Phones: every field that takes typing has 16px text, as Filament's own fields do. Safari on an iPhone zooms in on a
+   field with smaller text, stays zoomed in and the page then slides sideways (Jeroen ja 4-11). Computers and tablets
+   keep the smaller fields. */
+@media (max-width: 600px) {
+  html :is(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="hidden"]), select, textarea) {
+    font-size: 16px !important;
+  }
+}
+
+/* The page head partial (simplify::partials.page-head): title and subtitle on the left, the actions on the right. */
+.s-page-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+}
+
+.s-page-head-text {
+  flex: 1 1 16rem;
+  min-width: 0;
+}
+
+.s-page-head-actions {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-inline-start: auto;
+}
+
+/* A list's "Sort by" menu and its direction (sort.js), in the list's own toolbar inside Simplify. */
+.s-sort {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 4px;
+}
+
+.s-sort-select {
+  max-width: 180px;
+  height: var(--s-h, 36px);
+  padding: 0 28px 0 10px;
+  border: 1px solid var(--s-line, var(--gray-300));
+  border-radius: var(--s-radius-sm, 8px);
+  background-color: var(--s-surface, transparent);
+  color: var(--s-ink, inherit);
+  font: inherit;
+  font-size: 13px;
+}
+
+.s-sort-dir {
+  display: inline-grid;
+  place-items: center;
+  width: var(--s-h, 36px);
+  height: var(--s-h, 36px);
+  border: 1px solid var(--s-line, var(--gray-300));
+  border-radius: var(--s-radius-sm, 8px);
+  background: var(--s-surface, transparent);
+  color: var(--s-ink, inherit);
+  cursor: pointer;
+}
+
+/* Phones: the menu takes what its longest choice needs at most, so the search beside it keeps its room. */
+@media (max-width: 600px) {
+  .s-sort-select {
+    max-width: 8.5rem;
+    height: var(--s-h, 36px);
   }
 }

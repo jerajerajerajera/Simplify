@@ -16,17 +16,20 @@
   const label = (el) => el.getAttribute('aria-label') || el.getAttribute('title') || tooltip(el) || el.textContent.trim();
   // The page's own table, not one inside a form, tab or relation manager: those keep their toolbar.
   const mainTable = () => [...document.querySelectorAll('.fi-ta-ctn')].find((el) => !el.parentElement.closest('.fi-resource-relation-managers, .fi-resource-relation-manager, .fi-sc-tabs, .fi-section, .fi-modal, .fi-ta-ctn'));
-  const button = (source, text, primary, fallback) => {
+  // kind: 'primary' (Create, with its name), 'text' (Save: icon and name, ADDONS.md "Page head") or an icon button.
+  const button = (source, text, kind, fallback) => {
+    const primary = kind === 'primary';
+    const labelled = primary || kind === 'text';
     const btn = parent.createElement('button');
     btn.type = 'button';
-    btn.className = 'ps-btn is-sm' + (primary ? ' is-primary' : ' is-icon') + (source.classList.contains('fi-color-danger') ? ' is-danger' : '');
+    btn.className = 'ps-btn is-sm' + (primary ? ' is-primary' : labelled ? '' : ' is-icon') + (source.classList.contains('fi-color-danger') ? ' is-danger' : '');
     btn.setAttribute('aria-label', text);
-    if (!primary) btn.dataset.tip = tooltip(source) || text;
+    if (!labelled) btn.dataset.tip = tooltip(source) || text;
     btn.disabled = source.disabled || source.getAttribute('aria-disabled') === 'true';
     const icon = source.querySelector('svg');
     if (icon) btn.append(parent.importNode(icon, true));
     else if (fallback) btn.insertAdjacentHTML('beforeend', `<svg aria-hidden="true"><use href="#ps-${fallback}"/></svg>`);
-    if (primary) btn.append(parent.createTextNode(text));
+    if (labelled) btn.append(parent.createTextNode(text));
     btn.addEventListener('click', () => createServer(source) || source.click());
     return btn;
   };
@@ -55,17 +58,19 @@
     const settings = document.querySelector('.s-settings > .s-bar button[type="submit"]');
     const header = document.querySelector('.s-settings') && root.dataset.psTree ? [] : [...document.querySelectorAll(HEADER_ACTIONS)].filter((el) => !el.closest('.fi-modal'));
     const sources = visible ? [...header, ...(table?.querySelectorAll('.fi-ta-header-toolbar > .fi-ta-actions > :is(button, a)') || []), ...(settings ? [settings] : [])].filter((el) => !el.closest('.fi-dropdown')) : [];
-    // Simplify's own pages (People & roles) have one toolbar: tabs, search and the add button.
+    // A Simplify page with its own toolbar (.s-toolbar): tabs, search and the add button.
     const own = visible ? document.querySelector('.fi-main .s-toolbar') : null;
     const segments = own ? [...own.querySelectorAll('.s-segments > button')] : [];
     if (own) sources.push(...own.querySelectorAll('.s-bar > button'));
     const search = table?.querySelector('.fi-ta-search-field input') || own?.querySelector('input[type="search"]') || null;
     const filters = table?.querySelector('.fi-ta-filters-dropdown .fi-dropdown-trigger > :is(button, a)') || null;
-    const next = JSON.stringify([!!search, !!filters, segments.map((el) => [label(el), el.classList.contains('is-active')]), sources.map((el) => [label(el), el.disabled || el.getAttribute('aria-disabled')])]);
+    // The list's "Sort by" menu (sort.js): its columns and the sorted one are part of what the bar shows.
+    const sorting = table && window.SimplifySort ? window.SimplifySort.state(table) : '';
+    const next = JSON.stringify([sorting, !!search, !!filters, segments.map((el) => [label(el), el.classList.contains('is-active')]), sources.map((el) => [label(el), el.disabled || el.getAttribute('aria-disabled')])]);
     if (next === signature) return;
     signature = next;
     bar.replaceChildren();
-    const bridged = !!(sources.length || search || filters || segments.length);
+    const bridged = !!(sources.length || search || filters || segments.length || sorting.includes('"'));
     root.toggleAttribute('data-ps-head-tools', bridged);
     if (!bridged) return bar.remove();
     if (!bar.isConnected) head.append(bar);
@@ -85,6 +90,8 @@
       }
       bar.append(group);
     }
+    const sort = table && window.SimplifySort ? window.SimplifySort.control(table, parent) : null;
+    if (sort) bar.append(sort);
     if (search) {
       const field = parent.createElement('label');
       field.className = 'ps-frame-search';
@@ -98,22 +105,24 @@
       field.append(input);
       bar.append(field);
     }
-    // Create (a link to /create) is the one button with its name; the rest are icon buttons before it.
+    // Create (a link to /create) has its name, Save its name and comes last; the rest are icon buttons before them.
     const primaries = [];
+    const saves = [];
     const seen = new Set();
     for (const source of sources) {
       const text = label(source);
       if (seen.has(text)) continue;
       seen.add(text);
-      if (/\/create(\?|$)/.test(source.getAttribute('href') || '') || source.classList.contains('s-btn-primary')) primaries.push(button(source, text, true));
-      else bar.append(button(source, text, false, source === settings ? 'save' : null));
+      if (/\/create(\?|$)/.test(source.getAttribute('href') || '') || source.classList.contains('s-btn-primary')) primaries.push(button(source, text, 'primary'));
+      else if (source === settings || source.classList.contains('s-save-button')) saves.push(button(source, text, 'text', 'save'));
+      else bar.append(button(source, text, 'icon'));
     }
     if (filters) {
-      const btn = button(filters, label(filters), false);
+      const btn = button(filters, label(filters), 'icon');
       btn.querySelectorAll('.fi-icon-btn-badge-ctn').forEach((el) => el.remove());
       bar.append(btn);
     }
-    bar.append(...primaries);
+    bar.append(...primaries, ...saves.slice(0, 1));
   };
   let queued = 0;
   const queue = () => (queued ||= requestAnimationFrame(() => {

@@ -84,6 +84,7 @@
       ],
       infoMenu: false,
       colorMenu: false,
+      lookMenu: false,
       bannerMenu: false,
       bannerChoices: [],
       // Set while a power action, rename or look change is on its way; Alpine treats an undefined name as an error.
@@ -415,7 +416,6 @@
         const state = bar.querySelector('.ps-console-state');
         bar.querySelector('.ps-console-dot').classList.toggle('connected', connected);
         bar.querySelector('.ps-live-bars').hidden = !connected;
-        this.quickCommands(terminal, bar.dataset.quick);
         if (!terminal.style.height) this.fitPage();
         state.textContent = connected ? state.dataset.connected : state.dataset.connecting;
       },
@@ -487,28 +487,6 @@
           dispatchEvent(new Event('resize'));
         }
         if (menu) menu.style.height = space ? card.offsetHeight + 'px' : '';
-      },
-
-      /** Minecraft: a row of common commands above Pelican's command line; a click puts one in the line to finish or send.
-          It lives in the terminal's own box (wire:ignore): next to it, each redraw of Pelican's console took it out again. */
-      quickCommands(terminal, label) {
-        const input = document.getElementById('send-command');
-        if (!this.server.minecraft || !input || input.readOnly || terminal.querySelector(':scope > .ps-quick-commands')) return;
-        const row = document.createElement('div');
-        row.className = 'ps-quick-commands ps-ui';
-        row.setAttribute('role', 'group');
-        row.setAttribute('aria-label', label);
-        for (const text of ['list', 'say ', 'time set day', 'weather clear', 'save-all']) {
-          const button = Object.assign(document.createElement('button'), { type: 'button', className: 'ps-quick-command', textContent: text.endsWith(' ') ? text + '…' : text });
-          button.addEventListener('click', () => {
-            input.value = text;
-            input.dispatchEvent(new Event('input', { bubbles: true }));
-            input.focus();
-            input.setSelectionRange(text.length, text.length);
-          });
-          row.append(button);
-        }
-        terminal.append(row);
       },
 
       /* Card ------------------------------------------------------------------------------------- */
@@ -646,7 +624,6 @@
         return this.rates[way] == null ? '—' : this.trafficBytes(this.rates[way]) + '/s';
       },
       metricLimit(key) {
-        const u = this.server.usage || {};
         if (key === 'network') return t('dashboard.traffic_used', { traffic: this.stats.rx == null || this.stats.tx == null ? '—' : '↓ ' + this.trafficBytes(this.stats.rx) + ' / ↑ ' + this.trafficBytes(this.stats.tx) });
         const cap = this.metricCap(key), share = this.metricShare(key);
         if (!cap) return t('dashboard.of_allocated', { amount: '∞' });
