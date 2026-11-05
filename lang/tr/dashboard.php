@@ -34,6 +34,7 @@ return [
         'profile_settings' => 'Profil ayarları',
         'light' => 'Açık',
         'dark' => 'Koyu',
+        'oled' => 'OLED',
         'system' => 'Sistem',
         'notifications_on_this_device' => 'Bu cihazdaki bildirimler',
         'switch_to_simple_mode' => 'Basit moda geç',

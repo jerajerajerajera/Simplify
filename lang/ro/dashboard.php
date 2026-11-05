@@ -34,6 +34,7 @@ return [
         'profile_settings' => 'Setări de profil',
         'light' => 'Luminos',
         'dark' => 'Întunecat',
+        'oled' => 'OLED',
         'system' => 'Sistem',
         'notifications_on_this_device' => 'Notificări pe acest dispozitiv',
         'switch_to_simple_mode' => 'Treceți la modul simplu',

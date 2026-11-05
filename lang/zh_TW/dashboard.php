@@ -34,6 +34,7 @@ return [
         'profile_settings' => '個人資料設定',
         'light' => '淺色',
         'dark' => '深色',
+        'oled' => 'OLED',
         'system' => '跟隨系統',
         'notifications_on_this_device' => '此裝置上的通知',
         'switch_to_simple_mode' => '切換到簡單模式',

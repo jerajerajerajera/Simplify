@@ -34,6 +34,7 @@ return [
         'profile_settings' => 'Profilinställningar',
         'light' => 'Ljust',
         'dark' => 'Mörkt',
+        'oled' => 'OLED',
         'system' => 'System',
         'notifications_on_this_device' => 'Aviseringar på den här enheten',
         'switch_to_simple_mode' => 'Byt till enkelt läge',

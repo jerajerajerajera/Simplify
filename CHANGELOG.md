@@ -7,6 +7,7 @@
 - Phones: in the open Admin menu the Health bar is as wide as the screen and reaches the bottom bar, without a dark strip under or beside it.
 - Unsaved changes: a password your browser remembers for the panel is no longer filled into an add-on's API key field (Settings › Add-ons), so the "Changes made" bar no longer appears before you changed anything; the bar is dark in the dark theme.
 - Server menu: Website is called Website embed, as in Simplify settings.
+- Theme: dark is one grey on every page, also with a theme plugin (the overview was black next to grey Admin pages), and Customize › Theme has OLED: a pure black background with darker cards.
 - Updates: after an update Simplify throws away the panel's compiled copies of its old pages once, so an update from 1.5.x no longer ends in a 500 on the overview ("View [dashboard.host] not found").
 
 ## 2.0.0-beta.6

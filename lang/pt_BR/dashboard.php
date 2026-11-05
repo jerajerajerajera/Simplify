@@ -34,6 +34,7 @@ return [
         'profile_settings' => 'Configurações do perfil',
         'light' => 'Claro',
         'dark' => 'Escuro',
+        'oled' => 'OLED',
         'system' => 'Sistema',
         'notifications_on_this_device' => 'Notificações neste dispositivo',
         'switch_to_simple_mode' => 'Mudar para o modo simples',

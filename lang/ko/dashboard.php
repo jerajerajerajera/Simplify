@@ -34,6 +34,7 @@ return [
         'profile_settings' => '프로필 설정',
         'light' => '라이트',
         'dark' => '다크',
+        'oled' => 'OLED',
         'system' => '시스템',
         'notifications_on_this_device' => '이 기기의 알림',
         'switch_to_simple_mode' => '단순 모드로 전환',

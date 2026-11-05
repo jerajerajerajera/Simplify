@@ -34,6 +34,7 @@ return [
         'profile_settings' => 'プロフィール設定',
         'light' => 'ライト',
         'dark' => 'ダーク',
+        'oled' => 'OLED',
         'system' => 'システム',
         'notifications_on_this_device' => 'このデバイスの通知',
         'switch_to_simple_mode' => 'シンプルモードに切り替え',

@@ -34,6 +34,7 @@ return [
         'profile_settings' => 'Налаштування профілю',
         'light' => 'Світла',
         'dark' => 'Темна',
+        'oled' => 'OLED',
         'system' => 'Системна',
         'notifications_on_this_device' => 'Сповіщення на цьому пристрої',
         'switch_to_simple_mode' => 'Перейти в простий режим',

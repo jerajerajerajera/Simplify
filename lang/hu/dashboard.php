@@ -34,6 +34,7 @@ return [
         'profile_settings' => 'Profilbeállítások',
         'light' => 'Világos',
         'dark' => 'Sötét',
+        'oled' => 'OLED',
         'system' => 'Rendszer',
         'notifications_on_this_device' => 'Értesítések ezen az eszközön',
         'switch_to_simple_mode' => 'Váltás egyszerű módra',

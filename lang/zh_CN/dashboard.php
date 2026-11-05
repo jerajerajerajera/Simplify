@@ -34,6 +34,7 @@ return [
         'profile_settings' => '个人资料设置',
         'light' => '浅色',
         'dark' => '深色',
+        'oled' => 'OLED',
         'system' => '跟随系统',
         'notifications_on_this_device' => '此设备上的通知',
         'switch_to_simple_mode' => '切换到简单模式',

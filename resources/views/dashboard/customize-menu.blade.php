@@ -30,7 +30,7 @@
             <div class="ps-customize-row is-first">
                 <div><strong>{{ $u('theme') }}</strong><small>{{ $u('theme_hint') }}</small></div>
                 <div class="ps-segmented" role="group" aria-label="{{ $u('theme') }}">
-                    <template x-for="t in [{key:'light',label:@js($u('light')),icon:'sun'},{key:'dark',label:@js($u('dark')),icon:'moon'},{key:'system',label:@js($u('system')),icon:'monitor'}]" :key="t.key">
+                    <template x-for="t in [{key:'light',label:@js($u('light')),icon:'sun'},{key:'dark',label:@js($u('dark')),icon:'moon'},{key:'oled',label:@js($u('oled')),icon:'moon-stars'},{key:'system',label:@js($u('system')),icon:'monitor'}]" :key="t.key">
                         <button type="button" :aria-pressed="theme===t.key" x-on:click="setTheme(t.key)"><svg aria-hidden="true"><use :href="'#ps-'+t.icon"/></svg><span x-text="t.label"></span></button>
                     </template>
                 </div>
