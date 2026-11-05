@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.0.0-beta.8
+
 - Updates: after an update of Simplify or any add-on, the panel throws away all compiled pages and starts PHP's opcache over once, so it never runs old code next to new pages (a 500 on a server page: "Undefined variable $locked"); the server page also opens with an older server class.
 - Settings: a user name your browser remembers for the panel is no longer filled into the Support link, so Save on Add-ons no longer fails on that field and jumps to General.
 - Theme: dark is one grey on every page, also with a theme plugin (the overview was black next to grey Admin pages), and Customize › Theme has OLED: a pure black background with darker cards.
