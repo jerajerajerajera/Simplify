@@ -425,7 +425,9 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 /* The word a little toward the ink, so it reads on the tinted button (4.5:1, Lighthouse); the heart keeps the tone. */
 .ps-health-pill > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: color-mix(in srgb, var(--ps-tone) 80%, var(--ps-ink)); }
 .ps .ps-health-pill.ps-icon-only { width: var(--ps-h); padding: 0; justify-content: center; }
-.ps .ps-health-pill.ps-icon-only > span { display: none; }
+/* Hidden, the word keeps its width out of the way, so fitWord can tell whether it would fit; the button does not slide between the two. */
+.ps .ps-health-pill.ps-icon-only > span { position: absolute; visibility: hidden; pointer-events: none; }
+.ps .ps-health-pill { position: relative; transition-property: scale, background-color, border-color, color; }
 .ps-health-place button { white-space: nowrap; }
 .ps-host-health { border-radius: calc(var(--ps-radius-lg) - 1px); }
 .ps-health-panel.expanded .ps-host-health { border-end-start-radius: 0; border-end-end-radius: 0; }

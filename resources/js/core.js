@@ -318,21 +318,41 @@
   };
 
   // A button with an icon and a word (the Health button in the top bar): the word shows when the top bar has room for
-  // it, otherwise only the icon (Jeroen 5-11). No room: the word would be cut off, the panel's name would be cut off,
-  // or the top bar would run wider than the window.
+  // it, otherwise only the icon (Jeroen 5-11). It only reads sizes and switches when the answer changes: the word keeps
+  // its own width while hidden (dashboard.css), and showing it again needs a little more room than keeping it, so the
+  // button never switches back and forth.
   const fitWord = (button) => {
     const word = button?.querySelector(':scope > span');
     if (!word || button.dataset.psFitWord) return;
     button.dataset.psFitWord = '1';
     const top = button.closest('.ps-top') || button.parentElement;
-    const cut = (el) => !!el && el.scrollWidth > el.clientWidth + 1;
+    let beside = 0;
     const fit = () => {
-      button.classList.remove('ps-icon-only');
-      if (!button.offsetParent) return;
-      if (cut(word) || cut(top?.querySelector('.ps-heading')) || cut(top?.querySelector('.ps-brand')) || cut(top)) button.classList.add('ps-icon-only');
+      if (!top || !button.offsetParent) return;
+      const icon = button.classList.contains('ps-icon-only');
+      if (!icon) beside = button.offsetWidth - word.offsetWidth;
+      const heading = top.querySelector(':scope > .ps-heading');
+      // What the top bar needs with every name in full: the heading up to the end of its text (a name shortened with
+      // "…" counts at its full width), the other parts as they are.
+      const parts = [...top.children].filter((el) => el.offsetParent && getComputedStyle(el).position !== 'absolute');
+      const gap = parseFloat(getComputedStyle(top).columnGap) || 0;
+      const text = (el) => {
+        const range = document.createRange();
+        range.selectNodeContents(el);
+        const ends = [...range.getClientRects()].filter((r) => r.width > 0).map((r) => r.right);
+        return ends.length ? Math.max(...ends) - el.getBoundingClientRect().left : el.offsetWidth;
+      };
+      const used = parts.reduce((sum, el) => sum + (el.matches('.ps-info-notes') ? 0 : el === heading ? text(el) : el.offsetWidth), 0)
+        + gap * Math.max(0, parts.length - 1);
+      const free = top.clientWidth - used;
+      const show = icon ? free >= word.offsetWidth + (beside || 48) - button.offsetWidth + 8 : free >= 0 && word.scrollWidth <= word.clientWidth + 1;
+      if (show === icon) button.classList.toggle('ps-icon-only', !show);
     };
-    if (window.ResizeObserver && top) { const watch = new ResizeObserver(() => fit()); watch.observe(top); watch.observe(button); }
-    if (window.MutationObserver) new MutationObserver(() => fit()).observe(word, { childList: true, characterData: true, subtree: true });
+    if (window.ResizeObserver) new ResizeObserver(() => fit()).observe(top || button);
+    if (window.MutationObserver) {
+      new MutationObserver(() => fit()).observe(word, { childList: true, characterData: true, subtree: true });
+      new MutationObserver(() => fit()).observe(button, { attributes: true, attributeFilter: ['style'] });
+    }
     document.fonts?.ready?.then(fit);
     fit();
   };

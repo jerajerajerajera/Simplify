@@ -53,18 +53,24 @@ const page = (brand, word) => `<!doctype html><html><head><meta charset="utf-8">
   addEventListener('load', () => setTimeout(() => {
     const word = pill.querySelector('span'), top = document.querySelector('.ps-top');
     const measure = () => ({
-      word: word.getBoundingClientRect().width > 0, iconOnly: pill.classList.contains('ps-icon-only'),
+      word: word.getBoundingClientRect().width > 0 && getComputedStyle(word).visibility !== 'hidden', iconOnly: pill.classList.contains('ps-icon-only'),
       ink: getComputedStyle(word).color, ground: getComputedStyle(pill).backgroundColor,
       wordCut: word.scrollWidth > word.clientWidth + 1, pill: Math.round(pill.getBoundingClientRect().width),
       headingOverflow: (() => { const h = document.querySelector('.ps-heading'); return h.scrollWidth > h.clientWidth + 1; })(),
       topOverflow: top.scrollWidth > top.clientWidth + 1, width: innerWidth, pageScrollX: document.documentElement.scrollWidth - innerWidth,
     });
     const first = measure();
+    // Settled: the button no longer switches between the word and the heart (no switching back and forth).
+    let flips = 0;
+    new MutationObserver(() => flips++).observe(pill, { attributes: true, attributeFilter: ['class'] });
+    window.__flips = () => flips;
     // The label changes when the host's state changes (x-text): a short word comes back from the heart alone.
     word.textContent = 'OK';
     setTimeout(() => {
-      document.getElementById('out').textContent = JSON.stringify({ ...first, short: measure() });
-    }, 100);
+      const short = measure(), settled = flips;
+      flips = 0;
+      setTimeout(() => { document.getElementById('out').textContent = JSON.stringify({ ...first, short, flipsAfter: flips, settled }); }, 1000);
+    }, 600);
   }, 300));
 </script></body></html>`;
 
@@ -131,6 +137,7 @@ const check = (name, ok, detail) => { console.log(`${ok ? 'PASS' : 'FAIL'} ${nam
     if (!r) { check(`${name} (measured)`, false, null); continue; }
     const fits = wordShows ? r.word && !r.iconOnly && !r.wordCut : !r.word && r.iconOnly;
     if (r.word) check(`${name}; the word reads on the button (4.5:1)`, contrast(r.ink, r.ground) >= 4.5, { ink: r.ink, ground: r.ground, ratio: contrast(r.ink, r.ground).toFixed(2) });
+    check(`${name}; the button stays put (no word/heart loop)`, r.flipsAfter === 0, { flipsAfter: r.flipsAfter, settled: r.settled });
     check(name, r.width === width && fits && !r.topOverflow && !r.headingOverflow && r.pageScrollX <= 0, r);
     if (shortShows) check(`${name}; a short word afterwards shows`, r.short.word && !r.short.iconOnly && !r.short.topOverflow, r.short);
     else check(`${name}; a short word afterwards: still the heart, the name ends in "…" within its room`, r.short.iconOnly && !r.short.headingOverflow && !r.short.topOverflow, r.short);
