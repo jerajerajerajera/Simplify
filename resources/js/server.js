@@ -113,6 +113,7 @@
       init() {
         this.initShell();
         this.take(this.server);
+        if (this.server?.locked) this.lockPage();
         this.$watch('themeDark', () => this.paintAccent());
         // Pelican's console page already streams the numbers from Wings; every other page asks Simplify now and then.
         this.refreshTimer = setInterval(() => this.refresh(), this.refreshSeconds);
@@ -609,6 +610,18 @@
         }
       },
       /** Shows the status bar while the server card is scrolled out of view. */
+      /** A server an add-on keeps to itself (Addon::lockedServer): the console output runs on, the rest cannot be used. */
+      lockPage() {
+        const LOCKED = '#send-command, .ps-server-stats, .ps-server-menu, .ps-phone-sections, .sm-quick-commands, .ps-console-clear, .fi-header-actions-ctn';
+        const lock = () => document.querySelectorAll(LOCKED).forEach((el) => {
+          if (el.matches('input, textarea, button')) el.disabled = true;
+          if (!el.inert) el.inert = true;
+          el.classList.add('ps-is-locked');
+        });
+        lock();
+        // Pelican draws its console (and its command line) after this top; whatever it adds later is locked too.
+        new MutationObserver(lock).observe(document.body, { childList: true, subtree: true });
+      },
       watchServerInfo(el) {
         new IntersectionObserver(([entry]) => (this.statusBarVisible = !entry.isIntersecting && entry.boundingClientRect.bottom < 0)).observe(el);
       },

@@ -239,6 +239,35 @@ final class SettingsFormRow extends Component
     }
 }
 
+final class LockActions extends Component
+{
+    public string $server = '';
+
+    public function render(): string
+    {
+        return '<div class="smoke-lock-actions">Force kill · Retry</div>';
+    }
+}
+
+/** Locks a server the way Egg Updates locks its test server (Addon::lockedServer, API 10). */
+final class LockAddon extends Addon
+{
+    public function id(): string
+    {
+        return 'lock-addon';
+    }
+
+    public function name(): string
+    {
+        return 'Lock add-on';
+    }
+
+    public function lockedServer(Server $server): ?array
+    {
+        return str_starts_with($server->name, 'Egg update test: ') ? ['notice' => 'This test server is removed when the egg update is done.', 'actions' => LockActions::class] : null;
+    }
+}
+
 final class FormAddon extends Addon
 {
     public function id(): string
@@ -751,6 +780,45 @@ step('the server page renames the server, and someone without access cannot use 
     Livewire\Livewire::actingAs($stranger)->test(ServerPage::class, ['server' => $server])->call('saveName', 'Taken')->assertForbidden();
     auth()->setUser($admin);
     $stranger->delete();
+});
+step('a server an add-on locks shows only its console, without address, and Simplify\'s actions refuse', function ($app) use ($admin, $server) {
+    $app->tag([LockAddon::class], AddonRegistry::TAG);
+    $name = $server->name;
+    $server->forceFill(['name' => 'Egg update test: Paper'])->saveQuietly();
+    try {
+        Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('server'));
+        auth()->setUser($admin);
+        Filament\Facades\Filament::setTenant($server);
+        $page = Livewire\Livewire::actingAs($admin)->test(ServerPage::class, ['server' => $server]);
+        $card = $page->instance()->initial()['server'];
+        if (! ($card['locked'] ?? false) || $card['address'] !== null || $card['sftp'] !== null || $card['can_edit'] || $card['can_delete']) {
+            throw new RuntimeException('the locked server still shows a way in: '.json_encode($card));
+        }
+        $html = $page->html();
+        if (! str_contains($html, 'smoke-lock-actions') || ! str_contains($html, 'This test server is removed') || str_contains($html, 'ps-power-main')) {
+            throw new RuntimeException('the locked server page does not show only the add-on\'s buttons and its line');
+        }
+        foreach ([['power', 'start'], ['saveName', 'Taken'], ['acceptEula']] as $call) {
+            Livewire\Livewire::actingAs($admin)->test(ServerPage::class, ['server' => $server])->call(...$call)->assertStatus(423);
+        }
+        // Every other page of the server goes back to the console, also typed into the address bar.
+        $console = route('filament.server.pages.console', ['tenant' => $server]);
+        foreach (Route::getRoutes() as $route) {
+            if (str_starts_with((string) $route->getName(), 'filament.server.') && $route->getName() !== 'filament.server.pages.console' && in_array('GET', $route->methods(), true) && $route->parameterNames() === ['tenant']) {
+                $url = route($route->getName(), ['tenant' => $server]);
+                $response = visit($admin, $url);
+                if ($response->isRedirect() && rtrim((string) $response->headers->get('Location'), '/') !== rtrim($console, '/')) {
+                    throw new RuntimeException($url.' goes to '.$response->headers->get('Location').' instead of the console');
+                }
+                if (! $response->isRedirect() && $response->getStatusCode() < 400) {
+                    throw new RuntimeException($url.' opens on a locked server');
+                }
+            }
+        }
+        expectOk(visit($admin, $console), $console);
+    } finally {
+        $server->forceFill(['name' => $name])->saveQuietly();
+    }
 });
 step('panel settings are saved and a bad value is refused', function () use ($admin) {
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('admin'));

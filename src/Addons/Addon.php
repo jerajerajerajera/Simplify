@@ -27,9 +27,9 @@ abstract class Addon
      * The contract version: 1 in Simplify 1.0, 2 since 1.1 (serverInfo, serverLinks, customerLinks, hostModeDefault),
      * 3 since 1.3 (setupFields, setupState, saveSetup), 4 since 1.5.5 (accountPages), 5 since 1.5.6 (startUrl), 6 since
      * 2.0 (connections), 7 since 2.0 (serverSections gone), 8 since 2.0 (settingsForm), 9 since 2.0 (serverTabs,
-     * replacedServerPages). Raised whenever a method is added or removed.
+     * replacedServerPages), 10 since 2.0 (lockedServer). Raised whenever a method is added or removed.
      */
-    public const API = 9;
+    public const API = 10;
 
     /** The add-on's plugin id, for example "simplify-servermaker". */
     abstract public function id(): string;
@@ -188,6 +188,21 @@ abstract class Addon
     public function replacedServerPages(): array
     {
         return [];
+    }
+
+    /**
+     * A server that only the add-on may work on, for example Egg Updates' temporary test server: null leaves it alone.
+     * Otherwise Simplify locks its page for everyone. The console output keeps running, everything else is grey and
+     * cannot be used (power, ⋯, the pencils, the console's command line, the stats and the menu), the address is
+     * hidden, every other page of the server goes back to the console, and Simplify's own server actions refuse.
+     * In place of the power buttons Simplify shows `actions`, a Livewire component of the add-on that gets
+     * ['server' => uuid] and checks its own permissions, and under them `notice`, one line that says why.
+     *
+     * @return array{notice: string, actions: class-string<\Livewire\Component>}|null
+     */
+    public function lockedServer(Server $server): ?array
+    {
+        return null;
     }
 
     /**
