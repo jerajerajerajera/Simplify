@@ -259,7 +259,7 @@ return [
             'critical' => 'Kritisch',
             'maintenance' => 'Wartung',
             'high' => 'Hohe Auslastung',
-            'healthy' => 'Alles O.K.',
+            'healthy' => 'Normal',
         ],
         'problems' => [
             'timeout' => 'Wings hat nicht rechtzeitig geantwortet',
