@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.0.0-beta.7
+
 - Add-ons: an add-on can lock a server that only it may work on, such as a temporary test server: its page keeps only the console output, the add-on's own buttons and a line that says why, and its other pages go back to the console (add-on API 10, `lockedServer()`).
 - Admin menu: Pelican plugins is a heading with its plugins always under it, and Show more from the sixth plugin on.
 - Phones: in the open Admin menu the Health bar is as wide as the screen and reaches the bottom bar, without a dark strip under or beside it.
