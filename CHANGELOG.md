@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Admin menu: Pelican plugins is a heading with its plugins always under it, and Show more from the sixth plugin on.
+
 - Unsaved changes: a password your browser remembers for the panel is no longer filled into an add-on's API key field (Settings › Add-ons), so the "Changes made" bar no longer appears before you changed anything; the bar is dark in the dark theme.
 - Server menu: Website is called Website embed, as in Simplify settings.
 
