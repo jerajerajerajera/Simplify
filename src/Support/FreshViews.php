@@ -20,8 +20,8 @@ final class FreshViews
      * @param  string|null  $known  The version the compiled views belong to (null: not known).
      * @param  iterable<string>  $views  Paths of Simplify's view files.
      * @param  callable(string): string  $compiledPath  Where Laravel keeps the compiled copy of a view file.
-     * @param  callable(string): void  $remove  Removes a compiled copy, if it is there.
-     * @param  callable(string): void  $remember  Remembers the version the compiled views now belong to.
+     * @param  callable(string): mixed  $remove  Removes a compiled copy, if it is there.
+     * @param  callable(string): mixed  $remember  Remembers the version the compiled views now belong to.
      * @return bool True when this call removed the old copies.
      */
     public static function refresh(string $version, ?string $known, iterable $views, callable $compiledPath, callable $remove, callable $remember): bool
