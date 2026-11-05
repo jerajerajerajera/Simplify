@@ -160,8 +160,16 @@ final class SettingsFields
     /** The banners people uploaded for their servers, to remove one that should not be there. Settings page only. */
     public static function banners(): Section
     {
-        return Section::make(__(self::T.'appearance.banners'))->schema([
+        return Section::make(__(self::T.'appearance.banners'))->description(__(self::T.'appearance.banners_help'))->schema([
             View::make('simplify::partials.server-banners'),
+        ]);
+    }
+
+    /** Settings only: what the setup does, beside a real button to run it again. */
+    public static function setupAgain(): Section
+    {
+        return Section::make(__(self::T.'general.setup'))->schema([
+            View::make('simplify::partials.setup-again'),
         ]);
     }
 

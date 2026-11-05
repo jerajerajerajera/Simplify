@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Admin pages: the page's box no longer runs below the window for a moment after Plugins (or another page) opens.
+- Simplify settings: Run setup again is a section of its own under General, with what it does and a button with its name; each uploaded server banner has a Remove button with its name and shows which servers use it.
 
 ## 2.0.0-beta.8
 

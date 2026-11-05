@@ -2427,6 +2427,28 @@ html.ps-frame .s-done {
   gap: var(--s-space-3);
 }
 
+.s-banner .s-row-text {
+  overflow-wrap: anywhere;
+}
+
+/* A section with one action (Settings › General › Setup): what it does on the left, its button on the right; on a
+   narrow screen the button goes under the text. */
+.s-action-row {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-space-3);
+  justify-content: space-between;
+}
+
+/* As large as a field's help text beside it, not the small muted size. */
+.s-action-row > p {
+  flex: 1 1 260px;
+  font-size: var(--s-text);
+  margin: 0;
+  min-width: 0;
+}
+
 .s-banner img {
   aspect-ratio: 16 / 9;
   border-radius: var(--s-radius-sm);

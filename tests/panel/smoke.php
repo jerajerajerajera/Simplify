@@ -395,6 +395,10 @@ step('settings page renders with its one row of tabs, Pelican as a link without 
     if (str_contains($html, 'fi-header-subheading') || ! str_contains($html, 's-settings-setup') || ! str_contains($html, 's-settings-note')) {
         throw new RuntimeException('the settings head still has the version line or Run setup again');
     }
+    // Run setup again is a section of its own: a title, what it does and a button with its name, not an icon only (Jeroen 5-11).
+    if (! preg_match('~class="s-action-row s-settings-setup">\s*<p[^>]*>[^<]+</p>\s*<a class="s-btn"[^>]*>.*?<span>'.preg_quote(e(__('simplify::setup.again')), '~').'</span>~s', $html)) {
+        throw new RuntimeException('Run setup again is not a labelled button with its explanation');
+    }
     // Appearance keeps colour, name and logo; the name's style designer is the setup's only.
     if (str_contains($html, 'class="s-presets"') || ! str_contains($html, 'brand_name')) {
         throw new RuntimeException('Appearance on the settings page is not the short one');
