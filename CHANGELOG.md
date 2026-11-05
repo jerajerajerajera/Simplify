@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.0.0-beta.11
+
 - Schedules: Announcement "When the server is online" waits without a queue worker: the scheduler looks every minute, so it also works on a panel with the sync queue (it used to send nothing there).
 
 ## 2.0.0-beta.10
