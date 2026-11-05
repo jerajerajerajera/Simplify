@@ -765,6 +765,53 @@ async function scheduleFlow() {
   say('schedule-edit', st.tasks >= 3 && st.inView && st.clickable && (/^phone/.test(stand) || st.pageScroll <= 1), st);
 }
 
+// The Admin page's content box keeps its height while a page loads (section=boxwatch, K-B61): Plugins opened from the
+// Admin menu, many times, its box sampled every frame for five seconds. The box never ends below the window.
+async function boxwatchFlow() {
+  const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
+  const watch = () => page.evaluate(() => new Promise((done) => {
+    const r = (e) => { if (!e) return null; const b = e.getBoundingClientRect(); return Math.round(b.top) + '..' + Math.round(b.bottom); };
+    const snap = () => {
+      const lay = document.querySelector('.fi-layout'), ctn = document.querySelector('.fi-layout > .fi-main-ctn');
+      const cs = ctn && getComputedStyle(ctn), ls = lay && getComputedStyle(lay);
+      return { html: document.documentElement.className.split(' ').filter((c) => /^ps-|dark/.test(c)).join(' '), layout: lay && (r(lay) + ' h ' + ls.height + ' rows ' + ls.gridTemplateRows + ' ' + ls.display + ' pb ' + ls.paddingBottom),
+        ctn: ctn && (r(ctn) + ' h ' + cs.height + ' max ' + cs.maxHeight + ' min ' + cs.minHeight + ' row ' + cs.gridRow + ' as ' + cs.alignSelf + ' ov ' + cs.overflowY + ' pb ' + cs.paddingBottom),
+        main: r(document.querySelector('.fi-main')), kids: lay ? [...lay.children].map((k) => (k.getAttribute('x-persist') || k.tagName + '.' + String(k.className).split(' ')[0]) + ' ' + r(k) + ' ' + getComputedStyle(k).gridRow + ' ' + getComputedStyle(k).display) : [],
+        page: document.documentElement.scrollHeight, body: r(document.body), sheets: document.styleSheets.length, url: location.pathname };
+    };
+    let worst = null, worstBottom = -1, frames = 0; const t0 = performance.now();
+    const tick = () => {
+      frames++;
+      const ctn = document.querySelector('.fi-layout > .fi-main-ctn');
+      if (ctn && document.documentElement.classList.contains('ps-shell')) { const b = ctn.getBoundingClientRect().bottom; if (b > worstBottom) { worstBottom = b; worst = { at: Math.round(performance.now() - t0), ...snap() }; } }
+      if (performance.now() - t0 < 5000) requestAnimationFrame(tick); else done({ frames, bottom: Math.round(worstBottom), window: innerHeight, worst });
+    };
+    tick();
+  }));
+  const results = [];
+  for (let i = 0; i < 8; i++) {
+    await goto(i % 2 ? '/admin/nodes' : '/admin/servers', 1200);
+    await openAdminMenu();
+    const leaf = page.locator('.ps-admin-side a[href$="/admin/plugins"] >> visible=true').first();
+    if (!(await leaf.count())) { await page.locator('.ps-admin-side .ps-host-group-head:has-text("Pelican settings")').first().click().catch(() => {}); await sleep(500); }
+    const go = page.locator('.ps-admin-side a[href$="/admin/plugins"] >> visible=true').first();
+    if (!(await go.count())) { say('boxwatch-plugins', false, { note: 'no Plugins link in the Admin menu', url: rel(page.url()) }); return; }
+    const w = watch();
+    await go.click().catch(() => {});
+    const res = await w.catch((e) => ({ error: e.message.slice(0, 120) }));
+    // The click may navigate away from the watching document (a full load): watch the new one too.
+    const res2 = await watch().catch(() => null);
+    results.push({ i, click: res, after: res2 && { bottom: res2.bottom, worst: res2.bottom > res2.window + 2 ? res2.worst : undefined } });
+    if (i === 0) await record('boxwatch-plugins', 'Admin-pagina · Plugins (bewaakt)');
+  }
+  const bad = results.filter((x) => (x.click?.bottom > (x.click?.window ?? 1e9) + 2) || (x.after && x.after.bottom > (x.click?.window ?? 1e9) + 2));
+  say('boxwatch-plugins', results.length === 8 && !bad.length, { runs: results.length, bad: bad.slice(0, 3), bottoms: results.map((x) => [x.click?.bottom, x.after?.bottom]) });
+  // Direct loads (not wire:navigate) as well.
+  const direct = [];
+  for (let i = 0; i < 4; i++) { await page.goto('/admin/plugins', { waitUntil: 'commit' }).catch(() => {}); const d = await watch().catch(() => null); direct.push(d && { bottom: d.bottom, worst: d.bottom > d.window + 2 ? d.worst : undefined }); }
+  say('boxwatch-plugins-load', direct.every((d) => d && d.bottom <= 802), { direct });
+}
+
 // Server Maker (section=maker, with servermaker): every wizard step on a real screen, for its own docs/screenshots:
 // Minecraft › Plugins, another game's Server step, Resources and Review. Each step must move on and show its own form.
 async function makerFlow() {
@@ -1751,6 +1798,7 @@ const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(
         const sections = { first: [['d1440', 'phone390'], () => firstFlow(theme)], layers: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => layersFlow()], nav: [['d1440', 'laag1366'], () => navFlow()], create: [['d1440', 'laag1366', 'phone390'], () => createFlow()],
           maker: [['d1440', 'phone390'], () => makerFlow()],
           schedule: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => scheduleFlow()],
+          boxwatch: [['d1100', 'laag1366', 'hoog1280', 'd1440', 'd1920'], () => boxwatchFlow()],
           extras: [['d1440', 'laag1366', 'laag1100', 'phone390'], () => extrasFlow(theme)], fixes: [['d1440', 'phone390'], () => fixesFlow()], hub: [['d1440', 'laag1366', 'phone390'], () => hubFlow()], seasons: [['d1440', 'tablet768', 'phone390'], () => seasons(theme)] };
         for (const part of section.split(',')) { const [where, run] = sections[part] || [[], null]; if (!run || !where.includes(name)) continue; try { await setTheme(theme); await run(); } catch (e) { problems.push(`${stand} ${part}: ${e.message.slice(0, 200)}`); } }
         continue;
