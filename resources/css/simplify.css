@@ -846,6 +846,10 @@ html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn {
   padding: 0 !important;
   overflow-y: auto;
   overscroll-behavior: contain;
+  /* Filament animates every property of the box (transition: all). Here it only fades: when the frame's rules take
+     its minimum height from a window to 0, an animated min-height ran the box below the window for a moment, and a
+     transition wins over !important (K-B61). */
+  transition-property: opacity !important;
 }
 
 /* The page grows with what is on it (Filament gives it the card's height), so Pelican's copyright footer after it is

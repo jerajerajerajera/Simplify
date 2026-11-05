@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Admin pages: the page's box no longer runs below the window for a moment after Plugins (or another page) opens.
+
 ## 2.0.0-beta.8
 
 - Updates: after an update of Simplify or any add-on, the panel throws away all compiled pages and starts PHP's opcache over once, so it never runs old code next to new pages (a 500 on a server page: "Undefined variable $locked"); the server page also opens with an older server class.
