@@ -85,4 +85,22 @@ return [
     'in_game' => [
         'prefix' => '[Ankündigung]',
     ],
+    'task' => [
+        'name' => 'Ankündigung',
+        'message' => 'Nachricht',
+        'send' => 'Senden',
+        'send_now' => 'Sofort',
+        'send_online' => 'Wenn der Server online ist',
+        'send_online_help' => 'Wartet bis zu 10 Minuten. Ist der Server dann nicht online, sagt die Benachrichtigung, dass er nicht online kam.',
+        'send_to' => 'Senden an',
+        'game_chat' => 'Spielchat',
+        'game_chat_help' => 'Nutzt den Chatbefehl des Spiels, wie Ankündigungen › Im Spiel. Wird übersprungen, wenn der Server offline ist.',
+        'notify' => 'Benachrichtigung',
+        'notify_help' => 'In der Glocke und als App-Benachrichtigung, für den Besitzer und die Personen mit Zugriff auf diesen Server.',
+        'when_online' => 'Wenn online: :message',
+        'not_online' => ':server ist nicht online gekommen',
+        'message_required' => 'Schreibe eine Nachricht.',
+        'message_long' => 'Die Nachricht darf höchstens 240 Zeichen lang sein.',
+        'send_to_required' => 'Wähle den Spielchat, eine Benachrichtigung oder beides.',
+    ],
 ];

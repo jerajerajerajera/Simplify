@@ -85,4 +85,22 @@ return [
     'in_game' => [
         'prefix' => '[Tiedote]',
     ],
+    'task' => [
+        'name' => 'Tiedote',
+        'message' => 'Viesti',
+        'send' => 'Lähetä',
+        'send_now' => 'Heti',
+        'send_online' => 'Kun palvelin on verkossa',
+        'send_online_help' => 'Odottaa enintään 10 minuuttia. Jos palvelin ei ole silloin verkossa, ilmoitus kertoo, ettei se tullut verkkoon.',
+        'send_to' => 'Lähetä kohteeseen',
+        'game_chat' => 'Pelichat',
+        'game_chat_help' => 'Käyttää pelin chat-komentoa, kuten Tiedotteet › Pelissä. Ohitetaan, kun palvelin ei ole verkossa.',
+        'notify' => 'Ilmoitus',
+        'notify_help' => 'Kellossa ja sovellusilmoituksena omistajalle ja henkilöille, joilla on pääsy tähän palvelimeen.',
+        'when_online' => 'Kun verkossa: :message',
+        'not_online' => ':server ei tullut verkkoon',
+        'message_required' => 'Kirjoita viesti.',
+        'message_long' => 'Viestissä voi olla enintään 240 merkkiä.',
+        'send_to_required' => 'Valitse pelichat, ilmoitus tai molemmat.',
+    ],
 ];

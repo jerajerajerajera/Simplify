@@ -85,4 +85,22 @@ return [
     'in_game' => [
         'prefix' => '[Thông báo]',
     ],
+    'task' => [
+        'name' => 'Thông báo',
+        'message' => 'Tin nhắn',
+        'send' => 'Gửi',
+        'send_now' => 'Ngay lập tức',
+        'send_online' => 'Khi máy chủ trực tuyến',
+        'send_online_help' => 'Chờ tối đa 10 phút. Nếu đến lúc đó máy chủ chưa trực tuyến, thông báo sẽ cho biết máy chủ không trực tuyến.',
+        'send_to' => 'Gửi tới',
+        'game_chat' => 'Trò chuyện trong game',
+        'game_chat_help' => 'Dùng lệnh trò chuyện của game, giống Thông báo › Trong game. Bỏ qua khi máy chủ ngoại tuyến.',
+        'notify' => 'Thông báo đẩy',
+        'notify_help' => 'Trong chuông và dưới dạng thông báo ứng dụng, cho chủ sở hữu và những người có quyền truy cập máy chủ này.',
+        'when_online' => 'Khi trực tuyến: :message',
+        'not_online' => ':server không trực tuyến',
+        'message_required' => 'Hãy viết một tin nhắn.',
+        'message_long' => 'Tin nhắn tối đa 240 ký tự.',
+        'send_to_required' => 'Chọn trò chuyện trong game, thông báo đẩy hoặc cả hai.',
+    ],
 ];

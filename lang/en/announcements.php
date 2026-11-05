@@ -85,4 +85,22 @@ return [
     'in_game' => [
         'prefix' => '[Announcement]',
     ],
+    'task' => [
+        'name' => 'Announcement',
+        'message' => 'Message',
+        'send' => 'Send',
+        'send_now' => 'Right away',
+        'send_online' => 'When the server is online',
+        'send_online_help' => 'Waits up to 10 minutes. If the server is not online by then, the notification says that it did not come online.',
+        'send_to' => 'Send to',
+        'game_chat' => 'Game chat',
+        'game_chat_help' => 'Uses the chat command of the game, as Announcements › In game does. Skipped when the server is offline.',
+        'notify' => 'Notification',
+        'notify_help' => 'In the bell and as an app notification, for the owner and the people with access to this server.',
+        'when_online' => 'When online: :message',
+        'not_online' => ':server did not come online',
+        'message_required' => 'Write a message.',
+        'message_long' => 'The message can be at most 240 characters.',
+        'send_to_required' => 'Pick the game chat, a notification or both.',
+    ],
 ];

@@ -85,4 +85,22 @@ return [
     'in_game' => [
         'prefix' => '[공지]',
     ],
+    'task' => [
+        'name' => '공지',
+        'message' => '메시지',
+        'send' => '보내기',
+        'send_now' => '바로',
+        'send_online' => '서버가 온라인일 때',
+        'send_online_help' => '최대 10분 기다립니다. 그때까지 서버가 온라인이 아니면 알림에서 온라인이 되지 않았다고 알려 줍니다.',
+        'send_to' => '보낼 곳',
+        'game_chat' => '게임 채팅',
+        'game_chat_help' => '공지 › 게임 내와 같이 게임의 채팅 명령을 사용합니다. 서버가 오프라인이면 건너뜁니다.',
+        'notify' => '알림',
+        'notify_help' => '종 모양과 앱 알림으로, 소유자와 이 서버에 접근할 수 있는 사람에게 보냅니다.',
+        'when_online' => '온라인일 때: :message',
+        'not_online' => ':server이(가) 온라인이 되지 않았습니다',
+        'message_required' => '메시지를 입력하세요.',
+        'message_long' => '메시지는 최대 240자입니다.',
+        'send_to_required' => '게임 채팅, 알림 또는 둘 다 선택하세요.',
+    ],
 ];

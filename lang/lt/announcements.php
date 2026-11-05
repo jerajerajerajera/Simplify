@@ -85,4 +85,22 @@ return [
     'in_game' => [
         'prefix' => '[Pranešimas]',
     ],
+    'task' => [
+        'name' => 'Skelbimas',
+        'message' => 'Žinutė',
+        'send' => 'Siųsti',
+        'send_now' => 'Iš karto',
+        'send_online' => 'Kai serveris bus prisijungęs',
+        'send_online_help' => 'Laukia iki 10 minučių. Jei serveris iki tol neprisijungia, pranešime parašoma, kad jis neprisijungė.',
+        'send_to' => 'Siųsti į',
+        'game_chat' => 'Žaidimo pokalbis',
+        'game_chat_help' => 'Naudoja žaidimo pokalbio komandą, kaip Skelbimai › Žaidime. Praleidžiama, kai serveris neprisijungęs.',
+        'notify' => 'Pranešimas',
+        'notify_help' => 'Varpelyje ir kaip programėlės pranešimas savininkui ir žmonėms, turintiems prieigą prie šio serverio.',
+        'when_online' => 'Kai prisijungęs: :message',
+        'not_online' => ':server neprisijungė',
+        'message_required' => 'Parašykite žinutę.',
+        'message_long' => 'Žinutė gali būti ne ilgesnė nei 240 simbolių.',
+        'send_to_required' => 'Pasirinkite žaidimo pokalbį, pranešimą arba abu.',
+    ],
 ];

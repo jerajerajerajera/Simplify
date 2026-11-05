@@ -85,4 +85,22 @@ return [
     'in_game' => [
         'prefix' => '[Oznámení]',
     ],
+    'task' => [
+        'name' => 'Oznámení',
+        'message' => 'Zpráva',
+        'send' => 'Odeslat',
+        'send_now' => 'Hned',
+        'send_online' => 'Až bude server online',
+        'send_online_help' => 'Čeká až 10 minut. Pokud server do té doby není online, oznámení řekne, že se nespustil.',
+        'send_to' => 'Odeslat do',
+        'game_chat' => 'Herní chat',
+        'game_chat_help' => 'Použije chatový příkaz hry, stejně jako Oznámení › Ve hře. Přeskočeno, když je server offline.',
+        'notify' => 'Upozornění',
+        'notify_help' => 'Ve zvonku a jako upozornění aplikace, pro vlastníka a lidi s přístupem k tomuto serveru.',
+        'when_online' => 'Až bude online: :message',
+        'not_online' => ':server se nespustil',
+        'message_required' => 'Napište zprávu.',
+        'message_long' => 'Zpráva může mít nejvýše 240 znaků.',
+        'send_to_required' => 'Vyberte herní chat, upozornění nebo obojí.',
+    ],
 ];

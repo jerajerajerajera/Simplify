@@ -2919,3 +2919,74 @@ html.ps-frame .s-done {
 .ps-locked-actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
 .ps-locked-notice { display: flex; flex-basis: 100%; align-items: center; justify-content: flex-end; gap: 6px; margin: 0; color: var(--ps-muted); font-size: 13px; line-height: 1.35; }
 .ps-locked-notice svg { flex: none; width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+/* The "Announcement" task in Pelican's schedules (announcements/task-field): its parts look like Filament's own fields. */
+.s-task {
+  display: grid;
+  gap: 16px;
+}
+
+.s-task-row {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.s-task-label {
+  padding: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  color: var(--gray-950);
+}
+
+.dark .s-task-label {
+  color: #fff;
+}
+
+.s-task-required {
+  margin-inline-start: 2px;
+  font-weight: 500;
+  color: var(--danger-600, #dc2626);
+}
+
+.s-task-count {
+  justify-self: end;
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--gray-500);
+}
+
+.s-task-help {
+  display: block;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--gray-500);
+}
+
+.dark .s-task-help {
+  color: var(--gray-400);
+}
+
+.s-task-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.s-task-check > input {
+  flex: none;
+  margin-top: 4px;
+}
+
+.s-task-check-name {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+}

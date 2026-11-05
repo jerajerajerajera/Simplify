@@ -85,4 +85,22 @@ return [
     'in_game' => [
         'prefix' => '[Közlemény]',
     ],
+    'task' => [
+        'name' => 'Közlemény',
+        'message' => 'Üzenet',
+        'send' => 'Küldés',
+        'send_now' => 'Azonnal',
+        'send_online' => 'Amikor a szerver online',
+        'send_online_help' => 'Legfeljebb 10 percet vár. Ha a szerver addig nem online, az értesítés jelzi, hogy nem indult el.',
+        'send_to' => 'Küldés ide',
+        'game_chat' => 'Játékchat',
+        'game_chat_help' => 'A játék chatparancsát használja, ahogy a Közlemények › Játékban is. Kimarad, ha a szerver offline.',
+        'notify' => 'Értesítés',
+        'notify_help' => 'A csengőben és alkalmazás-értesítésként, a tulajdonosnak és azoknak, akik hozzáférnek ehhez a szerverhez.',
+        'when_online' => 'Ha online: :message',
+        'not_online' => ':server nem lett online',
+        'message_required' => 'Írj egy üzenetet.',
+        'message_long' => 'Az üzenet legfeljebb 240 karakter lehet.',
+        'send_to_required' => 'Válaszd a játékchatet, egy értesítést vagy mindkettőt.',
+    ],
 ];

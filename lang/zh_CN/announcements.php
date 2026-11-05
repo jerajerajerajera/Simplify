@@ -85,4 +85,22 @@ return [
     'in_game' => [
         'prefix' => '[公告]',
     ],
+    'task' => [
+        'name' => '公告',
+        'message' => '消息',
+        'send' => '发送',
+        'send_now' => '立即',
+        'send_online' => '服务器在线时',
+        'send_online_help' => '最多等待 10 分钟。如果届时服务器仍未在线，通知会说明它没有上线。',
+        'send_to' => '发送到',
+        'game_chat' => '游戏聊天',
+        'game_chat_help' => '使用游戏的聊天命令，与“公告 › 游戏内”相同。服务器离线时跳过。',
+        'notify' => '通知',
+        'notify_help' => '在铃铛中并作为应用通知，发送给所有者以及有权访问此服务器的人。',
+        'when_online' => '上线时：:message',
+        'not_online' => ':server 没有上线',
+        'message_required' => '请输入消息。',
+        'message_long' => '消息最多 240 个字符。',
+        'send_to_required' => '请选择游戏聊天、通知或两者。',
+    ],
 ];

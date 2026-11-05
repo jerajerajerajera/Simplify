@@ -85,4 +85,22 @@ return [
     'in_game' => [
         'prefix' => '[Annonce]',
     ],
+    'task' => [
+        'name' => 'Annonce',
+        'message' => 'Message',
+        'send' => 'Envoyer',
+        'send_now' => 'Tout de suite',
+        'send_online' => 'Quand le serveur est en ligne',
+        'send_online_help' => 'Attend jusqu’à 10 minutes. Si le serveur n’est pas en ligne d’ici là, la notification indique qu’il n’a pas démarré.',
+        'send_to' => 'Envoyer vers',
+        'game_chat' => 'Chat du jeu',
+        'game_chat_help' => 'Utilise la commande de chat du jeu, comme Annonces › En jeu. Ignoré quand le serveur est hors ligne.',
+        'notify' => 'Notification',
+        'notify_help' => 'Dans la cloche et comme notification de l’app, pour le propriétaire et les personnes ayant accès à ce serveur.',
+        'when_online' => 'Une fois en ligne : :message',
+        'not_online' => ':server n’est pas passé en ligne',
+        'message_required' => 'Écrivez un message.',
+        'message_long' => 'Le message peut contenir au plus 240 caractères.',
+        'send_to_required' => 'Choisissez le chat du jeu, une notification ou les deux.',
+    ],
 ];

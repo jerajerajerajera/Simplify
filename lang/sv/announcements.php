@@ -85,4 +85,22 @@ return [
     'in_game' => [
         'prefix' => '[Meddelande]',
     ],
+    'task' => [
+        'name' => 'Meddelande',
+        'message' => 'Meddelande',
+        'send' => 'Skicka',
+        'send_now' => 'Direkt',
+        'send_online' => 'När servern är online',
+        'send_online_help' => 'Väntar upp till 10 minuter. Är servern inte online då säger aviseringen att den inte kom online.',
+        'send_to' => 'Skicka till',
+        'game_chat' => 'Spelchatt',
+        'game_chat_help' => 'Använder spelets chattkommando, som Meddelanden › I spelet. Hoppas över när servern är offline.',
+        'notify' => 'Avisering',
+        'notify_help' => 'I klockan och som appavisering, till ägaren och personerna med åtkomst till den här servern.',
+        'when_online' => 'När online: :message',
+        'not_online' => ':server kom inte online',
+        'message_required' => 'Skriv ett meddelande.',
+        'message_long' => 'Meddelandet får vara högst 240 tecken.',
+        'send_to_required' => 'Välj spelchatten, en avisering eller båda.',
+    ],
 ];

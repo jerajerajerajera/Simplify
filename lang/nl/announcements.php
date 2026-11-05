@@ -85,4 +85,22 @@ return [
     'in_game' => [
         'prefix' => '[Aankondiging]',
     ],
+    'task' => [
+        'name' => 'Aankondiging',
+        'message' => 'Bericht',
+        'send' => 'Versturen',
+        'send_now' => 'Meteen',
+        'send_online' => 'Als de server online is',
+        'send_online_help' => 'Wacht maximaal 10 minuten. Is de server dan nog niet online, dan meldt de melding dat hij niet online kwam.',
+        'send_to' => 'Versturen naar',
+        'game_chat' => 'Gamechat',
+        'game_chat_help' => 'Gebruikt het chatcommando van het spel, net als Aankondigingen › In het spel. Overgeslagen als de server offline is.',
+        'notify' => 'Melding',
+        'notify_help' => 'In de bel en als app-melding, voor de eigenaar en de mensen met toegang tot deze server.',
+        'when_online' => 'Als online: :message',
+        'not_online' => ':server kwam niet online',
+        'message_required' => 'Schrijf een bericht.',
+        'message_long' => 'Het bericht mag maximaal 240 tekens zijn.',
+        'send_to_required' => 'Kies de gamechat, een melding of allebei.',
+    ],
 ];

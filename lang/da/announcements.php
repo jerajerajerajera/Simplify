@@ -85,4 +85,22 @@ return [
     'in_game' => [
         'prefix' => '[Meddelelse]',
     ],
+    'task' => [
+        'name' => 'Meddelelse',
+        'message' => 'Besked',
+        'send' => 'Send',
+        'send_now' => 'Med det samme',
+        'send_online' => 'Når serveren er online',
+        'send_online_help' => 'Venter op til 10 minutter. Er serveren ikke online til den tid, siger notifikationen, at den ikke kom online.',
+        'send_to' => 'Send til',
+        'game_chat' => 'Spilchat',
+        'game_chat_help' => 'Bruger spillets chatkommando, ligesom Meddelelser › I spillet. Springes over, når serveren er offline.',
+        'notify' => 'Notifikation',
+        'notify_help' => 'I klokken og som app-notifikation, til ejeren og de personer, der har adgang til denne server.',
+        'when_online' => 'Når online: :message',
+        'not_online' => ':server kom ikke online',
+        'message_required' => 'Skriv en besked.',
+        'message_long' => 'Beskeden må højst være 240 tegn.',
+        'send_to_required' => 'Vælg spilchatten, en notifikation eller begge.',
+    ],
 ];

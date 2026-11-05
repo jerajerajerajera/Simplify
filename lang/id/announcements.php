@@ -85,4 +85,22 @@ return [
     'in_game' => [
         'prefix' => '[Pengumuman]',
     ],
+    'task' => [
+        'name' => 'Pengumuman',
+        'message' => 'Pesan',
+        'send' => 'Kirim',
+        'send_now' => 'Langsung',
+        'send_online' => 'Saat server online',
+        'send_online_help' => 'Menunggu hingga 10 menit. Jika server belum online saat itu, notifikasi memberi tahu bahwa server tidak online.',
+        'send_to' => 'Kirim ke',
+        'game_chat' => 'Obrolan game',
+        'game_chat_help' => 'Memakai perintah obrolan game, seperti Pengumuman › Dalam game. Dilewati saat server offline.',
+        'notify' => 'Notifikasi',
+        'notify_help' => 'Di lonceng dan sebagai notifikasi aplikasi, untuk pemilik dan orang yang punya akses ke server ini.',
+        'when_online' => 'Saat online: :message',
+        'not_online' => ':server tidak online',
+        'message_required' => 'Tulis pesan.',
+        'message_long' => 'Pesan paling banyak 240 karakter.',
+        'send_to_required' => 'Pilih obrolan game, notifikasi, atau keduanya.',
+    ],
 ];

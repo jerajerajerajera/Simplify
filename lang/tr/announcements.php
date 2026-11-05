@@ -85,4 +85,22 @@ return [
     'in_game' => [
         'prefix' => '[Duyuru]',
     ],
+    'task' => [
+        'name' => 'Duyuru',
+        'message' => 'Mesaj',
+        'send' => 'Gönder',
+        'send_now' => 'Hemen',
+        'send_online' => 'Sunucu çevrimiçi olduğunda',
+        'send_online_help' => 'En fazla 10 dakika bekler. Sunucu o zamana kadar çevrimiçi olmazsa bildirim çevrimiçi olmadığını söyler.',
+        'send_to' => 'Gönderilecek yer',
+        'game_chat' => 'Oyun sohbeti',
+        'game_chat_help' => 'Oyunun sohbet komutunu kullanır, Duyurular › Oyunda gibi. Sunucu çevrimdışıyken atlanır.',
+        'notify' => 'Bildirim',
+        'notify_help' => 'Zilde ve uygulama bildirimi olarak, sahibine ve bu sunucuya erişimi olan kişilere.',
+        'when_online' => 'Çevrimiçi olunca: :message',
+        'not_online' => ':server çevrimiçi olmadı',
+        'message_required' => 'Bir mesaj yazın.',
+        'message_long' => 'Mesaj en fazla 240 karakter olabilir.',
+        'send_to_required' => 'Oyun sohbetini, bir bildirimi ya da ikisini seçin.',
+    ],
 ];

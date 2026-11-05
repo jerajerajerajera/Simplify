@@ -16,6 +16,7 @@ php tests/migrations-keep.php
 php tests/push.php
 php tests/announcements-rules.php
 php tests/announcements-game-chat.php
+php tests/announcements-task.php
 php tests/embed.php
 php tests/subdomains.php
 php tests/subdomains-import.php

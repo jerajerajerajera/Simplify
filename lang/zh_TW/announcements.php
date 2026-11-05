@@ -85,4 +85,22 @@ return [
     'in_game' => [
         'prefix' => '[公告]',
     ],
+    'task' => [
+        'name' => '公告',
+        'message' => '訊息',
+        'send' => '傳送',
+        'send_now' => '立即',
+        'send_online' => '伺服器上線時',
+        'send_online_help' => '最多等待 10 分鐘。若屆時伺服器仍未上線，通知會說明它沒有上線。',
+        'send_to' => '傳送到',
+        'game_chat' => '遊戲聊天',
+        'game_chat_help' => '使用遊戲的聊天指令，與「公告 › 遊戲內」相同。伺服器離線時略過。',
+        'notify' => '通知',
+        'notify_help' => '在鈴鐺中並作為應用程式通知，傳送給擁有者以及有權存取此伺服器的人。',
+        'when_online' => '上線時：:message',
+        'not_online' => ':server 沒有上線',
+        'message_required' => '請輸入訊息。',
+        'message_long' => '訊息最多 240 個字元。',
+        'send_to_required' => '請選擇遊戲聊天、通知或兩者。',
+    ],
 ];

@@ -85,4 +85,22 @@ return [
     'in_game' => [
         'prefix' => '[Anunț]',
     ],
+    'task' => [
+        'name' => 'Anunț',
+        'message' => 'Mesaj',
+        'send' => 'Trimite',
+        'send_now' => 'Imediat',
+        'send_online' => 'Când serverul este online',
+        'send_online_help' => 'Așteaptă până la 10 minute. Dacă serverul nu este online până atunci, notificarea spune că nu a pornit.',
+        'send_to' => 'Trimite către',
+        'game_chat' => 'Chatul jocului',
+        'game_chat_help' => 'Folosește comanda de chat a jocului, ca Anunțuri › În joc. Omis când serverul este offline.',
+        'notify' => 'Notificare',
+        'notify_help' => 'În clopoțel și ca notificare în aplicație, pentru proprietar și persoanele cu acces la acest server.',
+        'when_online' => 'Când e online: :message',
+        'not_online' => ':server nu a pornit',
+        'message_required' => 'Scrie un mesaj.',
+        'message_long' => 'Mesajul poate avea cel mult 240 de caractere.',
+        'send_to_required' => 'Alege chatul jocului, o notificare sau ambele.',
+    ],
 ];

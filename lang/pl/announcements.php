@@ -85,4 +85,22 @@ return [
     'in_game' => [
         'prefix' => '[Ogłoszenie]',
     ],
+    'task' => [
+        'name' => 'Ogłoszenie',
+        'message' => 'Wiadomość',
+        'send' => 'Wyślij',
+        'send_now' => 'Od razu',
+        'send_online' => 'Gdy serwer będzie online',
+        'send_online_help' => 'Czeka do 10 minut. Jeśli serwer nie będzie wtedy online, powiadomienie poinformuje, że się nie uruchomił.',
+        'send_to' => 'Wyślij do',
+        'game_chat' => 'Czat gry',
+        'game_chat_help' => 'Używa polecenia czatu gry, tak jak Ogłoszenia › W grze. Pomijane, gdy serwer jest offline.',
+        'notify' => 'Powiadomienie',
+        'notify_help' => 'W dzwonku i jako powiadomienie aplikacji, dla właściciela i osób z dostępem do tego serwera.',
+        'when_online' => 'Gdy online: :message',
+        'not_online' => ':server nie uruchomił się',
+        'message_required' => 'Napisz wiadomość.',
+        'message_long' => 'Wiadomość może mieć najwyżej 240 znaków.',
+        'send_to_required' => 'Wybierz czat gry, powiadomienie lub oba.',
+    ],
 ];

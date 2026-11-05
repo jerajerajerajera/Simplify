@@ -85,4 +85,22 @@ return [
     'in_game' => [
         'prefix' => '[Kunngjøring]',
     ],
+    'task' => [
+        'name' => 'Kunngjøring',
+        'message' => 'Melding',
+        'send' => 'Send',
+        'send_now' => 'Med en gang',
+        'send_online' => 'Når serveren er online',
+        'send_online_help' => 'Venter opptil 10 minutter. Er serveren ikke online innen da, sier varselet at den ikke kom online.',
+        'send_to' => 'Send til',
+        'game_chat' => 'Spillchat',
+        'game_chat_help' => 'Bruker spillets chattekommando, som Kunngjøringer › I spillet. Hoppes over når serveren er frakoblet.',
+        'notify' => 'Varsel',
+        'notify_help' => 'I bjella og som appvarsel, til eieren og personene med tilgang til denne serveren.',
+        'when_online' => 'Når online: :message',
+        'not_online' => ':server kom ikke online',
+        'message_required' => 'Skriv en melding.',
+        'message_long' => 'Meldingen kan være på høyst 240 tegn.',
+        'send_to_required' => 'Velg spillchatten, et varsel eller begge.',
+    ],
 ];

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Simplify\Core\Providers;
 
+use App\Extensions\Tasks\TaskService;
 use App\Models\Server;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Container\Container;
@@ -18,6 +19,7 @@ use Simplify\Core\Announcements\Console\DeliverAnnouncements;
 use Simplify\Core\Announcements\Livewire\AnnouncementBars;
 use Simplify\Core\Announcements\Models\Announcement;
 use Simplify\Core\Announcements\Policies\AnnouncementPolicy;
+use Simplify\Core\Announcements\Tasks\AnnouncementTask;
 use Simplify\Core\Console\UpdateNoticesCommand;
 use Simplify\Core\Embed\EmbedController;
 use Simplify\Core\Http\Controllers\AssetController;
@@ -55,6 +57,11 @@ final class SimplifyServiceProvider extends ServiceProvider
     {
         // After an update, Laravel could keep running the previous version's pages (K-B57).
         FreshViews::boot(Assets::version());
+
+        // "Announcement" as an action in Pelican's schedules (Pelican 1.0 beta38 and later have TaskService).
+        if (class_exists(TaskService::class)) {
+            $this->callAfterResolving(TaskService::class, fn (TaskService $tasks) => $tasks->register(new AnnouncementTask()));
+        }
 
         Route::get('/simplify/assets/{name}', AssetController::class)
             ->where('name', '[a-z0-9.-]+')
