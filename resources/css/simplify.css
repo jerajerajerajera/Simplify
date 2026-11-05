@@ -1032,6 +1032,19 @@ html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header-heading {
     grid-row: 2 / 4;
   }
 
+  /* The open Admin menu reaches the window's edges and the bottom: the Health bar is as wide as the window and runs on
+     under the bottom bar, with the room for that bar inside it, so no strip of background shows between the Health bar
+     and the bottom bar or beside it (K-B55). */
+  html.ps-shell-menu:not(.ps-frame) body .fi-layout:has(.ps-admin-side.menu-open) {
+    padding-bottom: 0;
+  }
+
+  html.ps-shell-menu:not(.ps-frame) .ps-admin-side.menu-open .ps-host-health-bar {
+    margin-inline: -12px;
+    padding-inline: 26px;
+    padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+  }
+
   html.ps-shell-menu:not(.ps-frame) .fi-layout:has(.ps-admin-side.menu-open) > :not([x-persist]) {
     display: none !important;
   }
