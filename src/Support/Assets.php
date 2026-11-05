@@ -97,8 +97,23 @@ final class Assets
 
     public static function url(string $name): string
     {
-        $hash = self::$hashes[$name] ??= substr((string) hash_file('xxh3', (string) self::path($name)), 0, 12);
+        $hash = self::$hashes[$name] ??= self::hash($name);
 
         return route('simplify.asset', ['name' => $name]).'?v='.$hash;
+    }
+
+    /**
+     * The version part of a file's URL. A name this class does not know (a view of a newer version next to an older
+     * class still in PHP's opcache) or a missing file never breaks the page: its URL then carries Simplify's version
+     * (K-B62, "Path must not be empty" on every page).
+     */
+    public static function hash(string $name): string
+    {
+        $path = self::path($name);
+        if ($path === null || ! is_file($path)) {
+            return substr(hash('xxh3', $name.'@'.self::version()), 0, 12);
+        }
+
+        return substr((string) hash_file('xxh3', $path), 0, 12);
     }
 }

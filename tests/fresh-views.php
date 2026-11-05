@@ -63,7 +63,16 @@ check(FreshViews::fingerprint('', []) === '', 'without a version of its own ther
 
 $provider = (string) file_get_contents($root.'/src/Providers/SimplifyServiceProvider.php');
 $fresh = (string) file_get_contents($root.'/src/Support/FreshViews.php');
-check((bool) preg_match('/if \(\$refreshed && function_exists\(\'opcache_reset\'\)\)\s*\{\s*opcache_reset\(\);/', $fresh), 'a new version also starts PHP\'s opcache over, so no class of the old version keeps running (K-B60)');
+check((bool) preg_match('/self::resetsOpcache\(\$fingerprint, .*PHP_SAPI\)\) \{\s*opcache_reset\(\);\s*\$files->put\(\$opcache, \$fingerprint\);/s', $fresh), 'a new version also starts PHP\'s opcache over, so no class of the old version keeps running (K-B60)');
+
+// K-B62: the first run after an update was an artisan command (the Hub, an update script, optimize:clear). It threw the
+// views away and reset its own opcache, while the web server kept the old Assets class: "Path must not be empty" on
+// every page. The web server's PHP starts its own opcache over once per new version, whoever saw the update first.
+check(! FreshViews::resetsOpcache($one, null, 'cli'), 'an artisan command does not count as starting the web server\'s opcache over (K-B62)');
+check(FreshViews::resetsOpcache($one, null, 'fpm-fcgi'), 'the web server starts its opcache over after the update, also when artisan saw it first (K-B62)');
+check(FreshViews::resetsOpcache($one, '2.0.0-beta.7+abc', 'apache2handler'), 'a new version in the web server: once more (K-B62)');
+check(! FreshViews::resetsOpcache($one, $one, 'fpm-fcgi'), 'the same version: not on every request (K-B62)');
+check(! FreshViews::resetsOpcache('', null, 'fpm-fcgi'), 'without a version of its own nothing is reset (K-B62)');
 $server = (string) file_get_contents($root.'/resources/views/pages/server.blade.php');
 $default = strpos($server, '@php($locked ??= null)');
 check($default !== false && $default < strpos($server, '$locked !=='), 'the server page opens without $locked from an older ServerPage (K-B60)');

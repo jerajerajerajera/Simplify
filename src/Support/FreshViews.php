@@ -61,6 +61,19 @@ final class FreshViews
     }
 
     /**
+     * Whether this request starts PHP's opcache over: only in the web server's PHP (an artisan command has an opcache
+     * of its own, if any) and once per new version there. The first request after an update can be an artisan command
+     * (the Hub, an update script, optimize:clear): it throws the views away, but resetting its own opcache left the web
+     * server running the previous version's classes next to the new views (K-B62).
+     *
+     * @param  string|null  $known  The version the web server's opcache was last started over for (null: not known).
+     */
+    public static function resetsOpcache(string $fingerprint, ?string $known, string $sapi): bool
+    {
+        return $fingerprint !== '' && ! in_array($sapi, ['cli', 'phpdbg'], true) && $known !== $fingerprint;
+    }
+
+    /**
      * Simplify's version plus every installed plugin's id and version (its add-ons among them), so an update of any of
      * them counts as a new version (Jeroen 5-11: never again after an update, also for add-ons).
      *
@@ -91,18 +104,22 @@ final class FreshViews
             $marker = self::marker();
             $compiled = dirname($marker);
             // Every compiled view goes, not only Simplify's: an add-on's pages could be just as old.
-            $refreshed = self::refresh(
-                self::fingerprint($version, array_map(fn (string $path): string => (string) $files->get($path), glob(base_path('plugins/*/plugin.json')) ?: [])),
+            $fingerprint = self::fingerprint($version, array_map(fn (string $path): string => (string) $files->get($path), glob(base_path('plugins/*/plugin.json')) ?: []));
+            self::refresh(
+                $fingerprint,
                 $files->exists($marker) ? trim((string) $files->get($marker)) : null,
                 $files->isDirectory($compiled) ? (glob($compiled.'/*.php') ?: []) : [],
                 fn (string $path): string => $path,
                 fn (string $path) => $files->delete($path),
                 fn (string $known) => $files->put($marker, $known),
             );
-            // PHP's opcache can keep running the previous version's classes next to the new views (K-B60): start it
-            // over once, so every class is read again from the new files.
-            if ($refreshed && function_exists('opcache_reset')) {
+            // PHP's opcache can keep running the previous version's classes next to the new views (K-B60): the web
+            // server's PHP starts it over once per new version, so every class is read again from the new files (K-B62).
+            $opcache = $compiled.'/simplify-opcache';
+            if (function_exists('opcache_reset') && $files->isDirectory($compiled)
+                && self::resetsOpcache($fingerprint, $files->exists($opcache) ? trim((string) $files->get($opcache)) : null, PHP_SAPI)) {
                 opcache_reset();
+                $files->put($opcache, $fingerprint);
             }
         } catch (Throwable $error) {
             report($error);

@@ -38,6 +38,20 @@ if ($sent === 0 || $sent > $raw / 3) {
     $failures[] = "a first page load still sends $sent of $raw bytes";
 }
 
+// K-B62: a view of a newer version can ask an older Assets class (still in PHP's opcache) for a file it does not
+// know. That broke the head of every page ("Path must not be empty"); now its URL carries Simplify's version.
+try {
+    $unknown = Assets::hash('row-actions-from-a-newer-version.js');
+    if (strlen($unknown) !== 12 || $unknown === Assets::hash('core.js')) {
+        $failures[] = 'a file Assets does not know gets a version of its own (K-B62)';
+    }
+} catch (Throwable $error) {
+    $failures[] = 'a file Assets does not know breaks the page: '.$error->getMessage().' (K-B62)';
+}
+if (Assets::hash('core.js') !== substr((string) hash_file('xxh3', (string) Assets::path('core.js')), 0, 12)) {
+    $failures[] = "a known file's URL still carries the hash of the file";
+}
+
 if ($failures !== []) {
     echo 'FAIL '.implode("\nFAIL ", $failures)."\n";
     exit(1);
