@@ -53,7 +53,7 @@ return [
         'preview' => 'Forhåndsvisning af den gemte liste',
     ],
     'server' => [
-        'title' => 'Hjemmeside',
+        'title' => 'Webindlejring',
         'help' => 'Viser denne server på panelets offentlige serverliste med navn, status, forbindelsesadresse og det, du udfylder nedenfor.',
         'show' => 'Vis på hjemmesiden',
         'shown' => 'Serveren er nu på hjemmesiden',

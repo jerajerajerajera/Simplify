@@ -53,7 +53,7 @@ return [
         'preview' => 'Vista previa de la lista guardada',
     ],
     'server' => [
-        'title' => 'Web',
+        'title' => 'Inserción en la web',
         'help' => 'Muestra este servidor en la lista pública de servidores del panel, con su nombre, estado, dirección de conexión y lo que rellenes abajo.',
         'show' => 'Mostrar en la web',
         'shown' => 'Este servidor ya está en la web',

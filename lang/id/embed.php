@@ -53,7 +53,7 @@ return [
         'preview' => 'Pratinjau daftar yang tersimpan',
     ],
     'server' => [
-        'title' => 'Situs web',
+        'title' => 'Sematan situs web',
         'help' => 'Menampilkan server ini di daftar server publik panel, dengan nama, status, alamat untuk bergabung, dan yang Anda isi di bawah.',
         'show' => 'Tampilkan di situs web',
         'shown' => 'Server ini sekarang ada di situs web',

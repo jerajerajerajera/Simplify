@@ -53,7 +53,7 @@ return [
         'preview' => 'A mentett lista előnézete',
     ],
     'server' => [
-        'title' => 'Weboldal',
+        'title' => 'Weboldalba ágyazás',
         'help' => 'Megjeleníti ezt a szervert a panel nyilvános szerverlistáján a nevével, állapotával, csatlakozási címével és azzal, amit lent kitöltesz.',
         'show' => 'Mutatás a weboldalon',
         'shown' => 'A szerver most már a weboldalon van',

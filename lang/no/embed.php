@@ -53,7 +53,7 @@ return [
         'preview' => 'Forhåndsvisning av den lagrede listen',
     ],
     'server' => [
-        'title' => 'Nettside',
+        'title' => 'Nettsideinnbygging',
         'help' => 'Viser denne serveren i panelets offentlige serverliste, med navn, status, tilkoblingsadresse og det du fyller inn nedenfor.',
         'show' => 'Vis på nettsiden',
         'shown' => 'Serveren er nå på nettsiden',
