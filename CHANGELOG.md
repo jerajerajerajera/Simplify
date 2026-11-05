@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Updates: after an update PHP no longer keeps running the previous version's code next to the new pages, which gave a 500 on a server page ("Undefined variable $locked").
+- Updates: after an update of Simplify or any add-on, the panel throws away all compiled pages and starts PHP's opcache over once, so it never runs old code next to new pages (a 500 on a server page: "Undefined variable $locked"); the server page also opens with an older server class.
 - Theme: dark is one grey on every page, also with a theme plugin (the overview was black next to grey Admin pages), and Customize › Theme has OLED: a pure black background with darker cards.
 - Overview: Customize › Host health shows host health also as a bar at the bottom or as a card before the servers; the Health button in the top bar stays.
 - Phones: a list row with more than two buttons shows its main button (such as Update) and ⋯, which opens a sheet with every button by its name, so a list (Eggs with Egg Updates) no longer slides sideways.

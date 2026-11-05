@@ -1298,7 +1298,7 @@ step('after an update the compiled pages of the previous version are thrown away
     $files->put($compiled, "<?php echo \$__env->make('simplify::dashboard.host')->render(); ?>");
     $files->put(FreshViews::marker(), '1.5.5');
     FreshViews::boot(Assets::version());
-    if ($files->exists($compiled) || trim((string) $files->get(FreshViews::marker())) !== Assets::version()) {
+    if ($files->exists($compiled) || ! str_starts_with(trim((string) $files->get(FreshViews::marker())), Assets::version().'+')) {
         throw new RuntimeException('the old compiled overview was kept');
     }
     app('blade.compiler')->compile($view);
