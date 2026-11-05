@@ -398,13 +398,12 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-server-card.ps-health-card { display: grid; gap: 10px; height: auto; padding: 12px 14px; color: var(--ps-ink); text-decoration: none; }
 .ps-health-card-head { display: flex; align-items: center; gap: 8px; min-width: 0; }
 .ps-health-card-head > svg { flex: none; width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.ps-health-card-name { font: 700 14px/1.25 var(--ps-font); white-space: nowrap; }
-.ps-health-card-hosts { min-width: 0; margin-inline-start: auto; overflow: hidden; color: var(--ps-muted); font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
-.ps-health-card-meters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-.ps-health-card .ps-host-metric { display: grid; gap: 4px; }
-.ps-health-card .ps-host-heading { display: flex; align-items: center; gap: 6px; color: var(--ps-muted); font-size: 12px; }
-.ps-health-card .ps-host-heading svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; }
-.ps-health-card .ps-host-heading strong { margin-inline-start: auto; color: var(--ps-ink); white-space: nowrap; }
+.ps-health-card-name { min-width: 0; overflow: hidden; font: 700 14px/1.25 var(--ps-font); text-overflow: ellipsis; white-space: nowrap; }
+.ps-health-card .ps-health-status { flex: none; margin-inline-start: auto; white-space: nowrap; }
+.ps-health-card-meters { display: grid; gap: 6px; }
+.ps-health-card-metric { display: grid; grid-template-columns: 3em minmax(0, 1fr) auto; align-items: center; gap: 10px; color: var(--ps-muted); font-size: 12px; }
+.ps-health-card-metric .ps-meter { height: 4px; margin: 0; }
+.ps-health-card-metric strong { color: var(--ps-ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .ps-overview { position: relative; }
 /* Opens like a dropdown: right under the Healthy button, left edges in line, moved left only as far as the screen needs. */
 .ps-health-panel.is-popover { position: fixed; top: var(--ps-pop-top, 72px); left: var(--ps-pop-left, 8px); z-index: var(--ps-z-dropdown); width: var(--ps-pop-width, 560px); margin: 0; box-shadow: 0 16px 40px rgb(0 0 0 / .28); }

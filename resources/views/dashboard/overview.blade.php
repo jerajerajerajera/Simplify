@@ -51,18 +51,18 @@
                 {{-- Host health as a card among the servers (Customize): its state, CPU and RAM, and a tap opens Health. --}}
                 <div class="ps-server-entry ps-health-entry" x-show="healthExtra()==='card' && overviewView!=='list'" x-cloak>
                     <a class="ps-server-card ps-health-card" :href="healthUrl()" wire:navigate :class="boot.host_health?.state || 'unavailable'">
-                        {{-- One line: heart, name, state and hosts; CPU and RAM right under it (compact, Jeroen 5-11). --}}
+                        {{-- One line: heart, name and state (hosts reporting as its tooltip); CPU and RAM right under it, one row each (compact, Jeroen 5-11). --}}
                         <div class="ps-health-card-head">
                             <svg class="ps-health-heart" :class="boot.host_health?.state || 'unavailable'" aria-hidden="true"><use href="#ps-heart"/></svg>
                             <strong class="ps-health-card-name">{{ $u('host_health') }}</strong>
-                            <span class="ps-health-status" :class="boot.host_health?.state || 'unavailable'"><strong x-text="boot.host_health?.label || @js($u('unavailable'))"></strong></span>
-                            <small class="ps-health-card-hosts" x-text="Simplify.tc('dashboard.hosts_reporting', boot.host_health?.hosts ?? 0, { available: boot.host_health?.available ?? 0 })"></small>
+                            <span class="ps-health-status" :class="boot.host_health?.state || 'unavailable'" :title="Simplify.tc('dashboard.hosts_reporting', boot.host_health?.hosts ?? 0, { available: boot.host_health?.available ?? 0 })"><strong x-text="boot.host_health?.label || @js($u('unavailable'))"></strong></span>
                         </div>
                         <div class="ps-health-card-meters">
                             <template x-for="metric in hostMetrics.filter((m) => m.key==='cpu' || m.key==='memory')" :key="metric.key">
-                                <div class="ps-host-metric">
-                                    <div class="ps-host-heading"><svg aria-hidden="true"><use :href="'#ps-'+metric.icon"/></svg><span x-text="metric.label"></span><strong x-text="hostValue(metric.key)"></strong></div>
+                                <div class="ps-health-card-metric">
+                                    <span x-text="metric.label"></span>
                                     <span class="ps-meter"><span :style="{width: hostFill(metric.key)+'%'}"></span></span>
+                                    <strong x-text="hostValue(metric.key)"></strong>
                                 </div>
                             </template>
                         </div>
