@@ -3,7 +3,8 @@
 ## Unreleased
 
 - Phones: a list row with more than two buttons shows its main button (such as Update) and ⋯, which opens a sheet with every button by its name, so a list (Eggs with Egg Updates) no longer slides sideways.
-
+- Admin menu: Pelican plugins is a heading with its plugins always under it, and Show more from the sixth plugin on.
+- Phones: in the open Admin menu the Health bar is as wide as the screen and reaches the bottom bar, without a dark strip under or beside it.
 - Unsaved changes: a password your browser remembers for the panel is no longer filled into an add-on's API key field (Settings › Add-ons), so the "Changes made" bar no longer appears before you changed anything; the bar is dark in the dark theme.
 - Server menu: Website is called Website embed, as in Simplify settings.
 
