@@ -52,7 +52,7 @@ final class TaskDelivery
     private static function gameChat(Server $server, array $payload, bool $running): void
     {
         $own = $server->egg_id ? GameCommand::query()->where('egg_id', $server->egg_id)->value('command') : null;
-        $command = GameChat::commandFor((string) $server->egg?->name, is_string($own) ? $own : null);
+        $command = GameChat::commandFor((string) $server->egg->name, is_string($own) ? $own : null);
         if (! TaskAnnouncement::postsInGame($payload['game_chat'], $command, $running) || $command === null) {
             return;
         }

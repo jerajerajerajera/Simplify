@@ -44,7 +44,7 @@ final class AnnouncementTask extends TaskSchema
                 return;
             }
             $payload = TaskAnnouncement::parse($task->payload);
-            $schedule = $task->schedule?->name;
+            $schedule = $task->schedule->name;
             if ($payload['send'] === TaskAnnouncement::NOW || TaskDelivery::running($server)) {
                 TaskDelivery::deliver($server, $payload, $schedule);
 
