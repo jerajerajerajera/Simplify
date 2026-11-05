@@ -31,7 +31,9 @@ use Simplify\Core\Push\Push;
 use Simplify\Core\Server\Looks;
 use Simplify\Core\Subdomains\Console\SyncSubdomains;
 use Simplify\Core\Subdomains\Subdomains;
+use Simplify\Core\Support\Assets;
 use Simplify\Core\Support\Brand;
+use Simplify\Core\Support\FreshViews;
 use Throwable;
 
 final class SimplifyServiceProvider extends ServiceProvider
@@ -51,6 +53,9 @@ final class SimplifyServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        // After an update, Laravel could keep running the previous version's pages (K-B57).
+        FreshViews::boot(Assets::version());
+
         Route::get('/simplify/assets/{name}', AssetController::class)
             ->where('name', '[a-z0-9.-]+')
             ->name('simplify.asset');
