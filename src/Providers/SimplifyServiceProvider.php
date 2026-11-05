@@ -36,6 +36,7 @@ use Simplify\Core\Subdomains\Subdomains;
 use Simplify\Core\Support\Assets;
 use Simplify\Core\Support\Brand;
 use Simplify\Core\Support\FreshViews;
+use Simplify\Core\Support\StaleCode;
 use Throwable;
 
 final class SimplifyServiceProvider extends ServiceProvider
@@ -57,6 +58,8 @@ final class SimplifyServiceProvider extends ServiceProvider
     {
         // After an update, Laravel could keep running the previous version's pages (K-B57).
         FreshViews::boot(Assets::version());
+        // The first request after an update can still run old classes: a missing component gets one fresh try (K-B63).
+        StaleCode::register($this->app);
 
         // "Announcement" as an action in Pelican's schedules (Pelican 1.0 beta38 and later have TaskService).
         if (class_exists(TaskService::class)) {

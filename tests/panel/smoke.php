@@ -59,6 +59,7 @@ use Simplify\Core\Subdomains\Subdomains;
 use Simplify\Core\Support\Assets;
 use Simplify\Core\Support\Brand;
 use Simplify\Core\Support\FreshViews;
+use Simplify\Core\Support\StaleCode;
 use Simplify\Core\Support\PanelSettings;
 use Simplify\Core\Support\Preferences;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -1309,6 +1310,23 @@ step('after an update the compiled pages of the previous version are thrown away
     FreshViews::boot(Assets::version());
     if (! $files->exists($compiled)) {
         throw new RuntimeException('the current compiled overview was thrown away again');
+    }
+});
+step('a component missing right after an update opens the page once more instead of a 500 (K-B63)', function (Application $app) {
+    $handler = $app->make(Illuminate\Contracts\Debug\ExceptionHandler::class);
+    $missing = new Livewire\Exceptions\ComponentNotFoundException('Unable to find component: [simplify-hosting-settings-form]');
+    $page = $handler->render(Illuminate\Http\Request::create('/admin/simplify-settings?tab=addons'), new Illuminate\View\ViewException('in a view', 0, 1, 'addon-list.blade.php', 1, $missing));
+    if ($page->getStatusCode() !== 302 || ! str_ends_with((string) $page->headers->get('Location'), '?tab=addons&'.StaleCode::RETRIED.'=1')) {
+        throw new RuntimeException('the page was not opened once more: '.$page->getStatusCode());
+    }
+    $again = $handler->render(Illuminate\Http\Request::create('/admin/simplify-settings?'.StaleCode::RETRIED.'=1'), $missing);
+    if ($again->getStatusCode() < 500) {
+        throw new RuntimeException('the second try did not show the error, so it could loop: '.$again->getStatusCode());
+    }
+    $call = Illuminate\Http\Request::create('/livewire/update', 'POST');
+    $call->headers->set('X-Livewire', 'true');
+    if ($handler->render($call, $missing)->getStatusCode() !== 419) {
+        throw new RuntimeException('a Livewire call did not ask to load the page again');
     }
 });
 if ($failed || $passed === 0) {

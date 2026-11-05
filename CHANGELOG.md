@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Updates: a page that asks for a component an add-on only registers in its new version ("Unable to find component") right after an update opens once more on the new code instead of a 500; a click in a page that is open asks to load it again.
+- German: clearer words for health (Alles O.K., Hohe Auslastung, Kritisch), by Khion.
 - Translations: the words for health (Healthy, High load, Critical load) live in one file per language, so the live bar and the page always use the same word; Hungarian says Rendben.
 - Schedules: a new action Announcement sends a message in the game chat and/or as a notification (bell and app) to the server's owner and the people it is shared with, right away or once the server is online; Simplify's own words follow each person's language.
 
