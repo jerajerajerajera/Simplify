@@ -9,14 +9,13 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
-use Simplify\Core\Announcements\Services\TaskDelivery;
+use Simplify\Core\Announcements\Services\TaskWaits;
 use Simplify\Core\Announcements\Support\TaskAnnouncement;
 use Throwable;
 
 /**
- * "When the server is online" (AnnouncementTask): looks at the server every 30 seconds, as a new job each time so the
- * queue worker is never held up, and sends the announcement once it runs. After 10 minutes the people hear that the
- * server did not come online.
+ * Kept for jobs that 2.0.0-beta.10 already put on the queue: it hands the wait to TaskWaits, which the scheduler
+ * looks at every minute. New announcements wait there right away (K-B64).
  */
 final class WaitForOnline implements ShouldQueue
 {
@@ -37,30 +36,11 @@ final class WaitForOnline implements ShouldQueue
     {
         try {
             $server = Server::query()->find($this->server);
-            if (! $server instanceof Server) {
-                return;
+            if ($server instanceof Server) {
+                TaskWaits::add($server, TaskAnnouncement::parse($this->payload), $this->schedule, $this->startedAt);
             }
-            $payload = TaskAnnouncement::parse($this->payload);
-            $step = TaskAnnouncement::step($this->startedAt, time(), TaskDelivery::running($server));
-            if ($step === TaskAnnouncement::WAIT && ! TaskAnnouncement::canWait(self::queueDriver())) {
-                $step = TaskAnnouncement::GIVE_UP;
-            }
-            match ($step) {
-                TaskAnnouncement::SEND => TaskDelivery::deliver($server, $payload, $this->schedule),
-                TaskAnnouncement::GIVE_UP => TaskDelivery::deliver($server, $payload, $this->schedule, cameOnline: false),
-                default => self::dispatch($this->server, $this->payload, $this->schedule, $this->startedAt)->delay(now()->addSeconds(TaskAnnouncement::CHECK_SECONDS)),
-            };
         } catch (Throwable $error) {
             report($error);
         }
-    }
-
-    /** The driver of the queue this job goes on (sync runs a delayed job at once). */
-    public static function queueDriver(): ?string
-    {
-        $connection = config('queue.default');
-        $driver = is_string($connection) ? config('queue.connections.'.$connection.'.driver') : null;
-
-        return is_string($driver) ? $driver : null;
     }
 }

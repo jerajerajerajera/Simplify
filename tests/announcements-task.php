@@ -51,15 +51,39 @@ check(T::step($start, $start + 30, false) === T::WAIT, 'offline: wait');
 check(T::step($start, $start + 599, false) === T::WAIT, 'still waiting just before 10 minutes');
 check(T::step($start, $start + 600, false) === T::GIVE_UP, 'gives up after 10 minutes');
 check(T::step($start, $start + 590, true) === T::SEND, 'online: send');
-check(T::CHECK_SECONDS === 30 && T::WAIT_SECONDS === 600, 'checks every 30 seconds for 10 minutes');
+check(T::WAIT_SECONDS === 600, 'waits for at most 10 minutes');
 
-// The sync queue runs a delayed job at once: there it never waits (no 10 minutes of checks in one request).
-check(T::canWait('database') && T::canWait('redis'), 'a real queue can wait for the next check');
-check(! T::canWait('sync'), 'the sync queue cannot wait: give up right away');
-check(! T::canWait(null) && ! T::canWait(''), 'an unknown queue does not wait either');
-$job = (string) file_get_contents(__DIR__.'/../src/Announcements/Jobs/WaitForOnline.php');
+// K-B64: waiting needs no queue. The scheduler looks at the waiting rows every minute.
+$sent = [];
+$forgotten = [];
+$servers = [1 => (object) ['id' => 1, 'running' => true], 2 => (object) ['id' => 2, 'running' => false], 3 => (object) ['id' => 3, 'running' => false]];
+$rows = [
+    ['id' => 10, 'server_id' => 1, 'payload' => T::encode(['message' => 'Up', 'send' => 'online']), 'schedule' => 'Nightly', 'started_at' => $start],
+    ['id' => 11, 'server_id' => 2, 'payload' => T::encode(['message' => 'Wait']), 'schedule' => null, 'started_at' => $start + 60],
+    ['id' => 12, 'server_id' => 3, 'payload' => T::encode(['message' => 'Late']), 'schedule' => null, 'started_at' => $start - 600],
+    ['id' => 13, 'server_id' => 9, 'payload' => T::encode(['message' => 'Gone']), 'schedule' => null, 'started_at' => $start],
+];
+$done = T::runWaits(
+    $rows,
+    $start + 120,
+    fn (int $id) => $servers[$id] ?? null,
+    fn (object $server) => $server->running,
+    function (object $server, array $payload, ?string $schedule, bool $cameOnline) use (&$sent) {
+        $sent[] = [$server->id, $payload['message'], $schedule, $cameOnline];
+    },
+    function (int $id) use (&$forgotten) {
+        $forgotten[] = $id;
+    },
+);
+check($done === 2, 'two announcements were finished');
+check(in_array([1, 'Up', 'Nightly', true], $sent, true), 'a server that came online gets the announcement, with its schedule');
+check(in_array([3, 'Late', null, false], $sent, true), 'after 10 minutes the people hear it did not come online');
+check(! in_array(2, array_column($sent, 0), true) && ! in_array(11, $forgotten, true), 'a server that is still starting keeps waiting');
+check($forgotten === [10, 12, 13], 'finished and gone rows are forgotten, so nothing is sent twice');
 $task = (string) file_get_contents(__DIR__.'/../src/Announcements/Tasks/AnnouncementTask.php');
-check(str_contains($job, '! TaskAnnouncement::canWait(self::queueDriver())') && str_contains($task, '! TaskAnnouncement::canWait(WaitForOnline::queueDriver())'), 'the task and the job both check the queue before waiting');
+$command = (string) file_get_contents(__DIR__.'/../src/Announcements/Console/DeliverAnnouncements.php');
+check(str_contains($task, 'TaskWaits::add(') && ! str_contains($task, '::dispatch('), 'the task waits in the table, not on the queue');
+check(str_contains($command, 'TaskWaits::runDue()'), 'the scheduler command looks at the waiting announcements');
 
 // Two recipients in different languages each get Simplify's own words in their language.
 $groups = T::byLanguage([3 => 'nl', 5 => 'de', 7 => null, 9 => '../x'], 'en');

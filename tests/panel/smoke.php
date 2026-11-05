@@ -35,6 +35,9 @@ use Simplify\Core\Announcements\Filament\AnnouncementResource;
 use Simplify\Core\Announcements\Livewire\AnnouncementBars;
 use Simplify\Core\Announcements\Models\Announcement;
 use Simplify\Core\Announcements\Services\Bell as AnnouncementBell;
+use Simplify\Core\Announcements\Services\TaskWaits;
+use Simplify\Core\Announcements\Support\TaskAnnouncement;
+use Simplify\Core\Announcements\Tasks\AnnouncementTask;
 use Simplify\Core\Embed\Filament\EmbedSettings;
 use Simplify\Core\Embed\Filament\Website as EmbedWebsite;
 use Simplify\Core\Embed\Services\EmbedDetails;
@@ -1038,6 +1041,36 @@ step('announcements: unpin moves a bar to the bell, pin brings it back, and the 
     Artisan::call('simplify:announcements');
     if ($player->notifications()->where('data->viewData->simplify_announcement', $bell->id)->count() !== 1) {
         throw new RuntimeException('the bell item did not arrive exactly once');
+    }
+});
+step('announcement task: sends now to the owner once, and "when online" waits in the scheduler, then says it did not come online (K-B64)', function () use ($server) {
+    $owner = User::query()->findOrFail($server->owner_id);
+    $owner->notifications()->delete();
+    $run = function (array $payload) use ($server) {
+        $task = new App\Models\Task(['payload' => TaskAnnouncement::encode($payload)]);
+        $task->setRelation('server', $server);
+        $task->setRelation('schedule', new App\Models\Schedule(['name' => 'Smoke schedule']));
+        (new AnnouncementTask)->runTask($task);
+    };
+    $run(['message' => 'Smoke task now', 'send' => 'now', 'notify' => true]);
+    if ($owner->notifications()->where('data->body', 'Smoke task now')->count() !== 1) {
+        throw new RuntimeException('"now" did not reach the owner exactly once');
+    }
+    $run(['message' => 'Smoke task online', 'send' => 'online', 'notify' => true]);
+    $waits = fn () => DB::table(TaskWaits::TABLE)->where('server_id', $server->id);
+    if ($waits()->count() !== 1) {
+        throw new RuntimeException('"when online" did not wait in the table (the server has no Wings here, so it is offline)');
+    }
+    Artisan::call('simplify:announcements');
+    if ($waits()->count() !== 1 || $owner->notifications()->where('data->body', 'Smoke task online')->exists()) {
+        throw new RuntimeException('an offline server got the announcement, or stopped waiting before 10 minutes');
+    }
+    $waits()->update(['started_at' => time() - TaskAnnouncement::WAIT_SECONDS - 1]);
+    Artisan::call('simplify:announcements');
+    Artisan::call('simplify:announcements');
+    $said = __('simplify::announcements.task.not_online', ['server' => $server->name], $owner->language ?: 'en');
+    if ($waits()->exists() || $owner->notifications()->where('data->body', $said)->count() !== 1) {
+        throw new RuntimeException('after 10 minutes the owner did not hear once that the server did not come online');
     }
 });
 step('notifications: mark read, mark as unread, Clear read and ✕ move them to Archived and back', function () {

@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Schedules: Announcement "When the server is online" no longer checks again and again in one go on a panel without a real queue (sync); the people hear right away that the server is not online.
+- Schedules: Announcement "When the server is online" waits without a queue worker: the scheduler looks every minute, so it also works on a panel with the sync queue (it used to send nothing there).
 
 ## 2.0.0-beta.10
 

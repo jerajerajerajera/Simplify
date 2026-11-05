@@ -8,6 +8,7 @@ use Illuminate\Console\Command;
 use Simplify\Core\Announcements\Services\Bell;
 use Simplify\Core\Announcements\Services\InGame;
 use Simplify\Core\Announcements\Services\Push;
+use Simplify\Core\Announcements\Services\TaskWaits;
 use Simplify\Core\Support\Scheduler;
 
 /** Runs every minute from Pelican's scheduler, so an announcement with a later start reaches the bell, devices and game chats when it starts. */
@@ -27,6 +28,10 @@ final class DeliverAnnouncements extends Command
         $devices = Push::sendDue();
         if ($devices > 0) {
             $this->info("Sent announcements as app notifications to $devices devices.");
+        }
+        $waited = TaskWaits::runDue();
+        if ($waited > 0) {
+            $this->info("Finished $waited announcements of schedules that waited for their server.");
         }
         $servers = InGame::sendDue();
         if ($servers > 0) {

@@ -9,8 +9,8 @@ use App\Models\Task;
 use Closure;
 use Filament\Forms\Components\ViewField;
 use Filament\Schemas\Components\Component;
-use Simplify\Core\Announcements\Jobs\WaitForOnline;
 use Simplify\Core\Announcements\Services\TaskDelivery;
+use Simplify\Core\Announcements\Services\TaskWaits;
 use Simplify\Core\Announcements\Support\GameChat;
 use Simplify\Core\Announcements\Support\TaskAnnouncement;
 use Throwable;
@@ -50,14 +50,7 @@ final class AnnouncementTask extends TaskSchema
 
                 return;
             }
-            if (! TaskAnnouncement::canWait(WaitForOnline::queueDriver())) {
-                // No queue that can wait (sync): the people hear now that the server is not online.
-                TaskDelivery::deliver($server, $payload, $schedule, cameOnline: false);
-
-                return;
-            }
-            WaitForOnline::dispatch($server->id, TaskAnnouncement::encode($payload), $schedule, time())
-                ->delay(now()->addSeconds(TaskAnnouncement::CHECK_SECONDS));
+            TaskWaits::add($server, $payload, $schedule, time());
         } catch (Throwable $error) {
             // An announcement never stops the schedule: the next task still runs.
             report($error);
