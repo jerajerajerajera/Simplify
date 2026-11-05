@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.0.0-beta.9
+
 - Updates: after an update the web server also starts PHP's opcache over when an artisan command (the Hub, an update script) saw the update first, so no page breaks on an older class ("Path must not be empty" on every page); a file name an older class does not know no longer breaks a page.
 - Admin pages: the page's box no longer runs below the window for a moment after Plugins (or another page) opens.
 - Simplify settings: Run setup again is a section of its own under General, with what it does and a button with its name; each uploaded server banner has a Remove button with its name and shows which servers use it.
