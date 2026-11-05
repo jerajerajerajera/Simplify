@@ -24,6 +24,7 @@ use Simplify\Core\Overview\Listing;
 use Simplify\Core\Overview\Power;
 use Simplify\Core\Overview\Shell;
 use Simplify\Core\Server\Installation;
+use Simplify\Core\Server\LockedServer;
 use Simplify\Core\Server\Looks;
 use Simplify\Core\Server\ServerMenu;
 use Simplify\Core\Subdomains\Services\Games;
@@ -49,19 +50,25 @@ final class ServerPage extends Component
 
     public function render(): View
     {
-        return view('simplify::pages.server', ['menu' => ServerMenu::build()]);
+        return view('simplify::pages.server', ['menu' => ServerMenu::build(), 'locked' => LockedServer::for($this->server)]);
     }
 
     /** @return array<string, mixed> */
     public function initial(): array
     {
-        return [...$this->shell($this->user()), 'server' => Listing::one($this->user(), $this->server), 'console' => $this->console, 'colors' => Looks::COLORS];
+        return [...$this->shell($this->user()), 'server' => $this->refresh(), 'console' => $this->console, 'colors' => Looks::COLORS];
     }
 
     #[Renderless]
     public function refresh(): array
     {
-        return Listing::one($this->user(), $this->server);
+        $server = Listing::one($this->user(), $this->server);
+        if (LockedServer::locked($this->server)) {
+            // A locked server shows no way in: no address, no SFTP, no links, nothing to change.
+            $server = ['locked' => true, 'can_edit' => false, 'can_delete' => false, 'address' => null, 'sftp' => null, 'links' => []] + $server;
+        }
+
+        return $server;
     }
 
     /**
@@ -87,6 +94,7 @@ final class ServerPage extends Component
     #[Renderless]
     public function power(string $action): void
     {
+        $this->notLocked();
         abort_unless(in_array($action, Power::ACTIONS, true) && Power::allowed($this->user(), $this->server, $action), 403);
         Power::send($this->server, $action);
     }
@@ -95,6 +103,7 @@ final class ServerPage extends Component
     #[Renderless]
     public function reinstall(): array
     {
+        $this->notLocked();
         abort_unless($this->user()->can(SubuserPermission::SettingsReinstall, $this->server), 403);
         abort_unless(in_array($this->server->status?->value, Installation::FAILED, true), 409);
         app(ReinstallServerService::class)->handle($this->server);
@@ -130,6 +139,7 @@ final class ServerPage extends Component
     #[Renderless]
     public function acceptEula(): array
     {
+        $this->notLocked();
         abort_unless($this->canAcceptEula(), 403);
         abort_if($this->server->isInConflictState(), 409);
         app(DaemonFileRepository::class)->setServer($this->server)
@@ -137,6 +147,12 @@ final class ServerPage extends Component
         Power::send($this->server, 'start');
 
         return $this->refresh();
+    }
+
+    /** A server an add-on keeps to itself (Addon::lockedServer): Simplify's own actions refuse, only the add-on's buttons work. */
+    private function notLocked(): void
+    {
+        abort_if(LockedServer::locked($this->server), 423);
     }
 
     private function canAcceptEula(): bool
@@ -148,6 +164,7 @@ final class ServerPage extends Component
     #[Renderless]
     public function saveName(string $name): array
     {
+        $this->notLocked();
         abort_unless($this->user()->can(SubuserPermission::SettingsRename, $this->server), 403);
         $name = trim($name);
         if ($name !== '' && mb_strlen($name) <= 191 && $name !== $this->server->name) {
@@ -161,6 +178,7 @@ final class ServerPage extends Component
     /** The owner (or a root admin) deletes a stopped server after typing its exact name, as in Pelican's admin. */
     public function deleteServer(string $confirmation): void
     {
+        $this->notLocked();
         $user = $this->user();
         abort_unless($user->isRootAdmin() || $this->server->owner_id === $user->id, 403);
         abort_unless(hash_equals($this->server->name, $confirmation), 422);
@@ -178,6 +196,7 @@ final class ServerPage extends Component
     #[Renderless]
     public function banners(): array
     {
+        $this->notLocked();
         abort_unless(Looks::canEdit($this->user(), $this->server), 403);
 
         return Looks::choices($this->user());
@@ -187,6 +206,7 @@ final class ServerPage extends Component
     #[Renderless]
     public function chooseBanner(string $id): array
     {
+        $this->notLocked();
         abort_unless(Looks::canEdit($this->user(), $this->server), 403);
         $banner = Looks::stored($this->user(), $id);
         abort_if($banner === false, 422);
@@ -205,6 +225,7 @@ final class ServerPage extends Component
     #[Renderless]
     public function saveLook(?string $color, bool $removeBanner = false): array
     {
+        $this->notLocked();
         abort_unless(Looks::canEdit($this->user(), $this->server), 403);
         $banner = $removeBanner ? null : false;
         if ($this->banner instanceof TemporaryUploadedFile) {

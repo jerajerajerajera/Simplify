@@ -28,6 +28,7 @@ use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Filament\Server\ServerPage;
 use Simplify\Core\Http\Middleware\FramePolicy;
 use Simplify\Core\Http\Middleware\LegacyChoice;
+use Simplify\Core\Http\Middleware\LockedServerPages;
 use Simplify\Core\Http\Middleware\StartPage;
 use Simplify\Core\Push\Push;
 use Simplify\Core\Server\ServerMenu;
@@ -79,6 +80,8 @@ final class SimplifyPlugin implements Plugin
             $panel->renderHook(PanelsRenderHook::CONTENT_BEFORE, fn () => self::serverTop());
             $panel->renderHook('panels::head.end', fn () => self::serverTitle());
             $panel->renderHook(PanelsRenderHook::PAGE_START, fn (array $scopes = []) => self::pageTabs($scopes));
+            // A server an add-on keeps to itself (Addon::lockedServer) has only its console.
+            $panel->tenantMiddleware([LockedServerPages::class]);
         }
         if (in_array($panel->getId(), ['app', 'admin'], true)) {
             // The Admin page (V52) and the account pages: Pelican's pages inside Simplify, with its header (and on the

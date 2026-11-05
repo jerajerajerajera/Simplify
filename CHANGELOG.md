@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Add-ons: an add-on can lock a server that only it may work on, such as a temporary test server: its page keeps only the console output, the add-on's own buttons and a line that says why, and its other pages go back to the console (add-on API 10, `lockedServer()`).
+
 - Server menu: Website is called Website embed, as in Simplify settings.
 
 ## 2.0.0-beta.6
