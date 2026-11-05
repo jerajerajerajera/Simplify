@@ -451,6 +451,11 @@ async function round(theme) {
     await alpine(`d.setOverviewPreference('fullWidth', false)`); await sleep(500);
   }
   await alpine(`d.setOverviewView('grid')`); await sleep(500);
+  // Host health besides its top-bar button (Customize): a bar at the bottom, or a card among the servers.
+  if (await alpine('return typeof d.healthExtra === "function" && !!d.healthPlace()')) {
+    for (const place of ['bottom', 'card']) { await alpine(`d.setOverviewPreference('healthPlace', '${place}')`); await sleep(900); await record('overview-health-' + place, 'Overzicht, host health ' + place); }
+    await alpine(`d.setOverviewPreference('healthPlace', 'top-bar')`); await sleep(500);
+  }
   // Phones: the panel menu opens from the tab bar at the bottom (the account button sits inside it).
   // Phones have no panel menu any more (1.5.4): the bell and the account sit in the top bar, the rest in the bottom bar.
   const openNav = async () => {};
