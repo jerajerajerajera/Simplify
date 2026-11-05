@@ -53,7 +53,7 @@ return [
         'preview' => 'Prévia da lista salva',
     ],
     'server' => [
-        'title' => 'Site',
+        'title' => 'Incorporação no site',
         'help' => 'Mostra este servidor na lista pública de servidores do painel, com nome, status, endereço de conexão e o que você preencher abaixo.',
         'show' => 'Mostrar no site',
         'shown' => 'Este servidor agora está no site',

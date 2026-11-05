@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Server menu: Website is called Website embed, as in Simplify settings.
+
 ## 2.0.0-beta.6
 
 - Pelican's lists inside Simplify (servers, users, files, schedules and the rest) are Simplify's list of rows on every screen: the name, the other columns as short texts and chips, the row's buttons on the right. A "Sort by" menu with a direction button takes the place of the column titles.

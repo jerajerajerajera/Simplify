@@ -53,7 +53,7 @@ return [
         'preview' => 'Aperçu de la liste enregistrée',
     ],
     'server' => [
-        'title' => 'Site web',
+        'title' => 'Intégration au site web',
         'help' => 'Affiche ce serveur dans la liste publique des serveurs du panel, avec son nom, son état, son adresse de connexion et ce que vous remplissez ci-dessous.',
         'show' => 'Afficher sur le site',
         'shown' => 'Ce serveur est maintenant sur le site',
