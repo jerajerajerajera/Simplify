@@ -3,9 +3,12 @@
 ## Unreleased
 
 - Overview: Customize › Host health shows host health also as a bar at the bottom or as a card before the servers; the Health button in the top bar stays.
+- Add-ons: an add-on can lock a server that only it may work on, such as a temporary test server: its page keeps only the console output, the add-on's own buttons and a line that says why, and its other pages go back to the console (add-on API 10, `lockedServer()`).
+- Admin menu: Pelican plugins is a heading with its plugins always under it, and Show more from the sixth plugin on.
 - Phones: in the open Admin menu the Health bar is as wide as the screen and reaches the bottom bar, without a dark strip under or beside it.
 - Unsaved changes: a password your browser remembers for the panel is no longer filled into an add-on's API key field (Settings › Add-ons), so the "Changes made" bar no longer appears before you changed anything; the bar is dark in the dark theme.
 - Server menu: Website is called Website embed, as in Simplify settings.
+- Updates: after an update Simplify throws away the panel's compiled copies of its old pages once, so an update from 1.5.x no longer ends in a 500 on the overview ("View [dashboard.host] not found").
 
 ## 2.0.0-beta.6
 

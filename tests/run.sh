@@ -10,6 +10,7 @@ php tests/legacy-css.php
 php tests/server-groups.php
 php tests/host-health.php
 php tests/health-hook.php
+php tests/fresh-views.php
 php tests/problems.php
 php tests/migrations-keep.php
 php tests/push.php

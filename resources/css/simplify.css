@@ -2867,3 +2867,12 @@ html.ps-frame .s-done {
     height: var(--s-h, 36px);
   }
 }
+
+/* A server an add-on keeps to itself (Addon::lockedServer, server.js lockPage): grey and out of use, except the console
+   output and the add-on's own buttons; a line under them says why. */
+.ps-is-locked { opacity: .45; filter: grayscale(1); pointer-events: none; user-select: none; }
+.ps-server-top.is-locked :is(.ps-info-address, .ps-statusbar-address, .ps-statusbar-power) { display: none !important; }
+.ps-server-top.is-locked .ps-info-power { flex-wrap: wrap; justify-content: flex-end; }
+.ps-locked-actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+.ps-locked-notice { display: flex; flex-basis: 100%; align-items: center; justify-content: flex-end; gap: 6px; margin: 0; color: var(--ps-muted); font-size: 13px; line-height: 1.35; }
+.ps-locked-notice svg { flex: none; width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }

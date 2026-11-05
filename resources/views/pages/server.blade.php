@@ -1,5 +1,5 @@
 @php($u = fn (string $key, array $values = []) => __('simplify::dashboard.ui.'.$key, $values))
-<div @class(['ps server-active ps-server-top', 'is-console' => $console]) data-simplify-root x-cloak wire:ignore.self
+<div @class(['ps server-active ps-server-top', 'is-console' => $console, 'is-locked' => $locked !== null]) data-simplify-root x-cloak wire:ignore.self
      x-data="simplifyServer($wire, @js($this->initial()))"
      x-on:resize.window.debounce.150ms="applyScale()"
      :class="{'dark': themeDark, 'is-console': onConsole, 'is-server-full-width': overviewPreferences.fullWidth, 'ps-halloween': halloween()}"
@@ -63,6 +63,17 @@
             <div class="ps-motd-preview ps-motd-display ps-info-motd" x-show="server.motd" x-effect="server.motd; $nextTick(() => fitMotd($el))" aria-label="{{ $u('message_of_the_day') }}"><template x-for="(part, index) in motdPreview(server.motd || '')" :key="index"><span :style="part.style" x-text="part.text"></span></template></div>
             {{-- Power: one button that follows the state (Start, Stop, or Force stop while starting or stopping), Restart, and the rest under ⋯. None of them while the server installs. --}}
             <div class="ps-info-power" x-on:click.outside="colorMenu=false; bannerMenu=false; infoMenu=false" x-on:keydown.escape.stop="colorMenu=false; bannerMenu=false; infoMenu=false">
+                @if ($locked !== null)
+                    {{-- A server an add-on keeps to itself (Addon::lockedServer): only the add-on's buttons, and why. --}}
+                    <div class="ps-locked-actions">
+                        @if ($locked['actions'])
+                            @livewire($locked['actions'], ['server' => $server->uuid], key('simplify-locked-'.$server->uuid))
+                        @endif
+                    </div>
+                    @if ($locked['notice'] !== '')
+                        <p class="ps-locked-notice"><svg aria-hidden="true"><use href="#ps-info"/></svg><span>{{ $locked['notice'] }}</span></p>
+                    @endif
+                @else
                 {{-- First start of a Minecraft server with its EULA still open: the person ticks the box themselves (with the EULA a click away), then First start writes eula.txt and starts. --}}
                 <label class="ps-eula-check" :class="{ 'is-pulse': eulaPulse }" x-show="firstStart() && eulaNeeded" x-cloak><input type="checkbox" x-model="eulaAccepted" :disabled="busy"><span>{{ $u('eula_check') }} · <a href="https://www.minecraft.net/eula" target="_blank" rel="noopener noreferrer">{{ $u('read_the_minecraft_eula') }}</a></span></label>
                 <button type="button" class="ps-btn ps-power-main" x-show="!installView()" :class="{'is-primary': ['start', 'first'].includes(mainPower().action), 'is-danger': mainPower().action==='kill'}" x-on:click="power(mainPower().action)" :disabled="busy || !server.permissions[mainPower().permission] || (mainPower().action==='start' && !canRestart()) || (mainPower().action==='first' && eulaNeeded && !eulaAccepted)" :aria-label="Simplify.fill(@js($u('action_server')), { action: mainPower().label })"><svg aria-hidden="true"><use :href="'#ps-'+mainPower().icon"/></svg><span x-text="mainPower().label"></span></button>
@@ -109,6 +120,7 @@
                         <button type="button" class="ps-btn is-sm is-primary" x-on:click="saveLook(colorDraft)" :disabled="busy">{{ $u('save') }}</button>
                     </div>
                 </div>
+                @endif
             </div>
         </article>
 
