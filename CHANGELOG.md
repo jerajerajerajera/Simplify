@@ -3,6 +3,8 @@
 ## Unreleased
 
 - Add-ons: an add-on can lock a server that only it may work on, such as a temporary test server: its page keeps only the console output, the add-on's own buttons and a line that says why, and its other pages go back to the console (add-on API 10, `lockedServer()`).
+- Admin menu: Pelican plugins is a heading with its plugins always under it, and Show more from the sixth plugin on.
+- Phones: in the open Admin menu the Health bar is as wide as the screen and reaches the bottom bar, without a dark strip under or beside it.
 - Unsaved changes: a password your browser remembers for the panel is no longer filled into an add-on's API key field (Settings › Add-ons), so the "Changes made" bar no longer appears before you changed anything; the bar is dark in the dark theme.
 - Server menu: Website is called Website embed, as in Simplify settings.
 

@@ -1,3 +1,4 @@
+@php($folding = array_values(array_diff(array_column($sections, 'key'), ['extensions'])))
 @php($u = fn (string $key, array $values = []) => __('simplify::dashboard.ui.'.$key, $values))
 {{-- The Admin page's menu (AdminSide, V52): the admin pages as a tree. It keeps its place while its links load the
      page next to it (wire:navigate), and its breadcrumb (All servers › group › page) is the page's title (Jeroen 3-11).
@@ -55,8 +56,8 @@
         crumbWidth() { const crumb = this.$root.querySelector('.ps-admin-crumb'); if (crumb) new ResizeObserver(() => document.documentElement.style.setProperty('--ps-crumb-w', crumb.offsetWidth + 'px')).observe(crumb); },
         // The group in the breadcrumb: on a phone back to the menu, on a computer its branch in the tree beside the page.
         group() { if (this.phone()) this.slide(true); else if (this.crumb?.key) this.branches[this.crumb.key] = true; },
-        all() { return @js(array_column($sections, 'key')).every((key) => this.branches[key]); },
-        toggleAll() { const on = !this.all(); for (const key of @js(array_column($sections, 'key'))) this.branches[key] = on; },
+        all() { return @js($folding).every((key) => this.branches[key]); },
+        toggleAll() { const on = !this.all(); for (const key of @js($folding)) this.branches[key] = on; },
      }"
      x-init="locate(); remember(); swipe(); accent(); crumbWidth()" x-on:livewire:navigated.window="locate(true)" x-on:simplify:admin-menu.window="slide(!open)" x-on:simplify:theme.window="dark = $event.detail.dark; accent()" x-on:keydown.escape.window="slide(false)">
     <div class="ps-host-backdrop" x-show="open" x-cloak x-on:click="slide(false)"></div>
@@ -80,6 +81,21 @@
                             <a class="ps-host-group-head" href="{{ $section['pages'][0]['url'] }}" wire:navigate :aria-current="here === @js($section['key'].'/'.($section['pages'][0]['key'] ?? '')) ? 'page' : null">
                                 <svg aria-hidden="true"><use href="#ps-{{ $section['icon'] }}"/></svg><span>{{ $section['label'] }}</span>
                             </a>
+                        @elseif ($section['key'] === 'extensions')
+                            {{-- Pelican plugins: a heading with its plugins under it, never folded; past five, Show more (Jeroen 5-11). --}}
+                            <div class="ps-host-group-head is-heading">
+                                <svg aria-hidden="true"><use href="#ps-{{ $section['icon'] }}"/></svg><span>{{ $section['label'] }}</span>
+                            </div>
+                            <div class="ps-host-branch is-list" x-data="{ more: @js(count($section['pages']) <= 5) }">
+                                @foreach ($section['pages'] as $page)
+                                    <a class="ps-host-leaf" href="{{ $page['url'] }}" wire:navigate :aria-current="here === @js($section['key'].'/'.($page['key'] ?? '')) ? 'page' : null" @if ($loop->index >= 5) x-show="more || here === @js($section['key'].'/'.($page['key'] ?? ''))" x-cloak @endif>
+                                        <span>{{ $page['label'] }}</span>
+                                    </a>
+                                @endforeach
+                                @if (count($section['pages']) > 5)
+                                    <button type="button" class="ps-host-more" x-show="!more" x-on:click="more = true">{{ $u('show_more') }}</button>
+                                @endif
+                            </div>
                         @else
                             <button type="button" class="ps-host-group-head" :aria-expanded="!!branches[@js($section['key'])]" x-on:click="branches[@js($section['key'])] = !branches[@js($section['key'])]">
                                 <svg aria-hidden="true"><use href="#ps-{{ $section['icon'] }}"/></svg><span>{{ $section['label'] }}</span>
