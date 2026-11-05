@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Settings: a user name your browser remembers for the panel is no longer filled into the Support link, so Save on Add-ons no longer fails on that field and jumps to General.
+- Overview: Customize › Host health shows host health also as a bar at the bottom or as a card before the servers; the Health button in the top bar stays.
 - Phones: a list row with more than two buttons shows its main button (such as Update) and ⋯, which opens a sheet with every button by its name, so a list (Eggs with Egg Updates) no longer slides sideways.
 
 ## 2.0.0-beta.7
