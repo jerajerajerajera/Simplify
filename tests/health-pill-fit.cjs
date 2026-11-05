@@ -54,6 +54,7 @@ const page = (brand, word) => `<!doctype html><html><head><meta charset="utf-8">
     const word = pill.querySelector('span'), top = document.querySelector('.ps-top');
     const measure = () => ({
       word: word.getBoundingClientRect().width > 0, iconOnly: pill.classList.contains('ps-icon-only'),
+      ink: getComputedStyle(word).color, ground: getComputedStyle(pill).backgroundColor,
       wordCut: word.scrollWidth > word.clientWidth + 1, pill: Math.round(pill.getBoundingClientRect().width),
       headingOverflow: (() => { const h = document.querySelector('.ps-heading'); return h.scrollWidth > h.clientWidth + 1; })(),
       topOverflow: top.scrollWidth > top.clientWidth + 1, width: innerWidth, pageScrollX: document.documentElement.scrollWidth - innerWidth,
@@ -116,6 +117,11 @@ const run = (html, width, height) => new Promise((resolve, reject) => {
   })().catch(reject);
 });
 
+// WCAG contrast of the word on the tinted button: rgb(…) or color(srgb …) as Chrome reports a color-mix().
+const channels = (text) => { const n = (text.match(/[\d.]+/g) || []).map(Number); return /^color\(/.test(text) ? n.slice(0, 3).map((v) => v * 255) : n.slice(0, 3); };
+const luminance = (rgb) => { const [r, g, b] = rgb.map((v) => { v /= 255; return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }); return 0.2126 * r + 0.7152 * g + 0.0722 * b; };
+const contrast = (a, b) => { const [x, y] = [luminance(channels(a)), luminance(channels(b))].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); };
+
 let failures = 0;
 const check = (name, ok, detail) => { console.log(`${ok ? 'PASS' : 'FAIL'} ${name}${ok ? '' : ' ' + JSON.stringify(detail)}`); if (!ok) failures++; };
 (async () => {
@@ -124,6 +130,7 @@ const check = (name, ok, detail) => { console.log(`${ok ? 'PASS' : 'FAIL'} ${nam
     const r = await run(page(brand, word), width, height);
     if (!r) { check(`${name} (measured)`, false, null); continue; }
     const fits = wordShows ? r.word && !r.iconOnly && !r.wordCut : !r.word && r.iconOnly;
+    if (r.word) check(`${name}; the word reads on the button (4.5:1)`, contrast(r.ink, r.ground) >= 4.5, { ink: r.ink, ground: r.ground, ratio: contrast(r.ink, r.ground).toFixed(2) });
     check(name, r.width === width && fits && !r.topOverflow && !r.headingOverflow && r.pageScrollX <= 0, r);
     if (shortShows) check(`${name}; a short word afterwards shows`, r.short.word && !r.short.iconOnly && !r.short.topOverflow, r.short);
     else check(`${name}; a short word afterwards: still the heart, the name ends in "…" within its room`, r.short.iconOnly && !r.short.headingOverflow && !r.short.topOverflow, r.short);

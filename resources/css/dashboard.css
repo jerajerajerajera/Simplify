@@ -422,7 +422,8 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-health-pill svg { width: 16px; height: 16px; fill: color-mix(in srgb, currentColor 18%, transparent); }
 .ps-health-pill[aria-expanded="true"] { border-color: var(--ps-tone); }
 /* The word beside the heart when the top bar has room for it, else the heart alone (core.js fitWord). */
-.ps-health-pill > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* The word a little toward the ink, so it reads on the tinted button (4.5:1, Lighthouse); the heart keeps the tone. */
+.ps-health-pill > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: color-mix(in srgb, var(--ps-tone) 80%, var(--ps-ink)); }
 .ps .ps-health-pill.ps-icon-only { width: var(--ps-h); padding: 0; justify-content: center; }
 .ps .ps-health-pill.ps-icon-only > span { display: none; }
 .ps-health-place button { white-space: nowrap; }
