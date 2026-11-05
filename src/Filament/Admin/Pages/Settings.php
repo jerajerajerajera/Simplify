@@ -10,7 +10,6 @@ use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
-use Filament\Schemas\Components\Actions;
 use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Components\View;
@@ -126,11 +125,8 @@ final class Settings extends Page implements HasForms
                     SettingsFields::support(),
                     SettingsFields::visibility(),
                     SettingsFields::banners(),
-                    // Only here, not in the head of every tab (Jeroen 3-11).
-                    Actions::make([
-                        Action::make('setup')->label(__('simplify::setup.again'))->icon('tabler-wand')->color('gray')
-                            ->url(fn () => Setup::getUrl(panel: 'admin')),
-                    ])->extraAttributes(['class' => 's-settings-setup']),
+                    // Only here, not in the head of every tab (Jeroen 3-11), as a section of its own (Jeroen 5-11).
+                    SettingsFields::setupAgain(),
                 ]),
                 Tab::make(__('simplify::settings.appearance.app'))->key('app')->icon('tabler-device-mobile')->schema([
                     SettingsFields::app(),
