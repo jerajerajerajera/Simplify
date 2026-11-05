@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Health: on a phone the Health button shows its word beside the heart when the top bar has room for it, else the heart alone; a long panel name ends in "…" instead of running under the buttons.
+
 ## 2.0.0-beta.11
 
 - Schedules: Announcement "When the server is online" waits without a queue worker: the scheduler looks every minute, so it also works on a panel with the sync queue (it used to send nothing there).

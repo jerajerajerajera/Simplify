@@ -421,6 +421,13 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-health-pill.critical { --ps-tone: var(--ps-danger); }
 .ps-health-pill svg { width: 16px; height: 16px; fill: color-mix(in srgb, currentColor 18%, transparent); }
 .ps-health-pill[aria-expanded="true"] { border-color: var(--ps-tone); }
+/* The word beside the heart when the top bar has room for it, else the heart alone (core.js fitWord). */
+/* The word a little toward the ink, so it reads on the tinted button (4.5:1, Lighthouse); the heart keeps the tone. */
+.ps-health-pill > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: color-mix(in srgb, var(--ps-tone) 80%, var(--ps-ink)); }
+.ps .ps-health-pill.ps-icon-only { width: var(--ps-h); padding: 0; justify-content: center; }
+/* Hidden, the word keeps its width out of the way, so fitWord can tell whether it would fit; the button does not slide between the two. */
+.ps .ps-health-pill.ps-icon-only > span { position: absolute; visibility: hidden; pointer-events: none; }
+.ps .ps-health-pill { position: relative; transition-property: scale, background-color, border-color, color; }
 .ps-health-place button { white-space: nowrap; }
 .ps-host-health { border-radius: calc(var(--ps-radius-lg) - 1px); }
 .ps-health-panel.expanded .ps-host-health { border-end-start-radius: 0; border-end-end-radius: 0; }
@@ -1541,9 +1548,9 @@ body:has(.ps-install:not([style*="none"], [x-cloak])) .fi-main .fi-page .fi-call
 @media (max-width: 600px) {
   .ps .ps-mobile-menu, .ps .ps-mobile-label, .ps .ps-title-pelican, .ps .ps-nav-heading { display: none !important; }
   .ps .ps-brand { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  /* Host health in the top bar: its heart only, the colour says the state. */
-  .ps .ps-health-pill { width: var(--ps-h); padding: 0; justify-content: center; }
-  .ps .ps-health-pill > span { display: none; }
+  .ps:not(.server-active) :is(.ps-identity, .ps-identity > a) { min-width: 0; }
+  /* Host health in the top bar: the heart and its word when they fit (core.js fitWord), else the heart alone. */
+  .ps .ps-health-pill { min-width: var(--ps-h); }
   .ps .ps-top, .ps.server-active .ps-top { align-items: center; margin-bottom: 14px; }
   .ps.server-active .ps-heading { flex-direction: row; align-items: center; gap: 2px; }
   .ps .ps-back-overview { order: -1; flex: none; width: var(--ps-h); padding: 0; gap: 0; justify-content: center; border-color: transparent; background: none; }
