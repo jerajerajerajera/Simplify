@@ -4,7 +4,9 @@
 // `php artisan p:plugin:install simplify`: php plugins/simplify/tests/panel/smoke.php
 use App\Filament\Admin\Pages\Health;
 use App\Models\Role;
+use App\Models\Schedule;
 use App\Models\Server;
+use App\Models\Task;
 use App\Models\User;
 use Filament\Notifications\Notification;
 use Filament\Support\Colors\Color;
@@ -1047,9 +1049,9 @@ step('announcement task: sends now to the owner once, and "when online" waits in
     $owner = User::query()->findOrFail($server->owner_id);
     $owner->notifications()->delete();
     $run = function (array $payload) use ($server) {
-        $task = new App\Models\Task(['payload' => TaskAnnouncement::encode($payload)]);
+        $task = new Task(['payload' => TaskAnnouncement::encode($payload)]);
         $task->setRelation('server', $server);
-        $task->setRelation('schedule', new App\Models\Schedule(['name' => 'Smoke schedule']));
+        $task->setRelation('schedule', new Schedule(['name' => 'Smoke schedule']));
         (new AnnouncementTask)->runTask($task);
     };
     $run(['message' => 'Smoke task now', 'send' => 'now', 'notify' => true]);

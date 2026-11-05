@@ -15,7 +15,6 @@ final class TaskAnnouncement
     public const ONLINE = 'online';
 
     /** "When the server is online": given up after this long (the scheduler looks every minute). */
-
     public const WAIT_SECONDS = 600;
 
     public const SEND = 'send';
