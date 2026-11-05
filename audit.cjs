@@ -649,7 +649,21 @@ async function round(theme) {
   // The Admin page: every section and page of its menu, and the menu kept beside each page.
   if (await shieldTo(overview)) {
     await record('host', 'Admin-pagina');
-    if (onPhone) { await openAdminMenu(); await record('host-phone-menu', 'Admin-pagina · telefoon, menu als pagina'); await escape(); }
+    if (onPhone) {
+      await openAdminMenu(); await record('host-phone-menu', 'Admin-pagina · telefoon, menu als pagina');
+      // K-B55: the Health bar of the open Admin menu is as wide as the window and reaches the bottom bar, with no strip of
+      // background beside it or between it and the bottom bar.
+      const edge = await page.evaluate(() => {
+        const bar = [...document.querySelectorAll('.ps-admin-side.menu-open .ps-host-health-bar')].find((e) => e.getClientRects().length);
+        const tabs = [...document.querySelectorAll('.ps-tabbar')].find((e) => e.getClientRects().length);
+        if (!bar) return null;
+        const r = bar.getBoundingClientRect();
+        return { left: Math.round(r.left), right: Math.round(innerWidth - r.right), bottom: Math.round(r.bottom), tabTop: tabs ? Math.round(tabs.getBoundingClientRect().top) : null, height: innerHeight };
+      });
+      const flush = !!edge && edge.left <= 0 && edge.right <= 0 && edge.tabTop !== null && edge.bottom >= edge.tabTop;
+      problems.push(`${stand} phone-menu-health-edge: ${flush ? 'ok' : 'WRONG'} ${JSON.stringify(edge)}`);
+      await escape();
+    }
     const lost = [], visited = [], offRow = [], underCrumb = [], tall = [];
     const go = async (locator, id, title) => {
       await markAdminSide(); await locator.click().catch(() => {}); await settle(page, 1800);
