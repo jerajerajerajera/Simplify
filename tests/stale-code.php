@@ -9,6 +9,7 @@ declare(strict_types=1);
 require __DIR__.'/../src/Support/StaleCode.php';
 require __DIR__.'/fixtures/livewire-component-not-found.php';
 
+use Livewire\Exceptions\ComponentNotFoundException;
 use Simplify\Core\Support\StaleCode;
 
 $failures = [];
@@ -30,7 +31,7 @@ check(StaleCode::answer(false, 'POST', false) === StaleCode::ERROR, 'a form post
 check(StaleCode::retryUrl('https://panel.test/admin/settings?tab=addons') === 'https://panel.test/admin/settings?tab=addons&'.StaleCode::RETRIED.'=1', 'the retry keeps the query');
 check(StaleCode::retryUrl('https://panel.test/') === 'https://panel.test/?'.StaleCode::RETRIED.'=1', 'the retry marks a plain address');
 
-$missing = new Livewire\Exceptions\ComponentNotFoundException('Unable to find component: [simplify-hosting-settings-form]');
+$missing = new ComponentNotFoundException('Unable to find component: [simplify-hosting-settings-form]');
 check(StaleCode::isMissingComponent($missing), "Livewire's error for a missing component counts");
 check(StaleCode::isMissingComponent(new ErrorException('in a view', 0, 1, 'settings.blade.php', 1, $missing)), 'also when a Blade page wraps it');
 check(StaleCode::isMissingComponent(new RuntimeException('Unable to find component: [simplify-hosting-settings-form]')) === false, 'only Livewire\'s own error counts');

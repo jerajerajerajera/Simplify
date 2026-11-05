@@ -7,6 +7,7 @@ namespace Simplify\Core\Support;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\Request;
+use Livewire\Exceptions\ComponentNotFoundException;
 use Throwable;
 
 /**
@@ -48,7 +49,7 @@ final class StaleCode
     public static function isMissingComponent(?Throwable $error): bool
     {
         for (; $error !== null; $error = $error->getPrevious()) {
-            if ($error instanceof \Livewire\Exceptions\ComponentNotFoundException) {
+            if ($error instanceof ComponentNotFoundException) {
                 return true;
             }
         }
