@@ -777,7 +777,9 @@ async function boxwatchFlow() {
       return { html: document.documentElement.className.split(' ').filter((c) => /^ps-|dark/.test(c)).join(' '), layout: lay && (r(lay) + ' h ' + ls.height + ' rows ' + ls.gridTemplateRows + ' ' + ls.display + ' pb ' + ls.paddingBottom),
         ctn: ctn && (r(ctn) + ' h ' + cs.height + ' max ' + cs.maxHeight + ' min ' + cs.minHeight + ' row ' + cs.gridRow + ' as ' + cs.alignSelf + ' ov ' + cs.overflowY + ' pb ' + cs.paddingBottom),
         main: r(document.querySelector('.fi-main')), kids: lay ? [...lay.children].map((k) => (k.getAttribute('x-persist') || k.tagName + '.' + String(k.className).split(' ')[0]) + ' ' + r(k) + ' ' + getComputedStyle(k).gridRow + ' ' + getComputedStyle(k).display) : [],
-        page: document.documentElement.scrollHeight, body: r(document.body), sheets: document.styleSheets.length, url: location.pathname };
+        page: document.documentElement.scrollHeight, body: r(document.body), url: location.pathname, inline: ctn && ctn.getAttribute('style'), lay: lay && lay.getAttribute('style'),
+        sheets: [...document.styleSheets].map((x) => (x.href || 'inline').replace(/^https?:\/\/[^/]+/, '').replace(/\?.*/, '')).slice(0, 30),
+        rules: (() => { const out = []; const walk = (list, sheet) => { for (const rule of list || []) { if (rule.cssRules && !rule.selectorText) { try { walk(rule.cssRules, sheet); } catch {} continue; } if (!rule.selectorText || !ctn) continue; let hit = false; try { hit = ctn.matches(rule.selectorText); } catch {} if (!hit) continue; const st = rule.style; for (const prop of ['min-height', 'padding-bottom', 'padding', 'height', 'max-height']) { const v = st.getPropertyValue(prop); if (v) out.push(sheet + ' | ' + rule.selectorText.slice(0, 160) + ' | ' + prop + ': ' + v + (st.getPropertyPriority(prop) ? ' !' : '') + (rule.parentRule ? ' @' + (rule.parentRule.conditionText || rule.parentRule.name || rule.parentRule.constructor.name) : '')); } } }; for (const sh of document.styleSheets) { try { walk(sh.cssRules, (sh.href || 'inline').replace(/^.*\//, '').replace(/\?.*/, '')); } catch {} } return out; })() };
     };
     let worst = null, worstBottom = -1, frames = 0; const t0 = performance.now();
     const tick = () => {
@@ -801,6 +803,7 @@ async function boxwatchFlow() {
     const res = await w.catch((e) => ({ error: e.message.slice(0, 120) }));
     // The click may navigate away from the watching document (a full load): watch the new one too.
     const res2 = await watch().catch(() => null);
+    if (res && res.bottom > res.window + 2) console.log('BOXWATCH ' + stand + ' ' + JSON.stringify(res)); if (res2 && res2.bottom > res2.window + 2) console.log('BOXWATCH-AFTER ' + stand + ' ' + JSON.stringify(res2));
     results.push({ i, click: res, after: res2 && { bottom: res2.bottom, worst: res2.bottom > res2.window + 2 ? res2.worst : undefined } });
     if (i === 0) await record('boxwatch-plugins', 'Admin-pagina · Plugins (bewaakt)');
   }
