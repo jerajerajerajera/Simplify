@@ -49,6 +49,9 @@ return [
         'ok' => 'Gerai',
         'close' => 'Uždaryti',
     ],
+    'row' => [
+        'more' => 'Daugiau veiksmų',
+    ],
     'sort' => [
         'by' => 'Rikiuoti pagal',
         'ascending' => 'Didėjančiai',

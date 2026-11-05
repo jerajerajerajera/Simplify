@@ -12,6 +12,8 @@
 <script src="{{ \Simplify\Core\Support\Assets::url('unsaved.js') }}" defer></script>
 <script>window.simplifySortText = @js(__('simplify::js.sort'));</script>
 <script src="{{ \Simplify\Core\Support\Assets::url('sort.js') }}" defer></script>
+<script>window.simplifyRowText = @js(__('simplify::js.row'));</script>
+<script src="{{ \Simplify\Core\Support\Assets::url('row-actions.js') }}" defer></script>
 <script>
     // Before paint on every page, so a page reached with wire:navigate has the same colours as the overview: a theme
     // plugin's palette (tokens.css .ps-panel-theme) and OLED (core.js). Grey Admin pages and a black overview after
