@@ -54,6 +54,11 @@ check($run('2.0.0-beta.7', null, $folder, $remembered), 'a cleared view cache (n
 check(! $run('', '1.5.5', $folder, $remembered), 'without a version of its own nothing is removed');
 
 $provider = (string) file_get_contents($root.'/src/Providers/SimplifyServiceProvider.php');
+$fresh = (string) file_get_contents($root.'/src/Support/FreshViews.php');
+check((bool) preg_match('/if \(\$refreshed && function_exists\(\'opcache_reset\'\)\)\s*\{\s*opcache_reset\(\);/', $fresh), 'a new version also starts PHP\'s opcache over, so no class of the old version keeps running (K-B60)');
+$server = (string) file_get_contents($root.'/resources/views/pages/server.blade.php');
+$default = strpos($server, '@php($locked ??= null)');
+check($default !== false && $default < strpos($server, '$locked !=='), 'the server page opens without $locked from an older ServerPage (K-B60)');
 check((bool) preg_match('/public function boot\(\): void\s*\{[^}]*FreshViews::boot\(Assets::version\(\)\)/s', $provider), 'the plugin refreshes its views first thing on boot');
 
 if ($failures !== []) {

@@ -68,7 +68,7 @@ final class FreshViews
             $files = app('files');
             $root = dirname(__DIR__, 2).'/resources';
             $marker = self::marker();
-            self::refresh(
+            $refreshed = self::refresh(
                 $version,
                 $files->exists($marker) ? trim((string) $files->get($marker)) : null,
                 array_merge(self::files($root.'/views'), self::files($root.'/overrides')),
@@ -76,6 +76,11 @@ final class FreshViews
                 fn (string $path) => $files->delete($path),
                 fn (string $known) => $files->put($marker, $known),
             );
+            // PHP's opcache can keep running the previous version's classes next to the new views (K-B60): start it
+            // over once, so every class is read again from the new files.
+            if ($refreshed && function_exists('opcache_reset')) {
+                opcache_reset();
+            }
         } catch (Throwable $error) {
             report($error);
         }
