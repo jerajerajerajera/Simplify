@@ -317,8 +317,29 @@
     });
   };
 
+  // A button with an icon and a word (the Health button in the top bar): the word shows when the top bar has room for
+  // it, otherwise only the icon (Jeroen 5-11). No room: the word would be cut off, the panel's name would be cut off,
+  // or the top bar would run wider than the window.
+  const fitWord = (button) => {
+    const word = button?.querySelector(':scope > span');
+    if (!word || button.dataset.psFitWord) return;
+    button.dataset.psFitWord = '1';
+    const top = button.closest('.ps-top') || button.parentElement;
+    const cut = (el) => !!el && el.scrollWidth > el.clientWidth + 1;
+    const fit = () => {
+      button.classList.remove('ps-icon-only');
+      if (!button.offsetParent) return;
+      if (cut(word) || cut(top?.querySelector('.ps-heading')) || cut(top?.querySelector('.ps-brand')) || cut(top)) button.classList.add('ps-icon-only');
+    };
+    if (window.ResizeObserver && top) { const watch = new ResizeObserver(() => fit()); watch.observe(top); watch.observe(button); }
+    if (window.MutationObserver) new MutationObserver(() => fit()).observe(word, { childList: true, characterData: true, subtree: true });
+    document.fonts?.ready?.then(fit);
+    fit();
+  };
+
   window.Simplify = {
     t,
+    fitWord,
     tc,
     fill: (text, params = {}) => fill(String(text), params),
     choice,

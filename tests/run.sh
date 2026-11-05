@@ -40,6 +40,7 @@ node tests/shell-footer.cjs
 node tests/shell-box-transition.cjs
 node tests/admin-crumb-row.cjs
 node tests/admin-crumb-fit.cjs
+node tests/health-pill-fit.cjs
 node tests/labeled-from.cjs
 node tests/settings-nav-wrap.cjs
 node tests/beta-footer.cjs
