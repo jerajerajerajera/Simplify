@@ -58,6 +58,7 @@ use Simplify\Core\Subdomains\Services\Settings as SubdomainSettings;
 use Simplify\Core\Subdomains\Subdomains;
 use Simplify\Core\Support\Assets;
 use Simplify\Core\Support\Brand;
+use Simplify\Core\Support\FreshViews;
 use Simplify\Core\Support\PanelSettings;
 use Simplify\Core\Support\Preferences;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -1286,6 +1287,24 @@ step('subdomains: settings and subdomains from PelicanSimplify 0.6 and 0.7 are t
         Subdomain::query()->delete();
         DB::table(SubdomainSettings::TABLE)->delete();
         SubdomainSettings::flush();
+    }
+});
+step('after an update the compiled pages of the previous version are thrown away once (K-B57)', function () {
+    $files = app('files');
+    $view = dirname(__DIR__, 2).'/resources/views/pages/overview.blade.php';
+    $compiled = app('blade.compiler')->getCompiledPath($view);
+    $files->ensureDirectoryExists(dirname($compiled));
+    // What a 1.5.x panel had compiled: an overview that asks for a view 2.0 no longer has.
+    $files->put($compiled, "<?php echo \$__env->make('simplify::dashboard.host')->render(); ?>");
+    $files->put(FreshViews::marker(), '1.5.5');
+    FreshViews::boot(Assets::version());
+    if ($files->exists($compiled) || trim((string) $files->get(FreshViews::marker())) !== Assets::version()) {
+        throw new RuntimeException('the old compiled overview was kept');
+    }
+    app('blade.compiler')->compile($view);
+    FreshViews::boot(Assets::version());
+    if (! $files->exists($compiled)) {
+        throw new RuntimeException('the current compiled overview was thrown away again');
     }
 });
 if ($failed || $passed === 0) {
