@@ -54,28 +54,56 @@ final class FreshViews
         return $found;
     }
 
-    /** The file that remembers the version the compiled views belong to, among those views. */
+    /** The file that remembers the versions the compiled views belong to, among those views. */
     public static function marker(): string
     {
         return rtrim((string) config('view.compiled', storage_path('framework/views')), '/').'/simplify-version';
+    }
+
+    /**
+     * Simplify's version plus every installed plugin's id and version (its add-ons among them), so an update of any of
+     * them counts as a new version (Jeroen 5-11: never again after an update, also for add-ons).
+     *
+     * @param  list<string>  $manifests  The contents of the plugins' plugin.json files.
+     */
+    public static function fingerprint(string $version, array $manifests): string
+    {
+        if ($version === '') {
+            return '';
+        }
+        $plugins = [];
+        foreach ($manifests as $manifest) {
+            $data = json_decode($manifest, true);
+            if (is_array($data) && isset($data['id'])) {
+                $plugins[] = $data['id'].'@'.($data['version'] ?? '');
+            }
+        }
+        sort($plugins);
+
+        return $version.'+'.substr(sha1(implode(',', $plugins)), 0, 12);
     }
 
     /** Runs on boot; never stops the panel from loading. */
     public static function boot(string $version): void
     {
         try {
-            $compiler = app('blade.compiler');
             $files = app('files');
-            $root = dirname(__DIR__, 2).'/resources';
             $marker = self::marker();
-            self::refresh(
-                $version,
+            $compiled = dirname($marker);
+            // Every compiled view goes, not only Simplify's: an add-on's pages could be just as old.
+            $refreshed = self::refresh(
+                self::fingerprint($version, array_map(fn (string $path): string => (string) $files->get($path), glob(base_path('plugins/*/plugin.json')) ?: [])),
                 $files->exists($marker) ? trim((string) $files->get($marker)) : null,
-                array_merge(self::files($root.'/views'), self::files($root.'/overrides')),
-                fn (string $path): string => (string) $compiler->getCompiledPath($path),
+                $files->isDirectory($compiled) ? (glob($compiled.'/*.php') ?: []) : [],
+                fn (string $path): string => $path,
                 fn (string $path) => $files->delete($path),
                 fn (string $known) => $files->put($marker, $known),
             );
+            // PHP's opcache can keep running the previous version's classes next to the new views (K-B60): start it
+            // over once, so every class is read again from the new files.
+            if ($refreshed && function_exists('opcache_reset')) {
+                opcache_reset();
+            }
         } catch (Throwable $error) {
             report($error);
         }

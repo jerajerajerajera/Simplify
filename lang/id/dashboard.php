@@ -34,6 +34,7 @@ return [
         'profile_settings' => 'Pengaturan profil',
         'light' => 'Terang',
         'dark' => 'Gelap',
+        'oled' => 'OLED',
         'system' => 'Sistem',
         'notifications_on_this_device' => 'Notifikasi di perangkat ini',
         'switch_to_simple_mode' => 'Beralih ke mode sederhana',

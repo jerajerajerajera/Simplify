@@ -34,6 +34,7 @@ return [
         'profile_settings' => 'Подешавања профила',
         'light' => 'Светла',
         'dark' => 'Тамна',
+        'oled' => 'OLED',
         'system' => 'Системска',
         'notifications_on_this_device' => 'Обавештења на овом уређају',
         'switch_to_simple_mode' => 'Пређи на једноставни режим',

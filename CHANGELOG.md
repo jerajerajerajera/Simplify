@@ -3,6 +3,17 @@
 ## Unreleased
 
 - Simplify settings: Run setup again is a section of its own under General, with what it does and a button with its name; each uploaded server banner has a Remove button with its name and shows which servers use it.
+
+## 2.0.0-beta.8
+
+- Updates: after an update of Simplify or any add-on, the panel throws away all compiled pages and starts PHP's opcache over once, so it never runs old code next to new pages (a 500 on a server page: "Undefined variable $locked"); the server page also opens with an older server class.
+- Settings: a user name your browser remembers for the panel is no longer filled into the Support link, so Save on Add-ons no longer fails on that field and jumps to General.
+- Theme: dark is one grey on every page, also with a theme plugin (the overview was black next to grey Admin pages), and Customize › Theme has OLED: a pure black background with darker cards.
+- Overview: Customize › Host health shows host health also as a bar at the bottom or as a card before the servers; the Health button in the top bar stays.
+- Phones: a list row with more than two buttons shows its main button (such as Update) and ⋯, which opens a sheet with every button by its name, so a list (Eggs with Egg Updates) no longer slides sideways.
+
+## 2.0.0-beta.7
+
 - Add-ons: an add-on can lock a server that only it may work on, such as a temporary test server: its page keeps only the console output, the add-on's own buttons and a line that says why, and its other pages go back to the console (add-on API 10, `lockedServer()`).
 - Admin menu: Pelican plugins is a heading with its plugins always under it, and Show more from the sixth plugin on.
 - Phones: in the open Admin menu the Health bar is as wide as the screen and reaches the bottom bar, without a dark strip under or beside it.

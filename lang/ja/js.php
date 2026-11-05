@@ -49,6 +49,9 @@ return [
         'ok' => 'OK',
         'close' => '閉じる',
     ],
+    'row' => [
+        'more' => 'その他の操作',
+    ],
     'sort' => [
         'by' => '並べ替え',
         'ascending' => '昇順',

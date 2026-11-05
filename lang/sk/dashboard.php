@@ -34,6 +34,7 @@ return [
         'profile_settings' => 'Nastavenia profilu',
         'light' => 'Svetlý',
         'dark' => 'Tmavý',
+        'oled' => 'OLED',
         'system' => 'Systém',
         'notifications_on_this_device' => 'Upozornenia na tomto zariadení',
         'switch_to_simple_mode' => 'Prepnúť do jednoduchého režimu',

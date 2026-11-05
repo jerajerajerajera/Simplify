@@ -49,6 +49,9 @@ return [
         'ok' => 'OK',
         'close' => 'Zavrieť',
     ],
+    'row' => [
+        'more' => 'Ďalšie akcie',
+    ],
     'sort' => [
         'by' => 'Zoradiť podľa',
         'ascending' => 'Vzostupne',

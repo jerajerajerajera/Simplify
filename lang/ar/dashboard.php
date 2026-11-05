@@ -34,6 +34,7 @@ return [
         'profile_settings' => 'إعدادات الملف الشخصي',
         'light' => 'فاتح',
         'dark' => 'داكن',
+        'oled' => 'OLED',
         'system' => 'النظام',
         'notifications_on_this_device' => 'الإشعارات على هذا الجهاز',
         'switch_to_simple_mode' => 'التبديل إلى الوضع البسيط',

@@ -34,6 +34,7 @@ return [
         'profile_settings' => 'Profile settings',
         'light' => 'Light',
         'dark' => 'Dark',
+        'oled' => 'OLED',
         'system' => 'System',
         'notifications_on_this_device' => 'Notifications on this device',
         'switch_to_simple_mode' => 'Switch to simple mode',

@@ -34,6 +34,7 @@ return [
         'profile_settings' => 'Cài đặt hồ sơ',
         'light' => 'Sáng',
         'dark' => 'Tối',
+        'oled' => 'OLED',
         'system' => 'Hệ thống',
         'notifications_on_this_device' => 'Thông báo trên thiết bị này',
         'switch_to_simple_mode' => 'Chuyển sang chế độ đơn giản',

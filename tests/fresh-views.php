@@ -53,7 +53,20 @@ check(isset($folder[$compiledPath($overview)]) && $remembered === null, 'pages a
 check($run('2.0.0-beta.7', null, $folder, $remembered), 'a cleared view cache (no version known) refreshes once');
 check(! $run('', '1.5.5', $folder, $remembered), 'without a version of its own nothing is removed');
 
+// Add-ons count too: another plugin's version changes the fingerprint, the order of the plugins does not.
+$manifest = fn (string $id, string $version): string => (string) json_encode(['id' => $id, 'version' => $version]);
+$one = FreshViews::fingerprint('2.0.0-beta.8', [$manifest('simplify', '2.0.0-beta.8'), $manifest('simplify-toolkit', '2.0.0-beta.6')]);
+check(str_starts_with($one, '2.0.0-beta.8+'), 'the fingerprint starts with Simplify\'s version');
+check($one === FreshViews::fingerprint('2.0.0-beta.8', [$manifest('simplify-toolkit', '2.0.0-beta.6'), $manifest('simplify', '2.0.0-beta.8')]), 'the order of the plugins does not matter');
+check($one !== FreshViews::fingerprint('2.0.0-beta.8', [$manifest('simplify', '2.0.0-beta.8'), $manifest('simplify-toolkit', '2.0.0-beta.7')]), 'an add-on update is a new version too');
+check(FreshViews::fingerprint('', []) === '', 'without a version of its own there is no fingerprint');
+
 $provider = (string) file_get_contents($root.'/src/Providers/SimplifyServiceProvider.php');
+$fresh = (string) file_get_contents($root.'/src/Support/FreshViews.php');
+check((bool) preg_match('/if \(\$refreshed && function_exists\(\'opcache_reset\'\)\)\s*\{\s*opcache_reset\(\);/', $fresh), 'a new version also starts PHP\'s opcache over, so no class of the old version keeps running (K-B60)');
+$server = (string) file_get_contents($root.'/resources/views/pages/server.blade.php');
+$default = strpos($server, '@php($locked ??= null)');
+check($default !== false && $default < strpos($server, '$locked !=='), 'the server page opens without $locked from an older ServerPage (K-B60)');
 check((bool) preg_match('/public function boot\(\): void\s*\{[^}]*FreshViews::boot\(Assets::version\(\)\)/s', $provider), 'the plugin refreshes its views first thing on boot');
 
 if ($failures !== []) {

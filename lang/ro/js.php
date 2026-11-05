@@ -49,6 +49,9 @@ return [
         'ok' => 'OK',
         'close' => 'Închideți',
     ],
+    'row' => [
+        'more' => 'Mai multe acțiuni',
+    ],
     'sort' => [
         'by' => 'Sortează după',
         'ascending' => 'Crescător',

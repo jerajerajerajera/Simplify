@@ -1,4 +1,6 @@
 @php($u = fn (string $key, array $values = []) => __('simplify::dashboard.ui.'.$key, $values))
+{{-- A panel whose PHP still runs the previous version's ServerPage (opcache) passes no $locked: the page still opens (K-B60). --}}
+@php($locked ??= null)
 <div @class(['ps server-active ps-server-top', 'is-console' => $console, 'is-locked' => $locked !== null]) data-simplify-root x-cloak wire:ignore.self
      x-data="simplifyServer($wire, @js($this->initial()))"
      x-on:resize.window.debounce.150ms="applyScale()"

@@ -26,10 +26,12 @@ php tests/changelog.php
 bash tests/secrets.sh
 node tests/seasons.cjs
 node tests/unsaved.cjs
+node tests/theme-background.cjs
 node tests/sheet-drag.cjs
 node tests/sheet-motion.cjs
 node tests/tooltip-navigate.cjs
 node tests/sort-menu.cjs
+node tests/row-actions.cjs
 node tests/boot.cjs
 node tests/shell-footer.cjs
 node tests/admin-crumb-row.cjs

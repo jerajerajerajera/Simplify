@@ -30,7 +30,7 @@
             <div class="ps-customize-row is-first">
                 <div><strong>{{ $u('theme') }}</strong><small>{{ $u('theme_hint') }}</small></div>
                 <div class="ps-segmented" role="group" aria-label="{{ $u('theme') }}">
-                    <template x-for="t in [{key:'light',label:@js($u('light')),icon:'sun'},{key:'dark',label:@js($u('dark')),icon:'moon'},{key:'system',label:@js($u('system')),icon:'monitor'}]" :key="t.key">
+                    <template x-for="t in [{key:'light',label:@js($u('light')),icon:'sun'},{key:'dark',label:@js($u('dark')),icon:'moon'},{key:'oled',label:@js($u('oled')),icon:'moon-stars'},{key:'system',label:@js($u('system')),icon:'monitor'}]" :key="t.key">
                         <button type="button" :aria-pressed="theme===t.key" x-on:click="setTheme(t.key)"><svg aria-hidden="true"><use :href="'#ps-'+t.icon"/></svg><span x-text="t.label"></span></button>
                     </template>
                 </div>
@@ -54,6 +54,14 @@
                     <div class="ps-segmented" role="group" aria-label="{{ $u('layout') }}">
                         <template x-for="view in [{key:'grid',label:@js($u('cards')),icon:'grid'},{key:'compact',label:@js($u('compact')),icon:'grid-small'},{key:'list',label:@js($u('list')),icon:'list'}]" :key="view.key">
                             <button type="button" :aria-pressed="overviewView===view.key" x-on:click="setOverviewView(view.key)"><svg aria-hidden="true"><use :href="'#ps-'+view.icon"/></svg><span x-text="view.label"></span></button>
+                        </template>
+                    </div>
+                </div>
+                <div class="ps-customize-row" x-show="healthPlace()">
+                    <div><strong>{{ $u('host_health') }}</strong><small>{{ $u('where_the_health_summary_shows') }}</small></div>
+                    <div class="ps-segmented ps-health-place" role="group" aria-label="{{ $u('host_health') }}">
+                        <template x-for="place in [{key:'top-bar',label:@js($u('top_bar'))},{key:'bottom',label:@js($u('bottom'))},{key:'card',label:@js($u('cards'))}]" :key="place.key">
+                            <button type="button" :aria-pressed="overviewPreferences.healthPlace===place.key" x-on:click="setOverviewPreference('healthPlace', place.key); healthPopover=false; healthExpanded=false" x-text="place.label"></button>
                         </template>
                     </div>
                 </div>
