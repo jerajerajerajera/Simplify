@@ -107,6 +107,15 @@ final class TaskAnnouncement
         return $now - $startedAt >= self::WAIT_SECONDS ? self::GIVE_UP : self::WAIT;
     }
 
+    /**
+     * Whether "When the server is online" can wait for the next check. The sync queue runs a delayed job at once, so
+     * waiting there would check the server again and again for 10 minutes inside one request or scheduler run.
+     */
+    public static function canWait(?string $queueDriver): bool
+    {
+        return $queueDriver !== null && $queueDriver !== '' && $queueDriver !== 'sync';
+    }
+
     /** Posted in the game chat only when asked, the game has a chat command and the server runs. */
     public static function postsInGame(bool $gameChat, ?string $command, bool $running): bool
     {

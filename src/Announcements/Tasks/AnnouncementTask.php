@@ -50,6 +50,12 @@ final class AnnouncementTask extends TaskSchema
 
                 return;
             }
+            if (! TaskAnnouncement::canWait(WaitForOnline::queueDriver())) {
+                // No queue that can wait (sync): the people hear now that the server is not online.
+                TaskDelivery::deliver($server, $payload, $schedule, cameOnline: false);
+
+                return;
+            }
             WaitForOnline::dispatch($server->id, TaskAnnouncement::encode($payload), $schedule, time())
                 ->delay(now()->addSeconds(TaskAnnouncement::CHECK_SECONDS));
         } catch (Throwable $error) {

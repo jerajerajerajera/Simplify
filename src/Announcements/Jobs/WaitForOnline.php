@@ -41,7 +41,11 @@ final class WaitForOnline implements ShouldQueue
                 return;
             }
             $payload = TaskAnnouncement::parse($this->payload);
-            match (TaskAnnouncement::step($this->startedAt, time(), TaskDelivery::running($server))) {
+            $step = TaskAnnouncement::step($this->startedAt, time(), TaskDelivery::running($server));
+            if ($step === TaskAnnouncement::WAIT && ! TaskAnnouncement::canWait(self::queueDriver())) {
+                $step = TaskAnnouncement::GIVE_UP;
+            }
+            match ($step) {
                 TaskAnnouncement::SEND => TaskDelivery::deliver($server, $payload, $this->schedule),
                 TaskAnnouncement::GIVE_UP => TaskDelivery::deliver($server, $payload, $this->schedule, cameOnline: false),
                 default => self::dispatch($this->server, $this->payload, $this->schedule, $this->startedAt)->delay(now()->addSeconds(TaskAnnouncement::CHECK_SECONDS)),
@@ -49,5 +53,14 @@ final class WaitForOnline implements ShouldQueue
         } catch (Throwable $error) {
             report($error);
         }
+    }
+
+    /** The driver of the queue this job goes on (sync runs a delayed job at once). */
+    public static function queueDriver(): ?string
+    {
+        $connection = config('queue.default');
+        $driver = is_string($connection) ? config('queue.connections.'.$connection.'.driver') : null;
+
+        return is_string($driver) ? $driver : null;
     }
 }

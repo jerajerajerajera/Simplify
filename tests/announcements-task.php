@@ -53,6 +53,14 @@ check(T::step($start, $start + 600, false) === T::GIVE_UP, 'gives up after 10 mi
 check(T::step($start, $start + 590, true) === T::SEND, 'online: send');
 check(T::CHECK_SECONDS === 30 && T::WAIT_SECONDS === 600, 'checks every 30 seconds for 10 minutes');
 
+// The sync queue runs a delayed job at once: there it never waits (no 10 minutes of checks in one request).
+check(T::canWait('database') && T::canWait('redis'), 'a real queue can wait for the next check');
+check(! T::canWait('sync'), 'the sync queue cannot wait: give up right away');
+check(! T::canWait(null) && ! T::canWait(''), 'an unknown queue does not wait either');
+$job = (string) file_get_contents(__DIR__.'/../src/Announcements/Jobs/WaitForOnline.php');
+$task = (string) file_get_contents(__DIR__.'/../src/Announcements/Tasks/AnnouncementTask.php');
+check(str_contains($job, '! TaskAnnouncement::canWait(self::queueDriver())') && str_contains($task, '! TaskAnnouncement::canWait(WaitForOnline::queueDriver())'), 'the task and the job both check the queue before waiting');
+
 // Two recipients in different languages each get Simplify's own words in their language.
 $groups = T::byLanguage([3 => 'nl', 5 => 'de', 7 => null, 9 => '../x'], 'en');
 check($groups === ['nl' => [3], 'de' => [5], 'en' => [7, 9]], 'grouped by language, unknown falls back to the panel language');
