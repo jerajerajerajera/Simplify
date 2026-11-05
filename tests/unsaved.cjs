@@ -24,7 +24,7 @@ const page = `<!doctype html><meta charset="utf-8"><style>:root { --gray-50: #fa
 <style>${css.replace(/<\/style/gi, '')}</style><body>
 <form id="plain" data-simplify-unsaved onsubmit="event.preventDefault(); window.plainSubmitted = (window.plainSubmitted || 0) + 1"><input id="name" value="Lobby"></form>
 <div wire:id="c1"><form id="lw" data-simplify-unsaved="data" onsubmit="event.preventDefault(); Livewire.find('c1').call('save')"><input id="lwname"></form></div>
-<div wire:id="c2"><div id="keyform" data-simplify-unsaved="data"><input id="apikey" type="password" autocomplete="off"></div></div>
+<div wire:id="c2"><div id="keyform" data-simplify-unsaved="data"><input id="support" type="text" wire:model="data.support"><input id="apikey" type="password" autocomplete="off"></div></div>
 <a id="away" href="/elsewhere" wire:navigate>away</a>
 <pre id="out"></pre>
 <script>
@@ -33,8 +33,9 @@ const page = `<!doctype html><meta charset="utf-8"><style>:root { --gray-50: #fa
   const component = { id: 'c1', snapshot: { memo: { errors: {} } } };
   const state = { data: { name: 'Lobby', max: 20, motd: null } };
   // An add-on's API key field (wire:model): what is typed goes into the component's data.
-  const keyState = { data: { key: null } };
+  const keyState = { data: { key: null, support: 'https://help.example' } };
   document.addEventListener('input', (event) => event.target.id === 'apikey' && (keyState.data.key = event.target.value || null));
+  document.addEventListener('input', (event) => event.target.id === 'support' && (keyState.data.support = event.target.value || null));
   // Headless Chrome remembers no passwords: the test says which field the browser filled.
   const matches = Element.prototype.matches;
   Element.prototype.matches = function (selector) { return /autofill/.test(selector) ? this.dataset.autofilled === 'yes' : matches.call(this, selector); };
@@ -42,7 +43,7 @@ const page = `<!doctype html><meta charset="utf-8"><style>:root { --gray-50: #fa
   window.Livewire = {
     hook: (name, fn) => name === 'commit' && hooks.push(fn),
     navigate: (url) => window.navigated.push(String(url)),
-    find: (id) => (id === 'c2' ? { id: 'c2', __instance: { ephemeral: keyState }, $get: (name) => JSON.parse(JSON.stringify(keyState[name])), call: () => {} } : id === 'c1' ? { id: 'c1', __instance: { ephemeral: state }, $get: (name) => JSON.parse(JSON.stringify(state[name])), call: (method) => commit([{ method, params: [] }]) } : null),
+    find: (id) => (id === 'c2' ? { id: 'c2', __instance: { ephemeral: keyState, canonical: { data: { key: null, support: 'https://help.example' } } }, $get: (name) => name.split('.').reduce((node, part) => node?.[part], JSON.parse(JSON.stringify(keyState))), call: () => {} } : id === 'c1' ? { id: 'c1', __instance: { ephemeral: state }, $get: (name) => JSON.parse(JSON.stringify(state[name])), call: (method) => commit([{ method, params: [] }]) } : null),
   };
   window.commit = (calls, errors = {}) => {
     const done = [];
@@ -82,6 +83,24 @@ const page = `<!doctype html><meta charset="utf-8"><style>:root { --gray-50: #fa
     apikey.dispatchEvent(new Event('input', { bubbles: true }));
     await wait(150);
     ok('emptying the key again takes the bar away', bar() === null, bar());
+    // K-B59: the same browser fills the admin's user name into the text field before it (the Support link).
+    const support = document.getElementById('support');
+    support.value = 'https://help.example';
+    support.dataset.autofilled = 'yes';
+    support.value = 'jeroen';
+    support.dispatchEvent(new Event('input', { bubbles: true }));
+    await wait(150);
+    ok('a user name the browser filled into a text field is no change', bar() === null && support.value === 'https://help.example' && keyState.data.support === 'https://help.example', { bar: bar(), value: support.value, support: keyState.data.support });
+    support.dispatchEvent(new FocusEvent('focusin', { bubbles: true }));
+    support.value = 'https://help.example/new';
+    support.dispatchEvent(new Event('input', { bubbles: true }));
+    await wait(150);
+    ok('a link typed in the field is a change', bar() === 'changes', bar());
+    delete support.dataset.autofilled;
+    support.value = 'https://help.example';
+    support.dispatchEvent(new Event('input', { bubbles: true }));
+    await wait(150);
+    ok('typing it back takes the bar away', bar() === null, bar());
     const name = document.getElementById('name');
     await type(name, 'Lobby 2');
     ok('a change shows Changes made', bar() === 'changes', bar());

@@ -48,7 +48,10 @@
      key (CurseForge, Steam), and shows it to scripts on the first click anywhere: "Changes made" before anyone typed,
      and Save would store that password as the key. Fields in these forms never take a saved password, and one the
      browser filled before anyone went into it is emptied again. Picking a saved key from the field's own list still
-     works, because that needs the field to have had focus. */
+     works, because that needs the field to have had focus.
+     The same browser fills the admin's user name into the text field before such a password field (the Support link
+     on Settings › General, K-B59): Save then failed on a field nobody touched and jumped to it. A text field the browser
+     filled before anyone went into it gets back what the form holds for it. */
   const touched = new WeakSet();
   const autofilled = (field) => {
     for (const state of [':autofill', ':-webkit-autofill']) {
@@ -56,10 +59,24 @@
     }
     return false;
   };
-  const noSavedPasswords = (el) => el.querySelectorAll('input[type="password"]').forEach((field) => {
-    if (field.getAttribute('autocomplete') !== 'new-password') field.setAttribute('autocomplete', 'new-password');
+  /** What the form itself holds for a field: its Livewire property (wire:model), or for a plain form the value it came with. */
+  const held = (el, field) => {
+    const model = field.getAttributeNames().find((name) => name.startsWith('wire:model'));
+    const component = model ? livewire(el) : null;
+    if (component) {
+      // canonical: what the server last sent. The field's input already changed the component's own copy.
+      const value = field.getAttribute(model).split('.').reduce((node, part) => (node && typeof node === 'object' ? node[part] : undefined), component.__instance?.canonical);
+      if (value !== undefined) return value === null ? '' : String(value);
+    }
+    return field.defaultValue;
+  };
+  const noSavedPasswords = (el) => el.querySelectorAll('input:not([type]), input[type="password"], input[type="text"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"]').forEach((field) => {
+    const password = field.type === 'password';
+    if (password && field.getAttribute('autocomplete') !== 'new-password') field.setAttribute('autocomplete', 'new-password');
     if (touched.has(field) || field.value === '' || !autofilled(field)) return;
-    field.value = '';
+    const value = password ? '' : held(el, field);
+    if (field.value === value) return;
+    field.value = value;
     field.dispatchEvent(new Event('input', { bubbles: true }));
   });
   const scan = () => {
@@ -231,7 +248,7 @@
 
   /* Watching ------------------------------------------------------------------------------------------ */
   for (const type of ['input', 'change', 'click', 'keyup']) document.addEventListener(type, (event) => event.target.closest?.(SELECTOR) && queue(), true);
-  document.addEventListener('focusin', (event) => event.target.matches?.('input[type="password"]') && touched.add(event.target), true);
+  document.addEventListener('focusin', (event) => event.target.matches?.('input') && touched.add(event.target), true);
   const hook = () => {
     if (!window.Livewire?.hook || hook.done) return;
     hook.done = true;
