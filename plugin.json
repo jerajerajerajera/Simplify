@@ -2,7 +2,7 @@
     "id": "simplify",
     "name": "Simplify",
     "author": "jera",
-    "version": "2.0.0-beta.9",
+    "version": "2.0.0-beta.10",
     "description": "One clear overview of your servers, with add-ons that plug into it.",
     "category": "plugin",
     "namespace": "Simplify\\Core",
