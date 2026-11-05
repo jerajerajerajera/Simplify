@@ -15,6 +15,13 @@
 <script>window.simplifyRowText = @js(__('simplify::js.row'));</script>
 <script src="{{ \Simplify\Core\Support\Assets::url('row-actions.js') }}" defer></script>
 <script>
+    // Before paint on every page, so a page reached with wire:navigate has the same colours as the overview: a theme
+    // plugin's palette (tokens.css .ps-panel-theme) and OLED (core.js). Grey Admin pages and a black overview after
+    // going back and forth came from the overview setting the theme class later (Jeroen 5-11).
+    document.documentElement.classList.toggle('ps-panel-theme', @js(\Simplify\Core\Support\PanelTheme::active()));
+    try { document.documentElement.classList.toggle('ps-oled', localStorage.getItem('pelicanSimplify.theme') === 'oled'); } catch {}
+</script>
+<script>
     // A page inside host mode's frame drops Pelican's own menus; it keeps that through every link it follows.
     try {
         if (window.frameElement?.dataset.psFrame) {

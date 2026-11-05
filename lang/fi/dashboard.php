@@ -34,6 +34,7 @@ return [
         'profile_settings' => 'Profiilin asetukset',
         'light' => 'Vaalea',
         'dark' => 'Tumma',
+        'oled' => 'OLED',
         'system' => 'Järjestelmä',
         'notifications_on_this_device' => 'Ilmoitukset tällä laitteella',
         'switch_to_simple_mode' => 'Vaihda yksinkertaiseen tilaan',

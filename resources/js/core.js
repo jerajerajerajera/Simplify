@@ -7,7 +7,8 @@
   if (window.SimplifyTheme) return;
   const root = document.documentElement;
   const KEY = 'pelicanSimplify.theme';
-  const CHOICES = ['light', 'dark', 'system'];
+  // OLED: dark with a pure black background (Jeroen 5-11); Filament only knows dark.
+  const CHOICES = ['light', 'dark', 'oled', 'system'];
   const media = matchMedia('(prefers-color-scheme: dark)');
   let preference = 'system';
   // Texts from lang/<locale>/js.php in the user's Pelican language (English fills the gaps). Keys use dots
@@ -47,7 +48,8 @@
     if (CHOICES.includes(saved)) preference = saved;
   } catch {}
 
-  const dark = () => preference === 'dark' || (preference === 'system' && media.matches);
+  const dark = () => preference === 'dark' || preference === 'oled' || (preference === 'system' && media.matches);
+  const oled = () => preference === 'oled';
   const accentInk = (color) => {
     const [r, g, b] = color.slice(1).match(/../g).map((v) => {
       const x = parseInt(v, 16) / 255;
@@ -58,9 +60,10 @@
 
   const apply = () => {
     root.classList.toggle('dark', dark());
+    root.classList.toggle('ps-oled', oled());
     ui.layer?.classList.toggle('dark', dark());
     // The phone's status bar follows the chosen theme, not only the system one.
-    document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => meta.setAttribute('content', dark() ? '#101012' : '#f4f4f5'));
+    document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => meta.setAttribute('content', oled() ? '#000000' : dark() ? '#101012' : '#f4f4f5'));
     window.dispatchEvent(new CustomEvent('simplify:theme', { detail: { preference, dark: dark() } }));
   };
 
@@ -73,7 +76,7 @@
       preference = value;
       try {
         localStorage.setItem(KEY, value);
-        localStorage.setItem('theme', value);
+        localStorage.setItem('theme', value === 'oled' ? 'dark' : value);
       } catch {}
       apply();
     },
@@ -92,6 +95,7 @@
   window.addEventListener('theme-changed', (event) => {
     if (Date.now() - loadedAt < 2000) return;
     const value = event.detail?.theme ?? event.detail;
+    if (value === 'dark' && preference === 'oled') return;
     if (CHOICES.includes(value) && value !== preference) window.SimplifyTheme.set(value);
   });
 

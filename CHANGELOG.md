@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Settings: a user name your browser remembers for the panel is no longer filled into the Support link, so Save on Add-ons no longer fails on that field and jumps to General.
+- Theme: dark is one grey on every page, also with a theme plugin (the overview was black next to grey Admin pages), and Customize › Theme has OLED: a pure black background with darker cards.
 - Overview: Customize › Host health shows host health also as a bar at the bottom or as a card before the servers; the Health button in the top bar stays.
 - Phones: a list row with more than two buttons shows its main button (such as Update) and ⋯, which opens a sheet with every button by its name, so a list (Eggs with Egg Updates) no longer slides sideways.
 

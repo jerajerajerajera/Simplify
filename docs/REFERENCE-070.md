@@ -103,7 +103,7 @@ Status: ontbreekt / deels / in 1.5.2 / anders / bewust weg / aanwezig.
 | P29 | Server Maker | 170+ spellen, eggs uit de index installeren, Minecraft-types, versies, modpacks (Modrinth, CurseForge, FTB, Technic), willekeurige naam, node/poort, subdomein, resources met grenzen, icoon, EULA, Java, image, startup, variabelen, scripts overslaan, concept | maker | aanwezig |  | Server Maker 1.3.3 | simplify-servermaker |  |  |
 | P30 | Server Maker | Zelf aanmaken: rollen, nodes, toegestane spellen, ontbrekende eggs, allowance (servers, RAM, disk, CPU, back-ups) | admin | aanwezig |  | MakerSettings | simplify-servermaker |  |  |
 | P31 | Instellingen | Eén tabrij: Appearance (kleur, logo, naam), General, App, Website, Subdomains, Announcements, add-ons, Add-ons (Browse Hub voorlopig verborgen) en Pelicans eigen instellingen als link (geen frames); support-link; startpagina en naamstijl alleen nog in de setup, verversen niet meer op het scherm (opgeslagen waarden blijven werken) | admin | aanwezig |  | Settings::nav(), settings-nav | simplify | 2026-11-03 akkoord eigenaar (V60) | panel-smoke "settings page renders with its one row of tabs" |
-| P32 | Overig | 32 talen in kern en add-ons; noodpagina bij paneelfout; thema-plugins volgen | iedereen | aanwezig |  | lang/, Explain, PanelTheme | alle |  |  |
+| P32 | Overig | 32 talen in kern en add-ons; noodpagina bij paneelfout; thema-plugins volgen (donker = één grijs; OLED = zwart, Customize › Theme) | iedereen | aanwezig |  | lang/, Explain, PanelTheme | alle |  |  |
 
 ## Nieuw (na 0.7.0)
 

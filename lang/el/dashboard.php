@@ -34,6 +34,7 @@ return [
         'profile_settings' => 'Ρυθμίσεις προφίλ',
         'light' => 'Φωτεινό',
         'dark' => 'Σκοτεινό',
+        'oled' => 'OLED',
         'system' => 'Σύστημα',
         'notifications_on_this_device' => 'Ειδοποιήσεις σε αυτή τη συσκευή',
         'switch_to_simple_mode' => 'Μετάβαση σε απλή λειτουργία',

@@ -124,7 +124,9 @@
 
 :root.ps-panel-theme.dark,
 .ps-panel-theme :is(.ps, .ps-ui).dark {
-  --ps-bg: var(--gray-950);
+  /* The same grey as Simplify's own dark background (#101012 with Pelican's colours), in the theme's own tint, so a
+     theme plugin no longer turns the overview black next to grey pages (Jeroen 5-11). */
+  --ps-bg: color-mix(in srgb, var(--gray-950) 55%, var(--gray-900));
   --ps-surface: var(--gray-900);
   --ps-raised: var(--gray-800);
   --ps-field: color-mix(in oklab, var(--gray-950) 50%, var(--gray-900));
@@ -159,4 +161,16 @@
     --ps-sheet-in: 0s;
     --ps-sheet-out: 0s;
   }
+}
+
+/* OLED (Customize › Theme, core.js .ps-oled): dark with a pure black background and darker cards, for phones with an
+   OLED screen (Jeroen 5-11). Also with a theme plugin. */
+:root.ps-oled.dark,
+.ps-oled :is(.ps, .ps-ui).dark,
+:root.ps-oled.ps-panel-theme.dark,
+.ps-oled.ps-panel-theme :is(.ps, .ps-ui).dark {
+  --ps-bg: #000;
+  --ps-surface: #0e0e10;
+  --ps-raised: #1a1a1e;
+  --ps-field: #0a0a0c;
 }

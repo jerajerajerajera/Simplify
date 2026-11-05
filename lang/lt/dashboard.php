@@ -34,6 +34,7 @@ return [
         'profile_settings' => 'Profilio nustatymai',
         'light' => 'Šviesi',
         'dark' => 'Tamsi',
+        'oled' => 'OLED',
         'system' => 'Sistema',
         'notifications_on_this_device' => 'Pranešimai šiame įrenginyje',
         'switch_to_simple_mode' => 'Perjungti į paprastą režimą',
