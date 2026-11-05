@@ -53,7 +53,7 @@ return [
         'preview' => 'Preview of the saved list',
     ],
     'server' => [
-        'title' => 'Website',
+        'title' => 'Website embed',
         'help' => 'Shows this server on the panel\'s public server list, with its name, status and join address, and what you fill in below.',
         'show' => 'Show on the website',
         'shown' => 'This server is now on the website',

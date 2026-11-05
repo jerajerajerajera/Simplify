@@ -53,7 +53,7 @@ return [
         'preview' => 'Náhľad uloženého zoznamu',
     ],
     'server' => [
-        'title' => 'Web',
+        'title' => 'Vloženie na web',
         'help' => 'Zobrazí tento server vo verejnom zozname serverov panela s názvom, stavom, adresou na pripojenie a tým, čo vyplníte nižšie.',
         'show' => 'Zobraziť na webe',
         'shown' => 'Server je teraz na webe',

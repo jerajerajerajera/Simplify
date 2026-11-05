@@ -53,7 +53,7 @@ return [
         'preview' => 'Kayıtlı listenin önizlemesi',
     ],
     'server' => [
-        'title' => 'Web sitesi',
+        'title' => 'Web sitesine yerleştirme',
         'help' => 'Bu sunucuyu panelin herkese açık sunucu listesinde adı, durumu, bağlantı adresi ve aşağıda doldurduklarınızla gösterir.',
         'show' => 'Web sitesinde göster',
         'shown' => 'Bu sunucu artık web sitesinde',

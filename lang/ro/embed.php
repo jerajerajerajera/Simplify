@@ -53,7 +53,7 @@ return [
         'preview' => 'Previzualizarea listei salvate',
     ],
     'server' => [
-        'title' => 'Site',
+        'title' => 'Încorporare pe site',
         'help' => 'Afișează acest server în lista publică de servere a panoului, cu numele, starea, adresa de conectare și ce completezi mai jos.',
         'show' => 'Arată pe site',
         'shown' => 'Serverul este acum pe site',

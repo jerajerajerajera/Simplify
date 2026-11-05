@@ -53,7 +53,7 @@ return [
         'preview' => 'Voorbeeld van de opgeslagen lijst',
     ],
     'server' => [
-        'title' => 'Website',
+        'title' => 'Website-embed',
         'help' => 'Toont deze server in de openbare serverlijst van het paneel, met naam, status en verbindingsadres, en wat je hieronder invult.',
         'show' => 'Tonen op de website',
         'shown' => 'Deze server staat nu op de website',
