@@ -813,8 +813,8 @@ async function boxwatchFlow() {
   say('boxwatch-plugins', results.length === 8 && !bad.length, { runs: results.length, bad: bad.slice(0, 3), bottoms: results.map((x) => [x.click?.bottom, x.after?.bottom]) });
   // Direct loads (not wire:navigate) as well.
   const direct = [];
-  for (let i = 0; i < 4; i++) { await page.goto('/admin/plugins', { waitUntil: 'commit' }).catch(() => {}); const d = await watch().catch(() => null); direct.push(d && { bottom: d.bottom, worst: d.bottom > d.window + 2 ? d.worst : undefined }); }
-  say('boxwatch-plugins-load', direct.every((d) => d && d.bottom <= 802), { direct });
+  for (let i = 0; i < 4; i++) { await page.goto('/admin/plugins', { waitUntil: 'commit' }).catch(() => {}); const d = await watch().catch(() => null); direct.push(d && { bottom: d.bottom, window: d.window, worst: d.bottom > d.window + 2 ? d.worst : undefined }); }
+  say('boxwatch-plugins-load', direct.every((d) => d && d.bottom <= d.window + 2), { direct });
 }
 
 // Server Maker (section=maker, with servermaker): every wizard step on a real screen, for its own docs/screenshots:
