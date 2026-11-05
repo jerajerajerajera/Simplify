@@ -663,9 +663,13 @@ async function round(theme) {
         const tabs = [...document.querySelectorAll('.ps-tabbar')].find((e) => e.getClientRects().length);
         if (!bar) return null;
         const r = bar.getBoundingClientRect();
-        return { left: Math.round(r.left), right: Math.round(innerWidth - r.right), bottom: Math.round(r.bottom), tabTop: tabs ? Math.round(tabs.getBoundingClientRect().top) : null, height: innerHeight };
+        const tabTop = tabs ? tabs.getBoundingClientRect().top : null;
+        // What is really painted there: the Health bar at the window's left edge, the bottom bar over its own place.
+        const at = (x, y) => document.elementFromPoint(x, y);
+        return { left: Math.round(r.left), right: Math.round(innerWidth - r.right), bottom: Math.round(r.bottom), tabTop: tabTop === null ? null : Math.round(tabTop), height: innerHeight,
+          edgePainted: bar.contains(at(1, r.top + r.height / 2)), tabsPainted: !!tabs && tabs.contains(at(innerWidth / 2, tabTop + 20)) };
       });
-      const flush = !!edge && edge.left <= 0 && edge.right <= 0 && edge.tabTop !== null && edge.bottom >= edge.tabTop;
+      const flush = !!edge && edge.left <= 0 && edge.right <= 0 && edge.tabTop !== null && Math.abs(edge.bottom - edge.tabTop) <= 1 && edge.edgePainted && edge.tabsPainted;
       problems.push(`${stand} phone-menu-health-edge: ${flush ? 'ok' : 'WRONG'} ${JSON.stringify(edge)}`);
       await escape();
     }
