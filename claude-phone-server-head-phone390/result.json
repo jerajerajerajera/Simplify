@@ -1,0 +1,1953 @@
+{
+ "base": "http://127.0.0.1:8001",
+ "screens": [
+  {
+   "id": "server-console",
+   "title": "Server · Console (Survival SMP)",
+   "stand": "phone390-dark",
+   "url": "/server/ruodeeg4/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ruodeeg4/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1249 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1249,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1249 min 844px",
+       "div. 1249..1249 min 0px",
+       "div. 1249..1249 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1249 min 844px",
+       "fi-main.fi-width-screen-2xl 901 min auto",
+       "fi-page.fi-console-page 821 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "348..1249 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,409 320x570; terminal 15,349 360x692; bar top 1041",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x142",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,348 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-console.png"
+  },
+  {
+   "id": "server-console-typed",
+   "title": "Server · Console na een commando",
+   "stand": "phone390-dark",
+   "url": "/server/ruodeeg4/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ruodeeg4/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1249 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1249,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1249 min 844px",
+       "div. 1249..1249 min 0px",
+       "div. 1249..1249 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1249 min 844px",
+       "fi-main.fi-width-screen-2xl 901 min auto",
+       "fi-page.fi-console-page 821 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,-222 80x38"
+     ],
+     "card": "110..1011 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,171 320x570; terminal 15,111 360x692; bar top 803",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,-104 362x142",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,110 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-console-typed.png"
+  },
+  {
+   "id": "server-more",
+   "title": "Server · ⋯-menu open",
+   "stand": "phone390-dark",
+   "url": "/server/ruodeeg4/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ruodeeg4/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1249 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1249,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1249 min 844px",
+       "div. 1249..1249 min 0px",
+       "div. 1249..1249 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1249 min 844px",
+       "fi-main.fi-width-screen-2xl 901 min auto",
+       "fi-page.fi-console-page 821 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,-210 80x38",
+      "ps-info-menu 0,388 390x456"
+     ],
+     "card": "122..1023 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,183 320x570; terminal 15,123 360x692; bar top 815",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,-92 362x142",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,122 362x757"
+     ],
+     "dropdown": [
+      "ps-info-menu 456px of 776 max"
+     ],
+     "arrow": [
+      "ps-info-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-more.png"
+  },
+  {
+   "id": "server-colour",
+   "title": "Server · kleurkiezer open",
+   "stand": "phone390-dark",
+   "url": "/server/ruodeeg4/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ruodeeg4/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1249 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1249,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1249 min 844px",
+       "div. 1249..1249 min 0px",
+       "div. 1249..1249 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1249 min 844px",
+       "fi-main.fi-width-screen-2xl 901 min auto",
+       "fi-page.fi-console-page 821 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,-210 80x38",
+      "ps-dropdown.is-end.ps-color-dropdown 0,624 390x220"
+     ],
+     "card": "122..1023 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,183 320x570; terminal 15,123 360x692; bar top 815",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,-92 362x142",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,122 362x757"
+     ],
+     "dropdown": [
+      "ps-dropdown.is-end.ps-color-dropdown 220px of 776 max"
+     ],
+     "arrow": [
+      "ps-dropdown.is-end.ps-color-dropdown no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-colour.png"
+  },
+  {
+   "id": "server-phone-more",
+   "title": "Server · telefoon: Meer-menu open",
+   "stand": "phone390-dark",
+   "url": "/server/ruodeeg4/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ruodeeg4/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1249 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1249,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1249 min 844px",
+       "div. 1249..1249 min 0px",
+       "div. 1249..1249 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1249 min 844px",
+       "fi-main.fi-width-screen-2xl 901 min auto",
+       "fi-page.fi-console-page 821 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,-210 80x38",
+      "ps-phone-more-menu 0,118 390x726 scrolls"
+     ],
+     "panes": [
+      "ps-phone-more-menu 726/961"
+     ],
+     "card": "122..1023 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,183 320x570; terminal 15,123 360x692; bar top 815",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,-92 362x142",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,122 362x757"
+     ],
+     "dropdown": [
+      "ps-phone-more-menu 726px of 776 max, scrolls"
+     ],
+     "arrow": [
+      "ps-phone-more-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-phone-more.png"
+  },
+  {
+   "id": "server-console",
+   "title": "Server · Console",
+   "stand": "phone390-dark",
+   "url": "/server/ruodeeg4/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ruodeeg4/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1249 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1249,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1249 min 844px",
+       "div. 1249..1249 min 0px",
+       "div. 1249..1249 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1249 min 844px",
+       "fi-main.fi-width-screen-2xl 901 min auto",
+       "fi-page.fi-console-page 821 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "348..1249 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,409 320x570; terminal 15,349 360x692; bar top 1041",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x142",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,348 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-console.png"
+  },
+  {
+   "id": "server-files",
+   "title": "Server · Files",
+   "stand": "phone390-dark",
+   "url": "/server/ruodeeg4/files",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ruodeeg4/files",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (920 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 920,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..920 min 844px",
+       "div. 920..920 min 0px",
+       "div. 920..920 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 920 min 844px",
+       "fi-main.fi-width-screen-2xl 572 min auto",
+       "fi-page.fi-resource-list-records-page 492 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "348..920 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x142",
+      "fi-ta-ctn.fi-ta-ctn-with-footer.fi-ta-ctn-with-header 14,348 362x460"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-files.png"
+  },
+  {
+   "id": "server-files-rowmenu",
+   "title": "Server · Files, rijmenu open",
+   "stand": "phone390-dark",
+   "url": "/server/ruodeeg4/files",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ruodeeg4/files",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (920 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 920,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..920 min 844px",
+       "div. 920..920 min 0px",
+       "div. 920..920 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 920 min 844px",
+       "fi-main.fi-width-screen-2xl 572 min auto",
+       "fi-page.fi-resource-list-records-page 492 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38",
+      "fi-dropdown-panel-tb4ocwvq 106,509 224x163"
+     ],
+     "card": "348..920 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x142",
+      "fi-ta-ctn.fi-ta-ctn-with-footer.fi-ta-ctn-with-header 14,348 362x460"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-files-rowmenu.png"
+  },
+  {
+   "id": "server-files-folder",
+   "title": "Server · Files, map open",
+   "stand": "phone390-dark",
+   "url": "/server/ruodeeg4/files/plugins",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ruodeeg4/files/plugins",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (848 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 848,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..848 min 844px",
+       "div. 848..848 min 0px",
+       "div. 848..848 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 848 min 844px",
+       "fi-main.fi-width-screen-2xl 500 min auto",
+       "fi-page.fi-resource-list-records-page 420 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "348..848 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x142",
+      "fi-ta-ctn.fi-ta-ctn-with-footer.fi-ta-ctn-with-header 14,348 362x388"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-files-folder.png"
+  },
+  {
+   "id": "server-backups-tasks",
+   "title": "Server · Backups & tasks",
+   "stand": "phone390-dark",
+   "url": "/server/ruodeeg4/backups",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ruodeeg4/backups",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (928 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 928,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..928 min 844px",
+       "div. 928..928 min 0px",
+       "div. 928..928 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 928 min 844px",
+       "fi-main.fi-width-screen-2xl 580 min auto",
+       "fi-page.fi-resource-list-records-page 500 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "348..928 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x142",
+      "fi-ta-ctn.fi-ta-ctn-with-footer.fi-ta-ctn-with-header 14,494 362x322"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-backups-tasks.png"
+  },
+  {
+   "id": "server-tab-schedules",
+   "title": "Server · Backups & tasks › Schedules",
+   "stand": "phone390-dark",
+   "url": "/server/ruodeeg4/schedules",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ruodeeg4/schedules",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "348..778 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x142",
+      "fi-ta-ctn.fi-ta-ctn-with-footer.fi-ta-ctn-with-header 14,396 362x271"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-tab-schedules.png"
+  },
+  {
+   "id": "server-backups-tasks-new",
+   "title": "Server · Backups & tasks, nieuw-dialoog open",
+   "stand": "phone390-dark",
+   "url": "/server/ruodeeg4/backups",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ruodeeg4/backups",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "tallnoscroll",
+      "text": "page is taller than the window (928 > 844), nothing scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 928,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..928 min 844px",
+       "div. 928..928 min 0px",
+       "div. 928..928 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 928 min 844px",
+       "fi-main.fi-width-screen-2xl 580 min auto",
+       "fi-page.fi-resource-list-records-page 500 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38",
+      "fi-modal-window.fi-modal-window-has-close-btn.fi-modal-windo 16,244 358x356"
+     ],
+     "card": "348..928 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x142",
+      "fi-ta-ctn.fi-ta-ctn-with-footer.fi-ta-ctn-with-header 14,494 362x322"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-backups-tasks-new.png"
+  },
+  {
+   "id": "server-subdomain",
+   "title": "Server · Subdomain",
+   "stand": "phone390-dark",
+   "url": "/server/ruodeeg4/subdomain",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ruodeeg4/subdomain",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "348..705 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x142",
+      "fi-section.fi-section-has-header 14,348 362x245"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-subdomain.png"
+  },
+  {
+   "id": "server-minecraft",
+   "title": "Server · Minecraft",
+   "stand": "phone390-dark",
+   "url": "/server/ruodeeg4/minecraft",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ruodeeg4/minecraft",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2309 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2309,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..2309 min 844px",
+       "div. 2309..2309 min 0px",
+       "div. 2309..2309 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 2309 min 844px",
+       "fi-main.fi-width-screen-2xl 1961 min auto",
+       "fi-page 1881 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "348..2309 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x142",
+      "fi-section.fi-section-has-header 14,348 362x394",
+      "fi-section.fi-section-has-header 14,766 362x277",
+      "fi-section.fi-section-has-header 14,1067 362x981",
+      "fi-section.fi-section-has-header 14,2072 362x125"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-minecraft.png"
+  },
+  {
+   "id": "server-plugins",
+   "title": "Server · Plugins",
+   "stand": "phone390-dark",
+   "url": "/server/ruodeeg4/plugins",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ruodeeg4/plugins",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2833 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2833,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..2833 min 844px",
+       "div. 2833..2833 min 0px",
+       "div. 2833..2833 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 2833 min 844px",
+       "fi-main.fi-width-screen-2xl 2485 min auto",
+       "fi-page 2405 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "sm-title: \"VeinMiner Enchantment\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "348..2833 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x142",
+      "fi-section.fi-section-has-header 14,348 362x1781",
+      "fi-section.fi-section-has-header 14,2153 362x328",
+      "fi-section.fi-section-has-header 14,2505 362x184"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-plugins.png"
+  },
+  {
+   "id": "server-players",
+   "title": "Server · Players",
+   "stand": "phone390-dark",
+   "url": "/server/ruodeeg4/players",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ruodeeg4/players",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1556 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1556,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1556 min 844px",
+       "div. 1556..1556 min 0px",
+       "div. 1556..1556 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1556 min 844px",
+       "fi-main.fi-width-screen-2xl 1208 min auto",
+       "fi-page 1128 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "348..1556 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x142",
+      "fi-section.fi-section-has-header 14,348 362x554",
+      "fi-section.fi-section-has-header.fi-compact 14,926 362x146",
+      "fi-section.fi-section-has-header.fi-compact 14,1096 362x146",
+      "fi-section.fi-section-has-header.fi-compact 14,1266 362x146"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-players.png"
+  },
+  {
+   "id": "server-website",
+   "title": "Server · Website",
+   "stand": "phone390-dark",
+   "url": "/server/ruodeeg4/website",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ruodeeg4/website",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "panes": [
+      "s-fit 384/2160"
+     ],
+     "card": "348..836 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x142",
+      "fi-section.fi-section-has-header 14,348 362x2152"
+     ]
+    }
+   },
+   "frames": [
+    {
+     "box": "38,2056 314x420",
+     "url": "blank",
+     "w": 314,
+     "h": 420,
+     "dark": false,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 420,
+      "pageScrollW": 314,
+      "scope": "pelican"
+     }
+    }
+   ],
+   "shot": "phone390-dark/server-website.png"
+  },
+  {
+   "id": "server-server-software",
+   "title": "Server · Server software",
+   "stand": "phone390-dark",
+   "url": "/server/ruodeeg4/software",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ruodeeg4/software",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1413 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1413,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1413 min 844px",
+       "div. 1413..1413 min 0px",
+       "div. 1413..1413 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1413 min 844px",
+       "fi-main.fi-width-screen-2xl 1065 min auto",
+       "fi-page 985 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "348..1413 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x142",
+      "fi-section.fi-section-has-header 14,348 362x953"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-server-software.png"
+  },
+  {
+   "id": "server-performance",
+   "title": "Server · Performance",
+   "stand": "phone390-dark",
+   "url": "/server/ruodeeg4/performance",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ruodeeg4/performance",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1382 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1382,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1382 min 844px",
+       "div. 1382..1382 min 0px",
+       "div. 1382..1382 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1382 min 844px",
+       "fi-main.fi-width-screen-2xl 1034 min auto",
+       "fi-page 954 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "strong: \"Custom\"",
+      "strong: \"1.5 cores\"",
+      "strong: \"2 cores\"",
+      "strong: \"3 cores\"",
+      "strong: \"4 cores\"",
+      "strong: \"Custom\"",
+      "strong: \"Custom\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "348..1382 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x142",
+      "fi-section.fi-section-has-header 14,348 362x922"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-performance.png"
+  },
+  {
+   "id": "server-users",
+   "title": "Server · Users",
+   "stand": "phone390-dark",
+   "url": "/server/ruodeeg4/subusers",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ruodeeg4/subusers",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "348..758 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x142",
+      "fi-ta-ctn.fi-ta-ctn-with-footer.fi-ta-ctn-with-header 14,348 362x298"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-users.png"
+  },
+  {
+   "id": "server-users-new",
+   "title": "Server · Users, nieuw-dialoog open",
+   "stand": "phone390-dark",
+   "url": "/server/ruodeeg4/subusers",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ruodeeg4/subusers",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38",
+      "fi-modal-window.fi-modal-window-has-close-btn.fi-modal-windo 16,16 358x867"
+     ],
+     "panes": [
+      "fi-modal-window-ctn.fi-clickable 844/899"
+     ],
+     "card": "348..758 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x142",
+      "fi-ta-ctn.fi-ta-ctn-with-footer.fi-ta-ctn-with-header 14,348 362x298"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-users-new.png"
+  },
+  {
+   "id": "server-databases",
+   "title": "Server · Databases",
+   "stand": "phone390-dark",
+   "url": "/server/ruodeeg4/databases",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ruodeeg4/databases",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "348..706 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x142",
+      "fi-ta-ctn.fi-ta-ctn-with-footer 14,348 362x246"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-databases.png"
+  },
+  {
+   "id": "server-databases-new",
+   "title": "Server · Databases, nieuw-dialoog open",
+   "stand": "phone390-dark",
+   "url": "/server/ruodeeg4/databases",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ruodeeg4/databases",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "348..706 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x142",
+      "fi-ta-ctn.fi-ta-ctn-with-footer 14,348 362x246"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-databases-new.png"
+  },
+  {
+   "id": "server-network",
+   "title": "Server · Network",
+   "stand": "phone390-dark",
+   "url": "/server/ruodeeg4/allocations",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ruodeeg4/allocations",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "348..633 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x142",
+      "fi-ta-ctn.fi-ta-ctn-with-footer 14,348 362x173"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-network.png"
+  },
+  {
+   "id": "server-startup",
+   "title": "Server · Startup",
+   "stand": "phone390-dark",
+   "url": "/server/ruodeeg4/startup",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ruodeeg4/startup",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "348..825 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x142",
+      "fi-section.fi-section-has-header 14,608 362x105"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-startup.png"
+  },
+  {
+   "id": "server-settings",
+   "title": "Server · Settings",
+   "stand": "phone390-dark",
+   "url": "/server/ruodeeg4/settings",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ruodeeg4/settings",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2659 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2659,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..2659 min 844px",
+       "div. 2659..2659 min 0px",
+       "div. 2659..2659 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 2659 min 844px",
+       "fi-main.fi-width-screen-2xl 2311 min auto",
+       "fi-page 2231 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "348..2659 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x142",
+      "fi-section.fi-section-has-header 14,348 362x1512",
+      "fi-section.fi-section-has-header 14,1884 362x334",
+      "fi-section.fi-section-has-header 14,2242 362x305"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-settings.png"
+  },
+  {
+   "id": "server-mounts",
+   "title": "Server · Mounts",
+   "stand": "phone390-dark",
+   "url": "/server/ruodeeg4/mounts",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ruodeeg4/mounts",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "348..584 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x142",
+      "fi-section 14,348 362x124"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-mounts.png"
+  },
+  {
+   "id": "server-webhooks",
+   "title": "Server · Webhooks",
+   "stand": "phone390-dark",
+   "url": "/server/ruodeeg4/webhook",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ruodeeg4/webhook",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "348..766 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x142",
+      "fi-ta-ctn.fi-ta-ctn-with-footer.fi-ta-ctn-with-header 14,348 362x306"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-webhooks.png"
+  },
+  {
+   "id": "server-activity",
+   "title": "Server · Activity",
+   "stand": "phone390-dark",
+   "url": "/server/ruodeeg4/activities",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ruodeeg4/activities",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "348..706 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x142",
+      "fi-ta-ctn.fi-ta-ctn-with-footer.fi-ta-ctn-with-header 14,348 362x246"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-activity.png"
+  },
+  {
+   "id": "server-servers",
+   "title": "Server · Servers",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2103 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2103,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-app fi-body-has-topbar block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-topbar-ctn 0..0 min 0px",
+       "div.fi-layout 0..2103 min 844px",
+       "div. 2103..2103 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 2103 min 844px",
+       "fi-main.fi-width-screen-2xl 1969 min 0px",
+       "fi-page 1969 min 0px"
+      ]
+     },
+     "popups": [
+      "ps-navigation-items 296,18 80x38"
+     ],
+     "card": "0..1969 of 844",
+     "topbar": "brand 14..194, actions 246..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 14,70 362x98",
+      "fi-callout.fi-color.fi-color-info 14,180 362x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-servers.png"
+  },
+  {
+   "id": "server-admin",
+   "title": "Server · Admin",
+   "stand": "phone390-dark",
+   "url": "/admin/health#menu",
+   "docTitle": "Health - Northwind Games",
+   "main": {
+    "url": "/admin/health",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 296,18 80x38"
+     ],
+     "topbar": "brand 14..194, actions 246..376",
+     "scope": "simplify",
+     "boxes": []
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-admin.png"
+  },
+  {
+   "id": "server-addon-unsaved",
+   "title": "Server · add-on-formulier, Changes made",
+   "stand": "phone390-dark",
+   "url": "/server/ruodeeg4/minecraft",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ruodeeg4/minecraft",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2309 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2309,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..2309 min 844px",
+       "div. 2309..2309 min 0px",
+       "div. 2309..2309 min 0px",
+       "div.s-unsaved 1294..1348 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 2309 min 844px",
+       "fi-main.fi-width-screen-2xl 1961 min auto",
+       "fi-page 1881 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,-564 80x38"
+     ],
+     "card": "-232..1729 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,-446 362x142",
+      "fi-section.fi-section-has-header 14,-232 362x394",
+      "fi-section.fi-section-has-header 14,186 362x277",
+      "fi-section.fi-section-has-header 14,487 362x981",
+      "fi-section.fi-section-has-header 14,1492 362x125"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-addon-unsaved.png"
+  },
+  {
+   "id": "server2-console",
+   "title": "Server · Console (Valheim Vikings)",
+   "stand": "phone390-dark",
+   "url": "/server/jl4civul/console",
+   "docTitle": "Valheim Vikings - Simplify",
+   "main": {
+    "url": "/server/jl4civul/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1197 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1197,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1197 min 844px",
+       "div. 1197..1197 min 0px",
+       "div. 1197..1197 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1197 min 844px",
+       "fi-main.fi-width-screen-2xl 849 min auto",
+       "fi-page.fi-console-page 769 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "348..1197 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,409 320x570; terminal 15,349 360x640; bar top 989",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x142",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,348 362x705"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server2-console.png"
+  },
+  {
+   "id": "server3-console",
+   "title": "Server · Console (Skyblock, eigen icoon)",
+   "stand": "phone390-dark",
+   "url": "/server/2jth1tze/console",
+   "docTitle": "Skyblock - Simplify",
+   "main": {
+    "url": "/server/2jth1tze/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1249 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1249,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1249 min 844px",
+       "div. 1249..1249 min 0px",
+       "div. 1249..1249 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1249 min 844px",
+       "fi-main.fi-width-screen-2xl 901 min auto",
+       "fi-page.fi-console-page 821 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "348..1249 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,409 320x570; terminal 15,349 360x692; bar top 1041",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x142",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,348 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server3-console.png"
+  },
+  {
+   "id": "server4-console",
+   "title": "Server · Console (Creative Builds, icoon laadt niet)",
+   "stand": "phone390-dark",
+   "url": "/server/8cngtv0r/console",
+   "docTitle": "Creative Builds - Simplify",
+   "main": {
+    "url": "/server/8cngtv0r/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1249 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1249,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1249 min 844px",
+       "div. 1249..1249 min 0px",
+       "div. 1249..1249 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1249 min 844px",
+       "fi-main.fi-width-screen-2xl 901 min auto",
+       "fi-page.fi-console-page 821 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "348..1249 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,409 320x570; terminal 15,349 360x692; bar top 1041",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x142",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,348 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server4-console.png"
+  }
+ ],
+ "problems": [
+  "phone390-dark server-console-addon-action: ok [{\"label\":\"Audit action\",\"shown\":true}]",
+  "phone390-dark server-console-typed: nothing to click for .ps-console-grow",
+  "phone390-dark server-colour: nothing to click for .ps-info-motd, .ps-motd-preview",
+  "phone390-dark server-databases: click .fi-header-actions button, .fi-ac-btn-action, .fi-page-header-main-ctn button: locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator('.fi-h",
+  "phone390-dark server-webhooks: nothing to click for .fi-header-actions button, .fi-ac-btn-action, .fi-page-header-main-ctn button",
+  "phone390-dark server-addon-unsaved: ok {\"bar\":true,\"asked\":true,\"stayed\":true,\"url\":\"/server/ruodeeg4/minecraft\",\"gone\":true}",
+  "phone390-dark server4-console: tab title ok: \"Creative Builds - Simplify\""
+ ]
+}

@@ -1,0 +1,4591 @@
+{
+  "base": "http://127.0.0.1:8001",
+  "rounds": {
+    "shield": [
+      {
+        "url": "/admin/health",
+        "origin": 1793730161026.4,
+        "ttfb": 566,
+        "html": 568,
+        "htmlBytes": 230790,
+        "dcl": 844,
+        "load": 3147,
+        "fcp": 664,
+        "ready": 843,
+        "kinds": {
+          "link": {
+            "count": 12,
+            "bytes": 2157940,
+            "size": 2411547
+          },
+          "script": {
+            "count": 18,
+            "bytes": 369002,
+            "size": 806089
+          },
+          "other": {
+            "count": 2,
+            "bytes": 13490,
+            "size": 12890
+          },
+          "img": {
+            "count": 6,
+            "bytes": 685,
+            "size": 704521
+          },
+          "fetch": {
+            "count": 4,
+            "bytes": 328504,
+            "size": 327304
+          }
+        },
+        "calls": [
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 2835,
+            "ms": 119,
+            "bytes": 1331,
+            "size": 1031
+          },
+          {
+            "name": "/admin/health",
+            "kind": "fetch",
+            "start": 4702,
+            "ms": 253,
+            "bytes": 322871,
+            "size": 322571
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 5560,
+            "ms": 139,
+            "bytes": 2656,
+            "size": 2356
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 20218,
+            "ms": 127,
+            "bytes": 1646,
+            "size": 1346
+          }
+        ],
+        "files": [
+          {
+            "name": "/build/assets/app-B8Kiizla.css",
+            "kind": "link",
+            "start": 572,
+            "ms": 13,
+            "bytes": 648861,
+            "size": 648561
+          },
+          {
+            "name": "/css/charrafimed/global-search-modal/global-search-modal.css?v=5.0.2.0",
+            "kind": "link",
+            "start": 573,
+            "ms": 10,
+            "bytes": 32706,
+            "size": 32406
+          },
+          {
+            "name": "/fonts/filament/filament/inter/index.css?v=5.10.2.0",
+            "kind": "link",
+            "start": 573,
+            "ms": 9,
+            "bytes": 2301,
+            "size": 2001
+          },
+          {
+            "name": "/simplify/assets/simplify.css?v=906f4b5daea2",
+            "kind": "link",
+            "start": 573,
+            "ms": 0,
+            "bytes": 0,
+            "size": 73713
+          },
+          {
+            "name": "/fonts/filament/filament/inter/inter-latin-wght-normal-DIHYUR35.woff2",
+            "kind": "link",
+            "start": 573,
+            "ms": 10,
+            "bytes": 68632,
+            "size": 68332
+          },
+          {
+            "name": "/css/filament/filament/app.css?v=5.10.2.0",
+            "kind": "link",
+            "start": 573,
+            "ms": 12,
+            "bytes": 687947,
+            "size": 687647
+          },
+          {
+            "name": "/simplify/assets/pull.js?v=541ecdb385a5",
+            "kind": "script",
+            "start": 573,
+            "ms": 0,
+            "bytes": 0,
+            "size": 3094
+          },
+          {
+            "name": "/simplify/assets/sheet.js?v=250f0c38aae2",
+            "kind": "script",
+            "start": 573,
+            "ms": 0,
+            "bytes": 0,
+            "size": 1986
+          },
+          {
+            "name": "/simplify/assets/unsaved.js?v=bdac96c88c5f",
+            "kind": "script",
+            "start": 573,
+            "ms": 0,
+            "bytes": 0,
+            "size": 12517
+          },
+          {
+            "name": "/simplify/assets/tokens.css?v=8961a90eeef9",
+            "kind": "link",
+            "start": 573,
+            "ms": 0,
+            "bytes": 0,
+            "size": 4345
+          },
+          {
+            "name": "/simplify/assets/components.css?v=6aa53323661d",
+            "kind": "link",
+            "start": 573,
+            "ms": 0,
+            "bytes": 0,
+            "size": 28192
+          },
+          {
+            "name": "/simplify/assets/dashboard.css?v=0df5ca4ad05f",
+            "kind": "link",
+            "start": 573,
+            "ms": 0,
+            "bytes": 0,
+            "size": 143895
+          },
+          {
+            "name": "/simplify/assets/core.js?v=77e9bf8ba519",
+            "kind": "script",
+            "start": 573,
+            "ms": 0,
+            "bytes": 0,
+            "size": 19307
+          },
+          {
+            "name": "/simplify/assets/motd.js?v=b8551e0606fd",
+            "kind": "script",
+            "start": 574,
+            "ms": 0,
+            "bytes": 0,
+            "size": 14287
+          },
+          {
+            "name": "/simplify/assets/dashboard.js?v=62e3e486c7e9",
+            "kind": "script",
+            "start": 574,
+            "ms": 0,
+            "bytes": 0,
+            "size": 80608
+          },
+          {
+            "name": "/simplify/assets/server.js?v=259d354d0e73",
+            "kind": "script",
+            "start": 574,
+            "ms": 0,
+            "bytes": 0,
+            "size": 35128
+          },
+          {
+            "name": "/js/filament/actions/actions.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 574,
+            "ms": 9,
+            "bytes": 5506,
+            "size": 5206
+          },
+          {
+            "name": "/js/filament/notifications/notifications.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 574,
+            "ms": 14,
+            "bytes": 9454,
+            "size": 9154
+          },
+          {
+            "name": "/js/filament/schemas/schemas.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 574,
+            "ms": 15,
+            "bytes": 4328,
+            "size": 4028
+          },
+          {
+            "name": "/js/filament/tables/tables.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 574,
+            "ms": 16,
+            "bytes": 29429,
+            "size": 29129
+          },
+          {
+            "name": "/js/filament/filament/echo.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 574,
+            "ms": 17,
+            "bytes": 92239,
+            "size": 91939
+          },
+          {
+            "name": "/js/filament/support/support.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 574,
+            "ms": 18,
+            "bytes": 195477,
+            "size": 195177
+          },
+          {
+            "name": "/js/filament/filament/app.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 574,
+            "ms": 16,
+            "bytes": 17179,
+            "size": 16879
+          },
+          {
+            "name": "/build/assets/app-BjcOx26H.js",
+            "kind": "other",
+            "start": 574,
+            "ms": 17,
+            "bytes": 761,
+            "size": 461
+          },
+          {
+            "name": "/build/assets/index-Dn7Qm8Tx.js",
+            "kind": "other",
+            "start": 574,
+            "ms": 18,
+            "bytes": 12729,
+            "size": 12429
+          },
+          {
+            "name": "/livewire-91805c62/livewire.min.js?id=8ea5922c",
+            "kind": "script",
+            "start": 574,
+            "ms": 0,
+            "bytes": 0,
+            "size": 261782
+          },
+          {
+            "name": "https://gravatar.com/avatar/7c4ff521986b4ff8d29440beec01972d",
+            "kind": "img",
+            "start": 613,
+            "ms": 0,
+            "bytes": 0,
+            "size": 0
+          },
+          {
+            "name": "/simplify/assets/seasons.js?v=5b49facd5ee9",
+            "kind": "script",
+            "start": 692,
+            "ms": 0,
+            "bytes": 0,
+            "size": 11078
+          },
+          {
+            "name": "/simplify/assets/bg-village.jpg?v=66bada4a679e",
+            "kind": "img",
+            "start": 2492,
+            "ms": 4,
+            "bytes": 0,
+            "size": 303124
+          },
+          {
+            "name": "/simplify/assets/game-minecraft.svg?v=a9b1d6d7de67",
+            "kind": "img",
+            "start": 2492,
+            "ms": 3,
+            "bytes": 0,
+            "size": 895
+          },
+          {
+            "name": "/simplify/assets/bg-valley.jpg?v=345f8384a518",
+            "kind": "img",
+            "start": 2492,
+            "ms": 4,
+            "bytes": 0,
+            "size": 399359
+          },
+          {
+            "name": "/storage/icons/server/150efb1c-b4ea-45ce-9299-3b9a84dbb654.png",
+            "kind": "img",
+            "start": 2492,
+            "ms": 6,
+            "bytes": 685,
+            "size": 385
+          },
+          {
+            "name": "/simplify/assets/bg-gaming.svg?v=ec5ba4bba272",
+            "kind": "img",
+            "start": 2492,
+            "ms": 3,
+            "bytes": 0,
+            "size": 758
+          },
+          {
+            "name": "/simplify/assets/seasons.css?v=d9bfcd9d7b17",
+            "kind": "link",
+            "start": 2496,
+            "ms": 0,
+            "bytes": 0,
+            "size": 5562
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 2835,
+            "ms": 119,
+            "bytes": 1331,
+            "size": 1031
+          },
+          {
+            "name": "/admin/health",
+            "kind": "fetch",
+            "start": 4702,
+            "ms": 253,
+            "bytes": 322871,
+            "size": 322571
+          },
+          {
+            "name": "/build/assets/app-B8Kiizla.css",
+            "kind": "link",
+            "start": 5141,
+            "ms": 4,
+            "bytes": 648861,
+            "size": 648561
+          },
+          {
+            "name": "/fonts/filament/filament/inter/inter-latin-wght-normal-DIHYUR35.woff2",
+            "kind": "link",
+            "start": 5142,
+            "ms": 4,
+            "bytes": 68632,
+            "size": 68332
+          },
+          {
+            "name": "/js/charrafimed/global-search-modal/components/global-search-modal-observer.js?v=5.0.2.0",
+            "kind": "script",
+            "start": 5393,
+            "ms": 3,
+            "bytes": 7351,
+            "size": 7051
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 5560,
+            "ms": 139,
+            "bytes": 2656,
+            "size": 2356
+          },
+          {
+            "name": "/js/charrafimed/global-search-modal/components/global-search-modal-search.js?v=5.0.2.0",
+            "kind": "script",
+            "start": 5681,
+            "ms": 20,
+            "bytes": 8039,
+            "size": 7739
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 20218,
+            "ms": 127,
+            "bytes": 1646,
+            "size": 1346
+          }
+        ],
+        "nodes": 2115,
+        "inlineScript": 32295,
+        "svgSymbols": 95,
+        "clickToReady": 723,
+        "reloaded": false
+      },
+      {
+        "url": "/admin/health",
+        "origin": 1793730184093.5,
+        "ttfb": 244,
+        "html": 247,
+        "htmlBytes": 230788,
+        "dcl": 501,
+        "load": 2911,
+        "fcp": 331,
+        "ready": 500,
+        "kinds": {
+          "link": {
+            "count": 12,
+            "bytes": 2157940,
+            "size": 2411547
+          },
+          "script": {
+            "count": 18,
+            "bytes": 369002,
+            "size": 806089
+          },
+          "other": {
+            "count": 2,
+            "bytes": 13490,
+            "size": 12890
+          },
+          "img": {
+            "count": 6,
+            "bytes": 685,
+            "size": 704521
+          },
+          "fetch": {
+            "count": 4,
+            "bytes": 329222,
+            "size": 328022
+          }
+        },
+        "calls": [
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 2570,
+            "ms": 135,
+            "bytes": 1331,
+            "size": 1031
+          },
+          {
+            "name": "/admin/health",
+            "kind": "fetch",
+            "start": 4484,
+            "ms": 263,
+            "bytes": 324907,
+            "size": 324607
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 5371,
+            "ms": 120,
+            "bytes": 1338,
+            "size": 1038
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 20022,
+            "ms": 136,
+            "bytes": 1646,
+            "size": 1346
+          }
+        ],
+        "files": [
+          {
+            "name": "/build/assets/app-B8Kiizla.css",
+            "kind": "link",
+            "start": 251,
+            "ms": 13,
+            "bytes": 648861,
+            "size": 648561
+          },
+          {
+            "name": "/css/charrafimed/global-search-modal/global-search-modal.css?v=5.0.2.0",
+            "kind": "link",
+            "start": 251,
+            "ms": 9,
+            "bytes": 32706,
+            "size": 32406
+          },
+          {
+            "name": "/fonts/filament/filament/inter/index.css?v=5.10.2.0",
+            "kind": "link",
+            "start": 251,
+            "ms": 8,
+            "bytes": 2301,
+            "size": 2001
+          },
+          {
+            "name": "/fonts/filament/filament/inter/inter-latin-wght-normal-DIHYUR35.woff2",
+            "kind": "link",
+            "start": 251,
+            "ms": 9,
+            "bytes": 68632,
+            "size": 68332
+          },
+          {
+            "name": "/css/filament/filament/app.css?v=5.10.2.0",
+            "kind": "link",
+            "start": 251,
+            "ms": 14,
+            "bytes": 687947,
+            "size": 687647
+          },
+          {
+            "name": "/simplify/assets/simplify.css?v=906f4b5daea2",
+            "kind": "link",
+            "start": 251,
+            "ms": 0,
+            "bytes": 0,
+            "size": 73713
+          },
+          {
+            "name": "/simplify/assets/pull.js?v=541ecdb385a5",
+            "kind": "script",
+            "start": 251,
+            "ms": 0,
+            "bytes": 0,
+            "size": 3094
+          },
+          {
+            "name": "/simplify/assets/sheet.js?v=250f0c38aae2",
+            "kind": "script",
+            "start": 252,
+            "ms": 0,
+            "bytes": 0,
+            "size": 1986
+          },
+          {
+            "name": "/simplify/assets/unsaved.js?v=bdac96c88c5f",
+            "kind": "script",
+            "start": 252,
+            "ms": 0,
+            "bytes": 0,
+            "size": 12517
+          },
+          {
+            "name": "/simplify/assets/tokens.css?v=8961a90eeef9",
+            "kind": "link",
+            "start": 252,
+            "ms": 0,
+            "bytes": 0,
+            "size": 4345
+          },
+          {
+            "name": "/simplify/assets/components.css?v=6aa53323661d",
+            "kind": "link",
+            "start": 252,
+            "ms": 0,
+            "bytes": 0,
+            "size": 28192
+          },
+          {
+            "name": "/simplify/assets/dashboard.css?v=0df5ca4ad05f",
+            "kind": "link",
+            "start": 252,
+            "ms": 0,
+            "bytes": 0,
+            "size": 143895
+          },
+          {
+            "name": "/simplify/assets/core.js?v=77e9bf8ba519",
+            "kind": "script",
+            "start": 252,
+            "ms": 0,
+            "bytes": 0,
+            "size": 19307
+          },
+          {
+            "name": "/simplify/assets/motd.js?v=b8551e0606fd",
+            "kind": "script",
+            "start": 252,
+            "ms": 0,
+            "bytes": 0,
+            "size": 14287
+          },
+          {
+            "name": "/simplify/assets/dashboard.js?v=62e3e486c7e9",
+            "kind": "script",
+            "start": 252,
+            "ms": 0,
+            "bytes": 0,
+            "size": 80608
+          },
+          {
+            "name": "/simplify/assets/server.js?v=259d354d0e73",
+            "kind": "script",
+            "start": 252,
+            "ms": 0,
+            "bytes": 0,
+            "size": 35128
+          },
+          {
+            "name": "/js/filament/actions/actions.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 252,
+            "ms": 9,
+            "bytes": 5506,
+            "size": 5206
+          },
+          {
+            "name": "/js/filament/notifications/notifications.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 252,
+            "ms": 11,
+            "bytes": 9454,
+            "size": 9154
+          },
+          {
+            "name": "/js/filament/schemas/schemas.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 252,
+            "ms": 11,
+            "bytes": 4328,
+            "size": 4028
+          },
+          {
+            "name": "/js/filament/tables/tables.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 252,
+            "ms": 15,
+            "bytes": 29429,
+            "size": 29129
+          },
+          {
+            "name": "/js/filament/support/support.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 252,
+            "ms": 17,
+            "bytes": 195477,
+            "size": 195177
+          },
+          {
+            "name": "/js/filament/filament/echo.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 252,
+            "ms": 16,
+            "bytes": 92239,
+            "size": 91939
+          },
+          {
+            "name": "/js/filament/filament/app.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 252,
+            "ms": 15,
+            "bytes": 17179,
+            "size": 16879
+          },
+          {
+            "name": "/build/assets/app-BjcOx26H.js",
+            "kind": "other",
+            "start": 252,
+            "ms": 15,
+            "bytes": 761,
+            "size": 461
+          },
+          {
+            "name": "/build/assets/index-Dn7Qm8Tx.js",
+            "kind": "other",
+            "start": 252,
+            "ms": 16,
+            "bytes": 12729,
+            "size": 12429
+          },
+          {
+            "name": "/livewire-91805c62/livewire.min.js?id=8ea5922c",
+            "kind": "script",
+            "start": 253,
+            "ms": 0,
+            "bytes": 0,
+            "size": 261782
+          },
+          {
+            "name": "https://gravatar.com/avatar/7c4ff521986b4ff8d29440beec01972d",
+            "kind": "img",
+            "start": 290,
+            "ms": 0,
+            "bytes": 0,
+            "size": 0
+          },
+          {
+            "name": "/simplify/assets/seasons.js?v=5b49facd5ee9",
+            "kind": "script",
+            "start": 357,
+            "ms": 0,
+            "bytes": 0,
+            "size": 11078
+          },
+          {
+            "name": "/simplify/assets/bg-village.jpg?v=66bada4a679e",
+            "kind": "img",
+            "start": 2167,
+            "ms": 4,
+            "bytes": 0,
+            "size": 303124
+          },
+          {
+            "name": "/simplify/assets/game-minecraft.svg?v=a9b1d6d7de67",
+            "kind": "img",
+            "start": 2167,
+            "ms": 3,
+            "bytes": 0,
+            "size": 895
+          },
+          {
+            "name": "/simplify/assets/bg-valley.jpg?v=345f8384a518",
+            "kind": "img",
+            "start": 2167,
+            "ms": 4,
+            "bytes": 0,
+            "size": 399359
+          },
+          {
+            "name": "/simplify/assets/bg-gaming.svg?v=ec5ba4bba272",
+            "kind": "img",
+            "start": 2167,
+            "ms": 3,
+            "bytes": 0,
+            "size": 758
+          },
+          {
+            "name": "/storage/icons/server/150efb1c-b4ea-45ce-9299-3b9a84dbb654.png",
+            "kind": "img",
+            "start": 2167,
+            "ms": 5,
+            "bytes": 685,
+            "size": 385
+          },
+          {
+            "name": "/simplify/assets/seasons.css?v=d9bfcd9d7b17",
+            "kind": "link",
+            "start": 2171,
+            "ms": 0,
+            "bytes": 0,
+            "size": 5562
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 2570,
+            "ms": 135,
+            "bytes": 1331,
+            "size": 1031
+          },
+          {
+            "name": "/admin/health",
+            "kind": "fetch",
+            "start": 4484,
+            "ms": 263,
+            "bytes": 324907,
+            "size": 324607
+          },
+          {
+            "name": "/build/assets/app-B8Kiizla.css",
+            "kind": "link",
+            "start": 4936,
+            "ms": 108,
+            "bytes": 648861,
+            "size": 648561
+          },
+          {
+            "name": "/fonts/filament/filament/inter/inter-latin-wght-normal-DIHYUR35.woff2",
+            "kind": "link",
+            "start": 4936,
+            "ms": 107,
+            "bytes": 68632,
+            "size": 68332
+          },
+          {
+            "name": "/js/charrafimed/global-search-modal/components/global-search-modal-observer.js?v=5.0.2.0",
+            "kind": "script",
+            "start": 5199,
+            "ms": 2,
+            "bytes": 7351,
+            "size": 7051
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 5371,
+            "ms": 120,
+            "bytes": 1338,
+            "size": 1038
+          },
+          {
+            "name": "/js/charrafimed/global-search-modal/components/global-search-modal-search.js?v=5.0.2.0",
+            "kind": "script",
+            "start": 5499,
+            "ms": 2,
+            "bytes": 8039,
+            "size": 7739
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 20022,
+            "ms": 136,
+            "bytes": 1646,
+            "size": 1346
+          }
+        ],
+        "nodes": 2127,
+        "inlineScript": 32295,
+        "svgSymbols": 95,
+        "clickToReady": 743,
+        "reloaded": false
+      },
+      {
+        "url": "/admin/health",
+        "origin": 1793730206972.2,
+        "ttfb": 230,
+        "html": 231,
+        "htmlBytes": 230786,
+        "dcl": 497,
+        "load": 2949,
+        "fcp": 317,
+        "ready": 496,
+        "kinds": {
+          "link": {
+            "count": 12,
+            "bytes": 2157940,
+            "size": 2411547
+          },
+          "script": {
+            "count": 18,
+            "bytes": 369002,
+            "size": 806089
+          },
+          "other": {
+            "count": 2,
+            "bytes": 13490,
+            "size": 12890
+          },
+          "img": {
+            "count": 6,
+            "bytes": 685,
+            "size": 704521
+          },
+          "fetch": {
+            "count": 4,
+            "bytes": 329220,
+            "size": 328020
+          }
+        },
+        "calls": [
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 2621,
+            "ms": 134,
+            "bytes": 1331,
+            "size": 1031
+          },
+          {
+            "name": "/admin/health",
+            "kind": "fetch",
+            "start": 4487,
+            "ms": 238,
+            "bytes": 324905,
+            "size": 324605
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 5377,
+            "ms": 134,
+            "bytes": 1338,
+            "size": 1038
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 20026,
+            "ms": 128,
+            "bytes": 1646,
+            "size": 1346
+          }
+        ],
+        "files": [
+          {
+            "name": "/build/assets/app-B8Kiizla.css",
+            "kind": "link",
+            "start": 236,
+            "ms": 13,
+            "bytes": 648861,
+            "size": 648561
+          },
+          {
+            "name": "/css/charrafimed/global-search-modal/global-search-modal.css?v=5.0.2.0",
+            "kind": "link",
+            "start": 237,
+            "ms": 9,
+            "bytes": 32706,
+            "size": 32406
+          },
+          {
+            "name": "/fonts/filament/filament/inter/index.css?v=5.10.2.0",
+            "kind": "link",
+            "start": 237,
+            "ms": 9,
+            "bytes": 2301,
+            "size": 2001
+          },
+          {
+            "name": "/css/filament/filament/app.css?v=5.10.2.0",
+            "kind": "link",
+            "start": 237,
+            "ms": 17,
+            "bytes": 687947,
+            "size": 687647
+          },
+          {
+            "name": "/fonts/filament/filament/inter/inter-latin-wght-normal-DIHYUR35.woff2",
+            "kind": "link",
+            "start": 237,
+            "ms": 9,
+            "bytes": 68632,
+            "size": 68332
+          },
+          {
+            "name": "/simplify/assets/simplify.css?v=906f4b5daea2",
+            "kind": "link",
+            "start": 237,
+            "ms": 0,
+            "bytes": 0,
+            "size": 73713
+          },
+          {
+            "name": "/simplify/assets/pull.js?v=541ecdb385a5",
+            "kind": "script",
+            "start": 237,
+            "ms": 0,
+            "bytes": 0,
+            "size": 3094
+          },
+          {
+            "name": "/simplify/assets/sheet.js?v=250f0c38aae2",
+            "kind": "script",
+            "start": 237,
+            "ms": 0,
+            "bytes": 0,
+            "size": 1986
+          },
+          {
+            "name": "/simplify/assets/unsaved.js?v=bdac96c88c5f",
+            "kind": "script",
+            "start": 237,
+            "ms": 0,
+            "bytes": 0,
+            "size": 12517
+          },
+          {
+            "name": "/simplify/assets/tokens.css?v=8961a90eeef9",
+            "kind": "link",
+            "start": 238,
+            "ms": 0,
+            "bytes": 0,
+            "size": 4345
+          },
+          {
+            "name": "/simplify/assets/components.css?v=6aa53323661d",
+            "kind": "link",
+            "start": 238,
+            "ms": 0,
+            "bytes": 0,
+            "size": 28192
+          },
+          {
+            "name": "/simplify/assets/dashboard.css?v=0df5ca4ad05f",
+            "kind": "link",
+            "start": 238,
+            "ms": 0,
+            "bytes": 0,
+            "size": 143895
+          },
+          {
+            "name": "/simplify/assets/core.js?v=77e9bf8ba519",
+            "kind": "script",
+            "start": 238,
+            "ms": 0,
+            "bytes": 0,
+            "size": 19307
+          },
+          {
+            "name": "/simplify/assets/motd.js?v=b8551e0606fd",
+            "kind": "script",
+            "start": 238,
+            "ms": 0,
+            "bytes": 0,
+            "size": 14287
+          },
+          {
+            "name": "/simplify/assets/dashboard.js?v=62e3e486c7e9",
+            "kind": "script",
+            "start": 238,
+            "ms": 0,
+            "bytes": 0,
+            "size": 80608
+          },
+          {
+            "name": "/simplify/assets/server.js?v=259d354d0e73",
+            "kind": "script",
+            "start": 238,
+            "ms": 0,
+            "bytes": 0,
+            "size": 35128
+          },
+          {
+            "name": "/js/filament/actions/actions.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 238,
+            "ms": 8,
+            "bytes": 5506,
+            "size": 5206
+          },
+          {
+            "name": "/js/filament/notifications/notifications.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 238,
+            "ms": 10,
+            "bytes": 9454,
+            "size": 9154
+          },
+          {
+            "name": "/js/filament/schemas/schemas.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 238,
+            "ms": 10,
+            "bytes": 4328,
+            "size": 4028
+          },
+          {
+            "name": "/js/filament/support/support.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 238,
+            "ms": 16,
+            "bytes": 195477,
+            "size": 195177
+          },
+          {
+            "name": "/js/filament/tables/tables.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 238,
+            "ms": 15,
+            "bytes": 29429,
+            "size": 29129
+          },
+          {
+            "name": "/js/filament/filament/echo.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 238,
+            "ms": 15,
+            "bytes": 92239,
+            "size": 91939
+          },
+          {
+            "name": "/build/assets/app-BjcOx26H.js",
+            "kind": "other",
+            "start": 238,
+            "ms": 14,
+            "bytes": 761,
+            "size": 461
+          },
+          {
+            "name": "/js/filament/filament/app.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 238,
+            "ms": 15,
+            "bytes": 17179,
+            "size": 16879
+          },
+          {
+            "name": "/build/assets/index-Dn7Qm8Tx.js",
+            "kind": "other",
+            "start": 239,
+            "ms": 18,
+            "bytes": 12729,
+            "size": 12429
+          },
+          {
+            "name": "/livewire-91805c62/livewire.min.js?id=8ea5922c",
+            "kind": "script",
+            "start": 239,
+            "ms": 0,
+            "bytes": 0,
+            "size": 261782
+          },
+          {
+            "name": "https://gravatar.com/avatar/7c4ff521986b4ff8d29440beec01972d",
+            "kind": "img",
+            "start": 276,
+            "ms": 0,
+            "bytes": 0,
+            "size": 0
+          },
+          {
+            "name": "/simplify/assets/seasons.js?v=5b49facd5ee9",
+            "kind": "script",
+            "start": 347,
+            "ms": 0,
+            "bytes": 0,
+            "size": 11078
+          },
+          {
+            "name": "/simplify/assets/bg-village.jpg?v=66bada4a679e",
+            "kind": "img",
+            "start": 2253,
+            "ms": 2,
+            "bytes": 0,
+            "size": 303124
+          },
+          {
+            "name": "/simplify/assets/game-minecraft.svg?v=a9b1d6d7de67",
+            "kind": "img",
+            "start": 2254,
+            "ms": 2,
+            "bytes": 0,
+            "size": 895
+          },
+          {
+            "name": "/simplify/assets/bg-valley.jpg?v=345f8384a518",
+            "kind": "img",
+            "start": 2254,
+            "ms": 2,
+            "bytes": 0,
+            "size": 399359
+          },
+          {
+            "name": "/storage/icons/server/150efb1c-b4ea-45ce-9299-3b9a84dbb654.png",
+            "kind": "img",
+            "start": 2254,
+            "ms": 6,
+            "bytes": 685,
+            "size": 385
+          },
+          {
+            "name": "/simplify/assets/bg-gaming.svg?v=ec5ba4bba272",
+            "kind": "img",
+            "start": 2254,
+            "ms": 4,
+            "bytes": 0,
+            "size": 758
+          },
+          {
+            "name": "/simplify/assets/seasons.css?v=d9bfcd9d7b17",
+            "kind": "link",
+            "start": 2256,
+            "ms": 0,
+            "bytes": 0,
+            "size": 5562
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 2621,
+            "ms": 134,
+            "bytes": 1331,
+            "size": 1031
+          },
+          {
+            "name": "/admin/health",
+            "kind": "fetch",
+            "start": 4487,
+            "ms": 238,
+            "bytes": 324905,
+            "size": 324605
+          },
+          {
+            "name": "/build/assets/app-B8Kiizla.css",
+            "kind": "link",
+            "start": 4938,
+            "ms": 4,
+            "bytes": 648861,
+            "size": 648561
+          },
+          {
+            "name": "/fonts/filament/filament/inter/inter-latin-wght-normal-DIHYUR35.woff2",
+            "kind": "link",
+            "start": 4938,
+            "ms": 4,
+            "bytes": 68632,
+            "size": 68332
+          },
+          {
+            "name": "/js/charrafimed/global-search-modal/components/global-search-modal-observer.js?v=5.0.2.0",
+            "kind": "script",
+            "start": 5207,
+            "ms": 3,
+            "bytes": 7351,
+            "size": 7051
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 5377,
+            "ms": 134,
+            "bytes": 1338,
+            "size": 1038
+          },
+          {
+            "name": "/js/charrafimed/global-search-modal/components/global-search-modal-search.js?v=5.0.2.0",
+            "kind": "script",
+            "start": 5512,
+            "ms": 2,
+            "bytes": 8039,
+            "size": 7739
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 20026,
+            "ms": 128,
+            "bytes": 1646,
+            "size": 1346
+          }
+        ],
+        "nodes": 2127,
+        "inlineScript": 32295,
+        "svgSymbols": 95,
+        "clickToReady": 734,
+        "reloaded": false
+      },
+      {
+        "url": "/admin/health",
+        "origin": 1793730229855.4,
+        "ttfb": 246,
+        "html": 248,
+        "htmlBytes": 230787,
+        "dcl": 507,
+        "load": 2941,
+        "fcp": 332,
+        "ready": 506,
+        "kinds": {
+          "link": {
+            "count": 12,
+            "bytes": 2157940,
+            "size": 2411547
+          },
+          "script": {
+            "count": 18,
+            "bytes": 369002,
+            "size": 806089
+          },
+          "other": {
+            "count": 2,
+            "bytes": 13490,
+            "size": 12890
+          },
+          "img": {
+            "count": 6,
+            "bytes": 685,
+            "size": 704521
+          },
+          "fetch": {
+            "count": 4,
+            "bytes": 328502,
+            "size": 327302
+          }
+        },
+        "calls": [
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 2612,
+            "ms": 134,
+            "bytes": 1331,
+            "size": 1031
+          },
+          {
+            "name": "/admin/health",
+            "kind": "fetch",
+            "start": 4503,
+            "ms": 274,
+            "bytes": 322869,
+            "size": 322569
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 5396,
+            "ms": 152,
+            "bytes": 2656,
+            "size": 2356
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 20053,
+            "ms": 127,
+            "bytes": 1646,
+            "size": 1346
+          }
+        ],
+        "files": [
+          {
+            "name": "/build/assets/app-B8Kiizla.css",
+            "kind": "link",
+            "start": 253,
+            "ms": 8,
+            "bytes": 648861,
+            "size": 648561
+          },
+          {
+            "name": "/css/charrafimed/global-search-modal/global-search-modal.css?v=5.0.2.0",
+            "kind": "link",
+            "start": 253,
+            "ms": 10,
+            "bytes": 32706,
+            "size": 32406
+          },
+          {
+            "name": "/fonts/filament/filament/inter/index.css?v=5.10.2.0",
+            "kind": "link",
+            "start": 253,
+            "ms": 11,
+            "bytes": 2301,
+            "size": 2001
+          },
+          {
+            "name": "/css/filament/filament/app.css?v=5.10.2.0",
+            "kind": "link",
+            "start": 253,
+            "ms": 20,
+            "bytes": 687947,
+            "size": 687647
+          },
+          {
+            "name": "/fonts/filament/filament/inter/inter-latin-wght-normal-DIHYUR35.woff2",
+            "kind": "link",
+            "start": 253,
+            "ms": 11,
+            "bytes": 68632,
+            "size": 68332
+          },
+          {
+            "name": "/simplify/assets/simplify.css?v=906f4b5daea2",
+            "kind": "link",
+            "start": 253,
+            "ms": 0,
+            "bytes": 0,
+            "size": 73713
+          },
+          {
+            "name": "/simplify/assets/pull.js?v=541ecdb385a5",
+            "kind": "script",
+            "start": 253,
+            "ms": 0,
+            "bytes": 0,
+            "size": 3094
+          },
+          {
+            "name": "/simplify/assets/sheet.js?v=250f0c38aae2",
+            "kind": "script",
+            "start": 253,
+            "ms": 0,
+            "bytes": 0,
+            "size": 1986
+          },
+          {
+            "name": "/simplify/assets/unsaved.js?v=bdac96c88c5f",
+            "kind": "script",
+            "start": 254,
+            "ms": 0,
+            "bytes": 0,
+            "size": 12517
+          },
+          {
+            "name": "/simplify/assets/tokens.css?v=8961a90eeef9",
+            "kind": "link",
+            "start": 254,
+            "ms": 0,
+            "bytes": 0,
+            "size": 4345
+          },
+          {
+            "name": "/simplify/assets/components.css?v=6aa53323661d",
+            "kind": "link",
+            "start": 254,
+            "ms": 0,
+            "bytes": 0,
+            "size": 28192
+          },
+          {
+            "name": "/simplify/assets/dashboard.css?v=0df5ca4ad05f",
+            "kind": "link",
+            "start": 254,
+            "ms": 0,
+            "bytes": 0,
+            "size": 143895
+          },
+          {
+            "name": "/simplify/assets/core.js?v=77e9bf8ba519",
+            "kind": "script",
+            "start": 254,
+            "ms": 0,
+            "bytes": 0,
+            "size": 19307
+          },
+          {
+            "name": "/simplify/assets/motd.js?v=b8551e0606fd",
+            "kind": "script",
+            "start": 254,
+            "ms": 0,
+            "bytes": 0,
+            "size": 14287
+          },
+          {
+            "name": "/simplify/assets/dashboard.js?v=62e3e486c7e9",
+            "kind": "script",
+            "start": 254,
+            "ms": 0,
+            "bytes": 0,
+            "size": 80608
+          },
+          {
+            "name": "/simplify/assets/server.js?v=259d354d0e73",
+            "kind": "script",
+            "start": 254,
+            "ms": 0,
+            "bytes": 0,
+            "size": 35128
+          },
+          {
+            "name": "/js/filament/actions/actions.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 254,
+            "ms": 11,
+            "bytes": 5506,
+            "size": 5206
+          },
+          {
+            "name": "/js/filament/notifications/notifications.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 254,
+            "ms": 11,
+            "bytes": 9454,
+            "size": 9154
+          },
+          {
+            "name": "/js/filament/schemas/schemas.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 254,
+            "ms": 15,
+            "bytes": 4328,
+            "size": 4028
+          },
+          {
+            "name": "/js/filament/support/support.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 254,
+            "ms": 18,
+            "bytes": 195477,
+            "size": 195177
+          },
+          {
+            "name": "/js/filament/tables/tables.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 254,
+            "ms": 16,
+            "bytes": 29429,
+            "size": 29129
+          },
+          {
+            "name": "/js/filament/filament/echo.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 254,
+            "ms": 16,
+            "bytes": 92239,
+            "size": 91939
+          },
+          {
+            "name": "/js/filament/filament/app.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 254,
+            "ms": 15,
+            "bytes": 17179,
+            "size": 16879
+          },
+          {
+            "name": "/build/assets/app-BjcOx26H.js",
+            "kind": "other",
+            "start": 255,
+            "ms": 17,
+            "bytes": 761,
+            "size": 461
+          },
+          {
+            "name": "/build/assets/index-Dn7Qm8Tx.js",
+            "kind": "other",
+            "start": 255,
+            "ms": 18,
+            "bytes": 12729,
+            "size": 12429
+          },
+          {
+            "name": "/livewire-91805c62/livewire.min.js?id=8ea5922c",
+            "kind": "script",
+            "start": 255,
+            "ms": 0,
+            "bytes": 0,
+            "size": 261782
+          },
+          {
+            "name": "https://gravatar.com/avatar/7c4ff521986b4ff8d29440beec01972d",
+            "kind": "img",
+            "start": 290,
+            "ms": 0,
+            "bytes": 0,
+            "size": 0
+          },
+          {
+            "name": "/simplify/assets/seasons.js?v=5b49facd5ee9",
+            "kind": "script",
+            "start": 359,
+            "ms": 0,
+            "bytes": 0,
+            "size": 11078
+          },
+          {
+            "name": "/simplify/assets/bg-village.jpg?v=66bada4a679e",
+            "kind": "img",
+            "start": 2213,
+            "ms": 6,
+            "bytes": 0,
+            "size": 303124
+          },
+          {
+            "name": "/simplify/assets/game-minecraft.svg?v=a9b1d6d7de67",
+            "kind": "img",
+            "start": 2213,
+            "ms": 3,
+            "bytes": 0,
+            "size": 895
+          },
+          {
+            "name": "/simplify/assets/bg-valley.jpg?v=345f8384a518",
+            "kind": "img",
+            "start": 2213,
+            "ms": 6,
+            "bytes": 0,
+            "size": 399359
+          },
+          {
+            "name": "/storage/icons/server/150efb1c-b4ea-45ce-9299-3b9a84dbb654.png",
+            "kind": "img",
+            "start": 2213,
+            "ms": 5,
+            "bytes": 685,
+            "size": 385
+          },
+          {
+            "name": "/simplify/assets/bg-gaming.svg?v=ec5ba4bba272",
+            "kind": "img",
+            "start": 2214,
+            "ms": 5,
+            "bytes": 0,
+            "size": 758
+          },
+          {
+            "name": "/simplify/assets/seasons.css?v=d9bfcd9d7b17",
+            "kind": "link",
+            "start": 2217,
+            "ms": 0,
+            "bytes": 0,
+            "size": 5562
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 2612,
+            "ms": 134,
+            "bytes": 1331,
+            "size": 1031
+          },
+          {
+            "name": "/admin/health",
+            "kind": "fetch",
+            "start": 4503,
+            "ms": 274,
+            "bytes": 322869,
+            "size": 322569
+          },
+          {
+            "name": "/build/assets/app-B8Kiizla.css",
+            "kind": "link",
+            "start": 4964,
+            "ms": 115,
+            "bytes": 648861,
+            "size": 648561
+          },
+          {
+            "name": "/fonts/filament/filament/inter/inter-latin-wght-normal-DIHYUR35.woff2",
+            "kind": "link",
+            "start": 4964,
+            "ms": 114,
+            "bytes": 68632,
+            "size": 68332
+          },
+          {
+            "name": "/js/charrafimed/global-search-modal/components/global-search-modal-observer.js?v=5.0.2.0",
+            "kind": "script",
+            "start": 5229,
+            "ms": 2,
+            "bytes": 7351,
+            "size": 7051
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 5396,
+            "ms": 152,
+            "bytes": 2656,
+            "size": 2356
+          },
+          {
+            "name": "/js/charrafimed/global-search-modal/components/global-search-modal-search.js?v=5.0.2.0",
+            "kind": "script",
+            "start": 5523,
+            "ms": 26,
+            "bytes": 8039,
+            "size": 7739
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 20053,
+            "ms": 127,
+            "bytes": 1646,
+            "size": 1346
+          }
+        ],
+        "nodes": 2115,
+        "inlineScript": 32295,
+        "svgSymbols": 95,
+        "clickToReady": 745,
+        "reloaded": false
+      },
+      {
+        "url": "/admin/health",
+        "origin": 1793730252757.1,
+        "ttfb": 249,
+        "html": 250,
+        "htmlBytes": 230789,
+        "dcl": 520,
+        "load": 2927,
+        "fcp": 337,
+        "ready": 519,
+        "kinds": {
+          "link": {
+            "count": 12,
+            "bytes": 2157940,
+            "size": 2411547
+          },
+          "script": {
+            "count": 18,
+            "bytes": 369002,
+            "size": 806089
+          },
+          "other": {
+            "count": 2,
+            "bytes": 13490,
+            "size": 12890
+          },
+          "img": {
+            "count": 6,
+            "bytes": 685,
+            "size": 704521
+          },
+          "fetch": {
+            "count": 4,
+            "bytes": 329220,
+            "size": 328020
+          }
+        },
+        "calls": [
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 2597,
+            "ms": 140,
+            "bytes": 1331,
+            "size": 1031
+          },
+          {
+            "name": "/admin/health",
+            "kind": "fetch",
+            "start": 4467,
+            "ms": 251,
+            "bytes": 324905,
+            "size": 324605
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 5350,
+            "ms": 131,
+            "bytes": 1338,
+            "size": 1038
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 19997,
+            "ms": 135,
+            "bytes": 1646,
+            "size": 1346
+          }
+        ],
+        "files": [
+          {
+            "name": "/build/assets/app-B8Kiizla.css",
+            "kind": "link",
+            "start": 255,
+            "ms": 16,
+            "bytes": 648861,
+            "size": 648561
+          },
+          {
+            "name": "/css/charrafimed/global-search-modal/global-search-modal.css?v=5.0.2.0",
+            "kind": "link",
+            "start": 256,
+            "ms": 9,
+            "bytes": 32706,
+            "size": 32406
+          },
+          {
+            "name": "/fonts/filament/filament/inter/index.css?v=5.10.2.0",
+            "kind": "link",
+            "start": 256,
+            "ms": 8,
+            "bytes": 2301,
+            "size": 2001
+          },
+          {
+            "name": "/css/filament/filament/app.css?v=5.10.2.0",
+            "kind": "link",
+            "start": 256,
+            "ms": 17,
+            "bytes": 687947,
+            "size": 687647
+          },
+          {
+            "name": "/fonts/filament/filament/inter/inter-latin-wght-normal-DIHYUR35.woff2",
+            "kind": "link",
+            "start": 256,
+            "ms": 9,
+            "bytes": 68632,
+            "size": 68332
+          },
+          {
+            "name": "/simplify/assets/simplify.css?v=906f4b5daea2",
+            "kind": "link",
+            "start": 256,
+            "ms": 0,
+            "bytes": 0,
+            "size": 73713
+          },
+          {
+            "name": "/simplify/assets/pull.js?v=541ecdb385a5",
+            "kind": "script",
+            "start": 256,
+            "ms": 0,
+            "bytes": 0,
+            "size": 3094
+          },
+          {
+            "name": "/simplify/assets/sheet.js?v=250f0c38aae2",
+            "kind": "script",
+            "start": 256,
+            "ms": 0,
+            "bytes": 0,
+            "size": 1986
+          },
+          {
+            "name": "/simplify/assets/unsaved.js?v=bdac96c88c5f",
+            "kind": "script",
+            "start": 256,
+            "ms": 0,
+            "bytes": 0,
+            "size": 12517
+          },
+          {
+            "name": "/simplify/assets/tokens.css?v=8961a90eeef9",
+            "kind": "link",
+            "start": 256,
+            "ms": 0,
+            "bytes": 0,
+            "size": 4345
+          },
+          {
+            "name": "/simplify/assets/components.css?v=6aa53323661d",
+            "kind": "link",
+            "start": 256,
+            "ms": 0,
+            "bytes": 0,
+            "size": 28192
+          },
+          {
+            "name": "/simplify/assets/dashboard.css?v=0df5ca4ad05f",
+            "kind": "link",
+            "start": 256,
+            "ms": 0,
+            "bytes": 0,
+            "size": 143895
+          },
+          {
+            "name": "/simplify/assets/core.js?v=77e9bf8ba519",
+            "kind": "script",
+            "start": 256,
+            "ms": 0,
+            "bytes": 0,
+            "size": 19307
+          },
+          {
+            "name": "/simplify/assets/motd.js?v=b8551e0606fd",
+            "kind": "script",
+            "start": 256,
+            "ms": 0,
+            "bytes": 0,
+            "size": 14287
+          },
+          {
+            "name": "/simplify/assets/dashboard.js?v=62e3e486c7e9",
+            "kind": "script",
+            "start": 256,
+            "ms": 0,
+            "bytes": 0,
+            "size": 80608
+          },
+          {
+            "name": "/simplify/assets/server.js?v=259d354d0e73",
+            "kind": "script",
+            "start": 256,
+            "ms": 0,
+            "bytes": 0,
+            "size": 35128
+          },
+          {
+            "name": "/js/filament/actions/actions.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 256,
+            "ms": 9,
+            "bytes": 5506,
+            "size": 5206
+          },
+          {
+            "name": "/js/filament/notifications/notifications.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 257,
+            "ms": 13,
+            "bytes": 9454,
+            "size": 9154
+          },
+          {
+            "name": "/js/filament/schemas/schemas.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 257,
+            "ms": 14,
+            "bytes": 4328,
+            "size": 4028
+          },
+          {
+            "name": "/js/filament/tables/tables.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 257,
+            "ms": 14,
+            "bytes": 29429,
+            "size": 29129
+          },
+          {
+            "name": "/js/filament/support/support.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 257,
+            "ms": 15,
+            "bytes": 195477,
+            "size": 195177
+          },
+          {
+            "name": "/js/filament/filament/echo.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 257,
+            "ms": 16,
+            "bytes": 92239,
+            "size": 91939
+          },
+          {
+            "name": "/js/filament/filament/app.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 257,
+            "ms": 15,
+            "bytes": 17179,
+            "size": 16879
+          },
+          {
+            "name": "/build/assets/app-BjcOx26H.js",
+            "kind": "other",
+            "start": 257,
+            "ms": 16,
+            "bytes": 761,
+            "size": 461
+          },
+          {
+            "name": "/build/assets/index-Dn7Qm8Tx.js",
+            "kind": "other",
+            "start": 257,
+            "ms": 17,
+            "bytes": 12729,
+            "size": 12429
+          },
+          {
+            "name": "/livewire-91805c62/livewire.min.js?id=8ea5922c",
+            "kind": "script",
+            "start": 257,
+            "ms": 0,
+            "bytes": 0,
+            "size": 261782
+          },
+          {
+            "name": "https://gravatar.com/avatar/7c4ff521986b4ff8d29440beec01972d",
+            "kind": "img",
+            "start": 298,
+            "ms": 0,
+            "bytes": 0,
+            "size": 0
+          },
+          {
+            "name": "/simplify/assets/seasons.js?v=5b49facd5ee9",
+            "kind": "script",
+            "start": 368,
+            "ms": 0,
+            "bytes": 0,
+            "size": 11078
+          },
+          {
+            "name": "/simplify/assets/bg-village.jpg?v=66bada4a679e",
+            "kind": "img",
+            "start": 2236,
+            "ms": 4,
+            "bytes": 0,
+            "size": 303124
+          },
+          {
+            "name": "/simplify/assets/game-minecraft.svg?v=a9b1d6d7de67",
+            "kind": "img",
+            "start": 2236,
+            "ms": 3,
+            "bytes": 0,
+            "size": 895
+          },
+          {
+            "name": "/simplify/assets/bg-valley.jpg?v=345f8384a518",
+            "kind": "img",
+            "start": 2236,
+            "ms": 4,
+            "bytes": 0,
+            "size": 399359
+          },
+          {
+            "name": "/storage/icons/server/150efb1c-b4ea-45ce-9299-3b9a84dbb654.png",
+            "kind": "img",
+            "start": 2236,
+            "ms": 5,
+            "bytes": 685,
+            "size": 385
+          },
+          {
+            "name": "/simplify/assets/bg-gaming.svg?v=ec5ba4bba272",
+            "kind": "img",
+            "start": 2236,
+            "ms": 3,
+            "bytes": 0,
+            "size": 758
+          },
+          {
+            "name": "/simplify/assets/seasons.css?v=d9bfcd9d7b17",
+            "kind": "link",
+            "start": 2245,
+            "ms": 0,
+            "bytes": 0,
+            "size": 5562
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 2597,
+            "ms": 140,
+            "bytes": 1331,
+            "size": 1031
+          },
+          {
+            "name": "/admin/health",
+            "kind": "fetch",
+            "start": 4467,
+            "ms": 251,
+            "bytes": 324905,
+            "size": 324605
+          },
+          {
+            "name": "/build/assets/app-B8Kiizla.css",
+            "kind": "link",
+            "start": 4917,
+            "ms": 4,
+            "bytes": 648861,
+            "size": 648561
+          },
+          {
+            "name": "/fonts/filament/filament/inter/inter-latin-wght-normal-DIHYUR35.woff2",
+            "kind": "link",
+            "start": 4918,
+            "ms": 4,
+            "bytes": 68632,
+            "size": 68332
+          },
+          {
+            "name": "/js/charrafimed/global-search-modal/components/global-search-modal-observer.js?v=5.0.2.0",
+            "kind": "script",
+            "start": 5176,
+            "ms": 3,
+            "bytes": 7351,
+            "size": 7051
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 5350,
+            "ms": 131,
+            "bytes": 1338,
+            "size": 1038
+          },
+          {
+            "name": "/js/charrafimed/global-search-modal/components/global-search-modal-search.js?v=5.0.2.0",
+            "kind": "script",
+            "start": 5484,
+            "ms": 2,
+            "bytes": 8039,
+            "size": 7739
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 19997,
+            "ms": 135,
+            "bytes": 1646,
+            "size": 1346
+          }
+        ],
+        "nodes": 2127,
+        "inlineScript": 32295,
+        "svgSymbols": 95,
+        "clickToReady": 728,
+        "reloaded": false
+      }
+    ],
+    "menu": [
+      {
+        "target": "/admin/eggs",
+        "ms": 45001
+      },
+      {
+        "target": "/admin/servers",
+        "ms": 44998
+      },
+      {
+        "target": "/admin/eggs",
+        "ms": 45001
+      },
+      {
+        "target": "/admin/servers",
+        "ms": 45001
+      },
+      {
+        "target": "/admin/eggs",
+        "ms": 45001
+      },
+      {
+        "target": "/admin/servers",
+        "ms": 45000
+      },
+      {
+        "target": "/admin/eggs",
+        "ms": 45000
+      },
+      {
+        "target": "/admin/servers",
+        "ms": 45000
+      },
+      {
+        "target": "/admin/eggs",
+        "ms": 44999
+      },
+      {
+        "target": "/admin/servers",
+        "ms": 44999
+      }
+    ],
+    "legacy": [
+      {
+        "url": "/admin/servers",
+        "origin": 1793730810262.5,
+        "ttfb": 280,
+        "html": 282,
+        "htmlBytes": 392690,
+        "dcl": 557,
+        "load": 581,
+        "fcp": 596,
+        "table": 328,
+        "kinds": {
+          "link": {
+            "count": 6,
+            "bytes": 1440447,
+            "size": 1512660
+          },
+          "script": {
+            "count": 14,
+            "bytes": 461134,
+            "size": 737513
+          },
+          "other": {
+            "count": 2,
+            "bytes": 13490,
+            "size": 12890
+          },
+          "img": {
+            "count": 1,
+            "bytes": 0,
+            "size": 0
+          },
+          "fetch": {
+            "count": 2,
+            "bytes": 77903,
+            "size": 77303
+          }
+        },
+        "calls": [
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 596,
+            "ms": 130,
+            "bytes": 1339,
+            "size": 1039
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 678,
+            "ms": 187,
+            "bytes": 76564,
+            "size": 76264
+          }
+        ],
+        "files": [
+          {
+            "name": "/build/assets/app-B8Kiizla.css",
+            "kind": "link",
+            "start": 287,
+            "ms": 11,
+            "bytes": 648861,
+            "size": 648561
+          },
+          {
+            "name": "/css/charrafimed/global-search-modal/global-search-modal.css?v=5.0.2.0",
+            "kind": "link",
+            "start": 287,
+            "ms": 7,
+            "bytes": 32706,
+            "size": 32406
+          },
+          {
+            "name": "/fonts/filament/filament/inter/index.css?v=5.10.2.0",
+            "kind": "link",
+            "start": 287,
+            "ms": 6,
+            "bytes": 2301,
+            "size": 2001
+          },
+          {
+            "name": "/css/filament/filament/app.css?v=5.10.2.0",
+            "kind": "link",
+            "start": 287,
+            "ms": 12,
+            "bytes": 687947,
+            "size": 687647
+          },
+          {
+            "name": "/fonts/filament/filament/inter/inter-latin-wght-normal-DIHYUR35.woff2",
+            "kind": "link",
+            "start": 288,
+            "ms": 8,
+            "bytes": 68632,
+            "size": 68332
+          },
+          {
+            "name": "/simplify/assets/simplify.css?v=906f4b5daea2",
+            "kind": "link",
+            "start": 288,
+            "ms": 0,
+            "bytes": 0,
+            "size": 73713
+          },
+          {
+            "name": "/simplify/assets/pull.js?v=541ecdb385a5",
+            "kind": "script",
+            "start": 288,
+            "ms": 0,
+            "bytes": 0,
+            "size": 3094
+          },
+          {
+            "name": "/simplify/assets/sheet.js?v=250f0c38aae2",
+            "kind": "script",
+            "start": 288,
+            "ms": 0,
+            "bytes": 0,
+            "size": 1986
+          },
+          {
+            "name": "/simplify/assets/unsaved.js?v=bdac96c88c5f",
+            "kind": "script",
+            "start": 288,
+            "ms": 0,
+            "bytes": 0,
+            "size": 12517
+          },
+          {
+            "name": "/js/filament/actions/actions.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 288,
+            "ms": 9,
+            "bytes": 5506,
+            "size": 5206
+          },
+          {
+            "name": "/js/filament/notifications/notifications.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 288,
+            "ms": 12,
+            "bytes": 9454,
+            "size": 9154
+          },
+          {
+            "name": "/js/filament/schemas/schemas.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 288,
+            "ms": 12,
+            "bytes": 4328,
+            "size": 4028
+          },
+          {
+            "name": "/js/filament/tables/tables.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 288,
+            "ms": 13,
+            "bytes": 29429,
+            "size": 29129
+          },
+          {
+            "name": "/js/filament/support/support.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 288,
+            "ms": 15,
+            "bytes": 195477,
+            "size": 195177
+          },
+          {
+            "name": "/js/filament/filament/echo.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 288,
+            "ms": 14,
+            "bytes": 92239,
+            "size": 91939
+          },
+          {
+            "name": "/js/filament/filament/app.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 288,
+            "ms": 14,
+            "bytes": 17179,
+            "size": 16879
+          },
+          {
+            "name": "/build/assets/app-BjcOx26H.js",
+            "kind": "other",
+            "start": 288,
+            "ms": 14,
+            "bytes": 761,
+            "size": 461
+          },
+          {
+            "name": "/build/assets/index-Dn7Qm8Tx.js",
+            "kind": "other",
+            "start": 288,
+            "ms": 15,
+            "bytes": 12729,
+            "size": 12429
+          },
+          {
+            "name": "/livewire-91805c62/livewire.min.js?id=8ea5922c",
+            "kind": "script",
+            "start": 288,
+            "ms": 0,
+            "bytes": 0,
+            "size": 261782
+          },
+          {
+            "name": "https://gravatar.com/avatar/7c4ff521986b4ff8d29440beec01972d",
+            "kind": "img",
+            "start": 325,
+            "ms": 0,
+            "bytes": 0,
+            "size": 0
+          },
+          {
+            "name": "/js/charrafimed/global-search-modal/components/global-search-modal-observer.js?v=5.0.2.0",
+            "kind": "script",
+            "start": 557,
+            "ms": 11,
+            "bytes": 7351,
+            "size": 7051
+          },
+          {
+            "name": "/js/filament/tables/components/columns/select.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 557,
+            "ms": 11,
+            "bytes": 92132,
+            "size": 91832
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 596,
+            "ms": 130,
+            "bytes": 1339,
+            "size": 1039
+          },
+          {
+            "name": "/js/charrafimed/global-search-modal/components/global-search-modal-search.js?v=5.0.2.0",
+            "kind": "script",
+            "start": 601,
+            "ms": 265,
+            "bytes": 8039,
+            "size": 7739
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 678,
+            "ms": 187,
+            "bytes": 76564,
+            "size": 76264
+          }
+        ],
+        "nodes": 1578,
+        "inlineScript": 8991,
+        "svgSymbols": 0
+      },
+      {
+        "url": "/admin/servers",
+        "origin": 1793730813455.3,
+        "ttfb": 278,
+        "html": 280,
+        "htmlBytes": 392690,
+        "dcl": 522,
+        "load": 543,
+        "fcp": 558,
+        "table": 323,
+        "kinds": {
+          "link": {
+            "count": 6,
+            "bytes": 1440447,
+            "size": 1512660
+          },
+          "script": {
+            "count": 14,
+            "bytes": 461134,
+            "size": 737513
+          },
+          "other": {
+            "count": 2,
+            "bytes": 13490,
+            "size": 12890
+          },
+          "img": {
+            "count": 1,
+            "bytes": 0,
+            "size": 0
+          },
+          "fetch": {
+            "count": 2,
+            "bytes": 77903,
+            "size": 77303
+          }
+        },
+        "calls": [
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 559,
+            "ms": 155,
+            "bytes": 1339,
+            "size": 1039
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 565,
+            "ms": 294,
+            "bytes": 76564,
+            "size": 76264
+          }
+        ],
+        "files": [
+          {
+            "name": "/build/assets/app-B8Kiizla.css",
+            "kind": "link",
+            "start": 284,
+            "ms": 10,
+            "bytes": 648861,
+            "size": 648561
+          },
+          {
+            "name": "/fonts/filament/filament/inter/index.css?v=5.10.2.0",
+            "kind": "link",
+            "start": 284,
+            "ms": 8,
+            "bytes": 2301,
+            "size": 2001
+          },
+          {
+            "name": "/css/charrafimed/global-search-modal/global-search-modal.css?v=5.0.2.0",
+            "kind": "link",
+            "start": 284,
+            "ms": 8,
+            "bytes": 32706,
+            "size": 32406
+          },
+          {
+            "name": "/fonts/filament/filament/inter/inter-latin-wght-normal-DIHYUR35.woff2",
+            "kind": "link",
+            "start": 284,
+            "ms": 9,
+            "bytes": 68632,
+            "size": 68332
+          },
+          {
+            "name": "/css/filament/filament/app.css?v=5.10.2.0",
+            "kind": "link",
+            "start": 284,
+            "ms": 11,
+            "bytes": 687947,
+            "size": 687647
+          },
+          {
+            "name": "/simplify/assets/simplify.css?v=906f4b5daea2",
+            "kind": "link",
+            "start": 285,
+            "ms": 0,
+            "bytes": 0,
+            "size": 73713
+          },
+          {
+            "name": "/simplify/assets/pull.js?v=541ecdb385a5",
+            "kind": "script",
+            "start": 285,
+            "ms": 0,
+            "bytes": 0,
+            "size": 3094
+          },
+          {
+            "name": "/simplify/assets/sheet.js?v=250f0c38aae2",
+            "kind": "script",
+            "start": 285,
+            "ms": 0,
+            "bytes": 0,
+            "size": 1986
+          },
+          {
+            "name": "/simplify/assets/unsaved.js?v=bdac96c88c5f",
+            "kind": "script",
+            "start": 285,
+            "ms": 0,
+            "bytes": 0,
+            "size": 12517
+          },
+          {
+            "name": "/js/filament/actions/actions.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 285,
+            "ms": 9,
+            "bytes": 5506,
+            "size": 5206
+          },
+          {
+            "name": "/js/filament/schemas/schemas.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 285,
+            "ms": 14,
+            "bytes": 4328,
+            "size": 4028
+          },
+          {
+            "name": "/js/filament/notifications/notifications.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 285,
+            "ms": 14,
+            "bytes": 9454,
+            "size": 9154
+          },
+          {
+            "name": "/js/filament/tables/tables.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 285,
+            "ms": 14,
+            "bytes": 29429,
+            "size": 29129
+          },
+          {
+            "name": "/js/filament/support/support.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 285,
+            "ms": 17,
+            "bytes": 195477,
+            "size": 195177
+          },
+          {
+            "name": "/js/filament/filament/app.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 285,
+            "ms": 14,
+            "bytes": 17179,
+            "size": 16879
+          },
+          {
+            "name": "/js/filament/filament/echo.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 285,
+            "ms": 14,
+            "bytes": 92239,
+            "size": 91939
+          },
+          {
+            "name": "/build/assets/app-BjcOx26H.js",
+            "kind": "other",
+            "start": 285,
+            "ms": 16,
+            "bytes": 761,
+            "size": 461
+          },
+          {
+            "name": "/livewire-91805c62/livewire.min.js?id=8ea5922c",
+            "kind": "script",
+            "start": 285,
+            "ms": 0,
+            "bytes": 0,
+            "size": 261782
+          },
+          {
+            "name": "/build/assets/index-Dn7Qm8Tx.js",
+            "kind": "other",
+            "start": 285,
+            "ms": 16,
+            "bytes": 12729,
+            "size": 12429
+          },
+          {
+            "name": "https://gravatar.com/avatar/7c4ff521986b4ff8d29440beec01972d",
+            "kind": "img",
+            "start": 320,
+            "ms": 0,
+            "bytes": 0,
+            "size": 0
+          },
+          {
+            "name": "/js/charrafimed/global-search-modal/components/global-search-modal-observer.js?v=5.0.2.0",
+            "kind": "script",
+            "start": 521,
+            "ms": 67,
+            "bytes": 7351,
+            "size": 7051
+          },
+          {
+            "name": "/js/filament/tables/components/columns/select.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 521,
+            "ms": 193,
+            "bytes": 92132,
+            "size": 91832
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 559,
+            "ms": 155,
+            "bytes": 1339,
+            "size": 1039
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 565,
+            "ms": 294,
+            "bytes": 76564,
+            "size": 76264
+          },
+          {
+            "name": "/js/charrafimed/global-search-modal/components/global-search-modal-search.js?v=5.0.2.0",
+            "kind": "script",
+            "start": 592,
+            "ms": 268,
+            "bytes": 8039,
+            "size": 7739
+          }
+        ],
+        "nodes": 1578,
+        "inlineScript": 8991,
+        "svgSymbols": 0
+      },
+      {
+        "url": "/admin/servers",
+        "origin": 1793730816531.3,
+        "ttfb": 279,
+        "html": 281,
+        "htmlBytes": 392690,
+        "dcl": 540,
+        "load": 564,
+        "fcp": 577,
+        "table": 324,
+        "kinds": {
+          "link": {
+            "count": 6,
+            "bytes": 1440447,
+            "size": 1512660
+          },
+          "script": {
+            "count": 14,
+            "bytes": 461134,
+            "size": 737513
+          },
+          "other": {
+            "count": 2,
+            "bytes": 13490,
+            "size": 12890
+          },
+          "img": {
+            "count": 1,
+            "bytes": 0,
+            "size": 0
+          },
+          "fetch": {
+            "count": 2,
+            "bytes": 77903,
+            "size": 77303
+          }
+        },
+        "calls": [
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 578,
+            "ms": 129,
+            "bytes": 1339,
+            "size": 1039
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 658,
+            "ms": 281,
+            "bytes": 76564,
+            "size": 76264
+          }
+        ],
+        "files": [
+          {
+            "name": "/build/assets/app-B8Kiizla.css",
+            "kind": "link",
+            "start": 285,
+            "ms": 10,
+            "bytes": 648861,
+            "size": 648561
+          },
+          {
+            "name": "/css/charrafimed/global-search-modal/global-search-modal.css?v=5.0.2.0",
+            "kind": "link",
+            "start": 286,
+            "ms": 8,
+            "bytes": 32706,
+            "size": 32406
+          },
+          {
+            "name": "/fonts/filament/filament/inter/index.css?v=5.10.2.0",
+            "kind": "link",
+            "start": 286,
+            "ms": 7,
+            "bytes": 2301,
+            "size": 2001
+          },
+          {
+            "name": "/css/filament/filament/app.css?v=5.10.2.0",
+            "kind": "link",
+            "start": 286,
+            "ms": 10,
+            "bytes": 687947,
+            "size": 687647
+          },
+          {
+            "name": "/fonts/filament/filament/inter/inter-latin-wght-normal-DIHYUR35.woff2",
+            "kind": "link",
+            "start": 286,
+            "ms": 8,
+            "bytes": 68632,
+            "size": 68332
+          },
+          {
+            "name": "/simplify/assets/simplify.css?v=906f4b5daea2",
+            "kind": "link",
+            "start": 286,
+            "ms": 0,
+            "bytes": 0,
+            "size": 73713
+          },
+          {
+            "name": "/simplify/assets/pull.js?v=541ecdb385a5",
+            "kind": "script",
+            "start": 286,
+            "ms": 0,
+            "bytes": 0,
+            "size": 3094
+          },
+          {
+            "name": "/simplify/assets/sheet.js?v=250f0c38aae2",
+            "kind": "script",
+            "start": 286,
+            "ms": 0,
+            "bytes": 0,
+            "size": 1986
+          },
+          {
+            "name": "/simplify/assets/unsaved.js?v=bdac96c88c5f",
+            "kind": "script",
+            "start": 286,
+            "ms": 0,
+            "bytes": 0,
+            "size": 12517
+          },
+          {
+            "name": "/js/filament/actions/actions.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 286,
+            "ms": 8,
+            "bytes": 5506,
+            "size": 5206
+          },
+          {
+            "name": "/js/filament/notifications/notifications.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 287,
+            "ms": 11,
+            "bytes": 9454,
+            "size": 9154
+          },
+          {
+            "name": "/js/filament/schemas/schemas.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 287,
+            "ms": 12,
+            "bytes": 4328,
+            "size": 4028
+          },
+          {
+            "name": "/js/filament/support/support.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 287,
+            "ms": 15,
+            "bytes": 195477,
+            "size": 195177
+          },
+          {
+            "name": "/js/filament/tables/tables.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 287,
+            "ms": 14,
+            "bytes": 29429,
+            "size": 29129
+          },
+          {
+            "name": "/js/filament/filament/echo.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 287,
+            "ms": 15,
+            "bytes": 92239,
+            "size": 91939
+          },
+          {
+            "name": "/js/filament/filament/app.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 287,
+            "ms": 15,
+            "bytes": 17179,
+            "size": 16879
+          },
+          {
+            "name": "/build/assets/app-BjcOx26H.js",
+            "kind": "other",
+            "start": 287,
+            "ms": 17,
+            "bytes": 761,
+            "size": 461
+          },
+          {
+            "name": "/build/assets/index-Dn7Qm8Tx.js",
+            "kind": "other",
+            "start": 287,
+            "ms": 17,
+            "bytes": 12729,
+            "size": 12429
+          },
+          {
+            "name": "/livewire-91805c62/livewire.min.js?id=8ea5922c",
+            "kind": "script",
+            "start": 287,
+            "ms": 0,
+            "bytes": 0,
+            "size": 261782
+          },
+          {
+            "name": "https://gravatar.com/avatar/7c4ff521986b4ff8d29440beec01972d",
+            "kind": "img",
+            "start": 321,
+            "ms": 0,
+            "bytes": 0,
+            "size": 0
+          },
+          {
+            "name": "/js/charrafimed/global-search-modal/components/global-search-modal-observer.js?v=5.0.2.0",
+            "kind": "script",
+            "start": 540,
+            "ms": 3,
+            "bytes": 7351,
+            "size": 7051
+          },
+          {
+            "name": "/js/filament/tables/components/columns/select.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 540,
+            "ms": 3,
+            "bytes": 92132,
+            "size": 91832
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 578,
+            "ms": 129,
+            "bytes": 1339,
+            "size": 1039
+          },
+          {
+            "name": "/js/charrafimed/global-search-modal/components/global-search-modal-search.js?v=5.0.2.0",
+            "kind": "script",
+            "start": 583,
+            "ms": 226,
+            "bytes": 8039,
+            "size": 7739
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 658,
+            "ms": 281,
+            "bytes": 76564,
+            "size": 76264
+          }
+        ],
+        "nodes": 1578,
+        "inlineScript": 8991,
+        "svgSymbols": 0
+      },
+      {
+        "url": "/admin/servers",
+        "origin": 1793730819703.4,
+        "ttfb": 315,
+        "html": 317,
+        "htmlBytes": 392690,
+        "dcl": 587,
+        "load": 610,
+        "fcp": 623,
+        "table": 363,
+        "kinds": {
+          "link": {
+            "count": 6,
+            "bytes": 1440447,
+            "size": 1512660
+          },
+          "script": {
+            "count": 14,
+            "bytes": 461134,
+            "size": 737513
+          },
+          "other": {
+            "count": 2,
+            "bytes": 13490,
+            "size": 12890
+          },
+          "img": {
+            "count": 1,
+            "bytes": 0,
+            "size": 0
+          },
+          "fetch": {
+            "count": 2,
+            "bytes": 77903,
+            "size": 77303
+          }
+        },
+        "calls": [
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 622,
+            "ms": 130,
+            "bytes": 1339,
+            "size": 1039
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 698,
+            "ms": 191,
+            "bytes": 76564,
+            "size": 76264
+          }
+        ],
+        "files": [
+          {
+            "name": "/build/assets/app-B8Kiizla.css",
+            "kind": "link",
+            "start": 322,
+            "ms": 11,
+            "bytes": 648861,
+            "size": 648561
+          },
+          {
+            "name": "/css/charrafimed/global-search-modal/global-search-modal.css?v=5.0.2.0",
+            "kind": "link",
+            "start": 322,
+            "ms": 9,
+            "bytes": 32706,
+            "size": 32406
+          },
+          {
+            "name": "/fonts/filament/filament/inter/index.css?v=5.10.2.0",
+            "kind": "link",
+            "start": 322,
+            "ms": 9,
+            "bytes": 2301,
+            "size": 2001
+          },
+          {
+            "name": "/css/filament/filament/app.css?v=5.10.2.0",
+            "kind": "link",
+            "start": 322,
+            "ms": 18,
+            "bytes": 687947,
+            "size": 687647
+          },
+          {
+            "name": "/fonts/filament/filament/inter/inter-latin-wght-normal-DIHYUR35.woff2",
+            "kind": "link",
+            "start": 322,
+            "ms": 9,
+            "bytes": 68632,
+            "size": 68332
+          },
+          {
+            "name": "/simplify/assets/simplify.css?v=906f4b5daea2",
+            "kind": "link",
+            "start": 323,
+            "ms": 0,
+            "bytes": 0,
+            "size": 73713
+          },
+          {
+            "name": "/simplify/assets/pull.js?v=541ecdb385a5",
+            "kind": "script",
+            "start": 323,
+            "ms": 0,
+            "bytes": 0,
+            "size": 3094
+          },
+          {
+            "name": "/simplify/assets/sheet.js?v=250f0c38aae2",
+            "kind": "script",
+            "start": 323,
+            "ms": 0,
+            "bytes": 0,
+            "size": 1986
+          },
+          {
+            "name": "/simplify/assets/unsaved.js?v=bdac96c88c5f",
+            "kind": "script",
+            "start": 323,
+            "ms": 0,
+            "bytes": 0,
+            "size": 12517
+          },
+          {
+            "name": "/js/filament/actions/actions.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 323,
+            "ms": 9,
+            "bytes": 5506,
+            "size": 5206
+          },
+          {
+            "name": "/js/filament/notifications/notifications.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 323,
+            "ms": 11,
+            "bytes": 9454,
+            "size": 9154
+          },
+          {
+            "name": "/js/filament/schemas/schemas.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 323,
+            "ms": 12,
+            "bytes": 4328,
+            "size": 4028
+          },
+          {
+            "name": "/js/filament/tables/tables.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 323,
+            "ms": 13,
+            "bytes": 29429,
+            "size": 29129
+          },
+          {
+            "name": "/js/filament/support/support.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 323,
+            "ms": 17,
+            "bytes": 195477,
+            "size": 195177
+          },
+          {
+            "name": "/js/filament/filament/echo.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 323,
+            "ms": 17,
+            "bytes": 92239,
+            "size": 91939
+          },
+          {
+            "name": "/build/assets/app-BjcOx26H.js",
+            "kind": "other",
+            "start": 323,
+            "ms": 15,
+            "bytes": 761,
+            "size": 461
+          },
+          {
+            "name": "/js/filament/filament/app.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 323,
+            "ms": 16,
+            "bytes": 17179,
+            "size": 16879
+          },
+          {
+            "name": "/build/assets/index-Dn7Qm8Tx.js",
+            "kind": "other",
+            "start": 323,
+            "ms": 17,
+            "bytes": 12729,
+            "size": 12429
+          },
+          {
+            "name": "/livewire-91805c62/livewire.min.js?id=8ea5922c",
+            "kind": "script",
+            "start": 324,
+            "ms": 0,
+            "bytes": 0,
+            "size": 261782
+          },
+          {
+            "name": "https://gravatar.com/avatar/7c4ff521986b4ff8d29440beec01972d",
+            "kind": "img",
+            "start": 360,
+            "ms": 0,
+            "bytes": 0,
+            "size": 0
+          },
+          {
+            "name": "/js/charrafimed/global-search-modal/components/global-search-modal-observer.js?v=5.0.2.0",
+            "kind": "script",
+            "start": 587,
+            "ms": 2,
+            "bytes": 7351,
+            "size": 7051
+          },
+          {
+            "name": "/js/filament/tables/components/columns/select.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 587,
+            "ms": 3,
+            "bytes": 92132,
+            "size": 91832
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 622,
+            "ms": 130,
+            "bytes": 1339,
+            "size": 1039
+          },
+          {
+            "name": "/js/charrafimed/global-search-modal/components/global-search-modal-search.js?v=5.0.2.0",
+            "kind": "script",
+            "start": 629,
+            "ms": 261,
+            "bytes": 8039,
+            "size": 7739
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 698,
+            "ms": 191,
+            "bytes": 76564,
+            "size": 76264
+          }
+        ],
+        "nodes": 1578,
+        "inlineScript": 8991,
+        "svgSymbols": 0
+      },
+      {
+        "url": "/admin/servers",
+        "origin": 1793730822915.2,
+        "ttfb": 278,
+        "html": 279,
+        "htmlBytes": 392690,
+        "dcl": 529,
+        "load": 551,
+        "fcp": 564,
+        "table": 326,
+        "kinds": {
+          "link": {
+            "count": 6,
+            "bytes": 1440447,
+            "size": 1512660
+          },
+          "script": {
+            "count": 14,
+            "bytes": 461134,
+            "size": 737513
+          },
+          "other": {
+            "count": 2,
+            "bytes": 13490,
+            "size": 12890
+          },
+          "img": {
+            "count": 1,
+            "bytes": 0,
+            "size": 0
+          },
+          "fetch": {
+            "count": 2,
+            "bytes": 77903,
+            "size": 77303
+          }
+        },
+        "calls": [
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 564,
+            "ms": 140,
+            "bytes": 1339,
+            "size": 1039
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 659,
+            "ms": 174,
+            "bytes": 76564,
+            "size": 76264
+          }
+        ],
+        "files": [
+          {
+            "name": "/build/assets/app-B8Kiizla.css",
+            "kind": "link",
+            "start": 284,
+            "ms": 17,
+            "bytes": 648861,
+            "size": 648561
+          },
+          {
+            "name": "/css/charrafimed/global-search-modal/global-search-modal.css?v=5.0.2.0",
+            "kind": "link",
+            "start": 284,
+            "ms": 8,
+            "bytes": 32706,
+            "size": 32406
+          },
+          {
+            "name": "/fonts/filament/filament/inter/index.css?v=5.10.2.0",
+            "kind": "link",
+            "start": 284,
+            "ms": 8,
+            "bytes": 2301,
+            "size": 2001
+          },
+          {
+            "name": "/fonts/filament/filament/inter/inter-latin-wght-normal-DIHYUR35.woff2",
+            "kind": "link",
+            "start": 285,
+            "ms": 9,
+            "bytes": 68632,
+            "size": 68332
+          },
+          {
+            "name": "/css/filament/filament/app.css?v=5.10.2.0",
+            "kind": "link",
+            "start": 285,
+            "ms": 17,
+            "bytes": 687947,
+            "size": 687647
+          },
+          {
+            "name": "/simplify/assets/simplify.css?v=906f4b5daea2",
+            "kind": "link",
+            "start": 285,
+            "ms": 0,
+            "bytes": 0,
+            "size": 73713
+          },
+          {
+            "name": "/simplify/assets/pull.js?v=541ecdb385a5",
+            "kind": "script",
+            "start": 285,
+            "ms": 0,
+            "bytes": 0,
+            "size": 3094
+          },
+          {
+            "name": "/simplify/assets/sheet.js?v=250f0c38aae2",
+            "kind": "script",
+            "start": 285,
+            "ms": 0,
+            "bytes": 0,
+            "size": 1986
+          },
+          {
+            "name": "/simplify/assets/unsaved.js?v=bdac96c88c5f",
+            "kind": "script",
+            "start": 285,
+            "ms": 0,
+            "bytes": 0,
+            "size": 12517
+          },
+          {
+            "name": "/js/filament/actions/actions.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 285,
+            "ms": 9,
+            "bytes": 5506,
+            "size": 5206
+          },
+          {
+            "name": "/js/filament/notifications/notifications.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 285,
+            "ms": 9,
+            "bytes": 9454,
+            "size": 9154
+          },
+          {
+            "name": "/js/filament/schemas/schemas.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 285,
+            "ms": 10,
+            "bytes": 4328,
+            "size": 4028
+          },
+          {
+            "name": "/js/filament/tables/tables.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 285,
+            "ms": 13,
+            "bytes": 29429,
+            "size": 29129
+          },
+          {
+            "name": "/js/filament/support/support.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 285,
+            "ms": 16,
+            "bytes": 195477,
+            "size": 195177
+          },
+          {
+            "name": "/js/filament/filament/echo.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 285,
+            "ms": 14,
+            "bytes": 92239,
+            "size": 91939
+          },
+          {
+            "name": "/js/filament/filament/app.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 285,
+            "ms": 16,
+            "bytes": 17179,
+            "size": 16879
+          },
+          {
+            "name": "/build/assets/app-BjcOx26H.js",
+            "kind": "other",
+            "start": 286,
+            "ms": 15,
+            "bytes": 761,
+            "size": 461
+          },
+          {
+            "name": "/livewire-91805c62/livewire.min.js?id=8ea5922c",
+            "kind": "script",
+            "start": 286,
+            "ms": 0,
+            "bytes": 0,
+            "size": 261782
+          },
+          {
+            "name": "/build/assets/index-Dn7Qm8Tx.js",
+            "kind": "other",
+            "start": 286,
+            "ms": 17,
+            "bytes": 12729,
+            "size": 12429
+          },
+          {
+            "name": "https://gravatar.com/avatar/7c4ff521986b4ff8d29440beec01972d",
+            "kind": "img",
+            "start": 323,
+            "ms": 0,
+            "bytes": 0,
+            "size": 0
+          },
+          {
+            "name": "/js/charrafimed/global-search-modal/components/global-search-modal-observer.js?v=5.0.2.0",
+            "kind": "script",
+            "start": 529,
+            "ms": 3,
+            "bytes": 7351,
+            "size": 7051
+          },
+          {
+            "name": "/js/filament/tables/components/columns/select.js?v=5.10.2.0",
+            "kind": "script",
+            "start": 529,
+            "ms": 3,
+            "bytes": 92132,
+            "size": 91832
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 564,
+            "ms": 140,
+            "bytes": 1339,
+            "size": 1039
+          },
+          {
+            "name": "/js/charrafimed/global-search-modal/components/global-search-modal-search.js?v=5.0.2.0",
+            "kind": "script",
+            "start": 573,
+            "ms": 260,
+            "bytes": 8039,
+            "size": 7739
+          },
+          {
+            "name": "/livewire-91805c62/update",
+            "kind": "fetch",
+            "start": 659,
+            "ms": 174,
+            "bytes": 76564,
+            "size": 76264
+          }
+        ],
+        "nodes": 1578,
+        "inlineScript": 8991,
+        "svgSymbols": 0
+      }
+    ]
+  },
+  "medians": {
+    "shield": {
+      "clickToReady": 734,
+      "ttfb": 246,
+      "html": 248,
+      "htmlBytes": 230788,
+      "fcp": 332,
+      "dcl": 507,
+      "ready": 506,
+      "menu": null,
+      "table": null,
+      "load": 2941,
+      "nodes": 2127,
+      "inlineScript": 32295,
+      "svgSymbols": 95
+    },
+    "legacy": {
+      "clickToReady": null,
+      "ttfb": 279,
+      "html": 281,
+      "htmlBytes": 392690,
+      "fcp": 577,
+      "dcl": 540,
+      "ready": null,
+      "menu": null,
+      "table": 326,
+      "load": 564,
+      "nodes": 1578,
+      "inlineScript": 8991,
+      "svgSymbols": 0
+    },
+    "menuClick": 45000
+  },
+  "profile": {
+    "shield": {
+      "functions": [
+        {
+          "ms": 16843,
+          "at": "(idle) ((idle)):0"
+        },
+        {
+          "ms": 387,
+          "at": "getBoundingClientRect (getBoundingClientRect):0"
+        },
+        {
+          "ms": 246,
+          "at": "(program) ((program)):0"
+        },
+        {
+          "ms": 134,
+          "at": "e.set /livewire-91805c62/livewire.min.js:1"
+        },
+        {
+          "ms": 77,
+          "at": "fit /simplify:164"
+        },
+        {
+          "ms": 39,
+          "at": "getPropertyValue (getPropertyValue):0"
+        },
+        {
+          "ms": 31,
+          "at": "get ready (get ready):0"
+        },
+        {
+          "ms": 27,
+          "at": "(anonymous) /livewire-91805c62/livewire.min.js:1"
+        },
+        {
+          "ms": 27,
+          "at": "(garbage collector) ((garbage collector)):0"
+        },
+        {
+          "ms": 21,
+          "at": "isElementVisible /js/filament/support/support.js:25"
+        },
+        {
+          "ms": 19,
+          "at": "query (query):3447"
+        },
+        {
+          "ms": 16,
+          "at": "focus (focus):0"
+        },
+        {
+          "ms": 16,
+          "at": "applyScale /simplify/assets/dashboard.js:653"
+        },
+        {
+          "ms": 15,
+          "at": "(anonymous) /livewire-91805c62/livewire.min.js:113"
+        },
+        {
+          "ms": 13,
+          "at": "(anonymous) /livewire-91805c62/livewire.min.js:5"
+        },
+        {
+          "ms": 12,
+          "at": "parseFromString (parseFromString):0"
+        },
+        {
+          "ms": 8,
+          "at": "querySelectorAll (querySelectorAll):0"
+        },
+        {
+          "ms": 4,
+          "at": "(anonymous) ():3445"
+        },
+        {
+          "ms": 4,
+          "at": "kt /livewire-91805c62/livewire.min.js:5"
+        },
+        {
+          "ms": 3,
+          "at": "querySelector (querySelector):0"
+        },
+        {
+          "ms": 3,
+          "at": "(anonymous) /livewire-91805c62/livewire.min.js:114"
+        },
+        {
+          "ms": 3,
+          "at": "(anonymous) ():0"
+        },
+        {
+          "ms": 3,
+          "at": "(anonymous) ():1"
+        },
+        {
+          "ms": 2,
+          "at": "ei /livewire-91805c62/livewire.min.js:5"
+        },
+        {
+          "ms": 2,
+          "at": "remove (remove):0"
+        },
+        {
+          "ms": 2,
+          "at": "addEventListener (addEventListener):0"
+        },
+        {
+          "ms": 2,
+          "at": "t /livewire-91805c62/livewire.min.js:1"
+        },
+        {
+          "ms": 2,
+          "at": "bs /livewire-91805c62/livewire.min.js:13"
+        },
+        {
+          "ms": 2,
+          "at": "$p /livewire-91805c62/livewire.min.js:5"
+        },
+        {
+          "ms": 2,
+          "at": "fetch (fetch):0"
+        },
+        {
+          "ms": 1,
+          "at": "get /livewire-91805c62/livewire.min.js:5"
+        },
+        {
+          "ms": 1,
+          "at": "Sa /livewire-91805c62/livewire.min.js:5"
+        },
+        {
+          "ms": 1,
+          "at": "replaceWith (replaceWith):0"
+        },
+        {
+          "ms": 1,
+          "at": "appendChild (appendChild):0"
+        },
+        {
+          "ms": 1,
+          "at": "has /livewire-91805c62/livewire.min.js:1"
+        },
+        {
+          "ms": 1,
+          "at": "Zn /livewire-91805c62/livewire.min.js:1"
+        },
+        {
+          "ms": 1,
+          "at": "n /livewire-91805c62/livewire.min.js:1"
+        },
+        {
+          "ms": 1,
+          "at": "setProperty (setProperty):0"
+        },
+        {
+          "ms": 1,
+          "at": "importNode (importNode):0"
+        },
+        {
+          "ms": 1,
+          "at": "getClientRects (getClientRects):0"
+        }
+      ],
+      "files": [
+        {
+          "ms": 16843,
+          "at": "((idle))"
+        },
+        {
+          "ms": 387,
+          "at": "(getBoundingClientRect)"
+        },
+        {
+          "ms": 246,
+          "at": "((program))"
+        },
+        {
+          "ms": 227,
+          "at": "/livewire-91805c62/livewire.min.js"
+        },
+        {
+          "ms": 77,
+          "at": "/simplify"
+        },
+        {
+          "ms": 39,
+          "at": "(getPropertyValue)"
+        },
+        {
+          "ms": 31,
+          "at": "(get ready)"
+        },
+        {
+          "ms": 27,
+          "at": "((garbage collector))"
+        },
+        {
+          "ms": 24,
+          "at": "/js/filament/support/support.js"
+        },
+        {
+          "ms": 20,
+          "at": "(query)"
+        },
+        {
+          "ms": 17,
+          "at": "/simplify/assets/dashboard.js"
+        },
+        {
+          "ms": 16,
+          "at": "(focus)"
+        },
+        {
+          "ms": 12,
+          "at": "(parseFromString)"
+        },
+        {
+          "ms": 9,
+          "at": "()"
+        },
+        {
+          "ms": 8,
+          "at": "(querySelectorAll)"
+        },
+        {
+          "ms": 3,
+          "at": "(querySelector)"
+        },
+        {
+          "ms": 2,
+          "at": "(remove)"
+        },
+        {
+          "ms": 2,
+          "at": "(addEventListener)"
+        },
+        {
+          "ms": 2,
+          "at": "(fetch)"
+        },
+        {
+          "ms": 1,
+          "at": "(replaceWith)"
+        }
+      ]
+    },
+    "menu": {
+      "functions": [
+        {
+          "ms": 47351,
+          "at": "(idle) ((idle)):0"
+        },
+        {
+          "ms": 85,
+          "at": "(program) ((program)):0"
+        },
+        {
+          "ms": 47,
+          "at": "(garbage collector) ((garbage collector)):0"
+        },
+        {
+          "ms": 22,
+          "at": "query (query):3447"
+        },
+        {
+          "ms": 9,
+          "at": "querySelectorAll (querySelectorAll):0"
+        },
+        {
+          "ms": 5,
+          "at": "(anonymous) ():0"
+        },
+        {
+          "ms": 2,
+          "at": "(anonymous) ():1"
+        },
+        {
+          "ms": 2,
+          "at": "getBoundingClientRect (getBoundingClientRect):0"
+        },
+        {
+          "ms": 2,
+          "at": "querySelector (querySelector):0"
+        },
+        {
+          "ms": 2,
+          "at": "evaluate (evaluate):228"
+        },
+        {
+          "ms": 1,
+          "at": "fetch (fetch):0"
+        },
+        {
+          "ms": 1,
+          "at": "get /livewire-91805c62/livewire.min.js:5"
+        },
+        {
+          "ms": 1,
+          "at": "setTimeout (setTimeout):0"
+        },
+        {
+          "ms": 1,
+          "at": "innerSerialize (innerSerialize):131"
+        },
+        {
+          "ms": 1,
+          "at": "isElementVisible (isElementVisible):112"
+        },
+        {
+          "ms": 1,
+          "at": "builtinRequestAnimationFrame (builtinRequestAnimationFrame):5068"
+        },
+        {
+          "ms": 1,
+          "at": "(anonymous) ():3445"
+        },
+        {
+          "ms": 1,
+          "at": "getComputedStyle (getComputedStyle):0"
+        },
+        {
+          "ms": 1,
+          "at": "query (query):3262"
+        },
+        {
+          "ms": 1,
+          "at": "(anonymous) /livewire-91805c62/livewire.min.js:5"
+        },
+        {
+          "ms": 0,
+          "at": "querySelectorAll (querySelectorAll):5120"
+        },
+        {
+          "ms": 0,
+          "at": "check (check):5403"
+        },
+        {
+          "ms": 0,
+          "at": "parseEvaluationResultValue2 (parseEvaluationResultValue2):63"
+        },
+        {
+          "ms": 0,
+          "at": "checkElementStates (checkElementStates):5380"
+        },
+        {
+          "ms": 0,
+          "at": "Fe /livewire-91805c62/livewire.min.js:5"
+        },
+        {
+          "ms": 0,
+          "at": "get /livewire-91805c62/livewire.min.js:1"
+        },
+        {
+          "ms": 0,
+          "at": "mergeNewSnapshot /livewire-91805c62/livewire.min.js:11"
+        },
+        {
+          "ms": 0,
+          "at": "encode (encode):0"
+        },
+        {
+          "ms": 0,
+          "at": "text (text):0"
+        },
+        {
+          "ms": 0,
+          "at": "Qr /livewire-91805c62/livewire.min.js:5"
+        },
+        {
+          "ms": 0,
+          "at": "raf (raf):5429"
+        },
+        {
+          "ms": 0,
+          "at": "get children /livewire-91805c62/livewire.min.js:11"
+        },
+        {
+          "ms": 0,
+          "at": "serialize (serialize):120"
+        },
+        {
+          "ms": 0,
+          "at": "checkVisibility (checkVisibility):0"
+        },
+        {
+          "ms": 0,
+          "at": "getActiveMessages /livewire-91805c62/livewire.min.js:5"
+        }
+      ],
+      "files": [
+        {
+          "ms": 47351,
+          "at": "((idle))"
+        },
+        {
+          "ms": 85,
+          "at": "((program))"
+        },
+        {
+          "ms": 47,
+          "at": "((garbage collector))"
+        },
+        {
+          "ms": 23,
+          "at": "(query)"
+        },
+        {
+          "ms": 9,
+          "at": "(querySelectorAll)"
+        },
+        {
+          "ms": 8,
+          "at": "()"
+        },
+        {
+          "ms": 3,
+          "at": "/livewire-91805c62/livewire.min.js"
+        },
+        {
+          "ms": 2,
+          "at": "(getBoundingClientRect)"
+        },
+        {
+          "ms": 2,
+          "at": "(querySelector)"
+        },
+        {
+          "ms": 2,
+          "at": "(evaluate)"
+        },
+        {
+          "ms": 1,
+          "at": "(fetch)"
+        },
+        {
+          "ms": 1,
+          "at": "(setTimeout)"
+        },
+        {
+          "ms": 1,
+          "at": "(innerSerialize)"
+        },
+        {
+          "ms": 1,
+          "at": "(isElementVisible)"
+        },
+        {
+          "ms": 1,
+          "at": "(builtinRequestAnimationFrame)"
+        },
+        {
+          "ms": 1,
+          "at": "(getComputedStyle)"
+        },
+        {
+          "ms": 0,
+          "at": "(check)"
+        },
+        {
+          "ms": 0,
+          "at": "(parseEvaluationResultValue2)"
+        },
+        {
+          "ms": 0,
+          "at": "(checkElementStates)"
+        },
+        {
+          "ms": 0,
+          "at": "(encode)"
+        }
+      ]
+    }
+  },
+  "reloads": 0,
+  "files": {
+    "shield": [
+      {
+        "name": "/build/assets/app-B8Kiizla.css",
+        "kind": "link",
+        "start": 255,
+        "ms": 16,
+        "bytes": 648861,
+        "size": 648561
+      },
+      {
+        "name": "/css/charrafimed/global-search-modal/global-search-modal.css?v=5.0.2.0",
+        "kind": "link",
+        "start": 256,
+        "ms": 9,
+        "bytes": 32706,
+        "size": 32406
+      },
+      {
+        "name": "/fonts/filament/filament/inter/index.css?v=5.10.2.0",
+        "kind": "link",
+        "start": 256,
+        "ms": 8,
+        "bytes": 2301,
+        "size": 2001
+      },
+      {
+        "name": "/css/filament/filament/app.css?v=5.10.2.0",
+        "kind": "link",
+        "start": 256,
+        "ms": 17,
+        "bytes": 687947,
+        "size": 687647
+      },
+      {
+        "name": "/fonts/filament/filament/inter/inter-latin-wght-normal-DIHYUR35.woff2",
+        "kind": "link",
+        "start": 256,
+        "ms": 9,
+        "bytes": 68632,
+        "size": 68332
+      },
+      {
+        "name": "/simplify/assets/simplify.css?v=906f4b5daea2",
+        "kind": "link",
+        "start": 256,
+        "ms": 0,
+        "bytes": 0,
+        "size": 73713
+      },
+      {
+        "name": "/simplify/assets/pull.js?v=541ecdb385a5",
+        "kind": "script",
+        "start": 256,
+        "ms": 0,
+        "bytes": 0,
+        "size": 3094
+      },
+      {
+        "name": "/simplify/assets/sheet.js?v=250f0c38aae2",
+        "kind": "script",
+        "start": 256,
+        "ms": 0,
+        "bytes": 0,
+        "size": 1986
+      },
+      {
+        "name": "/simplify/assets/unsaved.js?v=bdac96c88c5f",
+        "kind": "script",
+        "start": 256,
+        "ms": 0,
+        "bytes": 0,
+        "size": 12517
+      },
+      {
+        "name": "/simplify/assets/tokens.css?v=8961a90eeef9",
+        "kind": "link",
+        "start": 256,
+        "ms": 0,
+        "bytes": 0,
+        "size": 4345
+      },
+      {
+        "name": "/simplify/assets/components.css?v=6aa53323661d",
+        "kind": "link",
+        "start": 256,
+        "ms": 0,
+        "bytes": 0,
+        "size": 28192
+      },
+      {
+        "name": "/simplify/assets/dashboard.css?v=0df5ca4ad05f",
+        "kind": "link",
+        "start": 256,
+        "ms": 0,
+        "bytes": 0,
+        "size": 143895
+      },
+      {
+        "name": "/simplify/assets/core.js?v=77e9bf8ba519",
+        "kind": "script",
+        "start": 256,
+        "ms": 0,
+        "bytes": 0,
+        "size": 19307
+      },
+      {
+        "name": "/simplify/assets/motd.js?v=b8551e0606fd",
+        "kind": "script",
+        "start": 256,
+        "ms": 0,
+        "bytes": 0,
+        "size": 14287
+      },
+      {
+        "name": "/simplify/assets/dashboard.js?v=62e3e486c7e9",
+        "kind": "script",
+        "start": 256,
+        "ms": 0,
+        "bytes": 0,
+        "size": 80608
+      },
+      {
+        "name": "/simplify/assets/server.js?v=259d354d0e73",
+        "kind": "script",
+        "start": 256,
+        "ms": 0,
+        "bytes": 0,
+        "size": 35128
+      },
+      {
+        "name": "/js/filament/actions/actions.js?v=5.10.2.0",
+        "kind": "script",
+        "start": 256,
+        "ms": 9,
+        "bytes": 5506,
+        "size": 5206
+      },
+      {
+        "name": "/js/filament/notifications/notifications.js?v=5.10.2.0",
+        "kind": "script",
+        "start": 257,
+        "ms": 13,
+        "bytes": 9454,
+        "size": 9154
+      },
+      {
+        "name": "/js/filament/schemas/schemas.js?v=5.10.2.0",
+        "kind": "script",
+        "start": 257,
+        "ms": 14,
+        "bytes": 4328,
+        "size": 4028
+      },
+      {
+        "name": "/js/filament/tables/tables.js?v=5.10.2.0",
+        "kind": "script",
+        "start": 257,
+        "ms": 14,
+        "bytes": 29429,
+        "size": 29129
+      },
+      {
+        "name": "/js/filament/support/support.js?v=5.10.2.0",
+        "kind": "script",
+        "start": 257,
+        "ms": 15,
+        "bytes": 195477,
+        "size": 195177
+      },
+      {
+        "name": "/js/filament/filament/echo.js?v=5.10.2.0",
+        "kind": "script",
+        "start": 257,
+        "ms": 16,
+        "bytes": 92239,
+        "size": 91939
+      },
+      {
+        "name": "/js/filament/filament/app.js?v=5.10.2.0",
+        "kind": "script",
+        "start": 257,
+        "ms": 15,
+        "bytes": 17179,
+        "size": 16879
+      },
+      {
+        "name": "/build/assets/app-BjcOx26H.js",
+        "kind": "other",
+        "start": 257,
+        "ms": 16,
+        "bytes": 761,
+        "size": 461
+      },
+      {
+        "name": "/build/assets/index-Dn7Qm8Tx.js",
+        "kind": "other",
+        "start": 257,
+        "ms": 17,
+        "bytes": 12729,
+        "size": 12429
+      },
+      {
+        "name": "/livewire-91805c62/livewire.min.js?id=8ea5922c",
+        "kind": "script",
+        "start": 257,
+        "ms": 0,
+        "bytes": 0,
+        "size": 261782
+      },
+      {
+        "name": "https://gravatar.com/avatar/7c4ff521986b4ff8d29440beec01972d",
+        "kind": "img",
+        "start": 298,
+        "ms": 0,
+        "bytes": 0,
+        "size": 0
+      },
+      {
+        "name": "/simplify/assets/seasons.js?v=5b49facd5ee9",
+        "kind": "script",
+        "start": 368,
+        "ms": 0,
+        "bytes": 0,
+        "size": 11078
+      },
+      {
+        "name": "/simplify/assets/bg-village.jpg?v=66bada4a679e",
+        "kind": "img",
+        "start": 2236,
+        "ms": 4,
+        "bytes": 0,
+        "size": 303124
+      },
+      {
+        "name": "/simplify/assets/game-minecraft.svg?v=a9b1d6d7de67",
+        "kind": "img",
+        "start": 2236,
+        "ms": 3,
+        "bytes": 0,
+        "size": 895
+      },
+      {
+        "name": "/simplify/assets/bg-valley.jpg?v=345f8384a518",
+        "kind": "img",
+        "start": 2236,
+        "ms": 4,
+        "bytes": 0,
+        "size": 399359
+      },
+      {
+        "name": "/storage/icons/server/150efb1c-b4ea-45ce-9299-3b9a84dbb654.png",
+        "kind": "img",
+        "start": 2236,
+        "ms": 5,
+        "bytes": 685,
+        "size": 385
+      },
+      {
+        "name": "/simplify/assets/bg-gaming.svg?v=ec5ba4bba272",
+        "kind": "img",
+        "start": 2236,
+        "ms": 3,
+        "bytes": 0,
+        "size": 758
+      },
+      {
+        "name": "/simplify/assets/seasons.css?v=d9bfcd9d7b17",
+        "kind": "link",
+        "start": 2245,
+        "ms": 0,
+        "bytes": 0,
+        "size": 5562
+      },
+      {
+        "name": "/livewire-91805c62/update",
+        "kind": "fetch",
+        "start": 2597,
+        "ms": 140,
+        "bytes": 1331,
+        "size": 1031
+      },
+      {
+        "name": "/admin/health",
+        "kind": "fetch",
+        "start": 4467,
+        "ms": 251,
+        "bytes": 324905,
+        "size": 324605
+      },
+      {
+        "name": "/build/assets/app-B8Kiizla.css",
+        "kind": "link",
+        "start": 4917,
+        "ms": 4,
+        "bytes": 648861,
+        "size": 648561
+      },
+      {
+        "name": "/fonts/filament/filament/inter/inter-latin-wght-normal-DIHYUR35.woff2",
+        "kind": "link",
+        "start": 4918,
+        "ms": 4,
+        "bytes": 68632,
+        "size": 68332
+      },
+      {
+        "name": "/js/charrafimed/global-search-modal/components/global-search-modal-observer.js?v=5.0.2.0",
+        "kind": "script",
+        "start": 5176,
+        "ms": 3,
+        "bytes": 7351,
+        "size": 7051
+      },
+      {
+        "name": "/livewire-91805c62/update",
+        "kind": "fetch",
+        "start": 5350,
+        "ms": 131,
+        "bytes": 1338,
+        "size": 1038
+      },
+      {
+        "name": "/js/charrafimed/global-search-modal/components/global-search-modal-search.js?v=5.0.2.0",
+        "kind": "script",
+        "start": 5484,
+        "ms": 2,
+        "bytes": 8039,
+        "size": 7739
+      },
+      {
+        "name": "/livewire-91805c62/update",
+        "kind": "fetch",
+        "start": 19997,
+        "ms": 135,
+        "bytes": 1646,
+        "size": 1346
+      }
+    ],
+    "legacy": [
+      {
+        "name": "/build/assets/app-B8Kiizla.css",
+        "kind": "link",
+        "start": 284,
+        "ms": 17,
+        "bytes": 648861,
+        "size": 648561
+      },
+      {
+        "name": "/css/charrafimed/global-search-modal/global-search-modal.css?v=5.0.2.0",
+        "kind": "link",
+        "start": 284,
+        "ms": 8,
+        "bytes": 32706,
+        "size": 32406
+      },
+      {
+        "name": "/fonts/filament/filament/inter/index.css?v=5.10.2.0",
+        "kind": "link",
+        "start": 284,
+        "ms": 8,
+        "bytes": 2301,
+        "size": 2001
+      },
+      {
+        "name": "/fonts/filament/filament/inter/inter-latin-wght-normal-DIHYUR35.woff2",
+        "kind": "link",
+        "start": 285,
+        "ms": 9,
+        "bytes": 68632,
+        "size": 68332
+      },
+      {
+        "name": "/css/filament/filament/app.css?v=5.10.2.0",
+        "kind": "link",
+        "start": 285,
+        "ms": 17,
+        "bytes": 687947,
+        "size": 687647
+      },
+      {
+        "name": "/simplify/assets/simplify.css?v=906f4b5daea2",
+        "kind": "link",
+        "start": 285,
+        "ms": 0,
+        "bytes": 0,
+        "size": 73713
+      },
+      {
+        "name": "/simplify/assets/pull.js?v=541ecdb385a5",
+        "kind": "script",
+        "start": 285,
+        "ms": 0,
+        "bytes": 0,
+        "size": 3094
+      },
+      {
+        "name": "/simplify/assets/sheet.js?v=250f0c38aae2",
+        "kind": "script",
+        "start": 285,
+        "ms": 0,
+        "bytes": 0,
+        "size": 1986
+      },
+      {
+        "name": "/simplify/assets/unsaved.js?v=bdac96c88c5f",
+        "kind": "script",
+        "start": 285,
+        "ms": 0,
+        "bytes": 0,
+        "size": 12517
+      },
+      {
+        "name": "/js/filament/actions/actions.js?v=5.10.2.0",
+        "kind": "script",
+        "start": 285,
+        "ms": 9,
+        "bytes": 5506,
+        "size": 5206
+      },
+      {
+        "name": "/js/filament/notifications/notifications.js?v=5.10.2.0",
+        "kind": "script",
+        "start": 285,
+        "ms": 9,
+        "bytes": 9454,
+        "size": 9154
+      },
+      {
+        "name": "/js/filament/schemas/schemas.js?v=5.10.2.0",
+        "kind": "script",
+        "start": 285,
+        "ms": 10,
+        "bytes": 4328,
+        "size": 4028
+      },
+      {
+        "name": "/js/filament/tables/tables.js?v=5.10.2.0",
+        "kind": "script",
+        "start": 285,
+        "ms": 13,
+        "bytes": 29429,
+        "size": 29129
+      },
+      {
+        "name": "/js/filament/support/support.js?v=5.10.2.0",
+        "kind": "script",
+        "start": 285,
+        "ms": 16,
+        "bytes": 195477,
+        "size": 195177
+      },
+      {
+        "name": "/js/filament/filament/echo.js?v=5.10.2.0",
+        "kind": "script",
+        "start": 285,
+        "ms": 14,
+        "bytes": 92239,
+        "size": 91939
+      },
+      {
+        "name": "/js/filament/filament/app.js?v=5.10.2.0",
+        "kind": "script",
+        "start": 285,
+        "ms": 16,
+        "bytes": 17179,
+        "size": 16879
+      },
+      {
+        "name": "/build/assets/app-BjcOx26H.js",
+        "kind": "other",
+        "start": 286,
+        "ms": 15,
+        "bytes": 761,
+        "size": 461
+      },
+      {
+        "name": "/livewire-91805c62/livewire.min.js?id=8ea5922c",
+        "kind": "script",
+        "start": 286,
+        "ms": 0,
+        "bytes": 0,
+        "size": 261782
+      },
+      {
+        "name": "/build/assets/index-Dn7Qm8Tx.js",
+        "kind": "other",
+        "start": 286,
+        "ms": 17,
+        "bytes": 12729,
+        "size": 12429
+      },
+      {
+        "name": "https://gravatar.com/avatar/7c4ff521986b4ff8d29440beec01972d",
+        "kind": "img",
+        "start": 323,
+        "ms": 0,
+        "bytes": 0,
+        "size": 0
+      },
+      {
+        "name": "/js/charrafimed/global-search-modal/components/global-search-modal-observer.js?v=5.0.2.0",
+        "kind": "script",
+        "start": 529,
+        "ms": 3,
+        "bytes": 7351,
+        "size": 7051
+      },
+      {
+        "name": "/js/filament/tables/components/columns/select.js?v=5.10.2.0",
+        "kind": "script",
+        "start": 529,
+        "ms": 3,
+        "bytes": 92132,
+        "size": 91832
+      },
+      {
+        "name": "/livewire-91805c62/update",
+        "kind": "fetch",
+        "start": 564,
+        "ms": 140,
+        "bytes": 1339,
+        "size": 1039
+      },
+      {
+        "name": "/js/charrafimed/global-search-modal/components/global-search-modal-search.js?v=5.0.2.0",
+        "kind": "script",
+        "start": 573,
+        "ms": 260,
+        "bytes": 8039,
+        "size": 7739
+      },
+      {
+        "name": "/livewire-91805c62/update",
+        "kind": "fetch",
+        "start": 659,
+        "ms": 174,
+        "bytes": 76564,
+        "size": 76264
+      }
+    ]
+  },
+  "calls": {
+    "shield": [
+      {
+        "name": "/livewire-91805c62/update",
+        "kind": "fetch",
+        "start": 2597,
+        "ms": 140,
+        "bytes": 1331,
+        "size": 1031
+      },
+      {
+        "name": "/admin/health",
+        "kind": "fetch",
+        "start": 4467,
+        "ms": 251,
+        "bytes": 324905,
+        "size": 324605
+      },
+      {
+        "name": "/livewire-91805c62/update",
+        "kind": "fetch",
+        "start": 5350,
+        "ms": 131,
+        "bytes": 1338,
+        "size": 1038
+      },
+      {
+        "name": "/livewire-91805c62/update",
+        "kind": "fetch",
+        "start": 19997,
+        "ms": 135,
+        "bytes": 1646,
+        "size": 1346
+      }
+    ],
+    "legacy": [
+      {
+        "name": "/livewire-91805c62/update",
+        "kind": "fetch",
+        "start": 564,
+        "ms": 140,
+        "bytes": 1339,
+        "size": 1039
+      },
+      {
+        "name": "/livewire-91805c62/update",
+        "kind": "fetch",
+        "start": 659,
+        "ms": 174,
+        "bytes": 76564,
+        "size": 76264
+      }
+    ]
+  },
+  "kinds": {
+    "shield": {
+      "link": {
+        "count": 12,
+        "bytes": 2157940,
+        "size": 2411547
+      },
+      "script": {
+        "count": 18,
+        "bytes": 369002,
+        "size": 806089
+      },
+      "other": {
+        "count": 2,
+        "bytes": 13490,
+        "size": 12890
+      },
+      "img": {
+        "count": 6,
+        "bytes": 685,
+        "size": 704521
+      },
+      "fetch": {
+        "count": 4,
+        "bytes": 329220,
+        "size": 328020
+      }
+    },
+    "legacy": {
+      "link": {
+        "count": 6,
+        "bytes": 1440447,
+        "size": 1512660
+      },
+      "script": {
+        "count": 14,
+        "bytes": 461134,
+        "size": 737513
+      },
+      "other": {
+        "count": 2,
+        "bytes": 13490,
+        "size": 12890
+      },
+      "img": {
+        "count": 1,
+        "bytes": 0,
+        "size": 0
+      },
+      "fetch": {
+        "count": 2,
+        "bytes": 77903,
+        "size": 77303
+      }
+    }
+  }
+}
