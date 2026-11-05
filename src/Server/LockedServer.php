@@ -23,19 +23,25 @@ final class LockedServer
 
             return is_array($lock) ? [$lock] : [];
         });
-        $lock = null;
-        foreach ($found as $candidate) {
-            $notice = $candidate['notice'] ?? null;
-            $actions = $candidate['actions'] ?? null;
-            // Only a real Livewire component of the add-on; a broken answer still locks, without buttons.
-            $lock = [
-                'notice' => is_string($notice) ? $notice : '',
-                'actions' => is_string($actions) && is_subclass_of($actions, Component::class) ? $actions : null,
-            ];
-            break;
-        }
 
-        return $lock;
+        return $found === [] ? null : self::clean($found[0]);
+    }
+
+    /**
+     * What an add-on gave, as Simplify uses it: only a real Livewire component of the add-on; a broken answer still
+     * locks, without buttons.
+     *
+     * @return array{notice: string, actions: class-string<Component>|null}
+     */
+    private static function clean(mixed $lock): array
+    {
+        $notice = is_array($lock) ? ($lock['notice'] ?? null) : null;
+        $actions = is_array($lock) ? ($lock['actions'] ?? null) : null;
+
+        return [
+            'notice' => is_string($notice) ? $notice : '',
+            'actions' => is_string($actions) && is_subclass_of($actions, Component::class) ? $actions : null,
+        ];
     }
 
     public static function locked(Server $server): bool
