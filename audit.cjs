@@ -65,6 +65,15 @@ async function record(id, title, extra = {}) {
     // Every screen in a dark folder is dark and every screen in a light folder light (a partial run once shot its dark folder light).
     const dark = await page.evaluate(() => document.documentElement.classList.contains('dark')).catch(() => null);
     if (theme_ && dark !== null && dark !== (theme_ === 'dark')) problems.push(`${stand} ${id} theme: WRONG the page is ${dark ? 'dark' : 'light'} in a ${theme_} round`);
+    // On a phone nothing slides sideways: neither the page nor a list (Jeroen 5-11, Eggs with Egg Updates' buttons).
+    if (/^phone/.test(stand)) {
+      const side = await page.evaluate(() => {
+        const wide = (el) => el.scrollWidth > el.clientWidth + 1 && ['auto', 'scroll'].includes(getComputedStyle(el).overflowX);
+        const lists = [...document.querySelectorAll('.fi-ta-ctn, .fi-ta-content, .fi-main, .fi-main-ctn')].filter((el) => el.getClientRects().length && wide(el) && !el.closest('.fi-modal, .xterm, .monaco-editor'));
+        return { page: document.documentElement.scrollWidth > innerWidth + 1, lists: lists.map((el) => el.className.split(' ')[0] + ' ' + el.scrollWidth + '>' + el.clientWidth) };
+      }).catch(() => null);
+      if (side && (side.page || side.lists.length)) problems.push(`${stand} ${id} sideways: WRONG the page slides sideways on a phone ${JSON.stringify(side)}`);
+    }
     if (foot && (foot.overflow > 2 || foot.footerTop < foot.page - 1 || foot.footerBottom < foot.scroll - 2)) problems.push(`${stand} ${id} footer-end: WRONG the copyright line is not at the end of the page ${JSON.stringify(foot)}`);
     entry.frames = [];
     for (const f of page.frames()) {
