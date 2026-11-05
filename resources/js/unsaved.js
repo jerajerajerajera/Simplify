@@ -44,9 +44,27 @@
     }
     return found;
   };
+  /* A browser that remembers the admin's own password fills it into the first password field it sees, here an API
+     key (CurseForge, Steam), and shows it to scripts on the first click anywhere: "Changes made" before anyone typed,
+     and Save would store that password as the key. Fields in these forms never take a saved password, and one the
+     browser filled before anyone went into it is emptied again. Picking a saved key from the field's own list still
+     works, because that needs the field to have had focus. */
+  const touched = new WeakSet();
+  const autofilled = (field) => {
+    for (const state of [':autofill', ':-webkit-autofill']) {
+      try { return field.matches(state); } catch { /* an older browser knows only the other name */ }
+    }
+    return false;
+  };
+  const noSavedPasswords = (el) => el.querySelectorAll('input[type="password"]').forEach((field) => {
+    if (field.getAttribute('autocomplete') !== 'new-password') field.setAttribute('autocomplete', 'new-password');
+    if (touched.has(field) || field.value === '' || !autofilled(field)) return;
+    field.value = '';
+    field.dispatchEvent(new Event('input', { bubbles: true }));
+  });
   const scan = () => {
     for (const el of forms.keys()) if (!el.isConnected) forms.delete(el);
-    document.querySelectorAll(SELECTOR).forEach(entry);
+    document.querySelectorAll(SELECTOR).forEach((el) => { noSavedPasswords(el); entry(el); });
   };
   const dirtyForms = () => [...forms.values()].filter((form) => form.el.isConnected && form.dirty);
   /** Changes nobody is saving yet: only these stop you leaving. */
@@ -213,6 +231,7 @@
 
   /* Watching ------------------------------------------------------------------------------------------ */
   for (const type of ['input', 'change', 'click', 'keyup']) document.addEventListener(type, (event) => event.target.closest?.(SELECTOR) && queue(), true);
+  document.addEventListener('focusin', (event) => event.target.matches?.('input[type="password"]') && touched.add(event.target), true);
   const hook = () => {
     if (!window.Livewire?.hook || hook.done) return;
     hook.done = true;

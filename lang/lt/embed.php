@@ -53,7 +53,7 @@ return [
         'preview' => 'Išsaugoto sąrašo peržiūra',
     ],
     'server' => [
-        'title' => 'Svetainė',
+        'title' => 'Įterpimas į svetainę',
         'help' => 'Rodo šį serverį viešame panelės serverių sąraše su pavadinimu, būsena, prisijungimo adresu ir tuo, ką įrašysite žemiau.',
         'show' => 'Rodyti svetainėje',
         'shown' => 'Serveris dabar yra svetainėje',

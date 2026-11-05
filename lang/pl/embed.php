@@ -53,7 +53,7 @@ return [
         'preview' => 'Podgląd zapisanej listy',
     ],
     'server' => [
-        'title' => 'Strona',
+        'title' => 'Osadzanie na stronie',
         'help' => 'Pokazuje ten serwer na publicznej liście serwerów panelu, z nazwą, stanem, adresem połączenia i tym, co wpiszesz poniżej.',
         'show' => 'Pokazuj na stronie',
         'shown' => 'Ten serwer jest teraz na stronie',

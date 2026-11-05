@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Unsaved changes: a password your browser remembers for the panel is no longer filled into an add-on's API key field (Settings › Add-ons), so the "Changes made" bar no longer appears before you changed anything; the bar is dark in the dark theme.
+- Server menu: Website is called Website embed, as in Simplify settings.
+
 ## 2.0.0-beta.6
 
 - Pelican's lists inside Simplify (servers, users, files, schedules and the rest) are Simplify's list of rows on every screen: the name, the other columns as short texts and chips, the row's buttons on the right. A "Sort by" menu with a direction button takes the place of the column titles.

@@ -53,7 +53,7 @@ return [
         'preview' => 'Vorschau der gespeicherten Liste',
     ],
     'server' => [
-        'title' => 'Website',
+        'title' => 'Website-Einbettung',
         'help' => 'Zeigt diesen Server in der öffentlichen Serverliste des Panels, mit Name, Status und Verbindungsadresse, und dem, was du unten einträgst.',
         'show' => 'Auf der Website zeigen',
         'shown' => 'Dieser Server ist jetzt auf der Website',

@@ -53,7 +53,7 @@ return [
         'preview' => 'Xem trước danh sách đã lưu',
     ],
     'server' => [
-        'title' => 'Trang web',
+        'title' => 'Nhúng vào trang web',
         'help' => 'Hiển thị máy chủ này trong danh sách máy chủ công khai của bảng điều khiển, với tên, trạng thái, địa chỉ tham gia và những gì bạn điền bên dưới.',
         'show' => 'Hiển thị trên trang web',
         'shown' => 'Máy chủ này giờ đã có trên trang web',
