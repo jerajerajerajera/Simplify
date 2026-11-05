@@ -802,6 +802,13 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 .ps-host-group-head:hover, .ps-host-leaf:hover { background: var(--ps-raised); color: var(--ps-ink); }
 .ps-host-group-head[aria-current="page"], .ps-host-leaf[aria-current="page"] { background: color-mix(in srgb, var(--ps-tone) 14%, transparent); color: var(--ps-ink); }
 .ps-host-branch { display: grid; gap: 2px; margin-inline-start: 26px; padding: 2px 0 6px; }
+/* Pelican plugins: a heading, not a fold, with its plugins always under it and Show more past five. */
+.ps-host-group-head.is-heading { cursor: default; color: var(--ps-muted); font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.ps-host-group-head.is-heading:hover { background: none; color: var(--ps-muted); }
+.ps-host-branch.is-list { margin-inline-start: 0; }
+.ps-host-branch.is-list .ps-host-leaf { padding-inline-start: 36px; }
+.ps-host-more { justify-self: start; min-height: 30px; margin-inline-start: 26px; padding: 0 10px; border: 0; border-radius: var(--ps-radius-sm); background: none; color: var(--ps-accent); font: 500 13px/1.2 var(--ps-font); cursor: pointer; }
+.ps-host-more:hover { background: var(--ps-raised); }
 
 /* A status dot, as in a server's title bar. */
 .ps-host-dot { --ps-tone: var(--ps-muted); flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--ps-tone); }
