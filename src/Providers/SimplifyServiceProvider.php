@@ -60,7 +60,7 @@ final class SimplifyServiceProvider extends ServiceProvider
 
         // "Announcement" as an action in Pelican's schedules (Pelican 1.0 beta38 and later have TaskService).
         if (class_exists(TaskService::class)) {
-            $this->callAfterResolving(TaskService::class, fn (TaskService $tasks) => $tasks->register(new AnnouncementTask()));
+            $this->callAfterResolving(TaskService::class, fn (TaskService $tasks) => $tasks->register(new AnnouncementTask));
         }
 
         Route::get('/simplify/assets/{name}', AssetController::class)
