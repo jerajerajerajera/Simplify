@@ -400,8 +400,9 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-health-card-head > svg { flex: none; width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .ps-health-card-name { min-width: 0; overflow: hidden; font: 700 14px/1.25 var(--ps-font); text-overflow: ellipsis; white-space: nowrap; }
 .ps-health-card .ps-health-status { flex: none; margin-inline-start: auto; white-space: nowrap; }
-.ps-health-card-meters { display: grid; gap: 6px; }
-.ps-health-card-metric { display: grid; grid-template-columns: 3em minmax(0, 1fr) auto; align-items: center; gap: 10px; color: var(--ps-muted); font-size: 12px; }
+.ps-health-card-meters { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 6px 10px; color: var(--ps-muted); font-size: 12px; }
+/* One grid for both rows, so the CPU and RAM bars start and end at the same place. */
+.ps-health-card-metric { display: contents; }
 .ps-health-card-metric .ps-meter { height: 4px; margin: 0; }
 .ps-health-card-metric strong { color: var(--ps-ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .ps-overview { position: relative; }
