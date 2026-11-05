@@ -804,6 +804,7 @@ async function boxwatchFlow() {
     const res = await w.catch((e) => ({ error: e.message.slice(0, 120) }));
     // The click may navigate away from the watching document (a full load): watch the new one too.
     const res2 = await watch().catch(() => null);
+    console.log('BOXTL ' + stand + ' ' + i + ' ' + JSON.stringify({ bottom: res && res.bottom, tl: res && res.timeline, after: res2 && res2.bottom, tl2: res2 && res2.timeline }));
     if (res && res.bottom > res.window + 2) console.log('BOXWATCH ' + stand + ' ' + JSON.stringify(res)); if (res2 && res2.bottom > res2.window + 2) console.log('BOXWATCH-AFTER ' + stand + ' ' + JSON.stringify(res2));
     results.push({ i, click: res, after: res2 && { bottom: res2.bottom, worst: res2.bottom > res2.window + 2 ? res2.worst : undefined } });
     if (i === 0) await record('boxwatch-plugins', 'Admin-pagina · Plugins (bewaakt)');
