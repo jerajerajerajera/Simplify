@@ -12,6 +12,8 @@
 <script src="{{ \Simplify\Core\Support\Assets::url('unsaved.js') }}" defer></script>
 <script>window.simplifySortText = @js(__('simplify::js.sort'));</script>
 <script src="{{ \Simplify\Core\Support\Assets::url('sort.js') }}" defer></script>
+<script>window.simplifyRowText = @js(__('simplify::js.row'));</script>
+<script src="{{ \Simplify\Core\Support\Assets::url('row-actions.js') }}" defer></script>
 <script>
     // A page inside host mode's frame drops Pelican's own menus; it keeps that through every link it follows.
     try {

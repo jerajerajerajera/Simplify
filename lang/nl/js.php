@@ -49,6 +49,9 @@ return [
         'ok' => 'OK',
         'close' => 'Sluiten',
     ],
+    'row' => [
+        'more' => 'Meer acties',
+    ],
     'sort' => [
         'by' => 'Sorteren op',
         'ascending' => 'Oplopend',

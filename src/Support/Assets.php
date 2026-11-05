@@ -36,6 +36,7 @@ final class Assets
         'sheet.js' => ['js/sheet.js', 'text/javascript; charset=utf-8'],
         'unsaved.js' => ['js/unsaved.js', 'text/javascript; charset=utf-8'],
         'sort.js' => ['js/sort.js', 'text/javascript; charset=utf-8'],
+        'row-actions.js' => ['js/row-actions.js', 'text/javascript; charset=utf-8'],
         'bg-valley.jpg' => ['img/bg-valley.jpg', 'image/jpeg'],
         'bg-harbor.jpg' => ['img/bg-harbor.jpg', 'image/jpeg'],
         'bg-village.jpg' => ['img/bg-village.jpg', 'image/jpeg'],

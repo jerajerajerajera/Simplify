@@ -4,6 +4,8 @@
 
 - Settings: a user name your browser remembers for the panel is no longer filled into the Support link, so Save on Add-ons no longer fails on that field and jumps to General.
 
+- Phones: a list row with more than two buttons shows its main button (such as Update) and ⋯, which opens a sheet with every button by its name, so a list (Eggs with Egg Updates) no longer slides sideways.
+
 ## 2.0.0-beta.7
 
 - Add-ons: an add-on can lock a server that only it may work on, such as a temporary test server: its page keeps only the console output, the add-on's own buttons and a line that says why, and its other pages go back to the console (add-on API 10, `lockedServer()`).
