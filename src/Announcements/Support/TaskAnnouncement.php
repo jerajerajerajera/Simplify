@@ -14,9 +14,7 @@ final class TaskAnnouncement
 
     public const ONLINE = 'online';
 
-    /** "When the server is online": checked this often, and given up after this long. */
-    public const CHECK_SECONDS = 30;
-
+    /** "When the server is online": given up after this long (the scheduler looks every minute). */
     public const WAIT_SECONDS = 600;
 
     public const SEND = 'send';
@@ -108,12 +106,39 @@ final class TaskAnnouncement
     }
 
     /**
-     * Whether "When the server is online" can wait for the next check. The sync queue runs a delayed job at once, so
-     * waiting there would check the server again and again for 10 minutes inside one request or scheduler run.
+     * One look at the announcements that wait for their server (TaskWaits, every minute): sends those whose server
+     * runs, tells the people about those that waited 10 minutes, and forgets both; the rest wait for the next look.
+     * A server that is gone is forgotten. Returns how many were finished.
+     *
+     * @param  iterable<array<string, mixed>>  $rows  id, server_id, payload, schedule, started_at
+     * @param  callable(int): ?object  $server
+     * @param  callable(object): bool  $running
+     * @param  callable(object, array{message: string, send: string, game_chat: bool, notify: bool}, ?string, bool): mixed  $deliver
+     * @param  callable(int): mixed  $forget
      */
-    public static function canWait(?string $queueDriver): bool
+    public static function runWaits(iterable $rows, int $now, callable $server, callable $running, callable $deliver, callable $forget): int
     {
-        return $queueDriver !== null && $queueDriver !== '' && $queueDriver !== 'sync';
+        $finished = 0;
+        foreach ($rows as $row) {
+            $id = (int) ($row['id'] ?? 0);
+            $found = $server((int) ($row['server_id'] ?? 0));
+            if ($found === null) {
+                $forget($id);
+
+                continue;
+            }
+            $step = self::step((int) ($row['started_at'] ?? 0), $now, $running($found));
+            if ($step === self::WAIT) {
+                continue;
+            }
+            // Forgotten first: a delivery that fails is never sent twice.
+            $forget($id);
+            $schedule = is_string($row['schedule'] ?? null) ? $row['schedule'] : null;
+            $deliver($found, self::parse(is_string($row['payload'] ?? null) ? $row['payload'] : null), $schedule, $step === self::SEND);
+            $finished++;
+        }
+
+        return $finished;
     }
 
     /** Posted in the game chat only when asked, the game has a chat command and the server runs. */
