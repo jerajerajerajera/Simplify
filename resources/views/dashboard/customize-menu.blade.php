@@ -57,6 +57,14 @@
                         </template>
                     </div>
                 </div>
+                <div class="ps-customize-row" x-show="healthPlace()">
+                    <div><strong>{{ $u('host_health') }}</strong><small>{{ $u('where_the_health_summary_shows') }}</small></div>
+                    <div class="ps-segmented ps-health-place" role="group" aria-label="{{ $u('host_health') }}">
+                        <template x-for="place in [{key:'top-bar',label:@js($u('top_bar'))},{key:'bottom',label:@js($u('bottom'))},{key:'card',label:@js($u('cards'))}]" :key="place.key">
+                            <button type="button" :aria-pressed="overviewPreferences.healthPlace===place.key" x-on:click="setOverviewPreference('healthPlace', place.key); healthPopover=false; healthExpanded=false" x-text="place.label"></button>
+                        </template>
+                    </div>
+                </div>
                 <div class="ps-customize-row" x-show="overviewView!=='list' && !overviewCompact">
                     <div><strong>{{ $u('columns') }}</strong><small>{{ $u('most_cards_per_row') }}</small></div>
                     <div class="ps-segmented ps-columns-choice" role="group" aria-label="{{ $u('columns') }}">
