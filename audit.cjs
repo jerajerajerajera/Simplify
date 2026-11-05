@@ -183,7 +183,7 @@ const adminPage = async (overview) => {
     // Servers (no empty band where the tabs were, no extra line).
     const bar = () => page.evaluate(() => {
       const box = (sel) => { const e = [...document.querySelectorAll(sel)].find((x) => x.getClientRects().length); return e ? e.getBoundingClientRect() : null; };
-      const crumb = box('.ps-admin-crumb'), search = box('.fi-ta-header-toolbar .fi-ta-search-field'), head = box('.fi-ta-table thead');
+      const crumb = box('.ps-admin-crumb'), search = box('.fi-ta-header-toolbar .fi-ta-search-field'), head = box('.fi-ta-table thead') || box('.fi-ta-table tbody > tr'); // row lists (G1) hide the head: then the first row
       return crumb && search && head ? { top: Math.round(search.top - crumb.bottom), under: Math.round(head.top - search.bottom) } : null;
     }).catch(() => null);
     await goto('/admin/servers', 2000);
@@ -576,6 +576,8 @@ async function round(theme) {
   const mc = (urls.server[mainServer] || []).find((p) => p.url && /minecraft/i.test(p.title));
   if (mc) {
     await goto(mc.url, 2500);
+    // Where the page landed: an add-on that took the page over (Toolkit's Minecraft tab in Settings) sends it on.
+    const landed = rel(page.url()).split('#')[0];
     const field = page.locator('[data-simplify-unsaved] input[type="number"] >> visible=true').first();
     if (await field.count()) {
       const shown = (sel) => page.evaluate((s) => [...document.querySelectorAll(s)].some((e) => e.getClientRects().length > 0), sel).catch(() => null);
@@ -593,7 +595,7 @@ async function round(theme) {
       await page.locator('.s-unsaved-dialog .s-unsaved-btn').first().click().catch(() => {});
       await sleep(400);
       // The page may add its tab to the address (#settings-minecraft): the same page without it still counts as staying.
-      st.stayed = rel(page.url()).split('#')[0] === rel(mc.url).split('#')[0] && !(await shown('.s-unsaved-dialog'));
+      st.stayed = rel(page.url()).split('#')[0] === landed && !(await shown('.s-unsaved-dialog'));
       st.url = rel(page.url());
       // Typed back to what it was: no change any more, the bar goes and leaving asks nothing.
       await field.fill(before).catch(() => {});
