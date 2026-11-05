@@ -804,7 +804,7 @@ step('a server an add-on locks shows only its console, without address, and Simp
         // Every other page of the server goes back to the console, also typed into the address bar.
         $console = route('filament.server.pages.console', ['tenant' => $server]);
         foreach (Route::getRoutes() as $route) {
-            if (str_starts_with((string) $route->getName(), 'filament.server.') && $route->getName() !== 'filament.server.pages.console' && in_array('GET', $route->methods(), true) && ! str_contains($route->uri(), '{record}') && str_contains($route->uri(), '{tenant}')) {
+            if (str_starts_with((string) $route->getName(), 'filament.server.') && $route->getName() !== 'filament.server.pages.console' && in_array('GET', $route->methods(), true) && $route->parameterNames() === ['tenant']) {
                 $url = route($route->getName(), ['tenant' => $server]);
                 $response = visit($admin, $url);
                 if ($response->isRedirect() && rtrim((string) $response->headers->get('Location'), '/') !== rtrim($console, '/')) {
