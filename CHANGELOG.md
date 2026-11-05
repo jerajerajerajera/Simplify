@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Translations: the words for health (Healthy, High load, Critical load) live in one file per language, so the live bar and the page always use the same word; Hungarian says Rendben.
 - Schedules: a new action Announcement sends a message in the game chat and/or as a notification (bell and app) to the server's owner and the people it is shared with, right away or once the server is online; Simplify's own words follow each person's language.
 
 ## 2.0.0-beta.9

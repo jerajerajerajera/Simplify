@@ -258,8 +258,8 @@ return [
             'partly_unavailable' => 'Részben nem elérhető',
             'critical' => 'Kritikus terhelés',
             'maintenance' => 'Karbantartás',
-            'high' => 'Magas terhelés',
-            'healthy' => 'Egészséges',
+            'high' => 'Nagy terhelés',
+            'healthy' => 'Rendben',
         ],
         'problems' => [
             'timeout' => 'A Wings nem válaszolt időben',
