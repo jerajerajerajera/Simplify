@@ -393,6 +393,18 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
    or open as details under the health button in the top bar. */
 .ps-health-panel { position: relative; z-index: 1; flex: none; width: var(--ps-health-width, calc(100% - 8px)); margin: 0 var(--ps-health-left, auto) 14px var(--ps-health-left, auto); border: 1px solid var(--ps-line); border-radius: var(--ps-radius-lg); background: var(--ps-surface); box-shadow: 0 -4px 12px rgb(0 0 0 / .1); }
 .ps.dark .ps-health-panel { box-shadow: none; }
+/* Host health as a card among the servers (Customize › Host health › Cards): one line with the state, CPU and RAM under it. */
+.ps-server-entry.ps-health-entry { align-self: start; }
+.ps-server-card.ps-health-card { display: grid; gap: 10px; height: auto; padding: 12px 14px; color: var(--ps-ink); text-decoration: none; }
+.ps-health-card-head { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.ps-health-card-head > svg { flex: none; width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.ps-health-card-name { min-width: 0; overflow: hidden; font: 700 14px/1.25 var(--ps-font); text-overflow: ellipsis; white-space: nowrap; }
+.ps-health-card .ps-health-status { flex: none; margin-inline-start: auto; white-space: nowrap; }
+.ps-health-card-meters { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 6px 10px; color: var(--ps-muted); font-size: 12px; }
+/* One grid for both rows, so the CPU and RAM bars start and end at the same place. */
+.ps-health-card-metric { display: contents; }
+.ps-health-card-metric .ps-meter { height: 4px; margin: 0; }
+.ps-health-card-metric strong { color: var(--ps-ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .ps-overview { position: relative; }
 /* Opens like a dropdown: right under the Healthy button, left edges in line, moved left only as far as the screen needs. */
 .ps-health-panel.is-popover { position: fixed; top: var(--ps-pop-top, 72px); left: var(--ps-pop-left, 8px); z-index: var(--ps-z-dropdown); width: var(--ps-pop-width, 560px); margin: 0; box-shadow: 0 16px 40px rgb(0 0 0 / .28); }
@@ -1054,7 +1066,7 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
   .ps .ps-overview-toolbar .ps-chip { min-height: 40px; padding-inline: 14px; white-space: nowrap; }
 
   /* Host health: one summary line above the servers; tapping still opens the node details. */
-  .ps .ps-overview > .ps-health-panel { order: -1; margin: 0 0 22px; box-shadow: none; }
+  .ps .ps-overview > .ps-health-panel { margin: 22px 0 0; box-shadow: none; }
   /* At the bottom: after the servers, at the end of the page. In the top bar: a dropdown over the filter row. */
   .ps .ps-overview > .ps-health-panel.is-popover { margin: 0; box-shadow: 0 16px 40px rgb(0 0 0 / .28); }
   .ps .ps-host-health { display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 8px 14px; }

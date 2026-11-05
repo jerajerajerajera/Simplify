@@ -48,6 +48,26 @@
                 </div>
             </div>
             <div class="ps-server-grid" :class="{'is-list': overviewView==='list', 'is-compact': overviewView==='compact', 'has-motd': overviewPreferences.showMotd, 'no-metrics': !overviewMetrics().length, 'no-quick-actions': quickActionsMode()==='off', 'quick-actions-on': quickActionsMode()==='on'}">
+                {{-- Host health as a card among the servers (Customize): its state, CPU and RAM, and a tap opens Health. --}}
+                <div class="ps-server-entry ps-health-entry" x-show="healthExtra()==='card' && overviewView!=='list'" x-cloak>
+                    <a class="ps-server-card ps-health-card" :href="healthUrl()" wire:navigate :class="boot.host_health?.state || 'unavailable'">
+                        {{-- One line: heart, name and state (hosts reporting as its tooltip); CPU and RAM right under it, one row each (compact, Jeroen 5-11). --}}
+                        <div class="ps-health-card-head">
+                            <svg class="ps-health-heart" :class="boot.host_health?.state || 'unavailable'" aria-hidden="true"><use href="#ps-heart"/></svg>
+                            <strong class="ps-health-card-name">{{ $u('host_health') }}</strong>
+                            <span class="ps-health-status" :class="boot.host_health?.state || 'unavailable'" :title="Simplify.tc('dashboard.hosts_reporting', boot.host_health?.hosts ?? 0, { available: boot.host_health?.available ?? 0 })"><strong x-text="boot.host_health?.label || @js($u('unavailable'))"></strong></span>
+                        </div>
+                        <div class="ps-health-card-meters">
+                            <template x-for="metric in hostMetrics.filter((m) => m.key==='cpu' || m.key==='memory')" :key="metric.key">
+                                <div class="ps-health-card-metric">
+                                    <span x-text="metric.label"></span>
+                                    <span class="ps-meter"><span :style="{width: hostFill(metric.key)+'%'}"></span></span>
+                                    <strong x-text="hostValue(metric.key)"></strong>
+                                </div>
+                            </template>
+                        </div>
+                    </a>
+                </div>
                 <template x-for="s in overviewItems()" :key="s.uuid">
                     <div class="ps-server-entry" :class="{'is-node-heading': !!s.isNodeHeader, 'is-suspended': !!(s.suspended || []).length, 'has-card-motd': overviewPreferences.showMotd && s.game==='minecraft' && !!s.motd, 'has-power': quickActionsMode()!=='off' && Object.values(s.permissions || {}).some(Boolean), 'power-shown': quickActionsMode()==='on', 'confirming-power': powerConfirmation?.uuid===s.uuid}" :style="accentStyle(s.uuid)">
                         <template x-if="s.isNodeHeader">
@@ -143,8 +163,8 @@
         </div>
     </div>
 
-    {{-- Host health: the details under the button in the top bar, its only place (V43). --}}
-    <section id="ps-health-panel" class="ps-health-panel" :style="accentStyle('overview')" x-on:click.outside="if (!$event.target.closest('.ps-health-pill')) { healthExpanded=false; healthOpenNodes=[]; healthPopover=false }" x-on:keydown.escape="if (healthPopover) { healthPopover=false; $root.querySelector('.ps-health-pill')?.focus() }" x-on:resize.window="healthPopover && placeHealthPopover()" x-on:scroll.window.passive="healthPopover && placeHealthPopover()" x-show="healthPlace() && healthPopover" :class="{'expanded': healthExpanded, 'is-popover': true}">
+    {{-- Host health: the details under the button in the top bar (V43), or a bar at the bottom when chosen in Customize. --}}
+    <section id="ps-health-panel" class="ps-health-panel" :style="accentStyle('overview')" x-on:click.outside="if (!$event.target.closest('.ps-health-pill')) { healthExpanded=false; healthOpenNodes=[]; healthPopover=false }" x-on:keydown.escape="if (healthPopover) { healthPopover=false; $root.querySelector('.ps-health-pill')?.focus() }" x-on:resize.window="healthPopover && placeHealthPopover()" x-on:scroll.window.passive="healthPopover && placeHealthPopover()" x-show="healthPlace() && (healthPopover || healthExtra()==='bottom')" :class="{'expanded': healthExpanded, 'is-popover': healthExtra()!=='bottom'}">
         <article class="ps-host-health" role="button" tabindex="0" aria-label="{{ $u('view_health_by_node') }}" :aria-expanded="healthExpanded" aria-controls="ps-health-details"
                  x-on:click="openHostHealth()" x-on:keydown.enter.prevent="openHostHealth()" x-on:keydown.space.prevent="openHostHealth()">
             <div class="ps-host-state">
