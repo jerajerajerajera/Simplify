@@ -19,9 +19,12 @@ function findChrome(dir) {
 if (!chrome) { console.error('FAIL no Chrome or Chromium found for tests/unsaved.cjs (set CHROME)'); process.exit(1); }
 
 const script = fs.readFileSync(path.join(__dirname, '..', 'resources', 'js', 'unsaved.js'), 'utf8');
-const page = `<!doctype html><meta charset="utf-8"><body>
+const css = fs.readFileSync(path.join(__dirname, '..', 'resources', 'css', 'simplify.css'), 'utf8');
+const page = `<!doctype html><meta charset="utf-8"><style>:root { --gray-50: #fafafa; --gray-100: #f4f4f5; --gray-200: #e4e4e7; --gray-700: #3f3f46; --gray-800: #27272a; --gray-900: #18181b; --gray-950: #09090b; }</style>
+<style>${css.replace(/<\/style/gi, '')}</style><body>
 <form id="plain" data-simplify-unsaved onsubmit="event.preventDefault(); window.plainSubmitted = (window.plainSubmitted || 0) + 1"><input id="name" value="Lobby"></form>
 <div wire:id="c1"><form id="lw" data-simplify-unsaved="data" onsubmit="event.preventDefault(); Livewire.find('c1').call('save')"><input id="lwname"></form></div>
+<div wire:id="c2"><div id="keyform" data-simplify-unsaved="data"><input id="apikey" type="password" autocomplete="off"></div></div>
 <a id="away" href="/elsewhere" wire:navigate>away</a>
 <pre id="out"></pre>
 <script>
@@ -29,11 +32,17 @@ const page = `<!doctype html><meta charset="utf-8"><body>
   const hooks = [];
   const component = { id: 'c1', snapshot: { memo: { errors: {} } } };
   const state = { data: { name: 'Lobby', max: 20, motd: null } };
+  // An add-on's API key field (wire:model): what is typed goes into the component's data.
+  const keyState = { data: { key: null } };
+  document.addEventListener('input', (event) => event.target.id === 'apikey' && (keyState.data.key = event.target.value || null));
+  // Headless Chrome remembers no passwords: the test says which field the browser filled.
+  const matches = Element.prototype.matches;
+  Element.prototype.matches = function (selector) { return /autofill/.test(selector) ? this.dataset.autofilled === 'yes' : matches.call(this, selector); };
   window.navigated = [];
   window.Livewire = {
     hook: (name, fn) => name === 'commit' && hooks.push(fn),
     navigate: (url) => window.navigated.push(String(url)),
-    find: (id) => (id === 'c1' ? { id: 'c1', __instance: { ephemeral: state }, $get: (name) => JSON.parse(JSON.stringify(state[name])), call: (method) => commit([{ method, params: [] }]) } : null),
+    find: (id) => (id === 'c2' ? { id: 'c2', __instance: { ephemeral: keyState }, $get: (name) => JSON.parse(JSON.stringify(keyState[name])), call: () => {} } : id === 'c1' ? { id: 'c1', __instance: { ephemeral: state }, $get: (name) => JSON.parse(JSON.stringify(state[name])), call: (method) => commit([{ method, params: [] }]) } : null),
   };
   window.commit = (calls, errors = {}) => {
     const done = [];
@@ -53,6 +62,26 @@ const page = `<!doctype html><meta charset="utf-8"><body>
   (async () => {
     await wait(100);
     ok('no bar while nothing changed', bar() === null, bar());
+
+    // K-B54: the browser fills the admin's saved password into an API key field and shows it on the first click.
+    const apikey = document.getElementById('apikey');
+    ok('a key field never takes a saved password', apikey.getAttribute('autocomplete') === 'new-password', apikey.getAttribute('autocomplete'));
+    apikey.dataset.autofilled = 'yes';
+    apikey.value = 'my-panel-password';
+    apikey.dispatchEvent(new Event('input', { bubbles: true }));
+    await wait(150);
+    ok('a password the browser filled is no change', bar() === null && apikey.value === '' && keyState.data.key === null, { bar: bar(), value: apikey.value, key: keyState.data.key });
+    // A key someone picks or types in the field itself counts.
+    apikey.dispatchEvent(new FocusEvent('focusin', { bubbles: true }));
+    apikey.value = 'cf-key';
+    apikey.dispatchEvent(new Event('input', { bubbles: true }));
+    await wait(150);
+    ok('a key typed in the field is a change', bar() === 'changes' && keyState.data.key === 'cf-key', { bar: bar(), key: keyState.data.key });
+    delete apikey.dataset.autofilled;
+    apikey.value = '';
+    apikey.dispatchEvent(new Event('input', { bubbles: true }));
+    await wait(150);
+    ok('emptying the key again takes the bar away', bar() === null, bar());
     const name = document.getElementById('name');
     await type(name, 'Lobby 2');
     ok('a change shows Changes made', bar() === 'changes', bar());
@@ -118,6 +147,15 @@ const page = `<!doctype html><meta charset="utf-8"><body>
     document.querySelector('.s-unsaved-dialog .is-primary').click();
     await wait(200);
     ok('Save in the question saves and then leaves', window.navigated.length === 1 && bar() === null, { navigated: window.navigated, bar: bar() });
+    // K-B54: the bar follows the theme, light on light and dark on dark.
+    const light = (el) => { const [r, g, b] = getComputedStyle(el).backgroundColor.match(/\\d+/g).map(Number); return (r + g + b) / 3 > 128; };
+    await type(name, 'Lobby 3');
+    const shownBar = document.querySelector('.s-unsaved');
+    const inLight = light(shownBar);
+    document.documentElement.classList.add('dark');
+    const inDark = light(shownBar);
+    document.documentElement.classList.remove('dark');
+    ok('the bar is light in the light theme and dark in the dark theme', inLight === true && inDark === false, { inLight, inDark });
     document.getElementById('out').textContent = results.join('\\n') + '\\nDONE';
   })().catch((error) => (document.getElementById('out').textContent = 'FAIL ' + error.stack + '\\nDONE'));
 </script>`;

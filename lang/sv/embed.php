@@ -53,7 +53,7 @@ return [
         'preview' => 'Förhandsvisning av den sparade listan',
     ],
     'server' => [
-        'title' => 'Webbplats',
+        'title' => 'Webbinbäddning',
         'help' => 'Visar servern i panelens offentliga serverlista, med namn, status, anslutningsadress och det du fyller i nedan.',
         'show' => 'Visa på webbplatsen',
         'shown' => 'Servern finns nu på webbplatsen',

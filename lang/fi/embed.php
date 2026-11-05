@@ -53,7 +53,7 @@ return [
         'preview' => 'Esikatselu tallennetusta listasta',
     ],
     'server' => [
-        'title' => 'Verkkosivu',
+        'title' => 'Verkkosivuupotus',
         'help' => 'Näyttää tämän palvelimen paneelin julkisessa palvelinluettelossa nimen, tilan, liittymisosoitteen ja alla täyttämiesi tietojen kanssa.',
         'show' => 'Näytä verkkosivulla',
         'shown' => 'Palvelin on nyt verkkosivulla',
