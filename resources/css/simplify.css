@@ -2717,6 +2717,35 @@ html.ps-frame .s-done {
   min-width: 0;
 }
 
+/* Computers: a list with Group by, its direction and Sort by (Servers on a 1280 window) keeps its toolbar on one row
+   too. The search gives way first; with room to spare it keeps its own width instead of stretching. */
+@media (min-width: 1101px) {
+  html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-header-toolbar {
+    flex-wrap: nowrap;
+    min-width: 0;
+  }
+
+  html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-header-toolbar > * {
+    flex: none;
+  }
+
+  html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-header-toolbar > :has(.fi-ta-search-field) {
+    flex: 1 1 0;
+    flex-wrap: nowrap;
+    min-width: 0;
+    justify-content: flex-end;
+  }
+
+  html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-search-field {
+    flex: 0 1 auto;
+    min-width: 96px;
+  }
+
+  html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-search-field :is(.fi-input-wrp, .fi-input-wrp-content-ctn, input) {
+    min-width: 0;
+  }
+}
+
 /* Every Admin list does the same in a narrow card, so the lists start at one height (Servers as Plugins). */
 @media (min-width: 601px) and (max-width: 1100px) {
   html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-header-toolbar {
