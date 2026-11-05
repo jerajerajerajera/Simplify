@@ -49,6 +49,9 @@ return [
         'ok' => 'OK',
         'close' => 'Bezárás',
     ],
+    'row' => [
+        'more' => 'További műveletek',
+    ],
     'sort' => [
         'by' => 'Rendezés',
         'ascending' => 'Növekvő',
