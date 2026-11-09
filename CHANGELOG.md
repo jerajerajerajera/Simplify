@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Layout: with Pelican's Display width set to "Screen", the Admin pages and the server pages keep their content beside the menu and under the server card instead of over the whole window.
 - Customize: Reset layout puts every layout choice on this device back to the standard one (the theme and server groups stay). Simplify keeps these choices under its own name; from PelicanSimplify it only takes over the ones that cannot change a page's layout, so an old bigger console or full width no longer comes along.
 - Health: on a phone the Health button shows its word beside the heart when the top bar has room for it, else the heart alone; a long panel name ends in "…" instead of running under the buttons.
 
