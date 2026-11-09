@@ -407,6 +407,8 @@
             size(big);
           });
           if (this.overviewPreferences.serverBiggerConsole) size(true);
+          // Customize's switch and Reset layout change it too (K-B65).
+          this.$watch?.('overviewPreferences.serverBiggerConsole', (big) => size(!!big));
           bar.querySelector('.ps-console-window').addEventListener('click', () => {
             const url = new URL(location.href);
             url.searchParams.set('simplify_console', '1');

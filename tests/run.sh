@@ -49,6 +49,7 @@ node tests/phone-input-zoom.cjs
 node tests/overview-footer.cjs
 node tests/server-stats.cjs
 node tests/overview-filters.cjs
+node tests/customize-reset.cjs
 node tests/card-bars.cjs
 node tests/health-pill-steady.cjs
 node tests/admin-menu-page.cjs
