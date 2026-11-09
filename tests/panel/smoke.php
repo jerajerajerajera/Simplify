@@ -38,6 +38,7 @@ use Simplify\Core\Announcements\Livewire\AnnouncementBars;
 use Simplify\Core\Announcements\Models\Announcement;
 use Simplify\Core\Announcements\Services\Bell as AnnouncementBell;
 use Simplify\Core\Announcements\Services\TaskWaits;
+use Simplify\Core\Announcements\Support\StartTrigger;
 use Simplify\Core\Announcements\Support\TaskAnnouncement;
 use Simplify\Core\Announcements\Tasks\AnnouncementTask;
 use Simplify\Core\Embed\Filament\EmbedSettings;
@@ -1073,6 +1074,33 @@ step('announcement task: sends now to the owner once, and "when online" waits in
     $said = __('simplify::announcements.task.not_online', ['server' => $server->name], $owner->language ?: 'en');
     if ($waits()->exists() || $owner->notifications()->where('data->body', $said)->count() !== 1) {
         throw new RuntimeException('after 10 minutes the owner did not hear once that the server did not come online');
+    }
+});
+step('announcements on a server start: no bar and no bell item at a time, the scheduler only remembers an offline server', function () use ($server) {
+    $admin = User::query()->whereHas('roles')->firstOrFail();
+    $announcement = Announcement::query()->create([
+        'title' => 'Smoke back online', 'send_on' => StartTrigger::START, 'start_servers' => [$server->id],
+        'in_bell' => true, 'push' => false, 'in_game' => true, 'created_by' => $admin->id,
+    ]);
+    try {
+        if (Announcement::barsFor($admin)->whereKey($announcement->id)->exists()) {
+            throw new RuntimeException('an announcement for a server start shows as a bar');
+        }
+        Artisan::call('simplify:announcements');
+        $announcement->refresh();
+        if ($admin->notifications()->where('data->viewData->simplify_announcement', $announcement->id)->exists()) {
+            throw new RuntimeException('an announcement for a server start went to the bell before any start');
+        }
+        // The server has no Wings here, so it is offline: remembered as off, nothing sent.
+        if ($announcement->start_seen != [$server->id => false] || $announcement->in_game_at !== null) {
+            throw new RuntimeException('the scheduler did not remember the server as offline: '.json_encode($announcement->start_seen));
+        }
+        $announcement->update(['start_servers' => [$server->id, $server->id + 100000]]);
+        if ($announcement->refresh()->start_seen !== null) {
+            throw new RuntimeException('other servers did not make it look afresh');
+        }
+    } finally {
+        $announcement->delete();
     }
 });
 step('notifications: mark read, mark as unread, Clear read and ✕ move them to Archived and back', function () {

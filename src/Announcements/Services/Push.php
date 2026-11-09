@@ -33,6 +33,7 @@ final class Push
         $since = now()->subSeconds(self::CATCH_UP_SECONDS);
         $due = Announcement::query()
             ->live()
+            ->timed()
             ->where('push', true)
             ->where(fn ($q) => $q->where('starts_at', '>=', $since)->orWhere(fn ($q) => $q->whereNull('starts_at')->where('created_at', '>=', $since)))
             ->get();

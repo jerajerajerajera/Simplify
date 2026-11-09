@@ -32,7 +32,7 @@ final class InGame
     public static function sendDue(): int
     {
         $posted = 0;
-        foreach (Announcement::query()->live()->where('in_game', true)->get() as $announcement) {
+        foreach (Announcement::query()->live()->timed()->where('in_game', true)->get() as $announcement) {
             if (! GameChat::isDue($announcement->in_game_at?->getTimestamp(), $announcement->in_game_repeat, time())) {
                 continue;
             }

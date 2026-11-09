@@ -2990,3 +2990,39 @@ html.ps-frame .s-done {
   font-weight: 500;
   line-height: 1.5rem;
 }
+
+/* Announcements: the browser's clock is in another time zone than the profile (announcements/zone-hint). */
+.s-zone-hint {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid color-mix(in srgb, var(--warning-500) 45%, transparent);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--warning-500) 10%, transparent);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--gray-950);
+}
+
+.dark .s-zone-hint {
+  color: #fff;
+}
+
+.s-zone-hint-icon {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  color: var(--warning-600);
+}
+
+.s-zone-hint a {
+  font-weight: 600;
+  color: var(--primary-600);
+  text-decoration: underline;
+}
+
+.dark .s-zone-hint a {
+  color: var(--primary-400);
+}
