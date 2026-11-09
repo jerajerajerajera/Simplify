@@ -64,7 +64,7 @@ final class StartAnnouncements
     {
         if ($announcement->in_game) {
             $own = GameCommand::query()->where('egg_id', $server->egg_id)->value('command');
-            $command = GameChat::commandFor((string) $server->egg?->name, is_string($own) ? $own : null);
+            $command = GameChat::commandFor((string) $server->egg->name, is_string($own) ? $own : null);
             if ($command !== null) {
                 try {
                     $server->send(GameChat::render($command, GameChat::message(__('simplify::announcements.in_game.prefix'), $announcement->title, $announcement->body)));

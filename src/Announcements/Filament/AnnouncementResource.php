@@ -103,7 +103,7 @@ final class AnnouncementResource extends Resource
             Grid::make(2)->visible($starts)->schema([
                 Select::make('start_servers')
                     ->label(self::text('form.start_servers'))
-                    ->helperText(self::text('form.start_servers_help', ['count' => StartTrigger::SERVERS]))
+                    ->helperText(self::text('form.start_servers_help', ['count' => (string) StartTrigger::SERVERS]))
                     ->multiple()
                     ->required($starts)
                     ->maxItems(StartTrigger::SERVERS)
