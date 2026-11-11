@@ -59,10 +59,10 @@ jobs:
       matrix: ${{ steps.list.outputs.matrix }}
       parts: ${{ steps.list.outputs.parts }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: ${{ inputs.tools || 'audit-tools' }}
           path: tests/audit
@@ -112,10 +112,10 @@ jobs:
     env:
       PELICAN: '1.0.0-rc.2'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           path: simplify
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: ${{ inputs.tools || 'audit-tools' }}
           path: simplify/tests/audit
@@ -124,7 +124,7 @@ jobs:
           php-version: '8.4'
           extensions: bcmath, gd, intl, mbstring, pdo_sqlite, sqlite3, zip
           tools: composer
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: '22'
       - run: npm install -g yarn
