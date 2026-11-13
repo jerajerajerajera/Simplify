@@ -8,6 +8,7 @@ use Filament\Pages\Page;
 use Illuminate\Contracts\Support\Htmlable;
 use Livewire\Attributes\Renderless;
 use Simplify\Core\Addons\Addon;
+use Simplify\Core\Announcements\Support\Diagnose;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Addons\Button;
 use Simplify\Core\Health\HostHealth;
@@ -54,6 +55,30 @@ final class Overview extends Page
             'servers' => Listing::for($user),
             'host_health' => $user->isRootAdmin() ? HostHealth::cached() : [],
             'customer' => $user->isAdmin() ? [] : $this->customerLinks($addons->collect(fn (Addon $addon) => $addon->customerLinks($user))),
+        ];
+    }
+
+    /**
+     * Debug build only: what the Test announcements sheet shows, plus the servers a test can use.
+     *
+     * @return array{checks: list<array{level: string, title: string, detail: string}>, log: string, servers: list<array{id: int, name: string}>, done?: string}
+     */
+    #[Renderless]
+    public function testAnnouncements(?string $zone = null, ?string $action = null, ?int $server = null): array
+    {
+        $user = $this->user();
+        abort_unless(Diagnose::BUTTON && $user->isRootAdmin(), 403);
+        $done = match ($action) {
+            'me' => Diagnose::sendToMe($user),
+            'timed' => Diagnose::scheduleTest($user, $server ?: null),
+            'start' => $server ? Diagnose::startTest($user, $server) : 'Pick a server first.',
+            default => null,
+        };
+
+        return [
+            ...Diagnose::run($user, $zone),
+            'servers' => \App\Models\Server::query()->orderBy('name')->limit(200)->get(['id', 'name'])->map(fn ($s) => ['id' => (int) $s->id, 'name' => (string) $s->name])->all(),
+            ...($done !== null ? ['done' => $done] : []),
         ];
     }
 

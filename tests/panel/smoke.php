@@ -38,6 +38,7 @@ use Simplify\Core\Announcements\Livewire\AnnouncementBars;
 use Simplify\Core\Announcements\Models\Announcement;
 use Simplify\Core\Announcements\Services\Bell as AnnouncementBell;
 use Simplify\Core\Announcements\Services\TaskWaits;
+use Simplify\Core\Announcements\Support\Diagnose;
 use Simplify\Core\Announcements\Support\StartTrigger;
 use Simplify\Core\Announcements\Support\TaskAnnouncement;
 use Simplify\Core\Announcements\Tasks\AnnouncementTask;
@@ -1102,6 +1103,34 @@ step('announcements on a server start: no bar and no bell item at a time, the sc
     } finally {
         $announcement->delete();
     }
+});
+step('test announcements: the check sends nothing, says a timed bell item came on time, and the tests make real announcements', function () use ($server) {
+    $admin = User::query()->whereHas('roles')->firstOrFail();
+    $timed = Announcement::create(['title' => 'Smoke diagnose', 'in_bell' => true, 'starts_at' => now()->subSeconds(20)]);
+    Artisan::call('simplify:announcements');
+    $count = Announcement::query()->count();
+    $bell = DB::table('notifications')->count();
+    $report = Diagnose::run($admin, 'Europe/Berlin');
+    if (Announcement::query()->count() !== $count || DB::table('notifications')->count() !== $bell) {
+        throw new RuntimeException('the check changed something');
+    }
+    $line = collect($report['checks'])->firstWhere('title', '"Smoke diagnose" (at a time)');
+    if (! $line || ! str_contains($line['detail'], 'arrived') || ! str_contains($report['log'], 'on time')) {
+        throw new RuntimeException('the check did not show when the bell item arrived: '.json_encode($line).' '.$report['log']);
+    }
+    if (! str_contains($report['log'], 'trace (last scheduler runs') || ! str_contains($report['log'], 'run bell=')) {
+        throw new RuntimeException('the log has no scheduler runs: '.$report['log']);
+    }
+    if (Artisan::call('simplify:announcements', ['--diagnose' => true]) !== 0 || ! str_contains(Artisan::output(), 'Smoke diagnose')) {
+        throw new RuntimeException('simplify:announcements --diagnose failed');
+    }
+    Diagnose::scheduleTest($admin, null);
+    Diagnose::startTest($admin, (int) $server->id);
+    $tests = Announcement::query()->where('title', Diagnose::TEST_TITLE)->get();
+    if ($tests->count() !== 2 || $tests->where('send_on', StartTrigger::START)->first()?->start_servers !== [(int) $server->id] || $tests->where('send_on', StartTrigger::TIME)->first()?->starts_at?->isFuture() !== true) {
+        throw new RuntimeException('the tests did not make a timed and a start announcement');
+    }
+    Announcement::query()->whereKey([...$tests->pluck('id'), $timed->id])->delete();
 });
 step('notifications: mark read, mark as unread, Clear read and ✕ move them to Archived and back', function () {
     $player = User::where('email', 'smoke-player@example.com')->firstOrFail();

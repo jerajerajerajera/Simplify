@@ -12,6 +12,7 @@ use Simplify\Core\Announcements\Support\GameChat;
 use Simplify\Core\Announcements\Support\StartTrigger;
 use Simplify\Core\Push\Push as AppPush;
 use Simplify\Core\Support\SafeCache;
+use Simplify\Core\Announcements\Support\Diagnose;
 use Throwable;
 
 /**
@@ -34,6 +35,7 @@ final class StartAnnouncements
                 $sent += self::look($announcement);
             } catch (Throwable $error) {
                 report($error);
+                Diagnose::trace('start #'.$announcement->id.' failed: '.Diagnose::error($error));
             }
         }
 
@@ -50,7 +52,11 @@ final class StartAnnouncements
         $look = StartTrigger::look(is_array($announcement->start_seen) ? $announcement->start_seen : [], $running);
         // Remembered first, so an error halfway never sends the same start twice.
         $announcement->forceFill(['start_seen' => $look['seen']])->saveQuietly();
+        if ($look['started'] !== [] || $look['seen'] !== $announcement->getOriginal('start_seen')) {
+            Diagnose::trace('start #'.$announcement->id.' running '.json_encode($running).' started '.json_encode($look['started']));
+        }
         foreach ($look['started'] as $id) {
+            Diagnose::trace('start #'.$announcement->id.' sending for server '.$id);
             self::send($announcement, $servers->firstWhere('id', $id));
         }
         if ($look['started'] !== [] && $announcement->start_once) {
@@ -68,8 +74,9 @@ final class StartAnnouncements
             if ($command !== null) {
                 try {
                     $server->send(GameChat::render($command, GameChat::message(__('simplify::announcements.in_game.prefix'), $announcement->title, $announcement->body)));
-                } catch (Throwable) {
+                } catch (Throwable $error) {
                     // Wings did not answer: the bell and devices still get it.
+                    Diagnose::trace('start #'.$announcement->id.' game chat on '.$server->id.' failed: '.Diagnose::error($error));
                 }
             }
         }

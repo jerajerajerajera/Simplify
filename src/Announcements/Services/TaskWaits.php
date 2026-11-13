@@ -7,6 +7,7 @@ namespace Simplify\Core\Announcements\Services;
 use App\Models\Server;
 use Illuminate\Support\Facades\DB;
 use Simplify\Core\Announcements\Support\TaskAnnouncement;
+use Simplify\Core\Announcements\Support\Diagnose;
 use Throwable;
 
 /**
@@ -45,6 +46,7 @@ final class TaskWaits
             );
         } catch (Throwable $error) {
             report($error);
+            Diagnose::trace('schedule waits failed: '.Diagnose::error($error));
 
             return 0;
         }

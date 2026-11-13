@@ -10,17 +10,28 @@ use Simplify\Core\Announcements\Services\InGame;
 use Simplify\Core\Announcements\Services\Push;
 use Simplify\Core\Announcements\Services\StartAnnouncements;
 use Simplify\Core\Announcements\Services\TaskWaits;
+use Simplify\Core\Announcements\Support\Diagnose;
 use Simplify\Core\Support\Scheduler;
 
 /** Runs every minute from Pelican's scheduler, so an announcement with a later start reaches the bell, devices and game chats when it starts. */
 final class DeliverAnnouncements extends Command
 {
-    protected $signature = 'simplify:announcements';
+    protected $signature = 'simplify:announcements {--diagnose : Show why each announcement does or does not go out, without sending anything}';
 
     protected $description = 'Puts announcements that just started in the bell, sends them as app notifications and posts them in game.';
 
     public function handle(): int
     {
+        if ($this->option('diagnose')) {
+            $report = Diagnose::run();
+            foreach ($report['checks'] as $check) {
+                $this->line(strtoupper($check['level']).'  '.$check['title'].': '.$check['detail']);
+            }
+            $this->newLine();
+            $this->line($report['log']);
+
+            return self::SUCCESS;
+        }
         Scheduler::beat();
         $reached = Bell::deliverDue();
         if ($reached > 0) {
@@ -42,6 +53,7 @@ final class DeliverAnnouncements extends Command
         if ($servers > 0) {
             $this->info("Posted announcements in game on $servers servers.");
         }
+        Diagnose::trace("run bell=$reached push=$devices waits=$waited starts=$starts game=$servers");
 
         return self::SUCCESS;
     }

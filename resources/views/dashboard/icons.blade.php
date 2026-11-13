@@ -66,6 +66,7 @@
         <symbol id="ps-clock" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"/> <path d="M12 7v5l3 3"/></symbol>
         <symbol id="ps-undo" viewBox="0 0 24 24"><path d="M9 14l-4 -4l4 -4"/> <path d="M5 10h11a4 4 0 1 1 0 8h-1"/></symbol>
         <symbol id="ps-refresh" viewBox="0 0 24 24"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/> <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></symbol>
+        <symbol id="ps-flask" viewBox="0 0 24 24"><path d="M9 3l6 0"/> <path d="M10 9l4 0"/> <path d="M10 3v6l-4 11a.7 .7 0 0 0 .5 1h11a.7 .7 0 0 0 .5 -1l-4 -11v-6"/></symbol>
         <symbol id="ps-pin" viewBox="0 0 24 24"><path d="M15 4.5l-4 4l-4 1.5l-1.5 1.5l7 7l1.5 -1.5l1.5 -4l4 -4"/> <path d="M9 15l-4.5 4.5"/> <path d="M14.5 4l5.5 5.5"/></symbol>
         <symbol id="ps-bell" viewBox="0 0 24 24"><path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6"/> <path d="M9 17v1a3 3 0 0 0 6 0v-1"/></symbol>
         <symbol id="ps-check" viewBox="0 0 24 24"><path d="M5 12l5 5l10 -10"/></symbol>

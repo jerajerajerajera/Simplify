@@ -13,6 +13,7 @@ use Simplify\Core\Announcements\Support\GameChat;
 use Simplify\Core\Overview\ServerGroups;
 use Simplify\Core\Support\Preferences;
 use Simplify\Core\Support\SafeCache;
+use Simplify\Core\Announcements\Support\Diagnose;
 use Throwable;
 
 /**
@@ -46,9 +47,11 @@ final class InGame
                 $result = self::send($announcement);
             } catch (Throwable $error) {
                 report($error);
+                Diagnose::trace('in game #'.$announcement->id.' failed: '.Diagnose::error($error));
                 $result = [...self::NOTHING, 'failed' => 1];
             }
             $announcement->forceFill(['in_game_result' => $result])->saveQuietly();
+            Diagnose::trace('in game #'.$announcement->id.' '.json_encode($result));
             $posted += $result['sent'];
         }
 

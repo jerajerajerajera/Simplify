@@ -32,6 +32,9 @@
             <button type="button" class="ps-btn ps-health-pill" x-init="Simplify.fitWord?.($el)" x-show="healthPlace() || boot.health_url" :class="boot.host_health?.state || 'unavailable'" x-on:click="if (boot.health_url) return Livewire.navigate(boot.health_url); healthPopover=!healthPopover; healthExpanded=false; healthOpenNodes=[]; placeHealthPopover()" :aria-expanded="healthPopover" aria-controls="ps-health-panel" :aria-label="Simplify.fill(@js($u('host_health_label')), { state: boot.host_health?.label || @js($u('health')) })">
                 <svg aria-hidden="true"><use href="#ps-heart"/></svg><span x-text="boot.host_health?.label || @js($u('health'))"></span>
             </button>
+            @if (\Simplify\Core\Announcements\Support\Diagnose::BUTTON && $this instanceof \Simplify\Core\Filament\App\Pages\Overview && auth()->user()?->isRootAdmin())
+                @include('simplify::dashboard.test-announcements')
+            @endif
             @include('simplify::dashboard.create-buttons')
         </div>
         <button type="button" class="ps-btn is-icon is-subtle ps-mobile-menu" aria-label="{{ $u('panel_navigation') }}" aria-controls="ps-navigation-items" :aria-expanded="navMenu"

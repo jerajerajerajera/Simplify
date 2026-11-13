@@ -12,6 +12,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Simplify\Core\Announcements\Livewire\AnnouncementBars;
 use Simplify\Core\Announcements\Models\Announcement;
+use Simplify\Core\Announcements\Support\Diagnose;
 use Simplify\Core\Announcements\Support\Rules;
 
 /**
@@ -48,6 +49,7 @@ final class Bell
                     $reached++;
                 }
             });
+            Diagnose::trace('bell #'.$announcement->id.' delivered (start '.($announcement->starts_at?->clone()->utc()->format('H:i:s') ?? 'now').'Z)');
         }
 
         return $reached;

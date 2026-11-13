@@ -6,6 +6,7 @@ namespace Simplify\Core\Announcements\Services;
 
 use App\Models\User;
 use Simplify\Core\Announcements\Models\Announcement;
+use Simplify\Core\Announcements\Support\Diagnose;
 use Simplify\Core\Push\Push as AppPush;
 
 /** App notifications for announcements, through Simplify's push. Hidden while a root admin turned push off. */
@@ -46,6 +47,7 @@ final class Push
                 'tag' => 'simplify-announcement-'.$announcement->id,
             ]);
             if ($sent > 0) {
+                Diagnose::trace('push #'.$announcement->id.' reached '.$sent.' devices');
                 $announcement->increment('pushed_to', $sent);
                 $reached += $sent;
             }
