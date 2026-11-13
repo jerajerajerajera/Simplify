@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace Simplify\Core\Filament\App\Pages;
 
+use App\Models\Server;
 use Filament\Pages\Page;
 use Illuminate\Contracts\Support\Htmlable;
 use Livewire\Attributes\Renderless;
 use Simplify\Core\Addons\Addon;
-use Simplify\Core\Announcements\Support\Diagnose;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Addons\Button;
+use Simplify\Core\Announcements\Support\Diagnose;
 use Simplify\Core\Health\HostHealth;
 use Simplify\Core\Overview\Listing;
 use Simplify\Core\Overview\Power;
@@ -77,7 +78,7 @@ final class Overview extends Page
 
         return [
             ...Diagnose::run($user, $zone),
-            'servers' => \App\Models\Server::query()->orderBy('name')->limit(200)->get(['id', 'name'])->map(fn ($s) => ['id' => (int) $s->id, 'name' => (string) $s->name])->all(),
+            'servers' => Server::query()->orderBy('name')->limit(200)->get(['id', 'name'])->map(fn ($s) => ['id' => (int) $s->id, 'name' => (string) $s->name])->all(),
             ...($done !== null ? ['done' => $done] : []),
         ];
     }

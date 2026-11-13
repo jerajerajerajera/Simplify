@@ -9,11 +9,11 @@ use App\Models\Server;
 use App\Models\User;
 use Simplify\Core\Announcements\Models\Announcement;
 use Simplify\Core\Announcements\Models\GameCommand;
+use Simplify\Core\Announcements\Support\Diagnose;
 use Simplify\Core\Announcements\Support\GameChat;
 use Simplify\Core\Overview\ServerGroups;
 use Simplify\Core\Support\Preferences;
 use Simplify\Core\Support\SafeCache;
-use Simplify\Core\Announcements\Support\Diagnose;
 use Throwable;
 
 /**

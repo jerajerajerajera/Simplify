@@ -6,8 +6,8 @@ namespace Simplify\Core\Announcements\Services;
 
 use App\Models\Server;
 use Illuminate\Support\Facades\DB;
-use Simplify\Core\Announcements\Support\TaskAnnouncement;
 use Simplify\Core\Announcements\Support\Diagnose;
+use Simplify\Core\Announcements\Support\TaskAnnouncement;
 use Throwable;
 
 /**

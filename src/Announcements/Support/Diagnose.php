@@ -8,6 +8,7 @@ use App\Models\Server;
 use App\Models\User;
 use Carbon\CarbonInterface;
 use DateTimeZone;
+use Illuminate\Support\Facades\DB;
 use Simplify\Core\Announcements\Models\Announcement;
 use Simplify\Core\Announcements\Models\GameCommand;
 use Simplify\Core\Announcements\Services\Bell;
@@ -251,7 +252,7 @@ final class Diagnose
     public static function scheduleTest(User $author, ?int $server = null): string
     {
         $start = now()->addMinutes(2)->startOfMinute();
-        $announcement = new Announcement();
+        $announcement = new Announcement;
         $announcement->forceFill([
             'title' => self::TEST_TITLE,
             'body' => 'Set for '.$start->clone()->setTimezone($author->timezone ?: (string) config('app.timezone', 'UTC'))->format('H:i').'. If you see this, timed announcements work.',
@@ -279,7 +280,7 @@ final class Diagnose
         if (! is_string($name)) {
             return 'That server does not exist.';
         }
-        $announcement = new Announcement();
+        $announcement = new Announcement;
         $announcement->forceFill([
             'title' => self::TEST_TITLE,
             'body' => 'If you see this, announcements on a server start work.',
@@ -347,7 +348,7 @@ final class Diagnose
     private static function count(string $table): int
     {
         try {
-            return (int) \Illuminate\Support\Facades\DB::table($table)->count();
+            return (int) DB::table($table)->count();
         } catch (Throwable) {
             return 0;
         }
