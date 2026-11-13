@@ -852,6 +852,14 @@ html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn {
   transition-property: opacity !important;
 }
 
+/* Pelican's Display width "Screen" (Admin > Settings) has Filament pin the page over the whole window (.fi-width-screen:
+   position fixed, inset 0). On Simplify's pages (the Admin page, the account pages, the server pages) the page stays in
+   its own place and takes the room it has there (K-B66, betatester). */
+body:has(.ps) :is(.fi-main, .fi-simple-main).fi-width-screen {
+  position: static !important;
+  inset: auto !important;
+}
+
 /* The page grows with what is on it (Filament gives it the card's height), so Pelican's copyright footer after it is
    at the very end of the card, never halfway over the page where the card's first screen ended (K-B9). */
 html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn > .fi-main {
@@ -2989,4 +2997,40 @@ html.ps-frame .s-done {
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.5rem;
+}
+
+/* Announcements: the browser's clock is in another time zone than the profile (announcements/zone-hint). */
+.s-zone-hint {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid color-mix(in srgb, var(--warning-500) 45%, transparent);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--warning-500) 10%, transparent);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--gray-950);
+}
+
+.dark .s-zone-hint {
+  color: #fff;
+}
+
+.s-zone-hint-icon {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  color: var(--warning-600);
+}
+
+.s-zone-hint a {
+  font-weight: 600;
+  color: var(--primary-600);
+  text-decoration: underline;
+}
+
+.dark .s-zone-hint a {
+  color: var(--primary-400);
 }

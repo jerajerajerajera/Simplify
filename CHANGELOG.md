@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- A server's name is edited in its title card. Click the name or the pencil: the name turns into a field with its text selected. Enter or ✓ saves, Esc or ✕ puts it back, and a click beside the field keeps what you typed. On a phone, Cancel and Save sit under the field.
+- Announcements: `php artisan simplify:announcements --diagnose` shows, without sending anything, whether the scheduler runs, how the time zones compare, and for each announcement what the next run would do and when its bell item arrived against the time it was set for, with the last scheduler runs.
+- Announcements: a new choice Send › When a server starts sends the announcement each time one of the picked servers comes online (or only the next time), also after a start from the console or a crash: in that server's game chat, in the bell and as an app notification (Khion's idea).
+- Announcements: when your browser is in another time zone than your profile, the form says so and links to the profile, where the panel's time zone is set.
+- Layout: with Pelican's Display width set to "Screen", the Admin pages and the server pages keep their content beside the menu and under the server card instead of over the whole window.
+- Customize: Reset layout puts every layout choice on this device back to the standard one (the theme and server groups stay). Simplify keeps these choices under its own name; from PelicanSimplify it only takes over the ones that cannot change a page's layout, so an old bigger console or full width no longer comes along.
 - Health: on a phone the Health button shows its word beside the heart when the top bar has room for it, else the heart alone; a long panel name ends in "…" instead of running under the buttons.
 
 ## 2.0.0-beta.11

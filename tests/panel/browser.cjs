@@ -86,6 +86,35 @@ async function run(viewport) {
     if (!phone) say('server page does not scroll', (await scrolls()) <= 1, { scroll: await scrolls() });
     await axe('server');
 
+    // K-B8: the name is edited in the title card itself. A click on the name opens a field with its text selected, a
+    // click beside it keeps a change (no autosave, P-38), Esc puts the name back and Enter saves.
+    const nameState = () => page.evaluate(() => {
+      const vis = (e) => !!e && e.getClientRects().length > 0;
+      const field = [...document.querySelectorAll('.ps-server-info .ps-name-input')].find(vis);
+      const title = [...document.querySelectorAll('.ps-server-info .ps-game-title h2')].find(vis);
+      return { field: !!field, value: field ? field.value : null, selected: field ? field.value.slice(field.selectionStart, field.selectionEnd) : null, focused: !!field && document.activeElement === field, title: title ? title.textContent : null, dialog: [...document.querySelectorAll('.ps-modal-layer')].some(vis) };
+    }).catch(() => null);
+    const fieldReady = () => page.waitForFunction(() => document.activeElement && document.activeElement.classList.contains('ps-name-input'), null, { timeout: 4000 }).catch(() => {});
+    const original = ((await nameState()) || {}).title || '';
+    await page.locator('.ps-server-info .ps-game-title h2 >> visible=true').first().click({ timeout: 4000 }).catch(() => {}); await fieldReady(); await sleep(300);
+    const opened = await nameState();
+    await shot('server-name-edit');
+    say('name edit: a click on the name opens a field with the name selected', !!opened && opened.field && !opened.dialog && opened.focused && !!original && opened.selected === original, opened);
+    await page.keyboard.type('Browser name'); await sleep(200);
+    await page.locator('.ps-server-info .ps-info-meta >> visible=true').first().click({ timeout: 4000, position: { x: 2, y: 2 } }).catch(() => {}); await sleep(500);
+    const beside = await nameState();
+    say('name edit: a click beside the field keeps what was typed', !!beside && beside.field && beside.value === 'Browser name', beside);
+    await page.keyboard.press('Escape'); await sleep(400);
+    const back = await nameState();
+    say('name edit: Esc puts the name back', !!back && !back.field && back.title === original, back);
+    await page.locator('.ps-server-info .ps-game-title h2 >> visible=true').first().click({ timeout: 4000 }).catch(() => {}); await fieldReady(); await sleep(300);
+    await page.keyboard.type(original + ' 2'); await page.keyboard.press('Enter'); await sleep(2000);
+    const saved = await nameState();
+    say('name edit: Enter saves', !!saved && !saved.field && saved.title === original + ' 2', saved);
+    // The seeded name back for the rest of the run.
+    await page.locator('.ps-server-info .ps-game-title h2 >> visible=true').first().click({ timeout: 4000 }).catch(() => {}); await fieldReady(); await sleep(300);
+    await page.keyboard.type(original); await page.keyboard.press('Enter'); await sleep(2000);
+
     // A click in the server menu loads only the content: the page is not reloaded and the menu is the same element (P-11).
     await page.evaluate((sel) => { window.__psMark = 1; const m = document.querySelector(sel); if (m) m.__psKeep = 1; }, MENU);
     if (phone) { await page.locator('.ps-phone-more > .ps-phone-section').first().click().catch(() => {}); await sleep(700); }
@@ -124,11 +153,63 @@ async function run(viewport) {
   await context.close();
 }
 
+// Holidays (seasons.js) on a phone: the server page and the overview on an ordinary day, during Diwali and at
+// Christmas, with the browser's clock set to that day. A holiday may not move the page (layout shift) nor keep the
+// browser busier while the page sits still: Lighthouse found both during Diwali (K-B67).
+const DAYS = { ordinary: '2026-11-13T10:00:00', diwali: '2026-11-09T10:00:00', christmas: '2026-12-10T10:00:00' };
+async function holidays() {
+  stand = 'holiday412';
+  const serverUrl = urls.servers && urls.servers[SERVER];
+  const measured = {};
+  for (const [day, time] of Object.entries(DAYS)) {
+    const context = await browser.newContext({ viewport: { width: 412, height: 823 }, deviceScaleFactor: 1 });
+    page = await context.newPage();
+    await page.clock.install({ time: new Date(time) });
+    await page.addInitScript(() => {
+      window.__psShift = 0;
+      try { new PerformanceObserver((list) => { for (const e of list.getEntries()) if (!e.hadRecentInput) window.__psShift += e.value; }).observe({ type: 'layout-shift', buffered: true }); } catch {}
+    });
+    await login();
+    const cdp = await context.newCDPSession(page);
+    await cdp.send('Performance.enable');
+    const metrics = async () => Object.fromEntries((await cdp.send('Performance.getMetrics')).metrics.map((m) => [m.name, m.value]));
+    for (const [name, url] of [['overview', '/'], ['server', serverUrl]]) {
+      if (!url) continue;
+      await goto(url);
+      await sleep(2500);
+      const before = await metrics();
+      await sleep(5000);
+      const after = await metrics();
+      measured[`${day}-${name}`] = {
+        shift: Number((await page.evaluate(() => window.__psShift)).toFixed(3)),
+        busy: Number((after.TaskDuration - before.TaskDuration).toFixed(3)),
+        styles: after.RecalcStyleCount - before.RecalcStyleCount,
+        layouts: after.LayoutCount - before.LayoutCount,
+        season: await page.evaluate(() => document.querySelector('.ps')?.getAttribute('data-season') || ''),
+      };
+      if (day !== 'ordinary') await shot(`${day}-${name}`);
+    }
+    await context.close();
+  }
+  for (const name of ['overview', 'server']) {
+    const plain = measured[`ordinary-${name}`];
+    for (const day of ['diwali', 'christmas']) {
+      const m = measured[`${day}-${name}`];
+      if (!plain || !m) continue;
+      say(`${day} ${name}: the holiday is on`, m.season.includes(day), m);
+      say(`${day} ${name}: the page does not move more than on an ordinary day`, m.shift <= Math.max(0.05, plain.shift + 0.02), { holiday: m, ordinary: plain });
+      say(`${day} ${name}: the browser is not busier while the page sits still`, m.busy <= plain.busy * 1.5 + 0.2 && m.layouts <= plain.layouts + 10, { holiday: m, ordinary: plain });
+    }
+  }
+  fs.writeFileSync(path.join(out, 'holidays.json'), JSON.stringify(measured, null, 2));
+}
+
 (async () => {
   browser = await chromium.launch({ args: ['--no-sandbox'] });
   for (const viewport of [{ name: 'd1440', width: 1440, height: 900 }, { name: 'phone390', width: 390, height: 844 }]) {
     try { await run(viewport); } catch (e) { say('setup', false, { error: String(e.message).slice(0, 300) }); }
   }
+  try { await holidays(); } catch (e) { stand = 'holiday412'; say('setup', false, { error: String(e.message).slice(0, 300) }); }
   await browser.close();
   fs.writeFileSync(path.join(out, 'axe.json'), JSON.stringify(axeReport, null, 2));
   if (failures.length) { console.log(`FAILED: ${failures.join('; ')}`); process.exit(1); }

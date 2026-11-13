@@ -12,6 +12,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Simplify\Core\Announcements\Livewire\AnnouncementBars;
 use Simplify\Core\Announcements\Models\Announcement;
+use Simplify\Core\Announcements\Support\Diagnose;
 use Simplify\Core\Announcements\Support\Rules;
 
 /**
@@ -32,7 +33,7 @@ final class Bell
     public static function deliverDue(): int
     {
         $reached = 0;
-        $due = Announcement::query()->live()->where('in_bell', true)->whereNull('in_bell_at')->get();
+        $due = Announcement::query()->live()->timed()->where('in_bell', true)->whereNull('in_bell_at')->get();
         foreach ($due as $announcement) {
             // Marked first: an error halfway leaves some accounts out, but never sends twice.
             $announcement->forceFill(['in_bell_at' => now()])->save();
@@ -48,12 +49,13 @@ final class Bell
                     $reached++;
                 }
             });
+            Diagnose::trace('bell #'.$announcement->id.' delivered (start '.($announcement->starts_at?->clone()->utc()->format('H:i:s') ?? 'now').'Z)');
         }
 
         return $reached;
     }
 
-    public static function send(Announcement $announcement, User $user, string $kind): void
+    public static function send(Announcement $announcement, User $user, string $kind, ?string $title = null): void
     {
         $actions = $kind === self::UNPINNED ? [
             Action::make('pin')
@@ -65,7 +67,7 @@ final class Bell
         ] : [];
 
         $user->notifyNow(Notification::make()
-            ->title($announcement->title)
+            ->title($title ?? $announcement->title)
             ->body($announcement->body)
             ->icon(Rules::icon($announcement->category))
             ->iconColor(Rules::color($announcement->category))

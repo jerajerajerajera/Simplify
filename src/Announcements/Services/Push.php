@@ -6,6 +6,7 @@ namespace Simplify\Core\Announcements\Services;
 
 use App\Models\User;
 use Simplify\Core\Announcements\Models\Announcement;
+use Simplify\Core\Announcements\Support\Diagnose;
 use Simplify\Core\Push\Push as AppPush;
 
 /** App notifications for announcements, through Simplify's push. Hidden while a root admin turned push off. */
@@ -33,6 +34,7 @@ final class Push
         $since = now()->subSeconds(self::CATCH_UP_SECONDS);
         $due = Announcement::query()
             ->live()
+            ->timed()
             ->where('push', true)
             ->where(fn ($q) => $q->where('starts_at', '>=', $since)->orWhere(fn ($q) => $q->whereNull('starts_at')->where('created_at', '>=', $since)))
             ->get();
@@ -45,6 +47,7 @@ final class Push
                 'tag' => 'simplify-announcement-'.$announcement->id,
             ]);
             if ($sent > 0) {
+                Diagnose::trace('push #'.$announcement->id.' reached '.$sent.' devices');
                 $announcement->increment('pushed_to', $sent);
                 $reached += $sent;
             }

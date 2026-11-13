@@ -18,6 +18,7 @@ php tests/push.php
 php tests/announcements-rules.php
 php tests/announcements-game-chat.php
 php tests/announcements-task.php
+php tests/announcements-start.php
 php tests/embed.php
 php tests/subdomains.php
 php tests/subdomains-import.php
@@ -38,6 +39,7 @@ node tests/row-actions.cjs
 node tests/boot.cjs
 node tests/shell-footer.cjs
 node tests/shell-box-transition.cjs
+node tests/width-screen.cjs
 node tests/admin-crumb-row.cjs
 node tests/admin-crumb-fit.cjs
 node tests/health-pill-fit.cjs
@@ -49,6 +51,7 @@ node tests/phone-input-zoom.cjs
 node tests/overview-footer.cjs
 node tests/server-stats.cjs
 node tests/overview-filters.cjs
+node tests/customize-reset.cjs
 node tests/card-bars.cjs
 node tests/health-pill-steady.cjs
 node tests/admin-menu-page.cjs

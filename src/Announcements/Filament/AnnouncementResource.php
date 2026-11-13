@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Simplify\Core\Announcements\Filament;
 
+use App\Filament\Pages\Auth\EditProfile;
 use App\Models\Server;
 use BackedEnum;
 use Filament\Actions\Action;
@@ -18,6 +19,7 @@ use Filament\Forms\Components\ToggleButtons;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\View;
 use Filament\Schemas\Schema;
 use Filament\Support\Enums\FontWeight;
 use Filament\Tables\Columns\Layout\Split;
@@ -30,6 +32,7 @@ use Simplify\Core\Announcements\Services\InGame;
 use Simplify\Core\Announcements\Services\Push;
 use Simplify\Core\Announcements\Support\GameChat;
 use Simplify\Core\Announcements\Support\Rules;
+use Simplify\Core\Announcements\Support\StartTrigger;
 
 /**
  * Where root admins write, end and delete announcements.
@@ -70,6 +73,7 @@ final class AnnouncementResource extends Resource
     public static function form(Schema $schema): Schema
     {
         $zone = self::timezone();
+        $starts = fn (Get $get): bool => $get('send_on') === StartTrigger::START;
 
         return $schema->columns(1)->components([
             ToggleButtons::make('category')
@@ -88,19 +92,46 @@ final class AnnouncementResource extends Resource
                 ->label(self::text('form.body'))
                 ->rows(3)
                 ->maxLength(Rules::BODY_LENGTH),
+            // At a time (a bar from its start to its end), or each time one of its servers starts (Khion 6-11).
+            ToggleButtons::make('send_on')
+                ->label(self::text('form.send_on'))
+                ->options([StartTrigger::TIME => self::text('form.send_on_time'), StartTrigger::START => self::text('form.send_on_start')])
+                ->inline()
+                ->required()
+                ->default(StartTrigger::TIME)
+                ->live(),
+            Grid::make(2)->visible($starts)->schema([
+                Select::make('start_servers')
+                    ->label(self::text('form.start_servers'))
+                    ->helperText(self::text('form.start_servers_help', ['count' => (string) StartTrigger::SERVERS]))
+                    ->multiple()
+                    ->required($starts)
+                    ->maxItems(StartTrigger::SERVERS)
+                    ->searchable()
+                    ->getSearchResultsUsing(fn (string $search): array => Server::query()->where('name', 'like', '%'.$search.'%')->orderBy('name')->limit(50)->pluck('name', 'id')->all())
+                    ->getOptionLabelsUsing(fn (array $values): array => Server::query()->whereKey($values)->pluck('name', 'id')->all()),
+                ToggleButtons::make('start_once')
+                    ->label(self::text('form.start_once'))
+                    ->options(['every' => self::text('form.start_every'), 'next' => self::text('form.start_next')])
+                    ->inline()
+                    ->default('every')
+                    ->formatStateUsing(fn ($state): string => $state === true || $state === 'next' ? 'next' : 'every')
+                    ->dehydrateStateUsing(fn ($state): bool => $state === 'next'),
+            ]),
             Grid::make(2)->schema([
                 DateTimePicker::make('starts_at')
-                    ->label(self::text('form.starts_at'))
+                    ->label(fn (Get $get): string => self::text($starts($get) ? 'form.active_from' : 'form.starts_at'))
                     ->seconds(false)
                     ->timezone($zone)
                     ->helperText(self::text('form.starts_at_help', ['zone' => $zone])),
                 DateTimePicker::make('ends_at')
-                    ->label(self::text('form.ends_at'))
+                    ->label(fn (Get $get): string => self::text($starts($get) ? 'form.active_until' : 'form.ends_at'))
                     ->seconds(false)
                     ->timezone($zone)
                     ->after('starts_at')
                     ->helperText(self::text('form.ends_at_help')),
             ]),
+            View::make('simplify::announcements.zone-hint')->viewData(['zone' => $zone, 'profile' => EditProfile::getUrl(panel: 'app')]),
             ToggleButtons::make('audience')
                 ->label(self::text('form.audience'))
                 ->options(self::options('audience', Rules::AUDIENCES))
@@ -125,7 +156,7 @@ final class AnnouncementResource extends Resource
                 ->live(),
             Toggle::make('bell_pinned')
                 ->label(self::text('form.bell_pinned'))
-                ->visible(fn (Get $get): bool => (bool) $get('in_bell')),
+                ->visible(fn (Get $get): bool => (bool) $get('in_bell') && ! $starts($get)),
             Toggle::make('push')
                 ->label(self::text('form.push'))
                 ->helperText(self::text('form.push_help'))
@@ -133,9 +164,9 @@ final class AnnouncementResource extends Resource
                 ->visible(Push::available()),
             Toggle::make('in_game')
                 ->label(self::text('form.in_game'))
-                ->helperText(self::text('form.in_game_help'))
+                ->helperText(fn (Get $get): string => self::text($starts($get) ? 'form.in_game_start_help' : 'form.in_game_help'))
                 ->live(),
-            Grid::make(2)->visible(fn ($get): bool => (bool) $get('in_game'))->schema([
+            Grid::make(2)->visible(fn (Get $get): bool => (bool) $get('in_game') && ! $starts($get))->schema([
                 Select::make('in_game_servers')
                     ->label(self::text('form.in_game_servers'))
                     ->placeholder(self::text('form.in_game_servers_all'))
@@ -198,6 +229,15 @@ final class AnnouncementResource extends Resource
                             ->dateTime(timezone: $zone)
                             ->placeholder(self::text('table.until_ended'))
                             ->color('gray')
+                            ->grow(false),
+                        TextColumn::make('start_servers')
+                            ->icon('tabler-player-play')
+                            ->tooltip(self::text('table.on_start'))
+                            ->state(fn (Announcement $record): ?string => $record->send_on === StartTrigger::START
+                                ? Server::query()->whereKey(StartTrigger::servers($record->start_servers))->orderBy('name')->pluck('name')->implode(', ')
+                                : null)
+                            ->color('gray')
+                            ->wrap()
                             ->grow(false),
                         TextColumn::make('audience')
                             ->badge()

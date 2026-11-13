@@ -100,7 +100,7 @@ final class Bell
     /** @return list<int> the live announcements an admin pinned to everyone's notifications */
     private static function pinnedAnnouncements(): array
     {
-        return Announcement::query()->live()->where('in_bell', true)->where('bell_pinned', true)->pluck('id')->map(fn ($id) => (int) $id)->all();
+        return Announcement::query()->live()->timed()->where('in_bell', true)->where('bell_pinned', true)->pluck('id')->map(fn ($id) => (int) $id)->all();
     }
 
     /**

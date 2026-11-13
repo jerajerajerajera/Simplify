@@ -23,6 +23,9 @@
   // Overview settings that pick one of a fixed set of values.
   const OVERVIEW_CHOICES = { largeIcon: ['server', 'egg'], groupByNode: ['auto', 'always', 'off'], quickActions: ['off', 'on', 'hover'], columns: ['auto', '2', '3', '4', '5', '6'], cardWidth: ['narrow', 'normal', 'wide'], serverScope: ['all', 'mine', 'others'], healthPlace: ['top-bar', 'bottom', 'card'] };
   const OVERVIEW_VIEWS = ['grid', 'compact', 'list'];
+  // Where Simplify kept these choices before (PelicanSimplify's name), and the ones it may take over from there (K-B65).
+  const OVERVIEW_LEGACY_KEY = 'pelicanSimplify.overviewAppearance.';
+  const OVERVIEW_LEGACY_SAFE = ['showMotd', 'largeIcon', 'groupByNode', 'showCpu', 'showRam', 'quickActions', 'showQuickActions', 'minecraftAlwaysGreen', 'showGroupsButton', 'columns', 'cardWidth', 'serverScope', 'halloween'];
   // Own server groups in the overview: at most this many groups, names at most this long.
   // Bars on an overview card: one per refresh.
   const CARD_BARS = 24;
@@ -1061,12 +1064,21 @@
         if (key === 'all' || this.eggOptions().some((g) => g.key === key)) this.eggFilter = key;
       },
       overviewPreferencesKey() {
-        return 'pelicanSimplify.overviewAppearance.' + encodeURIComponent(this.boot.user || 'default');
+        return 'simplify.overview.' + encodeURIComponent(this.boot.user || 'default');
       },
       restoreOverviewPreferences() {
         const preferences = { ...OVERVIEW_DEFAULTS };
         try {
-          const saved = JSON.parse(localStorage.getItem(this.overviewPreferencesKey()) || 'null');
+          let saved = JSON.parse(localStorage.getItem(this.overviewPreferencesKey()) || 'null');
+          // Simplify used to keep these under PelicanSimplify's name, so a browser that ran PelicanSimplify brought its
+          // choices along, a bigger console and full width among them (K-B65). Only the choices that cannot change how a
+          // page is laid out come over, once.
+          if (saved === null) {
+            const old = JSON.parse(localStorage.getItem(OVERVIEW_LEGACY_KEY + encodeURIComponent(this.boot.user || 'default')) || 'null');
+            if (old && typeof old === 'object') {
+              saved = Object.fromEntries(OVERVIEW_LEGACY_SAFE.filter((key) => key in old).map((key) => [key, old[key]]));
+            }
+          }
           if (saved && typeof saved === 'object') {
             for (const key of OVERVIEW_SWITCHES) if (typeof saved[key] === 'boolean') preferences[key] = saved[key];
             // Before Off/On/Hover, quick actions were a switch that meant "on hover".
@@ -1075,6 +1087,17 @@
           }
         } catch {}
         this.overviewPreferences = preferences;
+        try {
+          if (localStorage.getItem(this.overviewPreferencesKey()) === null) localStorage.setItem(this.overviewPreferencesKey(), JSON.stringify(preferences));
+        } catch {}
+      },
+      /** Reset layout (Customize): every layout choice back to the standard one; the theme and the server groups stay. */
+      resetOverviewPreferences() {
+        this.overviewPreferences = { ...OVERVIEW_DEFAULTS };
+        try {
+          localStorage.setItem(this.overviewPreferencesKey(), JSON.stringify(this.overviewPreferences));
+        } catch {}
+        document.documentElement?.classList?.remove('ps-console-big');
       },
       setOverviewPreference(key, value) {
         if (OVERVIEW_SWITCHES.includes(key)) {

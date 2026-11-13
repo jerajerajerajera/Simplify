@@ -23,6 +23,17 @@
                     <button type="button" role="tab" :data-tab="t.key" :aria-selected="shown(t.key)" x-on:click.stop="pick(t.key)"><svg aria-hidden="true"><use :href="'#ps-'+t.icon"/></svg><span x-text="t.label"></span></button>
                 </template>
             </div>
+            {{-- Reset layout (K-B65): every layout choice back to the standard one, asked in place; the theme and the groups stay. --}}
+            <div class="ps-customize-reset" x-data="{ ask: false }">
+                <button type="button" class="ps-btn is-sm" x-show="!ask" x-on:click.stop="ask = true"><svg aria-hidden="true"><use href="#ps-refresh"/></svg><span>{{ $u('reset_layout') }}</span></button>
+                <div class="ps-customize-reset-ask" x-show="ask" x-cloak role="group" aria-label="{{ $u('reset_layout') }}">
+                    <small>{{ $u('reset_layout_question') }}</small>
+                    <div>
+                        <button type="button" class="ps-btn is-sm" x-on:click.stop="ask = false">{{ $u('cancel') }}</button>
+                        <button type="button" class="ps-btn is-sm is-primary" x-on:click.stop="resetOverviewPreferences(); ask = false">{{ $u('reset') }}</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="ps-customize-pane">
         {{-- The theme, on every page (Jeroen 3-11: in Customize Simplify instead of the account menu). --}}
