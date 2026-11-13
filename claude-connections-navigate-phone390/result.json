@@ -1,0 +1,2345 @@
+{
+ "base": "http://127.0.0.1:8001",
+ "screens": [
+  {
+   "id": "setup-done",
+   "title": "Setup klaar (gewone beheerpagina)",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify/setup-done",
+   "docTitle": "Simplify is set up - Northwind Games",
+   "main": {
+    "url": "/admin/simplify/setup-done",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "strong: \"General\"",
+      "strong: \"Simplify is set up\""
+     ],
+     "popups": [
+      "ps-navigation-items 282,18 82x38"
+     ],
+     "panes": [
+      "s-done 286/733"
+     ],
+     "card": "180..704 of 844",
+     "topbar": "brand 26..206, actions 282..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"Run setup again\" at y=300",
+      "\"Go to the panel\" at y=300"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\"",
+      "\"Go to the panel\""
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/setup-done.png"
+  },
+  {
+   "id": "wizard-look",
+   "title": "Setup · Look-stap",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify/setup",
+   "docTitle": "Set up Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify/setup",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\""
+     ],
+     "popups": [
+      "ps-navigation-items 282,18 82x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1834"
+     ],
+     "card": "180..1950 of 844",
+     "topbar": "brand 26..206, actions 282..364",
+     "scope": "simplify",
+     "boxes": [],
+     "filamentButtons": [
+      "\"Back\"",
+      "\"Next\""
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/wizard-look.png"
+  },
+  {
+   "id": "wizard-look-logo",
+   "title": "Setup · Look, logo geüpload",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify/setup",
+   "docTitle": "Set up Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify/setup",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: legend: \"logo.png\" (67>1) | span: \"Remove\" (63>1) | filepond--assistant-7s1v2xfes: \"logo.png Upload complete\" (201>1)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 282,18 82x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1692"
+     ],
+     "card": "180..1808 of 844",
+     "topbar": "brand 26..206, actions 282..364",
+     "scope": "simplify",
+     "boxes": [],
+     "filamentButtons": [
+      "\"Back\"",
+      "\"Next\""
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/wizard-look-logo.png"
+  },
+  {
+   "id": "wizard-look-show-logo",
+   "title": "Setup · Look, toont logo",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify/setup",
+   "docTitle": "Set up Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify/setup",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: legend: \"logo.png\" (67>1) | span: \"Remove\" (63>1) | filepond--assistant-7s1v2xfes: \"logo.png Upload complete\" (201>1)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 282,18 82x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1692"
+     ],
+     "card": "-924..704 of 844",
+     "topbar": "brand 26..206, actions 282..364",
+     "scope": "simplify",
+     "boxes": [],
+     "filamentButtons": [
+      "\"Back\"",
+      "\"Next\""
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/wizard-look-show-logo.png"
+  },
+  {
+   "id": "wizard-look-show-text",
+   "title": "Setup · Look, toont text",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify/setup",
+   "docTitle": "Set up Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify/setup",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: legend: \"logo.png\" (67>1) | span: \"Remove\" (63>1) | filepond--assistant-7s1v2xfes: \"logo.png Upload complete\" (201>1)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\""
+     ],
+     "popups": [
+      "ps-navigation-items 282,18 82x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/2026"
+     ],
+     "card": "-924..1038 of 844",
+     "topbar": "brand 26..206, actions 282..364",
+     "scope": "simplify",
+     "boxes": [],
+     "filamentButtons": [
+      "\"Back\"",
+      "\"Next\""
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/wizard-look-show-text.png"
+  },
+  {
+   "id": "wizard-look-show-both",
+   "title": "Setup · Look, toont both",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify/setup",
+   "docTitle": "Set up Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify/setup",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: legend: \"logo.png\" (67>1) | span: \"Remove\" (63>1) | filepond--assistant-7s1v2xfes: \"logo.png Upload complete\" (201>1)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "span: \"Northwind Games\""
+     ],
+     "popups": [
+      "ps-navigation-items 282,18 82x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/2026"
+     ],
+     "card": "-924..1038 of 844",
+     "topbar": "brand 26..206, actions 282..364",
+     "scope": "simplify",
+     "boxes": [],
+     "filamentButtons": [
+      "\"Back\"",
+      "\"Next\""
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/wizard-look-show-both.png"
+  },
+  {
+   "id": "wizard-look-effect-glow",
+   "title": "Setup · Look, effect Glow",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify/setup",
+   "docTitle": "Set up Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify/setup",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: legend: \"logo.png\" (67>1) | span: \"Remove\" (63>1) | filepond--assistant-7s1v2xfes: \"logo.png Upload complete\" (201>1)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "span: \"Northwind Games\""
+     ],
+     "popups": [
+      "ps-navigation-items 282,18 82x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/2343"
+     ],
+     "card": "-1271..1008 of 844",
+     "topbar": "brand 26..206, actions 282..364",
+     "scope": "simplify",
+     "boxes": [],
+     "filamentButtons": [
+      "\"Back\"",
+      "\"Next\""
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/wizard-look-effect-glow.png"
+  },
+  {
+   "id": "wizard-look-effect-shadow",
+   "title": "Setup · Look, effect Shadow",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify/setup",
+   "docTitle": "Set up Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify/setup",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: legend: \"logo.png\" (67>1) | span: \"Remove\" (63>1) | filepond--assistant-7s1v2xfes: \"logo.png Upload complete\" (201>1)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "span: \"Northwind Games\""
+     ],
+     "popups": [
+      "ps-navigation-items 282,18 82x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/2343"
+     ],
+     "card": "-1271..1008 of 844",
+     "topbar": "brand 26..206, actions 282..364",
+     "scope": "simplify",
+     "boxes": [],
+     "filamentButtons": [
+      "\"Back\"",
+      "\"Next\""
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/wizard-look-effect-shadow.png"
+  },
+  {
+   "id": "wizard-look-colour-accent",
+   "title": "Setup · Look, kleur = accentkleur",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify/setup",
+   "docTitle": "Set up Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify/setup",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: legend: \"logo.png\" (67>1) | span: \"Remove\" (63>1) | filepond--assistant-7s1v2xfes: \"logo.png Upload complete\" (201>1)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "s-preset-bar: \"Northwind Games\"",
+      "span: \"Northwind Games\""
+     ],
+     "popups": [
+      "ps-navigation-items 282,18 82x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/2381"
+     ],
+     "card": "-1271..1046 of 844",
+     "topbar": "brand 26..206, actions 282..364",
+     "scope": "simplify",
+     "boxes": [],
+     "filamentButtons": [
+      "\"Back\"",
+      "\"Next\""
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/wizard-look-colour-accent.png"
+  },
+  {
+   "id": "server-installing",
+   "title": "Server · New World (installeert)",
+   "stand": "phone390-dark",
+   "url": "/server/sm3ryksg/console",
+   "docTitle": "New World - Simplify",
+   "main": {
+    "url": "/server/sm3ryksg/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1517 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1517,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1517 min 844px",
+       "div. 1517..1517 min 0px",
+       "div. 1517..1517 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1517 min 844px",
+       "fi-main.fi-width-screen-2xl 861 min auto",
+       "fi-page.fi-console-page 769 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 294,16 82x38"
+     ],
+     "card": "656..1517 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,729 320x570; terminal 15,669 360x640; bar top 1309",
+     "topbar": "brand 54..234, actions 294..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "Installation progress 14,310 362x332",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,668 362x705"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-installing.png"
+  },
+  {
+   "id": "server-install-failed",
+   "title": "Server · Broken Install (installatie mislukt)",
+   "stand": "phone390-dark",
+   "url": "/server/mm5elhjc/console",
+   "docTitle": "Broken Install - Simplify",
+   "main": {
+    "url": "/server/mm5elhjc/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1466 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1466,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1466 min 844px",
+       "div. 1466..1466 min 0px",
+       "div. 1466..1466 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1466 min 844px",
+       "fi-main.fi-width-screen-2xl 861 min auto",
+       "fi-page.fi-console-page 769 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 294,16 82x38"
+     ],
+     "card": "605..1466 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,678 320x570; terminal 15,618 360x640; bar top 1258",
+     "topbar": "brand 54..234, actions 294..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "Installation progress 14,310 362x281",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,617 362x705"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-install-failed.png"
+  },
+  {
+   "id": "notify-pinned",
+   "title": "Meldingen · vastgezette aankondiging bovenaan",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2037 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2037,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-app fi-body-has-topbar block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-topbar-ctn 0..0 min 0px",
+       "div.fi-layout 0..2037 min 0px",
+       "div. 2037..2037 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 2037 min 0px",
+       "fi-main.fi-width-screen-2xl 2037 min 0px",
+       "fi-page 2037 min 0px"
+      ]
+     },
+     "popups": [
+      "ps-navigation-items 294,18 82x38",
+      "ps-notify-menu 0,68 390x776 scrolls"
+     ],
+     "panes": [
+      "ps-notify-menu 776/1975"
+     ],
+     "card": "0..2037 of 844",
+     "topbar": "brand 14..194, actions 244..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 14,70 362x98",
+      "fi-callout.fi-color.fi-color-info 14,180 362x78"
+     ],
+     "dropdown": [
+      "ps-notify-menu 776px of 776 max, scrolls"
+     ],
+     "arrow": [
+      "ps-notify-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/notify-pinned.png"
+  },
+  {
+   "id": "settings-phone",
+   "title": "Instellingen · telefoon",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 282,18 82x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1368"
+     ],
+     "card": "180..1484 of 844",
+     "topbar": "brand 26..206, actions 282..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"Run setup again\" at y=353",
+      "\"\" at y=353"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/settings-phone.png"
+  },
+  {
+   "id": "setup-phone",
+   "title": "Setup · telefoon",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify/setup",
+   "docTitle": "Set up Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify/setup",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 282,18 82x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/2036"
+     ],
+     "card": "180..2152 of 844",
+     "topbar": "brand 26..206, actions 282..364",
+     "scope": "simplify",
+     "boxes": [],
+     "filamentButtons": [
+      "\"Next\""
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/setup-phone.png"
+  },
+  {
+   "id": "egg-kind-icon",
+   "title": "Overzicht · icoon per soort egg",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2037 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2037,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-app fi-body-has-topbar block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-topbar-ctn 0..0 min 0px",
+       "div.fi-layout 0..2037 min 0px",
+       "div. 2037..2037 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 2037 min 0px",
+       "fi-main.fi-width-screen-2xl 2037 min 0px",
+       "fi-page 2037 min 0px"
+      ]
+     },
+     "popups": [
+      "ps-navigation-items 294,18 82x38"
+     ],
+     "card": "0..2037 of 844",
+     "topbar": "brand 14..194, actions 244..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 14,70 362x98",
+      "fi-callout.fi-color.fi-color-info 14,180 362x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/egg-kind-icon.png"
+  },
+  {
+   "id": "pinned-overview",
+   "title": "Overzicht · vastgezette meldingen onder de bovenbalk",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2037 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2037,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-app fi-body-has-topbar block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-topbar-ctn 0..0 min 0px",
+       "div.fi-layout 0..2037 min 0px",
+       "div. 2037..2037 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 2037 min 0px",
+       "fi-main.fi-width-screen-2xl 2037 min 0px",
+       "fi-page 2037 min 0px"
+      ]
+     },
+     "popups": [
+      "ps-navigation-items 294,18 82x38"
+     ],
+     "card": "0..2037 of 844",
+     "topbar": "brand 14..194, actions 244..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 14,70 362x98",
+      "fi-callout.fi-color.fi-color-info 14,180 362x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/pinned-overview.png"
+  },
+  {
+   "id": "account-page",
+   "title": "Accountmenu · pagina van een add-on in het contentvak",
+   "stand": "phone390-dark",
+   "url": "/directory-account",
+   "docTitle": "Directory account - Northwind Games",
+   "main": {
+    "url": "/directory-account",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 282,18 82x38"
+     ],
+     "card": "136..768 of 844",
+     "topbar": "brand 26..206, actions 282..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "136..832 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/account-page.png"
+  },
+  {
+   "id": "connections",
+   "title": "Accountmenu · Connections",
+   "stand": "phone390-dark",
+   "url": "/connections",
+   "docTitle": "Connections - Northwind Games",
+   "main": {
+    "url": "/connections",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 282,18 82x38"
+     ],
+     "card": "136..768 of 844",
+     "topbar": "brand 26..206, actions 282..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "136..832 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/connections.png"
+  },
+  {
+   "id": "connections-connect",
+   "title": "Connections · pop-up van een koppeling",
+   "stand": "phone390-dark",
+   "url": "/connections",
+   "docTitle": "Connections - Northwind Games",
+   "main": {
+    "url": "/connections",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 282,18 82x38",
+      "fi-modal-window.fi-modal-window-has-close-btn.fi-modal-windo 16,152 358x540"
+     ],
+     "card": "136..768 of 844",
+     "topbar": "brand 26..206, actions 282..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "136..832 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/connections-connect.png"
+  },
+  {
+   "id": "bell-customize",
+   "title": "Meldingen · alle opties in het bel-blad",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "tallnoscroll",
+      "text": "page is taller than the window (2037 > 844), nothing scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2037,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-app fi-body-has-topbar block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-topbar-ctn 0..0 min 0px",
+       "div.fi-layout 0..2037 min 0px",
+       "div. 2037..2037 min 0px",
+       "div.ps-modal-layer.ps-ui 0..844 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 2037 min 0px",
+       "fi-main.fi-width-screen-2xl 2037 min 0px",
+       "fi-page 2037 min 0px"
+      ]
+     },
+     "popups": [
+      "ps-navigation-items 294,18 82x38",
+      "ps-modal 0,12 390x832"
+     ],
+     "panes": [
+      "ps-modal-body 759/2659"
+     ],
+     "card": "0..2037 of 844",
+     "topbar": "brand 14..194, actions 244..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 14,70 362x98",
+      "fi-callout.fi-color.fi-color-info 14,180 362x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/bell-customize.png"
+  },
+  {
+   "id": "server-install-buttons",
+   "title": "Server · installeert, geen Start/Restart",
+   "stand": "phone390-dark",
+   "url": "/server/sm3ryksg/console",
+   "docTitle": "New World - Simplify",
+   "main": {
+    "url": "/server/sm3ryksg/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1517 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1517,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1517 min 844px",
+       "div. 1517..1517 min 0px",
+       "div. 1517..1517 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1517 min 844px",
+       "fi-main.fi-width-screen-2xl 861 min auto",
+       "fi-page.fi-console-page 769 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 294,16 82x38"
+     ],
+     "card": "656..1517 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,729 320x570; terminal 15,669 360x640; bar top 1309",
+     "topbar": "brand 54..234, actions 294..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "Installation progress 14,310 362x332",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,668 362x705"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-install-buttons.png"
+  },
+  {
+   "id": "quick-commands",
+   "title": "Server · telefoon: quick commands",
+   "stand": "phone390-dark",
+   "url": "/server/r84wmb43/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/r84wmb43/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1353 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1353,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1353 min 844px",
+       "div. 1353..1353 min 0px",
+       "div. 1353..1353 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1353 min 844px",
+       "fi-main.fi-width-screen-2xl 901 min auto",
+       "fi-page.fi-console-page 821 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 294,16 82x38"
+     ],
+     "card": "452..1353 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,513 320x570; terminal 15,453 360x692; bar top 1145",
+     "topbar": "brand 54..234, actions 294..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,452 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/quick-commands.png"
+  },
+  {
+   "id": "host-phone-health",
+   "title": "Admin-pagina · telefoon, /admin/health",
+   "stand": "phone390-dark",
+   "url": "/admin/health",
+   "docTitle": "Health - Northwind Games",
+   "main": {
+    "url": "/admin/health",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 282,18 82x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1112"
+     ],
+     "card": "180..1228 of 844",
+     "topbar": "brand 26..206, actions 282..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/host-phone-health.png"
+  },
+  {
+   "id": "host-phone-servers",
+   "title": "Admin-pagina · telefoon, /admin/servers",
+   "stand": "phone390-dark",
+   "url": "/admin/servers",
+   "docTitle": "Servers - Northwind Games",
+   "main": {
+    "url": "/admin/servers",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"Creative Builds\" (111>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"All the Mods 10\" (111>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Valheim Vikings\" (115>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Palworld Island\" (111>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Rust Weekend\" (109>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Counter-Strike 2\" (120>101) (+1)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25565play.example.com:25565play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25566play.example.com:25566play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25567play.example.com:25567play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25568play.example.com:25568play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25569play.example.com:25569play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25570play.example.com:25570play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25571play.example.com:25571play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25572play.example.com:25572play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25573play.example.com:25573play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25574play.example.com:25574play.e\""
+     ],
+     "popups": [
+      "ps-navigation-items 282,18 82x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1194"
+     ],
+     "card": "180..1310 of 844",
+     "topbar": "brand 26..206, actions 282..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/host-phone-servers.png"
+  },
+  {
+   "id": "phone-frame-overview",
+   "title": "Telefoon · overzicht: bel en account bovenin, balk onderin",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2037 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2037,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-app fi-body-has-topbar block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-topbar-ctn 0..0 min 0px",
+       "div.fi-layout 0..2037 min 0px",
+       "div. 2037..2037 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 2037 min 0px",
+       "fi-main.fi-width-screen-2xl 2037 min 0px",
+       "fi-page 2037 min 0px"
+      ]
+     },
+     "popups": [
+      "ps-navigation-items 294,18 82x38"
+     ],
+     "card": "0..2037 of 844",
+     "topbar": "brand 14..194, actions 244..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 14,70 362x98",
+      "fi-callout.fi-color.fi-color-info 14,180 362x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/phone-frame-overview.png"
+  },
+  {
+   "id": "phone-sheet-bell",
+   "title": "Telefoon · meldingen als blad",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2037 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2037,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-app fi-body-has-topbar block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-topbar-ctn 0..0 min 0px",
+       "div.fi-layout 0..2037 min 0px",
+       "div. 2037..2037 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 2037 min 0px",
+       "fi-main.fi-width-screen-2xl 2037 min 0px",
+       "fi-page 2037 min 0px"
+      ]
+     },
+     "popups": [
+      "ps-navigation-items 294,18 82x38",
+      "ps-notify-menu 0,68 390x776 scrolls"
+     ],
+     "panes": [
+      "ps-notify-menu 776/1975"
+     ],
+     "card": "0..2037 of 844",
+     "topbar": "brand 14..194, actions 244..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 14,70 362x98",
+      "fi-callout.fi-color.fi-color-info 14,180 362x78"
+     ],
+     "dropdown": [
+      "ps-notify-menu 776px of 776 max, scrolls"
+     ],
+     "arrow": [
+      "ps-notify-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/phone-sheet-bell.png"
+  },
+  {
+   "id": "phone-sheet-customize",
+   "title": "Telefoon · Customize (accountmenu) als blad",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2037 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2037,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-app fi-body-has-topbar block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-topbar-ctn 0..0 min 0px",
+       "div.fi-layout 0..2037 min 0px",
+       "div. 2037..2037 min 0px",
+       "div.ps-ui.dark 2037..2037 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 2037 min 0px",
+       "fi-main.fi-width-screen-2xl 2037 min 0px",
+       "fi-page 2037 min 0px"
+      ]
+     },
+     "popups": [
+      "ps-navigation-items 294,18 82x38",
+      "ps-overview-appearance-menu 0,260 390x584"
+     ],
+     "card": "0..2037 of 844",
+     "topbar": "brand 14..194, actions 244..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 14,70 362x98",
+      "fi-callout.fi-color.fi-color-info 14,180 362x78"
+     ],
+     "dropdown": [
+      "ps-overview-appearance-menu 584px of 776 max"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/phone-sheet-customize.png"
+  },
+  {
+   "id": "phone-sheet-groups",
+   "title": "Telefoon · Server groups als blad",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2037 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2037,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-app fi-body-has-topbar block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-topbar-ctn 0..0 min 0px",
+       "div.fi-layout 0..2037 min 0px",
+       "div. 2037..2037 min 0px",
+       "div.ps-ui.dark 2037..2037 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 2037 min 0px",
+       "fi-main.fi-width-screen-2xl 2037 min 0px",
+       "fi-page 2037 min 0px"
+      ]
+     },
+     "popups": [
+      "ps-navigation-items 292,18 84x38",
+      "ps-overview-groups-menu 0,380 390x464"
+     ],
+     "card": "0..2037 of 844",
+     "topbar": "brand 14..194, actions 242..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 14,70 362x98",
+      "fi-callout.fi-color.fi-color-info 14,180 362x78"
+     ],
+     "dropdown": [
+      "ps-overview-groups-menu 464px of 776 max"
+     ],
+     "arrow": [
+      "ps-overview-groups-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/phone-sheet-groups.png"
+  },
+  {
+   "id": "phone-sheet-account",
+   "title": "Telefoon · account als blad",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2037 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2037,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-app fi-body-has-topbar block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-topbar-ctn 0..0 min 0px",
+       "div.fi-layout 0..2037 min 0px",
+       "div. 2037..2037 min 0px",
+       "div.ps-ui.dark 2037..2037 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 2037 min 0px",
+       "fi-main.fi-width-screen-2xl 2037 min 0px",
+       "fi-page 2037 min 0px"
+      ]
+     },
+     "popups": [
+      "ps-navigation-items 294,18 82x38",
+      "ps-account-actions 0,362 390x482"
+     ],
+     "card": "0..2037 of 844",
+     "topbar": "brand 14..194, actions 244..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 14,70 362x98",
+      "fi-callout.fi-color.fi-color-info 14,180 362x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/phone-sheet-account.png"
+  },
+  {
+   "id": "phone-sheet-more",
+   "title": "Telefoon · server More als blad",
+   "stand": "phone390-dark",
+   "url": "/server/r84wmb43/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/r84wmb43/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1353 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1353,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1353 min 844px",
+       "div. 1353..1353 min 0px",
+       "div. 1353..1353 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1353 min 844px",
+       "fi-main.fi-width-screen-2xl 901 min auto",
+       "fi-page.fi-console-page 821 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 294,16 82x38",
+      "ps-phone-more-menu 0,118 390x726 scrolls"
+     ],
+     "panes": [
+      "ps-phone-more-menu 726/913"
+     ],
+     "card": "452..1353 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,513 320x570; terminal 15,453 360x692; bar top 1145",
+     "topbar": "brand 54..234, actions 294..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,452 362x757"
+     ],
+     "dropdown": [
+      "ps-phone-more-menu 726px of 776 max, scrolls"
+     ],
+     "arrow": [
+      "ps-phone-more-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/phone-sheet-more.png"
+  },
+  {
+   "id": "phone-frame-host",
+   "title": "Telefoon · Admin opent het menu als pagina",
+   "stand": "phone390-dark",
+   "url": "/admin/servers#menu",
+   "docTitle": "Servers - Northwind Games",
+   "main": {
+    "url": "/admin/servers",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 282,18 82x38"
+     ],
+     "topbar": "brand 26..206, actions 282..364",
+     "scope": "simplify",
+     "boxes": []
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/phone-frame-host.png"
+  },
+  {
+   "id": "phone-admin-crumb",
+   "title": "Telefoon · Admin-pagina met kruimelpad als titel",
+   "stand": "phone390-dark",
+   "url": "/admin/eggs",
+   "docTitle": "Eggs - Northwind Games",
+   "main": {
+    "url": "/admin/eggs",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 282,18 82x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/823"
+     ],
+     "card": "180..939 of 844",
+     "topbar": "brand 26..206, actions 282..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/phone-admin-crumb.png"
+  },
+  {
+   "id": "phone-admin-swipe",
+   "title": "Telefoon · swipe vanaf links: terug naar het menu",
+   "stand": "phone390-dark",
+   "url": "/admin/eggs",
+   "docTitle": "Eggs - Northwind Games",
+   "main": {
+    "url": "/admin/eggs",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 282,18 82x38"
+     ],
+     "topbar": "brand 26..206, actions 282..364",
+     "scope": "simplify",
+     "boxes": []
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/phone-admin-swipe.png"
+  },
+  {
+   "id": "phone-eggs",
+   "title": "Telefoon · Eggs als korte rijen (Simplify)",
+   "stand": "phone390-dark",
+   "url": "/admin/eggs",
+   "docTitle": "Eggs - Northwind Games",
+   "main": {
+    "url": "/admin/eggs",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 282,18 82x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/823"
+     ],
+     "card": "180..939 of 844",
+     "topbar": "brand 26..206, actions 282..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/phone-eggs.png"
+  },
+  {
+   "id": "phone-eggs-legacy",
+   "title": "Telefoon · Eggs in het legacy-paneel (Pelicans tabel)",
+   "stand": "phone390-dark",
+   "url": "/admin/eggs",
+   "docTitle": "Eggs - Northwind Games",
+   "main": {
+    "url": "/admin/eggs",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2466 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2466,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-admin fi-body-has-navigation fi-body-has-sidebar-collapsible-on-desktop flex min 844px",
+      "ps": false,
+      "kids": [
+       "div. 0..0 min auto",
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout-sidebar-toggle-btn-ctn.lg:fi-hidden 0..44 min auto",
+       "div.fi-layout 44..2466 min 0px",
+       "div. 2466..2466 min auto"
+      ],
+      "inner": [
+       "fi-main-ctn 2422 min 0px",
+       "fi-main.fi-width-screen-2xl 2366 min auto",
+       "fi-page.fi-resource-list-records-page 2366 min 0px"
+      ]
+     },
+     "card": "44..2410 of 844",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/phone-eggs-legacy.png"
+  },
+  {
+   "id": "phone-unsaved",
+   "title": "Telefoon · Changes made met Save",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 282,18 82x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1368"
+     ],
+     "card": "-133..1171 of 844",
+     "topbar": "brand 26..206, actions 282..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"Run setup again\" at y=40",
+      "\"\" at y=40"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/phone-unsaved.png"
+  },
+  {
+   "id": "phone-unsaved-leave",
+   "title": "Telefoon · weggaan vraagt eerst",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (868 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 868,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-admin fi-body-has-navigation fi-body-has-sidebar-collapsible-on-desktop block min 100%",
+      "ps": true,
+      "kids": [
+       "div. 0..0 min 0px",
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..844 min 0px",
+       "div. 844..844 min 0px",
+       "div.s-unsaved 714..768 min 0px",
+       "a. 846..866 min 0px",
+       "div.s-unsaved-layer 0..844 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 588 min 0px",
+       "fi-main.fi-width-screen-2xl 1304 min 0px",
+       "fi-page 1278 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 282,18 82x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1368"
+     ],
+     "card": "-133..1171 of 844",
+     "topbar": "brand 26..206, actions 282..364",
+     "scope": "simplify",
+     "boxes": [
+      "s-unsaved-dialog 16,340 358x165"
+     ],
+     "actionsBelow": [
+      "\"Run setup again\" at y=40",
+      "\"\" at y=40"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/phone-unsaved-leave.png"
+  },
+  {
+   "id": "pull-refresh",
+   "title": "App · overzicht naar beneden vegen",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2043 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2043,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-app fi-body-has-topbar block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-topbar-ctn 0..0 min 0px",
+       "div.fi-layout 0..2043 min 0px",
+       "div. 2043..2043 min 0px",
+       "div.s-pull.is-ready 53..107 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 2043 min 0px",
+       "fi-main.fi-width-screen-2xl 2043 min 0px",
+       "fi-page 2043 min 0px"
+      ]
+     },
+     "popups": [
+      "ps-navigation-items 288,18 88x44"
+     ],
+     "card": "0..2043 of 844",
+     "topbar": "brand 14..194, actions 232..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 14,76 362x98",
+      "fi-callout.fi-color.fi-color-info 14,186 362x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/pull-refresh.png"
+  },
+  {
+   "id": "pull-settings",
+   "title": "App · instellingen naar beneden vegen",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": false,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 276,18 88x44"
+     ],
+     "panes": [
+      "fi-main-ctn 582/1376"
+     ],
+     "card": "186..1498 of 844",
+     "topbar": "brand 26..206, actions 276..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"Run setup again\" at y=363",
+      "\"\" at y=359"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ],
+     "box": "186..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/pull-settings.png"
+  },
+  {
+   "id": "overview",
+   "title": "Klant · overzicht",
+   "stand": "klant-phone390-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (954 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 954,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-app fi-body-has-topbar block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-topbar-ctn 0..0 min 0px",
+       "div.fi-layout 0..954 min 0px",
+       "div. 954..954 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 954 min 0px",
+       "fi-main.fi-width-screen-2xl 954 min 0px",
+       "fi-page 954 min 0px"
+      ]
+     },
+     "popups": [
+      "ps-navigation-items 294,18 82x38"
+     ],
+     "card": "0..954 of 844",
+     "topbar": "brand 14..194, actions 294..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 14,70 362x98",
+      "fi-callout.fi-color.fi-color-info 14,180 362x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-phone390-dark/overview.png"
+  },
+  {
+   "id": "account",
+   "title": "Klant · accountmenu",
+   "stand": "klant-phone390-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (954 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 954,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-app fi-body-has-topbar block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-topbar-ctn 0..0 min 0px",
+       "div.fi-layout 0..954 min 0px",
+       "div. 954..954 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 954 min 0px",
+       "fi-main.fi-width-screen-2xl 954 min 0px",
+       "fi-page 954 min 0px"
+      ]
+     },
+     "popups": [
+      "ps-navigation-items 294,18 82x38",
+      "ps-account-actions 0,362 390x482"
+     ],
+     "card": "0..954 of 844",
+     "topbar": "brand 14..194, actions 294..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 14,70 362x98",
+      "fi-callout.fi-color.fi-color-info 14,180 362x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-phone390-dark/account.png"
+  },
+  {
+   "id": "server-console",
+   "title": "Klant · console",
+   "stand": "klant-phone390-dark",
+   "url": "/server/r84wmb43/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/r84wmb43/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1353 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1353,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1353 min 844px",
+       "div. 1353..1353 min 0px",
+       "div. 1353..1353 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1353 min 844px",
+       "fi-main.fi-width-screen-2xl 901 min auto",
+       "fi-page.fi-console-page 821 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 294,16 82x38"
+     ],
+     "card": "452..1353 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,513 320x570; terminal 15,453 360x692; bar top 1145",
+     "topbar": "brand 54..234, actions 294..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,452 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-phone390-dark/server-console.png"
+  },
+  {
+   "id": "server-more",
+   "title": "Klant · ⋯-menu",
+   "stand": "klant-phone390-dark",
+   "url": "/server/r84wmb43/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/r84wmb43/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1353 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1353,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1353 min 844px",
+       "div. 1353..1353 min 0px",
+       "div. 1353..1353 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1353 min 844px",
+       "fi-main.fi-width-screen-2xl 901 min auto",
+       "fi-page.fi-console-page 821 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 294,16 82x38",
+      "ps-info-menu 0,388 390x456"
+     ],
+     "card": "452..1353 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,513 320x570; terminal 15,453 360x692; bar top 1145",
+     "topbar": "brand 54..234, actions 294..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,452 362x757"
+     ],
+     "dropdown": [
+      "ps-info-menu 456px of 776 max"
+     ],
+     "arrow": [
+      "ps-info-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-phone390-dark/server-more.png"
+  }
+ ],
+ "problems": [
+  "phone390-dark setup-done: ok {\"scroll\":844,\"window\":844}",
+  "phone390-dark setup-done-host: ok {\"shell\":true,\"page\":0,\"card\":0}",
+  "phone390-dark wizard-look-upload: held {\"logo\":\"{\\\"b9d21f5f-8765-43d7-b9c0-6cd1490c3be6\\\":\\\"livewire-file:be3b9718:ksvaHwn8HFXCBUIQAmjpFF0e68WFxNIsB9BvTz6Q.png\\\"}\",\"show\":\"logo\"}, uploads [\"200 /livewire-23b49de9/update\",\"200 /livewire-23b49de9/upload-file\",\"200 /livewire-23b49de9/update\",\"200 /livewire-23b49de9/preview-file/ksvaHwn8HFXCBUIQAmjpFF0e68WFxNIsB9BvTz6Q.png\"]",
+  "phone390-dark wizard-look-show-logo: ok {\"img\":true,\"text\":false,\"shadow\":\"none\",\"filter\":\"none\",\"color\":\"rgb(250, 250, 250)\",\"fill\":\"rgb(250, 250, 250)\",\"background\":\"none\"}",
+  "phone390-dark wizard-look-show-text: ok {\"img\":false,\"text\":true,\"shadow\":\"none\",\"filter\":\"none\",\"color\":\"rgb(250, 250, 250)\",\"fill\":\"rgb(250, 250, 250)\",\"background\":\"none\"}",
+  "phone390-dark wizard-look-show-both: ok {\"img\":true,\"text\":true,\"shadow\":\"none\",\"filter\":\"none\",\"color\":\"rgb(250, 250, 250)\",\"fill\":\"rgb(250, 250, 250)\",\"background\":\"none\"}",
+  "phone390-dark wizard-look-effect-glow: ok {\"effect\":\"color(srgb 0.169209 0.498104 1.0229 / 0.8) 0px 0px 10px, oklch(0.623 0.214 259.815) 0px 0px 2px\"}",
+  "phone390-dark wizard-look-effect-shadow: ok {\"effect\":\"rgba(0, 0, 0, 0.35) 0px 2px 0px, rgba(0, 0, 0, 0.35) 0px 3px 8px\"}",
+  "phone390-dark wizard-look-colour-accent: ok {\"before\":{\"color\":\"rgb(250, 250, 250)\",\"fill\":\"rgb(250, 250, 250)\",\"background\":\"none\"},\"after\":{\"color\":\"oklch(0.623 0.214 259.815)\",\"fill\":\"oklch(0.623 0.214 259.815)\",\"background\":\"none\"}}",
+  "phone390-dark server-installing: ok {\"shown\":true,\"text\":\"Setting up New World This takes a few minutes, longer for big games. You can leave this page; the server keeps installing. 1:25 Notify me Server created Resources reserved Installing Paper Downloading the game files 3 Re\",\"eulaLink\":false,\"start\":false}",
+  "phone390-dark server-install-failed: ok {\"shown\":true,\"text\":\"The installation did not finish The last lines of the installation log are below. Nothing was started. Try again Server created Resources reserved Installing Paper Stopped with an error 3 Ready to start Everything opens\",\"eulaLink\":false,\"start\":true}",
+  "phone390-dark notify-pinned: ok {\"shown\":true,\"items\":[\"Maintenance on Saturday\"],\"close\":false,\"first\":false}",
+  "phone390-dark settings-phone: ok {\"nav\":true,\"page\":844,\"window\":844}",
+  "phone390-dark setup-phone: ok {\"step\":1609,\"inner\":true,\"width\":366}",
+  "phone390-dark egg-kind-icon: ok {\"picture\":false,\"icon\":\"#ps-kind-nodejs\"}",
+  "phone390-dark egg-kind-steam: ok {\"steam\":\"#ps-steam\"}",
+  "phone390-dark pinned-overview: ok {\"barTop\":70,\"topBottom\":56,\"barLeft\":14,\"barRight\":376,\"toolsLeft\":14,\"toolsRight\":376,\"toolsTop\":272}",
+  "phone390-dark account-page: ok {\"from\":\"overview\",\"onTop\":true,\"loads\":0,\"at\":{\"path\":\"/directory-account\",\"text\":true,\"shell\":true,\"header\":true,\"frames\":0}}",
+  "phone390-dark account-page-server: ok {\"from\":\"server\",\"onTop\":true,\"loads\":0,\"at\":{\"path\":\"/directory-account\",\"text\":true,\"shell\":true,\"header\":true,\"frames\":0}}",
+  "phone390-dark connections: ok {\"loads\":0,\"path\":\"/connections\",\"rows\":1,\"shell\":true,\"header\":true}",
+  "phone390-dark connections-connect: ok {\"modal\":true,\"button\":{\"classes\":\"fi-ac-btn-action fi-btn fi-size-md\",\"bg\":\"oklab(0.999994 0.0000455678 0.0000200868 / 0.05)\",\"color\":\"rgb(255, 255, 255)\",\"border\":\"solid 0px\",\"label\":null}}",
+  "phone390-dark bell-customize: ok {\"shown\":true,\"pelican\":true}",
+  "phone390-dark install-buttons: ok {\"shown\":[]}",
+  "phone390-dark quick-commands: ok {\"adds\":0,\"gone\":0,\"hidden\":0}",
+  "phone390-dark host-phone-health: ok {\"tools\":2,\"inside\":true,\"bar\":true}",
+  "phone390-dark host-phone-servers: ok {\"tools\":4,\"inside\":true,\"bar\":true}",
+  "phone390-dark phone-frame-overview: ok {\"menuButton\":false,\"bell\":true,\"account\":true,\"servers\":[\"Servers\",\"New\",\"Admin\"]}",
+  "phone390-dark phone-sheet-bell: ok {\"width\":390,\"bottom\":844,\"height\":776,\"window\":[390,844]}",
+  "phone390-dark phone-sheet-close: ok {\"open\":false,\"url\":true,\"hit\":\"header.ps-top\",\"after\":{\"tap\":{\"target\":\"header\",\"prevented\":true},\"menu\":false,\"style\":\"display: none;\",\"menus\":1,\"roots\":1},\"ms\":837}",
+  "phone390-dark phone-sheet-customize: ok {\"custom\":{\"width\":390,\"bottom\":844,\"height\":584,\"window\":[390,844]},\"groups\":{\"width\":390,\"bottom\":844,\"height\":464,\"window\":[390,844]}}",
+  "phone390-dark phone-sheet-account: ok {\"width\":390,\"bottom\":844,\"height\":482,\"window\":[390,844]}",
+  "phone390-dark phone-frame-server: ok {\"menuButton\":false,\"back\":38,\"more\":{\"width\":390,\"bottom\":844,\"height\":726,\"window\":[390,844]}}",
+  "phone390-dark phone-admin-accent: ok {\"overviewPlus\":\"rgb(192, 192, 197)\",\"admin\":\"rgb(192, 192, 197)\"}",
+  "phone390-dark phone-frame-host: ok {\"tabs\":[\"Servers\",\"New\",\"Admin\"],\"menu\":true,\"leaves\":3,\"page\":false,\"below\":true,\"crumb\":null,\"heading\":false,\"plus\":\"rgb(192, 192, 197)\",\"alpine\":{\"open\":true,\"here\":\"servers/serverresource\",\"crumb\":{\"group\":\"Servers\",\"page\":\"Servers\",\"icon\":\"host\",\"color\":\"#5fb87a\",\"sub\":\"\"},\"url\":\"/admin/servers#menu\"},\"cardBox\":false,\"pageScroll\":0}",
+  "phone390-dark phone-admin-crumb: ok {\"tabs\":[\"Servers\",\"New\",\"Admin\"],\"menu\":false,\"leaves\":0,\"page\":true,\"below\":false,\"crumb\":\"Servers Eggs\",\"heading\":false,\"plus\":\"rgb(192, 192, 197)\",\"alpine\":{\"open\":false,\"here\":\"servers/eggresource\",\"crumb\":{\"group\":\"Servers\",\"page\":\"Eggs\",\"icon\":\"host\",\"color\":\"#5fb87a\",\"sub\":\"\"},\"url\":\"/admin/eggs\"},\"cardBox\":false,\"pageScroll\":0,\"leafText\":\"Eggs\"}",
+  "phone390-dark phone-admin-swipe: ok {\"tabs\":[\"Servers\",\"New\",\"Admin\"],\"menu\":true,\"leaves\":3,\"page\":false,\"below\":true,\"crumb\":null,\"heading\":false,\"plus\":\"rgb(192, 192, 197)\",\"alpine\":{\"open\":true,\"here\":\"servers/eggresource\",\"crumb\":{\"group\":\"Servers\",\"page\":\"Eggs\",\"icon\":\"host\",\"color\":\"#5fb87a\",\"sub\":\"\"},\"url\":\"/admin/eggs\"},\"cardBox\":false,\"pageScroll\":0}",
+  "phone390-dark phone-admin-crumb-back: ok {\"tabs\":[\"Servers\",\"New\",\"Admin\"],\"menu\":true,\"leaves\":3,\"page\":false,\"below\":true,\"crumb\":null,\"heading\":false,\"plus\":\"rgb(192, 192, 197)\",\"alpine\":{\"open\":true,\"here\":\"servers/eggresource\",\"crumb\":{\"group\":\"Servers\",\"page\":\"Eggs\",\"icon\":\"host\",\"color\":\"#5fb87a\",\"sub\":\"\"},\"url\":\"/admin/eggs\"},\"cardBox\":false,\"pageScroll\":0}",
+  "phone390-dark phone-eggs: ok {\"rows\":8,\"tallest\":69,\"checkboxes\":0,\"head\":0,\"descriptions\":0,\"names\":8,\"wide\":false}",
+  "phone390-dark phone-eggs-legacy: ok {\"rows\":8,\"tallest\":285,\"checkboxes\":8,\"head\":1,\"descriptions\":8,\"names\":8,\"wide\":false}",
+  "phone390-dark phone-unsaved: ok {\"save\":true,\"bar\":true,\"asked\":true,\"stayed\":true,\"gone\":true}",
+  "phone390-dark pull-refresh theme: WRONG the page is light in a dark round",
+  "phone390-dark pull-refresh: ok {\"mark\":{\"shown\":true,\"ready\":true},\"loads\":1,\"at\":\"/simplify\"}",
+  "phone390-dark pull-settings theme: WRONG the page is light in a dark round",
+  "phone390-dark pull-settings: ok {\"mark\":null,\"loads\":0,\"at\":\"/admin/simplify\"}",
+  "phone390-dark pull-native-off: ok {\"overview\":[\"none\",\"none\"],\"settings\":[\"none\",\"none\"]}",
+  "phone390-dark pull-sheet: ok {\"box\":{\"x\":195,\"y\":272},\"shut\":true,\"loads\":0}",
+  "klant-phone390-dark suspended-card: ok {\"card\":true,\"note\":true,\"inside\":true,\"power\":false,\"peek\":0}"
+ ]
+}

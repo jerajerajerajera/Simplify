@@ -1,0 +1,58 @@
+{
+    "rounds": 5,
+    "parts": {
+        "AdminMenu::collect": {
+            "ms": 7.3,
+            "queries": 0
+        },
+        "Settings::menu": {
+            "ms": 2,
+            "queries": 0
+        },
+        "Settings::addonRows": {
+            "ms": 1,
+            "queries": 0
+        },
+        "Settings::pelicanTabs": {
+            "ms": 0.6,
+            "queries": 0
+        },
+        "AdminTree::build": {
+            "ms": 0,
+            "queries": 0
+        },
+        "AdminMenu::createServer": {
+            "ms": 0.3,
+            "queries": 0
+        },
+        "HostHealth::checks": {
+            "ms": 0,
+            "queries": 0
+        },
+        "HostHealth::cached": {
+            "ms": 0,
+            "queries": 0
+        },
+        "Bell::page": {
+            "ms": 6.1,
+            "queries": 5
+        },
+        "AdminTop::initial": {
+            "ms": 8.8,
+            "queries": 6
+        },
+        "AdminTop (whole component)": {
+            "ms": 17.1,
+            "queries": 6
+        },
+        "AdminSide (whole component)": {
+            "ms": 3.2,
+            "queries": 0
+        }
+    },
+    "sizes": {
+        "AdminTop initial JSON": 14091,
+        "AdminTop HTML": 99244,
+        "AdminSide HTML": 36141
+    }
+}

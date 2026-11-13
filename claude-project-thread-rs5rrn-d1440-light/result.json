@@ -1,0 +1,1640 @@
+{
+ "base": "http://127.0.0.1:8001",
+ "screens": [
+  {
+   "id": "server-console",
+   "title": "Server · Console (Survival SMP)",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Startup\" (67,898 198x40) | ps-widget \"Settings\" (67,938 198x40) | ps-widget \"Mounts\" (67,978 198x40) | ps-widget \"Webhooks\" (67,1018 198x40) | ps-widget \"Activity\" (67,1058 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 29.7 MB / ↑ 953.7 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,377 1040x380; terminal 291,309 1092x467; bar top 776",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-console.png"
+  },
+  {
+   "id": "server-console-typed",
+   "title": "Server · Console na een commando",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Startup\" (67,898 198x40) | ps-widget \"Settings\" (67,938 198x40) | ps-widget \"Mounts\" (67,978 198x40) | ps-widget \"Webhooks\" (67,1018 198x40) | ps-widget \"Activity\" (67,1058 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 29.7 MB / ↑ 953.7 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,377 1040x380; terminal 291,309 1092x467; bar top 776",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-console-typed.png"
+  },
+  {
+   "id": "server-console-big",
+   "title": "Server · Console vergroot",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Startup\" (67,898 198x40) | ps-widget \"Settings\" (67,938 198x40) | ps-widget \"Mounts\" (67,978 198x40) | ps-widget \"Webhooks\" (67,1018 198x40) | ps-widget \"Activity\" (67,1058 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 29.7 MB / ↑ 953.7 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,377 1040x380; terminal 291,309 1092x467; bar top 776",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-console-big.png"
+  },
+  {
+   "id": "server-more",
+   "title": "Server · ⋯-menu open",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Startup\" (67,898 198x40) | ps-widget \"Settings\" (67,938 198x40) | ps-widget \"Mounts\" (67,978 198x40) | ps-widget \"Webhooks\" (67,1018 198x40) | ps-widget \"Activity\" (67,1058 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 29.7 MB / ↑ 953.7 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls",
+      "ps-info-menu 1131,179 230x390"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,377 1040x380; terminal 291,309 1092x467; bar top 776",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,308 1094x532"
+     ],
+     "box": "308..840 of 900",
+     "dropdown": [
+      "ps-info-menu 390px of 600 max"
+     ],
+     "arrow": [
+      "ps-info-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-more.png"
+  },
+  {
+   "id": "server-colour",
+   "title": "Server · kleurkiezer open",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Startup\" (67,898 198x40) | ps-widget \"Settings\" (67,938 198x40) | ps-widget \"Mounts\" (67,978 198x40) | ps-widget \"Webhooks\" (67,1018 198x40) | ps-widget \"Activity\" (67,1058 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 29.7 MB / ↑ 953.7 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls",
+      "ps-dropdown.is-end.ps-color-dropdown 1113,179 248x205"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,377 1040x380; terminal 291,309 1092x467; bar top 776",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,308 1094x532"
+     ],
+     "box": "308..840 of 900",
+     "dropdown": [
+      "ps-dropdown.is-end.ps-color-dropdown 205px of 600 max"
+     ],
+     "arrow": [
+      "ps-dropdown.is-end.ps-color-dropdown no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-colour.png"
+  },
+  {
+   "id": "server-motd",
+   "title": "Server · MOTD-editor open",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Startup\" (67,898 198x40) | ps-widget \"Settings\" (67,938 198x40) | ps-widget \"Mounts\" (67,978 198x40) | ps-widget \"Webhooks\" (67,1018 198x40) | ps-widget \"Activity\" (67,1058 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 29.7 MB / ↑ 953.7 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,377 1040x380; terminal 291,309 1092x467; bar top 776",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-motd.png"
+  },
+  {
+   "id": "server-menu-advanced",
+   "title": "Server · menu, Advanced open",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 29.7 MB / ↑ 953.7 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "panes": [
+      "Server sections 530/799"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,377 1040x380; terminal 291,309 1092x467; bar top 776",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-menu-advanced.png"
+  },
+  {
+   "id": "server-console",
+   "title": "Server · Console",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Startup\" (67,898 198x40) | ps-widget \"Settings\" (67,938 198x40) | ps-widget \"Mounts\" (67,978 198x40) | ps-widget \"Webhooks\" (67,1018 198x40) | ps-widget \"Activity\" (67,1058 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 29.7 MB / ↑ 953.7 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,377 1040x380; terminal 291,309 1092x467; bar top 776",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-console.png"
+  },
+  {
+   "id": "server-files",
+   "title": "Server · Files",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/files",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/files",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Startup\" (67,898 198x40) | ps-widget \"Settings\" (67,938 198x40) | ps-widget \"Mounts\" (67,978 198x40) | ps-widget \"Webhooks\" (67,1018 198x40) | ps-widget \"Activity\" (67,1058 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 976.6 KB / ↑ 1.9 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-main-content 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-files.png"
+  },
+  {
+   "id": "server-files-rowmenu",
+   "title": "Server · Files, rijmenu open",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/files",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/files",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Startup\" (67,898 198x40) | ps-widget \"Settings\" (67,938 198x40) | ps-widget \"Mounts\" (67,978 198x40) | ps-widget \"Webhooks\" (67,1018 198x40) | ps-widget \"Activity\" (67,1058 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 976.6 KB / ↑ 1.9 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls",
+      "fi-dropdown-panel-dbcabrvm 1103,481 224x171"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-main-content 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-files-rowmenu.png"
+  },
+  {
+   "id": "server-files-folder",
+   "title": "Server · Files, map open",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/files/plugins",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/files/plugins",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Startup\" (67,898 198x40) | ps-widget \"Settings\" (67,938 198x40) | ps-widget \"Mounts\" (67,978 198x40) | ps-widget \"Webhooks\" (67,1018 198x40) | ps-widget \"Activity\" (67,1058 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 976.6 KB / ↑ 1.9 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-main-content 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-files-folder.png"
+  },
+  {
+   "id": "server-backups-tasks",
+   "title": "Server · Backups & tasks",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/backups",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/backups",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Startup\" (67,898 198x40) | ps-widget \"Settings\" (67,938 198x40) | ps-widget \"Mounts\" (67,978 198x40) | ps-widget \"Webhooks\" (67,1018 198x40) | ps-widget \"Activity\" (67,1058 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 976.6 KB / ↑ 1.9 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-main-content 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-backups-tasks.png"
+  },
+  {
+   "id": "server-tab-schedules",
+   "title": "Server · Backups & tasks › Schedules",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/schedules",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/schedules",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Startup\" (67,898 198x40) | ps-widget \"Settings\" (67,938 198x40) | ps-widget \"Mounts\" (67,978 198x40) | ps-widget \"Webhooks\" (67,1018 198x40) | ps-widget \"Activity\" (67,1058 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 976.6 KB / ↑ 1.9 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-main-content 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-tab-schedules.png"
+  },
+  {
+   "id": "server-backups-tasks-new",
+   "title": "Server · Backups & tasks, nieuw-dialoog open",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/backups",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/backups",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Startup\" (67,898 198x40) | ps-widget \"Settings\" (67,938 198x40) | ps-widget \"Mounts\" (67,978 198x40) | ps-widget \"Webhooks\" (67,1018 198x40) | ps-widget \"Activity\" (67,1058 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 976.6 KB / ↑ 1.9 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls",
+      "fi-modal-window.fi-modal-window-has-close-btn.fi-modal-windo 272,164 896x277"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-main-content 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-backups-tasks-new.png"
+  },
+  {
+   "id": "server-subdomain",
+   "title": "Server · Subdomain",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/subdomain",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/subdomain",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Startup\" (67,898 198x40) | ps-widget \"Settings\" (67,938 198x40) | ps-widget \"Mounts\" (67,978 198x40) | ps-widget \"Webhooks\" (67,1018 198x40) | ps-widget \"Activity\" (67,1058 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 976.6 KB / ↑ 1.9 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-main-content 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-subdomain.png"
+  },
+  {
+   "id": "server-minecraft",
+   "title": "Server · Minecraft",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/minecraft",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/minecraft",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Startup\" (67,898 198x40) | ps-widget \"Settings\" (67,938 198x40) | ps-widget \"Mounts\" (67,978 198x40) | ps-widget \"Webhooks\" (67,1018 198x40) | ps-widget \"Activity\" (67,1058 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 976.6 KB / ↑ 1.9 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "panes": [
+      "fi-page-main 530/1113"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-main-content 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-minecraft.png"
+  },
+  {
+   "id": "server-plugins",
+   "title": "Server · Plugins",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/plugins",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/plugins",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Startup\" (67,898 198x40) | ps-widget \"Settings\" (67,938 198x40) | ps-widget \"Mounts\" (67,978 198x40) | ps-widget \"Webhooks\" (67,1018 198x40) | ps-widget \"Activity\" (67,1058 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 976.6 KB / ↑ 1.9 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "panes": [
+      "fi-section-content-ctn 425/1236"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-main-content 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-plugins.png"
+  },
+  {
+   "id": "server-players",
+   "title": "Server · Players",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/players",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/players",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Startup\" (67,898 198x40) | ps-widget \"Settings\" (67,938 198x40) | ps-widget \"Mounts\" (67,978 198x40) | ps-widget \"Webhooks\" (67,1018 198x40) | ps-widget \"Activity\" (67,1058 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 976.6 KB / ↑ 1.9 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-main-content 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-players.png"
+  },
+  {
+   "id": "server-website",
+   "title": "Server · Website",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/website",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/website",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Startup\" (67,898 198x40) | ps-widget \"Settings\" (67,938 198x40) | ps-widget \"Mounts\" (67,978 198x40) | ps-widget \"Webhooks\" (67,1018 198x40) | ps-widget \"Activity\" (67,1058 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 976.6 KB / ↑ 1.9 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "panes": [
+      "fi-page-main 530/1531",
+      "s-fit 1535/1544"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-main-content 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [
+    {
+     "box": "315,1400 1044x420",
+     "url": "blank",
+     "w": 1044,
+     "h": 420,
+     "dark": false,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 420,
+      "pageScrollW": 1044,
+      "scope": "pelican"
+     }
+    }
+   ],
+   "shot": "d1440-light/server-website.png"
+  },
+  {
+   "id": "server-server-software",
+   "title": "Server · Server software",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/software",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/software",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Startup\" (67,898 198x40) | ps-widget \"Settings\" (67,938 198x40) | ps-widget \"Mounts\" (67,978 198x40) | ps-widget \"Webhooks\" (67,1018 198x40) | ps-widget \"Activity\" (67,1058 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 976.6 KB / ↑ 1.9 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "panes": [
+      "fi-page-main 530/678"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-main-content 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-server-software.png"
+  },
+  {
+   "id": "server-performance",
+   "title": "Server · Performance",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/performance",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/performance",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Startup\" (67,898 198x40) | ps-widget \"Settings\" (67,938 198x40) | ps-widget \"Mounts\" (67,978 198x40) | ps-widget \"Webhooks\" (67,1018 198x40) | ps-widget \"Activity\" (67,1058 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 976.6 KB / ↑ 1.9 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "panes": [
+      "fi-page-main 530/667"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-main-content 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-performance.png"
+  },
+  {
+   "id": "server-users",
+   "title": "Server · Users",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/subusers",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/subusers",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 976.6 KB / ↑ 1.9 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "panes": [
+      "Server sections 530/799"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-main-content 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-users.png"
+  },
+  {
+   "id": "server-users-new",
+   "title": "Server · Users, nieuw-dialoog open",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/subusers",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/subusers",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 976.6 KB / ↑ 1.9 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls",
+      "fi-modal-window.fi-modal-window-has-close-btn.fi-modal-windo 272,109 896x497"
+     ],
+     "panes": [
+      "Server sections 530/799"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-main-content 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-users-new.png"
+  },
+  {
+   "id": "server-databases",
+   "title": "Server · Databases",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/databases",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/databases",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 976.6 KB / ↑ 1.9 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "panes": [
+      "Server sections 530/799"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-main-content 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-databases.png"
+  },
+  {
+   "id": "server-databases-new",
+   "title": "Server · Databases, nieuw-dialoog open",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/databases",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/databases",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 976.6 KB / ↑ 1.9 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "panes": [
+      "Server sections 530/799"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-main-content 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-databases-new.png"
+  },
+  {
+   "id": "server-network",
+   "title": "Server · Network",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/allocations",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/allocations",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 976.6 KB / ↑ 1.9 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "panes": [
+      "Server sections 530/799"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-main-content 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-network.png"
+  },
+  {
+   "id": "server-startup",
+   "title": "Server · Startup",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/startup",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/startup",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 976.6 KB / ↑ 1.9 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "panes": [
+      "Server sections 530/799"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-main-content 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-startup.png"
+  },
+  {
+   "id": "server-settings",
+   "title": "Server · Settings",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/settings",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/settings",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 976.6 KB / ↑ 1.9 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "panes": [
+      "Server sections 530/799",
+      "fi-page-main 530/1158"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-main-content 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-settings.png"
+  },
+  {
+   "id": "server-mounts",
+   "title": "Server · Mounts",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/mounts",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/mounts",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 976.6 KB / ↑ 1.9 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "panes": [
+      "Server sections 530/799"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-main-content 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-mounts.png"
+  },
+  {
+   "id": "server-webhooks",
+   "title": "Server · Webhooks",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/webhook",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/webhook",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 976.6 KB / ↑ 1.9 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "panes": [
+      "Server sections 530/799"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-main-content 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-webhooks.png"
+  },
+  {
+   "id": "server-activity",
+   "title": "Server · Activity",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/activities",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/activities",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 976.6 KB / ↑ 1.9 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "panes": [
+      "Server sections 530/799"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-main-content 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-activity.png"
+  },
+  {
+   "id": "server-servers",
+   "title": "Server · Servers",
+   "stand": "d1440-light",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1219,32 185x38 scrolls"
+     ],
+     "panes": [
+      "Servers 756/1754"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, actions 942..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 176,114 1088x78",
+      "fi-callout.fi-color.fi-color-info 176,204 1088x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-servers.png"
+  },
+  {
+   "id": "server-admin",
+   "title": "Server · Admin",
+   "stand": "d1440-light",
+   "url": "/admin/health#menu",
+   "docTitle": "Health - Northwind Games",
+   "main": {
+    "url": "/admin/health",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "span: \"All servers\""
+     ],
+     "popups": [
+      "ps-navigation-items 1219,32 185x38 scrolls"
+     ],
+     "card": "86..834 of 900",
+     "topbar": "brand 36..361, actions 933..1404",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "86..880 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-admin.png"
+  },
+  {
+   "id": "server-addon-unsaved",
+   "title": "Server · add-on-formulier, Changes made",
+   "stand": "d1440-light",
+   "url": "/server/lfobyhkl/minecraft",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lfobyhkl/minecraft",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Startup\" (67,898 198x40) | ps-widget \"Settings\" (67,938 198x40) | ps-widget \"Mounts\" (67,978 198x40) | ps-widget \"Webhooks\" (67,1018 198x40) | ps-widget \"Activity\" (67,1058 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 976.6 KB / ↑ 1.9 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "panes": [
+      "fi-page-main 530/1113"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-main-content 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server-addon-unsaved.png"
+  },
+  {
+   "id": "server2-console",
+   "title": "Server · Console (Valheim Vikings)",
+   "stand": "d1440-light",
+   "url": "/server/7oivgv6t/console",
+   "docTitle": "Valheim Vikings - Simplify",
+   "main": {
+    "url": "/server/7oivgv6t/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Activity\" (67,894 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 29.7 MB / ↑ 953.7 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,377 1040x380; terminal 291,309 1092x467; bar top 776",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server2-console.png"
+  },
+  {
+   "id": "server3-console",
+   "title": "Server · Console (Skyblock, eigen icoon)",
+   "stand": "d1440-light",
+   "url": "/server/j1ywylai/console",
+   "docTitle": "Skyblock - Simplify",
+   "main": {
+    "url": "/server/j1ywylai/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Startup\" (67,898 198x40) | ps-widget \"Settings\" (67,938 198x40) | ps-widget \"Mounts\" (67,978 198x40) | ps-widget \"Webhooks\" (67,1018 198x40) | ps-widget \"Activity\" (67,1058 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 29.7 MB / ↑ 953.7 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,377 1040x380; terminal 291,309 1092x467; bar top 776",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server3-console.png"
+  },
+  {
+   "id": "server4-console",
+   "title": "Server · Console (Creative Builds, icoon laadt niet)",
+   "stand": "d1440-light",
+   "url": "/server/prcrryck/console",
+   "docTitle": "Creative Builds - Simplify",
+   "main": {
+    "url": "/server/prcrryck/console",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Startup\" (67,898 198x40) | ps-widget \"Settings\" (67,938 198x40) | ps-widget \"Mounts\" (67,978 198x40) | ps-widget \"Webhooks\" (67,1018 198x40) | ps-widget \"Activity\" (67,1058 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 29.7 MB / ↑ 953.7 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,377 1040x380; terminal 291,309 1092x467; bar top 776",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server4-console.png"
+  },
+  {
+   "id": "server4-files",
+   "title": "Server · Files (Creative Builds)",
+   "stand": "d1440-light",
+   "url": "/server/prcrryck/files",
+   "docTitle": "Creative Builds - Simplify",
+   "main": {
+    "url": "/server/prcrryck/files",
+    "w": 1440,
+    "h": 900,
+    "dark": false,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Startup\" (67,898 198x40) | ps-widget \"Settings\" (67,938 198x40) | ps-widget \"Mounts\" (67,978 198x40) | ps-widget \"Webhooks\" (67,1018 198x40) | ps-widget \"Activity\" (67,1058 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 29.7 MB / ↑ 953.7 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-main-content 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-light/server4-files.png"
+  }
+ ],
+ "problems": [
+  "d1440-light server-console-addon-action: ok [{\"label\":\"Audit action\",\"shown\":true}]",
+  "d1440-light server-console-typed: click .ps-console-grow: locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator('.ps-c",
+  "d1440-light server-console-big: click .ps-console-grow: locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator('.ps-c",
+  "d1440-light server-menu: Delete server NOT FOUND",
+  "d1440-light server-databases: click .fi-header-actions button, .fi-ac-btn-action, .fi-page-header-main-ctn button: locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator('.fi-h",
+  "d1440-light server-webhooks: nothing to click for .fi-header-actions button, .fi-ac-btn-action, .fi-page-header-main-ctn button",
+  "d1440-light server-addon-unsaved: ok {\"bar\":true,\"asked\":true,\"stayed\":true,\"url\":\"/server/lfobyhkl/minecraft\",\"gone\":true}",
+  "d1440-light server4-console: tab title ok: \"Creative Builds - Simplify\"",
+  "d1440-light server4-files: tab title ok: \"Creative Builds - Simplify\""
+ ]
+}

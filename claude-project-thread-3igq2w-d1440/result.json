@@ -1,0 +1,884 @@
+{
+ "base": "http://127.0.0.1:8001",
+ "screens": [
+  {
+   "id": "layers-server-more",
+   "title": "Lagen · ⋯-menu boven de console",
+   "stand": "d1440-dark",
+   "url": "/server/cmohmcq8/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/cmohmcq8/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Settings\" (67,897 198x40) | ps-widget \"Mounts\" (67,937 198x40) | ps-widget \"Webhooks\" (67,977 198x40) | ps-widget \"Activity\" (67,1017 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 29.7 MB / ↑ 953.7 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls",
+      "ps-info-menu 1131,179 230x390"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,377 1040x380; terminal 291,309 1092x467; bar top 776",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,308 1094x532"
+     ],
+     "box": "308..840 of 900",
+     "dropdown": [
+      "ps-info-menu 390px of 600 max"
+     ],
+     "arrow": [
+      "ps-info-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/layers-server-more.png"
+  },
+  {
+   "id": "layers-tip-ps-info-address-data-tip",
+   "title": "Lagen · tooltip .ps-info-address[data-tip]",
+   "stand": "d1440-dark",
+   "url": "/server/cmohmcq8/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/cmohmcq8/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Settings\" (67,897 198x40) | ps-widget \"Mounts\" (67,937 198x40) | ps-widget \"Webhooks\" (67,977 198x40) | ps-widget \"Activity\" (67,1017 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 29.7 MB / ↑ 953.7 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls",
+      "ps-tooltip 390,188 145x33"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,377 1040x380; terminal 291,309 1092x467; bar top 776",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/layers-tip-ps-info-address-data-tip.png"
+  },
+  {
+   "id": "layers-tip-ps-info-meta-item-data-tip",
+   "title": "Lagen · tooltip .ps-info-meta-item[data-tip]",
+   "stand": "d1440-dark",
+   "url": "/server/cmohmcq8/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/cmohmcq8/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Settings\" (67,897 198x40) | ps-widget \"Mounts\" (67,937 198x40) | ps-widget \"Webhooks\" (67,977 198x40) | ps-widget \"Activity\" (67,1017 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 29.7 MB / ↑ 953.7 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls",
+      "ps-tooltip 269,188 56x33"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,377 1040x380; terminal 291,309 1092x467; bar top 776",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/layers-tip-ps-info-meta-item-data-tip.png"
+  },
+  {
+   "id": "layers-bell",
+   "title": "Lagen · bell-menu boven de serverkaart",
+   "stand": "d1440-dark",
+   "url": "/server/cmohmcq8/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/cmohmcq8/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Settings\" (67,897 198x40) | ps-widget \"Mounts\" (67,937 198x40) | ps-widget \"Webhooks\" (67,977 198x40) | ps-widget \"Activity\" (67,1017 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 29.7 MB / ↑ 953.7 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls",
+      "ps-notify-menu 941,78 340x600 scrolls"
+     ],
+     "panes": [
+      "ps-notify-menu 598/2097"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,377 1040x380; terminal 291,309 1092x467; bar top 776",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,308 1094x532"
+     ],
+     "box": "308..840 of 900",
+     "dropdown": [
+      "ps-notify-menu 600px of 600 max, scrolls"
+     ],
+     "arrow": [
+      "ps-notify-menu arrow 1262 button 1262"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/layers-bell.png"
+  },
+  {
+   "id": "layers-account",
+   "title": "Lagen · account-menu boven de serverkaart",
+   "stand": "d1440-dark",
+   "url": "/server/cmohmcq8/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/cmohmcq8/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Settings\" (67,897 198x40) | ps-widget \"Mounts\" (67,937 198x40) | ps-widget \"Webhooks\" (67,977 198x40) | ps-widget \"Activity\" (67,1017 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 29.7 MB / ↑ 953.7 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls",
+      "ps-account-actions 1144,78 240x332"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,377 1040x380; terminal 291,309 1092x467; bar top 776",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/layers-account.png"
+  },
+  {
+   "id": "scroll-overview",
+   "title": "Scrollbalk · overzicht",
+   "stand": "d1440-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1219,32 185x38 scrolls"
+     ],
+     "panes": [
+      "Servers 756/1754"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, actions 933..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 176,-385 1088x78",
+      "fi-callout.fi-color.fi-color-info 176,-295 1088x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/scroll-overview.png"
+  },
+  {
+   "id": "scroll-settings",
+   "title": "Scrollbalk · instellingen",
+   "stand": "d1440-dark",
+   "url": "/admin/simplify",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1219,32 185x38 scrolls"
+     ],
+     "panes": [
+      "fi-main-ctn.fi-main-ctn-sidebar-open 794/893"
+     ],
+     "card": "37..884 of 900",
+     "topbar": "brand 36..361, actions 933..1404",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"Run setup again\" at y=94",
+      "\"\" at y=94"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ],
+     "box": "86..880 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/scroll-settings.png"
+  },
+  {
+   "id": "scroll-admin",
+   "title": "Scrollbalk · Admin-pagina (kaart naast het menu)",
+   "stand": "d1440-dark",
+   "url": "/admin/servers",
+   "docTitle": "Servers - Northwind Games",
+   "main": {
+    "url": "/admin/servers",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1219,32 185x38 scrolls"
+     ],
+     "panes": [
+      "fi-main-ctn.fi-main-ctn-sidebar-open 794/1063"
+     ],
+     "card": "-48..969 of 900",
+     "topbar": "brand 36..361, actions 933..1404",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "86..880 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/scroll-admin.png"
+  },
+  {
+   "id": "scroll-console",
+   "title": "Scrollbalk · console",
+   "stand": "d1440-dark",
+   "url": "/server/cmohmcq8/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/cmohmcq8/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Settings\" (67,897 198x40) | ps-widget \"Mounts\" (67,937 198x40) | ps-widget \"Webhooks\" (67,977 198x40) | ps-widget \"Activity\" (67,1017 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 29.7 MB / ↑ 953.7 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1199,32 185x38 scrolls"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,377 1040x380; terminal 291,309 1092x467; bar top 776",
+     "topbar": "brand 56..381, actions 1199..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/scroll-console.png"
+  },
+  {
+   "id": "other-plugins-open",
+   "title": "Pelican plugins · uitgeklapt",
+   "stand": "d1440-dark",
+   "url": "/admin/health",
+   "docTitle": "Health - Northwind Games",
+   "main": {
+    "url": "/admin/health",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "span: \"All servers\""
+     ],
+     "popups": [
+      "ps-navigation-items 1219,32 185x38 scrolls"
+     ],
+     "card": "86..834 of 900",
+     "topbar": "brand 36..361, actions 933..1404",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "86..880 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/other-plugins-open.png"
+  },
+  {
+   "id": "other-plugins-page",
+   "title": "Pelican plugins · pagina van een plugin",
+   "stand": "d1440-dark",
+   "url": "/admin/site-directory",
+   "docTitle": "Site directory - Northwind Games",
+   "main": {
+    "url": "/admin/site-directory",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1219,32 185x38 scrolls"
+     ],
+     "card": "86..834 of 900",
+     "topbar": "brand 36..361, actions 933..1404",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "86..880 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "d1440-dark/other-plugins-page.png"
+  },
+  {
+   "id": "create-menu-overview",
+   "title": "Create server · keuzemenu (overview)",
+   "stand": "d1440-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1219,32 185x38 scrolls",
+      "ps-modal 180,24 1080x852"
+     ],
+     "panes": [
+      "Servers 756/1754"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, actions 933..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 176,114 1088x78",
+      "fi-callout.fi-color.fi-color-info 176,204 1088x78"
+     ]
+    }
+   },
+   "frames": [
+    {
+     "box": "181,85 1078x790",
+     "url": "/server-maker?simplify_embed=1",
+     "w": 1078,
+     "h": 790,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 790,
+      "pageScrollW": 1078,
+      "ellipsis": [
+       "strong: \"Counter-Strike 2\"",
+       "strong: \"ARK: Survival Ascended\"",
+       "strong: \"Project Zomboid\"",
+       "strong: \"American Truck Simulator Dedicated Server\"",
+       "strong: \"Among Us - Impostor Server\"",
+       "strong: \"Ark: Survival Evolved\"",
+       "strong: \"Assetto Corsa (Freeroam + AI)\"",
+       "strong: \"Astroneer Dedicated Server\""
+      ],
+      "panes": [
+       "form.game::data::wizard-step 726/927"
+      ],
+      "card": "0..790 of 790",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "unreachable"
+     }
+    }
+   ],
+   "shot": "d1440-dark/create-menu-overview.png"
+  },
+  {
+   "id": "create-desktop",
+   "title": "Create server (overzicht)",
+   "stand": "d1440-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "create": {
+    "pop": {
+     "open": true,
+     "title": "Create server",
+     "src": "http://127.0.0.1:8001/server-maker?simplify_embed=1"
+    },
+    "url": "/simplify",
+    "frame": "/server-maker?simplify_embed=1",
+    "chrome": {
+     "bars": [],
+     "title": "Server Maker"
+    }
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1219,32 185x38 scrolls",
+      "ps-modal 180,24 1080x852"
+     ],
+     "panes": [
+      "Servers 756/1754"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, actions 933..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 176,114 1088x78",
+      "fi-callout.fi-color.fi-color-info 176,204 1088x78"
+     ]
+    }
+   },
+   "frames": [
+    {
+     "box": "181,85 1078x790",
+     "url": "/server-maker?simplify_embed=1",
+     "w": 1078,
+     "h": 790,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 790,
+      "pageScrollW": 1078,
+      "ellipsis": [
+       "strong: \"Counter-Strike 2\"",
+       "strong: \"ARK: Survival Ascended\"",
+       "strong: \"Project Zomboid\"",
+       "strong: \"American Truck Simulator Dedicated Server\"",
+       "strong: \"Among Us - Impostor Server\"",
+       "strong: \"Ark: Survival Evolved\"",
+       "strong: \"Assetto Corsa (Freeroam + AI)\"",
+       "strong: \"Astroneer Dedicated Server\""
+      ],
+      "panes": [
+       "form.game::data::wizard-step 726/927"
+      ],
+      "card": "0..790 of 790",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "unreachable"
+     }
+    }
+   ],
+   "shot": "d1440-dark/create-desktop.png"
+  },
+  {
+   "id": "create-host-admin",
+   "title": "Create server (Admin-pagina, Servers → Create)",
+   "stand": "d1440-dark",
+   "url": "/admin/servers",
+   "docTitle": "Servers - Northwind Games",
+   "create": {
+    "pop": {
+     "open": true,
+     "title": "Create server",
+     "src": "http://127.0.0.1:8001/server-maker?simplify_embed=1"
+    },
+    "url": "/admin/servers",
+    "frame": "/server-maker?simplify_embed=1",
+    "chrome": {
+     "bars": [],
+     "title": "Server Maker"
+    }
+   },
+   "main": {
+    "url": "/admin/servers",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1219,32 185x38 scrolls",
+      "ps-modal 180,24 1080x852"
+     ],
+     "panes": [
+      "fi-main-ctn.fi-main-ctn-sidebar-open 794/1063"
+     ],
+     "card": "86..1103 of 900",
+     "topbar": "brand 36..361, actions 933..1404",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "86..880 of 900"
+    }
+   },
+   "frames": [
+    {
+     "box": "181,85 1078x790",
+     "url": "/server-maker?simplify_embed=1",
+     "w": 1078,
+     "h": 790,
+     "dark": true,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 790,
+      "pageScrollW": 1078,
+      "ellipsis": [
+       "strong: \"Counter-Strike 2\"",
+       "strong: \"ARK: Survival Ascended\"",
+       "strong: \"Project Zomboid\"",
+       "strong: \"American Truck Simulator Dedicated Server\"",
+       "strong: \"Among Us - Impostor Server\"",
+       "strong: \"Ark: Survival Evolved\"",
+       "strong: \"Assetto Corsa (Freeroam + AI)\"",
+       "strong: \"Astroneer Dedicated Server\""
+      ],
+      "panes": [
+       "form.game::data::wizard-step 726/927"
+      ],
+      "card": "0..790 of 790",
+      "scope": "frame",
+      "boxes": [],
+      "hostHead": "unreachable"
+     }
+    }
+   ],
+   "shot": "d1440-dark/create-host-admin.png"
+  },
+  {
+   "id": "overview",
+   "title": "Klant · overzicht",
+   "stand": "klant-d1440-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1278,32 126x38 scrolls"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, actions 1278..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 176,114 1088x78",
+      "fi-callout.fi-color.fi-color-info 176,204 1088x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-d1440-dark/overview.png"
+  },
+  {
+   "id": "account",
+   "title": "Klant · accountmenu",
+   "stand": "klant-d1440-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "popups": [
+      "ps-navigation-items 1278,32 126x38 scrolls",
+      "ps-account-actions 1164,78 240x332"
+     ],
+     "card": "0..854 of 900",
+     "topbar": "brand 36..361, actions 1278..1404",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 176,114 1088x78",
+      "fi-callout.fi-color.fi-color-info 176,204 1088x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-d1440-dark/account.png"
+  },
+  {
+   "id": "server-console",
+   "title": "Klant · console",
+   "stand": "klant-d1440-dark",
+   "url": "/server/cmohmcq8/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/cmohmcq8/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Settings\" (67,897 198x40) | ps-widget \"Mounts\" (67,937 198x40) | ps-widget \"Activity\" (67,977 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 29.7 MB / ↑ 953.7 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1258,32 126x38 scrolls"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,377 1040x380; terminal 291,309 1092x467; bar top 776",
+     "topbar": "brand 56..381, actions 1258..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,308 1094x532"
+     ],
+     "box": "308..840 of 900"
+    }
+   },
+   "frames": [],
+   "shot": "klant-d1440-dark/server-console.png"
+  },
+  {
+   "id": "server-more",
+   "title": "Klant · ⋯-menu",
+   "stand": "klant-d1440-dark",
+   "url": "/server/cmohmcq8/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/cmohmcq8/console",
+    "w": 1440,
+    "h": 900,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Settings\" (67,897 198x40) | ps-widget \"Mounts\" (67,937 198x40) | ps-widget \"Activity\" (67,977 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 900,
+     "pageScrollW": 1440,
+     "ellipsis": [
+      "small: \"Used ↓ 29.7 MB / ↑ 953.7 MB\""
+     ],
+     "popups": [
+      "ps-navigation-items 1258,32 126x38 scrolls",
+      "ps-info-menu 1131,179 230x390"
+     ],
+     "card": "308..840 of 900 fit=532px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 308,377 1040x380; terminal 291,309 1092x467; bar top 776",
+     "topbar": "brand 56..381, actions 1258..1384",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 56,104 1328x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 290,308 1094x532"
+     ],
+     "box": "308..840 of 900",
+     "dropdown": [
+      "ps-info-menu 390px of 600 max"
+     ],
+     "arrow": [
+      "ps-info-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "klant-d1440-dark/server-more.png"
+  }
+ ],
+ "problems": [
+  "d1440-dark layers-server-more: ok {\"bad\":[],\"items\":[\"Server color\",\"Server background\",\"Copy SFTP username\",\"Open SFTP connection\",\"Upgrade this server\",\"Force stop\",\"Delete server\"]}",
+  "d1440-dark layers-tip-ps-info-address-data-tip: ok {\"text\":\"Copy server address\",\"ok\":true,\"on\":\"ps-tooltip is-visible\",\"opacity\":\"1\",\"rect\":\"390 188 145 33\"}",
+  "d1440-dark layers-tip-ps-info-meta-item-data-tip: ok {\"text\":\"Paper\",\"ok\":true,\"on\":\"ps-tooltip is-visible\",\"opacity\":\"1\",\"rect\":\"269 188 56 33\"}",
+  "d1440-dark layers-bell: ok {\"bad\":[],\"n\":10}",
+  "d1440-dark layers-account: ok {\"bad\":[],\"n\":8}",
+  "d1440-dark scroll-overview: ok {\"want\":\"rgba(255, 255, 255, 0.16)\",\"got\":[\"rgba(255, 255, 255, 0.16)\"],\"boxes\":[\"ps-server-scroll 756\"],\"css\":true}",
+  "d1440-dark scroll-settings: ok {\"want\":\"rgba(255, 255, 255, 0.16)\",\"got\":[\"rgba(255, 255, 255, 0.16)\"],\"boxes\":[\"fi-main-ctn.fi-main-ctn-sidebar-open 794\"],\"css\":true,\"place\":\"/admin/simplify\"}",
+  "d1440-dark scroll-admin: ok {\"want\":\"rgba(255, 255, 255, 0.16)\",\"got\":[\"rgba(255, 255, 255, 0.16)\"],\"boxes\":[\"fi-main-ctn.fi-main-ctn-sidebar-open 794\"],\"css\":true,\"place\":\"/admin/servers\"}",
+  "d1440-dark scroll-console: WRONG {\"want\":\"rgba(255, 255, 255, 0.16)\",\"got\":[],\"boxes\":[],\"css\":true}",
+  "d1440-dark admin-menu-order: ok [\"Health\",\"Servers\",\"Nodes\",\"People & roles\",\"Integrations\",\"Simplify settings\",\"Pelican settings\",\"Simplify add-ons (apart)\",\"Pelican plugins\"]",
+  "d1440-dark other-plugins: ok {\"before\":\"false\",\"after\":\"true\",\"leafs\":1,\"name\":\"Site directory\",\"current\":\"Site directory\",\"kept\":true}",
+  "d1440-dark create-desktop: ok {\"pop\":{\"open\":true,\"title\":\"Create server\",\"src\":\"http://127.0.0.1:8001/server-maker?simplify_embed=1\"},\"frame\":\"/server-maker?simplify_embed=1\",\"maker\":true,\"chrome\":{\"bars\":[],\"title\":\"Server Maker\"},\"page\":\"/simplify\"}",
+  "d1440-dark create-server-page: ok none on a server page, as in 0.7.0",
+  "d1440-dark create-host-admin: ok {\"pop\":{\"open\":true,\"title\":\"Create server\",\"src\":\"http://127.0.0.1:8001/server-maker?simplify_embed=1\"},\"frame\":\"/server-maker?simplify_embed=1\",\"maker\":true,\"chrome\":{\"bars\":[],\"title\":\"Server Maker\"},\"page\":\"/admin/servers\"}",
+  "klant-d1440-dark suspended-card: ok {\"card\":true,\"note\":true,\"inside\":true,\"power\":false,\"peek\":0}"
+ ]
+}

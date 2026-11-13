@@ -1,0 +1,899 @@
+{
+ "base": "http://127.0.0.1:8001",
+ "screens": [
+  {
+   "id": "overview-grid",
+   "title": "Overzicht, grid",
+   "stand": "d1920-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1920,
+    "h": 1080,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1080,
+     "pageScrollW": 1920,
+     "popups": [
+      "ps-navigation-items 1431,32 229x38 scrolls"
+     ],
+     "panes": [
+      "Servers 936/1761"
+     ],
+     "card": "0..1034 of 1080",
+     "topbar": "brand 260..585, actions 1145..1660",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 416,121 1088x78",
+      "fi-callout.fi-color.fi-color-info 416,211 1088x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1920-dark/overview-grid.png"
+  },
+  {
+   "id": "overview-compact",
+   "title": "Overzicht, compact",
+   "stand": "d1920-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1920,
+    "h": 1080,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1080,
+     "pageScrollW": 1920,
+     "ellipsis": [
+      "span: \"Install failed\""
+     ],
+     "popups": [
+      "ps-navigation-items 1431,32 229x38 scrolls"
+     ],
+     "panes": [
+      "Servers 936/1081"
+     ],
+     "card": "0..1034 of 1080",
+     "topbar": "brand 260..585, actions 1145..1660",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 290,121 1340x78",
+      "fi-callout.fi-color.fi-color-info 290,211 1340x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1920-dark/overview-compact.png"
+  },
+  {
+   "id": "overview-list",
+   "title": "Overzicht, list",
+   "stand": "d1920-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1920,
+    "h": 1080,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1080,
+     "pageScrollW": 1920,
+     "popups": [
+      "ps-navigation-items 1431,32 229x38 scrolls"
+     ],
+     "panes": [
+      "Servers 936/1601"
+     ],
+     "card": "0..1034 of 1080",
+     "topbar": "brand 260..585, actions 1145..1660",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 416,121 1088x78",
+      "fi-callout.fi-color.fi-color-info 416,211 1088x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1920-dark/overview-list.png"
+  },
+  {
+   "id": "overview-full-grid",
+   "title": "Overzicht, volle breedte, grid",
+   "stand": "d1920-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1920,
+    "h": 1080,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1080,
+     "pageScrollW": 1920,
+     "ellipsis": [
+      "span: \"Counter-Strike 2\""
+     ],
+     "popups": [
+      "ps-navigation-items 1631,32 229x38 scrolls"
+     ],
+     "panes": [
+      "Servers 936/1761"
+     ],
+     "card": "0..1034 of 1080",
+     "topbar": "brand 60..385, actions 1345..1860",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 64,121 1792x78",
+      "fi-callout.fi-color.fi-color-info 64,211 1792x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1920-dark/overview-full-grid.png"
+  },
+  {
+   "id": "overview-full-list",
+   "title": "Overzicht, volle breedte, list",
+   "stand": "d1920-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1920,
+    "h": 1080,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: ps-card-title \"All the Mods 10 All the Mods 10 - welcome! Forge 1\" sticks 16px out of ps-server-card | ps-card-title \"Creative Builds Creative Builds - welcome! Paper 1\" sticks 16px out of ps-server-card | ps-card-title \"Survival SMP Survival SMP - welcome! Paper 1.21.1\" sticks 16px out of ps-server-card | ps-card-usage \"CPU 24.0% RAM 4.8 GB\" sticks 26px out of ps-server-card | ps-card-usage \"CPU 0.0% RAM 0 MB\" sticks 26px out of ps-server-card | ps-card-usage \"CPU 43.0% RAM 3.1 GB\" sticks 26px out of ps-server-card | ps-card-usage \"CPU 0.0% RAM 0 MB\" sticks 26px out of ps-server-card | ps-card-title \"Broken Install Paper\" sticks 16px out of ps-server-card"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1080,
+     "pageScrollW": 1920,
+     "popups": [
+      "ps-navigation-items 1631,32 229x38 scrolls"
+     ],
+     "panes": [
+      "Servers 936/1629"
+     ],
+     "card": "0..1034 of 1080",
+     "topbar": "brand 60..385, actions 1345..1860",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 64,121 1792x78",
+      "fi-callout.fi-color.fi-color-info 64,211 1792x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1920-dark/overview-full-list.png"
+  },
+  {
+   "id": "overview-account",
+   "title": "Accountmenu open",
+   "stand": "d1920-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1920,
+    "h": 1080,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1080,
+     "pageScrollW": 1920,
+     "popups": [
+      "ps-navigation-items 1431,32 229x38 scrolls",
+      "ps-account-actions 1420,78 240x372"
+     ],
+     "panes": [
+      "Servers 936/1761"
+     ],
+     "card": "0..1034 of 1080",
+     "topbar": "brand 260..585, actions 1145..1660",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 416,121 1088x78",
+      "fi-callout.fi-color.fi-color-info 416,211 1088x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1920-dark/overview-account.png"
+  },
+  {
+   "id": "overview-account-theme",
+   "title": "Accountmenu, themakeuze open",
+   "stand": "d1920-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1920,
+    "h": 1080,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1080,
+     "pageScrollW": 1920,
+     "popups": [
+      "ps-navigation-items 1431,32 229x38 scrolls",
+      "ps-account-actions 1420,78 240x452"
+     ],
+     "panes": [
+      "Servers 936/1761"
+     ],
+     "card": "0..1034 of 1080",
+     "topbar": "brand 260..585, actions 1145..1660",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 416,121 1088x78",
+      "fi-callout.fi-color.fi-color-info 416,211 1088x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1920-dark/overview-account-theme.png"
+  },
+  {
+   "id": "overview-bell",
+   "title": "Bel (aankondigingen) open",
+   "stand": "d1920-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1920,
+    "h": 1080,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1080,
+     "pageScrollW": 1920,
+     "popups": [
+      "ps-navigation-items 1431,32 229x38 scrolls",
+      "ps-notify-menu 1217,78 340x720 scrolls"
+     ],
+     "panes": [
+      "ps-notify-menu 718/2097",
+      "Servers 936/1761"
+     ],
+     "card": "0..1034 of 1080",
+     "topbar": "brand 260..585, actions 1145..1660",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 416,121 1088x78",
+      "fi-callout.fi-color.fi-color-info 416,211 1088x78"
+     ],
+     "dropdown": [
+      "ps-notify-menu 720px of 720 max, scrolls"
+     ],
+     "arrow": [
+      "ps-notify-menu arrow 1538 button 1538"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1920-dark/overview-bell.png"
+  },
+  {
+   "id": "overview-bell-all",
+   "title": "Meldingenvenster (alle meldingen) open",
+   "stand": "d1920-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1920,
+    "h": 1080,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1080,
+     "pageScrollW": 1920,
+     "popups": [
+      "ps-navigation-items 1431,32 229x38 scrolls",
+      "ps-modal 620,160 680x760"
+     ],
+     "panes": [
+      "Servers 936/1761",
+      "ps-modal-body 698/2400"
+     ],
+     "card": "0..1034 of 1080",
+     "topbar": "brand 260..585, actions 1145..1660",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 416,121 1088x78",
+      "fi-callout.fi-color.fi-color-info 416,211 1088x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1920-dark/overview-bell-all.png"
+  },
+  {
+   "id": "overview-customize",
+   "title": "Weergave aanpassen open",
+   "stand": "d1920-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1920,
+    "h": 1080,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1080,
+     "pageScrollW": 1920,
+     "popups": [
+      "ps-navigation-items 1431,32 229x38 scrolls",
+      "ps-overview-appearance-menu 1113,78 400x553"
+     ],
+     "panes": [
+      "Servers 936/1761"
+     ],
+     "card": "0..1034 of 1080",
+     "topbar": "brand 260..585, actions 1145..1660",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 416,121 1088x78",
+      "fi-callout.fi-color.fi-color-info 416,211 1088x78"
+     ],
+     "dropdown": [
+      "ps-overview-appearance-menu 553px of 720 max"
+     ],
+     "arrow": [
+      "ps-overview-appearance-menu arrow 1494 button 1494"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1920-dark/overview-customize.png"
+  },
+  {
+   "id": "overview-groups",
+   "title": "Servergroepen open",
+   "stand": "d1920-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1920,
+    "h": 1080,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1080,
+     "pageScrollW": 1920,
+     "popups": [
+      "ps-navigation-items 1387,32 273x38 scrolls",
+      "ps-overview-groups-menu 1069,78 400x352"
+     ],
+     "panes": [
+      "Servers 936/1761"
+     ],
+     "card": "0..1034 of 1080",
+     "topbar": "brand 260..585, actions 1101..1660",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 416,121 1088x78",
+      "fi-callout.fi-color.fi-color-info 416,211 1088x78"
+     ],
+     "dropdown": [
+      "ps-overview-groups-menu 352px of 720 max"
+     ],
+     "arrow": [
+      "ps-overview-groups-menu arrow 1450 button 1450"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1920-dark/overview-groups.png"
+  },
+  {
+   "id": "overview-health",
+   "title": "Gezondheid van de host open",
+   "stand": "d1920-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1920,
+    "h": 1080,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1080,
+     "pageScrollW": 1920,
+     "popups": [
+      "ps-navigation-items 1431,32 229x38 scrolls"
+     ],
+     "panes": [
+      "Servers 936/1761"
+     ],
+     "card": "0..1034 of 1080",
+     "topbar": "brand 260..585, actions 1145..1660",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 416,121 1088x78",
+      "fi-callout.fi-color.fi-color-info 416,211 1088x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1920-dark/overview-health.png"
+  },
+  {
+   "id": "overview-health-nodes",
+   "title": "Host health, nodes uitgeklapt",
+   "stand": "d1920-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1920,
+    "h": 1080,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1080,
+     "pageScrollW": 1920,
+     "popups": [
+      "ps-navigation-items 1431,32 229x38 scrolls"
+     ],
+     "panes": [
+      "Servers 936/1761"
+     ],
+     "card": "0..1034 of 1080",
+     "topbar": "brand 260..585, actions 1145..1660",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 416,121 1088x78",
+      "fi-callout.fi-color.fi-color-info 416,211 1088x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1920-dark/overview-health-nodes.png"
+  },
+  {
+   "id": "overview-health-hover-card",
+   "title": "Host health, wijzen naar de kaart",
+   "stand": "d1920-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "colours": {
+    "card": "color(srgb 0.119216 0.119216 0.141961)",
+    "tab": "color(srgb 0.119216 0.119216 0.141961)",
+    "tabTop": "color(srgb 0.119216 0.119216 0.141961)",
+    "tabInk": "rgb(237, 237, 242)"
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 1920,
+    "h": 1080,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1080,
+     "pageScrollW": 1920,
+     "popups": [
+      "ps-navigation-items 1431,32 229x38 scrolls"
+     ],
+     "panes": [
+      "Servers 936/1761"
+     ],
+     "card": "0..1034 of 1080",
+     "topbar": "brand 260..585, actions 1145..1660",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 416,121 1088x78",
+      "fi-callout.fi-color.fi-color-info 416,211 1088x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1920-dark/overview-health-hover-card.png"
+  },
+  {
+   "id": "overview-health-hover-tab",
+   "title": "Host health, wijzen naar het lipje",
+   "stand": "d1920-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "colours": {
+    "card": "color(srgb 0.119216 0.119216 0.141961)",
+    "tab": "color(srgb 0.119216 0.119216 0.141961)",
+    "tabTop": "color(srgb 0.119216 0.119216 0.141961)",
+    "tabInk": "rgb(237, 237, 242)"
+   },
+   "main": {
+    "url": "/simplify",
+    "w": 1920,
+    "h": 1080,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1080,
+     "pageScrollW": 1920,
+     "popups": [
+      "ps-navigation-items 1431,32 229x38 scrolls"
+     ],
+     "panes": [
+      "Servers 936/1761"
+     ],
+     "card": "0..1034 of 1080",
+     "topbar": "brand 260..585, actions 1145..1660",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 416,121 1088x78",
+      "fi-callout.fi-color.fi-color-info 416,211 1088x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1920-dark/overview-health-hover-tab.png"
+  },
+  {
+   "id": "admin-page",
+   "title": "Admin-pagina (schild)",
+   "stand": "d1920-dark",
+   "url": "/admin/servers",
+   "docTitle": "Servers - Northwind Games",
+   "main": {
+    "url": "/admin/servers",
+    "w": 1920,
+    "h": 1080,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1080,
+     "pageScrollW": 1920,
+     "popups": [
+      "ps-navigation-items 1519,32 185x38 scrolls"
+     ],
+     "panes": [
+      "fi-main-ctn.fi-main-ctn-sidebar-open 954/1047"
+     ],
+     "card": "105..1013 of 1080",
+     "topbar": "brand 216..541, actions 1519..1704",
+     "scope": "simplify",
+     "boxes": [
+      "Admin sections 156,104 252x956"
+     ],
+     "box": "104..1060 of 1080"
+    }
+   },
+   "frames": [],
+   "shot": "d1920-dark/admin-page.png"
+  },
+  {
+   "id": "admin-legacy",
+   "title": "Legacy-paneel (Pelicans eigen pagina)",
+   "stand": "d1920-dark",
+   "url": "/admin",
+   "docTitle": "Dashboard - Northwind Games",
+   "main": {
+    "url": "/admin",
+    "w": 1920,
+    "h": 1080,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1080,
+     "pageScrollW": 1920,
+     "panes": [
+      "Sidebar navigation 828/1550"
+     ],
+     "card": "0..1024 of 1080",
+     "scope": "pelican"
+    }
+   },
+   "frames": [],
+   "shot": "d1920-dark/admin-legacy.png"
+  },
+  {
+   "id": "overview-bell-1bar",
+   "title": "Bel open, één aankondigingsbalk",
+   "stand": "d1920-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1920,
+    "h": 1080,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1080,
+     "pageScrollW": 1920,
+     "popups": [
+      "ps-navigation-items 1431,32 229x38 scrolls",
+      "ps-notify-menu 1217,78 340x720 scrolls"
+     ],
+     "panes": [
+      "ps-notify-menu 718/2097",
+      "Servers 936/1761"
+     ],
+     "card": "0..1034 of 1080",
+     "topbar": "brand 260..585, actions 1145..1660",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 416,121 1088x78",
+      "fi-callout.fi-color.fi-color-info 416,211 1088x78"
+     ],
+     "dropdown": [
+      "ps-notify-menu 720px of 720 max, scrolls"
+     ],
+     "arrow": [
+      "ps-notify-menu arrow 1538 button 1538"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1920-dark/overview-bell-1bar.png"
+  },
+  {
+   "id": "overview-customize-1bar",
+   "title": "Weergave aanpassen open, één aankondigingsbalk",
+   "stand": "d1920-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1920,
+    "h": 1080,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1080,
+     "pageScrollW": 1920,
+     "popups": [
+      "ps-navigation-items 1431,32 229x38 scrolls",
+      "ps-overview-appearance-menu 1113,78 400x553"
+     ],
+     "panes": [
+      "Servers 936/1761"
+     ],
+     "card": "0..1034 of 1080",
+     "topbar": "brand 260..585, actions 1145..1660",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 416,121 1088x78",
+      "fi-callout.fi-color.fi-color-info 416,211 1088x78"
+     ],
+     "dropdown": [
+      "ps-overview-appearance-menu 553px of 720 max"
+     ],
+     "arrow": [
+      "ps-overview-appearance-menu arrow 1494 button 1494"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1920-dark/overview-customize-1bar.png"
+  },
+  {
+   "id": "overview-bell-0bar",
+   "title": "Bel open, geen aankondigingsbalk",
+   "stand": "d1920-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1920,
+    "h": 1080,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1080,
+     "pageScrollW": 1920,
+     "popups": [
+      "ps-navigation-items 1431,32 229x38 scrolls",
+      "ps-notify-menu 1217,78 340x720 scrolls"
+     ],
+     "panes": [
+      "ps-notify-menu 718/2097",
+      "Servers 936/1761"
+     ],
+     "card": "0..1034 of 1080",
+     "topbar": "brand 260..585, actions 1145..1660",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 416,121 1088x78",
+      "fi-callout.fi-color.fi-color-info 416,211 1088x78"
+     ],
+     "dropdown": [
+      "ps-notify-menu 720px of 720 max, scrolls"
+     ],
+     "arrow": [
+      "ps-notify-menu arrow 1538 button 1538"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1920-dark/overview-bell-0bar.png"
+  },
+  {
+   "id": "overview-customize-0bar",
+   "title": "Weergave aanpassen open, geen aankondigingsbalk",
+   "stand": "d1920-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 1920,
+    "h": 1080,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1080,
+     "pageScrollW": 1920,
+     "popups": [
+      "ps-navigation-items 1431,32 229x38 scrolls",
+      "ps-overview-appearance-menu 1113,78 400x553"
+     ],
+     "panes": [
+      "Servers 936/1761"
+     ],
+     "card": "0..1034 of 1080",
+     "topbar": "brand 260..585, actions 1145..1660",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 416,121 1088x78",
+      "fi-callout.fi-color.fi-color-info 416,211 1088x78"
+     ],
+     "dropdown": [
+      "ps-overview-appearance-menu 553px of 720 max"
+     ],
+     "arrow": [
+      "ps-overview-appearance-menu arrow 1494 button 1494"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "d1920-dark/overview-customize-0bar.png"
+  },
+  {
+   "id": "app-server-maker",
+   "title": "Server Maker",
+   "stand": "d1920-dark",
+   "url": "/server-maker",
+   "docTitle": "Server Maker - Northwind Games",
+   "main": {
+    "url": "/server-maker",
+    "w": 1920,
+    "h": 1080,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1080,
+     "pageScrollW": 1920,
+     "ellipsis": [
+      "strong: \"Counter-Strike 2\"",
+      "strong: \"ARK: Survival Ascended\"",
+      "strong: \"Project Zomboid\"",
+      "strong: \"American Truck Simulator Dedicated Server\"",
+      "strong: \"Among Us - Impostor Server\"",
+      "strong: \"Ark: Survival Evolved\"",
+      "strong: \"Assetto Corsa (Freeroam + AI)\"",
+      "strong: \"Astroneer Dedicated Server\""
+     ],
+     "popups": [
+      "ps-navigation-items 1519,32 185x38 scrolls"
+     ],
+     "panes": [
+      "fi-main-ctn 954/991"
+     ],
+     "card": "105..1013 of 1080",
+     "topbar": "brand 216..541, actions 1519..1704",
+     "scope": "simplify",
+     "boxes": [
+      "smk-minecraft 203,247 1514x200"
+     ],
+     "box": "104..1060 of 1080"
+    }
+   },
+   "frames": [],
+   "shot": "d1920-dark/app-server-maker.png"
+  },
+  {
+   "id": "app-steam",
+   "title": "Steam",
+   "stand": "d1920-dark",
+   "url": "/steam",
+   "docTitle": "Steam - Northwind Games",
+   "main": {
+    "url": "/steam",
+    "w": 1920,
+    "h": 1080,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1080,
+     "pageScrollW": 1920,
+     "popups": [
+      "ps-navigation-items 1519,32 185x38 scrolls"
+     ],
+     "card": "105..1013 of 1080",
+     "topbar": "brand 216..541, actions 1519..1704",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "104..1060 of 1080"
+    }
+   },
+   "frames": [],
+   "shot": "d1920-dark/app-steam.png"
+  },
+  {
+   "id": "profile",
+   "title": "Profiel",
+   "stand": "d1920-dark",
+   "url": "/profile",
+   "docTitle": "Profile - Northwind Games",
+   "main": {
+    "url": "/profile",
+    "w": 1920,
+    "h": 1080,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1080,
+     "pageScrollW": 1920,
+     "popups": [
+      "ps-navigation-items 1519,32 185x38 scrolls"
+     ],
+     "card": "105..1013 of 1080",
+     "topbar": "brand 216..541, actions 1519..1704",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "104..1060 of 1080"
+    }
+   },
+   "frames": [],
+   "shot": "d1920-dark/profile.png"
+  }
+ ],
+ "problems": [
+  "d1920-dark overview-health-hover: ok, card and tab light up together (color(srgb 0.119216 0.119216 0.141961))",
+  "d1920-dark admin-page: ok {\"shell\":true,\"side\":true,\"kept\":false,\"frames\":0,\"header\":true,\"pelicanBars\":false,\"pageScroll\":0,\"card\":\"auto\",\"path\":\"/admin/servers\"}",
+  "d1920-dark admin-legacy: ok {\"shell\":false,\"side\":false,\"kept\":false,\"frames\":0,\"header\":false,\"pelicanBars\":true,\"pageScroll\":0,\"card\":\"visible\",\"path\":\"/admin\"}",
+  "d1920-dark admin-legacy-back: ok {\"shell\":true,\"side\":true,\"kept\":false,\"frames\":0,\"header\":true,\"pelicanBars\":false,\"pageScroll\":0,\"card\":\"auto\",\"path\":\"/admin/health\",\"clickError\":null}",
+  "d1920-dark overview-customize-0bar: nothing to click for .ps-server-card .ps-card-menu-button, .ps-server-card button[aria-label*=\"options\" i], .ps-server-card button[aria-label*=\"menu\" i]"
+ ]
+}
