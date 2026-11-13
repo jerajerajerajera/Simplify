@@ -88,8 +88,12 @@ final class Bell
         $query->where(self::KEY, $id)->when($kind, fn ($q) => $q->where(self::KIND, $kind))->delete();
     }
 
-    /** @return Builder<User> */
-    private static function audience(Announcement $announcement): Builder
+    /**
+     * Who gets an announcement: everyone, or for admins every account with a role.
+     *
+     * @return Builder<User>
+     */
+    public static function audience(Announcement $announcement): Builder
     {
         return User::query()->when($announcement->audience === 'admins', fn (Builder $q) => $q->whereHas('roles'));
     }

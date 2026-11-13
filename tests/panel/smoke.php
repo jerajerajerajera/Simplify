@@ -37,6 +37,7 @@ use Simplify\Core\Announcements\Filament\AnnouncementResource;
 use Simplify\Core\Announcements\Livewire\AnnouncementBars;
 use Simplify\Core\Announcements\Models\Announcement;
 use Simplify\Core\Announcements\Services\Bell as AnnouncementBell;
+use Simplify\Core\Announcements\Services\StartAnnouncements;
 use Simplify\Core\Announcements\Services\TaskWaits;
 use Simplify\Core\Announcements\Support\Diagnose;
 use Simplify\Core\Announcements\Support\StartTrigger;
@@ -1102,6 +1103,34 @@ step('announcements on a server start: no bar and no bell item at a time, the sc
         }
     } finally {
         $announcement->delete();
+    }
+});
+step('announcements on a server start: one that goes out once keeps its bell item when it ends (K-B68)', function () use ($server) {
+    $admin = User::query()->whereHas('roles')->firstOrFail();
+    $announcement = Announcement::query()->create([
+        'title' => 'Smoke started once', 'send_on' => StartTrigger::START, 'start_servers' => [$server->id], 'start_once' => true,
+        'in_bell' => true, 'push' => false, 'in_game' => false, 'created_by' => $admin->id,
+    ]);
+    $items = fn () => $admin->notifications()->where('data->viewData->simplify_announcement', $announcement->id)->count();
+    try {
+        // What the scheduler does on a start (StartAnnouncements::started): the bell item, then the end of a once-only one.
+        StartAnnouncements::started($announcement, $server);
+        if ($announcement->refresh()->state() !== 'ended') {
+            throw new RuntimeException('an announcement that goes out once did not end after its start');
+        }
+        if ($items() !== 1) {
+            throw new RuntimeException('the bell item of a server start was gone right after it was sent: '.$items());
+        }
+        // Ending it by hand keeps the message of the start as well; deleting it takes it away.
+        $announcement->update(['ends_at' => now()->subMinute()]);
+        if ($items() !== 1) {
+            throw new RuntimeException('ending an announcement on a server start took its bell item away');
+        }
+    } finally {
+        $announcement->delete();
+    }
+    if ($items() !== 0) {
+        throw new RuntimeException('a deleted announcement left its bell item behind');
     }
 });
 step('test announcements: the check sends nothing, says a timed bell item came on time, and the tests make real announcements', function () use ($server) {
