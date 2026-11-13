@@ -852,6 +852,14 @@ html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn {
   transition-property: opacity !important;
 }
 
+/* Pelican's Display width "Screen" (Admin > Settings) has Filament pin the page over the whole window (.fi-width-screen:
+   position fixed, inset 0). On Simplify's pages (the Admin page, the account pages, the server pages) the page stays in
+   its own place and takes the room it has there (K-B66, betatester). */
+body:has(.ps) :is(.fi-main, .fi-simple-main).fi-width-screen {
+  position: static !important;
+  inset: auto !important;
+}
+
 /* The page grows with what is on it (Filament gives it the card's height), so Pelican's copyright footer after it is
    at the very end of the card, never halfway over the page where the card's first screen ended (K-B9). */
 html.ps-shell:not(.ps-frame) .fi-layout > .fi-main-ctn > .fi-main {
