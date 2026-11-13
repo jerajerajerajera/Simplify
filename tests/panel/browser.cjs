@@ -124,11 +124,63 @@ async function run(viewport) {
   await context.close();
 }
 
+// Holidays (seasons.js) on a phone: the server page and the overview on an ordinary day, during Diwali and at
+// Christmas, with the browser's clock set to that day. A holiday may not move the page (layout shift) nor keep the
+// browser busier while the page sits still: Lighthouse found both during Diwali (K-B67).
+const DAYS = { ordinary: '2026-11-13T10:00:00', diwali: '2026-11-09T10:00:00', christmas: '2026-12-10T10:00:00' };
+async function holidays() {
+  stand = 'holiday412';
+  const serverUrl = urls.servers && urls.servers[SERVER];
+  const measured = {};
+  for (const [day, time] of Object.entries(DAYS)) {
+    const context = await browser.newContext({ viewport: { width: 412, height: 823 }, deviceScaleFactor: 1 });
+    page = await context.newPage();
+    await page.clock.install({ time: new Date(time) });
+    await page.addInitScript(() => {
+      window.__psShift = 0;
+      try { new PerformanceObserver((list) => { for (const e of list.getEntries()) if (!e.hadRecentInput) window.__psShift += e.value; }).observe({ type: 'layout-shift', buffered: true }); } catch {}
+    });
+    await login();
+    const cdp = await context.newCDPSession(page);
+    await cdp.send('Performance.enable');
+    const metrics = async () => Object.fromEntries((await cdp.send('Performance.getMetrics')).metrics.map((m) => [m.name, m.value]));
+    for (const [name, url] of [['overview', '/'], ['server', serverUrl]]) {
+      if (!url) continue;
+      await goto(url);
+      await sleep(2500);
+      const before = await metrics();
+      await sleep(5000);
+      const after = await metrics();
+      measured[`${day}-${name}`] = {
+        shift: Number((await page.evaluate(() => window.__psShift)).toFixed(3)),
+        busy: Number((after.TaskDuration - before.TaskDuration).toFixed(3)),
+        styles: after.RecalcStyleCount - before.RecalcStyleCount,
+        layouts: after.LayoutCount - before.LayoutCount,
+        season: await page.evaluate(() => document.querySelector('.ps')?.getAttribute('data-season') || ''),
+      };
+      if (day !== 'ordinary') await shot(`${day}-${name}`);
+    }
+    await context.close();
+  }
+  for (const name of ['overview', 'server']) {
+    const plain = measured[`ordinary-${name}`];
+    for (const day of ['diwali', 'christmas']) {
+      const m = measured[`${day}-${name}`];
+      if (!plain || !m) continue;
+      say(`${day} ${name}: the holiday is on`, m.season.includes(day), m);
+      say(`${day} ${name}: the page does not move more than on an ordinary day`, m.shift <= Math.max(0.05, plain.shift + 0.02), { holiday: m, ordinary: plain });
+      say(`${day} ${name}: the browser is not busier while the page sits still`, m.busy <= plain.busy * 1.5 + 0.2 && m.layouts <= plain.layouts + 10, { holiday: m, ordinary: plain });
+    }
+  }
+  fs.writeFileSync(path.join(out, 'holidays.json'), JSON.stringify(measured, null, 2));
+}
+
 (async () => {
   browser = await chromium.launch({ args: ['--no-sandbox'] });
   for (const viewport of [{ name: 'd1440', width: 1440, height: 900 }, { name: 'phone390', width: 390, height: 844 }]) {
     try { await run(viewport); } catch (e) { say('setup', false, { error: String(e.message).slice(0, 300) }); }
   }
+  try { await holidays(); } catch (e) { stand = 'holiday412'; say('setup', false, { error: String(e.message).slice(0, 300) }); }
   await browser.close();
   fs.writeFileSync(path.join(out, 'axe.json'), JSON.stringify(axeReport, null, 2));
   if (failures.length) { console.log(`FAILED: ${failures.join('; ')}`); process.exit(1); }
