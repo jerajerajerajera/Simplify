@@ -40,6 +40,7 @@ node tests/boot.cjs
 node tests/shell-footer.cjs
 node tests/shell-box-transition.cjs
 node tests/width-screen.cjs
+node tests/server-full-width.cjs
 node tests/admin-crumb-row.cjs
 node tests/admin-crumb-fit.cjs
 node tests/health-pill-fit.cjs
