@@ -47,9 +47,16 @@
                 </span>
             </span>
             <div class="ps-info-content">
+                {{-- The name is edited in place (Jeroen 3-11): the text selected at once, Enter or ✓ saves, Esc or ✕ puts it back.
+                     A click beside it closes the field only when nothing changed (no autosave, P-38). --}}
                 <div class="ps-game-title">
-                    <h2 x-text="server.name"></h2>
-                    <button type="button" class="ps-btn is-icon is-sm is-subtle ps-alias-button" x-show="server.can_edit" x-on:click="saveName(@js($u('server_name')), @js($u('rename')))" data-tip="{{ $u('rename') }}" aria-label="{{ $u('rename') }}" aria-haspopup="dialog"><svg aria-hidden="true"><use href="#ps-edit"/></svg></button>
+                    <h2 x-show="!naming" x-text="server.name" :class="{ 'is-editable': server.can_edit }" x-on:click="editName()"></h2>
+                    <button type="button" class="ps-btn is-icon is-sm is-subtle ps-alias-button" x-show="server.can_edit && !naming" x-on:click="editName()" data-tip="{{ $u('rename') }}" aria-label="{{ $u('rename') }}"><svg aria-hidden="true"><use href="#ps-edit"/></svg></button>
+                    <form class="ps-name-edit" x-show="naming" x-cloak x-on:submit.prevent="saveName()" x-on:keydown.escape.stop.prevent="naming = false" x-on:pointerdown.outside="naming && nameOutside()">
+                        <input type="text" class="ps-input ps-name-input" x-ref="nameInput" x-model="nameDraft" maxlength="191" autocomplete="off" aria-label="{{ $u('server_name') }}" :disabled="busy">
+                        <button type="button" class="ps-btn is-icon is-sm is-subtle ps-name-cancel" x-on:click="naming = false" data-tip="{{ $u('cancel') }}" aria-label="{{ $u('cancel') }}"><svg aria-hidden="true"><use href="#ps-close"/></svg><span>{{ $u('cancel') }}</span></button>
+                        <button type="submit" class="ps-btn is-icon is-sm is-subtle ps-name-save" :disabled="busy || !nameDraft.trim()" data-tip="{{ $u('save') }}" aria-label="{{ $u('save') }}"><svg aria-hidden="true"><use href="#ps-check"/></svg><span>{{ $u('save') }}</span></button>
+                    </form>
                 </div>
                 {{-- One line: status, software and version, what add-ons add, the address. --}}
                 <div class="ps-info-meta">

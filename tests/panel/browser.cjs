@@ -86,6 +86,35 @@ async function run(viewport) {
     if (!phone) say('server page does not scroll', (await scrolls()) <= 1, { scroll: await scrolls() });
     await axe('server');
 
+    // K-B8: the name is edited in the title card itself. A click on the name opens a field with its text selected, a
+    // click beside it keeps a change (no autosave, P-38), Esc puts the name back and Enter saves.
+    const nameState = () => page.evaluate(() => {
+      const vis = (e) => !!e && e.getClientRects().length > 0;
+      const field = [...document.querySelectorAll('.ps-server-info .ps-name-input')].find(vis);
+      const title = [...document.querySelectorAll('.ps-server-info .ps-game-title h2')].find(vis);
+      return { field: !!field, value: field ? field.value : null, selected: field ? field.value.slice(field.selectionStart, field.selectionEnd) : null, focused: !!field && document.activeElement === field, title: title ? title.textContent : null, dialog: [...document.querySelectorAll('.ps-modal-layer')].some(vis) };
+    }).catch(() => null);
+    const fieldReady = () => page.waitForFunction(() => document.activeElement && document.activeElement.classList.contains('ps-name-input'), null, { timeout: 4000 }).catch(() => {});
+    const original = ((await nameState()) || {}).title || '';
+    await page.locator('.ps-server-info .ps-game-title h2 >> visible=true').first().click({ timeout: 4000 }).catch(() => {}); await fieldReady(); await sleep(300);
+    const opened = await nameState();
+    await shot('server-name-edit');
+    say('name edit: a click on the name opens a field with the name selected', !!opened && opened.field && !opened.dialog && opened.focused && !!original && opened.selected === original, opened);
+    await page.keyboard.type('Browser name'); await sleep(200);
+    await page.locator('.ps-server-info .ps-info-meta >> visible=true').first().click({ timeout: 4000, position: { x: 2, y: 2 } }).catch(() => {}); await sleep(500);
+    const beside = await nameState();
+    say('name edit: a click beside the field keeps what was typed', !!beside && beside.field && beside.value === 'Browser name', beside);
+    await page.keyboard.press('Escape'); await sleep(400);
+    const back = await nameState();
+    say('name edit: Esc puts the name back', !!back && !back.field && back.title === original, back);
+    await page.locator('.ps-server-info .ps-game-title h2 >> visible=true').first().click({ timeout: 4000 }).catch(() => {}); await fieldReady(); await sleep(300);
+    await page.keyboard.type(original + ' 2'); await page.keyboard.press('Enter'); await sleep(2000);
+    const saved = await nameState();
+    say('name edit: Enter saves', !!saved && !saved.field && saved.title === original + ' 2', saved);
+    // The seeded name back for the rest of the run.
+    await page.locator('.ps-server-info .ps-game-title h2 >> visible=true').first().click({ timeout: 4000 }).catch(() => {}); await fieldReady(); await sleep(300);
+    await page.keyboard.type(original); await page.keyboard.press('Enter'); await sleep(2000);
+
     // A click in the server menu loads only the content: the page is not reloaded and the menu is the same element (P-11).
     await page.evaluate((sel) => { window.__psMark = 1; const m = document.querySelector(sel); if (m) m.__psKeep = 1; }, MENU);
     if (phone) { await page.locator('.ps-phone-more > .ps-phone-section').first().click().catch(() => {}); await sleep(700); }
