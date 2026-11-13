@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Announcements: a new choice Send › When a server starts sends the announcement each time one of the picked servers comes online (or only the next time), also after a start from the console or a crash: in that server's game chat, in the bell and as an app notification (Khion's idea).
+- Announcements: when your browser is in another time zone than your profile, the form says so and links to the profile, where the panel's time zone is set.
 - Health: on a phone the Health button shows its word beside the heart when the top bar has room for it, else the heart alone; a long panel name ends in "…" instead of running under the buttons.
 
 ## 2.0.0-beta.11

@@ -8,6 +8,7 @@ use Illuminate\Console\Command;
 use Simplify\Core\Announcements\Services\Bell;
 use Simplify\Core\Announcements\Services\InGame;
 use Simplify\Core\Announcements\Services\Push;
+use Simplify\Core\Announcements\Services\StartAnnouncements;
 use Simplify\Core\Announcements\Services\TaskWaits;
 use Simplify\Core\Support\Scheduler;
 
@@ -32,6 +33,10 @@ final class DeliverAnnouncements extends Command
         $waited = TaskWaits::runDue();
         if ($waited > 0) {
             $this->info("Finished $waited announcements of schedules that waited for their server.");
+        }
+        $starts = StartAnnouncements::runDue();
+        if ($starts > 0) {
+            $this->info("Sent announcements for $starts server starts.");
         }
         $servers = InGame::sendDue();
         if ($servers > 0) {
