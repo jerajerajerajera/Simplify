@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Simplify\Core\Announcements\Services;
 
 use App\Models\Server;
-use App\Models\User;
 use Simplify\Core\Announcements\Models\Announcement;
 use Simplify\Core\Announcements\Models\GameCommand;
 use Simplify\Core\Announcements\Support\Diagnose;
@@ -56,14 +55,23 @@ final class StartAnnouncements
             Diagnose::trace('start #'.$announcement->id.' running '.json_encode($running).' started '.json_encode($look['started']));
         }
         foreach ($look['started'] as $id) {
-            Diagnose::trace('start #'.$announcement->id.' sending for server '.$id);
-            self::send($announcement, $servers->firstWhere('id', $id));
-        }
-        if ($look['started'] !== [] && $announcement->start_once) {
-            $announcement->forceFill(['ends_at' => now()])->save();
+            self::started($announcement, $servers->firstWhere('id', $id));
         }
 
         return count($look['started']);
+    }
+
+    /**
+     * A server of this announcement started: send it, and end it when it goes out only once. Ending keeps what was just
+     * sent: the bell item is the message of that start (the model only clears the bell of an ended timed announcement).
+     */
+    public static function started(Announcement $announcement, Server $server): void
+    {
+        Diagnose::trace('start #'.$announcement->id.' sending for server '.$server->id);
+        self::send($announcement, $server);
+        if ($announcement->start_once && $announcement->state() !== 'ended') {
+            $announcement->forceFill(['ends_at' => now()])->save();
+        }
     }
 
     private static function send(Announcement $announcement, Server $server): void
@@ -84,13 +92,15 @@ final class StartAnnouncements
             return;
         }
         $title = StartTrigger::title($server->name, $announcement->title);
-        $users = User::query()->get()->filter(fn (User $user) => $announcement->audience !== 'admins' || $user->isAdmin())->values();
+        // The same people as an announcement at a time (Bell::audience), so a test at a time and one on a start agree.
+        $users = Bell::audience($announcement)->get();
         if ($announcement->in_bell) {
             // The item of the previous start goes, so the bell holds the latest one.
             Bell::forget($announcement->id, kind: Bell::EVERYONE);
             foreach ($users as $user) {
                 Bell::send($announcement, $user, Bell::EVERYONE, $title);
             }
+            Diagnose::trace('start #'.$announcement->id.' bell reached '.$users->count().' accounts');
         }
         if ($announcement->push && Push::available()) {
             $reached = AppPush::send($users, 'messages', [
@@ -100,6 +110,7 @@ final class StartAnnouncements
                 'tag' => 'simplify-announcement-'.$announcement->id.'-'.$server->id.'-'.time(),
             ]);
             $announcement->increment('pushed_to', $reached);
+            Diagnose::trace('start #'.$announcement->id.' push reached '.$reached.' devices');
         }
     }
 }

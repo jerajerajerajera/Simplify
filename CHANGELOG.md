@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Announcements: one sent "When a server starts" with "Only once" now stays in the bell. It ended right after it went out, and ending an announcement cleared its bell items, so they were gone within the same second. Ending an announcement on a server start now keeps the messages of the starts that happened; deleting it still removes them.
+
 ## 2.0.0-beta.12
 
 - Phones: the overview no longer jumps while it loads. Pelican's copyright line waited at the bottom of the window and was pushed down once the servers were there; it now appears with the page.

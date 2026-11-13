@@ -75,10 +75,12 @@ final class Announcement extends Model
 
     protected static function booted(): void
     {
-        // An ended or deleted announcement leaves no item behind in anyone's bell.
+        // An ended or deleted announcement leaves no item behind in anyone's bell. An announcement on a server start is
+        // the exception while it exists: its bell items are messages of starts that happened, and one that goes out once
+        // ends right after it went out (K-B68).
         self::deleted(fn (self $announcement) => Bell::forget($announcement->id));
         self::updated(function (self $announcement): void {
-            $ended = $announcement->state() === 'ended';
+            $ended = $announcement->state() === 'ended' && $announcement->send_on !== StartTrigger::START;
             if ($ended || ($announcement->wasChanged('in_bell') && ! $announcement->in_bell)) {
                 // Put there again when it is shown again, or turned on again.
                 Bell::forget($announcement->id, kind: $ended ? null : Bell::EVERYONE);
