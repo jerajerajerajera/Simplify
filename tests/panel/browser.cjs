@@ -206,6 +206,8 @@ async function holidays() {
   }
   for (const name of ['overview', 'server']) {
     const plain = measured[`ordinary-${name}`];
+    // K-B67: Pelican's footer stood at the bottom of the window until the servers pushed it down (0.07).
+    if (plain) say(`ordinary ${name}: the page does not move while it loads`, plain.shift <= 0.02, plain);
     for (const day of ['diwali', 'christmas']) {
       const m = measured[`${day}-${name}`];
       if (!plain || !m) continue;

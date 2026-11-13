@@ -24,6 +24,9 @@
         position: fixed; inset: 0; z-index: 40; display: flex; flex-direction: column; gap: 24px; box-sizing: border-box; overflow: hidden; padding: 32px 36px 4px;
         background: var(--ps-bg, #f4f4f5); animation: ps-boot-away .3s 6s forwards;
     }
+    /* Pelican's copyright footer waits for the page as well: shown before it, it stood at the bottom of the window on
+       a phone and jumped below the servers once they were there (layout shift 0.07, K-B67). */
+    body:has([data-simplify-root][x-cloak]) :is(.fi-footer, .fi-main-ctn footer) { display: none !important; }
     :root.dark body:has([data-simplify-root][x-cloak]) .ps-boot { --ps-boot-card: var(--ps-surface, #18181c); --ps-boot-line: var(--ps-line, #2c2c33); --ps-boot-sk: #232329; --ps-boot-shine: #2c2c33; background: var(--ps-bg, #101012); }
     @keyframes ps-boot-away { to { visibility: hidden; opacity: 0; } }
     .ps-boot-sk { display: block; border-radius: 7px; background: linear-gradient(90deg, var(--ps-boot-sk) 40%, var(--ps-boot-shine) 50%, var(--ps-boot-sk) 60%) 0 0 / 300% 100%; animation: ps-boot-shine 1.4s linear infinite; }
