@@ -40,6 +40,8 @@ use Simplify\Core\Announcements\Support\StartTrigger;
  * @property bool $start_once ends itself after the first start
  * @property ?array<int, bool> $start_seen server id => running at the last look
  * @property ?int $created_by
+ * @property ?CarbonInterface $created_at
+ * @property ?CarbonInterface $updated_at
  */
 final class Announcement extends Model
 {

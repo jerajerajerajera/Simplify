@@ -30,6 +30,12 @@ final class Diagnose
     /** The Test announcements button on the overview. Only the debug build turns it on; never in a release. */
     public const BUTTON = false;
 
+    /** Whether this build shows the Test announcements button (only the separate debug build does). */
+    public static function button(): bool
+    {
+        return self::BUTTON;
+    }
+
     /** Scheduler runs kept for the log. */
     public const TRACE = 30;
 
@@ -209,7 +215,7 @@ final class Diagnose
         $own = GameCommand::query()->pluck('command', 'egg_id')->all();
         $count = ['running' => 0, 'offline' => 0, 'no_command' => 0];
         foreach ($servers as $server) {
-            if (GameChat::commandFor((string) $server->egg?->name, $own[$server->egg_id] ?? null) === null) {
+            if (GameChat::commandFor((string) data_get($server, 'egg.name'), $own[$server->egg_id] ?? null) === null) {
                 $count['no_command']++;
             } elseif (TaskDelivery::running($server)) {
                 $count['running']++;

@@ -68,7 +68,7 @@ final class Overview extends Page
     public function testAnnouncements(?string $zone = null, ?string $action = null, ?int $server = null): array
     {
         $user = $this->user();
-        abort_unless(Diagnose::BUTTON && $user->isRootAdmin(), 403);
+        abort_unless(Diagnose::button() && $user->isRootAdmin(), 403);
         $done = match ($action) {
             'me' => Diagnose::sendToMe($user),
             'timed' => Diagnose::scheduleTest($user, $server ?: null),
