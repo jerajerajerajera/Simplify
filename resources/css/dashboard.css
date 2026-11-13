@@ -1372,6 +1372,10 @@ body:has(.ps-server-top) .fi-main-ctn > .fi-main { grid-area: main; width: auto;
 body:has(.ps-server-top) .fi-page-header-main-ctn { padding-top: 0 !important; }
 .ps.ps-server-top > .ps-main { grid-area: top; padding: 32px 0 0; }
 .ps.ps-server-top.is-server-full-width ~ * { max-width: none; }
+/* Full width (Customize, or Pelican's Display width Full or Screen): the server page uses the whole window, its header too.
+   The cap above sat on .fi-main-ctn, which the switch never reached (K-B69). */
+body:has(.ps-server-top):has(:is(.ps-server-top.is-server-full-width, .fi-main.fi-width-full, .fi-main.fi-width-screen)) .fi-main-ctn { max-width: none !important; }
+body:has(.ps-server-top):has(:is(.ps-server-top.is-server-full-width, .fi-main.fi-width-full, .fi-main.fi-width-screen)) .ps-server-top .ps-top { max-width: none; }
 .ps-server-menu { grid-area: nav; position: sticky; top: 14px; align-self: start; display: flex; flex-direction: column; gap: 1px; max-height: calc(100dvh - 28px); padding: 10px; overflow-y: auto; border: 1px solid var(--ps-line); border-radius: var(--ps-radius-lg); background: var(--ps-surface); }
 .ps-server-menu .ps-widget { display: flex; flex: none; height: auto; flex-direction: row; align-items: center; justify-content: flex-start; gap: 10px; min-height: 40px; padding: 4px 8px; border: 1px solid transparent; border-radius: 10px; background: none; color: var(--ps-ink); text-decoration: none; }
 .ps-server-menu .ps-widget:is(:hover, :focus-visible) { background: var(--ps-raised); }
