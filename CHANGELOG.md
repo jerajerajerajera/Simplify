@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Phones: the overview no longer jumps while it loads. Pelican's copyright line waited at the bottom of the window and was pushed down once the servers were there; it now appears with the page.
 - A server's name is edited in its title card. Click the name or the pencil: the name turns into a field with its text selected. Enter or ✓ saves, Esc or ✕ puts it back, and a click beside the field keeps what you typed. On a phone, Cancel and Save sit under the field.
 - Announcements: `php artisan simplify:announcements --diagnose` shows, without sending anything, whether the scheduler runs, how the time zones compare, and for each announcement what the next run would do and when its bell item arrived against the time it was set for, with the last scheduler runs.
 - Announcements: a new choice Send › When a server starts sends the announcement each time one of the picked servers comes online (or only the next time), also after a start from the console or a crash: in that server's game chat, in the bell and as an app notification (Khion's idea).

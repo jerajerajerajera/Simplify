@@ -167,7 +167,19 @@ async function holidays() {
     await page.clock.install({ time: new Date(time) });
     await page.addInitScript(() => {
       window.__psShift = 0;
-      try { new PerformanceObserver((list) => { for (const e of list.getEntries()) if (!e.hadRecentInput) window.__psShift += e.value; }).observe({ type: 'layout-shift', buffered: true }); } catch {}
+      window.__psShifts = [];
+      // What moved, so a red run names the element: its classes, where it was and where it went, and when.
+      const name = (n) => (n && n.nodeType === 1 ? n.tagName.toLowerCase() + (n.id ? '#' + n.id : '') + (n.className && typeof n.className === 'string' ? '.' + n.className.trim().split(/\s+/).slice(0, 3).join('.') : '') : String(n && n.nodeName));
+      const box = (r) => [Math.round(r.x), Math.round(r.y), Math.round(r.width), Math.round(r.height)].join(',');
+      try {
+        new PerformanceObserver((list) => {
+          for (const e of list.getEntries()) {
+            if (e.hadRecentInput) continue;
+            window.__psShift += e.value;
+            window.__psShifts.push({ at: Math.round(e.startTime), value: Number(e.value.toFixed(4)), sources: (e.sources || []).map((x) => `${name(x.node)} ${box(x.previousRect)} -> ${box(x.currentRect)}`) });
+          }
+        }).observe({ type: 'layout-shift', buffered: true });
+      } catch {}
     });
     await login();
     const cdp = await context.newCDPSession(page);
@@ -182,6 +194,7 @@ async function holidays() {
       const after = await metrics();
       measured[`${day}-${name}`] = {
         shift: Number((await page.evaluate(() => window.__psShift)).toFixed(3)),
+        shifts: await page.evaluate(() => window.__psShifts.slice(0, 8)),
         busy: Number((after.TaskDuration - before.TaskDuration).toFixed(3)),
         styles: after.RecalcStyleCount - before.RecalcStyleCount,
         layouts: after.LayoutCount - before.LayoutCount,
@@ -193,6 +206,8 @@ async function holidays() {
   }
   for (const name of ['overview', 'server']) {
     const plain = measured[`ordinary-${name}`];
+    // K-B67: Pelican's footer stood at the bottom of the window until the servers pushed it down (0.07).
+    if (plain) say(`ordinary ${name}: the page does not move while it loads`, plain.shift <= 0.02, plain);
     for (const day of ['diwali', 'christmas']) {
       const m = measured[`${day}-${name}`];
       if (!plain || !m) continue;
