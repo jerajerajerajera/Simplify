@@ -56,7 +56,7 @@ final class DeliverAnnouncements extends Command
         if ($servers > 0) {
             $this->info("Posted announcements in game on $servers servers.");
         }
-        Diagnose::trace("run weekly=$weekly bell=$reached push=$devices waits=$waited starts=$starts game=$servers");
+        Diagnose::trace("run bell=$reached push=$devices waits=$waited starts=$starts game=$servers weekly=$weekly");
 
         return self::SUCCESS;
     }
