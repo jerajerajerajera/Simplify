@@ -1,0 +1,1350 @@
+{
+ "base": "http://127.0.0.1:8001",
+ "screens": [
+  {
+   "id": "server-console",
+   "title": "Server · Console (Survival SMP)",
+   "stand": "tablet768-dark",
+   "url": "/server/n8fqm60e/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n8fqm60e/console",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Network\" (47,995 198x40) | ps-widget \"Startup\" (47,1035 198x40) | ps-widget \"Settings\" (47,1075 198x40) | ps-widget \"Mounts\" (47,1115 198x40) | ps-widget \"Webhooks\" (47,1155 198x40) | ps-widget \"Activity\" (47,1195 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "card": "445..963 of 1024 fit=518px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,514 408x361; terminal 271,446 460x453; bar top 899",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-console.png"
+  },
+  {
+   "id": "server-console-typed",
+   "title": "Server · Console na een commando",
+   "stand": "tablet768-dark",
+   "url": "/server/n8fqm60e/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n8fqm60e/console",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Network\" (47,995 198x40) | ps-widget \"Startup\" (47,1035 198x40) | ps-widget \"Settings\" (47,1075 198x40) | ps-widget \"Mounts\" (47,1115 198x40) | ps-widget \"Webhooks\" (47,1155 198x40) | ps-widget \"Activity\" (47,1195 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "card": "445..963 of 1024 fit=518px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,514 408x361; terminal 271,446 460x453; bar top 899",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-console-typed.png"
+  },
+  {
+   "id": "server-more",
+   "title": "Server · ⋯-menu open",
+   "stand": "tablet768-dark",
+   "url": "/server/n8fqm60e/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n8fqm60e/console",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Network\" (47,995 198x40) | ps-widget \"Startup\" (47,1035 198x40) | ps-widget \"Settings\" (47,1075 198x40) | ps-widget \"Mounts\" (47,1115 198x40) | ps-widget \"Webhooks\" (47,1155 198x40) | ps-widget \"Activity\" (47,1195 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "popups": [
+      "ps-info-menu 479,233 230x390"
+     ],
+     "card": "445..963 of 1024 fit=518px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,514 408x361; terminal 271,446 460x453; bar top 899",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,445 462x518"
+     ],
+     "box": "445..963 of 1024",
+     "dropdown": [
+      "ps-info-menu 390px of 683 max"
+     ],
+     "arrow": [
+      "ps-info-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-more.png"
+  },
+  {
+   "id": "server-colour",
+   "title": "Server · kleurkiezer open",
+   "stand": "tablet768-dark",
+   "url": "/server/n8fqm60e/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n8fqm60e/console",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Network\" (47,995 198x40) | ps-widget \"Startup\" (47,1035 198x40) | ps-widget \"Settings\" (47,1075 198x40) | ps-widget \"Mounts\" (47,1115 198x40) | ps-widget \"Webhooks\" (47,1155 198x40) | ps-widget \"Activity\" (47,1195 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "popups": [
+      "ps-dropdown.is-end.ps-color-dropdown 461,233 248x205"
+     ],
+     "card": "445..963 of 1024 fit=518px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,514 408x361; terminal 271,446 460x453; bar top 899",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,445 462x518"
+     ],
+     "box": "445..963 of 1024",
+     "dropdown": [
+      "ps-dropdown.is-end.ps-color-dropdown 205px of 683 max"
+     ],
+     "arrow": [
+      "ps-dropdown.is-end.ps-color-dropdown no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-colour.png"
+  },
+  {
+   "id": "server-menu-advanced",
+   "title": "Server · menu, Advanced open",
+   "stand": "tablet768-dark",
+   "url": "/server/n8fqm60e/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n8fqm60e/console",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 516/799"
+     ],
+     "card": "445..963 of 1024 fit=518px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,514 408x361; terminal 271,446 460x453; bar top 899",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-menu-advanced.png"
+  },
+  {
+   "id": "server-console",
+   "title": "Server · Console",
+   "stand": "tablet768-dark",
+   "url": "/server/n8fqm60e/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n8fqm60e/console",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Network\" (47,995 198x40) | ps-widget \"Startup\" (47,1035 198x40) | ps-widget \"Settings\" (47,1075 198x40) | ps-widget \"Mounts\" (47,1115 198x40) | ps-widget \"Webhooks\" (47,1155 198x40) | ps-widget \"Activity\" (47,1195 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "card": "445..963 of 1024 fit=518px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,514 408x361; terminal 271,446 460x453; bar top 899",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-console.png"
+  },
+  {
+   "id": "server-files",
+   "title": "Server · Files",
+   "stand": "tablet768-dark",
+   "url": "/server/n8fqm60e/files",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n8fqm60e/files",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Network\" (47,995 198x40) | ps-widget \"Startup\" (47,1035 198x40) | ps-widget \"Settings\" (47,1075 198x40) | ps-widget \"Mounts\" (47,1115 198x40) | ps-widget \"Webhooks\" (47,1155 198x40) | ps-widget \"Activity\" (47,1195 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "card": "445..963 of 1024 fit=518px",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-main-content 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-files.png"
+  },
+  {
+   "id": "server-files-rowmenu",
+   "title": "Server · Files, rijmenu open",
+   "stand": "tablet768-dark",
+   "url": "/server/n8fqm60e/files",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n8fqm60e/files",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Network\" (47,995 198x40) | ps-widget \"Startup\" (47,1035 198x40) | ps-widget \"Settings\" (47,1075 198x40) | ps-widget \"Mounts\" (47,1115 198x40) | ps-widget \"Webhooks\" (47,1155 198x40) | ps-widget \"Activity\" (47,1195 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "popups": [
+      "fi-dropdown-panel-x85oo3b5 451,670 224x171"
+     ],
+     "card": "445..963 of 1024 fit=518px",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-main-content 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-files-rowmenu.png"
+  },
+  {
+   "id": "server-files-folder",
+   "title": "Server · Files, map open",
+   "stand": "tablet768-dark",
+   "url": "/server/n8fqm60e/files/plugins",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n8fqm60e/files/plugins",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Network\" (47,995 198x40) | ps-widget \"Startup\" (47,1035 198x40) | ps-widget \"Settings\" (47,1075 198x40) | ps-widget \"Mounts\" (47,1115 198x40) | ps-widget \"Webhooks\" (47,1155 198x40) | ps-widget \"Activity\" (47,1195 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "card": "445..963 of 1024 fit=518px",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-main-content 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-files-folder.png"
+  },
+  {
+   "id": "server-backups-tasks",
+   "title": "Server · Backups & tasks",
+   "stand": "tablet768-dark",
+   "url": "/server/n8fqm60e/backups",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n8fqm60e/backups",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Network\" (47,995 198x40) | ps-widget \"Startup\" (47,1035 198x40) | ps-widget \"Settings\" (47,1075 198x40) | ps-widget \"Mounts\" (47,1115 198x40) | ps-widget \"Webhooks\" (47,1155 198x40) | ps-widget \"Activity\" (47,1195 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "card": "445..963 of 1024 fit=518px",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-main-content 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-backups-tasks.png"
+  },
+  {
+   "id": "server-tab-schedules",
+   "title": "Server · Backups & tasks › Schedules",
+   "stand": "tablet768-dark",
+   "url": "/server/n8fqm60e/schedules",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n8fqm60e/schedules",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Network\" (47,995 198x40) | ps-widget \"Startup\" (47,1035 198x40) | ps-widget \"Settings\" (47,1075 198x40) | ps-widget \"Mounts\" (47,1115 198x40) | ps-widget \"Webhooks\" (47,1155 198x40) | ps-widget \"Activity\" (47,1195 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "card": "445..963 of 1024 fit=518px",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-main-content 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-tab-schedules.png"
+  },
+  {
+   "id": "server-backups-tasks-new",
+   "title": "Server · Backups & tasks, nieuw-dialoog open",
+   "stand": "tablet768-dark",
+   "url": "/server/n8fqm60e/backups",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n8fqm60e/backups",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Network\" (47,995 198x40) | ps-widget \"Startup\" (47,1035 198x40) | ps-widget \"Settings\" (47,1075 198x40) | ps-widget \"Mounts\" (47,1115 198x40) | ps-widget \"Webhooks\" (47,1155 198x40) | ps-widget \"Activity\" (47,1195 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "card": "445..963 of 1024 fit=518px",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-main-content 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-backups-tasks-new.png"
+  },
+  {
+   "id": "server-subdomain",
+   "title": "Server · Subdomain",
+   "stand": "tablet768-dark",
+   "url": "/server/n8fqm60e/subdomain",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n8fqm60e/subdomain",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Network\" (47,995 198x40) | ps-widget \"Startup\" (47,1035 198x40) | ps-widget \"Settings\" (47,1075 198x40) | ps-widget \"Mounts\" (47,1115 198x40) | ps-widget \"Webhooks\" (47,1155 198x40) | ps-widget \"Activity\" (47,1195 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "card": "445..963 of 1024 fit=518px",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-main-content 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-subdomain.png"
+  },
+  {
+   "id": "server-minecraft",
+   "title": "Server · Minecraft",
+   "stand": "tablet768-dark",
+   "url": "/server/n8fqm60e/minecraft",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n8fqm60e/minecraft",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Network\" (47,995 198x40) | ps-widget \"Startup\" (47,1035 198x40) | ps-widget \"Settings\" (47,1075 198x40) | ps-widget \"Mounts\" (47,1115 198x40) | ps-widget \"Webhooks\" (47,1155 198x40) | ps-widget \"Activity\" (47,1195 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "fi-page-main 516/1281"
+     ],
+     "card": "445..963 of 1024 fit=518px",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-main-content 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-minecraft.png"
+  },
+  {
+   "id": "server-plugins",
+   "title": "Server · Plugins",
+   "stand": "tablet768-dark",
+   "url": "/server/n8fqm60e/plugins",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n8fqm60e/plugins",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Network\" (47,995 198x40) | ps-widget \"Startup\" (47,1035 198x40) | ps-widget \"Settings\" (47,1075 198x40) | ps-widget \"Mounts\" (47,1115 198x40) | ps-widget \"Webhooks\" (47,1155 198x40) | ps-widget \"Activity\" (47,1195 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "fi-page-main 516/1945"
+     ],
+     "card": "445..963 of 1024 fit=518px",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-main-content 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-plugins.png"
+  },
+  {
+   "id": "server-players",
+   "title": "Server · Players",
+   "stand": "tablet768-dark",
+   "url": "/server/n8fqm60e/players",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n8fqm60e/players",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Network\" (47,995 198x40) | ps-widget \"Startup\" (47,1035 198x40) | ps-widget \"Settings\" (47,1075 198x40) | ps-widget \"Mounts\" (47,1115 198x40) | ps-widget \"Webhooks\" (47,1155 198x40) | ps-widget \"Activity\" (47,1195 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "fi-page-main 516/1000"
+     ],
+     "card": "445..963 of 1024 fit=518px",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-main-content 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-players.png"
+  },
+  {
+   "id": "server-website",
+   "title": "Server · Website",
+   "stand": "tablet768-dark",
+   "url": "/server/n8fqm60e/website",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n8fqm60e/website",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Network\" (47,995 198x40) | ps-widget \"Startup\" (47,1035 198x40) | ps-widget \"Settings\" (47,1075 198x40) | ps-widget \"Mounts\" (47,1115 198x40) | ps-widget \"Webhooks\" (47,1155 198x40) | ps-widget \"Activity\" (47,1195 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "fi-page-main 516/1920",
+      "s-fit 1924/1932"
+     ],
+     "card": "445..963 of 1024 fit=518px",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-main-content 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [
+    {
+     "box": "295,1927 412x420",
+     "url": "blank",
+     "w": 412,
+     "h": 420,
+     "dark": false,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 420,
+      "pageScrollW": 412,
+      "scope": "pelican"
+     }
+    }
+   ],
+   "shot": "tablet768-dark/server-website.png"
+  },
+  {
+   "id": "server-server-software",
+   "title": "Server · Server software",
+   "stand": "tablet768-dark",
+   "url": "/server/n8fqm60e/software",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n8fqm60e/software",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Network\" (47,995 198x40) | ps-widget \"Startup\" (47,1035 198x40) | ps-widget \"Settings\" (47,1075 198x40) | ps-widget \"Mounts\" (47,1115 198x40) | ps-widget \"Webhooks\" (47,1155 198x40) | ps-widget \"Activity\" (47,1195 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "fi-page-main 516/920"
+     ],
+     "card": "445..963 of 1024 fit=518px",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-main-content 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-server-software.png"
+  },
+  {
+   "id": "server-performance",
+   "title": "Server · Performance",
+   "stand": "tablet768-dark",
+   "url": "/server/n8fqm60e/performance",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n8fqm60e/performance",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Network\" (47,995 198x40) | ps-widget \"Startup\" (47,1035 198x40) | ps-widget \"Settings\" (47,1075 198x40) | ps-widget \"Mounts\" (47,1115 198x40) | ps-widget \"Webhooks\" (47,1155 198x40) | ps-widget \"Activity\" (47,1195 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "ellipsis": [
+      "strong: \"Custom\"",
+      "strong: \"1.5 cores\"",
+      "strong: \"2 cores\"",
+      "strong: \"3 cores\"",
+      "strong: \"4 cores\"",
+      "strong: \"Custom\"",
+      "strong: \"Custom\""
+     ],
+     "panes": [
+      "fi-page-main 516/895"
+     ],
+     "card": "445..963 of 1024 fit=518px",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-main-content 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-performance.png"
+  },
+  {
+   "id": "server-users",
+   "title": "Server · Users",
+   "stand": "tablet768-dark",
+   "url": "/server/n8fqm60e/subusers",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n8fqm60e/subusers",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 516/799"
+     ],
+     "card": "445..963 of 1024 fit=518px",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-main-content 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-users.png"
+  },
+  {
+   "id": "server-users-new",
+   "title": "Server · Users, nieuw-dialoog open",
+   "stand": "tablet768-dark",
+   "url": "/server/n8fqm60e/subusers",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n8fqm60e/subusers",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 516/799"
+     ],
+     "card": "445..963 of 1024 fit=518px",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-main-content 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-users-new.png"
+  },
+  {
+   "id": "server-databases",
+   "title": "Server · Databases",
+   "stand": "tablet768-dark",
+   "url": "/server/n8fqm60e/databases",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n8fqm60e/databases",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 516/799"
+     ],
+     "card": "445..963 of 1024 fit=518px",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-main-content 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-databases.png"
+  },
+  {
+   "id": "server-databases-new",
+   "title": "Server · Databases, nieuw-dialoog open",
+   "stand": "tablet768-dark",
+   "url": "/server/n8fqm60e/databases",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n8fqm60e/databases",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 516/799"
+     ],
+     "card": "445..963 of 1024 fit=518px",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-main-content 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-databases-new.png"
+  },
+  {
+   "id": "server-network",
+   "title": "Server · Network",
+   "stand": "tablet768-dark",
+   "url": "/server/n8fqm60e/allocations",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n8fqm60e/allocations",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 516/799"
+     ],
+     "card": "445..963 of 1024 fit=518px",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-main-content 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-network.png"
+  },
+  {
+   "id": "server-startup",
+   "title": "Server · Startup",
+   "stand": "tablet768-dark",
+   "url": "/server/n8fqm60e/startup",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n8fqm60e/startup",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 516/799"
+     ],
+     "card": "445..963 of 1024 fit=518px",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-main-content 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-startup.png"
+  },
+  {
+   "id": "server-settings",
+   "title": "Server · Settings",
+   "stand": "tablet768-dark",
+   "url": "/server/n8fqm60e/settings",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n8fqm60e/settings",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 516/799",
+      "fi-page-main 516/1658"
+     ],
+     "card": "445..963 of 1024 fit=518px",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-main-content 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-settings.png"
+  },
+  {
+   "id": "server-mounts",
+   "title": "Server · Mounts",
+   "stand": "tablet768-dark",
+   "url": "/server/n8fqm60e/mounts",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n8fqm60e/mounts",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 516/799"
+     ],
+     "card": "445..963 of 1024 fit=518px",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-main-content 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-mounts.png"
+  },
+  {
+   "id": "server-webhooks",
+   "title": "Server · Webhooks",
+   "stand": "tablet768-dark",
+   "url": "/server/n8fqm60e/webhook",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n8fqm60e/webhook",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 516/799"
+     ],
+     "card": "445..963 of 1024 fit=518px",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-main-content 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-webhooks.png"
+  },
+  {
+   "id": "server-activity",
+   "title": "Server · Activity",
+   "stand": "tablet768-dark",
+   "url": "/server/n8fqm60e/activities",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n8fqm60e/activities",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Server sections 516/799"
+     ],
+     "card": "445..963 of 1024 fit=518px",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-main-content 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-activity.png"
+  },
+  {
+   "id": "server-servers",
+   "title": "Server · Servers",
+   "stand": "tablet768-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "Servers 880/3111"
+     ],
+     "card": "0..978 of 1024",
+     "topbar": "brand 36..361, actions 417..732",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 40,119 688x78",
+      "fi-callout.fi-color.fi-color-info 40,209 688x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-servers.png"
+  },
+  {
+   "id": "server-admin",
+   "title": "Server · Admin",
+   "stand": "tablet768-dark",
+   "url": "/admin/health#menu",
+   "docTitle": "Health - Northwind Games",
+   "main": {
+    "url": "/admin/health",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "fi-main-ctn 918/968"
+     ],
+     "card": "86..990 of 1024",
+     "topbar": "brand 36..361, actions 408..732",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "86..1004 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-admin.png"
+  },
+  {
+   "id": "server-addon-unsaved",
+   "title": "Server · add-on-formulier, Changes made",
+   "stand": "tablet768-dark",
+   "url": "/server/n8fqm60e/minecraft",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/n8fqm60e/minecraft",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Network\" (47,995 198x40) | ps-widget \"Startup\" (47,1035 198x40) | ps-widget \"Settings\" (47,1075 198x40) | ps-widget \"Mounts\" (47,1115 198x40) | ps-widget \"Webhooks\" (47,1155 198x40) | ps-widget \"Activity\" (47,1195 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "panes": [
+      "fi-page-main 516/1281"
+     ],
+     "card": "445..963 of 1024 fit=518px",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-main-content 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server-addon-unsaved.png"
+  },
+  {
+   "id": "server2-console",
+   "title": "Server · Console (Valheim Vikings)",
+   "stand": "tablet768-dark",
+   "url": "/server/fptoxngy/console",
+   "docTitle": "Valheim Vikings - Simplify",
+   "main": {
+    "url": "/server/fptoxngy/console",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Webhooks\" (47,991 198x40) | ps-widget \"Activity\" (47,1031 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "card": "445..963 of 1024 fit=518px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,514 408x361; terminal 271,446 460x453; bar top 899",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server2-console.png"
+  },
+  {
+   "id": "server3-console",
+   "title": "Server · Console (Skyblock, eigen icoon)",
+   "stand": "tablet768-dark",
+   "url": "/server/ghjgagss/console",
+   "docTitle": "Skyblock - Simplify",
+   "main": {
+    "url": "/server/ghjgagss/console",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Network\" (47,995 198x40) | ps-widget \"Startup\" (47,1035 198x40) | ps-widget \"Settings\" (47,1075 198x40) | ps-widget \"Mounts\" (47,1115 198x40) | ps-widget \"Webhooks\" (47,1155 198x40) | ps-widget \"Activity\" (47,1195 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "card": "445..963 of 1024 fit=518px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,514 408x361; terminal 271,446 460x453; bar top 899",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server3-console.png"
+  },
+  {
+   "id": "server4-console",
+   "title": "Server · Console (Creative Builds, icoon laadt niet)",
+   "stand": "tablet768-dark",
+   "url": "/server/kolrwuqd/console",
+   "docTitle": "Creative Builds - Simplify",
+   "main": {
+    "url": "/server/kolrwuqd/console",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Network\" (47,995 198x40) | ps-widget \"Startup\" (47,1035 198x40) | ps-widget \"Settings\" (47,1075 198x40) | ps-widget \"Mounts\" (47,1115 198x40) | ps-widget \"Webhooks\" (47,1155 198x40) | ps-widget \"Activity\" (47,1195 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "card": "445..963 of 1024 fit=518px",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 288,514 408x361; terminal 271,446 460x453; bar top 899",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server4-console.png"
+  },
+  {
+   "id": "server4-files",
+   "title": "Server · Files (Creative Builds)",
+   "stand": "tablet768-dark",
+   "url": "/server/kolrwuqd/files",
+   "docTitle": "Creative Builds - Simplify",
+   "main": {
+    "url": "/server/kolrwuqd/files",
+    "w": 768,
+    "h": 1024,
+    "dark": true,
+    "fit": true,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: ps-widget \"Network\" (47,995 198x40) | ps-widget \"Startup\" (47,1035 198x40) | ps-widget \"Settings\" (47,1075 198x40) | ps-widget \"Mounts\" (47,1115 198x40) | ps-widget \"Webhooks\" (47,1155 198x40) | ps-widget \"Activity\" (47,1195 198x40)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 768,
+     "card": "445..963 of 1024 fit=518px",
+     "topbar": "brand 36..361, actions 694..732",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 36,158 696x96",
+      "fi-main-content 270,445 462x518"
+     ],
+     "box": "445..963 of 1024"
+    }
+   },
+   "frames": [],
+   "shot": "tablet768-dark/server4-files.png"
+  }
+ ],
+ "problems": [
+  "tablet768-dark server-console-addon-action: ok [{\"label\":\"Audit action\",\"shown\":true}]",
+  "tablet768-dark server-console-typed: nothing to click for .ps-console-grow",
+  "tablet768-dark server-colour: nothing to click for .ps-info-motd, .ps-motd-preview",
+  "tablet768-dark server-menu: Delete server NOT FOUND",
+  "tablet768-dark server-databases: click .fi-header-actions button, .fi-ac-btn-action, .fi-page-header-main-ctn button: locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator('.fi-h",
+  "tablet768-dark server-webhooks: nothing to click for .fi-header-actions button, .fi-ac-btn-action, .fi-page-header-main-ctn button",
+  "tablet768-dark server-addon-unsaved: ok {\"bar\":true,\"asked\":true,\"stayed\":true,\"url\":\"/server/n8fqm60e/minecraft\",\"gone\":true}",
+  "tablet768-dark server4-console: tab title ok: \"Creative Builds - Simplify\"",
+  "tablet768-dark server4-files: tab title ok: \"Creative Builds - Simplify\""
+ ]
+}

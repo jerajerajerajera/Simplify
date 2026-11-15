@@ -1,0 +1,501 @@
+{
+ "base": "http://127.0.0.1:8001",
+ "product": null,
+ "stands": {
+  "phone390": {
+   "url": "http://127.0.0.1:8001/simplify",
+   "tried": [],
+   "grid": {
+    "window": "390x844",
+    "servers": 8,
+    "fitWithoutScrolling": 2,
+    "columns": 1,
+    "rowPitch": 338,
+    "card": {
+     "h": 322,
+     "w": 362,
+     "top": 128,
+     "pad": "0 0 0 0",
+     "gap": null
+    },
+    "cardInner": {
+     "h": 322,
+     "w": 362,
+     "top": 128,
+     "pad": "0 0 0 0",
+     "gap": null
+    },
+    "grid": {
+     "h": 2688,
+     "w": 362,
+     "top": 128,
+     "pad": "0 0 0 0",
+     "gap": "16/16"
+    },
+    "scrollArea": {
+     "h": 2746,
+     "w": 362,
+     "top": 70,
+     "pad": "0 0 0 0",
+     "gap": "0/0"
+    },
+    "firstServerTop": 128,
+    "scrolls": 0,
+    "pageScroll": 2122,
+    "above": [
+     {
+      "part": "ps-top",
+      "h": 38,
+      "w": 362,
+      "top": 18,
+      "pad": "0 0 0 0",
+      "gap": "10/10"
+     },
+     {
+      "part": "ps-overview-toolbar",
+      "h": 46,
+      "w": 390,
+      "top": 70,
+      "pad": "2 14 4 14",
+      "gap": "8/8"
+     }
+    ],
+    "parts": [
+     {
+      "part": "ps-card-background",
+      "h": 320,
+      "w": 288,
+      "top": 1,
+      "pad": "0 0 0 0",
+      "gap": null,
+      "font": "14px"
+     },
+     {
+      "part": "ps-server-open",
+      "h": 320,
+      "w": 360,
+      "top": 1,
+      "pad": "12 70 12 14",
+      "gap": "0/0",
+      "font": "14px"
+     },
+     {
+      "part": "  ps-card-head",
+      "h": 48,
+      "w": 84,
+      "top": 13,
+      "pad": "0 0 0 0",
+      "gap": "0/0",
+      "font": "14px"
+     },
+     {
+      "part": "    ps-card-icons",
+      "h": 48,
+      "w": 84,
+      "top": 13,
+      "pad": "0 0 0 0",
+      "gap": null,
+      "font": "14px"
+     },
+     {
+      "part": "  ps-card-title",
+      "h": 48,
+      "w": 164,
+      "top": 61,
+      "pad": "0 0 0 0",
+      "gap": null,
+      "font": "14px"
+     },
+     {
+      "part": "    ps-card-title-row",
+      "h": 48,
+      "w": 164,
+      "top": 61,
+      "pad": "0 0 0 0",
+      "gap": "0/0",
+      "font": "14px"
+     },
+     {
+      "part": "  ps-card-usage",
+      "h": 45,
+      "w": 214,
+      "top": 224,
+      "pad": "0 0 0 0",
+      "gap": "16/16",
+      "font": "14px"
+     },
+     {
+      "part": "    ps-card-mini-metric",
+      "h": 45,
+      "w": 99,
+      "top": 224,
+      "pad": "6 6 6 6",
+      "gap": null,
+      "font": "14px"
+     },
+     {
+      "part": "    ps-card-mini-metric",
+      "h": 45,
+      "w": 99,
+      "top": 224,
+      "pad": "6 6 6 6",
+      "gap": null,
+      "font": "14px"
+     },
+     {
+      "part": "  ps-card-badges.ps-identity-badges",
+      "h": 48,
+      "w": 97,
+      "top": 13,
+      "pad": "0 0 0 0",
+      "gap": "4/4",
+      "font": "14px"
+     },
+     {
+      "part": "    ps-badge.ps-list-game",
+      "h": 22,
+      "w": 97,
+      "top": 13,
+      "pad": "3 9 3 9",
+      "gap": "6/6",
+      "font": "11px"
+     },
+     {
+      "part": "    ps-badge.ps-status",
+      "h": 22,
+      "w": 81,
+      "top": 39,
+      "pad": "3 9 3 9",
+      "gap": "6/6",
+      "font": "11px"
+     },
+     {
+      "part": "  ps-card-bottom",
+      "h": 35,
+      "w": 276,
+      "top": 275,
+      "pad": "11 0 0 0",
+      "gap": "0/0",
+      "font": "15px"
+     },
+     {
+      "part": "    span",
+      "h": 23,
+      "w": 49,
+      "top": 287,
+      "pad": "0 0 0 0",
+      "gap": null,
+      "font": "15px"
+     },
+     {
+      "part": "    [object.SVGAnimatedString]",
+      "h": 17,
+      "w": 17,
+      "top": 289,
+      "pad": "0 0 0 0",
+      "gap": null,
+      "font": "15px"
+     },
+     {
+      "part": "ps-overview-power-wrap",
+      "h": 53,
+      "w": 360,
+      "top": 242,
+      "pad": "0 0 0 0",
+      "gap": null,
+      "font": "14px"
+     },
+     {
+      "part": "  ps-overview-power",
+      "h": 53,
+      "w": 360,
+      "top": 242,
+      "pad": "7 7 7 7",
+      "gap": "6/6",
+      "font": "14px"
+     },
+     {
+      "part": "    ps-btn",
+      "h": 38,
+      "w": 82,
+      "top": 250,
+      "pad": "0 0 0 0",
+      "gap": "8/8",
+      "font": "13px"
+     },
+     {
+      "part": "    ps-btn",
+      "h": 38,
+      "w": 82,
+      "top": 250,
+      "pad": "0 0 0 0",
+      "gap": "8/8",
+      "font": "13px"
+     },
+     {
+      "part": "    ps-btn",
+      "h": 38,
+      "w": 82,
+      "top": 250,
+      "pad": "0 0 0 0",
+      "gap": "8/8",
+      "font": "13px"
+     }
+    ],
+    "badges": [
+     {
+      "part": "ps-card-badges.ps-identity-badges",
+      "h": 48,
+      "w": 97,
+      "top": 141,
+      "pad": "0 0 0 0",
+      "gap": "4/4",
+      "text": "Minecraft\n              "
+     },
+     {
+      "part": "ps-badge.ps-list-game",
+      "h": 22,
+      "w": 97,
+      "top": 141,
+      "pad": "3 9 3 9",
+      "gap": "6/6",
+      "text": "Minecraft"
+     },
+     {
+      "part": "ps-badge.ps-status",
+      "h": 22,
+      "w": 81,
+      "top": 167,
+      "pad": "3 9 3 9",
+      "gap": "6/6",
+      "text": "Running"
+     }
+    ],
+    "overviewView": "grid"
+   },
+   "list": {
+    "window": "390x844",
+    "servers": 8,
+    "fitWithoutScrolling": 7,
+    "columns": 1,
+    "rowPitch": 99,
+    "card": {
+     "h": 89,
+     "w": 362,
+     "top": 128,
+     "pad": "0 0 0 0",
+     "gap": null
+    },
+    "cardInner": {
+     "h": 89,
+     "w": 362,
+     "top": 128,
+     "pad": "0 0 0 0",
+     "gap": null
+    },
+    "grid": {
+     "h": 784,
+     "w": 362,
+     "top": 128,
+     "pad": "0 0 0 0",
+     "gap": "10/10"
+    },
+    "scrollArea": {
+     "h": 842,
+     "w": 362,
+     "top": 70,
+     "pad": "0 0 0 0",
+     "gap": "0/0"
+    },
+    "firstServerTop": 128,
+    "scrolls": 0,
+    "pageScroll": 218,
+    "above": [
+     {
+      "part": "ps-top",
+      "h": 38,
+      "w": 362,
+      "top": 18,
+      "pad": "0 0 0 0",
+      "gap": "10/10"
+     },
+     {
+      "part": "ps-overview-toolbar",
+      "h": 46,
+      "w": 390,
+      "top": 70,
+      "pad": "2 14 4 14",
+      "gap": "8/8"
+     }
+    ],
+    "parts": [
+     {
+      "part": "ps-card-background",
+      "h": 87,
+      "w": 288,
+      "top": 1,
+      "pad": "0 0 0 0",
+      "gap": null,
+      "font": "14px"
+     },
+     {
+      "part": "ps-server-open",
+      "h": 87,
+      "w": 360,
+      "top": 1,
+      "pad": "12 70 12 14",
+      "gap": "2/12",
+      "font": "14px"
+     },
+     {
+      "part": "  ps-card-head",
+      "h": 52,
+      "w": 48,
+      "top": 19,
+      "pad": "0 0 0 0",
+      "gap": "0/0",
+      "font": "14px"
+     },
+     {
+      "part": "    ps-card-icons",
+      "h": 52,
+      "w": 48,
+      "top": 19,
+      "pad": "0 0 0 0",
+      "gap": null,
+      "font": "14px"
+     },
+     {
+      "part": "  ps-card-title",
+      "h": 21,
+      "w": 216,
+      "top": 13,
+      "pad": "0 0 0 0",
+      "gap": null,
+      "font": "14px"
+     },
+     {
+      "part": "    ps-card-title-row",
+      "h": 21,
+      "w": 216,
+      "top": 13,
+      "pad": "0 0 0 0",
+      "gap": "6/6",
+      "font": "14px"
+     },
+     {
+      "part": "  ps-card-usage",
+      "h": 14,
+      "w": 206,
+      "top": 62,
+      "pad": "0 0 0 0",
+      "gap": "14/14",
+      "font": "14px"
+     },
+     {
+      "part": "    ps-card-mini-metric",
+      "h": 14,
+      "w": 96,
+      "top": 62,
+      "pad": "0 0 0 0",
+      "gap": "6/6",
+      "font": "14px"
+     },
+     {
+      "part": "    ps-card-mini-metric",
+      "h": 14,
+      "w": 96,
+      "top": 62,
+      "pad": "0 0 0 0",
+      "gap": "6/6",
+      "font": "14px"
+     },
+     {
+      "part": "  ps-card-badges.ps-identity-badges",
+      "h": 22,
+      "w": 216,
+      "top": 36,
+      "pad": "0 0 0 0",
+      "gap": "6/6",
+      "font": "14px"
+     },
+     {
+      "part": "    ps-badge.ps-list-game",
+      "h": 22,
+      "w": 97,
+      "top": 36,
+      "pad": "3 9 3 9",
+      "gap": "6/6",
+      "font": "11px"
+     },
+     {
+      "part": "    ps-badge.ps-status",
+      "h": 22,
+      "w": 81,
+      "top": 36,
+      "pad": "3 9 3 9",
+      "gap": "6/6",
+      "font": "11px"
+     },
+     {
+      "part": "ps-overview-power-wrap",
+      "h": 48,
+      "w": 48,
+      "top": 21,
+      "pad": "0 0 0 0",
+      "gap": null,
+      "font": "14px"
+     },
+     {
+      "part": "  ps-overview-power",
+      "h": 48,
+      "w": 48,
+      "top": 21,
+      "pad": "0 0 0 0",
+      "gap": "6/6",
+      "font": "14px"
+     },
+     {
+      "part": "    ps-btn",
+      "h": 48,
+      "w": 48,
+      "top": 21,
+      "pad": "0 0 0 0",
+      "gap": "8/8",
+      "font": "13px"
+     }
+    ],
+    "badges": [
+     {
+      "part": "ps-card-badges.ps-identity-badges",
+      "h": 22,
+      "w": 216,
+      "top": 164,
+      "pad": "0 0 0 0",
+      "gap": "6/6",
+      "text": "Minecraft\n              "
+     },
+     {
+      "part": "ps-badge.ps-list-game",
+      "h": 22,
+      "w": 97,
+      "top": 164,
+      "pad": "3 9 3 9",
+      "gap": "6/6",
+      "text": "Minecraft"
+     },
+     {
+      "part": "ps-badge.ps-status",
+      "h": 22,
+      "w": 81,
+      "top": 164,
+      "pad": "3 9 3 9",
+      "gap": "6/6",
+      "text": "Running"
+     }
+    ],
+    "overviewView": "list"
+   }
+  }
+ }
+}

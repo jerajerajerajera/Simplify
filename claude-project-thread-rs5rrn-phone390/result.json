@@ -1,0 +1,2000 @@
+{
+ "base": "http://127.0.0.1:8001",
+ "screens": [
+  {
+   "id": "server-console",
+   "title": "Server · Console (Survival SMP)",
+   "stand": "phone390-dark",
+   "url": "/server/lp50zqsi/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lp50zqsi/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1353 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1353,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1353 min 844px",
+       "div. 1353..1353 min 0px",
+       "div. 1353..1353 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1353 min 844px",
+       "fi-main.fi-width-screen-2xl 901 min auto",
+       "fi-page.fi-console-page 821 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..1353 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,513 320x570; terminal 15,453 360x692; bar top 1145",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,452 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-console.png"
+  },
+  {
+   "id": "server-console-typed",
+   "title": "Server · Console na een commando",
+   "stand": "phone390-dark",
+   "url": "/server/lp50zqsi/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lp50zqsi/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1353 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1353,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1353 min 844px",
+       "div. 1353..1353 min 0px",
+       "div. 1353..1353 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1353 min 844px",
+       "fi-main.fi-width-screen-2xl 901 min auto",
+       "fi-page.fi-console-page 821 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,-324 80x38"
+     ],
+     "card": "112..1013 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,173 320x570; terminal 15,113 360x692; bar top 805",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,-206 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,112 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-console-typed.png"
+  },
+  {
+   "id": "server-more",
+   "title": "Server · ⋯-menu open",
+   "stand": "phone390-dark",
+   "url": "/server/lp50zqsi/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lp50zqsi/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1353 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1353,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1353 min 844px",
+       "div. 1353..1353 min 0px",
+       "div. 1353..1353 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1353 min 844px",
+       "fi-main.fi-width-screen-2xl 901 min auto",
+       "fi-page.fi-console-page 821 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38",
+      "ps-info-menu 0,388 390x456"
+     ],
+     "card": "452..1353 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,513 320x570; terminal 15,453 360x692; bar top 1145",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,452 362x757"
+     ],
+     "dropdown": [
+      "ps-info-menu 456px of 776 max"
+     ],
+     "arrow": [
+      "ps-info-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-more.png"
+  },
+  {
+   "id": "server-colour",
+   "title": "Server · kleurkiezer open",
+   "stand": "phone390-dark",
+   "url": "/server/lp50zqsi/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lp50zqsi/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1353 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1353,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1353 min 844px",
+       "div. 1353..1353 min 0px",
+       "div. 1353..1353 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1353 min 844px",
+       "fi-main.fi-width-screen-2xl 901 min auto",
+       "fi-page.fi-console-page 821 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38",
+      "ps-dropdown.is-end.ps-color-dropdown 0,624 390x220"
+     ],
+     "card": "452..1353 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,513 320x570; terminal 15,453 360x692; bar top 1145",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,452 362x757"
+     ],
+     "dropdown": [
+      "ps-dropdown.is-end.ps-color-dropdown 220px of 776 max"
+     ],
+     "arrow": [
+      "ps-dropdown.is-end.ps-color-dropdown no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-colour.png"
+  },
+  {
+   "id": "server-phone-more",
+   "title": "Server · telefoon: Meer-menu open",
+   "stand": "phone390-dark",
+   "url": "/server/lp50zqsi/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lp50zqsi/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1353 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1353,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1353 min 844px",
+       "div. 1353..1353 min 0px",
+       "div. 1353..1353 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1353 min 844px",
+       "fi-main.fi-width-screen-2xl 901 min auto",
+       "fi-page.fi-console-page 821 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38",
+      "ps-phone-more-menu 0,118 390x726 scrolls"
+     ],
+     "panes": [
+      "ps-phone-more-menu 726/961"
+     ],
+     "card": "452..1353 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,513 320x570; terminal 15,453 360x692; bar top 1145",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,452 362x757"
+     ],
+     "dropdown": [
+      "ps-phone-more-menu 726px of 776 max, scrolls"
+     ],
+     "arrow": [
+      "ps-phone-more-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-phone-more.png"
+  },
+  {
+   "id": "server-console",
+   "title": "Server · Console",
+   "stand": "phone390-dark",
+   "url": "/server/lp50zqsi/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lp50zqsi/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1353 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1353,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1353 min 844px",
+       "div. 1353..1353 min 0px",
+       "div. 1353..1353 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1353 min 844px",
+       "fi-main.fi-width-screen-2xl 901 min auto",
+       "fi-page.fi-console-page 821 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..1353 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,513 320x570; terminal 15,453 360x692; bar top 1145",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,452 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-console.png"
+  },
+  {
+   "id": "server-files",
+   "title": "Server · Files",
+   "stand": "phone390-dark",
+   "url": "/server/lp50zqsi/files",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lp50zqsi/files",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1024 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1024 min 844px",
+       "div. 1024..1024 min 0px",
+       "div. 1024..1024 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1024 min 844px",
+       "fi-main.fi-width-screen-2xl 572 min auto",
+       "fi-page.fi-resource-list-records-page 492 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..1024 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-ta-ctn.fi-ta-ctn-with-footer.fi-ta-ctn-with-header 14,452 362x460"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-files.png"
+  },
+  {
+   "id": "server-files-rowmenu",
+   "title": "Server · Files, rijmenu open",
+   "stand": "phone390-dark",
+   "url": "/server/lp50zqsi/files",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lp50zqsi/files",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1024 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1024,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1024 min 844px",
+       "div. 1024..1024 min 0px",
+       "div. 1024..1024 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1024 min 844px",
+       "fi-main.fi-width-screen-2xl 572 min auto",
+       "fi-page.fi-resource-list-records-page 492 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38",
+      "fi-dropdown-panel-kjohv1rr 106,613 224x163"
+     ],
+     "card": "452..1024 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-ta-ctn.fi-ta-ctn-with-footer.fi-ta-ctn-with-header 14,452 362x460"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-files-rowmenu.png"
+  },
+  {
+   "id": "server-files-folder",
+   "title": "Server · Files, map open",
+   "stand": "phone390-dark",
+   "url": "/server/lp50zqsi/files/plugins",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lp50zqsi/files/plugins",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..805 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-ta-ctn.fi-ta-ctn-with-header 14,452 362x241"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-files-folder.png"
+  },
+  {
+   "id": "server-backups-tasks",
+   "title": "Server · Backups & tasks",
+   "stand": "phone390-dark",
+   "url": "/server/lp50zqsi/backups",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lp50zqsi/backups",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (980 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 980,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..980 min 844px",
+       "div. 980..980 min 0px",
+       "div. 980..980 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 980 min 844px",
+       "fi-main.fi-width-screen-2xl 528 min auto",
+       "fi-page.fi-resource-list-records-page 448 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..980 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-ta-ctn.fi-ta-ctn-with-footer.fi-ta-ctn-with-header 14,598 362x270"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-backups-tasks.png"
+  },
+  {
+   "id": "server-tab-schedules",
+   "title": "Server · Backups & tasks › Schedules",
+   "stand": "phone390-dark",
+   "url": "/server/lp50zqsi/schedules",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lp50zqsi/schedules",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (882 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 882,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..882 min 844px",
+       "div. 882..882 min 0px",
+       "div. 882..882 min 0px",
+       "div. 643..673 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 882 min 844px",
+       "fi-main.fi-width-screen-2xl 431 min auto",
+       "fi-page.fi-resource-list-records-page 351 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..882 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-ta-ctn.fi-ta-ctn-with-footer.fi-ta-ctn-with-header 14,500 362x271"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-tab-schedules.png"
+  },
+  {
+   "id": "server-backups-tasks-new",
+   "title": "Server · Backups & tasks, nieuw-dialoog open",
+   "stand": "phone390-dark",
+   "url": "/server/lp50zqsi/backups",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lp50zqsi/backups",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "tallnoscroll",
+      "text": "page is taller than the window (980 > 844), nothing scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 980,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..980 min 844px",
+       "div. 980..980 min 0px",
+       "div. 980..980 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 980 min 844px",
+       "fi-main.fi-width-screen-2xl 528 min auto",
+       "fi-page.fi-resource-list-records-page 448 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..980 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-ta-ctn.fi-ta-ctn-with-footer.fi-ta-ctn-with-header 14,598 362x270"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-backups-tasks-new.png"
+  },
+  {
+   "id": "server-subdomain",
+   "title": "Server · Subdomain",
+   "stand": "phone390-dark",
+   "url": "/server/lp50zqsi/subdomain",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lp50zqsi/subdomain",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..809 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-section.fi-section-has-header 14,452 362x245"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-subdomain.png"
+  },
+  {
+   "id": "server-minecraft",
+   "title": "Server · Minecraft",
+   "stand": "phone390-dark",
+   "url": "/server/lp50zqsi/minecraft",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lp50zqsi/minecraft",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2413 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2413,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..2413 min 844px",
+       "div. 2413..2413 min 0px",
+       "div. 2413..2413 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 2413 min 844px",
+       "fi-main.fi-width-screen-2xl 1961 min auto",
+       "fi-page 1881 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..2413 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-section.fi-section-has-header 14,452 362x394",
+      "fi-section.fi-section-has-header 14,870 362x277",
+      "fi-section.fi-section-has-header 14,1171 362x981",
+      "fi-section.fi-section-has-header 14,2176 362x125"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-minecraft.png"
+  },
+  {
+   "id": "server-plugins",
+   "title": "Server · Plugins",
+   "stand": "phone390-dark",
+   "url": "/server/lp50zqsi/plugins",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lp50zqsi/plugins",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2937 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2937,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..2937 min 844px",
+       "div. 2937..2937 min 0px",
+       "div. 2937..2937 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 2937 min 844px",
+       "fi-main.fi-width-screen-2xl 2485 min auto",
+       "fi-page 2405 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "sm-title: \"VeinMiner Enchantment\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..2937 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-section.fi-section-has-header 14,452 362x1781",
+      "fi-section.fi-section-has-header 14,2257 362x328",
+      "fi-section.fi-section-has-header 14,2609 362x184"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-plugins.png"
+  },
+  {
+   "id": "server-players",
+   "title": "Server · Players",
+   "stand": "phone390-dark",
+   "url": "/server/lp50zqsi/players",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lp50zqsi/players",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1660 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1660,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1660 min 844px",
+       "div. 1660..1660 min 0px",
+       "div. 1660..1660 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1660 min 844px",
+       "fi-main.fi-width-screen-2xl 1208 min auto",
+       "fi-page 1128 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..1660 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-section.fi-section-has-header 14,452 362x554",
+      "fi-section.fi-section-has-header.fi-compact 14,1030 362x146",
+      "fi-section.fi-section-has-header.fi-compact 14,1200 362x146",
+      "fi-section.fi-section-has-header.fi-compact 14,1370 362x146"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-players.png"
+  },
+  {
+   "id": "server-website",
+   "title": "Server · Website",
+   "stand": "phone390-dark",
+   "url": "/server/lp50zqsi/website",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lp50zqsi/website",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (876 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 876,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..876 min 844px",
+       "div. 876..876 min 0px",
+       "div. 876..876 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 876 min 0px",
+       "fi-main.fi-width-screen-2xl 424 min auto",
+       "fi-page 344 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "panes": [
+      "s-fit 320/2136"
+     ],
+     "card": "452..876 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-section.fi-section-has-header 14,452 362x2128"
+     ]
+    }
+   },
+   "frames": [
+    {
+     "box": "38,2136 314x420",
+     "url": "blank",
+     "w": 314,
+     "h": 420,
+     "dark": false,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 420,
+      "pageScrollW": 314,
+      "scope": "pelican"
+     }
+    }
+   ],
+   "shot": "phone390-dark/server-website.png"
+  },
+  {
+   "id": "server-server-software",
+   "title": "Server · Server software",
+   "stand": "phone390-dark",
+   "url": "/server/lp50zqsi/software",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lp50zqsi/software",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1430 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1430,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1430 min 844px",
+       "div. 1430..1430 min 0px",
+       "div. 1430..1430 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1430 min 844px",
+       "fi-main.fi-width-screen-2xl 979 min auto",
+       "fi-page 899 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..1430 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-server-software.png"
+  },
+  {
+   "id": "server-performance",
+   "title": "Server · Performance",
+   "stand": "phone390-dark",
+   "url": "/server/lp50zqsi/performance",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lp50zqsi/performance",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1381 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1381,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1381 min 844px",
+       "div. 1381..1381 min 0px",
+       "div. 1381..1381 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1381 min 844px",
+       "fi-main.fi-width-screen-2xl 929 min auto",
+       "fi-page 849 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..1381 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-performance.png"
+  },
+  {
+   "id": "server-users",
+   "title": "Server · Users",
+   "stand": "phone390-dark",
+   "url": "/server/lp50zqsi/subusers",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lp50zqsi/subusers",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..810 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-ta-ctn.fi-ta-ctn-with-footer.fi-ta-ctn-with-header 14,452 362x246"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-users.png"
+  },
+  {
+   "id": "server-users-new",
+   "title": "Server · Users, nieuw-dialoog open",
+   "stand": "phone390-dark",
+   "url": "/server/lp50zqsi/subusers",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lp50zqsi/subusers",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "panes": [
+      "fi-modal-window-ctn.fi-clickable 844/869"
+     ],
+     "card": "452..810 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-ta-ctn.fi-ta-ctn-with-footer.fi-ta-ctn-with-header 14,452 362x246"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-users-new.png"
+  },
+  {
+   "id": "server-databases",
+   "title": "Server · Databases",
+   "stand": "phone390-dark",
+   "url": "/server/lp50zqsi/databases",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lp50zqsi/databases",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..810 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-ta-ctn.fi-ta-ctn-with-footer 14,452 362x246"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-databases.png"
+  },
+  {
+   "id": "server-databases-new",
+   "title": "Server · Databases, nieuw-dialoog open",
+   "stand": "phone390-dark",
+   "url": "/server/lp50zqsi/databases",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lp50zqsi/databases",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..810 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-ta-ctn.fi-ta-ctn-with-footer 14,452 362x246"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-databases-new.png"
+  },
+  {
+   "id": "server-network",
+   "title": "Server · Network",
+   "stand": "phone390-dark",
+   "url": "/server/lp50zqsi/allocations",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lp50zqsi/allocations",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..737 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-ta-ctn.fi-ta-ctn-with-footer 14,452 362x173"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-network.png"
+  },
+  {
+   "id": "server-startup",
+   "title": "Server · Startup",
+   "stand": "phone390-dark",
+   "url": "/server/lp50zqsi/startup",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lp50zqsi/startup",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (929 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 929,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..929 min 844px",
+       "div. 929..929 min 0px",
+       "div. 929..929 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 929 min 844px",
+       "fi-main.fi-width-screen-2xl 477 min auto",
+       "fi-page 397 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..929 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-section.fi-section-has-header 14,712 362x105"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-startup.png"
+  },
+  {
+   "id": "server-settings",
+   "title": "Server · Settings",
+   "stand": "phone390-dark",
+   "url": "/server/lp50zqsi/settings",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lp50zqsi/settings",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2715 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2715,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..2715 min 844px",
+       "div. 2715..2715 min 0px",
+       "div. 2715..2715 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 2715 min 844px",
+       "fi-main.fi-width-screen-2xl 2263 min auto",
+       "fi-page 2183 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..2715 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-section.fi-section-has-header 14,452 362x1464",
+      "fi-section.fi-section-has-header 14,1940 362x334",
+      "fi-section.fi-section-has-header 14,2298 362x305"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-settings.png"
+  },
+  {
+   "id": "server-mounts",
+   "title": "Server · Mounts",
+   "stand": "phone390-dark",
+   "url": "/server/lp50zqsi/mounts",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lp50zqsi/mounts",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..688 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-section 14,452 362x124"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-mounts.png"
+  },
+  {
+   "id": "server-webhooks",
+   "title": "Server · Webhooks",
+   "stand": "phone390-dark",
+   "url": "/server/lp50zqsi/webhook",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lp50zqsi/webhook",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (870 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 870,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..870 min 844px",
+       "div. 870..870 min 0px",
+       "div. 870..870 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 870 min 844px",
+       "fi-main.fi-width-screen-2xl 418 min auto",
+       "fi-page.fi-resource-list-records-page 338 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..870 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-ta-ctn.fi-ta-ctn-with-footer.fi-ta-ctn-with-header 14,452 362x306"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-webhooks.png"
+  },
+  {
+   "id": "server-activity",
+   "title": "Server · Activity",
+   "stand": "phone390-dark",
+   "url": "/server/lp50zqsi/activities",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lp50zqsi/activities",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..810 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-ta-ctn.fi-ta-ctn-with-footer.fi-ta-ctn-with-header 14,452 362x246"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-activity.png"
+  },
+  {
+   "id": "server-servers",
+   "title": "Server · Servers",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2103 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2103,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-app fi-body-has-topbar block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-topbar-ctn 0..0 min 0px",
+       "div.fi-layout 0..2103 min 0px",
+       "div. 2103..2103 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 2103 min 0px",
+       "fi-main.fi-width-screen-2xl 1969 min 0px",
+       "fi-page 1969 min 0px"
+      ]
+     },
+     "popups": [
+      "ps-navigation-items 296,18 80x38"
+     ],
+     "card": "0..1969 of 844",
+     "topbar": "brand 14..194, actions 246..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 14,70 362x98",
+      "fi-callout.fi-color.fi-color-info 14,180 362x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-servers.png"
+  },
+  {
+   "id": "server-admin",
+   "title": "Server · Admin",
+   "stand": "phone390-dark",
+   "url": "/admin/health#menu",
+   "docTitle": "Health - Northwind Games",
+   "main": {
+    "url": "/admin/health",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 296,18 80x38"
+     ],
+     "topbar": "brand 14..194, actions 246..376",
+     "scope": "simplify",
+     "boxes": []
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-admin.png"
+  },
+  {
+   "id": "server-addon-unsaved",
+   "title": "Server · add-on-formulier, Changes made",
+   "stand": "phone390-dark",
+   "url": "/server/lp50zqsi/minecraft",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/lp50zqsi/minecraft",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2413 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2413,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..2413 min 844px",
+       "div. 2413..2413 min 0px",
+       "div. 2413..2413 min 0px",
+       "div.s-unsaved 1396..1450 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 2413 min 844px",
+       "fi-main.fi-width-screen-2xl 1961 min auto",
+       "fi-page 1881 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,-666 80x38"
+     ],
+     "card": "-230..1731 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,-548 362x164",
+      "fi-section.fi-section-has-header 14,-230 362x394",
+      "fi-section.fi-section-has-header 14,188 362x277",
+      "fi-section.fi-section-has-header 14,489 362x981",
+      "fi-section.fi-section-has-header 14,1494 362x125"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-addon-unsaved.png"
+  },
+  {
+   "id": "server2-console",
+   "title": "Server · Console (Valheim Vikings)",
+   "stand": "phone390-dark",
+   "url": "/server/fs8vq0i3/console",
+   "docTitle": "Valheim Vikings - Simplify",
+   "main": {
+    "url": "/server/fs8vq0i3/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1301 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1301,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1301 min 844px",
+       "div. 1301..1301 min 0px",
+       "div. 1301..1301 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1301 min 844px",
+       "fi-main.fi-width-screen-2xl 849 min auto",
+       "fi-page.fi-console-page 769 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..1301 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,513 320x570; terminal 15,453 360x640; bar top 1093",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,452 362x705"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server2-console.png"
+  },
+  {
+   "id": "server3-console",
+   "title": "Server · Console (Skyblock, eigen icoon)",
+   "stand": "phone390-dark",
+   "url": "/server/iirbmhry/console",
+   "docTitle": "Skyblock - Simplify",
+   "main": {
+    "url": "/server/iirbmhry/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1353 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1353,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1353 min 844px",
+       "div. 1353..1353 min 0px",
+       "div. 1353..1353 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1353 min 844px",
+       "fi-main.fi-width-screen-2xl 901 min auto",
+       "fi-page.fi-console-page 821 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..1353 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,513 320x570; terminal 15,453 360x692; bar top 1145",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,452 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server3-console.png"
+  },
+  {
+   "id": "server4-console",
+   "title": "Server · Console (Creative Builds, icoon laadt niet)",
+   "stand": "phone390-dark",
+   "url": "/server/vibnwqop/console",
+   "docTitle": "Creative Builds - Simplify",
+   "main": {
+    "url": "/server/vibnwqop/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1353 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1353,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1353 min 844px",
+       "div. 1353..1353 min 0px",
+       "div. 1353..1353 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1353 min 844px",
+       "fi-main.fi-width-screen-2xl 901 min auto",
+       "fi-page.fi-console-page 821 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..1353 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,513 320x570; terminal 15,453 360x692; bar top 1145",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,452 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server4-console.png"
+  }
+ ],
+ "problems": [
+  "phone390-dark server-console-addon-action: ok [{\"label\":\"Audit action\",\"shown\":true}]",
+  "phone390-dark server-console-typed: nothing to click for .ps-console-grow",
+  "phone390-dark server-colour: nothing to click for .ps-info-motd, .ps-motd-preview",
+  "phone390-dark server-databases: click .fi-header-actions button, .fi-ac-btn-action, .fi-page-header-main-ctn button: locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator('.fi-h",
+  "phone390-dark server-webhooks: nothing to click for .fi-header-actions button, .fi-ac-btn-action, .fi-page-header-main-ctn button",
+  "phone390-dark server-addon-unsaved: ok {\"bar\":true,\"asked\":true,\"stayed\":true,\"url\":\"/server/lp50zqsi/minecraft\",\"gone\":true}",
+  "phone390-dark server4-console: tab title ok: \"Creative Builds - Simplify\""
+ ]
+}

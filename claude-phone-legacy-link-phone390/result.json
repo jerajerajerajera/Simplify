@@ -1,0 +1,3192 @@
+{
+ "base": "http://127.0.0.1:8001",
+ "screens": [
+  {
+   "id": "admin-dashboard",
+   "title": "Beheer · Dashboard",
+   "stand": "phone390-dark",
+   "url": "/admin",
+   "docTitle": "Dashboard - Northwind Games",
+   "main": {
+    "url": "/admin",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/819"
+     ],
+     "card": "180..953 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-dashboard.png"
+  },
+  {
+   "id": "admin-notifications",
+   "title": "Beheer · Pelican-meldingen open",
+   "stand": "phone390-dark",
+   "url": "/admin",
+   "docTitle": "Dashboard - Northwind Games",
+   "main": {
+    "url": "/admin",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38",
+      "ps-notify-menu 0,68 390x776 scrolls"
+     ],
+     "panes": [
+      "ps-notify-menu 776/1975",
+      "fi-main-ctn 588/819"
+     ],
+     "card": "180..953 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844",
+     "dropdown": [
+      "ps-notify-menu 776px of 776 max, scrolls"
+     ],
+     "arrow": [
+      "ps-notify-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-notifications.png"
+  },
+  {
+   "id": "admin-health",
+   "title": "Beheer · Health",
+   "stand": "phone390-dark",
+   "url": "/admin/health",
+   "docTitle": "Health - Northwind Games",
+   "main": {
+    "url": "/admin/health",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38",
+      "ps-tooltip 254,64 97x33"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1094"
+     ],
+     "card": "180..1228 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-health.png"
+  },
+  {
+   "id": "admin-panel-logs",
+   "title": "Beheer · Panel Logs",
+   "stand": "phone390-dark",
+   "url": "/admin/logs",
+   "docTitle": "Log Viewer - Northwind Games",
+   "main": {
+    "url": "/admin/logs",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38",
+      "ps-tooltip 254,64 97x33"
+     ],
+     "card": "180..722 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-panel-logs.png"
+  },
+  {
+   "id": "admin-settings",
+   "title": "Beheer · Settings",
+   "stand": "phone390-dark",
+   "url": "/admin/settings",
+   "docTitle": "Settings - Northwind Games",
+   "main": {
+    "url": "/admin/settings",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38",
+      "ps-tooltip 254,64 97x33"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1429"
+     ],
+     "card": "180..1563 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-settings.png"
+  },
+  {
+   "id": "admin-settings-tab1",
+   "title": "Beheer · Settings, tabblad 2",
+   "stand": "phone390-dark",
+   "url": "/admin/settings?tab=captcha%3A%3Adata%3A%3Atab",
+   "docTitle": "Settings - Northwind Games",
+   "main": {
+    "url": "/admin/settings?tab=captcha%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "card": "180..722 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-settings-tab1.png"
+  },
+  {
+   "id": "admin-settings-tab2",
+   "title": "Beheer · Settings, tabblad 3",
+   "stand": "phone390-dark",
+   "url": "/admin/settings?tab=mail%3A%3Adata%3A%3Atab",
+   "docTitle": "Settings - Northwind Games",
+   "main": {
+    "url": "/admin/settings?tab=mail%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/810"
+     ],
+     "card": "180..944 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-settings-tab2.png"
+  },
+  {
+   "id": "admin-settings-tab3",
+   "title": "Beheer · Settings, tabblad 4",
+   "stand": "phone390-dark",
+   "url": "/admin/settings?tab=backup%3A%3Adata%3A%3Atab",
+   "docTitle": "Settings - Northwind Games",
+   "main": {
+    "url": "/admin/settings?tab=backup%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/646"
+     ],
+     "card": "180..780 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-settings-tab3.png"
+  },
+  {
+   "id": "admin-settings-tab4",
+   "title": "Beheer · Settings, tabblad 5",
+   "stand": "phone390-dark",
+   "url": "/admin/settings?tab=oauth%3A%3Adata%3A%3Atab",
+   "docTitle": "Settings - Northwind Games",
+   "main": {
+    "url": "/admin/settings?tab=oauth%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1181"
+     ],
+     "card": "180..1315 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-settings-tab4.png"
+  },
+  {
+   "id": "admin-settings-tab5",
+   "title": "Beheer · Settings, tabblad 6",
+   "stand": "phone390-dark",
+   "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+   "docTitle": "Settings - Northwind Games",
+   "main": {
+    "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1253"
+     ],
+     "card": "180..1387 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-settings-tab5.png"
+  },
+  {
+   "id": "admin-settings-tab6",
+   "title": "Beheer · Settings, tabblad 7",
+   "stand": "phone390-dark",
+   "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+   "docTitle": "Settings - Northwind Games",
+   "main": {
+    "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1253"
+     ],
+     "card": "-1..1206 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-settings-tab6.png"
+  },
+  {
+   "id": "admin-site-directory",
+   "title": "Beheer · Site directory",
+   "stand": "phone390-dark",
+   "url": "/admin/site-directory",
+   "docTitle": "Site directory - Northwind Games",
+   "main": {
+    "url": "/admin/site-directory",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "card": "180..722 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-site-directory.png"
+  },
+  {
+   "id": "admin-simplify",
+   "title": "Beheer · Simplify",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1350"
+     ],
+     "card": "180..1484 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"Run setup again\" at y=353",
+      "\"\" at y=353"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-simplify.png"
+  },
+  {
+   "id": "admin-simplify-tab1",
+   "title": "Beheer · Simplify, tabblad 2",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify?tab=general",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify?tab=general",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/909"
+     ],
+     "card": "180..1043 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"Run setup again\" at y=353",
+      "\"\" at y=353"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-simplify-tab1.png"
+  },
+  {
+   "id": "admin-simplify-tab2",
+   "title": "Beheer · Simplify, tabblad 3",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify?tab=app",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify?tab=app",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "b: \"Northwind Games\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1262"
+     ],
+     "card": "180..1396 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"Run setup again\" at y=353",
+      "\"\" at y=353"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-simplify-tab2.png"
+  },
+  {
+   "id": "admin-simplify-tab3",
+   "title": "Beheer · Simplify, tabblad 4",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify?tab=addons",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify?tab=addons",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/839"
+     ],
+     "card": "180..973 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"Run setup again\" at y=353",
+      "\"\" at y=353"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-simplify-tab3.png"
+  },
+  {
+   "id": "admin-simplify-tab4",
+   "title": "Beheer · Simplify, tabblad 5",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify?tab=hub",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify?tab=hub",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1821"
+     ],
+     "card": "180..1955 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"Run setup again\" at y=353",
+      "\"\" at y=353"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-simplify-tab4.png"
+  },
+  {
+   "id": "admin-simplify-tab5",
+   "title": "Beheer · Simplify, tabblad 6",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify?tab=hub",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify?tab=hub",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1821"
+     ],
+     "card": "-61..1714 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"Run setup again\" at y=112",
+      "\"\" at y=112"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-simplify-tab5.png"
+  },
+  {
+   "id": "admin-setup-done",
+   "title": "Beheer · Setup Done",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify/setup-done",
+   "docTitle": "Simplify is set up - Northwind Games",
+   "main": {
+    "url": "/admin/simplify/setup-done",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "strong: \"General\"",
+      "strong: \"Simplify is set up\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "s-done 304/733"
+     ],
+     "card": "180..722 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"Run setup again\" at y=300",
+      "\"Go to the panel\" at y=300"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\"",
+      "\"Go to the panel\""
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-setup-done.png"
+  },
+  {
+   "id": "admin-people-roles",
+   "title": "Beheer · People & roles",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify-people",
+   "docTitle": "People & roles - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-people",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/901"
+     ],
+     "card": "180..1035 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"People\" at y=222",
+      "\"Roles\" at y=222",
+      "\"Add person\" at y=308"
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-people-roles.png"
+  },
+  {
+   "id": "admin-people-roles-tab1",
+   "title": "Beheer · People & roles, tabblad 2",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify-people",
+   "docTitle": "People & roles - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-people",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "card": "180..722 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"People\" at y=222",
+      "\"Roles\" at y=222",
+      "\"Add role\" at y=264"
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-people-roles-tab1.png"
+  },
+  {
+   "id": "admin-people-add",
+   "title": "Beheer · People, persoon toevoegen",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify-people",
+   "docTitle": "People & roles - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-people",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38",
+      "fi-modal-window.fi-modal-window-has-close-btn.fi-modal-windo 0,0 390x844 scrolls"
+     ],
+     "panes": [
+      "fi-modal-window.fi-modal-window-has-close-btn.fi-modal-windo 844/4368"
+     ],
+     "card": "180..722 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"People\" at y=222",
+      "\"Roles\" at y=222",
+      "\"Add role\" at y=264"
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-people-add.png"
+  },
+  {
+   "id": "admin-website-embed",
+   "title": "Beheer · Website embed",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify-embed",
+   "docTitle": "Website embed - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-embed",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/3027"
+     ],
+     "card": "180..3161 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"\" at y=289"
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [
+    {
+     "box": "36,2667 318x420",
+     "url": "blank",
+     "w": 316,
+     "h": 418,
+     "dark": false,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 418,
+      "pageScrollW": 316,
+      "scope": "pelican"
+     }
+    }
+   ],
+   "shot": "phone390-dark/admin-website-embed.png"
+  },
+  {
+   "id": "admin-automatic-subdomains",
+   "title": "Beheer · Automatic subdomains",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify-subdomains",
+   "docTitle": "Automatic subdomains - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-subdomains",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1535"
+     ],
+     "card": "180..1669 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"\" at y=289"
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-automatic-subdomains.png"
+  },
+  {
+   "id": "admin-egg-updates",
+   "title": "Beheer · Egg Updates",
+   "stand": "phone390-dark",
+   "url": "/admin/egg-updates",
+   "docTitle": "Egg Updates - Northwind Games",
+   "main": {
+    "url": "/admin/egg-updates",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text-item.fi-ta-text.fi-ta-text-has-badges: \"Update available\" (119>101) | fi-ta-text-item.fi-ta-text.fi-ta-text-has-badges: \"Update available\" (119>101)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/621"
+     ],
+     "card": "180..755 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"\" at y=325",
+      "\"\" at y=325",
+      "\"\" at y=325"
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-egg-updates.png"
+  },
+  {
+   "id": "admin-explain",
+   "title": "Beheer · Explain",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify-explain",
+   "docTitle": "Explain - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-explain",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1095"
+     ],
+     "card": "180..1229 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"\" at y=289",
+      "\"\" at y=289"
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-explain.png"
+  },
+  {
+   "id": "admin-hosting",
+   "title": "Beheer · Hosting",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify-hosting",
+   "docTitle": "Hosting - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-hosting",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1263"
+     ],
+     "card": "180..1397 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"\" at y=289"
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-hosting.png"
+  },
+  {
+   "id": "admin-server-maker",
+   "title": "Beheer · Server Maker",
+   "stand": "phone390-dark",
+   "url": "/admin/server-maker",
+   "docTitle": "Server Maker - Northwind Games",
+   "main": {
+    "url": "/admin/server-maker",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "strong: \"American Truck Simulator Dedicated Server\"",
+      "strong: \"Among Us - Impostor Server\"",
+      "strong: \"Assetto Corsa (Freeroam + AI)\"",
+      "strong: \"Astroneer Dedicated Server\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/744",
+      "form.game::data::wizard-step 548/2850"
+     ],
+     "card": "180..878 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [
+      "smk-minecraft 36,244 318x472"
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-server-maker.png"
+  },
+  {
+   "id": "admin-maker-settings",
+   "title": "Beheer · Maker Settings",
+   "stand": "phone390-dark",
+   "url": "/admin/server-maker/settings",
+   "docTitle": "Server Maker settings - Northwind Games",
+   "main": {
+    "url": "/admin/server-maker/settings",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/2826"
+     ],
+     "card": "180..2960 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"\" at y=289"
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-maker-settings.png"
+  },
+  {
+   "id": "admin-toolkit",
+   "title": "Beheer · Toolkit",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify-toolkit",
+   "docTitle": "Toolkit - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-toolkit",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1195"
+     ],
+     "card": "180..1329 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"\" at y=289"
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-toolkit.png"
+  },
+  {
+   "id": "admin-api-keys",
+   "title": "Beheer · API Keys",
+   "stand": "phone390-dark",
+   "url": "/admin/api-keys",
+   "docTitle": "Application API Keys - Northwind Games",
+   "main": {
+    "url": "/admin/api-keys",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "card": "180..722 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-api-keys.png"
+  },
+  {
+   "id": "admin-backup-hosts",
+   "title": "Beheer · Backup Hosts",
+   "stand": "phone390-dark",
+   "url": "/admin/backup-hosts",
+   "docTitle": "Backup Hosts - Northwind Games",
+   "main": {
+    "url": "/admin/backup-hosts",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "card": "180..722 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-backup-hosts.png"
+  },
+  {
+   "id": "admin-database-hosts",
+   "title": "Beheer · Database Hosts",
+   "stand": "phone390-dark",
+   "url": "/admin/database-hosts",
+   "docTitle": "Database Hosts - Northwind Games",
+   "main": {
+    "url": "/admin/database-hosts",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "card": "180..722 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-database-hosts.png"
+  },
+  {
+   "id": "admin-eggs",
+   "title": "Beheer · Eggs",
+   "stand": "phone390-dark",
+   "url": "/admin/eggs",
+   "docTitle": "Eggs - Northwind Games",
+   "main": {
+    "url": "/admin/eggs",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/805"
+     ],
+     "card": "180..939 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-eggs.png"
+  },
+  {
+   "id": "admin-eggs-edit",
+   "title": "Beheer · Eggs, bewerken",
+   "stand": "phone390-dark",
+   "url": "/admin/eggs/1/edit",
+   "docTitle": "Edit Paper - Northwind Games",
+   "main": {
+    "url": "/admin/eggs/1/edit",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"sam\" (41>24) | fi-ta-text.fi-ta-text-item.fi-ta-text-has-badges: \"ghcr.io/pelican-eggs/yolks:java_21\" (220>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"play.example.com:25565\" (174>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"jeroen\" (58>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Creative Builds\" (111>101) | fi-ta-text.fi-ta-text-item.fi-ta-text-has-badges: \"ghcr.io/pelican-eggs/yolks:java_21\" (220>101) (+19)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/2576"
+     ],
+     "card": "180..2710 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-eggs-edit.png"
+  },
+  {
+   "id": "admin-eggs-edit-tab1",
+   "title": "Beheer · Eggs, bewerken, tabblad 2",
+   "stand": "phone390-dark",
+   "url": "/admin/eggs/1/edit?tab=process-management%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Paper - Northwind Games",
+   "main": {
+    "url": "/admin/eggs/1/edit?tab=process-management%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"sam\" (41>24) | fi-ta-text.fi-ta-text-item.fi-ta-text-has-badges: \"ghcr.io/pelican-eggs/yolks:java_21\" (220>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"play.example.com:25565\" (174>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"jeroen\" (58>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Creative Builds\" (111>101) | fi-ta-text.fi-ta-text-item.fi-ta-text-has-badges: \"ghcr.io/pelican-eggs/yolks:java_21\" (220>101) (+19)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/2299"
+     ],
+     "card": "180..2433 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-eggs-edit-tab1.png"
+  },
+  {
+   "id": "admin-eggs-edit-tab2",
+   "title": "Beheer · Eggs, bewerken, tabblad 3",
+   "stand": "phone390-dark",
+   "url": "/admin/eggs/1/edit?tab=egg-variables%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Paper - Northwind Games",
+   "main": {
+    "url": "/admin/eggs/1/edit?tab=egg-variables%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"sam\" (41>24) | fi-ta-text.fi-ta-text-item.fi-ta-text-has-badges: \"ghcr.io/pelican-eggs/yolks:java_21\" (220>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"play.example.com:25565\" (174>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"jeroen\" (58>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Creative Builds\" (111>101) | fi-ta-text.fi-ta-text-item.fi-ta-text-has-badges: \"ghcr.io/pelican-eggs/yolks:java_21\" (220>101) (+19)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/967"
+     ],
+     "card": "180..1101 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-eggs-edit-tab2.png"
+  },
+  {
+   "id": "admin-eggs-edit-tab3",
+   "title": "Beheer · Eggs, bewerken, tabblad 4",
+   "stand": "phone390-dark",
+   "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Paper - Northwind Games",
+   "main": {
+    "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"sam\" (41>24) | fi-ta-text.fi-ta-text-item.fi-ta-text-has-badges: \"ghcr.io/pelican-eggs/yolks:java_21\" (220>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"play.example.com:25565\" (174>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"jeroen\" (58>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Creative Builds\" (111>101) | fi-ta-text.fi-ta-text-item.fi-ta-text-has-badges: \"ghcr.io/pelican-eggs/yolks:java_21\" (220>101) (+19)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1849"
+     ],
+     "card": "180..1983 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-eggs-edit-tab3.png"
+  },
+  {
+   "id": "admin-eggs-edit-tab4",
+   "title": "Beheer · Eggs, bewerken, tabblad 5",
+   "stand": "phone390-dark",
+   "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Paper - Northwind Games",
+   "main": {
+    "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"sam\" (41>24) | fi-ta-text.fi-ta-text-item.fi-ta-text-has-badges: \"ghcr.io/pelican-eggs/yolks:java_21\" (220>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"play.example.com:25565\" (174>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"jeroen\" (58>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Creative Builds\" (111>101) | fi-ta-text.fi-ta-text-item.fi-ta-text-has-badges: \"ghcr.io/pelican-eggs/yolks:java_21\" (220>101) (+19)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1849"
+     ],
+     "card": "180..1983 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-eggs-edit-tab4.png"
+  },
+  {
+   "id": "admin-eggs-edit-tab5",
+   "title": "Beheer · Eggs, bewerken, tabblad 6",
+   "stand": "phone390-dark",
+   "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Paper - Northwind Games",
+   "main": {
+    "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"sam\" (41>24) | fi-ta-text.fi-ta-text-item.fi-ta-text-has-badges: \"ghcr.io/pelican-eggs/yolks:java_21\" (220>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"play.example.com:25565\" (174>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"jeroen\" (58>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Creative Builds\" (111>101) | fi-ta-text.fi-ta-text-item.fi-ta-text-has-badges: \"ghcr.io/pelican-eggs/yolks:java_21\" (220>101) (+19)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1849"
+     ],
+     "card": "180..1983 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-eggs-edit-tab5.png"
+  },
+  {
+   "id": "admin-eggs-edit-tab6",
+   "title": "Beheer · Eggs, bewerken, tabblad 7",
+   "stand": "phone390-dark",
+   "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Paper - Northwind Games",
+   "main": {
+    "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"sam\" (41>24) | fi-ta-text.fi-ta-text-item.fi-ta-text-has-badges: \"ghcr.io/pelican-eggs/yolks:java_21\" (220>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"play.example.com:25565\" (174>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"jeroen\" (58>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Creative Builds\" (111>101) | fi-ta-text.fi-ta-text-item.fi-ta-text-has-badges: \"ghcr.io/pelican-eggs/yolks:java_21\" (220>101) (+19)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1849"
+     ],
+     "card": "180..1983 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-eggs-edit-tab6.png"
+  },
+  {
+   "id": "admin-mounts",
+   "title": "Beheer · Mounts",
+   "stand": "phone390-dark",
+   "url": "/admin/mounts",
+   "docTitle": "Mounts - Northwind Games",
+   "main": {
+    "url": "/admin/mounts",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "card": "180..722 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-mounts.png"
+  },
+  {
+   "id": "admin-nodes",
+   "title": "Beheer · Nodes",
+   "stand": "phone390-dark",
+   "url": "/admin/nodes",
+   "docTitle": "Nodes - Northwind Games",
+   "main": {
+    "url": "/admin/nodes",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "card": "180..722 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-nodes.png"
+  },
+  {
+   "id": "admin-nodes-edit",
+   "title": "Beheer · Nodes, bewerken",
+   "stand": "phone390-dark",
+   "url": "/admin/nodes/1/edit",
+   "docTitle": "Edit Amsterdam - Northwind Games",
+   "main": {
+    "url": "/admin/nodes/1/edit",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1747"
+     ],
+     "card": "180..1881 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-nodes-edit.png"
+  },
+  {
+   "id": "admin-nodes-edit-tab1",
+   "title": "Beheer · Nodes, bewerken, tabblad 2",
+   "stand": "phone390-dark",
+   "url": "/admin/nodes/1/edit?tab=basic-settings%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Amsterdam - Northwind Games",
+   "main": {
+    "url": "/admin/nodes/1/edit?tab=basic-settings%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1009"
+     ],
+     "card": "180..1143 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-nodes-edit-tab1.png"
+  },
+  {
+   "id": "admin-nodes-edit-tab2",
+   "title": "Beheer · Nodes, bewerken, tabblad 3",
+   "stand": "phone390-dark",
+   "url": "/admin/nodes/1/edit?tab=advanced-settings%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Amsterdam - Northwind Games",
+   "main": {
+    "url": "/admin/nodes/1/edit?tab=advanced-settings%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/2165"
+     ],
+     "card": "180..2299 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-nodes-edit-tab2.png"
+  },
+  {
+   "id": "admin-nodes-edit-tab3",
+   "title": "Beheer · Nodes, bewerken, tabblad 4",
+   "stand": "phone390-dark",
+   "url": "/admin/nodes/1/edit?tab=configuration-file%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Amsterdam - Northwind Games",
+   "main": {
+    "url": "/admin/nodes/1/edit?tab=configuration-file%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1201"
+     ],
+     "card": "180..1335 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-nodes-edit-tab3.png"
+  },
+  {
+   "id": "admin-nodes-edit-tab4",
+   "title": "Beheer · Nodes, bewerken, tabblad 5",
+   "stand": "phone390-dark",
+   "url": "/admin/nodes/1/edit?tab=diagnostics%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Amsterdam - Northwind Games",
+   "main": {
+    "url": "/admin/nodes/1/edit?tab=diagnostics%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/924"
+     ],
+     "card": "180..1058 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-nodes-edit-tab4.png"
+  },
+  {
+   "id": "admin-nodes-edit-tab5",
+   "title": "Beheer · Nodes, bewerken, tabblad 6",
+   "stand": "phone390-dark",
+   "url": "/admin/nodes/1/edit?tab=diagnostics%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Amsterdam - Northwind Games",
+   "main": {
+    "url": "/admin/nodes/1/edit?tab=diagnostics%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/924"
+     ],
+     "card": "180..1058 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-nodes-edit-tab5.png"
+  },
+  {
+   "id": "admin-nodes-edit-tab6",
+   "title": "Beheer · Nodes, bewerken, tabblad 7",
+   "stand": "phone390-dark",
+   "url": "/admin/nodes/1/edit?tab=diagnostics%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Amsterdam - Northwind Games",
+   "main": {
+    "url": "/admin/nodes/1/edit?tab=diagnostics%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/924"
+     ],
+     "card": "180..1058 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-nodes-edit-tab6.png"
+  },
+  {
+   "id": "admin-plugins",
+   "title": "Beheer · Plugins",
+   "stand": "phone390-dark",
+   "url": "/admin/plugins",
+   "docTitle": "Plugins - Northwind Games",
+   "main": {
+    "url": "/admin/plugins",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/759"
+     ],
+     "card": "180..893 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-plugins.png"
+  },
+  {
+   "id": "admin-roles",
+   "title": "Beheer · Roles",
+   "stand": "phone390-dark",
+   "url": "/admin/roles",
+   "docTitle": "Roles - Northwind Games",
+   "main": {
+    "url": "/admin/roles",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "card": "180..722 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-roles.png"
+  },
+  {
+   "id": "admin-roles-edit",
+   "title": "Beheer · Roles, bewerken",
+   "stand": "phone390-dark",
+   "url": "/admin/roles/1/edit",
+   "docTitle": "Edit Root Admin - Northwind Games",
+   "main": {
+    "url": "/admin/roles/1/edit",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "card": "180..722 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-roles-edit.png"
+  },
+  {
+   "id": "admin-servers",
+   "title": "Beheer · Servers",
+   "stand": "phone390-dark",
+   "url": "/admin/servers",
+   "docTitle": "Servers - Northwind Games",
+   "main": {
+    "url": "/admin/servers",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"Creative Builds\" (111>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"All the Mods 10\" (111>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Valheim Vikings\" (115>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Palworld Island\" (111>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Rust Weekend\" (109>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Counter-Strike 2\" (120>101) (+1)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25565play.example.com:25565play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25566play.example.com:25566play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25567play.example.com:25567play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25568play.example.com:25568play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25569play.example.com:25569play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25570play.example.com:25570play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25571play.example.com:25571play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25572play.example.com:25572play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25573play.example.com:25573play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25574play.example.com:25574play.e\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1176"
+     ],
+     "card": "180..1310 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-servers.png"
+  },
+  {
+   "id": "admin-servers-edit",
+   "title": "Beheer · Servers, bewerken",
+   "stand": "phone390-dark",
+   "url": "/admin/servers/1/edit",
+   "docTitle": "Edit Survival SMP - Northwind Games",
+   "main": {
+    "url": "/admin/servers/1/edit",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "strong: \"Edit Survival SMP\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1301",
+      "form.description 60/84"
+     ],
+     "card": "180..1435 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-servers-edit.png"
+  },
+  {
+   "id": "admin-servers-edit-tab1",
+   "title": "Beheer · Servers, bewerken, tabblad 2",
+   "stand": "phone390-dark",
+   "url": "/admin/servers/1/edit?tab=environment-configuration%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Survival SMP - Northwind Games",
+   "main": {
+    "url": "/admin/servers/1/edit?tab=environment-configuration%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "strong: \"Edit Survival SMP\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/2267"
+     ],
+     "card": "180..2401 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-servers-edit-tab1.png"
+  },
+  {
+   "id": "admin-servers-edit-tab2",
+   "title": "Beheer · Servers, bewerken, tabblad 3",
+   "stand": "phone390-dark",
+   "url": "/admin/servers/1/edit?tab=egg%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Survival SMP - Northwind Games",
+   "main": {
+    "url": "/admin/servers/1/edit?tab=egg%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "strong: \"Edit Survival SMP\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/897"
+     ],
+     "card": "180..1031 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-servers-edit-tab2.png"
+  },
+  {
+   "id": "admin-servers-edit-tab3",
+   "title": "Beheer · Servers, bewerken, tabblad 4",
+   "stand": "phone390-dark",
+   "url": "/admin/servers/1/edit?tab=mounts%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Survival SMP - Northwind Games",
+   "main": {
+    "url": "/admin/servers/1/edit?tab=mounts%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"127.0.0.1\" (71>24)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "strong: \"Edit Survival SMP\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/677"
+     ],
+     "card": "180..811 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-servers-edit-tab3.png"
+  },
+  {
+   "id": "admin-servers-edit-tab4",
+   "title": "Beheer · Servers, bewerken, tabblad 5",
+   "stand": "phone390-dark",
+   "url": "/admin/servers/1/edit?tab=actions%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Survival SMP - Northwind Games",
+   "main": {
+    "url": "/admin/servers/1/edit?tab=actions%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"127.0.0.1\" (71>24)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "strong: \"Edit Survival SMP\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1366"
+     ],
+     "card": "180..1500 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-servers-edit-tab4.png"
+  },
+  {
+   "id": "admin-servers-edit-tab5",
+   "title": "Beheer · Servers, bewerken, tabblad 6",
+   "stand": "phone390-dark",
+   "url": "/admin/servers/1/edit?tab=actions%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Survival SMP - Northwind Games",
+   "main": {
+    "url": "/admin/servers/1/edit?tab=actions%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"127.0.0.1\" (71>24)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "strong: \"Edit Survival SMP\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1366"
+     ],
+     "card": "180..1500 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-servers-edit-tab5.png"
+  },
+  {
+   "id": "admin-servers-edit-tab6",
+   "title": "Beheer · Servers, bewerken, tabblad 7",
+   "stand": "phone390-dark",
+   "url": "/admin/servers/1/edit?tab=actions%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Survival SMP - Northwind Games",
+   "main": {
+    "url": "/admin/servers/1/edit?tab=actions%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"127.0.0.1\" (71>24)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "strong: \"Edit Survival SMP\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1366"
+     ],
+     "card": "180..1500 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-servers-edit-tab6.png"
+  },
+  {
+   "id": "admin-users",
+   "title": "Beheer · Users",
+   "stand": "phone390-dark",
+   "url": "/admin/users",
+   "docTitle": "Users - Northwind Games",
+   "main": {
+    "url": "/admin/users",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"jeroen\" (58>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"demo@example.com\" (152>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"sam\" (41>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"sam@example.com\" (140>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"robin\" (49>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"robin@example.com\" (148>101) (+6)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/623"
+     ],
+     "card": "180..757 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-users.png"
+  },
+  {
+   "id": "admin-users-edit",
+   "title": "Beheer · Users, bewerken",
+   "stand": "phone390-dark",
+   "url": "/admin/users/1/edit",
+   "docTitle": "Edit jeroen - Northwind Games",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"Creative Builds\" (120>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"All the Mods 10\" (119>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Skyblock\" (77>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Palworld Island\" (121>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Rust Weekend\" (113>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Arena\" (54>24) (+5)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25566play.example.com:25566play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25567play.example.com:25567play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25568play.example.com:25568play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25570play.example.com:25570play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25571play.example.com:25571play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25572play.example.com:25572play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25573play.example.com:25573play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25574play.example.com:25574play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25575play.example.com:25575play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25576play.example.com:25576play.e\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/2271"
+     ],
+     "card": "180..2405 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-users-edit.png"
+  },
+  {
+   "id": "admin-users-edit-tab1",
+   "title": "Beheer · Users, bewerken, tabblad 2",
+   "stand": "phone390-dark",
+   "url": "/admin/users/1/edit",
+   "docTitle": "Edit jeroen - Northwind Games",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"Creative Builds\" (120>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"All the Mods 10\" (119>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Skyblock\" (77>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Palworld Island\" (121>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Rust Weekend\" (113>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Arena\" (54>24) (+5)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25566play.example.com:25566play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25567play.example.com:25567play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25568play.example.com:25568play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25570play.example.com:25570play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25571play.example.com:25571play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25572play.example.com:25572play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25573play.example.com:25573play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25574play.example.com:25574play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25575play.example.com:25575play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25576play.example.com:25576play.e\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1513"
+     ],
+     "card": "180..1647 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-users-edit-tab1.png"
+  },
+  {
+   "id": "admin-users-edit-tab2",
+   "title": "Beheer · Users, bewerken, tabblad 3",
+   "stand": "phone390-dark",
+   "url": "/admin/users/1/edit",
+   "docTitle": "Edit jeroen - Northwind Games",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"Creative Builds\" (120>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"All the Mods 10\" (119>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Skyblock\" (77>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Palworld Island\" (121>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Rust Weekend\" (113>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Arena\" (54>24) (+5)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25566play.example.com:25566play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25567play.example.com:25567play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25568play.example.com:25568play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25570play.example.com:25570play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25571play.example.com:25571play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25572play.example.com:25572play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25573play.example.com:25573play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25574play.example.com:25574play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25575play.example.com:25575play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25576play.example.com:25576play.e\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1711"
+     ],
+     "card": "180..1845 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-users-edit-tab2.png"
+  },
+  {
+   "id": "admin-users-edit-tab3",
+   "title": "Beheer · Users, bewerken, tabblad 4",
+   "stand": "phone390-dark",
+   "url": "/admin/users/1/edit",
+   "docTitle": "Edit jeroen - Northwind Games",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"Creative Builds\" (120>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"All the Mods 10\" (119>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Skyblock\" (77>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Palworld Island\" (121>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Rust Weekend\" (113>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Arena\" (54>24) (+5)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25566play.example.com:25566play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25567play.example.com:25567play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25568play.example.com:25568play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25570play.example.com:25570play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25571play.example.com:25571play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25572play.example.com:25572play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25573play.example.com:25573play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25574play.example.com:25574play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25575play.example.com:25575play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25576play.example.com:25576play.e\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1529"
+     ],
+     "card": "180..1663 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-users-edit-tab3.png"
+  },
+  {
+   "id": "admin-users-edit-tab4",
+   "title": "Beheer · Users, bewerken, tabblad 5",
+   "stand": "phone390-dark",
+   "url": "/admin/users/1/edit",
+   "docTitle": "Edit jeroen - Northwind Games",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"Creative Builds\" (120>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"All the Mods 10\" (119>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Skyblock\" (77>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Palworld Island\" (121>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Rust Weekend\" (113>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Arena\" (54>24) (+5)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25566play.example.com:25566play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25567play.example.com:25567play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25568play.example.com:25568play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25570play.example.com:25570play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25571play.example.com:25571play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25572play.example.com:25572play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25573play.example.com:25573play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25574play.example.com:25574play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25575play.example.com:25575play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25576play.example.com:25576play.e\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1529"
+     ],
+     "card": "180..1663 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-users-edit-tab4.png"
+  },
+  {
+   "id": "admin-users-edit-tab5",
+   "title": "Beheer · Users, bewerken, tabblad 6",
+   "stand": "phone390-dark",
+   "url": "/admin/users/1/edit",
+   "docTitle": "Edit jeroen - Northwind Games",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"Creative Builds\" (120>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"All the Mods 10\" (119>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Skyblock\" (77>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Palworld Island\" (121>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Rust Weekend\" (113>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Arena\" (54>24) (+5)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25566play.example.com:25566play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25567play.example.com:25567play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25568play.example.com:25568play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25570play.example.com:25570play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25571play.example.com:25571play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25572play.example.com:25572play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25573play.example.com:25573play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25574play.example.com:25574play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25575play.example.com:25575play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25576play.example.com:25576play.e\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1529"
+     ],
+     "card": "180..1663 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-users-edit-tab5.png"
+  },
+  {
+   "id": "admin-users-edit-tab6",
+   "title": "Beheer · Users, bewerken, tabblad 7",
+   "stand": "phone390-dark",
+   "url": "/admin/users/1/edit",
+   "docTitle": "Edit jeroen - Northwind Games",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"Creative Builds\" (120>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"All the Mods 10\" (119>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Skyblock\" (77>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Palworld Island\" (121>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Rust Weekend\" (113>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Arena\" (54>24) (+5)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25566play.example.com:25566play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25567play.example.com:25567play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25568play.example.com:25568play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25570play.example.com:25570play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25571play.example.com:25571play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25572play.example.com:25572play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25573play.example.com:25573play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25574play.example.com:25574play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25575play.example.com:25575play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25576play.example.com:25576play.e\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/1529"
+     ],
+     "card": "180..1663 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-users-edit-tab6.png"
+  },
+  {
+   "id": "admin-webhooks",
+   "title": "Beheer · Webhooks",
+   "stand": "phone390-dark",
+   "url": "/admin/webhooks",
+   "docTitle": "Webhooks - Northwind Games",
+   "main": {
+    "url": "/admin/webhooks",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "card": "180..722 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-webhooks.png"
+  },
+  {
+   "id": "admin-announcements",
+   "title": "Beheer · Announcements",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify-announcements",
+   "docTitle": "Announcements - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-announcements",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 105px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 588/961"
+     ],
+     "card": "180..1095 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"\" at y=289",
+      "\"\" at y=289"
+     ],
+     "box": "180..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-announcements.png"
+  }
+ ],
+ "problems": [
+  "phone390-dark admin-notifications: nothing to click for .fi-modal-window button:has-text(\"Show more\"), .fi-dropdown-panel button:has-text(\"Show more\"), button:has-text(\"Show more\")",
+  "phone390-dark admin-notifications: nothing to click for .fi-user-menu button, .fi-user-menu .fi-dropdown-trigger, .fi-topbar .fi-avatar",
+  "phone390-dark: no user menu found",
+  "phone390-dark admin-notifications: nothing to click for .fi-global-search-field input, .fi-global-search input, .fi-topbar input[type=search]",
+  "phone390-dark admin-notifications: nothing to click for .fi-global-search-btn, .fi-topbar button[aria-label*=\"search\" i]",
+  "phone390-dark: no global search found",
+  "phone390-dark admin-notifications: nothing to click for .fi-topbar-open-sidebar-btn, button[aria-label*=\"sidebar\" i], .fi-topbar-sidebar-toggle-btn, .fi-layout-sidebar-toggle-btn",
+  "phone390-dark admin-announcements: nothing to click for main a:has-text(\"New announcement\"), main button:has-text(\"New announcement\")"
+ ]
+}

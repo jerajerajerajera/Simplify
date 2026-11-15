@@ -1,0 +1,4628 @@
+{
+ "base": "http://127.0.0.1:8001",
+ "screens": [
+  {
+   "id": "server-console",
+   "title": "Server · Console (Survival SMP)",
+   "stand": "phone390-dark",
+   "url": "/server/ujrqk6qs/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ujrqk6qs/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1353 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1353,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1353 min 844px",
+       "div. 1353..1353 min 0px",
+       "div. 1353..1353 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1353 min 844px",
+       "fi-main.fi-width-screen-2xl 901 min auto",
+       "fi-page.fi-console-page 821 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..1353 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,513 320x570; terminal 15,453 360x692; bar top 1145",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,452 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-console.png"
+  },
+  {
+   "id": "server-console-typed",
+   "title": "Server · Console na een commando",
+   "stand": "phone390-dark",
+   "url": "/server/ujrqk6qs/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ujrqk6qs/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1353 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1353,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1353 min 844px",
+       "div. 1353..1353 min 0px",
+       "div. 1353..1353 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1353 min 844px",
+       "fi-main.fi-width-screen-2xl 901 min auto",
+       "fi-page.fi-console-page 821 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,-324 80x38"
+     ],
+     "card": "112..1013 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,173 320x570; terminal 15,113 360x692; bar top 805",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,-206 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,112 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-console-typed.png"
+  },
+  {
+   "id": "server-more",
+   "title": "Server · ⋯-menu open",
+   "stand": "phone390-dark",
+   "url": "/server/ujrqk6qs/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ujrqk6qs/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1353 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1353,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1353 min 844px",
+       "div. 1353..1353 min 0px",
+       "div. 1353..1353 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1353 min 844px",
+       "fi-main.fi-width-screen-2xl 901 min auto",
+       "fi-page.fi-console-page 821 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38",
+      "ps-info-menu 0,388 390x456"
+     ],
+     "card": "452..1353 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,513 320x570; terminal 15,453 360x692; bar top 1145",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,452 362x757"
+     ],
+     "dropdown": [
+      "ps-info-menu 456px of 776 max"
+     ],
+     "arrow": [
+      "ps-info-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-more.png"
+  },
+  {
+   "id": "server-colour",
+   "title": "Server · kleurkiezer open",
+   "stand": "phone390-dark",
+   "url": "/server/ujrqk6qs/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ujrqk6qs/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1353 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1353,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1353 min 844px",
+       "div. 1353..1353 min 0px",
+       "div. 1353..1353 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1353 min 844px",
+       "fi-main.fi-width-screen-2xl 901 min auto",
+       "fi-page.fi-console-page 821 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38",
+      "ps-dropdown.is-end.ps-color-dropdown 0,624 390x220"
+     ],
+     "card": "452..1353 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,513 320x570; terminal 15,453 360x692; bar top 1145",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,452 362x757"
+     ],
+     "dropdown": [
+      "ps-dropdown.is-end.ps-color-dropdown 220px of 776 max"
+     ],
+     "arrow": [
+      "ps-dropdown.is-end.ps-color-dropdown no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-colour.png"
+  },
+  {
+   "id": "server-phone-more",
+   "title": "Server · telefoon: Meer-menu open",
+   "stand": "phone390-dark",
+   "url": "/server/ujrqk6qs/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ujrqk6qs/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1353 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1353,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1353 min 844px",
+       "div. 1353..1353 min 0px",
+       "div. 1353..1353 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1353 min 844px",
+       "fi-main.fi-width-screen-2xl 901 min auto",
+       "fi-page.fi-console-page 821 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38",
+      "ps-phone-more-menu 0,118 390x726 scrolls"
+     ],
+     "panes": [
+      "ps-phone-more-menu 726/913"
+     ],
+     "card": "452..1353 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,513 320x570; terminal 15,453 360x692; bar top 1145",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,452 362x757"
+     ],
+     "dropdown": [
+      "ps-phone-more-menu 726px of 776 max, scrolls"
+     ],
+     "arrow": [
+      "ps-phone-more-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-phone-more.png"
+  },
+  {
+   "id": "server-console",
+   "title": "Server · Console",
+   "stand": "phone390-dark",
+   "url": "/server/ujrqk6qs/console",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ujrqk6qs/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1353 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1353,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1353 min 844px",
+       "div. 1353..1353 min 0px",
+       "div. 1353..1353 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1353 min 844px",
+       "fi-main.fi-width-screen-2xl 901 min auto",
+       "fi-page.fi-console-page 821 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..1353 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,513 320x570; terminal 15,453 360x692; bar top 1145",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,452 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-console.png"
+  },
+  {
+   "id": "server-files",
+   "title": "Server · Files",
+   "stand": "phone390-dark",
+   "url": "/server/ujrqk6qs/files",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ujrqk6qs/files",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (941 > 844), the page scrolls"
+     },
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text-item.fi-size-sm.fi-ta-text: \"0 seconds ago\" (112>100) | fi-ta-text-item.fi-size-sm.fi-ta-text: \"0 seconds ago\" (112>100)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 941,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..941 min 844px",
+       "div. 941..941 min 0px",
+       "div. 941..941 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 941 min 844px",
+       "fi-main.fi-width-screen-2xl 489 min auto",
+       "fi-page.fi-resource-list-records-page 409 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..941 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-ta-ctn.fi-ta-ctn-with-footer.fi-ta-ctn-with-header 14,452 362x377"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-files.png"
+  },
+  {
+   "id": "server-files-rowmenu",
+   "title": "Server · Files, rijmenu open",
+   "stand": "phone390-dark",
+   "url": "/server/ujrqk6qs/files",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ujrqk6qs/files",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (941 > 844), the page scrolls"
+     },
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text-item.fi-size-sm.fi-ta-text: \"0 seconds ago\" (112>100) | fi-ta-text-item.fi-size-sm.fi-ta-text: \"0 seconds ago\" (112>100)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 941,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..941 min 844px",
+       "div. 941..941 min 0px",
+       "div. 941..941 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 941 min 844px",
+       "fi-main.fi-width-screen-2xl 489 min auto",
+       "fi-page.fi-resource-list-records-page 409 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38",
+      "fi-dropdown-panel-6jyfambt 106,613 224x163"
+     ],
+     "card": "452..941 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-ta-ctn.fi-ta-ctn-with-footer.fi-ta-ctn-with-header 14,452 362x377"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-files-rowmenu.png"
+  },
+  {
+   "id": "server-files-folder",
+   "title": "Server · Files, map open",
+   "stand": "phone390-dark",
+   "url": "/server/ujrqk6qs/files/plugins",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ujrqk6qs/files/plugins",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (890 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 890,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..890 min 844px",
+       "div. 890..890 min 0px",
+       "div. 890..890 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 890 min 844px",
+       "fi-main.fi-width-screen-2xl 438 min auto",
+       "fi-page.fi-resource-list-records-page 358 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..890 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-ta-ctn.fi-ta-ctn-with-footer.fi-ta-ctn-with-header 14,452 362x326"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-files-folder.png"
+  },
+  {
+   "id": "server-backups-tasks",
+   "title": "Server · Backups & tasks",
+   "stand": "phone390-dark",
+   "url": "/server/ujrqk6qs/backups",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ujrqk6qs/backups",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (980 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 980,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..980 min 844px",
+       "div. 980..980 min 0px",
+       "div. 980..980 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 980 min 844px",
+       "fi-main.fi-width-screen-2xl 528 min auto",
+       "fi-page.fi-resource-list-records-page 448 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..980 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-ta-ctn.fi-ta-ctn-with-footer.fi-ta-ctn-with-header 14,598 362x270"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-backups-tasks.png"
+  },
+  {
+   "id": "server-tab-schedules",
+   "title": "Server · Backups & tasks › Schedules",
+   "stand": "phone390-dark",
+   "url": "/server/ujrqk6qs/schedules",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ujrqk6qs/schedules",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"Nightly restart\" (114>24) | fi-ta-text-item.fi-size-sm.fi-ta-text: \"7 hours from now\" (128>100)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..836 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-ta-ctn.fi-ta-ctn-with-footer.fi-ta-ctn-with-header 14,500 362x224"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-tab-schedules.png"
+  },
+  {
+   "id": "server-backups-tasks-new",
+   "title": "Server · Backups & tasks, nieuw-dialoog open",
+   "stand": "phone390-dark",
+   "url": "/server/ujrqk6qs/backups",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ujrqk6qs/backups",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "tallnoscroll",
+      "text": "page is taller than the window (980 > 844), nothing scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 980,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..980 min 844px",
+       "div. 980..980 min 0px",
+       "div. 980..980 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 980 min 844px",
+       "fi-main.fi-width-screen-2xl 528 min auto",
+       "fi-page.fi-resource-list-records-page 448 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38",
+      "fi-modal-window.fi-modal-window-has-close-btn.fi-modal-windo 16,244 358x356"
+     ],
+     "card": "452..980 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-ta-ctn.fi-ta-ctn-with-footer.fi-ta-ctn-with-header 14,598 362x270"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-backups-tasks-new.png"
+  },
+  {
+   "id": "server-minecraft",
+   "title": "Server · Minecraft",
+   "stand": "phone390-dark",
+   "url": "/server/ujrqk6qs/minecraft",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ujrqk6qs/minecraft",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2413 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2413,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..2413 min 844px",
+       "div. 2413..2413 min 0px",
+       "div. 2413..2413 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 2413 min 844px",
+       "fi-main.fi-width-screen-2xl 1961 min auto",
+       "fi-page 1881 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..2413 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-section.fi-section-has-header 14,452 362x394",
+      "fi-section.fi-section-has-header 14,870 362x277",
+      "fi-section.fi-section-has-header 14,1171 362x981",
+      "fi-section.fi-section-has-header 14,2176 362x125"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-minecraft.png"
+  },
+  {
+   "id": "server-plugins",
+   "title": "Server · Plugins",
+   "stand": "phone390-dark",
+   "url": "/server/ujrqk6qs/plugins",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ujrqk6qs/plugins",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2937 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2937,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..2937 min 844px",
+       "div. 2937..2937 min 0px",
+       "div. 2937..2937 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 2937 min 844px",
+       "fi-main.fi-width-screen-2xl 2485 min auto",
+       "fi-page 2405 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\"",
+      "sm-title: \"VeinMiner Enchantment\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..2937 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-section.fi-section-has-header 14,452 362x1781",
+      "fi-section.fi-section-has-header 14,2257 362x328",
+      "fi-section.fi-section-has-header 14,2609 362x184"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-plugins.png"
+  },
+  {
+   "id": "server-players",
+   "title": "Server · Players",
+   "stand": "phone390-dark",
+   "url": "/server/ujrqk6qs/players",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ujrqk6qs/players",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1660 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1660,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1660 min 844px",
+       "div. 1660..1660 min 0px",
+       "div. 1660..1660 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1660 min 844px",
+       "fi-main.fi-width-screen-2xl 1208 min auto",
+       "fi-page 1128 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..1660 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-section.fi-section-has-header 14,452 362x554",
+      "fi-section.fi-section-has-header.fi-compact 14,1030 362x146",
+      "fi-section.fi-section-has-header.fi-compact 14,1200 362x146",
+      "fi-section.fi-section-has-header.fi-compact 14,1370 362x146"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-players.png"
+  },
+  {
+   "id": "server-website",
+   "title": "Server · Website",
+   "stand": "phone390-dark",
+   "url": "/server/ujrqk6qs/website",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ujrqk6qs/website",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (876 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 876,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..876 min 844px",
+       "div. 876..876 min 0px",
+       "div. 876..876 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 876 min 0px",
+       "fi-main.fi-width-screen-2xl 424 min auto",
+       "fi-page 344 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "panes": [
+      "s-fit 320/2136"
+     ],
+     "card": "452..876 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-section.fi-section-has-header 14,452 362x2128"
+     ]
+    }
+   },
+   "frames": [
+    {
+     "box": "38,2136 314x420",
+     "url": "blank",
+     "w": 314,
+     "h": 420,
+     "dark": false,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 420,
+      "pageScrollW": 314,
+      "scope": "pelican"
+     }
+    }
+   ],
+   "shot": "phone390-dark/server-website.png"
+  },
+  {
+   "id": "server-server-software",
+   "title": "Server · Server software",
+   "stand": "phone390-dark",
+   "url": "/server/ujrqk6qs/software",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ujrqk6qs/software",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1430 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1430,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1430 min 844px",
+       "div. 1430..1430 min 0px",
+       "div. 1430..1430 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1430 min 844px",
+       "fi-main.fi-width-screen-2xl 979 min auto",
+       "fi-page 899 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..1430 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-server-software.png"
+  },
+  {
+   "id": "server-performance",
+   "title": "Server · Performance",
+   "stand": "phone390-dark",
+   "url": "/server/ujrqk6qs/performance",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ujrqk6qs/performance",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1381 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1381,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1381 min 844px",
+       "div. 1381..1381 min 0px",
+       "div. 1381..1381 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1381 min 844px",
+       "fi-main.fi-width-screen-2xl 929 min auto",
+       "fi-page 849 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..1381 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-performance.png"
+  },
+  {
+   "id": "server-users",
+   "title": "Server · Users",
+   "stand": "phone390-dark",
+   "url": "/server/ujrqk6qs/subusers",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ujrqk6qs/subusers",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..810 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-ta-ctn.fi-ta-ctn-with-footer.fi-ta-ctn-with-header 14,452 362x246"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-users.png"
+  },
+  {
+   "id": "server-users-new",
+   "title": "Server · Users, nieuw-dialoog open",
+   "stand": "phone390-dark",
+   "url": "/server/ujrqk6qs/subusers",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ujrqk6qs/subusers",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38",
+      "fi-modal-window.fi-modal-window-has-close-btn.fi-modal-windo 18,20 354x859"
+     ],
+     "panes": [
+      "fi-modal-window-ctn.fi-clickable 844/899"
+     ],
+     "card": "452..810 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-ta-ctn.fi-ta-ctn-with-footer.fi-ta-ctn-with-header 14,452 362x246"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-users-new.png"
+  },
+  {
+   "id": "server-databases",
+   "title": "Server · Databases",
+   "stand": "phone390-dark",
+   "url": "/server/ujrqk6qs/databases",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ujrqk6qs/databases",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..810 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-ta-ctn.fi-ta-ctn-with-footer 14,452 362x246"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-databases.png"
+  },
+  {
+   "id": "server-databases-new",
+   "title": "Server · Databases, nieuw-dialoog open",
+   "stand": "phone390-dark",
+   "url": "/server/ujrqk6qs/databases",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ujrqk6qs/databases",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..810 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-ta-ctn.fi-ta-ctn-with-footer 14,452 362x246"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-databases-new.png"
+  },
+  {
+   "id": "server-network",
+   "title": "Server · Network",
+   "stand": "phone390-dark",
+   "url": "/server/ujrqk6qs/allocations",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ujrqk6qs/allocations",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"play.example.com\" (139>25)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..669 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-ta-ctn.fi-ta-ctn-with-footer 14,452 362x105"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-network.png"
+  },
+  {
+   "id": "server-startup",
+   "title": "Server · Startup",
+   "stand": "phone390-dark",
+   "url": "/server/ujrqk6qs/startup",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ujrqk6qs/startup",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (929 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 929,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..929 min 844px",
+       "div. 929..929 min 0px",
+       "div. 929..929 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 929 min 844px",
+       "fi-main.fi-width-screen-2xl 477 min auto",
+       "fi-page 397 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..929 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-section.fi-section-has-header 14,712 362x105"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-startup.png"
+  },
+  {
+   "id": "server-settings",
+   "title": "Server · Settings",
+   "stand": "phone390-dark",
+   "url": "/server/ujrqk6qs/settings",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ujrqk6qs/settings",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2739 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2739,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..2739 min 844px",
+       "div. 2739..2739 min 0px",
+       "div. 2739..2739 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 2739 min 844px",
+       "fi-main.fi-width-screen-2xl 2287 min auto",
+       "fi-page 2207 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..2739 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-section.fi-section-has-header 14,452 362x1488",
+      "fi-section.fi-section-has-header 14,1964 362x334",
+      "fi-section.fi-section-has-header 14,2322 362x305"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-settings.png"
+  },
+  {
+   "id": "server-mounts",
+   "title": "Server · Mounts",
+   "stand": "phone390-dark",
+   "url": "/server/ujrqk6qs/mounts",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ujrqk6qs/mounts",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..688 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-section 14,452 362x124"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-mounts.png"
+  },
+  {
+   "id": "server-webhooks",
+   "title": "Server · Webhooks",
+   "stand": "phone390-dark",
+   "url": "/server/ujrqk6qs/webhook",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ujrqk6qs/webhook",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (870 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 870,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..870 min 844px",
+       "div. 870..870 min 0px",
+       "div. 870..870 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 870 min 844px",
+       "fi-main.fi-width-screen-2xl 418 min auto",
+       "fi-page.fi-resource-list-records-page 338 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..870 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-ta-ctn.fi-ta-ctn-with-footer.fi-ta-ctn-with-header 14,452 362x306"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-webhooks.png"
+  },
+  {
+   "id": "server-activity",
+   "title": "Server · Activity",
+   "stand": "phone390-dark",
+   "url": "/server/ujrqk6qs/activities",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ujrqk6qs/activities",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..810 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-ta-ctn.fi-ta-ctn-with-footer.fi-ta-ctn-with-header 14,452 362x246"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-activity.png"
+  },
+  {
+   "id": "server-servers",
+   "title": "Server · Servers",
+   "stand": "phone390-dark",
+   "url": "/simplify",
+   "docTitle": "Pelican - Enhanced by Simplify - Northwind Games",
+   "main": {
+    "url": "/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2103 > 844), the page scrolls"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2103,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-app fi-body-has-topbar block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-topbar-ctn 0..0 min 0px",
+       "div.fi-layout 0..2103 min 0px",
+       "div. 2103..2103 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 2103 min 0px",
+       "fi-main.fi-width-screen-2xl 1969 min 0px",
+       "fi-page 1969 min 0px"
+      ]
+     },
+     "popups": [
+      "ps-navigation-items 296,18 80x38"
+     ],
+     "card": "0..1969 of 844",
+     "topbar": "brand 14..194, actions 246..376",
+     "scope": "simplify",
+     "boxes": [
+      "fi-callout.fi-color.fi-color-warning 14,70 362x98",
+      "fi-callout.fi-color.fi-color-info 14,180 362x78"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-servers.png"
+  },
+  {
+   "id": "server-admin",
+   "title": "Server · Admin",
+   "stand": "phone390-dark",
+   "url": "/admin/servers#menu",
+   "docTitle": "Servers - Northwind Games",
+   "main": {
+    "url": "/admin/servers",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": []
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-admin.png"
+  },
+  {
+   "id": "server-addon-unsaved",
+   "title": "Server · add-on-formulier, Changes made",
+   "stand": "phone390-dark",
+   "url": "/server/ujrqk6qs/minecraft",
+   "docTitle": "Survival SMP - Simplify",
+   "main": {
+    "url": "/server/ujrqk6qs/minecraft",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (2413 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 2413,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..2413 min 844px",
+       "div. 2413..2413 min 0px",
+       "div. 2413..2413 min 0px",
+       "div.s-unsaved 1396..1450 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 2413 min 844px",
+       "fi-main.fi-width-screen-2xl 1961 min auto",
+       "fi-page 1881 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,-666 80x38"
+     ],
+     "card": "-230..1731 of 844",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,-548 362x164",
+      "fi-section.fi-section-has-header 14,-230 362x394",
+      "fi-section.fi-section-has-header 14,188 362x277",
+      "fi-section.fi-section-has-header 14,489 362x981",
+      "fi-section.fi-section-has-header 14,1494 362x125"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server-addon-unsaved.png"
+  },
+  {
+   "id": "server2-console",
+   "title": "Server · Console (Valheim Vikings)",
+   "stand": "phone390-dark",
+   "url": "/server/r4f29gan/console",
+   "docTitle": "Valheim Vikings - Simplify",
+   "main": {
+    "url": "/server/r4f29gan/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1301 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1301,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1301 min 844px",
+       "div. 1301..1301 min 0px",
+       "div. 1301..1301 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1301 min 844px",
+       "fi-main.fi-width-screen-2xl 849 min auto",
+       "fi-page.fi-console-page 769 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..1301 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,513 320x570; terminal 15,453 360x640; bar top 1093",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,452 362x705"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server2-console.png"
+  },
+  {
+   "id": "server3-console",
+   "title": "Server · Console (Skyblock, eigen icoon)",
+   "stand": "phone390-dark",
+   "url": "/server/oismm8ti/console",
+   "docTitle": "Skyblock - Simplify",
+   "main": {
+    "url": "/server/oismm8ti/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1353 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1353,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1353 min 844px",
+       "div. 1353..1353 min 0px",
+       "div. 1353..1353 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1353 min 844px",
+       "fi-main.fi-width-screen-2xl 901 min auto",
+       "fi-page.fi-console-page 821 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..1353 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,513 320x570; terminal 15,453 360x692; bar top 1145",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,452 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server3-console.png"
+  },
+  {
+   "id": "server4-console",
+   "title": "Server · Console (Creative Builds, icoon laadt niet)",
+   "stand": "phone390-dark",
+   "url": "/server/95tfbmvy/console",
+   "docTitle": "Creative Builds - Simplify",
+   "main": {
+    "url": "/server/95tfbmvy/console",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "pagescroll",
+      "text": "page is taller than the window (1353 > 844), the page scrolls"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: span \"The servers restart between 07:00 and 07:30.\" sticks 93px out of fi-layout"
+     }
+    ],
+    "info": {
+     "pageScrollH": 1353,
+     "pageScrollW": 390,
+     "tall": {
+      "body": "fi-body fi-panel-server fi-body-has-navigation block min 100%",
+      "ps": true,
+      "kids": [
+       "a.fi-skip-link.fi-sr-only -1..0 min 0px",
+       "div.fi-layout 0..1353 min 844px",
+       "div. 1353..1353 min 0px",
+       "div. 1353..1353 min 0px"
+      ],
+      "inner": [
+       "fi-main-ctn 1353 min 844px",
+       "fi-main.fi-width-screen-2xl 901 min auto",
+       "fi-page.fi-console-page 821 min 0px"
+      ]
+     },
+     "ellipsis": [
+      "ps-note-text: \"Maintenance on Saturday The servers restart betwee\"",
+      "ps-note-text: \"New node in Amsterdam New servers start faster fro\""
+     ],
+     "popups": [
+      "ps-navigation-items 296,16 80x38"
+     ],
+     "card": "452..1353 of 844",
+     "console": {
+      "card": "rgb(19, 26, 32)",
+      "terminal": "rgba(0, 0, 0, 0)",
+      "xterm": "rgba(0, 0, 0, 0)",
+      "viewport": "rgba(0, 0, 0, 0)",
+      "bar": "rgba(0, 0, 0, 0)"
+     },
+     "consoleBox": "screen 25,513 320x570; terminal 15,453 360x692; bar top 1145",
+     "topbar": "brand 54..234, actions 296..376",
+     "scope": "simplify",
+     "boxes": [
+      "Server information 14,134 362x164",
+      "fi-wi-widget.fi-grid-col.lg:fi-grid-col-span 14,452 362x757"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/server4-console.png"
+  },
+  {
+   "id": "admin-dashboard",
+   "title": "Beheer · Dashboard",
+   "stand": "phone390-dark",
+   "url": "/admin",
+   "docTitle": "Dashboard - Northwind Games",
+   "main": {
+    "url": "/admin",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/837"
+     ],
+     "card": "114..887 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-dashboard.png"
+  },
+  {
+   "id": "admin-notifications",
+   "title": "Beheer · Pelican-meldingen open",
+   "stand": "phone390-dark",
+   "url": "/admin",
+   "docTitle": "Dashboard - Northwind Games",
+   "main": {
+    "url": "/admin",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38",
+      "ps-notify-menu 0,68 390x776 scrolls"
+     ],
+     "panes": [
+      "ps-notify-menu 776/1975",
+      "fi-main-ctn 654/837"
+     ],
+     "card": "114..887 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844",
+     "dropdown": [
+      "ps-notify-menu 776px of 776 max, scrolls"
+     ],
+     "arrow": [
+      "ps-notify-menu no arrow"
+     ]
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-notifications.png"
+  },
+  {
+   "id": "admin-health",
+   "title": "Beheer · Health",
+   "stand": "phone390-dark",
+   "url": "/admin/health",
+   "docTitle": "Health - Northwind Games",
+   "main": {
+    "url": "/admin/health",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38",
+      "ps-tooltip 254,64 97x33"
+     ],
+     "panes": [
+      "fi-main-ctn 654/1112"
+     ],
+     "card": "114..1162 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-health.png"
+  },
+  {
+   "id": "admin-panel-logs",
+   "title": "Beheer · Panel Logs",
+   "stand": "phone390-dark",
+   "url": "/admin/logs",
+   "docTitle": "Log Viewer - Northwind Games",
+   "main": {
+    "url": "/admin/logs",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38",
+      "ps-tooltip 254,64 97x33"
+     ],
+     "card": "114..704 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-panel-logs.png"
+  },
+  {
+   "id": "admin-settings",
+   "title": "Beheer · Settings",
+   "stand": "phone390-dark",
+   "url": "/admin/settings",
+   "docTitle": "Settings - Northwind Games",
+   "main": {
+    "url": "/admin/settings",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38",
+      "ps-tooltip 254,64 97x33"
+     ],
+     "panes": [
+      "fi-main-ctn 654/1447"
+     ],
+     "card": "114..1497 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-settings.png"
+  },
+  {
+   "id": "admin-settings-tab1",
+   "title": "Beheer · Settings, tabblad 2",
+   "stand": "phone390-dark",
+   "url": "/admin/settings?tab=captcha%3A%3Adata%3A%3Atab",
+   "docTitle": "Settings - Northwind Games",
+   "main": {
+    "url": "/admin/settings?tab=captcha%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "card": "114..704 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-settings-tab1.png"
+  },
+  {
+   "id": "admin-settings-tab2",
+   "title": "Beheer · Settings, tabblad 3",
+   "stand": "phone390-dark",
+   "url": "/admin/settings?tab=mail%3A%3Adata%3A%3Atab",
+   "docTitle": "Settings - Northwind Games",
+   "main": {
+    "url": "/admin/settings?tab=mail%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/828"
+     ],
+     "card": "114..878 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-settings-tab2.png"
+  },
+  {
+   "id": "admin-settings-tab3",
+   "title": "Beheer · Settings, tabblad 4",
+   "stand": "phone390-dark",
+   "url": "/admin/settings?tab=backup%3A%3Adata%3A%3Atab",
+   "docTitle": "Settings - Northwind Games",
+   "main": {
+    "url": "/admin/settings?tab=backup%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/664"
+     ],
+     "card": "114..714 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-settings-tab3.png"
+  },
+  {
+   "id": "admin-settings-tab4",
+   "title": "Beheer · Settings, tabblad 5",
+   "stand": "phone390-dark",
+   "url": "/admin/settings?tab=oauth%3A%3Adata%3A%3Atab",
+   "docTitle": "Settings - Northwind Games",
+   "main": {
+    "url": "/admin/settings?tab=oauth%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/1199"
+     ],
+     "card": "114..1249 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-settings-tab4.png"
+  },
+  {
+   "id": "admin-settings-tab5",
+   "title": "Beheer · Settings, tabblad 6",
+   "stand": "phone390-dark",
+   "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+   "docTitle": "Settings - Northwind Games",
+   "main": {
+    "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/1271"
+     ],
+     "card": "114..1321 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-settings-tab5.png"
+  },
+  {
+   "id": "admin-settings-tab6",
+   "title": "Beheer · Settings, tabblad 7",
+   "stand": "phone390-dark",
+   "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+   "docTitle": "Settings - Northwind Games",
+   "main": {
+    "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/1472"
+     ],
+     "card": "-67..1341 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-settings-tab6.png"
+  },
+  {
+   "id": "admin-site-directory",
+   "title": "Beheer · Site directory",
+   "stand": "phone390-dark",
+   "url": "/admin/site-directory",
+   "docTitle": "Site directory - Northwind Games",
+   "main": {
+    "url": "/admin/site-directory",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "card": "114..704 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-site-directory.png"
+  },
+  {
+   "id": "admin-simplify",
+   "title": "Beheer · Simplify",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/1368"
+     ],
+     "card": "114..1418 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"Run setup again\" at y=287",
+      "\"\" at y=287"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-simplify.png"
+  },
+  {
+   "id": "admin-simplify-tab1",
+   "title": "Beheer · Simplify, tabblad 2",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify?tab=general",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify?tab=general",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/927"
+     ],
+     "card": "114..977 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"Run setup again\" at y=287",
+      "\"\" at y=287"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-simplify-tab1.png"
+  },
+  {
+   "id": "admin-simplify-tab2",
+   "title": "Beheer · Simplify, tabblad 3",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify?tab=app",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify?tab=app",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "b: \"Northwind Games\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/1280"
+     ],
+     "card": "114..1330 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"Run setup again\" at y=287",
+      "\"\" at y=287"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-simplify-tab2.png"
+  },
+  {
+   "id": "admin-simplify-tab3",
+   "title": "Beheer · Simplify, tabblad 4",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify?tab=addons",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify?tab=addons",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/857"
+     ],
+     "card": "114..907 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"Run setup again\" at y=287",
+      "\"\" at y=287"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-simplify-tab3.png"
+  },
+  {
+   "id": "admin-simplify-tab4",
+   "title": "Beheer · Simplify, tabblad 5",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify?tab=hub",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify?tab=hub",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/1839"
+     ],
+     "card": "114..1889 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"Run setup again\" at y=287",
+      "\"\" at y=287"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-simplify-tab4.png"
+  },
+  {
+   "id": "admin-simplify-tab5",
+   "title": "Beheer · Simplify, tabblad 6",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify?tab=hub",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify?tab=hub",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/1839"
+     ],
+     "card": "-127..1648 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"Run setup again\" at y=46",
+      "\"\" at y=46"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\""
+     ],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-simplify-tab5.png"
+  },
+  {
+   "id": "admin-setup-done",
+   "title": "Beheer · Setup Done",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify/setup-done",
+   "docTitle": "Simplify is set up - Northwind Games",
+   "main": {
+    "url": "/admin/simplify/setup-done",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "strong: \"General\"",
+      "strong: \"Simplify is set up\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "s-done 352/733"
+     ],
+     "card": "114..704 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"Run setup again\" at y=234",
+      "\"Go to the panel\" at y=234"
+     ],
+     "filamentButtons": [
+      "\"Run setup again\"",
+      "\"Go to the panel\""
+     ],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-setup-done.png"
+  },
+  {
+   "id": "admin-people-roles",
+   "title": "Beheer · People & roles",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify-people",
+   "docTitle": "People & roles - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-people",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/919"
+     ],
+     "card": "114..969 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"People\" at y=156",
+      "\"Roles\" at y=156",
+      "\"Add person\" at y=242"
+     ],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-people-roles.png"
+  },
+  {
+   "id": "admin-people-roles-tab1",
+   "title": "Beheer · People & roles, tabblad 2",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify-people",
+   "docTitle": "People & roles - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-people",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "card": "114..704 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"People\" at y=156",
+      "\"Roles\" at y=156",
+      "\"Add role\" at y=198"
+     ],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-people-roles-tab1.png"
+  },
+  {
+   "id": "admin-people-add",
+   "title": "Beheer · People, persoon toevoegen",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify-people",
+   "docTitle": "People & roles - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-people",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38",
+      "fi-modal-window.fi-modal-window-has-close-btn.fi-modal-windo 0,0 390x844 scrolls"
+     ],
+     "panes": [
+      "fi-modal-window.fi-modal-window-has-close-btn.fi-modal-windo 844/4368"
+     ],
+     "card": "114..704 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"People\" at y=156",
+      "\"Roles\" at y=156",
+      "\"Add role\" at y=198"
+     ],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-people-add.png"
+  },
+  {
+   "id": "admin-website-embed",
+   "title": "Beheer · Website embed",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify-embed",
+   "docTitle": "Website embed - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-embed",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/3065"
+     ],
+     "card": "114..3115 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"\" at y=223"
+     ],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [
+    {
+     "box": "36,2621 318x420",
+     "url": "blank",
+     "w": 318,
+     "h": 420,
+     "dark": false,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 420,
+      "pageScrollW": 318,
+      "scope": "pelican"
+     }
+    }
+   ],
+   "shot": "phone390-dark/admin-website-embed.png"
+  },
+  {
+   "id": "admin-automatic-subdomains",
+   "title": "Beheer · Automatic subdomains",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify-subdomains",
+   "docTitle": "Automatic subdomains - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-subdomains",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/1553"
+     ],
+     "card": "114..1603 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"\" at y=223"
+     ],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-automatic-subdomains.png"
+  },
+  {
+   "id": "admin-egg-updates",
+   "title": "Beheer · Egg Updates",
+   "stand": "phone390-dark",
+   "url": "/admin/egg-updates",
+   "docTitle": "Egg Updates - Northwind Games",
+   "main": {
+    "url": "/admin/egg-updates",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text-item.fi-ta-text.fi-ta-text-has-badges: \"Update available\" (119>101) | fi-ta-text-item.fi-ta-text.fi-ta-text-has-badges: \"Update available\" (119>101)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "card": "114..704 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"\" at y=259",
+      "\"\" at y=259",
+      "\"\" at y=259"
+     ],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-egg-updates.png"
+  },
+  {
+   "id": "admin-explain",
+   "title": "Beheer · Explain",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify-explain",
+   "docTitle": "Explain - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-explain",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/1113"
+     ],
+     "card": "114..1163 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"\" at y=223",
+      "\"\" at y=223"
+     ],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-explain.png"
+  },
+  {
+   "id": "admin-hosting",
+   "title": "Beheer · Hosting",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify-hosting",
+   "docTitle": "Hosting - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-hosting",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/1281"
+     ],
+     "card": "114..1331 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"\" at y=223"
+     ],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-hosting.png"
+  },
+  {
+   "id": "admin-server-maker",
+   "title": "Beheer · Server Maker",
+   "stand": "phone390-dark",
+   "url": "/admin/server-maker",
+   "docTitle": "Server Maker - Northwind Games",
+   "main": {
+    "url": "/admin/server-maker",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "strong: \"American Truck Simulator Dedicated Server\"",
+      "strong: \"Among Us - Impostor Server\"",
+      "strong: \"Assetto Corsa (Freeroam + AI)\"",
+      "strong: \"Astroneer Dedicated Server\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/828",
+      "form.game::data::wizard-step 614/2850"
+     ],
+     "card": "114..878 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [
+      "smk-minecraft 36,178 318x472"
+     ],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-server-maker.png"
+  },
+  {
+   "id": "admin-maker-settings",
+   "title": "Beheer · Maker Settings",
+   "stand": "phone390-dark",
+   "url": "/admin/server-maker/settings",
+   "docTitle": "Server Maker settings - Northwind Games",
+   "main": {
+    "url": "/admin/server-maker/settings",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/2844"
+     ],
+     "card": "114..2894 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"\" at y=223"
+     ],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-maker-settings.png"
+  },
+  {
+   "id": "admin-toolkit",
+   "title": "Beheer · Toolkit",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify-toolkit",
+   "docTitle": "Toolkit - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-toolkit",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/1213"
+     ],
+     "card": "114..1263 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"\" at y=223"
+     ],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-toolkit.png"
+  },
+  {
+   "id": "admin-api-keys",
+   "title": "Beheer · API Keys",
+   "stand": "phone390-dark",
+   "url": "/admin/api-keys",
+   "docTitle": "Application API Keys - Northwind Games",
+   "main": {
+    "url": "/admin/api-keys",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "card": "114..704 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-api-keys.png"
+  },
+  {
+   "id": "admin-backup-hosts",
+   "title": "Beheer · Backup Hosts",
+   "stand": "phone390-dark",
+   "url": "/admin/backup-hosts",
+   "docTitle": "Backup Hosts - Northwind Games",
+   "main": {
+    "url": "/admin/backup-hosts",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "card": "114..704 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-backup-hosts.png"
+  },
+  {
+   "id": "admin-database-hosts",
+   "title": "Beheer · Database Hosts",
+   "stand": "phone390-dark",
+   "url": "/admin/database-hosts",
+   "docTitle": "Database Hosts - Northwind Games",
+   "main": {
+    "url": "/admin/database-hosts",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "card": "114..704 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-database-hosts.png"
+  },
+  {
+   "id": "admin-eggs",
+   "title": "Beheer · Eggs",
+   "stand": "phone390-dark",
+   "url": "/admin/eggs",
+   "docTitle": "Eggs - Northwind Games",
+   "main": {
+    "url": "/admin/eggs",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/823"
+     ],
+     "card": "114..873 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-eggs.png"
+  },
+  {
+   "id": "admin-eggs-edit",
+   "title": "Beheer · Eggs, bewerken",
+   "stand": "phone390-dark",
+   "url": "/admin/eggs/1/edit",
+   "docTitle": "Edit Paper - Northwind Games",
+   "main": {
+    "url": "/admin/eggs/1/edit",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"sam\" (41>24) | fi-ta-text.fi-ta-text-item.fi-ta-text-has-badges: \"ghcr.io/pelican-eggs/yolks:java_21\" (220>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"play.example.com:25565\" (174>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"jeroen\" (58>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Creative Builds\" (111>101) | fi-ta-text.fi-ta-text-item.fi-ta-text-has-badges: \"ghcr.io/pelican-eggs/yolks:java_21\" (220>101) (+19)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/2594"
+     ],
+     "card": "114..2644 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-eggs-edit.png"
+  },
+  {
+   "id": "admin-eggs-edit-tab1",
+   "title": "Beheer · Eggs, bewerken, tabblad 2",
+   "stand": "phone390-dark",
+   "url": "/admin/eggs/1/edit?tab=process-management%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Paper - Northwind Games",
+   "main": {
+    "url": "/admin/eggs/1/edit?tab=process-management%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"sam\" (41>24) | fi-ta-text.fi-ta-text-item.fi-ta-text-has-badges: \"ghcr.io/pelican-eggs/yolks:java_21\" (220>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"play.example.com:25565\" (174>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"jeroen\" (58>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Creative Builds\" (111>101) | fi-ta-text.fi-ta-text-item.fi-ta-text-has-badges: \"ghcr.io/pelican-eggs/yolks:java_21\" (220>101) (+19)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/2317"
+     ],
+     "card": "114..2367 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-eggs-edit-tab1.png"
+  },
+  {
+   "id": "admin-eggs-edit-tab2",
+   "title": "Beheer · Eggs, bewerken, tabblad 3",
+   "stand": "phone390-dark",
+   "url": "/admin/eggs/1/edit?tab=egg-variables%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Paper - Northwind Games",
+   "main": {
+    "url": "/admin/eggs/1/edit?tab=egg-variables%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"sam\" (41>24) | fi-ta-text.fi-ta-text-item.fi-ta-text-has-badges: \"ghcr.io/pelican-eggs/yolks:java_21\" (220>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"play.example.com:25565\" (174>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"jeroen\" (58>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Creative Builds\" (111>101) | fi-ta-text.fi-ta-text-item.fi-ta-text-has-badges: \"ghcr.io/pelican-eggs/yolks:java_21\" (220>101) (+19)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/985"
+     ],
+     "card": "114..1035 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-eggs-edit-tab2.png"
+  },
+  {
+   "id": "admin-eggs-edit-tab3",
+   "title": "Beheer · Eggs, bewerken, tabblad 4",
+   "stand": "phone390-dark",
+   "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Paper - Northwind Games",
+   "main": {
+    "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"sam\" (41>24) | fi-ta-text.fi-ta-text-item.fi-ta-text-has-badges: \"ghcr.io/pelican-eggs/yolks:java_21\" (220>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"play.example.com:25565\" (174>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"jeroen\" (58>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Creative Builds\" (111>101) | fi-ta-text.fi-ta-text-item.fi-ta-text-has-badges: \"ghcr.io/pelican-eggs/yolks:java_21\" (220>101) (+19)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/1867"
+     ],
+     "card": "114..1917 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-eggs-edit-tab3.png"
+  },
+  {
+   "id": "admin-eggs-edit-tab4",
+   "title": "Beheer · Eggs, bewerken, tabblad 5",
+   "stand": "phone390-dark",
+   "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Paper - Northwind Games",
+   "main": {
+    "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"sam\" (41>24) | fi-ta-text.fi-ta-text-item.fi-ta-text-has-badges: \"ghcr.io/pelican-eggs/yolks:java_21\" (220>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"play.example.com:25565\" (174>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"jeroen\" (58>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Creative Builds\" (111>101) | fi-ta-text.fi-ta-text-item.fi-ta-text-has-badges: \"ghcr.io/pelican-eggs/yolks:java_21\" (220>101) (+19)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/1867"
+     ],
+     "card": "114..1917 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-eggs-edit-tab4.png"
+  },
+  {
+   "id": "admin-eggs-edit-tab5",
+   "title": "Beheer · Eggs, bewerken, tabblad 6",
+   "stand": "phone390-dark",
+   "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Paper - Northwind Games",
+   "main": {
+    "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"sam\" (41>24) | fi-ta-text.fi-ta-text-item.fi-ta-text-has-badges: \"ghcr.io/pelican-eggs/yolks:java_21\" (220>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"play.example.com:25565\" (174>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"jeroen\" (58>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Creative Builds\" (111>101) | fi-ta-text.fi-ta-text-item.fi-ta-text-has-badges: \"ghcr.io/pelican-eggs/yolks:java_21\" (220>101) (+19)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/1867"
+     ],
+     "card": "114..1917 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-eggs-edit-tab5.png"
+  },
+  {
+   "id": "admin-eggs-edit-tab6",
+   "title": "Beheer · Eggs, bewerken, tabblad 7",
+   "stand": "phone390-dark",
+   "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Paper - Northwind Games",
+   "main": {
+    "url": "/admin/eggs/1/edit?tab=install-script%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"sam\" (41>24) | fi-ta-text.fi-ta-text-item.fi-ta-text-has-badges: \"ghcr.io/pelican-eggs/yolks:java_21\" (220>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"play.example.com:25565\" (174>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"jeroen\" (58>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Creative Builds\" (111>101) | fi-ta-text.fi-ta-text-item.fi-ta-text-has-badges: \"ghcr.io/pelican-eggs/yolks:java_21\" (220>101) (+19)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/1867"
+     ],
+     "card": "114..1917 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-eggs-edit-tab6.png"
+  },
+  {
+   "id": "admin-mounts",
+   "title": "Beheer · Mounts",
+   "stand": "phone390-dark",
+   "url": "/admin/mounts",
+   "docTitle": "Mounts - Northwind Games",
+   "main": {
+    "url": "/admin/mounts",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "card": "114..704 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-mounts.png"
+  },
+  {
+   "id": "admin-nodes",
+   "title": "Beheer · Nodes",
+   "stand": "phone390-dark",
+   "url": "/admin/nodes",
+   "docTitle": "Nodes - Northwind Games",
+   "main": {
+    "url": "/admin/nodes",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "card": "114..704 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-nodes.png"
+  },
+  {
+   "id": "admin-nodes-edit",
+   "title": "Beheer · Nodes, bewerken",
+   "stand": "phone390-dark",
+   "url": "/admin/nodes/1/edit",
+   "docTitle": "Edit Amsterdam - Northwind Games",
+   "main": {
+    "url": "/admin/nodes/1/edit",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/1765"
+     ],
+     "card": "114..1815 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-nodes-edit.png"
+  },
+  {
+   "id": "admin-nodes-edit-tab1",
+   "title": "Beheer · Nodes, bewerken, tabblad 2",
+   "stand": "phone390-dark",
+   "url": "/admin/nodes/1/edit?tab=basic-settings%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Amsterdam - Northwind Games",
+   "main": {
+    "url": "/admin/nodes/1/edit?tab=basic-settings%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/1027"
+     ],
+     "card": "114..1077 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-nodes-edit-tab1.png"
+  },
+  {
+   "id": "admin-nodes-edit-tab2",
+   "title": "Beheer · Nodes, bewerken, tabblad 3",
+   "stand": "phone390-dark",
+   "url": "/admin/nodes/1/edit?tab=advanced-settings%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Amsterdam - Northwind Games",
+   "main": {
+    "url": "/admin/nodes/1/edit?tab=advanced-settings%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/2183"
+     ],
+     "card": "114..2233 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-nodes-edit-tab2.png"
+  },
+  {
+   "id": "admin-nodes-edit-tab3",
+   "title": "Beheer · Nodes, bewerken, tabblad 4",
+   "stand": "phone390-dark",
+   "url": "/admin/nodes/1/edit?tab=configuration-file%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Amsterdam - Northwind Games",
+   "main": {
+    "url": "/admin/nodes/1/edit?tab=configuration-file%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/1219"
+     ],
+     "card": "114..1269 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-nodes-edit-tab3.png"
+  },
+  {
+   "id": "admin-nodes-edit-tab4",
+   "title": "Beheer · Nodes, bewerken, tabblad 5",
+   "stand": "phone390-dark",
+   "url": "/admin/nodes/1/edit?tab=diagnostics%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Amsterdam - Northwind Games",
+   "main": {
+    "url": "/admin/nodes/1/edit?tab=diagnostics%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/942"
+     ],
+     "card": "114..992 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-nodes-edit-tab4.png"
+  },
+  {
+   "id": "admin-nodes-edit-tab5",
+   "title": "Beheer · Nodes, bewerken, tabblad 6",
+   "stand": "phone390-dark",
+   "url": "/admin/nodes/1/edit?tab=diagnostics%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Amsterdam - Northwind Games",
+   "main": {
+    "url": "/admin/nodes/1/edit?tab=diagnostics%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/942"
+     ],
+     "card": "114..992 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-nodes-edit-tab5.png"
+  },
+  {
+   "id": "admin-nodes-edit-tab6",
+   "title": "Beheer · Nodes, bewerken, tabblad 7",
+   "stand": "phone390-dark",
+   "url": "/admin/nodes/1/edit?tab=diagnostics%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Amsterdam - Northwind Games",
+   "main": {
+    "url": "/admin/nodes/1/edit?tab=diagnostics%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/942"
+     ],
+     "card": "114..992 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-nodes-edit-tab6.png"
+  },
+  {
+   "id": "admin-plugins",
+   "title": "Beheer · Plugins",
+   "stand": "phone390-dark",
+   "url": "/admin/plugins",
+   "docTitle": "Plugins - Northwind Games",
+   "main": {
+    "url": "/admin/plugins",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/777"
+     ],
+     "card": "114..827 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-plugins.png"
+  },
+  {
+   "id": "admin-roles",
+   "title": "Beheer · Roles",
+   "stand": "phone390-dark",
+   "url": "/admin/roles",
+   "docTitle": "Roles - Northwind Games",
+   "main": {
+    "url": "/admin/roles",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "card": "114..704 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-roles.png"
+  },
+  {
+   "id": "admin-roles-edit",
+   "title": "Beheer · Roles, bewerken",
+   "stand": "phone390-dark",
+   "url": "/admin/roles/1/edit",
+   "docTitle": "Edit Root Admin - Northwind Games",
+   "main": {
+    "url": "/admin/roles/1/edit",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "card": "114..704 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-roles-edit.png"
+  },
+  {
+   "id": "admin-servers",
+   "title": "Beheer · Servers",
+   "stand": "phone390-dark",
+   "url": "/admin/servers",
+   "docTitle": "Servers - Northwind Games",
+   "main": {
+    "url": "/admin/servers",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"Creative Builds\" (111>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"All the Mods 10\" (111>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Valheim Vikings\" (115>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Palworld Island\" (111>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Rust Weekend\" (109>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Counter-Strike 2\" (120>101) (+1)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-badge.fi-size-sm.fi-color \"Running\" sticks 65px out of fi-ta-text-item.fi-ta-text.fi-ta-text-has-badges | fi-ta-select \"play.example.com:25565play.example.com:25565play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-badge.fi-size-sm.fi-color \"Running\" sticks 65px out of fi-ta-text-item.fi-ta-text.fi-ta-text-has-badges | fi-ta-select \"play.example.com:25566play.example.com:25566play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-badge.fi-size-sm.fi-color \"Running\" sticks 65px out of fi-ta-text-item.fi-ta-text.fi-ta-text-has-badges | fi-ta-select \"play.example.com:25567play.example.com:25567play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-badge.fi-size-sm.fi-color \"Running\" sticks 65px out of fi-ta-text-item.fi-ta-text.fi-ta-text-has-badges | fi-ta-select \"play.example.com:25568play.example.com:25568play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25565play.example.com:25565play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25566play.example.com:25566play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25567play.example.com:25567play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25568play.example.com:25568play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25569play.example.com:25569play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25570play.example.com:25570play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25571play.example.com:25571play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25572play.example.com:25572play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25573play.example.com:25573play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25574play.example.com:25574play.e\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/1194"
+     ],
+     "card": "114..1244 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-servers.png"
+  },
+  {
+   "id": "admin-servers-edit",
+   "title": "Beheer · Servers, bewerken",
+   "stand": "phone390-dark",
+   "url": "/admin/servers/1/edit",
+   "docTitle": "Edit Survival SMP - Northwind Games",
+   "main": {
+    "url": "/admin/servers/1/edit",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "strong: \"Servers\"",
+      "strong: \"Edit Survival SMP\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/1319",
+      "form.description 60/84"
+     ],
+     "card": "114..1369 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-servers-edit.png"
+  },
+  {
+   "id": "admin-servers-edit-tab1",
+   "title": "Beheer · Servers, bewerken, tabblad 2",
+   "stand": "phone390-dark",
+   "url": "/admin/servers/1/edit?tab=environment-configuration%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Survival SMP - Northwind Games",
+   "main": {
+    "url": "/admin/servers/1/edit?tab=environment-configuration%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "strong: \"Servers\"",
+      "strong: \"Edit Survival SMP\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/2285"
+     ],
+     "card": "114..2335 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-servers-edit-tab1.png"
+  },
+  {
+   "id": "admin-servers-edit-tab2",
+   "title": "Beheer · Servers, bewerken, tabblad 3",
+   "stand": "phone390-dark",
+   "url": "/admin/servers/1/edit?tab=egg%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Survival SMP - Northwind Games",
+   "main": {
+    "url": "/admin/servers/1/edit?tab=egg%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "strong: \"Servers\"",
+      "strong: \"Edit Survival SMP\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/915"
+     ],
+     "card": "114..965 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-servers-edit-tab2.png"
+  },
+  {
+   "id": "admin-servers-edit-tab3",
+   "title": "Beheer · Servers, bewerken, tabblad 4",
+   "stand": "phone390-dark",
+   "url": "/admin/servers/1/edit?tab=mounts%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Survival SMP - Northwind Games",
+   "main": {
+    "url": "/admin/servers/1/edit?tab=mounts%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"127.0.0.1\" (71>24)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-ta-text-input \"\" sticks 91px out of fi-ta-cell.fi-ta-cell-ip-alias | fi-ta-text-input \"\" sticks 91px out of fi-ta-cell.fi-ta-cell-notes"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "strong: \"Servers\"",
+      "strong: \"Edit Survival SMP\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/695"
+     ],
+     "card": "114..745 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-servers-edit-tab3.png"
+  },
+  {
+   "id": "admin-servers-edit-tab4",
+   "title": "Beheer · Servers, bewerken, tabblad 5",
+   "stand": "phone390-dark",
+   "url": "/admin/servers/1/edit?tab=actions%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Survival SMP - Northwind Games",
+   "main": {
+    "url": "/admin/servers/1/edit?tab=actions%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"127.0.0.1\" (71>24)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-ta-text-input \"\" sticks 91px out of fi-ta-cell.fi-ta-cell-ip-alias | fi-ta-text-input \"\" sticks 91px out of fi-ta-cell.fi-ta-cell-notes"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "strong: \"Servers\"",
+      "strong: \"Edit Survival SMP\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/1384"
+     ],
+     "card": "114..1434 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-servers-edit-tab4.png"
+  },
+  {
+   "id": "admin-servers-edit-tab5",
+   "title": "Beheer · Servers, bewerken, tabblad 6",
+   "stand": "phone390-dark",
+   "url": "/admin/servers/1/edit?tab=actions%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Survival SMP - Northwind Games",
+   "main": {
+    "url": "/admin/servers/1/edit?tab=actions%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"127.0.0.1\" (71>24)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-ta-text-input \"\" sticks 91px out of fi-ta-cell.fi-ta-cell-ip-alias | fi-ta-text-input \"\" sticks 91px out of fi-ta-cell.fi-ta-cell-notes"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "strong: \"Servers\"",
+      "strong: \"Edit Survival SMP\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/1384"
+     ],
+     "card": "114..1434 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-servers-edit-tab5.png"
+  },
+  {
+   "id": "admin-servers-edit-tab6",
+   "title": "Beheer · Servers, bewerken, tabblad 7",
+   "stand": "phone390-dark",
+   "url": "/admin/servers/1/edit?tab=actions%3A%3Adata%3A%3Atab",
+   "docTitle": "Edit Survival SMP - Northwind Games",
+   "main": {
+    "url": "/admin/servers/1/edit?tab=actions%3A%3Adata%3A%3Atab",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"127.0.0.1\" (71>24)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-ta-text-input \"\" sticks 91px out of fi-ta-cell.fi-ta-cell-ip-alias | fi-ta-text-input \"\" sticks 91px out of fi-ta-cell.fi-ta-cell-notes"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "strong: \"Servers\"",
+      "strong: \"Edit Survival SMP\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/1384"
+     ],
+     "card": "114..1434 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-servers-edit-tab6.png"
+  },
+  {
+   "id": "admin-users",
+   "title": "Beheer · Users",
+   "stand": "phone390-dark",
+   "url": "/admin/users",
+   "docTitle": "Users - Northwind Games",
+   "main": {
+    "url": "/admin/users",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"jeroen\" (58>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"demo@example.com\" (152>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"sam\" (41>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"sam@example.com\" (140>101) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"robin\" (49>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"robin@example.com\" (148>101) (+6)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "card": "114..704 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-users.png"
+  },
+  {
+   "id": "admin-users-edit",
+   "title": "Beheer · Users, bewerken",
+   "stand": "phone390-dark",
+   "url": "/admin/users/1/edit",
+   "docTitle": "Edit jeroen - Northwind Games",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"Creative Builds\" (120>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"All the Mods 10\" (119>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Skyblock\" (77>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Palworld Island\" (121>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Rust Weekend\" (113>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Arena\" (54>24) (+5)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-ta-select \"play.example.com:25566play.example.com:25566play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25567play.example.com:25567play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25568play.example.com:25568play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25570play.example.com:25570play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25571play.example.com:25571play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25572play.example.com:25572play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25573play.example.com:25573play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25574play.example.com:25574play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25566play.example.com:25566play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25567play.example.com:25567play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25568play.example.com:25568play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25570play.example.com:25570play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25571play.example.com:25571play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25572play.example.com:25572play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25573play.example.com:25573play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25574play.example.com:25574play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25575play.example.com:25575play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25576play.example.com:25576play.e\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/2289"
+     ],
+     "card": "114..2339 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-users-edit.png"
+  },
+  {
+   "id": "admin-users-edit-tab1",
+   "title": "Beheer · Users, bewerken, tabblad 2",
+   "stand": "phone390-dark",
+   "url": "/admin/users/1/edit",
+   "docTitle": "Edit jeroen - Northwind Games",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"Creative Builds\" (120>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"All the Mods 10\" (119>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Skyblock\" (77>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Palworld Island\" (121>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Rust Weekend\" (113>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Arena\" (54>24) (+5)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-ta-select \"play.example.com:25566play.example.com:25566play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25567play.example.com:25567play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25568play.example.com:25568play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25570play.example.com:25570play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25571play.example.com:25571play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25572play.example.com:25572play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25573play.example.com:25573play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25574play.example.com:25574play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25566play.example.com:25566play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25567play.example.com:25567play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25568play.example.com:25568play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25570play.example.com:25570play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25571play.example.com:25571play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25572play.example.com:25572play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25573play.example.com:25573play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25574play.example.com:25574play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25575play.example.com:25575play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25576play.example.com:25576play.e\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/1531"
+     ],
+     "card": "114..1581 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-users-edit-tab1.png"
+  },
+  {
+   "id": "admin-users-edit-tab2",
+   "title": "Beheer · Users, bewerken, tabblad 3",
+   "stand": "phone390-dark",
+   "url": "/admin/users/1/edit",
+   "docTitle": "Edit jeroen - Northwind Games",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"Creative Builds\" (120>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"All the Mods 10\" (119>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Skyblock\" (77>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Palworld Island\" (121>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Rust Weekend\" (113>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Arena\" (54>24) (+5)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-ta-select \"play.example.com:25566play.example.com:25566play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25567play.example.com:25567play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25568play.example.com:25568play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25570play.example.com:25570play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25571play.example.com:25571play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25572play.example.com:25572play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25573play.example.com:25573play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25574play.example.com:25574play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25566play.example.com:25566play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25567play.example.com:25567play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25568play.example.com:25568play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25570play.example.com:25570play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25571play.example.com:25571play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25572play.example.com:25572play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25573play.example.com:25573play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25574play.example.com:25574play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25575play.example.com:25575play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25576play.example.com:25576play.e\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/1729"
+     ],
+     "card": "114..1779 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-users-edit-tab2.png"
+  },
+  {
+   "id": "admin-users-edit-tab3",
+   "title": "Beheer · Users, bewerken, tabblad 4",
+   "stand": "phone390-dark",
+   "url": "/admin/users/1/edit",
+   "docTitle": "Edit jeroen - Northwind Games",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"Creative Builds\" (120>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"All the Mods 10\" (119>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Skyblock\" (77>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Palworld Island\" (121>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Rust Weekend\" (113>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Arena\" (54>24) (+5)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-ta-select \"play.example.com:25566play.example.com:25566play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25567play.example.com:25567play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25568play.example.com:25568play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25570play.example.com:25570play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25571play.example.com:25571play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25572play.example.com:25572play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25573play.example.com:25573play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25574play.example.com:25574play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25566play.example.com:25566play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25567play.example.com:25567play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25568play.example.com:25568play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25570play.example.com:25570play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25571play.example.com:25571play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25572play.example.com:25572play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25573play.example.com:25573play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25574play.example.com:25574play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25575play.example.com:25575play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25576play.example.com:25576play.e\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/1547"
+     ],
+     "card": "114..1597 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-users-edit-tab3.png"
+  },
+  {
+   "id": "admin-users-edit-tab4",
+   "title": "Beheer · Users, bewerken, tabblad 5",
+   "stand": "phone390-dark",
+   "url": "/admin/users/1/edit",
+   "docTitle": "Edit jeroen - Northwind Games",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"Creative Builds\" (120>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"All the Mods 10\" (119>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Skyblock\" (77>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Palworld Island\" (121>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Rust Weekend\" (113>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Arena\" (54>24) (+5)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-ta-select \"play.example.com:25566play.example.com:25566play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25567play.example.com:25567play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25568play.example.com:25568play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25570play.example.com:25570play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25571play.example.com:25571play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25572play.example.com:25572play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25573play.example.com:25573play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25574play.example.com:25574play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25566play.example.com:25566play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25567play.example.com:25567play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25568play.example.com:25568play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25570play.example.com:25570play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25571play.example.com:25571play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25572play.example.com:25572play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25573play.example.com:25573play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25574play.example.com:25574play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25575play.example.com:25575play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25576play.example.com:25576play.e\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/1547"
+     ],
+     "card": "114..1597 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-users-edit-tab4.png"
+  },
+  {
+   "id": "admin-users-edit-tab5",
+   "title": "Beheer · Users, bewerken, tabblad 6",
+   "stand": "phone390-dark",
+   "url": "/admin/users/1/edit",
+   "docTitle": "Edit jeroen - Northwind Games",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"Creative Builds\" (120>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"All the Mods 10\" (119>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Skyblock\" (77>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Palworld Island\" (121>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Rust Weekend\" (113>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Arena\" (54>24) (+5)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-ta-select \"play.example.com:25566play.example.com:25566play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25567play.example.com:25567play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25568play.example.com:25568play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25570play.example.com:25570play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25571play.example.com:25571play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25572play.example.com:25572play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25573play.example.com:25573play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25574play.example.com:25574play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25566play.example.com:25566play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25567play.example.com:25567play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25568play.example.com:25568play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25570play.example.com:25570play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25571play.example.com:25571play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25572play.example.com:25572play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25573play.example.com:25573play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25574play.example.com:25574play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25575play.example.com:25575play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25576play.example.com:25576play.e\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/1547"
+     ],
+     "card": "114..1597 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-users-edit-tab5.png"
+  },
+  {
+   "id": "admin-users-edit-tab6",
+   "title": "Beheer · Users, bewerken, tabblad 7",
+   "stand": "phone390-dark",
+   "url": "/admin/users/1/edit",
+   "docTitle": "Edit jeroen - Northwind Games",
+   "main": {
+    "url": "/admin/users/1/edit",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "cut",
+      "text": "text cut off without an ellipsis: fi-ta-text.fi-ta-text-item.fi-size-sm: \"Creative Builds\" (120>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"All the Mods 10\" (119>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Skyblock\" (77>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Palworld Island\" (121>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Rust Weekend\" (113>24) | fi-ta-text.fi-ta-text-item.fi-size-sm: \"Arena\" (54>24) (+5)"
+     },
+     {
+      "kind": "clipped",
+      "text": "content clipped by its box: fi-ta-select \"play.example.com:25566play.example.com:25566play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25567play.example.com:25567play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25568play.example.com:25568play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25570play.example.com:25570play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25571play.example.com:25571play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25572play.example.com:25572play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25573play.example.com:25573play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id | fi-ta-select \"play.example.com:25574play.example.com:25574play.e\" sticks 91px out of fi-ta-cell.fi-ta-cell-allocation-id"
+     }
+    ],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "ellipsis": [
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25566play.example.com:25566play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25567play.example.com:25567play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25568play.example.com:25568play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25570play.example.com:25570play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25571play.example.com:25571play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25572play.example.com:25572play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25573play.example.com:25573play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25574play.example.com:25574play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25575play.example.com:25575play.e\"",
+      "fi-ta-cell.fi-ta-cell-allocation-id: \"play.example.com:25576play.example.com:25576play.e\""
+     ],
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/1547"
+     ],
+     "card": "114..1597 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-users-edit-tab6.png"
+  },
+  {
+   "id": "admin-webhooks",
+   "title": "Beheer · Webhooks",
+   "stand": "phone390-dark",
+   "url": "/admin/webhooks",
+   "docTitle": "Webhooks - Northwind Games",
+   "main": {
+    "url": "/admin/webhooks",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "card": "114..704 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-webhooks.png"
+  },
+  {
+   "id": "admin-announcements",
+   "title": "Beheer · Announcements",
+   "stand": "phone390-dark",
+   "url": "/admin/simplify-announcements",
+   "docTitle": "Announcements - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-announcements",
+    "w": 390,
+    "h": 844,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 844,
+     "pageScrollW": 390,
+     "popups": [
+      "ps-navigation-items 284,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 654/979"
+     ],
+     "card": "114..1029 of 844",
+     "topbar": "brand 26..206, actions 284..364",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"\" at y=223",
+      "\"\" at y=223"
+     ],
+     "box": "114..768 of 844"
+    }
+   },
+   "frames": [],
+   "shot": "phone390-dark/admin-announcements.png"
+  }
+ ],
+ "problems": [
+  "phone390-dark server-console-typed: nothing to click for .ps-console-grow",
+  "phone390-dark server-colour: nothing to click for .ps-info-motd, .ps-motd-preview",
+  "phone390-dark server-databases: click .fi-header-actions button, .fi-ac-btn-action, .fi-page-header-main-ctn button: locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator('.fi-h",
+  "phone390-dark server-webhooks: nothing to click for .fi-header-actions button, .fi-ac-btn-action, .fi-page-header-main-ctn button",
+  "phone390-dark server-addon-unsaved: ok {\"bar\":true,\"asked\":true,\"stayed\":true,\"url\":\"/server/ujrqk6qs/minecraft\",\"gone\":true}",
+  "phone390-dark server4-console: tab title ok: \"Creative Builds - Simplify\"",
+  "phone390-dark admin-notifications: nothing to click for .fi-modal-window button:has-text(\"Show more\"), .fi-dropdown-panel button:has-text(\"Show more\"), button:has-text(\"Show more\")",
+  "phone390-dark admin-notifications: nothing to click for .fi-user-menu button, .fi-user-menu .fi-dropdown-trigger, .fi-topbar .fi-avatar",
+  "phone390-dark: no user menu found",
+  "phone390-dark admin-notifications: nothing to click for .fi-global-search-field input, .fi-global-search input, .fi-topbar input[type=search]",
+  "phone390-dark admin-notifications: nothing to click for .fi-global-search-btn, .fi-topbar button[aria-label*=\"search\" i]",
+  "phone390-dark: no global search found",
+  "phone390-dark admin-notifications: nothing to click for .fi-topbar-open-sidebar-btn, button[aria-label*=\"sidebar\" i], .fi-topbar-sidebar-toggle-btn, .fi-layout-sidebar-toggle-btn",
+  "phone390-dark admin-announcements: nothing to click for main a:has-text(\"New announcement\"), main button:has-text(\"New announcement\")"
+ ]
+}

@@ -1,0 +1,1003 @@
+{
+ "base": "http://127.0.0.1:8001",
+ "screens": [
+  {
+   "id": "host",
+   "title": "Admin-pagina",
+   "stand": "phone360-dark",
+   "url": "/admin/health#menu",
+   "docTitle": "Health - Northwind Games",
+   "main": {
+    "url": "/admin/health",
+    "w": 360,
+    "h": 780,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "popups": [
+      "ps-navigation-items 266,18 80x38"
+     ],
+     "topbar": "brand 14..194, actions 216..346",
+     "scope": "simplify",
+     "boxes": []
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/host.png"
+  },
+  {
+   "id": "host-phone-menu",
+   "title": "Admin-pagina · telefoon, menu als pagina",
+   "stand": "phone360-dark",
+   "url": "/admin/health#menu",
+   "docTitle": "Health - Northwind Games",
+   "main": {
+    "url": "/admin/health",
+    "w": 360,
+    "h": 780,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "popups": [
+      "ps-navigation-items 266,18 80x38"
+     ],
+     "topbar": "brand 14..194, actions 216..346",
+     "scope": "simplify",
+     "boxes": []
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/host-phone-menu.png"
+  },
+  {
+   "id": "host-health",
+   "title": "Admin-pagina · Health",
+   "stand": "phone360-dark",
+   "url": "/admin/health",
+   "docTitle": "Health - Northwind Games",
+   "main": {
+    "url": "/admin/health",
+    "w": 360,
+    "h": 780,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "popups": [
+      "ps-navigation-items 266,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 666/1118"
+     ],
+     "card": "114..1074 of 780",
+     "topbar": "brand 14..194, actions 216..346",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..780 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/host-health.png"
+  },
+  {
+   "id": "host-servers-servers",
+   "title": "Admin-pagina · Servers · Servers",
+   "stand": "phone360-dark",
+   "url": "/admin/servers",
+   "docTitle": "Servers - Northwind Games",
+   "main": {
+    "url": "/admin/servers",
+    "w": 360,
+    "h": 780,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "popups": [
+      "ps-navigation-items 266,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 666/1452"
+     ],
+     "card": "114..1408 of 780",
+     "topbar": "brand 14..194, actions 216..346",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..780 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/host-servers-servers.png"
+  },
+  {
+   "id": "host-servers-eggs",
+   "title": "Admin-pagina · Servers · Eggs",
+   "stand": "phone360-dark",
+   "url": "/admin/eggs",
+   "docTitle": "Eggs - Northwind Games",
+   "main": {
+    "url": "/admin/eggs",
+    "w": 360,
+    "h": 780,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "popups": [
+      "ps-navigation-items 266,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 666/941"
+     ],
+     "card": "114..897 of 780",
+     "topbar": "brand 14..194, actions 216..346",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..780 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/host-servers-eggs.png"
+  },
+  {
+   "id": "host-servers-mounts",
+   "title": "Admin-pagina · Servers · Mounts",
+   "stand": "phone360-dark",
+   "url": "/admin/mounts",
+   "docTitle": "Mounts - Northwind Games",
+   "main": {
+    "url": "/admin/mounts",
+    "w": 360,
+    "h": 780,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "popups": [
+      "ps-navigation-items 266,18 80x38"
+     ],
+     "card": "114..622 of 780",
+     "topbar": "brand 14..194, actions 216..346",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..780 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/host-servers-mounts.png"
+  },
+  {
+   "id": "host-nodes-nodes",
+   "title": "Admin-pagina · Nodes · Nodes",
+   "stand": "phone360-dark",
+   "url": "/admin/nodes",
+   "docTitle": "Nodes - Northwind Games",
+   "main": {
+    "url": "/admin/nodes",
+    "w": 360,
+    "h": 780,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "popups": [
+      "ps-navigation-items 266,18 80x38"
+     ],
+     "card": "114..622 of 780",
+     "topbar": "brand 14..194, actions 216..346",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..780 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/host-nodes-nodes.png"
+  },
+  {
+   "id": "host-nodes-database-hosts",
+   "title": "Admin-pagina · Nodes · Database Hosts",
+   "stand": "phone360-dark",
+   "url": "/admin/database-hosts",
+   "docTitle": "Database Hosts - Northwind Games",
+   "main": {
+    "url": "/admin/database-hosts",
+    "w": 360,
+    "h": 780,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "popups": [
+      "ps-navigation-items 266,18 80x38"
+     ],
+     "card": "114..622 of 780",
+     "topbar": "brand 14..194, actions 216..346",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..780 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/host-nodes-database-hosts.png"
+  },
+  {
+   "id": "host-nodes-backup-hosts",
+   "title": "Admin-pagina · Nodes · Backup Hosts",
+   "stand": "phone360-dark",
+   "url": "/admin/backup-hosts",
+   "docTitle": "Backup Hosts - Northwind Games",
+   "main": {
+    "url": "/admin/backup-hosts",
+    "w": 360,
+    "h": 780,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "popups": [
+      "ps-navigation-items 266,18 80x38"
+     ],
+     "card": "114..622 of 780",
+     "topbar": "brand 14..194, actions 216..346",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..780 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/host-nodes-backup-hosts.png"
+  },
+  {
+   "id": "host-people-users",
+   "title": "Admin-pagina · People · Users",
+   "stand": "phone360-dark",
+   "url": "/admin/users",
+   "docTitle": "Users - Northwind Games",
+   "main": {
+    "url": "/admin/users",
+    "w": 360,
+    "h": 780,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "popups": [
+      "ps-navigation-items 266,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 666/833"
+     ],
+     "card": "114..789 of 780",
+     "topbar": "brand 14..194, actions 216..346",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..780 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/host-people-users.png"
+  },
+  {
+   "id": "host-people-roles",
+   "title": "Admin-pagina · People · Roles",
+   "stand": "phone360-dark",
+   "url": "/admin/roles",
+   "docTitle": "Roles - Northwind Games",
+   "main": {
+    "url": "/admin/roles",
+    "w": 360,
+    "h": 780,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "popups": [
+      "ps-navigation-items 266,18 80x38"
+     ],
+     "card": "114..622 of 780",
+     "topbar": "brand 14..194, actions 216..346",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..780 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/host-people-roles.png"
+  },
+  {
+   "id": "host-integrations-api-keys",
+   "title": "Admin-pagina · Integrations · API Keys",
+   "stand": "phone360-dark",
+   "url": "/admin/api-keys",
+   "docTitle": "Application API Keys - Northwind Games",
+   "main": {
+    "url": "/admin/api-keys",
+    "w": 360,
+    "h": 780,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "popups": [
+      "ps-navigation-items 266,18 80x38"
+     ],
+     "card": "114..622 of 780",
+     "topbar": "brand 14..194, actions 216..346",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..780 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/host-integrations-api-keys.png"
+  },
+  {
+   "id": "host-integrations-webhooks",
+   "title": "Admin-pagina · Integrations · Webhooks",
+   "stand": "phone360-dark",
+   "url": "/admin/webhooks",
+   "docTitle": "Webhooks - Northwind Games",
+   "main": {
+    "url": "/admin/webhooks",
+    "w": 360,
+    "h": 780,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "popups": [
+      "ps-navigation-items 266,18 80x38"
+     ],
+     "card": "114..622 of 780",
+     "topbar": "brand 14..194, actions 216..346",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..780 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/host-integrations-webhooks.png"
+  },
+  {
+   "id": "host-simplify-settings-general",
+   "title": "Admin-pagina · Simplify settings · General",
+   "stand": "phone360-dark",
+   "url": "/admin/simplify?tab=general",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify?tab=general",
+    "w": 360,
+    "h": 780,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "popups": [
+      "ps-navigation-items 266,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 666/967"
+     ],
+     "card": "114..923 of 780",
+     "topbar": "brand 14..194, actions 216..346",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"\" at y=191"
+     ],
+     "box": "114..780 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/host-simplify-settings-general.png"
+  },
+  {
+   "id": "host-simplify-settings-appearance",
+   "title": "Admin-pagina · Simplify settings · Appearance",
+   "stand": "phone360-dark",
+   "url": "/admin/simplify?tab=appearance",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify?tab=appearance",
+    "w": 360,
+    "h": 780,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "popups": [
+      "ps-navigation-items 266,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 666/1340"
+     ],
+     "card": "114..1296 of 780",
+     "topbar": "brand 14..194, actions 216..346",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"\" at y=191"
+     ],
+     "box": "114..780 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/host-simplify-settings-appearance.png"
+  },
+  {
+   "id": "host-simplify-settings-your-phone-app",
+   "title": "Admin-pagina · Simplify settings · Your phone app",
+   "stand": "phone360-dark",
+   "url": "/admin/simplify?tab=app",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify?tab=app",
+    "w": 360,
+    "h": 780,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "b: \"Northwind Games\""
+     ],
+     "popups": [
+      "ps-navigation-items 266,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 666/1336"
+     ],
+     "card": "114..1292 of 780",
+     "topbar": "brand 14..194, actions 216..346",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"\" at y=191"
+     ],
+     "box": "114..780 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/host-simplify-settings-your-phone-app.png"
+  },
+  {
+   "id": "host-simplify-settings-announcements",
+   "title": "Admin-pagina · Simplify settings · Announcements",
+   "stand": "phone360-dark",
+   "url": "/admin/simplify-announcements",
+   "docTitle": "Announcements - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-announcements",
+    "w": 360,
+    "h": 780,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "span: \"Simplify settings\""
+     ],
+     "popups": [
+      "ps-navigation-items 266,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 666/934"
+     ],
+     "card": "114..890 of 780",
+     "topbar": "brand 14..194, actions 216..346",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"\" at y=191",
+      "\"\" at y=191"
+     ],
+     "box": "114..780 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/host-simplify-settings-announcements.png"
+  },
+  {
+   "id": "host-simplify-settings-automatic-subdomains",
+   "title": "Admin-pagina · Simplify settings · Automatic subdomains",
+   "stand": "phone360-dark",
+   "url": "/admin/simplify-subdomains",
+   "docTitle": "Automatic subdomains - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-subdomains",
+    "w": 360,
+    "h": 780,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "ellipsis": [
+      "span: \"Simplify settings\"",
+      "strong: \"Automatic subdomains\""
+     ],
+     "popups": [
+      "ps-navigation-items 266,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 666/2196"
+     ],
+     "card": "114..2152 of 780",
+     "topbar": "brand 14..194, actions 216..346",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"\" at y=255"
+     ],
+     "box": "114..780 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/host-simplify-settings-automatic-subdomains.png"
+  },
+  {
+   "id": "host-simplify-settings-website-embed",
+   "title": "Admin-pagina · Simplify settings · Website embed",
+   "stand": "phone360-dark",
+   "url": "/admin/simplify-embed",
+   "docTitle": "Website embed - Northwind Games",
+   "main": {
+    "url": "/admin/simplify-embed",
+    "w": 360,
+    "h": 780,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "popups": [
+      "ps-navigation-items 266,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 666/3121"
+     ],
+     "card": "114..3077 of 780",
+     "topbar": "brand 14..194, actions 216..346",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"\" at y=191"
+     ],
+     "box": "114..780 of 780"
+    }
+   },
+   "frames": [
+    {
+     "box": "36,2615 288x420",
+     "url": "blank",
+     "w": 288,
+     "h": 420,
+     "dark": false,
+     "fit": false,
+     "problems": [],
+     "info": {
+      "pageScrollH": 420,
+      "pageScrollW": 288,
+      "scope": "pelican"
+     }
+    }
+   ],
+   "shot": "phone360-dark/host-simplify-settings-website-embed.png"
+  },
+  {
+   "id": "host-simplify-settings-add-ons",
+   "title": "Admin-pagina · Simplify settings · Add-ons",
+   "stand": "phone360-dark",
+   "url": "/admin/simplify?tab=addons",
+   "docTitle": "Simplify - Northwind Games",
+   "main": {
+    "url": "/admin/simplify?tab=addons",
+    "w": 360,
+    "h": 780,
+    "dark": true,
+    "fit": false,
+    "problems": [
+     {
+      "kind": "offscreen",
+      "text": "control off the screen: form.model \"Claude Opus 5.5 (best answers, a few cents)\" (36,743 288x60) | form.key \"\" (36,855 288x36) | Test \"\" (28,995 36x36) | form.audience \"Everyone who can see the console\" (36,1180 288x36) | form.billing_url \"\" (36,821 288x36) | form.client_area_url \"\" (36,1017 288x36) | form.order_url \"\" (36,1173 288x36) | form.host_mode \"\" (36,1384 44x24)"
+     }
+    ],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "popups": [
+      "ps-navigation-items 266,18 80x38"
+     ],
+     "card": "114..622 of 780",
+     "topbar": "brand 14..194, actions 216..346",
+     "scope": "simplify",
+     "boxes": [],
+     "actionsBelow": [
+      "\"\" at y=191"
+     ],
+     "box": "114..780 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/host-simplify-settings-add-ons.png"
+  },
+  {
+   "id": "host-pelican-settings-general",
+   "title": "Admin-pagina · Pelican settings · General",
+   "stand": "phone360-dark",
+   "url": "/admin/settings?tab=general%3A%3Adata%3A%3Atab",
+   "docTitle": "Settings - Northwind Games",
+   "main": {
+    "url": "/admin/settings?tab=general%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "popups": [
+      "ps-navigation-items 266,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 666/1453"
+     ],
+     "card": "114..1409 of 780",
+     "topbar": "brand 14..194, actions 216..346",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..780 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/host-pelican-settings-general.png"
+  },
+  {
+   "id": "host-pelican-settings-captcha",
+   "title": "Admin-pagina · Pelican settings · Captcha",
+   "stand": "phone360-dark",
+   "url": "/admin/settings?tab=captcha%3A%3Adata%3A%3Atab",
+   "docTitle": "Settings - Northwind Games",
+   "main": {
+    "url": "/admin/settings?tab=captcha%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "popups": [
+      "ps-navigation-items 266,18 80x38"
+     ],
+     "card": "114..622 of 780",
+     "topbar": "brand 14..194, actions 216..346",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..780 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/host-pelican-settings-captcha.png"
+  },
+  {
+   "id": "host-pelican-settings-mail",
+   "title": "Admin-pagina · Pelican settings · Mail",
+   "stand": "phone360-dark",
+   "url": "/admin/settings?tab=mail%3A%3Adata%3A%3Atab",
+   "docTitle": "Settings - Northwind Games",
+   "main": {
+    "url": "/admin/settings?tab=mail%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "popups": [
+      "ps-navigation-items 266,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 666/882"
+     ],
+     "card": "114..838 of 780",
+     "topbar": "brand 14..194, actions 216..346",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..780 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/host-pelican-settings-mail.png"
+  },
+  {
+   "id": "host-pelican-settings-backup",
+   "title": "Admin-pagina · Pelican settings · Backup",
+   "stand": "phone360-dark",
+   "url": "/admin/settings?tab=backup%3A%3Adata%3A%3Atab",
+   "docTitle": "Settings - Northwind Games",
+   "main": {
+    "url": "/admin/settings?tab=backup%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "popups": [
+      "ps-navigation-items 266,18 80x38"
+     ],
+     "card": "114..626 of 780",
+     "topbar": "brand 14..194, actions 216..346",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..780 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/host-pelican-settings-backup.png"
+  },
+  {
+   "id": "host-pelican-settings-oauth",
+   "title": "Admin-pagina · Pelican settings · OAuth",
+   "stand": "phone360-dark",
+   "url": "/admin/settings?tab=oauth%3A%3Adata%3A%3Atab",
+   "docTitle": "Settings - Northwind Games",
+   "main": {
+    "url": "/admin/settings?tab=oauth%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "popups": [
+      "ps-navigation-items 266,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 666/1205"
+     ],
+     "card": "114..1161 of 780",
+     "topbar": "brand 14..194, actions 216..346",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..780 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/host-pelican-settings-oauth.png"
+  },
+  {
+   "id": "host-pelican-settings-misc",
+   "title": "Admin-pagina · Pelican settings · Misc",
+   "stand": "phone360-dark",
+   "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+   "docTitle": "Settings - Northwind Games",
+   "main": {
+    "url": "/admin/settings?tab=misc%3A%3Adata%3A%3Atab",
+    "w": 360,
+    "h": 780,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "popups": [
+      "ps-navigation-items 266,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 666/1337"
+     ],
+     "card": "114..1293 of 780",
+     "topbar": "brand 14..194, actions 216..346",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..780 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/host-pelican-settings-misc.png"
+  },
+  {
+   "id": "host-pelican-settings-plugins",
+   "title": "Admin-pagina · Pelican settings · Plugins",
+   "stand": "phone360-dark",
+   "url": "/admin/plugins",
+   "docTitle": "Plugins - Northwind Games",
+   "main": {
+    "url": "/admin/plugins",
+    "w": 360,
+    "h": 780,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "popups": [
+      "ps-navigation-items 266,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 666/867"
+     ],
+     "card": "114..823 of 780",
+     "topbar": "brand 14..194, actions 216..346",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..780 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/host-pelican-settings-plugins.png"
+  },
+  {
+   "id": "host-pelican-settings-panel-logs",
+   "title": "Admin-pagina · Pelican settings · Panel Logs",
+   "stand": "phone360-dark",
+   "url": "/admin/logs",
+   "docTitle": "Log Viewer - Northwind Games",
+   "main": {
+    "url": "/admin/logs",
+    "w": 360,
+    "h": 780,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "popups": [
+      "ps-navigation-items 266,18 80x38"
+     ],
+     "card": "114..622 of 780",
+     "topbar": "brand 14..194, actions 216..346",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..780 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/host-pelican-settings-panel-logs.png"
+  },
+  {
+   "id": "host-pelican-plugins-site-directory",
+   "title": "Admin-pagina · Pelican plugins · Site directory",
+   "stand": "phone360-dark",
+   "url": "/admin/site-directory",
+   "docTitle": "Site directory - Northwind Games",
+   "main": {
+    "url": "/admin/site-directory",
+    "w": 360,
+    "h": 780,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "popups": [
+      "ps-navigation-items 266,18 80x38"
+     ],
+     "card": "114..622 of 780",
+     "topbar": "brand 14..194, actions 216..346",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..780 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/host-pelican-plugins-site-directory.png"
+  },
+  {
+   "id": "host-health",
+   "title": "Admin-pagina · Health",
+   "stand": "phone360-dark",
+   "url": "/admin/health",
+   "docTitle": "Health - Northwind Games",
+   "main": {
+    "url": "/admin/health",
+    "w": 360,
+    "h": 780,
+    "dark": true,
+    "fit": false,
+    "problems": [],
+    "info": {
+     "pageScrollH": 780,
+     "pageScrollW": 360,
+     "popups": [
+      "ps-navigation-items 266,18 80x38"
+     ],
+     "panes": [
+      "fi-main-ctn 666/1118"
+     ],
+     "card": "114..1074 of 780",
+     "topbar": "brand 14..194, actions 216..346",
+     "scope": "simplify",
+     "boxes": [],
+     "box": "114..780 of 780"
+    }
+   },
+   "frames": [],
+   "shot": "phone360-dark/host-health.png"
+  }
+ ],
+ "problems": [
+  "phone360-dark phone-menu-health-edge: ok {\"left\":0,\"right\":0,\"bottom\":715,\"tabTop\":715,\"height\":780,\"edgePainted\":true,\"tabsPainted\":true}",
+  "phone360-dark host-health footer-end: WRONG the copyright line is not at the end of the page {\"footerTop\":960,\"footerBottom\":1042,\"page\":960,\"overflow\":0,\"scroll\":1118}",
+  "phone360-dark host-servers-servers footer-end: WRONG the copyright line is not at the end of the page {\"footerTop\":1294,\"footerBottom\":1376,\"page\":1294,\"overflow\":0,\"scroll\":1452}",
+  "phone360-dark host-servers-eggs footer-end: WRONG the copyright line is not at the end of the page {\"footerTop\":783,\"footerBottom\":865,\"page\":783,\"overflow\":0,\"scroll\":941}",
+  "phone360-dark host-servers-mounts footer-end: WRONG the copyright line is not at the end of the page {\"footerTop\":508,\"footerBottom\":590,\"page\":508,\"overflow\":0,\"scroll\":666}",
+  "phone360-dark host-nodes-nodes footer-end: WRONG the copyright line is not at the end of the page {\"footerTop\":508,\"footerBottom\":590,\"page\":508,\"overflow\":0,\"scroll\":666}",
+  "phone360-dark host-nodes-database-hosts footer-end: WRONG the copyright line is not at the end of the page {\"footerTop\":508,\"footerBottom\":590,\"page\":508,\"overflow\":0,\"scroll\":666}",
+  "phone360-dark host-nodes-backup-hosts footer-end: WRONG the copyright line is not at the end of the page {\"footerTop\":508,\"footerBottom\":590,\"page\":508,\"overflow\":0,\"scroll\":666}",
+  "phone360-dark host-people-users footer-end: WRONG the copyright line is not at the end of the page {\"footerTop\":675,\"footerBottom\":757,\"page\":675,\"overflow\":0,\"scroll\":833}",
+  "phone360-dark host-people-roles footer-end: WRONG the copyright line is not at the end of the page {\"footerTop\":508,\"footerBottom\":590,\"page\":508,\"overflow\":0,\"scroll\":666}",
+  "phone360-dark host-integrations-api-keys footer-end: WRONG the copyright line is not at the end of the page {\"footerTop\":508,\"footerBottom\":590,\"page\":508,\"overflow\":0,\"scroll\":666}",
+  "phone360-dark host-integrations-webhooks footer-end: WRONG the copyright line is not at the end of the page {\"footerTop\":508,\"footerBottom\":590,\"page\":508,\"overflow\":0,\"scroll\":666}",
+  "phone360-dark host-simplify-settings-general footer-end: WRONG the copyright line is not at the end of the page {\"footerTop\":809,\"footerBottom\":891,\"page\":809,\"overflow\":0,\"scroll\":967}",
+  "phone360-dark host-simplify-settings-appearance footer-end: WRONG the copyright line is not at the end of the page {\"footerTop\":1226,\"footerBottom\":1308,\"page\":1226,\"overflow\":0,\"scroll\":1384}",
+  "phone360-dark host-simplify-settings-your-phone-app footer-end: WRONG the copyright line is not at the end of the page {\"footerTop\":1178,\"footerBottom\":1260,\"page\":1178,\"overflow\":0,\"scroll\":1336}",
+  "phone360-dark host-simplify-settings-announcements footer-end: WRONG the copyright line is not at the end of the page {\"footerTop\":776,\"footerBottom\":858,\"page\":776,\"overflow\":0,\"scroll\":934}",
+  "phone360-dark host-simplify-settings-automatic-subdomains footer-end: WRONG the copyright line is not at the end of the page {\"footerTop\":2038,\"footerBottom\":2120,\"page\":2038,\"overflow\":0,\"scroll\":2196}",
+  "phone360-dark host-simplify-settings-website-embed footer-end: WRONG the copyright line is not at the end of the page {\"footerTop\":2963,\"footerBottom\":3045,\"page\":2963,\"overflow\":0,\"scroll\":3121}",
+  "phone360-dark host-simplify-settings-add-ons footer-end: WRONG the copyright line is not at the end of the page {\"footerTop\":508,\"footerBottom\":590,\"page\":508,\"overflow\":0,\"scroll\":666}",
+  "phone360-dark host-pelican-settings-general footer-end: WRONG the copyright line is not at the end of the page {\"footerTop\":1295,\"footerBottom\":1377,\"page\":1295,\"overflow\":0,\"scroll\":1453}",
+  "phone360-dark host-pelican-settings-captcha footer-end: WRONG the copyright line is not at the end of the page {\"footerTop\":508,\"footerBottom\":590,\"page\":508,\"overflow\":0,\"scroll\":666}",
+  "phone360-dark host-pelican-settings-mail footer-end: WRONG the copyright line is not at the end of the page {\"footerTop\":724,\"footerBottom\":806,\"page\":724,\"overflow\":0,\"scroll\":882}",
+  "phone360-dark host-pelican-settings-backup footer-end: WRONG the copyright line is not at the end of the page {\"footerTop\":512,\"footerBottom\":594,\"page\":512,\"overflow\":0,\"scroll\":670}",
+  "phone360-dark host-pelican-settings-oauth footer-end: WRONG the copyright line is not at the end of the page {\"footerTop\":1047,\"footerBottom\":1129,\"page\":1047,\"overflow\":0,\"scroll\":1205}",
+  "phone360-dark host-pelican-settings-misc footer-end: WRONG the copyright line is not at the end of the page {\"footerTop\":1179,\"footerBottom\":1261,\"page\":1179,\"overflow\":0,\"scroll\":1337}",
+  "phone360-dark host-pelican-settings-plugins footer-end: WRONG the copyright line is not at the end of the page {\"footerTop\":709,\"footerBottom\":791,\"page\":709,\"overflow\":0,\"scroll\":867}",
+  "phone360-dark host-pelican-settings-panel-logs footer-end: WRONG the copyright line is not at the end of the page {\"footerTop\":508,\"footerBottom\":590,\"page\":508,\"overflow\":0,\"scroll\":666}",
+  "phone360-dark host-pelican-plugins-site-directory footer-end: WRONG the copyright line is not at the end of the page {\"footerTop\":508,\"footerBottom\":590,\"page\":508,\"overflow\":0,\"scroll\":666}",
+  "phone360-dark host-health footer-end: WRONG the copyright line is not at the end of the page {\"footerTop\":960,\"footerBottom\":1042,\"page\":960,\"overflow\":0,\"scroll\":1118}",
+  "phone360-dark admin-menu-kept: ok {\"pages\":28,\"lost\":[]}"
+ ]
+}
