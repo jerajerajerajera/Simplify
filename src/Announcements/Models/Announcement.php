@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Simplify\Core\Announcements\Services\Bell;
 use Simplify\Core\Announcements\Support\Rules;
 use Simplify\Core\Announcements\Support\StartTrigger;
+use Simplify\Core\Announcements\Support\Weekly;
 
 /**
  * @property int $id
@@ -35,10 +36,16 @@ use Simplify\Core\Announcements\Support\StartTrigger;
  * @property int $in_game_repeat minutes between posts, 0: once
  * @property ?CarbonInterface $in_game_at last post
  * @property ?array{sent: int, offline: int, unsupported: int, failed: int} $in_game_result
- * @property string $send_on time (at starts_at, shown as a bar) or start (each time one of start_servers starts)
+ * @property string $send_on time (at starts_at, shown as a bar), start (each time one of start_servers starts) or weekly (on weekly_days at weekly_at)
  * @property ?list<int> $start_servers
  * @property bool $start_once ends itself after the first start
  * @property ?array<int, bool> $start_seen server id => running at the last look
+ * @property ?list<int> $weekly_days ISO days, 1 Monday … 7 Sunday
+ * @property ?string $weekly_at HH:MM in weekly_zone
+ * @property ?string $weekly_zone the author's time zone
+ * @property int $weekly_hours how long the bar shows each time
+ * @property ?CarbonInterface $weekly_from the turn that went out last
+ * @property ?CarbonInterface $weekly_until its bar shows until then
  * @property ?int $created_by
  * @property ?CarbonInterface $created_at
  * @property ?CarbonInterface $updated_at
@@ -47,7 +54,7 @@ final class Announcement extends Model
 {
     protected $table = 'simplify_core_announcements';
 
-    protected $fillable = ['category', 'title', 'body', 'starts_at', 'ends_at', 'audience', 'button_label', 'button_url', 'in_bell', 'bell_pinned', 'push', 'in_game', 'in_game_servers', 'in_game_groups', 'in_game_repeat', 'send_on', 'start_servers', 'start_once', 'created_by'];
+    protected $fillable = ['category', 'title', 'body', 'starts_at', 'ends_at', 'audience', 'button_label', 'button_url', 'in_bell', 'bell_pinned', 'push', 'in_game', 'in_game_servers', 'in_game_groups', 'in_game_repeat', 'send_on', 'start_servers', 'start_once', 'weekly_days', 'weekly_at', 'weekly_zone', 'weekly_hours', 'created_by'];
 
     protected $attributes = ['category' => 'info', 'audience' => 'everyone', 'send_on' => 'time'];
 
@@ -70,6 +77,10 @@ final class Announcement extends Model
             'start_servers' => 'array',
             'start_once' => 'boolean',
             'start_seen' => 'array',
+            'weekly_days' => 'array',
+            'weekly_hours' => 'integer',
+            'weekly_from' => 'datetime',
+            'weekly_until' => 'datetime',
         ];
     }
 
@@ -90,6 +101,10 @@ final class Announcement extends Model
             // Other servers, or switched to "when a server starts": the next look only remembers, it does not send.
             if ($announcement->wasChanged(['start_servers', 'send_on'])) {
                 $announcement->forceFill(['start_seen' => null])->saveQuietly();
+            }
+            // Other days, time or hours: the next run works out its turn again.
+            if ($announcement->wasChanged(['send_on', 'weekly_days', 'weekly_at', 'weekly_zone', 'weekly_hours'])) {
+                $announcement->forceFill(['weekly_from' => null, 'weekly_until' => null])->saveQuietly();
             }
             if ($announcement->wasChanged(['starts_at', 'in_game'])) {
                 $announcement->forceFill(['in_game_at' => null, 'in_game_result' => null])->saveQuietly();
@@ -117,13 +132,17 @@ final class Announcement extends Model
     }
 
     /**
-     * Sent at a time (and shown as a bar), not when a server starts.
+     * Sent at a time (and shown as a bar), not when a server starts. One on days of the week counts while the bar of
+     * its last turn shows.
      *
      * @param  Builder<self>  $query
      */
     public function scopeTimed(Builder $query): void
     {
-        $query->where(fn (Builder $q) => $q->whereNull('send_on')->orWhere('send_on', StartTrigger::TIME));
+        $now = now();
+        $query->where(fn (Builder $q) => $q->whereNull('send_on')
+            ->orWhere('send_on', StartTrigger::TIME)
+            ->orWhere(fn (Builder $q) => $q->where('send_on', Weekly::SEND_ON)->where('weekly_from', '<=', $now)->where('weekly_until', '>', $now)));
     }
 
     /** The live announcements this account sees and has not unpinned, newest first. */

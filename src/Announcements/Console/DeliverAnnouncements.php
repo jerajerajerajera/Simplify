@@ -10,6 +10,7 @@ use Simplify\Core\Announcements\Services\InGame;
 use Simplify\Core\Announcements\Services\Push;
 use Simplify\Core\Announcements\Services\StartAnnouncements;
 use Simplify\Core\Announcements\Services\TaskWaits;
+use Simplify\Core\Announcements\Services\WeeklyAnnouncements;
 use Simplify\Core\Announcements\Support\Diagnose;
 use Simplify\Core\Support\Scheduler;
 
@@ -33,6 +34,8 @@ final class DeliverAnnouncements extends Command
             return self::SUCCESS;
         }
         Scheduler::beat();
+        // First: a new weekly turn is then sent like one at a time, in this same run.
+        $weekly = WeeklyAnnouncements::runDue();
         $reached = Bell::deliverDue();
         if ($reached > 0) {
             $this->info("Put announcements in the notifications of $reached accounts.");
@@ -53,7 +56,7 @@ final class DeliverAnnouncements extends Command
         if ($servers > 0) {
             $this->info("Posted announcements in game on $servers servers.");
         }
-        Diagnose::trace("run bell=$reached push=$devices waits=$waited starts=$starts game=$servers");
+        Diagnose::trace("run bell=$reached push=$devices waits=$waited starts=$starts game=$servers weekly=$weekly");
 
         return self::SUCCESS;
     }

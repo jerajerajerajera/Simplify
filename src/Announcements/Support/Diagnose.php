@@ -112,10 +112,23 @@ final class Diagnose
     {
         $title = '"'.$announcement->title.'"';
         $start = $announcement->send_on === StartTrigger::START;
-        $title .= $start ? ' (when a server starts)' : ' (at a time)';
+        $title .= match ($announcement->send_on) {
+            StartTrigger::START => ' (when a server starts)',
+            Weekly::SEND_ON => ' (on days of the week)',
+            default => ' (at a time)',
+        };
         $state = $announcement->state();
         $lines = ['#'.$announcement->id.' '.$title.' state='.$state.' audience='.$announcement->audience
             .' starts='.self::time($announcement->starts_at).' ends='.self::time($announcement->ends_at)];
+        if ($announcement->send_on === Weekly::SEND_ON) {
+            $days = Weekly::days($announcement->weekly_days);
+            $at = (string) $announcement->weekly_at;
+            $zoneOf = Weekly::zone($announcement->weekly_zone);
+            $next = Weekly::next($days, $at, $zoneOf, $now->getTimestamp(), $announcement->starts_at?->getTimestamp(), $announcement->ends_at?->getTimestamp());
+            $lines[] = '   weekly days='.json_encode($days).' at='.$at.' zone='.$zoneOf.' hours='.$announcement->weekly_hours
+                .' turn='.self::time($announcement->weekly_from).' shown until='.self::time($announcement->weekly_until)
+                .' next='.($next !== null ? gmdate('Y-m-d H:i', $next).' UTC' : '-');
+        }
         $when = $announcement->starts_at ? ' from '.$announcement->starts_at->clone()->setTimezone($zone)->format('j M H:i') : '';
         $until = $announcement->ends_at ? ' until '.$announcement->ends_at->clone()->setTimezone($zone)->format('j M H:i') : '';
 
@@ -157,7 +170,7 @@ final class Diagnose
                 };
             }
         } else {
-            $expected = $announcement->starts_at ?? $announcement->created_at;
+            $expected = $announcement->send_on === Weekly::SEND_ON ? $announcement->weekly_from : ($announcement->starts_at ?? $announcement->created_at);
             if ($announcement->in_bell) {
                 $parts[] = $announcement->in_bell_at
                     ? 'Bell: set for '.self::local($expected, $zone).', arrived '.self::local($announcement->in_bell_at, $zone).' ('.self::late($expected, $announcement->in_bell_at).').'

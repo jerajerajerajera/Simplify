@@ -7,6 +7,7 @@ namespace Simplify\Core\Announcements\Services;
 use App\Models\User;
 use Simplify\Core\Announcements\Models\Announcement;
 use Simplify\Core\Announcements\Support\Diagnose;
+use Simplify\Core\Announcements\Support\Weekly;
 use Simplify\Core\Push\Push as AppPush;
 
 /** App notifications for announcements, through Simplify's push. Hidden while a root admin turned push off. */
@@ -36,7 +37,10 @@ final class Push
             ->live()
             ->timed()
             ->where('push', true)
-            ->where(fn ($q) => $q->where('starts_at', '>=', $since)->orWhere(fn ($q) => $q->whereNull('starts_at')->where('created_at', '>=', $since)))
+            ->where(fn ($q) => $q->where('starts_at', '>=', $since)
+                ->orWhere(fn ($q) => $q->whereNull('starts_at')->where('created_at', '>=', $since))
+                // On days of the week: each turn is new, from when it went out.
+                ->orWhere('weekly_from', '>=', $since))
             ->get();
         foreach ($due as $announcement) {
             $users = User::query()->get()->filter(fn (User $user) => $announcement->audience !== 'admins' || $user->isAdmin());
@@ -44,7 +48,8 @@ final class Push
                 'title' => $announcement->title,
                 'body' => (string) $announcement->body,
                 'url' => $announcement->button_url,
-                'tag' => 'simplify-announcement-'.$announcement->id,
+                // One tag per turn, so each week's turn reaches each device once.
+                'tag' => 'simplify-announcement-'.$announcement->id.($announcement->send_on === Weekly::SEND_ON && $announcement->weekly_from ? '-'.$announcement->weekly_from->getTimestamp() : ''),
             ]);
             if ($sent > 0) {
                 Diagnose::trace('push #'.$announcement->id.' reached '.$sent.' devices');

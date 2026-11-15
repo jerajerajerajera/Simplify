@@ -70,6 +70,8 @@ jobs:
             php: '8.3'
           - pelican: '1.0.0-rc.2'
             php: '8.4'
+          - pelican: '1.0.0-rc.3'
+            php: '8.4'
     name: panel-smoke (Pelican ${{ matrix.pelican }})
     steps:
       - uses: actions/checkout@v7
