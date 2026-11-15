@@ -34,6 +34,7 @@ return [
         'send_on_start' => 'Kun palvelin käynnistyy',
         'send_on_weekly' => 'Tiettyinä viikonpäivinä',
         'weekly_days' => 'Päivät',
+        'start_days_help' => 'Vain näinä päivinä tapahtuvat käynnistykset lasketaan, aikavyöhykkeellä :zone. Ei valintaa: joka päivä.',
         'weekly_at' => 'Aika',
         'weekly_at_help' => 'Jokaisena valittuna päivänä tähän aikaan, aikavyöhykkeellä :zone.',
         'weekly_hours' => 'Näkyvissä (tuntia)',

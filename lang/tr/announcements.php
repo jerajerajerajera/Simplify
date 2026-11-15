@@ -34,6 +34,7 @@ return [
         'send_on_start' => 'Bir sunucu başladığında',
         'send_on_weekly' => 'Haftanın günlerinde',
         'weekly_days' => 'Günler',
+        'start_days_help' => 'Yalnızca bu günlerdeki başlatmalar sayılır, :zone saatiyle. Hiçbiri seçilmezse: her gün.',
         'weekly_at' => 'Saat',
         'weekly_at_help' => 'Seçilen her gün bu saatte, :zone saatiyle.',
         'weekly_hours' => 'Gösterim süresi (saat)',

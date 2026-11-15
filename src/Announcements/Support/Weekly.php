@@ -93,6 +93,22 @@ final class Weekly
         return $next !== null && $next > $now ? $next : null;
     }
 
+    /**
+     * For "When a server starts": whether a start now counts on these days, in this time zone. No days: every day.
+     *
+     * @param  list<int>  $days
+     */
+    public static function onDay(array $days, string $zone, int $now): bool
+    {
+        $days = self::days($days);
+        if ($days === []) {
+            return true;
+        }
+        $today = (int) (new DateTimeImmutable('@'.$now))->setTimezone(new DateTimeZone(self::zone($zone)))->format('N');
+
+        return in_array($today, $days, true);
+    }
+
     /** Whether the bar of the turn that went out at $last still shows. */
     public static function showing(?int $last, int $hours, int $now): bool
     {

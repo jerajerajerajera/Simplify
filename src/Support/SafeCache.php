@@ -13,7 +13,8 @@ use Throwable;
 /**
  * Laravel's cache, but a cache that cannot be written never breaks a page: the value is worked out again instead,
  * and root admins get a notice with the command that fixes it. This happens when artisan ran as root, so cache
- * files under storage/ belong to root and the web server may no longer change them.
+ * files under storage/ belong to root and the web server may no longer change them. The notice also comes when the
+ * compiled views or bootstrap/cache belong to someone else, before a page answers 500 for it.
  */
 final class SafeCache
 {
@@ -101,10 +102,49 @@ final class SafeCache
         return ['command' => 'cd '.base_path().' && sudo chown -R '.$user.':'.$user.' storage bootstrap/cache && sudo -u '.$user.' php artisan optimize:clear'];
     }
 
-    /** The file cache's folders belong to the user the panel runs as (only checked for the file store). */
+    /**
+     * Whether one of these paths belongs to someone else, or cannot be written. Paths that are not there are fine.
+     *
+     * @param  list<string>  $paths
+     * @param  callable(string): (int|false)  $owner
+     * @param  callable(string): bool  $writable
+     */
+    public static function foreign(array $paths, int $me, callable $owner, callable $writable): bool
+    {
+        foreach ($paths as $path) {
+            if (file_exists($path) && ($owner($path) !== $me || ! $writable($path))) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * The folders the panel writes on its own: compiled views, Laravel's bootstrap cache and Simplify's markers among
+     * the views. After an update or a plugin install as root they belong to root, and the next page that needs a new
+     * compiled view answers 500 (Khion 15-11).
+     *
+     * @return list<string>
+     */
+    private static function panelPaths(): array
+    {
+        $views = rtrim((string) config('view.compiled', storage_path('framework/views')), '/');
+        $bootstrap = base_path('bootstrap/cache');
+
+        return [$views, $views.'/simplify-version', $views.'/simplify-opcache', $bootstrap, ...(glob($bootstrap.'/*.php') ?: [])];
+    }
+
+    /** The panel's own folders and the file cache's folders belong to the user the panel runs as. */
     private static function writable(): bool
     {
-        if (config('cache.default') !== 'file' || ! function_exists('posix_geteuid') || posix_geteuid() === 0) {
+        if (! function_exists('posix_geteuid') || posix_geteuid() === 0) {
+            return true;
+        }
+        if (self::foreign(self::panelPaths(), posix_geteuid(), fn (string $path) => @fileowner($path), is_writable(...))) {
+            return false;
+        }
+        if (config('cache.default') !== 'file') {
             return true;
         }
         $root = (string) config('cache.stores.file.path', storage_path('framework/cache/data'));

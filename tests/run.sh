@@ -15,6 +15,7 @@ php tests/stale-code.php
 php tests/problems.php
 php tests/migrations-keep.php
 php tests/push.php
+php tests/storage-owner.php
 php tests/announcements-rules.php
 php tests/announcements-game-chat.php
 php tests/announcements-task.php

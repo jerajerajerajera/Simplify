@@ -34,6 +34,7 @@ return [
         'send_on_start' => 'Saat server dimulai',
         'send_on_weekly' => 'Pada hari tertentu dalam seminggu',
         'weekly_days' => 'Hari',
+        'start_days_help' => 'Hanya start pada hari-hari ini yang dihitung, di :zone. Tidak ada yang dipilih: setiap hari.',
         'weekly_at' => 'Waktu',
         'weekly_at_help' => 'Setiap hari yang dipilih pada waktu ini, di :zone.',
         'weekly_hours' => 'Ditampilkan selama (jam)',

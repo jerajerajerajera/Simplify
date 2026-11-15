@@ -34,6 +34,7 @@ return [
         'send_on_start' => 'Kai serveris paleidžiamas',
         'send_on_weekly' => 'Savaitės dienomis',
         'weekly_days' => 'Dienos',
+        'start_days_help' => 'Skaičiuojami tik paleidimai šiomis dienomis, :zone. Nieko nepasirinkta: kasdien.',
         'weekly_at' => 'Laikas',
         'weekly_at_help' => 'Kiekvieną pasirinktą dieną šiuo laiku, :zone.',
         'weekly_hours' => 'Rodoma (valandos)',

@@ -34,6 +34,7 @@ return [
         'send_on_start' => '서버가 시작될 때',
         'send_on_weekly' => '요일마다',
         'weekly_days' => '요일',
+        'start_days_help' => '이 요일의 시작만 해당됩니다(:zone). 선택하지 않으면 매일.',
         'weekly_at' => '시간',
         'weekly_at_help' => '선택한 각 요일의 이 시간(:zone).',
         'weekly_hours' => '표시 시간(시간)',

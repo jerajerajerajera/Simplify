@@ -34,6 +34,7 @@ return [
         'send_on_start' => 'サーバーが起動したとき',
         'send_on_weekly' => '曜日ごと',
         'weekly_days' => '曜日',
+        'start_days_help' => 'この曜日の起動のみ対象（:zone）。未選択なら毎日。',
         'weekly_at' => '時刻',
         'weekly_at_help' => '選んだ各曜日のこの時刻（:zone）。',
         'weekly_hours' => '表示時間（時間）',

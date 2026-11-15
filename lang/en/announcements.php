@@ -34,6 +34,7 @@ return [
         'send_on_start' => 'When a server starts',
         'send_on_weekly' => 'On days of the week',
         'weekly_days' => 'Days',
+        'start_days_help' => 'Only starts on these days count, in :zone. None picked: every day.',
         'weekly_at' => 'Time',
         'weekly_at_help' => 'Each chosen day at this time, in :zone.',
         'weekly_hours' => 'Shown for (hours)',

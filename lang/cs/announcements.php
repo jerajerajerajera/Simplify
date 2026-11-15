@@ -34,6 +34,7 @@ return [
         'send_on_start' => 'Když se server spustí',
         'send_on_weekly' => 'Ve dny v týdnu',
         'weekly_days' => 'Dny',
+        'start_days_help' => 'Počítají se jen starty v tyto dny, v :zone. Nic nevybráno: každý den.',
         'weekly_at' => 'Čas',
         'weekly_at_help' => 'Každý zvolený den v tento čas, v :zone.',
         'weekly_hours' => 'Zobrazeno (hodiny)',

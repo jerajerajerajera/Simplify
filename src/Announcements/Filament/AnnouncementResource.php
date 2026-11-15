@@ -131,14 +131,21 @@ final class AnnouncementResource extends Resource
                     ->formatStateUsing(fn ($state): string => $state === true || $state === 'next' ? 'next' : 'every')
                     ->dehydrateStateUsing(fn ($state): bool => $state === 'next'),
             ]),
+            // On days of the week: the days it goes out. On a server start: only starts on these days count, none is
+            // every day (Khion 15-11).
             ToggleButtons::make('weekly_days')
                 ->label(self::text('form.weekly_days'))
-                ->visible($weekly)
+                ->helperText(fn (Get $get): ?string => $starts($get) ? self::text('form.start_days_help', ['zone' => Weekly::zone($get('weekly_zone') ?: $zone)]) : null)
+                ->visible($period)
                 ->options(self::weekdays())
                 ->multiple()
                 ->inline()
                 ->required($weekly)
                 ->dehydrateStateUsing(fn ($state): array => Weekly::days($state)),
+            // Kept when another admin edits it, so a time and the days keep meaning the same moment.
+            Hidden::make('weekly_zone')
+                ->default($zone)
+                ->dehydrateStateUsing(fn ($state): string => Weekly::zone($state ?: $zone)),
             Grid::make(2)->visible($weekly)->schema([
                 // The author's own clock: 19:00 stays 19:00 in winter and in summer.
                 TimePicker::make('weekly_at')
@@ -154,10 +161,6 @@ final class AnnouncementResource extends Resource
                     ->default(Weekly::DEFAULT_HOURS)
                     ->selectablePlaceholder(false)
                     ->required($weekly),
-                // Kept when another admin edits it, so the time keeps meaning the same moment.
-                Hidden::make('weekly_zone')
-                    ->default($zone)
-                    ->dehydrateStateUsing(fn ($state): string => Weekly::zone($state ?: $zone)),
             ]),
             Grid::make(2)->schema([
                 DateTimePicker::make('starts_at')
@@ -383,17 +386,21 @@ final class AnnouncementResource extends Resource
         return $names;
     }
 
-    /** "Mon, Fri · 19:00 (Europe/Berlin)" for one on days of the week. */
+    /** "Mon, Fri · 19:00 (Europe/Berlin)" for one on days of the week, "Sat, Sun (Europe/Berlin)" for starts on some days. */
     private static function weeklySummary(Announcement $record): ?string
     {
         $days = Weekly::days($record->weekly_days);
         $at = Weekly::time($record->weekly_at);
+        $names = self::weekdays();
+        $list = implode(', ', array_map(fn (int $day): string => $names[$day], $days));
+        if ($record->send_on === StartTrigger::START && $days !== []) {
+            return $list.' ('.Weekly::zone($record->weekly_zone).')';
+        }
         if ($record->send_on !== Weekly::SEND_ON || $days === [] || $at === null) {
             return null;
         }
-        $names = self::weekdays();
 
-        return implode(', ', array_map(fn (int $day): string => $names[$day], $days)).' · '.$at.' ('.Weekly::zone($record->weekly_zone).')';
+        return $list.' · '.$at.' ('.Weekly::zone($record->weekly_zone).')';
     }
 
     private static function inGameSummary(Announcement $record): ?string

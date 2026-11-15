@@ -34,6 +34,7 @@ return [
         'send_on_start' => '服务器启动时',
         'send_on_weekly' => '每周的某几天',
         'weekly_days' => '日期',
+        'start_days_help' => '仅这些日期的启动计入（:zone）。未选择：每天。',
         'weekly_at' => '时间',
         'weekly_at_help' => '每个所选日期的这个时间（:zone）。',
         'weekly_hours' => '显示时长（小时）',

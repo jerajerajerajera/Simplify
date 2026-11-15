@@ -1110,6 +1110,32 @@ step('announcements on a server start: no bar and no bell item at a time, the sc
         $announcement->delete();
     }
 });
+step('announcements on a server start: only starts on the chosen days go out (Khion 15-11)', function () use ($server) {
+    $admin = User::query()->whereHas('roles')->firstOrFail();
+    $today = now()->utc()->isoWeekday();
+    $announcement = Announcement::query()->create([
+        'title' => 'Smoke started on days', 'send_on' => StartTrigger::START, 'start_servers' => [$server->id],
+        'weekly_days' => [$today % 7 + 1], 'weekly_zone' => 'UTC',
+        'in_bell' => true, 'push' => false, 'in_game' => false, 'created_by' => $admin->id,
+    ]);
+    $items = fn () => $admin->notifications()->where('data->viewData->simplify_announcement', $announcement->id)->count();
+    try {
+        // What the scheduler does with a start it saw (StartAnnouncements::look).
+        if (StartAnnouncements::startedToday($announcement, $server) || $items() !== 0) {
+            throw new RuntimeException('a start on another day went out');
+        }
+        $announcement->update(['weekly_days' => [$today]]);
+        if (! StartAnnouncements::startedToday($announcement->refresh(), $server) || $items() !== 1) {
+            throw new RuntimeException('a start on a chosen day did not go out: '.$items());
+        }
+        $announcement->update(['weekly_days' => []]);
+        if (! StartAnnouncements::startedToday($announcement->refresh(), $server) || $items() !== 1) {
+            throw new RuntimeException('without days a start did not go out every day');
+        }
+    } finally {
+        $announcement->delete();
+    }
+});
 step('announcements on a server start: one that goes out once keeps its bell item when it ends (K-B68)', function () use ($server) {
     $admin = User::query()->whereHas('roles')->firstOrFail();
     $announcement = Announcement::query()->create([

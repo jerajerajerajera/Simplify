@@ -34,6 +34,7 @@ return [
         'send_on_start' => 'Khi máy chủ khởi động',
         'send_on_weekly' => 'Vào các ngày trong tuần',
         'weekly_days' => 'Ngày',
+        'start_days_help' => 'Chỉ tính các lần khởi động vào những ngày này, theo :zone. Không chọn: mỗi ngày.',
         'weekly_at' => 'Giờ',
         'weekly_at_help' => 'Mỗi ngày đã chọn vào giờ này, theo :zone.',
         'weekly_hours' => 'Hiển thị trong (giờ)',
