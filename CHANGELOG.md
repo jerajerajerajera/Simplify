@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.0.0-beta.14
+
 - Announcements: one sent When a server starts can also be limited to days of the week. Only starts on the picked days go out, in your profile's time zone; with no day picked it goes out every day, as before (Khion's idea).
 - Root admins also get the storage notice (with the command that fixes it) when the compiled views or `bootstrap/cache` belong to another user, as after an update or plugin install run as root. A page that needed a new compiled view answered 500 there.
 
