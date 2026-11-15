@@ -34,6 +34,7 @@ return [
         'send_on_start' => 'Amikor egy szerver elindul',
         'send_on_weekly' => 'A hét napjain',
         'weekly_days' => 'Napok',
+        'start_days_help' => 'Csak az ezeken a napokon történő indítások számítanak, :zone szerint. Ha nincs kiválasztva: minden nap.',
         'weekly_at' => 'Időpont',
         'weekly_at_help' => 'Minden kiválasztott napon ebben az időpontban, :zone szerint.',
         'weekly_hours' => 'Látható (óra)',

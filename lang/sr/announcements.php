@@ -34,6 +34,7 @@ return [
         'send_on_start' => 'Kada se server pokrene',
         'send_on_weekly' => 'Danima u nedelji',
         'weekly_days' => 'Dani',
+        'start_days_help' => 'Računaju se samo pokretanja ovim danima, u :zone. Ništa izabrano: svaki dan.',
         'weekly_at' => 'Vreme',
         'weekly_at_help' => 'Svakog izabranog dana u ovo vreme, u :zone.',
         'weekly_hours' => 'Prikazano (sati)',

@@ -34,6 +34,7 @@ return [
         'send_on_start' => 'Cuando un servidor arranca',
         'send_on_weekly' => 'Ciertos días de la semana',
         'weekly_days' => 'Días',
+        'start_days_help' => 'Solo cuentan los inicios en estos días, en :zone. Ninguno elegido: todos los días.',
         'weekly_at' => 'Hora',
         'weekly_at_help' => 'Cada día elegido a esta hora, en :zone.',
         'weekly_hours' => 'Visible durante (horas)',

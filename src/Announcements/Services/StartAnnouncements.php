@@ -10,6 +10,7 @@ use Simplify\Core\Announcements\Models\GameCommand;
 use Simplify\Core\Announcements\Support\Diagnose;
 use Simplify\Core\Announcements\Support\GameChat;
 use Simplify\Core\Announcements\Support\StartTrigger;
+use Simplify\Core\Announcements\Support\Weekly;
 use Simplify\Core\Push\Push as AppPush;
 use Simplify\Core\Support\SafeCache;
 use Throwable;
@@ -54,11 +55,28 @@ final class StartAnnouncements
         if ($look['started'] !== [] || $look['seen'] !== $announcement->getOriginal('start_seen')) {
             Diagnose::trace('start #'.$announcement->id.' running '.json_encode($running).' started '.json_encode($look['started']));
         }
+        $sent = 0;
         foreach ($look['started'] as $id) {
-            self::started($announcement, $servers->firstWhere('id', $id));
+            $sent += self::startedToday($announcement, $servers->firstWhere('id', $id)) ? 1 : 0;
         }
 
-        return count($look['started']);
+        return $sent;
+    }
+
+    /**
+     * A start the scheduler saw: sent only on the announcement's days, if it has any (Khion 15-11). A start on another
+     * day is remembered as seen, so it does not go out later either.
+     */
+    public static function startedToday(Announcement $announcement, Server $server): bool
+    {
+        if (! Weekly::onDay(Weekly::days($announcement->weekly_days), Weekly::zone($announcement->weekly_zone), time())) {
+            Diagnose::trace('start #'.$announcement->id.' of server '.$server->id.' not on its days today');
+
+            return false;
+        }
+        self::started($announcement, $server);
+
+        return true;
     }
 
     /**

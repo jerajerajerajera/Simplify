@@ -34,6 +34,7 @@ return [
         'send_on_start' => 'Când pornește un server',
         'send_on_weekly' => 'În zile ale săptămânii',
         'weekly_days' => 'Zile',
+        'start_days_help' => 'Contează doar pornirile din aceste zile, în :zone. Niciuna aleasă: în fiecare zi.',
         'weekly_at' => 'Ora',
         'weekly_at_help' => 'În fiecare zi aleasă la această oră, în :zone.',
         'weekly_hours' => 'Vizibil timp de (ore)',

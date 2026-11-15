@@ -34,6 +34,7 @@ return [
         'send_on_start' => 'Når en server starter',
         'send_on_weekly' => 'På ukedager',
         'weekly_days' => 'Dager',
+        'start_days_help' => 'Bare starter på disse dagene teller, i :zone. Ingen valgt: hver dag.',
         'weekly_at' => 'Tidspunkt',
         'weekly_at_help' => 'Hver valgte dag på dette tidspunktet, i :zone.',
         'weekly_hours' => 'Vises i (timer)',

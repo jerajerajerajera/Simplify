@@ -34,6 +34,7 @@ return [
         'send_on_start' => 'Gdy serwer się uruchomi',
         'send_on_weekly' => 'W dni tygodnia',
         'weekly_days' => 'Dni',
+        'start_days_help' => 'Liczą się tylko starty w te dni, w strefie :zone. Brak wyboru: codziennie.',
         'weekly_at' => 'Godzina',
         'weekly_at_help' => 'W każdy wybrany dzień o tej godzinie, w strefie :zone.',
         'weekly_hours' => 'Widoczne przez (godziny)',

@@ -34,6 +34,7 @@ return [
         'send_on_start' => 'Wenn ein Server startet',
         'send_on_weekly' => 'An Wochentagen',
         'weekly_days' => 'Tage',
+        'start_days_help' => 'Nur Starts an diesen Tagen zählen, in :zone. Keiner gewählt: jeden Tag.',
         'weekly_at' => 'Uhrzeit',
         'weekly_at_help' => 'An jedem gewählten Tag zu dieser Uhrzeit, in :zone.',
         'weekly_hours' => 'Angezeigt für (Stunden)',

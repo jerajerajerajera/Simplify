@@ -58,6 +58,11 @@ $turn = at('2026-11-09 19:00');
 check(W::showing($turn, 3, $turn) && W::showing($turn, 3, $turn + 3 * 3600 - 1), 'shown during its hours');
 check(! W::showing($turn, 3, $turn + 3 * 3600) && ! W::showing(null, 3, $turn) && ! W::showing($turn, 3, $turn - 1), 'not shown after, before or without a turn');
 
+// "When a server starts" on some days only: the day is the author's, no days is every day.
+check(W::onDay([], 'Europe/Berlin', $now), 'no days: a start counts every day');
+check(W::onDay([5], 'Europe/Berlin', $now) && ! W::onDay([6, 7], 'Europe/Berlin', $now), 'Friday counts on Friday only');
+check(W::onDay([6], 'Europe/Berlin', at('2026-11-13 23:30', 'UTC')), 'Saturday in Berlin counts while it is still Friday in UTC');
+
 if ($failures) {
     foreach ($failures as $failure) {
         echo "FAIL $failure\n";

@@ -34,6 +34,7 @@ return [
         'send_on_start' => 'Quando un server si avvia',
         'send_on_weekly' => 'In giorni della settimana',
         'weekly_days' => 'Giorni',
+        'start_days_help' => 'Contano solo gli avvii in questi giorni, in :zone. Nessuno scelto: ogni giorno.',
         'weekly_at' => 'Ora',
         'weekly_at_help' => 'Ogni giorno scelto a quest\'ora, in :zone.',
         'weekly_hours' => 'Visibile per (ore)',

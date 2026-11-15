@@ -34,6 +34,7 @@ return [
         'send_on_start' => 'Als een server start',
         'send_on_weekly' => 'Op dagen van de week',
         'weekly_days' => 'Dagen',
+        'start_days_help' => 'Alleen starts op deze dagen tellen, in :zone. Niets gekozen: elke dag.',
         'weekly_at' => 'Tijd',
         'weekly_at_help' => 'Elke gekozen dag op deze tijd, in :zone.',
         'weekly_hours' => 'Zichtbaar (uren)',
