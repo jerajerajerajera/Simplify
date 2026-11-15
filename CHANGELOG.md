@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.0.0-beta.13
+
 - Announcements: a new choice Send › On days of the week sends the announcement on the picked weekdays at one time, in your profile's time zone: as a bar for the hours you choose, in the bell, as an app notification and in game chat. Active from and Active until limit the weeks it runs in. Each week the bar shows again, also to people who unpinned it last time (Khion's idea).
 - Server pages use the whole window with Full width on in Customize, or with Pelican's Display width set to Full or Screen. They stayed 1400px wide, console included.
 - Announcements: one sent "When a server starts" with "Only once" now stays in the bell. It ended right after it went out, and ending an announcement cleared its bell items, so they were gone within the same second. Ending an announcement on a server start now keeps the messages of the starts that happened; deleting it still removes them.
