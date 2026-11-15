@@ -10,10 +10,13 @@ use BackedEnum;
 use Filament\Actions\Action;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
+use Carbon\Carbon;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\TimePicker;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Resources\Resource;
@@ -30,9 +33,11 @@ use Simplify\Core\Announcements\Models\Announcement;
 use Simplify\Core\Announcements\Services\Bell;
 use Simplify\Core\Announcements\Services\InGame;
 use Simplify\Core\Announcements\Services\Push;
+use Simplify\Core\Announcements\Services\WeeklyAnnouncements;
 use Simplify\Core\Announcements\Support\GameChat;
 use Simplify\Core\Announcements\Support\Rules;
 use Simplify\Core\Announcements\Support\StartTrigger;
+use Simplify\Core\Announcements\Support\Weekly;
 
 /**
  * Where root admins write, end and delete announcements.
@@ -74,6 +79,9 @@ final class AnnouncementResource extends Resource
     {
         $zone = self::timezone();
         $starts = fn (Get $get): bool => $get('send_on') === StartTrigger::START;
+        $weekly = fn (Get $get): bool => $get('send_on') === Weekly::SEND_ON;
+        // "Active from" and "Active until" for both: they limit when it goes out, they are not the moment itself.
+        $period = fn (Get $get): bool => $starts($get) || $weekly($get);
 
         return $schema->columns(1)->components([
             ToggleButtons::make('category')
@@ -92,10 +100,15 @@ final class AnnouncementResource extends Resource
                 ->label(self::text('form.body'))
                 ->rows(3)
                 ->maxLength(Rules::BODY_LENGTH),
-            // At a time (a bar from its start to its end), or each time one of its servers starts (Khion 6-11).
+            // At a time (a bar from its start to its end), each time one of its servers starts (Khion 6-11), or on days of
+            // the week (Khion 15-11).
             ToggleButtons::make('send_on')
                 ->label(self::text('form.send_on'))
-                ->options([StartTrigger::TIME => self::text('form.send_on_time'), StartTrigger::START => self::text('form.send_on_start')])
+                ->options([
+                    StartTrigger::TIME => self::text('form.send_on_time'),
+                    Weekly::SEND_ON => self::text('form.send_on_weekly'),
+                    StartTrigger::START => self::text('form.send_on_start'),
+                ])
                 ->inline()
                 ->required()
                 ->default(StartTrigger::TIME)
@@ -118,14 +131,42 @@ final class AnnouncementResource extends Resource
                     ->formatStateUsing(fn ($state): string => $state === true || $state === 'next' ? 'next' : 'every')
                     ->dehydrateStateUsing(fn ($state): bool => $state === 'next'),
             ]),
+            ToggleButtons::make('weekly_days')
+                ->label(self::text('form.weekly_days'))
+                ->visible($weekly)
+                ->options(self::weekdays())
+                ->multiple()
+                ->inline()
+                ->required($weekly)
+                ->dehydrateStateUsing(fn ($state): array => Weekly::days($state)),
+            Grid::make(2)->visible($weekly)->schema([
+                // The author's own clock: 19:00 stays 19:00 in winter and in summer.
+                TimePicker::make('weekly_at')
+                    ->label(self::text('form.weekly_at'))
+                    ->seconds(false)
+                    ->required($weekly)
+                    ->helperText(fn (Get $get): string => self::text('form.weekly_at_help', ['zone' => Weekly::zone($get('weekly_zone') ?: $zone)]))
+                    ->dehydrateStateUsing(fn ($state): ?string => Weekly::time($state)),
+                Select::make('weekly_hours')
+                    ->label(self::text('form.weekly_hours'))
+                    ->helperText(self::text('form.weekly_hours_help'))
+                    ->options(array_combine(Weekly::HOURS, array_map('strval', Weekly::HOURS)))
+                    ->default(Weekly::DEFAULT_HOURS)
+                    ->selectablePlaceholder(false)
+                    ->required($weekly),
+                // Kept when another admin edits it, so the time keeps meaning the same moment.
+                Hidden::make('weekly_zone')
+                    ->default($zone)
+                    ->dehydrateStateUsing(fn ($state): string => Weekly::zone($state ?: $zone)),
+            ]),
             Grid::make(2)->schema([
                 DateTimePicker::make('starts_at')
-                    ->label(fn (Get $get): string => self::text($starts($get) ? 'form.active_from' : 'form.starts_at'))
+                    ->label(fn (Get $get): string => self::text($period($get) ? 'form.active_from' : 'form.starts_at'))
                     ->seconds(false)
                     ->timezone($zone)
                     ->helperText(self::text('form.starts_at_help', ['zone' => $zone])),
                 DateTimePicker::make('ends_at')
-                    ->label(fn (Get $get): string => self::text($starts($get) ? 'form.active_until' : 'form.ends_at'))
+                    ->label(fn (Get $get): string => self::text($period($get) ? 'form.active_until' : 'form.ends_at'))
                     ->seconds(false)
                     ->timezone($zone)
                     ->after('starts_at')
@@ -239,6 +280,13 @@ final class AnnouncementResource extends Resource
                             ->color('gray')
                             ->wrap()
                             ->grow(false),
+                        TextColumn::make('weekly_days')
+                            ->icon('tabler-repeat')
+                            ->tooltip(self::text('table.weekly'))
+                            ->state(fn (Announcement $record): ?string => self::weeklySummary($record))
+                            ->color('gray')
+                            ->wrap()
+                            ->grow(false),
                         TextColumn::make('audience')
                             ->badge()
                             ->color('gray')
@@ -299,6 +347,7 @@ final class AnnouncementResource extends Resource
     /** A live announcement reaches the bell and devices right away instead of on the next scheduler run. */
     public static function deliverNow(): void
     {
+        WeeklyAnnouncements::runDue();
         Bell::deliverDue();
         Push::sendDue();
     }
@@ -317,6 +366,34 @@ final class AnnouncementResource extends Resource
         }
 
         return $labels;
+    }
+
+    /**
+     * Monday to Sunday, short, in the panel's language.
+     *
+     * @return array<int, string>
+     */
+    public static function weekdays(): array
+    {
+        $names = [];
+        foreach (range(1, 7) as $day) {
+            $names[$day] = Carbon::parse('2026-11-'.(8 + $day))->locale(app()->getLocale())->isoFormat('ddd');
+        }
+
+        return $names;
+    }
+
+    /** "Mon, Fri · 19:00 (Europe/Berlin)" for one on days of the week. */
+    private static function weeklySummary(Announcement $record): ?string
+    {
+        $days = Weekly::days($record->weekly_days);
+        $at = Weekly::time($record->weekly_at);
+        if ($record->send_on !== Weekly::SEND_ON || $days === [] || $at === null) {
+            return null;
+        }
+        $names = self::weekdays();
+
+        return implode(', ', array_map(fn (int $day): string => $names[$day], $days)).' · '.$at.' ('.Weekly::zone($record->weekly_zone).')';
     }
 
     private static function inGameSummary(Announcement $record): ?string

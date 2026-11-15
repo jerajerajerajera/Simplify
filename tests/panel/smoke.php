@@ -34,14 +34,17 @@ use Simplify\Core\Addons\Addon;
 use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Addons\Button;
 use Simplify\Core\Announcements\Filament\AnnouncementResource;
+use Simplify\Core\Announcements\Filament\ManageAnnouncements;
 use Simplify\Core\Announcements\Livewire\AnnouncementBars;
 use Simplify\Core\Announcements\Models\Announcement;
 use Simplify\Core\Announcements\Services\Bell as AnnouncementBell;
 use Simplify\Core\Announcements\Services\StartAnnouncements;
 use Simplify\Core\Announcements\Services\TaskWaits;
+use Simplify\Core\Announcements\Services\WeeklyAnnouncements;
 use Simplify\Core\Announcements\Support\Diagnose;
 use Simplify\Core\Announcements\Support\StartTrigger;
 use Simplify\Core\Announcements\Support\TaskAnnouncement;
+use Simplify\Core\Announcements\Support\Weekly;
 use Simplify\Core\Announcements\Tasks\AnnouncementTask;
 use Simplify\Core\Embed\Filament\EmbedSettings;
 use Simplify\Core\Embed\Filament\Website as EmbedWebsite;
@@ -965,8 +968,10 @@ step('update notices tell root admins about a new Pelican once', function () use
     $browser = openssl_pkey_new(['curve_name' => 'prime256v1', 'private_key_type' => OPENSSL_KEYTYPE_EC]);
     $subscription = ['endpoint' => 'https://fcm.googleapis.com/fcm/send/smoke-updates', 'keys' => ['p256dh' => WebPush::b64(WebPush::point($browser)), 'auth' => WebPush::b64(random_bytes(16))]];
     $device = Push::subscribe($admin, $subscription, 'Smoke browser');
-    cache()->forget('panel:latest_version');
-    cache()->forget('wings:latest_version');
+    // Pelican up to rc.2 caches the latest versions under these keys, rc.3 and later the whole release.
+    foreach (['panel:latest_version', 'wings:latest_version', 'panel:latest_release', 'wings:latest_release'] as $key) {
+        cache()->forget($key);
+    }
     Http::fake([
         'api.github.com/*' => Http::response(['tag_name' => 'v99.0.0', 'body' => '']),
         'fcm.googleapis.com/*' => Http::response('', 201),
@@ -1131,6 +1136,71 @@ step('announcements on a server start: one that goes out once keeps its bell ite
     }
     if ($items() !== 0) {
         throw new RuntimeException('a deleted announcement left its bell item behind');
+    }
+});
+step('announcements on days of the week: the form saves the days and time, each turn goes out once and shows the bar again (Khion 15-11)', function () use ($admin) {
+    // The form: days, time and the author's time zone are saved as Simplify reads them.
+    Livewire\Livewire::actingAs($admin)->test(ManageAnnouncements::class)
+        ->call('mountAction', 'create')
+        ->set('mountedActions.0.data.title', 'Smoke weekly form')
+        ->set('mountedActions.0.data.send_on', Weekly::SEND_ON)
+        ->set('mountedActions.0.data.weekly_days', ['5', '1'])
+        ->set('mountedActions.0.data.weekly_at', '19:00')
+        ->set('mountedActions.0.data.weekly_hours', '3')
+        ->call('callMountedAction')
+        ->assertHasNoErrors();
+    $saved = Announcement::query()->where('title', 'Smoke weekly form')->first();
+    if (! $saved || $saved->send_on !== Weekly::SEND_ON || $saved->weekly_days !== [1, 5] || $saved->weekly_at !== '19:00' || $saved->weekly_hours !== 3 || Weekly::zone($saved->weekly_zone) !== $saved->weekly_zone) {
+        throw new RuntimeException('the form did not save an announcement on days of the week: '.json_encode($saved?->only(['send_on', 'weekly_days', 'weekly_at', 'weekly_hours', 'weekly_zone'])));
+    }
+    $saved->delete();
+
+    // Its turn was two minutes ago, today (UTC): it goes out now, with the bar.
+    $turn = now()->utc()->subMinutes(2)->startOfMinute();
+    $announcement = Announcement::query()->create([
+        'title' => 'Smoke weekly', 'send_on' => Weekly::SEND_ON, 'weekly_days' => [$turn->isoWeekday()], 'weekly_at' => $turn->format('H:i'),
+        'weekly_zone' => 'UTC', 'weekly_hours' => 1, 'in_bell' => true, 'push' => false, 'in_game' => false, 'created_by' => $admin->id,
+    ]);
+    $other = Announcement::query()->create([
+        'title' => 'Smoke weekly tomorrow', 'send_on' => Weekly::SEND_ON, 'weekly_days' => [$turn->isoWeekday() % 7 + 1], 'weekly_at' => $turn->format('H:i'),
+        'weekly_zone' => 'UTC', 'weekly_hours' => 1, 'in_bell' => true, 'push' => false, 'in_game' => false, 'created_by' => $admin->id,
+    ]);
+    $items = fn () => $admin->notifications()->where('data->viewData->simplify_announcement', $announcement->id)->count();
+    $bars = fn () => Announcement::barsFor($admin)->pluck('id')->map(fn ($id) => (int) $id)->all();
+    try {
+        if (WeeklyAnnouncements::runDue() !== 1 || $announcement->refresh()->weekly_from?->getTimestamp() !== $turn->getTimestamp()) {
+            throw new RuntimeException('today\'s turn did not start: '.json_encode($announcement->only(['weekly_from', 'weekly_until'])));
+        }
+        AnnouncementBell::deliverDue();
+        if ($items() !== 1 || ! in_array($announcement->id, $bars(), true) || in_array($other->id, $bars(), true)) {
+            throw new RuntimeException('a turn did not reach the bell and the bars, or another day showed: bell '.$items().' bars '.json_encode($bars()));
+        }
+        // The next minute: the same turn, nothing new.
+        AnnouncementResource::deliverNow();
+        if (WeeklyAnnouncements::runDue() !== 0 || $items() !== 1) {
+            throw new RuntimeException('the same turn went out twice');
+        }
+        // Unpinned last week: this week's turn shows the bar again and puts one new item in the bell.
+        $announcement->dismissedBy()->syncWithoutDetaching([$admin->id => ['created_at' => now()]]);
+        $announcement->forceFill(['weekly_from' => $turn->clone()->subWeek(), 'weekly_until' => $turn->clone()->subWeek()->addHour()])->saveQuietly();
+        if (in_array($announcement->id, $bars(), true)) {
+            throw new RuntimeException('the bar showed outside its hours');
+        }
+        if (WeeklyAnnouncements::runDue() !== 1) {
+            throw new RuntimeException('a new week did not start a new turn');
+        }
+        AnnouncementBell::deliverDue();
+        if ($items() !== 1 || ! in_array($announcement->id, $bars(), true)) {
+            throw new RuntimeException('a new turn did not bring the bar and one bell item back: bell '.$items().' bars '.json_encode($bars()));
+        }
+        // The list says when it goes out.
+        $list = visit($admin, AnnouncementResource::getUrl(panel: 'admin'))->getContent();
+        if (! str_contains((string) $list, $turn->format('H:i').' (UTC)')) {
+            throw new RuntimeException('the list does not show the days and time');
+        }
+    } finally {
+        $announcement->delete();
+        $other->delete();
     }
 });
 step('test announcements: the check sends nothing, says a timed bell item came on time, and the tests make real announcements', function () use ($server) {
