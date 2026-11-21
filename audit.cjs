@@ -1394,6 +1394,8 @@ async function fixesFlow() {
     const groups = await sheet('#ps-overview-groups-menu'); await record('phone-sheet-groups', 'Telefoon · Server groups als blad');
     say('phone-sheet-customize', isSheet(custom) && isSheet(groups), { custom, groups });
     await escape();
+    // A tap beside a sheet that is still sliding away is swallowed (sheet.js): wait until no sheet shows.
+    await page.waitForFunction(() => ![...document.querySelectorAll('.ps .ps-dropdown, .ps .account-open > .ps-account-menu')].some((e) => e.getClientRects().length > 0), null, { timeout: 3000 }).catch(() => {});
     await page.locator('.ps-top .ps-account-button').first().click().catch(() => {}); await sleep(900);
     const account = await sheet('.ps-account.account-open .ps-account-menu'); await record('phone-sheet-account', 'Telefoon · account als blad');
     say('phone-sheet-account', isSheet(account), account);
