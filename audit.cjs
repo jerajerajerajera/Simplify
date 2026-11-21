@@ -212,13 +212,14 @@ const adminPage = async (overview) => {
       const rows = [...document.querySelectorAll('.fi-ta-row')].filter(shown).length;
       return { pick: shown(pick) ? pick.innerText.replace(/\s+/g, ' ').trim() : null, tabs, rows, imports: imports.length,
         oneRow: shown(pick) && shown(search) && imports.length > 0 && [search, ...imports].every((e) => Math.abs(mid(e) - mid(pick)) <= 8),
-        // Too narrow for one row (K-B85): the filter on the first row and every tool whole inside the toolbar.
+        // Too narrow for one row (K-B85): the filter on the first row, every tool whole inside the list's card, none over another.
         wraps: (() => {
-          const bar = document.querySelector('.fi-ta-header-toolbar');
-          if (!shown(pick) || !shown(search) || !imports.length || !bar) return false;
-          const b = bar.getBoundingClientRect(), all = [pick, search, ...imports].map((e) => e.getBoundingClientRect());
-          return all[0].top - b.top <= 8 && all.every((r) => r.left >= b.left - 1 && r.right <= b.right + 1 && r.width > 0)
-            && all.some((r) => r.top - all[0].bottom >= -2);
+          const box = pick && pick.closest('.fi-ta-ctn');
+          if (!shown(pick) || !shown(search) || !imports.length || !box) return false;
+          const b = box.getBoundingClientRect(), all = [pick, search, ...imports].map((e) => e.getBoundingClientRect());
+          const overlap = all.some((r, i) => all.some((q, j) => j > i && r.left < q.right - 1 && q.left < r.right - 1 && r.top < q.bottom - 1 && q.top < r.bottom - 1));
+          return all.every((r) => r.top >= all[0].top - 2 && r.left >= b.left - 1 && r.right <= b.right + 1 && r.width > 0)
+            && !overlap && all.some((r) => r.top - all[0].bottom >= -2);
         })() };
     }).catch(() => null);
     const before = await row(); await record('admin-plugins-filter', 'Admin · Plugins, categoriefilter in de werkbalk');
