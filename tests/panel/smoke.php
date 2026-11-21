@@ -822,8 +822,10 @@ step('Files: a file\'s Delete is in its menu, not a red button of its own', func
         throw new RuntimeException('Delete in the menu has no name, or deletes without asking');
     }
     // The row itself, as the browser gets it: Delete is an item of the menu, in the colour of a dangerous action.
+    // One button holds both the click and the classes, in the order its Filament version writes them.
     $html = $page->call('loadTable')->html();
-    if (! str_contains($html, 'server.properties') || preg_match('/class="[^"]*fi-dropdown-list-item[^"]*fi-color-danger[^"]*"\s+wire:click="mountAction\(\'delete\'/', $html) !== 1) {
+    $item = '/<button\b(?=[^<]*wire:click="mountAction\(\'delete\')(?=[^<]*class="[^"]*fi-dropdown-list-item[^"]*fi-color-danger)/';
+    if (! str_contains($html, 'server.properties') || preg_match($item, $html) !== 1) {
         throw new RuntimeException('the row of a file does not show Delete as an item of its menu');
     }
 });
