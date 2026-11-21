@@ -192,8 +192,10 @@ const adminPage = async (overview) => {
     // Servers (no empty band where the tabs were, no extra line).
     const bar = () => page.evaluate(() => {
       const box = (sel) => { const e = [...document.querySelectorAll(sel)].find((x) => x.getClientRects().length); return e ? e.getBoundingClientRect() : null; };
-      const crumb = box('.ps-admin-crumb'), search = box('.fi-ta-header-toolbar .fi-ta-search-field'), head = box('.fi-ta-table thead') || box('.fi-ta-table tbody > tr'); // row lists (G1) hide the head: then the first row
-      return crumb && search && head ? { top: Math.round(search.top - crumb.bottom), under: Math.round(head.top - search.bottom) } : null;
+      // The whole toolbar, not the search field: when its tools do not fit they take a second row (K-B85), and the
+      // toolbar still starts right under the breadcrumb.
+      const crumb = box('.ps-admin-crumb'), bar = box('.fi-ta-header-toolbar'), head = box('.fi-ta-table thead') || box('.fi-ta-table tbody > tr'); // row lists (G1) hide the head: then the first row
+      return crumb && bar && head ? { top: Math.round(bar.top - crumb.bottom), under: Math.round(head.top - bar.bottom) } : null;
     }).catch(() => null);
     await goto('/admin/servers', 2000);
     const servers = await bar();
@@ -209,7 +211,15 @@ const adminPage = async (overview) => {
       const imports = [...document.querySelectorAll('.fi-ta-header .fi-ta-actions :is(button, a)')].filter(shown);
       const rows = [...document.querySelectorAll('.fi-ta-row')].filter(shown).length;
       return { pick: shown(pick) ? pick.innerText.replace(/\s+/g, ' ').trim() : null, tabs, rows, imports: imports.length,
-        oneRow: shown(pick) && shown(search) && imports.length > 0 && [search, ...imports].every((e) => Math.abs(mid(e) - mid(pick)) <= 8) };
+        oneRow: shown(pick) && shown(search) && imports.length > 0 && [search, ...imports].every((e) => Math.abs(mid(e) - mid(pick)) <= 8),
+        // Too narrow for one row (K-B85): the filter on the first row and every tool whole inside the toolbar.
+        wraps: (() => {
+          const bar = document.querySelector('.fi-ta-header-toolbar');
+          if (!shown(pick) || !shown(search) || !imports.length || !bar) return false;
+          const b = bar.getBoundingClientRect(), all = [pick, search, ...imports].map((e) => e.getBoundingClientRect());
+          return all[0].top - b.top <= 8 && all.every((r) => r.left >= b.left - 1 && r.right <= b.right + 1 && r.width > 0)
+            && all.some((r) => r.top - all[0].bottom >= -2);
+        })() };
     }).catch(() => null);
     const before = await row(); await record('admin-plugins-filter', 'Admin · Plugins, categoriefilter in de werkbalk');
     let menu = null, after = null, path = null;
@@ -221,7 +231,7 @@ const adminPage = async (overview) => {
       after = await row(); path = new URL(page.url()).pathname;
     }
     const kept = await page.evaluate(() => window.__psKept === 1).catch(() => false);
-    say('admin-plugins-filter', flush && !!before && !!before.pick && before.tabs === 0 && (phone() || before.oneRow) && !!menu && menu.items >= 2 && menu.onTop && !!after && after.pick !== before.pick && kept && path === '/admin/plugins', { servers, plugins, before, menu, after, kept, path });
+    say('admin-plugins-filter', flush && !!before && !!before.pick && before.tabs === 0 && (phone() || before.oneRow || before.wraps) && !!menu && menu.items >= 2 && menu.onTop && !!after && after.pick !== before.pick && kept && path === '/admin/plugins', { servers, plugins, before, menu, after, kept, path });
   }
   // The other way out of an admin page: the end of the setup's "Go to the panel" opens the overview with wire:navigate.
   // It looks as after a full load (Jeroen 3-11, beta.3: the background turned lighter grey), and so does the Admin page
