@@ -70,7 +70,8 @@ trait Shell
             'admin_url' => $admin ? (Legacy::on() ? Legacy::url($adminUrl, false) : $adminUrl) : null,
             // The legacy panel: Pelican's own pages, as Pelican draws them (Legacy); everyone has the account pages.
             'legacy_url' => Legacy::url($admin ? Filament::getPanel('admin')->getUrl() : EditProfile::getUrl(panel: 'app'), true),
-            'settings_url' => Settings::canAccess() ? Settings::getUrl(panel: 'admin') : null,
+            // On its first item of the Admin menu: without a tab the menu marked General over Appearance's fields (K-B77).
+            'settings_url' => Settings::canAccess() ? Settings::getUrl(['tab' => 'general'], panel: 'admin') : null,
             'support_url' => $settings['support_url'],
             // The add-ons' customer links that have an icon (such as Simplify Hosting's Client area), before Support.
             'account_links' => app(AddonRegistry::class)->collect(fn (Addon $addon) => array_values(array_map(

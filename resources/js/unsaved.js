@@ -102,8 +102,9 @@
       bar.className = 's-unsaved';
       bar.setAttribute('role', 'status');
       bar.setAttribute('aria-live', 'polite');
-      document.body.append(bar);
     }
+    // A menu click (wire:navigate) swaps the page's body and takes the bar with it (K-B75).
+    if (!bar.isConnected) document.body.append(bar);
     bar.dataset.mode = mode;
     bar.replaceChildren();
     const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');

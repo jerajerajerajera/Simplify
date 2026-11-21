@@ -7,6 +7,9 @@
 - The SFTP link in a server's menu names the account once. It held the username twice, which SFTP programs refuse.
 - Admin menu: Pelican's new pages Activity (rc.3) and Backups (rc.4) stand with Pelican's own pages (Backups under Servers, Activity beside Logs) instead of under Pelican plugins.
 - Lists with bulk actions (Eggs, Users): the checkbox of a row stands before its picture instead of under it, and every row starts at the same place.
+- Settings: the Changes made bar shows again after a click in the menu. Once it had shown and gone (after a save), a change on the next page showed no bar; only the save icon in the title bar still worked.
+- Simplify settings: after Save the top bar and the menu show the new panel name, logo, colour and support link at once. They kept the old ones until you reloaded the page.
+- Customize › More › Open settings opens the General tab. It showed Appearance's fields under the title General.
 
 ## 2.0.0-beta.14
 

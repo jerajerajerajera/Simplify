@@ -242,8 +242,17 @@ final class Settings extends Page implements HasForms
     public function save(): void
     {
         abort_unless(self::canAccess(), 403);
+        $before = PanelSettings::all();
         PanelSettings::saveForm($this->form->getState());
         Notification::make()->title(__('simplify::settings.saved'))->success()->send();
+        // The top bar and the menu stay while you click through the pages, so they kept the old name, logo, colour or
+        // support link until a reload (K-B76): a save that changed something loads this page again, on the same tab.
+        if (PanelSettings::all() != $before) {
+            $own = self::getUrl(panel: 'admin');
+            $from = (string) request()->header('referer');
+            $query = parse_url($from, PHP_URL_PATH) === parse_url($own, PHP_URL_PATH) ? (string) parse_url($from, PHP_URL_QUERY) : '';
+            $this->redirect($own.($query === '' ? '' : '?'.$query));
+        }
     }
 
     /**

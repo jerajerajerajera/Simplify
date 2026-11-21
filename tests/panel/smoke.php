@@ -653,6 +653,14 @@ step('Pelican\'s own admin pages stand in their groups, never under Pelican plug
         throw new RuntimeException('pages of Pelican under Pelican plugins: '.implode(', ', array_intersect($plugins, $own)));
     }
 });
+step('the link to Simplify settings opens an item of the Admin menu (K-B77)', function () use ($admin) {
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
+    $initial = Livewire\Livewire::actingAs($admin)->test(Overview::class)->instance()->initial();
+    $leaves = collect($initial['admin_tree'])->flatMap(fn (array $section) => array_column($section['pages'] ?? [], 'url'))->all();
+    if (! in_array($initial['settings_url'], $leaves, true)) {
+        throw new RuntimeException('Open settings goes to '.$initial['settings_url'].', which is no item of the Admin menu');
+    }
+});
 step('Pelican\'s Health page shows in Simplify\'s look', function () use ($admin) {
     $url = Health::getUrl(panel: 'admin');
     $response = visit($admin, $url);
@@ -884,6 +892,25 @@ step('panel settings are saved and a bad value is refused', function () use ($ad
     PanelSettings::save(['friends_mode' => (bool) $friends]);
     if ($on !== true || $off !== false) {
         throw new RuntimeException('friendsMode() does not follow the friends mode setting');
+    }
+});
+step('a save that changed a setting loads the settings again, so the top bar shows it (K-B76)', function () use ($admin) {
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('admin'));
+    $name = PanelSettings::get('brand_name');
+    try {
+        $changed = Livewire\Livewire::actingAs($admin)->test(Settings::class)->set('data.brand_name', 'Changed name')->call('save');
+        noErrors($changed);
+        if (! str_contains((string) ($changed->effects['redirect'] ?? ''), parse_url(Settings::getUrl(panel: 'admin'), PHP_URL_PATH))) {
+            throw new RuntimeException('after a changed name the page was not loaded again: the top bar keeps the old name');
+        }
+        // Save without a change stays where it is.
+        $same = Livewire\Livewire::actingAs($admin)->test(Settings::class)->call('save');
+        noErrors($same);
+        if (isset($same->effects['redirect'])) {
+            throw new RuntimeException('a save without changes loaded the page again');
+        }
+    } finally {
+        PanelSettings::save(['brand_name' => $name]);
     }
 });
 step('the accent colour and refresh rate reach the panel', function () use ($admin) {
