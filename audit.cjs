@@ -1085,39 +1085,13 @@ async function otherPlugins() {
   say('other-plugins', after === 'true' && leafs >= 1 && !!st && st.kept && st.shell && current === name, { before, after, leafs, name, current, kept: st && st.kept });
 }
 
-// Settings › Browse Hub: the list loads in its tab (placeholders first), the page does not scroll (except on a phone), Install on Hub only
-// links to the Hub, and Details opens above everything with its buttons clickable. Each check writes ok or WRONG.
+// Settings › Browse Hub is gone (2.0.0): neither the Settings tabs nor the Admin menu link to it. Writes ok or WRONG.
 async function hubFlow() {
   const say = (step, ok, detail) => problems.push(`${stand} ${step}: ${ok ? 'ok' : 'WRONG'} ${JSON.stringify(detail)}`);
   await goto('/admin/simplify?tab=hub', 1000);
-  // Browse Hub is hidden for now (Settings::HUB, Jeroen 3-11): then neither the row of tabs nor the Admin menu has it.
   const hubLinks = await page.evaluate(() => document.querySelectorAll('a[href*="tab=hub"]').length).catch(() => -1);
-  if (!(await page.locator('.s-hub, .s-hub-card, .s-hub-empty').count())) return say('hub-hidden', hubLinks === 0, { links: hubLinks });
-  // The placeholder has a grid too: wait for a real card (with its Hub link) or the empty note.
-  await page.waitForSelector('.s-hub-card a.s-btn, .s-hub-empty', { timeout: 45000 }).catch(() => {});
-  await sleep(800);
-  const list = await page.evaluate(() => {
-    const links = [...document.querySelectorAll('.s-hub-card a.s-btn')].filter((a) => a.getClientRects().length);
-    return { cards: document.querySelectorAll('.s-hub-card:not(:has(.s-hub-skel))').length, empty: document.querySelector('.s-hub-empty')?.textContent.trim() || null,
-      pageScroll: document.documentElement.scrollHeight - innerHeight, links: links.length,
-      hubOnly: links.every((a) => /^https:\/\/hub\.pelican\.dev\/plugins\/[a-z0-9-]+$/.test(a.href) && a.target === '_blank') };
-  });
-  await record('settings-hub', 'Instellingen · Browse Hub');
-  // On a phone the settings page itself scrolls (1.5.3); elsewhere only the card does.
-  say('hub-list', list.cards > 0 && list.links === list.cards && list.hubOnly && (phone() || list.pageScroll <= 1), list);
-  const details = page.locator('.s-hub-card button.s-btn >> visible=true').first();
-  if (!(await details.count())) return say('hub-details', false, { note: 'no Details button' });
-  await details.click().catch(() => {}); await sleep(1500);
-  const dialog = await page.evaluate(() => {
-    const box = document.querySelector('.s-hub-dialog');
-    if (!box || !box.getClientRects().length) return { shown: false };
-    const buttons = [...box.querySelectorAll('header a, header button')].map((e) => { const r = e.getBoundingClientRect(); const top = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2); return !!top && (top === e || e.contains(top)); });
-    return { shown: true, z: getComputedStyle(box.parentElement).zIndex, clickable: buttons.length === 2 && buttons.every(Boolean), maker: !!box.querySelector('.s-hub-by b') };
-  });
-  await record('settings-hub-details', 'Instellingen · Browse Hub · details');
-  say('hub-details', dialog.shown && Number(dialog.z) >= 20 && dialog.clickable && dialog.maker, dialog);
-  await page.locator('.s-hub-dialog header button').first().click().catch(() => {}); await sleep(800);
-  say('hub-details-close', !(await page.locator('.s-hub-dialog').count()), {});
+  const cards = await page.locator('.s-hub, .s-hub-card, .s-hub-empty').count().catch(() => -1);
+  say('hub-hidden', hubLinks === 0 && cards === 0, { links: hubLinks, cards });
 }
 
 // 1.5.0 extras: the end of the setup in low windows (also inside the Admin page), the setup's Look step (#86), the

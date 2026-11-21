@@ -98,7 +98,7 @@ foreach ($list as $i => [$name, $eggName, $state, $memory, $cpu, $owner, $color]
     $allocation = Allocation::factory()->create(['node_id' => $node->id, 'ip' => '127.0.0.1', 'ip_alias' => 'play.example.com', 'port' => 25565 + $i]);
     $server = Server::factory()->create(['name' => $name, 'owner_id' => $owner->id, 'node_id' => $node->id, 'allocation_id' => $allocation->id, 'egg_id' => $eggs[$eggName]->id,
         'image' => $images[$eggName] ?? 'ghcr.io/pelican-eggs/yolks:java_21', 'memory' => $memory > 4096 ? 8192 : 4096, 'disk' => 20480, 'cpu' => 200, 'installed_at' => in_array($status[$name] ?? null, ['installing', 'install_failed'], true) ? null : now(), 'status' => $status[$name] ?? null,
-        'created_at' => now()->subDays(20 - $i)]);
+        'external_id' => 'audit-'.($i + 1), 'created_at' => now()->subDays(20 - $i)]);
     $allocation->update(['server_id' => $server->id]);
     $servers[$name] = $server;
     $files = ['/logs/latest.log' => "[12:00:05 INFO]: Done (4.2s)!\n"];
@@ -214,7 +214,7 @@ $part('database notifications', function () use ($admin) {
         $update = $i % 2 === 0;
         Notification::make()
             ->title($update ? 'Plugin updated' : 'Simplify 1.4.'.$i.' is available')
-            ->body($update ? 'Simplify updated from 1.4.'.($i - 1).' to 1.4.'.$i.'.' : 'Installing it now with a backup and automatic rollback. You get another notification when it is done.')
+            ->body($update ? 'Simplify updated from 1.4.'.($i - 1).' to 1.4.'.$i.'.' : 'Update it from Admin › Plugins.')
             ->icon($update ? 'tabler-check' : 'tabler-info-circle')
             ->actions([Action::make('open')->label('Open plugins')->url('/admin/plugins')->markAsRead()])
             ->sendToDatabase($admin, isEventDispatched: false);
