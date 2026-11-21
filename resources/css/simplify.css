@@ -1088,10 +1088,11 @@ html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header-heading {
   }
 
   /* A table's buttons, search and filter on one row: the search field gives way, down to just its magnifier. Tapped,
-     or with a search in it, it opens over the whole row. */
+     or with a search in it, it opens over the whole row. Where even the magnifier does not fit beside the other
+     tools, the search and what follows it take a second row instead of running out of the page (K-B85). */
   html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-header-toolbar {
     position: relative;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     gap: 8px;
     padding: 4px 0 10px !important;
   }
@@ -1099,11 +1100,12 @@ html.ps-shell-menu:not(.ps-frame) .fi-main .fi-header-heading {
   html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-header-toolbar > * {
     flex: none;
     gap: 8px;
+    max-width: 100%;
   }
 
   html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-header-toolbar > :has(.fi-ta-search-field) {
     flex: 1 1 0;
-    min-width: 0;
+    min-width: min-content;
     justify-content: flex-end;
   }
 
@@ -1876,6 +1878,15 @@ html.ps-frame[data-ps-frame="settings"] :is(body, .fi-layout, .fi-main-ctn, .fi-
 
 :is(.fi-ta-header-toolbar, .fi-ta-header, .fi-header-actions-ctn, .fi-ta-actions) .fi-icon-btn.fi-color-danger {
   color: var(--s-danger) !important;
+}
+
+/* On a phone a list fills the page's width: the count on its last tool (filters, grouping), which Filament centres on
+   the button's corner, stuck out of the page and let it slide sideways (K-B82). There it sits inside the corner. */
+@media (max-width: 600px) {
+  .fi-ta-header-toolbar .fi-icon-btn > .fi-icon-btn-badge-ctn {
+    inset-inline: auto 0;
+    translate: 0 var(--tw-translate-y, -50%);
+  }
 }
 
 :is(.fi-header-actions-ctn, .fi-ta-actions) .fi-btn .fi-icon {
@@ -2681,6 +2692,23 @@ html.ps-frame .s-done {
   :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row > .fi-ta-cell { font-size: 13px; }
   :is(html.ps-frame body, body:has(.ps-server-top, .ps-admin-top)) .fi-ta-table .fi-ta-row:hover { background: color-mix(in srgb, var(--s-ink, currentColor) 4%, transparent); }
 }
+/* Next to a menu (Admin, a server's pages) a list has less room than the window: in a window up to 1100px one line
+   per row pressed the columns together until nothing of them was left (K-B84). There a row wraps as on a phone, and
+   keeps its checkbox: the name and the row's buttons on the first line, the other columns under the name. */
+@media (min-width: 601px) and (max-width: 1100px) {
+  html:not(.ps-frame) body:has(.ps-server-top, .ps-admin-top) .fi-ta-table .fi-ta-row { flex-wrap: wrap; }
+  html:not(.ps-frame) body:has(.ps-server-top, .ps-admin-top) .fi-ta-table .fi-ta-row::after { display: block; }
+  html:not(.ps-frame) body:has(.ps-server-top, .ps-admin-top) .fi-ta-table .fi-ta-row > .fi-ta-cell { order: 4; }
+  html:not(.ps-frame) body:has(.ps-server-top, .ps-admin-top) .fi-ta-table .fi-ta-row > :is(.fi-ta-selection-cell, .fi-ta-cell:has(img)) { order: 0; }
+  html:not(.ps-frame) body:has(.ps-server-top, .ps-admin-top) .fi-ta-table .fi-ta-row > .fi-ta-cell:nth-child(1 of .fi-ta-cell:not(.fi-ta-selection-cell, :is(.fi-ta-actions-cell, .fi-ta-cell:has(.fi-ta-actions)), :has(img, .fi-badge, select, .fi-ta-icon))) { order: 1; flex: 1 1 0; }
+  html:not(.ps-frame) body:has(.ps-server-top, .ps-admin-top) .fi-ta-table .fi-ta-row > :is(.fi-ta-actions-cell, .fi-ta-cell:has(.fi-ta-actions)) { order: 2; }
+  /* The checkbox and the picture stand in the row's margin, so the lines under the name start where the name starts. */
+  html:not(.ps-frame) body:has(.ps-server-top, .ps-admin-top) .fi-ta-table .fi-ta-row:has(> .fi-ta-selection-cell) { padding-inline-start: 48px; }
+  html:not(.ps-frame) body:has(.ps-server-top, .ps-admin-top) .fi-ta-table .fi-ta-row:has(> .fi-ta-selection-cell) > .fi-ta-selection-cell { margin-inline-start: -30px; }
+  html:not(.ps-frame) body:has(.ps-server-top, .ps-admin-top) .fi-ta-table .fi-ta-row:has(> .fi-ta-selection-cell):has(> .fi-ta-cell img) { padding-inline-start: 94px; }
+  html:not(.ps-frame) body:has(.ps-server-top, .ps-admin-top) .fi-ta-table .fi-ta-row:has(> .fi-ta-selection-cell):has(> .fi-ta-cell img) > .fi-ta-selection-cell { margin-inline-start: -76px; }
+  html:not(.ps-frame) body:has(.ps-server-top, .ps-admin-top) .fi-ta-table .fi-ta-row:not(:has(> .fi-ta-selection-cell)) > .fi-ta-cell:has(img) { margin-inline-start: -46px; }
+}
 
 /* Unsaved changes (P-38, unsaved.js): a bar at the bottom says "Changes made" with Discard and Save; leaving the
    page with changes asks Save, Discard or Cancel. Above the console and the bottom nav. */
@@ -2776,21 +2804,23 @@ html.ps-frame .s-done {
 }
 
 /* Computers: a list with Group by, its direction and Sort by (Servers on a 1280 window) keeps its toolbar on one row
-   too. The search gives way first; with room to spare it keeps its own width instead of stretching. */
+   too. The search gives way first; with room to spare it keeps its own width instead of stretching. In a window
+   where even the smallest search does not fit, the search takes a second row instead of lying over Sort by (K-B85). */
 @media (min-width: 1101px) {
   html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-header-toolbar {
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     min-width: 0;
   }
 
   html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-header-toolbar > * {
     flex: none;
+    max-width: 100%;
   }
 
   html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-header-toolbar > :has(.fi-ta-search-field) {
     flex: 1 1 0;
     flex-wrap: nowrap;
-    min-width: 0;
+    min-width: min-content;
     justify-content: flex-end;
   }
 
@@ -2804,22 +2834,25 @@ html.ps-frame .s-done {
   }
 }
 
-/* Every Admin list does the same in a narrow card, so the lists start at one height (Servers as Plugins). */
+/* Every Admin list does the same in a narrow card, so the lists start at one height (Servers as Plugins). What does
+   not fit beside the menu goes to a second row: on one row Sort by ran out of the card, over the search, and the
+   column button was gone (K-B85). */
 @media (min-width: 601px) and (max-width: 1100px) {
   html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-header-toolbar {
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     align-items: center;
     min-width: 0;
   }
 
   html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-header-toolbar > * {
     flex: none;
+    max-width: 100%;
   }
 
   html.ps-shell-menu:not(.ps-frame) .fi-main .fi-ta-header-toolbar > :has(.fi-ta-search-field) {
     flex: 1 1 0;
-    min-width: 0;
+    min-width: min-content;
     justify-content: flex-end;
   }
 

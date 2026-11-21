@@ -10,6 +10,14 @@
 - Settings: the Changes made bar shows again after a click in the menu. Once it had shown and gone (after a save), a change on the next page showed no bar; only the save icon in the title bar still worked.
 - Simplify settings: after Save the top bar and the menu show the new panel name, logo, colour and support link at once. They kept the old ones until you reloaded the page.
 - Customize › More › Open settings opens the General tab. It showed Appearance's fields under the title General.
+- Files: inside a folder, and in a file opened from the list, the path (Files › plugins) shows above the page and each step is a link back up. There was no way back but the Files item of the menu.
+- A renamed server shows its new name in the browser tab at once. The tab kept the old name until the next click in the menu.
+- The server menu and the Admin menu keep their place after a click. In a low window, or with every group open, the menu jumped back to its top and the page you had just picked was out of sight.
+- Announcements sent When a server starts also go out after a quick restart. A server that was back online within a minute, between two looks of the scheduler, was not seen as started.
+- Phones: the count on a list's filter or grouping button stays inside the page. It stuck out a few pixels on admin Webhooks, Backups and Activity, and the page slid sideways.
+- Overview: Create server at the end of the filter row shows whole, with the plus on its corner. For people who are not a root admin its end faded out and the plus was cut off.
+- Lists beside a menu (Admin, a server's pages) in a window up to 1100 pixels wide: a row shows every column whole, under the name, as on a phone, and keeps its checkbox. The columns were pressed onto one line until only a few letters of them were left.
+- The tools above a list (Group by, Sort by, the search, the column button) take a second row when they do not fit. Sort by ran out of the card, the search lay over it and the column button was out of sight; on a phone the last tools ran out of the page.
 
 ## 2.0.0-beta.14
 

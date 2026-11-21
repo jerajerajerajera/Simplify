@@ -66,6 +66,10 @@ node tests/console-title-clicks.cjs
 node tests/console-pelican-tools.cjs
 node tests/console-window.cjs
 node tests/row-checkbox.cjs
+node tests/files-path.cjs
+node tests/phone-badge.cjs
+node tests/toolbar-fade.cjs
+node tests/list-narrow.cjs
 python3 tests/hub-check.py
 # The audit scripts live on the branch audit-tools (checked out into tests/audit by audit.yml), not in the plugin.
 if [ -f tests/audit/parts.py ]; then python3 tests/audit/parts.py --self-test; fi

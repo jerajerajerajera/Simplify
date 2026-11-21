@@ -142,6 +142,10 @@
           this.setPage(document.querySelector('template[data-ps-server-page]')?.dataset.console === '1');
         };
         document.addEventListener('livewire:navigated', this.navigated);
+        // The menu keeps its place over a click in it (K-B80). In a low window it scrolls, and moving this top into
+        // the next page put it back at its start: remembered when leaving, set again once the page is fitted.
+        this.leaving = () => { this.menuTop = document.querySelector('.ps-server-menu')?.scrollTop || 0; };
+        document.addEventListener('livewire:navigate', this.leaving);
         // The page fits the window: again when the window or the cards above it change size. Only the browser's own
         // resize: fitConsole sends one for Pelican's terminal, and following that one again never ends.
         this.fitResize = (event) => event.isTrusted && this.fitPage();
@@ -167,6 +171,8 @@
           const menu = document.querySelector('.ps-server-menu');
           if (menu && !console) menu.style.height = '';
           this.fitPage();
+          if (menu && this.menuTop) menu.scrollTop = this.menuTop;
+          this.menuTop = 0;
           // The server card (a MOTD or status arriving later) and the page's content (Livewire filling in after load):
           // the page itself has the fixed height --ps-fit, so only its content changes size.
           this.fitObserver?.disconnect();
@@ -196,6 +202,7 @@
       destroy() {
         base.destroy.call(this);
         document.removeEventListener('livewire:navigated', this.navigated);
+        document.removeEventListener('livewire:navigate', this.leaving);
         removeEventListener('resize', this.fitResize);
         this.fitObserver?.disconnect();
         clearInterval(this.liveTimer);
@@ -571,6 +578,8 @@
         try {
           this.server = await wire.saveName(name);
           this.naming = false;
+          // The browser tab follows at once (K-B79): the page set it when it loaded, with the old name.
+          document.title = this.server.name + ' - Simplify';
           this.toast(t('dashboard.server_renamed'), 'ok');
         } catch {
           this.toast(t('dashboard.the_action_could_not_be_completed'), 'danger');

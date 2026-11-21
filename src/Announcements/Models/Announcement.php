@@ -39,7 +39,7 @@ use Simplify\Core\Announcements\Support\Weekly;
  * @property string $send_on time (at starts_at, shown as a bar), start (each time one of start_servers starts) or weekly (on weekly_days at weekly_at)
  * @property ?list<int> $start_servers
  * @property bool $start_once ends itself after the first start
- * @property ?array<int, bool> $start_seen server id => running at the last look
+ * @property ?array<int, bool|int> $start_seen server id => at the last look: not running (false), or since when it runs
  * @property ?list<int> $weekly_days ISO days, 1 Monday … 7 Sunday
  * @property ?string $weekly_at HH:MM in weekly_zone
  * @property ?string $weekly_zone the author's time zone

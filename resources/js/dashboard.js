@@ -1138,7 +1138,9 @@
       /** Marks a sideways scrolling strip with the edges that hide more items, so the cut-off side fades out. */
       scrollHint(el) {
         const update = () => {
-          const max = el.scrollWidth - el.clientWidth;
+          // Only a strip that scrolls (K-B83): on a wide screen the row stands still, and the plus on Create server's
+          // corner, which sticks out of it, counted as more to scroll and faded the button out.
+          const max = /auto|scroll/.test(getComputedStyle(el).overflowX) ? el.scrollWidth - el.clientWidth : 0;
           const hint = max > 1 ? [el.scrollLeft > 1 && 'start', el.scrollLeft < max - 1 && 'end'].filter(Boolean).join(' ') : '';
           if ((el.dataset.psMore || '') === hint) return;
           if (hint) el.dataset.psMore = hint;

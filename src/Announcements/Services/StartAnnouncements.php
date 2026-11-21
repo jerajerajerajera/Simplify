@@ -47,7 +47,7 @@ final class StartAnnouncements
         $servers = Server::query()->with('egg')->whereKey(StartTrigger::servers($announcement->start_servers))->get();
         $running = [];
         foreach ($servers as $server) {
-            $running[(int) $server->id] = TaskDelivery::running($server);
+            $running[(int) $server->id] = self::state($server);
         }
         $look = StartTrigger::look(is_array($announcement->start_seen) ? $announcement->start_seen : [], $running);
         // Remembered first, so an error halfway never sends the same start twice.
@@ -61,6 +61,22 @@ final class StartAnnouncements
         }
 
         return $sent;
+    }
+
+    /**
+     * False when the server is not running, otherwise when it started (StartTrigger::since): a restart between two
+     * looks leaves it running at both, and only its uptime tells (K-B81).
+     */
+    public static function state(Server $server): bool|int
+    {
+        if (! TaskDelivery::running($server)) {
+            return false;
+        }
+        try {
+            return StartTrigger::since($server->retrieveResources()['uptime'] ?? null, time());
+        } catch (Throwable) {
+            return true;
+        }
     }
 
     /**

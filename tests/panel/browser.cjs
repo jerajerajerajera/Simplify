@@ -30,6 +30,20 @@ const goto = async (url) => { await page.goto(url.startsWith('http') ? url : bas
 const shot = (name) => page.screenshot({ path: path.join(out, `${stand}-${name}.png`), fullPage: false }).catch(() => {});
 const scrolls = () => page.evaluate(() => document.documentElement.scrollHeight - window.innerHeight);
 const visible = (sel) => page.evaluate((s) => { const e = document.querySelector(s); return !!e && !!e.getClientRects().length && getComputedStyle(e).display !== 'none'; }, sel);
+// Scrolls a menu to its end, clicks its last item and says where the menu stands once the page loaded (K-B80).
+const menuKeeps = async (menu, links) => {
+  const scroller = (root) => { const m = document.querySelector(root); return m ? [m, ...m.querySelectorAll('*')].find((x) => x.scrollHeight > x.clientHeight + 2 && /(auto|scroll)/.test(getComputedStyle(x).overflowY)) : null; };
+  const box = () => page.evaluate(`(() => { const el = (${scroller})(${JSON.stringify(menu)}); return el ? { top: Math.round(el.scrollTop), room: el.scrollHeight - el.clientHeight } : { top: 0, room: 0 }; })()`).catch(() => ({ top: 0, room: 0 }));
+  await page.evaluate(`(() => { const el = (${scroller})(${JSON.stringify(menu)}); if (el) el.scrollTop = el.scrollHeight; })()`).catch(() => {});
+  const before = await box();
+  const last = page.locator(links).last();
+  const item = ((await last.innerText().catch(() => '')) || '').trim();
+  await last.click().catch(() => {});
+  await settle(1500);
+  const after = await box();
+  const inView = await page.evaluate(`(() => { const el = (${scroller})(${JSON.stringify(menu)}); const at = document.querySelector(${JSON.stringify(menu)} + ' [aria-current="page"]'); if (!el || !at) return false; const a = at.getBoundingClientRect(), b = el.getBoundingClientRect(); return a.top >= b.top - 1 && a.bottom <= b.bottom + 1; })()`).catch(() => false);
+  return { item, before: before.top, room: before.room, after: after.top, inView };
+};
 
 async function login() {
   await goto('/login');
@@ -130,6 +144,9 @@ async function run(viewport) {
     await page.keyboard.type(original + ' 2'); await page.keyboard.press('Enter'); await sleep(2000);
     const saved = await nameState();
     say('name edit: Enter saves', !!saved && !saved.field && saved.title === original + ' 2', saved);
+    // K-B79: the browser tab follows the new name at once, not only after the next click in the menu.
+    const tab = await page.title();
+    say('name edit: the browser tab carries the new name (K-B79)', tab === original + ' 2 - Simplify', { tab });
     // The seeded name back for the rest of the run.
     await page.locator('.ps-server-info .ps-game-title h2 >> visible=true').first().click({ timeout: 4000 }).catch(() => {}); await fieldReady(); await sleep(300);
     await page.keyboard.type(original); await page.keyboard.press('Enter'); await sleep(2000);
@@ -144,6 +161,15 @@ async function run(viewport) {
     const after = await page.evaluate((sel) => ({ reloaded: window.__psMark !== 1, menuKept: !!document.querySelector(sel) && document.querySelector(sel).__psKeep === 1, path: location.pathname }), MENU);
     say('a menu click loads only the content', !!target && !after.reloaded && after.menuKept, { target, ...after });
     await shot('server-menu-click');
+    // K-B80: in a low window the menu scrolls. A click on its last item may not jump the menu back to the top, where
+    // that item is out of sight.
+    if (!phone) {
+      await page.setViewportSize({ width: viewport.width, height: 560 }); await sleep(700);
+      await page.evaluate(() => { const more = document.querySelector('.ps-server-menu-more'); if (more) more.open = true; });
+      const kept = await menuKeeps('.ps-server-menu', '.ps-server-menu a[href]:not([target]) >> visible=true');
+      say('the server menu keeps its place after a click (K-B80)', kept.before > 0 && kept.after > 0 && kept.inView, kept);
+      await page.setViewportSize({ width: viewport.width, height: viewport.height }); await sleep(500);
+    }
   }
 
   // Admin: on a desktop the shield in the top bar switches without a full load; on a phone the Admin tab in the bottom bar.
@@ -151,12 +177,24 @@ async function run(viewport) {
   await page.evaluate(() => { window.__psMark = 1; });
   const admin = page.locator((phone ? '.ps-tabbar a.ps-tab:has(use[href="#ps-shield"])' : 'a.ps-nav-admin') + ' >> visible=true').first();
   await admin.click().catch(() => {});
+  // The click is no page load, so "network idle" is there at once: wait for the address itself (a slow panel took
+  // longer than the pause that followed, and the step failed on the overview).
+  await page.waitForURL((url) => url.pathname.includes('/admin'), { timeout: 15000 }).catch(() => {});
   await settle(1500);
   const onAdmin = await page.evaluate(() => ({ reloaded: window.__psMark !== 1, path: location.pathname }));
   say('Admin opens without a full page load', onAdmin.path.includes('/admin') && !onAdmin.reloaded, onAdmin);
   say('Admin does not scroll', (await scrolls()) <= 1, { scroll: await scrolls() });
   await shot('admin');
   await axe('admin');
+  // K-B80 for the Admin menu: with every group open it scrolls, and a click on its last page keeps it there.
+  if (!phone) {
+    await page.setViewportSize({ width: viewport.width, height: 560 }); await sleep(700);
+    const expand = page.locator('#ps-admin-side .ps-host-expand >> visible=true').first();
+    if (await expand.isVisible().catch(() => false)) { await expand.click().catch(() => {}); await sleep(600); }
+    const kept = await menuKeeps('#ps-admin-side', '#ps-admin-side a.ps-host-leaf >> visible=true');
+    say('the Admin menu keeps its place after a click (K-B80)', kept.before > 0 && kept.after > 0 && kept.inView, kept);
+    await page.setViewportSize({ width: viewport.width, height: viewport.height }); await sleep(500);
+  }
 
   // Settings: the Save button in the title bar saves ("Settings saved" follows as a notification).
   await goto('/admin/simplify');

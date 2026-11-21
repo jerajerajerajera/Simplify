@@ -1405,6 +1405,12 @@ body:has(.ps-server-top):has(:is(.ps-server-top.is-server-full-width, .fi-main.f
    of the page's own card; buttons with a label, and a page with a table (its tools sit in that corner), keep a row. */
 body:has(.ps-server-top) .fi-header :is(.fi-header-heading, .fi-header-subheading, .fi-breadcrumbs:has(.fi-breadcrumbs-item:only-child)) { display: none !important; }
 body:has(.ps-server-top) .fi-header:not(:has(.fi-header-actions-ctn > *)) { display: none !important; }
+/* The file manager's path is Pelican's breadcrumb (Files > plugins): in a folder, or in a file opened from it, it is
+   the way back up, so it stays, as a row over the page (K-B78). The root has one step and no row. */
+body:has(.ps-server-top) :is(.fi-resource-files, .fi-resource-edit-file-page) .fi-header:has(.fi-breadcrumbs-item + .fi-breadcrumbs-item) { position: static !important; display: flex !important; flex: none; margin: 0 !important; padding: 10px 16px; border-bottom: 1px solid var(--ps-line); }
+body:has(.ps-server-top) :is(.fi-resource-files, .fi-resource-edit-file-page) .fi-header .fi-breadcrumbs:has(.fi-breadcrumbs-item + .fi-breadcrumbs-item) { display: block !important; }
+body:has(.ps-server-top) .fi-main .fi-breadcrumbs-item-label { color: var(--ps-muted); font: 600 13px/1.2 var(--ps-font); text-decoration: none; }
+body:has(.ps-server-top) .fi-main .fi-breadcrumbs-item-label:is(:hover, [aria-current="page"]) { color: var(--ps-ink); }
 body:has(.ps-server-top) .fi-header { justify-content: space-between; margin: 0 0 14px !important; }
 body:has(.ps-server-top) .fi-header-actions-ctn { margin-inline-start: auto; }
 body:has(.ps-server-top) .fi-page-header-main-ctn:not(:has(.fi-ta, > .fi-header .fi-btn, > .fi-header .fi-ac > :nth-child(2))) { position: relative; }
