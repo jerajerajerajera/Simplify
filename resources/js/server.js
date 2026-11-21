@@ -428,11 +428,11 @@
 
       /** The Console page's own header is hidden (dashboard.css): its add-on buttons (Explain) come into the console's
           title row as icon buttons before the size tools, and a click goes to the hidden button. They follow the header
-          when Livewire changes it. */
+          when Livewire changes it. Pelican's own Copy and Download (rc.3 and later, over the output's corner) follow them. */
       consoleActions(bar) {
         const header = document.querySelector('.fi-header');
         const build = () => {
-          const sources = header?.isConnected ? headerActions(header) : [];
+          const sources = [...(header?.isConnected ? headerActions(header) : []), ...document.querySelectorAll('.console-wrapper > .console-tools > :is(button, a)')];
           const next = JSON.stringify(sources.map((el) => [actionLabel(el), el.disabled || el.getAttribute('aria-disabled') === 'true']));
           if (bar.dataset.actions === next) return;
           bar.dataset.actions = next;
@@ -466,7 +466,7 @@
       fitPage() {
         const root = document.documentElement, main = document.querySelector('.fi-main-ctn > .fi-main');
         // Also in a low window, such as a server in host mode's frame: then the console gets smaller, the page never scrolls.
-        const fit = !!main && innerWidth > 600 && !root.classList.contains('ps-console-window');
+        const fit = !!main && innerWidth > 600;
         root.classList.toggle('ps-fit', fit);
         if (!fit) {
           root.style.removeProperty('--ps-fit');
@@ -482,7 +482,8 @@
         this.fitConsole(height, main);
       },
       fitConsole(space, main) {
-        const terminal = document.getElementById('terminal'), card = terminal?.parentElement, menu = document.querySelector('.ps-server-menu');
+        // The card is Pelican's console widget: the output's parent, or from rc.3 the parent of Pelican's wrapper around it.
+        const terminal = document.getElementById('terminal'), card = (terminal?.closest('.console-wrapper') || terminal)?.parentElement, menu = document.querySelector('.ps-server-menu');
         if (!card) return;
         let height = '';
         // The terminal takes whatever the page has left (or gives back what it is short), so nothing else needs measuring.

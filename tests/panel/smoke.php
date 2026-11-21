@@ -564,6 +564,14 @@ step('the overview renders with the server card', function () use ($admin, $serv
         throw new RuntimeException('the server has no card: '.json_encode($card));
     }
 });
+step('the SFTP link on a server page names the account once (K-B71)', function () use ($admin, $server) {
+    $sftp = Listing::one($admin, $server)['sftp'] ?? null;
+    $username = $admin->username.'.'.$server->uuid_short;
+    $url = (string) ($sftp['url'] ?? '');
+    if (($sftp['username'] ?? null) !== $username || ! str_starts_with($url, 'sftp://'.rawurlencode($username).'@') || substr_count($url, '@') !== 1) {
+        throw new RuntimeException('unexpected SFTP details: '.json_encode($sftp));
+    }
+});
 step('live numbers load without Wings and leave unknown values empty', function () use ($admin, $server) {
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
     $page = Livewire\Livewire::actingAs($admin)->test(Overview::class)->call('listing')->assertOk();
@@ -633,6 +641,16 @@ step('the Admin page: an admin page has Simplify\'s header and the Admin menu, t
     $client->get($url.'?simplify_legacy=0');
     if (! str_contains($client->get($url)->getContent(), '<div x-persist="simplify-admin-side"')) {
         throw new RuntimeException('Back to Simplify does not bring the Admin page back');
+    }
+});
+step('Pelican\'s own admin pages stand in their groups, never under Pelican plugins (K-B72)', function () use ($admin) {
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
+    $tree = Livewire\Livewire::actingAs($admin)->test(Overview::class)->instance()->initial()['admin_tree'];
+    $plugins = array_column(collect($tree)->firstWhere('key', 'extensions')['pages'] ?? [], 'key');
+    $panel = Filament\Facades\Filament::getPanel('admin');
+    $own = array_map(fn (string $class) => strtolower(class_basename($class)), array_filter([...$panel->getResources(), ...$panel->getPages()], fn (string $class) => str_starts_with($class, 'App\\')));
+    if (array_intersect($plugins, $own) !== []) {
+        throw new RuntimeException('pages of Pelican under Pelican plugins: '.implode(', ', array_intersect($plugins, $own)));
     }
 });
 step('Pelican\'s Health page shows in Simplify\'s look', function () use ($admin) {

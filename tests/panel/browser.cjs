@@ -86,6 +86,25 @@ async function run(viewport) {
     if (!phone) say('server page does not scroll', (await scrolls()) <= 1, { scroll: await scrolls() });
     await axe('server');
 
+    // K-B70: each button of the console's title row takes its own click (Pelican rc.3 put its own Copy and Download
+    // over that corner). K-B74: the console in its own window shows the console, filling the window.
+    const tools = await page.evaluate(() => [...document.querySelectorAll('#terminal > .ps-console-title button')].filter((btn) => btn.getClientRects().length).map((btn) => {
+      const box = btn.getBoundingClientRect(), hit = document.elementFromPoint(box.left + box.width / 2, box.top + box.height / 2);
+      return { label: btn.getAttribute('aria-label'), own: !!hit && btn.contains(hit) };
+    })).catch(() => null);
+    say("each button of the console's title row takes its own click", !!tools && tools.every((tool) => tool.own) && (phone || tools.length >= 2), tools);
+    if (!phone) {
+      const [popup] = await Promise.all([context.waitForEvent('page', { timeout: 8000 }).catch(() => null), page.locator('#terminal > .ps-console-title .ps-console-window').click({ timeout: 4000 }).catch(() => {})]);
+      if (popup) { await popup.waitForSelector('#terminal .xterm', { state: 'attached', timeout: 15000 }).catch(() => {}); await sleep(2500); }
+      const shown = popup ? await popup.evaluate(() => {
+        const box = (el) => { const b = el ? el.getBoundingClientRect() : null; return b ? [Math.round(b.width), Math.round(b.height), Math.round(b.bottom)] : null; };
+        return { width: innerWidth, height: innerHeight, terminal: box(document.getElementById('terminal')), command: box(document.getElementById('send-command')), scroll: document.documentElement.scrollHeight - innerHeight };
+      }).catch(() => null) : null;
+      if (popup) await popup.screenshot({ path: path.join(out, `${stand}-console-window.png`) }).catch(() => {});
+      say('the console in its own window shows the console, without scrolling', !!shown && !!shown.terminal && shown.terminal[0] > 300 && shown.terminal[1] > 100 && shown.scroll <= 1 && (!shown.command || shown.command[2] <= shown.height), shown);
+      if (popup) await popup.close().catch(() => {});
+    }
+
     // K-B8: the name is edited in the title card itself. A click on the name opens a field with its text selected, a
     // click beside it keeps a change (no autosave, P-38), Esc puts the name back and Enter saves.
     const nameState = () => page.evaluate(() => {

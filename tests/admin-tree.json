@@ -9,6 +9,8 @@
 {"key":"pluginresource","label":"Plugins","url":"/admin/plugins","origin":""},
 {"key":"listlogs","label":"Logs","url":"/admin/logs","origin":""},
 {"key":"health","label":"Health","url":"/admin/health","origin":""},
+{"key":"backupresource","label":"Backups","url":"/admin/backups","origin":""},
+{"key":"activityresource","label":"Activity","url":"/admin/activities","origin":""},
 {"key":"announcementresource","label":"Announcements","url":"/admin/announcements","origin":"core"},
 {"key":"embedsettings","label":"Website","url":"/admin/embed","origin":"core"},
 {"key":"servermaker","label":"Server Maker","url":"/admin/maker","origin":"addon"},

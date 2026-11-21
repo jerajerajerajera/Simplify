@@ -72,6 +72,8 @@ jobs:
             php: '8.4'
           - pelican: '1.0.0-rc.3'
             php: '8.4'
+          - pelican: '1.0.0-rc.4'
+            php: '8.4'
     name: panel-smoke (Pelican ${{ matrix.pelican }})
     steps:
       - uses: actions/checkout@v7
@@ -205,14 +207,22 @@ jobs:
         run: grep -h -E '^\[[0-9-]+ [0-9:]+\]' panel/storage/logs/*.log | cut -c1-600 | tail -n 12 || true
   # A real browser on a seeded panel (the audit's seed, urls and fake Wings from the branch audit-tools): the overview, a
   # server's console, a menu click, Admin and Settings on a desktop and a phone, with axe-core and Lighthouse. Only when
-  # something the browser can see changed. The first run is the baseline for tests/panel/budgets.json.
+  # something the browser can see changed. The first run is the baseline for tests/panel/budgets.json. On two Pelican
+  # versions, because the pages differ: rc.2 (the console's output directly in its widget) and the newest (rc.3 put it
+  # in a wrapper with Pelican's own Copy and Download, K-B70). Lighthouse measures against the budgets of rc.2 only.
   browser:
     needs: changes
     if: needs.changes.outputs.code == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        pelican: ['1.0.0-rc.2', '1.0.0-rc.4']
+    # The rc.2 job keeps its name and artifact, so nothing that reads them changes.
+    name: browser${{ matrix.pelican != '1.0.0-rc.2' && format(' (Pelican {0})', matrix.pelican) || '' }}
     env:
-      PELICAN: '1.0.0-rc.2'
+      PELICAN: ${{ matrix.pelican }}
     steps:
       - uses: actions/checkout@v7
         with:
@@ -267,6 +277,7 @@ jobs:
           node tests/panel/browser.cjs --base http://127.0.0.1:8001 --urls ../panel/urls.json --out ../result | tee ../result/browser.txt
           tail -n 1 ../result/browser.txt | grep -qx 'All steps passed'
       - name: Lighthouse
+        if: matrix.pelican == '1.0.0-rc.2'
         working-directory: simplify
         run: |
           export CHROME_PATH="$(node -e "console.log(require('playwright').chromium.executablePath())")"
@@ -281,7 +292,7 @@ jobs:
       - if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: browser-smoke
+          name: browser-smoke${{ matrix.pelican != '1.0.0-rc.2' && format('-{0}', matrix.pelican) || '' }}
           path: result
           retention-days: 14
       - if: failure()

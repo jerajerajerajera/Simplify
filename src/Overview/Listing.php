@@ -91,10 +91,9 @@ final class Listing
         if (! $user->can(SubuserPermission::FileSftp, $server)) {
             return null;
         }
-        $username = $user->username.'.'.$server->uuid_short;
-        $url = (string) $server->getSftpUrl();
 
-        return ['username' => $username, 'url' => str_starts_with($url, 'sftp://') ? 'sftp://'.rawurlencode($username).'@'.substr($url, 7) : ''];
+        // Pelican's link names the account itself, so it is used as it is.
+        return ['username' => $user->username.'.'.$server->uuid_short, 'url' => $server->getSftpUrl($user->username)];
     }
 
     /**
