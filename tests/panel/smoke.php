@@ -564,6 +564,14 @@ step('the overview renders with the server card', function () use ($admin, $serv
         throw new RuntimeException('the server has no card: '.json_encode($card));
     }
 });
+step('the SFTP link on a server page names the account once (K-B71)', function () use ($admin, $server) {
+    $sftp = Listing::one($admin, $server)['sftp'] ?? null;
+    $username = $admin->username.'.'.$server->uuid_short;
+    $url = (string) ($sftp['url'] ?? '');
+    if (($sftp['username'] ?? null) !== $username || ! str_starts_with($url, 'sftp://'.rawurlencode($username).'@') || substr_count($url, '@') !== 1) {
+        throw new RuntimeException('unexpected SFTP details: '.json_encode($sftp));
+    }
+});
 step('live numbers load without Wings and leave unknown values empty', function () use ($admin, $server) {
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
     $page = Livewire\Livewire::actingAs($admin)->test(Overview::class)->call('listing')->assertOk();
@@ -633,6 +641,24 @@ step('the Admin page: an admin page has Simplify\'s header and the Admin menu, t
     $client->get($url.'?simplify_legacy=0');
     if (! str_contains($client->get($url)->getContent(), '<div x-persist="simplify-admin-side"')) {
         throw new RuntimeException('Back to Simplify does not bring the Admin page back');
+    }
+});
+step('Pelican\'s own admin pages stand in their groups, never under Pelican plugins (K-B72)', function () use ($admin) {
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
+    $tree = Livewire\Livewire::actingAs($admin)->test(Overview::class)->instance()->initial()['admin_tree'];
+    $plugins = array_column(collect($tree)->firstWhere('key', 'extensions')['pages'] ?? [], 'key');
+    $panel = Filament\Facades\Filament::getPanel('admin');
+    $own = array_map(fn (string $class) => strtolower(class_basename($class)), array_filter([...$panel->getResources(), ...$panel->getPages()], fn (string $class) => str_starts_with($class, 'App\\')));
+    if (array_intersect($plugins, $own) !== []) {
+        throw new RuntimeException('pages of Pelican under Pelican plugins: '.implode(', ', array_intersect($plugins, $own)));
+    }
+});
+step('the link to Simplify settings opens an item of the Admin menu (K-B77)', function () use ($admin) {
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
+    $initial = Livewire\Livewire::actingAs($admin)->test(Overview::class)->instance()->initial();
+    $leaves = collect($initial['admin_tree'])->flatMap(fn (array $section) => array_column($section['pages'] ?? [], 'url'))->all();
+    if (! in_array($initial['settings_url'], $leaves, true)) {
+        throw new RuntimeException('Open settings goes to '.$initial['settings_url'].', which is no item of the Admin menu');
     }
 });
 step('Pelican\'s Health page shows in Simplify\'s look', function () use ($admin) {
@@ -866,6 +892,25 @@ step('panel settings are saved and a bad value is refused', function () use ($ad
     PanelSettings::save(['friends_mode' => (bool) $friends]);
     if ($on !== true || $off !== false) {
         throw new RuntimeException('friendsMode() does not follow the friends mode setting');
+    }
+});
+step('a save that changed a setting loads the settings again, so the top bar shows it (K-B76)', function () use ($admin) {
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('admin'));
+    $name = PanelSettings::get('brand_name');
+    try {
+        $changed = Livewire\Livewire::actingAs($admin)->test(Settings::class)->set('data.brand_name', 'Changed name')->call('save');
+        noErrors($changed);
+        if (! str_contains((string) ($changed->effects['redirect'] ?? ''), parse_url(Settings::getUrl(panel: 'admin'), PHP_URL_PATH))) {
+            throw new RuntimeException('after a changed name the page was not loaded again: the top bar keeps the old name');
+        }
+        // Save without a change stays where it is.
+        $same = Livewire\Livewire::actingAs($admin)->test(Settings::class)->call('save');
+        noErrors($same);
+        if (isset($same->effects['redirect'])) {
+            throw new RuntimeException('a save without changes loaded the page again');
+        }
+    } finally {
+        PanelSettings::save(['brand_name' => $name]);
     }
 });
 step('the accent colour and refresh rate reach the panel', function () use ($admin) {

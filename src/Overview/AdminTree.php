@@ -15,11 +15,11 @@ final class AdminTree
 {
     /** Group key, label key, icon, colour and Pelican's pages in it (AdminMenu keys). */
     private const PLAN = [
-        ['servers', 'servers', 'host', '#5fb87a', ['serverresource', 'eggresource', 'mountresource']],
+        ['servers', 'servers', 'host', '#5fb87a', ['serverresource', 'eggresource', 'mountresource', 'backupresource']],
         ['nodes', 'nodes', 'monitor', '#5b9cf0', ['noderesource', 'databasehostresource', 'backuphostresource']],
         ['people', 'people', 'players', '#a78bfa', ['userresource', 'roleresource']],
         ['integrations', 'integrations', 'link', '#f0a35b', ['apikeyresource', 'webhookresource']],
-        ['panel', 'panel', 'gear', '#94a3b8', ['settings', 'pluginresource', 'listlogs']],
+        ['panel', 'panel', 'gear', '#94a3b8', ['settings', 'pluginresource', 'listlogs', 'activityresource']],
         ['extensions', null, 'plugins', '#2dd4bf', []],
         ['health', 'health', 'heart', '#f87171', ['health']],
     ];
@@ -55,7 +55,7 @@ final class AdminTree
             $list = array_values(array_filter($tabs('addons'), fn (array $tab) => $tab['key'] === 'settings:addons'));
             array_splice($plan, (int) $at, 1, [
                 ['key' => 'panel', 'label' => $label('settings'), 'icon' => 'gear', 'color' => '#94a3b8', 'keys' => [], 'tabs' => $tabs('panel'), 'last' => $list],
-                ['key' => 'pelican', 'label' => $label('pelican_settings'), 'icon' => 'settings', 'color' => '#5b9cf0', 'keys' => ['pluginresource', 'listlogs'], 'tabs' => $tabs('pelican')],
+                ['key' => 'pelican', 'label' => $label('pelican_settings'), 'icon' => 'settings', 'color' => '#5b9cf0', 'keys' => ['pluginresource', 'listlogs', 'activityresource'], 'tabs' => $tabs('pelican')],
                 ['key' => 'addons', 'label' => $label('addons'), 'icon' => 'plugins', 'color' => '#b48cf2', 'keys' => [], 'tabs' => array_values(array_filter($tabs('addons'), fn (array $tab) => $tab['key'] !== 'settings:addons')), 'apart' => true],
             ]);
             // Pelican plugins comes after the add-ons.

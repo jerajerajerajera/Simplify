@@ -50,6 +50,9 @@ on:
       tools:
         description: 'Branch with the audit scripts, checked out into tests/audit (they are not part of the plugin)'
         default: 'audit-tools'
+      pelican:
+        description: 'Pelican version of the panel (a tag without the v). Before a release also the newest: its pages differ (rc.3 changed the console)'
+        default: '1.0.0-rc.2'
 permissions:
   contents: write
 jobs:
@@ -110,7 +113,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 120
     env:
-      PELICAN: '1.0.0-rc.2'
+      PELICAN: ${{ inputs.pelican || '1.0.0-rc.2' }}
     steps:
       - uses: actions/checkout@v7
         with:

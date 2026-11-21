@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- Pelican 1.0.0-rc.3 and rc.4: the console fits again. Pelican's new Copy and Download buttons lay over Bigger console and Open the console in a new window; they now stand in the console's title row with the other tools. The command line is part of the console's card again and the server menu is as tall as the console.
+- Open the console in a new window shows the console, filling the window. It opened an empty white window.
+- The SFTP link in a server's menu names the account once. It held the username twice, which SFTP programs refuse.
+- Admin menu: Pelican's new pages Activity (rc.3) and Backups (rc.4) stand with Pelican's own pages (Backups under Servers, Activity beside Logs) instead of under Pelican plugins.
+- Lists with bulk actions (Eggs, Users): the checkbox of a row stands before its picture instead of under it, and every row starts at the same place.
+- Settings: the Changes made bar shows again after a click in the menu. Once it had shown and gone (after a save), a change on the next page showed no bar; only the save icon in the title bar still worked.
+- Simplify settings: after Save the top bar and the menu show the new panel name, logo, colour and support link at once. They kept the old ones until you reloaded the page.
+- Customize › More › Open settings opens the General tab. It showed Appearance's fields under the title General.
+
 ## 2.0.0-beta.14
 
 - Announcements: one sent When a server starts can also be limited to days of the week. Only starts on the picked days go out, in your profile's time zone; with no day picked it goes out every day, as before (Khion's idea).
