@@ -19,7 +19,7 @@ function findChrome(dir) {
 if (!chrome) { console.error('FAIL no Chrome or Chromium found for tests/settings-nav-wrap.cjs (set CHROME)'); process.exit(1); }
 
 const css = path.join(__dirname, '..', 'resources', 'css');
-const labels = ['Appearance', 'General', 'Your phone app', 'Website embed', 'Automatic subdomains', 'Announcements', 'Egg Updates', 'Explain', 'Hosting', 'Server Maker', 'Toolkit', 'Add-ons', 'Browse Hub', 'Pelican settings'];
+const labels = ['Appearance', 'General', 'Your phone app', 'Website embed', 'Automatic subdomains', 'Announcements', 'Egg Updates', 'Explain', 'Hosting', 'Server Maker', 'Toolkit', 'Add-ons', 'Pelican settings'];
 // Simplify's settings in the legacy panel (no html.ps-shell): Pelican's page with the row of tabs at its start.
 const page = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <style>*{box-sizing:border-box}body{margin:0}.fi-main{max-width:1320px;margin:0 auto;padding:0 32px}</style>

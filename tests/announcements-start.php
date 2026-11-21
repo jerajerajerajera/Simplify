@@ -37,6 +37,18 @@ check(S::look([5 => false], [5 => 5000])['started'] === [5] && S::look(['5' => 1
 check(S::since(90500, 10000) === 9910 && S::since('90500', 10000) === 9910, 'the start is now minus the uptime, which Wings gives in milliseconds');
 check(S::since(0, 10000) === true && S::since(null, 10000) === true, 'no uptime: running since an unknown moment');
 
+// K-B86: Wings did not answer in time (Pelican waits one second and then calls the server "missing"). That is not
+// "off": the next answer, a minute later, would be a start, and the announcement went out again and again for a server
+// that never stopped. An unknown state keeps what the last look saw.
+check(S::runs('running') === true && S::runs('offline') === false && S::runs('starting') === false && S::runs('exited') === false, 'running is running, offline, starting and exited are not');
+check(S::runs('missing') === null, 'missing is unknown: Wings did not answer, or does not have the server');
+$silent = S::look([5 => 1000, 6 => true, 7 => false], [5 => null, 6 => null, 7 => null]);
+check($silent['started'] === [] && $silent['seen'] === [5 => 1000, 6 => true, 7 => false], 'no answer from Wings: nothing started, and the last known state is kept');
+check(S::look($silent['seen'], [5 => 1012, 6 => true, 7 => false])['started'] === [], 'the answer a minute later is no start');
+check(S::look($silent['seen'], [5 => 5000, 6 => true, 7 => true])['started'] === [5, 7], 'a real restart or start during the silence counts once Wings answers again');
+check(S::look(['5' => 1000], [5 => null])['seen'] === [5 => 1000], 'the kept state survives ids read back from JSON as strings');
+check(S::look([], [5 => null]) === ['started' => [], 'seen' => []], 'a server never seen stays unknown');
+
 // Watched servers.
 check(S::servers([3, '4', 3, 0, -1, 'x', null, 4.0]) === [3, 4], 'whole ids above 0, each once');
 check(S::servers(null) === [] && S::servers('3') === [], 'nothing usable is no servers');

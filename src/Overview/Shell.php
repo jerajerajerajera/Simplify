@@ -88,6 +88,7 @@ trait Shell
             ],
             'admin_tree' => $tree,
             'health_checks' => $user->isAdmin() ? HostHealth::checks() : [],
+            'health_attention' => $user->isAdmin() ? HostHealth::attention() : null,
             'features' => ['host_health' => $user->isRootAdmin()],
             'performance' => ['overview_seconds' => $settings['overview_seconds']],
             'overview_groups' => ServerGroups::clean(Preferences::get($user, 'overview.groups')),

@@ -26,10 +26,10 @@ use Simplify\Core\Http\Controllers\AssetController;
 use Simplify\Core\Http\Controllers\BannerController;
 use Simplify\Core\Http\Controllers\BrandController;
 use Simplify\Core\Http\Controllers\WebAppController;
-use Simplify\Core\Hub\Livewire\BrowseHub;
 use Simplify\Core\Problems\InstallProblems;
 use Simplify\Core\Push\PelicanNotices;
 use Simplify\Core\Push\Push;
+use Simplify\Core\Server\FilesMenu;
 use Simplify\Core\Server\Looks;
 use Simplify\Core\Subdomains\Console\SyncSubdomains;
 use Simplify\Core\Subdomains\Subdomains;
@@ -98,7 +98,10 @@ final class SimplifyServiceProvider extends ServiceProvider
         $this->app['view']->getFinder()->prependLocation(dirname(__DIR__, 2).'/resources/overrides');
         Gate::policy(Announcement::class, AnnouncementPolicy::class);
         Livewire::component('simplify-core-announcement-bars', AnnouncementBars::class);
-        Livewire::component('simplify-core-browse-hub', BrowseHub::class);
+        // Files: a file's Delete goes into its ⋯ menu, once Pelican's page has built its table (on its first load and on
+        // every later request).
+        \Livewire\after('mount', fn ($component) => FilesMenu::tidy($component));
+        \Livewire\after('hydrate', fn ($component) => FilesMenu::tidy($component));
 
         // A deleted server's records leave Cloudflare after the response, so deleting never waits for it; the sync retries.
         Server::deleted(function (Server $server) {

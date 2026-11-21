@@ -33,7 +33,7 @@ on:
         description: 'Branch of Simplify to audit (empty = this checkout); the audit itself always comes from this checkout and the tools branch'
         default: ''
       section:
-        description: 'Only one section (empty = everything): seasons, extras, fixes (1.5.3: settings and setup on a phone, no Start/Restart while installing, steady quick commands), layers, first, nav, create, maker (Server Maker steps), schedule (Edit schedule reachable, #236), hub (Settings › Browse Hub: list, Install on Hub links, Details on top), inventory (every function, for the 0.7.0 diff), compare (the overview measured, 8 servers) or speed (opening Admin tools timed: server parts, files, legacy panel)'
+        description: 'Only one section (empty = everything): seasons, extras, fixes (1.5.3: settings and setup on a phone, no Start/Restart while installing, steady quick commands), layers, first, nav, create, maker (Server Maker steps), schedule (Edit schedule reachable, #236), hub (the settings have no Browse Hub), inventory (every function, for the 0.7.0 diff), compare (the overview measured, 8 servers) or speed (opening Admin tools timed: server parts, files, legacy panel)'
         default: ''
       from:
         description: 'A Simplify tag (e.g. v1.5.1) installed and seeded first; then the Simplify branch updates it, as on a real panel'

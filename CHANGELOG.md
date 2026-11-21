@@ -18,6 +18,18 @@
 - Overview: Create server at the end of the filter row shows whole, with the plus on its corner. For people who are not a root admin its end faded out and the plus was cut off.
 - Lists beside a menu (Admin, a server's pages) in a window up to 1100 pixels wide: a row shows every column whole, under the name, as on a phone, and keeps its checkbox. The columns were pressed onto one line until only a few letters of them were left.
 - The tools above a list (Group by, Sort by, the search, the column button) take a second row when they do not fit. Sort by ran out of the card, the search lay over it and the column button was out of sight; on a phone the last tools ran out of the page.
+- Root admins find the notice about a new Pelican or Wings version in the bell too, once per version, also with app notifications turned off. It only went out as an app notification.
+- The Health button on the overview says Attention needed while Pelican's Health page reports a failed check or a warning, and its details say how many checks need attention, with a link to that page. It said Healthy as long as the nodes answered.
+- Lists: a description under a name shows as one grey line, cut off where the row ends (Plugins, Activity, a server's schedules). They were hidden. The Eggs list keeps them out, as before.
+- Files: a file's Delete is the last item of its menu. It was a red button of its own in every row.
+- Announcements sent When a server starts no longer go out again while the server keeps running. One missed answer from Wings (a busy node, or a node in maintenance) counted as a stop and a start, so the announcement repeated.
+- Announcements: Devices reached shows the devices of the latest sending. For an announcement that goes out more than once (on a server start, on days of the week) it added up every sending, so one device was counted again and again.
+- Announcements: the list says Sent once an announcement went out on a server start. It kept saying Waits for start.
+- Start, Restart, Stop and Kill from Simplify stand once in the Activity log and fire a webhook once. On Pelican 1.0.0-rc.2 and later they were written twice.
+- The server menu leaves out Pelican's Open in Admin in every language. With the panel in another language than English it showed as an extra item.
+- The website embed carries the panel name set in Simplify's Appearance settings. Its title said Pelican.
+- Phones: on admin Plugins the import buttons stand in the row of the filter, and Sort by and the search share the next row. The buttons stood halfway between two rows, beside a search field of a few letters.
+- Browse Hub, hidden since it left the settings, is removed. Pelican's Plugins page links to the Hub.
 
 ## 2.0.0-beta.14
 

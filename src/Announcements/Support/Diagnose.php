@@ -165,6 +165,7 @@ final class Diagnose
                 $was = $seen[$server->id] ?? $seen[(string) $server->id] ?? null;
                 $parts[] = $server->name.': '.match (true) {
                     in_array((int) $server->id, $look['started'], true) => 'started since the last look, the next run sends it.',
+                    $running[$server->id] === null => 'Wings gave no state just now (no answer in time, or the node is in maintenance); what the last look saw is kept.',
                     $was === null => ($running[$server->id] ? 'running' : 'offline').', not looked at yet (the first look only remembers it).',
                     (bool) $running[$server->id] => 'running, and already was at the last look: no start yet. Restart it to test.',
                     default => 'offline; a start will be seen within a minute.',

@@ -29,7 +29,7 @@ use Simplify\Core\Announcements\Support\Weekly;
  * @property ?CarbonInterface $in_bell_at when it was put there
  * @property bool $bell_pinned on top of everyone's notifications until it ends
  * @property bool $push also as app notification through Simplify
- * @property int $pushed_to devices reached, added up
+ * @property int $pushed_to devices reached by its latest sending: at a time, this week's turn or the latest start
  * @property bool $in_game also posted in the chat of game servers
  * @property ?list<int> $in_game_servers with the groups empty: all servers
  * @property ?list<string> $in_game_groups ids of the author's server groups, read when it is sent

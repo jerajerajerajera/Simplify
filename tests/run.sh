@@ -24,7 +24,6 @@ php tests/announcements-weekly.php
 php tests/embed.php
 php tests/subdomains.php
 php tests/subdomains-import.php
-php tests/hub.php
 php tests/assets.php
 php tests/lang.php
 php tests/js-text.php
@@ -57,6 +56,7 @@ node tests/overview-filters.cjs
 node tests/customize-reset.cjs
 node tests/card-bars.cjs
 node tests/health-pill-steady.cjs
+node tests/health-pill-attention.cjs
 node tests/admin-menu-page.cjs
 node tests/admin-menu-slide.cjs
 node tests/embed-preview.cjs
@@ -70,6 +70,7 @@ node tests/files-path.cjs
 node tests/phone-badge.cjs
 node tests/toolbar-fade.cjs
 node tests/list-narrow.cjs
+node tests/list-descriptions.cjs
 python3 tests/hub-check.py
 # The audit scripts live on the branch audit-tools (checked out into tests/audit by audit.yml), not in the plugin.
 if [ -f tests/audit/parts.py ]; then python3 tests/audit/parts.py --self-test; fi

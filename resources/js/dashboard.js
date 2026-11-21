@@ -1344,6 +1344,13 @@
         panel.style.setProperty('--ps-pop-left', Math.max(gap, Math.min(rect.left / scale, screen - width - gap)) + 'px');
         panel.style.setProperty('--ps-pop-top', rect.bottom / scale + gap + 'px');
       },
+      /** The Health button's colour and word: the load of the hosts, or Attention needed while that load is fine and one
+          of Pelican's health checks is not: the button said Healthy above a Health page that said "2 need attention". */
+      healthPill() {
+        const host = this.boot.host_health;
+        if (this.boot.health_attention && (!host?.state || host.state === 'healthy')) return { state: 'warning', label: t('dashboard.attention_needed') };
+        return { state: host?.state || 'unavailable', label: host?.label || '' };
+      },
       /** Host health always has its button in the top bar (V43), for root admins. */
       healthPlace() {
         return this.boot.features?.host_health ? 'top-bar' : null;

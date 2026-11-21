@@ -12,6 +12,7 @@ use Simplify\Core\Server\Looks;
 use Simplify\Core\Subdomains\Subdomains;
 use Simplify\Core\Support\Assets;
 use Simplify\Core\Support\SafeCache;
+use Simplify\Core\WebApp\WebApp;
 use Throwable;
 
 /**
@@ -48,7 +49,8 @@ final class ServerList
         return [
             'options' => $options,
             'servers' => SafeCache::remember(self::CACHE, self::TTL, fn (): array => self::collect()),
-            'name' => (string) config('app.name', 'Pelican'),
+            // The panel's own name from Simplify's settings; it said Pelican on a panel with a name of its own (K-B91).
+            'name' => WebApp::name(),
             'texts' => self::texts(),
         ];
     }

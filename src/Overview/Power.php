@@ -6,6 +6,7 @@ namespace Simplify\Core\Overview;
 
 use App\Enums\SubuserPermission;
 use App\Facades\Activity;
+use App\Models\ActivityLog;
 use App\Models\Server;
 use App\Models\User;
 use App\Repositories\Daemon\DaemonServerRepository;
@@ -41,8 +42,13 @@ final class Power
 
     public static function send(Server $server, string $action): void
     {
+        $last = (int) ActivityLog::query()->max('id');
         app(DaemonServerRepository::class)->setServer($server)->power($action)->throw();
-        Activity::event('server:power.'.$action)->subject($server)->log();
+        // Pelican 1.0.0-rc.2 and later write the action to the activity log themselves: with a line of Simplify's too,
+        // Activity showed every restart twice and a webhook on it was called twice (K-B88).
+        if (! ActivityLog::query()->where('id', '>', $last)->where('event', 'server:power.'.$action)->exists()) {
+            Activity::event('server:power.'.$action)->subject($server)->log();
+        }
         // Pelican keeps the state for 15 seconds; drop it so the tile shows the change on the next refresh.
         cache()->forget("servers.$server->uuid.status");
         cache()->forget("servers.$server->uuid.resources");

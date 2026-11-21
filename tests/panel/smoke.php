@@ -2,12 +2,16 @@
 
 // Loads Simplify inside a real Pelican panel and opens its pages. Run from the panel folder after
 // `php artisan p:plugin:install simplify`: php plugins/simplify/tests/panel/smoke.php
+use App\Enums\ContainerStatus;
 use App\Filament\Admin\Pages\Health;
+use App\Filament\Server\Resources\Files\Pages\ListFiles;
+use App\Models\ActivityLog;
 use App\Models\Role;
 use App\Models\Schedule;
 use App\Models\Server;
 use App\Models\Task;
 use App\Models\User;
+use Filament\Actions\ActionGroup;
 use Filament\Notifications\Notification;
 use Filament\Support\Colors\Color;
 use Illuminate\Contracts\Console\Kernel;
@@ -18,12 +22,14 @@ use Illuminate\Foundation\Testing\Concerns\InteractsWithSession;
 use Illuminate\Foundation\Testing\Concerns\MakesHttpRequests;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Once;
 use Illuminate\Testing\TestResponse;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\ViewException;
@@ -56,16 +62,16 @@ use Simplify\Core\Filament\Admin\Pages\SetupDone;
 use Simplify\Core\Filament\App\Pages\Connections;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Filament\Server\ServerPage;
-use Simplify\Core\Hub\HubCatalog;
-use Simplify\Core\Hub\Livewire\BrowseHub;
 use Simplify\Core\Models\Setting;
 use Simplify\Core\Overview\Bell as OverviewBell;
 use Simplify\Core\Overview\Listing;
+use Simplify\Core\Overview\Power;
 use Simplify\Core\Push\PluginUpdates;
 use Simplify\Core\Push\Push;
 use Simplify\Core\Push\UpdateNotices;
 use Simplify\Core\Push\WebPush;
 use Simplify\Core\Server\Looks;
+use Simplify\Core\Server\ServerMenu;
 use Simplify\Core\Subdomains\Filament\AutomaticSubdomains;
 use Simplify\Core\Subdomains\Filament\ServerSubdomain;
 use Simplify\Core\Subdomains\Models\Subdomain;
@@ -77,7 +83,9 @@ use Simplify\Core\Support\FreshViews;
 use Simplify\Core\Support\PanelSettings;
 use Simplify\Core\Support\Preferences;
 use Simplify\Core\Support\StaleCode;
-use Symfony\Component\HttpKernel\Exception\HttpException;
+use Spatie\Health\ResultStores\ResultStore;
+use Spatie\Health\ResultStores\StoredCheckResults\StoredCheckResult;
+use Spatie\Health\ResultStores\StoredCheckResults\StoredCheckResults;
 
 define('LARAVEL_START', microtime(true));
 require getcwd().'/vendor/autoload.php';
@@ -401,7 +409,7 @@ step('settings page renders with its one row of tabs, Pelican as a link without 
     if (preg_match('/<iframe(?![^>]*ps-create-frame)/', $html) || str_contains((string) ($menu['settings:pelican-mail']['url'] ?? ''), 'simplify_embed')) {
         throw new RuntimeException('Pelican\'s settings are still in a frame');
     }
-    foreach (['appearance', 'general', 'app', 'website', 'subdomains', 'announcements', 'addons', ...(Settings::HUB ? ['hub'] : []), 'pelican'] as $key) {
+    foreach (['appearance', 'general', 'app', 'website', 'subdomains', 'announcements', 'addons', 'pelican'] as $key) {
         if (! $nav->contains($key)) {
             throw new RuntimeException("the settings' row of tabs has no $key: ".$nav->toJson());
         }
@@ -485,66 +493,28 @@ step('every panel page loads the stylesheet', function () use ($admin) {
         throw new RuntimeException('the stylesheet link is missing');
     }
 });
-step('Browse Hub: a tab of the settings that lists the Hub with its makers and only links to the Hub', function () use ($admin) {
+step('the settings have no Browse Hub: no tab, nothing in the row or the Admin menu, and the Hub is never read', function () use ($admin) {
     $asked = [];
     Http::fake(['hub.pelican.dev/*' => function ($request) use (&$asked) {
-        $asked[] = $path = parse_url($request->url(), PHP_URL_PATH).'?'.parse_url($request->url(), PHP_URL_QUERY);
-        if (str_starts_with($path, '/api/plugins/nord-theme')) {
-            return Http::response(['slug' => 'nord-theme', 'screenshots' => ['https://peli.nyc3.digitaloceanspaces.com/nord.png'], 'license' => 'MIT']);
-        }
+        $asked[] = $request->url();
 
-        return Http::response(['last_page' => 1, 'data' => [
-            ['slug' => 'nord-theme', 'title' => 'Nord Theme', 'type' => 'theme', 'author_name' => 'smoke-maker', 'pricing_type' => 'free', 'downloads_count' => 89, 'description' => 'A light and dark arctic theme.'],
-            ['slug' => 'smoke-tickets', 'title' => 'Smoke Tickets', 'type' => 'plugin', 'author_name' => 'smoke-maker', 'pricing_type' => 'free', 'downloads_count' => 5, 'description' => 'Tickets.'],
-            ['slug' => 'paid-thing', 'title' => 'Paid', 'type' => 'plugin', 'author_name' => 'x', 'pricing_type' => 'paid'],
-        ]]);
+        return Http::response(['last_page' => 1, 'data' => []]);
     }]);
-    HubCatalog::forget();
+    // The address of the tab it once had opens the settings on their first tab.
     $url = Settings::getUrl(['tab' => 'hub'], panel: 'admin');
     $response = visit($admin, $url);
     expectOk($response, $url);
     auth()->setUser($admin);
-    // Browse Hub is hidden for now (Settings::HUB, Jeroen 3-11): no tab, no item in the row or the Admin menu. Its list
-    // itself is still tested below, so turning it back on needs no new work.
-    $hubGroup = collect(Settings::menu())->pluck('group', 'key')['settings:hub'] ?? null;
-    $hubInRow = collect(Settings::nav())->pluck('key')->contains('hub');
-    if (Settings::HUB ? (! str_contains($response->getContent(), __('simplify::settings.hub.tab')) || $hubGroup !== 'addons' || ! $hubInRow) : ($hubGroup !== null || $hubInRow)) {
-        throw new RuntimeException(Settings::HUB ? 'Browse Hub is not a tab of the settings under Add-ons' : 'Browse Hub is still in the settings row or the Admin menu');
+    if (collect(Settings::menu())->pluck('key')->contains('settings:hub') || collect(Settings::nav())->pluck('key')->contains('hub') || in_array('hub', Settings::TABS, true)) {
+        throw new RuntimeException('Browse Hub is still a tab, in the settings row or in the Admin menu');
+    }
+    foreach (['Browse Hub', 'settings.hub.', 'simplify-core-browse-hub', 's-hub-'] as $left) {
+        if (str_contains($response->getContent(), $left)) {
+            throw new RuntimeException("the settings page still holds $left");
+        }
     }
     if ($asked !== []) {
-        throw new RuntimeException('the settings page read the Hub before the tab was shown: '.json_encode($asked));
-    }
-    $hub = Livewire\Livewire::withoutLazyLoading()->test(BrowseHub::class);
-    $html = $hub->html();
-    foreach (['Nord Theme', 'smoke-maker', 'https://hub.pelican.dev/plugins/nord-theme', __('simplify::settings.hub.install'), 'peli.nyc3.digitaloceanspaces.com/nord.png'] as $want) {
-        if (! str_contains($html, $want)) {
-            throw new RuntimeException("the themes list misses $want");
-        }
-    }
-    $html = $hub->set('type', 'plugin')->html();
-    if (! str_contains($html, 'Smoke Tickets') || str_contains($html, 'Nord Theme') || str_contains($html, 'Paid')) {
-        throw new RuntimeException('the plugins list is wrong');
-    }
-    if (! str_contains($hub->call('show', 'smoke-tickets')->html(), 's-hub-dialog')) {
-        throw new RuntimeException('Details does not open');
-    }
-    $before = count($asked);
-    $hub->call('readAgain');
-    if (count($asked) !== $before) {
-        throw new RuntimeException('Read again read the Hub twice within five minutes');
-    }
-    $stranger = User::withoutEvents(fn () => User::factory()->create());
-    auth()->setUser($stranger);
-    try {
-        if (str_contains(Livewire\Livewire::withoutLazyLoading()->test(BrowseHub::class)->html(), 'Nord Theme')) {
-            throw new LogicException('a user who is no root admin could open Browse Hub');
-        }
-    } catch (HttpException $e) {
-        // Forbidden, as it should be.
-    } finally {
-        auth()->setUser($admin);
-        $stranger->delete();
-        HubCatalog::forget();
+        throw new RuntimeException('the settings page read the Hub: '.json_encode($asked));
     }
 });
 $server = Server::query()->first() ?? Server::factory()->create(['owner_id' => $admin->id, 'name' => 'Smoke server']);
@@ -678,6 +648,18 @@ step('a power action on a server the user cannot reach is refused', function () 
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
     Livewire\Livewire::actingAs($admin)->test(Overview::class)->call('overviewPower', 'no-such-server', 'start')->assertForbidden();
 });
+step('a power action is written to the activity log once (K-B88)', function () use ($admin, $server) {
+    // Pelican 1.0.0-rc.2 and later write it themselves when Wings takes the action; Simplify added a second line, so
+    // Activity showed every restart twice and a webhook on server:power.restart was called twice.
+    Http::fake(['*/api/servers/*/power' => Http::response('', 204), '*' => Http::response('', 500)]);
+    Auth::login($admin);
+    $lines = fn () => ActivityLog::query()->where('event', 'server:power.restart')->count();
+    $before = $lines();
+    Power::send($server, 'restart');
+    if ($lines() - $before !== 1) {
+        throw new RuntimeException('one restart wrote '.($lines() - $before).' lines to the activity log');
+    }
+});
 step('server groups and the server order are saved for the account', function () use ($admin, $server) {
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
     Livewire\Livewire::actingAs($admin)->test(Overview::class)
@@ -788,6 +770,61 @@ step('a suspended server shows its owner why and the add-on\'s main link on the 
         }
     } finally {
         $server->forceFill(['owner_id' => $owner, 'status' => null])->saveQuietly();
+    }
+});
+step('the server menu leaves Pelican\'s Open in Admin out, in every language (K-B90)', function () use ($admin, $server) {
+    // Pelican names the item when the panel starts, in the panel's language; the menu is built in the account's. With
+    // another language than the panel's the names differed, and the item showed in the menu, in English.
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('server'));
+    auth()->setUser($admin);
+    Filament\Facades\Filament::setTenant($server);
+    foreach (['en', 'nl', 'de'] as $language) {
+        app()->setLocale($language);
+        $menu = ServerMenu::build();
+        $links = collect([...$menu['main'], ...$menu['advanced']]);
+        $admins = $links->filter(fn (array $link) => str_contains($link['url'], '/admin/'))->pluck('label')->all();
+        if ($admins !== [] || $links->isEmpty()) {
+            throw new RuntimeException("in $language the server menu has ".$links->count().' links, to Admin: '.json_encode($admins));
+        }
+    }
+    app()->setLocale('en');
+});
+step('Files: a file\'s Delete is in its menu, not a red button of its own', function () use ($admin, $server) {
+    Http::fake([
+        '*/files/list-directory*' => Http::response([['name' => 'server.properties', 'created' => '2026-01-01T00:00:00Z', 'modified' => '2026-01-01T00:00:00Z', 'mode' => '-rw-r--r--', 'mode_bits' => '644', 'size' => 120, 'directory' => false, 'file' => true, 'symlink' => false, 'mime' => 'text/plain']]),
+        '*' => Http::response('', 500),
+    ]);
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('server'));
+    auth()->setUser($admin);
+    Filament\Facades\Filament::setTenant($server);
+    $page = Livewire\Livewire::actingAs($admin)->test(ListFiles::class);
+    $names = function (Testable $page): array {
+        $own = $menu = [];
+        foreach ($page->instance()->getTable()->getRecordActions() as $action) {
+            if ($action instanceof ActionGroup) {
+                $menu = [...$menu, ...array_keys($action->getFlatActions())];
+            } else {
+                $own[] = $action->getName();
+            }
+        }
+
+        return ['own' => $own, 'menu' => $menu];
+    };
+    foreach (['first load' => $page, 'a later request' => $page->call('$refresh')] as $when => $now) {
+        $found = $names($now);
+        if (in_array('delete', $found['own'], true) || ($found['menu'] === [] ? null : end($found['menu'])) !== 'delete') {
+            throw new RuntimeException("on $when Delete is not the last item of the menu: ".json_encode($found));
+        }
+    }
+    // The menu item has its name next to the bin, and still asks before it deletes.
+    $delete = collect($page->instance()->getTable()->getRecordActions())->first(fn ($action) => $action instanceof ActionGroup)->getFlatActions()['delete'];
+    if ($delete->isLabelHidden() || ! $delete->isConfirmationRequired()) {
+        throw new RuntimeException('Delete in the menu has no name, or deletes without asking');
+    }
+    // The row itself, as the browser gets it: Delete is an item of the menu, in the colour of a dangerous action.
+    $html = $page->call('loadTable')->html();
+    if (! str_contains($html, 'server.properties') || preg_match('/class="[^"]*fi-dropdown-list-item[^"]*fi-color-danger[^"]*"\s+wire:click="mountAction\(\'delete\'/', $html) !== 1) {
+        throw new RuntimeException('the row of a file does not show Delete as an item of its menu');
     }
 });
 step('a server gets a colour and banner from its page, shown on its card', function () use ($admin, $server) {
@@ -954,6 +991,50 @@ step('host health loads for a root admin and names a node that does not answer',
         throw new RuntimeException('unexpected host health: '.json_encode($health));
     }
 });
+step('the Health button knows when Pelican\'s health checks need attention', function () use ($admin) {
+    // The page under the button counts the checks that failed, crashed or warn; the button gets that count's words.
+    $store = fn (array $statuses) => app()->instance(ResultStore::class, new class($statuses) implements ResultStore
+    {
+        /** @param list<string> $statuses */
+        public function __construct(private array $statuses) {}
+
+        public function save(Collection $checkResults): void {}
+
+        public function latestResults(): ?StoredCheckResults
+        {
+            return new StoredCheckResults(now(), collect($this->statuses)->map(
+                fn (string $status, int $i) => new StoredCheckResult("Smoke$i", "Smoke $i", 'smoke', 'smoke', $status),
+            ));
+        }
+    });
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('app'));
+    $attention = function () use ($admin) {
+        Once::flush();
+
+        $initial = Livewire\Livewire::actingAs($admin)->test(Overview::class)->instance()->initial();
+
+        return array_key_exists('health_attention', $initial) ? $initial['health_attention'] : 'missing';
+    };
+    $store(['ok', 'warning', 'failed', 'skipped', 'crashed']);
+    if ($attention() !== '3 need attention') {
+        throw new RuntimeException('three checks need attention, the button got: '.json_encode($attention()));
+    }
+    $store(['ok', 'warning']);
+    if ($attention() !== '1 needs attention') {
+        throw new RuntimeException('one check needs attention, the button got: '.json_encode($attention()));
+    }
+    $store(['ok', 'skipped']);
+    if ($attention() !== null) {
+        throw new RuntimeException('every check is fine, the button got: '.json_encode($attention()));
+    }
+    $player = User::where('email', 'smoke-player@example.com')->first()
+        ?? User::withoutEvents(fn () => User::factory()->create(['email' => 'smoke-player@example.com']));
+    $store(['failed']);
+    Once::flush();
+    if ((Livewire\Livewire::actingAs($player)->test(Overview::class)->instance()->initial()['health_attention'] ?? null) !== null) {
+        throw new RuntimeException('someone who is no admin was told about the health checks');
+    }
+});
 step('the panel can be installed as an app', function () use ($admin) {
     $manifest = visit($admin, '/simplify/manifest.webmanifest');
     expectOk($manifest, '/simplify/manifest.webmanifest');
@@ -1022,13 +1103,32 @@ step('update notices tell root admins about a new Pelican once', function () use
         'fcm.googleapis.com/*' => Http::response('', 201),
         '*' => Http::response('', 500),
     ]);
+    cache()->forget('simplify.update-notice.pelican-99.0.0');
+    $bell = fn () => $admin->notifications()->where('data->title', 'Pelican 99.0.0 is available')->count();
+    $admin->notifications()->where('data->title', 'Pelican 99.0.0 is available')->delete();
     if (Artisan::call('simplify:update-notices') !== 0 || ! in_array('pelican-99.0.0', $device->refresh()->received ?? [], true)) {
         throw new RuntimeException('no update notice: '.Artisan::output().json_encode($device->received));
     }
-    if (UpdateNotices::send() !== 0) {
+    if ($bell() !== 1) {
+        throw new RuntimeException('the bell got '.$bell().' notices about the new Pelican, expected 1');
+    }
+    if (UpdateNotices::send() !== 0 || $bell() !== 1) {
         throw new RuntimeException('the same update was announced twice');
     }
     $device->delete();
+    // The bell gets it without app notifications too: those are a choice per panel and per device.
+    cache()->forget('simplify.update-notice.pelican-99.0.0');
+    $admin->notifications()->where('data->title', 'Pelican 99.0.0 is available')->delete();
+    PanelSettings::save(['push' => false]);
+    try {
+        UpdateNotices::send();
+        if ($bell() !== 1) {
+            throw new RuntimeException('with app notifications off the bell got '.$bell().' notices, expected 1');
+        }
+    } finally {
+        PanelSettings::save(['push' => true]);
+        $admin->notifications()->where('data->title', 'Pelican 99.0.0 is available')->delete();
+    }
 });
 step('announcements: live bars show for the right people, and the admin list is for root admins', function () use ($admin) {
     $player = User::where('email', 'smoke-player@example.com')->first()
@@ -1143,7 +1243,11 @@ step('announcements on a server start: no bar and no bell item at a time, the sc
         if ($admin->notifications()->where('data->viewData->simplify_announcement', $announcement->id)->exists()) {
             throw new RuntimeException('an announcement for a server start went to the bell before any start');
         }
-        // The server has no Wings here, so it is offline: remembered as off, nothing sent.
+        // Wings says the server is off: remembered as off, nothing sent.
+        cache()->put("servers.$server->uuid.status", ContainerStatus::Offline, 60);
+        cache()->forget('simplify-announcements.start.'.$announcement->id.'.'.intdiv(time(), 60));
+        Artisan::call('simplify:announcements');
+        $announcement->refresh();
         if ($announcement->start_seen != [$server->id => false] || $announcement->in_game_at !== null) {
             throw new RuntimeException('the scheduler did not remember the server as offline: '.json_encode($announcement->start_seen));
         }
@@ -1152,6 +1256,45 @@ step('announcements on a server start: no bar and no bell item at a time, the sc
             throw new RuntimeException('other servers did not make it look afresh');
         }
     } finally {
+        $announcement->delete();
+    }
+});
+step('announcements on a server start: a missed answer from Wings is no stop and start (K-B86)', function () use ($server) {
+    $admin = User::query()->whereHas('roles')->firstOrFail();
+    $announcement = Announcement::query()->create([
+        'title' => 'Smoke never stopped', 'send_on' => StartTrigger::START, 'start_servers' => [$server->id],
+        'in_bell' => true, 'push' => false, 'in_game' => false, 'created_by' => $admin->id,
+    ]);
+    $items = fn () => $admin->notifications()->where('data->viewData->simplify_announcement', $announcement->id)->count();
+    // One look of the scheduler with what Wings says about the server: Pelican keeps that answer in its cache.
+    $look = function (ContainerStatus $status, int $uptime = 0) use ($announcement, $server) {
+        cache()->put("servers.$server->uuid.status", $status, 60);
+        cache()->put("servers.$server->uuid.resources", $uptime ? ['uptime' => $uptime * 1000] : [], 60);
+        cache()->forget('simplify-announcements.start.'.$announcement->id.'.'.intdiv(time(), 60));
+        Artisan::call('simplify:announcements');
+
+        return $announcement->refresh()->start_seen;
+    };
+    try {
+        $look(ContainerStatus::Running, 3600);
+        $seen = $look(ContainerStatus::Missing);
+        if (! is_int($seen[$server->id] ?? null)) {
+            throw new RuntimeException('with no answer from Wings the running server was not kept as running: '.json_encode($seen));
+        }
+        $look(ContainerStatus::Running, 3660);
+        if ($items() !== 0) {
+            throw new RuntimeException('a server that never stopped got its start announcement after one missed answer from Wings');
+        }
+        // A real restart while Wings was silent still goes out, once.
+        $look(ContainerStatus::Missing);
+        $look(ContainerStatus::Running, 20);
+        $look(ContainerStatus::Running, 80);
+        if ($items() !== 1) {
+            throw new RuntimeException('a restart during the silence went out '.$items().' times, expected once');
+        }
+    } finally {
+        cache()->forget("servers.$server->uuid.status");
+        cache()->forget("servers.$server->uuid.resources");
         $announcement->delete();
     }
 });
@@ -1197,6 +1340,10 @@ step('announcements on a server start: one that goes out once keeps its bell ite
         if ($items() !== 1) {
             throw new RuntimeException('the bell item of a server start was gone right after it was sent: '.$items());
         }
+        // The list says Sent from then on: it kept saying "Waits for start" after the start had gone out (K-B89).
+        if ($announcement->in_bell_at === null) {
+            throw new RuntimeException('after its start went out the list still says the bell waits for a start');
+        }
         // Ending it by hand keeps the message of the start as well; deleting it takes it away.
         $announcement->update(['ends_at' => now()->subMinute()]);
         if ($items() !== 1) {
@@ -1207,6 +1354,42 @@ step('announcements on a server start: one that goes out once keeps its bell ite
     }
     if ($items() !== 0) {
         throw new RuntimeException('a deleted announcement left its bell item behind');
+    }
+});
+step('announcements: Devices reached counts the devices of the latest sending, not every sending added up (K-B87)', function () use ($admin, $server) {
+    $browser = openssl_pkey_new(['curve_name' => 'prime256v1', 'private_key_type' => OPENSSL_KEYTYPE_EC]);
+    $device = Push::subscribe($admin, ['endpoint' => 'https://fcm.googleapis.com/fcm/send/smoke-reached', 'keys' => ['p256dh' => WebPush::b64(WebPush::point($browser)), 'auth' => WebPush::b64(random_bytes(16))]], 'Smoke browser');
+    Http::fake(['fcm.googleapis.com/*' => Http::response('', 201), '*' => Http::response('', 500)]);
+    $start = Announcement::query()->create([
+        'title' => 'Smoke reached on a start', 'send_on' => StartTrigger::START, 'start_servers' => [$server->id],
+        'in_bell' => false, 'push' => true, 'in_game' => false, 'created_by' => $admin->id,
+    ]);
+    $turn = now()->utc()->subMinutes(2)->startOfMinute();
+    $weekly = Announcement::query()->create([
+        'title' => 'Smoke reached each week', 'send_on' => Weekly::SEND_ON, 'weekly_days' => [$turn->isoWeekday()], 'weekly_at' => $turn->format('H:i'),
+        'weekly_zone' => 'UTC', 'weekly_hours' => 1, 'in_bell' => false, 'push' => true, 'in_game' => false, 'created_by' => $admin->id,
+    ]);
+    try {
+        // One device, three starts: the list said "Devices reached: 3" (Khion: 12, with one device).
+        foreach ([1, 2, 3] as $nth) {
+            StartAnnouncements::started($start->refresh(), $server);
+            sleep(1);
+        }
+        if ($start->refresh()->pushed_to !== 1) {
+            throw new RuntimeException('one device and three starts: Devices reached says '.$start->pushed_to);
+        }
+        // On days of the week: last week's turn reached 7 devices, this week's turn reaches the one there is now.
+        $weekly->forceFill(['pushed_to' => 7, 'weekly_from' => $turn->clone()->subWeek(), 'weekly_until' => $turn->clone()->subWeek()->addHour()])->saveQuietly();
+        WeeklyAnnouncements::runDue();
+        Simplify\Core\Announcements\Services\Push::sendDue();
+        Simplify\Core\Announcements\Services\Push::sendDue();
+        if ($weekly->refresh()->pushed_to !== 1) {
+            throw new RuntimeException('one device in this week\'s turn: Devices reached says '.$weekly->pushed_to);
+        }
+    } finally {
+        $start->delete();
+        $weekly->delete();
+        $device->delete();
     }
 });
 step('announcements on days of the week: the form saves the days and time, each turn goes out once and shows the bar again (Khion 15-11)', function () use ($admin) {
@@ -1397,6 +1580,17 @@ step('embed: the public list shows only servers put on the website, without priv
         expectOk($page, 'embed page');
         if (! str_contains($page->getContent(), 'data-server="abc"')) {
             throw new RuntimeException('the option did not reach the script');
+        }
+        // The list carries the panel's own name from Simplify's settings; it said Pelican (K-B91).
+        $old = PanelSettings::get('brand_name');
+        PanelSettings::save(['brand_name' => 'Smoke Hosting']);
+        try {
+            $name = $guest->get('/simplify/embed/servers.json')->json('name');
+            if ($name !== 'Smoke Hosting' || ! str_contains($guest->get('/simplify/embed?page=1')->getContent(), 'Smoke Hosting')) {
+                throw new RuntimeException('the list on a website names the panel '.json_encode($name).', not Smoke Hosting');
+            }
+        } finally {
+            PanelSettings::save(['brand_name' => $old]);
         }
     } finally {
         EmbedServers::replace([]);

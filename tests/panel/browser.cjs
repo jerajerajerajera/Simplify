@@ -39,6 +39,8 @@ const menuKeeps = async (menu, links) => {
   const last = page.locator(links).last();
   const item = ((await last.innerText().catch(() => '')) || '').trim();
   await last.click().catch(() => {});
+  // The click is no page load: wait until the menu marks the clicked page, so a slow panel is not measured halfway.
+  await page.waitForFunction(([root, text]) => { const at = document.querySelector(root + ' [aria-current="page"]'); return !!at && at.textContent.replace(/\s+/g, ' ').includes(text); }, [menu, item.replace(/\s+/g, ' ')], { timeout: 15000 }).catch(() => {});
   await settle(1500);
   const after = await box();
   const inView = await page.evaluate(`(() => { const el = (${scroller})(${JSON.stringify(menu)}); const at = document.querySelector(${JSON.stringify(menu)} + ' [aria-current="page"]'); if (!el || !at) return false; const a = at.getBoundingClientRect(), b = el.getBoundingClientRect(); return a.top >= b.top - 1 && a.bottom <= b.bottom + 1; })()`).catch(() => false);
@@ -170,6 +172,21 @@ async function run(viewport) {
       say('the server menu keeps its place after a click (K-B80)', kept.before > 0 && kept.after > 0 && kept.inView, kept);
       await page.setViewportSize({ width: viewport.width, height: viewport.height }); await sleep(500);
     }
+
+    // Files: a file's Delete is in its menu, on top and ready for a click; no row has a red button of its own.
+    await goto(serverUrl.replace(/\/console$/, '') + '/files');
+    await page.waitForSelector('.fi-ta-row', { timeout: 15000 }).catch(() => {}); await sleep(800);
+    const loose = await page.evaluate(() => [...document.querySelectorAll('.fi-ta-row .fi-ta-actions :is(a, button)')].filter((btn) => btn.getClientRects().length && !btn.closest('.fi-dropdown-panel') && btn.classList.contains('fi-color-danger')).length).catch(() => -1);
+    await page.locator('.fi-ta-row >> visible=true').first().locator('.fi-ta-actions .fi-dropdown-trigger').first().click({ timeout: 4000 }).catch(() => {}); await sleep(800);
+    const remove = await page.evaluate(() => {
+      const item = [...document.querySelectorAll('.fi-dropdown-panel .fi-dropdown-list-item.fi-color-danger')].find((btn) => btn.getClientRects().length);
+      if (!item) return null;
+      const box = item.getBoundingClientRect(), hit = document.elementFromPoint(box.left + box.width / 2, box.top + box.height / 2);
+      return { own: !!hit && item.contains(hit) };
+    }).catch(() => null);
+    await shot('files-menu');
+    say("Files: Delete is in a file's menu and takes its own click", loose === 0 && !!remove && remove.own, { loose, remove });
+    await page.keyboard.press('Escape').catch(() => {}); await sleep(300);
   }
 
   // Admin: on a desktop the shield in the top bar switches without a full load; on a phone the Admin tab in the bottom bar.
@@ -194,6 +211,20 @@ async function run(viewport) {
     const kept = await menuKeeps('#ps-admin-side', '#ps-admin-side a.ps-host-leaf >> visible=true');
     say('the Admin menu keeps its place after a click (K-B80)', kept.before > 0 && kept.after > 0 && kept.inView, kept);
     await page.setViewportSize({ width: viewport.width, height: viewport.height }); await sleep(500);
+  }
+
+  // K-B92: the Plugins list on a phone. Its import buttons end the row of the filter and the search has room to type
+  // in; they stood halfway between the two rows of the tools, beside a search of a few letters.
+  if (phone) {
+    await goto('/admin/plugins');
+    await page.waitForSelector('.fi-ta-header-ctn', { timeout: 15000 }).catch(() => {}); await sleep(600);
+    const tools = await page.evaluate(() => {
+      const top = (el) => (el && el.getClientRects().length ? Math.round(el.getBoundingClientRect().top) : null);
+      const search = document.querySelector('.fi-ta-header-ctn .fi-ta-search-field input');
+      return { filter: top(document.querySelector('.fi-ta-header-ctn .ps-filter-button')), buttons: [...document.querySelectorAll('.fi-ta-header-ctn > .fi-ta-header .fi-icon-btn')].map(top).filter((y) => y !== null), search: search ? Math.round(search.getBoundingClientRect().width) : 0 };
+    }).catch(() => null);
+    await shot('admin-plugins');
+    say('the Plugins list on a phone: the import buttons stand in the row of the filter, the search has room (K-B92)', !!tools && tools.filter !== null && tools.buttons.length > 0 && tools.buttons.every((y) => Math.abs(y - tools.filter) <= 6) && tools.search >= 120, tools);
   }
 
   // Settings: the Save button in the title bar saves ("Settings saved" follows as a notification).
