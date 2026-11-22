@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Announcements: the form asks four things, what, when, where and who, and every place now works with every moment. Start from an example fills in a common case (Maintenance tonight, Weekly event, Server is online, Welcome back on weekends, Restart countdown in chat, Server crashed), and a sentence under the examples says in plain words what the announcement will do. The list shows that same sentence.
+- Announcements, When: Now, At a date and time, Every week, or When a server starts, stops or crashes. Every week takes more than one time a day. A crash is a stop nobody asked for: no Stop, Restart or Kill from the panel and no stop command in the console; Simplify waits about a minute before it calls a stop a crash.
+- Announcements, Where: the bar at the top of every page is a choice of its own, with how long it shows: for a while (minutes, hours or days), until a date, or until you end it. An announcement on a server start, stop or crash can show a bar too, and one at a time or every week can go out without one. Game chat for a server moment goes to that server or to chosen servers.
+- Announcements, Who: People with access to the server, for an announcement about a server. Only the owner of that server and the people with access to it get it, in the bell, as an app notification and as a bar.
+- An announcement sent When a server starts no longer goes to every account on the panel. It showed the server's name to people without access to that server. Existing announcements on a server start now go to the people of that server; set Who to Everyone to send them to the whole panel again.
+- Existing announcements keep doing what they did after the update: one at a time and one on days of the week keep their bar and its length, one on a server start keeps going out without a bar.
 - Announcements when a server starts: How often has a new choice, Once per day. Only the first start of each chosen day goes out, per server, and the next chosen day it goes out again, every week, without ending the announcement. A restart later that day sends nothing. New optional From and Until hours limit it to starts in that part of the day, on the author's clock.
 
 ## 2.0.0-beta.15

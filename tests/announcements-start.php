@@ -47,7 +47,7 @@ check($silent['started'] === [] && $silent['seen'] === [5 => 1000, 6 => true, 7 
 check(S::look($silent['seen'], [5 => 1012, 6 => true, 7 => false])['started'] === [], 'the answer a minute later is no start');
 check(S::look($silent['seen'], [5 => 5000, 6 => true, 7 => true])['started'] === [5, 7], 'a real restart or start during the silence counts once Wings answers again');
 check(S::look(['5' => 1000], [5 => null])['seen'] === [5 => 1000], 'the kept state survives ids read back from JSON as strings');
-check(S::look([], [5 => null]) === ['started' => [], 'seen' => []], 'a server never seen stays unknown');
+check(S::look([], [5 => null]) === ['started' => [], 'stopped' => [], 'seen' => []], 'a server never seen stays unknown');
 
 // Watched servers.
 check(S::servers([3, '4', 3, 0, -1, 'x', null, 4.0]) === [3, 4], 'whole ids above 0, each once');

@@ -114,7 +114,7 @@ final class Diagnose
         $title = '"'.$announcement->title.'"';
         $start = $announcement->send_on === StartTrigger::START;
         $title .= match ($announcement->send_on) {
-            StartTrigger::START => ' (when a server starts)',
+            StartTrigger::START => ' (when a server '.StartTrigger::event($announcement->start_event).'s)',
             Weekly::SEND_ON => ' (on days of the week)',
             default => ' (at a time)',
         };
@@ -123,10 +123,10 @@ final class Diagnose
             .' starts='.self::time($announcement->starts_at).' ends='.self::time($announcement->ends_at)];
         if ($announcement->send_on === Weekly::SEND_ON) {
             $days = Weekly::days($announcement->weekly_days);
-            $at = (string) $announcement->weekly_at;
+            $at = Weekly::times($announcement->weekly_times, $announcement->weekly_at);
             $zoneOf = Weekly::zone($announcement->weekly_zone);
             $next = Weekly::next($days, $at, $zoneOf, $now->getTimestamp(), $announcement->starts_at?->getTimestamp(), $announcement->ends_at?->getTimestamp());
-            $lines[] = '   weekly days='.json_encode($days).' at='.$at.' zone='.$zoneOf.' hours='.$announcement->weekly_hours
+            $lines[] = '   weekly days='.json_encode($days).' at='.implode(',', $at).' zone='.$zoneOf.' bar='.($announcement->bar ? $announcement->stay.' '.$announcement->stay_minutes.'min' : 'off')
                 .' turn='.self::time($announcement->weekly_from).' shown until='.self::time($announcement->weekly_until)
                 .' next='.($next !== null ? gmdate('Y-m-d H:i', $next).' UTC' : '-');
         }

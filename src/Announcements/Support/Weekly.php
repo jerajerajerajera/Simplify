@@ -22,6 +22,9 @@ final class Weekly
 
     public const DEFAULT_HOURS = 24;
 
+    /** At most this many times per day. */
+    public const TIMES = 6;
+
     /**
      * The chosen days as ISO numbers (1 Monday … 7 Sunday), each once, in week order.
      *
@@ -50,6 +53,30 @@ final class Weekly
         return sprintf('%02d:%s', (int) $match[1], $match[2]);
     }
 
+    /**
+     * The times of day it goes out at, as "HH:MM", each once, in order, at most TIMES. Without any usable time: the
+     * one time an announcement had before it could have several.
+     *
+     * @return list<string>
+     */
+    public static function times(mixed $times, mixed $fallback = null): array
+    {
+        $clean = [];
+        foreach (is_array($times) ? $times : [$times] as $time) {
+            // A repeater row arrives as ['at' => '19:00'].
+            $time = self::time(is_array($time) ? reset($time) : $time);
+            if ($time !== null) {
+                $clean[$time] = $time;
+            }
+        }
+        if ($clean === [] && self::time($fallback) !== null) {
+            return [(string) self::time($fallback)];
+        }
+        ksort($clean);
+
+        return array_slice(array_values($clean), 0, self::TIMES);
+    }
+
     public static function hours(mixed $hours): int
     {
         return is_numeric($hours) && in_array((int) $hours, self::HOURS, true) ? (int) $hours : self::DEFAULT_HOURS;
@@ -73,24 +100,28 @@ final class Weekly
      * Times are Unix seconds.
      *
      * @param  list<int>  $days
+     * @param  string|list<string>  $at  one time of day, or several
      */
-    public static function last(array $days, string $at, string $zone, int $now, ?int $from = null, ?int $until = null): ?int
+    public static function last(array $days, string|array $at, string $zone, int $now, ?int $from = null, ?int $until = null): ?int
     {
-        return self::find($days, $at, $zone, $now, $from, $until, -1);
+        $turns = array_filter(array_map(fn (string $time): ?int => self::find($days, $time, $zone, $now, $from, $until, -1), self::times($at)), is_int(...));
+
+        return $turns === [] ? null : max($turns);
     }
 
     /**
      * The next time it goes out, after now and inside its active period; null when it never goes out again.
      *
      * @param  list<int>  $days
+     * @param  string|list<string>  $at  one time of day, or several
      */
-    public static function next(array $days, string $at, string $zone, int $now, ?int $from = null, ?int $until = null): ?int
+    public static function next(array $days, string|array $at, string $zone, int $now, ?int $from = null, ?int $until = null): ?int
     {
         // Before its period starts, the first turn is on or after the start.
         $after = $from !== null && $from > $now ? $from - 1 : $now;
-        $next = self::find($days, $at, $zone, $after, $from, $until, 1);
+        $turns = array_filter(array_map(fn (string $time): ?int => self::find($days, $time, $zone, $after, $from, $until, 1), self::times($at)), fn (?int $turn): bool => $turn !== null && $turn > $now);
 
-        return $next !== null && $next > $now ? $next : null;
+        return $turns === [] ? null : min($turns);
     }
 
     /**

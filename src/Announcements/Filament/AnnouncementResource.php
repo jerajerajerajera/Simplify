@@ -22,6 +22,7 @@ use Filament\Forms\Components\ToggleButtons;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Components\View;
 use Filament\Schemas\Schema;
 use Filament\Support\Enums\FontWeight;
@@ -34,10 +35,13 @@ use Simplify\Core\Announcements\Services\Bell;
 use Simplify\Core\Announcements\Services\InGame;
 use Simplify\Core\Announcements\Services\Push;
 use Simplify\Core\Announcements\Services\WeeklyAnnouncements;
+use Simplify\Core\Announcements\Support\FormData;
 use Simplify\Core\Announcements\Support\GameChat;
 use Simplify\Core\Announcements\Support\Rules;
 use Simplify\Core\Announcements\Support\StartTrigger;
+use Simplify\Core\Announcements\Support\Summary;
 use Simplify\Core\Announcements\Support\Weekly;
+use Throwable;
 
 /**
  * Where root admins write, end and delete announcements.
@@ -75,15 +79,38 @@ final class AnnouncementResource extends Resource
         return self::text('title');
     }
 
+    /** The fields the sentence "What this does" reads. */
+    private const SUMMARY_FIELDS = ['when', 'often', 'more', 'stop_after', 'stay_n', 'stay_unit', 'starts_at', 'ends_at', 'weekly_days', 'weekly_times', 'start_event', 'start_servers', 'start_from', 'start_until', 'bar', 'stay', 'in_bell', 'bell_pinned', 'push', 'in_game', 'audience'];
+
     public static function form(Schema $schema): Schema
     {
         $zone = self::timezone();
-        $starts = fn (Get $get): bool => $get('send_on') === StartTrigger::START;
-        $weekly = fn (Get $get): bool => $get('send_on') === Weekly::SEND_ON;
-        // "Active from" and "Active until" for both: they limit when it goes out, they are not the moment itself.
-        $period = fn (Get $get): bool => $starts($get) || $weekly($get);
+        $when = fn (string ...$whens) => fn (Get $get): bool => in_array($get('when'), $whens, true);
+        $server = $when(FormData::SERVER);
+        $weekly = $when(FormData::WEEKLY);
+        $repeats = $when(FormData::WEEKLY, FormData::SERVER);
+        $more = fn (Get $get): bool => $repeats($get) && (bool) $get('more');
+        $bar = fn (Get $get): bool => (bool) $get('bar');
+        $heading = fn (string $key) => View::make('simplify::announcements.heading')->viewData(['label' => self::text('form.'.$key)]);
+        $shown = fn (?Announcement $record): array => $record ? FormData::fill($record->attributesToArray()) : [];
 
+        // Four questions (V65): what, when, where and who. Every place works with every moment; an example fills in
+        // the answers, and the sentence under the examples says what the announcement will do.
         return $schema->columns(1)->components([
+            ToggleButtons::make('example')
+                ->label(self::text('form.example'))
+                ->options(array_map(fn (string $key): string => self::text('form.examples.'.$key), array_combine(array_keys(FormData::examples()), array_keys(FormData::examples()))))
+                ->inline()
+                ->live()
+                ->dehydrated(false)
+                ->afterStateUpdated(function (Set $set, ?string $state): void {
+                    foreach (FormData::examples()[$state] ?? [] as $field => $value) {
+                        $set($field, $value);
+                    }
+                })
+                ->helperText(fn (Get $get): string => self::text('summary.prefix').' '.self::summary(array_combine(self::SUMMARY_FIELDS, array_map(fn (string $field): mixed => $get($field), self::SUMMARY_FIELDS)), $zone, stored: false)),
+
+            $heading('what'),
             ToggleButtons::make('category')
                 ->label(self::text('form.category'))
                 ->options(self::options('category', Rules::CATEGORIES))
@@ -100,110 +127,6 @@ final class AnnouncementResource extends Resource
                 ->label(self::text('form.body'))
                 ->rows(3)
                 ->maxLength(Rules::BODY_LENGTH),
-            // At a time (a bar from its start to its end), each time one of its servers starts (Khion 6-11), or on days of
-            // the week (Khion 15-11).
-            ToggleButtons::make('send_on')
-                ->label(self::text('form.send_on'))
-                ->options([
-                    StartTrigger::TIME => self::text('form.send_on_time'),
-                    Weekly::SEND_ON => self::text('form.send_on_weekly'),
-                    StartTrigger::START => self::text('form.send_on_start'),
-                ])
-                ->inline()
-                ->required()
-                ->default(StartTrigger::TIME)
-                ->live(),
-            Grid::make(2)->visible($starts)->schema([
-                Select::make('start_servers')
-                    ->label(self::text('form.start_servers'))
-                    ->helperText(self::text('form.start_servers_help', ['count' => (string) StartTrigger::SERVERS]))
-                    ->multiple()
-                    ->required($starts)
-                    ->maxItems(StartTrigger::SERVERS)
-                    ->searchable()
-                    ->getSearchResultsUsing(fn (string $search): array => Server::query()->where('name', 'like', '%'.$search.'%')->orderBy('name')->limit(50)->pluck('name', 'id')->all())
-                    ->getOptionLabelsUsing(fn (array $values): array => Server::query()->whereKey($values)->pluck('name', 'id')->all()),
-                // Every start, the first start of each chosen day per server (Khion 22-11), or only the next start.
-                // Saved in start_once and start_daily by the two hidden fields below.
-                ToggleButtons::make('start_often')
-                    ->label(self::text('form.start_once'))
-                    ->helperText(fn (Get $get): ?string => $get('start_often') === 'day' ? self::text('form.start_day_help') : null)
-                    ->options(['every' => self::text('form.start_every'), 'day' => self::text('form.start_day'), 'next' => self::text('form.start_next')])
-                    ->inline()
-                    ->default('every')
-                    ->afterStateHydrated(fn (ToggleButtons $component, Get $get) => $component->state(match (true) {
-                        (bool) $get('start_once') => 'next',
-                        (bool) $get('start_daily') => 'day',
-                        default => 'every',
-                    }))
-                    ->dehydrated(false)
-                    ->live(),
-            ]),
-            Hidden::make('start_once')->dehydrateStateUsing(fn (Get $get): bool => $get('start_often') === 'next'),
-            Hidden::make('start_daily')->dehydrateStateUsing(fn (Get $get): bool => $get('start_often') === 'day'),
-            // On days of the week: the days it goes out. On a server start: only starts on these days count, none is
-            // every day (Khion 15-11).
-            ToggleButtons::make('weekly_days')
-                ->label(self::text('form.weekly_days'))
-                ->helperText(fn (Get $get): ?string => $starts($get) ? self::text('form.start_days_help', ['zone' => Weekly::zone($get('weekly_zone') ?: $zone)]) : null)
-                ->visible($period)
-                ->options(self::weekdays())
-                ->multiple()
-                ->inline()
-                ->required($weekly)
-                ->dehydrateStateUsing(fn ($state): array => Weekly::days($state)),
-            // Only starts in this part of the day count; either end may stay empty (Khion 22-11).
-            Grid::make(2)->visible($starts)->schema([
-                TimePicker::make('start_from')
-                    ->label(self::text('form.start_from'))
-                    ->seconds(false)
-                    ->helperText(fn (Get $get): string => self::text('form.start_hours_help', ['zone' => Weekly::zone($get('weekly_zone') ?: $zone)]))
-                    ->dehydrateStateUsing(fn ($state): ?string => Weekly::time($state)),
-                TimePicker::make('start_until')
-                    ->label(self::text('form.start_until'))
-                    ->seconds(false)
-                    ->dehydrateStateUsing(fn ($state): ?string => Weekly::time($state)),
-            ]),
-            // Kept when another admin edits it, so a time and the days keep meaning the same moment.
-            Hidden::make('weekly_zone')
-                ->default($zone)
-                ->dehydrateStateUsing(fn ($state): string => Weekly::zone($state ?: $zone)),
-            Grid::make(2)->visible($weekly)->schema([
-                // The author's own clock: 19:00 stays 19:00 in winter and in summer.
-                TimePicker::make('weekly_at')
-                    ->label(self::text('form.weekly_at'))
-                    ->seconds(false)
-                    ->required($weekly)
-                    ->helperText(fn (Get $get): string => self::text('form.weekly_at_help', ['zone' => Weekly::zone($get('weekly_zone') ?: $zone)]))
-                    ->dehydrateStateUsing(fn ($state): ?string => Weekly::time($state)),
-                Select::make('weekly_hours')
-                    ->label(self::text('form.weekly_hours'))
-                    ->helperText(self::text('form.weekly_hours_help'))
-                    ->options(array_combine(Weekly::HOURS, array_map('strval', Weekly::HOURS)))
-                    ->default(Weekly::DEFAULT_HOURS)
-                    ->selectablePlaceholder(false)
-                    ->required($weekly),
-            ]),
-            Grid::make(2)->schema([
-                DateTimePicker::make('starts_at')
-                    ->label(fn (Get $get): string => self::text($period($get) ? 'form.active_from' : 'form.starts_at'))
-                    ->seconds(false)
-                    ->timezone($zone)
-                    ->helperText(self::text('form.starts_at_help', ['zone' => $zone])),
-                DateTimePicker::make('ends_at')
-                    ->label(fn (Get $get): string => self::text($period($get) ? 'form.active_until' : 'form.ends_at'))
-                    ->seconds(false)
-                    ->timezone($zone)
-                    ->after('starts_at')
-                    ->helperText(self::text('form.ends_at_help')),
-            ]),
-            View::make('simplify::announcements.zone-hint')->viewData(['zone' => $zone, 'profile' => EditProfile::getUrl(panel: 'app')]),
-            ToggleButtons::make('audience')
-                ->label(self::text('form.audience'))
-                ->options(self::options('audience', Rules::AUDIENCES))
-                ->inline()
-                ->required()
-                ->default('everyone'),
             Grid::make(2)->schema([
                 TextInput::make('button_url')
                     ->label(self::text('form.button_url'))
@@ -216,23 +139,194 @@ final class AnnouncementResource extends Resource
                     ->placeholder(self::text('bars.open'))
                     ->maxLength(Rules::LABEL_LENGTH),
             ]),
+
+            $heading('when'),
+            // Now, at a date, every week on chosen days (Khion 15-11), or when a server starts (Khion 6-11), stops or
+            // crashes. Stored in send_on by FormData::clean().
+            ToggleButtons::make('when')
+                ->hiddenLabel()
+                ->options([
+                    FormData::NOW => self::text('form.when_now'),
+                    FormData::DATE => self::text('form.when_date'),
+                    FormData::WEEKLY => self::text('form.when_weekly'),
+                    FormData::SERVER => self::text('form.when_server'),
+                ])
+                ->inline()
+                ->required()
+                ->default(FormData::NOW)
+                ->afterStateHydrated(fn (ToggleButtons $component, ?Announcement $record) => $record ? $component->state($shown($record)['when']) : null)
+                ->live(),
+            DateTimePicker::make('starts_at')
+                ->label(self::text('form.when_date'))
+                ->visible($when(FormData::DATE))
+                ->required($when(FormData::DATE))
+                ->seconds(false)
+                ->timezone($zone)
+                ->helperText(self::text('form.starts_at_help', ['zone' => $zone])),
+            ToggleButtons::make('start_event')
+                ->hiddenLabel()
+                ->visible($server)
+                ->options(array_combine(StartTrigger::EVENTS, array_map(fn (string $event): string => self::text('form.event.'.$event), StartTrigger::EVENTS)))
+                ->helperText(fn (Get $get): ?string => $get('start_event') === 'crash' ? self::text('form.crash_help') : null)
+                ->inline()
+                ->default(StartTrigger::START)
+                ->live(),
+            Select::make('start_servers')
+                ->label(self::text('form.start_servers'))
+                ->visible($server)
+                ->multiple()
+                ->required($server)
+                ->maxItems(StartTrigger::SERVERS)
+                ->searchable()
+                ->live()
+                ->getSearchResultsUsing(fn (string $search): array => Server::query()->where('name', 'like', '%'.$search.'%')->orderBy('name')->limit(50)->pluck('name', 'id')->all())
+                ->getOptionLabelsUsing(fn (array $values): array => Server::query()->whereKey($values)->pluck('name', 'id')->all()),
+            // Every week: the days it goes out on. A server moment: only moments on these days count, none is every
+            // day (More options).
+            ToggleButtons::make('weekly_days')
+                ->label(fn (Get $get): string => self::text($server($get) ? 'form.only_on' : 'form.weekly_days'))
+                ->helperText(fn (Get $get): ?string => $server($get) ? self::text('form.only_on_help') : null)
+                ->visible(fn (Get $get): bool => $weekly($get) || ($server($get) && $more($get)))
+                ->options(self::weekdays())
+                ->multiple()
+                ->inline()
+                ->live()
+                ->required($weekly),
+            // The author's own clock: 19:00 stays 19:00 in winter and in summer. One time or several.
+            Select::make('weekly_times')
+                ->label(self::text('form.weekly_at'))
+                ->helperText(fn (Get $get): string => self::text('form.weekly_at_help', ['zone' => Weekly::zone($get('weekly_zone') ?: $zone)]))
+                ->visible($weekly)
+                ->required($weekly)
+                ->multiple()
+                ->maxItems(Weekly::TIMES)
+                ->searchable()
+                ->live()
+                ->options(fn (?Announcement $record): array => self::times($record))
+                ->afterStateHydrated(fn (Select $component, ?Announcement $record) => $record ? $component->state(Weekly::times($record->weekly_times, $record->weekly_at)) : null),
+            // How often one that comes back goes out: every time, the first time of each day per server (Khion 22-11),
+            // or only the next time.
+            ToggleButtons::make('often')
+                ->label(self::text('form.in_game_repeat'))
+                ->visible($repeats)
+                ->options(fn (Get $get): array => $server($get)
+                    ? array_combine([FormData::EVERY, FormData::DAY, FormData::ONCE], array_map(fn (string $often): string => self::text('form.often.'.StartTrigger::event($get('start_event')).'_'.$often), [FormData::EVERY, FormData::DAY, FormData::ONCE]))
+                    : [FormData::EVERY => self::text('form.often.weekly_every'), FormData::ONCE => self::text('form.often.weekly_once')])
+                ->inline()
+                ->default(FormData::EVERY)
+                ->afterStateHydrated(fn (ToggleButtons $component, ?Announcement $record) => $record ? $component->state($shown($record)['often']) : null)
+                ->live(),
+            Toggle::make('more')
+                ->label(self::text('form.more'))
+                ->helperText(self::text('form.more_help'))
+                ->visible($repeats)
+                ->afterStateHydrated(fn (Toggle $component, ?Announcement $record) => $record ? $component->state($shown($record)['more']) : null)
+                ->live(),
+            // Only moments in this part of the day count; either end may stay empty (Khion 22-11).
+            Grid::make(2)->visible(fn (Get $get): bool => $server($get) && $more($get))->schema([
+                TimePicker::make('start_from')
+                    ->label(self::text('form.start_from'))
+                    ->seconds(false)
+                    ->live()
+                    ->helperText(self::text('form.only_hours_help')),
+                TimePicker::make('start_until')
+                    ->label(self::text('form.start_until'))
+                    ->live()
+                    ->seconds(false),
+            ]),
+            DateTimePicker::make('stop_after')
+                ->label(self::text('form.stop_after'))
+                ->helperText(self::text('form.ends_at_help'))
+                ->visible($more)
+                ->seconds(false)
+                ->timezone($zone)
+                ->live()
+                ->afterStateHydrated(fn (DateTimePicker $component, ?Announcement $record) => $record ? $component->state($shown($record)['stop_after']) : null),
+            // Kept when another admin edits it, so a time and the days keep meaning the same moment.
+            Hidden::make('weekly_zone')
+                ->default($zone)
+                ->dehydrateStateUsing(fn ($state): string => Weekly::zone($state ?: $zone)),
+            View::make('simplify::announcements.zone-hint')->viewData(['zone' => $zone, 'profile' => EditProfile::getUrl(panel: 'app')]),
+
+            $heading('where'),
+            Toggle::make('bar')
+                ->label(self::text('form.bar'))
+                ->helperText(self::text('form.bar_help'))
+                ->default(true)
+                ->live(),
+            // How long the bar stays, each time it goes out. "Until a date" is for one at a time.
+            ToggleButtons::make('stay')
+                ->label(self::text('form.stay'))
+                ->visible($bar)
+                ->options(fn (Get $get): array => array_filter([
+                    'for' => self::text('form.stays.for'),
+                    'until' => $repeats($get) ? null : self::text('form.stays.until'),
+                    'ended' => self::text('form.stays.ended'),
+                ]))
+                ->inline()
+                ->default('ended')
+                ->afterStateHydrated(fn (ToggleButtons $component, ?Announcement $record) => $record ? $component->state($record->stay === 'until' && $record->send_on !== StartTrigger::TIME ? 'ended' : Rules::stay($record->stay)) : null)
+                ->live(),
+            Grid::make(2)->visible(fn (Get $get): bool => $bar($get) && $get('stay') === 'for')->schema([
+                TextInput::make('stay_n')
+                    ->label(self::text('form.stay_n'))
+                    ->numeric()
+                    ->minValue(1)
+                    ->maxValue(999)
+                    ->required()
+                    ->default(3)
+                    ->afterStateHydrated(fn (TextInput $component, ?Announcement $record) => $record ? $component->state($shown($record)['stay_n']) : null)
+                    ->live(onBlur: true),
+                Select::make('stay_unit')
+                    ->label(self::text('form.stay_unit'))
+                    ->options(array_combine(array_keys(Rules::UNITS), array_map(fn (string $unit): string => self::text('form.units.'.$unit), array_keys(Rules::UNITS))))
+                    ->default('hours')
+                    ->selectablePlaceholder(false)
+                    ->afterStateHydrated(fn (Select $component, ?Announcement $record) => $record ? $component->state($shown($record)['stay_unit']) : null)
+                    ->live(),
+            ]),
+            DateTimePicker::make('ends_at')
+                ->label(self::text('form.ends_at'))
+                ->visible(fn (Get $get): bool => $bar($get) && $get('stay') === 'until' && ! $repeats($get))
+                ->required(fn (Get $get): bool => $bar($get) && $get('stay') === 'until' && ! $repeats($get))
+                ->seconds(false)
+                ->timezone($zone)
+                ->live()
+                // After its start, when it has one: "Now" has no start to compare with.
+                ->rule(fn (Get $get) => function (string $attribute, mixed $value, $fail) use ($get): void {
+                    $start = $get('when') === FormData::DATE ? strtotime((string) $get('starts_at')) : false;
+                    if ($start !== false && strtotime((string) $value) <= $start) {
+                        $fail(__('validation.after', ['attribute' => self::text('form.ends_at'), 'date' => self::text('form.when_date')]));
+                    }
+                }),
             Toggle::make('in_bell')
                 ->label(self::text('form.in_bell'))
                 ->helperText(self::text('form.in_bell_help'))
                 ->live(),
             Toggle::make('bell_pinned')
                 ->label(self::text('form.bell_pinned'))
-                ->visible(fn (Get $get): bool => (bool) $get('in_bell') && ! $starts($get)),
+                ->live()
+                ->visible(fn (Get $get): bool => (bool) $get('in_bell') && $bar($get)),
             Toggle::make('push')
                 ->label(self::text('form.push'))
                 ->helperText(self::text('form.push_help'))
                 ->default(true)
+                ->live()
                 ->visible(Push::available()),
             Toggle::make('in_game')
                 ->label(self::text('form.in_game'))
-                ->helperText(fn (Get $get): string => self::text($starts($get) ? 'form.in_game_start_help' : 'form.in_game_help'))
+                ->helperText(self::text('form.in_game_help'))
                 ->live(),
-            Grid::make(2)->visible(fn (Get $get): bool => (bool) $get('in_game') && ! $starts($get))->schema([
+            // A server moment: the chat of that server, or of chosen servers as one at a time.
+            ToggleButtons::make('in_game_target')
+                ->label(self::text('form.in_game_target'))
+                ->visible(fn (Get $get): bool => (bool) $get('in_game') && $server($get))
+                ->options(array_combine(FormData::TARGETS, array_map(fn (string $target): string => self::text('form.targets.'.$target), FormData::TARGETS)))
+                ->inline()
+                ->default('started')
+                ->afterStateHydrated(fn (ToggleButtons $component, ?Announcement $record) => $record ? $component->state($record->in_game_target === 'servers' ? 'servers' : 'started') : null)
+                ->live(),
+            Grid::make(2)->visible(fn (Get $get): bool => (bool) $get('in_game') && (! $server($get) || $get('in_game_target') === 'servers'))->schema([
                 Select::make('in_game_servers')
                     ->label(self::text('form.in_game_servers'))
                     ->placeholder(self::text('form.in_game_servers_all'))
@@ -247,13 +341,78 @@ final class AnnouncementResource extends Resource
                     ->multiple()
                     ->options(fn (?Announcement $record): array => InGame::groups($record?->author ?? user()))
                     ->visible(fn (?Announcement $record): bool => InGame::groups($record?->author ?? user()) !== []),
-                Select::make('in_game_repeat')
-                    ->label(self::text('form.in_game_repeat'))
-                    ->options(self::repeats())
-                    ->default(0)
-                    ->selectablePlaceholder(false),
             ]),
+            // Again in the chat while the bar stays.
+            Select::make('in_game_repeat')
+                ->label(self::text('form.in_game_repeat'))
+                ->visible(fn (Get $get): bool => (bool) $get('in_game') && $bar($get))
+                ->options(self::repeats())
+                ->default(0)
+                ->selectablePlaceholder(false),
+
+            $heading('who'),
+            ToggleButtons::make('audience')
+                ->hiddenLabel()
+                ->options(fn (Get $get): array => array_filter(self::options('audience', Rules::AUDIENCES), fn (string $audience): bool => $audience !== Rules::SERVER_AUDIENCE || $server($get), ARRAY_FILTER_USE_KEY))
+                ->helperText(fn (Get $get): ?string => $get('audience') === Rules::SERVER_AUDIENCE ? self::text('form.audience_server_help') : null)
+                ->inline()
+                ->required()
+                ->default('everyone')
+                ->live(),
         ]);
+    }
+
+    /**
+     * What the form's Save stores (create and edit): the form's own fields become the columns the scheduler reads.
+     *
+     * @param  array<string, mixed>  $data
+     * @return array<string, mixed>
+     */
+    public static function store(array $data): array
+    {
+        return FormData::clean($data);
+    }
+
+    /**
+     * "What this does", in the admin's language.
+     *
+     * @param  array<string, mixed>  $state  the form's state, or FormData::fill() merged into a stored announcement
+     * @param  bool  $stored  times of a stored announcement are UTC; the form holds them in the admin's time zone
+     */
+    public static function summary(array $state, string $zone, bool $stored = true): string
+    {
+        $date = function (mixed $value) use ($zone, $stored): string {
+            try {
+                $at = $stored ? Carbon::parse($value)->setTimezone($zone) : Carbon::parse((string) $value, $zone);
+
+                return $at->locale(app()->getLocale())->isoFormat('lll');
+            } catch (Throwable) {
+                return '…';
+            }
+        };
+
+        return Summary::text($state, fn (string $key, array $replace): string => self::text('summary.'.$key, $replace), [
+            'days' => self::weekdays(),
+            'servers' => Server::query()->whereKey(StartTrigger::servers($state['start_servers'] ?? null))->pluck('name', 'id')->all(),
+            'date' => $date,
+        ]);
+    }
+
+    /**
+     * Every quarter of an hour, and the times this announcement already has.
+     *
+     * @return array<string, string>
+     */
+    private static function times(?Announcement $record): array
+    {
+        $times = [];
+        foreach (range(0, 95) as $quarter) {
+            $times[] = sprintf('%02d:%02d', intdiv($quarter, 4), $quarter % 4 * 15);
+        }
+        $times = [...$times, ...Weekly::times($record?->weekly_times, $record?->weekly_at)];
+        sort($times);
+
+        return array_combine($times, $times);
     }
 
     public static function table(Table $table): Table
@@ -273,50 +432,22 @@ final class AnnouncementResource extends Resource
                         ->description(fn (Announcement $record): ?string => $record->body ? str($record->body)->limit(200)->toString() : null)
                         ->searchable()
                         ->wrap(),
+                    // What it does, in the same sentence as under the form's examples.
+                    TextColumn::make('send_on')
+                        ->state(fn (Announcement $record): string => self::summary([...$record->attributesToArray(), ...FormData::fill($record->attributesToArray()), 'weekly_times' => Weekly::times($record->weekly_times, $record->weekly_at)], $zone))
+                        ->color('gray')
+                        ->wrap(),
                     Split::make([
                         TextColumn::make('state')
-                            ->state(fn (Announcement $record): string => $record->state())
+                            // One without a bar that went out has nothing left to show: "Sent", not "Live".
+                            ->state(fn (Announcement $record): string => $record->state() === 'live' && $record->send_on === StartTrigger::TIME && ! $record->bar ? 'sent' : $record->state())
                             ->badge()
                             ->color(fn (string $state): string => match ($state) {
                                 'live' => 'success',
-                                'scheduled' => 'info',
+                                'scheduled', 'sent' => 'info',
                                 default => 'gray',
                             })
                             ->formatStateUsing(fn (string $state): string => self::text('state.'.$state))
-                            ->grow(false),
-                        TextColumn::make('starts_at')
-                            ->prefix(self::text('form.starts_at').': ')
-                            ->dateTime(timezone: $zone)
-                            ->placeholder(self::text('table.right_away'))
-                            ->color('gray')
-                            ->grow(false),
-                        TextColumn::make('ends_at')
-                            ->prefix(self::text('form.ends_at').': ')
-                            ->dateTime(timezone: $zone)
-                            ->placeholder(self::text('table.until_ended'))
-                            ->color('gray')
-                            ->grow(false),
-                        TextColumn::make('start_servers')
-                            ->icon('tabler-player-play')
-                            ->tooltip(self::text('table.on_start'))
-                            ->state(fn (Announcement $record): ?string => $record->send_on === StartTrigger::START
-                                ? Server::query()->whereKey(StartTrigger::servers($record->start_servers))->orderBy('name')->pluck('name')->implode(', ')
-                                : null)
-                            ->color('gray')
-                            ->wrap()
-                            ->grow(false),
-                        TextColumn::make('weekly_days')
-                            ->icon('tabler-repeat')
-                            ->tooltip(self::text('table.weekly'))
-                            ->state(fn (Announcement $record): ?string => self::weeklySummary($record))
-                            ->color('gray')
-                            ->wrap()
-                            ->grow(false),
-                        TextColumn::make('audience')
-                            ->badge()
-                            ->color('gray')
-                            ->tooltip(self::text('form.audience'))
-                            ->formatStateUsing(fn (string $state): string => self::text('audience.'.$state))
                             ->grow(false),
                         TextColumn::make('in_bell_at')
                             ->icon('tabler-bell')
@@ -345,7 +476,7 @@ final class AnnouncementResource extends Resource
                 ])->space(2),
             ])
             ->recordActions([
-                EditAction::make()->after(fn () => self::deliverNow()),
+                EditAction::make()->mutateDataUsing(fn (array $data): array => self::store($data))->after(fn () => self::deliverNow()),
                 Action::make('end')
                     ->label(self::text('table.end'))
                     ->icon('tabler-player-stop')
@@ -406,31 +537,6 @@ final class AnnouncementResource extends Resource
         }
 
         return $names;
-    }
-
-    /** "Mon, Fri · 19:00 (Europe/Berlin)" for one on days of the week, "Sat, Sun · 10:00–22:00 · Once per day (Europe/Berlin)" for starts. */
-    private static function weeklySummary(Announcement $record): ?string
-    {
-        $days = Weekly::days($record->weekly_days);
-        $at = Weekly::time($record->weekly_at);
-        $names = self::weekdays();
-        $list = implode(', ', array_map(fn (int $day): string => $names[$day], $days));
-        if ($record->send_on === StartTrigger::START) {
-            $from = Weekly::time($record->start_from);
-            $until = Weekly::time($record->start_until);
-            $parts = array_filter([
-                $list,
-                $from !== null || $until !== null ? ($from ?? '00:00').'–'.($until ?? '24:00') : '',
-                $record->start_daily ? self::text('form.start_day') : '',
-            ], fn (string $part): bool => $part !== '');
-
-            return $parts === [] ? null : implode(' · ', $parts).($days !== [] || $from !== null || $until !== null ? ' ('.Weekly::zone($record->weekly_zone).')' : '');
-        }
-        if ($record->send_on !== Weekly::SEND_ON || $days === [] || $at === null) {
-            return null;
-        }
-
-        return $list.' · '.$at.' ('.Weekly::zone($record->weekly_zone).')';
     }
 
     private static function inGameSummary(Announcement $record): ?string

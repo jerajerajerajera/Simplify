@@ -16,6 +16,20 @@ final class StartTrigger
 
     public const START = 'start';
 
+    /** What a "When a server…" announcement waits for: it starts, it stops, or it crashes. */
+    public const EVENTS = ['start', 'stop', 'crash'];
+
+    /**
+     * A stop counts as a crash when nobody asked for it. Wings tells Pelican who pressed Stop about once a minute, so
+     * the answer waits this many seconds after the stop was seen.
+     */
+    public const CRASH_WAIT = 75;
+
+    /** A stop is asked for when Pelican logged a Stop, Kill or Restart, or the stop command, this long before it. */
+    public const CRASH_LOOK_BACK = 600;
+
+    private const ASKED = ['server:power.stop', 'server:power.kill', 'server:power.restart'];
+
     /** At most this many servers per announcement: each one is asked about every minute. */
     public const SERVERS = 20;
 
@@ -30,11 +44,12 @@ final class StartTrigger
      *
      * @param  array<int|string, bool|int>  $seen  server id => its state at the last look
      * @param  array<int, bool|int|null>  $running  server id => its state now
-     * @return array{started: list<int>, seen: array<int, bool|int>}
+     * @return array{started: list<int>, stopped: list<int>, seen: array<int, bool|int>}
      */
     public static function look(array $seen, array $running): array
     {
         $started = [];
+        $stopped = [];
         $next = [];
         foreach ($running as $id => $now) {
             $known = array_key_exists($id, $seen);
@@ -47,12 +62,68 @@ final class StartTrigger
             }
             $next[$id] = $now;
             $was = $known ? $seen[$id] : null;
-            if ($now !== false && $known && ($was === false || (is_int($was) && is_int($now) && $now - $was > self::SAME_START))) {
+            $restarted = is_int($was) && is_int($now) && $now - $was > self::SAME_START;
+            if ($now !== false && $known && ($was === false || $restarted)) {
                 $started[] = $id;
+            }
+            // It ran at the last look and does not now, or it started again in between: it stopped.
+            if ($known && $was !== false && ($now === false || $restarted)) {
+                $stopped[] = $id;
             }
         }
 
-        return ['started' => $started, 'seen' => $next];
+        return ['started' => $started, 'stopped' => $stopped, 'seen' => $next];
+    }
+
+    public static function event(mixed $event): string
+    {
+        return in_array($event, self::EVENTS, true) ? $event : self::START;
+    }
+
+    /**
+     * The stops that waited long enough to say whether someone asked for them, and the ones that still wait.
+     *
+     * @param  array<int|string, int>  $pending  server id => when its stop was seen
+     * @return array{due: array<int, int>, pending: array<int, int>}
+     */
+    public static function due(array $pending, int $now): array
+    {
+        $due = [];
+        $wait = [];
+        foreach ($pending as $id => $seenAt) {
+            if (! is_numeric($id) || ! is_int($seenAt)) {
+                continue;
+            }
+            $now - $seenAt >= self::CRASH_WAIT ? $due[(int) $id] = $seenAt : $wait[(int) $id] = $seenAt;
+        }
+
+        return ['due' => $due, 'pending' => $wait];
+    }
+
+    /**
+     * Whether someone asked for a stop: Pelican's activity of the server holds a Stop, Kill or Restart, or its stop
+     * command typed in the console. A stop from inside the game is not known to Pelican and counts as a crash.
+     *
+     * @param  iterable<array{event: string, command?: mixed}>  $activity
+     */
+    public static function asked(iterable $activity, ?string $stopCommand): bool
+    {
+        $stop = self::command($stopCommand);
+        foreach ($activity as $entry) {
+            if (in_array($entry['event'], self::ASKED, true)) {
+                return true;
+            }
+            if ($entry['event'] === 'server:console.command' && $stop !== '' && self::command($entry['command'] ?? null) === $stop) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private static function command(mixed $command): string
+    {
+        return is_string($command) ? strtolower(ltrim(trim($command), '/')) : '';
     }
 
     /**

@@ -7,6 +7,7 @@ namespace Simplify\Core\Announcements\Services;
 use Illuminate\Support\Carbon;
 use Simplify\Core\Announcements\Models\Announcement;
 use Simplify\Core\Announcements\Support\Diagnose;
+use Simplify\Core\Announcements\Support\Rules;
 use Simplify\Core\Announcements\Support\Weekly;
 
 /**
@@ -21,30 +22,44 @@ final class WeeklyAnnouncements
         $started = 0;
         $now = time();
         foreach (Announcement::query()->live()->where('send_on', Weekly::SEND_ON)->get() as $announcement) {
-            $hours = Weekly::hours($announcement->weekly_hours);
+            // "Only the next time" went out: it waits for its bar to end, or to be ended.
+            if ($announcement->start_once && $announcement->weekly_from !== null) {
+                continue;
+            }
+            $ends = $announcement->ends_at?->getTimestamp();
             $turn = Weekly::last(
                 Weekly::days($announcement->weekly_days),
-                (string) $announcement->weekly_at,
+                Weekly::times($announcement->weekly_times, $announcement->weekly_at),
                 Weekly::zone($announcement->weekly_zone),
                 $now,
                 $announcement->starts_at?->getTimestamp(),
                 $announcement->ends_at?->getTimestamp(),
             );
-            if (! Weekly::showing($turn, $hours, $now) || $announcement->weekly_from?->getTimestamp() === $turn) {
+            if ($turn === null || $announcement->weekly_from?->getTimestamp() === $turn) {
+                continue;
+            }
+            $until = Rules::windowEnd($turn, $announcement->stay, $announcement->stay_minutes, $ends);
+            // A turn missed by more than a day does not go out late: one made on Tuesday for every Monday waits for
+            // Monday, also when its bar stays until it is ended.
+            if ($now >= $until || $now - $turn > 86400) {
                 continue;
             }
             Bell::forget($announcement->id);
             $announcement->dismissedBy()->detach();
             $announcement->forceFill([
                 'weekly_from' => Carbon::createFromTimestamp($turn),
-                'weekly_until' => Carbon::createFromTimestamp($turn + $hours * 3600),
+                'weekly_until' => Carbon::createFromTimestamp($until),
                 'in_bell_at' => null,
                 'in_game_at' => null,
                 'in_game_result' => null,
                 // Devices reached counts this turn's devices again (K-B87).
                 'pushed_to' => 0,
             ])->saveQuietly();
-            Diagnose::trace('weekly #'.$announcement->id.' turn '.gmdate('Y-m-d H:i', (int) $turn).' UTC for '.$hours.'h');
+            // Only the next time: it ends with the bar of this turn.
+            if ($announcement->start_once && $announcement->stay === 'for') {
+                $announcement->forceFill(['ends_at' => Carbon::createFromTimestamp($until)])->saveQuietly();
+            }
+            Diagnose::trace('weekly #'.$announcement->id.' turn '.gmdate('Y-m-d H:i', (int) $turn).' UTC until '.gmdate('Y-m-d H:i', $until));
             $started++;
         }
 

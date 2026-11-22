@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Simplify\Core\Announcements\Services;
 
+use App\Models\Server;
 use App\Models\User;
 use Filament\Actions\Action;
 use Filament\Notifications\Notification;
@@ -14,6 +15,7 @@ use Simplify\Core\Announcements\Livewire\AnnouncementBars;
 use Simplify\Core\Announcements\Models\Announcement;
 use Simplify\Core\Announcements\Support\Diagnose;
 use Simplify\Core\Announcements\Support\Rules;
+use Simplify\Core\Announcements\Support\TaskAnnouncement;
 
 /**
  * Announcements in Pelican's own bell. An item is either put there for everyone when the announcement starts
@@ -89,12 +91,20 @@ final class Bell
     }
 
     /**
-     * Who gets an announcement: everyone, or for admins every account with a role.
+     * Who gets an announcement: everyone, for admins every account with a role, or for "the people of the server" the
+     * owner of the server its moment is about and the people with access to it. Without such a server that is nobody:
+     * never everyone, as it went before (K-B94).
      *
      * @return Builder<User>
      */
-    public static function audience(Announcement $announcement): Builder
+    public static function audience(Announcement $announcement, ?Server $server = null): Builder
     {
+        if ($announcement->audience === Rules::SERVER_AUDIENCE) {
+            $server ??= $announcement->shown_server ? Server::query()->find($announcement->shown_server) : null;
+
+            return User::query()->whereKey($server === null ? [] : TaskAnnouncement::recipients($server->owner_id, $server->subusers()->pluck('user_id')->all()));
+        }
+
         return User::query()->when($announcement->audience === 'admins', fn (Builder $q) => $q->whereHas('roles'));
     }
 }

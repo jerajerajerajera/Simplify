@@ -43,7 +43,7 @@ final class Push
                 ->orWhere('weekly_from', '>=', $since))
             ->get();
         foreach ($due as $announcement) {
-            $users = User::query()->get()->filter(fn (User $user) => $announcement->audience !== 'admins' || $user->isAdmin());
+            $users = Bell::audience($announcement)->get()->filter(fn (User $user) => $announcement->audience !== 'admins' || $user->isAdmin());
             $sent = AppPush::send($users, 'messages', [
                 'title' => $announcement->title,
                 'body' => (string) $announcement->body,

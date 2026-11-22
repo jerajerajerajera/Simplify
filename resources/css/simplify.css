@@ -2740,3 +2740,19 @@ html.ps-frame .s-done {
 .dark .s-zone-hint a {
   color: var(--primary-400);
 }
+
+/* Announcements: the four questions of the form (announcements/heading). A line above each, not a box around it. */
+.s-ann-heading {
+  margin-top: 4px;
+  padding-top: 14px;
+  border-top: 1px solid var(--gray-200);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+  color: var(--gray-950);
+}
+
+.dark .s-ann-heading {
+  border-top-color: color-mix(in srgb, #fff 12%, transparent);
+  color: #fff;
+}
