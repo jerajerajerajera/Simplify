@@ -109,6 +109,31 @@ final class Weekly
         return in_array($today, $days, true);
     }
 
+    /**
+     * For "When a server starts": whether a start now falls in its hours, on the author's clock. Either end may be
+     * empty; a start time after the end time runs past midnight (22:00 to 02:00).
+     */
+    public static function inHours(mixed $from, mixed $until, string $zone, int $now): bool
+    {
+        $from = self::time($from);
+        $until = self::time($until);
+        if ($from === null && $until === null) {
+            return true;
+        }
+        $at = (new DateTimeImmutable('@'.$now))->setTimezone(new DateTimeZone(self::zone($zone)))->format('H:i');
+        if ($from !== null && $until !== null && $from > $until) {
+            return $at >= $from || $at < $until;
+        }
+
+        return ($from === null || $at >= $from) && ($until === null || $at < $until);
+    }
+
+    /** The day on the author's clock, as "YYYY-MM-DD": "Once per day" sends one start per server on it. */
+    public static function day(string $zone, int $now): string
+    {
+        return (new DateTimeImmutable('@'.$now))->setTimezone(new DateTimeZone(self::zone($zone)))->format('Y-m-d');
+    }
+
     /** Whether the bar of the turn that went out at $last still shows. */
     public static function showing(?int $last, int $hours, int $now): bool
     {

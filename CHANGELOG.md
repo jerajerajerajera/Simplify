@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Announcements when a server starts: How often has a new choice, Once per day. Only the first start of each chosen day goes out, per server, and the next chosen day it goes out again, every week, without ending the announcement. A restart later that day sends nothing. New optional From and Until hours limit it to starts in that part of the day, on the author's clock.
+
 ## 2.0.0-beta.15
 
 - Pelican 1.0.0-rc.3 and rc.4: the console fits again. Pelican's new Copy and Download buttons lay over Bigger console and Open the console in a new window; they now stand in the console's title row with the other tools. The command line is part of the console's card again and the server menu is as tall as the console.

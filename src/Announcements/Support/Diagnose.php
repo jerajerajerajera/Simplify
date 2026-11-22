@@ -153,7 +153,7 @@ final class Diagnose
                 $running[(int) $server->id] = StartAnnouncements::state($server);
             }
             $look = StartTrigger::look($seen, $running);
-            $lines[] = '   servers '.json_encode($ids).' seen '.json_encode($seen).' running now '.json_encode($running).' once='.(int) $announcement->start_once;
+            $lines[] = '   servers '.json_encode($ids).' seen '.json_encode($seen).' running now '.json_encode($running).' once='.(int) $announcement->start_once.' daily='.(int) $announcement->start_daily.' hours='.($announcement->start_from ?? '-').'-'.($announcement->start_until ?? '-').' sent '.json_encode($announcement->start_sent);
             if ($ids === []) {
                 $level = 'bad';
                 $parts[] = 'No servers are picked.';

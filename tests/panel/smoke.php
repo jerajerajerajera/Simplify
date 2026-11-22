@@ -1326,6 +1326,35 @@ step('announcements on a server start: only starts on the chosen days go out (Kh
         $announcement->delete();
     }
 });
+step('announcements on a server start: once per day sends the first start of each chosen day, in its hours, every week (K-B93)', function () use ($server) {
+    $admin = User::query()->whereHas('roles')->firstOrFail();
+    $now = now()->utc()->setTime(12, 0)->getTimestamp();
+    $announcement = Announcement::query()->create([
+        'title' => 'Smoke started once a day', 'send_on' => StartTrigger::START, 'start_servers' => [$server->id], 'start_daily' => true,
+        'weekly_days' => [], 'weekly_zone' => 'UTC', 'start_from' => '10:00', 'start_until' => '22:00',
+        'in_bell' => true, 'push' => false, 'in_game' => false, 'created_by' => $admin->id,
+    ]);
+    $items = fn () => $admin->notifications()->where('data->viewData->simplify_announcement', $announcement->id)->count();
+    try {
+        if (StartAnnouncements::startedToday($announcement, $server, $now - 4 * 3600) || $items() !== 0) {
+            throw new RuntimeException('a start before its hours went out');
+        }
+        if (! StartAnnouncements::startedToday($announcement->refresh(), $server, $now) || $items() !== 1) {
+            throw new RuntimeException('the first start of the day did not go out: '.$items());
+        }
+        if (StartAnnouncements::startedToday($announcement->refresh(), $server, $now + 3600) || $items() !== 1) {
+            throw new RuntimeException('a restart later that day went out again: '.$items());
+        }
+        if ($announcement->refresh()->state() === 'ended') {
+            throw new RuntimeException('once per day ended the announcement, so it would not come back next week');
+        }
+        if (! StartAnnouncements::startedToday($announcement->refresh(), $server, $now + 7 * 86400) || $items() < 1) {
+            throw new RuntimeException('the next chosen day it did not go out again');
+        }
+    } finally {
+        $announcement->delete();
+    }
+});
 step('announcements on a server start: one that goes out once keeps its bell item when it ends (K-B68)', function () use ($server) {
     $admin = User::query()->whereHas('roles')->firstOrFail();
     $announcement = Announcement::query()->create([

@@ -63,6 +63,14 @@ check(W::onDay([], 'Europe/Berlin', $now), 'no days: a start counts every day');
 check(W::onDay([5], 'Europe/Berlin', $now) && ! W::onDay([6, 7], 'Europe/Berlin', $now), 'Friday counts on Friday only');
 check(W::onDay([6], 'Europe/Berlin', at('2026-11-13 23:30', 'UTC')), 'Saturday in Berlin counts while it is still Friday in UTC');
 
+// "When a server starts" in part of the day, and the day "Once per day" counts on (Khion 22-11, K-B93).
+check(W::inHours(null, null, 'Europe/Berlin', $now) && W::inHours('', '', 'Europe/Berlin', $now), 'no hours: the whole day');
+check(W::inHours('10:00', '22:00', 'Europe/Berlin', $now) && ! W::inHours('10:00', '18:00', 'Europe/Berlin', $now), '18:00 in Berlin: inside 10 to 22, not before 18');
+check(W::inHours('18:00', null, 'Europe/Berlin', $now) && ! W::inHours(null, '17:59', 'Europe/Berlin', $now), 'one end only');
+check(W::inHours('22:00', '02:00', 'Europe/Berlin', at('2026-11-13 23:30')) && W::inHours('22:00', '02:00', 'Europe/Berlin', at('2026-11-14 01:00')) && ! W::inHours('22:00', '02:00', 'Europe/Berlin', $now), 'past midnight');
+check(W::inHours('19:00', '20:00', 'Europe/Berlin', at('2026-11-13 18:30', 'UTC')), 'hours on the author\'s clock');
+check(W::day('Europe/Berlin', at('2026-11-13 23:30', 'UTC')) === '2026-11-14' && W::day('UTC', at('2026-11-13 23:30', 'UTC')) === '2026-11-13', 'the day on the author\'s clock');
+
 if ($failures) {
     foreach ($failures as $failure) {
         echo "FAIL $failure\n";
