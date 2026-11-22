@@ -1524,13 +1524,19 @@ step('announcements: the form asks what, when, where and who, and a server momen
         if (! str_contains(html_entity_decode($list, ENT_QUOTES), $sentence)) {
             throw new RuntimeException('the list does not say what the announcement does: '.$sentence);
         }
-        // The form itself opens with the four questions and the examples.
-        $form = Livewire\Livewire::actingAs($admin)->test(ManageAnnouncements::class)->call('mountAction', 'create')->html();
-        foreach (['form.example', 'form.what', 'form.when', 'form.where', 'form.who', 'form.examples.weekend', 'summary.prefix'] as $key) {
-            if (! str_contains(html_entity_decode($form, ENT_QUOTES), __('simplify::announcements.'.$key))) {
-                throw new RuntimeException('the form misses "'.__('simplify::announcements.'.$key).'"');
-            }
-        }
+        // A new form starts as "now, with a bar, for everyone", and an example fills in its answers.
+        Livewire\Livewire::actingAs($admin)->test(ManageAnnouncements::class)
+            ->call('mountAction', 'create')
+            ->assertSet('mountedActions.0.data.when', FormData::NOW)
+            ->assertSet('mountedActions.0.data.bar', true)
+            ->assertSet('mountedActions.0.data.stay', 'ended')
+            ->assertSet('mountedActions.0.data.audience', 'everyone')
+            ->set('mountedActions.0.data.example', 'weekend')
+            ->assertSet('mountedActions.0.data.when', FormData::SERVER)
+            ->assertSet('mountedActions.0.data.often', FormData::DAY)
+            ->assertSet('mountedActions.0.data.bar', false)
+            ->assertSet('mountedActions.0.data.start_from', '10:00')
+            ->assertSet('mountedActions.0.data.audience', Rules::SERVER_AUDIENCE);
     } finally {
         $saved?->delete();
     }
