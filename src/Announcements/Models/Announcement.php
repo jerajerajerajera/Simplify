@@ -40,6 +40,10 @@ use Simplify\Core\Announcements\Support\Weekly;
  * @property ?list<int> $start_servers
  * @property bool $start_once ends itself after the first start
  * @property ?array<int, bool|int> $start_seen server id => at the last look: not running (false), or since when it runs
+ * @property bool $start_daily "Once per day": only the first start of each chosen day per server
+ * @property ?array<int, string> $start_sent server id => the day ("YYYY-MM-DD" in weekly_zone) its start last went out
+ * @property ?string $start_from HH:MM in weekly_zone: starts from then count
+ * @property ?string $start_until HH:MM in weekly_zone: starts until then count
  * @property ?list<int> $weekly_days ISO days, 1 Monday … 7 Sunday
  * @property ?string $weekly_at HH:MM in weekly_zone
  * @property ?string $weekly_zone the author's time zone
@@ -54,7 +58,7 @@ final class Announcement extends Model
 {
     protected $table = 'simplify_core_announcements';
 
-    protected $fillable = ['category', 'title', 'body', 'starts_at', 'ends_at', 'audience', 'button_label', 'button_url', 'in_bell', 'bell_pinned', 'push', 'in_game', 'in_game_servers', 'in_game_groups', 'in_game_repeat', 'send_on', 'start_servers', 'start_once', 'weekly_days', 'weekly_at', 'weekly_zone', 'weekly_hours', 'created_by'];
+    protected $fillable = ['category', 'title', 'body', 'starts_at', 'ends_at', 'audience', 'button_label', 'button_url', 'in_bell', 'bell_pinned', 'push', 'in_game', 'in_game_servers', 'in_game_groups', 'in_game_repeat', 'send_on', 'start_servers', 'start_once', 'start_daily', 'start_from', 'start_until', 'weekly_days', 'weekly_at', 'weekly_zone', 'weekly_hours', 'created_by'];
 
     protected $attributes = ['category' => 'info', 'audience' => 'everyone', 'send_on' => 'time'];
 
@@ -77,6 +81,8 @@ final class Announcement extends Model
             'start_servers' => 'array',
             'start_once' => 'boolean',
             'start_seen' => 'array',
+            'start_daily' => 'boolean',
+            'start_sent' => 'array',
             'weekly_days' => 'array',
             'weekly_hours' => 'integer',
             'weekly_from' => 'datetime',
@@ -100,7 +106,7 @@ final class Announcement extends Model
             // A new start, or just turned on: it goes out in game again.
             // Other servers, or switched to "when a server starts": the next look only remembers, it does not send.
             if ($announcement->wasChanged(['start_servers', 'send_on'])) {
-                $announcement->forceFill(['start_seen' => null])->saveQuietly();
+                $announcement->forceFill(['start_seen' => null, 'start_sent' => null])->saveQuietly();
             }
             // Other days, time or hours: the next run works out its turn again.
             if ($announcement->wasChanged(['send_on', 'weekly_days', 'weekly_at', 'weekly_zone', 'weekly_hours'])) {

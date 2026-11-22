@@ -86,15 +86,35 @@ final class StartAnnouncements
     }
 
     /**
-     * A start the scheduler saw: sent only on the announcement's days, if it has any (Khion 15-11). A start on another
-     * day is remembered as seen, so it does not go out later either.
+     * A start the scheduler saw: sent only on the announcement's days, if it has any (Khion 15-11), and in its hours.
+     * "Once per day" sends only the first start of the day per server, every chosen day again (Khion 22-11). A start
+     * that does not count is remembered as seen, so it does not go out later either.
      */
-    public static function startedToday(Announcement $announcement, Server $server): bool
+    public static function startedToday(Announcement $announcement, Server $server, ?int $now = null): bool
     {
-        if (! Weekly::onDay(Weekly::days($announcement->weekly_days), Weekly::zone($announcement->weekly_zone), time())) {
+        $now ??= time();
+        $zone = Weekly::zone($announcement->weekly_zone);
+        if (! Weekly::onDay(Weekly::days($announcement->weekly_days), $zone, $now)) {
             Diagnose::trace('start #'.$announcement->id.' of server '.$server->id.' not on its days today');
 
             return false;
+        }
+        if (! Weekly::inHours($announcement->start_from, $announcement->start_until, $zone, $now)) {
+            Diagnose::trace('start #'.$announcement->id.' of server '.$server->id.' outside its hours');
+
+            return false;
+        }
+        if ($announcement->start_daily) {
+            $sent = is_array($announcement->start_sent) ? $announcement->start_sent : [];
+            $today = Weekly::day($zone, $now);
+            if (($sent[$server->id] ?? null) === $today) {
+                Diagnose::trace('start #'.$announcement->id.' of server '.$server->id.' already sent today');
+
+                return false;
+            }
+            // Remembered first, so an error halfway never sends it twice on one day.
+            $sent[$server->id] = $today;
+            $announcement->forceFill(['start_sent' => $sent])->saveQuietly();
         }
         self::started($announcement, $server);
 

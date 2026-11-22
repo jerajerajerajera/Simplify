@@ -123,14 +123,24 @@ final class AnnouncementResource extends Resource
                     ->searchable()
                     ->getSearchResultsUsing(fn (string $search): array => Server::query()->where('name', 'like', '%'.$search.'%')->orderBy('name')->limit(50)->pluck('name', 'id')->all())
                     ->getOptionLabelsUsing(fn (array $values): array => Server::query()->whereKey($values)->pluck('name', 'id')->all()),
-                ToggleButtons::make('start_once')
+                // Every start, the first start of each chosen day per server (Khion 22-11), or only the next start.
+                // Saved in start_once and start_daily by the two hidden fields below.
+                ToggleButtons::make('start_often')
                     ->label(self::text('form.start_once'))
-                    ->options(['every' => self::text('form.start_every'), 'next' => self::text('form.start_next')])
+                    ->helperText(fn (Get $get): ?string => $get('start_often') === 'day' ? self::text('form.start_day_help') : null)
+                    ->options(['every' => self::text('form.start_every'), 'day' => self::text('form.start_day'), 'next' => self::text('form.start_next')])
                     ->inline()
                     ->default('every')
-                    ->formatStateUsing(fn ($state): string => $state === true || $state === 'next' ? 'next' : 'every')
-                    ->dehydrateStateUsing(fn ($state): bool => $state === 'next'),
+                    ->afterStateHydrated(fn (ToggleButtons $component, Get $get) => $component->state(match (true) {
+                        (bool) $get('start_once') => 'next',
+                        (bool) $get('start_daily') => 'day',
+                        default => 'every',
+                    }))
+                    ->dehydrated(false)
+                    ->live(),
             ]),
+            Hidden::make('start_once')->dehydrateStateUsing(fn (Get $get): bool => $get('start_often') === 'next'),
+            Hidden::make('start_daily')->dehydrateStateUsing(fn (Get $get): bool => $get('start_often') === 'day'),
             // On days of the week: the days it goes out. On a server start: only starts on these days count, none is
             // every day (Khion 15-11).
             ToggleButtons::make('weekly_days')
@@ -142,6 +152,18 @@ final class AnnouncementResource extends Resource
                 ->inline()
                 ->required($weekly)
                 ->dehydrateStateUsing(fn ($state): array => Weekly::days($state)),
+            // Only starts in this part of the day count; either end may stay empty (Khion 22-11).
+            Grid::make(2)->visible($starts)->schema([
+                TimePicker::make('start_from')
+                    ->label(self::text('form.start_from'))
+                    ->seconds(false)
+                    ->helperText(fn (Get $get): string => self::text('form.start_hours_help', ['zone' => Weekly::zone($get('weekly_zone') ?: $zone)]))
+                    ->dehydrateStateUsing(fn ($state): ?string => Weekly::time($state)),
+                TimePicker::make('start_until')
+                    ->label(self::text('form.start_until'))
+                    ->seconds(false)
+                    ->dehydrateStateUsing(fn ($state): ?string => Weekly::time($state)),
+            ]),
             // Kept when another admin edits it, so a time and the days keep meaning the same moment.
             Hidden::make('weekly_zone')
                 ->default($zone)
@@ -386,15 +408,23 @@ final class AnnouncementResource extends Resource
         return $names;
     }
 
-    /** "Mon, Fri · 19:00 (Europe/Berlin)" for one on days of the week, "Sat, Sun (Europe/Berlin)" for starts on some days. */
+    /** "Mon, Fri · 19:00 (Europe/Berlin)" for one on days of the week, "Sat, Sun · 10:00–22:00 · Once per day (Europe/Berlin)" for starts. */
     private static function weeklySummary(Announcement $record): ?string
     {
         $days = Weekly::days($record->weekly_days);
         $at = Weekly::time($record->weekly_at);
         $names = self::weekdays();
         $list = implode(', ', array_map(fn (int $day): string => $names[$day], $days));
-        if ($record->send_on === StartTrigger::START && $days !== []) {
-            return $list.' ('.Weekly::zone($record->weekly_zone).')';
+        if ($record->send_on === StartTrigger::START) {
+            $from = Weekly::time($record->start_from);
+            $until = Weekly::time($record->start_until);
+            $parts = array_filter([
+                $list,
+                $from !== null || $until !== null ? ($from ?? '00:00').'–'.($until ?? '24:00') : '',
+                $record->start_daily ? self::text('form.start_day') : '',
+            ], fn (string $part): bool => $part !== '');
+
+            return $parts === [] ? null : implode(' · ', $parts).($days !== [] || $from !== null || $until !== null ? ' ('.Weekly::zone($record->weekly_zone).')' : '');
         }
         if ($record->send_on !== Weekly::SEND_ON || $days === [] || $at === null) {
             return null;
