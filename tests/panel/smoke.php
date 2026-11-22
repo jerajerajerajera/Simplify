@@ -48,6 +48,8 @@ use Simplify\Core\Announcements\Services\StartAnnouncements;
 use Simplify\Core\Announcements\Services\TaskWaits;
 use Simplify\Core\Announcements\Services\WeeklyAnnouncements;
 use Simplify\Core\Announcements\Support\Diagnose;
+use Simplify\Core\Announcements\Support\FormData;
+use Simplify\Core\Announcements\Support\Rules;
 use Simplify\Core\Announcements\Support\StartTrigger;
 use Simplify\Core\Announcements\Support\TaskAnnouncement;
 use Simplify\Core\Announcements\Support\Weekly;
@@ -1424,19 +1426,21 @@ step('announcements: Devices reached counts the devices of the latest sending, n
     }
 });
 step('announcements on days of the week: the form saves the days and time, each turn goes out once and shows the bar again (Khion 15-11)', function () use ($admin) {
-    // The form: days, time and the author's time zone are saved as Simplify reads them.
+    // The form: days, times, how long the bar stays and the author's time zone are saved as Simplify reads them.
     Livewire\Livewire::actingAs($admin)->test(ManageAnnouncements::class)
         ->call('mountAction', 'create')
         ->set('mountedActions.0.data.title', 'Smoke weekly form')
-        ->set('mountedActions.0.data.send_on', Weekly::SEND_ON)
+        ->set('mountedActions.0.data.when', FormData::WEEKLY)
         ->set('mountedActions.0.data.weekly_days', ['5', '1'])
-        ->set('mountedActions.0.data.weekly_at', '19:00')
-        ->set('mountedActions.0.data.weekly_hours', '3')
+        ->set('mountedActions.0.data.weekly_times', ['19:00', '12:00'])
+        ->set('mountedActions.0.data.stay', 'for')
+        ->set('mountedActions.0.data.stay_n', '30')
+        ->set('mountedActions.0.data.stay_unit', 'minutes')
         ->call('callMountedAction')
         ->assertHasNoErrors();
     $saved = Announcement::query()->where('title', 'Smoke weekly form')->first();
-    if (! $saved || $saved->send_on !== Weekly::SEND_ON || $saved->weekly_days !== [1, 5] || $saved->weekly_at !== '19:00' || $saved->weekly_hours !== 3 || Weekly::zone($saved->weekly_zone) !== $saved->weekly_zone) {
-        throw new RuntimeException('the form did not save an announcement on days of the week: '.json_encode($saved?->only(['send_on', 'weekly_days', 'weekly_at', 'weekly_hours', 'weekly_zone'])));
+    if (! $saved || $saved->send_on !== Weekly::SEND_ON || $saved->weekly_days !== [1, 5] || $saved->weekly_times !== ['12:00', '19:00'] || ! $saved->bar || $saved->stay !== 'for' || $saved->stay_minutes !== 30 || Weekly::zone($saved->weekly_zone) !== $saved->weekly_zone) {
+        throw new RuntimeException('the form did not save an announcement for every week: '.json_encode($saved?->only(['send_on', 'weekly_days', 'weekly_times', 'bar', 'stay', 'stay_minutes', 'weekly_zone'])));
     }
     $saved->delete();
 
@@ -1480,12 +1484,211 @@ step('announcements on days of the week: the form saves the days and time, each 
         }
         // The list says when it goes out.
         $list = visit($admin, AnnouncementResource::getUrl(panel: 'admin'))->getContent();
-        if (! str_contains((string) $list, $turn->format('H:i').' (UTC)')) {
+        if (! str_contains((string) $list, $turn->format('H:i'))) {
             throw new RuntimeException('the list does not show the days and time');
         }
     } finally {
         $announcement->delete();
         $other->delete();
+    }
+});
+step('announcements: the form asks what, when, where and who, and a server moment is stored as the scheduler reads it (V65)', function () use ($admin, $server) {
+    Livewire\Livewire::actingAs($admin)->test(ManageAnnouncements::class)
+        ->call('mountAction', 'create')
+        ->set('mountedActions.0.data.title', 'Smoke form stop')
+        ->set('mountedActions.0.data.when', FormData::SERVER)
+        ->set('mountedActions.0.data.start_event', 'stop')
+        ->set('mountedActions.0.data.start_servers', [(string) $server->id])
+        ->set('mountedActions.0.data.often', FormData::DAY)
+        ->set('mountedActions.0.data.bar', true)
+        ->set('mountedActions.0.data.stay', 'for')
+        ->set('mountedActions.0.data.stay_n', '2')
+        ->set('mountedActions.0.data.stay_unit', 'hours')
+        ->set('mountedActions.0.data.in_bell', true)
+        ->set('mountedActions.0.data.audience', Rules::SERVER_AUDIENCE)
+        ->call('callMountedAction')
+        ->assertHasNoErrors();
+    $saved = Announcement::query()->where('title', 'Smoke form stop')->first();
+    try {
+        $want = ['send_on' => StartTrigger::START, 'start_event' => 'stop', 'start_servers' => [(int) $server->id], 'start_daily' => true, 'start_once' => false, 'bar' => true, 'stay' => 'for', 'stay_minutes' => 120, 'audience' => Rules::SERVER_AUDIENCE, 'in_game_target' => 'started'];
+        if (! $saved || $saved->only(array_keys($want)) != $want || $saved->starts_at !== null) {
+            throw new RuntimeException('the form did not save a server moment: '.json_encode($saved?->only([...array_keys($want), 'starts_at'])));
+        }
+        // What the form shows when it is opened again, and the sentence in the list.
+        $shown = FormData::fill($saved->attributesToArray());
+        if ($shown['when'] !== FormData::SERVER || $shown['often'] !== FormData::DAY || $shown['stay_n'] !== 2 || $shown['stay_unit'] !== 'hours') {
+            throw new RuntimeException('a saved server moment does not open as it was filled in: '.json_encode($shown));
+        }
+        $list = (string) visit($admin, AnnouncementResource::getUrl(panel: 'admin'))->getContent();
+        $sentence = __('simplify::announcements.summary.stop_day', ['servers' => $server->name]);
+        if (! str_contains(html_entity_decode($list, ENT_QUOTES), $sentence)) {
+            throw new RuntimeException('the list does not say what the announcement does: '.$sentence);
+        }
+        // A new form starts as "now, with a bar, for everyone", and an example fills in its answers.
+        Livewire\Livewire::actingAs($admin)->test(ManageAnnouncements::class)
+            ->call('mountAction', 'create')
+            ->assertSet('mountedActions.0.data.when', FormData::NOW)
+            ->assertSet('mountedActions.0.data.bar', true)
+            ->assertSet('mountedActions.0.data.stay', 'ended')
+            ->assertSet('mountedActions.0.data.audience', 'everyone')
+            // Testlab 22-11: a click on the choice that is on emptied it, and Create refused.
+            ->set('mountedActions.0.data.when', null)
+            ->assertSet('mountedActions.0.data.when', FormData::NOW)
+            ->set('mountedActions.0.data.audience', null)
+            ->assertSet('mountedActions.0.data.audience', 'everyone')
+            // Maintenance tonight comes with its date filled in.
+            ->set('mountedActions.0.data.example', 'maintenance')
+            ->assertSet('mountedActions.0.data.when', FormData::DATE)
+            ->assertNotSet('mountedActions.0.data.starts_at', null)
+            ->set('mountedActions.0.data.example', 'weekend')
+            ->assertSet('mountedActions.0.data.when', FormData::SERVER)
+            ->assertSet('mountedActions.0.data.often', FormData::DAY)
+            ->assertSet('mountedActions.0.data.bar', false)
+            ->assertSet('mountedActions.0.data.start_from', '10:00')
+            ->assertSet('mountedActions.0.data.audience', Rules::SERVER_AUDIENCE);
+    } finally {
+        $saved?->delete();
+    }
+});
+step('announcements on a server moment: "people with access to the server" reaches the owner and subusers only, in the bell and as a bar (K-B94)', function () use ($server) {
+    $admin = User::query()->whereHas('roles')->firstOrFail();
+    $owner = User::query()->findOrFail($server->owner_id);
+    $player = User::where('email', 'smoke-player@example.com')->firstOrFail();
+    $guest = User::where('email', 'smoke-guest@example.com')->first()
+        ?? User::withoutEvents(fn () => User::factory()->create(['email' => 'smoke-guest@example.com']));
+    DB::table('subusers')->where('server_id', $server->id)->whereIn('user_id', [$player->id, $guest->id])->delete();
+    DB::table('subusers')->insert(['server_id' => $server->id, 'user_id' => $guest->id, 'permissions' => '[]', 'created_at' => now(), 'updated_at' => now()]);
+    $announcement = Announcement::query()->create([
+        'title' => 'Smoke for the server', 'send_on' => StartTrigger::START, 'start_servers' => [$server->id], 'audience' => Rules::SERVER_AUDIENCE,
+        'bar' => true, 'stay' => 'for', 'stay_minutes' => 30, 'in_bell' => true, 'push' => false, 'in_game' => false, 'created_by' => $admin->id,
+    ]);
+    $items = fn (User $user) => $user->notifications()->where('data->viewData->simplify_announcement', $announcement->id)->count();
+    $bar = fn (User $user) => Announcement::barsFor($user)->whereKey($announcement->id)->exists();
+    try {
+        if ($bar($owner) || $bar($guest)) {
+            throw new RuntimeException('the bar of a server moment shows before the moment');
+        }
+        StartAnnouncements::started($announcement, $server);
+        // An account without access got the notice with the server's name in it: it went to everyone on the panel.
+        if ($items($player) !== 0 || $bar($player)) {
+            throw new RuntimeException('an account without access to the server got the announcement: bell '.$items($player).' bar '.json_encode($bar($player)));
+        }
+        if ($items($owner) !== 1 || $items($guest) !== 1 || ! $bar($owner) || ! $bar($guest)) {
+            throw new RuntimeException('the owner or a subuser missed it: owner '.$items($owner).' subuser '.$items($guest).' bars '.json_encode([$bar($owner), $bar($guest)]));
+        }
+        if ($announcement->refresh()->state() === 'ended' || $announcement->weekly_until?->getTimestamp() !== $announcement->weekly_from?->getTimestamp() + 1800) {
+            throw new RuntimeException('the bar does not stay for its 30 minutes: '.json_encode($announcement->only(['weekly_from', 'weekly_until', 'ends_at'])));
+        }
+        // Its time is up: the bar is gone, the announcement waits for the next moment.
+        $announcement->forceFill(['weekly_from' => now()->subHour(), 'weekly_until' => now()->subMinutes(30)])->saveQuietly();
+        if ($bar($owner) || $announcement->refresh()->state() !== 'live') {
+            throw new RuntimeException('the bar stayed after its time, or the announcement ended with it');
+        }
+    } finally {
+        $announcement->delete();
+        DB::table('subusers')->where('server_id', $server->id)->where('user_id', $guest->id)->delete();
+    }
+});
+step('announcements on a server moment: a stop goes out when the server stops, a crash only when nobody asked for the stop', function () use ($server) {
+    $admin = User::query()->whereHas('roles')->firstOrFail();
+    $make = fn (string $event) => Announcement::query()->create([
+        'title' => 'Smoke '.$event, 'send_on' => StartTrigger::START, 'start_event' => $event, 'start_servers' => [$server->id],
+        'in_bell' => true, 'push' => false, 'in_game' => false, 'created_by' => $admin->id,
+    ]);
+    $stop = $make('stop');
+    $crash = $make('crash');
+    $items = fn (Announcement $announcement) => $admin->notifications()->where('data->viewData->simplify_announcement', $announcement->id)->count();
+    $look = function (ContainerStatus $status, int $uptime = 0) use ($stop, $crash, $server) {
+        cache()->put("servers.$server->uuid.status", $status, 60);
+        cache()->put("servers.$server->uuid.resources", $uptime ? ['uptime' => $uptime * 1000] : [], 60);
+        foreach ([$stop, $crash] as $announcement) {
+            cache()->forget('simplify-announcements.start.'.$announcement->id.'.'.intdiv(time(), 60));
+        }
+        Artisan::call('simplify:announcements');
+    };
+    // The stop the scheduler saw a while ago: Wings has had its minute to say who asked for it.
+    $waited = function () use ($crash, $server) {
+        $pending = $crash->refresh()->start_pending;
+        if (! is_array($pending) || ! isset($pending[$server->id])) {
+            throw new RuntimeException('a stop was not kept to be looked at: '.json_encode($pending));
+        }
+        $pending[$server->id] = time() - StartTrigger::CRASH_WAIT - 1;
+        $crash->forceFill(['start_pending' => $pending])->saveQuietly();
+    };
+    // What earlier steps did to this server is not part of this one.
+    DB::table('activity_logs')->where('timestamp', '>=', now()->subMinutes(20))->where(fn ($q) => $q->where('event', 'like', 'server:power.%')->orWhere('event', 'server:console.command'))->update(['timestamp' => now()->subHour()]);
+    try {
+        $look(ContainerStatus::Running, 3600);
+        if ($items($stop) !== 0 || $items($crash) !== 0) {
+            throw new RuntimeException('a running server counted as a stop or a crash');
+        }
+        // Nobody pressed Stop: a stop right away, a crash after the wait.
+        $look(ContainerStatus::Offline);
+        if ($items($stop) !== 1 || $items($crash) !== 0) {
+            throw new RuntimeException('a stop did not go out once, or a crash went out before the wait: stop '.$items($stop).' crash '.$items($crash));
+        }
+        $waited();
+        $look(ContainerStatus::Offline);
+        if ($items($crash) !== 1 || $items($stop) !== 1 || $crash->refresh()->start_pending !== null) {
+            throw new RuntimeException('a stop nobody asked for is no crash: crash '.$items($crash).' stop '.$items($stop));
+        }
+        // Stopped from the panel: a stop, no crash.
+        $look(ContainerStatus::Running, 30);
+        $look(ContainerStatus::Offline);
+        DB::table('activity_logs')->insert(['event' => 'server:power.stop', 'ip' => '127.0.0.1', 'actor_type' => $admin->getMorphClass(), 'actor_id' => $admin->id, 'properties' => '{}', 'timestamp' => now()]);
+        DB::table('activity_log_subjects')->insert(['activity_log_id' => DB::getPdo()->lastInsertId(), 'subject_type' => $server->getMorphClass(), 'subject_id' => $server->id]);
+        $waited();
+        $look(ContainerStatus::Offline);
+        if ($items($crash) !== 1) {
+            throw new RuntimeException('a stop from the panel went out as a crash');
+        }
+        // Testlab 22-11: started again and crashed within ten minutes of that Stop. The Stop was for the earlier run.
+        DB::table('activity_logs')->where('event', 'server:power.stop')->where('ip', '127.0.0.1')->where('actor_id', $admin->id)->update(['timestamp' => now()->subMinutes(5)]);
+        AnnouncementBell::forget($crash->id);
+        $look(ContainerStatus::Running, 100);
+        $look(ContainerStatus::Offline);
+        $waited();
+        $look(ContainerStatus::Offline);
+        if ($items($crash) !== 1) {
+            throw new RuntimeException('a crash within ten minutes of a Stop from the panel was not told');
+        }
+    } finally {
+        cache()->forget("servers.$server->uuid.status");
+        cache()->forget("servers.$server->uuid.resources");
+        DB::table('activity_logs')->where('event', 'server:power.stop')->where('ip', '127.0.0.1')->where('actor_id', $admin->id)->delete();
+        $stop->delete();
+        $crash->delete();
+    }
+});
+step('announcements: the update keeps what each announcement did, and a server start now reaches the people of that server (V65)', function () use ($server) {
+    $admin = User::query()->whereHas('roles')->firstOrFail();
+    $old = fn (array $fields) => tap(Announcement::query()->create(['in_bell' => true, 'created_by' => $admin->id, ...$fields]), fn (Announcement $made) => DB::table('simplify_core_announcements')->where('id', $made->id)->update(['bar' => true, 'stay' => null, 'stay_minutes' => 180, 'in_game_target' => null, 'weekly_times' => null]));
+    $timed = $old(['title' => 'Smoke old timed', 'ends_at' => now()->addDay()]);
+    $open = $old(['title' => 'Smoke old open']);
+    $weekly = $old(['title' => 'Smoke old weekly', 'send_on' => Weekly::SEND_ON, 'weekly_days' => [1], 'weekly_at' => '19:30', 'weekly_zone' => 'UTC', 'weekly_hours' => 6]);
+    $start = $old(['title' => 'Smoke old start', 'send_on' => StartTrigger::START, 'start_servers' => [$server->id], 'start_daily' => true]);
+    $forAdmins = $old(['title' => 'Smoke old start for admins', 'send_on' => StartTrigger::START, 'start_servers' => [$server->id], 'audience' => 'admins']);
+    $row = fn (Announcement $made) => (array) DB::table('simplify_core_announcements')->where('id', $made->id)->first(['bar', 'stay', 'stay_minutes', 'in_game_target', 'weekly_times', 'audience', 'start_daily']);
+    try {
+        $migration = require dirname(__DIR__, 2).'/database/migrations/2026_11_22_000002_add_open_model_to_simplify_core_announcements.php';
+        $migration->up();
+        $got = array_map($row, ['timed' => $timed, 'open' => $open, 'weekly' => $weekly, 'start' => $start, 'admins' => $forAdmins]);
+        $ok = (int) $got['timed']['bar'] === 1 && $got['timed']['stay'] === 'until' && $got['timed']['in_game_target'] === 'servers'
+            && (int) $got['open']['bar'] === 1 && $got['open']['stay'] === 'ended'
+            && (int) $got['weekly']['bar'] === 1 && $got['weekly']['stay'] === 'for' && (int) $got['weekly']['stay_minutes'] === 360 && json_decode((string) $got['weekly']['weekly_times'], true) === ['19:30']
+            && (int) $got['start']['bar'] === 0 && $got['start']['in_game_target'] === 'started' && $got['start']['audience'] === Rules::SERVER_AUDIENCE && (int) $got['start']['start_daily'] === 1
+            && $got['admins']['audience'] === 'admins';
+        if (! $ok) {
+            throw new RuntimeException('old announcements were not carried over: '.json_encode($got));
+        }
+        // A second run changes nothing, also not what an admin chose since.
+        DB::table('simplify_core_announcements')->where('id', $start->id)->update(['audience' => 'everyone', 'bar' => true]);
+        $migration->up();
+        if ($row($start)['audience'] !== 'everyone' || (int) $row($start)['bar'] !== 1) {
+            throw new RuntimeException('running the migration again changed an announcement an admin had edited');
+        }
+    } finally {
+        Announcement::query()->whereKey([$timed->id, $open->id, $weekly->id, $start->id, $forAdmins->id])->delete();
     }
 });
 step('test announcements: the check sends nothing, says a timed bell item came on time, and the tests make real announcements', function () use ($server) {

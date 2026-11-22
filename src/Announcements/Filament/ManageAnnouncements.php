@@ -23,7 +23,7 @@ final class ManageAnnouncements extends ManageRecords
             $this->commandsAction(),
             CreateAction::make()
                 ->icon('tabler-plus')
-                ->mutateDataUsing(fn (array $data): array => [...$data, 'created_by' => user()?->id])
+                ->mutateDataUsing(fn (array $data): array => [...AnnouncementResource::store($data), 'created_by' => user()?->id])
                 ->after(fn () => AnnouncementResource::deliverNow()),
         ];
     }

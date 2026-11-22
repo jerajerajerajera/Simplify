@@ -11,6 +11,7 @@ use Simplify\Core\Announcements\Models\Announcement;
 use Simplify\Core\Announcements\Models\GameCommand;
 use Simplify\Core\Announcements\Support\Diagnose;
 use Simplify\Core\Announcements\Support\GameChat;
+use Simplify\Core\Announcements\Support\StartTrigger;
 use Simplify\Core\Overview\ServerGroups;
 use Simplify\Core\Support\Preferences;
 use Simplify\Core\Support\SafeCache;
@@ -33,7 +34,8 @@ final class InGame
     public static function sendDue(): int
     {
         $posted = 0;
-        foreach (Announcement::query()->live()->timed()->where('in_game', true)->get() as $announcement) {
+        // Showing: one at a time, a turn of the week, or the bar a server moment opened (its chat repeats while it stays).
+        foreach (Announcement::query()->live()->showing()->where('in_game', true)->get() as $announcement) {
             if (! GameChat::isDue($announcement->in_game_at?->getTimestamp(), $announcement->in_game_repeat, time())) {
                 continue;
             }
@@ -110,6 +112,10 @@ final class InGame
     /** @return iterable<Server> */
     private static function targets(Announcement $announcement): iterable
     {
+        // A server moment in the chat of that server only.
+        if ($announcement->send_on === StartTrigger::START && $announcement->in_game_target !== 'servers') {
+            return Server::query()->with(['egg', 'node'])->whereKey($announcement->shown_server ?? 0)->get();
+        }
         $picked = $announcement->in_game_servers ?? [];
         // Groups are read now, so servers added to a group later get it too. Emptied groups send nowhere (id 0), not to all.
         $chosen = $announcement->in_game_groups ?? [];

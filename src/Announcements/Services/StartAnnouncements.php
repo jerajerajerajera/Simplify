@@ -5,10 +5,13 @@ declare(strict_types=1);
 namespace Simplify\Core\Announcements\Services;
 
 use App\Models\Server;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use Simplify\Core\Announcements\Models\Announcement;
 use Simplify\Core\Announcements\Models\GameCommand;
 use Simplify\Core\Announcements\Support\Diagnose;
 use Simplify\Core\Announcements\Support\GameChat;
+use Simplify\Core\Announcements\Support\Rules;
 use Simplify\Core\Announcements\Support\StartTrigger;
 use Simplify\Core\Announcements\Support\Weekly;
 use Simplify\Core\Push\Push as AppPush;
@@ -16,9 +19,9 @@ use Simplify\Core\Support\SafeCache;
 use Throwable;
 
 /**
- * "Send: when a server starts": every minute the scheduler looks whether the servers of these announcements came
- * online since the last look, so a start from the console or after a crash counts too. Each start sends the
- * announcement in that server's game chat, in the bell and to devices, as the announcement asks.
+ * "When a server starts, stops or crashes": every minute the scheduler looks at the servers of these announcements,
+ * so a start from the console or after a crash counts too. Each moment that counts sends the announcement to the
+ * places it asks for: the game chat, the bell, devices, and a bar for as long as it stays.
  */
 final class StartAnnouncements
 {
@@ -27,6 +30,10 @@ final class StartAnnouncements
     {
         $sent = 0;
         foreach (Announcement::query()->live()->where('send_on', StartTrigger::START)->get() as $announcement) {
+            // "Only the next time" went out: it waits for its bar to end, or to be ended.
+            if ($announcement->start_once && $announcement->weekly_from !== null) {
+                continue;
+            }
             // One look per announcement and minute, even when two schedulers overlap.
             if (! SafeCache::add('simplify-announcements.start.'.$announcement->id.'.'.intdiv(time(), 60), true, 120)) {
                 continue;
@@ -49,18 +56,82 @@ final class StartAnnouncements
         foreach ($servers as $server) {
             $running[(int) $server->id] = self::state($server);
         }
-        $look = StartTrigger::look(is_array($announcement->start_seen) ? $announcement->start_seen : [], $running);
+        $before = is_array($announcement->start_seen) ? $announcement->start_seen : [];
+        $look = StartTrigger::look($before, $running);
         // Remembered first, so an error halfway never sends the same start twice.
         $announcement->forceFill(['start_seen' => $look['seen']])->saveQuietly();
         if ($look['started'] !== [] || $look['seen'] !== $announcement->getOriginal('start_seen')) {
             Diagnose::trace('start #'.$announcement->id.' running '.json_encode($running).' started '.json_encode($look['started']));
         }
+        $event = StartTrigger::event($announcement->start_event);
+        $counted = match ($event) {
+            StartTrigger::START => $look['started'],
+            'stop' => $look['stopped'],
+            default => self::crashed($announcement, $servers, $look['stopped'], $before),
+        };
         $sent = 0;
-        foreach ($look['started'] as $id) {
-            $sent += self::startedToday($announcement, $servers->firstWhere('id', $id)) ? 1 : 0;
+        foreach ($counted as $id) {
+            $server = $servers->firstWhere('id', $id);
+            $sent += $server !== null && self::startedToday($announcement, $server) ? 1 : 0;
+            // "Only the next time" is done after the first one that counted.
+            if ($announcement->start_once && $announcement->weekly_from !== null) {
+                break;
+            }
         }
 
         return $sent;
+    }
+
+    /**
+     * The stops nobody asked for. A stop that was just seen waits (start_pending): Wings tells Pelican who pressed
+     * Stop about once a minute. After that it is a crash when the server's activity holds no Stop, Restart or Kill and
+     * no stop command in the minutes before it.
+     *
+     * @param  Collection<int, Server>  $servers
+     * @param  list<int>  $stopped
+     * @param  array<int|string, mixed>  $before  what the last look held: since when each server ran
+     * @return list<int>
+     */
+    private static function crashed(Announcement $announcement, Collection $servers, array $stopped, array $before): array
+    {
+        $now = time();
+        $pending = is_array($announcement->start_pending) ? $announcement->start_pending : [];
+        // Beside the stops that wait: since when each of those servers ran, so only what happened in that run counts.
+        $since = is_array($pending['since'] ?? null) ? $pending['since'] : [];
+        unset($pending['since']);
+        foreach ($stopped as $id) {
+            if (! isset($pending[$id])) {
+                $pending[$id] = $now;
+                $since[$id] = $before[$id] ?? null;
+            }
+        }
+        $waited = StartTrigger::due($pending, $now);
+        $keep = $waited['pending'];
+        if ($keep !== []) {
+            $keep['since'] = array_intersect_key($since, $waited['pending']);
+        }
+        if ($keep != $announcement->start_pending) {
+            // Remembered first, so an error halfway never sends the same crash twice.
+            $announcement->forceFill(['start_pending' => $keep === [] ? null : $keep])->saveQuietly();
+        }
+        $crashed = [];
+        foreach ($waited['due'] as $id => $seenAt) {
+            $server = $servers->firstWhere('id', $id);
+            if ($server === null) {
+                continue;
+            }
+            $activity = $server->activity()
+                ->where('activity_logs.timestamp', '>=', Carbon::createFromTimestamp(StartTrigger::lookBack($seenAt, $since[$id] ?? null)))
+                ->get()
+                ->map(fn ($log): array => ['event' => (string) $log->getAttribute('event'), 'command' => $log->getAttribute('properties')['command'] ?? null]);
+            $asked = StartTrigger::asked($activity, $server->egg->config_stop);
+            Diagnose::trace('start #'.$announcement->id.' stop of server '.$id.($asked ? ' was asked for' : ' counts as a crash'));
+            if (! $asked) {
+                $crashed[] = $id;
+            }
+        }
+
+        return $crashed;
     }
 
     /**
@@ -128,19 +199,38 @@ final class StartAnnouncements
     public static function started(Announcement $announcement, Server $server): void
     {
         Diagnose::trace('start #'.$announcement->id.' sending for server '.$server->id);
+        $now = now();
+        // The bar of this moment, for as long as it stays: also for accounts that unpinned the last one. Set before
+        // sending, so the chat of "that server" and the people of the server follow this moment.
+        $until = Rules::windowEnd($now->getTimestamp(), $announcement->stay, $announcement->stay_minutes, $announcement->ends_at?->getTimestamp());
+        $announcement->forceFill(['weekly_from' => $now, 'weekly_until' => $announcement->bar ? Carbon::createFromTimestamp($until) : $now, 'shown_server' => $server->id])->saveQuietly();
+        if ($announcement->bar) {
+            $announcement->dismissedBy()->detach();
+        }
         self::send($announcement, $server);
-        if ($announcement->start_once && $announcement->state() !== 'ended') {
-            $announcement->forceFill(['ends_at' => now()])->save();
+        // Only the next time: without a bar it ends now, with a bar for a while it ends with that bar, and with a bar
+        // until it is ended it waits for the admin (runDue skips it from here on).
+        if ($announcement->start_once && $announcement->state() !== 'ended' && (! $announcement->bar || $announcement->stay === 'for')) {
+            $announcement->forceFill(['ends_at' => $announcement->bar ? Carbon::createFromTimestamp($until) : now()])->save();
         }
     }
 
     private static function send(Announcement $announcement, Server $server): void
     {
-        if ($announcement->in_game) {
+        if ($announcement->in_game && $announcement->in_game_target === 'servers') {
+            // The chosen servers, or all of them, as an announcement at a time does.
+            $result = InGame::send($announcement);
+            $announcement->forceFill(['in_game_at' => now(), 'in_game_result' => $result])->saveQuietly();
+        } elseif ($announcement->in_game) {
             $own = GameCommand::query()->where('egg_id', $server->egg_id)->value('command');
             $command = GameChat::commandFor((string) $server->egg->name, is_string($own) ? $own : null);
-            $result = $command === null ? 'unsupported' : 'sent';
-            if ($command !== null) {
+            // A server that stopped or crashed has no chat to post in.
+            $result = match (true) {
+                $command === null => 'unsupported',
+                StartTrigger::event($announcement->start_event) !== StartTrigger::START => 'offline',
+                default => 'sent',
+            };
+            if ($result === 'sent') {
                 try {
                     $server->send(GameChat::render($command, GameChat::message(__('simplify::announcements.in_game.prefix'), $announcement->title, $announcement->body)));
                 } catch (Throwable $error) {
@@ -156,8 +246,8 @@ final class StartAnnouncements
             return;
         }
         $title = StartTrigger::title($server->name, $announcement->title);
-        // The same people as an announcement at a time (Bell::audience), so a test at a time and one on a start agree.
-        $users = Bell::audience($announcement)->get();
+        // Everyone, admins, or the owner of this server and the people with access to it (K-B94).
+        $users = Bell::audience($announcement, $server)->get();
         if ($announcement->in_bell) {
             // The item of the previous start goes, so the bell holds the latest one.
             Bell::forget($announcement->id, kind: Bell::EVERYONE);
