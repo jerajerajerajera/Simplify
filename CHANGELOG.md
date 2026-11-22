@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.0.0-beta.15
+
 - Pelican 1.0.0-rc.3 and rc.4: the console fits again. Pelican's new Copy and Download buttons lay over Bigger console and Open the console in a new window; they now stand in the console's title row with the other tools. The command line is part of the console's card again and the server menu is as tall as the console.
 - Open the console in a new window shows the console, filling the window. It opened an empty white window.
 - The SFTP link in a server's menu names the account once. It held the username twice, which SFTP programs refuse.
