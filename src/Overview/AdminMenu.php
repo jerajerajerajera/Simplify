@@ -20,6 +20,7 @@ final class AdminMenu
         'DatabaseHostResource' => 'database', 'BackupHostResource' => 'backups', 'UserResource' => 'players',
         'RoleResource' => 'lock', 'ApiKeyResource' => 'key', 'PluginResource' => 'plugins', 'Settings' => 'gear',
         'WebhookResource' => 'link', 'Health' => 'heart', 'ListLogs' => 'activity',
+        'BackupResource' => 'backups', 'ActivityResource' => 'activity',
         'AnnouncementResource' => 'bell', 'AutomaticSubdomains' => 'web', 'EmbedSettings' => 'code',
     ];
 

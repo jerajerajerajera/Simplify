@@ -22,8 +22,8 @@ namespace {
     $data = json_decode((string) file_get_contents(__DIR__.'/admin-tree.json'), true);
     $shape = fn (array $tree) => json_encode(array_map(fn (array $s) => [$s['key'], array_map(fn (array $p) => $p['key'] ?? $p['label'], $s['pages'])], $tree));
     $want = [
-        'settings' => '[["servers",["serverresource","eggresource"]],["nodes",["noderesource"]],["people",["userresource","roleresource"]],["integrations",["apikeyresource"]],["panel",["general","announcementresource","embedsettings","settings:addons"]],["pelican",["mail","pluginresource","listlogs"]],["addons",["maker","hosting","eggupdates"]],["health",["health"]],["extensions",["sitedirectory"]]]',
-        'none' => '[["servers",["serverresource","eggresource"]],["nodes",["noderesource"]],["people",["userresource","roleresource"]],["integrations",["apikeyresource"]],["panel",["settings","pluginresource","listlogs"]],["extensions",["announcementresource","embedsettings","servermaker","eggupdates","hosting","sitedirectory"]],["health",["health"]]]',
+        'settings' => '[["servers",["serverresource","eggresource","backupresource"]],["nodes",["noderesource"]],["people",["userresource","roleresource"]],["integrations",["apikeyresource"]],["panel",["general","announcementresource","embedsettings","settings:addons"]],["pelican",["mail","pluginresource","listlogs","activityresource"]],["addons",["maker","hosting","eggupdates"]],["health",["health"]],["extensions",["sitedirectory"]]]',
+        'none' => '[["servers",["serverresource","eggresource","backupresource"]],["nodes",["noderesource"]],["people",["userresource","roleresource"]],["integrations",["apikeyresource"]],["panel",["settings","pluginresource","listlogs","activityresource"]],["extensions",["announcementresource","embedsettings","servermaker","eggupdates","hosting","sitedirectory"]],["health",["health"]]]',
     ];
     $failures = [];
     foreach (['settings' => $data['menu'], 'none' => []] as $name => $menu) {
@@ -32,6 +32,7 @@ namespace {
             $failures[] = "with $name settings menu: $got";
         }
     }
+    // K-B72: the pages Pelican added in rc.3 (Activity) and rc.4 (Backups) stand with Pelican's pages, not under plugins.
     // Simplify add-ons stand apart under the menu, Pelican plugins follow (Jeroen 3-11).
     $tree = AdminTree::group($data['items'], $data['menu']);
     $apart = array_column(array_filter($tree, fn (array $s) => $s['apart']), 'key');

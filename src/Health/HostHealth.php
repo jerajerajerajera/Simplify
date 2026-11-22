@@ -25,6 +25,9 @@ final class HostHealth
     /** A refresh click drops the snapshot only when it is older than this, so clicks cannot flood Wings. */
     private const REFRESH_GAP = 5;
 
+    /** The results of Pelican's health checks that the Health page lists under "need attention". */
+    public const ATTENTION = ['failed', 'crashed', 'warning'];
+
     /** @return array<string, mixed> labels and problems in the viewer's language */
     public static function snapshot(): array
     {
@@ -39,6 +42,14 @@ final class HostHealth
     public static function checks(): array
     {
         return once(fn () => self::readChecks());
+    }
+
+    /** How many health checks need attention, in the Health page's own words ("2 need attention"); null when none do. */
+    public static function attention(): ?string
+    {
+        $count = count(array_filter(self::checks(), fn (array $check) => in_array($check['status'], self::ATTENTION, true)));
+
+        return $count > 0 ? trans_choice('simplify::dashboard.health.page.attention', $count, ['count' => $count]) : null;
     }
 
     /** @return list<array{label: string, status: string, message: string}> */

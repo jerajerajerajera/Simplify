@@ -35,14 +35,8 @@ final class Settings extends Page implements HasForms
 {
     use InteractsWithForms;
 
-    /**
-     * Browse Hub (the 'hub' tab) is hidden for now: not in the tabs, the settings row or the Admin menu (Jeroen 3-11).
-     * Its code stays, so turning this on brings it back.
-     */
-    public const HUB = false;
-
     /** The tabs of this page, in the order of the form (form()). */
-    public const TABS = self::HUB ? ['appearance', 'general', 'app', 'addons', 'hub'] : ['appearance', 'general', 'app', 'addons'];
+    public const TABS = ['appearance', 'general', 'app', 'addons'];
 
     protected static ?string $slug = 'simplify';
 
@@ -134,9 +128,6 @@ final class Settings extends Page implements HasForms
                 Tab::make(__('simplify::settings.addons.heading'))->key('addons')->icon('tabler-puzzle')->schema([
                     View::make('simplify::partials.addon-list'),
                 ]),
-                Tab::make(__('simplify::settings.hub.tab'))->key('hub')->icon('tabler-building-store')->visible(self::HUB)->schema([
-                    View::make('simplify::hub.tab'),
-                ]),
             ]),
         ]);
     }
@@ -168,9 +159,6 @@ final class Settings extends Page implements HasForms
             }
         }
         $items[] = $tab('addons', __('simplify::settings.addons.heading'), 'tabler-puzzle');
-        if (self::HUB) {
-            $items[] = $tab('hub', __('simplify::settings.hub.tab'), 'tabler-building-store');
-        }
         if (PelicanSettings::canAccess()) {
             $items[] = $page('pelican', __('simplify::js.dashboard.admin_groups.pelican_settings').' ↗', 'tabler-settings', PelicanSettings::getUrl(panel: 'admin'));
         }
@@ -192,9 +180,6 @@ final class Settings extends Page implements HasForms
             $tab('app', 'panel', __('simplify::settings.appearance.app'), 'image'),
             $tab('addons', 'addons', __('simplify::settings.addons.heading'), 'puzzle'),
         ];
-        if (self::HUB) {
-            $items[] = $tab('hub', 'addons', __('simplify::settings.hub.tab'), 'store');
-        }
         // An add-on whose settings are a form in the add-on list has no leaf of its own: Simplify add-ons holds pages.
         foreach (self::addonRows() as $addon) {
             if ($addon['url'] && ! $addon['form']) {
@@ -242,8 +227,17 @@ final class Settings extends Page implements HasForms
     public function save(): void
     {
         abort_unless(self::canAccess(), 403);
+        $before = PanelSettings::all();
         PanelSettings::saveForm($this->form->getState());
         Notification::make()->title(__('simplify::settings.saved'))->success()->send();
+        // The top bar and the menu stay while you click through the pages, so they kept the old name, logo, colour or
+        // support link until a reload (K-B76): a save that changed something loads this page again, on the same tab.
+        if (PanelSettings::all() != $before) {
+            $own = self::getUrl(panel: 'admin');
+            $from = (string) request()->header('referer');
+            $query = parse_url($from, PHP_URL_PATH) === parse_url($own, PHP_URL_PATH) ? (string) parse_url($from, PHP_URL_QUERY) : '';
+            $this->redirect($own.($query === '' ? '' : '?'.$query));
+        }
     }
 
     /**

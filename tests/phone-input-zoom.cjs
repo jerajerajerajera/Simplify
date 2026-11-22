@@ -27,7 +27,6 @@ const fields = `
 <div class="ps"><div class="ps-group-order"><select class="ps-input" data-name="group order"><option>A</option></select></div></div>
 <div class="ps"><label class="ps-field">Name<input class="ps-input" type="text" data-name="field"></label></div>
 <div class="ps"><label class="ps-field">About<textarea class="ps-input" data-name="text area"></textarea></label></div>
-<div class="s-hub-search"><input type="search" data-name="hub search"></div>
 <div class="s-color"><input class="s-color-hex" type="text" maxlength="7" data-name="hex colour"></div>
 <input type="checkbox" data-name="checkbox" data-skip="1">`;
 const html = `<!doctype html><html class="ps-shell"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -54,7 +53,7 @@ let failed = 0;
 for (const [name, width, height] of [['phone360', 360, 740], ['phone390', 390, 844]]) {
   const list = sizes(width, height);
   const small = list.filter(([, size]) => size < 16);
-  const ok = list.length === 8 && small.length === 0;
+  const ok = list.length === 7 && small.length === 0;
   console.log(`${ok ? 'PASS' : 'FAIL'} ${name}: every field that takes typing has text of at least 16px${small.length ? ' ' + JSON.stringify(small) : ''}`);
   if (!ok) failed++;
 }

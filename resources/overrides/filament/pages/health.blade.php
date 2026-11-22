@@ -4,7 +4,7 @@
 --}}
 @php
     $results = collect($checkResults?->storedCheckResults ?? []);
-    $bad = $results->filter(fn ($result) => in_array(strtolower((string) $result->status), ['failed', 'crashed', 'warning'], true));
+    $bad = $results->filter(fn ($result) => in_array(strtolower((string) $result->status), \Simplify\Core\Health\HostHealth::ATTENTION, true));
     $good = $results->diffKeys($bad);
     $stale = $lastRanAt && $lastRanAt->diffInMinutes() > 5;
     $label = function ($result): string {

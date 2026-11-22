@@ -71,7 +71,7 @@
         </template>
     </nav>
     <aside id="ps-admin-side" class="ps-host-side" aria-label="{{ $u('admin_sections') }}">
-        <div class="ps-host-side-scroll">
+        <div class="ps-host-side-scroll" wire:navigate:scroll>
             {{-- A section with one page opens it; the others (and Pelican plugins, so a plugin shows its own name) fold open and shut. --}}
             <nav class="ps-host-tree" aria-label="{{ $u('admin_sections') }}">
                 <button type="button" class="ps-host-expand" x-on:click="toggleAll()" x-text="all() ? @js($u('collapse_all')) : @js($u('expand_all'))">{{ $u('expand_all') }}</button>

@@ -1138,7 +1138,9 @@
       /** Marks a sideways scrolling strip with the edges that hide more items, so the cut-off side fades out. */
       scrollHint(el) {
         const update = () => {
-          const max = el.scrollWidth - el.clientWidth;
+          // Only a strip that scrolls (K-B83): on a wide screen the row stands still, and the plus on Create server's
+          // corner, which sticks out of it, counted as more to scroll and faded the button out.
+          const max = /auto|scroll/.test(getComputedStyle(el).overflowX) ? el.scrollWidth - el.clientWidth : 0;
           const hint = max > 1 ? [el.scrollLeft > 1 && 'start', el.scrollLeft < max - 1 && 'end'].filter(Boolean).join(' ') : '';
           if ((el.dataset.psMore || '') === hint) return;
           if (hint) el.dataset.psMore = hint;
@@ -1341,6 +1343,13 @@
         panel.style.setProperty('--ps-pop-width', width + 'px');
         panel.style.setProperty('--ps-pop-left', Math.max(gap, Math.min(rect.left / scale, screen - width - gap)) + 'px');
         panel.style.setProperty('--ps-pop-top', rect.bottom / scale + gap + 'px');
+      },
+      /** The Health button's colour and word: the load of the hosts, or Attention needed while that load is fine and one
+          of Pelican's health checks is not: the button said Healthy above a Health page that said "2 need attention". */
+      healthPill() {
+        const host = this.boot.host_health;
+        if (this.boot.health_attention && (!host?.state || host.state === 'healthy')) return { state: 'warning', label: t('dashboard.attention_needed') };
+        return { state: host?.state || 'unavailable', label: host?.label || '' };
       },
       /** Host health always has its button in the top bar (V43), for root admins. */
       healthPlace() {

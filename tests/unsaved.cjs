@@ -175,6 +175,12 @@ const page = `<!doctype html><meta charset="utf-8"><style>:root { --gray-50: #fa
     const inDark = light(shownBar);
     document.documentElement.classList.remove('dark');
     ok('the bar is light in the light theme and dark in the dark theme', inLight === true && inDark === false, { inLight, inDark });
+    // K-B75: a menu click (wire:navigate) swaps the page's body and takes the bar with it; the next change shows it again.
+    document.querySelector('.s-unsaved').remove();
+    document.dispatchEvent(new Event('livewire:navigated'));
+    await wait(50);
+    await type(name, 'Lobby 4');
+    ok('after a menu click swapped the page, a change shows the bar again (K-B75)', bar() === 'changes', { bar: bar(), dirty: window.SimplifyUnsaved.dirty() });
     document.getElementById('out').textContent = results.join('\\n') + '\\nDONE';
   })().catch((error) => (document.getElementById('out').textContent = 'FAIL ' + error.stack + '\\nDONE'));
 </script>`;

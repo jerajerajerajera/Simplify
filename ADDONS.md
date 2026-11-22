@@ -300,6 +300,13 @@ if (Event::hasListeners('simplify.push')) {
 Simplify listens only while push is turned on. The listener returns how many devices it sent to. People choose per
 account whether they get these messages; a `url` outside the panel is dropped.
 
+### `simplify:create`: open Create server in Simplify's popup
+
+This one is a browser event on `window`, for a button on an Admin page: `$dispatch('simplify:create')` in Alpine, or
+`window.dispatchEvent(new CustomEvent('simplify:create'))`. Simplify opens the first button of `dashboardActions()` in
+its popup, as its own New button does. Server Maker's Create buttons in Admin use it. Nothing listens without Simplify,
+so keep the button's own link for that case.
+
 ## Testing your add-on in a real panel
 
 Copy `tests/panel/smoke.php` and the `panel-smoke` job from `.github/workflows/checks.yml`. Three traps they avoid:

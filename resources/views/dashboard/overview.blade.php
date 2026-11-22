@@ -50,12 +50,12 @@
             <div class="ps-server-grid" :class="{'is-list': overviewView==='list', 'is-compact': overviewView==='compact', 'has-motd': overviewPreferences.showMotd, 'no-metrics': !overviewMetrics().length, 'no-quick-actions': quickActionsMode()==='off', 'quick-actions-on': quickActionsMode()==='on'}">
                 {{-- Host health as a card among the servers (Customize): its state, CPU and RAM, and a tap opens Health. --}}
                 <div class="ps-server-entry ps-health-entry" x-show="healthExtra()==='card' && overviewView!=='list'" x-cloak>
-                    <a class="ps-server-card ps-health-card" :href="healthUrl()" wire:navigate :class="boot.host_health?.state || 'unavailable'">
+                    <a class="ps-server-card ps-health-card" :href="healthUrl()" wire:navigate :class="healthPill().state">
                         {{-- One line: heart, name and state (hosts reporting as its tooltip); CPU and RAM right under it, one row each (compact, Jeroen 5-11). --}}
                         <div class="ps-health-card-head">
-                            <svg class="ps-health-heart" :class="boot.host_health?.state || 'unavailable'" aria-hidden="true"><use href="#ps-heart"/></svg>
+                            <svg class="ps-health-heart" :class="healthPill().state" aria-hidden="true"><use href="#ps-heart"/></svg>
                             <strong class="ps-health-card-name">{{ $u('host_health') }}</strong>
-                            <span class="ps-health-status" :class="boot.host_health?.state || 'unavailable'" :title="Simplify.tc('dashboard.hosts_reporting', boot.host_health?.hosts ?? 0, { available: boot.host_health?.available ?? 0 })"><strong x-text="boot.host_health?.label || @js($u('unavailable'))"></strong></span>
+                            <span class="ps-health-status" :class="healthPill().state" :title="Simplify.tc('dashboard.hosts_reporting', boot.host_health?.hosts ?? 0, { available: boot.host_health?.available ?? 0 })"><strong x-text="healthPill().label || @js($u('unavailable'))"></strong></span>
                         </div>
                         <div class="ps-health-card-meters">
                             <template x-for="metric in hostMetrics.filter((m) => m.key==='cpu' || m.key==='memory')" :key="metric.key">
@@ -176,6 +176,8 @@
                     <div class="ps-host-heading"><h3>{{ $u('host_health') }}</h3><button type="button" class="ps-health-refresh" :class="{'is-busy': healthRefreshing}" :disabled="healthRefreshing" x-on:click.stop="refreshHostHealth()" x-on:keydown.stop aria-label="{{ $u('refresh_host_health') }}" data-tip="{{ $u('refresh_now') }}"><svg aria-hidden="true"><use href="#ps-restart"/></svg></button></div>
                     <span class="ps-health-status" :class="boot.host_health?.state || 'unavailable'"><strong x-text="boot.host_health?.label || @js($u('unavailable'))"></strong><small x-text="Simplify.tc('dashboard.hosts_reporting', boot.host_health?.hosts ?? 0, { available: boot.host_health?.available ?? 0 })"></small></span>
                     <small class="ps-health-problem" x-show="boot.host_health?.problem" x-text="boot.host_health?.problem"></small>
+                    {{-- Pelican's health checks that are not ok, counted as on the Health page; the link opens that page. --}}
+                    <a class="ps-health-attention" :href="healthUrl()" wire:navigate x-show="boot.health_attention" x-text="boot.health_attention" x-on:click.stop x-on:keydown.stop></a>
                     <small class="ps-health-phone-summary" x-text="Simplify.fill(@js($u('cpu_ram')), { cpu: hostValue('cpu'), ram: hostValue('memory') })"></small>
                 </div>
             </div>

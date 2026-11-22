@@ -39,13 +39,15 @@ final class ServerMenu
         $advancedUrls = array_flip(array_filter(array_map(self::url(...), self::ADVANCED)));
         $replacedUrls = array_flip(array_filter(array_map(self::url(...), self::addons(fn (Addon $addon) => $addon->replacedServerPages()))));
         $tabs = self::tabs();
-        $admin = trans('server/console.open_in_admin');
+        // Pelican's "Open in Admin" leads to the legacy admin page; the server page has its own settings. Found by where
+        // it leads: Pelican names it when the panel starts, in the panel's language, and the menu is built in the
+        // account's, so in another language the names differed and the item showed (K-B90).
+        $admin = rtrim(url(Filament::getPanel('admin')->getPath()), '/').'/servers/';
         $main = $advanced = [];
         $combined = false;
         foreach (Filament::getCurrentPanel()?->getNavigation() ?? [] as $group) {
             foreach ($group->getItems() as $item) {
-                // Pelican's "Open in Admin" leads to the legacy admin page; the server page has its own settings.
-                if (! $item->isVisible() || (string) $item->getLabel() === $admin || isset($replacedUrls[(string) $item->getUrl()])) {
+                if (! $item->isVisible() || str_starts_with((string) $item->getUrl(), $admin) || isset($replacedUrls[(string) $item->getUrl()])) {
                     continue;
                 }
                 $url = (string) $item->getUrl();

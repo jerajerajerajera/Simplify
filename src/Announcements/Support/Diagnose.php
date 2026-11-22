@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Simplify\Core\Announcements\Models\Announcement;
 use Simplify\Core\Announcements\Models\GameCommand;
 use Simplify\Core\Announcements\Services\Bell;
+use Simplify\Core\Announcements\Services\StartAnnouncements;
 use Simplify\Core\Announcements\Services\TaskDelivery;
 use Simplify\Core\Announcements\Services\TaskWaits;
 use Simplify\Core\Models\PushDevice;
@@ -149,7 +150,7 @@ final class Diagnose
             $servers = Server::query()->whereKey($ids)->get();
             $running = [];
             foreach ($servers as $server) {
-                $running[(int) $server->id] = TaskDelivery::running($server);
+                $running[(int) $server->id] = StartAnnouncements::state($server);
             }
             $look = StartTrigger::look($seen, $running);
             $lines[] = '   servers '.json_encode($ids).' seen '.json_encode($seen).' running now '.json_encode($running).' once='.(int) $announcement->start_once;
@@ -164,8 +165,9 @@ final class Diagnose
                 $was = $seen[$server->id] ?? $seen[(string) $server->id] ?? null;
                 $parts[] = $server->name.': '.match (true) {
                     in_array((int) $server->id, $look['started'], true) => 'started since the last look, the next run sends it.',
+                    $running[$server->id] === null => 'Wings gave no state just now (no answer in time, or the node is in maintenance); what the last look saw is kept.',
                     $was === null => ($running[$server->id] ? 'running' : 'offline').', not looked at yet (the first look only remembers it).',
-                    $running[$server->id] => 'running, and already was at the last look: no start yet. Stop and start it to test.',
+                    (bool) $running[$server->id] => 'running, and already was at the last look: no start yet. Restart it to test.',
                     default => 'offline; a start will be seen within a minute.',
                 };
             }

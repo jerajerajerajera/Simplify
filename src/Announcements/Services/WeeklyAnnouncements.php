@@ -41,6 +41,8 @@ final class WeeklyAnnouncements
                 'in_bell_at' => null,
                 'in_game_at' => null,
                 'in_game_result' => null,
+                // Devices reached counts this turn's devices again (K-B87).
+                'pushed_to' => 0,
             ])->saveQuietly();
             Diagnose::trace('weekly #'.$announcement->id.' turn '.gmdate('Y-m-d H:i', (int) $turn).' UTC for '.$hours.'h');
             $started++;

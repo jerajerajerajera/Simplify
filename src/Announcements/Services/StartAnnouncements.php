@@ -47,7 +47,7 @@ final class StartAnnouncements
         $servers = Server::query()->with('egg')->whereKey(StartTrigger::servers($announcement->start_servers))->get();
         $running = [];
         foreach ($servers as $server) {
-            $running[(int) $server->id] = TaskDelivery::running($server);
+            $running[(int) $server->id] = self::state($server);
         }
         $look = StartTrigger::look(is_array($announcement->start_seen) ? $announcement->start_seen : [], $running);
         // Remembered first, so an error halfway never sends the same start twice.
@@ -61,6 +61,28 @@ final class StartAnnouncements
         }
 
         return $sent;
+    }
+
+    /**
+     * False when the server is not running, null when Wings did not say (StartTrigger::runs), otherwise when it
+     * started (StartTrigger::since): a restart between two looks leaves it running at both, and only its uptime tells
+     * (K-B81).
+     */
+    public static function state(Server $server): bool|int|null
+    {
+        try {
+            $runs = $server->isSuspended() ? false : StartTrigger::runs($server->retrieveStatus()->value);
+        } catch (Throwable) {
+            return null;
+        }
+        if ($runs !== true) {
+            return $runs;
+        }
+        try {
+            return StartTrigger::since($server->retrieveResources()['uptime'] ?? null, time());
+        } catch (Throwable) {
+            return true;
+        }
     }
 
     /**
@@ -97,14 +119,18 @@ final class StartAnnouncements
         if ($announcement->in_game) {
             $own = GameCommand::query()->where('egg_id', $server->egg_id)->value('command');
             $command = GameChat::commandFor((string) $server->egg->name, is_string($own) ? $own : null);
+            $result = $command === null ? 'unsupported' : 'sent';
             if ($command !== null) {
                 try {
                     $server->send(GameChat::render($command, GameChat::message(__('simplify::announcements.in_game.prefix'), $announcement->title, $announcement->body)));
                 } catch (Throwable $error) {
                     // Wings did not answer: the bell and devices still get it.
+                    $result = 'failed';
                     Diagnose::trace('start #'.$announcement->id.' game chat on '.$server->id.' failed: '.Diagnose::error($error));
                 }
             }
+            // What the list shows for this start; it said "Waits for start" after the start had gone out (K-B89).
+            $announcement->forceFill(['in_game_at' => now(), 'in_game_result' => [...['sent' => 0, 'offline' => 0, 'unsupported' => 0, 'failed' => 0], $result => 1]])->saveQuietly();
         }
         if (! $announcement->in_bell && ! $announcement->push) {
             return;
@@ -118,6 +144,7 @@ final class StartAnnouncements
             foreach ($users as $user) {
                 Bell::send($announcement, $user, Bell::EVERYONE, $title);
             }
+            $announcement->forceFill(['in_bell_at' => now()])->saveQuietly();
             Diagnose::trace('start #'.$announcement->id.' bell reached '.$users->count().' accounts');
         }
         if ($announcement->push && Push::available()) {
@@ -127,7 +154,9 @@ final class StartAnnouncements
                 'url' => $announcement->button_url ?: url('/server/'.$server->uuid_short),
                 'tag' => 'simplify-announcement-'.$announcement->id.'-'.$server->id.'-'.time(),
             ]);
-            $announcement->increment('pushed_to', $reached);
+            // The devices of this start, not of every start added up: one device and twelve starts read as "Devices
+            // reached: 12" (K-B87).
+            $announcement->forceFill(['pushed_to' => $reached])->saveQuietly();
             Diagnose::trace('start #'.$announcement->id.' push reached '.$reached.' devices');
         }
     }
