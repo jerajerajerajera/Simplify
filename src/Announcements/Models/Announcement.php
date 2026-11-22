@@ -41,7 +41,7 @@ use Simplify\Core\Announcements\Support\Weekly;
  * @property ?string $stay how long the bar stays: for (stay_minutes), until (ends_at, one at a time only) or ended (until it is ended)
  * @property int $stay_minutes
  * @property string $start_event start, stop or crash
- * @property ?array<int, int> $start_pending server id => when its stop was seen: it waits to be called a crash
+ * @property ?array<int|string, mixed> $start_pending server id => when its stop was seen: it waits to be called a crash; "since" => server id => since when it ran
  * @property ?int $shown_server the server the bar that shows now is about
  * @property ?string $in_game_target a server moment: started (the chat of that server) or servers (in_game_servers)
  * @property ?list<string> $weekly_times HH:MM in weekly_zone; empty: weekly_at

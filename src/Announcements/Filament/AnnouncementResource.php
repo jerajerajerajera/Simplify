@@ -93,6 +93,12 @@ final class AnnouncementResource extends Resource
         $bar = fn (Get $get): bool => (bool) $get('bar');
         $heading = fn (string $key) => View::make('simplify::announcements.heading')->viewData(['label' => self::text('form.'.$key)]);
         $shown = fn (?Announcement $record): array => $record ? FormData::fill($record->attributesToArray()) : [];
+        // A click on the choice that is already on leaves it on: it emptied the field, and Save then refused.
+        $keep = fn (string $field) => function (Set $set, mixed $state, mixed $old) use ($field): void {
+            if ($state === null && $old !== null) {
+                $set($field, $old);
+            }
+        };
 
         // Four questions (V65): what, when, where and who. Every place works with every moment; an example fills in
         // the answers, and the sentence under the examples says what the announcement will do.
@@ -103,9 +109,14 @@ final class AnnouncementResource extends Resource
                 ->inline()
                 ->live()
                 ->dehydrated(false)
-                ->afterStateUpdated(function (Set $set, ?string $state): void {
+                ->afterStateUpdated(function (Set $set, ?string $state) use ($zone): void {
                     foreach (FormData::examples()[$state] ?? [] as $field => $value) {
                         $set($field, $value);
+                    }
+                    if ($state === 'maintenance') {
+                        // Tonight at ten, or tomorrow when that has passed.
+                        $tonight = Carbon::now($zone)->setTime(22, 0);
+                        $set('starts_at', ($tonight->isPast() ? $tonight->addDay() : $tonight)->format('Y-m-d H:i:s'));
                     }
                 })
                 ->helperText(fn (Get $get): string => self::text('summary.prefix').' '.self::summary(array_combine(self::SUMMARY_FIELDS, array_map(fn (string $field): mixed => $get($field), self::SUMMARY_FIELDS)), $zone, stored: false)),
@@ -118,7 +129,9 @@ final class AnnouncementResource extends Resource
                 ->icons(array_combine(Rules::CATEGORIES, array_map(Rules::icon(...), Rules::CATEGORIES)))
                 ->inline()
                 ->required()
-                ->default('info'),
+                ->default('info')
+                ->live()
+                ->afterStateUpdated($keep('category')),
             TextInput::make('title')
                 ->label(self::text('form.title'))
                 ->required()
@@ -155,14 +168,14 @@ final class AnnouncementResource extends Resource
                 ->required()
                 ->default(FormData::NOW)
                 ->afterStateHydrated(fn (ToggleButtons $component, ?Announcement $record) => $record ? $component->state($shown($record)['when']) : null)
-                ->live(),
+                ->live()
+                ->afterStateUpdated($keep('when')),
             DateTimePicker::make('starts_at')
                 ->label(self::text('form.when_date'))
                 ->visible($when(FormData::DATE))
                 ->required($when(FormData::DATE))
                 ->seconds(false)
-                ->timezone($zone)
-                ->helperText(self::text('form.starts_at_help', ['zone' => $zone])),
+                ->timezone($zone),
             ToggleButtons::make('start_event')
                 ->hiddenLabel()
                 ->visible($server)
@@ -170,7 +183,8 @@ final class AnnouncementResource extends Resource
                 ->helperText(fn (Get $get): ?string => $get('start_event') === 'crash' ? self::text('form.crash_help') : null)
                 ->inline()
                 ->default(StartTrigger::START)
-                ->live(),
+                ->live()
+                ->afterStateUpdated($keep('start_event')),
             Select::make('start_servers')
                 ->label(self::text('form.start_servers'))
                 ->visible($server)
@@ -201,6 +215,7 @@ final class AnnouncementResource extends Resource
                 ->multiple()
                 ->maxItems(Weekly::TIMES)
                 ->searchable()
+                ->optionsLimit(100)
                 ->live()
                 ->options(fn (?Announcement $record): array => self::times($record))
                 ->afterStateHydrated(fn (Select $component, ?Announcement $record) => $record ? $component->state(Weekly::times($record->weekly_times, $record->weekly_at)) : null),
@@ -215,7 +230,8 @@ final class AnnouncementResource extends Resource
                 ->inline()
                 ->default(FormData::EVERY)
                 ->afterStateHydrated(fn (ToggleButtons $component, ?Announcement $record) => $record ? $component->state($shown($record)['often']) : null)
-                ->live(),
+                ->live()
+                ->afterStateUpdated($keep('often')),
             Toggle::make('more')
                 ->label(self::text('form.more'))
                 ->helperText(self::text('form.more_help'))
@@ -266,7 +282,8 @@ final class AnnouncementResource extends Resource
                 ->inline()
                 ->default('ended')
                 ->afterStateHydrated(fn (ToggleButtons $component, ?Announcement $record) => $record ? $component->state($record->stay === 'until' && $record->send_on !== StartTrigger::TIME ? 'ended' : Rules::stay($record->stay)) : null)
-                ->live(),
+                ->live()
+                ->afterStateUpdated($keep('stay')),
             Grid::make(2)->visible(fn (Get $get): bool => $bar($get) && $get('stay') === 'for')->schema([
                 TextInput::make('stay_n')
                     ->label(self::text('form.stay_n'))
@@ -300,7 +317,7 @@ final class AnnouncementResource extends Resource
                     }
                 }),
             Toggle::make('in_bell')
-                ->label(self::text('form.in_bell'))
+                ->label(self::text('table.in_bell'))
                 ->helperText(self::text('form.in_bell_help'))
                 ->live(),
             Toggle::make('bell_pinned')
@@ -308,13 +325,13 @@ final class AnnouncementResource extends Resource
                 ->live()
                 ->visible(fn (Get $get): bool => (bool) $get('in_bell') && $bar($get)),
             Toggle::make('push')
-                ->label(self::text('form.push'))
+                ->label(self::text('table.push'))
                 ->helperText(self::text('form.push_help'))
                 ->default(true)
                 ->live()
                 ->visible(Push::available()),
             Toggle::make('in_game')
-                ->label(self::text('form.in_game'))
+                ->label(self::text('table.in_game'))
                 ->helperText(self::text('form.in_game_help'))
                 ->live(),
             // A server moment: the chat of that server, or of chosen servers as one at a time.
@@ -325,7 +342,8 @@ final class AnnouncementResource extends Resource
                 ->inline()
                 ->default('started')
                 ->afterStateHydrated(fn (ToggleButtons $component, ?Announcement $record) => $record ? $component->state($record->in_game_target === 'servers' ? 'servers' : 'started') : null)
-                ->live(),
+                ->live()
+                ->afterStateUpdated($keep('in_game_target')),
             Grid::make(2)->visible(fn (Get $get): bool => (bool) $get('in_game') && (! $server($get) || $get('in_game_target') === 'servers'))->schema([
                 Select::make('in_game_servers')
                     ->label(self::text('form.in_game_servers'))
@@ -358,7 +376,8 @@ final class AnnouncementResource extends Resource
                 ->inline()
                 ->required()
                 ->default('everyone')
-                ->live(),
+                ->live()
+                ->afterStateUpdated($keep('audience')),
         ]);
     }
 

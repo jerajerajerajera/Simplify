@@ -56,7 +56,8 @@ final class StartAnnouncements
         foreach ($servers as $server) {
             $running[(int) $server->id] = self::state($server);
         }
-        $look = StartTrigger::look(is_array($announcement->start_seen) ? $announcement->start_seen : [], $running);
+        $before = is_array($announcement->start_seen) ? $announcement->start_seen : [];
+        $look = StartTrigger::look($before, $running);
         // Remembered first, so an error halfway never sends the same start twice.
         $announcement->forceFill(['start_seen' => $look['seen']])->saveQuietly();
         if ($look['started'] !== [] || $look['seen'] !== $announcement->getOriginal('start_seen')) {
@@ -66,7 +67,7 @@ final class StartAnnouncements
         $counted = match ($event) {
             StartTrigger::START => $look['started'],
             'stop' => $look['stopped'],
-            default => self::crashed($announcement, $servers, $look['stopped']),
+            default => self::crashed($announcement, $servers, $look['stopped'], $before),
         };
         $sent = 0;
         foreach ($counted as $id) {
@@ -88,19 +89,30 @@ final class StartAnnouncements
      *
      * @param  Collection<int, Server>  $servers
      * @param  list<int>  $stopped
+     * @param  array<int|string, mixed>  $before  what the last look held: since when each server ran
      * @return list<int>
      */
-    private static function crashed(Announcement $announcement, Collection $servers, array $stopped): array
+    private static function crashed(Announcement $announcement, Collection $servers, array $stopped, array $before): array
     {
         $now = time();
         $pending = is_array($announcement->start_pending) ? $announcement->start_pending : [];
+        // Beside the stops that wait: since when each of those servers ran, so only what happened in that run counts.
+        $since = is_array($pending['since'] ?? null) ? $pending['since'] : [];
+        unset($pending['since']);
         foreach ($stopped as $id) {
-            $pending[$id] ??= $now;
+            if (! isset($pending[$id])) {
+                $pending[$id] = $now;
+                $since[$id] = $before[$id] ?? null;
+            }
         }
         $waited = StartTrigger::due($pending, $now);
-        if ($waited['pending'] != $announcement->start_pending) {
+        $keep = $waited['pending'];
+        if ($keep !== []) {
+            $keep['since'] = array_intersect_key($since, $waited['pending']);
+        }
+        if ($keep != $announcement->start_pending) {
             // Remembered first, so an error halfway never sends the same crash twice.
-            $announcement->forceFill(['start_pending' => $waited['pending'] === [] ? null : $waited['pending']])->saveQuietly();
+            $announcement->forceFill(['start_pending' => $keep === [] ? null : $keep])->saveQuietly();
         }
         $crashed = [];
         foreach ($waited['due'] as $id => $seenAt) {
@@ -109,7 +121,7 @@ final class StartAnnouncements
                 continue;
             }
             $activity = $server->activity()
-                ->where('activity_logs.timestamp', '>=', Carbon::createFromTimestamp($seenAt - StartTrigger::CRASH_LOOK_BACK))
+                ->where('activity_logs.timestamp', '>=', Carbon::createFromTimestamp(StartTrigger::lookBack($seenAt, $since[$id] ?? null)))
                 ->get()
                 ->map(fn ($log): array => ['event' => (string) $log->getAttribute('event'), 'command' => $log->getAttribute('properties')['command'] ?? null]);
             $asked = StartTrigger::asked($activity, $server->egg->config_stop);

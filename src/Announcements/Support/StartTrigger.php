@@ -101,6 +101,20 @@ final class StartTrigger
     }
 
     /**
+     * From when the activity of a server counts for a stop seen at $seenAt: the ten minutes before it, but never
+     * from before the server last started. A Stop or Restart from before that start was for an earlier stop, and hid
+     * a crash that came within ten minutes of it.
+     *
+     * @param  mixed  $since  what the last look held for the server: since when it ran, if Wings said
+     */
+    public static function lookBack(int $seenAt, mixed $since): int
+    {
+        $from = $seenAt - self::CRASH_LOOK_BACK;
+
+        return is_int($since) && $since > $from && $since <= $seenAt ? $since : $from;
+    }
+
+    /**
      * Whether someone asked for a stop: Pelican's activity of the server holds a Stop, Kill or Restart, or its stop
      * command typed in the console. A stop from inside the game is not known to Pelican and counts as a crash.
      *

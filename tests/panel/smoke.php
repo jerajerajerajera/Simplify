@@ -1531,6 +1531,15 @@ step('announcements: the form asks what, when, where and who, and a server momen
             ->assertSet('mountedActions.0.data.bar', true)
             ->assertSet('mountedActions.0.data.stay', 'ended')
             ->assertSet('mountedActions.0.data.audience', 'everyone')
+            // Testlab 22-11: a click on the choice that is on emptied it, and Create refused.
+            ->set('mountedActions.0.data.when', null)
+            ->assertSet('mountedActions.0.data.when', FormData::NOW)
+            ->set('mountedActions.0.data.audience', null)
+            ->assertSet('mountedActions.0.data.audience', 'everyone')
+            // Maintenance tonight comes with its date filled in.
+            ->set('mountedActions.0.data.example', 'maintenance')
+            ->assertSet('mountedActions.0.data.when', FormData::DATE)
+            ->assertNotSet('mountedActions.0.data.starts_at', null)
             ->set('mountedActions.0.data.example', 'weekend')
             ->assertSet('mountedActions.0.data.when', FormData::SERVER)
             ->assertSet('mountedActions.0.data.often', FormData::DAY)
@@ -1603,7 +1612,8 @@ step('announcements on a server moment: a stop goes out when the server stops, a
         if (! is_array($pending) || ! isset($pending[$server->id])) {
             throw new RuntimeException('a stop was not kept to be looked at: '.json_encode($pending));
         }
-        $crash->forceFill(['start_pending' => [$server->id => time() - StartTrigger::CRASH_WAIT - 1]])->saveQuietly();
+        $pending[$server->id] = time() - StartTrigger::CRASH_WAIT - 1;
+        $crash->forceFill(['start_pending' => $pending])->saveQuietly();
     };
     // What earlier steps did to this server is not part of this one.
     DB::table('activity_logs')->where('timestamp', '>=', now()->subMinutes(20))->where(fn ($q) => $q->where('event', 'like', 'server:power.%')->orWhere('event', 'server:console.command'))->update(['timestamp' => now()->subHour()]);
@@ -1631,6 +1641,16 @@ step('announcements on a server moment: a stop goes out when the server stops, a
         $look(ContainerStatus::Offline);
         if ($items($crash) !== 1) {
             throw new RuntimeException('a stop from the panel went out as a crash');
+        }
+        // Testlab 22-11: started again and crashed within ten minutes of that Stop. The Stop was for the earlier run.
+        DB::table('activity_logs')->where('event', 'server:power.stop')->where('ip', '127.0.0.1')->where('actor_id', $admin->id)->update(['timestamp' => now()->subMinutes(5)]);
+        AnnouncementBell::forget($crash->id);
+        $look(ContainerStatus::Running, 100);
+        $look(ContainerStatus::Offline);
+        $waited();
+        $look(ContainerStatus::Offline);
+        if ($items($crash) !== 1) {
+            throw new RuntimeException('a crash within ten minutes of a Stop from the panel was not told');
         }
     } finally {
         cache()->forget("servers.$server->uuid.status");

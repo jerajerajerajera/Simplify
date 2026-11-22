@@ -49,6 +49,11 @@ check($look['stopped'] === [1, 2, 4] && $look['started'] === [4], 'ran and does 
 check(S::look([], [1 => false])['stopped'] === [] && S::look([1 => 1000], [1 => null])['stopped'] === [], 'never seen, or no answer from Wings: no stop');
 check(S::due([1 => 1000, 2 => 1050], 1080) === ['due' => [1 => 1000], 'pending' => [2 => 1050]], 'a stop waits 75 seconds before it can be called a crash');
 check(S::due(['7' => 1000], 2000)['due'] === [7 => 1000], 'ids read back from JSON as strings still match');
+// Lab 22-11: a Stop from the panel, a start, and a crash within ten minutes: the Stop hid the crash.
+check(S::lookBack(5000, null) === 4400 && S::lookBack(5000, true) === 4400, 'without a known start the ten minutes before the stop count');
+check(S::lookBack(5000, 4800) === 4800, 'only what happened since the server last started counts');
+check(S::lookBack(5000, 1000) === 4400 && S::lookBack(5000, 6000) === 4400, 'a start long ago, or one that cannot be, leaves the ten minutes');
+check(S::due([1 => 1000, 'since' => [1 => 900]], 2000) === ['due' => [1 => 1000], 'pending' => []], 'what is kept beside the waiting stops is no stop');
 check(S::asked([['event' => 'server:power.stop']], null) && S::asked([['event' => 'server:power.restart']], 'stop') && S::asked([['event' => 'server:power.kill']], ''), 'Stop, Restart and Kill from the panel are asked for');
 check(S::asked([['event' => 'server:console.command', 'command' => ' /Stop ']], 'stop') && S::asked([['event' => 'server:console.command', 'command' => 'stop']], '/stop'), 'the stop command in the console is asked for');
 check(! S::asked([['event' => 'server:console.command', 'command' => 'say stop']], 'stop') && ! S::asked([['event' => 'server:power.start'], ['event' => 'server:file.write']], 'stop') && ! S::asked([], 'stop'), 'anything else is a crash');

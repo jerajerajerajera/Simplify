@@ -139,7 +139,7 @@ final class FormData
 
         return [
             'maintenance' => [...$base, 'category' => 'warning', 'when' => self::DATE, 'stay' => 'for', 'stay_n' => 3, 'stay_unit' => 'hours'],
-            'weekly' => [...$base, 'category' => 'success', 'when' => self::WEEKLY, 'weekly_days' => [5, 6], 'stay' => 'for', 'stay_n' => 3, 'stay_unit' => 'hours'],
+            'weekly' => [...$base, 'category' => 'success', 'when' => self::WEEKLY, 'weekly_days' => [5, 6], 'weekly_times' => ['19:00'], 'stay' => 'for', 'stay_n' => 3, 'stay_unit' => 'hours'],
             'online' => [...$base, 'category' => 'success', 'when' => self::SERVER, 'bar' => false, 'in_game' => true, 'audience' => Rules::SERVER_AUDIENCE],
             'weekend' => [...$base, 'when' => self::SERVER, 'often' => self::DAY, 'more' => true, 'weekly_days' => [6, 7], 'start_from' => '10:00', 'start_until' => '22:00', 'bar' => false, 'audience' => Rules::SERVER_AUDIENCE],
             'countdown' => [...$base, 'category' => 'warning', 'stay' => 'for', 'stay_n' => 30, 'stay_unit' => 'minutes', 'in_bell' => false, 'push' => false, 'in_game' => true, 'in_game_target' => 'servers', 'in_game_repeat' => 5],
