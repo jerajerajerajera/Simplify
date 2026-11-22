@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Overview: a server's name keeps its size with a heading font whose letters reach above and below the line, such as Segoe Print or Pacifico. Every name went down to the smallest size.
+- Console: the console's card takes its colour from the theme (`--ps-console-card`), so the command line and the card match when a theme changes them. Without a theme it keeps Pelican's terminal colour.
+- Admin menu: a Simplify add-on with one page of its own shows under its own name in the menu and the breadcrumb, not as Simplify add-ons.
 - Announcements: a new announcement has Notifications turned on. It started with only the app notification on, so people without the app on a device got nothing unless you turned the bell on.
 - Announcements: the form asks four things, what, when, where and who, and every place now works with every moment. Start from an example fills in a common case (Maintenance tonight, Weekly event, Server is online, Welcome back on weekends, Restart countdown in chat, Server crashed), and a sentence under the examples says in plain words what the announcement will do. The list shows that same sentence.
 - Announcements, When: Now, At a date and time, Every week, or When a server starts, stops or crashes. Every week takes more than one time a day. A crash is a stop nobody asked for: no Stop, Restart or Kill from the panel and no stop command in the console; Simplify waits about a minute before it calls a stop a crash.

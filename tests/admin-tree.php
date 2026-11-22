@@ -47,6 +47,17 @@ namespace {
     if ($shape([$tree[2]]) !== '[["people",["userresource","roleresource"]]]') {
         $failures[] = 'the People group holds Pelican\'s Users and Roles: '.$shape([$tree[2]]);
     }
+    // K-B96: one add-on with its own page (Themes) shows under its own name, not as "Simplify add-ons".
+    $one = array_values(array_filter($data['menu'], fn (array $tab) => ($tab['group'] ?? null) !== 'addons' || $tab['key'] === 'settings:addons'));
+    $one[] = ['key' => 'addon:themes', 'group' => 'addons', 'label' => 'Themes', 'icon' => 'plugins', 'url' => '/admin/themes'];
+    $items = array_values(array_filter($data['items'], fn (array $item) => ($item['origin'] ?? '') !== 'addon'));
+    $addons = array_values(array_filter(AdminTree::group($items, $one), fn (array $s) => $s['key'] === 'addons'))[0] ?? null;
+    if ($addons === null || ($addons['single'] ?? true) || array_column($addons['pages'], 'label') !== ['Themes']) {
+        $failures[] = 'one add-on page stands under its own name: '.json_encode($addons);
+    }
+    if (! array_values(array_filter($tree, fn (array $s) => $s['key'] === 'health'))[0]['single'] ?? false) {
+        $failures[] = 'Health, one page, still opens under the group\'s name';
+    }
     $tabs = $tree[4]['pages'][0];
     if (($tabs['settings'] ?? false) !== true) {
         $failures[] = 'a settings tab is marked as one';

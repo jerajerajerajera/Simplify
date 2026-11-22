@@ -818,9 +818,21 @@
         const base = { list: 21, compact: 18 }[this.overviewView] || 23;
         title.style.fontSize = base + 'px';
         if (this.overviewView !== 'list') {
-          // Grid: the name may use two lines; only a name that still does not fit gets smaller.
+          // Grid: the name may use two lines (compact: one); only a name that still does not fit gets smaller. Its lines
+          // are counted, not its height: a font whose letters reach above and below the line (Segoe Print, Pacifico)
+          // makes the box taller than its lines even at 12px, while the name fits (K-B94).
+          const most = getComputedStyle(title).whiteSpace === 'nowrap' ? 1 : 2;
+          const lines = () => {
+            try {
+              const range = document.createRange();
+              range.selectNodeContents(title);
+              return new Set([...range.getClientRects()].map((r) => Math.round(r.top))).size;
+            } catch {
+              return title.scrollHeight > title.clientHeight + 1 ? most + 1 : 1;
+            }
+          };
           let size = base;
-          while (size > 12 && (title.scrollHeight > title.clientHeight + 1 || title.scrollWidth > title.clientWidth + 1)) title.style.fontSize = --size + 'px';
+          while (size > 12 && (lines() > most || title.scrollWidth > title.clientWidth + 1)) title.style.fontSize = --size + 'px';
           return;
         }
         const available = row.getBoundingClientRect().width;

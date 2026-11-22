@@ -14,7 +14,7 @@
         here: '',
         path: '',
         crumb: null,
-        pages: @js(collect($sections)->flatMap(fn ($section) => collect($section['pages'])->map(fn ($page) => [$section['key'], $page['key'] ?? '', $page['url'] ?? '', $section['label'], count($section['pages']) > 1 || $section['key'] === 'extensions' ? $page['label'] : '', $section['icon'], $section['color']]))->values()),
+        pages: @js(collect($sections)->flatMap(fn ($section) => collect($section['pages'])->map(fn ($page) => [$section['key'], $page['key'] ?? '', $page['url'] ?? '', $section['label'], ! ($section['single'] ?? false) ? $page['label'] : '', $section['icon'], $section['color']]))->values()),
         locate(slide = false) {
             this.path = location.pathname.replace(/\/$/, '');
             const at = location.pathname + location.search;
@@ -72,12 +72,12 @@
     </nav>
     <aside id="ps-admin-side" class="ps-host-side" aria-label="{{ $u('admin_sections') }}">
         <div class="ps-host-side-scroll" wire:navigate:scroll>
-            {{-- A section with one page opens it; the others (and Pelican plugins, so a plugin shows its own name) fold open and shut. --}}
+            {{-- A section with one page opens it (AdminTree single); the others fold open and shut. Pelican plugins and Simplify add-ons stay a group, so a plugin shows its own name. --}}
             <nav class="ps-host-tree" aria-label="{{ $u('admin_sections') }}">
                 <button type="button" class="ps-host-expand" x-on:click="toggleAll()" x-text="all() ? @js($u('collapse_all')) : @js($u('expand_all'))">{{ $u('expand_all') }}</button>
                 @foreach ($sections as $section)
                     <div @class(['ps-host-group', 'is-apart' => $section['apart'] ?? false]) wire:key="section-{{ $section['key'] }}" :class="{'is-open': branches[@js($section['key'])]}" style="--ps-tone: {{ $section['color'] }}">
-                        @if (count($section['pages']) === 1 && $section['key'] !== 'extensions')
+                        @if ($section['single'] ?? false)
                             <a class="ps-host-group-head" href="{{ $section['pages'][0]['url'] }}" wire:navigate :aria-current="here === @js($section['key'].'/'.($section['pages'][0]['key'] ?? '')) ? 'page' : null">
                                 <svg aria-hidden="true"><use href="#ps-{{ $section['icon'] }}"/></svg><span>{{ $section['label'] }}</span>
                             </a>

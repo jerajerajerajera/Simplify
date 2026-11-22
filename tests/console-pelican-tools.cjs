@@ -44,7 +44,7 @@ const output = {
 };
 const page = (structure) => `<!doctype html><html><head><meta charset="utf-8">
 <link rel="stylesheet" href="file://${css}/tokens.css"><link rel="stylesheet" href="file://${css}/components.css"><link rel="stylesheet" href="file://${css}/dashboard.css">
-<style>${pelican} body { margin: 0; }</style></head><body><div class="ps server-active ps-server-top is-console"></div>
+<style>${pelican} body { margin: 0; } :root { --ps-console-card: #010203; }</style></head><body><div class="ps server-active ps-server-top is-console"></div>
 <nav class="ps-server-menu"></nav>
 <main class="fi-main"><div class="fi-page"><div class="fi-page-header-main-ctn">
   <header class="fi-header"><div class="fi-header-actions-ctn"><div class="fi-ac"><button type="button" class="fi-btn" onclick="window.clicked.push('explain')">${icon}<span>Explain</span></button></div></div></header>
@@ -82,7 +82,7 @@ const page = (structure) => `<!doctype html><html><head><meta charset="utf-8">
       buttons.filter((el) => /console output$/.test(el.getAttribute('aria-label'))).forEach((el) => el.click());
       out.clicked = [...window.clicked];
       const style = getComputedStyle(widget);
-      out.card = { border: style.borderTopWidth, clip: style.overflow, height: widget.offsetHeight };
+      out.card = { border: style.borderTopWidth, clip: style.overflow, height: widget.offsetHeight, ground: style.backgroundColor };
       out.wrapperBorder = document.querySelector('.console-wrapper') ? getComputedStyle(document.querySelector('.console-wrapper')).borderTopWidth : '0px';
       out.rowHeight = Math.round(row.getBoundingClientRect().height);
       out.rowInside = row.getBoundingClientRect().bottom <= widget.getBoundingClientRect().bottom && getComputedStyle(row).borderTopWidth === '1px';
@@ -107,6 +107,8 @@ for (const structure of Object.keys(output)) {
     const shown = Object.keys(out.own);
     check(`${name}: a click on each button of the console's title row lands on that button`, shown.length > 0 && shown.every((label) => out.own[label]), out.own);
     check(`${name}: the command row is part of the console's card`, out.card.border === '1px' && out.card.clip === 'hidden' && out.wrapperBorder === '0px' && out.rowInside && out.rowHeight >= 62, out);
+    // A theme sets the console's colour through its token; the card was fixed to Pelican's #131a20 (K-B95).
+    check(`${name}: the console's card takes its colour from --ps-console-card`, out.card.ground === 'rgb(1, 2, 3)', out.card);
     check(`${name}: the server menu is as tall as the console's card`, out.menu === out.card.height + 'px', out);
     if (structure === 'rc.2') continue;
     const copy = out.labels.indexOf('Copy console output'), download = out.labels.indexOf('Download console output'), grow = out.labels.indexOf('Bigger');
@@ -116,5 +118,6 @@ for (const structure of Object.keys(output)) {
   }
 }
 fs.rmSync(dir, { recursive: true, force: true });
+check("without a theme the console's card keeps Pelican's terminal colour (#131a20)", /--ps-console-card:\s*#131a20;/.test(fs.readFileSync(path.join(css, 'tokens.css'), 'utf8')), null);
 if (failures) { console.error(`FAIL ${failures} console check(s)`); process.exit(1); }
 console.log("PASS the console's title row, command row and menu fit Pelican's console up to rc.2 and from rc.3");
