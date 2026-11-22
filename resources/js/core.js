@@ -76,9 +76,14 @@
       preference = value;
       try {
         localStorage.setItem(KEY, value);
+        // Filament 3 and 4 read 'theme', Filament 5 reads 'filament:theme:mode' and sets the class dark from it
+        // on every page load (K-B98).
         localStorage.setItem('theme', value === 'oled' ? 'dark' : value);
+        localStorage.setItem('filament:theme:mode', value === 'oled' ? 'dark' : value);
       } catch {}
       apply();
+      // Filament 5 keeps the mode in its Alpine store too; a store left on dark puts the class back.
+      try { if (window.Alpine?.store('theme') !== undefined) window.Alpine.store('theme', dark() ? 'dark' : 'light'); } catch {}
     },
   };
 
