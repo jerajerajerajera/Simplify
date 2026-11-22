@@ -19,7 +19,15 @@
     // plugin's palette (tokens.css .ps-panel-theme) and OLED (core.js). Grey Admin pages and a black overview after
     // going back and forth came from the overview setting the theme class later (Jeroen 5-11).
     document.documentElement.classList.toggle('ps-panel-theme', @js(\Simplify\Core\Support\PanelTheme::active()));
-    try { document.documentElement.classList.toggle('ps-oled', localStorage.getItem('pelicanSimplify.theme') === 'oled'); } catch {}
+    try {
+        const choice = localStorage.getItem('pelicanSimplify.theme');
+        document.documentElement.classList.toggle('ps-oled', choice === 'oled');
+        // Filament 5 sets the class dark from its own key when Alpine starts; Simplify's choice wins (K-B98).
+        if (['light', 'dark', 'oled', 'system'].includes(choice)) {
+            localStorage.setItem('filament:theme:mode', choice === 'oled' ? 'dark' : choice);
+            localStorage.setItem('theme', choice === 'oled' ? 'dark' : choice);
+        }
+    } catch {}
 </script>
 <script>
     // A page inside host mode's frame drops Pelican's own menus; it keeps that through every link it follows.
