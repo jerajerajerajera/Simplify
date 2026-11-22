@@ -83,7 +83,7 @@ final class StartTrigger
     /**
      * The stops that waited long enough to say whether someone asked for them, and the ones that still wait.
      *
-     * @param  array<int|string, int>  $pending  server id => when its stop was seen
+     * @param  array<int|string, mixed>  $pending  server id => when its stop was seen
      * @return array{due: array<int, int>, pending: array<int, int>}
      */
     public static function due(array $pending, int $now): array

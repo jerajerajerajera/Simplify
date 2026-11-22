@@ -111,7 +111,7 @@ final class StartAnnouncements
             $activity = $server->activity()
                 ->where('activity_logs.timestamp', '>=', Carbon::createFromTimestamp($seenAt - StartTrigger::CRASH_LOOK_BACK))
                 ->get()
-                ->map(fn ($log): array => ['event' => (string) $log->event, 'command' => $log->properties['command'] ?? null]);
+                ->map(fn ($log): array => ['event' => (string) $log->getAttribute('event'), 'command' => $log->getAttribute('properties')['command'] ?? null]);
             $asked = StartTrigger::asked($activity, $server->egg->config_stop);
             Diagnose::trace('start #'.$announcement->id.' stop of server '.$id.($asked ? ' was asked for' : ' counts as a crash'));
             if (! $asked) {
