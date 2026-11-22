@@ -82,7 +82,7 @@ final class AdminTree
                 // The first group of what is not Pelican's own stands apart, under the rest of the menu.
                 $apart = ($section['apart'] ?? false) || ($section['key'] === 'extensions' && ! in_array(true, array_column($tree, 'apart'), true));
                 // A group with one page opens that page under the group's name; a plugin or an add-on always shows its own
-                // name, so Pelican plugins and Simplify add-ons stay a group even with one page (P-20, K-B96).
+                // name, so Pelican plugins and Simplify add-ons stay a group even with one page (P-20, K-B97).
                 $single = count($pages) === 1 && ! in_array($section['key'], ['extensions', 'addons'], true);
                 $tree[] = ['key' => $section['key'], 'label' => (string) $section['label'], 'icon' => $section['icon'], 'color' => $section['color'], 'pages' => $pages, 'apart' => $apart, 'single' => $single];
             }

@@ -820,7 +820,7 @@
         if (this.overviewView !== 'list') {
           // Grid: the name may use two lines (compact: one); only a name that still does not fit gets smaller. Its lines
           // are counted, not its height: a font whose letters reach above and below the line (Segoe Print, Pacifico)
-          // makes the box taller than its lines even at 12px, while the name fits (K-B94).
+          // makes the box taller than its lines even at 12px, while the name fits (K-B95).
           const most = getComputedStyle(title).whiteSpace === 'nowrap' ? 1 : 2;
           const lines = () => {
             try {

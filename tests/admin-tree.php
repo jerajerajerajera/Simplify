@@ -47,7 +47,7 @@ namespace {
     if ($shape([$tree[2]]) !== '[["people",["userresource","roleresource"]]]') {
         $failures[] = 'the People group holds Pelican\'s Users and Roles: '.$shape([$tree[2]]);
     }
-    // K-B96: one add-on with its own page (Themes) shows under its own name, not as "Simplify add-ons".
+    // K-B97: one add-on with its own page (Themes) shows under its own name, not as "Simplify add-ons".
     $one = array_values(array_filter($data['menu'], fn (array $tab) => ($tab['group'] ?? null) !== 'addons' || $tab['key'] === 'settings:addons'));
     $one[] = ['key' => 'addon:themes', 'group' => 'addons', 'label' => 'Themes', 'icon' => 'plugins', 'url' => '/admin/themes'];
     $items = array_values(array_filter($data['items'], fn (array $item) => ($item['origin'] ?? '') !== 'addon'));

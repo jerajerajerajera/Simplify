@@ -107,7 +107,7 @@ for (const structure of Object.keys(output)) {
     const shown = Object.keys(out.own);
     check(`${name}: a click on each button of the console's title row lands on that button`, shown.length > 0 && shown.every((label) => out.own[label]), out.own);
     check(`${name}: the command row is part of the console's card`, out.card.border === '1px' && out.card.clip === 'hidden' && out.wrapperBorder === '0px' && out.rowInside && out.rowHeight >= 62, out);
-    // A theme sets the console's colour through its token; the card was fixed to Pelican's #131a20 (K-B95).
+    // A theme sets the console's colour through its token; the card was fixed to Pelican's #131a20 (K-B96).
     check(`${name}: the console's card takes its colour from --ps-console-card`, out.card.ground === 'rgb(1, 2, 3)', out.card);
     check(`${name}: the server menu is as tall as the console's card`, out.menu === out.card.height + 'px', out);
     if (structure === 'rc.2') continue;

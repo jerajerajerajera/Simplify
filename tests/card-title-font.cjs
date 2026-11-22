@@ -1,6 +1,6 @@
 // A server card's name on the overview (dashboard.js fitCardTitle) with a heading font whose letters reach above and
 // below their line, like Segoe Print or Pacifico (a theme can set one): a short name keeps its size. The box measured
-// its height, and those letters made it taller than the line even at 12px, so every name went down to 12px (K-B94).
+// its height, and those letters made it taller than the line even at 12px, so every name went down to 12px (K-B95).
 // A name too long for two lines still gets smaller. Needs Chrome or Chromium (GitHub's runners have Chrome).
 const { spawn } = require('node:child_process');
 const fs = require('node:fs');
