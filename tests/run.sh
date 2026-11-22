@@ -46,6 +46,7 @@ node tests/server-full-width.cjs
 node tests/admin-crumb-row.cjs
 node tests/admin-crumb-fit.cjs
 node tests/health-pill-fit.cjs
+node tests/card-title-font.cjs
 node tests/labeled-from.cjs
 node tests/settings-nav-wrap.cjs
 node tests/beta-footer.cjs

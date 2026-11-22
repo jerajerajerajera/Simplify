@@ -1456,7 +1456,7 @@ body:has(.ps-server-top.is-console) :is([wire\:name$="\\ServerOverview"], [wire\
 /* The card is Pelican's console widget. Up to rc.2 the output is its child; from rc.3 the output sits in Pelican's
    .console-wrapper, with Pelican's own Copy and Download buttons over its top right corner. Those lay over the title
    row's tools, so they come into the title row instead (server.js consoleActions). */
-:has(> #terminal, > .console-wrapper > #terminal):not(.console-wrapper) { overflow: hidden; border: 1px solid var(--ps-console-line); border-radius: var(--ps-radius-lg); background: #131a20 !important; color: var(--ps-console-ink); box-shadow: none !important; }
+:has(> #terminal, > .console-wrapper > #terminal):not(.console-wrapper) { overflow: hidden; border: 1px solid var(--ps-console-line); border-radius: var(--ps-radius-lg); background: var(--ps-console-card) !important; color: var(--ps-console-ink); box-shadow: none !important; }
 /* Pelican's own terminal colour for the whole card, so the output has no box of its own. The room around the output is
    padding of xterm's own element: Pelican's fit counts that one, not the padding of #terminal, so the rows and columns
    fit the box and no line ends behind the command bar or the right edge. */
