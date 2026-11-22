@@ -319,6 +319,7 @@ final class AnnouncementResource extends Resource
             Toggle::make('in_bell')
                 ->label(self::text('table.in_bell'))
                 ->helperText(self::text('form.in_bell_help'))
+                ->default(true)
                 ->live(),
             Toggle::make('bell_pinned')
                 ->label(self::text('form.bell_pinned'))
