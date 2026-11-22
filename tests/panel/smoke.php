@@ -1531,6 +1531,7 @@ step('announcements: the form asks what, when, where and who, and a server momen
             ->assertSet('mountedActions.0.data.bar', true)
             ->assertSet('mountedActions.0.data.stay', 'ended')
             ->assertSet('mountedActions.0.data.audience', 'everyone')
+            ->assertSet('mountedActions.0.data.in_bell', true)
             // Testlab 22-11: a click on the choice that is on emptied it, and Create refused.
             ->set('mountedActions.0.data.when', null)
             ->assertSet('mountedActions.0.data.when', FormData::NOW)
