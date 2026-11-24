@@ -2756,3 +2756,12 @@ html.ps-frame .s-done {
   border-top-color: color-mix(in srgb, #fff 12%, transparent);
   color: #fff;
 }
+
+/* Settings › General › Health: three sample bars in the colours of the two limits (partials/load-limits). */
+.s-load-sample { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.s-load-sample small { display: block; overflow: hidden; color: var(--gray-500); font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+.s-load-sample > div > span { display: block; height: 4px; margin-top: 5px; overflow: hidden; border-radius: 4px; background: color-mix(in srgb, var(--gray-500) 22%, transparent); }
+.s-load-sample > div > span > span { display: block; height: 100%; border-radius: inherit; }
+.s-load-ok > span > span { background: var(--success-600); }
+.s-load-warn > span > span { background: var(--warning-500); }
+.s-load-hot > span > span { background: var(--danger-600); }

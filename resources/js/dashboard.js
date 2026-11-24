@@ -1229,7 +1229,18 @@
         if (h?.metric_states?.[kind]) return h.metric_states[kind];
         const n = this.hostPercent(kind, h);
         if (typeof n !== 'number' || !Number.isFinite(n) || h.available < h.hosts) return 'unavailable';
-        return n >= 95 ? 'critical' : n >= 85 ? 'warning' : 'healthy';
+        return this.loadState(n);
+      },
+      /** A host's load in Health's words, with the host's own limits (Settings › General › Health; HostHealth::limits(), 85% and 95% by default). */
+      loadState(n) {
+        const [warning, critical] = Array.isArray(this.boot.host_health?.limits) ? this.boot.host_health.limits : [85, 95];
+        return n >= critical ? 'critical' : n >= warning ? 'warning' : 'healthy';
+      },
+      /** The colour of a host's CPU, RAM or storage bar: its own load; no colour while there is no value (Khion 23-11). */
+      hostLoad(kind, h = this.boot.host_health) {
+        if (kind === 'network') return '';
+        const n = this.hostPercent(kind, h);
+        return typeof n === 'number' && Number.isFinite(n) ? this.loadState(n) : '';
       },
       hostMetricLabel(kind, h = this.boot.host_health) {
         if (kind === 'network') return this.hostMetricState(kind, h) === 'healthy' ? t('dashboard.traffic_reported') : t('dashboard.unavailable');

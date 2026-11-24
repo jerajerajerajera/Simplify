@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Health: the CPU, RAM and storage bars take the colour of their load: green, yellow or red. This holds on the overview, for every node and in the Health bar of the admin menu.
+- Settings, General, Health: choose from which share a node counts as high load (yellow, 85% by default) and as critical (red, 95% by default). A node's state and the bars follow the same limits.
 - Theme: Light chosen in Customize Simplify stays light after a reload when Pelican's own theme is on Dark or follows a dark system. Only the top bar turned light; the page and the menus stayed dark.
 - Overview: a server's name keeps its size with a heading font whose letters reach above and below the line, such as Segoe Print or Pacifico. Every name went down to the smallest size.
 - Console: the console's card takes its colour from the theme (`--ps-console-card`), so the command line and the card match when a theme changes them. Without a theme it keeps Pelican's terminal colour.

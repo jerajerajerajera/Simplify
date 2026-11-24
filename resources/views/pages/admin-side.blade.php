@@ -121,7 +121,7 @@
                     @if ($health !== [])
                         <span class="ps-host-health-meters">
                             @foreach (['cpu' => is_numeric($health['cpu_percent'] ?? null) ? (float) $health['cpu_percent'] : null, 'ram' => ($health['memory_total'] ?? 0) > 0 ? 100 * $health['memory_used'] / $health['memory_total'] : null] as $kind => $percent)
-                                <span><span>{{ $u($kind) }} <b>{{ $percent === null ? '—' : number_format($percent, 1).'%' }}</b></span><span class="ps-meter"><span style="width: {{ min(100, max(0, (int) $percent)) }}%"></span></span></span>
+                                <span><span>{{ $u($kind) }} <b>{{ $percent === null ? '—' : number_format($percent, 1).'%' }}</b></span><span class="ps-meter {{ $percent === null ? '' : \Simplify\Core\Health\HostHealth::loadState($percent) }}"><span style="width: {{ min(100, max(0, (int) $percent)) }}%"></span></span></span>
                             @endforeach
                         </span>
                     @endif

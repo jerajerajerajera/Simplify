@@ -8,6 +8,7 @@ use App\Models\Node;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
 use Simplify\Core\Overview\NodeUsage;
+use Simplify\Core\Support\PanelSettings;
 use Simplify\Core\Support\SafeCache;
 use Spatie\Health\ResultStores\ResultStore;
 use Throwable;
@@ -27,6 +28,51 @@ final class HostHealth
 
     /** The results of Pelican's health checks that the Health page lists under "need attention". */
     public const ATTENTION = ['failed', 'crashed', 'warning'];
+
+    /** By default, from this share in % a host's CPU, RAM or storage is high (yellow). Settings › General › Health. */
+    public const LOAD_WARNING = 85;
+
+    /** By default, from this share in % it is critical (red). */
+    public const LOAD_CRITICAL = 95;
+
+    /**
+     * The host's own limits (Settings › General › Health): [yellow from, red from] in %. Without the panel, as in a
+     * test, or with a broken pair, the defaults. dashboard.js gets them with the snapshot (present()).
+     *
+     * @return array{0: int, 1: int}
+     */
+    public static function limits(): array
+    {
+        try {
+            if (class_exists(PanelSettings::class) && function_exists('app') && app()->bound('config')) {
+                $settings = PanelSettings::all();
+
+                return [(int) $settings['load_warning'], (int) $settings['load_critical']];
+            }
+        } catch (Throwable) {
+            // No settings yet: the defaults.
+        }
+
+        return [self::LOAD_WARNING, self::LOAD_CRITICAL];
+    }
+
+    /**
+     * A load in % in Health's words: healthy, warning or critical. A node's state and the bars on Health follow it.
+     *
+     * @param  array{0: int, 1: int}|null  $limits  [yellow from, red from]; the host's own limits when left out
+     */
+    public static function loadState(float $percent, ?array $limits = null): string
+    {
+        [$warning, $critical] = $limits ?? self::limits();
+
+        return $percent >= $critical ? 'critical' : ($percent >= $warning ? 'warning' : 'healthy');
+    }
+
+    /** Drops the shared snapshot, so new limits count at once. */
+    public static function forget(): void
+    {
+        SafeCache::forget(self::CACHE_KEY);
+    }
 
     /** @return array<string, mixed> labels and problems in the viewer's language */
     public static function snapshot(): array
@@ -191,6 +237,7 @@ final class HostHealth
                 ? trans_choice('simplify::dashboard.health.problems.nodes_silent', (int) $values['count'])
                 : __('simplify::dashboard.health.problems.'.$problem[0], $values);
         };
+        $result['limits'] = self::limits();
         $result['label'] = __('simplify::dashboard.health.labels.'.$result['label_key']);
         $result['problem'] = $say($result['problem'] ?? null);
         foreach ($result['nodes'] ?? [] as $index => $node) {
@@ -216,6 +263,7 @@ final class HostHealth
             'metric_states' => ['cpu' => 'unavailable', 'memory' => 'unavailable', 'disk' => 'unavailable'], 'problem' => null,
         ];
         $levels = ['cpu' => 0, 'memory' => 0, 'disk' => 0];
+        $limits = self::limits();
         $sum = ['cpu' => 0.0, 'memory_used' => 0.0, 'memory_total' => 0.0, 'disk_used' => 0.0, 'disk_total' => 0.0];
         $maintenance = false;
         foreach ($samples as $sample) {
@@ -228,7 +276,7 @@ final class HostHealth
             $result['available']++;
             $values = ['cpu' => (float) $s['cpu_percent'], 'memory' => $s['memory_used'] / $s['memory_total'] * 100, 'disk' => $s['disk_used'] / $s['disk_total'] * 100];
             foreach ($values as $key => $value) {
-                $levels[$key] = max($levels[$key], $value >= 95 ? 2 : ($value >= 85 ? 1 : 0));
+                $levels[$key] = max($levels[$key], array_search(self::loadState($value, $limits), ['healthy', 'warning', 'critical'], true));
             }
             $sum['cpu'] += $values['cpu'];
             foreach (['memory_used', 'memory_total', 'disk_used', 'disk_total'] as $key) {
