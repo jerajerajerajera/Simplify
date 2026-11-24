@@ -64,6 +64,7 @@ use Simplify\Core\Filament\Admin\Pages\SetupDone;
 use Simplify\Core\Filament\App\Pages\Connections;
 use Simplify\Core\Filament\App\Pages\Overview;
 use Simplify\Core\Filament\Server\ServerPage;
+use Simplify\Core\Health\HostHealth;
 use Simplify\Core\Models\Setting;
 use Simplify\Core\Overview\Bell as OverviewBell;
 use Simplify\Core\Overview\Listing;
@@ -943,10 +944,10 @@ step('Health limits: chosen on the settings page, red above yellow, and a node\'
             throw new RuntimeException('a red limit below the yellow one was accepted: '.json_encode([PanelSettings::get('load_warning'), PanelSettings::get('load_critical')]));
         }
         noErrors(Livewire\Livewire::actingAs($admin)->test(Settings::class)->set('data.load_warning', 70)->set('data.load_critical', 80)->call('save'));
-        $limits = Simplify\Core\Health\HostHealth::limits();
+        $limits = HostHealth::limits();
         $node = ['maintenance' => false, 'stats' => ['cpu_percent' => 75, 'memory_used' => 85, 'memory_total' => 100, 'disk_used' => 10, 'disk_total' => 100]];
-        $summary = Simplify\Core\Health\HostHealth::summarize([$node]);
-        $shown = Simplify\Core\Health\HostHealth::present($summary + ['label_key' => 'healthy', 'nodes' => []]);
+        $summary = HostHealth::summarize([$node]);
+        $shown = HostHealth::present($summary + ['label_key' => 'healthy', 'nodes' => []]);
         if ($limits !== [70, 80] || $summary['metric_states']['cpu'] !== 'warning' || $summary['metric_states']['memory'] !== 'critical' || ($shown['limits'] ?? null) !== [70, 80]) {
             throw new RuntimeException('the node state does not follow the saved limits: '.json_encode([$limits, $summary['metric_states'], $shown['limits'] ?? null]));
         }
