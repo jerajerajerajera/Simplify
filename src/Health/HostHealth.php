@@ -28,6 +28,18 @@ final class HostHealth
     /** The results of Pelican's health checks that the Health page lists under "need attention". */
     public const ATTENTION = ['failed', 'crashed', 'warning'];
 
+    /** From this share in % a host's CPU, RAM or storage is high (yellow); dashboard.js loadState() uses the same. */
+    public const LOAD_WARNING = 85;
+
+    /** From this share in % it is critical (red). */
+    public const LOAD_CRITICAL = 95;
+
+    /** A load in % in Health's words: healthy, warning or critical. The bars on Health take its colour. */
+    public static function loadState(float $percent): string
+    {
+        return $percent >= self::LOAD_CRITICAL ? 'critical' : ($percent >= self::LOAD_WARNING ? 'warning' : 'healthy');
+    }
+
     /** @return array<string, mixed> labels and problems in the viewer's language */
     public static function snapshot(): array
     {
@@ -228,7 +240,7 @@ final class HostHealth
             $result['available']++;
             $values = ['cpu' => (float) $s['cpu_percent'], 'memory' => $s['memory_used'] / $s['memory_total'] * 100, 'disk' => $s['disk_used'] / $s['disk_total'] * 100];
             foreach ($values as $key => $value) {
-                $levels[$key] = max($levels[$key], $value >= 95 ? 2 : ($value >= 85 ? 1 : 0));
+                $levels[$key] = max($levels[$key], array_search(self::loadState($value), ['healthy', 'warning', 'critical'], true));
             }
             $sum['cpu'] += $values['cpu'];
             foreach (['memory_used', 'memory_total', 'disk_used', 'disk_total'] as $key) {

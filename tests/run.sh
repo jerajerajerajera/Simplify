@@ -9,6 +9,7 @@ php tests/admin-tree.php
 php tests/legacy-css.php
 php tests/server-groups.php
 php tests/host-health.php
+node tests/health-bar-colours.cjs
 php tests/health-hook.php
 php tests/fresh-views.php
 php tests/stale-code.php

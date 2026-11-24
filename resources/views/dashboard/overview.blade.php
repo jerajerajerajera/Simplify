@@ -61,7 +61,7 @@
                             <template x-for="metric in hostMetrics.filter((m) => m.key==='cpu' || m.key==='memory')" :key="metric.key">
                                 <div class="ps-health-card-metric">
                                     <span x-text="metric.label"></span>
-                                    <span class="ps-meter"><span :style="{width: hostFill(metric.key)+'%'}"></span></span>
+                                    <span class="ps-meter" :class="hostLoad(metric.key)"><span :style="{width: hostFill(metric.key)+'%'}"></span></span>
                                     <strong x-text="hostValue(metric.key)"></strong>
                                 </div>
                             </template>
@@ -189,7 +189,7 @@
                         <span class="ps-health-heart" :class="hostMetricState(metric.key)" role="img" :aria-label="metric.label+': '+hostMetricLabel(metric.key)" :data-tip="hostMetricLabel(metric.key)"><svg aria-hidden="true"><use href="#ps-heart"/></svg></span>
                         <strong :class="{'ps-network-value': metric.key==='network'}" x-text="metric.key==='network' ? hostRate() : hostValue(metric.key)"></strong>
                     </div>
-                    <span class="ps-meter" x-show="metric.key!=='network'"><span :style="{width: hostFill(metric.key)+'%'}"></span></span>
+                    <span class="ps-meter" :class="hostLoad(metric.key)" x-show="metric.key!=='network'"><span :style="{width: hostFill(metric.key)+'%'}"></span></span>
                 </div>
             </template>
         </article>
@@ -215,7 +215,7 @@
                                         <div class="ps-host-metric">
                                             <div class="ps-host-heading"><svg aria-hidden="true"><use :href="'#ps-'+metric.icon"/></svg><span x-text="metric.label"></span></div>
                                             <strong :class="{'ps-network-value': metric.key==='network'}" x-text="metric.key==='network' ? hostRate(node) : hostValue(metric.key, node)"></strong>
-                                            <span class="ps-meter" x-show="metric.key!=='network'"><span :style="{width: hostFill(metric.key, node)+'%'}"></span></span>
+                                            <span class="ps-meter" :class="hostLoad(metric.key, node)" x-show="metric.key!=='network'"><span :style="{width: hostFill(metric.key, node)+'%'}"></span></span>
                                             <small x-show="metric.key==='network'" x-text="Simplify.fill(@js($u('used')), { amount: hostValue('network', node) })"></small>
                                         </div>
                                     </template>

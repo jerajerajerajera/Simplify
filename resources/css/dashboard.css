@@ -488,6 +488,12 @@ body:has(.ps) [data-ps-copyright-line] > * { display: inline; }
 .ps-host-health > .ps-host-metric > .ps-host-heading > .ps-health-heart { margin-inline-start: 0; }
 .ps-meter { display: block; height: 3px; margin-top: 4px; overflow: hidden; border-radius: 4px; background: color-mix(in srgb, var(--ps-accent) 13%, transparent); }
 .ps-meter > span { display: block; height: 100%; border-radius: inherit; background: var(--ps-accent); opacity: .65; transition: width .65s ease; }
+/* Health's CPU, RAM and storage bars take the colour of their load: green, yellow from 85%, red from 95% (HostHealth::loadState). */
+.ps-meter:is(.healthy, .warning, .critical) { background: color-mix(in srgb, var(--ps-muted) 22%, transparent); }
+.ps-meter:is(.healthy, .warning, .critical) > span { opacity: 1; transition: width .65s ease, background-color .3s ease; }
+.ps-meter.healthy > span { background: var(--ps-ok); }
+.ps-meter.warning > span { background: var(--ps-warn); }
+.ps-meter.critical > span { background: var(--ps-danger); }
 .ps-health-drawer { --ps-health-details-height: clamp(100px, calc(100dvh - 420px), 320px); max-height: 0; overflow: hidden; border-end-start-radius: inherit; border-end-end-radius: inherit; opacity: 0; transition: max-height .3s ease, opacity var(--ps-slow); }
 .ps-health-panel.expanded .ps-health-drawer { max-height: var(--ps-health-details-height); opacity: 1; }
 .ps-health-drawer > div { display: flex; flex-direction: column; max-height: var(--ps-health-details-height); overflow: hidden; }
