@@ -25,17 +25,23 @@ check('storage at 97.8% is red', load('disk') === 'critical', load('disk'));
 const busy = node(85, 94.9, 95);
 check('85% is yellow, 94.9% yellow, 95% red (per node)', [load('cpu', busy), load('memory', busy), load('disk', busy)].join() === 'warning,warning,critical', [load('cpu', busy), load('memory', busy), load('disk', busy)]);
 check('network has no colour', load('network') === '', load('network'));
+const own = window.pelicanSimplify({}, { servers: [], features: { host_health: true }, host_health: { ...node(72, 50, 81), limits: [70, 80] } });
+check('the host\'s own limits (70%, 80%) colour the bars', [own.hostLoad('cpu'), own.hostLoad('memory'), own.hostLoad('disk')].join() === 'warning,healthy,critical', [own.hostLoad('cpu'), own.hostLoad('memory'), own.hostLoad('disk')]);
 check('a bar without a value has no colour', load('cpu', { hosts: 1, available: 0, cpu_percent: null }) === '', load('cpu', { cpu_percent: null }));
 
 let php = '';
-try { php = execFileSync('php', ['-r', `require '${root}/src/Health/HostHealth.php'; echo json_encode([\\Simplify\\Core\\Health\\HostHealth::LOAD_WARNING ?? null, \\Simplify\\Core\\Health\\HostHealth::LOAD_CRITICAL ?? null, \\Simplify\\Core\\Health\\HostHealth::loadState(84.9), \\Simplify\\Core\\Health\\HostHealth::loadState(85), \\Simplify\\Core\\Health\\HostHealth::loadState(95)]);`], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }); } catch (error) { php = String(error.stderr || error.message).split('\n')[0]; }
-check('PHP and JS use the same thresholds (85, 95)', php.trim() === '[85,95,"healthy","warning","critical"]', php.trim());
+try { php = execFileSync('php', ['-r', `require '${root}/src/Health/HostHealth.php'; echo json_encode([\\Simplify\\Core\\Health\\HostHealth::LOAD_WARNING ?? null, \\Simplify\\Core\\Health\\HostHealth::LOAD_CRITICAL ?? null, \\Simplify\\Core\\Health\\HostHealth::loadState(84.9), \\Simplify\\Core\\Health\\HostHealth::loadState(85), \\Simplify\\Core\\Health\\HostHealth::loadState(95), \\Simplify\\Core\\Health\\HostHealth::loadState(75, [70, 80])]);`], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }); } catch (error) { php = String(error.stderr || error.message).split('\n')[0]; }
+check('PHP and JS use the same default limits (85, 95), and PHP takes the host\'s own', php.trim() === '[85,95,"healthy","warning","critical","warning"]', php.trim());
 
 const overview = fs.readFileSync(path.join(root, 'resources/views/dashboard/overview.blade.php'), 'utf8');
 const meters = overview.match(/<span class="ps-meter"[^>]*>/g) || [];
 check('every Health bar on the overview asks for its colour', meters.length === 3 && meters.every((m) => m.includes('hostLoad(metric.key')), meters);
 const side = fs.readFileSync(path.join(root, 'resources/views/pages/admin-side.blade.php'), 'utf8');
 check('the Health bar in the admin menu colours its CPU and RAM the same way', /class="ps-meter \{\{[^}]*HostHealth::loadState\(\$percent\)/.test(side), side.match(/class="ps-meter[^"]*"/));
+const fields = fs.readFileSync(path.join(root, 'src/Filament/Admin/SettingsFields.php'), 'utf8');
+const page = fs.readFileSync(path.join(root, 'src/Filament/Admin/Pages/Settings.php'), 'utf8');
+check('Settings › General has Health with yellow and red, red above yellow', /SettingsFields::visibility\(\),\s*SettingsFields::health\(\),/.test(page) && /\$percent\('load_critical', 2, 100\)->gt\('load_warning'\)/.test(fields), 'Settings.php / SettingsFields.php');
+check('a save with new limits drops the shared snapshot, so the states change at once', /HostHealth::forget\(\)/.test(page), 'Settings.php');
 const css = fs.readFileSync(path.join(root, 'resources/css/dashboard.css'), 'utf8');
 check('green, yellow and red come from the theme tokens', /\.ps-meter\.healthy > span \{ background: var\(--ps-ok\)/.test(css) && /\.ps-meter\.warning > span \{ background: var\(--ps-warn\)/.test(css) && /\.ps-meter\.critical > span \{ background: var\(--ps-danger\)/.test(css), 'dashboard.css');
 if (failed) { console.log(`${failed} failed`); process.exit(1); }

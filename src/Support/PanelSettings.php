@@ -33,6 +33,9 @@ final class PanelSettings
         'support_url' => [null, ['nullable', 'max:255', 'regex:'.self::SUPPORT_URL]],
         'push' => [true, ['required', 'boolean']],
         'overview_seconds' => [15, ['required', 'integer', 'min:5', 'max:300']],
+        // Health: from these shares in % a node's CPU, RAM or storage is high (yellow) and critical (red); red above yellow.
+        'load_warning' => [85, ['required', 'integer', 'min:1', 'max:99']],
+        'load_critical' => [95, ['required', 'integer', 'min:2', 'max:100']],
         'brand_name' => [null, ['nullable', 'string', 'max:40']],
         'pelican_suffix' => [true, ['required', 'boolean']],
         'brand_font' => ['inter', ['required', 'in:inter,system,rounded,serif,mono,monocraft,condensed,display']],
@@ -82,6 +85,11 @@ final class PanelSettings
             $value = $values[$key] ?? $default;
             $settings[$key] = Validator::make(['value' => $value], ['value' => $rules])->passes() ? $value : $default;
         }
+        // A red limit at or below the yellow one makes no sense: both go back to their defaults.
+        if ($settings['load_critical'] <= $settings['load_warning']) {
+            $settings['load_warning'] = self::FIELDS['load_warning'][0];
+            $settings['load_critical'] = self::FIELDS['load_critical'][0];
+        }
 
         return $settings;
     }
@@ -112,6 +120,11 @@ final class PanelSettings
     {
         $values = array_intersect_key($values, self::FIELDS);
         $rules = array_map(fn (array $field) => $field[1], array_intersect_key(self::FIELDS, $values));
+        if (array_key_exists('load_warning', $values) || array_key_exists('load_critical', $values)) {
+            $values += ['load_warning' => self::get('load_warning'), 'load_critical' => self::get('load_critical')];
+            $rules['load_critical'] = [...self::FIELDS['load_critical'][1], 'gt:load_warning'];
+            $rules['load_warning'] ??= self::FIELDS['load_warning'][1];
+        }
         Validator::make($values, $rules)->validate();
         foreach ($values as $key => $value) {
             Setting::query()->updateOrCreate(['key' => $key], ['value' => $value]);

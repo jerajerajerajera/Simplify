@@ -935,6 +935,25 @@ step('panel settings are saved and a bad value is refused', function () use ($ad
         throw new RuntimeException('friendsMode() does not follow the friends mode setting');
     }
 });
+step('Health limits: chosen on the settings page, red above yellow, and a node\'s state follows them (Khion 23-11)', function () use ($admin) {
+    Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('admin'));
+    try {
+        $wrong = Livewire\Livewire::actingAs($admin)->test(Settings::class)->set('data.load_warning', 90)->set('data.load_critical', 80)->call('save');
+        if ($wrong->errors()->isEmpty() || PanelSettings::get('load_critical') !== 95) {
+            throw new RuntimeException('a red limit below the yellow one was accepted: '.json_encode([PanelSettings::get('load_warning'), PanelSettings::get('load_critical')]));
+        }
+        noErrors(Livewire\Livewire::actingAs($admin)->test(Settings::class)->set('data.load_warning', 70)->set('data.load_critical', 80)->call('save'));
+        $limits = Simplify\Core\Health\HostHealth::limits();
+        $node = ['maintenance' => false, 'stats' => ['cpu_percent' => 75, 'memory_used' => 85, 'memory_total' => 100, 'disk_used' => 10, 'disk_total' => 100]];
+        $summary = Simplify\Core\Health\HostHealth::summarize([$node]);
+        $shown = Simplify\Core\Health\HostHealth::present($summary + ['label_key' => 'healthy', 'nodes' => []]);
+        if ($limits !== [70, 80] || $summary['metric_states']['cpu'] !== 'warning' || $summary['metric_states']['memory'] !== 'critical' || ($shown['limits'] ?? null) !== [70, 80]) {
+            throw new RuntimeException('the node state does not follow the saved limits: '.json_encode([$limits, $summary['metric_states'], $shown['limits'] ?? null]));
+        }
+    } finally {
+        PanelSettings::save(['load_warning' => 85, 'load_critical' => 95]);
+    }
+});
 step('a save that changed a setting loads the settings again, so the top bar shows it (K-B76)', function () use ($admin) {
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('admin'));
     $name = PanelSettings::get('brand_name');

@@ -22,6 +22,7 @@ use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Announcements\Filament\AnnouncementResource;
 use Simplify\Core\Embed\Filament\EmbedSettings;
 use Simplify\Core\Filament\Admin\SettingsFields;
+use Simplify\Core\Health\HostHealth;
 use Simplify\Core\Server\Looks;
 use Simplify\Core\Subdomains\Filament\AutomaticSubdomains;
 use Simplify\Core\Support\Assets;
@@ -118,6 +119,7 @@ final class Settings extends Page implements HasForms
                 Tab::make(__('simplify::settings.general.tab'))->key('general')->icon('tabler-adjustments')->schema([
                     SettingsFields::support(),
                     SettingsFields::visibility(),
+                    SettingsFields::health(),
                     SettingsFields::banners(),
                     // Only here, not in the head of every tab (Jeroen 3-11), as a section of its own (Jeroen 5-11).
                     SettingsFields::setupAgain(),
@@ -232,6 +234,9 @@ final class Settings extends Page implements HasForms
         Notification::make()->title(__('simplify::settings.saved'))->success()->send();
         // The top bar and the menu stay while you click through the pages, so they kept the old name, logo, colour or
         // support link until a reload (K-B76): a save that changed something loads this page again, on the same tab.
+        if ([PanelSettings::get('load_warning'), PanelSettings::get('load_critical')] !== [$before['load_warning'], $before['load_critical']]) {
+            HostHealth::forget();
+        }
         if (PanelSettings::all() != $before) {
             $own = self::getUrl(panel: 'admin');
             $from = (string) request()->header('referer');

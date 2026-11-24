@@ -1231,9 +1231,10 @@
         if (typeof n !== 'number' || !Number.isFinite(n) || h.available < h.hosts) return 'unavailable';
         return this.loadState(n);
       },
-      /** A host's load in Health's words, the thresholds of HostHealth::LOAD_WARNING and LOAD_CRITICAL (85% and 95%). */
+      /** A host's load in Health's words, with the host's own limits (Settings › General › Health; HostHealth::limits(), 85% and 95% by default). */
       loadState(n) {
-        return n >= 95 ? 'critical' : n >= 85 ? 'warning' : 'healthy';
+        const [warning, critical] = Array.isArray(this.boot.host_health?.limits) ? this.boot.host_health.limits : [85, 95];
+        return n >= critical ? 'critical' : n >= warning ? 'warning' : 'healthy';
       },
       /** The colour of a host's CPU, RAM or storage bar: its own load; no colour while there is no value (Khion 23-11). */
       hostLoad(kind, h = this.boot.host_health) {

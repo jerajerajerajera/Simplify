@@ -62,6 +62,19 @@ final class SettingsFields
         ]);
     }
 
+    /** Health: from which share a node's CPU, RAM or storage is high (yellow) and critical (red); the bars and states follow. */
+    public static function health(): Section
+    {
+        $percent = fn (string $key, int $min, int $max) => TextInput::make($key)->label(__(self::T.'general.'.$key))
+            ->helperText(__(self::T.'general.'.$key.'_help'))->integer()->minValue($min)->maxValue($max)->suffix('%')->required();
+
+        return Section::make(__(self::T.'general.health'))->description(__(self::T.'general.health_help'))->columns(['sm' => 2])->schema([
+            $percent('load_warning', 1, 99),
+            $percent('load_critical', 2, 100)->gt('load_warning'),
+            View::make('simplify::partials.load-limits')->columnSpanFull(),
+        ]);
+    }
+
     /** Setup only: picks friends mode for the panel's audience. Not stored; friends mode itself is the setting. */
     public static function panelType(): Section
     {
