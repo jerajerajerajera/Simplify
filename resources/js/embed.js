@@ -31,7 +31,7 @@
     .sub{color:var(--muted);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .state{font-size:12px;font-weight:600;color:var(--muted);display:flex;gap:6px;align-items:center;white-space:nowrap}
     .state::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
-    .state.online{color:var(--ok)}.state.starting,.state.installing,.state.stopping{color:var(--warn)}
+    .state.online{color:var(--ok)}.state.offline{color:var(--bad)}.state.starting,.state.installing,.state.stopping{color:var(--warn)}
     .pack{display:flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:calc(var(--r) - 4px);padding:6px 8px;color:inherit;text-decoration:none;min-width:0}
     a.pack:hover{border-color:var(--accent)}
     .pack img,.pack .dot{width:22px;height:22px;border-radius:5px;flex:none;object-fit:cover;background:var(--accent)}

@@ -34,7 +34,11 @@ check(InstallProblems::lines('') === [], 'no log, no lines');
 $root = dirname(__DIR__);
 $view = (string) file_get_contents($root.'/resources/views/pages/server.blade.php');
 check(preg_match('/class="ps-problem" x-show="installFailed\(\)">\{\{ \\\\Filament\\\\Support\\\\Facades\\\\FilamentView::renderHook\(\'simplify::problem\.actions\', scopes: \[\'simplify-problem\', \'simplify-problem:\'\.\\\\Simplify\\\\Core\\\\Problems\\\\InstallProblems::PREFIX\.\$server->uuid\]\) \}\}/', $view) === 1, 'the server page has the spot while the installation failed, with the server uuid');
-check(str_contains((string) file_get_contents($root.'/src/Providers/SimplifyServiceProvider.php'), "\$this->app->tag([InstallProblems::class], 'simplify.problems');"), 'the source is tagged simplify.problems');
+check(str_contains((string) file_get_contents($root.'/src/Providers/SimplifyServiceProvider.php'), "\$this->app->tag([InstallProblems::class, StatusProblems::class], 'simplify.problems');"), 'the sources are tagged simplify.problems');
+$status = (string) file_get_contents($root.'/resources/views/embed/status.blade.php');
+check(str_contains($status, "renderHook('simplify::problem.actions', scopes: ['simplify-problem', 'simplify-problem:'.\\Simplify\\Core\\Problems\\StatusProblems::PREFIX.\$state['state']])"), 'the status address has the spot while its check finds a problem');
+$source = (string) file_get_contents($root.'/src/Problems/StatusProblems.php');
+check(str_contains($source, '! $user->isRootAdmin()'), 'only root admins get what the status check found');
 check(str_contains((string) file_get_contents($root.'/ADDONS.md'), '`simplify:install:<server uuid>`'), 'ADDONS.md names the install id');
 
 // The bell: a notification's own error id, only in the contract's form.

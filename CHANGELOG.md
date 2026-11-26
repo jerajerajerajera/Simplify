@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Website embed, Status page: Simplify can set the status page's own address up for you. With Cloudflare connected under Subdomains, type the address and press Save: Simplify makes the DNS record, checks the address the way a visitor reaches it, sets SSL "Full" for that address only when Cloudflare cannot check the server's certificate (error 525 or 526), and removes what it made when you change or clear the address. The token needs Zone, Config Rules, Edit for that rule; Settings says so when it is missing.
+- Website embed, Status page: after Save the page says Live, or what is wrong in plain words (not in DNS yet, sent somewhere else, the web server shows another page, the certificate does not fit, Cloudflare cannot reach the server, a missing token permission), with a spot for Explain. Without Cloudflare, Set it up by hand shows the three steps with your own addresses filled in.
+- Website embed: the status page is always on at `/status` on the panel's own address. On the status page's own address, `/simplify/embed?page=1` goes to the clean `/`.
+- Website embed: a server that is offline is marked red, like a day it was down. It was grey.
+- Website embed, Status page: the check could say the address works while visitors ended up elsewhere, because it looked the address up through the panel's own DNS. It now asks public DNS and follows no redirect.
+- Website embed, Status page: a HEAD request for `/` on the status page's own address answered 404, so link checkers and uptime monitors saw it as down. It answers like GET, without the body.
+
 ## 2.0.0-beta.17
 
 - Website embed: each server shows how long it has been online or offline, its uptime over the last 30 days and one bar per day, like a status page (green from 99%, yellow from 90%, red below; hover a day for its share). Simplify notes every minute which listed servers run and keeps 90 days, starting with this version. Turn it off under Settings, Website, Look, or per website with `data-uptime="off"`.

@@ -1915,6 +1915,14 @@ step('embed: Settings › Website saves the order, uptime, online first and the 
         if (! EmbedServers::visible($server) || EmbedDetails::for($server)['position'] !== 1 || ! $options['online_first'] || $options['status_host'] !== 'status.smoke.test') {
             throw new RuntimeException('not saved: '.json_encode([EmbedDetails::for($server), $options]));
         }
+        // How to set it up, filled in with the real addresses (Khion 26-11: the record alone was not enough).
+        $settings = visit($admin, EmbedSettings::getUrl(panel: 'admin'))->getContent();
+        // Without Cloudflare: the offer to set it up, the address that always works and the steps by hand.
+        foreach (['Simplify can set this all up for you', url('/status'), 'Set it up by hand', 'server_name '.StatusAddress::panelHost().' status.smoke.test;', '-d status.smoke.test', '<code>*.smoke.test</code>', 'ServerAlias status.smoke.test'] as $text) {
+            if (! str_contains($settings, e($text)) && ! str_contains($settings, $text)) {
+                throw new RuntimeException('the steps for the status address miss '.$text);
+            }
+        }
         // The panel's own address would show only the list there: refused.
         Livewire\Livewire::actingAs($admin)->test(EmbedSettings::class)->set('data.options.status_host', StatusAddress::panelHost() ?: 'localhost')
             ->call('save')->assertHasErrors(['data.options.status_host']);
@@ -1936,6 +1944,23 @@ step('embed: Settings › Website saves the order, uptime, online first and the 
         expectOk($status, 'status address');
         if ($status->headers->get(StatusAddress::HEADER) !== '1' || ! str_contains($status->getContent(), 'simplify/embed.js') || ! str_contains($status->getContent(), '<h1>')) {
             throw new RuntimeException('the status address does not show the list as a page');
+        }
+        // HEAD as GET, without the body (K-B100): before, HEAD / answered 404 there.
+        $head = $guest->call('HEAD', 'http://status.smoke.test/');
+        if ($head->getStatusCode() !== 200 || $head->headers->get(StatusAddress::HEADER) !== '1') {
+            throw new RuntimeException('HEAD / on the status address answers HTTP '.$head->getStatusCode());
+        }
+        // The long address of the page goes to the clean one there, keeping the other choices; on the panel it stays.
+        $long = $guest->get('http://status.smoke.test/simplify/embed?page=1&style=dark');
+        if ($long->getStatusCode() !== 301 || $long->headers->get('Location') !== 'http://status.smoke.test/?style=dark') {
+            throw new RuntimeException('?page=1 on the status address answers HTTP '.$long->getStatusCode().' to '.$long->headers->get('Location'));
+        }
+        expectOk($guest->get('/simplify/embed?page=1'), 'the page on the panel\'s own address');
+        // /status on the panel's own address: always on.
+        $always = $guest->get('/status');
+        expectOk($always, '/status on the panel');
+        if ($always->headers->get(StatusAddress::HEADER) !== '1' || ! str_contains($always->getContent(), '<h1>')) {
+            throw new RuntimeException('/status does not show the list as a page');
         }
         expectOk($guest->get('http://status.smoke.test/simplify/embed/servers.json'), 'list on the status address');
         foreach (['/login', '/admin', '/simplify/brand/x.png'] as $path) {
@@ -1966,6 +1991,102 @@ step('embed: Settings › Website saves the order, uptime, online first and the 
         if (StatusAddress::connect('status.example.com', $send) === null) {
             throw new RuntimeException('a record of someone else was overwritten');
         }
+
+        // Save with Cloudflare: record, check, an SSL rule for that address only when the certificate does not fit,
+        // and on a new address everything Simplify made for the old one removed, nothing else.
+        $zone = '/zones/'.str_repeat('c', 32);
+        $cf = ['records' => [['id' => 'theirs', 'name' => 'other.example.com', 'comment' => 'someone else']], 'ruleset' => null, 'calls' => [], 'deny' => ''];
+        $cloudflare = function (string $method, string $path, ?array $body) use (&$cf, $zone): array {
+            $cf['calls'][] = $method.' '.strtok($path, '?');
+            if ($cf['deny'] !== '' && str_contains($path, $cf['deny'])) {
+                return ['success' => false, 'errors' => [['code' => 10000, 'message' => 'Authentication error']]];
+            }
+            if (str_starts_with($path, '/zones?')) {
+                return ['success' => true, 'result' => [['id' => str_repeat('c', 32)]]];
+            }
+            if (str_starts_with($path, $zone.'/dns_records')) {
+                // parse_str would turn name.exact into name_exact.
+                $name = preg_match('/[?&]name\.exact=([^&]+)/', $path, $match) === 1 ? rawurldecode($match[1]) : '';
+                $id = basename((string) parse_url($path, PHP_URL_PATH));
+
+                return match ($method) {
+                    'GET' => ['success' => true, 'result' => array_values(array_filter($cf['records'], fn ($r) => $r['name'] === $name))],
+                    'POST' => ['success' => true, 'result' => $cf['records'][] = $body + ['id' => 'r'.count($cf['records'])]],
+                    'PUT' => ['success' => true],
+                    'DELETE' => (function () use (&$cf, $id) {
+                        $cf['records'] = array_values(array_filter($cf['records'], fn ($r) => $r['id'] !== $id));
+
+                        return ['success' => true];
+                    })(),
+                };
+            }
+            if (str_ends_with($path, '/entrypoint')) {
+                if ($method === 'PUT') {
+                    $cf['ruleset'] = ['id' => 'rs', 'rules' => array_map(fn ($r) => $r + ['id' => 'rule1'], $body['rules'])];
+                }
+
+                return $cf['ruleset'] === null ? ['success' => false, 'errors' => [['code' => 10003, 'message' => 'not found']]] : ['success' => true, 'result' => $cf['ruleset']];
+            }
+            if (str_contains($path, '/rulesets/rs/rules')) {
+                if ($method === 'DELETE') {
+                    $cf['ruleset']['rules'] = array_values(array_filter($cf['ruleset']['rules'], fn ($r) => ! str_ends_with($path, '/'.$r['id'])));
+                } elseif ($method === 'POST') {
+                    $cf['ruleset']['rules'][] = $body + ['id' => 'rule2'];
+                }
+
+                return ['success' => true];
+            }
+
+            return ['success' => false, 'errors' => [['code' => 1, 'message' => 'unexpected '.$path]]];
+        };
+        $answers = [];
+        // By reference: each test below queues its answers.
+        $probe = function (string $host) use (&$answers): array {
+            return array_shift($answers) ?? ['status' => 200, 'header' => '1', 'location' => null];
+        };
+        $answers = [['status' => 526, 'header' => null, 'location' => null], ['status' => 200, 'header' => '1', 'location' => null]];
+        $result = StatusAddress::apply('', 'status.example.com', $cloudflare, $probe);
+        $rule = $cf['ruleset']['rules'][0] ?? [];
+        if ($result['state'] !== 'live' || count($cf['records']) !== 2 || ($rule['ref'] ?? '') !== StatusAddress::RULE
+            || ($rule['action_parameters']['ssl'] ?? '') !== 'full' || ($rule['expression'] ?? '') !== '(http.host eq "status.example.com")') {
+            throw new RuntimeException('Save with Cloudflare did not set the address up: '.json_encode([$result, $cf]));
+        }
+        if (StatusAddress::state('status.example.com')['state'] !== 'live') {
+            throw new RuntimeException('the settings page does not show the state of the save');
+        }
+        // Saved again with the rule in place: the rule is changed, not added.
+        $cf['calls'] = [];
+        $answers = [['status' => 526, 'header' => null, 'location' => null]];
+        StatusAddress::apply('status.example.com', 'status.example.com', $cloudflare, $probe);
+        if (! in_array('PATCH '.$zone.'/rulesets/rs/rules/rule1', $cf['calls'], true) || count($cf['ruleset']['rules']) !== 1) {
+            throw new RuntimeException('the SSL rule was not reused: '.json_encode($cf['calls']));
+        }
+        // A catch-all redirect is a problem with where it goes, not "works".
+        $answers = [['status' => 301, 'header' => null, 'location' => 'https://example.com/']];
+        $result = StatusAddress::apply('status.example.com', 'status.example.com', $cloudflare, $probe);
+        if ($result['state'] !== 'redirect' || $result['to'] !== 'https://example.com/' || ! str_contains(StatusAddress::message($result, 'status.example.com'), 'https://example.com/')) {
+            throw new RuntimeException('a redirect was not reported: '.json_encode($result));
+        }
+        // Moved: the old record and rule go, the record of someone else stays.
+        StatusAddress::apply('status.example.com', 'live.example.com', $cloudflare, $probe);
+        $names = array_column($cf['records'], 'name');
+        sort($names);
+        if ($names !== ['live.example.com', 'other.example.com'] || $cf['ruleset']['rules'] !== []) {
+            throw new RuntimeException('the old address was not cleaned up: '.json_encode($cf));
+        }
+        // Without the permission for rules: the state names the permission to add.
+        $cf['deny'] = '/rulesets';
+        $answers = [['status' => 526, 'header' => null, 'location' => null]];
+        $result = StatusAddress::apply('live.example.com', 'live.example.com', $cloudflare, $probe);
+        if ($result['state'] !== 'permission' || $result['error'] !== StatusAddress::PERMISSION_RULES) {
+            throw new RuntimeException('a missing permission was not reported: '.json_encode($result));
+        }
+        $cf['deny'] = '';
+        // Removed: nothing of Simplify is left.
+        if (StatusAddress::apply('live.example.com', '', $cloudflare, $probe)['state'] !== 'none' || array_column($cf['records'], 'name') !== ['other.example.com']) {
+            throw new RuntimeException('removing the address left a record: '.json_encode($cf['records']));
+        }
+        StatusAddress::forget('status.example.com');
     } finally {
         EmbedOptions::save($before);
         StatusAddress::forget();
