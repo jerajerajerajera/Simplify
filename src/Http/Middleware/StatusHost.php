@@ -39,7 +39,8 @@ final class StatusHost
         if ((($path === 'simplify/embed' && $request->query('page') === '1') || $path === 'status') && in_array($request->getMethod(), ['GET', 'HEAD'], true)) {
             $query = http_build_query(array_diff_key($request->query(), ['page' => 1]));
 
-            return redirect()->to('/'.($query === '' ? '' : '?'.$query), 301);
+            // On this host, not the panel's address that url('/') would give.
+            return redirect()->to($request->getSchemeAndHttpHost().'/'.($query === '' ? '' : '?'.$query), 301);
         }
         if (str_starts_with($path, 'simplify/embed') || str_starts_with($path, 'simplify/assets/')) {
             return $next($request);

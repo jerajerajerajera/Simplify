@@ -1952,7 +1952,7 @@ step('embed: Settings › Website saves the order, uptime, online first and the 
         }
         // The long address of the page goes to the clean one there, keeping the other choices; on the panel it stays.
         $long = $guest->get('http://status.smoke.test/simplify/embed?page=1&style=dark');
-        if ($long->getStatusCode() !== 301 || ! str_ends_with((string) $long->headers->get('Location'), '/?style=dark')) {
+        if ($long->getStatusCode() !== 301 || $long->headers->get('Location') !== 'http://status.smoke.test/?style=dark') {
             throw new RuntimeException('?page=1 on the status address answers HTTP '.$long->getStatusCode().' to '.$long->headers->get('Location'));
         }
         expectOk($guest->get('/simplify/embed?page=1'), 'the page on the panel\'s own address');
