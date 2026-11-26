@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.0.0-beta.17
+
 - Website embed: each server shows how long it has been online or offline, its uptime over the last 30 days and one bar per day, like a status page (green from 99%, yellow from 90%, red below; hover a day for its share). Simplify notes every minute which listed servers run and keeps 90 days, starting with this version. Turn it off under Settings, Website, Look, or per website with `data-uptime="off"`.
 - Website embed: drag the servers in Settings, Website into the order the website shows, or use the arrows. A new switch, Online servers first, moves online servers to the top. It is off for new panels; a panel that already shows servers on a website keeps online servers on top until you turn it off.
 - Website embed: every server gets a logo from its egg: one uploaded for that egg under Settings, Website, Logos, else the egg's own image in Pelican, else the logo of its software (Paper, Velocity, Spigot, Modrinth, CurseForge, Python, Node.js, Go, .NET, Discord), else the Minecraft block for any other Minecraft server.
