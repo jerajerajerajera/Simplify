@@ -55,13 +55,12 @@ final class EggLogo
     /** The automatic logo of a server: its software's, else the Minecraft block for Minecraft. */
     public static function automatic(Server $server): ?string
     {
-        $tags = $server->egg?->tags ?? [];
-        $name = self::software(implode(' ', [(string) $server->egg?->name, implode(' ', is_array($tags) ? $tags : []), (string) $server->image]));
-        if ($name !== null) {
-            return $name;
-        }
+        // A server whose egg is gone has no logo (Pelican types the egg as always there).
         try {
-            return Games::minecraft($server) ? 'game-minecraft.svg' : null;
+            $egg = $server->egg;
+            $name = self::software(implode(' ', [(string) $egg->name, implode(' ', (array) $egg->tags), (string) $server->image]));
+
+            return $name ?? (Games::minecraft($server) ? 'game-minecraft.svg' : null);
         } catch (Throwable) {
             return null;
         }
@@ -79,7 +78,11 @@ final class EggLogo
         if (is_string($upload) && self::validUpload($upload)) {
             return ['url' => route('simplify.embed.logo', ['file' => basename($upload)]), 'from' => 'upload'];
         }
-        $own = $server->egg?->icon;
+        try {
+            $own = $server->egg->icon;
+        } catch (Throwable) {
+            $own = null;
+        }
         if (is_string($own) && $own !== '') {
             return ['url' => $own, 'from' => 'pelican'];
         }

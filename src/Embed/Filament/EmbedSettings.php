@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Simplify\Core\Embed\Filament;
 
-use App\Models\Egg;
 use App\Models\Server;
 use Closure;
 use Filament\Forms\Components\ColorPicker;
@@ -188,11 +187,12 @@ final class EmbedSettings extends FormPage
     {
         $eggs = [];
         foreach (Server::query()->with('egg')->whereIn('id', EmbedServers::ids())->get() as $server) {
-            $egg = $server->egg;
-            if (! $egg instanceof Egg || isset($eggs[(int) $egg->id])) {
+            if (isset($eggs[(int) $server->egg_id]) || $server->getRelationValue('egg') === null) {
                 continue;
             }
-            $own = is_string($egg->icon ?? null) && $egg->icon !== '' ? $egg->icon : null;
+            $egg = $server->egg;
+            $icon = (string) $egg->icon;
+            $own = $icon !== '' ? $icon : null;
             $software = EggLogo::automatic($server);
             $eggs[(int) $egg->id] = [
                 'id' => (int) $egg->id,
