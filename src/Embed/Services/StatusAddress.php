@@ -54,6 +54,14 @@ final class StatusAddress
         return $host.'  CNAME  '.self::panelHost();
     }
 
+    /** The certificate name that covers $host and its neighbours: status.example.com gives *.example.com. */
+    public static function wildcard(string $host): string
+    {
+        $dot = strpos($host, '.');
+
+        return $dot === false ? $host : '*'.substr($host, $dot);
+    }
+
     /** True when Cloudflare is set up under Subdomains, so Simplify can make the record. */
     public static function cloudflare(): bool
     {

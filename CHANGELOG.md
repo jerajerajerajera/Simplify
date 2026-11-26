@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Website embed, Status page: How to set this up shows the three steps with your own addresses filled in: the DNS record, adding the address to the web server (nginx or Apache) and a certificate (Cloudflare origin certificate or Let's Encrypt). It is open until the address answers. The README has the same steps.
+
 ## 2.0.0-beta.17
 
 - Website embed: each server shows how long it has been online or offline, its uptime over the last 30 days and one bar per day, like a status page (green from 99%, yellow from 90%, red below; hover a day for its share). Simplify notes every minute which listed servers run and keeps 90 days, starting with this version. Turn it off under Settings, Website, Look, or per website with `data-uptime="off"`.

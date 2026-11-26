@@ -1915,6 +1915,13 @@ step('embed: Settings › Website saves the order, uptime, online first and the 
         if (! EmbedServers::visible($server) || EmbedDetails::for($server)['position'] !== 1 || ! $options['online_first'] || $options['status_host'] !== 'status.smoke.test') {
             throw new RuntimeException('not saved: '.json_encode([EmbedDetails::for($server), $options]));
         }
+        // How to set it up, filled in with the real addresses (Khion 26-11: the record alone was not enough).
+        $settings = visit($admin, EmbedSettings::getUrl(panel: 'admin'))->getContent();
+        foreach (['How to set this up', 'server_name '.StatusAddress::panelHost().' status.smoke.test;', '-d status.smoke.test', '<code>*.smoke.test</code>', 'ServerAlias status.smoke.test'] as $text) {
+            if (! str_contains($settings, e($text)) && ! str_contains($settings, $text)) {
+                throw new RuntimeException('the steps for the status address miss '.$text);
+            }
+        }
         // The panel's own address would show only the list there: refused.
         Livewire\Livewire::actingAs($admin)->test(EmbedSettings::class)->set('data.options.status_host', StatusAddress::panelHost() ?: 'localhost')
             ->call('save')->assertHasErrors(['data.options.status_host']);

@@ -14,6 +14,7 @@ use Simplify\Core\Embed\Services\EmbedOptions;
 use Simplify\Core\Embed\Services\PublicAddress;
 use Simplify\Core\Embed\Services\ServerList;
 use Simplify\Core\Embed\Services\Snippet;
+use Simplify\Core\Embed\Services\StatusAddress;
 use Simplify\Core\Embed\Services\Uptime;
 
 $failures = [];
@@ -151,6 +152,10 @@ $joined = Uptime::summarize([['online' => true, 'from' => 100, 'to' => 5000], ['
 same('touching stretches join', 100, $joined['since']);
 $gap = Uptime::summarize([['online' => true, 'from' => 100, 'to' => 5000], ['online' => true, 'from' => 9000, 'to' => $now]], $starts, $now);
 same('a gap starts again', 9000, $gap['since']);
+
+// The certificate name that covers a status address.
+same('wildcard', '*.example.com', StatusAddress::wildcard('status.example.com'));
+same('wildcard deeper', '*.eu.example.com', StatusAddress::wildcard('status.eu.example.com'));
 
 if ($failures) {
     echo "FAIL embed:\n  ".implode("\n  ", $failures)."\n";

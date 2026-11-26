@@ -221,7 +221,7 @@ final class EmbedSettings extends FormPage
             ->beforeContent(View::make('simplify::embed.logo-tile')->viewData(['url' => $egg['automatic'], 'label' => $t('logo_'.$egg['from'])]));
     }
 
-    /** @return array{host: string, works: bool, cloudflare: bool, record: string} */
+    /** @return array{host: string, works: bool, cloudflare: bool, record: string, panel: string, wildcard: string} */
     private static function statusData(): array
     {
         $host = EmbedOptions::all()['status_host'];
@@ -231,6 +231,8 @@ final class EmbedSettings extends FormPage
             'works' => $host !== '' && StatusAddress::checked($host),
             'cloudflare' => self::safely(fn () => StatusAddress::cloudflare(), false),
             'record' => $host === '' ? '' : StatusAddress::record($host),
+            'panel' => StatusAddress::panelHost(),
+            'wildcard' => StatusAddress::wildcard($host),
         ];
     }
 
