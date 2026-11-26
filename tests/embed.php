@@ -4,14 +4,17 @@
 // what other plugins add. Run: php tests/embed.php
 declare(strict_types=1);
 
-foreach (['EmbedDetails', 'EmbedOptions', 'PublicAddress', 'ServerList', 'Snippet'] as $class) {
+require __DIR__.'/../src/Server/Looks.php';
+foreach (['EggLogo', 'EmbedDetails', 'EmbedOptions', 'PublicAddress', 'ServerList', 'Snippet', 'StatusAddress', 'Uptime'] as $class) {
     require __DIR__.'/../src/Embed/Services/'.$class.'.php';
 }
 
+use Simplify\Core\Embed\Services\EggLogo;
 use Simplify\Core\Embed\Services\EmbedOptions;
 use Simplify\Core\Embed\Services\PublicAddress;
 use Simplify\Core\Embed\Services\ServerList;
 use Simplify\Core\Embed\Services\Snippet;
+use Simplify\Core\Embed\Services\Uptime;
 
 $failures = [];
 $checks = 0;
@@ -26,8 +29,14 @@ function same(string $what, mixed $want, mixed $have): void
 
 // Options: unknown keys and bad values fall back to the defaults.
 same('defaults', EmbedOptions::DEFAULTS, EmbedOptions::normalize([]));
-same('valid options', ['style' => 'dark', 'corners' => 'square', 'accent' => '#abcdef', 'players' => false, 'modpack' => true, 'join' => false],
-    EmbedOptions::normalize(['style' => 'dark', 'corners' => 'square', 'accent' => '#ABCDEF', 'players' => 0, 'join' => '', 'evil' => 'x']));
+same('valid options', ['style' => 'dark', 'corners' => 'square', 'accent' => '#abcdef', 'players' => false, 'modpack' => true, 'join' => false,
+    'uptime' => false, 'online_first' => true, 'status_host' => 'status.example.com', 'logos' => [3 => 'simplify/embed/logos/abc.png']],
+    EmbedOptions::normalize(['style' => 'dark', 'corners' => 'square', 'accent' => '#ABCDEF', 'players' => 0, 'join' => '', 'evil' => 'x',
+        'uptime' => 0, 'online_first' => 1, 'status_host' => 'Status.Example.com', 'logos' => [3 => 'simplify/embed/logos/abc.png']]));
+same('bad status host', '', EmbedOptions::normalize(['status_host' => 'evil.com/<script>'])['status_host']);
+same('status host with scheme', '', EmbedOptions::normalize(['status_host' => 'https://status.example.com'])['status_host']);
+same('logo outside the folder', [], EmbedOptions::normalize(['logos' => [1 => '../../.env', 2 => 'simplify/embed/logos/x.svg']])['logos']);
+same('logo for a bad egg id', [], EmbedOptions::normalize(['logos' => ['x' => 'simplify/embed/logos/a.png', 0 => 'simplify/embed/logos/b.png']])['logos']);
 same('bad style', 'auto', EmbedOptions::normalize(['style' => 'neon'])['style']);
 same('bad accent', '', EmbedOptions::normalize(['accent' => 'red;background:url(x)'])['accent']);
 
@@ -92,8 +101,56 @@ $order = ServerList::sorted([
     ['name' => 'Gamma', 'state' => 'online', 'position' => 2],
     ['name' => 'Delta', 'state' => 'offline', 'position' => null],
 ]);
+same('order: position, then name', ['Zeta', 'Gamma', 'Alpha', 'beta', 'Delta'], array_column($order, 'name'));
+$order = ServerList::sorted([
+    ['name' => 'Zeta', 'state' => 'offline', 'position' => 1],
+    ['name' => 'beta', 'state' => 'online', 'position' => null],
+    ['name' => 'Alpha', 'state' => 'online', 'position' => null],
+    ['name' => 'Gamma', 'state' => 'online', 'position' => 2],
+    ['name' => 'Delta', 'state' => 'offline', 'position' => null],
+], true);
 same('order: online first, then position, then name', ['Gamma', 'Alpha', 'beta', 'Zeta', 'Delta'], array_column($order, 'name'));
 same('no modpack without a name', null, ServerList::clean(['id' => 'a', 'name' => 'a', 'game' => 'a', 'state' => 'online', 'modpack' => ['url' => 'https://x.example']])['modpack']);
+
+// Logos: the software an egg runs, from its name, tags or image.
+foreach (['Paper' => 'logo-paper.svg', 'PaperMC 1.21' => 'logo-paper.svg', 'Velocity Proxy' => 'logo-velocity.svg', 'Spigot' => 'logo-spigot.svg',
+    'Modrinth modpack' => 'logo-modrinth.svg', 'CurseForge Generic' => 'logo-curseforge.svg', 'Python Generic' => 'logo-python.svg',
+    'discord.py bot' => 'logo-python.svg', 'ghcr.io/parkervcp/yolks:nodejs_21' => 'logo-nodejs.svg', 'discord.js' => 'logo-nodejs.svg',
+    'ghcr.io/parkervcp/yolks:go_1.22' => 'logo-go.svg', 'Golang Generic' => 'logo-go.svg', '.NET Generic' => 'logo-dotnet.svg',
+    'Red-DiscordBot' => 'logo-discord.svg', 'Newspaper' => null, 'Rust' => null, 'Vanilla Minecraft' => null, 'Let go' => 'logo-go.svg'] as $text => $logo) {
+    same("logo for $text", $logo, EggLogo::software($text));
+}
+same('valid upload', true, EggLogo::validUpload('simplify/embed/logos/a-1_b.webp'));
+foreach (['simplify/embed/logos/a.svg', 'simplify/embed/logos/../x.png', 'other/a.png', 'simplify/embed/logos/a.png/b.png'] as $file) {
+    same("invalid upload $file", false, EggLogo::validUpload($file));
+}
+
+// Uptime: per day and in all, from stretches of online and offline time.
+$day = 86400;
+$starts = [0, $day, 2 * $day];
+$now = 2 * $day + 3600;
+$summary = Uptime::summarize([
+    ['online' => true, 'from' => 0, 'to' => 43200],             // day 1: half a day online, then nothing seen
+    ['online' => true, 'from' => $day, 'to' => $day + 64800],   // day 2: 18 h online
+    ['online' => false, 'from' => $day + 64800, 'to' => $now - 60], // 6 h offline, then 59 min into day 3
+], $starts, $now);
+same('uptime day 1', 100.0, $summary['days'][0]);
+same('uptime day 2', 75.0, $summary['days'][1]);
+same('uptime day 3', 0.0, $summary['days'][2]);
+same('uptime state', false, $summary['online']);
+same('uptime since', $day + 64800, $summary['since']);
+same('uptime percent', round((43200 + 64800) / (43200 + 86400 + 3540) * 100, 1), $summary['percent']);
+$empty = Uptime::summarize([], $starts, $now);
+same('no uptime data', [null, null, null], $empty['days']);
+same('no uptime state', null, $empty['online']);
+same('no uptime since', null, $empty['since']);
+$stale = Uptime::summarize([['online' => true, 'from' => 0, 'to' => $day]], $starts, $now);
+same('stale: state unknown', null, $stale['online']);
+same('stale: since unknown', null, $stale['since']);
+$joined = Uptime::summarize([['online' => true, 'from' => 100, 'to' => 5000], ['online' => true, 'from' => 5000, 'to' => $now]], $starts, $now);
+same('touching stretches join', 100, $joined['since']);
+$gap = Uptime::summarize([['online' => true, 'from' => 100, 'to' => 5000], ['online' => true, 'from' => 9000, 'to' => $now]], $starts, $now);
+same('a gap starts again', 9000, $gap['since']);
 
 if ($failures) {
     echo "FAIL embed:\n  ".implode("\n  ", $failures)."\n";

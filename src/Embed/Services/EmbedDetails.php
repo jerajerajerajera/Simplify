@@ -81,6 +81,29 @@ final class EmbedDetails
         SafeCache::forget(ServerList::CACHE);
     }
 
+    /**
+     * The order of the list as dragged in Settings › Website: each server's position becomes its place (1, 2, …).
+     * Only the position changes; what the owner filled in on the Website page stays.
+     *
+     * @param  list<int>  $ids  in order
+     */
+    public static function order(array $ids): void
+    {
+        $positions = [];
+        foreach (array_values(array_unique($ids)) as $index => $id) {
+            $positions[$id] = min(9999, $index + 1);
+        }
+        $known = DB::table(self::TABLE)->whereIn('server_id', array_keys($positions))->pluck('position', 'server_id')->all();
+        foreach ($positions as $id => $position) {
+            if (! array_key_exists($id, $known)) {
+                DB::table(self::TABLE)->insert(['server_id' => $id, 'position' => $position, 'created_at' => now(), 'updated_at' => now()]);
+            } elseif ($known[$id] === null || (int) $known[$id] !== $position) {
+                DB::table(self::TABLE)->where('server_id', $id)->update(['position' => $position, 'updated_at' => now()]);
+            }
+        }
+        SafeCache::forget(ServerList::CACHE);
+    }
+
     /** A banner as it may be stored: a scene, a server banner upload, or an upload of the Website page. */
     public static function validBanner(string $banner): bool
     {

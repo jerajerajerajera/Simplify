@@ -57,7 +57,10 @@ use Simplify\Core\Announcements\Tasks\AnnouncementTask;
 use Simplify\Core\Embed\Filament\EmbedSettings;
 use Simplify\Core\Embed\Filament\Website as EmbedWebsite;
 use Simplify\Core\Embed\Services\EmbedDetails;
+use Simplify\Core\Embed\Services\EmbedOptions;
 use Simplify\Core\Embed\Services\EmbedServers;
+use Simplify\Core\Embed\Services\StatusAddress;
+use Simplify\Core\Embed\Services\Uptime;
 use Simplify\Core\Filament\Admin\Pages\Settings;
 use Simplify\Core\Filament\Admin\Pages\Setup;
 use Simplify\Core\Filament\Admin\Pages\SetupDone;
@@ -1883,6 +1886,90 @@ step('embed: the Website page of a server saves what the website shows, only on 
             throw new RuntimeException('an unknown banner did not answer 404');
         }
     } finally {
+        EmbedDetails::save($server, []);
+        EmbedServers::replace([]);
+    }
+});
+step('embed: Settings › Website saves the order, uptime, online first and the status address, which shows only the list', function () use ($admin, $server) {
+    $guest = new class(app())
+    {
+        use MakesHttpRequests;
+
+        public function __construct(public $app) {}
+    };
+    if (! array_key_exists('simplify:embed-uptime', Artisan::all())) {
+        throw new RuntimeException('the uptime command is not registered');
+    }
+    $before = EmbedOptions::all();
+    EmbedServers::replace([]);
+    try {
+        Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('admin'));
+        $page = Livewire\Livewire::actingAs($admin)->test(EmbedSettings::class)
+            ->set('data.servers', [(int) $server->id])->set('data.options.online_first', true)->set('data.options.uptime', true)
+            ->set('data.options.status_host', 'Status.Smoke.test');
+        if (EmbedServers::visible($server)) {
+            throw new RuntimeException('the list saved before Save');
+        }
+        noErrors($page->call('save'));
+        $options = EmbedOptions::all();
+        if (! EmbedServers::visible($server) || EmbedDetails::for($server)['position'] !== 1 || ! $options['online_first'] || $options['status_host'] !== 'status.smoke.test') {
+            throw new RuntimeException('not saved: '.json_encode([EmbedDetails::for($server), $options]));
+        }
+        // The panel's own address would show only the list there: refused.
+        Livewire\Livewire::actingAs($admin)->test(EmbedSettings::class)->set('data.options.status_host', StatusAddress::panelHost() ?: 'localhost')
+            ->call('save')->assertHasErrors(['data.options.status_host']);
+
+        Uptime::record([(int) $server->id => true], time() - 120);
+        Uptime::record([(int) $server->id => true], time());
+        $summary = Uptime::summary([(int) $server->id], time())[(int) $server->id];
+        if ($summary['online'] !== true || $summary['since'] === null || count($summary['days']) !== Uptime::DAYS || end($summary['days']) !== 100.0) {
+            throw new RuntimeException('unexpected uptime: '.json_encode($summary));
+        }
+        $entry = $guest->get('/simplify/embed/servers.json')->json('servers.0');
+        $list = $guest->get('/simplify/embed/servers.json')->json();
+        if (! is_array($entry['uptime'] ?? null) || count($entry['uptime']['days']) !== Uptime::DAYS || ! array_key_exists('logo', $entry)
+            || array_key_exists('logos', (array) ($list['options'] ?? [])) || array_key_exists('status_host', (array) ($list['options'] ?? []))) {
+            throw new RuntimeException('unexpected list: '.json_encode($list));
+        }
+
+        $status = $guest->get('http://status.smoke.test/');
+        expectOk($status, 'status address');
+        if ($status->headers->get(StatusAddress::HEADER) !== '1' || ! str_contains($status->getContent(), 'simplify/embed.js') || ! str_contains($status->getContent(), '<h1>')) {
+            throw new RuntimeException('the status address does not show the list as a page');
+        }
+        expectOk($guest->get('http://status.smoke.test/simplify/embed/servers.json'), 'list on the status address');
+        foreach (['/login', '/admin', '/simplify/brand/x.png'] as $path) {
+            $code = $guest->get('http://status.smoke.test'.$path)->getStatusCode();
+            if ($code !== 404) {
+                throw new RuntimeException("the status address answers $path with HTTP $code, not 404");
+            }
+        }
+
+        // Cloudflare: a new proxied CNAME to the panel, the same record again on a second save, never a record of someone else.
+        $made = [];
+        $send = function (string $method, string $path, ?array $body) use (&$made): array {
+            if (str_starts_with($path, '/zones?')) {
+                return ['success' => true, 'result' => [['id' => str_repeat('b', 32)]]];
+            }
+            if ($method === 'GET') {
+                return ['success' => true, 'result' => array_values($made)];
+            }
+            $made['r1'] = $body + ['id' => 'r1'];
+
+            return ['success' => true];
+        };
+        if (($problem = StatusAddress::connect('status.example.com', $send)) !== null || ($made['r1']['type'] ?? '') !== 'CNAME' || ($made['r1']['proxied'] ?? false) !== true
+            || ($problem = StatusAddress::connect('status.example.com', $send)) !== null || count($made) !== 1) {
+            throw new RuntimeException('the status record was not made: '.json_encode([$problem, $made]));
+        }
+        $made['r1']['comment'] = 'someone else';
+        if (StatusAddress::connect('status.example.com', $send) === null) {
+            throw new RuntimeException('a record of someone else was overwritten');
+        }
+    } finally {
+        EmbedOptions::save($before);
+        StatusAddress::forget();
+        DB::table(Uptime::TABLE)->where('server_id', $server->id)->delete();
         EmbedDetails::save($server, []);
         EmbedServers::replace([]);
     }

@@ -1,7 +1,7 @@
 /* Simplify Embed: draws the panel's public server list on any website.
    <div id="simplify-servers"></div><script src="https://panel.example.com/simplify/embed.js" defer></script>
    Optional data-* attributes on the script: style (auto|light|dark), accent (#rrggbb), corners (round|square),
-   players, modpack, join (on|off), server (short ID: only that server), servers (short IDs, comma separated),
+   players, modpack, join, uptime (on|off), server (short ID: only that server), servers (short IDs, comma separated),
    game (only this game), target (CSS selector). */
 (() => {
   const script = document.currentScript;
@@ -16,14 +16,16 @@
 
   const css = `
     :host{display:block}
-    .list{--bg:#fff;--card:#fff;--ink:#18181b;--muted:#71717a;--line:#e4e4e7;--soft:#f4f4f5;--ok:#16a34a;--warn:#ca8a04;
+    .list{--bg:#fff;--card:#fff;--ink:#18181b;--muted:#71717a;--line:#e4e4e7;--soft:#f4f4f5;--ok:#16a34a;--warn:#ca8a04;--bad:#dc2626;--none:#e4e4e7;
       font:14px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);
       display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:12px;align-items:start}
-    .list.dark{--card:#18181b;--ink:#f4f4f5;--muted:#a1a1aa;--line:#2e2e33;--soft:#232327;--ok:#4ade80;--warn:#facc15}
-    @media (prefers-color-scheme:dark){.list.auto{--card:#18181b;--ink:#f4f4f5;--muted:#a1a1aa;--line:#2e2e33;--soft:#232327;--ok:#4ade80;--warn:#facc15}}
+    .list.dark{--card:#18181b;--ink:#f4f4f5;--muted:#a1a1aa;--line:#2e2e33;--soft:#232327;--ok:#4ade80;--warn:#facc15;--bad:#f87171;--none:#2e2e33}
+    @media (prefers-color-scheme:dark){.list.auto{--card:#18181b;--ink:#f4f4f5;--muted:#a1a1aa;--line:#2e2e33;--soft:#232327;--ok:#4ade80;--warn:#facc15;--bad:#f87171;--none:#2e2e33}}
     .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:grid;gap:10px;align-content:start;min-width:0}
     .top{display:flex;gap:10px;align-items:center;min-width:0}
     .icon{width:40px;height:40px;border-radius:calc(var(--r) - 2px);flex:none;object-fit:cover;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:700}
+    /* A software logo keeps its own shape and colours on a soft tile. */
+    .icon.logo{object-fit:contain;padding:6px;box-sizing:border-box;background:var(--soft)}
     .title{display:grid;min-width:0;flex:1}
     .name{font-weight:600;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .sub{color:var(--muted);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -40,6 +42,13 @@
     .join code span{min-width:0;overflow:hidden;text-overflow:ellipsis}.join code span+span{flex:none}
     .join button{flex:none;border:0;border-radius:calc(var(--r) - 6px);background:var(--accent);color:#fff;font-family:inherit;font-size:12px;font-weight:600;padding:5px 10px;cursor:pointer}
     .join button:focus-visible,a.pack:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+    .uptime{display:grid;gap:5px}
+    .uptime-head,.uptime-foot{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:var(--muted)}
+    .uptime-head b{color:var(--ink);font-weight:600;white-space:nowrap}
+    .uptime-foot{font-size:11px}
+    .days{display:grid;grid-template-columns:repeat(30,1fr);gap:2px;height:22px}
+    .days i{border-radius:2px;background:var(--none)}
+    .days i.up{background:var(--ok)}.days i.some{background:var(--warn)}.days i.down{background:var(--bad)}
     .empty{color:var(--muted);font-size:13px}`;
 
   const el = (tag, props = {}, ...children) => {
@@ -54,7 +63,41 @@
   // English until the list arrives with the panel's own texts.
   let t = { online: 'Online', starting: 'Starting', stopping: 'Stopping', installing: 'Installing', offline: 'Offline',
     players: ':count/:max players', copy: 'Copy', copied: 'Copied', selected: 'Selected', view: 'View ↗',
-    empty: 'No servers to show right now.', copy_address: 'Copy the address of :name' };
+    empty: 'No servers to show right now.', copy_address: 'Copy the address of :name',
+    online_for: 'Online for :time', offline_for: 'Offline for :time', uptime: ':percent uptime', last_days: 'Last :days days',
+    days_ago: ':days days ago', today: 'Today', day_tip: ':date · :percent', day_none: ':date · no data',
+    unit_d: ':count d', unit_h: ':count h', unit_m: ':count min' };
+
+  // "3 d 4 h", "2 h 15 min", "5 min": the two largest units.
+  const span = (seconds) => {
+    const d = Math.floor(seconds / 86400); const h = Math.floor((seconds % 86400) / 3600); const m = Math.floor((seconds % 3600) / 60);
+    const unit = (key, count) => t[key].replace(':count', count);
+    if (d) return [unit('unit_d', d), h ? unit('unit_h', h) : ''].filter(Boolean).join(' ');
+    if (h) return [unit('unit_h', h), m ? unit('unit_m', m) : ''].filter(Boolean).join(' ');
+    return unit('unit_m', Math.max(1, m));
+  };
+  const percent = (value) => `${Number(value).toLocaleString(undefined, { maximumFractionDigits: 1 })}%`;
+
+  // How long it is in its state, the uptime of the last days and one bar per day, like a status page.
+  const uptime = (server, now) => {
+    const data = server.uptime;
+    const days = Array.isArray(data.days) ? data.days : [];
+    if (!days.length) return null;
+    const since = Number.isFinite(data.since) && data.since > 0 && data.since * 1000 <= now
+      ? t[server.state === 'online' ? 'online_for' : 'offline_for'].replace(':time', span(Math.floor(now / 1000) - data.since))
+      : t.last_days.replace(':days', days.length);
+    const date = new Intl.DateTimeFormat(undefined, { weekday: 'short', day: 'numeric', month: 'short' });
+    const bars = el('div', { class: 'days', role: 'img', 'aria-label': `${t.last_days.replace(':days', days.length)}: ${data.percent === null ? '–' : t.uptime.replace(':percent', percent(data.percent))}` });
+    days.forEach((value, index) => {
+      const day = date.format(new Date(now - (days.length - 1 - index) * 86400000));
+      const kind = value === null ? '' : value >= 99 ? 'up' : value >= 90 ? 'some' : 'down';
+      bars.append(el('i', { class: kind, title: value === null ? t.day_none.replace(':date', day) : t.day_tip.replace(':date', day).replace(':percent', percent(value)) }));
+    });
+    return el('div', { class: 'uptime' },
+      el('div', { class: 'uptime-head' }, el('span', { text: since }), data.percent === null ? null : el('b', { text: t.uptime.replace(':percent', percent(data.percent)) })),
+      bars,
+      el('div', { class: 'uptime-foot' }, el('span', { text: t.days_ago.replace(':days', days.length) }), el('span', { text: t.today })));
+  };
 
   const copy = async (button, text) => {
     try { await navigator.clipboard.writeText(text); button.textContent = t.copied; }
@@ -64,7 +107,7 @@
 
   const card = (server, show) => {
     const initials = server.name.split(/\s+/).map((word) => word[0] || '').join('').slice(0, 2).toUpperCase();
-    const icon = server.icon ? el('img', { class: 'icon', src: server.icon, alt: '', loading: 'lazy' }) : el('span', { class: 'icon', text: initials, 'aria-hidden': 'true' });
+    const icon = server.icon ? el('img', { class: server.logo ? 'icon logo' : 'icon', src: server.icon, alt: '', loading: 'lazy' }) : el('span', { class: 'icon', text: initials, 'aria-hidden': 'true' });
     const players = show.players && server.players !== null && server.state === 'online' ? t.players.replace(':count', server.players).replace(':max', server.max_players ?? '?') : '';
     const detail = [server.game, server.modpack ? '' : (server.version || server.software || ''), players].filter(Boolean).join(' · ');
     const nodes = [el('div', { class: 'top' }, icon,
@@ -85,13 +128,15 @@
       const host = port > 0 ? server.address.slice(0, port) : server.address;
       nodes.push(el('div', { class: 'join' }, el('code', { title: server.address }, el('span', { text: host }), port > 0 ? el('span', { text: server.address.slice(port) }) : null), button));
     }
+    if (show.uptime && server.uptime) nodes.push(uptime(server, Date.now()));
     return el('article', { class: 'card' }, ...nodes);
   };
 
   const render = (data) => {
     const options = data.options || {};
     if (data.texts && typeof data.texts === 'object') t = { ...t, ...data.texts };
-    const show = { players: flag(attr.players, options.players !== false), modpack: flag(attr.modpack, options.modpack !== false), join: flag(attr.join, options.join !== false) };
+    const show = { players: flag(attr.players, options.players !== false), modpack: flag(attr.modpack, options.modpack !== false), join: flag(attr.join, options.join !== false),
+      uptime: flag(attr.uptime, options.uptime !== false) };
     const style = ['auto', 'light', 'dark'].includes(attr.style) ? attr.style : (options.style || 'auto');
     const accent = /^#[0-9a-fA-F]{6}$/.test(attr.accent || '') ? attr.accent : (options.accent || '#5b8fd0');
     const corners = (attr.corners || options.corners) === 'square' ? '4px' : '12px';

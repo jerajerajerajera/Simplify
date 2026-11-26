@@ -140,6 +140,8 @@ jobs:
           cd panel
           php artisan p:plugin:install simplify
           php -r '$db = new PDO("sqlite:database/database.sqlite"); $set = $db->prepare("INSERT OR REPLACE INTO simplify_settings (key, value) VALUES (?, ?)"); foreach (["support_url" => "https://example.com/kept", "accent" => "#e11d48", "brand_name" => "Old panel", "brand_font" => "rounded", "brand_colour" => "gradient", "brand_show" => "both", "pelican_suffix" => false] as $k => $v) { $set->execute([$k, json_encode($v)]); } $db->prepare("INSERT INTO simplify_core_announcements (category, title, body, audience, in_bell, bell_pinned, push, in_game, in_game_repeat, created_at, updated_at) VALUES (?, ?, ?, ?, 1, 1, 0, 1, 30, ?, ?)")->execute(["warning", "Old announcement", "From 1.5.5", "everyone", "2026-11-02 12:00:00", "2026-11-02 12:00:00"]); $db->prepare("INSERT OR REPLACE INTO simplify_core_embed_settings (key, value) VALUES (?, ?)")->execute(["style", json_encode("dark")]);'
+          # A panel that already shows a server on a website keeps "online servers first" after the update.
+          php -r '$db = new PDO("sqlite:database/database.sqlite"); $db->exec("INSERT INTO simplify_core_embed_servers (server_id, created_at, updated_at) VALUES (1, \"2026-11-02 12:00:00\", \"2026-11-02 12:00:00\")");'
           rm -rf plugins/simplify
       - name: Install Simplify
         run: |
@@ -154,6 +156,11 @@ jobs:
           test ! -e plugins/pelican-simplify || { echo 'The old pelican-simplify folder is still there'; exit 1; }
           test "$(grep -c '| Simplify ' plugins.txt)" = 1 || { echo 'Simplify is listed twice'; exit 1; }
           php -r '$db = new PDO("sqlite:database/database.sqlite"); $v = fn ($k) => json_decode((string) $db->query("SELECT value FROM simplify_settings WHERE key = \"$k\"")->fetchColumn()); $a = $db->query("SELECT title, in_bell, push, in_game, in_game_repeat, bar, stay, in_game_target FROM simplify_core_announcements")->fetchAll(PDO::FETCH_ASSOC); $e = $db->query("SELECT value FROM simplify_core_embed_settings WHERE key = \"style\"")->fetchColumn(); echo json_encode([$v("support_url"), $v("accent"), $v("brand_name"), $v("brand_font"), $v("brand_show"), $v("pelican_suffix"), $a, $e]), PHP_EOL; exit($v("support_url") === "https://example.com/kept" && $v("pelican_suffix") === false && $v("accent") === "#e11d48" && $v("brand_name") === "Old panel" && $v("brand_font") === "rounded" && $v("brand_colour") === "gradient" && $v("brand_show") === "both" && count($a) === 1 && $a[0]["title"] === "Old announcement" && (int) $a[0]["in_bell"] === 1 && (int) $a[0]["push"] === 0 && (int) $a[0]["in_game_repeat"] === 30 && (int) $a[0]["bar"] === 1 && $a[0]["stay"] === "ended" && $a[0]["in_game_target"] === "servers" && $e === "\"dark\"" ? 0 : 1);' || { echo 'The old settings were not kept or not imported'; exit 1; }
+      - name: Check that the website list keeps its order and has its uptime table
+        if: ${{ !inputs.from070 }}
+        working-directory: panel
+        run: |
+          php -r '$db = new PDO("sqlite:database/database.sqlite"); $first = $db->query("SELECT value FROM simplify_core_embed_settings WHERE key = \"online_first\"")->fetchColumn(); $table = $db->query("SELECT name FROM sqlite_master WHERE type = \"table\" AND name = \"simplify_core_embed_uptime\"")->fetchColumn(); echo json_encode([$first, $table]), PHP_EOL; exit($first === "true" && $table === "simplify_core_embed_uptime" ? 0 : 1);' || { echo 'Online servers first was not kept, or the uptime table is missing'; exit 1; }
       - name: Check that 0.7.0's subdomain setup was taken over
         if: inputs.from070
         working-directory: panel
