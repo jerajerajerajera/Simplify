@@ -5,7 +5,7 @@
 declare(strict_types=1);
 
 require __DIR__.'/../src/Server/Looks.php';
-foreach (['EggLogo', 'EmbedDetails', 'EmbedOptions', 'PublicAddress', 'ServerList', 'Snippet', 'StatusAddress', 'Uptime'] as $class) {
+foreach (['EggLogo', 'EmbedDetails', 'EmbedOptions', 'PublicAddress', 'ServerList', 'Snippet', 'StatusAddress', 'StatusCss', 'Uptime'] as $class) {
     require __DIR__.'/../src/Embed/Services/'.$class.'.php';
 }
 
@@ -15,6 +15,7 @@ use Simplify\Core\Embed\Services\PublicAddress;
 use Simplify\Core\Embed\Services\ServerList;
 use Simplify\Core\Embed\Services\Snippet;
 use Simplify\Core\Embed\Services\StatusAddress;
+use Simplify\Core\Embed\Services\StatusCss;
 use Simplify\Core\Embed\Services\Uptime;
 
 $failures = [];
@@ -31,7 +32,7 @@ function same(string $what, mixed $want, mixed $have): void
 // Options: unknown keys and bad values fall back to the defaults.
 same('defaults', EmbedOptions::DEFAULTS, EmbedOptions::normalize([]));
 same('valid options', ['style' => 'dark', 'corners' => 'square', 'accent' => '#abcdef', 'players' => false, 'modpack' => true, 'join' => false,
-    'uptime' => false, 'online_first' => true, 'status_host' => 'status.example.com', 'logos' => [3 => 'simplify/embed/logos/abc.png']],
+    'uptime' => false, 'online_first' => true, 'status_host' => 'status.example.com', 'logos' => [3 => 'simplify/embed/logos/abc.png']] + EmbedOptions::DEFAULTS,
     EmbedOptions::normalize(['style' => 'dark', 'corners' => 'square', 'accent' => '#ABCDEF', 'players' => 0, 'join' => '', 'evil' => 'x',
         'uptime' => 0, 'online_first' => 1, 'status_host' => 'Status.Example.com', 'logos' => [3 => 'simplify/embed/logos/abc.png']]));
 same('bad status host', '', EmbedOptions::normalize(['status_host' => 'evil.com/<script>'])['status_host']);
@@ -170,6 +171,34 @@ same('the certificate does not fit (526)', 'ssl', $state(526));
 same('the certificate does not fit (525)', 'ssl', $state(525));
 same('Cloudflare reaches no server (522)', 'offline', $state(522));
 same('a redirect with the header is still a redirect', 'redirect', $state(301, '1', 'https://example.com/'));
+
+// The status page's own look: plain text, known values only.
+$page = EmbedOptions::normalize(['page_title' => "<b>Ice</b>\nGaming", 'page_intro' => "Hi\r\nthere <script>alert(1)</script>", 'page_logo' => 'elsewhere',
+    'page_logo_file' => '../../.env', 'page_style' => 'look', 'page_accent' => 'red', 'page_css' => '@import url(https://example.com/a.css); h1{color:red}']);
+same('page title is plain text on one line', 'IceGaming', $page['page_title']);
+same('page intro keeps its line break, not its tags', "Hi\nthere alert(1)", $page['page_intro']);
+same('page title at most 80 characters', 80, mb_strlen(EmbedOptions::normalize(['page_title' => str_repeat('é', 200)])['page_title']));
+same('page intro at most 300 characters', 300, mb_strlen(EmbedOptions::normalize(['page_intro' => str_repeat('a', 900)])['page_intro']));
+same('unknown logo choice', 'panel', $page['page_logo']);
+same('logo outside the folder', '', $page['page_logo_file']);
+same('"same as Look" is stored empty', '', $page['page_style']);
+same('bad page accent', '', $page['page_accent']);
+same('own CSS is cleaned when saved', 'h1{color:red}', $page['page_css']);
+
+// Own CSS: styles stay, nothing that loads a file, runs code or ends the style block.
+$css = fn (string $in) => StatusCss::clean($in);
+same('plain CSS stays', ['css' => 'h1 > span{color:red}', 'removed' => []], $css('h1 > span{color:red}'));
+same('@import goes', ['css' => 'a{b:c}', 'removed' => ['import']], $css('@import "x.css"; a{b:c}'));
+same('url() to a file is made invalid', ['css' => 'a{background:blocked()}', 'removed' => ['url']], $css('a{background:URL( https://example.com/x.png )}'));
+same('a small data: image stays', [], $css('a{background:url("data:image/png;base64,iVBORw0KGgo=")}')['removed']);
+same('an svg data: image does not', ['url'], $css('a{background:url(data:image/svg+xml;base64,PHN2Zz4=)}')['removed']);
+same('image-set() is made invalid', ['url'], $css('a{background:image-set("x.png" 1x)}')['removed']);
+same('expression() is made invalid', 'a{width:blocked(alert(1))}', $css('a{width:expression(alert(1))}')['css']);
+same('javascript: and bindings go', ['url', 'script'], $css('a{-moz-binding:url(x)}b{behavior:x}')['removed']);
+same('no way out of the style block', false, str_contains($css('</style><script>alert(1)</script>')['css'], '<'));
+same('escapes cannot spell a blocked word', 'a{b:u72l(x)}', $css('a{b:u\\72l(x)}')['css']);
+same('a comment cannot split a blocked word', 'a{b:c}', $css('@imp/**/ort x; a{b:c}')['css']);
+same('at most 10 KB', StatusCss::MAX, strlen($css(str_repeat('a{b:c}', 3000))['css']));
 
 if ($failures) {
     echo "FAIL embed:\n  ".implode("\n  ", $failures)."\n";

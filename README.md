@@ -82,6 +82,22 @@ the check says so and the steps below apply.
 Press Save again to check: Live shows once the page answers there. Still see another page in your browser? It may
 remember an old redirect; try a private window.
 
+### The page's own look
+
+Settings › Website › Status page also sets how the page of its own looks: a title, a logo (the panel's logo from
+Settings › Branding, one uploaded for the page, or none), a short intro in plain text, a theme and an accent colour.
+These change only the page at `/status`, on its own address and at `/simplify/embed?page=1`; the list on other
+websites keeps following Look.
+
+**Own CSS (advanced)** goes into that page only, at most 10 KB. The page runs on the panel's own address, so no HTML or
+scripts are allowed, and Save cleans the CSS: `@import`, `url()` other than a small `data:` image (PNG, JPEG, GIF or
+WebP), `image-set()` and other ways to load a file, `expression()`, `javascript:`, `behavior` and `-moz-binding`,
+backslash escapes and `<` are removed or made invalid, and Settings says what went. The page also sends a strict
+Content-Security-Policy, so nothing loads from elsewhere or runs except the list's own script. Style the list with
+`#simplify-servers::part(card)`, `::part(name)`, `::part(state)` (also `state-online`, `state-offline`, …),
+`::part(join)`, `::part(uptime)`, `::part(icon)` and `::part(list)`, and the page with `body`, `.page-head`,
+`.page-logo`, `h1` and `.page-intro`.
+
 ## Add-ons
 
 See [ADDONS.md](ADDONS.md) for how an add-on plugs into Simplify.

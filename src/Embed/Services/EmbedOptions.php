@@ -32,7 +32,23 @@ final class EmbedOptions
         'status_host' => '',
         // An uploaded logo per egg id (EggLogo): a file in EggLogo::DIRECTORY.
         'logos' => [],
+        // The status page's own look (/status and its own address); empty follows the list's Look or the default.
+        'page_title' => '',
+        // panel (the logo under Settings › Branding), upload (page_logo_file) or none.
+        'page_logo' => 'panel',
+        'page_logo_file' => '',
+        // Plain text under the title.
+        'page_intro' => '',
+        // '' = the same as style above, or auto, light, dark.
+        'page_style' => '',
+        'page_accent' => '',
+        // The admin's own CSS, cleaned on save (StatusCss).
+        'page_css' => '',
     ];
+
+    public const PAGE_TITLE = 80;
+
+    public const PAGE_INTRO = 300;
 
     /** Options only the panel needs; they never reach the public list. */
     public const PRIVATE = ['logos', 'status_host'];
@@ -61,7 +77,7 @@ final class EmbedOptions
      * Only known options with valid values, anything else falls back to its default.
      *
      * @param  array<string, mixed>  $input
-     * @return array{style: string, corners: string, accent: string, players: bool, modpack: bool, join: bool, uptime: bool, online_first: bool, status_host: string, logos: array<int, string>}
+     * @return array{style: string, corners: string, accent: string, players: bool, modpack: bool, join: bool, uptime: bool, online_first: bool, status_host: string, logos: array<int, string>, page_title: string, page_logo: string, page_logo_file: string, page_intro: string, page_style: string, page_accent: string, page_css: string}
      */
     public static function normalize(array $input): array
     {
@@ -89,6 +105,23 @@ final class EmbedOptions
                 $out['logos'][(int) $egg] = $file;
             }
         }
+        // Plain text: tags and control characters go, the intro keeps its line breaks.
+        $text = fn (mixed $value, int $max, bool $lines) => mb_substr(trim((string) preg_replace($lines ? '/[^\P{C}\n]/u' : '/\p{C}/u', '', strip_tags(is_string($value) ? str_replace("\r\n", "\n", $value) : ''))), 0, $max);
+        $out['page_title'] = $text($input['page_title'] ?? '', self::PAGE_TITLE, false);
+        $out['page_intro'] = $text($input['page_intro'] ?? '', self::PAGE_INTRO, true);
+        if (in_array($input['page_logo'] ?? null, ['panel', 'upload', 'none'], true)) {
+            $out['page_logo'] = $input['page_logo'];
+        }
+        if (is_string($input['page_logo_file'] ?? null) && EggLogo::validUpload($input['page_logo_file'])) {
+            $out['page_logo_file'] = $input['page_logo_file'];
+        }
+        if (in_array($input['page_style'] ?? null, ['auto', 'light', 'dark'], true)) {
+            $out['page_style'] = $input['page_style'];
+        }
+        if (is_string($input['page_accent'] ?? null) && preg_match('/^#[0-9a-fA-F]{6}$/', $input['page_accent'])) {
+            $out['page_accent'] = strtolower($input['page_accent']);
+        }
+        $out['page_css'] = is_string($input['page_css'] ?? null) ? StatusCss::clean($input['page_css'])['css'] : '';
 
         return $out;
     }

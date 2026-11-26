@@ -8,10 +8,14 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Simplify\Core\Embed\Services\EggLogo;
 use Simplify\Core\Embed\Services\EmbedDetails;
+use Simplify\Core\Embed\Services\EmbedOptions;
 use Simplify\Core\Embed\Services\ServerList;
 use Simplify\Core\Embed\Services\Snippet;
 use Simplify\Core\Embed\Services\StatusAddress;
+use Simplify\Core\Embed\Services\StatusCss;
 use Simplify\Core\SimplifyPlugin;
+use Simplify\Core\Support\Brand;
+use Simplify\Core\Support\PanelSettings;
 use Simplify\Core\WebApp\WebApp;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
@@ -47,7 +51,7 @@ final class EmbedController
         return response()->file($path, [...self::HEADERS, 'Cache-Control' => 'public, max-age=86400']);
     }
 
-    /** A logo uploaded for an egg in Settings › Website; any other file answers 404. */
+    /** A logo uploaded for an egg or for the status page in Settings › Website; any other file answers 404. */
     public function logo(string $file): BinaryFileResponse
     {
         $path = EggLogo::publicPath($file);
@@ -83,51 +87,102 @@ final class EmbedController
 
     /**
      * A page that only holds the list, for websites that prefer an iframe. The query takes the same options as the
-     * script's data-* attributes. With ?page=1 it is a page of its own, with some room and a background.
+     * script's data-* attributes. With ?page=1 it is a page of its own (the status page): some room, a background and
+     * the look from Settings › Website › Status page (title, logo, intro, theme, accent, own CSS).
      */
     public function frame(Request $request): Response
     {
+        $page = $request->query('page') === '1';
+        $options = $page ? EmbedOptions::all() : null;
         $rules = ['server' => Snippet::ID, 'game' => Snippet::GAME, 'servers' => Snippet::IDS];
-        $attributes = '';
+        $data = [];
         foreach (['style', 'accent', 'corners', 'players', 'modpack', 'join', 'uptime', 'server', 'game', 'servers'] as $key) {
             $value = $request->query($key);
             if (is_string($value) && preg_match($rules[$key] ?? '/^[#A-Za-z0-9_-]{1,40}$/', $value)) {
-                $attributes .= ' data-'.$key.'="'.e($value).'"';
+                $data[$key] = $value;
             }
+        }
+        // The status page's own theme and accent, unless the address asks for another.
+        if ($options !== null) {
+            $data['style'] ??= $options['page_style'] !== '' ? $options['page_style'] : $options['style'];
+            if ($options['page_accent'] !== '') {
+                $data['accent'] ??= $options['page_accent'];
+            }
+        }
+        $attributes = '';
+        foreach ($data as $key => $value) {
+            $attributes .= ' data-'.$key.'="'.e($value).'"';
         }
         $dark = 'html{background:#0b0b0e}';
         $style = match (true) {
-            $request->query('page') !== '1' => 'html,body{background:transparent}body{padding:2px}',
-            $request->query('style') === 'dark' => $dark,
-            $request->query('style') === 'light' => 'html{background:#fafafa}',
+            ! $page => 'html,body{background:transparent}body{padding:2px}',
+            ($data['style'] ?? '') === 'dark' => $dark,
+            ($data['style'] ?? '') === 'light' => 'html{background:#fafafa}',
             default => 'html{background:#fafafa}@media (prefers-color-scheme:dark){'.$dark.'}',
         };
-        $title = e(__('simplify::embed-list.title', ['name' => WebApp::name()]));
+        $name = $options !== null && $options['page_title'] !== '' ? $options['page_title'] : __('simplify::embed-list.title', ['name' => WebApp::name()]);
+        $title = e($name);
         $heading = '';
-        if ($request->query('page') === '1') {
-            $style .= 'body{padding:24px 16px;max-width:1100px;margin:0 auto}'
-                .'h1{margin:0 0 16px;font:600 22px/1.3 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:#18181b}';
-            $style .= match ($request->query('style')) {
-                'dark' => 'h1{color:#f4f4f5}',
+        $own = '';
+        $headers = ['Content-Security-Policy' => 'frame-ancestors *'];
+        if ($options !== null) {
+            $style .= 'body{padding:24px 16px;max-width:1100px;margin:0 auto;font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:#18181b}'
+                .'.page-head{display:flex;align-items:center;gap:12px;margin:0 0 16px}.page-head:has(+.page-intro){margin-bottom:8px}'
+                .'.page-logo{height:40px;width:auto;max-width:160px;object-fit:contain;flex:none}'
+                .'h1{margin:0;font:600 22px/1.3 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:#18181b;overflow-wrap:anywhere}'
+                .'.page-intro{margin:0 0 18px;max-width:70ch;color:#52525b;white-space:pre-line;overflow-wrap:anywhere}';
+            $night = 'body,h1{color:#f4f4f5}.page-intro{color:#a1a1aa}';
+            $style .= match ($data['style'] ?? '') {
+                'dark' => $night,
                 'light' => '',
-                default => '@media (prefers-color-scheme:dark){h1{color:#f4f4f5}}',
+                default => '@media (prefers-color-scheme:dark){'.$night.'}',
             };
+            $logo = self::pageLogo($options);
             // A page of its own (and the status address) names what it lists.
-            $heading = '<h1>'.$title.'</h1>';
+            $heading = '<header class="page-head">'.($logo === null ? '' : '<img class="page-logo" src="'.e($logo).'" alt="">').'<h1>'.$title.'</h1></header>'
+                .($options['page_intro'] === '' ? '' : '<p class="page-intro">'.e($options['page_intro']).'</p>');
+            // The admin's own CSS, cleaned on save and again here; the policy below lets nothing load from elsewhere
+            // or run except the list's own script.
+            $own = StatusCss::clean($options['page_css'])['css'];
+            $panel = rtrim(url('/'), '/');
+            $headers['Content-Security-Policy'] = "frame-ancestors *; default-src 'none'; script-src 'self' $panel; connect-src 'self' $panel; "
+                ."style-src 'self' $panel 'unsafe-inline'; img-src * data:; font-src 'self' $panel data:; base-uri 'none'; form-action 'none'";
         }
         $html = '<!doctype html><html lang="'.e(str_replace('_', '-', app()->getLocale())).'"><head><meta charset="utf-8">'
             .'<meta name="viewport" content="width=device-width,initial-scale=1">'
             .'<title>'.$title.'</title>'
-            .'<style>html,body{margin:0}'.$style.'</style></head>'
+            .'<style>html,body{margin:0}'.$style.'</style>'
+            .($own === '' ? '' : '<style>'.$own.'</style>')
+            .'</head>'
             .'<body>'.$heading.'<div id="simplify-servers"></div><script src="'.e(url('/simplify/embed.js')).'"'.$attributes.' defer></script></body></html>';
 
         return response($html, 200, [
             'Content-Type' => 'text/html; charset=utf-8',
             'Cache-Control' => 'public, max-age=300',
-            'Content-Security-Policy' => 'frame-ancestors *',
+            ...$headers,
             'X-Content-Type-Options' => 'nosniff',
             // The settings check for this, to know an address of its own reaches this panel's status page.
             StatusAddress::HEADER => '1',
         ]);
+    }
+
+    /**
+     * The status page's logo: the panel's logo from Settings › Branding, the one uploaded for the page, or none.
+     *
+     * @param  array{page_logo: string, page_logo_file: string}  $options
+     */
+    private static function pageLogo(array $options): ?string
+    {
+        if ($options['page_logo'] === 'upload') {
+            return $options['page_logo_file'] === '' ? null : url('/simplify/embed/logos/'.basename($options['page_logo_file']));
+        }
+        if ($options['page_logo'] === 'panel') {
+            $saved = PanelSettings::get('brand_logo');
+            $file = Brand::logoFile(is_string($saved) ? $saved : null);
+
+            return $file === null ? null : url('/simplify/brand/'.$file);
+        }
+
+        return null;
     }
 }

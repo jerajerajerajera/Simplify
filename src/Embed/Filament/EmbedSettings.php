@@ -9,6 +9,7 @@ use Closure;
 use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\ViewField;
@@ -26,12 +27,14 @@ use Simplify\Core\Embed\Services\EmbedOptions;
 use Simplify\Core\Embed\Services\EmbedServers;
 use Simplify\Core\Embed\Services\ServerList;
 use Simplify\Core\Embed\Services\StatusAddress;
+use Simplify\Core\Embed\Services\StatusCss;
 use Simplify\Core\Filament\FormPage;
 use Simplify\Core\Overview\ServerGroups;
 use Simplify\Core\Subdomains\Filament\AutomaticSubdomains;
 use Simplify\Core\Subdomains\Services\Settings as SubdomainSettings;
 use Simplify\Core\Support\Assets;
 use Simplify\Core\Support\Preferences;
+use Simplify\Core\WebApp\WebApp;
 use Throwable;
 
 /**
@@ -61,9 +64,12 @@ final class EmbedSettings extends FormPage
     {
         $options = EmbedOptions::all();
         $this->form->fill([
-            'options' => $options,
+            // The page's theme picker names "the same as Look" instead of leaving it empty.
+            'options' => [...$options, 'page_style' => $options['page_style'] === '' ? 'look' : $options['page_style']],
             'servers' => self::ordered(),
             'logos' => $options['logos'],
+            'page_logo' => $options['page_logo_file'] === '' ? null : $options['page_logo_file'],
+            'css_open' => $options['page_css'] !== '',
             'code' => ['show' => 'all'],
         ]);
     }
@@ -118,6 +124,37 @@ final class EmbedSettings extends FormPage
                         }
                     }),
                 View::make('simplify::embed.status')->viewData(fn () => self::statusData()),
+                // How the page of its own looks (/status and the own address); the list on other websites keeps Look.
+                TextInput::make('options.page_title')->label($t('page_title'))->helperText($t('page_title_help'))
+                    ->placeholder(fn () => __('simplify::embed-list.title', ['name' => WebApp::name()]))->maxLength(EmbedOptions::PAGE_TITLE),
+                Grid::make(['default' => 1, 'sm' => 2])->schema([
+                    Select::make('options.page_logo')->label($t('page_logo'))->live()->selectablePlaceholder(false)->required()->options([
+                        'panel' => $t('page_logo_panel'),
+                        'upload' => $t('page_logo_upload'),
+                        'none' => $t('page_logo_none'),
+                    ])->helperText($t('page_logo_help')),
+                    FileUpload::make('page_logo')->label($t('page_logo_file'))
+                        ->visible(fn (Get $get) => $get('options.page_logo') === 'upload')
+                        ->image()->acceptedFileTypes(['image/png', 'image/jpeg', 'image/webp'])->maxSize(512)
+                        ->disk('local')->directory(EggLogo::DIRECTORY)->visibility('private')
+                        ->panelLayout('integrated')->imagePreviewHeight('64'),
+                ]),
+                Textarea::make('options.page_intro')->label($t('page_intro'))->helperText($t('page_intro_help'))
+                    ->rows(3)->maxLength(EmbedOptions::PAGE_INTRO),
+                Grid::make(['default' => 1, 'sm' => 2])->schema([
+                    Select::make('options.page_style')->label($t('page_style'))->selectablePlaceholder(false)->options([
+                        'look' => $t('page_style_look'),
+                        'auto' => $t('style_auto'),
+                        'light' => $t('style_light'),
+                        'dark' => $t('style_dark'),
+                    ]),
+                    ColorPicker::make('options.page_accent')->label($t('page_accent'))->regex('/^#[0-9a-fA-F]{6}$/')
+                        ->helperText($t('page_accent_help')),
+                ]),
+                Toggle::make('css_open')->label($t('page_css_open'))->live()->dehydrated(false),
+                Textarea::make('options.page_css')->label($t('page_css'))->helperText($t('page_css_help'))
+                    ->visible(fn (Get $get) => (bool) $get('css_open'))
+                    ->rows(8)->maxLength(StatusCss::MAX)->extraInputAttributes(['class' => 'font-mono', 'spellcheck' => 'false']),
             ]),
             Section::make($t('code'))->description($t('code_help'))->columns(2)->schema([
                 Select::make('code.show')->label($t('show'))->live()->selectablePlaceholder(false)->afterStateUpdated(fn (Set $set, Get $get) => $this->pickFirst($set, $get))->options([
@@ -311,8 +348,16 @@ final class EmbedSettings extends FormPage
         $state = $this->form->getState();
         $before = EmbedOptions::all();
         $logos = $this->logos($before['logos'], (array) ($state['logos'] ?? []));
-        $options = [...(array) ($state['options'] ?? []), 'logos' => $logos];
+        $options = [...(array) ($state['options'] ?? []), 'logos' => $logos, 'page_logo_file' => $this->pageLogo($before['page_logo_file'], $state['page_logo'] ?? null)];
+        // Own CSS: what was not allowed is said once, then saved without it.
+        $css = StatusCss::clean((string) ($options['page_css'] ?? ''));
+        $options['page_css'] = $css['css'];
+        data_set($this->data, 'options.page_css', $css['css']);
         EmbedOptions::save($options);
+        if ($css['removed'] !== []) {
+            Notification::make()->title(__('simplify::embed.settings.page_css_removed'))->warning()
+                ->body(implode(' ', array_map(fn (string $kind) => __('simplify::embed.settings.page_css_'.$kind), $css['removed'])))->send();
+        }
         $ids = array_values(array_unique(array_map('intval', array_values((array) ($state['servers'] ?? [])))));
         EmbedServers::replace($ids);
         EmbedDetails::order($ids);
@@ -320,6 +365,18 @@ final class EmbedSettings extends FormPage
         // The code below follows the new list straight away.
         $this->pickFirst(fn (string $key, mixed $value) => data_set($this->data, $key, $value), fn (string $key) => data_get($this->data, $key));
         Notification::make()->title(__('simplify::embed.saved'))->success()->send();
+    }
+
+    /** The status page's uploaded logo after this save; a replaced or removed upload is deleted. */
+    private function pageLogo(string $saved, mixed $field): string
+    {
+        $file = is_array($field) ? (array_values($field)[0] ?? null) : $field;
+        $file = is_string($file) && EggLogo::validUpload($file) ? $file : '';
+        if ($saved !== '' && $saved !== $file && EggLogo::validUpload($saved)) {
+            Storage::disk('local')->delete($saved);
+        }
+
+        return $file;
     }
 
     /**

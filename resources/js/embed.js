@@ -93,7 +93,7 @@
       const kind = value === null ? '' : value >= 99 ? 'up' : value >= 90 ? 'some' : 'down';
       bars.append(el('i', { class: kind, title: value === null ? t.day_none.replace(':date', day) : t.day_tip.replace(':date', day).replace(':percent', percent(value)) }));
     });
-    return el('div', { class: 'uptime' },
+    return el('div', { class: 'uptime', part: 'uptime' },
       el('div', { class: 'uptime-head' }, el('span', { text: since }), data.percent === null ? null : el('b', { text: t.uptime.replace(':percent', percent(data.percent)) })),
       bars,
       el('div', { class: 'uptime-foot' }, el('span', { text: t.days_ago.replace(':days', days.length) }), el('span', { text: t.today })));
@@ -107,12 +107,12 @@
 
   const card = (server, show) => {
     const initials = server.name.split(/\s+/).map((word) => word[0] || '').join('').slice(0, 2).toUpperCase();
-    const icon = server.icon ? el('img', { class: server.logo ? 'icon logo' : 'icon', src: server.icon, alt: '', loading: 'lazy' }) : el('span', { class: 'icon', text: initials, 'aria-hidden': 'true' });
+    const icon = server.icon ? el('img', { class: server.logo ? 'icon logo' : 'icon', part: 'icon', src: server.icon, alt: '', loading: 'lazy' }) : el('span', { class: 'icon', part: 'icon', text: initials, 'aria-hidden': 'true' });
     const players = show.players && server.players !== null && server.state === 'online' ? t.players.replace(':count', server.players).replace(':max', server.max_players ?? '?') : '';
     const detail = [server.game, server.modpack ? '' : (server.version || server.software || ''), players].filter(Boolean).join(' · ');
     const nodes = [el('div', { class: 'top' }, icon,
-      el('div', { class: 'title' }, el('span', { class: 'name', text: server.name, title: server.name }), el('span', { class: 'sub', text: detail })),
-      el('span', { class: `state ${server.state}`, text: t[server.state] || t.offline }))];
+      el('div', { class: 'title' }, el('span', { class: 'name', part: 'name', text: server.name, title: server.name }), el('span', { class: 'sub', text: detail })),
+      el('span', { class: `state ${server.state}`, part: `state state-${server.state}`, text: t[server.state] || t.offline }))];
     if (show.modpack && server.modpack) {
       const pack = server.modpack;
       const inner = [pack.icon ? el('img', { src: pack.icon, alt: '', loading: 'lazy' }) : el('i', { class: 'dot' }),
@@ -126,10 +126,10 @@
       // A long host name gets shortened, the port always stays whole.
       const port = server.address.lastIndexOf(':');
       const host = port > 0 ? server.address.slice(0, port) : server.address;
-      nodes.push(el('div', { class: 'join' }, el('code', { title: server.address }, el('span', { text: host }), port > 0 ? el('span', { text: server.address.slice(port) }) : null), button));
+      nodes.push(el('div', { class: 'join', part: 'join' }, el('code', { title: server.address }, el('span', { text: host }), port > 0 ? el('span', { text: server.address.slice(port) }) : null), button));
     }
     if (show.uptime && server.uptime) nodes.push(uptime(server, Date.now()));
-    return el('article', { class: 'card' }, ...nodes);
+    return el('article', { class: 'card', part: 'card' }, ...nodes);
   };
 
   const render = (data) => {
@@ -144,7 +144,7 @@
     if (attr.server) servers = servers.filter((server) => server.id === attr.server);
     if (attr.servers) { const ids = attr.servers.split(','); servers = servers.filter((server) => ids.includes(server.id)); }
     if (attr.game) servers = servers.filter((server) => String(server.game).toLowerCase() === attr.game.toLowerCase());
-    const list = el('div', { class: `list ${style}`, style: `--accent:${accent};--r:${corners}`, role: 'list', 'aria-label': `${data.name || 'Game'} servers` });
+    const list = el('div', { class: `list ${style}`, part: 'list', style: `--accent:${accent};--r:${corners}`, role: 'list', 'aria-label': `${data.name || 'Game'} servers` });
     for (const server of servers) { const item = card(server, show); item.setAttribute('role', 'listitem'); list.append(item); }
     if (!servers.length) list.append(el('p', { class: 'empty', text: t.empty }));
     root.replaceChildren(el('style', { text: css }), list);

@@ -1963,6 +1963,38 @@ step('embed: Settings › Website saves the order, uptime, online first and the 
             throw new RuntimeException('/status does not show the list as a page');
         }
         expectOk($guest->get('http://status.smoke.test/simplify/embed/servers.json'), 'list on the status address');
+
+        // The status page's own look (Jeroen 26-11): title, intro, logo, theme, accent and cleaned own CSS, on the page only.
+        $look = Livewire\Livewire::actingAs($admin)->test(EmbedSettings::class)
+            ->set('data.options.page_title', 'Smoke <i>servers</i>')->set('data.options.page_intro', "Line one\nLine <b>two</b>")
+            ->set('data.options.page_logo', 'none')->set('data.options.page_style', 'dark')->set('data.options.page_accent', '#e8590c')
+            ->set('data.css_open', true)->set('data.options.page_css', '@import url(https://example.com/x.css); h1{letter-spacing:2px} .x{background:url(https://example.com/x.png)}');
+        $look->call('save');
+        noErrors($look);
+        $saved = EmbedOptions::all();
+        if ($saved['page_title'] !== 'Smoke servers' || $saved['page_intro'] !== "Line one\nLine two" || $saved['page_style'] !== 'dark'
+            || $saved['page_css'] !== 'h1{letter-spacing:2px} .x{background:blocked()}' || $look->get('data.options.page_css') !== $saved['page_css']) {
+            throw new RuntimeException('the page look was not saved as cleaned: '.json_encode(array_slice($saved, 10)));
+        }
+        foreach (['/status', 'http://status.smoke.test/'] as $address) {
+            $styled = $guest->get($address);
+            expectOk($styled, $address);
+            $html = $styled->getContent();
+            $policy = (string) $styled->headers->get('Content-Security-Policy');
+            foreach (['<title>Smoke servers</title>', '<h1>Smoke servers</h1>', '<p class="page-intro">Line one'."\n".'Line two</p>', '<style>h1{letter-spacing:2px}', 'data-style="dark"', 'data-accent="#e8590c"'] as $text) {
+                if (! str_contains($html, $text)) {
+                    throw new RuntimeException("$address misses $text");
+                }
+            }
+            if (str_contains($html, 'example.com') || str_contains($html, 'page-logo') || ! str_contains($policy, "default-src 'none'") || str_contains($policy, 'unsafe-eval')) {
+                throw new RuntimeException("$address loads from elsewhere or has the wrong policy: $policy");
+            }
+        }
+        // The list on other websites keeps its Look: no own title, CSS or strict policy there.
+        $framed = $guest->get('/simplify/embed');
+        if (str_contains($framed->getContent(), 'letter-spacing') || str_contains($framed->getContent(), 'Smoke servers') || $framed->headers->get('Content-Security-Policy') !== 'frame-ancestors *') {
+            throw new RuntimeException('the page look reached the list for other websites');
+        }
         foreach (['/login', '/admin', '/simplify/brand/x.png'] as $path) {
             $code = $guest->get('http://status.smoke.test'.$path)->getStatusCode();
             if ($code !== 404) {
