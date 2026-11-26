@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Simplify\Core\Embed\Services;
 
+use App\Models\Egg;
 use App\Models\Server;
 use Illuminate\Support\Facades\Storage;
 use Simplify\Core\Server\Looks;
@@ -78,11 +79,9 @@ final class EggLogo
         if (is_string($upload) && self::validUpload($upload)) {
             return ['url' => route('simplify.embed.logo', ['file' => basename($upload)]), 'from' => 'upload'];
         }
-        try {
-            $own = $server->egg->icon;
-        } catch (Throwable) {
-            $own = null;
-        }
+        // A server whose egg is gone has none (Pelican types the egg as always there).
+        $egg = $server->getRelationValue('egg');
+        $own = $egg instanceof Egg ? $egg->icon : null;
         if (is_string($own) && $own !== '') {
             return ['url' => $own, 'from' => 'pelican'];
         }
