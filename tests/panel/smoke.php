@@ -2005,11 +2005,12 @@ step('embed: Settings › Website saves the order, uptime, online first and the 
                 return ['success' => true, 'result' => [['id' => str_repeat('c', 32)]]];
             }
             if (str_starts_with($path, $zone.'/dns_records')) {
-                parse_str((string) parse_url($path, PHP_URL_QUERY), $query);
+                // parse_str would turn name.exact into name_exact.
+                $name = preg_match('/[?&]name\.exact=([^&]+)/', $path, $match) === 1 ? rawurldecode($match[1]) : '';
                 $id = basename((string) parse_url($path, PHP_URL_PATH));
 
                 return match ($method) {
-                    'GET' => ['success' => true, 'result' => array_values(array_filter($cf['records'], fn ($r) => $r['name'] === ($query['name.exact'] ?? '')))],
+                    'GET' => ['success' => true, 'result' => array_values(array_filter($cf['records'], fn ($r) => $r['name'] === $name))],
                     'POST' => ['success' => true, 'result' => $cf['records'][] = $body + ['id' => 'r'.count($cf['records'])]],
                     'PUT' => ['success' => true],
                     'DELETE' => (function () use (&$cf, $id) {
