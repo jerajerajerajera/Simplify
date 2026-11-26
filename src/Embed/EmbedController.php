@@ -109,6 +109,7 @@ final class EmbedController
                 $data['accent'] ??= $options['page_accent'];
             }
         }
+        $theme = (string) ($data['style'] ?? '');
         $attributes = '';
         foreach ($data as $key => $value) {
             $attributes .= ' data-'.$key.'="'.e($value).'"';
@@ -116,8 +117,8 @@ final class EmbedController
         $dark = 'html{background:#0b0b0e}';
         $style = match (true) {
             ! $page => 'html,body{background:transparent}body{padding:2px}',
-            ($data['style'] ?? '') === 'dark' => $dark,
-            ($data['style'] ?? '') === 'light' => 'html{background:#fafafa}',
+            $theme === 'dark' => $dark,
+            $theme === 'light' => 'html{background:#fafafa}',
             default => 'html{background:#fafafa}@media (prefers-color-scheme:dark){'.$dark.'}',
         };
         $name = $options !== null && $options['page_title'] !== '' ? $options['page_title'] : __('simplify::embed-list.title', ['name' => WebApp::name()]);
@@ -132,7 +133,7 @@ final class EmbedController
                 .'h1{margin:0;font:600 22px/1.3 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:#18181b;overflow-wrap:anywhere}'
                 .'.page-intro{margin:0 0 18px;max-width:70ch;color:#52525b;white-space:pre-line;overflow-wrap:anywhere}';
             $night = 'body,h1{color:#f4f4f5}.page-intro{color:#a1a1aa}';
-            $style .= match ($data['style'] ?? '') {
+            $style .= match ($theme) {
                 'dark' => $night,
                 'light' => '',
                 default => '@media (prefers-color-scheme:dark){'.$night.'}',
