@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Website embed, Status page: make the status page your own. Set its title, a logo (the panel's logo, one uploaded for the page, or none), a short intro, a theme and an accent colour. They change only the page of its own (`/status`, its own address and `?page=1`); the list on other websites keeps following Look.
+- Website embed, Status page: Own CSS (advanced) for that page, at most 10 KB. Save removes anything that loads a file from elsewhere or runs code (`@import`, `url()` other than a small data: image, `expression()`, `javascript:` and more) and says what went; the page also sends a strict Content-Security-Policy. The list can be styled through parts such as `::part(card)`, `::part(name)` and `::part(state)`.
+- Website embed, Status page: the page now follows the theme chosen under Look when the address does not ask for one. It always followed the visitor.
 - Website embed, Status page: Simplify can set the status page's own address up for you. With Cloudflare connected under Subdomains, type the address and press Save: Simplify makes the DNS record, checks the address the way a visitor reaches it, sets SSL "Full" for that address only when Cloudflare cannot check the server's certificate (error 525 or 526), and removes what it made when you change or clear the address. The token needs Zone, Config Rules, Edit for that rule; Settings says so when it is missing.
 - Website embed, Status page: after Save the page says Live, or what is wrong in plain words (not in DNS yet, sent somewhere else, the web server shows another page, the certificate does not fit, Cloudflare cannot reach the server, a missing token permission), with a spot for Explain. Without Cloudflare, Set it up by hand shows the three steps with your own addresses filled in.
 - Website embed: the status page is always on at `/status` on the panel's own address. On the status page's own address, `/simplify/embed?page=1` goes to the clean `/`.

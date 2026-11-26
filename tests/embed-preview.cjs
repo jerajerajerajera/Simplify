@@ -26,7 +26,7 @@ const controller = fs.readFileSync(path.join(root, 'src', 'Embed', 'EmbedControl
 const snippet = fs.readFileSync(path.join(root, 'src', 'Embed', 'Services', 'Snippet.php'), 'utf8');
 const css = blade.match(/<style>([\s\S]*?)<\/style>/)[1];
 const fit = blade.match(/x-on:load="([^"]*)"/)[1].replace(/\$el/g, 'this');
-const frameStyle = controller.match(/'page'\) !== '1' => '([^']*)'/)[1];
+const frameStyle = controller.match(/! \$page => '([^']*)'/)[1];
 const snippetStyle = snippet.match(/style="(width:100%;height:'\.\$height\.'px;[^"]*)"/)[1].replace("'.$height.'", '200');
 
 // The frame page as EmbedController::frame() serves it inside a panel (transparent), with the list drawn the way

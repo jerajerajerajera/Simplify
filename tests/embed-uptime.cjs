@@ -49,6 +49,7 @@ function page(attributes) {
     state: getComputedStyle(card.querySelector('.state')).color,
     bad: getComputedStyle(root.querySelector('.list')).getPropertyValue('--bad').trim(),
     none: getComputedStyle(root.querySelector('.list')).getPropertyValue('--none').trim(),
+    parts: ['card', 'name', 'state', 'uptime'].filter((part) => (part === 'card' ? card : card.querySelector('[part~="' + part + '"]'))?.getAttribute('part')?.split(' ').includes(part)),
   }));
   document.getElementById('out').textContent = JSON.stringify(cards);
 }, 500);</script></body></html>`;
@@ -78,6 +79,7 @@ if (Array.isArray(cards) && cards.length === 2) {
   check('offline for hours and minutes', b.head === 'Offline for 2 h 15 min', b.head);
   check('the share of the last 30 days', a.percent === '99.4% uptime', a.percent);
   check('offline is red, like a day it was down', b.state === 'rgb(220, 38, 38)' && b.bad === '#dc2626' && a.state !== b.state, [a.state, b.state, b.bad]);
+  check('the status page\'s own CSS reaches the card, name, state and uptime as parts', a.parts.length === 4, a.parts);
   check('a day without data stays grey', a.none === '#e4e4e7', a.none);
   check('one bar per day', a.bars.length === 30, a.bars.length);
   check('a day without data is grey', a.bars[0] === '' && a.bars[1] === '', a.bars.slice(0, 2));

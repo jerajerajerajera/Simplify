@@ -97,7 +97,9 @@ final class EggLogo
             return null;
         }
         $path = self::DIRECTORY.'/'.$file;
-        if (! in_array($path, EmbedOptions::all()['logos'], true) || ! Storage::disk('local')->exists($path)) {
+        $options = EmbedOptions::all();
+        // An egg's logo, or the status page's own logo.
+        if ((! in_array($path, $options['logos'], true) && $path !== $options['page_logo_file']) || ! Storage::disk('local')->exists($path)) {
             return null;
         }
 
