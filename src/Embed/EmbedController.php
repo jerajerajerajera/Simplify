@@ -73,6 +73,14 @@ final class EmbedController
         return response((string) file_get_contents($path), 200, $headers);
     }
 
+    /** /status on the panel's own address: the list as a page of its own, always on, the same as frame?page=1. */
+    public function status(Request $request): Response
+    {
+        $request->query->set('page', '1');
+
+        return $this->frame($request);
+    }
+
     /**
      * A page that only holds the list, for websites that prefer an iframe. The query takes the same options as the
      * script's data-* attributes. With ?page=1 it is a page of its own, with some room and a background.

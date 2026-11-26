@@ -49,11 +49,29 @@ Install Simplify from the [Pelican Hub](https://hub.pelican.dev). Updates come f
 
 ## Status page on its own address
 
-Settings › Website › Status page takes an address such as `status.example.com`. On that address the panel shows only
-the server list; every other path answers 404. Settings shows these steps with your own addresses filled in:
+The status page always works at `https://<panel>/status`. Settings › Website › Status page can also give it an address
+of its own, such as `status.example.com`; on that address the panel shows only the server list at `/` (and
+`/simplify/embed?page=1` goes there), and every other path answers 404.
+
+**With Cloudflare connected under Subdomains, Simplify sets it all up.** Type the address and press Save. Simplify:
+
+- makes a proxied CNAME from the address to the panel's address, so Cloudflare gives it a certificate;
+- checks the address the way a visitor reaches it (public DNS, no redirects followed) and says Live, or what is wrong
+  in plain words: not in DNS yet, sent somewhere else (often a catch-all redirect rule), the web server shows another
+  page, the certificate does not fit, Cloudflare cannot reach the server, or a token permission is missing;
+- when Cloudflare cannot check the server's certificate for the address (error 525 or 526), adds one Configuration Rule
+  with SSL "Full" for that address only, and checks again;
+- on a new or empty address, removes the record and the rule it made, never anything else.
+
+The token needs **Zone › DNS › Edit** (also used for server addresses) and, for the SSL rule, **Zone › Config Rules ›
+Edit**. Cloudflare rewrites the Host header only on Enterprise plans, so the panel's web server must still answer for
+the address. On a usual Pelican install (Pelican's nginx file as the only site) it already does; when it does not,
+the check says so and the steps below apply.
+
+**Without Cloudflare**, Settings shows these steps under Set it up by hand, with your own addresses filled in:
 
 1. **DNS.** Add a CNAME from the address to the panel's address, such as `status.example.com CNAME panel.example.com`.
-   With Cloudflare set up under Subdomains, Simplify makes it when you save. Cloudflare's proxy may stay on.
+   Cloudflare's proxy may stay on.
 2. **Web server.** Add the address to `server_name` in the panel's nginx file (usually
    `/etc/nginx/sites-available/pelican.conf`, in every `server` block), then `sudo nginx -t && sudo systemctl reload nginx`.
    On Apache, add `ServerAlias status.example.com` and reload Apache.
@@ -61,7 +79,8 @@ the server list; every other path answers 404. Settings shows these steps with y
    Cloudflare origin certificate for `*.example.com` does). Without the proxy:
    `sudo certbot --nginx -d panel.example.com -d status.example.com`.
 
-Save again: the line under the address turns green once the page answers there.
+Press Save again to check: Live shows once the page answers there. Still see another page in your browser? It may
+remember an old redirect; try a private window.
 
 ## Add-ons
 
@@ -75,7 +94,7 @@ Simplify talks to your own panel and your Wings nodes, and to nothing else, exce
 - **Subdomains** (when a root admin sets them up): Cloudflare's API (`api.cloudflare.com`), with the token the admin pasted, to make and remove the DNS records of each server's subdomain. A sync runs every five minutes through Pelican's scheduler (`simplify:subdomains`).
 - Update notices for root admins use Pelican's own version check and Pelican's cached node information; Simplify makes no extra calls for them. They run hourly through Pelican's scheduler (`simplify:update-notices`).
 
-Open routes (no login): `/simplify/assets/{name}` serves Simplify's stylesheet and logo, and `/simplify/brand/{file}` serves the panel logo and app icon an admin uploaded in Simplify's settings. `/simplify/banners/{file}` serves server banners, only to people who are signed in. `/simplify/manifest.webmanifest`, `/simplify/app-icon-192.png`, `/simplify/app-icon-512.png` and `/simplify-worker.js` let a browser install the panel as an app; the worker caches only a small offline page. `/simplify/embed`, `/simplify/embed.js` and `/simplify/embed/servers.json` show the servers an owner or root admin put on a website: name, game, status, players, the public join address, and what the owner fills in on the server's Website page (description, image, client download, a second public address and the position on the list), nothing else. `/simplify/embed/banners/{file}` serves an uploaded image only while its server is on the website. `/simplify/embed/logos/{file}` serves a logo uploaded for an egg in Settings › Website. On the status page's own address (if one is set) only the list and these files answer.
+Open routes (no login): `/simplify/assets/{name}` serves Simplify's stylesheet and logo, and `/simplify/brand/{file}` serves the panel logo and app icon an admin uploaded in Simplify's settings. `/simplify/banners/{file}` serves server banners, only to people who are signed in. `/simplify/manifest.webmanifest`, `/simplify/app-icon-192.png`, `/simplify/app-icon-512.png` and `/simplify-worker.js` let a browser install the panel as an app; the worker caches only a small offline page. `/status`, `/simplify/embed`, `/simplify/embed.js` and `/simplify/embed/servers.json` show the servers an owner or root admin put on a website: name, game, status, players, the public join address, and what the owner fills in on the server's Website page (description, image, client download, a second public address and the position on the list), nothing else. `/simplify/embed/banners/{file}` serves an uploaded image only while its server is on the website. `/simplify/embed/logos/{file}` serves a logo uploaded for an egg in Settings › Website. On the status page's own address (if one is set) only the list and these files answer.
 
 Announcements are delivered every minute through Pelican's scheduler (`simplify:announcements`), to the bell, as app notifications and in game chats.
 

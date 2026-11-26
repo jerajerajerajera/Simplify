@@ -30,6 +30,7 @@ use Simplify\Core\Http\Controllers\BrandController;
 use Simplify\Core\Http\Controllers\WebAppController;
 use Simplify\Core\Http\Middleware\StatusHost;
 use Simplify\Core\Problems\InstallProblems;
+use Simplify\Core\Problems\StatusProblems;
 use Simplify\Core\Push\PelicanNotices;
 use Simplify\Core\Push\Push;
 use Simplify\Core\Server\FilesMenu;
@@ -54,7 +55,7 @@ final class SimplifyServiceProvider extends ServiceProvider
             fn (Throwable $error) => report($error),
         ));
         // The log behind Simplify's own errors, for an add-on such as Explain (ADDONS.md, Errors).
-        $this->app->tag([InstallProblems::class], 'simplify.problems');
+        $this->app->tag([InstallProblems::class, StatusProblems::class], 'simplify.problems');
     }
 
     public function boot(): void
@@ -93,6 +94,8 @@ final class SimplifyServiceProvider extends ServiceProvider
             ->middleware('throttle:120,1')->name('simplify.embed.logo');
         Route::get('/simplify/embed.js', [EmbedController::class, 'script'])->name('simplify.embed.script');
         Route::get('/simplify/embed', [EmbedController::class, 'frame'])->middleware('throttle:120,1')->name('simplify.embed.frame');
+        // The status page on the panel's own address, always on: the list as a page of its own.
+        Route::get('/status', [EmbedController::class, 'status'])->middleware('throttle:120,1')->name('simplify.embed.status');
         // The status page on its own address: that host only shows the list (Settings › Website › Status page).
         $this->app->make(HttpKernel::class)->prependMiddleware(StatusHost::class);
 

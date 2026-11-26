@@ -157,6 +157,20 @@ same('a gap starts again', 9000, $gap['since']);
 same('wildcard', '*.example.com', StatusAddress::wildcard('status.example.com'));
 same('wildcard deeper', '*.eu.example.com', StatusAddress::wildcard('status.eu.example.com'));
 
+// How the check reads the answer of https://<address>/ (K-B99): only this panel's page with its header is live.
+$state = fn (int $status, ?string $header = null, ?string $location = null) => StatusAddress::classify('status.example.com', $status, $header, $location)['state'];
+same('live', 'live', $state(200, '1'));
+same('a page without the header is another site', 'other', $state(200));
+same('not found is another site', 'other', $state(404));
+same('a catch-all redirect is sent somewhere else', 'redirect', $state(301, null, 'https://example.com/'));
+same('the redirect says where to', 'https://example.com/', StatusAddress::classify('status.example.com', 301, null, 'https://example.com/')['to']);
+same('a redirect to a path on the same address too', 'redirect', $state(302, null, 'https://status.example.com/login'));
+same('https on the same address is not live yet', 'other', $state(301, null, 'https://status.example.com/'));
+same('the certificate does not fit (526)', 'ssl', $state(526));
+same('the certificate does not fit (525)', 'ssl', $state(525));
+same('Cloudflare reaches no server (522)', 'offline', $state(522));
+same('a redirect with the header is still a redirect', 'redirect', $state(301, '1', 'https://example.com/'));
+
 if ($failures) {
     echo "FAIL embed:\n  ".implode("\n  ", $failures)."\n";
     exit(1);

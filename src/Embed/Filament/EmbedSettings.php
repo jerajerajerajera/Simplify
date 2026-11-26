@@ -28,6 +28,8 @@ use Simplify\Core\Embed\Services\ServerList;
 use Simplify\Core\Embed\Services\StatusAddress;
 use Simplify\Core\Filament\FormPage;
 use Simplify\Core\Overview\ServerGroups;
+use Simplify\Core\Subdomains\Filament\AutomaticSubdomains;
+use Simplify\Core\Subdomains\Services\Settings as SubdomainSettings;
 use Simplify\Core\Support\Assets;
 use Simplify\Core\Support\Preferences;
 use Throwable;
@@ -103,9 +105,10 @@ final class EmbedSettings extends FormPage
                 ->columns(['default' => 2, 'sm' => 3, 'lg' => 4])
                 ->schema(fn () => array_map(fn (array $egg) => self::logoField($egg), self::eggs())),
             Section::make($t('status'))->description($t('status_help'))->schema([
+                View::make('simplify::embed.status-intro')->viewData(fn () => self::statusData()),
                 TextInput::make('options.status_host')->label($t('status_host'))
                     ->placeholder('status.example.com')
-                    ->helperText($t('status_host_help'))
+                    ->helperText(fn () => self::safely(fn () => StatusAddress::cloudflare(), false) ? $t('status_host_help_auto') : $t('status_host_help'))
                     ->maxLength(190)->extraInputAttributes(['class' => 'font-mono'])
                     ->dehydrateStateUsing(fn (?string $state) => strtolower(trim((string) $state)))
                     ->rule(fn () => function (string $attribute, mixed $value, Closure $fail) use ($t) {
@@ -221,15 +224,25 @@ final class EmbedSettings extends FormPage
             ->beforeContent(View::make('simplify::embed.logo-tile')->viewData(['url' => $egg['automatic'], 'label' => $t('logo_'.$egg['from'])]));
     }
 
-    /** @return array{host: string, works: bool, cloudflare: bool, record: string, panel: string, wildcard: string} */
+    /**
+     * What the status part shows: whether Simplify can set the address up (Cloudflare under Subdomains), the
+     * always-on /status address, and how the own address answers.
+     *
+     * @return array{host: string, cloudflare: bool, domain: string, subdomains: string, always: string, state: array{state: string, code: int, to: string, error: string}|null, message: string, record: string, panel: string, wildcard: string}
+     */
     private static function statusData(): array
     {
         $host = EmbedOptions::all()['status_host'];
+        $state = $host === '' ? null : self::safely(fn () => StatusAddress::state($host), null);
 
         return [
             'host' => $host,
-            'works' => $host !== '' && StatusAddress::checked($host),
             'cloudflare' => self::safely(fn () => StatusAddress::cloudflare(), false),
+            'domain' => (string) self::safely(fn () => SubdomainSettings::domain(), ''),
+            'subdomains' => self::safely(fn () => AutomaticSubdomains::getUrl(panel: 'admin'), ''),
+            'always' => url('/status'),
+            'state' => $state,
+            'message' => $state === null ? '' : StatusAddress::message($state, $host),
             'record' => $host === '' ? '' : StatusAddress::record($host),
             'panel' => StatusAddress::panelHost(),
             'wildcard' => StatusAddress::wildcard($host),
@@ -338,20 +351,21 @@ final class EmbedSettings extends FormPage
         return $logos;
     }
 
-    /** A new or changed status address: Simplify makes its Cloudflare record when it can, and says how that went. */
+    /**
+     * A new, changed or saved-again status address: with Cloudflare Simplify makes the record (and the SSL rule when
+     * needed) and removes what it made for the old address; either way it checks the address and says how it went.
+     */
     private function status(string $old, string $new): void
     {
-        StatusAddress::forget($old);
-        StatusAddress::forget($new);
-        if ($new === '' || ($new === $old && StatusAddress::works($new)) || ! self::safely(fn () => StatusAddress::cloudflare(), false)) {
+        if ($old === '' && $new === '') {
             return;
         }
-        $problem = StatusAddress::connect($new);
-        $notification = Notification::make()->title(__('simplify::embed.settings.status'));
-        if ($problem === null) {
-            $notification->body(__('simplify::embed.settings.status_connected', ['host' => $new]))->success()->send();
-        } else {
-            $notification->body($problem)->warning()->send();
+        $state = self::safely(fn () => StatusAddress::apply($old, $new), null);
+        if ($state === null || $state['state'] === 'none') {
+            return;
         }
+        $notification = Notification::make()->title(__('simplify::embed.settings.state_'.$state['state']))
+            ->body(StatusAddress::message($state, $new));
+        $state['state'] === 'live' ? $notification->success()->send() : $notification->warning()->send();
     }
 }

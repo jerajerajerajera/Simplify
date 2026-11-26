@@ -46,6 +46,9 @@ function page(attributes) {
     percent: card.querySelector('.uptime-head b')?.textContent ?? null,
     bars: [...card.querySelectorAll('.days i')].map((bar) => bar.className),
     tip: card.querySelector('.days i:last-child')?.title ?? null,
+    state: getComputedStyle(card.querySelector('.state')).color,
+    bad: getComputedStyle(root.querySelector('.list')).getPropertyValue('--bad').trim(),
+    none: getComputedStyle(root.querySelector('.list')).getPropertyValue('--none').trim(),
   }));
   document.getElementById('out').textContent = JSON.stringify(cards);
 }, 500);</script></body></html>`;
@@ -74,6 +77,8 @@ if (Array.isArray(cards) && cards.length === 2) {
   check('online for days and hours', a.head === 'Online for 3 d 4 h', a.head);
   check('offline for hours and minutes', b.head === 'Offline for 2 h 15 min', b.head);
   check('the share of the last 30 days', a.percent === '99.4% uptime', a.percent);
+  check('offline is red, like a day it was down', b.state === 'rgb(220, 38, 38)' && b.bad === '#dc2626' && a.state !== b.state, [a.state, b.state, b.bad]);
+  check('a day without data stays grey', a.none === '#e4e4e7', a.none);
   check('one bar per day', a.bars.length === 30, a.bars.length);
   check('a day without data is grey', a.bars[0] === '' && a.bars[1] === '', a.bars.slice(0, 2));
   check('green from 99%, yellow from 90%, red below', a.bars[2] === 'up' && a.bars[28] === 'some' && a.bars[29] === 'down', a.bars.slice(27));

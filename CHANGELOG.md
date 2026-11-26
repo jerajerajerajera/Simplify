@@ -2,7 +2,12 @@
 
 ## Unreleased
 
-- Website embed, Status page: How to set this up shows the three steps with your own addresses filled in: the DNS record, adding the address to the web server (nginx or Apache) and a certificate (Cloudflare origin certificate or Let's Encrypt). It is open until the address answers. The README has the same steps.
+- Website embed, Status page: Simplify can set the status page's own address up for you. With Cloudflare connected under Subdomains, type the address and press Save: Simplify makes the DNS record, checks the address the way a visitor reaches it, sets SSL "Full" for that address only when Cloudflare cannot check the server's certificate (error 525 or 526), and removes what it made when you change or clear the address. The token needs Zone, Config Rules, Edit for that rule; Settings says so when it is missing.
+- Website embed, Status page: after Save the page says Live, or what is wrong in plain words (not in DNS yet, sent somewhere else, the web server shows another page, the certificate does not fit, Cloudflare cannot reach the server, a missing token permission), with a spot for Explain. Without Cloudflare, Set it up by hand shows the three steps with your own addresses filled in.
+- Website embed: the status page is always on at `/status` on the panel's own address. On the status page's own address, `/simplify/embed?page=1` goes to the clean `/`.
+- Website embed: a server that is offline is marked red, like a day it was down. It was grey.
+- Website embed, Status page: the check could say the address works while visitors ended up elsewhere, because it looked the address up through the panel's own DNS. It now asks public DNS and follows no redirect.
+- Website embed, Status page: a HEAD request for `/` on the status page's own address answered 404, so link checkers and uptime monitors saw it as down. It answers like GET, without the body.
 
 ## 2.0.0-beta.17
 
