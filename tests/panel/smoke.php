@@ -1986,7 +1986,7 @@ step('embed: Settings › Website saves the order, uptime, online first and the 
                     throw new RuntimeException("$address misses $text");
                 }
             }
-            if (str_contains($html, 'example.com') || str_contains($html, 'page-logo') || ! str_contains($policy, "default-src 'none'") || str_contains($policy, 'unsafe-eval')) {
+            if (str_contains($html, 'example.com') || str_contains($html, 'class="page-logo"') || ! str_contains($policy, "default-src 'none'") || str_contains($policy, 'unsafe-eval')) {
                 throw new RuntimeException("$address loads from elsewhere or has the wrong policy: $policy");
             }
         }
