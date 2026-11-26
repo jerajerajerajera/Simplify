@@ -64,6 +64,7 @@ node tests/health-pill-attention.cjs
 node tests/admin-menu-page.cjs
 node tests/admin-menu-slide.cjs
 node tests/embed-preview.cjs
+node tests/embed-uptime.cjs
 node tests/console-placeholders.cjs
 node tests/console-header-actions.cjs
 node tests/console-title-clicks.cjs

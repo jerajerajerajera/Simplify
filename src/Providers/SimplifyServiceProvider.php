@@ -8,6 +8,7 @@ use App\Extensions\Tasks\TaskService;
 use App\Models\Server;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Container\Container;
+use Illuminate\Contracts\Http\Kernel as HttpKernel;
 use Illuminate\Notifications\Events\NotificationSent;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
@@ -21,11 +22,13 @@ use Simplify\Core\Announcements\Models\Announcement;
 use Simplify\Core\Announcements\Policies\AnnouncementPolicy;
 use Simplify\Core\Announcements\Tasks\AnnouncementTask;
 use Simplify\Core\Console\UpdateNoticesCommand;
+use Simplify\Core\Embed\Console\RecordUptime;
 use Simplify\Core\Embed\EmbedController;
 use Simplify\Core\Http\Controllers\AssetController;
 use Simplify\Core\Http\Controllers\BannerController;
 use Simplify\Core\Http\Controllers\BrandController;
 use Simplify\Core\Http\Controllers\WebAppController;
+use Simplify\Core\Http\Middleware\StatusHost;
 use Simplify\Core\Problems\InstallProblems;
 use Simplify\Core\Push\PelicanNotices;
 use Simplify\Core\Push\Push;
@@ -86,8 +89,12 @@ final class SimplifyServiceProvider extends ServiceProvider
         Route::get('/simplify/embed/servers.json', [EmbedController::class, 'servers'])->middleware('throttle:120,1')->name('simplify.embed.servers');
         Route::get('/simplify/embed/banners/{file}', [EmbedController::class, 'banner'])->where('file', Looks::FILE_PATTERN)
             ->middleware('throttle:120,1')->name('simplify.embed.banner');
+        Route::get('/simplify/embed/logos/{file}', [EmbedController::class, 'logo'])->where('file', Looks::FILE_PATTERN)
+            ->middleware('throttle:120,1')->name('simplify.embed.logo');
         Route::get('/simplify/embed.js', [EmbedController::class, 'script'])->name('simplify.embed.script');
         Route::get('/simplify/embed', [EmbedController::class, 'frame'])->middleware('throttle:120,1')->name('simplify.embed.frame');
+        // The status page on its own address: that host only shows the list (Settings › Website › Status page).
+        $this->app->make(HttpKernel::class)->prependMiddleware(StatusHost::class);
 
         // Add-ons check Event::hasListeners('simplify.push'), so there is no listener while an admin turned push off.
         if (Push::enabled()) {
@@ -115,13 +122,15 @@ final class SimplifyServiceProvider extends ServiceProvider
             });
         });
 
-        $this->commands([UpdateNoticesCommand::class, DeliverAnnouncements::class, SyncSubdomains::class]);
+        $this->commands([UpdateNoticesCommand::class, DeliverAnnouncements::class, SyncSubdomains::class, RecordUptime::class]);
         $this->callAfterResolving(Schedule::class, function (Schedule $schedule) {
             $schedule->command(UpdateNoticesCommand::class)->hourly()->withoutOverlapping();
             // Every minute, so an announcement with a later start reaches the bell, devices and game chats on time.
             $schedule->command(DeliverAnnouncements::class)->everyMinute()->withoutOverlapping(10);
             // Retries subdomains that are not connected, follows port changes and removes records of deleted servers.
             $schedule->command(SyncSubdomains::class)->everyFiveMinutes()->withoutOverlapping(10);
+            // The uptime of the servers on the website (Settings › Website › Uptime).
+            $schedule->command(RecordUptime::class)->everyMinute()->withoutOverlapping(5);
         });
     }
 }

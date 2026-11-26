@@ -47,7 +47,7 @@ final class ServerList
         }
 
         return [
-            'options' => $options,
+            'options' => array_diff_key($options, array_flip(EmbedOptions::PRIVATE)),
             'servers' => SafeCache::remember(self::CACHE, self::TTL, fn (): array => self::collect()),
             // The panel's own name from Simplify's settings; it said Pelican on a panel with a name of its own (K-B91).
             'name' => WebApp::name(),
@@ -65,37 +65,57 @@ final class ServerList
             ->limit(self::LIMIT)
             ->get();
         $details = EmbedDetails::many($servers->modelKeys());
+        $options = EmbedOptions::all();
+        $uptime = $options['uptime'] ? self::uptime($servers->modelKeys()) : [];
         $out = [];
         foreach ($servers as $server) {
             try {
-                $out[] = self::entry($server, $details[(int) $server->id] ?? []);
+                $out[] = self::entry($server, $details[(int) $server->id] ?? [], $options['logos'], $uptime[(int) $server->id] ?? null);
             } catch (Throwable $error) {
                 report($error);
             }
         }
 
-        return self::sorted($out);
+        return self::sorted($out, $options['online_first']);
     }
 
     /**
-     * Online servers first, then by the position the owner gave (none comes last), then by name.
+     * @param  list<int>  $ids
+     * @return array<int, array{since: ?int, online: ?bool, percent: ?float, days: list<?float>}>
+     */
+    private static function uptime(array $ids): array
+    {
+        try {
+            return Uptime::summary($ids, time());
+        } catch (Throwable $error) {
+            // Before the migration has run: the list still shows, without uptime.
+            report($error);
+
+            return [];
+        }
+    }
+
+    /**
+     * By the position in Settings › Website (none comes last), then by name; with $onlineFirst, online servers first.
      *
      * @param  list<array<string, mixed>>  $servers
      * @return list<array<string, mixed>>
      */
-    public static function sorted(array $servers): array
+    public static function sorted(array $servers, bool $onlineFirst = false): array
     {
-        usort($servers, fn (array $a, array $b) => [$a['state'] !== 'online', $a['position'] ?? PHP_INT_MAX, mb_strtolower((string) $a['name'])]
-            <=> [$b['state'] !== 'online', $b['position'] ?? PHP_INT_MAX, mb_strtolower((string) $b['name'])]);
+        $key = fn (array $server) => [$onlineFirst && $server['state'] !== 'online', $server['position'] ?? PHP_INT_MAX, mb_strtolower((string) $server['name'])];
+        usort($servers, fn (array $a, array $b) => $key($a) <=> $key($b));
 
         return $servers;
     }
 
     /**
      * @param  array<string, mixed>  $details  what the owner filled in on the server's Website page (EmbedDetails)
+     * @param  array<int, string>  $logos  logos uploaded per egg (EmbedOptions)
+     * @param  array{since: ?int, online: ?bool, percent: ?float, days: list<?float>}|null  $uptime  Uptime::summary(), null when off
      * @return array<string, mixed>
      */
-    public static function entry(Server $server, array $details = []): array
+    public static function entry(Server $server, array $details = [], array $logos = [], ?array $uptime = null): array
     {
         $state = self::state($server);
         $extra = self::extra($server, $state === 'online');
@@ -118,7 +138,10 @@ final class ServerList
                 PublicAddress::join($allocation?->ip_alias, $port),
                 PublicAddress::join($allocation?->ip, $port),
             ]),
-            'icon' => $extra['icon'] ?? $extra['modpack']['icon'] ?? $server->egg?->icon,
+            // What a listener knows (a server icon, a modpack's) is the server's own; else the logo of its egg.
+            'icon' => $extra['icon'] ?? $extra['modpack']['icon'] ?? ($logo = EggLogo::for($server, $logos))['url'] ?? null,
+            'logo' => ! isset($extra['icon']) && ! isset($extra['modpack']['icon']) && isset($logo),
+            'uptime' => $uptime === null ? null : self::uptimeFor($uptime, $state),
             'modpack' => $extra['modpack'] ?? null,
             'description' => $details['description'] ?? $server->description,
             'banner' => self::banner($server, $details['banner'] ?? null),
@@ -142,6 +165,20 @@ final class ServerList
             str_starts_with($banner, Looks::SCENE) => Assets::url(substr($banner, strlen(Looks::SCENE))),
             default => route('simplify.embed.banner', ['file' => basename($banner)]),
         };
+    }
+
+    /**
+     * The uptime as the card shows it: since when the server is in the state it shows (only when the record agrees),
+     * the share of the last 30 days and per day.
+     *
+     * @param  array{since: ?int, online: ?bool, percent: ?float, days: list<?float>}  $uptime
+     * @return array{since: ?int, percent: ?float, days: list<?float>}
+     */
+    private static function uptimeFor(array $uptime, string $state): array
+    {
+        $agrees = $uptime['online'] !== null && $uptime['online'] === ($state === 'online') && in_array($state, ['online', 'offline'], true);
+
+        return ['since' => $agrees ? $uptime['since'] : null, 'percent' => $uptime['percent'], 'days' => $uptime['days']];
     }
 
     /** The subdomain when it works. */
@@ -230,6 +267,12 @@ final class ServerList
             'motd' => $text($entry['motd'] ?? null, 200),
             'address' => $entry['address'] ?? null,
             'icon' => self::safeUrl($entry['icon'] ?? null),
+            'logo' => (bool) ($entry['logo'] ?? false),
+            'uptime' => is_array($entry['uptime'] ?? null) ? [
+                'since' => is_int($entry['uptime']['since'] ?? null) ? $entry['uptime']['since'] : null,
+                'percent' => is_numeric($entry['uptime']['percent'] ?? null) ? (float) $entry['uptime']['percent'] : null,
+                'days' => array_map(fn ($day) => is_numeric($day) ? (float) $day : null, array_slice(array_values((array) ($entry['uptime']['days'] ?? [])), 0, Uptime::DAYS)),
+            ] : null,
             'modpack' => $pack,
             'description' => $text($entry['description'] ?? null, EmbedDetails::DESCRIPTION),
             'banner' => self::safeUrl($entry['banner'] ?? null),
@@ -270,7 +313,8 @@ final class ServerList
     private static function texts(): array
     {
         $texts = [];
-        foreach (['online', 'starting', 'stopping', 'installing', 'offline', 'players', 'copy', 'copied', 'selected', 'view', 'empty', 'copy_address'] as $key) {
+        foreach (['online', 'starting', 'stopping', 'installing', 'offline', 'players', 'copy', 'copied', 'selected', 'view', 'empty', 'copy_address',
+            'online_for', 'offline_for', 'uptime', 'last_days', 'days_ago', 'today', 'day_tip', 'day_none', 'unit_d', 'unit_h', 'unit_m'] as $key) {
             $texts[$key] = __('simplify::embed-list.'.$key);
         }
 

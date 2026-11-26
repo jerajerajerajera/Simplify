@@ -24,9 +24,20 @@ final class EmbedOptions
         'players' => true,
         'modpack' => true,
         'join' => true,
+        // How long each server is online or offline, and the last 30 days (Uptime).
+        'uptime' => true,
+        // Online servers before offline ones; off keeps the order of the list.
+        'online_first' => false,
+        // The status page on an address of its own, such as status.example.com (StatusAddress); empty: none.
+        'status_host' => '',
+        // An uploaded logo per egg id (EggLogo): a file in EggLogo::DIRECTORY.
+        'logos' => [],
     ];
 
-    /** @return array{style: string, corners: string, accent: string, players: bool, modpack: bool, join: bool} */
+    /** Options only the panel needs; they never reach the public list. */
+    public const PRIVATE = ['logos', 'status_host'];
+
+    /** @return array{style: string, corners: string, accent: string, players: bool, modpack: bool, join: bool, uptime: bool, online_first: bool, status_host: string, logos: array<int, string>} */
     public static function all(): array
     {
         $saved = [];
@@ -50,7 +61,7 @@ final class EmbedOptions
      * Only known options with valid values, anything else falls back to its default.
      *
      * @param  array<string, mixed>  $input
-     * @return array{style: string, corners: string, accent: string, players: bool, modpack: bool, join: bool}
+     * @return array{style: string, corners: string, accent: string, players: bool, modpack: bool, join: bool, uptime: bool, online_first: bool, status_host: string, logos: array<int, string>}
      */
     public static function normalize(array $input): array
     {
@@ -64,9 +75,18 @@ final class EmbedOptions
         if (is_string($input['accent'] ?? null) && preg_match('/^#[0-9a-fA-F]{6}$/', $input['accent'])) {
             $out['accent'] = strtolower($input['accent']);
         }
-        foreach (['players', 'modpack', 'join'] as $key) {
+        foreach (['players', 'modpack', 'join', 'uptime', 'online_first'] as $key) {
             if (array_key_exists($key, $input)) {
                 $out[$key] = (bool) $input[$key];
+            }
+        }
+        $host = is_string($input['status_host'] ?? null) ? strtolower(trim($input['status_host'])) : '';
+        if ($host !== '' && preg_match(StatusAddress::HOST, $host) === 1) {
+            $out['status_host'] = $host;
+        }
+        foreach (is_array($input['logos'] ?? null) ? $input['logos'] : [] as $egg => $file) {
+            if (is_numeric($egg) && (int) $egg > 0 && is_string($file) && EggLogo::validUpload($file)) {
+                $out['logos'][(int) $egg] = $file;
             }
         }
 

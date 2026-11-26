@@ -6,9 +6,11 @@ namespace Simplify\Core\Embed;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Simplify\Core\Embed\Services\EggLogo;
 use Simplify\Core\Embed\Services\EmbedDetails;
 use Simplify\Core\Embed\Services\ServerList;
 use Simplify\Core\Embed\Services\Snippet;
+use Simplify\Core\Embed\Services\StatusAddress;
 use Simplify\Core\SimplifyPlugin;
 use Simplify\Core\WebApp\WebApp;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -45,6 +47,15 @@ final class EmbedController
         return response()->file($path, [...self::HEADERS, 'Cache-Control' => 'public, max-age=86400']);
     }
 
+    /** A logo uploaded for an egg in Settings › Website; any other file answers 404. */
+    public function logo(string $file): BinaryFileResponse
+    {
+        $path = EggLogo::publicPath($file);
+        abort_if($path === null, 404);
+
+        return response()->file($path, [...self::HEADERS, 'Cache-Control' => 'public, max-age=86400']);
+    }
+
     public function script(Request $request): Response
     {
         $path = plugin_path(SimplifyPlugin::ID, 'resources', 'js', 'embed.js');
@@ -70,7 +81,7 @@ final class EmbedController
     {
         $rules = ['server' => Snippet::ID, 'game' => Snippet::GAME, 'servers' => Snippet::IDS];
         $attributes = '';
-        foreach (['style', 'accent', 'corners', 'players', 'modpack', 'join', 'server', 'game', 'servers'] as $key) {
+        foreach (['style', 'accent', 'corners', 'players', 'modpack', 'join', 'uptime', 'server', 'game', 'servers'] as $key) {
             $value = $request->query($key);
             if (is_string($value) && preg_match($rules[$key] ?? '/^[#A-Za-z0-9_-]{1,40}$/', $value)) {
                 $attributes .= ' data-'.$key.'="'.e($value).'"';
@@ -83,20 +94,32 @@ final class EmbedController
             $request->query('style') === 'light' => 'html{background:#fafafa}',
             default => 'html{background:#fafafa}@media (prefers-color-scheme:dark){'.$dark.'}',
         };
+        $title = e(__('simplify::embed-list.title', ['name' => WebApp::name()]));
+        $heading = '';
         if ($request->query('page') === '1') {
-            $style .= 'body{padding:24px 16px;max-width:1100px;margin:0 auto}';
+            $style .= 'body{padding:24px 16px;max-width:1100px;margin:0 auto}'
+                .'h1{margin:0 0 16px;font:600 22px/1.3 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:#18181b}';
+            $style .= match ($request->query('style')) {
+                'dark' => 'h1{color:#f4f4f5}',
+                'light' => '',
+                default => '@media (prefers-color-scheme:dark){h1{color:#f4f4f5}}',
+            };
+            // A page of its own (and the status address) names what it lists.
+            $heading = '<h1>'.$title.'</h1>';
         }
         $html = '<!doctype html><html lang="'.e(str_replace('_', '-', app()->getLocale())).'"><head><meta charset="utf-8">'
             .'<meta name="viewport" content="width=device-width,initial-scale=1">'
-            .'<title>'.e(__('simplify::embed-list.title', ['name' => WebApp::name()])).'</title>'
+            .'<title>'.$title.'</title>'
             .'<style>html,body{margin:0}'.$style.'</style></head>'
-            .'<body><div id="simplify-servers"></div><script src="'.e(url('/simplify/embed.js')).'"'.$attributes.' defer></script></body></html>';
+            .'<body>'.$heading.'<div id="simplify-servers"></div><script src="'.e(url('/simplify/embed.js')).'"'.$attributes.' defer></script></body></html>';
 
         return response($html, 200, [
             'Content-Type' => 'text/html; charset=utf-8',
             'Cache-Control' => 'public, max-age=300',
             'Content-Security-Policy' => 'frame-ancestors *',
             'X-Content-Type-Options' => 'nosniff',
+            // The settings check for this, to know an address of its own reaches this panel's status page.
+            StatusAddress::HEADER => '1',
         ]);
     }
 }
