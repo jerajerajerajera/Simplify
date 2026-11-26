@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.0.0-beta.18
+
 - Website embed, Status page: make the status page your own. Set its title, a logo (the panel's logo, one uploaded for the page, or none), a short intro, a theme and an accent colour. They change only the page of its own (`/status`, its own address and `?page=1`); the list on other websites keeps following Look.
 - Website embed, Status page: Own CSS (advanced) for that page, at most 10 KB. Save removes anything that loads a file from elsewhere or runs code (`@import`, `url()` other than a small data: image, `expression()`, `javascript:` and more) and says what went; the page also sends a strict Content-Security-Policy. The list can be styled through parts such as `::part(card)`, `::part(name)` and `::part(state)`.
 - Website embed, Status page: the page now follows the theme chosen under Look when the address does not ask for one. It always followed the visitor.
