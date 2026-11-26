@@ -53,7 +53,7 @@ final class EmbedOptions
     /** Options only the panel needs; they never reach the public list. */
     public const PRIVATE = ['logos', 'status_host'];
 
-    /** @return array{style: string, corners: string, accent: string, players: bool, modpack: bool, join: bool, uptime: bool, online_first: bool, status_host: string, logos: array<int, string>} */
+    /** @return array{style: string, corners: string, accent: string, players: bool, modpack: bool, join: bool, uptime: bool, online_first: bool, status_host: string, logos: array<int, string>, page_title: string, page_logo: string, page_logo_file: string, page_intro: string, page_style: string, page_accent: string, page_css: string} */
     public static function all(): array
     {
         $saved = [];
