@@ -6,14 +6,17 @@ namespace Simplify\Core\Embed\Filament;
 
 use App\Models\Server;
 use Closure;
+use Filament\Actions\Action;
 use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\ViewField;
 use Filament\Notifications\Notification;
+use Filament\Schemas\Components\Actions;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Utilities\Get;
@@ -25,6 +28,8 @@ use Simplify\Core\Embed\Services\EggLogo;
 use Simplify\Core\Embed\Services\EmbedDetails;
 use Simplify\Core\Embed\Services\EmbedOptions;
 use Simplify\Core\Embed\Services\EmbedServers;
+use Simplify\Core\Embed\Services\IncidentRules;
+use Simplify\Core\Embed\Services\Incidents;
 use Simplify\Core\Embed\Services\ServerList;
 use Simplify\Core\Embed\Services\StatusAddress;
 use Simplify\Core\Embed\Services\StatusCss;
@@ -70,6 +75,9 @@ final class EmbedSettings extends FormPage
             'logos' => $options['logos'],
             'page_logo' => $options['page_logo_file'] === '' ? null : $options['page_logo_file'],
             'css_open' => $options['page_css'] !== '',
+            'incidents' => self::incidentEdits(),
+            'webhook' => '',
+            'remove_webhook' => false,
             'code' => ['show' => 'all'],
         ]);
     }
@@ -81,7 +89,8 @@ final class EmbedSettings extends FormPage
         return $schema->statePath('data')->components([
             Section::make($t('servers'))->description($t('servers_help'))->schema([
                 ViewField::make('servers')->view('simplify::embed.order')->hiddenLabel()->helperText($t('order_help'))
-                    ->viewData(fn () => ['servers' => self::choices()]),
+                    ->viewData(fn () => ['servers' => self::choices(), 'pinned' => 'data.options.pinned']),
+                Hidden::make('options.pinned'),
                 Toggle::make('options.online_first')->label($t('online_first'))->helperText($t('online_first_help')),
             ]),
             Section::make($t('look'))->description($t('look_help'))->columns(2)->schema([
@@ -155,6 +164,38 @@ final class EmbedSettings extends FormPage
                 Textarea::make('options.page_css')->label($t('page_css'))->helperText($t('page_css_help'))
                     ->visible(fn (Get $get) => (bool) $get('css_open'))
                     ->rows(8)->maxLength(StatusCss::MAX)->extraInputAttributes(['class' => 'font-mono', 'spellcheck' => 'false']),
+            ]),
+            Section::make($t('incidents'))->description($t('incidents_help'))->schema([
+                Grid::make(['default' => 1, 'sm' => 2])->schema([
+                    TextInput::make('options.incident_after')->label($t('incident_after'))->helperText($t('incident_after_help'))
+                        ->integer()->minValue(1)->maxValue(60)->required()->suffix($t('minutes')),
+                    TextInput::make('options.banner_after')->label($t('banner_after'))->helperText($t('banner_after_help'))
+                        ->integer()->minValue(0)->maxValue(1440)->required()->suffix($t('minutes')),
+                ]),
+                Toggle::make('options.planned_stops')->label($t('planned_stops'))->helperText($t('planned_stops_help')),
+                Toggle::make('options.incidents')->label($t('incidents_show'))->helperText($t('incidents_show_help')),
+                ViewField::make('incidents')->view('simplify::embed.incidents')->label($t('incidents_recent'))->helperText($t('incidents_recent_help'))
+                    ->viewData(fn () => ['incidents' => self::safely(fn () => Incidents::recent(time(), 20), [])]),
+            ]),
+            Section::make($t('alerts'))->description($t('alerts_help'))->schema([
+                TextInput::make('webhook')->label($t('webhook'))->helperText($t('webhook_help'))
+                    ->password()->autocomplete('new-password')->maxLength(250)
+                    ->placeholder(fn () => ($saved = self::safely(fn () => Incidents::webhook(), '')) !== '' ? IncidentRules::hidden($saved).' · '.$t('webhook_saved') : 'https://discord.com/api/webhooks/…')
+                    ->rule(fn () => function (string $attribute, mixed $value, Closure $fail) use ($t) {
+                        $url = trim((string) $value);
+                        if ($url !== '' && ! IncidentRules::validWebhook($url)) {
+                            $fail($t('webhook_invalid'));
+                        }
+                    }),
+                Toggle::make('remove_webhook')->label($t('webhook_remove'))
+                    ->visible(fn () => self::safely(fn () => Incidents::webhook(), '') !== ''),
+                Actions::make([
+                    Action::make('testWebhook')->label($t('webhook_test'))->icon('tabler-brand-discord')->color('gray')
+                        ->action(fn () => $this->testWebhook()),
+                ]),
+                Toggle::make('options.feed')->label($t('feed'))
+                    ->helperText(fn () => __('simplify::embed.settings.feed_help', ['url' => StatusAddress::pageUrl('feed.xml')])),
+                Toggle::make('options.bell')->label($t('bell'))->helperText($t('bell_help')),
             ]),
             Section::make($t('code'))->description($t('code_help'))->columns(2)->schema([
                 Select::make('code.show')->label($t('show'))->live()->selectablePlaceholder(false)->afterStateUpdated(fn (Set $set, Get $get) => $this->pickFirst($set, $get))->options([
@@ -342,6 +383,39 @@ final class EmbedSettings extends FormPage
         }];
     }
 
+    /**
+     * The note and Planned mark of each recent incident, as the incident list in the settings edits them.
+     *
+     * @return array<int, array{note: string, planned: bool}>
+     */
+    private static function incidentEdits(): array
+    {
+        $edits = [];
+        foreach (self::safely(fn () => Incidents::recent(time(), 20), []) as $incident) {
+            $edits[$incident['id']] = ['note' => (string) $incident['note'], 'planned' => $incident['planned']];
+        }
+
+        return $edits;
+    }
+
+    /** Sends a test to the typed webhook, else the saved one, and says how it went. */
+    public function testWebhook(): void
+    {
+        abort_unless(self::canAccess(), 403);
+        $t = fn (string $key, array $replace = []) => __('simplify::embed.settings.'.$key, $replace);
+        $url = trim((string) data_get($this->data, 'webhook', ''));
+        $url = $url !== '' ? $url : Incidents::webhook();
+        if (! IncidentRules::validWebhook($url)) {
+            Notification::make()->title($t($url === '' ? 'webhook_none' : 'webhook_invalid'))->warning()->send();
+
+            return;
+        }
+        $error = Incidents::test($url);
+        $error === null
+            ? Notification::make()->title($t('webhook_test_sent'))->success()->send()
+            : Notification::make()->title($t('webhook_test_failed'))->body($error)->warning()->send();
+    }
+
     public function save(): void
     {
         abort_unless(self::canAccess(), 403);
@@ -359,6 +433,14 @@ final class EmbedSettings extends FormPage
                 ->body(implode(' ', array_map(fn (string $kind) => __('simplify::embed.settings.page_css_'.$kind), $css['removed'])))->send();
         }
         $ids = array_values(array_unique(array_map('intval', array_values((array) ($state['servers'] ?? [])))));
+        self::safely(fn () => Incidents::edit((array) ($state['incidents'] ?? [])), null);
+        $webhook = trim((string) ($state['webhook'] ?? ''));
+        if ($webhook !== '' || ! empty($state['remove_webhook'])) {
+            Incidents::saveWebhook($webhook);
+        }
+        data_set($this->data, 'webhook', '');
+        data_set($this->data, 'remove_webhook', false);
+        data_set($this->data, 'incidents', self::incidentEdits());
         EmbedServers::replace($ids);
         EmbedDetails::order($ids);
         $this->status($before['status_host'], EmbedOptions::all()['status_host']);

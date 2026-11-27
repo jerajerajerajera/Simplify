@@ -25,7 +25,7 @@ return [
     'messages' => '메시지',
     'messages_help' => '애드온의 공지 및 기타 메시지.',
     'updates' => '업데이트',
-    'updates_help' => 'Pelican과 Wings의 새 버전. root admin 전용.',
+    'updates_help' => 'Pelican과 Wings의 새 버전, 그리고 상태 페이지의 장애. 루트 관리자 전용.',
     'pelican' => 'Pelican 알림',
     'pelican_help' => '백업 완료처럼 종 아이콘에 오는 Pelican 자체 메시지입니다.',
     'devices' => '내 기기',

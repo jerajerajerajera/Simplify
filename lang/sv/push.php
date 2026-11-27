@@ -25,7 +25,7 @@ return [
     'messages' => 'Meddelanden',
     'messages_help' => 'Meddelanden och andra besked från tillägg.',
     'updates' => 'Uppdateringar',
-    'updates_help' => 'Nya versioner av Pelican och Wings. Bara för root admins.',
+    'updates_help' => 'Nya versioner av Pelican och Wings, och incidenter från statussidan. Bara för root-admins.',
     'pelican' => 'Pelicans aviseringar',
     'pelican_help' => 'Pelicans egna meddelanden i klockan, till exempel en färdig säkerhetskopia.',
     'devices' => 'Dina enheter',

@@ -59,6 +59,7 @@ use Simplify\Core\Embed\Filament\Website as EmbedWebsite;
 use Simplify\Core\Embed\Services\EmbedDetails;
 use Simplify\Core\Embed\Services\EmbedOptions;
 use Simplify\Core\Embed\Services\EmbedServers;
+use Simplify\Core\Embed\Services\Incidents;
 use Simplify\Core\Embed\Services\StatusAddress;
 use Simplify\Core\Embed\Services\Uptime;
 use Simplify\Core\Filament\Admin\Pages\Settings;
@@ -2123,6 +2124,145 @@ step('embed: Settings › Website saves the order, uptime, online first and the 
         EmbedOptions::save($before);
         StatusAddress::forget();
         DB::table(Uptime::TABLE)->where('server_id', $server->id)->delete();
+        EmbedDetails::save($server, []);
+        EmbedServers::replace([]);
+    }
+});
+step('embed: an unreachable server opens an incident, alerts Discord, the bell and the feed, and closes when it is back', function () use ($admin, $server) {
+    $guest = new class(app())
+    {
+        use MakesHttpRequests;
+
+        public function __construct(public $app) {}
+    };
+    $before = EmbedOptions::all();
+    $id = (int) $server->id;
+    $token = str_repeat('k', 40);
+    $hook = 'https://discord.com/api/webhooks/123456789012345678/'.$token;
+    $posts = [];
+    Http::fake(['discord.com/*' => function ($request) use (&$posts) {
+        $posts[] = ['method' => $request->method(), 'url' => $request->url(), 'data' => $request->data()];
+
+        return Http::response(['id' => '998877665544332211'], 200);
+    }]);
+    DB::table(Uptime::TABLE)->where('server_id', $id)->delete();
+    DB::table(Incidents::TABLE)->where('server_id', $id)->delete();
+    try {
+        Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('admin'));
+        // Settings: pinned, the webhook (kept encrypted, never shown again) and the minutes.
+        $page = Livewire\Livewire::actingAs($admin)->test(EmbedSettings::class)
+            ->set('data.servers', [$id])->set('data.options.pinned', [$id])->set('data.webhook', $hook)
+            ->set('data.options.incident_after', 3)->set('data.options.banner_after', 0)->set('data.options.planned_stops', false)->set('data.options.feed', true);
+        noErrors($page->call('save'));
+        $raw = (string) DB::table(EmbedOptions::TABLE)->where('key', Incidents::WEBHOOK)->value('value');
+        if (Incidents::webhook() !== $hook || str_contains($raw, $token) || $page->get('data.webhook') !== '' || EmbedOptions::all()['pinned'] !== [$id]) {
+            throw new RuntimeException('the webhook or pin was not saved as it should be');
+        }
+        if (str_contains(visit($admin, EmbedSettings::getUrl(panel: 'admin'))->getContent(), $token)) {
+            throw new RuntimeException('the settings page shows the webhook\'s token');
+        }
+        Livewire\Livewire::actingAs($admin)->test(EmbedSettings::class)->set('data.webhook', 'https://evil.example/api/webhooks/123456/'.$token)
+            ->call('save')->assertHasErrors(['data.webhook']);
+        $page->call('testWebhook');
+        if (count($posts) !== 1 || ! str_ends_with($posts[0]['url'], '?wait=true') || ($posts[0]['data']['allowed_mentions'] ?? null) !== ['parse' => []]) {
+            throw new RuntimeException('the test did not reach the webhook as expected: '.json_encode($posts));
+        }
+        $posts = [];
+        $bell = DB::table('notifications')->where('notifiable_id', $admin->id)->count();
+
+        // Unreachable for 4 minutes: an incident opens where it went down, Discord and the bell are told once.
+        $t = time();
+        Uptime::record([$id => false], $t - 240);
+        Uptime::record([$id => false], $t);
+        $servers = Server::query()->whereKey($id)->get();
+        Incidents::follow([$id => false], $servers, $t);
+        Incidents::follow([$id => false], $servers, $t);
+        $rows = DB::table(Incidents::TABLE)->where('server_id', $id)->get();
+        $incident = $rows->first();
+        if ($rows->count() !== 1 || (int) $incident->started_at !== $t - 240 || $incident->ended_at !== null || (bool) $incident->planned || $incident->message !== '998877665544332211') {
+            throw new RuntimeException('unexpected incident: '.json_encode($rows));
+        }
+        if (count($posts) !== 1 || $posts[0]['method'] !== 'POST' || ! str_contains((string) ($posts[0]['data']['embeds'][0]['title'] ?? ''), $server->name)) {
+            throw new RuntimeException('Discord was not told once: '.json_encode($posts));
+        }
+        if (DB::table('notifications')->where('notifiable_id', $admin->id)->count() !== $bell + 1) {
+            throw new RuntimeException('the bell did not get the incident');
+        }
+        // The public list: the incident and the pin, never the private options.
+        $list = $guest->get('/simplify/embed/servers.json')->json();
+        $public = $list['incidents'][0] ?? [];
+        if (($public['server'] ?? null) !== $server->uuid_short || ! array_key_exists('ended', $public) || $public['ended'] !== null || array_key_exists('id', $public)
+            || ($list['servers'][0]['pinned'] ?? false) !== true || ($list['options']['banner_after'] ?? null) !== 0
+            || array_intersect(['pinned', 'bell', 'planned_stops'], array_keys((array) $list['options'])) !== []) {
+            throw new RuntimeException('unexpected public list: '.json_encode($list));
+        }
+        $feed = $guest->get('/status/feed.xml');
+        expectOk($feed, '/status/feed.xml');
+        $xml = simplexml_load_string($feed->getContent());
+        if (! str_contains((string) $feed->headers->get('Content-Type'), 'rss') || $xml === false || count($xml->channel->item) !== 1) {
+            throw new RuntimeException('unexpected feed: '.$feed->getContent());
+        }
+        if (! str_contains($guest->get('/status')->getContent(), 'application/rss+xml')) {
+            throw new RuntimeException('the status page does not name its feed');
+        }
+
+        // Back a minute later: closed where it came back, the same Discord message edited.
+        Uptime::record([$id => true], $t + 60);
+        Incidents::follow([$id => true], $servers, $t + 60);
+        $incident = DB::table(Incidents::TABLE)->where('server_id', $id)->first();
+        if ((int) $incident->ended_at !== $t || count($posts) !== 2 || $posts[1]['method'] !== 'PATCH' || ! str_ends_with($posts[1]['url'], '/messages/998877665544332211')) {
+            throw new RuntimeException('the incident did not close as expected: '.json_encode([$incident, $posts]));
+        }
+        if (count(simplexml_load_string($guest->get('/status/feed.xml')->getContent())->channel->item) !== 2) {
+            throw new RuntimeException('the feed does not say it is back');
+        }
+        // Down again soon after: the same incident opens again, no second one.
+        Uptime::record([$id => false], $t + 120);
+        Uptime::record([$id => false], $t + 240);
+        Incidents::follow([$id => false], $servers, $t + 240);
+        if (DB::table(Incidents::TABLE)->where('server_id', $id)->count() !== 1 || DB::table(Incidents::TABLE)->where('server_id', $id)->value('ended_at') !== null) {
+            throw new RuntimeException('a crash loop opened a second incident');
+        }
+
+        // The admin's note and Planned mark, saved with Save, as plain text.
+        $edit = Livewire\Livewire::actingAs($admin)->test(EmbedSettings::class)
+            ->set('data.incidents.'.$incident->id.'.note', '<b>Out of memory</b>')->set('data.incidents.'.$incident->id.'.planned', true);
+        noErrors($edit->call('save'));
+        $incident = DB::table(Incidents::TABLE)->where('id', $incident->id)->first();
+        if ($incident->note !== 'Out of memory' || ! (bool) $incident->planned) {
+            throw new RuntimeException('the note was not saved as plain text: '.json_encode($incident));
+        }
+
+        // A Stop pressed in the panel just before: Planned, and nobody is told.
+        DB::table(Incidents::TABLE)->where('server_id', $id)->delete();
+        DB::table(Uptime::TABLE)->where('server_id', $id)->delete();
+        EmbedOptions::save([...EmbedOptions::all(), 'planned_stops' => true]);
+        $posts = [];
+        $t = time() + 3600;
+        DB::table('activity_logs')->insert(['event' => 'server:power.stop', 'ip' => '127.0.0.1', 'actor_type' => $admin->getMorphClass(), 'actor_id' => $admin->id, 'properties' => '{}', 'timestamp' => now()->addSeconds(3600 - 250)]);
+        DB::table('activity_log_subjects')->insert(['activity_log_id' => DB::getPdo()->lastInsertId(), 'subject_type' => $server->getMorphClass(), 'subject_id' => $server->id]);
+        Uptime::record([$id => false], $t - 240);
+        Uptime::record([$id => false], $t);
+        Incidents::follow([$id => false], $servers, $t);
+        if (! (bool) DB::table(Incidents::TABLE)->where('server_id', $id)->value('planned') || $posts !== []) {
+            throw new RuntimeException('a stop from the panel was not planned: '.json_encode($posts));
+        }
+
+        // The feed can be turned off; removing the webhook leaves nothing behind.
+        EmbedOptions::save([...EmbedOptions::all(), 'feed' => false]);
+        if ($guest->get('/status/feed.xml')->getStatusCode() !== 404) {
+            throw new RuntimeException('the feed answers while it is off');
+        }
+        noErrors(Livewire\Livewire::actingAs($admin)->test(EmbedSettings::class)->set('data.remove_webhook', true)->call('save'));
+        if (Incidents::webhook() !== '' || DB::table(EmbedOptions::TABLE)->where('key', Incidents::WEBHOOK)->exists()) {
+            throw new RuntimeException('the webhook was not removed');
+        }
+    } finally {
+        DB::table('activity_logs')->where('event', 'server:power.stop')->where('ip', '127.0.0.1')->where('timestamp', '>', now()->addMinutes(30))->delete();
+        Incidents::saveWebhook('');
+        EmbedOptions::save($before);
+        DB::table(Incidents::TABLE)->where('server_id', $id)->delete();
+        DB::table(Uptime::TABLE)->where('server_id', $id)->delete();
         EmbedDetails::save($server, []);
         EmbedServers::replace([]);
     }

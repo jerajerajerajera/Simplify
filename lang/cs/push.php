@@ -25,7 +25,7 @@ return [
     'messages' => 'Zprávy',
     'messages_help' => 'Oznámení a další zprávy z doplňků.',
     'updates' => 'Aktualizace',
-    'updates_help' => 'Nové verze Pelican a Wings. Jen pro root adminy.',
+    'updates_help' => 'Nové verze Pelicanu a Wings a incidenty stavové stránky. Jen pro root adminy.',
     'pelican' => 'Oznámení Pelicanu',
     'pelican_help' => 'Vlastní zprávy Pelicanu ve zvonečku, například dokončená záloha.',
     'devices' => 'Vaše zařízení',

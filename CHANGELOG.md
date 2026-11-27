@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Website embed: pin a server to the top of the list with the pin in Settings › Website. On the status page, a pinned server that stays unreachable longer than the set minutes (15 by default, 0 at once) gets a banner above the list and a red card.
+- Website embed, Status page: incidents. An incident opens by itself when a server on the website is unreachable for a few minutes (3 by default) and closes when it is back; down again within 5 minutes reopens the same one. A Stop, Restart or Kill from the panel, a schedule's power task, installing or suspended counts as Planned and sends nothing. The status page lists the last 14 days, and Settings › Website lets you add a short note for visitors or mark one as Planned.
+- Website embed, Status page: alerts for incidents. Paste a Discord webhook (stored encrypted, never shown again, Send test) for one message per incident that turns green when it is back; follow the incidents as RSS at `/status/feed.xml` (or `/feed.xml` on the page's own address); root admins get them in the bell and, with Updates on under Notifications, on their devices.
+
 ## 2.0.0-beta.18
 
 - Website embed, Status page: make the status page your own. Set its title, a logo (the panel's logo, one uploaded for the page, or none), a short intro, a theme and an accent colour. They change only the page of its own (`/status`, its own address and `?page=1`); the list on other websites keeps following Look.

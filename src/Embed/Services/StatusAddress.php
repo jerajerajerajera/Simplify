@@ -56,6 +56,21 @@ final class StatusAddress
         }
     }
 
+    /**
+     * The status page's address for links in alerts and the feed: its own address once it works (as the last check
+     * saw it), else /status on the panel. $path is a file next to it, such as feed.xml.
+     */
+    public static function pageUrl(string $path = ''): string
+    {
+        $host = self::host();
+        $saved = $host === '' ? null : SafeCache::get(self::CACHE.'.state.'.md5($host));
+        if (is_array($saved) && ($saved['state'] ?? null) === 'live') {
+            return 'https://'.$host.'/'.$path;
+        }
+
+        return url('/status'.($path === '' ? '' : '/'.$path));
+    }
+
     /** The panel's own host, which the record points to. */
     public static function panelHost(): string
     {

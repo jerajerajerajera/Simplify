@@ -25,7 +25,7 @@ return [
     'messages' => 'Berichten',
     'messages_help' => 'Aankondigingen en andere berichten van add-ons.',
     'updates' => 'Updates',
-    'updates_help' => 'Nieuwe versies van Pelican en Wings. Alleen voor root-admins.',
+    'updates_help' => 'Nieuwe versies van Pelican en Wings, en incidenten van de statuspagina. Alleen voor root-admins.',
     'pelican' => 'Meldingen van Pelican',
     'pelican_help' => 'Pelicans eigen berichten in de bel, zoals een back-up die klaar is.',
     'devices' => 'Je apparaten',

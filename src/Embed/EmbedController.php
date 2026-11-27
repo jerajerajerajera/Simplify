@@ -9,6 +9,7 @@ use Illuminate\Http\Response;
 use Simplify\Core\Embed\Services\EggLogo;
 use Simplify\Core\Embed\Services\EmbedDetails;
 use Simplify\Core\Embed\Services\EmbedOptions;
+use Simplify\Core\Embed\Services\Incidents;
 use Simplify\Core\Embed\Services\ServerList;
 use Simplify\Core\Embed\Services\Snippet;
 use Simplify\Core\Embed\Services\StatusAddress;
@@ -77,6 +78,18 @@ final class EmbedController
         return response((string) file_get_contents($path), 200, $headers);
     }
 
+    /** The incidents as an RSS feed, next to the status page; 404 while the feed is off. */
+    public function feed(): Response
+    {
+        abort_unless(EmbedOptions::all()['feed'], 404);
+
+        return response(Incidents::feed(), 200, [
+            ...self::HEADERS,
+            'Content-Type' => 'application/rss+xml; charset=utf-8',
+            'Cache-Control' => 'public, max-age='.ServerList::TTL,
+        ]);
+    }
+
     /** /status on the panel's own address: the list as a page of its own, always on, the same as frame?page=1. */
     public function status(Request $request): Response
     {
@@ -110,6 +123,10 @@ final class EmbedController
             }
         }
         $theme = (string) ($data['style'] ?? '');
+        // The page draws the banner and the incident log too.
+        if ($page) {
+            $data['page'] = '1';
+        }
         $attributes = '';
         foreach ($data as $key => $value) {
             $attributes .= ' data-'.$key.'="'.e($value).'"';
@@ -125,11 +142,13 @@ final class EmbedController
         $title = e($name);
         $heading = '';
         $own = '';
+        $alternate = '';
         $headers = ['Content-Security-Policy' => 'frame-ancestors *'];
         if ($options !== null) {
             $style .= 'body{padding:24px 16px;max-width:1100px;margin:0 auto;font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:#18181b}'
                 .'.page-head{display:flex;align-items:center;gap:12px;margin:0 0 16px}.page-head:has(+.page-intro){margin-bottom:8px}'
                 .'.page-logo{height:40px;width:auto;max-width:160px;object-fit:contain;flex:none}'
+                .'.page-feed{margin-left:auto;flex:none;font-size:12px;font-weight:600;color:inherit;opacity:.7;text-decoration:none;border:1px solid currentColor;border-radius:7px;padding:2px 8px}.page-feed:hover{opacity:1}'
                 .'h1{margin:0;font:600 22px/1.3 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:#18181b;overflow-wrap:anywhere}'
                 .'.page-intro{margin:0 0 18px;max-width:70ch;color:#52525b;white-space:pre-line;overflow-wrap:anywhere}';
             $night = 'body,h1{color:#f4f4f5}.page-intro{color:#a1a1aa}';
@@ -140,7 +159,10 @@ final class EmbedController
             };
             $logo = self::pageLogo($options);
             // A page of its own (and the status address) names what it lists.
-            $heading = '<header class="page-head">'.($logo === null ? '' : '<img class="page-logo" src="'.e($logo).'" alt="">').'<h1>'.$title.'</h1></header>'
+            $feed = $options['feed'] ? StatusAddress::pageUrl('feed.xml') : null;
+            $alternate = $feed === null ? '' : '<link rel="alternate" type="application/rss+xml" title="'.$title.'" href="'.e($feed).'">';
+            $heading = '<header class="page-head">'.($logo === null ? '' : '<img class="page-logo" src="'.e($logo).'" alt="">').'<h1>'.$title.'</h1>'
+                .($feed === null ? '' : '<a class="page-feed" href="'.e($feed).'" title="'.e(__('simplify::embed-list.feed')).'">RSS</a>').'</header>'
                 .($options['page_intro'] === '' ? '' : '<p class="page-intro">'.e($options['page_intro']).'</p>');
             // The admin's own CSS, cleaned on save and again here; the policy below lets nothing load from elsewhere
             // or run except the list's own script.
@@ -152,6 +174,7 @@ final class EmbedController
         $html = '<!doctype html><html lang="'.e(str_replace('_', '-', app()->getLocale())).'"><head><meta charset="utf-8">'
             .'<meta name="viewport" content="width=device-width,initial-scale=1">'
             .'<title>'.$title.'</title>'
+            .$alternate
             .'<style>html,body{margin:0}'.$style.'</style>'
             .($own === '' ? '' : '<style>'.$own.'</style>')
             .'</head>'

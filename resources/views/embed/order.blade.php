@@ -1,10 +1,15 @@
 {{-- The servers on the website, in their order: ticked servers on top, dragged by the grip or moved with the arrows;
-     the others below by name. The state is the ticked ids in order, saved with Save. --}}
+     the others below by name. The state is the ticked ids in order, saved with Save. A ticked server can be pinned:
+     pinned servers stay at the top of the list (options.pinned). --}}
 @php($t = 'simplify::embed.settings.')
 <x-dynamic-component :component="$getFieldWrapperView()" :field="$field">
     <div class="se-order" x-data="{
         state: $wire.$entangle(@js($getStatePath())),
         servers: @js($servers),
+        pins: $wire.$entangle(@js($pinned)),
+        pinIds() { return (Array.isArray(this.pins) ? this.pins : Object.values(this.pins ?? {})).map(Number) },
+        pinned(id) { return this.pinIds().includes(id) },
+        pin(id) { this.pins = this.pinned(id) ? this.pinIds().filter((other) => other !== id) : [...this.pinIds(), id] },
         query: '',
         dragging: null,
         over: null,
@@ -17,7 +22,10 @@
             const query = this.query.trim().toLowerCase();
             return query === '' ? rows : rows.filter((server) => server.name.toLowerCase().includes(query));
         },
-        toggle(id) { this.state = this.on(id) ? this.ids().filter((other) => other !== id) : [...this.ids(), id] },
+        toggle(id) {
+            if (this.on(id) && this.pinned(id)) this.pin(id);
+            this.state = this.on(id) ? this.ids().filter((other) => other !== id) : [...this.ids(), id];
+        },
         move(id, step) {
             const ids = this.ids();
             const from = ids.indexOf(id);
@@ -54,6 +62,11 @@
                     <template x-if="server.logo"><img class="se-order-logo" x-bind:src="server.logo" alt="" loading="lazy"></template>
                     <template x-if="! server.logo"><span class="se-order-logo" aria-hidden="true" x-text="server.name.slice(0, 1).toUpperCase()"></span></template>
                     <span class="se-order-name" x-text="server.name"></span>
+                    <button type="button" class="se-order-pin" x-show="on(server.id)" x-on:click="pin(server.id)" x-bind:class="{ 'is-pinned': pinned(server.id) }"
+                        x-bind:aria-pressed="pinned(server.id) ? 'true' : 'false'"
+                        x-bind:aria-label="@js(__($t.'pin')).replace(':name', server.name)" x-bind:title="@js(__($t.'pin')).replace(':name', server.name)">
+                        <x-filament::icon icon="tabler-pin" />
+                    </button>
                     <span class="se-order-moves" x-show="on(server.id) && query === ''">
                         <button type="button" class="se-order-move" x-on:click="move(server.id, -1)" x-bind:disabled="ids().indexOf(server.id) === 0"
                             x-bind:aria-label="@js(__($t.'move_up')).replace(':name', server.name)" x-bind:title="@js(__($t.'move_up')).replace(':name', server.name)">
@@ -86,6 +99,10 @@
     .se-order-logo { width: 24px; height: 24px; flex: none; border-radius: 6px; object-fit: contain; display: grid; place-items: center; background: var(--s-surface); font-size: 12px; font-weight: 700; color: var(--s-muted); }
     .se-order-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .se-order-moves { display: flex; gap: 2px; }
+    .se-order-pin { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 6px; color: var(--s-muted); }
+    .se-order-pin svg { width: 16px; height: 16px; }
+    .se-order-pin:hover { background: var(--s-surface); color: var(--s-ink); }
+    .se-order-pin.is-pinned { color: var(--s-accent); background: var(--s-surface); }
     .se-order-move { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 6px; color: var(--s-muted); }
     .se-order-move:hover:not(:disabled) { background: var(--s-surface); color: var(--s-ink); }
     .se-order-move:disabled { opacity: .35; }

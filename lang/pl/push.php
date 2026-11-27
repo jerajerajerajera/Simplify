@@ -25,7 +25,7 @@ return [
     'messages' => 'Wiadomości',
     'messages_help' => 'Ogłoszenia i inne wiadomości z dodatków.',
     'updates' => 'Aktualizacje',
-    'updates_help' => 'Nowe wersje Pelican i Wings. Tylko dla root adminów.',
+    'updates_help' => 'Nowe wersje Pelicana i Wings oraz incydenty strony statusu. Tylko dla root adminów.',
     'pelican' => 'Powiadomienia Pelicana',
     'pelican_help' => 'Własne wiadomości Pelicana w dzwonku, na przykład o ukończonej kopii zapasowej.',
     'devices' => 'Twoje urządzenia',

@@ -25,7 +25,7 @@ return [
     'messages' => 'Žinutės',
     'messages_help' => 'Skelbimai ir kitos priedų žinutės.',
     'updates' => 'Atnaujinimai',
-    'updates_help' => 'Naujos Pelican ir Wings versijos. Tik root adminams.',
+    'updates_help' => 'Naujos Pelican ir Wings versijos bei būsenos puslapio incidentai. Tik root administratoriams.',
     'pelican' => 'Pelican pranešimai',
     'pelican_help' => 'Paties Pelican žinutės varpelyje, pavyzdžiui, apie baigtą atsarginę kopiją.',
     'devices' => 'Jūsų įrenginiai',
