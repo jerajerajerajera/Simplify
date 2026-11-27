@@ -2191,7 +2191,7 @@ step('embed: an unreachable server opens an incident, alerts Discord, the bell a
         // The public list: the incident and the pin, never the private options.
         $list = $guest->get('/simplify/embed/servers.json')->json();
         $public = $list['incidents'][0] ?? [];
-        if (($public['server'] ?? null) !== $server->uuid_short || ($public['ended'] ?? 'x') !== null || array_key_exists('id', $public)
+        if (($public['server'] ?? null) !== $server->uuid_short || ! array_key_exists('ended', $public) || $public['ended'] !== null || array_key_exists('id', $public)
             || ($list['servers'][0]['pinned'] ?? false) !== true || ($list['options']['banner_after'] ?? null) !== 0
             || array_intersect(['pinned', 'bell', 'planned_stops'], array_keys((array) $list['options'])) !== []) {
             throw new RuntimeException('unexpected public list: '.json_encode($list));
