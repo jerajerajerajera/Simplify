@@ -25,7 +25,7 @@ return [
     'messages' => 'Messages',
     'messages_help' => 'Announcements and other messages from add-ons.',
     'updates' => 'Updates',
-    'updates_help' => 'New versions of Pelican and Wings. Only for root admins.',
+    'updates_help' => 'New versions of Pelican and Wings, and incidents of the status page. Only for root admins.',
     'pelican' => 'Pelican\'s notifications',
     'pelican_help' => 'Pelican\'s own messages in the bell, such as a finished backup.',
     'devices' => 'Your devices',

@@ -7,11 +7,13 @@ namespace Simplify\Core\Embed\Console;
 use App\Models\Server;
 use Illuminate\Console\Command;
 use Simplify\Core\Embed\Services\EmbedServers;
+use Simplify\Core\Embed\Services\Incidents;
 use Simplify\Core\Embed\Services\ServerList;
 use Simplify\Core\Embed\Services\Uptime;
 use Simplify\Core\Overview\NodeUsage;
+use Throwable;
 
-/** Runs every minute from Pelican's scheduler: notes which servers on the website run, for their uptime. */
+/** Runs every minute from Pelican's scheduler: notes which servers on the website run, for their uptime and incidents. */
 final class RecordUptime extends Command
 {
     protected $signature = 'simplify:embed-uptime';
@@ -36,7 +38,14 @@ final class RecordUptime extends Command
                 $online[(int) $server->id] = $state === 'running';
             }
         }
-        Uptime::record($online, time());
+        $now = time();
+        Uptime::record($online, $now);
+        // Incidents follow the same look: one opens when a server stays unreachable, and closes when it is back.
+        try {
+            Incidents::follow($online, $servers, $now);
+        } catch (Throwable $error) {
+            report($error);
+        }
 
         return self::SUCCESS;
     }

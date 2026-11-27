@@ -25,7 +25,7 @@ return [
     'messages' => 'メッセージ',
     'messages_help' => 'アドオンからのお知らせやその他のメッセージ。',
     'updates' => 'アップデート',
-    'updates_help' => 'Pelican と Wings の新しいバージョン。root admin のみ。',
+    'updates_help' => 'Pelican と Wings の新しいバージョン、およびステータスページの障害。ルート管理者のみ。',
     'pelican' => 'Pelican の通知',
     'pelican_help' => 'ベルに届く Pelican 自身のメッセージ（バックアップ完了など）。',
     'devices' => 'あなたのデバイス',

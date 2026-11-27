@@ -96,6 +96,8 @@ final class SimplifyServiceProvider extends ServiceProvider
         Route::get('/simplify/embed', [EmbedController::class, 'frame'])->middleware('throttle:120,1')->name('simplify.embed.frame');
         // The status page on the panel's own address, always on: the list as a page of its own.
         Route::get('/status', [EmbedController::class, 'status'])->middleware('throttle:120,1')->name('simplify.embed.status');
+        // Its incidents as an RSS feed (Settings › Website › Incidents and alerts).
+        Route::get('/status/feed.xml', [EmbedController::class, 'feed'])->middleware('throttle:120,1')->name('simplify.embed.feed');
         // The status page on its own address: that host only shows the list (Settings › Website › Status page).
         $this->app->make(HttpKernel::class)->prependMiddleware(StatusHost::class);
 

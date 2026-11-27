@@ -25,7 +25,7 @@ return [
     'messages' => 'Messaggi',
     'messages_help' => 'Annunci e altri messaggi dagli add-on.',
     'updates' => 'Aggiornamenti',
-    'updates_help' => 'Nuove versioni di Pelican e Wings. Solo per i root admin.',
+    'updates_help' => 'Nuove versioni di Pelican e Wings, e incidenti della pagina di stato. Solo per i root admin.',
     'pelican' => 'Notifiche di Pelican',
     'pelican_help' => 'I messaggi di Pelican nella campanella, come un backup completato.',
     'devices' => 'I tuoi dispositivi',

@@ -25,7 +25,7 @@ return [
     'messages' => 'Üzenetek',
     'messages_help' => 'Közlemények és más üzenetek a kiegészítőktől.',
     'updates' => 'Frissítések',
-    'updates_help' => 'A Pelican és a Wings új verziói. Csak root adminoknak.',
+    'updates_help' => 'A Pelican és a Wings új verziói, valamint az állapotoldal incidensei. Csak root adminoknak.',
     'pelican' => 'A Pelican értesítései',
     'pelican_help' => 'A Pelican saját üzenetei a csengőben, például egy elkészült biztonsági mentés.',
     'devices' => 'Eszközeid',

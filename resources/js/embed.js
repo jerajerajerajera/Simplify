@@ -2,7 +2,7 @@
    <div id="simplify-servers"></div><script src="https://panel.example.com/simplify/embed.js" defer></script>
    Optional data-* attributes on the script: style (auto|light|dark), accent (#rrggbb), corners (round|square),
    players, modpack, join, uptime (on|off), server (short ID: only that server), servers (short IDs, comma separated),
-   game (only this game), target (CSS selector). */
+   game (only this game), target (CSS selector), incidents (on: the banner and the incident log, as on the status page). */
 (() => {
   const script = document.currentScript;
   if (!script || !script.src) return;
@@ -16,11 +16,11 @@
 
   const css = `
     :host{display:block}
-    .list{--bg:#fff;--card:#fff;--ink:#18181b;--muted:#71717a;--line:#e4e4e7;--soft:#f4f4f5;--ok:#16a34a;--warn:#ca8a04;--bad:#dc2626;--none:#e4e4e7;
-      font:14px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);
-      display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:12px;align-items:start}
-    .list.dark{--card:#18181b;--ink:#f4f4f5;--muted:#a1a1aa;--line:#2e2e33;--soft:#232327;--ok:#4ade80;--warn:#facc15;--bad:#f87171;--none:#2e2e33}
-    @media (prefers-color-scheme:dark){.list.auto{--card:#18181b;--ink:#f4f4f5;--muted:#a1a1aa;--line:#2e2e33;--soft:#232327;--ok:#4ade80;--warn:#facc15;--bad:#f87171;--none:#2e2e33}}
+    .wrap{--bg:#fff;--card:#fff;--ink:#18181b;--muted:#71717a;--line:#e4e4e7;--soft:#f4f4f5;--ok:#16a34a;--warn:#ca8a04;--bad:#dc2626;--none:#e4e4e7;
+      font:14px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink)}
+    .list{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:12px;align-items:start}
+    .wrap.dark{--card:#18181b;--ink:#f4f4f5;--muted:#a1a1aa;--line:#2e2e33;--soft:#232327;--ok:#4ade80;--warn:#facc15;--bad:#f87171;--none:#2e2e33}
+    @media (prefers-color-scheme:dark){.wrap.auto{--card:#18181b;--ink:#f4f4f5;--muted:#a1a1aa;--line:#2e2e33;--soft:#232327;--ok:#4ade80;--warn:#facc15;--bad:#f87171;--none:#2e2e33}}
     .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:grid;gap:10px;align-content:start;min-width:0}
     .top{display:flex;gap:10px;align-items:center;min-width:0}
     .icon{width:40px;height:40px;border-radius:calc(var(--r) - 2px);flex:none;object-fit:cover;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:700}
@@ -49,7 +49,26 @@
     .days{display:grid;grid-template-columns:repeat(30,1fr);gap:2px;height:22px}
     .days i{border-radius:2px;background:var(--none)}
     .days i.up{background:var(--ok)}.days i.some{background:var(--warn)}.days i.down{background:var(--bad)}
-    .empty{color:var(--muted);font-size:13px}`;
+    .empty{color:var(--muted);font-size:13px}
+    .pin{color:var(--muted);font-size:11.5px;font-weight:500;margin-left:6px}
+    .card.down{border-color:color-mix(in srgb,var(--bad) 55%,var(--line));box-shadow:0 0 0 3px color-mix(in srgb,var(--bad) 12%,transparent)}
+    .wrap{display:grid;gap:14px}
+    .banner{display:grid;gap:2px;border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);background:color-mix(in srgb,var(--bad) 9%,var(--card));border-radius:var(--r);padding:10px 14px;color:var(--ink)}
+    .banner b{color:var(--bad);font-size:14px}.banner span{color:var(--muted);font-size:13px;overflow-wrap:anywhere}
+    .log{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;color:var(--ink)}
+    .log h2{margin:0;padding:10px 14px;font-size:14px;font-weight:600;border-bottom:1px solid var(--line)}
+    .log ol{margin:0;padding:0;list-style:none}
+    .incident{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:4px 10px;align-items:baseline;padding:10px 14px;border-top:1px solid var(--line);font-size:13px}
+    .incident:first-child{border-top:0}
+    .incident .what{font-weight:600;min-width:0;overflow-wrap:anywhere}
+    .incident .when{color:var(--muted);font-size:12px;white-space:nowrap}
+    .incident .note{grid-column:2/4;color:var(--muted);font-size:12.5px;overflow-wrap:anywhere}
+    .tag{font-size:11px;font-weight:700;border-radius:5px;padding:1px 6px;white-space:nowrap}
+    .tag.open{color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,transparent)}
+    .tag.resolved{color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,transparent)}
+    .tag.planned{color:var(--warn);background:color-mix(in srgb,var(--warn) 14%,transparent)}
+    .log .empty{padding:10px 14px;margin:0}
+    @media (max-width:420px){.incident{grid-template-columns:auto minmax(0,1fr)}.incident .when{grid-column:2}}`;
 
   const el = (tag, props = {}, ...children) => {
     const node = document.createElement(tag);
@@ -66,7 +85,9 @@
     empty: 'No servers to show right now.', copy_address: 'Copy the address of :name',
     online_for: 'Online for :time', offline_for: 'Offline for :time', uptime: ':percent uptime', last_days: 'Last :days days',
     days_ago: ':days days ago', today: 'Today', day_tip: ':date · :percent', day_none: ':date · no data',
-    unit_d: ':count d', unit_h: ':count h', unit_m: ':count min' };
+    unit_d: ':count d', unit_h: ':count h', unit_m: ':count min', pinned: 'Pinned', alert_down: ':name is unreachable',
+    banner_since: 'Since :time (:duration).', incidents: 'Incidents · last :days days', incidents_none: 'No incidents in the last :days days.',
+    ongoing: 'Ongoing', resolved: 'Resolved', planned: 'Planned' };
 
   // "3 d 4 h", "2 h 15 min", "5 min": the two largest units.
   const span = (seconds) => {
@@ -105,13 +126,14 @@
     setTimeout(() => { button.textContent = t.copy; }, 1600);
   };
 
-  const card = (server, show) => {
+  const card = (server, show, down) => {
     const initials = server.name.split(/\s+/).map((word) => word[0] || '').join('').slice(0, 2).toUpperCase();
     const icon = server.icon ? el('img', { class: server.logo ? 'icon logo' : 'icon', part: 'icon', src: server.icon, alt: '', loading: 'lazy' }) : el('span', { class: 'icon', part: 'icon', text: initials, 'aria-hidden': 'true' });
     const players = show.players && server.players !== null && server.state === 'online' ? t.players.replace(':count', server.players).replace(':max', server.max_players ?? '?') : '';
     const detail = [server.game, server.modpack ? '' : (server.version || server.software || ''), players].filter(Boolean).join(' · ');
     const nodes = [el('div', { class: 'top' }, icon,
-      el('div', { class: 'title' }, el('span', { class: 'name', part: 'name', text: server.name, title: server.name }), el('span', { class: 'sub', text: detail })),
+      el('div', { class: 'title' }, el('span', { class: 'name', part: 'name', title: server.name }, document.createTextNode(server.name), server.pinned ? el('span', { class: 'pin', text: `· ${t.pinned}` }) : null),
+        el('span', { class: 'sub', text: detail })),
       el('span', { class: `state ${server.state}`, part: `state state-${server.state}`, text: t[server.state] || t.offline }))];
     if (show.modpack && server.modpack) {
       const pack = server.modpack;
@@ -129,7 +151,42 @@
       nodes.push(el('div', { class: 'join', part: 'join' }, el('code', { title: server.address }, el('span', { text: host }), port > 0 ? el('span', { text: server.address.slice(port) }) : null), button));
     }
     if (show.uptime && server.uptime) nodes.push(uptime(server, Date.now()));
-    return el('article', { class: 'card', part: 'card' }, ...nodes);
+    return el('article', { class: down ? 'card down' : 'card', part: down ? 'card card-down' : 'card' }, ...nodes);
+  };
+
+  const clock = (seconds) => new Intl.DateTimeFormat(undefined, { hour: '2-digit', minute: '2-digit' }).format(new Date(seconds * 1000));
+  const when = (seconds, now) => {
+    const date = new Date(seconds * 1000);
+    if (new Date(now).toDateString() === date.toDateString()) return `${t.today} ${clock(seconds)}`;
+    return `${new Intl.DateTimeFormat(undefined, { weekday: 'short', day: 'numeric', month: 'short' }).format(date)} ${clock(seconds)}`;
+  };
+
+  // A pinned server that is unreachable for a while gets a banner above the list; a planned stop does not.
+  const banners = (servers, incidents, after, now) => {
+    const open = new Map(incidents.filter((incident) => incident.ended === null && !incident.planned).map((incident) => [incident.server, incident]));
+    return servers.filter((server) => server.pinned && server.state === 'offline' && open.has(server.id) && now / 1000 - open.get(server.id).started >= after * 60)
+      .map((server) => {
+        const incident = open.get(server.id);
+        const since = t.banner_since.replace(':time', clock(incident.started)).replace(':duration', span(Math.floor(now / 1000) - incident.started));
+        return { id: server.id, node: el('div', { class: 'banner', part: 'banner', role: 'status' }, el('b', { text: t.alert_down.replace(':name', server.name) }),
+          el('span', { text: incident.note ? `${since} ${incident.note}` : since })) };
+      });
+  };
+
+  // The incidents of the last days, newest first: ongoing, resolved or planned, with the admin's note.
+  const log = (incidents, now) => {
+    const days = 14;
+    const list = el('ol');
+    for (const incident of incidents) {
+      const kind = incident.planned ? 'planned' : incident.ended === null ? 'open' : 'resolved';
+      const label = incident.planned ? t.planned : incident.ended === null ? t.ongoing : t.resolved;
+      const time = incident.ended === null ? when(incident.started, now) : `${when(incident.started, now)} · ${span(incident.ended - incident.started)}`;
+      list.append(el('li', { class: 'incident', part: 'incident' }, el('span', { class: `tag ${kind}`, text: label }),
+        el('span', { class: 'what', text: t.alert_down.replace(':name', incident.name) }), el('span', { class: 'when', text: time }),
+        incident.note ? el('span', { class: 'note', text: incident.note }) : null));
+    }
+    return el('section', { class: 'log', part: 'incidents', 'aria-label': t.incidents.replace(':days', days) }, el('h2', { text: t.incidents.replace(':days', days) }),
+      incidents.length ? list : el('p', { class: 'empty', text: t.incidents_none.replace(':days', days) }));
   };
 
   const render = (data) => {
@@ -144,10 +201,17 @@
     if (attr.server) servers = servers.filter((server) => server.id === attr.server);
     if (attr.servers) { const ids = attr.servers.split(','); servers = servers.filter((server) => ids.includes(server.id)); }
     if (attr.game) servers = servers.filter((server) => String(server.game).toLowerCase() === attr.game.toLowerCase());
-    const list = el('div', { class: `list ${style}`, part: 'list', style: `--accent:${accent};--r:${corners}`, role: 'list', 'aria-label': `${data.name || 'Game'} servers` });
-    for (const server of servers) { const item = card(server, show); item.setAttribute('role', 'listitem'); list.append(item); }
+    const extras = attr.page === '1' || flag(attr.incidents, false);
+    const incidents = extras && Array.isArray(data.incidents) ? data.incidents : [];
+    const now = Date.now();
+    const top = extras ? banners(servers, incidents, Number(options.banner_after ?? 15), now) : [];
+    const down = new Set(top.map((banner) => banner.id));
+    const list = el('div', { class: 'list', part: 'list', role: 'list', 'aria-label': `${data.name || 'Game'} servers` });
+    for (const server of servers) { const item = card(server, show, down.has(server.id)); item.setAttribute('role', 'listitem'); list.append(item); }
     if (!servers.length) list.append(el('p', { class: 'empty', text: t.empty }));
-    root.replaceChildren(el('style', { text: css }), list);
+    const wrap = el('div', { class: `wrap ${style}`, style: `--accent:${accent};--r:${corners}` }, ...top.map((banner) => banner.node), list,
+      extras && options.incidents !== false ? log(incidents, now) : null);
+    root.replaceChildren(el('style', { text: css }), wrap);
   };
 
   const load = () => fetch(`${origin}/simplify/embed/servers.json`, { credentials: 'omit' })

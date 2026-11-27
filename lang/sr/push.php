@@ -25,7 +25,7 @@ return [
     'messages' => 'Поруке',
     'messages_help' => 'Објаве и друге поруке од проширења.',
     'updates' => 'Ажурирања',
-    'updates_help' => 'Нове верзије Pelican и Wings. Само за root admin-е.',
+    'updates_help' => 'Нове верзије Pelican-а и Wings-а и инциденти статусне странице. Само за root администраторе.',
     'pelican' => 'Обавештења Pelican-а',
     'pelican_help' => 'Pelican-ове поруке у звонцету, на пример о завршеној резервној копији.',
     'devices' => 'Ваши уређаји',

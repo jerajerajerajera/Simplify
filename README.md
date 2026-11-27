@@ -98,6 +98,29 @@ Content-Security-Policy, so nothing loads from elsewhere or runs except the list
 `::part(join)`, `::part(uptime)`, `::part(icon)` and `::part(list)`, and the page with `body`, `.page-head`,
 `.page-logo`, `h1` and `.page-intro`.
 
+### Pinned servers, incidents and alerts
+
+The pin next to a server in Settings › Website keeps it at the top of the list. On the status page, a pinned server that
+is unreachable longer than the set minutes gets a banner above the list (`::part(banner)`) and a red card
+(`::part(card-down)`).
+
+An incident opens by itself when a server on the website is unreachable for the set minutes, from the same check that
+records the uptime every minute, and closes when the server is back. A minute without an answer from Wings counts as
+unknown, not as down, and a server that is down again within 5 minutes of coming back reopens the same incident. A
+Stop, Restart or Kill from the panel, a schedule's power task, or a server that installs or is suspended counts as
+Planned and sends no alert. The status page lists the incidents of the last 14 days (`::part(incidents)`); Settings ›
+Website lets you add a short note for visitors (plain text) or mark an incident as Planned. A list on another website
+shows the banner and the log only with `data-incidents="on"`.
+
+Alerts for incidents that are not planned:
+
+- **Discord**: paste a channel's webhook (Edit Channel › Integrations › Webhooks). It is stored encrypted and never
+  shown again, and only Discord's own webhook addresses are accepted. Each incident is one message that turns green
+  when the server is back; nobody is mentioned, whatever a server's name holds.
+- **RSS**: `/status/feed.xml` on the panel, or `/feed.xml` on the status page's own address.
+- **Bell**: root admins get each incident in Pelican's bell, and on their devices when Updates is on under
+  Notifications.
+
 ## Add-ons
 
 See [ADDONS.md](ADDONS.md) for how an add-on plugs into Simplify.

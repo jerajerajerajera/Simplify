@@ -25,7 +25,7 @@ return [
     'messages' => 'Tin nhắn',
     'messages_help' => 'Thông cáo và các tin nhắn khác từ tiện ích bổ sung.',
     'updates' => 'Cập nhật',
-    'updates_help' => 'Phiên bản mới của Pelican và Wings. Chỉ dành cho root admin.',
+    'updates_help' => 'Phiên bản mới của Pelican và Wings, và sự cố của trang trạng thái. Chỉ dành cho root admin.',
     'pelican' => 'Thông báo của Pelican',
     'pelican_help' => 'Tin nhắn riêng của Pelican trong chuông, ví dụ một bản sao lưu đã xong.',
     'devices' => 'Thiết bị của bạn',

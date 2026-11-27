@@ -35,6 +35,9 @@ final class StatusHost
 
             return app(EmbedController::class)->frame($request);
         }
+        if ($path === 'feed.xml' && in_array($request->getMethod(), ['GET', 'HEAD'], true)) {
+            return app(EmbedController::class)->feed();
+        }
         // The page under its long address goes to the clean one, with any other choice kept.
         if ((($path === 'simplify/embed' && $request->query('page') === '1') || $path === 'status') && in_array($request->getMethod(), ['GET', 'HEAD'], true)) {
             $query = http_build_query(array_diff_key($request->query(), ['page' => 1]));

@@ -30,6 +30,8 @@ final class ServerList
 {
     public const CACHE = 'simplify-embed.servers';
 
+    public const INCIDENTS = 'simplify-embed.incidents';
+
     public const EVENT = 'simplify.embed.server';
 
     /** Seconds the list is cached, so visitors never reach Wings or a game server. */
@@ -49,6 +51,8 @@ final class ServerList
         return [
             'options' => array_diff_key($options, array_flip(EmbedOptions::PRIVATE)),
             'servers' => SafeCache::remember(self::CACHE, self::TTL, fn (): array => self::collect()),
+            // The incidents of the last days, for the status page's banner and log (Incidents).
+            'incidents' => $options['incidents'] ? SafeCache::remember(self::INCIDENTS, self::TTL, fn (): array => self::incidents()) : [],
             // The panel's own name from Simplify's settings; it said Pelican on a panel with a name of its own (K-B91).
             'name' => WebApp::name(),
             'texts' => self::texts(),
@@ -70,13 +74,31 @@ final class ServerList
         $out = [];
         foreach ($servers as $server) {
             try {
-                $out[] = self::entry($server, $details[(int) $server->id] ?? [], $options['logos'], $uptime[(int) $server->id] ?? null);
+                $out[] = [...self::entry($server, $details[(int) $server->id] ?? [], $options['logos'], $uptime[(int) $server->id] ?? null),
+                    'pinned' => in_array((int) $server->id, $options['pinned'], true)];
             } catch (Throwable $error) {
                 report($error);
             }
         }
 
         return self::sorted($out, $options['online_first']);
+    }
+
+    /**
+     * Only what a visitor sees: which server, when, planned or not, and the admin's note.
+     *
+     * @return list<array{server: string, name: string, started: int, ended: ?int, planned: bool, note: ?string}>
+     */
+    private static function incidents(): array
+    {
+        try {
+            return array_map(fn (array $incident) => array_diff_key($incident, ['id' => 1]), Incidents::recent(time()));
+        } catch (Throwable $error) {
+            // Before the migration has run: the page shows, without incidents.
+            report($error);
+
+            return [];
+        }
     }
 
     /**
@@ -96,14 +118,15 @@ final class ServerList
     }
 
     /**
-     * By the position in Settings › Website (none comes last), then by name; with $onlineFirst, online servers first.
+     * Pinned servers first, then by the position in Settings › Website (none comes last), then by name; with
+     * $onlineFirst, online servers first (after the pinned ones).
      *
      * @param  list<array<string, mixed>>  $servers
      * @return list<array<string, mixed>>
      */
     public static function sorted(array $servers, bool $onlineFirst = false): array
     {
-        $key = fn (array $server) => [$onlineFirst && $server['state'] !== 'online', $server['position'] ?? PHP_INT_MAX, mb_strtolower((string) $server['name'])];
+        $key = fn (array $server) => [empty($server['pinned']), $onlineFirst && $server['state'] !== 'online', $server['position'] ?? PHP_INT_MAX, mb_strtolower((string) $server['name'])];
         usort($servers, fn (array $a, array $b) => $key($a) <=> $key($b));
 
         return $servers;
@@ -314,7 +337,8 @@ final class ServerList
     {
         $texts = [];
         foreach (['online', 'starting', 'stopping', 'installing', 'offline', 'players', 'copy', 'copied', 'selected', 'view', 'empty', 'copy_address',
-            'online_for', 'offline_for', 'uptime', 'last_days', 'days_ago', 'today', 'day_tip', 'day_none', 'unit_d', 'unit_h', 'unit_m'] as $key) {
+            'online_for', 'offline_for', 'uptime', 'last_days', 'days_ago', 'today', 'day_tip', 'day_none', 'unit_d', 'unit_h', 'unit_m',
+            'pinned', 'alert_down', 'banner_since', 'incidents', 'incidents_none', 'ongoing', 'resolved', 'planned'] as $key) {
             $texts[$key] = __('simplify::embed-list.'.$key);
         }
 

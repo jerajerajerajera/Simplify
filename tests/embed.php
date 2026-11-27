@@ -5,12 +5,13 @@
 declare(strict_types=1);
 
 require __DIR__.'/../src/Server/Looks.php';
-foreach (['EggLogo', 'EmbedDetails', 'EmbedOptions', 'PublicAddress', 'ServerList', 'Snippet', 'StatusAddress', 'StatusCss', 'Uptime'] as $class) {
+foreach (['EggLogo', 'EmbedDetails', 'EmbedOptions', 'IncidentRules', 'PublicAddress', 'ServerList', 'Snippet', 'StatusAddress', 'StatusCss', 'Uptime'] as $class) {
     require __DIR__.'/../src/Embed/Services/'.$class.'.php';
 }
 
 use Simplify\Core\Embed\Services\EggLogo;
 use Simplify\Core\Embed\Services\EmbedOptions;
+use Simplify\Core\Embed\Services\IncidentRules;
 use Simplify\Core\Embed\Services\PublicAddress;
 use Simplify\Core\Embed\Services\ServerList;
 use Simplify\Core\Embed\Services\Snippet;
@@ -199,6 +200,67 @@ same('no way out of the style block', false, str_contains($css('</style><script>
 same('escapes cannot spell a blocked word', 'a{b:u72l(x)}', $css('a{b:u\\72l(x)}')['css']);
 same('a comment cannot split a blocked word', 'a{b:c}', $css('@imp/**/ort x; a{b:c}')['css']);
 same('at most 10 KB', StatusCss::MAX, strlen($css(str_repeat('a{b:c}', 3000))['css']));
+
+// Pinned servers and the incident options: known values only.
+same('pinned: positive ids, once, in order', [4, 2], EmbedOptions::normalize(['pinned' => ['4', 2, 4, -1, 'x', 0]])['pinned']);
+same('pinned stays private', true, in_array('pinned', EmbedOptions::PRIVATE, true));
+same('incident after: at least a minute', 1, EmbedOptions::normalize(['incident_after' => 0])['incident_after']);
+same('incident after: at most an hour', 60, EmbedOptions::normalize(['incident_after' => 999])['incident_after']);
+same('banner after: 0 is at once', 0, EmbedOptions::normalize(['banner_after' => '0'])['banner_after']);
+same('banner after: not a number keeps the default', 15, EmbedOptions::normalize(['banner_after' => 'soon'])['banner_after']);
+same('pinned first, then online first', ['p', 'b', 'a'], array_column(ServerList::sorted([
+    ['name' => 'a', 'state' => 'offline', 'position' => 1],
+    ['name' => 'b', 'state' => 'online', 'position' => 2],
+    ['name' => 'p', 'state' => 'offline', 'position' => 3, 'pinned' => true],
+], true), 'name'));
+
+// Incidents: when one opens, closes and opens again.
+$now = 100000;
+$decide = fn (array $online, array $stretches, array $open = [], array $closed = []) => IncidentRules::decide($online, $stretches, $open, $closed, $now, 180);
+same('down shorter than the wait: nothing', [], $decide([1 => false], [1 => ['online' => false, 'since' => $now - 120]]));
+same('down for the wait: opens where it went down', [['do' => 'open', 'server' => 1, 'at' => $now - 180]], $decide([1 => false], [1 => ['online' => false, 'since' => $now - 180]]));
+same('already open: nothing new', [], $decide([1 => false], [1 => ['online' => false, 'since' => $now - 900]], [1 => 7]));
+same('back: closes where it came back', [['do' => 'close', 'server' => 1, 'incident' => 7, 'at' => $now - 60]], $decide([1 => true], [1 => ['online' => true, 'since' => $now - 60]], [1 => 7]));
+same('down again soon after: the same incident reopens', [['do' => 'reopen', 'server' => 1, 'incident' => 7]],
+    $decide([1 => false], [1 => ['online' => false, 'since' => $now - 200]], [], [1 => ['id' => 7, 'ended' => $now - 400]]));
+same('down again much later: a new incident', [['do' => 'open', 'server' => 1, 'at' => $now - 200]],
+    $decide([1 => false], [1 => ['online' => false, 'since' => $now - 200]], [], [1 => ['id' => 7, 'ended' => $now - 2000]]));
+same('Wings did not answer: nothing changes', [], $decide([], [1 => ['online' => false, 'since' => $now - 900]], [1 => 7]));
+same('no stretch yet: nothing changes', [], $decide([1 => false], []));
+same('online without an incident: nothing', [], $decide([1 => true], [1 => ['online' => true, 'since' => $now - 900]]));
+same('a schedule that ran just before is a planned stop', true, IncidentRules::scheduled([$now - 120], $now));
+same('a schedule from yesterday is not', false, IncidentRules::scheduled([$now - 86400, null], $now));
+
+// The webhook: only Discord's own addresses; saved, it shows without its token.
+$hook = 'https://discord.com/api/webhooks/123456789012345678/abcdefghijklmnopqrstuvwxyz_ABC-123';
+same('a Discord webhook', true, IncidentRules::validWebhook($hook));
+same('the ptb and canary hosts too', true, IncidentRules::validWebhook(str_replace('discord.com', 'ptb.discord.com', $hook)));
+foreach (['http://discord.com/api/webhooks/123456/abcdefghijklmnopqrstuvwxyz', 'https://discord.com.evil.example/api/webhooks/123456/abcdefghijklmnopqrstuvwxyz',
+    'https://evil.example/api/webhooks/123456/abcdefghijklmnopqrstuvwxyz', $hook.'?wait=true', $hook.'/../x', 'https://user@discord.com/api/webhooks/123456/abcdefghijklmnopqrstuvwxyz'] as $bad) {
+    same("not a webhook: $bad", false, IncidentRules::validWebhook($bad));
+}
+same('hidden without its token', 'https://discord.com/api/webhooks/•••••••', IncidentRules::hidden($hook));
+same('hidden never shows the id or token', false, str_contains(IncidentRules::hidden($hook), 'abcdefghij') || str_contains(IncidentRules::hidden($hook), '123456789'));
+$message = IncidentRules::discord('IceGaming servers', '@everyone is unreachable', 'Since <t:1:f>.', 'https://status.example.com/', true);
+same('Discord: nobody is mentioned', ['parse' => []], $message['allowed_mentions']);
+same('Discord: red while down', 0xDA373C, $message['embeds'][0]['color']);
+same('Discord: green when back', 0x23A55A, IncidentRules::discord('x', 'y', 'z', 'https://e.com/', false)['embeds'][0]['color']);
+
+// The feed: valid XML, newest first, every text escaped.
+$feed = IncidentRules::feed('A & B', 'https://status.example.com/', 'https://status.example.com/feed.xml', 'Incidents', [
+    ['guid' => 'incident-1-down-10', 'title' => 'Old <b>', 'body' => 'x', 'at' => 10],
+    ['guid' => 'incident-2-down-20', 'title' => 'New', 'body' => '"quoted" & more', 'at' => 20],
+]);
+$xml = simplexml_load_string($feed);
+same('feed: valid XML', true, $xml !== false);
+same('feed: newest first', 'New', $xml === false ? null : (string) $xml->channel->item[0]->title);
+same('feed: text escaped', 'Old <b>', $xml === false ? null : (string) $xml->channel->item[1]->title);
+same('feed: no raw markup', false, str_contains($feed, '<b>'));
+
+// A note is plain text on one line.
+same('note: tags and line breaks go', 'Out of memory; raised to 8 GB.', IncidentRules::note("<b>Out of memory;</b>\nraised to 8 GB."));
+same('note: empty is none', null, IncidentRules::note('   '));
+same('note: at most 300 characters', IncidentRules::NOTE, mb_strlen((string) IncidentRules::note(str_repeat('é', 400))));
 
 if ($failures) {
     echo "FAIL embed:\n  ".implode("\n  ", $failures)."\n";
