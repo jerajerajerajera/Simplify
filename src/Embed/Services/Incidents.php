@@ -123,7 +123,7 @@ final class Incidents
                 ->where('activity_logs.timestamp', '<=', Carbon::createFromTimestamp($since + 60))
                 ->get()
                 ->map(fn ($log): array => ['event' => (string) $log->getAttribute('event'), 'command' => $log->getAttribute('properties')['command'] ?? null]);
-            if (StartTrigger::asked($activity, $server->egg?->config_stop)) {
+            if (StartTrigger::asked($activity, $server->egg->config_stop)) {
                 return true;
             }
             $runs = $server->schedules()->whereHas('tasks', fn ($tasks) => $tasks->where('action', 'power')->whereIn('payload', ['stop', 'restart', 'kill']))
@@ -190,7 +190,7 @@ final class Incidents
             return '';
         }
 
-        return is_string($url) && IncidentRules::validWebhook($url) ? $url : '';
+        return IncidentRules::validWebhook($url) ? $url : '';
     }
 
     /** Saves a new webhook (encrypted), or removes it with ''. */

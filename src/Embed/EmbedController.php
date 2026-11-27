@@ -142,6 +142,7 @@ final class EmbedController
         $title = e($name);
         $heading = '';
         $own = '';
+        $alternate = '';
         $headers = ['Content-Security-Policy' => 'frame-ancestors *'];
         if ($options !== null) {
             $style .= 'body{padding:24px 16px;max-width:1100px;margin:0 auto;font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:#18181b}'
@@ -159,6 +160,7 @@ final class EmbedController
             $logo = self::pageLogo($options);
             // A page of its own (and the status address) names what it lists.
             $feed = $options['feed'] ? StatusAddress::pageUrl('feed.xml') : null;
+            $alternate = $feed === null ? '' : '<link rel="alternate" type="application/rss+xml" title="'.$title.'" href="'.e($feed).'">';
             $heading = '<header class="page-head">'.($logo === null ? '' : '<img class="page-logo" src="'.e($logo).'" alt="">').'<h1>'.$title.'</h1>'
                 .($feed === null ? '' : '<a class="page-feed" href="'.e($feed).'" title="'.e(__('simplify::embed-list.feed')).'">RSS</a>').'</header>'
                 .($options['page_intro'] === '' ? '' : '<p class="page-intro">'.e($options['page_intro']).'</p>');
@@ -172,7 +174,7 @@ final class EmbedController
         $html = '<!doctype html><html lang="'.e(str_replace('_', '-', app()->getLocale())).'"><head><meta charset="utf-8">'
             .'<meta name="viewport" content="width=device-width,initial-scale=1">'
             .'<title>'.$title.'</title>'
-            .($page && $options !== null && $options['feed'] ? '<link rel="alternate" type="application/rss+xml" title="'.$title.'" href="'.e(StatusAddress::pageUrl('feed.xml')).'">' : '')
+            .$alternate
             .'<style>html,body{margin:0}'.$style.'</style>'
             .($own === '' ? '' : '<style>'.$own.'</style>')
             .'</head>'
