@@ -51,6 +51,7 @@ node tests/admin-crumb-row.cjs
 node tests/admin-crumb-fit.cjs
 node tests/health-pill-fit.cjs
 node tests/brand-fit.cjs
+node tests/console-redraw.cjs
 node tests/card-title-font.cjs
 node tests/labeled-from.cjs
 node tests/settings-nav-wrap.cjs

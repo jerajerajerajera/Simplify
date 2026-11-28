@@ -289,7 +289,7 @@ jobs:
         working-directory: simplify
         run: |
           npx playwright install --with-deps firefox > /dev/null
-          node tests/panel/engines.cjs --base http://127.0.0.1:8001 --urls ../panel/urls.json --out ../result | tee ../result/engines.txt
+          xvfb-run -a node tests/panel/engines.cjs --base http://127.0.0.1:8001 --urls ../panel/urls.json --out ../result | tee ../result/engines.txt
           tail -n 1 ../result/engines.txt | grep -qx 'All steps passed'
       - name: Lighthouse
         if: matrix.pelican == '1.0.0-rc.2'

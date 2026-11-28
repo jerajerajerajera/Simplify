@@ -430,6 +430,11 @@
         bar.querySelector('.ps-console-dot').classList.toggle('connected', connected);
         bar.querySelector('.ps-live-bars').hidden = !connected;
         if (!terminal.style.height) this.fitPage();
+        // Once connected and the first output is in, it is drawn once more (K-B106: an empty console in Firefox).
+        if (connected && !terminal.dataset.psRedraw) {
+          terminal.dataset.psRedraw = '1';
+          setTimeout(() => window.Simplify?.redrawConsole?.(terminal), 800);
+        }
         state.textContent = connected ? state.dataset.connected : state.dataset.connecting;
       },
 

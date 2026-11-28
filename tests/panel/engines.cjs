@@ -67,8 +67,9 @@ async function run(name) {
   engine = name;
   // Firefox draws the console with WebGL as on a desktop (headless it has no WebGL unless forced; Pelican then fell
   // back to drawing with the DOM, which hid what testers saw).
+  // Under xvfb-run (CI) Firefox runs with a window, where it has WebGL through Mesa; headless it has none.
   const browser = await playwright[name].launch(name === 'firefox'
-    ? { firefoxUserPrefs: { 'webgl.force-enabled': true, 'webgl.disabled': false, 'webgl.enable-webgl2': true } }
+    ? { headless: !process.env.DISPLAY, firefoxUserPrefs: { 'webgl.force-enabled': true, 'webgl.disabled': false, 'webgl.enable-webgl2': true } }
     : { args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
   const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, colorScheme: 'dark' });
   page = await context.newPage();
@@ -165,7 +166,11 @@ async function run(name) {
     for (let i = 0; i < 'simplifytyped'.length; i++) await page.keyboard.press('Backspace').catch(() => {});
 
     for (const [step, ms] of Object.entries(timings[engine] || {})) say(`${step} within ${SLOW / 1000} s`, ms <= SLOW, { ms });
-    say('no script errors on the pages', errors.length === 0, errors.slice(0, 5));
+    // Without WebGL in the test browser Pelican's console falls back to drawing with the DOM, after an error of its own.
+    const noWebgl = errors.filter((e) => /^WebGL2 not supported/.test(e));
+    if (noWebgl.length) console.log(`INFO ${engine} has no WebGL2 here: Pelican's console drew with the DOM`);
+    const own = errors.filter((e) => !noWebgl.includes(e));
+    say('no script errors on the pages', own.length === 0, own.slice(0, 5));
   } catch (e) {
     say('run', false, { error: String(e.message).slice(0, 300) });
   } finally {
