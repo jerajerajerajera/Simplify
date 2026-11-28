@@ -7,9 +7,18 @@
 
 **Lees eerst, in deze volgorde:**
 1. `CLAUDE.md`: wat de plugin is en hoe je test.
-2. `docs/regels.md`: werkregels (WR) en productregels (P).
-3. `docs/besluiten.md`: **zoek hier eerst** voor je zelf iets kiest (kopie van `plannen/besluiten.md`).
-4. `docs/bugs.md`: bekende bugs en hun tests. Raak je die code, draai die tests.
+2. `docs/regels.md`: de principes, het overzicht en alle WR-regels; daarna alleen de groepen van je rol (tabel
+   hieronder). De rest zoek je op als je opdracht het raakt.
+3. `docs/besluiten.md`: niet van voor tot achter lezen, maar **doorzoeken** voor je zelf iets kiest (WR-3).
+4. `docs/bugs.md`: alleen de rijen van de code die je raakt; draai die tests.
+
+| Rol | Groepen uit `regels.md` |
+|---|---|
+| Kern, add-on | Product, UI (bij iets zichtbaars), Code, Testen en release |
+| Website | Code (P-27, P-30), P-31, P-36; Hub-regels en 32 talen gelden niet |
+| Documentatie | Teksten, P-34 |
+| Releases, controle | Testen en release, P-28 |
+| Hulpthread | alleen wat de opdracht noemt |
 5. `/mnt/project-files/plannen/plugins/<repo>/stand.md` en de laatste `overdracht-*.md` daarnaast.
 6. Nieuwe rapporten in `/mnt/project-files/plannen/rapporten/<repo>/`.
 
