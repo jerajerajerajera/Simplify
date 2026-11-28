@@ -66,6 +66,8 @@ return [
         'app_icon_help' => 'Ein quadratisches PNG, JPEG oder WebP mit mindestens 512 Pixeln, bis 1 MB. Leer nutzt das Simplify-Symbol.',
         'app_badge' => 'Statusleisten-Symbol',
         'app_badge_help' => 'Ein PNG mit transparentem Hintergrund, in Androids Statusleiste weiß dargestellt. Leer nutzt das App-Symbol, wenn es einen transparenten Hintergrund hat, sonst den Pelikan.',
+        'app_favicon' => 'Symbol im Browser-Tab',
+        'app_favicon_help' => 'Das kleine Symbol im Browser-Tab und in Lesezeichen. Ein quadratisches PNG oder WebP mit mindestens 64 Pixeln, bis 1 MB. Leer nutzt das App-Symbol oder ohne dieses das eigene Symbol des Panels.',
         'preview' => [
             'logo' => 'In der oberen Leiste',
             'icon' => 'Auf dem Startbildschirm eines Handys',
@@ -161,6 +163,7 @@ return [
         'upload' => 'Eigene hochladen',
         'default_icon' => 'Das Simplify-Symbol verwenden',
         'default_badge' => 'Das Simplify-Symbol verwenden',
+        'default_favicon' => 'App-Symbol verwenden',
     ],
     'addons' => [
         'heading' => 'Add-ons',

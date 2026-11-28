@@ -66,6 +66,8 @@ return [
         'app_icon_help' => 'Een vierkante PNG, JPEG of WebP van minstens 512 pixels, tot 1 MB. Leeg gebruikt het Simplify-icoon.',
         'app_badge' => 'Statusbalkicoon',
         'app_badge_help' => 'Een PNG met transparante achtergrond, wit getoond in de statusbalk van Android. Leeg gebruikt het app-icoon als dat een transparante achtergrond heeft, anders de pelikaan.',
+        'app_favicon' => 'Icoon in browsertabblad',
+        'app_favicon_help' => 'Het kleine icoon in het browsertabblad en bij bladwijzers. Een vierkante PNG of WebP van minstens 64 pixels, tot 1 MB. Leeg gebruikt het app-icoon, of zonder dat het eigen icoon van het paneel.',
         'preview' => [
             'logo' => 'In de bovenbalk',
             'icon' => 'Op het startscherm van een telefoon',
@@ -161,6 +163,7 @@ return [
         'upload' => 'Eigen bestand uploaden',
         'default_icon' => 'Het Simplify-icoon gebruiken',
         'default_badge' => 'Het Simplify-icoon gebruiken',
+        'default_favicon' => 'App-icoon gebruiken',
     ],
     'addons' => [
         'heading' => 'Add-ons',

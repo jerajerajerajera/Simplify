@@ -52,8 +52,8 @@ final class ServerSubdomain extends FormPage
             return;
         }
         $server = $this->server();
-        $name = Subdomains::state($server)['name'];
-        $this->form->fill(['name' => $name !== '' ? $name : Subdomains::suggest((string) $server->name, $server->uuid)]);
+        // Only a saved name: the suggestion is the placeholder, so a removed subdomain never looks set again (K-B105).
+        $this->form->fill(['name' => Subdomains::state($server)['name']]);
     }
 
     /** True while Cloudflare is still being called, so the page keeps checking. */
@@ -84,7 +84,7 @@ final class ServerSubdomain extends FormPage
                     TextInput::make('name')
                         ->label(__('simplify::subdomains.server.name'))
                         ->maxLength(63)
-                        ->placeholder('oak')
+                        ->placeholder(fn () => Subdomains::suggest((string) $this->server()->name, $this->server()->uuid) ?: 'oak')
                         ->dehydrateStateUsing(fn ($state) => strtolower(trim((string) $state)))
                         ->suffix('.'.Subdomains::domain()),
                     Text::make(fn () => $this->status())->visible(fn () => $this->status() !== ''),

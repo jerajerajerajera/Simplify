@@ -76,6 +76,10 @@ check($server['weekly_days'] === [6, 7] && $server['start_from'] === '10:00' && 
 $plain = F::clean([...$form, 'when' => 'server', 'more' => false, 'weekly_days' => [6], 'start_from' => '10:00']);
 check($plain['weekly_days'] === [] && $plain['start_from'] === null && $plain['in_game_target'] === 'started', 'More options off: no days and no hours, chat in the server itself');
 
+// Email: one at a time and every week, never a server moment (it comes back with each start).
+check(F::clean([...$form, 'email' => true])['email'] === true && F::clean([...$form, 'when' => 'weekly', 'email' => true])['email'] === true, 'email is kept for one at a time and every week');
+check(F::clean([...$form, 'when' => 'server', 'email' => true])['email'] === false, 'a server moment is never emailed');
+
 // What the form shows for a stored announcement, and back again.
 check(F::fill(['send_on' => 'time'])['when'] === 'now' && F::fill(['send_on' => 'time', 'starts_at' => '2026-11-28 20:00:00'])['when'] === 'date' && F::fill([])['when'] === 'now', 'at a time: now, or at its date');
 $shown = F::fill(['send_on' => 'start', 'start_daily' => true, 'weekly_days' => [6, 7], 'stay_minutes' => 30]);
@@ -106,6 +110,10 @@ $says = Summary::text([...F::examples()['weekly'], 'weekly_times' => ['19:00', '
 check($says === 'Goes out every Fri, Sat at 12:00, 19:00. Everyone gets it in: a bar at the top of every page, the bell, an app notification. The bar stays for 3 hours.', 'the weekly example: '.$says);
 $says = Summary::text(['when' => 'now', 'bar' => false], $text, $names);
 check($says === 'Goes out as soon as you save. Nobody sees it yet: turn on a place under Where. Nothing stays on screen.', 'nothing turned on says so: '.$says);
+$says = Summary::text(['when' => 'date', 'starts_at' => '2026-12-24 10:00', 'bar' => false, 'email' => true], $text, $names);
+check($says === 'Goes out on 2026-12-24 10:00. Everyone gets it in: an email. Nothing stays on screen.', 'email is a place: '.$says);
+$says = Summary::text(['when' => 'server', 'start_servers' => [1], 'bar' => false, 'email' => true, 'in_bell' => true], $text, $names);
+check(! str_contains($says, 'an email'), 'a server moment never says email: '.$says);
 $says = Summary::text(['when' => 'server', 'start_event' => 'crash', 'often' => 'once', 'start_servers' => [], 'bar' => true, 'in_bell' => true, 'bell_pinned' => true, 'audience' => 'admins', 'stay' => 'ended'], $text, $names);
 check($says === 'Goes out once, the next time … crashes. Admins get it in: a bar at the top of every page, the bell, pinned on top. The bar stays until you end it.', 'a crash, once, for admins: '.$says);
 check(! str_contains(implode(' ', array_map(fn (array $e): string => Summary::text($e, $text, $names), F::examples())), 'MISSING'), 'every example has all its lines');

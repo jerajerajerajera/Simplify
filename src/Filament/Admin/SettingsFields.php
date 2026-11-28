@@ -158,6 +158,7 @@ final class SettingsFields
     {
         return Section::make(__(self::T.'appearance.app'))->description(__(self::T.'appearance.app_help'))->schema([
             self::image('app_icon', 'appearance.app_icon', 'appearance.app_icon_help', 'icon')->imageCropAspectRatio('1:1'),
+            self::image('app_favicon', 'appearance.app_favicon', 'appearance.app_favicon_help', 'favicon')->imageCropAspectRatio('1:1')->acceptedFileTypes(['image/png', 'image/webp']),
             self::image('app_badge', 'appearance.app_badge', 'appearance.app_badge_help', 'badge')->acceptedFileTypes(['image/png']),
             Toggle::make('push')->label(__(self::T.'general.push_on'))->helperText(__(self::T.'general.push_help')),
             Group::make([

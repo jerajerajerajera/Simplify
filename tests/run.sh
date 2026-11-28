@@ -24,6 +24,7 @@ php tests/announcements-task.php
 php tests/announcements-start.php
 php tests/announcements-weekly.php
 php tests/announcements-form.php
+php tests/announcements-email.php
 php tests/embed.php
 php tests/subdomains.php
 php tests/subdomains-import.php
@@ -49,6 +50,7 @@ node tests/server-full-width.cjs
 node tests/admin-crumb-row.cjs
 node tests/admin-crumb-fit.cjs
 node tests/health-pill-fit.cjs
+node tests/brand-fit.cjs
 node tests/card-title-font.cjs
 node tests/labeled-from.cjs
 node tests/settings-nav-wrap.cjs

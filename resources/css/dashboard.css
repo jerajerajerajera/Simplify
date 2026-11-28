@@ -1581,6 +1581,10 @@ body:has(.ps-install:not([style*="none"], [x-cloak])) .fi-main .fi-page .fi-call
 @media (max-width: 600px) {
   .ps .ps-mobile-menu, .ps .ps-mobile-label, .ps .ps-title-pelican, .ps .ps-nav-heading { display: none !important; }
   .ps .ps-brand { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  /* The name shrinks in its own box and ends in "…": the brand is a flex box, so its own ellipsis never shows and a
+     name beside the back button was cut off mid-word (K-B104). */
+  .ps .ps-brand { flex-wrap: nowrap; min-width: 0; }
+  .ps .ps-panel-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
   .ps:not(.server-active) :is(.ps-identity, .ps-identity > a) { min-width: 0; }
   /* Host health in the top bar: the heart and its word when they fit (core.js fitWord), else the heart alone. */
   .ps .ps-health-pill { min-width: var(--ps-h); }

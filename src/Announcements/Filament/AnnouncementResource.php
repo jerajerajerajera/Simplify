@@ -32,6 +32,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Simplify\Core\Announcements\Models\Announcement;
 use Simplify\Core\Announcements\Services\Bell;
+use Simplify\Core\Announcements\Services\Email;
 use Simplify\Core\Announcements\Services\InGame;
 use Simplify\Core\Announcements\Services\Push;
 use Simplify\Core\Announcements\Services\WeeklyAnnouncements;
@@ -80,7 +81,7 @@ final class AnnouncementResource extends Resource
     }
 
     /** The fields the sentence "What this does" reads. */
-    private const SUMMARY_FIELDS = ['when', 'often', 'more', 'stop_after', 'stay_n', 'stay_unit', 'starts_at', 'ends_at', 'weekly_days', 'weekly_times', 'start_event', 'start_servers', 'start_from', 'start_until', 'bar', 'stay', 'in_bell', 'bell_pinned', 'push', 'in_game', 'audience'];
+    private const SUMMARY_FIELDS = ['when', 'often', 'more', 'stop_after', 'stay_n', 'stay_unit', 'starts_at', 'ends_at', 'weekly_days', 'weekly_times', 'start_event', 'start_servers', 'start_from', 'start_until', 'bar', 'stay', 'in_bell', 'bell_pinned', 'push', 'email', 'in_game', 'audience'];
 
     public static function form(Schema $schema): Schema
     {
@@ -331,6 +332,16 @@ final class AnnouncementResource extends Resource
                 ->default(true)
                 ->live()
                 ->visible(Push::available()),
+            // Not for a server moment: it comes back with each start (FormData::clean).
+            Toggle::make('email')
+                ->label(self::text('form.email'))
+                ->helperText(self::text('form.email_help'))
+                ->live()
+                ->disabled(! Email::available())
+                ->visible(fn (Get $get): bool => ! $server($get)),
+            View::make('simplify::announcements.mail-missing')
+                ->viewData(['url' => Email::settingsUrl()])
+                ->visible(fn (Get $get): bool => ! $server($get) && ! Email::available()),
             Toggle::make('in_game')
                 ->label(self::text('table.in_game'))
                 ->helperText(self::text('form.in_game_help'))
@@ -485,6 +496,13 @@ final class AnnouncementResource extends Resource
                             ->state(fn (Announcement $record): ?string => $record->push ? self::text('table.pushed_to', ['count' => $record->pushed_to]) : null)
                             ->color('gray')
                             ->visible(Push::available())
+                            ->grow(false),
+                        TextColumn::make('email_sent')
+                            ->icon('tabler-mail')
+                            ->tooltip(self::text('table.email'))
+                            ->state(fn (Announcement $record): ?string => ($state = Email::progress($record->email, $record->email_sent, $record->email_total, $record->email_failed)) === null
+                                ? null : self::text('table.email_'.$state, ['sent' => (string) $record->email_sent, 'total' => (string) $record->email_total]))
+                            ->color(fn (Announcement $record): string => $record->email_failed ? 'danger' : 'gray')
                             ->grow(false),
                         TextColumn::make('in_game_result')
                             ->icon('tabler-device-gamepad-2')

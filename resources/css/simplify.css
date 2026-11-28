@@ -2705,7 +2705,7 @@ html.ps-frame .s-done {
   line-height: 1.5rem;
 }
 
-/* Announcements: the browser's clock is in another time zone than the profile (announcements/zone-hint). */
+/* Announcements: the browser's clock is in another time zone than the profile (announcements/zone-hint), or the panel has no mail server (announcements/mail-missing). */
 .s-zone-hint {
   display: flex;
   align-items: flex-start;

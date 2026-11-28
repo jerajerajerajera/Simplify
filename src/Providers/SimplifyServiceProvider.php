@@ -24,6 +24,7 @@ use Simplify\Core\Announcements\Tasks\AnnouncementTask;
 use Simplify\Core\Console\UpdateNoticesCommand;
 use Simplify\Core\Embed\Console\RecordUptime;
 use Simplify\Core\Embed\EmbedController;
+use Simplify\Core\Http\Controllers\AnnouncementEmailsController;
 use Simplify\Core\Http\Controllers\AssetController;
 use Simplify\Core\Http\Controllers\BannerController;
 use Simplify\Core\Http\Controllers\BrandController;
@@ -81,8 +82,14 @@ final class SimplifyServiceProvider extends ServiceProvider
             ->name('simplify.banner');
         Route::get('/simplify/manifest.webmanifest', [WebAppController::class, 'manifest'])->name('simplify.manifest');
         Route::get('/simplify/app-icon-{size}.png', [WebAppController::class, 'icon'])->whereIn('size', ['180', '192', '512'])->name('simplify.app-icon');
+        Route::get('/simplify/favicon.png', [WebAppController::class, 'favicon'])->name('simplify.favicon');
         // At the root, so the worker's scope can be the whole panel.
         Route::get('/simplify-worker.js', [WebAppController::class, 'worker'])->name('simplify.worker');
+
+        // The link in each announcement email: no session and no login, the signature is the account's own (no expiry,
+        // like any unsubscribe link). POST is a mail app's one-click unsubscribe, which sends no CSRF token.
+        Route::match(['GET', 'POST'], '/simplify/announcement-emails/{user}', AnnouncementEmailsController::class)
+            ->whereNumber('user')->middleware(['signed:relative', 'throttle:30,1'])->name('simplify.announcement-emails');
 
         // Embed: public and read-only, without a session, so any website can show the list. These are the addresses
         // PelicanSimplify used, so websites that show the list keep working. The controller answers 404 while the

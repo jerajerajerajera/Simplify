@@ -78,6 +78,10 @@ async function run(viewport) {
   const context = await browser.newContext({ viewport, colorScheme: 'dark', deviceScaleFactor: 1 });
   page = await context.newPage();
   page.on('pageerror', (e) => say('page error', false, { message: String(e.message).slice(0, 200) }));
+  // Wings' console output as it reaches the page (the output is drawn with WebGL, so the page has no text to read).
+  page.on('websocket', (ws) => ws.on('framereceived', (frame) => {
+    if (String(frame.payload).includes('"console output"')) page.evaluate(() => { window.__psConsoleLines = (window.__psConsoleLines || 0) + 1; }).catch(() => {});
+  }));
   await login();
   if (stand === 'd1440') {
     const cookies = await context.cookies(base);
@@ -99,6 +103,15 @@ async function run(viewport) {
     await shot('server');
     say('server page shows the card and the menu', (await visible('.ps-server-info')) && (await visible(MENU)));
     say('server page shows the console', await page.locator('.xterm, #terminal').first().isVisible().catch(() => false));
+    // Londikk 28-11: on the first visit to a server page the console connects and shows Wings' output, without a reload.
+    const live = await page.waitForFunction(() => {
+      const dot = document.querySelector('#terminal .ps-console-dot.connected'), screen = document.querySelector('#terminal .xterm-screen');
+      return !!dot && !!screen && screen.getBoundingClientRect().height > 60 && (window.__psConsoleLines || 0) > 0;
+    }, null, { timeout: 20000 }).then(() => true).catch(() => false);
+    say('the console connects and shows output on the first visit (Londikk)', live, live ? null : await page.evaluate(() => ({
+      dot: !!document.querySelector('#terminal .ps-console-dot.connected'), screen: Math.round(document.querySelector('#terminal .xterm-screen')?.getBoundingClientRect().height || 0),
+      lines: window.__psConsoleLines || 0, xterm: !!window.Xterm, state: document.querySelector('#terminal .ps-console-state')?.textContent || null,
+    })).catch(() => null));
     if (!phone) say('server page does not scroll', (await scrolls()) <= 1, { scroll: await scrolls() });
     await axe('server');
 
@@ -187,6 +200,75 @@ async function run(viewport) {
     await shot('files-menu');
     say("Files: Delete is in a file's menu and takes its own click", loose === 0 && !!remove && remove.own, { loose, remove });
     await page.keyboard.press('Escape').catch(() => {}); await sleep(300);
+
+    // Londikk 28-11: Files reached through the server menu, as people do. Pelican's "Drop files to upload" layer and its
+    // upload dialog stay hidden: on arrival, after a file is dragged over the page and back out, and after a drag
+    // inside the page (a link) that ends without a drop. Then a text file opens in the editor, which takes typing and
+    // opens its own Find with Ctrl+F.
+    if (!phone) {
+      await goto(serverUrl);
+      const filesLink = page.locator('.ps-server-menu a[href$="/files"] >> visible=true').first();
+      await filesLink.click({ timeout: 4000 }).catch(() => {});
+      await page.waitForURL((url) => url.pathname.endsWith('/files'), { timeout: 15000 }).catch(() => {});
+      await page.waitForSelector('.fi-ta-row', { timeout: 15000 }).catch(() => {}); await settle(800);
+      const layers = () => page.evaluate(() => {
+        const shown = (el) => !!el && el.getClientRects().length > 0 && getComputedStyle(el).display !== 'none' && getComputedStyle(el).visibility !== 'hidden' && Number(getComputedStyle(el).opacity) > 0.05;
+        const drop = document.querySelector('[x-data^="fileDropZone"] > div');
+        const dialog = [...document.querySelectorAll('[x-data^="fileUploader"] > div')];
+        return { path: location.pathname, dropZone: !!document.querySelector('[x-data^="fileDropZone"]'), drop: shown(drop), dialog: dialog.some(shown), uploaders: document.querySelectorAll('[x-data^="fileUploader"]').length };
+      }).catch(() => null);
+      const arrived = await layers();
+      await shot('files-through-menu');
+      say('Files through the menu: no upload layer or upload dialog in view (Londikk)', !!arrived && arrived.path.endsWith('/files') && !arrived.drop && !arrived.dialog && arrived.uploaders <= 1, arrived);
+      // A file from the computer dragged over the page and back out: dragenter/dragleave as Chrome fires them, per element.
+      await page.evaluate(() => {
+        const fire = (el, type) => { const dt = new DataTransfer(); dt.items.add(new File(['x'], 'x.txt', { type: 'text/plain' })); el.dispatchEvent(new DragEvent(type, { bubbles: true, cancelable: true, dataTransfer: dt })); };
+        const row = document.querySelector('.fi-ta-row') || document.body;
+        fire(document.body, 'dragenter'); fire(row, 'dragenter'); fire(document.body, 'dragleave'); fire(row, 'dragleave');
+      }).catch(() => {});
+      await sleep(700);
+      const outside = await layers();
+      say('Files: a file dragged over the page and back out leaves no upload layer (Londikk)', !!outside && !outside.drop && !outside.dialog, outside);
+      // A link in the page dragged a little and let go without a drop.
+      const rowLink = page.locator('.fi-ta-row a[href] >> visible=true').first();
+      const box = await rowLink.boundingBox().catch(() => null);
+      if (box) {
+        await page.mouse.move(box.x + 10, box.y + box.height / 2); await page.mouse.down();
+        await page.mouse.move(box.x + 60, box.y + box.height / 2 + 40, { steps: 8 }); await page.mouse.move(box.x + 200, box.y + 160, { steps: 8 });
+        await page.mouse.up(); await sleep(700);
+      }
+      const inside = await layers();
+      await shot('files-after-drag');
+      say('Files: a drag inside the page leaves no upload layer (Londikk)', !!inside && !inside.drop && !inside.dialog, inside);
+
+      // The editor, opened from the list as people do (server.properties from the seed's Wings).
+      // The row's link goes to files/edit/<path> (Pelican's recordUrl), the path encoded or not.
+      const editHref = await page.evaluate(() => [...document.querySelectorAll('.fi-ta-row a[href]')].map((a) => a.getAttribute('href')).find((href) => /\/edit\//.test(href) && /server\.properties/.test(decodeURIComponent(href))) || null).catch(() => null);
+      if (editHref) await page.locator(`.fi-ta-row a[href="${editHref}"] >> visible=true`).first().click({ timeout: 4000 }).catch(() => {});
+      // The audit's Wings calls every file a .jar, so Pelican offers no edit link there: then straight to the editor.
+      if (!editHref) await goto(serverUrl.replace(/\/console$/, '') + '/files/edit/server.properties');
+      await page.waitForSelector('.monaco-editor .view-lines', { timeout: 20000 }).catch(() => {}); await settle(1000);
+      await page.locator('.monaco-editor .view-lines').first().click({ timeout: 4000, position: { x: 40, y: 10 } }).catch(() => {});
+      await page.keyboard.press('Control+End').catch(() => {});
+      await page.keyboard.type('simplifytyped', { delay: 20 }).catch(() => {}); await sleep(500);
+      const typed = await page.evaluate(() => ({
+        text: (document.querySelector('.monaco-editor .view-lines')?.innerText || '').includes('simplifytyped'),
+        focus: document.activeElement ? (document.activeElement.className || document.activeElement.tagName).toString().slice(0, 80) : null,
+        inEditor: !!document.activeElement?.closest('.monaco-editor'),
+      })).catch(() => null);
+      await shot('file-editor');
+      say('the file editor takes typing (Londikk)', !!typed && typed.text, { fromList: !!editHref, ...typed });
+      await page.keyboard.press('Control+f').catch(() => {}); await sleep(700);
+      const find = await page.evaluate(() => {
+        const widget = document.querySelector('.monaco-editor .find-widget');
+        return { visible: !!widget && widget.classList.contains('visible'), focus: !!document.activeElement?.closest('.find-widget'), focusOn: document.activeElement ? (document.activeElement.className || document.activeElement.tagName).toString().slice(0, 80) : null };
+      }).catch(() => null);
+      say("the file editor opens its own Find with Ctrl+F (Londikk)", !!find && find.visible && find.focus, find);
+      await page.keyboard.press('Escape').catch(() => {});
+      // The text as it was, so leaving the page asks nothing.
+      for (let i = 0; i < 'simplifytyped'.length; i++) await page.keyboard.press('Backspace').catch(() => {});
+      await sleep(300);
+    }
   }
 
   // Admin: on a desktop the shield in the top bar switches without a full load; on a phone the Admin tab in the bottom bar.

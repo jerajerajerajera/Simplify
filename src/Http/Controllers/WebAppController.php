@@ -32,6 +32,17 @@ final class WebAppController
         return response($png, 200, ['Content-Type' => 'image/png', 'Cache-Control' => 'public, max-age=86400']);
     }
 
+    /** The browser tab icon (Settings › Look); the panel's own favicon when there is none. */
+    public function favicon(): Response|RedirectResponse
+    {
+        $png = WebApp::faviconPng();
+        if ($png === null) {
+            return redirect(Assets::url('favicon.svg'));
+        }
+
+        return response($png, 200, ['Content-Type' => 'image/png', 'Cache-Control' => 'public, max-age=86400']);
+    }
+
     public function worker(): Response
     {
         return response(WebApp::worker(), 200, [

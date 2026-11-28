@@ -20,6 +20,9 @@ final class WebApp
 
     public const DARK = '#09090b';
 
+    /** The browser tab icon is served this many pixels square: sharp on a high-density screen. */
+    public const FAVICON = 64;
+
     public static function name(): string
     {
         $name = trim((string) PanelSettings::get('brand_name'));
@@ -49,10 +52,29 @@ final class WebApp
         return [Assets::url('app-icon-'.$size.'.png'), 'image/png'];
     }
 
-    /** The admin's own app icon as a square PNG of $size pixels (cropped to its middle), or null without one. */
-    public static function ownIconPng(int $size): ?string
+    /**
+     * The browser tab icon: the admin's own, else their app icon. Null without either, so the panel keeps its own.
+     */
+    public static function favicon(): ?string
     {
-        $own = Brand::logoFile(PanelSettings::get('app_icon'));
+        $own = Brand::logoFile(PanelSettings::get('app_favicon')) ?? Brand::logoFile(PanelSettings::get('app_icon'));
+        if ($own === null) {
+            return null;
+        }
+
+        return function_exists('imagecreatefromstring') ? url('/simplify/favicon.png').'?v='.substr(md5($own), 0, 8) : url('/simplify/brand/'.$own);
+    }
+
+    /** The browser tab icon as a square PNG, or null without an own favicon or app icon. */
+    public static function faviconPng(): ?string
+    {
+        return self::ownIconPng(self::FAVICON, 'app_favicon') ?? self::ownIconPng(self::FAVICON);
+    }
+
+    /** An image the admin uploaded ($setting) as a square PNG of $size pixels (cropped to its middle), or null without one. */
+    public static function ownIconPng(int $size, string $setting = 'app_icon'): ?string
+    {
+        $own = Brand::logoFile(PanelSettings::get($setting));
         $path = $own !== null ? Brand::path($own) : null;
         if ($path === null || ! function_exists('imagecreatefromstring')) {
             return null;

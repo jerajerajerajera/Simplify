@@ -102,6 +102,8 @@ final class FormData
             $out['weekly_at'] = $out['weekly_times'][0] ?? null;
         }
         if ($when === self::SERVER) {
+            // A server moment comes back with each start: an email each time would flood inboxes.
+            $out['email'] = false;
             $out['start_event'] = StartTrigger::event($data['start_event'] ?? null);
             $out['start_servers'] = StartTrigger::servers($data['start_servers'] ?? null);
             $out['weekly_days'] = $more ? Weekly::days($data['weekly_days'] ?? null) : [];
@@ -134,7 +136,7 @@ final class FormData
         $base = [
             'when' => self::NOW, 'often' => self::EVERY, 'more' => false, 'weekly_days' => [], 'start_from' => null, 'start_until' => null, 'stop_after' => null,
             'start_event' => 'start', 'bar' => true, 'stay' => 'ended', 'stay_n' => 3, 'stay_unit' => 'hours', 'in_bell' => true, 'bell_pinned' => false,
-            'push' => true, 'in_game' => false, 'in_game_target' => 'started', 'in_game_repeat' => 0, 'audience' => 'everyone', 'category' => 'info',
+            'push' => true, 'email' => false, 'in_game' => false, 'in_game_target' => 'started', 'in_game_repeat' => 0, 'audience' => 'everyone', 'category' => 'info',
         ];
 
         return [

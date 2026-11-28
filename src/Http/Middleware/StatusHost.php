@@ -45,7 +45,7 @@ final class StatusHost
             // On this host, not the panel's address that url('/') would give.
             return redirect()->to($request->getSchemeAndHttpHost().'/'.($query === '' ? '' : '?'.$query), 301);
         }
-        if (str_starts_with($path, 'simplify/embed') || str_starts_with($path, 'simplify/assets/')) {
+        if (str_starts_with($path, 'simplify/embed') || str_starts_with($path, 'simplify/assets/') || $path === 'simplify/favicon.png') {
             return $next($request);
         }
         abort(404);

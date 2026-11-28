@@ -66,6 +66,8 @@ return [
         'app_icon_help' => '512 ピクセル以上の正方形の PNG、JPEG、WebP (1 MB まで)。空欄なら Simplify のアイコンを使います。',
         'app_badge' => 'ステータスバーのアイコン',
         'app_badge_help' => '背景が透明なPNG。Androidのステータスバーに白で表示されます。空の場合、背景が透明ならアプリアイコン、そうでなければペリカンを使います。',
+        'app_favicon' => 'ブラウザタブのアイコン',
+        'app_favicon_help' => 'ブラウザのタブとブックマークに表示される小さなアイコン。64 ピクセル以上の正方形の PNG または WebP、1 MB まで。空の場合はアプリアイコン、それもなければパネル独自のアイコンを使います。',
         'preview' => [
             'logo' => '上部バー',
             'icon' => 'スマートフォンのホーム画面',
@@ -161,6 +163,7 @@ return [
         'upload' => '自分でアップロード',
         'default_icon' => 'Simplify のアイコンを使う',
         'default_badge' => 'Simplify のアイコンを使う',
+        'default_favicon' => 'アプリアイコンを使う',
     ],
     'addons' => [
         'heading' => 'アドオン',

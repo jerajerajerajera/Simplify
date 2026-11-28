@@ -66,6 +66,8 @@ return [
         'app_icon_help' => 'Ảnh PNG, JPEG hoặc WebP vuông tối thiểu 512 pixel, tối đa 1 MB. Để trống dùng biểu tượng Simplify.',
         'app_badge' => 'Biểu tượng thanh trạng thái',
         'app_badge_help' => 'Ảnh PNG nền trong suốt, hiển thị màu trắng trên thanh trạng thái Android. Để trống sẽ dùng biểu tượng ứng dụng nếu nền trong suốt, nếu không thì dùng chú bồ nông.',
+        'app_favicon' => 'Biểu tượng tab trình duyệt',
+        'app_favicon_help' => 'Biểu tượng nhỏ trên tab trình duyệt và dấu trang. PNG hoặc WebP vuông ít nhất 64 pixel, tối đa 1 MB. Để trống sẽ dùng biểu tượng ứng dụng, hoặc biểu tượng riêng của bảng điều khiển nếu không có.',
         'preview' => [
             'logo' => 'Trên thanh trên cùng',
             'icon' => 'Trên màn hình chính của điện thoại',
@@ -161,6 +163,7 @@ return [
         'upload' => 'Tải lên của bạn',
         'default_icon' => 'Dùng biểu tượng Simplify',
         'default_badge' => 'Dùng biểu tượng Simplify',
+        'default_favicon' => 'Dùng biểu tượng ứng dụng',
     ],
     'addons' => [
         'heading' => 'Tiện ích bổ sung',

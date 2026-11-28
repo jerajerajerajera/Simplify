@@ -66,6 +66,8 @@ return [
         'app_icon_help' => 'En az 512 piksel, en fazla 1 MB kare PNG, JPEG veya WebP. Boş bırakılırsa Simplify simgesi kullanılır.',
         'app_badge' => 'Durum çubuğu simgesi',
         'app_badge_help' => 'Şeffaf arka planlı bir PNG; Android durum çubuğunda beyaz gösterilir. Boşsa, arka planı şeffafsa uygulama simgesi, değilse pelikan kullanılır.',
+        'app_favicon' => 'Tarayıcı sekmesi simgesi',
+        'app_favicon_help' => 'Tarayıcı sekmesindeki ve yer imlerindeki küçük simge. En az 64 piksel, en fazla 1 MB kare PNG veya WebP. Boş bırakılırsa uygulama simgesi, o da yoksa panelin kendi simgesi kullanılır.',
         'preview' => [
             'logo' => 'Üst çubukta',
             'icon' => 'Bir telefonun ana ekranında',
@@ -161,6 +163,7 @@ return [
         'upload' => 'Kendininkini yükle',
         'default_icon' => 'Simplify simgesini kullan',
         'default_badge' => 'Simplify simgesini kullan',
+        'default_favicon' => 'Uygulama simgesini kullan',
     ],
     'addons' => [
         'heading' => 'Ek özellikler',

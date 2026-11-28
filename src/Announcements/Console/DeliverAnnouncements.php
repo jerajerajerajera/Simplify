@@ -6,6 +6,7 @@ namespace Simplify\Core\Announcements\Console;
 
 use Illuminate\Console\Command;
 use Simplify\Core\Announcements\Services\Bell;
+use Simplify\Core\Announcements\Services\Email;
 use Simplify\Core\Announcements\Services\InGame;
 use Simplify\Core\Announcements\Services\Push;
 use Simplify\Core\Announcements\Services\StartAnnouncements;
@@ -19,7 +20,7 @@ final class DeliverAnnouncements extends Command
 {
     protected $signature = 'simplify:announcements {--diagnose : Show why each announcement does or does not go out, without sending anything}';
 
-    protected $description = 'Puts announcements that just started in the bell, sends them as app notifications and posts them in game.';
+    protected $description = 'Puts announcements that just started in the bell, sends them as app notifications and emails and posts them in game.';
 
     public function handle(): int
     {
@@ -44,6 +45,10 @@ final class DeliverAnnouncements extends Command
         if ($devices > 0) {
             $this->info("Sent announcements as app notifications to $devices devices.");
         }
+        $emails = Email::sendDue();
+        if ($emails > 0) {
+            $this->info("Sent announcements by email to $emails accounts.");
+        }
         $waited = TaskWaits::runDue();
         if ($waited > 0) {
             $this->info("Finished $waited announcements of schedules that waited for their server.");
@@ -56,7 +61,7 @@ final class DeliverAnnouncements extends Command
         if ($servers > 0) {
             $this->info("Posted announcements in game on $servers servers.");
         }
-        Diagnose::trace("run bell=$reached push=$devices waits=$waited starts=$starts game=$servers weekly=$weekly");
+        Diagnose::trace("run bell=$reached push=$devices email=$emails waits=$waited starts=$starts game=$servers weekly=$weekly");
 
         return self::SUCCESS;
     }

@@ -66,6 +66,8 @@ return [
         'app_icon_help' => '正方形 PNG、JPEG 或 WebP，至少 512 像素，最大 1 MB。留空则使用 Simplify 图标。',
         'app_badge' => '状态栏图标',
         'app_badge_help' => '背景透明的 PNG，在 Android 状态栏中显示为白色。留空时，如果应用图标背景透明则使用应用图标，否则使用鹈鹕。',
+        'app_favicon' => '浏览器标签图标',
+        'app_favicon_help' => '浏览器标签和书签中的小图标。至少 64 像素的正方形 PNG 或 WebP，最大 1 MB。留空则使用应用图标，没有应用图标时使用面板自己的图标。',
         'preview' => [
             'logo' => '顶部栏',
             'icon' => '手机主屏幕',
@@ -161,6 +163,7 @@ return [
         'upload' => '上传自己的',
         'default_icon' => '使用 Simplify 图标',
         'default_badge' => '使用 Simplify 图标',
+        'default_favicon' => '使用应用图标',
     ],
     'addons' => [
         'heading' => '附加组件',

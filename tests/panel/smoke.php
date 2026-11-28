@@ -27,6 +27,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Once;
@@ -42,8 +43,10 @@ use Simplify\Core\Addons\Button;
 use Simplify\Core\Announcements\Filament\AnnouncementResource;
 use Simplify\Core\Announcements\Filament\ManageAnnouncements;
 use Simplify\Core\Announcements\Livewire\AnnouncementBars;
+use Simplify\Core\Announcements\Mail\AnnouncementMail;
 use Simplify\Core\Announcements\Models\Announcement;
 use Simplify\Core\Announcements\Services\Bell as AnnouncementBell;
+use Simplify\Core\Announcements\Services\Email as AnnouncementEmail;
 use Simplify\Core\Announcements\Services\StartAnnouncements;
 use Simplify\Core\Announcements\Services\TaskWaits;
 use Simplify\Core\Announcements\Services\WeeklyAnnouncements;
@@ -90,6 +93,7 @@ use Simplify\Core\Support\FreshViews;
 use Simplify\Core\Support\PanelSettings;
 use Simplify\Core\Support\Preferences;
 use Simplify\Core\Support\StaleCode;
+use Simplify\Core\WebApp\WebApp;
 use Spatie\Health\ResultStores\ResultStore;
 use Spatie\Health\ResultStores\StoredCheckResults\StoredCheckResult;
 use Spatie\Health\ResultStores\StoredCheckResults\StoredCheckResults;
@@ -278,6 +282,33 @@ final class LockActions extends Component
     public function render(): string
     {
         return '<div class="smoke-lock-actions">Force kill · Retry</div>';
+    }
+}
+
+/** Dresses the public status page the way Themes does (Addon::statusPageHead/statusPageBody, API 11). */
+final class StatusThemeAddon extends Addon
+{
+    /** Only during its own step: a tag stays for the rest of the run. */
+    public static bool $on = false;
+
+    public function id(): string
+    {
+        return 'status-theme-addon';
+    }
+
+    public function name(): string
+    {
+        return 'Status theme add-on';
+    }
+
+    public function statusPageHead(): string
+    {
+        return self::$on ? '<style data-smoke-theme>:root{--simplify-embed-card:#123456}</style>' : '';
+    }
+
+    public function statusPageBody(): string
+    {
+        return self::$on ? '<script data-smoke-theme src="/smoke-theme.js" defer></script>' : '';
     }
 }
 
@@ -1226,6 +1257,117 @@ step('announcements: unpin moves a bar to the bell, pin brings it back, and the 
         throw new RuntimeException('the bell item did not arrive exactly once');
     }
 });
+step('announcements: Email sends it once to each account that wants it, and the link in the email turns them off and on without signing in', function () use ($admin) {
+    $player = User::where('email', 'smoke-player@example.com')->firstOrFail();
+    $fail = fn (string $why) => throw new RuntimeException($why);
+    // Without a mail server the toggle is off and says so.
+    config(['mail.default' => 'log']);
+    if (AnnouncementEmail::available()) {
+        $fail('the log mailer counts as a mail server');
+    }
+    $settings = AnnouncementEmail::settingsUrl();
+    $html = view('simplify::announcements.mail-missing', ['url' => $settings])->render();
+    if ($settings === null || ! str_contains($settings, 'mail') || ! str_contains($html, e(__('simplify::announcements.form.email_missing'))) || ! str_contains($html, e($settings))) {
+        $fail('the notice does not say mail is not set up, or does not link to the mail settings: '.var_export($settings, true));
+    }
+    // Where the test renders the create form, its Email part says so too.
+    $form = Livewire\Livewire::actingAs($admin)->test(ManageAnnouncements::class)->call('mountAction', 'create')->html();
+    if (str_contains($form, e(__('simplify::announcements.form.email_help'))) && ! str_contains($form, e(__('simplify::announcements.form.email_missing')))) {
+        $fail('the form shows Email but not that mail is not set up');
+    }
+    config(['mail.default' => 'smtp', 'mail.from.address' => 'panel@example.com']);
+    Mail::fake();
+    // The link turns them off: opening it only shows a button, the button (or a mail app's one-click POST) turns them off.
+    $link = AnnouncementEmail::unsubscribeUrl($player);
+    $client = new class(app())
+    {
+        use MakesHttpRequests;
+
+        public function __construct(public $app) {}
+    };
+    $page = $client->get($link);
+    if ($page->getStatusCode() !== 200 || ! str_contains((string) $page->getContent(), e(__('simplify::announcements.mail.stop')))) {
+        $fail('the stop link does not open its page: '.$page->getStatusCode());
+    }
+    if (! AnnouncementEmail::wanted($player)) {
+        $fail('opening the link turned the emails off; only the button may');
+    }
+    $page = $client->post($link);
+    if ($page->getStatusCode() !== 200 || AnnouncementEmail::wanted($player)) {
+        $fail('the button did not turn the emails off: '.$page->getStatusCode());
+    }
+    $tampered = [$client->post($link.'x')->getStatusCode(), $client->get(preg_replace('#/announcement-emails/\d+#', '/announcement-emails/'.$admin->id, $link))->getStatusCode()];
+    if ($tampered !== [403, 403]) {
+        $fail('a changed link is not refused: '.json_encode($tampered));
+    }
+
+    $mail = Announcement::create(['title' => 'Smoke by email', 'body' => 'Line one & <b>two</b>', 'in_bell' => false, 'push' => false, 'email' => true]);
+    Artisan::call('simplify:announcements');
+    Artisan::call('simplify:announcements');
+    $sent = Mail::sent(AnnouncementMail::class);
+    $to = fn (User $user) => $sent->filter(fn (AnnouncementMail $one) => $one->hasTo($user->email))->count();
+    if ($to($admin) !== 1 || $to($player) !== 0) {
+        $fail('the admin did not get it once, or the player who turned them off got it: '.$to($admin).'/'.$to($player));
+    }
+    $wanting = User::query()->get()->filter(fn (User $user) => filter_var((string) $user->email, FILTER_VALIDATE_EMAIL) && AnnouncementEmail::wanted($user))->count();
+    if ($sent->count() !== $wanting) {
+        $fail('not exactly one email per account that wants them: '.$sent->count().' for '.$wanting);
+    }
+    $mail->refresh();
+    if ($mail->email_sent !== $wanting || $mail->email_total !== $wanting || $mail->email_failed) {
+        $fail('the list does not count the emails: '.json_encode($mail->only(['email_sent', 'email_total', 'email_failed'])));
+    }
+    // Back on: the player gets it on the next minute, within a day after the start.
+    $client->post($link, ['on' => '1']);
+    Artisan::call('simplify:announcements');
+    if (Mail::sent(AnnouncementMail::class)->filter(fn (AnnouncementMail $one) => $one->hasTo($player->email))->count() !== 1) {
+        $fail('turned back on, the player did not get it');
+    }
+    // The email: escaped, with the stop link and the mail app's one-click header.
+    $html = (new AnnouncementMail($mail, $player))->render();
+    if (! str_contains($html, 'Smoke by email') || ! str_contains($html, '&lt;b&gt;two&lt;/b&gt;') || ! str_contains($html, '/simplify/announcement-emails/'.$player->id)) {
+        $fail('the email misses its title, its stop link, or shows the message as HTML');
+    }
+    $headers = (new AnnouncementMail($mail, $player))->headers()->text;
+    if (($headers['List-Unsubscribe-Post'] ?? '') !== 'List-Unsubscribe=One-Click' || ! str_contains($headers['List-Unsubscribe'] ?? '', '/announcement-emails/')) {
+        $fail('the email has no one-click unsubscribe header');
+    }
+    $mail->delete();
+});
+step('settings: an own browser tab icon is on every page and the status page, as a 64 pixel PNG, and the app icon stands in without one', function () use ($admin) {
+    if (! function_exists('imagecreatetruecolor')) {
+        return;
+    }
+    $image = imagecreatetruecolor(200, 120);
+    imagefill($image, 0, 0, imagecolorallocate($image, 200, 40, 40));
+    ob_start();
+    imagepng($image);
+    $file = Brand::DIRECTORY.'/smoke-favicon.png';
+    Storage::disk('local')->put($file, (string) ob_get_clean());
+    PanelSettings::save(['app_favicon' => $file]);
+    $url = WebApp::favicon();
+    if ($url === null || ! str_contains($url, '/simplify/favicon.png')) {
+        throw new RuntimeException('no favicon address for an own favicon: '.var_export($url, true));
+    }
+    $png = WebApp::faviconPng();
+    $size = $png === null ? false : getimagesizefromstring($png);
+    if ($size === false || $size[0] !== WebApp::FAVICON || $size[1] !== WebApp::FAVICON) {
+        throw new RuntimeException('the favicon is not a square PNG of '.WebApp::FAVICON.' pixels');
+    }
+    $page = (string) visit($admin, Settings::getUrl(panel: 'admin'))->getContent();
+    if (! str_contains($page, 'data-simplify-favicon') || ! str_contains($page, e($url))) {
+        throw new RuntimeException('the settings page has no own favicon');
+    }
+    $status = visit($admin, '/status');
+    if (! str_contains((string) $status->getContent(), '<link rel="icon" href="'.e($url).'">')) {
+        throw new RuntimeException('the status page has no favicon');
+    }
+    PanelSettings::save(['app_favicon' => null]);
+    if (WebApp::favicon() !== null && ! PanelSettings::get('app_icon')) {
+        throw new RuntimeException('without an own favicon or app icon the panel keeps its own favicon');
+    }
+    Storage::disk('local')->delete($file);
+});
 step('announcement task: sends now to the owner once, and "when online" waits in the scheduler, then says it did not come online (K-B64)', function () use ($server) {
     $owner = User::query()->findOrFail($server->owner_id);
     $owner->notifications()->delete();
@@ -1855,6 +1997,46 @@ step('embed: the public list shows only servers put on the website, without priv
         EmbedServers::replace([]);
     }
 });
+step('embed: an add-on dresses the status page (head and body), only the page itself, and the page then follows the device', function ($app) {
+    $guest = new class(app())
+    {
+        use MakesHttpRequests;
+
+        public function __construct(public $app) {}
+    };
+    $plain = $guest->get('/simplify/embed?page=1')->getContent();
+    $app->tag([StatusThemeAddon::class], AddonRegistry::TAG);
+    $app->forgetInstance(AddonRegistry::class);
+    StatusThemeAddon::$on = true;
+    $old = EmbedOptions::all();
+    EmbedOptions::save([...$old, 'page_style' => 'dark', 'page_accent' => '#ff0000']);
+    try {
+        $html = $guest->get('/simplify/embed?page=1')->getContent();
+        $head = strpos($html, '<style data-smoke-theme>');
+        $body = strpos($html, '<script data-smoke-theme');
+        if ($head === false || $head > strpos($html, '</head>') || $body === false || $body < strpos($html, '<body>') || $body > strpos($html, '</body>')) {
+            throw new RuntimeException('the add-on\'s head and body are not on the status page in their places');
+        }
+        // Themes gives light and dark colours: a fixed theme or accent of the page would take only one half.
+        if (str_contains($html, 'data-style="dark"') || str_contains($html, 'data-accent=')) {
+            throw new RuntimeException('with an add-on\'s head the page still fixes its own theme or accent');
+        }
+        // The address may still ask for one.
+        if (! str_contains($guest->get('/simplify/embed?page=1&style=light')->getContent(), 'data-style="light"')) {
+            throw new RuntimeException('the address could not ask for a theme');
+        }
+        // The list inside another website stays the website's own.
+        if (str_contains($guest->get('/simplify/embed?server=abc')->getContent(), 'data-smoke-theme')) {
+            throw new RuntimeException('the add-on\'s part reached the list inside another website');
+        }
+        if (str_contains($plain, 'data-smoke-theme')) {
+            throw new RuntimeException('the page had the add-on\'s part before the add-on was there');
+        }
+    } finally {
+        StatusThemeAddon::$on = false;
+        EmbedOptions::save($old);
+    }
+});
 step('embed: the Website page of a server saves what the website shows, only on Save', function () use ($admin, $server) {
     $guest = new class(app())
     {
@@ -2346,6 +2528,12 @@ step('subdomains: a subdomain reaches Cloudflare and shows on the server card', 
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('server'));
     Filament\Facades\Filament::setTenant($server);
     $calls = [];
+    // Without a subdomain the field is empty, the suggestion only its placeholder: a removed subdomain showed the
+    // server's name in the field after a reload (K-B105).
+    $empty = Livewire\Livewire::actingAs($admin)->test(ServerSubdomain::class);
+    if (Subdomain::of($server->uuid) === null && $empty->get('data.name') !== '') {
+        throw new RuntimeException('a server without a subdomain shows a name in the field: '.json_encode($empty->get('data.name')));
+    }
     noErrors(Livewire\Livewire::actingAs($admin)->test(ServerSubdomain::class)->set('data.name', 'smoke-oak')->call('save'));
     if (! in_array('POST /zones/'.str_repeat('a', 32).'/dns_records', $calls, true) || Subdomain::of($server->uuid)?->status !== Subdomain::ACTIVE) {
         throw new RuntimeException('not connected: '.json_encode($calls));

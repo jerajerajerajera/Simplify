@@ -729,7 +729,8 @@
         this.previousFavicons.forEach((el) => el.remove());
         this.favicon = document.createElement('link');
         this.favicon.rel = 'icon';
-        this.favicon.type = 'image/svg+xml';
+        // The admin's own browser tab icon is a PNG (Settings › Look), Simplify's an SVG.
+        if (/\.svg(\?|$)/.test(this.boot.favicon_url)) this.favicon.type = 'image/svg+xml';
         this.favicon.href = this.boot.favicon_url;
         document.head.append(this.favicon);
       },

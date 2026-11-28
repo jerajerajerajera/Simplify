@@ -27,9 +27,9 @@ abstract class Addon
      * The contract version: 1 in Simplify 1.0, 2 since 1.1 (serverInfo, serverLinks, customerLinks, hostModeDefault),
      * 3 since 1.3 (setupFields, setupState, saveSetup), 4 since 1.5.5 (accountPages), 5 since 1.5.6 (startUrl), 6 since
      * 2.0 (connections), 7 since 2.0 (serverSections gone), 8 since 2.0 (settingsForm), 9 since 2.0 (serverTabs,
-     * replacedServerPages), 10 since 2.0 (lockedServer). Raised whenever a method is added or removed.
+     * replacedServerPages), 10 since 2.0 (lockedServer), 11 since 2.0 (statusPageHead, statusPageBody). Raised whenever a method is added or removed.
      */
-    public const API = 10;
+    public const API = 11;
 
     /** The add-on's plugin id, for example "simplify-servermaker". */
     abstract public function id(): string;
@@ -233,4 +233,19 @@ abstract class Addon
      * @param  array<string, mixed>  $state
      */
     public function saveSetup(array $state): void {}
+
+    /**
+     * HTML at the end of the head of the public status page (its own address, /status and the list as a page), never
+     * on the list inside another website. The page allows styles inline and scripts only from this panel.
+     */
+    public function statusPageHead(): string
+    {
+        return '';
+    }
+
+    /** HTML at the end of the body of the public status page, under the same rules as statusPageHead(). */
+    public function statusPageBody(): string
+    {
+        return '';
+    }
 }

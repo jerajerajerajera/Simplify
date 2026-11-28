@@ -30,6 +30,10 @@ use Simplify\Core\Announcements\Support\Weekly;
  * @property bool $bell_pinned on top of everyone's notifications until it ends
  * @property bool $push also as app notification through Simplify
  * @property int $pushed_to devices reached by its latest sending: at a time, this week's turn or the latest start
+ * @property bool $email also by email, once, when it starts (not for a server moment)
+ * @property int $email_total accounts it is emailed to
+ * @property int $email_sent accounts it was emailed to so far
+ * @property bool $email_failed the mail server refused the latest try
  * @property bool $in_game also posted in the chat of game servers
  * @property ?list<int> $in_game_servers with the groups empty: all servers
  * @property ?list<string> $in_game_groups ids of the author's server groups, read when it is sent
@@ -66,7 +70,7 @@ final class Announcement extends Model
 {
     protected $table = 'simplify_core_announcements';
 
-    protected $fillable = ['category', 'title', 'body', 'starts_at', 'ends_at', 'audience', 'button_label', 'button_url', 'in_bell', 'bell_pinned', 'push', 'in_game', 'in_game_servers', 'in_game_groups', 'in_game_repeat', 'send_on', 'start_servers', 'start_once', 'start_daily', 'start_from', 'start_until', 'weekly_days', 'weekly_at', 'weekly_zone', 'weekly_hours', 'bar', 'stay', 'stay_minutes', 'start_event', 'weekly_times', 'in_game_target', 'created_by'];
+    protected $fillable = ['category', 'title', 'body', 'starts_at', 'ends_at', 'audience', 'button_label', 'button_url', 'in_bell', 'bell_pinned', 'push', 'email', 'in_game', 'in_game_servers', 'in_game_groups', 'in_game_repeat', 'send_on', 'start_servers', 'start_once', 'start_daily', 'start_from', 'start_until', 'weekly_days', 'weekly_at', 'weekly_zone', 'weekly_hours', 'bar', 'stay', 'stay_minutes', 'start_event', 'weekly_times', 'in_game_target', 'created_by'];
 
     protected $attributes = ['category' => 'info', 'audience' => 'everyone', 'send_on' => 'time', 'stay_minutes' => Rules::DEFAULT_STAY_MINUTES, 'start_event' => 'start'];
 
@@ -80,6 +84,10 @@ final class Announcement extends Model
             'bell_pinned' => 'boolean',
             'push' => 'boolean',
             'pushed_to' => 'integer',
+            'email' => 'boolean',
+            'email_total' => 'integer',
+            'email_sent' => 'integer',
+            'email_failed' => 'boolean',
             'in_game' => 'boolean',
             'in_game_servers' => 'array',
             'in_game_groups' => 'array',

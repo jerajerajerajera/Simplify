@@ -59,6 +59,9 @@ final class Summary
         if ($data['push'] ?? false) {
             $places[] = $text('place_push', []);
         }
+        if (($data['email'] ?? false) && $when !== FormData::SERVER) {
+            $places[] = $text('place_email', []);
+        }
         if ($data['in_game'] ?? false) {
             $places[] = $text('place_game', []);
         }
