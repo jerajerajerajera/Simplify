@@ -74,16 +74,21 @@ async function run(name) {
     if (String(frame.payload).includes('"console output"')) page.evaluate(() => { window.__psConsoleLines = (window.__psConsoleLines || 0) + 1; }).catch(() => {});
   }));
   try {
-    await page.goto(base + '/login', { waitUntil: 'domcontentloaded' });
+    // The login form only works once Livewire and Alpine are up (Firefox was faster to type than to load them).
+    await page.goto(base + '/login', { waitUntil: 'load' });
+    await page.waitForLoadState('networkidle', { timeout: 15000 }).catch(() => {});
+    await page.waitForFunction(() => !!window.Livewire && !!window.Alpine, null, { timeout: 15000 }).catch(() => {});
     await page.fill('#form\\.login', EMAIL); await page.fill('#form\\.password', PASSWORD);
     await page.click('button[type="submit"]');
     await page.waitForURL((u) => !u.pathname.includes('/login'), { timeout: 30000 }).catch(() => {});
     await page.waitForLoadState('networkidle', { timeout: 15000 }).catch(() => {});
-    say('signs in', !page.url().includes('/login'));
+    const signedIn = !page.url().includes('/login');
+    say('signs in', signedIn, signedIn ? null : { url: page.url(), message: await page.locator('.fi-fo-field-wrp-error-message, [data-validation-error]').first().textContent({ timeout: 1000 }).catch(() => null) });
+    if (!signedIn) throw new Error('not signed in');
 
     let start = Date.now();
     await page.goto(base + '/', { waitUntil: 'domcontentloaded' }); await ready();
-    await page.locator('.ps-server-card').first().waitFor({ timeout: 20000 }).catch(() => {});
+    await page.locator('.ps-server-card >> visible=true').first().waitFor({ timeout: 20000 }).catch(() => {});
     time('overview', Date.now() - start);
 
     // The first visit to a server page, as from the overview (a full load).
@@ -164,7 +169,8 @@ async function run(name) {
 }
 
 (async () => {
-  for (const name of engines) await run(name);
+  // Pelican lets an address sign in 5 times a minute; browser.cjs signed in just before.
+  for (const name of engines) { await sleep(15000); await run(name); }
   console.log('Timings (ms): ' + JSON.stringify(timings));
   fs.writeFileSync(path.join(out, 'engines.json'), JSON.stringify({ timings, failures }, null, 2));
   if (failures.length) { console.log(`FAILED: ${failures.join('; ')}`); process.exit(1); }
