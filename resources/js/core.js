@@ -362,9 +362,29 @@
     fit();
   };
 
+  // Pelican's console output, drawn again once. In Firefox, xterm's WebGL drawing could stay empty after the page
+  // loaded, with "Connected to Wings" above it, until the window changed size (Londikk 28-11, K-B106). A window resize
+  // only redraws when the rows change, so the output gets one row less for two frames and its own height back, each
+  // with a resize for Pelican's fit. Once per output element.
+  const redrawn = new WeakSet();
+  const redrawConsole = (terminal) => {
+    if (!terminal?.isConnected || redrawn.has(terminal) || !terminal.querySelector('.xterm')) return false;
+    redrawn.add(terminal);
+    const own = terminal.style.height, height = terminal.getBoundingClientRect().height;
+    if (!(height > 80)) return false;
+    terminal.style.height = Math.floor(height - 40) + 'px';
+    dispatchEvent(new Event('resize'));
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      terminal.style.height = own;
+      dispatchEvent(new Event('resize'));
+    }));
+    return true;
+  };
+
   window.Simplify = {
     t,
     fitWord,
+    redrawConsole,
     tc,
     fill: (text, params = {}) => fill(String(text), params),
     choice,
