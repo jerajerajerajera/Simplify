@@ -245,7 +245,8 @@ async function run(viewport) {
       // The row's link goes to files/edit/<path> (Pelican's recordUrl), the path encoded or not.
       const editHref = await page.evaluate(() => [...document.querySelectorAll('.fi-ta-row a[href]')].map((a) => a.getAttribute('href')).find((href) => /\/edit\//.test(href) && /server\.properties/.test(decodeURIComponent(href))) || null).catch(() => null);
       if (editHref) await page.locator(`.fi-ta-row a[href="${editHref}"] >> visible=true`).first().click({ timeout: 4000 }).catch(() => {});
-      if (!editHref) console.log('INFO links in Files: ' + JSON.stringify(await page.evaluate(() => [...document.querySelectorAll('.fi-ta-row a[href]')].slice(0, 12).map((a) => a.getAttribute('href').replace(/^https?:\/\/[^/]+/, ''))).catch(() => null)));
+      // The audit's Wings calls every file a .jar, so Pelican offers no edit link there: then straight to the editor.
+      if (!editHref) await goto(serverUrl.replace(/\/console$/, '') + '/files/edit/server.properties');
       await page.waitForSelector('.monaco-editor .view-lines', { timeout: 20000 }).catch(() => {}); await settle(1000);
       await page.locator('.monaco-editor .view-lines').first().click({ timeout: 4000, position: { x: 40, y: 10 } }).catch(() => {});
       await page.keyboard.press('Control+End').catch(() => {});
@@ -256,7 +257,7 @@ async function run(viewport) {
         inEditor: !!document.activeElement?.closest('.monaco-editor'),
       })).catch(() => null);
       await shot('file-editor');
-      say('the file editor takes typing (Londikk)', !!editHref && !!typed && typed.text, { editHref: !!editHref, ...typed });
+      say('the file editor takes typing (Londikk)', !!typed && typed.text, { fromList: !!editHref, ...typed });
       await page.keyboard.press('Control+f').catch(() => {}); await sleep(700);
       const find = await page.evaluate(() => {
         const widget = document.querySelector('.monaco-editor .find-widget');
