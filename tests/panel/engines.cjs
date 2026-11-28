@@ -65,7 +65,11 @@ const menu = async (suffix, until) => {
 
 async function run(name) {
   engine = name;
-  const browser = await playwright[name].launch();
+  // Firefox draws the console with WebGL as on a desktop (headless it has no WebGL unless forced; Pelican then fell
+  // back to drawing with the DOM, which hid what testers saw).
+  const browser = await playwright[name].launch(name === 'firefox'
+    ? { firefoxUserPrefs: { 'webgl.force-enabled': true, 'webgl.disabled': false, 'webgl.enable-webgl2': true } }
+    : { args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
   const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, colorScheme: 'dark' });
   page = await context.newPage();
   const errors = [];
@@ -105,7 +109,8 @@ async function run(name) {
     await page.setViewportSize({ width: 1440, height: 860 }); await sleep(1200);
     const resized = await lit();
     await page.setViewportSize({ width: 1440, height: 900 }); await sleep(800);
-    say('the console shows its text on the first visit, without a resize (Londikk, Firefox)', drawn > 200, { drawn, afterResize: resized, ...(await consoleState()) });
+    const webgl = await page.evaluate(() => !!document.querySelector('#terminal canvas') && !document.querySelector('#terminal .xterm-rows > div:not(:empty)')).catch(() => null);
+    say('the console shows its text on the first visit, without a resize (Londikk, Firefox)', drawn > 200, { drawn, afterResize: resized, webgl, ...(await consoleState()) });
 
     // Files through the menu: Pelican's upload layer and dialog stay hidden, also after a file is dragged over and out.
     time('menu › Files', await menu('/files', () => page.waitForSelector('.fi-ta-row', { timeout: 15000 }).catch(() => {})));
