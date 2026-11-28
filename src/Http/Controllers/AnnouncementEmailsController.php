@@ -22,7 +22,7 @@ final class AnnouncementEmailsController
         $account = User::query()->find($user);
         abort_if($account === null, 404);
         // In the language of their account, like the emails.
-        if (is_string($account->language) && $account->language !== '') {
+        if ($account->language !== '') {
             app()->setLocale($account->language);
         }
         if ($request->isMethod('POST')) {

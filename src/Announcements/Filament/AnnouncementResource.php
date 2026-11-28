@@ -501,7 +501,7 @@ final class AnnouncementResource extends Resource
                             ->icon('tabler-mail')
                             ->tooltip(self::text('table.email'))
                             ->state(fn (Announcement $record): ?string => ($state = Email::progress($record->email, $record->email_sent, $record->email_total, $record->email_failed)) === null
-                                ? null : self::text('table.email_'.$state, ['sent' => $record->email_sent, 'total' => $record->email_total]))
+                                ? null : self::text('table.email_'.$state, ['sent' => (string) $record->email_sent, 'total' => (string) $record->email_total]))
                             ->color(fn (Announcement $record): string => $record->email_failed ? 'danger' : 'gray')
                             ->grow(false),
                         TextColumn::make('in_game_result')
