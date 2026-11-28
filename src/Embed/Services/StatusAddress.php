@@ -289,16 +289,16 @@ final class StatusAddress
      */
     private static function publicAddresses(string $host): ?array
     {
-        $ips = [];
         foreach (['A' => [1, FILTER_FLAG_IPV4], 'AAAA' => [28, FILTER_FLAG_IPV6]] as $type => [$code, $flag]) {
             try {
                 $answer = Http::timeout(4)->accept('application/dns-json')
                     ->get('https://cloudflare-dns.com/dns-query', ['name' => $host, 'type' => $type])->json();
             } catch (Throwable) {
-                return $ips === [] ? null : $ips;
+                // Public DNS not reached: the server's own lookup.
+                return null;
             }
             if (! is_array($answer) || ! isset($answer['Status'])) {
-                return $ips === [] ? null : $ips;
+                return null;
             }
             $ips = self::addresses($answer, $code, $flag);
             if ($ips !== []) {
