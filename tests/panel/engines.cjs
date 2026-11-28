@@ -188,7 +188,10 @@ async function run(name) {
     // Without WebGL in the test browser Pelican's console falls back to drawing with the DOM, after an error of its own.
     const noWebgl = errors.filter((e) => /WebGL2 not supported/.test(e));
     if (noWebgl.length) console.log(`INFO ${engine} has no WebGL2 here: Pelican's console drew with the DOM`);
-    const own = errors.filter((e) => !noWebgl.includes(e));
+    // Livewire rejects a request the next page load cut off (status null, as Firefox reports it): a test that moves on.
+    const cut = errors.filter((e) => /: \[object Object\] @ .*livewire(\.min)?\.js/.test(e));
+    if (cut.length) console.log(`INFO ${engine}: ${cut.length} Livewire request(s) cut off by the next page load`);
+    const own = errors.filter((e) => !noWebgl.includes(e) && !cut.includes(e));
     say('no script errors on the pages', own.length === 0, own.slice(0, 5));
   } catch (e) {
     say('run', false, { error: String(e.message).slice(0, 300) });
