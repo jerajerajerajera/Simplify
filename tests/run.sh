@@ -32,6 +32,7 @@ php tests/assets.php
 php tests/lang.php
 php tests/js-text.php
 php tests/changelog.php
+php tests/decisions.php
 bash tests/secrets.sh
 node tests/seasons.cjs
 node tests/unsaved.cjs

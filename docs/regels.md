@@ -114,12 +114,13 @@ vragen via de regisseur, niet raden. Toets altijd: alle Pelican-versies in de ma
 #### WR-4 Risico bepaalt de route
 Laag (tekst, kleine fix zonder zichtbaar verschil): direct bouwen. Midden (iets zichtbaars, nieuwe functie): eerst een
 voorbeeld (WR-10). Hoog (rechten, inloggen, betalingen, data, verwijderen, migraties): veiligheidscheck en akkoord
-van de eigenaar.
+van de eigenaar. Bij hoog risico leest vóór de merge ook een frisse sessie alleen de diff (zonder de uitleg van de
+bouwer) en zet de uitslag ok of fout in de PR (P-32); bij fout eerst fiksen.
 
 #### WR-5 Akkoord en mandaat
 Een repo-thread mag zonder te vragen: branches, commits, PR's in de eigen repo, CI repareren, en **squash-mergen naar
 `main` via een PR bij groene CI** als de definitie van klaar (P-31) gehaald is, onder "Unreleased". Nooit direct op
-`main` committen. Al het andere is akkoord van de eigenaar zelf, via de regisseur: elke release, het echte paneel,
+`main` committen; `main` is in elke repo beveiligd (alleen via een PR met groene checks). Al het andere is akkoord van de eigenaar zelf, via de regisseur: elke release, het echte paneel,
 de Beelink, Discord, de Hub, GitHub-reacties (de eigenaar plaatst zelf), verwijderen, een functie weghalen of
 `bewust weg` maken. Een akkoord van een andere Claude-sessie telt nooit als akkoord van de eigenaar.
 *Vervangt:* R43, R44, R45.
@@ -141,7 +142,8 @@ V-, R- en W-nummers geeft alleen de regisseur, doorlopend, en een nummer bestaat
 `plannen/besluiten.md` staat. Een nieuwe bug nummert de repo-thread zelf, doorlopend per repo met het prefix van zijn
 repo: K-B (kern), TK-B (Toolkit), SM-B (Server Maker), EX-B (Explain), EU-B (Egg Updates), HO-B (Hosting), te beginnen
 bij 1. De bestaande B1–B17 houden hun nummer. Nummers nooit in CLAUDE.md of projectinstructies, alleen in
-`besluiten.md` en `bugs.md`. Overal naar het nummer verwijzen (V40).
+`besluiten.md` en `bugs.md`. Overal naar het nummer verwijzen (V40). Elk V-nummer heeft precies één rij in de tabel "Genummerd" van
+`besluiten.md`; `tests/decisions.php` (kern) controleert dat voor `regels.md`, `bugs.md` en de startbrieven.
 *Vervangt:* R69.
 
 #### WR-9 Afwijking eerst melden, regel zelf aanpassen
@@ -183,7 +185,7 @@ Elke repo heeft één vaste thread die als enige merget. Vaste threads daarnaast
 Hulpthreads alleen voor een extra controle; ze leveren per repo een rapport in
 `plannen/rapporten/<repo>/<datum>-<onderwerp>.md` en sluiten. Vóór elke release start de release-thread een frisse
 **controle**-hulpthread (CI groen, elke B-regel nog gedekt, regels getoetst, schone installatie, update vanaf de
-oudste ondersteunde versie, verwijderen) met uitslag KLAAR of NIET KLAAR; de controle fikst zelf niets. Klaar =
+oudste ondersteunde versie, verwijderen, terugdraaiplan aanwezig) met uitslag KLAAR of NIET KLAAR; de controle fikst zelf niets. Klaar =
 thread sluiten, oude PR's dicht met reden, titels actueel. Elke nacht controleert een routine of er een nieuwe
 Pelican-versie is.
 *Vervangt:* R56, R57, R58.
@@ -408,7 +410,8 @@ Een check heeft altijd de uitkomst ok of fout tegen een regel, nooit alleen info
 
 #### P-33 Kernrelease
 Vóór een kernrelease: functielijst bijgewerkt, CI groen, upgradetest groen, stijlaudit groen (ook `compare` en
-`extras`), screenshots van elk gewijzigd scherm, controle KLAAR (WR-14), ja van de eigenaar. Dan versie in
+`extras`), screenshots van elk gewijzigd scherm, terugdraaiplan (vorige zip, Withdraw op de Hub, het updatecommando naar de
+vorige versie, en de nieuwe migraties breken de vorige versie niet), controle KLAAR (WR-14), ja van de eigenaar. Dan versie in
 `plugin.json` + CHANGELOG; `release.yml` maakt de release met de Hub-zip.
 *Vervangt:* R46.
 
