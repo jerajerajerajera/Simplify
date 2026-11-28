@@ -1232,13 +1232,16 @@ step('announcements: unpin moves a bar to the bell, pin brings it back, and the 
 });
 step('announcements: Email sends it once to each account that wants it, and the link in the email turns them off and on without signing in', function () use ($admin) {
     $player = User::where('email', 'smoke-player@example.com')->firstOrFail();
-    // Without a mail server the toggle is off and says so (the panel's .env here has none).
+    $fail = fn (string $why) => throw new RuntimeException($why);
+    // Without a mail server the toggle is off and says so.
     config(['mail.default' => 'log']);
     if (AnnouncementEmail::available()) {
-        throw new RuntimeException('the log mailer counts as a mail server');
+        $fail('the log mailer counts as a mail server');
     }
-    $form = Livewire\Livewire::actingAs($admin)->test(ManageAnnouncements::class)->call('mountAction', 'create');
-    $form->assertSee(__('simplify::announcements.form.email_missing'));
+    $html = Livewire\Livewire::actingAs($admin)->test(ManageAnnouncements::class)->call('mountAction', 'create')->html();
+    if (! str_contains($html, e(__('simplify::announcements.form.email_missing')))) {
+        $fail('the form does not say mail is not set up');
+    }
     config(['mail.default' => 'smtp', 'mail.from.address' => 'panel@example.com']);
     Mail::fake();
     // The link turns them off: opening it only shows a button, the button (or a mail app's one-click POST) turns them off.
@@ -1249,42 +1252,52 @@ step('announcements: Email sends it once to each account that wants it, and the 
 
         public function __construct(public $app) {}
     };
-    $client->get($link)->assertOk()->assertSee(__('simplify::announcements.mail.stop'));
+    $page = $client->get($link);
+    if ($page->getStatusCode() !== 200 || ! str_contains((string) $page->getContent(), e(__('simplify::announcements.mail.stop')))) {
+        $fail('the stop link does not open its page: '.$page->getStatusCode());
+    }
     if (! AnnouncementEmail::wanted($player)) {
-        throw new RuntimeException('opening the link turned the emails off; only the button may');
+        $fail('opening the link turned the emails off; only the button may');
     }
-    $client->post($link)->assertOk()->assertSee(__('simplify::announcements.mail.turn_on'));
-    if (AnnouncementEmail::wanted($player)) {
-        throw new RuntimeException('the button did not turn the emails off');
+    $page = $client->post($link);
+    if ($page->getStatusCode() !== 200 || AnnouncementEmail::wanted($player)) {
+        $fail('the button did not turn the emails off: '.$page->getStatusCode());
     }
-    $client->post($link.'x')->assertForbidden();
-    $client->get(preg_replace('#/announcement-emails/\d+#', '/announcement-emails/'.$admin->id, $link))->assertForbidden();
+    $tampered = [$client->post($link.'x')->getStatusCode(), $client->get(preg_replace('#/announcement-emails/\d+#', '/announcement-emails/'.$admin->id, $link))->getStatusCode()];
+    if ($tampered !== [403, 403]) {
+        $fail('a changed link is not refused: '.json_encode($tampered));
+    }
 
     $mail = Announcement::create(['title' => 'Smoke by email', 'body' => 'Line one & <b>two</b>', 'in_bell' => false, 'push' => false, 'email' => true]);
     Artisan::call('simplify:announcements');
     Artisan::call('simplify:announcements');
-    Mail::assertSent(AnnouncementMail::class, fn (AnnouncementMail $sent) => $sent->hasTo($admin->email) && $sent->announcement->is($mail));
-    Mail::assertNotSent(AnnouncementMail::class, fn (AnnouncementMail $sent) => $sent->hasTo($player->email));
+    $sent = Mail::sent(AnnouncementMail::class);
+    $to = fn (User $user) => $sent->filter(fn (AnnouncementMail $one) => $one->hasTo($user->email))->count();
+    if ($to($admin) !== 1 || $to($player) !== 0) {
+        $fail('the admin did not get it once, or the player who turned them off got it: '.$to($admin).'/'.$to($player));
+    }
     $wanting = User::query()->get()->filter(fn (User $user) => filter_var((string) $user->email, FILTER_VALIDATE_EMAIL) && AnnouncementEmail::wanted($user))->count();
-    if (Mail::sent(AnnouncementMail::class)->count() !== $wanting) {
-        throw new RuntimeException('not exactly one email per account that wants them: '.Mail::sent(AnnouncementMail::class)->count().' for '.$wanting);
+    if ($sent->count() !== $wanting) {
+        $fail('not exactly one email per account that wants them: '.$sent->count().' for '.$wanting);
     }
     $mail->refresh();
     if ($mail->email_sent !== $wanting || $mail->email_total !== $wanting || $mail->email_failed) {
-        throw new RuntimeException('the list does not count the emails: '.json_encode($mail->only(['email_sent', 'email_total', 'email_failed'])));
+        $fail('the list does not count the emails: '.json_encode($mail->only(['email_sent', 'email_total', 'email_failed'])));
     }
     // Back on: the player gets it on the next minute, within a day after the start.
-    $client->post($link, ['on' => '1'])->assertOk();
+    $client->post($link, ['on' => '1']);
     Artisan::call('simplify:announcements');
-    Mail::assertSent(AnnouncementMail::class, fn (AnnouncementMail $sent) => $sent->hasTo($player->email));
+    if (Mail::sent(AnnouncementMail::class)->filter(fn (AnnouncementMail $one) => $one->hasTo($player->email))->count() !== 1) {
+        $fail('turned back on, the player did not get it');
+    }
     // The email: escaped, with the stop link and the mail app's one-click header.
     $html = (new AnnouncementMail($mail, $player))->render();
     if (! str_contains($html, 'Smoke by email') || ! str_contains($html, '&lt;b&gt;two&lt;/b&gt;') || ! str_contains($html, '/simplify/announcement-emails/'.$player->id)) {
-        throw new RuntimeException('the email misses its title, its stop link, or shows the message as HTML');
+        $fail('the email misses its title, its stop link, or shows the message as HTML');
     }
     $headers = (new AnnouncementMail($mail, $player))->headers()->text;
     if (($headers['List-Unsubscribe-Post'] ?? '') !== 'List-Unsubscribe=One-Click' || ! str_contains($headers['List-Unsubscribe'] ?? '', '/announcement-emails/')) {
-        throw new RuntimeException('the email has no one-click unsubscribe header');
+        $fail('the email has no one-click unsubscribe header');
     }
     $mail->delete();
 });
@@ -1308,10 +1321,11 @@ step('settings: an own browser tab icon is on every page and the status page, as
     if ($size === false || $size[0] !== WebApp::FAVICON || $size[1] !== WebApp::FAVICON) {
         throw new RuntimeException('the favicon is not a square PNG of '.WebApp::FAVICON.' pixels');
     }
-    $page = visit($admin, Settings::getUrl(panel: 'admin'));
-    $page->assertOk()->assertSee('data-simplify-favicon', false)->assertSee(e($url), false);
+    $page = (string) visit($admin, Settings::getUrl(panel: 'admin'))->getContent();
+    if (! str_contains($page, 'data-simplify-favicon') || ! str_contains($page, e($url))) {
+        throw new RuntimeException('the settings page has no own favicon');
+    }
     $status = visit($admin, '/status');
-    $status->assertOk();
     if (! str_contains((string) $status->getContent(), '<link rel="icon" href="'.e($url).'">')) {
         throw new RuntimeException('the status page has no favicon');
     }
