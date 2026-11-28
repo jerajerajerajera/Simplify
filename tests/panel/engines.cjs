@@ -32,6 +32,23 @@ const consoleState = () => page.evaluate(() => ({
   dot: !!document.querySelector('#terminal .ps-console-dot.connected'), screen: Math.round(document.querySelector('#terminal .xterm-screen')?.getBoundingClientRect().height || 0),
   lines: window.__psConsoleLines || 0, xterm: !!window.Xterm, state: document.querySelector('#terminal .ps-console-state')?.textContent || null,
 })).catch(() => null);
+// Lit pixels in the console's output: text is light on the dark card. Read from a screenshot, because the output is
+// drawn with WebGL, so the page itself has nothing to read (Londikk: in Firefox it stayed empty until a resize).
+const lit = async () => {
+  const shotOf = await page.locator('#terminal .xterm-screen').first().screenshot({ timeout: 5000 }).catch(() => null);
+  if (!shotOf) return -1;
+  return page.evaluate(async (data) => {
+    const img = new Image();
+    await new Promise((done) => { img.onload = done; img.onerror = done; img.src = data; });
+    const canvas = Object.assign(document.createElement('canvas'), { width: img.width, height: img.height });
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0);
+    const px = ctx.getImageData(0, 0, img.width, img.height).data;
+    let n = 0;
+    for (let i = 0; i < px.length; i += 4) if (Math.max(px[i], px[i + 1], px[i + 2]) > 150) n++;
+    return n;
+  }, 'data:image/png;base64,' + shotOf.toString('base64')).catch(() => -1);
+};
 const layers = () => page.evaluate(() => {
   const shown = (el) => !!el && el.getClientRects().length > 0 && getComputedStyle(el).display !== 'none' && getComputedStyle(el).visibility !== 'hidden' && Number(getComputedStyle(el).opacity) > 0.05;
   const drop = document.querySelector('[x-data^="fileDropZone"] > div');
@@ -77,6 +94,13 @@ async function run(name) {
     time('server page, console connected', Date.now() - start);
     await shot('console-first');
     say('the console connects and shows output on the first visit', first, first ? null : await consoleState());
+    await sleep(1500);
+    const drawn = await lit();
+    // A resize makes xterm draw again: if the text only shows after it, the first drawing was lost.
+    await page.setViewportSize({ width: 1440, height: 860 }); await sleep(1200);
+    const resized = await lit();
+    await page.setViewportSize({ width: 1440, height: 900 }); await sleep(800);
+    say('the console shows its text on the first visit, without a resize (Londikk, Firefox)', drawn > 200, { drawn, afterResize: resized, ...(await consoleState()) });
 
     // Files through the menu: Pelican's upload layer and dialog stay hidden, also after a file is dragged over and out.
     time('menu › Files', await menu('/files', () => page.waitForSelector('.fi-ta-row', { timeout: 15000 }).catch(() => {})));
@@ -97,6 +121,10 @@ async function run(name) {
     time('menu › Console', await menu('/console', connected));
     const again = await connected();
     say('the console connects again after the menu', again, again ? null : await consoleState());
+    await sleep(1500);
+    const drawnAgain = await lit();
+    await shot('console-after-menu');
+    say('the console shows its text after the menu, without a resize', drawnAgain > 200, { drawn: drawnAgain });
     await menu('/files', () => page.waitForSelector('.fi-ta-row', { timeout: 15000 }).catch(() => {}));
     const twice = await layers();
     say('Files a second time: no upload layer or dialog in view', !!twice && !twice.drop && !twice.dialog && twice.uploaders <= 1, twice);
