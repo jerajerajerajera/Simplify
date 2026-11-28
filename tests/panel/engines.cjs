@@ -74,7 +74,12 @@ async function run(name) {
   const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, colorScheme: 'dark' });
   page = await context.newPage();
   const errors = [];
-  page.on('pageerror', (e) => errors.push(String(e.message).slice(0, 200)));
+  page.on('pageerror', (e) => errors.push(`${new URL(page.url()).pathname}: ${String(e.message).slice(0, 200)}${e.stack ? ' @ ' + String(e.stack).split('\n').slice(0, 2).join(' | ').slice(0, 200) : ''}`));
+  // A rejected promise with an object (not an Error) reaches Playwright as "[object Object]": say what it held.
+  await context.addInitScript(() => addEventListener('unhandledrejection', (e) => {
+    try { console.warn('simplify-test rejection ' + location.pathname + ' ' + JSON.stringify(e.reason, Object.getOwnPropertyNames(e.reason || {})).slice(0, 300)); } catch {}
+  }));
+  page.on('console', (m) => { if (m.text().startsWith('simplify-test rejection')) console.log(`INFO ${name} ${m.text()}`); });
   page.on('websocket', (ws) => ws.on('framereceived', (frame) => {
     if (String(frame.payload).includes('"console output"')) page.evaluate(() => { window.__psConsoleLines = (window.__psConsoleLines || 0) + 1; }).catch(() => {});
   }));
@@ -167,7 +172,7 @@ async function run(name) {
 
     for (const [step, ms] of Object.entries(timings[engine] || {})) say(`${step} within ${SLOW / 1000} s`, ms <= SLOW, { ms });
     // Without WebGL in the test browser Pelican's console falls back to drawing with the DOM, after an error of its own.
-    const noWebgl = errors.filter((e) => /^WebGL2 not supported/.test(e));
+    const noWebgl = errors.filter((e) => /WebGL2 not supported/.test(e));
     if (noWebgl.length) console.log(`INFO ${engine} has no WebGL2 here: Pelican's console drew with the DOM`);
     const own = errors.filter((e) => !noWebgl.includes(e));
     say('no script errors on the pages', own.length === 0, own.slice(0, 5));
