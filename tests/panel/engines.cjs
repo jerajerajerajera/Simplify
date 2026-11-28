@@ -118,6 +118,20 @@ async function run(name) {
     const webgl = await page.evaluate(() => !!document.querySelector('#terminal canvas') && !document.querySelector('#terminal .xterm-rows > div:not(:empty)')).catch(() => null);
     say('the console shows its text on the first visit, without a resize (Londikk, Firefox)', drawn > 200, { drawn, afterResize: resized, webgl, ...(await consoleState()) });
 
+    // For comparison only: the same first visit without Simplify's redraw (K-B106), in a page of its own.
+    const bare = await context.newPage();
+    await bare.route(/\/simplify\/assets\/server\.js/, async (route) => {
+      const response = await route.fetch();
+      await route.fulfill({ response, body: (await response.text()).replace('window.Simplify?.redrawConsole?.(terminal)', 'null') });
+    });
+    const keep = page;
+    page = bare;
+    await page.goto(serverUrl, { waitUntil: 'domcontentloaded' }); await ready(); await connected(); await sleep(2300);
+    console.log(`INFO ${engine} console without the redraw: ${await lit()} lit pixels (with it: ${drawn})`);
+    await shot('console-without-redraw');
+    await bare.close().catch(() => {});
+    page = keep;
+
     // Files through the menu: Pelican's upload layer and dialog stay hidden, also after a file is dragged over and out.
     time('menu › Files', await menu('/files', () => page.waitForSelector('.fi-ta-row', { timeout: 15000 }).catch(() => {})));
     await sleep(800);
