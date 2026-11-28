@@ -25,17 +25,18 @@ const logo = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.
 
 // The phone top bar as dashboard/header.blade.php renders it: on a server page with the back button, on the Admin
 // page without it, with a logo beside the panel's name, the heart, the bell and the account.
-const page = (root, brand, back) => `<!doctype html><html><head><meta charset="utf-8">
+const page = (root, brand, back, font = '', h1 = '') => `<!doctype html><html><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="file://${css}/tokens.css"><link rel="stylesheet" href="file://${css}/components.css"><link rel="stylesheet" href="file://${css}/dashboard.css"><link rel="stylesheet" href="file://${css}/seasons.css">
 <style>*,::before,::after{box-sizing:border-box}body{margin:0}</style>
 </head><body><div class="${root}"><div class="ps-main">
 <header class="ps-top">
   <div class="ps-heading">
-    <div class="ps-identity"><a href="#"><h1 class="ps-brand"><img class="ps-brand-logo" src="${logo}" alt="" style="height:32px"><span class="ps-panel-name">${esc(brand)}</span><span class="ps-title-pelican">× Pelican</span></h1></a><span class="ps-season-badges" style="display:none"></span></div>
+    <div class="ps-identity"><a href="#"><h1 class="ps-brand" style="${h1}"><img class="ps-brand-logo" src="${logo}" alt="" style="height:32px"><span class="ps-panel-name" style="${font}">${esc(brand)}</span><span class="ps-title-pelican">× Pelican</span></h1></a><span class="ps-season-badges" style="display:none"></span></div>
     ${back ? '<a href="#" class="ps-btn ps-back-overview"><svg aria-hidden="true"></svg><span>All servers</span></a>' : ''}
   </div>
   <nav class="ps-top-actions">
+    ${back ? '' : '<div class="ps-top-overview"><button type="button" class="ps-btn ps-health-pill healthy ps-icon-only"><svg aria-hidden="true"></svg><span>Healthy</span></button></div>'}
     <button type="button" class="ps-btn is-icon is-subtle ps-mobile-menu"><svg></svg></button>
     <div class="ps-nav-items">
       <div class="ps-notify"><button type="button" class="ps-btn is-icon is-subtle"><svg></svg></button></div>
@@ -53,6 +54,8 @@ const page = (root, brand, back) => `<!doctype html><html><head><meta charset="u
     document.getElementById('out').textContent = JSON.stringify({
       nameWidth: Math.round(box(name).width), nameRight: Math.round(box(name).right), brandRight: Math.round(box(brand).right),
       ownEllipsis: name.scrollWidth > name.clientWidth + 1 && getComputedStyle(name).textOverflow === 'ellipsis',
+      // The name's visible end, where its own box clips it, against the heart button beside it.
+      overHeart: (() => { const heart = document.querySelector('.ps-health-pill'); if (!heart) return 0; const visible = Math.min(box(name).right, ...[...document.querySelectorAll('.ps-brand, .ps-identity, .ps-identity > a, .ps-heading')].filter((el) => getComputedStyle(el).overflow !== 'visible').map((el) => box(el).right)); return Math.max(0, Math.round(visible - box(heart).left)); })(),
       cutOutside: clip, full: name.scrollWidth <= name.clientWidth + 1 && clip.length === 0,
       topOverflow: top.scrollWidth > top.clientWidth + 1, pageScrollX: document.documentElement.scrollWidth - innerWidth,
     });
@@ -104,9 +107,9 @@ const run = (html, width, height) => new Promise((resolve, reject) => {
 let failures = 0;
 const check = (name, ok, detail) => { console.log(`${ok ? 'PASS' : 'FAIL'} ${name}${ok ? '' : ' ' + JSON.stringify(detail)}`); if (!ok) failures++; };
 // A name that is cut ends in "…" in its own box; a box around it never cuts it off without one (K-B104).
-const tidy = (r) => r.cutOutside.length === 0 && !r.topOverflow && r.pageScrollX <= 0;
+const tidy = (r) => r.cutOutside.length === 0 && r.overHeart === 0 && !r.topOverflow && r.pageScrollX <= 0;
 (async () => {
-  for (const width of [390, 375, 430]) {
+  for (const width of (process.env.WIDTHS || "390,375,430").split(",").map(Number)) {
     const onServer = await run(page(server, 'VoiceNation Panel', true), width, 844);
     const onAdmin = await run(page(admin, 'VoiceNation Panel', false), width, 844);
     if (!onServer || !onAdmin) { check(`phone ${width} (measured)`, false, null); continue; }
@@ -114,6 +117,16 @@ const tidy = (r) => r.cutOutside.length === 0 && !r.topOverflow && r.pageScrollX
     check(`phone ${width}, server page: logo and "VoiceNation Panel" in full, as on the Admin page`, onServer.full && tidy(onServer), onServer);
     const long = await run(page(server, 'Deckzwabbers Gameservers Nederland', true), width, 844);
     check(`phone ${width}, server page, long name: ends in "…", never cut off without one`, long && tidy(long) && (long.full || long.ownEllipsis), long);
+    // K-B107: on the Admin page the heart sits beside the name; a name in a wide font ran under it (VoiceCrack93, beta.19).
+    const wide = 'font-family:monospace;letter-spacing:.12em';
+    const adminWide = await run(page(admin, 'VoiceNation Panel', false, wide), width, 844);
+    check(`phone ${width}, Admin page, wide font: ends in "…" before the heart, never under it (K-B107)`, adminWide && tidy(adminWide) && (adminWide.full || adminWide.ownEllipsis), adminWide);
+    // A browser that does not shrink the name in its box (as the iOS app did, VoiceCrack93): the box around it still
+    // stops it before the heart.
+    const stiff = await run(page(admin, 'VoiceNation Panel', false, wide + ';flex-shrink:0;min-width:max-content;overflow:visible', 'min-width:max-content;overflow:visible'), width, 844);
+    check(`phone ${width}, Admin page, a name that does not shrink: clipped before the heart, never under it (K-B107)`, stiff && stiff.overHeart === 0 && !stiff.topOverflow && stiff.pageScrollX <= 0, stiff);
+    const serverWide = await run(page(server, 'VoiceNation Panel', true, wide), width, 844);
+    check(`phone ${width}, server page, wide font: ends in "…"`, serverWide && tidy(serverWide) && (serverWide.full || serverWide.ownEllipsis), serverWide);
   }
   if (failures) { console.error(`${failures} panel name check(s) failed`); process.exit(1); }
   console.log('Panel name: in full where it fits, else ending in "…".');
