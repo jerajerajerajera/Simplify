@@ -242,9 +242,10 @@ async function run(viewport) {
       say('Files: a drag inside the page leaves no upload layer (Londikk)', !!inside && !inside.drop && !inside.dialog, inside);
 
       // The editor, opened from the list as people do (server.properties from the seed's Wings).
-      const editLink = page.locator('.fi-ta-row a[href*="/files/edit/"] >> visible=true').filter({ hasText: /\.properties|\.yml|\.txt|\.json/ }).first();
-      const editHref = await editLink.getAttribute('href').catch(() => null);
-      if (editHref) await editLink.click({ timeout: 4000 }).catch(() => {});
+      // The row's link goes to files/edit/<path> (Pelican's recordUrl), the path encoded or not.
+      const editHref = await page.evaluate(() => [...document.querySelectorAll('.fi-ta-row a[href]')].map((a) => a.getAttribute('href')).find((href) => /\/edit\//.test(href) && /server\.properties/.test(decodeURIComponent(href))) || null).catch(() => null);
+      if (editHref) await page.locator(`.fi-ta-row a[href="${editHref}"] >> visible=true`).first().click({ timeout: 4000 }).catch(() => {});
+      if (!editHref) console.log('INFO links in Files: ' + JSON.stringify(await page.evaluate(() => [...document.querySelectorAll('.fi-ta-row a[href]')].slice(0, 12).map((a) => a.getAttribute('href').replace(/^https?:\/\/[^/]+/, ''))).catch(() => null)));
       await page.waitForSelector('.monaco-editor .view-lines', { timeout: 20000 }).catch(() => {}); await settle(1000);
       await page.locator('.monaco-editor .view-lines').first().click({ timeout: 4000, position: { x: 40, y: 10 } }).catch(() => {});
       await page.keyboard.press('Control+End').catch(() => {});
