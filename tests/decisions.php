@@ -30,6 +30,10 @@ foreach (explode("\n", $numbered) as $line) {
 }
 must($defined !== [], 'docs/besluiten.md has no numbered decisions');
 
+foreach (array_slice(preg_split('/^## /m', $decisions), 2) as $section) {
+    must(! preg_match('/^\|[^|]*\|\s*V\d+:/m', $section), 'docs/besluiten.md gives a number outside the table "Genummerd"');
+}
+
 foreach (['docs/regels.md', 'docs/bugs.md', 'docs/prompts/startbrieven.md'] as $file) {
     preg_match_all('/\bV(\d+)\b/', (string) file_get_contents("{$root}/{$file}"), $refs);
     foreach (array_unique($refs[1]) as $n) {

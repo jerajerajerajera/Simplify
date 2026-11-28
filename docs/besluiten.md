@@ -56,6 +56,7 @@
 | V63 | 3-11 | Ja: V62 vervalt. De Hub-betasync loopt via GitHub-secret `HUB_API_KEY` in `release.yml` (alleen channel beta, nooit Submit); kern #154 (browser in de betafooter) gaat mee in 2.0.0-beta.3 | alle zes |
 | V64 | 4-11 | Ja: codekwaliteit (DRY, YAGNI, KISS, uitzondering = regel, design tokens, gedrag gelijk) in P-27 en P-35; PHPStan level 5, ESLint en de browser-smoke (Playwright, axe, Lighthouse) in P-31; hub-check verbiedt eval/assert/create_function | alle zes, P-27, P-31, P-35 |
 | V65 | 22-11 | Announcements wordt één open model, nog in de beta (stable 2.0.0 wacht hierop en op Khions hertest). Ja op: (1) vóór stable; (2) formulier met vier vragen What / When / Where / Who, voorbeelden ("Start from an example") en een zin in gewone taal; alles open, enkele keuze als schakelaar, meervoudige keuze als pill met vinkje; Repeat hoort bij When; zeldzame filters achter More options; de balk is een eigen keuze met zijn duur; (3) Who krijgt "People with access to the server", standaard bij een servermoment (startmeldingen gingen naar iedereen op het paneel); (4) meer dan één tijd per dag; (5) momenten "server stops" en "server crashes" (crash = stop waar niemand om vroeg); (6) de Schedules-stap "Announcement" blijft bestaan | kern |
+| V66 | 22-11 | 7e add-on Themes (simplify-themes); gebruikers kiezen uit admin-themes (standaard uit); repo + bouwen na stable 2.0.0 incl. kleine kern-API; werkt ook zonder kern. Had eerst ook het nummer V64; hernummerd 28-11 | Themes |
 
 ## Zonder nummer (uit projectnotities, 27-10 t/m 2-11)
 
@@ -90,4 +91,3 @@
 | 2-11 | Add-on-pagina's in het Simplify-accountmenu, niet in Pelicans profiel | P-6, kern API 4 |
 | 2-11 | Serverbanners en groepen op het overzicht houden | P-18 |
 | 2-11 | Hosting staat op pauze: eerst de kern en de add-ons goed | Hosting |
-| 22-11 | V64: 7e add-on Themes (simplify-themes); gebruikers kiezen uit admin-themes (standaard uit); repo + bouwen na stable 2.0.0 incl. kleine kern-API; werkt ook zonder kern | Themes |
