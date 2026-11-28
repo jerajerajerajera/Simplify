@@ -66,6 +66,8 @@ return [
         'app_icon_help' => 'En kvadratisk PNG, JPEG eller WebP på minst 512 pixlar, upp till 1 MB. Tomt använder Simplify-ikonen.',
         'app_badge' => 'Statusfältsikon',
         'app_badge_help' => 'En PNG med genomskinlig bakgrund, visas vit i Androids statusfält. Tomt använder appikonen om den har genomskinlig bakgrund, annars pelikanen.',
+        'app_favicon' => 'Ikon i webbläsarfliken',
+        'app_favicon_help' => 'Den lilla ikonen i webbläsarfliken och bokmärken. En kvadratisk PNG eller WebP på minst 64 pixlar, upp till 1 MB. Tom använder appikonen, eller utan den panelens egen ikon.',
         'preview' => [
             'logo' => 'I det övre fältet',
             'icon' => 'På en telefons hemskärm',
@@ -161,6 +163,7 @@ return [
         'upload' => 'Ladda upp din egen',
         'default_icon' => 'Använd Simplify-ikonen',
         'default_badge' => 'Använd Simplify-ikonen',
+        'default_favicon' => 'Använd appikonen',
     ],
     'addons' => [
         'heading' => 'Tillägg',

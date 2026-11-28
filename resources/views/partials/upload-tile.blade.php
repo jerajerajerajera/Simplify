@@ -5,6 +5,9 @@
     x-on:click="$el.closest('.s-tile-field')?.querySelector('.filepond--action-remove-item')?.click()">
     @if ($kind === 'badge')
         <img src="{{ \Simplify\Core\Support\Assets::url('app-badge-96.png') }}" alt="" class="s-tile-badge">
+    @elseif ($kind === 'favicon')
+        {{-- Without its own, the browser tab shows the app icon. --}}
+        <img src="{{ \Simplify\Core\WebApp\WebApp::icon(192)[0] }}" alt="">
     @else
         <img src="{{ \Simplify\Core\Support\Assets::url('app-icon-192.png') }}" alt="">
     @endif

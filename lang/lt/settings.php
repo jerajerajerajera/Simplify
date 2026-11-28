@@ -66,6 +66,8 @@ return [
         'app_icon_help' => 'Kvadratinis PNG, JPEG arba WebP, ne mažesnis nei 512 pikselių, iki 1 MB. Tuščias naudoja Simplify piktogramą.',
         'app_badge' => 'Būsenos juostos piktograma',
         'app_badge_help' => 'PNG su permatomu fonu, rodoma balta Android būsenos juostoje. Tuščia – programos piktograma, jei jos fonas permatomas, kitaip pelikanas.',
+        'app_favicon' => 'Naršyklės skirtuko piktograma',
+        'app_favicon_help' => 'Maža piktograma naršyklės skirtuke ir žymėse. Kvadratinis PNG arba WebP, ne mažiau 64 taškų, iki 1 MB. Tuščia naudoja programėlės piktogramą, o be jos – skydelio piktogramą.',
         'preview' => [
             'logo' => 'Viršutinėje juostoje',
             'icon' => 'Telefono pradžios ekrane',
@@ -161,6 +163,7 @@ return [
         'upload' => 'Įkelti savo',
         'default_icon' => 'Naudoti Simplify piktogramą',
         'default_badge' => 'Naudoti Simplify piktogramą',
+        'default_favicon' => 'Naudoti programėlės piktogramą',
     ],
     'addons' => [
         'heading' => 'Priedai',

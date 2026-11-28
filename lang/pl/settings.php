@@ -66,6 +66,8 @@ return [
         'app_icon_help' => 'Kwadratowy PNG, JPEG lub WebP o boku co najmniej 512 pikseli, do 1 MB. Puste używa ikony Simplify.',
         'app_badge' => 'Ikona paska stanu',
         'app_badge_help' => 'PNG z przezroczystym tłem, wyświetlany na biało na pasku stanu Androida. Puste: ikona aplikacji, jeśli ma przezroczyste tło, w przeciwnym razie pelikan.',
+        'app_favicon' => 'Ikona karty przeglądarki',
+        'app_favicon_help' => 'Mała ikona na karcie przeglądarki i w zakładkach. Kwadratowy PNG lub WebP o boku co najmniej 64 pikseli, do 1 MB. Puste używa ikony aplikacji, a bez niej własnej ikony panelu.',
         'preview' => [
             'logo' => 'Na górnym pasku',
             'icon' => 'Na ekranie głównym telefonu',
@@ -161,6 +163,7 @@ return [
         'upload' => 'Prześlij własny',
         'default_icon' => 'Użyj ikony Simplify',
         'default_badge' => 'Użyj ikony Simplify',
+        'default_favicon' => 'Użyj ikony aplikacji',
     ],
     'addons' => [
         'heading' => 'Dodatki',

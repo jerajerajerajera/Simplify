@@ -66,6 +66,8 @@ return [
         'app_icon_help' => 'A square PNG, JPEG or WebP of at least 512 pixels, up to 1 MB. Empty uses the Simplify icon.',
         'app_badge' => 'Status bar icon',
         'app_badge_help' => 'A PNG with a transparent background, shown in white in Android\'s status bar. Empty uses the app icon if it has a transparent background, otherwise the pelican.',
+        'app_favicon' => 'Browser tab icon',
+        'app_favicon_help' => 'The small icon in the browser tab and bookmarks. A square PNG or WebP of at least 64 pixels, up to 1 MB. Empty uses the app icon, or the panel\'s own icon without one.',
         'preview' => [
             'logo' => 'In the top bar',
             'icon' => 'On a phone\'s home screen',
@@ -161,6 +163,7 @@ return [
         'upload' => 'Upload your own',
         'default_icon' => 'Use the Simplify icon',
         'default_badge' => 'Use the Simplify icon',
+        'default_favicon' => 'Use the app icon',
     ],
     'addons' => [
         'heading' => 'Add-ons',

@@ -66,6 +66,8 @@ return [
         'app_icon_help' => 'Un PNG, JPEG sau WebP pătrat de cel puțin 512 pixeli, de până la 1 MB. Gol folosește pictograma Simplify.',
         'app_badge' => 'Pictograma barei de stare',
         'app_badge_help' => 'Un PNG cu fundal transparent, afișat alb în bara de stare Android. Gol folosește pictograma aplicației dacă are fundal transparent, altfel pelicanul.',
+        'app_favicon' => 'Pictograma filei',
+        'app_favicon_help' => 'Pictograma mică din fila browserului și din marcaje. Un PNG sau WebP pătrat de cel puțin 64 de pixeli, până la 1 MB. Gol folosește pictograma aplicației sau, fără ea, pictograma panoului.',
         'preview' => [
             'logo' => 'În bara de sus',
             'icon' => 'Pe ecranul de pornire al unui telefon',
@@ -161,6 +163,7 @@ return [
         'upload' => 'Încarcă-l pe al tău',
         'default_icon' => 'Folosește pictograma Simplify',
         'default_badge' => 'Folosește pictograma Simplify',
+        'default_favicon' => 'Folosește pictograma aplicației',
     ],
     'addons' => [
         'heading' => 'Extensii',

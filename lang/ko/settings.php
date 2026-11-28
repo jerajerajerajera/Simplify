@@ -66,6 +66,8 @@ return [
         'app_icon_help' => '512픽셀 이상, 1 MB 이하의 정사각형 PNG, JPEG 또는 WebP. 비워 두면 Simplify 아이콘을 사용합니다.',
         'app_badge' => '상태 표시줄 아이콘',
         'app_badge_help' => '배경이 투명한 PNG로, Android 상태 표시줄에 흰색으로 표시됩니다. 비워 두면 배경이 투명한 경우 앱 아이콘을, 아니면 펠리컨을 사용합니다.',
+        'app_favicon' => '브라우저 탭 아이콘',
+        'app_favicon_help' => '브라우저 탭과 북마크에 표시되는 작은 아이콘. 64픽셀 이상의 정사각형 PNG 또는 WebP, 최대 1MB. 비워 두면 앱 아이콘을, 그것도 없으면 패널 자체 아이콘을 사용합니다.',
         'preview' => [
             'logo' => '상단 바',
             'icon' => '휴대폰 홈 화면',
@@ -161,6 +163,7 @@ return [
         'upload' => '직접 업로드',
         'default_icon' => 'Simplify 아이콘 사용',
         'default_badge' => 'Simplify 아이콘 사용',
+        'default_favicon' => '앱 아이콘 사용',
     ],
     'addons' => [
         'heading' => '애드온',

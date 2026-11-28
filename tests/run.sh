@@ -24,6 +24,7 @@ php tests/announcements-task.php
 php tests/announcements-start.php
 php tests/announcements-weekly.php
 php tests/announcements-form.php
+php tests/announcements-email.php
 php tests/embed.php
 php tests/subdomains.php
 php tests/subdomains-import.php

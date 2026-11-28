@@ -66,6 +66,8 @@ return [
         'app_icon_help' => 'Un PNG, JPEG ou WebP carré d\'au moins 512 pixels, jusqu\'à 1 Mo. Vide utilise l\'icône Simplify.',
         'app_badge' => 'Icône de la barre d’état',
         'app_badge_help' => 'Un PNG à fond transparent, affiché en blanc dans la barre d’état d’Android. Vide : l’icône de l’app si son fond est transparent, sinon le pélican.',
+        'app_favicon' => 'Icône de l\'onglet',
+        'app_favicon_help' => 'La petite icône dans l\'onglet du navigateur et les favoris. Un PNG ou WebP carré d\'au moins 64 pixels, jusqu\'à 1 Mo. Vide utilise l\'icône de l\'app, ou sans elle l\'icône du panel.',
         'preview' => [
             'logo' => 'Dans la barre du haut',
             'icon' => 'Sur l\'écran d\'accueil d\'un téléphone',
@@ -161,6 +163,7 @@ return [
         'upload' => 'Envoyer le vôtre',
         'default_icon' => 'Utiliser l\'icône Simplify',
         'default_badge' => 'Utiliser l\'icône Simplify',
+        'default_favicon' => 'Utiliser l\'icône de l\'app',
     ],
     'addons' => [
         'heading' => 'Add-ons',

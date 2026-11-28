@@ -66,6 +66,8 @@ return [
         'app_icon_help' => 'Négyzetes PNG, JPEG vagy WebP, legalább 512 pixel, legfeljebb 1 MB. Üresen a Simplify ikonja.',
         'app_badge' => 'Állapotsor ikonja',
         'app_badge_help' => 'Átlátszó hátterű PNG, fehéren jelenik meg az Android állapotsorában. Üresen az alkalmazásikont használja, ha átlátszó a háttere, különben a pelikánt.',
+        'app_favicon' => 'Böngészőlap ikonja',
+        'app_favicon_help' => 'A kis ikon a böngészőlapon és a könyvjelzőkben. Négyzetes PNG vagy WebP, legalább 64 pixel, legfeljebb 1 MB. Üresen az alkalmazásikont használja, anélkül a panel saját ikonját.',
         'preview' => [
             'logo' => 'A felső sávban',
             'icon' => 'Egy telefon kezdőképernyőjén',
@@ -161,6 +163,7 @@ return [
         'upload' => 'Saját feltöltése',
         'default_icon' => 'A Simplify ikon használata',
         'default_badge' => 'A Simplify ikon használata',
+        'default_favicon' => 'Alkalmazásikon használata',
     ],
     'addons' => [
         'heading' => 'Kiegészítők',

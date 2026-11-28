@@ -27,6 +27,7 @@ use Simplify\Core\Support\PanelSettings;
 use Simplify\Core\Support\Preferences;
 use Simplify\Core\Support\SafeCache;
 use Simplify\Core\Support\Scheduler;
+use Simplify\Core\WebApp\WebApp;
 
 /**
  * What the overview and the server page share: the header with its menus, the notifications and the account. The
@@ -60,7 +61,7 @@ trait Shell
             ],
             'panel_born' => self::panelBorn(),
             'build_version' => Assets::version(),
-            'favicon_url' => Assets::url('favicon.svg'),
+            'favicon_url' => WebApp::favicon() ?? Assets::url('favicon.svg'),
             'list_url' => Overview::getUrl(panel: 'app'),
             'profile_url' => EditProfile::getUrl(panel: 'app'),
             'notifications_url' => Push::enabled() ? Overview::getUrl(panel: 'app').'#notifications' : null,

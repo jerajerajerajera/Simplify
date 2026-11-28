@@ -66,6 +66,8 @@ return [
         'app_icon_help' => 'PNG, JPEG, atau WebP persegi minimal 512 piksel, hingga 1 MB. Kosong memakai ikon Simplify.',
         'app_badge' => 'Ikon bilah status',
         'app_badge_help' => 'PNG berlatar transparan, ditampilkan putih di bilah status Android. Kosong memakai ikon aplikasi jika latarnya transparan, jika tidak memakai pelikan.',
+        'app_favicon' => 'Ikon tab browser',
+        'app_favicon_help' => 'Ikon kecil di tab browser dan bookmark. PNG atau WebP persegi minimal 64 piksel, hingga 1 MB. Kosong memakai ikon aplikasi, atau tanpa itu ikon panel sendiri.',
         'preview' => [
             'logo' => 'Di bilah atas',
             'icon' => 'Di layar utama ponsel',
@@ -161,6 +163,7 @@ return [
         'upload' => 'Unggah milikmu',
         'default_icon' => 'Gunakan ikon Simplify',
         'default_badge' => 'Gunakan ikon Simplify',
+        'default_favicon' => 'Gunakan ikon aplikasi',
     ],
     'addons' => [
         'heading' => 'Add-on',

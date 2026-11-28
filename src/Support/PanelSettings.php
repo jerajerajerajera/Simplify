@@ -51,6 +51,7 @@ final class PanelSettings
         'brand_logo' => [null, ['nullable', 'string', 'regex:#^'.Brand::DIRECTORY.'/'.Brand::FILE_PATTERN.'$#']],
         'app_icon' => [null, ['nullable', 'string', 'regex:#^'.Brand::DIRECTORY.'/'.Brand::FILE_PATTERN.'$#']],
         'app_badge' => [null, ['nullable', 'string', 'regex:#^'.Brand::DIRECTORY.'/'.Brand::FILE_PATTERN.'$#']],
+        'app_favicon' => [null, ['nullable', 'string', 'regex:#^'.Brand::DIRECTORY.'/'.Brand::FILE_PATTERN.'$#']],
         'logo_height' => [32, ['required', 'integer', 'min:16', 'max:64']],
     ];
 
@@ -150,7 +151,7 @@ final class PanelSettings
             $state['accent'] = strtolower($state['accent']);
         }
         $previous = [];
-        foreach (['brand_logo', 'app_icon', 'app_badge'] as $file) {
+        foreach (['brand_logo', 'app_icon', 'app_badge', 'app_favicon'] as $file) {
             if (array_key_exists($file, $state)) {
                 $state[$file] = $state[$file] ?: null;
                 $previous[$file] = self::get($file);

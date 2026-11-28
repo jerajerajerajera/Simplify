@@ -66,6 +66,8 @@ return [
         'app_icon_help' => 'Neliön muotoinen PNG, JPEG tai WebP, vähintään 512 pikseliä ja enintään 1 MB. Tyhjä käyttää Simplifyn kuvaketta.',
         'app_badge' => 'Tilarivin kuvake',
         'app_badge_help' => 'PNG-kuva läpinäkyvällä taustalla, näytetään valkoisena Androidin tilarivillä. Tyhjänä käytetään sovelluksen kuvaketta, jos sen tausta on läpinäkyvä, muuten pelikaania.',
+        'app_favicon' => 'Selainvälilehden kuvake',
+        'app_favicon_help' => 'Pieni kuvake selaimen välilehdessä ja kirjanmerkeissä. Neliön muotoinen PNG tai WebP, vähintään 64 pikseliä, enintään 1 Mt. Tyhjä käyttää sovelluskuvaketta tai ilman sitä paneelin omaa kuvaketta.',
         'preview' => [
             'logo' => 'Yläpalkissa',
             'icon' => 'Puhelimen aloitusnäytöllä',
@@ -161,6 +163,7 @@ return [
         'upload' => 'Lataa oma',
         'default_icon' => 'Käytä Simplify-kuvaketta',
         'default_badge' => 'Käytä Simplify-kuvaketta',
+        'default_favicon' => 'Käytä sovelluskuvaketta',
     ],
     'addons' => [
         'heading' => 'Lisätoiminnot',

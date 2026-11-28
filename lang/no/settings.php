@@ -66,6 +66,8 @@ return [
         'app_icon_help' => 'En kvadratisk PNG, JPEG eller WebP på minst 512 piksler, opptil 1 MB. Tomt bruker Simplify-ikonet.',
         'app_badge' => 'Statuslinjeikon',
         'app_badge_help' => 'En PNG med gjennomsiktig bakgrunn, vist hvit i statuslinjen på Android. Tom bruker app-ikonet hvis det har gjennomsiktig bakgrunn, ellers pelikanen.',
+        'app_favicon' => 'Ikon i nettleserfanen',
+        'app_favicon_help' => 'Det lille ikonet i nettleserfanen og bokmerker. En kvadratisk PNG eller WebP på minst 64 piksler, opptil 1 MB. Tom bruker app-ikonet, eller uten det panelets eget ikon.',
         'preview' => [
             'logo' => 'I topplinjen',
             'icon' => 'På startskjermen til en telefon',
@@ -161,6 +163,7 @@ return [
         'upload' => 'Last opp din egen',
         'default_icon' => 'Bruk Simplify-ikonet',
         'default_badge' => 'Bruk Simplify-ikonet',
+        'default_favicon' => 'Bruk app-ikonet',
     ],
     'addons' => [
         'heading' => 'Tillegg',

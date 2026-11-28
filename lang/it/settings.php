@@ -66,6 +66,8 @@ return [
         'app_icon_help' => 'Un PNG, JPEG o WebP quadrato di almeno 512 pixel, fino a 1 MB. Vuoto usa l\'icona di Simplify.',
         'app_badge' => 'Icona della barra di stato',
         'app_badge_help' => 'Un PNG con sfondo trasparente, mostrato in bianco nella barra di stato di Android. Vuoto usa l’icona dell’app se ha lo sfondo trasparente, altrimenti il pellicano.',
+        'app_favicon' => 'Icona della scheda',
+        'app_favicon_help' => 'La piccola icona nella scheda del browser e nei segnalibri. Un PNG o WebP quadrato di almeno 64 pixel, fino a 1 MB. Vuoto usa l\'icona dell\'app, o senza di essa l\'icona del pannello.',
         'preview' => [
             'logo' => 'Nella barra in alto',
             'icon' => 'Nella schermata Home di un telefono',
@@ -161,6 +163,7 @@ return [
         'upload' => 'Carica il tuo',
         'default_icon' => 'Usa l\'icona di Simplify',
         'default_badge' => 'Usa l\'icona di Simplify',
+        'default_favicon' => 'Usa l\'icona dell\'app',
     ],
     'addons' => [
         'heading' => 'Add-on',

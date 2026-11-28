@@ -66,6 +66,8 @@ return [
         'app_icon_help' => '正方形 PNG、JPEG 或 WebP，至少 512 像素，最大 1 MB。留空則使用 Simplify 圖示。',
         'app_badge' => '狀態列圖示',
         'app_badge_help' => '背景透明的 PNG，在 Android 狀態列中顯示為白色。留空時，若應用程式圖示背景透明則使用該圖示，否則使用鵜鶘。',
+        'app_favicon' => '瀏覽器分頁圖示',
+        'app_favicon_help' => '瀏覽器分頁和書籤中的小圖示。至少 64 像素的正方形 PNG 或 WebP，最大 1 MB。留空則使用應用程式圖示，沒有時使用面板自己的圖示。',
         'preview' => [
             'logo' => '頂部列',
             'icon' => '手機主畫面',
@@ -161,6 +163,7 @@ return [
         'upload' => '上傳自己的',
         'default_icon' => '使用 Simplify 圖示',
         'default_badge' => '使用 Simplify 圖示',
+        'default_favicon' => '使用應用程式圖示',
     ],
     'addons' => [
         'heading' => '附加元件',

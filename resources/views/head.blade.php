@@ -6,6 +6,11 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="{{ \Simplify\Core\WebApp\WebApp::name() }}">
 <link rel="apple-touch-icon" href="{{ \Simplify\Core\WebApp\WebApp::icon(180)[0] }}">
+@if ($simplifyFavicon = \Simplify\Core\WebApp\WebApp::favicon())
+{{-- The admin's own browser tab icon (Settings › Look) on every page, Pelican's too: it replaces the panel's own. --}}
+<link rel="icon" href="{{ $simplifyFavicon }}" data-simplify-favicon>
+<script>document.querySelectorAll('link[rel~="icon"]:not([data-simplify-favicon])').forEach((link) => link.remove());</script>
+@endif
 <script src="{{ \Simplify\Core\Support\Assets::url('pull.js') }}" defer></script>
 <script src="{{ \Simplify\Core\Support\Assets::url('sheet.js') }}" defer></script>
 <script>window.simplifyUnsavedText = @js([...__('simplify::js.unsaved'), 'cancel' => __('simplify::js.common.cancel')]);</script>

@@ -27,6 +27,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Once;
@@ -43,7 +44,9 @@ use Simplify\Core\Announcements\Filament\AnnouncementResource;
 use Simplify\Core\Announcements\Filament\ManageAnnouncements;
 use Simplify\Core\Announcements\Livewire\AnnouncementBars;
 use Simplify\Core\Announcements\Models\Announcement;
+use Simplify\Core\Announcements\Mail\AnnouncementMail;
 use Simplify\Core\Announcements\Services\Bell as AnnouncementBell;
+use Simplify\Core\Announcements\Services\Email as AnnouncementEmail;
 use Simplify\Core\Announcements\Services\StartAnnouncements;
 use Simplify\Core\Announcements\Services\TaskWaits;
 use Simplify\Core\Announcements\Services\WeeklyAnnouncements;
@@ -84,6 +87,7 @@ use Simplify\Core\Subdomains\Filament\ServerSubdomain;
 use Simplify\Core\Subdomains\Models\Subdomain;
 use Simplify\Core\Subdomains\Services\Settings as SubdomainSettings;
 use Simplify\Core\Subdomains\Subdomains;
+use Simplify\Core\WebApp\WebApp;
 use Simplify\Core\Support\Assets;
 use Simplify\Core\Support\Brand;
 use Simplify\Core\Support\FreshViews;
@@ -1225,6 +1229,97 @@ step('announcements: unpin moves a bar to the bell, pin brings it back, and the 
     if ($player->notifications()->where('data->viewData->simplify_announcement', $bell->id)->count() !== 1) {
         throw new RuntimeException('the bell item did not arrive exactly once');
     }
+});
+step('announcements: Email sends it once to each account that wants it, and the link in the email turns them off and on without signing in', function () use ($admin) {
+    $player = User::where('email', 'smoke-player@example.com')->firstOrFail();
+    // Without a mail server the toggle is off and says so (the panel's .env here has none).
+    config(['mail.default' => 'log']);
+    if (AnnouncementEmail::available()) {
+        throw new RuntimeException('the log mailer counts as a mail server');
+    }
+    $form = Livewire\Livewire::actingAs($admin)->test(ManageAnnouncements::class)->call('mountAction', 'create');
+    $form->assertSee(__('simplify::announcements.form.email_missing'));
+    config(['mail.default' => 'smtp', 'mail.from.address' => 'panel@example.com']);
+    Mail::fake();
+    // The link turns them off: opening it only shows a button, the button (or a mail app's one-click POST) turns them off.
+    $link = AnnouncementEmail::unsubscribeUrl($player);
+    $client = new class(app())
+    {
+        use MakesHttpRequests;
+
+        public function __construct(public $app) {}
+    };
+    $client->get($link)->assertOk()->assertSee(__('simplify::announcements.mail.stop'));
+    if (! AnnouncementEmail::wanted($player)) {
+        throw new RuntimeException('opening the link turned the emails off; only the button may');
+    }
+    $client->post($link)->assertOk()->assertSee(__('simplify::announcements.mail.turn_on'));
+    if (AnnouncementEmail::wanted($player)) {
+        throw new RuntimeException('the button did not turn the emails off');
+    }
+    $client->post($link.'x')->assertForbidden();
+    $client->get(preg_replace('#/announcement-emails/\d+#', '/announcement-emails/'.$admin->id, $link))->assertForbidden();
+
+    $mail = Announcement::create(['title' => 'Smoke by email', 'body' => 'Line one & <b>two</b>', 'in_bell' => false, 'push' => false, 'email' => true]);
+    Artisan::call('simplify:announcements');
+    Artisan::call('simplify:announcements');
+    Mail::assertSent(AnnouncementMail::class, fn (AnnouncementMail $sent) => $sent->hasTo($admin->email) && $sent->announcement->is($mail));
+    Mail::assertNotSent(AnnouncementMail::class, fn (AnnouncementMail $sent) => $sent->hasTo($player->email));
+    $wanting = User::query()->get()->filter(fn (User $user) => filter_var((string) $user->email, FILTER_VALIDATE_EMAIL) && AnnouncementEmail::wanted($user))->count();
+    if (Mail::sent(AnnouncementMail::class)->count() !== $wanting) {
+        throw new RuntimeException('not exactly one email per account that wants them: '.Mail::sent(AnnouncementMail::class)->count().' for '.$wanting);
+    }
+    $mail->refresh();
+    if ($mail->email_sent !== $wanting || $mail->email_total !== $wanting || $mail->email_failed) {
+        throw new RuntimeException('the list does not count the emails: '.json_encode($mail->only(['email_sent', 'email_total', 'email_failed'])));
+    }
+    // Back on: the player gets it on the next minute, within a day after the start.
+    $client->post($link, ['on' => '1'])->assertOk();
+    Artisan::call('simplify:announcements');
+    Mail::assertSent(AnnouncementMail::class, fn (AnnouncementMail $sent) => $sent->hasTo($player->email));
+    // The email: escaped, with the stop link and the mail app's one-click header.
+    $html = (new AnnouncementMail($mail, $player))->render();
+    if (! str_contains($html, 'Smoke by email') || ! str_contains($html, '&lt;b&gt;two&lt;/b&gt;') || ! str_contains($html, '/simplify/announcement-emails/'.$player->id)) {
+        throw new RuntimeException('the email misses its title, its stop link, or shows the message as HTML');
+    }
+    $headers = (new AnnouncementMail($mail, $player))->headers()->text;
+    if (($headers['List-Unsubscribe-Post'] ?? '') !== 'List-Unsubscribe=One-Click' || ! str_contains($headers['List-Unsubscribe'] ?? '', '/announcement-emails/')) {
+        throw new RuntimeException('the email has no one-click unsubscribe header');
+    }
+    $mail->delete();
+});
+step('settings: an own browser tab icon is on every page and the status page, as a 64 pixel PNG, and the app icon stands in without one', function () use ($admin) {
+    if (! function_exists('imagecreatetruecolor')) {
+        return;
+    }
+    $image = imagecreatetruecolor(200, 120);
+    imagefill($image, 0, 0, imagecolorallocate($image, 200, 40, 40));
+    ob_start();
+    imagepng($image);
+    $file = Brand::DIRECTORY.'/smoke-favicon.png';
+    Storage::disk('local')->put($file, (string) ob_get_clean());
+    PanelSettings::save(['app_favicon' => $file]);
+    $url = WebApp::favicon();
+    if ($url === null || ! str_contains($url, '/simplify/favicon.png')) {
+        throw new RuntimeException('no favicon address for an own favicon: '.var_export($url, true));
+    }
+    $png = WebApp::faviconPng();
+    $size = $png === null ? false : getimagesizefromstring($png);
+    if ($size === false || $size[0] !== WebApp::FAVICON || $size[1] !== WebApp::FAVICON) {
+        throw new RuntimeException('the favicon is not a square PNG of '.WebApp::FAVICON.' pixels');
+    }
+    $page = visit($admin, Settings::getUrl(panel: 'admin'));
+    $page->assertOk()->assertSee('data-simplify-favicon', false)->assertSee(e($url), false);
+    $status = visit($admin, '/status');
+    $status->assertOk();
+    if (! str_contains((string) $status->getContent(), '<link rel="icon" href="'.e($url).'">')) {
+        throw new RuntimeException('the status page has no favicon');
+    }
+    PanelSettings::save(['app_favicon' => null]);
+    if (WebApp::favicon() !== null && ! PanelSettings::get('app_icon')) {
+        throw new RuntimeException('without an own favicon or app icon the panel keeps its own favicon');
+    }
+    Storage::disk('local')->delete($file);
 });
 step('announcement task: sends now to the owner once, and "when online" waits in the scheduler, then says it did not come online (K-B64)', function () use ($server) {
     $owner = User::query()->findOrFail($server->owner_id);

@@ -66,6 +66,8 @@ return [
         'app_icon_help' => 'Štvorcový PNG, JPEG alebo WebP aspoň 512 pixelov, do 1 MB. Prázdne použije ikonu Simplify.',
         'app_badge' => 'Ikona stavového riadka',
         'app_badge_help' => 'PNG s priehľadným pozadím, v stavovom riadku Androidu zobrazené nabielo. Prázdne použije ikonu aplikácie, ak má priehľadné pozadie, inak pelikána.',
+        'app_favicon' => 'Ikona karty prehliadača',
+        'app_favicon_help' => 'Malá ikona na karte prehliadača a v záložkách. Štvorcový PNG alebo WebP aspoň 64 pixelov, do 1 MB. Prázdne použije ikonu aplikácie, bez nej vlastnú ikonu panela.',
         'preview' => [
             'logo' => 'V hornej lište',
             'icon' => 'Na domovskej obrazovke telefónu',
@@ -161,6 +163,7 @@ return [
         'upload' => 'Nahrať vlastnú',
         'default_icon' => 'Použiť ikonu Simplify',
         'default_badge' => 'Použiť ikonu Simplify',
+        'default_favicon' => 'Použiť ikonu aplikácie',
     ],
     'addons' => [
         'heading' => 'Doplnky',

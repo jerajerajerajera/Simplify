@@ -66,6 +66,8 @@ return [
         'app_icon_help' => 'Um PNG, JPEG ou WebP quadrado de pelo menos 512 pixels, até 1 MB. Vazio usa o ícone do Simplify.',
         'app_badge' => 'Ícone da barra de estado',
         'app_badge_help' => 'Um PNG com fundo transparente, mostrado a branco na barra de estado do Android. Vazio usa o ícone da app se tiver fundo transparente; caso contrário, o pelicano.',
+        'app_favicon' => 'Ícone do separador',
+        'app_favicon_help' => 'O pequeno ícone no separador do navegador e nos marcadores. Um PNG ou WebP quadrado com pelo menos 64 píxeis, até 1 MB. Vazio usa o ícone da app, ou sem ele o ícone do painel.',
         'preview' => [
             'logo' => 'Na barra superior',
             'icon' => 'No ecrã inicial de um telemóvel',
@@ -161,6 +163,7 @@ return [
         'upload' => 'Carregar o seu',
         'default_icon' => 'Usar o ícone do Simplify',
         'default_badge' => 'Usar o ícone do Simplify',
+        'default_favicon' => 'Usar o ícone da app',
     ],
     'addons' => [
         'heading' => 'Add-ons',
