@@ -1238,10 +1238,12 @@ step('announcements: Email sends it once to each account that wants it, and the 
     if (AnnouncementEmail::available()) {
         $fail('the log mailer counts as a mail server');
     }
-    $html = Livewire\Livewire::actingAs($admin)->test(ManageAnnouncements::class)->call('mountAction', 'create')->html();
-    if (! str_contains($html, e(__('simplify::announcements.form.email_missing')))) {
-        $fail('the form does not say mail is not set up');
+    $settings = AnnouncementEmail::settingsUrl();
+    $html = view('simplify::announcements.mail-missing', ['url' => $settings])->render();
+    if ($settings === null || ! str_contains($settings, 'mail') || ! str_contains($html, e(__('simplify::announcements.form.email_missing'))) || ! str_contains($html, e($settings))) {
+        $fail('the notice does not say mail is not set up, or does not link to the mail settings: '.var_export($settings, true));
     }
+    Livewire\Livewire::actingAs($admin)->test(ManageAnnouncements::class)->call('mountAction', 'create')->assertHasNoErrors();
     config(['mail.default' => 'smtp', 'mail.from.address' => 'panel@example.com']);
     Mail::fake();
     // The link turns them off: opening it only shows a button, the button (or a mail app's one-click POST) turns them off.
