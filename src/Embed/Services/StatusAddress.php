@@ -253,36 +253,73 @@ final class StatusAddress
      */
     private static function probe(string $host): array
     {
-        $ips = self::publicAddresses($host);
-        $options = $ips === null ? [] : ['curl' => [CURLOPT_RESOLVE => [$host.':443:'.$ips[0]]]];
-        if ($ips === []) {
-            throw new DnsMissing;
-        }
+        $options = self::pinned($host, self::publicAddresses($host));
         $response = Http::timeout(8)->withoutRedirecting()->withOptions($options)->get('https://'.$host.'/');
 
         return ['status' => $response->status(), 'header' => $response->header(self::HEADER) ?: null, 'location' => $response->header('Location') ?: null];
     }
 
     /**
-     * The IPv4 addresses of $host in public DNS; [] when it has none, null when public DNS could not be asked (then
-     * the server's own lookup is used).
+     * The request options that make https://$host/ go to the address public DNS gave: none when public DNS could not
+     * be asked (null), DnsMissing when it has no address.
+     *
+     * @param  list<string>|null  $ips
+     * @return array<string, mixed>
+     */
+    public static function pinned(string $host, ?array $ips): array
+    {
+        if ($ips === null) {
+            return [];
+        }
+        // Checked before the first address is read: an empty answer said "Undefined array key 0" (K-B101).
+        if ($ips === []) {
+            throw new DnsMissing;
+        }
+        $ip = str_contains($ips[0], ':') ? '['.$ips[0].']' : $ips[0];
+
+        return ['curl' => [CURLOPT_RESOLVE => [$host.':443:'.$ip]]];
+    }
+
+    /**
+     * The addresses of $host in public DNS, IPv4 first, else IPv6 (a host with only an AAAA record works for
+     * visitors too); [] when it has none, null when public DNS could not be asked (then the server's own lookup is
+     * used).
      *
      * @return list<string>|null
      */
     private static function publicAddresses(string $host): ?array
     {
-        try {
-            $answer = Http::timeout(4)->accept('application/dns-json')
-                ->get('https://cloudflare-dns.com/dns-query', ['name' => $host, 'type' => 'A'])->json();
-        } catch (Throwable) {
-            return null;
+        foreach (['A' => [1, FILTER_FLAG_IPV4], 'AAAA' => [28, FILTER_FLAG_IPV6]] as $type => [$code, $flag]) {
+            try {
+                $answer = Http::timeout(4)->accept('application/dns-json')
+                    ->get('https://cloudflare-dns.com/dns-query', ['name' => $host, 'type' => $type])->json();
+            } catch (Throwable) {
+                // Public DNS not reached: the server's own lookup.
+                return null;
+            }
+            if (! is_array($answer) || ! isset($answer['Status'])) {
+                return null;
+            }
+            $ips = self::addresses($answer, $code, $flag);
+            if ($ips !== []) {
+                return $ips;
+            }
         }
-        if (! is_array($answer) || ! isset($answer['Status'])) {
-            return null;
-        }
+
+        return [];
+    }
+
+    /**
+     * The addresses of one type in a DNS-over-HTTPS answer.
+     *
+     * @param  array<string, mixed>  $answer
+     * @return list<string>
+     */
+    public static function addresses(array $answer, int $type, int $flag): array
+    {
         $ips = [];
         foreach ((array) ($answer['Answer'] ?? []) as $record) {
-            if ((int) ($record['type'] ?? 0) === 1 && filter_var($record['data'] ?? '', FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+            if (is_array($record) && (int) ($record['type'] ?? 0) === $type && filter_var($record['data'] ?? '', FILTER_VALIDATE_IP, $flag)) {
                 $ips[] = (string) $record['data'];
             }
         }

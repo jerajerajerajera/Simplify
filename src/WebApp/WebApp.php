@@ -58,7 +58,7 @@ final class WebApp
             return null;
         }
 
-        $png = SafeCache::rememberForever('simplify.app-icon.'.$own.'.'.$size, function () use ($path, $size) {
+        $png = SafeCache::rememberForever('simplify.app-icon.'.$own.'.'.$size.'.2', function () use ($path, $size) {
             $source = @imagecreatefromstring((string) file_get_contents($path));
             if ($source === false) {
                 return null;
@@ -67,7 +67,10 @@ final class WebApp
             $icon = imagecreatetruecolor($size, $size);
             imagealphablending($icon, false);
             imagesavealpha($icon, true);
-            imagefill($icon, 0, 0, imagecolorallocatealpha($icon, 0, 0, 0, 127));
+            // The iPhone's icon (180) has no transparency: iOS fills it black, so it gets the light page colour behind it.
+            $opaque = $size === 180;
+            imagealphablending($icon, $opaque);
+            imagefill($icon, 0, 0, $opaque ? imagecolorallocate($icon, 0xFA, 0xFA, 0xFA) : imagecolorallocatealpha($icon, 0, 0, 0, 127));
             imagecopyresampled($icon, $source, 0, 0, intdiv(imagesx($source) - $side, 2), intdiv(imagesy($source) - $side, 2), $size, $size, $side, $side);
             ob_start();
             imagepng($icon);

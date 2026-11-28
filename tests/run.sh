@@ -16,6 +16,7 @@ php tests/stale-code.php
 php tests/problems.php
 php tests/migrations-keep.php
 php tests/push.php
+php tests/app-icon.php
 php tests/storage-owner.php
 php tests/announcements-rules.php
 php tests/announcements-game-chat.php
@@ -68,6 +69,7 @@ node tests/embed-uptime.cjs
 node tests/embed-incidents.cjs
 node tests/console-placeholders.cjs
 node tests/console-header-actions.cjs
+node tests/console-dot.cjs
 node tests/console-title-clicks.cjs
 node tests/console-pelican-tools.cjs
 node tests/console-window.cjs

@@ -724,7 +724,7 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
 .ps-console { position: relative; display: flex; flex-direction: column; min-width: 0; min-height: 0; overflow: hidden; border: 1px solid var(--ps-console-line); border-radius: var(--ps-radius-lg); background: var(--ps-console-bg); color: var(--ps-console-ink); }
 .ps-console-title { display: flex; flex: none; align-items: center; gap: 10px; height: 56px; padding: 0 16px; border-bottom: 1px solid var(--ps-console-line); font-size: 13px; white-space: nowrap; }
 .ps-terminal-icon { color: var(--ps-console-muted); font: 700 17px var(--ps-mono); }
-.ps-console-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ps-console-muted); }
+.ps-console-dot { flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--ps-console-muted); }
 .ps-console-dot.connected { background: #6ed8a8; box-shadow: 0 0 0 3px rgb(110 216 168 / .15); }
 .ps-console-state { margin-inline-start: auto; overflow: hidden; color: var(--ps-console-muted); font-size: 11px; text-overflow: ellipsis; }
 .ps-console-clear { padding: 4px 8px; border: 1px solid var(--ps-console-line); border-radius: var(--ps-radius-sm); background: transparent; color: var(--ps-console-muted); font-size: 11px; }

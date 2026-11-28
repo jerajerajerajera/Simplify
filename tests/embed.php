@@ -5,10 +5,12 @@
 declare(strict_types=1);
 
 require __DIR__.'/../src/Server/Looks.php';
+require __DIR__.'/../src/Embed/Services/DnsMissing.php';
 foreach (['EggLogo', 'EmbedDetails', 'EmbedOptions', 'IncidentRules', 'PublicAddress', 'ServerList', 'Snippet', 'StatusAddress', 'StatusCss', 'Uptime'] as $class) {
     require __DIR__.'/../src/Embed/Services/'.$class.'.php';
 }
 
+use Simplify\Core\Embed\Services\DnsMissing;
 use Simplify\Core\Embed\Services\EggLogo;
 use Simplify\Core\Embed\Services\EmbedOptions;
 use Simplify\Core\Embed\Services\IncidentRules;
@@ -261,6 +263,24 @@ same('feed: no raw markup', false, str_contains($feed, '<b>'));
 same('note: tags and line breaks go', 'Out of memory; raised to 8 GB.', IncidentRules::note("<b>Out of memory;</b>\nraised to 8 GB."));
 same('note: empty is none', null, IncidentRules::note('   '));
 same('note: at most 300 characters', IncidentRules::NOTE, mb_strlen((string) IncidentRules::note(str_repeat('é', 400))));
+
+// K-B101: an address without an address in public DNS said "Undefined array key 0" instead of "not in DNS yet".
+$missing = null;
+// As in Laravel, a warning is an error.
+set_error_handler(fn (int $level, string $message) => throw new ErrorException($message, 0, $level));
+try {
+    StatusAddress::pinned('status.example.com', []);
+} catch (Throwable $error) {
+    $missing = get_class($error).($error instanceof DnsMissing ? '' : ': '.$error->getMessage());
+}
+restore_error_handler();
+same('no address in public DNS is DnsMissing', DnsMissing::class, $missing);
+same('public DNS not asked: the server\'s own lookup', [], StatusAddress::pinned('status.example.com', null));
+same('IPv4 is pinned', ['status.example.com:443:203.0.113.7'], StatusAddress::pinned('status.example.com', ['203.0.113.7'])['curl'][CURLOPT_RESOLVE] ?? null);
+same('a CNAME chain gives its A records', ['203.0.113.7'], StatusAddress::addresses(['Status' => 0, 'Answer' => [['type' => 5, 'data' => 'panel.example.com.'], ['type' => 1, 'data' => '203.0.113.7']]], 1, FILTER_FLAG_IPV4));
+same('IPv6 only', ['2001:db8::7'], StatusAddress::addresses(['Status' => 0, 'Answer' => [['type' => 28, 'data' => '2001:db8::7']]], 28, FILTER_FLAG_IPV6));
+same('no answer', [], StatusAddress::addresses(['Status' => 3], 1, FILTER_FLAG_IPV4));
+same('IPv6 is pinned in brackets', ['status.example.com:443:[2001:db8::7]'], StatusAddress::pinned('status.example.com', ['2001:db8::7'])['curl'][CURLOPT_RESOLVE] ?? null);
 
 if ($failures) {
     echo "FAIL embed:\n  ".implode("\n  ", $failures)."\n";
