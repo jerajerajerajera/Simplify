@@ -14,13 +14,15 @@
   const root = host.attachShadow ? host.attachShadow({ mode: 'open' }) : host;
   const flag = (value, fallback) => value === undefined ? fallback : !/^(off|false|0|no)$/i.test(value);
 
+  // Each colour, the corners and the font can come from the page around the list (--simplify-embed-*; custom properties
+  // pass the shadow root), such as a theme add-on on the status page; without them the list keeps its own.
   const css = `
     :host{display:block}
-    .wrap{--bg:#fff;--card:#fff;--ink:#18181b;--muted:#71717a;--line:#e4e4e7;--soft:#f4f4f5;--ok:#16a34a;--warn:#ca8a04;--bad:#dc2626;--none:#e4e4e7;
-      font:14px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink)}
+    .wrap{--bg:var(--simplify-embed-bg,#fff);--card:var(--simplify-embed-card,#fff);--ink:var(--simplify-embed-ink,#18181b);--muted:var(--simplify-embed-muted,#71717a);--line:var(--simplify-embed-line,#e4e4e7);--soft:var(--simplify-embed-soft,#f4f4f5);--ok:var(--simplify-embed-ok,#16a34a);--warn:var(--simplify-embed-warn,#ca8a04);--bad:var(--simplify-embed-bad,#dc2626);--none:#e4e4e7;
+      font:14px/1.45 var(--simplify-embed-font,Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif);color:var(--ink)}
     .list{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:12px;align-items:start}
-    .wrap.dark{--card:#18181b;--ink:#f4f4f5;--muted:#a1a1aa;--line:#2e2e33;--soft:#232327;--ok:#4ade80;--warn:#facc15;--bad:#f87171;--none:#2e2e33}
-    @media (prefers-color-scheme:dark){.wrap.auto{--card:#18181b;--ink:#f4f4f5;--muted:#a1a1aa;--line:#2e2e33;--soft:#232327;--ok:#4ade80;--warn:#facc15;--bad:#f87171;--none:#2e2e33}}
+    .wrap.dark{--card:var(--simplify-embed-card,#18181b);--ink:var(--simplify-embed-ink,#f4f4f5);--muted:var(--simplify-embed-muted,#a1a1aa);--line:var(--simplify-embed-line,#2e2e33);--soft:var(--simplify-embed-soft,#232327);--ok:var(--simplify-embed-ok,#4ade80);--warn:var(--simplify-embed-warn,#facc15);--bad:var(--simplify-embed-bad,#f87171);--none:#2e2e33}
+    @media (prefers-color-scheme:dark){.wrap.auto{--card:var(--simplify-embed-card,#18181b);--ink:var(--simplify-embed-ink,#f4f4f5);--muted:var(--simplify-embed-muted,#a1a1aa);--line:var(--simplify-embed-line,#2e2e33);--soft:var(--simplify-embed-soft,#232327);--ok:var(--simplify-embed-ok,#4ade80);--warn:var(--simplify-embed-warn,#facc15);--bad:var(--simplify-embed-bad,#f87171);--none:#2e2e33}}
     .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:grid;gap:10px;align-content:start;min-width:0}
     .top{display:flex;gap:10px;align-items:center;min-width:0}
     .icon{width:40px;height:40px;border-radius:calc(var(--r) - 2px);flex:none;object-fit:cover;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:700}
@@ -209,7 +211,7 @@
     const list = el('div', { class: 'list', part: 'list', role: 'list', 'aria-label': `${data.name || 'Game'} servers` });
     for (const server of servers) { const item = card(server, show, down.has(server.id)); item.setAttribute('role', 'listitem'); list.append(item); }
     if (!servers.length) list.append(el('p', { class: 'empty', text: t.empty }));
-    const wrap = el('div', { class: `wrap ${style}`, style: `--accent:${accent};--r:${corners}` }, ...top.map((banner) => banner.node), list,
+    const wrap = el('div', { class: `wrap ${style}`, style: `--accent:var(--simplify-embed-accent,${accent});--r:var(--simplify-embed-radius,${corners})` }, ...top.map((banner) => banner.node), list,
       extras && options.incidents !== false ? log(incidents, now) : null);
     root.replaceChildren(el('style', { text: css }), wrap);
   };

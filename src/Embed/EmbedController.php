@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Simplify\Core\Embed;
 
+use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Simplify\Core\Addons\Addon;
+use Simplify\Core\Addons\AddonRegistry;
 use Simplify\Core\Embed\Services\EggLogo;
 use Simplify\Core\Embed\Services\EmbedDetails;
 use Simplify\Core\Embed\Services\EmbedOptions;
@@ -115,8 +118,12 @@ final class EmbedController
                 $data[$key] = $value;
             }
         }
-        // The status page's own theme and accent, unless the address asks for another.
-        if ($options !== null) {
+        // An add-on's part of the page, such as a theme (Addon::statusPageHead/statusPageBody).
+        $addonHead = $options === null ? '' : self::addonHtml(fn (Addon $addon) => $addon->statusPageHead());
+        $addonBody = $options === null ? '' : self::addonHtml(fn (Addon $addon) => $addon->statusPageBody());
+        // The status page's own theme and accent, unless the address asks for another. With an add-on's head the
+        // page follows the device: the add-on's colours come in light and dark, and a fixed theme took only one half.
+        if ($options !== null && $addonHead === '') {
             $data['style'] ??= $options['page_style'] !== '' ? $options['page_style'] : $options['style'];
             if ($options['page_accent'] !== '') {
                 $data['accent'] ??= $options['page_accent'];
@@ -178,8 +185,9 @@ final class EmbedController
             .$alternate
             .'<style>html,body{margin:0}'.$style.'</style>'
             .($own === '' ? '' : '<style>'.$own.'</style>')
+            .$addonHead
             .'</head>'
-            .'<body>'.$heading.'<div id="simplify-servers"></div><script src="'.e(url('/simplify/embed.js')).'"'.$attributes.' defer></script></body></html>';
+            .'<body>'.$heading.'<div id="simplify-servers"></div><script src="'.e(url('/simplify/embed.js')).'"'.$attributes.' defer></script>'.$addonBody.'</body></html>';
 
         return response($html, 200, [
             'Content-Type' => 'text/html; charset=utf-8',
@@ -196,6 +204,12 @@ final class EmbedController
      *
      * @param  array{page_logo: string, page_logo_file: string}  $options
      */
+    /** @param  Closure(Addon): string  $read */
+    private static function addonHtml(Closure $read): string
+    {
+        return implode('', app(AddonRegistry::class)->collect(fn (Addon $addon) => [$read($addon)]));
+    }
+
     private static function pageLogo(array $options): ?string
     {
         if ($options['page_logo'] === 'upload') {

@@ -285,6 +285,33 @@ final class LockActions extends Component
     }
 }
 
+/** Dresses the public status page the way Themes does (Addon::statusPageHead/statusPageBody, API 11). */
+final class StatusThemeAddon extends Addon
+{
+    /** Only during its own step: a tag stays for the rest of the run. */
+    public static bool $on = false;
+
+    public function id(): string
+    {
+        return 'status-theme-addon';
+    }
+
+    public function name(): string
+    {
+        return 'Status theme add-on';
+    }
+
+    public function statusPageHead(): string
+    {
+        return self::$on ? '<style data-smoke-theme>:root{--simplify-embed-card:#123456}</style>' : '';
+    }
+
+    public function statusPageBody(): string
+    {
+        return self::$on ? '<script data-smoke-theme src="/smoke-theme.js" defer></script>' : '';
+    }
+}
+
 /** Locks a server the way Egg Updates locks its test server (Addon::lockedServer, API 10). */
 final class LockAddon extends Addon
 {
@@ -1970,6 +1997,46 @@ step('embed: the public list shows only servers put on the website, without priv
         EmbedServers::replace([]);
     }
 });
+step('embed: an add-on dresses the status page (head and body), only the page itself, and the page then follows the device', function ($app) {
+    $guest = new class(app())
+    {
+        use MakesHttpRequests;
+
+        public function __construct(public $app) {}
+    };
+    $plain = $guest->get('/simplify/embed?page=1')->getContent();
+    $app->tag([StatusThemeAddon::class], AddonRegistry::TAG);
+    $app->forgetInstance(AddonRegistry::class);
+    StatusThemeAddon::$on = true;
+    $old = EmbedOptions::all();
+    EmbedOptions::save([...$old, 'page_style' => 'dark', 'page_accent' => '#ff0000']);
+    try {
+        $html = $guest->get('/simplify/embed?page=1')->getContent();
+        $head = strpos($html, '<style data-smoke-theme>');
+        $body = strpos($html, '<script data-smoke-theme');
+        if ($head === false || $head > strpos($html, '</head>') || $body === false || $body < strpos($html, '<body>') || $body > strpos($html, '</body>')) {
+            throw new RuntimeException('the add-on\'s head and body are not on the status page in their places');
+        }
+        // Themes gives light and dark colours: a fixed theme or accent of the page would take only one half.
+        if (str_contains($html, 'data-style="dark"') || str_contains($html, 'data-accent=')) {
+            throw new RuntimeException('with an add-on\'s head the page still fixes its own theme or accent');
+        }
+        // The address may still ask for one.
+        if (! str_contains($guest->get('/simplify/embed?page=1&style=light')->getContent(), 'data-style="light"')) {
+            throw new RuntimeException('the address could not ask for a theme');
+        }
+        // The list inside another website stays the website's own.
+        if (str_contains($guest->get('/simplify/embed?server=abc')->getContent(), 'data-smoke-theme')) {
+            throw new RuntimeException('the add-on\'s part reached the list inside another website');
+        }
+        if (str_contains($plain, 'data-smoke-theme')) {
+            throw new RuntimeException('the page had the add-on\'s part before the add-on was there');
+        }
+    } finally {
+        StatusThemeAddon::$on = false;
+        EmbedOptions::save($old);
+    }
+});
 step('embed: the Website page of a server saves what the website shows, only on Save', function () use ($admin, $server) {
     $guest = new class(app())
     {
@@ -2461,6 +2528,12 @@ step('subdomains: a subdomain reaches Cloudflare and shows on the server card', 
     Filament\Facades\Filament::setCurrentPanel(Filament\Facades\Filament::getPanel('server'));
     Filament\Facades\Filament::setTenant($server);
     $calls = [];
+    // Without a subdomain the field is empty, the suggestion only its placeholder: a removed subdomain showed the
+    // server's name in the field after a reload (K-B105).
+    $empty = Livewire\Livewire::actingAs($admin)->test(ServerSubdomain::class);
+    if (Subdomain::of($server->uuid) === null && $empty->get('data.name') !== '') {
+        throw new RuntimeException('a server without a subdomain shows a name in the field: '.json_encode($empty->get('data.name')));
+    }
     noErrors(Livewire\Livewire::actingAs($admin)->test(ServerSubdomain::class)->set('data.name', 'smoke-oak')->call('save'));
     if (! in_array('POST /zones/'.str_repeat('a', 32).'/dns_records', $calls, true) || Subdomain::of($server->uuid)?->status !== Subdomain::ACTIVE) {
         throw new RuntimeException('not connected: '.json_encode($calls));

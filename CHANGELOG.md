@@ -10,6 +10,9 @@
 - Fixed: changing the status page's own address could say "The address did not respond: Undefined array key 0" when public DNS had no IPv4 record for it; an address with only an IPv6 record now works too.
 - Fixed: the app on an iPhone's home screen had no icon when you set your own app icon; it now has one, on the light page colour.
 - Fixed: the green "Connected" dot next to the live console was stretched with a longer translation; it stays round.
+- Fixed: on a phone the panel's name on a server page could be cut off mid-word next to the back button ("VoiceNation Pane"); a name too long for the room now ends in "…".
+- Fixed: after you removed a server's subdomain and reloaded, the field showed the server's name as if it were still set; the suggestion is now only a placeholder.
+- Add-ons: `statusPageHead()` and `statusPageBody()` (API 11) let an add-on such as a theme dress the public status page; the cards take `--simplify-embed-*` colours from the page around them.
 
 ## 2.0.0-beta.18
 
