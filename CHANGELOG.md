@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Fixed: on a phone the panel's name on the Admin page could run under the Health heart; it now ends in "…" before it.
 - Fixed: in Firefox the live console could stay empty under "Connected to Wings" until the window changed size; it is drawn once more after it connects.
 
 ## 2.0.0-beta.19

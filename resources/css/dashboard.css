@@ -1319,6 +1319,7 @@ button.ps-statusbar-item:hover { color: var(--ps-ink); }
    touch beside the buttons made it wrap, so the card below started lower than on the other Admin pages, K-B42). */
 @media (min-width: 601px) and (max-width: 1100px) {
   .ps.ps-admin-top :is(.ps-heading, .ps-identity, .ps-heading > a) { min-width: 0; }
+  .ps.ps-admin-top .ps-identity { overflow: hidden; }
   .ps.ps-admin-top .ps-brand { flex-wrap: nowrap; min-width: 0; white-space: nowrap; }
   .ps.ps-admin-top .ps-panel-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 }
@@ -1585,7 +1586,10 @@ body:has(.ps-install:not([style*="none"], [x-cloak])) .fi-main .fi-page .fi-call
      name beside the back button was cut off mid-word (K-B104). */
   .ps .ps-brand { flex-wrap: nowrap; min-width: 0; }
   .ps .ps-panel-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
-  .ps:not(.server-active) :is(.ps-identity, .ps-identity > a) { min-width: 0; }
+  .ps :is(.ps-identity, .ps-identity > a) { min-width: 0; }
+  /* The name never paints past its own room: on the Admin page the heart sits right beside it, and in the iOS app the
+     name ran under it (K-B107). */
+  .ps .ps-identity { overflow: hidden; }
   /* Host health in the top bar: the heart and its word when they fit (core.js fitWord), else the heart alone. */
   .ps .ps-health-pill { min-width: var(--ps-h); }
   .ps .ps-top, .ps.server-active .ps-top { align-items: center; margin-bottom: 14px; }
