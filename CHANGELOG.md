@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Fixed: in Firefox the live console could stay empty under "Connected to Wings" until the window changed size; it is drawn once more after it connects.
+
 ## 2.0.0-beta.19
 
 - Website embed: pin a server to the top of the list with the pin in Settings › Website. On the status page, a pinned server that stays unreachable longer than the set minutes (15 by default, 0 at once) gets a banner above the list and a red card.
